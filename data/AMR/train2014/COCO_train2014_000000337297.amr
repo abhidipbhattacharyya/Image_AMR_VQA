@@ -1,0 +1,32 @@
+# ::id train2014~COCO_train2014_000000337297
+# ::doc_file train2014~COCO_train2014_000000337297
+# ::tok A giraffe is eating grass in a field . <next_sent> The giraffe is bending down to eat the grass . <next_sent> There are two giraffes in the field , one is standing and the other is bent down . <next_sent> The giraffe that is bent down is eating the grass .
+(d / document
+   :snt1 (s1.e / eat-01
+               :ARG0 (s1.g / giraffe)
+               :ARG1 (s1.g2 / grass)
+               :location (s1.f / field))
+   :snt2 (s2.b / bend-01
+               :purpose (s2.e / eat-01
+                              :ARG0 (s2.g / giraffe
+                                          :same-as s1.g)
+                              :ARG1 (s2.g2 / grass
+                                           :same-as s1.g2))
+               :ARG1 s2.g
+               :direction (s2.d / down))
+   :snt3 (s3.b / be-located-at-91
+               :ARG1 (s3.g / giraffe
+                           :quant "2")
+               :ARG2 (s3.f / field
+                           :same-as s1.f)
+               :rel (s3.g2 / giraffe
+                           :ARG1-of (s3.s / stand-01)
+                           :ARG1-of (s3.b2 / bend-01
+                                           :direction (s3.d / down))
+                           :quant "1"))
+   :snt4 (s4.e / eat-01
+               :ARG0 (s4.g / giraffe
+                           :ARG1-of (s4.b / bend-01
+                                          :direction (s4.d / down)))
+               :ARG1 (s4.g2 / grass
+                            :same-as s1.g2)))
