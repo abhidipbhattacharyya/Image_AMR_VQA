@@ -1,0 +1,34 @@
+# ::tok A street sign is shown across from a street with has cars and a traffic light .
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	4-5
+# ::node	a	across	5-6
+# ::node	s4	street	8-9
+# ::node	h	have-03	9-10
+# ::node	h2	have-03	10-11
+# ::node	c	car	11-12
+# ::node	a2	and	12-13
+# ::node	t	traffic	14-15
+# ::node	l	light	15-16
+# ::root	s	show-01
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	show-01	ARG1	sign	s	s2	
+# ::edge	sign	location	across	s2	a	
+# ::edge	across	op1	street	a	s4	
+# ::edge	street	ARG0-of	have-03	s4	h	
+# ::edge	street	ARG0-of	have-03	s4	h2	
+# ::edge	and	op1	car	a2	c	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op2	light	a2	l	
+(s / show-01
+    :ARG1 (s2 / sign
+        :location (a / across
+            :op1 (s4 / street
+                :ARG0-of (h / have-03)
+                :ARG0-of (h2 / have-03
+                    :ARG1 (a2 / and
+                        :op1 (c / car)
+                        :op2 (l / light
+                            :mod (t / traffic))))))
+        :mod (s3 / street)))

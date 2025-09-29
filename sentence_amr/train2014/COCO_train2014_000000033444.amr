@@ -1,0 +1,35 @@
+# ::tok A dog is leaping into the air to catch a frisbee , with a man holding another frisbee behind him
+# ::node	d	dog	1-2
+# ::node	l	leap-03	3-4
+# ::node	a	air	6-7
+# ::node	c	catch-01	8-9
+# ::node	f	frisbee	10-11
+# ::node	m	man	14-15
+# ::node	h	hold-01	15-16
+# ::node	a2	another	16-17
+# ::node	f2	frisbee	17-18
+# ::node	b	behind	18-19
+# ::root	l	leap-03
+# ::edge	leap-03	ARG0	dog	l	d	
+# ::edge	leap-03	destination	air	l	a	
+# ::edge	leap-03	purpose	catch-01	l	c	
+# ::edge	catch-01	ARG0	dog	c	d	
+# ::edge	catch-01	ARG1	frisbee	c	f	
+# ::edge	leap-03	accompanier	man	l	m	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	frisbee	mod	another	f2	a2	
+# ::edge	hold-01	ARG1	frisbee	h	f2	
+# ::edge	frisbee	location	behind	f2	b	
+# ::edge	behind	op1	dog	b	d	
+(l / leap-03
+    :purpose (c / catch-01
+        :ARG0 (d / dog)
+        :ARG1 (f / frisbee))
+    :ARG0 d
+    :accompanier (m / man
+        :ARG0-of (h / hold-01
+            :ARG1 (f2 / frisbee
+                :location (b / behind
+                    :op1 d)
+                :mod (a2 / another))))
+    :destination (a / air))

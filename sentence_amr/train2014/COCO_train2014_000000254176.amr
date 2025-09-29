@@ -1,0 +1,43 @@
+# ::tok Two grown men wearing teddy bear suits are riding motorcycles as part of a " no bike parking tax " protest .
+# ::node	1	2	0-1
+# ::node	g	grown-05	1-2
+# ::node	m	man	2-3
+# ::node	w	wear-01	3-4
+# ::node	t2	teddy	4-5
+# ::node	b	bear	5-6
+# ::node	s	suit	6-7
+# ::node	r	ride-01	8-9
+# ::node	m2	motorcycle	9-10
+# ::node	0	-	15-16
+# ::node	b2	bike	16-17
+# ::node	p	park-01	17-18
+# ::node	t	tax-01	18-19
+# ::node	p2	protest-01	20-21
+# ::root	r	ride-01
+# ::edge	man	ARG1-of	grown-05	m	g	
+# ::edge	man	quant	2	m	1	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	bear	mod	teddy	b	t2	
+# ::edge	suit	mod	bear	s	b	
+# ::edge	wear-01	ARG1	suit	w	s	
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	ride-01	ARG1	motorcycle	r	m2	
+# ::edge	park-01	ARG1	bike	p	b2	
+# ::edge	tax-01	ARG3	park-01	t	p	
+# ::edge	tax-01	polarity	-	t	0	
+# ::edge	protest-01	ARG1	tax-01	p2	t	
+# ::edge	ride-01	subevent-of	protest-01	r	p2	
+(r / ride-01
+    :ARG0 (m / man
+        :quant 2
+        :ARG0-of (w / wear-01
+            :ARG1 (s / suit
+                :mod (b / bear
+                    :mod (t2 / teddy))))
+        :ARG1-of (g / grown-05))
+    :ARG1 (m2 / motorcycle)
+    :subevent-of (p2 / protest-01
+        :ARG1 (t / tax-01
+            :ARG3 (p / park-01
+                :ARG1 (b2 / bike))
+            :polarity -)))

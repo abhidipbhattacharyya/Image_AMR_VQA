@@ -1,0 +1,22 @@
+# ::tok Street signs going in the opposite direction on the same pole .
+# ::node	s3	street	0-1
+# ::node	s2	sign	1-2
+# ::node	g	go-01	2-3
+# ::node	o	opposite-01	5-6
+# ::node	d	direction	6-7
+# ::node	s	same-01	9-10
+# ::node	p	pole	10-11
+# ::root	g	go-01
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	go-01	ARG1	sign	g	s2	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	go-01	direction	direction	g	d	
+# ::edge	pole	ARG1-of	same-01	p	s	
+# ::edge	go-01	location	pole	g	p	
+(g / go-01
+    :ARG1 (s2 / sign
+        :mod (s3 / street))
+    :direction (d / direction
+        :ARG1-of (o / opposite-01))
+    :location (p / pole
+        :ARG1-of (s / same-01)))

@@ -1,0 +1,27 @@
+# ::tok A box with three foot long hot dogs inside of it .
+# ::node	b2	box	1-2
+# ::node	0	3	3-4
+# ::node	d	distance-quantity	4-5
+# ::node	f	foot	4-5
+# ::node	l	long-03	5-6
+# ::node	h	hot-dog	7-8
+# ::node	b	be-located-at-91	8-9
+# ::node	i	inside	8-9
+# ::root	b2	box
+# ::edge	distance-quantity	quant	3	d	0	
+# ::edge	distance-quantity	unit	foot	d	f	
+# ::edge	long-03	ARG2	distance-quantity	l	d	
+# ::edge	hot-dog	ARG1-of	long-03	h	l	
+# ::edge	be-located-at-91	ARG1	hot-dog	b	h	
+# ::edge	box	ARG2-of	be-located-at-91	b2	b	
+# ::edge	be-located-at-91	location	inside	b	i	
+# ::edge	inside	op1	box	i	b2	
+(b2 / box
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (h / hot-dog
+            :ARG1-of (l / long-03
+                :ARG2 (d / distance-quantity
+                    :quant 3
+                    :unit (f / foot))))
+        :location (i / inside
+            :op1 b2)))

@@ -1,0 +1,54 @@
+# ::tok This is a street sign for Flaming Lips Alley , which must be somewhere in England because it sounds pretty gay .
+# ::node	t	this	0-1
+# ::node	s4	street	3-4
+# ::node	s	sign	4-5
+# ::node	2	Flaming	6-7
+# ::node	3	Lips	7-8
+# ::node	s5	street	8-9
+# ::node	n	name	8-9
+# ::node	0	Alley	8-9
+# ::node	i	infer-01	11-12
+# ::node	s2	somewhere	13-14
+# ::node	c2	country	15-16
+# ::node	n2	name	15-16
+# ::node	1	England	15-16
+# ::node	c	cause-01	16-17
+# ::node	s3	sound-01	18-19
+# ::node	p	pretty	19-20
+# ::node	g	gay-01	20-21
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	domain	this	s	t	
+# ::edge	sign	beneficiary	street	s	s5	
+# ::edge	street	name	name	s5	n	
+# ::edge	name	op2	Lips	n	3	
+# ::edge	name	op1	Flaming	n	2	
+# ::edge	name	op3	Alley	n	0	
+# ::edge	somewhere	ARG1-of	infer-01	s2	i	
+# ::edge	street	location	somewhere	s5	s2	
+# ::edge	somewhere	location	country	s2	c2	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	England	n2	1	
+# ::edge	infer-01	ARG1-of	cause-01	i	c	
+# ::edge	cause-01	ARG0	sound-01	c	s3	
+# ::edge	sound-01	ARG1	street	s3	s5	
+# ::edge	gay-01	degree	pretty	g	p	
+# ::edge	sound-01	ARG2	gay-01	s3	g	
+(s / sign
+    :beneficiary (s5 / street
+        :name (n / name
+            :op1 "Flaming"
+            :op2 "Lips"
+            :op3 "Alley")
+        :location (s2 / somewhere
+            :ARG1-of (i / infer-01
+                :ARG1-of (c / cause-01
+                    :ARG0 (s3 / sound-01
+                        :ARG1 s5
+                        :ARG2 (g / gay-01
+                            :degree (p / pretty)))))
+            :location (c2 / country
+                :name (n2 / name
+                    :op1 "England"))))
+    :domain (t / this)
+    :mod (s4 / street))

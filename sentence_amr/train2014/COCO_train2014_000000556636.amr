@@ -1,0 +1,33 @@
+# ::tok A woman talks on a cell phone while setting on a bench at a bus stop on a sidewalk .
+# ::node	w	woman	1-2
+# ::node	t	talk-01	2-3
+# ::node	c	cell	5-6
+# ::node	p	phone	6-7
+# ::node	s	set-01	8-9
+# ::node	b	bench	11-12
+# ::node	f	facility	13-14
+# ::node	b2	bus	14-15
+# ::node	s3	stop-01	15-16
+# ::node	s2	sidewalk	18-19
+# ::root	t	talk-01
+# ::edge	talk-01	ARG0	woman	t	w	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	talk-01	instrument	phone	t	p	
+# ::edge	woman	time	set-01	w	s	
+# ::edge	set-01	ARG1	woman	s	w	
+# ::edge	set-01	ARG2	bench	s	b	
+# ::edge	bench	location	facility	b	f	
+# ::edge	stop-01	ARG1	bus	s3	b2	
+# ::edge	facility	location-of	stop-01	f	s3	
+# ::edge	facility	location	sidewalk	f	s2	
+(t / talk-01
+    :ARG0 (w / woman
+        :time (s / set-01
+            :ARG1 w
+            :ARG2 (b / bench
+                :location (f / facility
+                    :location (s2 / sidewalk)
+                    :location-of (s3 / stop-01
+                        :ARG1 (b2 / bus))))))
+    :instrument (p / phone
+        :mod (c / cell)))

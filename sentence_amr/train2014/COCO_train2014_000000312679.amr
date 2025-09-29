@@ -1,0 +1,35 @@
+# ::tok Traffic light depicting green for pedestrians and bikes to go
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	d	depict-01	2-3
+# ::node	g2	green-02	3-4
+# ::node	p	person	5-6
+# ::node	w	walk-01	5-6
+# ::node	a	and	6-7
+# ::node	a2	and	6-7
+# ::node	b	bike-01	7-8
+# ::node	g	go-02	9-10
+# ::root	d	depict-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	depict-01	ARG0	light	d	l	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op1	person	a	p	
+# ::edge	depict-01	ARG1	and	d	a	
+# ::edge	and	op1	person	a2	p	
+# ::edge	depict-01	ARG1	and	d	a2	
+# ::edge	and	op2	bike-01	a2	b	
+# ::edge	go-02	ARG0	and	g	a	
+# ::edge	depict-01	ARG2	go-02	d	g	
+# ::edge	depict-01	rel	green-02	d	g2	
+(d / depict-01
+    :ARG0 (l / light
+        :mod (t / traffic))
+    :ARG1 (a / and
+        :op1 (p / person
+            :ARG0-of (w / walk-01)))
+    :ARG1 (a2 / and
+        :op1 p
+        :op2 (b / bike-01))
+    :ARG2 (g / go-02
+        :ARG0 a)
+    :rel (g2 / green-02))

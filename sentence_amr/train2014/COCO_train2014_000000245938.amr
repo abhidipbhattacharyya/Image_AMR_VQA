@@ -1,0 +1,58 @@
+# ::tok Some type of stir - fry on a white plate made of carrots , broccoli .
+# ::node	s	some	0-1
+# ::node	t	type	1-2
+# ::node	s2	stir-01	3-4
+# ::node	f	fry-01	5-6
+# ::node	w	white-03	8-9
+# ::node	p	plate	9-10
+# ::node	m	make-01	10-11
+# ::node	c	carrot	12-13
+# ::node	a	and	13-14
+# ::node	b	broccoli	14-15
+# ::root	f	fry-01
+# ::edge	type	mod	some	t	s	
+# ::edge	fry-01	manner	stir-01	f	s2	
+# ::edge	fry-01	mod	type	f	t	
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	fry-01	location	plate	f	p	
+# ::edge	plate	ARG1-of	make-01	p	m	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	make-01	ARG2	and	m	a	
+# ::edge	and	op2	broccoli	a	b	
+(f / fry-01
+    :location (p / plate
+        :ARG1-of (w / white-03)
+        :ARG1-of (m / make-01
+            :ARG2 (a / and
+                :op1 (c / carrot)
+                :op2 (b / broccoli))))
+    :manner (s2 / stir-01)
+    :mod (t / type
+        :mod (s / some)))
+
+
+# ::tok mushrooms .
+# ::node	m	mushroom	0-1
+# ::root	m	mushroom
+(m / mushroom)
+
+
+# ::tok chicken and lo - mien noodles .
+# ::node	c	chicken	0-1
+# ::node	a	and	1-2
+# ::node	p	product	4-5
+# ::node	n	name	4-5
+# ::node	0	loon	4-5
+# ::node	n2	noodle	5-6
+# ::root	a	and
+# ::edge	and	op1	chicken	a	c	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	loon	n	0	
+# ::edge	noodle	mod	product	n2	p	
+# ::edge	and	op2	noodle	a	n2	
+(a / and
+    :op1 (c / chicken)
+    :op2 (n2 / noodle
+        :mod (p / product
+            :name (n / name
+                :op1 "loon"))))

@@ -1,0 +1,29 @@
+# ::tok Electric commuter trains coming and going at a station stop .
+# ::node	e	electric	0-1
+# ::node	c2	commute-01	1-2
+# ::node	t	train	2-3
+# ::node	c	come-01	3-4
+# ::node	a	and	4-5
+# ::node	g	go-01	5-6
+# ::node	s	station	8-9
+# ::node	s2	stop-01	9-10
+# ::root	a	and
+# ::edge	train	ARG0-of	commute-01	t	c2	
+# ::edge	train	mod	electric	t	e	
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	and	op1	come-01	a	c	
+# ::edge	and	op2	go-01	a	g	
+# ::edge	go-01	ARG1	train	g	t	
+# ::edge	stop-01	ARG1	station	s2	s	
+# ::edge	and	location	stop-01	a	s2	
+# ::edge	come-01	ARG4	stop-01	c	s2	
+(a / and
+    :location (s2 / stop-01
+        :ARG1 (s / station))
+    :op1 (c / come-01
+        :ARG1 (t / train
+            :ARG0-of (c2 / commute-01)
+            :mod (e / electric))
+        :ARG4 s2)
+    :op2 (g / go-01
+        :ARG1 t))

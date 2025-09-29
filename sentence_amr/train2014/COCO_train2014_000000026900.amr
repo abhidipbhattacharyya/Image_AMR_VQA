@@ -1,0 +1,42 @@
+# ::tok A bus stop with a bus parked at night and people standing outside of the bus under a covered area .
+# ::node	b	bus	1-2
+# ::node	s2	stop-01	2-3
+# ::node	b2	bus	5-6
+# ::node	p	park-01	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::node	a	and	9-10
+# ::node	p2	person	10-11
+# ::node	s	stand-01	11-12
+# ::node	o	outside	12-13
+# ::node	u	under	16-17
+# ::node	c	cover-02	18-19
+# ::node	a2	area	19-20
+# ::root	a	and
+# ::edge	stop-01	ARG1	bus	s2	b	
+# ::edge	park-01	ARG1	bus	p	b2	
+# ::edge	park-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	and	location	stop-01	a	s2	
+# ::edge	stand-01	ARG1	person	s	p2	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG2	outside	s	o	
+# ::edge	outside	op1	bus	o	b2	
+# ::edge	stand-01	location	under	s	u	
+# ::edge	area	ARG1-of	cover-02	a2	c	
+# ::edge	under	op1	area	u	a2	
+(a / and
+    :location (s2 / stop-01
+        :ARG1 (b / bus))
+    :op1 (p / park-01
+        :ARG1 (b2 / bus)
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :op2 (s / stand-01
+        :ARG1 (p2 / person)
+        :ARG2 (o / outside
+            :op1 b2)
+        :location (u / under
+            :op1 (a2 / area
+                :ARG1-of (c / cover-02)))))

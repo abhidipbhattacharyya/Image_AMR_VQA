@@ -1,0 +1,30 @@
+# ::tok Images on a computer screen on a desk while another laptop on the desk sits blank .
+# ::node	i	image	0-1
+# ::node	c	computer	3-4
+# ::node	s	screen	4-5
+# ::node	d	desk	7-8
+# ::node	c2	contrast-01	8-9
+# ::node	a	another	9-10
+# ::node	l	laptop	10-11
+# ::node	s2	sit-01	14-15
+# ::node	b	blank	15-16
+# ::root	c2	contrast-01
+# ::edge	screen	mod	computer	s	c	
+# ::edge	image	location	screen	i	s	
+# ::edge	screen	location	desk	s	d	
+# ::edge	contrast-01	ARG1	image	c2	i	
+# ::edge	laptop	mod	another	l	a	
+# ::edge	desk	part	laptop	d	l	
+# ::edge	sit-01	ARG1	laptop	s2	l	
+# ::edge	contrast-01	ARG2	sit-01	c2	s2	
+# ::edge	sit-01	ARG2	blank	s2	b	
+(c2 / contrast-01
+    :ARG1 (i / image
+        :location (s / screen
+            :location (d / desk
+                :part (l / laptop
+                    :mod (a / another)))
+            :mod (c / computer)))
+    :ARG2 (s2 / sit-01
+        :ARG1 l
+        :ARG2 (b / blank)))

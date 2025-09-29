@@ -1,0 +1,22 @@
+# ::tok Bananas connected to forks attached to wood in an electrical experiment .
+# ::node	b	banana	0-1
+# ::node	c	connect-01	1-2
+# ::node	p	pitchfork	3-4
+# ::node	a	attach-01	4-5
+# ::node	w	wood	6-7
+# ::node	e	electricity	9-10
+# ::node	e2	experiment-01	10-11
+# ::root	c	connect-01
+# ::edge	connect-01	ARG1	banana	c	b	
+# ::edge	connect-01	ARG2	pitchfork	c	p	
+# ::edge	pitchfork	ARG1-of	attach-01	p	a	
+# ::edge	attach-01	ARG2	wood	a	w	
+# ::edge	experiment-01	mod	electricity	e2	e	
+# ::edge	connect-01	subevent-of	experiment-01	c	e2	
+(c / connect-01
+    :ARG1 (b / banana)
+    :ARG2 (p / pitchfork
+        :ARG1-of (a / attach-01
+            :ARG2 (w / wood)))
+    :subevent-of (e2 / experiment-01
+        :mod (e / electricity)))

@@ -1,0 +1,37 @@
+# ::tok Wrought iron street marker reading " Willow Ave . "
+# ::node	w	war	0-1
+# ::node	i	iron	1-2
+# ::node	s	street	2-3
+# ::node	m	marker	3-4
+# ::node	r	read-01	4-5
+# ::node	n	name	6-7
+# ::node	1	Willow	6-7
+# ::node	r2	road	7-8
+# ::node	0	Ave	7-8
+# ::root	m	marker
+# ::edge	iron	consist-of	war	i	w	
+# ::edge	marker	purpose	street	m	s	
+# ::edge	marker	consist-of	iron	m	i	
+# ::edge	marker	ARG1-of	read-01	m	r	
+# ::edge	name	op1	Willow	n	1	
+# ::edge	road	name	name	r2	n	
+# ::edge	read-01	ARG3	road	r	r2	
+# ::edge	name	op2	Ave	n	0	
+(m / marker
+    :purpose (s / street)
+    :ARG1-of (r / read-01
+        :ARG3 (r2 / road
+            :name (n / name
+                :op1 "Willow"
+                :op2 "Ave")))
+    :consist-of (i / iron
+        :consist-of (w / war)))
+
+
+# ::tok near a cemetery .
+# ::node	n	near-02	0-1
+# ::node	c	cemetery	2-3
+# ::root	n	near-02
+# ::edge	near-02	ARG2	cemetery	n	c	
+(n / near-02
+    :ARG2 (c / cemetery))

@@ -1,0 +1,30 @@
+# ::tok A shadow of a traffic light cast on a white building with bars in it 's windows .
+# ::node	s	shadow	1-2
+# ::node	t	traffic	4-5
+# ::node	l	light	5-6
+# ::node	c	cast-01	6-7
+# ::node	w	white-03	9-10
+# ::node	b2	building	10-11
+# ::node	h	have-03	11-12
+# ::node	b	bar	12-13
+# ::node	w2	window	16-17
+# ::root	c	cast-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	shadow	mod	light	s	l	
+# ::edge	cast-01	ARG0	shadow	c	s	
+# ::edge	building	ARG1-of	white-03	b2	w	
+# ::edge	cast-01	ARG2	building	c	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	bar	h	b	
+# ::edge	bar	location	window	b	w2	
+# ::edge	building	part	window	b2	w2	
+(c / cast-01
+    :ARG0 (s / shadow
+        :mod (l / light
+            :mod (t / traffic)))
+    :ARG2 (b2 / building
+        :ARG0-of (h / have-03
+            :ARG1 (b / bar
+                :location (w2 / window)))
+        :ARG1-of (w / white-03)
+        :part w2))

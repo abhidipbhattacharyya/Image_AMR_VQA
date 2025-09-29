@@ -1,0 +1,36 @@
+# ::tok A red two story red bus waiting in a parking area with another behind it
+# ::node	r	red-02	1-2
+# ::node	0	2	2-3
+# ::node	s	story	3-4
+# ::node	r2	red-02	4-5
+# ::node	b2	bus	5-6
+# ::node	b3	bus	5-6
+# ::node	w	wait-01	6-7
+# ::node	p	park-01	9-10
+# ::node	a2	area	10-11
+# ::node	a	another	12-13
+# ::node	b	behind	13-14
+# ::root	w	wait-01
+# ::edge	story	quant	2	s	0	
+# ::edge	bus	ARG1-of	red-02	b2	r2	
+# ::edge	bus	mod	story	b2	s	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	wait-01	ARG1	bus	w	b2	
+# ::edge	area	ARG2-of	park-01	a2	p	
+# ::edge	wait-01	location	area	w	a2	
+# ::edge	bus	mod	another	b3	a	
+# ::edge	bus	location	behind	b3	b	
+# ::edge	behind	op1	bus	b	b3	
+# ::edge	wait-01	rel	behind	w	b	
+(w / wait-01
+    :ARG1 (b2 / bus
+        :ARG1-of (r2 / red-02)
+        :ARG1-of (r / red-02)
+        :mod (s / story
+            :quant 2))
+    :location (a2 / area
+        :ARG2-of (p / park-01))
+    :rel (b / behind
+        :op1 (b3 / bus
+            :location b
+            :mod (a / another))))

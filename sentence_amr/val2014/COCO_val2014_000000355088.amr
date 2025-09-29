@@ -1,0 +1,42 @@
+# ::tok A clock shows 4:07 as it stands in the shadow of a church steeple and a light pole .
+# ::node	c2	clock	1-2
+# ::node	s2	show-01	2-3
+# ::node	d	date-entity	3-4
+# ::node	1	7	3-4
+# ::node	0	4	3-4
+# ::node	i	it	5-6
+# ::node	s3	stand-01	6-7
+# ::node	s	shadow-02	9-10
+# ::node	c	church	12-13
+# ::node	s4	steeple	13-14
+# ::node	a	and	14-15
+# ::node	l	light	16-17
+# ::node	p	pole	17-18
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	clock	s2	c2	
+# ::edge	show-01	ARG1	date-entity	s2	d	
+# ::edge	date-entity	time	7	d	1	
+# ::edge	date-entity	month	4	d	0	
+# ::edge	stand-01	ARG1	it	s3	i	
+# ::edge	show-01	time	stand-01	s2	s3	
+# ::edge	stand-01	ARG2	shadow-02	s3	s	
+# ::edge	shadow-02	ARG1	it	s	i	
+# ::edge	steeple	mod	church	s4	c	
+# ::edge	and	op1	steeple	a	s4	
+# ::edge	shadow-02	ARG0	and	s	a	
+# ::edge	pole	mod	light	p	l	
+# ::edge	and	op2	pole	a	p	
+(s2 / show-01
+    :ARG0 (c2 / clock)
+    :ARG1 (d / date-entity
+        :month 4
+        :time 7)
+    :time (s3 / stand-01
+        :ARG1 (i / it)
+        :ARG2 (s / shadow-02
+            :ARG0 (a / and
+                :op1 (s4 / steeple
+                    :mod (c / church))
+                :op2 (p / pole
+                    :mod (l / light)))
+            :ARG1 i)))

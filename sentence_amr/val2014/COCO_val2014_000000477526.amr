@@ -1,0 +1,28 @@
+# ::tok A train is moving along on a track that appears to lead right into the snowy mountains .
+# ::node	t2	train	1-2
+# ::node	m2	move-01	3-4
+# ::node	a	along	4-5
+# ::node	t	track	7-8
+# ::node	a2	appear-02	9-10
+# ::node	l	lead-01	11-12
+# ::node	r	right	12-13
+# ::node	s	snowy-02	15-16
+# ::node	m	mountain	16-17
+# ::root	m2	move-01
+# ::edge	move-01	ARG1	train	m2	t2	
+# ::edge	move-01	path	along	m2	a	
+# ::edge	move-01	ARG2	track	m2	t	
+# ::edge	track	ARG1-of	appear-02	t	a2	
+# ::edge	appear-02	ARG0-of	lead-01	a2	l	
+# ::edge	lead-01	mod	right	l	r	
+# ::edge	mountain	ARG2-of	snowy-02	m	s	
+# ::edge	lead-01	ARG4	mountain	l	m	
+(m2 / move-01
+    :ARG1 (t2 / train)
+    :ARG2 (t / track
+        :ARG1-of (a2 / appear-02
+            :ARG0-of (l / lead-01
+                :ARG4 (m / mountain
+                    :ARG2-of (s / snowy-02))
+                :mod (r / right))))
+    :path (a / along))

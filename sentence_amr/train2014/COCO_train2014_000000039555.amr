@@ -1,0 +1,28 @@
+# ::tok A road with several cars going in both directions as well as a stop light .
+# ::node	r	road	1-2
+# ::node	s	several	3-4
+# ::node	c	car	4-5
+# ::node	g	go-02	5-6
+# ::node	b	both	7-8
+# ::node	d	direction	8-9
+# ::node	a	and	9-10
+# ::node	s2	stop-01	13-14
+# ::node	l	light	14-15
+# ::root	r	road
+# ::edge	car	quant	several	c	s	
+# ::edge	car	ARG0-of	go-02	c	g	
+# ::edge	direction	mod	both	d	b	
+# ::edge	go-02	direction	direction	g	d	
+# ::edge	and	op1	car	a	c	
+# ::edge	road	location-of	and	r	a	
+# ::edge	light	purpose	stop-01	l	s2	
+# ::edge	and	op2	light	a	l	
+(r / road
+    :location-of (a / and
+        :op1 (c / car
+            :quant (s / several)
+            :ARG0-of (g / go-02
+                :direction (d / direction
+                    :mod (b / both))))
+        :op2 (l / light
+            :purpose (s2 / stop-01))))

@@ -1,0 +1,28 @@
+# ::tok A Chevy truck is parked diagonally in a driveway near some buildings .
+# ::node	n	name	1-2
+# ::node	0	Chevy	1-2
+# ::node	t	truck	2-3
+# ::node	p	park-01	4-5
+# ::node	s2	straight-04	5-6
+# ::node	d	driveway	8-9
+# ::node	n2	near-02	9-10
+# ::node	s	some	10-11
+# ::node	b	building	11-12
+# ::root	p	park-01
+# ::edge	name	op1	Chevy	n	0	
+# ::edge	truck	name	name	t	n	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG1-of	straight-04	p	s2	
+# ::edge	park-01	ARG2	driveway	p	d	
+# ::edge	driveway	ARG1-of	near-02	d	n2	
+# ::edge	building	quant	some	b	s	
+# ::edge	near-02	ARG2	building	n2	b	
+(p / park-01
+    :ARG1 (t / truck
+        :name (n / name
+            :op1 "Chevy"))
+    :ARG1-of (s2 / straight-04)
+    :ARG2 (d / driveway
+        :ARG1-of (n2 / near-02
+            :ARG2 (b / building
+                :quant (s / some)))))

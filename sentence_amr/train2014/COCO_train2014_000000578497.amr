@@ -1,0 +1,46 @@
+# ::tok Chinese food including rice and an egg roll is sitting on a red and white plate .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	China	0-1
+# ::node	f	food	1-2
+# ::node	i	include-01	2-3
+# ::node	r2	rice	3-4
+# ::node	a	and	4-5
+# ::node	e	egg	6-7
+# ::node	r3	roll	7-8
+# ::node	s	sit-01	9-10
+# ::node	r	red-02	12-13
+# ::node	a2	and	13-14
+# ::node	w	white-03	14-15
+# ::node	p	plate	15-16
+# ::node	p2	plate	15-16
+# ::root	s	sit-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	food	mod	country	f	c	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	and	op1	rice	a	r2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	roll	consist-of	egg	r3	e	
+# ::edge	and	op2	roll	a	r3	
+# ::edge	sit-01	ARG1	food	s	f	
+# ::edge	sit-01	ARG2	and	s	a2	
+# ::edge	and	op1	plate	a2	p	
+# ::edge	plate	ARG1-of	red-02	p	r	
+# ::edge	plate	ARG1-of	white-03	p2	w	
+# ::edge	and	op2	plate	a2	p2	
+(s / sit-01
+    :ARG1 (f / food
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (r2 / rice)
+                :op2 (r3 / roll
+                    :consist-of (e / egg))))
+        :mod (c / country
+            :name (n / name
+                :op1 "China")))
+    :ARG2 (a2 / and
+        :op1 (p / plate
+            :ARG1-of (r / red-02))
+        :op2 (p2 / plate
+            :ARG1-of (w / white-03))))

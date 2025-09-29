@@ -1,0 +1,63 @@
+# ::tok A room with a window , a bookshelf full of books , a chair with a yellow and gray pillow , a tv stand with a tv and a white couch with a stripped pillow .
+# ::node	r	room	1-2
+# ::node	w2	window	4-5
+# ::node	b2	bookshelf	7-8
+# ::node	f	fill-01	8-9
+# ::node	b	book	10-11
+# ::node	c	chair	13-14
+# ::node	h	have-03	14-15
+# ::node	y	yellow-02	16-17
+# ::node	a	and	17-18
+# ::node	g	gray-02	18-19
+# ::node	p	pillow	19-20
+# ::node	p2	pillow	19-20
+# ::node	t	television	22-23
+# ::node	s	stand	23-24
+# ::node	a2	and	27-28
+# ::node	w	white-03	29-30
+# ::node	c2	couch	30-31
+# ::node	h2	have-03	31-32
+# ::node	s2	strip-01	33-34
+# ::node	p3	pillow	34-35
+# ::root	a2	and
+# ::edge	room	part	window	r	w2	
+# ::edge	bookshelf	ARG1-of	fill-01	b2	f	
+# ::edge	fill-01	ARG2	book	f	b	
+# ::edge	chair	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	pillow	a	p	
+# ::edge	pillow	ARG1-of	yellow-02	p	y	
+# ::edge	pillow	ARG1-of	gray-02	p2	g	
+# ::edge	and	op2	pillow	a	p2	
+# ::edge	stand	mod	television	s	t	
+# ::edge	and	op3	stand	a2	s	
+# ::edge	and	op2	bookshelf	a2	b2	
+# ::edge	and	op1	room	a2	r	
+# ::edge	couch	ARG1-of	white-03	c2	w	
+# ::edge	and	op4	couch	a2	c2	
+# ::edge	couch	ARG0-of	have-03	c2	h2	
+# ::edge	have-03	ARG1	television	h2	t	
+# ::edge	pillow	ARG1-of	strip-01	p3	s2	
+# ::edge	have-03	ARG1	pillow	h2	p3	
+# ::edge	and	rel	chair	a2	c	
+(a2 / and
+    :op1 (r / room
+        :part (w2 / window))
+    :op2 (b2 / bookshelf
+        :ARG1-of (f / fill-01
+            :ARG2 (b / book)))
+    :op3 (s / stand
+        :mod (t / television))
+    :op4 (c2 / couch
+        :ARG0-of (h2 / have-03
+            :ARG1 t
+            :ARG1 (p3 / pillow
+                :ARG1-of (s2 / strip-01)))
+        :ARG1-of (w / white-03))
+    :rel (c / chair
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (p / pillow
+                    :ARG1-of (y / yellow-02))
+                :op2 (p2 / pillow
+                    :ARG1-of (g / gray-02))))))

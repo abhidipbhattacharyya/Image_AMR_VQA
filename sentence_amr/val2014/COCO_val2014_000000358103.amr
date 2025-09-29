@@ -1,0 +1,51 @@
+# ::tok A pristine white bath room with a pedestal sink , black and white tile and a window at the far end
+# ::node	p2	pristine	1-2
+# ::node	w	white-03	2-3
+# ::node	b	bath	3-4
+# ::node	r	room	4-5
+# ::node	h	have-03	5-6
+# ::node	p	pedestal	7-8
+# ::node	s	sink	8-9
+# ::node	b2	black-04	10-11
+# ::node	a	and	11-12
+# ::node	w2	white-03	12-13
+# ::node	t	tile	13-14
+# ::node	t2	tile	13-14
+# ::node	a2	and	14-15
+# ::node	w3	window	16-17
+# ::node	f	far	19-20
+# ::node	e	end	20-21
+# ::root	r	room
+# ::edge	room	mod	bath	r	b	
+# ::edge	room	ARG1-of	white-03	r	w	
+# ::edge	room	mod	pristine	r	p2	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	sink	mod	pedestal	s	p	
+# ::edge	and	op1	sink	a	s	
+# ::edge	and	op2	tile	a	t	
+# ::edge	tile	ARG1-of	black-04	t	b2	
+# ::edge	tile	ARG1-of	white-03	t2	w2	
+# ::edge	and	op3	tile	a	t2	
+# ::edge	and	op2	and	a2	a	
+# ::edge	and	op1	sink	a2	s	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op4	window	a2	w3	
+# ::edge	end	mod	far	e	f	
+# ::edge	window	location	end	w3	e	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (s / sink
+                :mod (p / pedestal))
+            :op2 (a / and
+                :op1 s
+                :op2 (t / tile
+                    :ARG1-of (b2 / black-04))
+                :op3 (t2 / tile
+                    :ARG1-of (w2 / white-03)))
+            :op4 (w3 / window
+                :location (e / end
+                    :mod (f / far)))))
+    :ARG1-of (w / white-03)
+    :mod (b / bath)
+    :mod (p2 / pristine))

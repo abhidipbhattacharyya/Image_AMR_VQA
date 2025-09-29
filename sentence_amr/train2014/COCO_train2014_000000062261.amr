@@ -1,0 +1,43 @@
+# ::tok A stuffed animal holding a Nintendo Wii controller with a sign reading " anyone for tennis ? "
+# ::node	s2	stuff-01	1-2
+# ::node	a	animal	2-3
+# ::node	h	hold-01	3-4
+# ::node	0	Nintendo	5-6
+# ::node	p	product	6-7
+# ::node	n	name	6-7
+# ::node	1	Wii	6-7
+# ::node	c	controller	7-8
+# ::node	s	sign	10-11
+# ::node	r	read-01	11-12
+# ::node	a2	anyone	13-14
+# ::node	l	like-01	14-15
+# ::node	t	tennis	15-16
+# ::node	t2	truth-value	16-17
+# ::root	a	animal
+# ::edge	animal	ARG1-of	stuff-01	a	s2	
+# ::edge	animal	ARG0-of	hold-01	a	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Nintendo	n	0	
+# ::edge	name	op2	Wii	n	1	
+# ::edge	controller	mod	product	c	p	
+# ::edge	hold-01	ARG1	controller	h	c	
+# ::edge	animal	part	sign	a	s	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	like-01	ARG0	anyone	l	a2	
+# ::edge	like-01	ARG1	tennis	l	t	
+# ::edge	truth-value	polarity-of	like-01	t2	l	
+# ::edge	read-01	ARG3	truth-value	r	t2	
+(a / animal
+    :ARG0-of (h / hold-01
+        :ARG1 (c / controller
+            :mod (p / product
+                :name (n / name
+                    :op1 "Nintendo"
+                    :op2 "Wii"))))
+    :ARG1-of (s2 / stuff-01)
+    :part (s / sign
+        :ARG1-of (r / read-01
+            :ARG3 (t2 / truth-value
+                :polarity-of (l / like-01
+                    :ARG0 (a2 / anyone)
+                    :ARG1 (t / tennis))))))

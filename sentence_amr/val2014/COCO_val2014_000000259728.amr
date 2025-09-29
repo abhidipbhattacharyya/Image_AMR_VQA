@@ -1,0 +1,46 @@
+# ::tok Pedestrian stop sign on rural roadway warning pedestrians to stop before crossing because traffic does not stop .
+# ::node	p	person	0-1
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	r2	rural	4-5
+# ::node	r	roadway	5-6
+# ::node	w	warn-01	6-7
+# ::node	s3	stop-01	9-10
+# ::node	b	before	10-11
+# ::node	c2	cross-02	11-12
+# ::node	c	cause-01	12-13
+# ::node	t	traffic	13-14
+# ::node	0	-	15-16
+# ::node	s4	stop-01	16-17
+# ::root	s	signal-07
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	roadway	mod	rural	r	r2	
+# ::edge	signal-07	location	roadway	s	r	
+# ::edge	signal-07	ARG0-of	warn-01	s	w	
+# ::edge	warn-01	ARG2	person	w	p	
+# ::edge	warn-01	ARG1	stop-01	w	s3	
+# ::edge	stop-01	ARG0	person	s3	p	
+# ::edge	stop-01	time	before	s3	b	
+# ::edge	before	op1	cross-02	b	c2	
+# ::edge	cross-02	ARG0	person	c2	p	
+# ::edge	warn-01	ARG1-of	cause-01	w	c	
+# ::edge	stop-01	polarity	-	s4	0	
+# ::edge	stop-01	ARG0	traffic	s4	t	
+# ::edge	cause-01	ARG0	stop-01	c	s4	
+(s / signal-07
+    :ARG0-of (w / warn-01
+        :ARG1 (s3 / stop-01
+            :ARG0 (p / person)
+            :time (b / before
+                :op1 (c2 / cross-02
+                    :ARG0 p)))
+        :ARG1-of (c / cause-01
+            :ARG0 (s4 / stop-01
+                :ARG0 (t / traffic)
+                :polarity -))
+        :ARG2 p)
+    :ARG1 (s2 / stop-01
+        :ARG0 p)
+    :location (r / roadway
+        :mod (r2 / rural)))

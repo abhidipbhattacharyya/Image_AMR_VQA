@@ -1,0 +1,38 @@
+# ::tok A child places his hands on the head and neck of a sheep while another sheep looks at his face .
+# ::node	c	child	1-2
+# ::node	p	place-01	2-3
+# ::node	h	hand	4-5
+# ::node	h2	head	7-8
+# ::node	a	and	8-9
+# ::node	n	neck	9-10
+# ::node	s	sheep	12-13
+# ::node	a2	another	14-15
+# ::node	s2	sheep	15-16
+# ::node	l	look-01	16-17
+# ::node	f	face	19-20
+# ::root	p	place-01
+# ::edge	place-01	ARG0	child	p	c	
+# ::edge	place-01	ARG1	hand	p	h	
+# ::edge	child	part	hand	c	h	
+# ::edge	and	op1	head	a	h2	
+# ::edge	place-01	ARG2	and	p	a	
+# ::edge	and	op2	neck	a	n	
+# ::edge	neck	part-of	sheep	n	s	
+# ::edge	sheep	mod	another	s2	a2	
+# ::edge	look-01	ARG0	sheep	l	s2	
+# ::edge	place-01	time	look-01	p	l	
+# ::edge	look-01	ARG1	face	l	f	
+# ::edge	child	part	face	c	f	
+(p / place-01
+    :ARG0 (c / child
+        :part (h / hand)
+        :part (f / face))
+    :ARG1 h
+    :ARG2 (a / and
+        :op1 (h2 / head)
+        :op2 (n / neck
+            :part-of (s / sheep)))
+    :time (l / look-01
+        :ARG0 (s2 / sheep
+            :mod (a2 / another))
+        :ARG1 f))

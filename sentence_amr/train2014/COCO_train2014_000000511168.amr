@@ -1,0 +1,34 @@
+# ::tok MA group of giraffes and zebras gathered around a watering hole .
+# ::node	s	state	0-1
+# ::node	n	name	0-1
+# ::node	0	MA	0-1
+# ::node	g4	group	1-2
+# ::node	g2	giraffe	3-4
+# ::node	a	and	4-5
+# ::node	g3	giraffe	5-6
+# ::node	g	gather-03	6-7
+# ::node	a2	around	7-8
+# ::node	w	water-01	9-10
+# ::node	h	hole	10-11
+# ::root	g	gather-03
+# ::edge	state	name	name	s	n	
+# ::edge	name	op1	MA	n	0	
+# ::edge	group	mod	state	g4	s	
+# ::edge	and	op1	giraffe	a	g2	
+# ::edge	group	consist-of	and	g4	a	
+# ::edge	and	op2	giraffe	a	g3	
+# ::edge	gather-03	ARG0	group	g	g4	
+# ::edge	gather-03	location	around	g	a2	
+# ::edge	hole	location-of	water-01	h	w	
+# ::edge	around	op1	hole	a2	h	
+(g / gather-03
+    :ARG0 (g4 / group
+        :consist-of (a / and
+            :op1 (g2 / giraffe)
+            :op2 (g3 / giraffe))
+        :mod (s / state
+            :name (n / name
+                :op1 "MA")))
+    :location (a2 / around
+        :op1 (h / hole
+            :location-of (w / water-01))))

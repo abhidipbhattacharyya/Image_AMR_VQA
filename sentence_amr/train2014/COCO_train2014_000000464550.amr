@@ -1,0 +1,38 @@
+# ::tok Two baseball players walking inside a baseball field with a crowd of people in the stadium watching .
+# ::node	0	2	0-1
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	w	walk-01	3-4
+# ::node	i	inside	4-5
+# ::node	f	field	7-8
+# ::node	c	crowd	10-11
+# ::node	p2	person	12-13
+# ::node	s	stadium	15-16
+# ::node	w2	watch-01	16-17
+# ::root	w	walk-01
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	ARG2	inside	w	i	
+# ::edge	inside	op1	field	i	f	
+# ::edge	field	mod	baseball	f	b	
+# ::edge	crowd	consist-of	person	c	p2	
+# ::edge	person	location	stadium	p2	s	
+# ::edge	crowd	ARG0-of	watch-01	c	w2	
+# ::edge	watch-01	ARG1	crowd	w2	c	
+# ::edge	walk-01	rel	watch-01	w	w2	
+(w / walk-01
+    :ARG0 (p / person
+        :quant 2
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (i / inside
+        :op1 (f / field
+            :mod b))
+    :rel (w2 / watch-01
+        :ARG1 (c / crowd
+            :ARG0-of w2
+            :consist-of (p2 / person
+                :location (s / stadium)))))

@@ -1,0 +1,25 @@
+# ::tok Highway road sign announcing exit ahead for vehicle traffic .
+# ::node	h	highway	0-1
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	a2	announce-01	3-4
+# ::node	e	exit-01	4-5
+# ::node	a	ahead	5-6
+# ::node	v	vehicle	7-8
+# ::node	t	traffic	8-9
+# ::root	s	sign
+# ::edge	road	mod	highway	r	h	
+# ::edge	sign	location	road	s	r	
+# ::edge	sign	ARG0-of	announce-01	s	a2	
+# ::edge	announce-01	ARG1	exit-01	a2	e	
+# ::edge	exit-01	location	ahead	e	a	
+# ::edge	traffic	mod	vehicle	t	v	
+# ::edge	exit-01	ARG0	traffic	e	t	
+(s / sign
+    :ARG0-of (a2 / announce-01
+        :ARG1 (e / exit-01
+            :ARG0 (t / traffic
+                :mod (v / vehicle))
+            :location (a / ahead)))
+    :location (r / road
+        :mod (h / highway)))

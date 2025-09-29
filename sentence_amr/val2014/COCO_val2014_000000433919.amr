@@ -1,0 +1,46 @@
+# ::tok An area shows a room with a toilet with red wrappers on the floor and another room with a washing machine in it .
+# ::node	a3	area	1-2
+# ::node	s	show-01	2-3
+# ::node	r2	room	4-5
+# ::node	h	have-03	5-6
+# ::node	t	toilet	7-8
+# ::node	h2	have-03	8-9
+# ::node	r	red-02	9-10
+# ::node	b	box	10-11
+# ::node	f	floor	13-14
+# ::node	a	and	14-15
+# ::node	a2	another	15-16
+# ::node	r3	room	16-17
+# ::node	h3	have-03	17-18
+# ::node	w	wash-01	19-20
+# ::node	m	machine	20-21
+# ::root	s	show-01
+# ::edge	show-01	ARG0	area	s	a3	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	have-03	ARG1	toilet	h	t	
+# ::edge	toilet	ARG0-of	have-03	t	h2	
+# ::edge	box	ARG1-of	red-02	b	r	
+# ::edge	have-03	ARG1	box	h2	b	
+# ::edge	have-03	location	floor	h2	f	
+# ::edge	and	op1	room	a	r2	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	room	mod	another	r3	a2	
+# ::edge	and	op2	room	a	r3	
+# ::edge	room	ARG0-of	have-03	r3	h3	
+# ::edge	machine	ARG0-of	wash-01	m	w	
+# ::edge	have-03	ARG1	machine	h3	m	
+(s / show-01
+    :ARG0 (a3 / area)
+    :ARG1 (a / and
+        :op1 (r2 / room
+            :ARG0-of (h / have-03
+                :ARG1 (t / toilet
+                    :ARG0-of (h2 / have-03
+                        :ARG1 (b / box
+                            :ARG1-of (r / red-02))
+                        :location (f / floor)))))
+        :op2 (r3 / room
+            :ARG0-of (h3 / have-03
+                :ARG1 (m / machine
+                    :ARG0-of (w / wash-01)))
+            :mod (a2 / another))))

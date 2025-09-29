@@ -1,0 +1,30 @@
+# ::tok A chocolate cake with brown colored drizzle and chocolate flakes on it .
+# ::node	c2	chocolate	1-2
+# ::node	c	cake	2-3
+# ::node	b	brown	4-5
+# ::node	c4	color-01	5-6
+# ::node	d	drizzle	6-7
+# ::node	a	and	7-8
+# ::node	c3	chocolate	8-9
+# ::node	t	temporal-quantity	9-10
+# ::node	m	minute	9-10
+# ::root	c	cake
+# ::edge	cake	mod	chocolate	c	c2	
+# ::edge	color-01	ARG2	brown	c4	b	
+# ::edge	drizzle	ARG1-of	color-01	d	c4	
+# ::edge	and	op1	drizzle	a	d	
+# ::edge	cake	part	and	c	a	
+# ::edge	chocolate	op2	temporal-quantity	c3	t	
+# ::edge	temporal-quantity	unit	minute	t	m	
+# ::edge	minute	ARG1	chocolate	m	c3	
+# ::edge	cake	rel	temporal-quantity	c	t	
+(c / cake
+    :mod (c2 / chocolate)
+    :part (a / and
+        :op1 (d / drizzle
+            :ARG1-of (c4 / color-01
+                :ARG2 (b / brown))))
+    :rel (t / temporal-quantity
+        :unit (m / minute
+            :ARG1 (c3 / chocolate
+                :op2 t))))

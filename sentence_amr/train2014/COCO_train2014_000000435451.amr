@@ -1,0 +1,30 @@
+# ::tok People with livestock move through the dirt streets as cars are held up behind them .
+# ::node	p	person	0-1
+# ::node	h	have-03	1-2
+# ::node	l	livestock	2-3
+# ::node	m	move-01	3-4
+# ::node	d	dirt	6-7
+# ::node	s	street	7-8
+# ::node	c	car	9-10
+# ::node	h2	hold-01	11-12
+# ::node	b	behind	13-14
+# ::root	m	move-01
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	livestock	h	l	
+# ::edge	move-01	ARG0	person	m	p	
+# ::edge	street	mod	dirt	s	d	
+# ::edge	move-01	ARG1	street	m	s	
+# ::edge	hold-01	ARG1	car	h2	c	
+# ::edge	move-01	time	hold-01	m	h2	
+# ::edge	hold-01	location	behind	h2	b	
+# ::edge	behind	op1	person	b	p	
+(m / move-01
+    :ARG0 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (l / livestock)))
+    :ARG1 (s / street
+        :mod (d / dirt))
+    :time (h2 / hold-01
+        :ARG1 (c / car)
+        :location (b / behind
+            :op1 p)))

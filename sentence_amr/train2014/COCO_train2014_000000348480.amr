@@ -1,0 +1,48 @@
+# ::tok A living room with a table , Christmas tree , television , bookshelves and several other things .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	t	table	5-6
+# ::node	f	festival	7-8
+# ::node	n	name	7-8
+# ::node	0	Christmas	7-8
+# ::node	t4	tree	8-9
+# ::node	a	and	9-10
+# ::node	t2	television	10-11
+# ::node	b	book	12-13
+# ::node	c	counter-01	12-13
+# ::node	s	several	14-15
+# ::node	o	other	15-16
+# ::node	t3	thing	16-17
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	0	
+# ::edge	tree	mod	festival	t4	f	
+# ::edge	and	op2	tree	a	t4	
+# ::edge	and	op1	table	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	television	a	t2	
+# ::edge	and	op4	book	a	b	
+# ::edge	book	ARG0-of	counter-01	b	c	
+# ::edge	counter-01	ARG1	book	c	b	
+# ::edge	thing	mod	other	t3	o	
+# ::edge	thing	quant	several	t3	s	
+# ::edge	and	op5	thing	a	t3	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / table)
+            :op2 (t4 / tree
+                :mod (f / festival
+                    :name (n / name
+                        :op1 "Christmas")))
+            :op3 (t2 / television)
+            :op4 (b / book
+                :ARG0-of (c / counter-01
+                    :ARG1 b))
+            :op5 (t3 / thing
+                :quant (s / several)
+                :mod (o / other))))
+    :mod (l / living))

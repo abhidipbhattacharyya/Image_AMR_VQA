@@ -1,0 +1,22 @@
+# ::tok A wall urinal in a stall with an auto sensor flushing system .
+# ::node	w	wall	1-2
+# ::node	u	urinal	2-3
+# ::node	s2	stall	5-6
+# ::node	a	automate-01	8-9
+# ::node	s	sensor	9-10
+# ::node	f	flush-01	10-11
+# ::node	s3	system	11-12
+# ::root	u	urinal
+# ::edge	urinal	location	wall	u	w	
+# ::edge	urinal	location	stall	u	s2	
+# ::edge	sensor	ARG1-of	automate-01	s	a	
+# ::edge	system	instrument-of	flush-01	s3	f	
+# ::edge	system	instrument-of	sensor	s3	s	
+# ::edge	urinal	prep-with	system	u	s3	
+(u / urinal
+    :location (w / wall)
+    :location (s2 / stall)
+    :prep-with (s3 / system
+        :instrument-of (f / flush-01)
+        :instrument-of (s / sensor
+            :ARG1-of (a / automate-01))))

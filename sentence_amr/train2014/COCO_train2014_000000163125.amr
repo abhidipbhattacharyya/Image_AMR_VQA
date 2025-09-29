@@ -1,0 +1,32 @@
+# ::tok A refrigerator with the door open in one picture and closed in the other .
+# ::node	r	refrigerator	1-2
+# ::node	d	door	4-5
+# ::node	o2	open-01	5-6
+# ::node	o	one	7-8
+# ::node	p	picture	8-9
+# ::node	p2	picture	8-9
+# ::node	a	and	9-10
+# ::node	c	close-01	10-11
+# ::node	o3	other	13-14
+# ::root	a	and
+# ::edge	refrigerator	part	door	r	d	
+# ::edge	open-01	ARG1	door	o2	d	
+# ::edge	open-01	ARG0	refrigerator	o2	r	
+# ::edge	picture	mod	one	p	o	
+# ::edge	open-01	location	picture	o2	p	
+# ::edge	and	op1	open-01	a	o2	
+# ::edge	and	op2	close-01	a	c	
+# ::edge	close-01	location	picture	c	p2	
+# ::edge	close-01	ARG1	door	c	d	
+# ::edge	picture	mod	other	p2	o3	
+(a / and
+    :op1 (o2 / open-01
+        :ARG0 (r / refrigerator
+            :part (d / door))
+        :ARG1 d
+        :location (p / picture
+            :mod (o / one)))
+    :op2 (c / close-01
+        :ARG1 d
+        :location (p2 / picture
+            :mod (o3 / other))))

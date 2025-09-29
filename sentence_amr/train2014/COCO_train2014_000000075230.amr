@@ -1,0 +1,39 @@
+# ::tok A metallic holder holds several plastic - wrapped toothbrushes and a small white bottle .
+# ::node	m	metallic	1-2
+# ::node	h2	holder	2-3
+# ::node	h	hold-01	3-4
+# ::node	s	several	4-5
+# ::node	p	plastic	5-6
+# ::node	w2	wrap-01	7-8
+# ::node	t	tooth	8-9
+# ::node	t2	tooth	8-9
+# ::node	a	and	9-10
+# ::node	s2	small	11-12
+# ::node	w	white-03	12-13
+# ::node	b	bottle	13-14
+# ::root	h	hold-01
+# ::edge	holder	mod	metallic	h2	m	
+# ::edge	hold-01	ARG0	holder	h	h2	
+# ::edge	wrap-01	ARG2	plastic	w2	p	
+# ::edge	tooth	ARG1-of	wrap-01	t	w2	
+# ::edge	tooth	quant	several	t	s	
+# ::edge	tooth	part	tooth	t	t2	
+# ::edge	and	op1	tooth	a	t2	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	bottle	ARG1-of	white-03	b	w	
+# ::edge	bottle	mod	small	b	s2	
+# ::edge	and	op2	bottle	a	b	
+# ::edge	hold-01	rel	tooth	h	t	
+(h / hold-01
+    :ARG0 (h2 / holder
+        :mod (m / metallic))
+    :ARG1 (a / and
+        :op1 (t2 / tooth)
+        :op2 (b / bottle
+            :ARG1-of (w / white-03)
+            :mod (s2 / small)))
+    :rel (t / tooth
+        :quant (s / several)
+        :ARG1-of (w2 / wrap-01
+            :ARG2 (p / plastic))
+        :part t2))

@@ -1,0 +1,27 @@
+# ::tok A road sign displays how many parking spaces are left in a parking garage .
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	d	display-01	3-4
+# ::node	n	number	4-5
+# ::node	p	park-01	6-7
+# ::node	s2	space	7-8
+# ::node	l	leave-17	9-10
+# ::node	g	garage	13-14
+# ::root	d	display-01
+# ::edge	sign	mod	road	s	r	
+# ::edge	display-01	ARG0	sign	d	s	
+# ::edge	display-01	ARG1	number	d	n	
+# ::edge	space	purpose	park-01	s2	p	
+# ::edge	number	quant-of	space	n	s2	
+# ::edge	space	ARG1-of	leave-17	s2	l	
+# ::edge	leave-17	location	garage	l	g	
+# ::edge	garage	mod	park-01	g	p	
+(d / display-01
+    :ARG0 (s / sign
+        :mod (r / road))
+    :ARG1 (n / number
+        :quant-of (s2 / space
+            :purpose (p / park-01)
+            :ARG1-of (l / leave-17
+                :location (g / garage
+                    :mod p)))))

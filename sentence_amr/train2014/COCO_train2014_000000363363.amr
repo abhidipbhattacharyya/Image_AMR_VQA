@@ -1,0 +1,30 @@
+# ::tok A little girl trying to feed two giraffes through a netted barrier .
+# ::node	l	little	1-2
+# ::node	g2	girl	2-3
+# ::node	t2	try-01	3-4
+# ::node	f	feed-01	5-6
+# ::node	0	2	6-7
+# ::node	g	giraffe	7-8
+# ::node	t	through	8-9
+# ::node	n	net	10-11
+# ::node	b	barrier	11-12
+# ::root	t2	try-01
+# ::edge	girl	mod	little	g2	l	
+# ::edge	try-01	ARG0	girl	t2	g2	
+# ::edge	try-01	ARG1	feed-01	t2	f	
+# ::edge	feed-01	ARG0	girl	f	g2	
+# ::edge	giraffe	quant	2	g	0	
+# ::edge	feed-01	ARG2	giraffe	f	g	
+# ::edge	feed-01	path	through	f	t	
+# ::edge	barrier	consist-of	net	b	n	
+# ::edge	through	op1	barrier	t	b	
+(t2 / try-01
+    :ARG0 (g2 / girl
+        :mod (l / little))
+    :ARG1 (f / feed-01
+        :ARG0 g2
+        :ARG2 (g / giraffe
+            :quant 2)
+        :path (t / through
+            :op1 (b / barrier
+                :consist-of (n / net)))))

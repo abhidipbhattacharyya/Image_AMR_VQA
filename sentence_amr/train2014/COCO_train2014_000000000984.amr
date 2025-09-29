@@ -1,0 +1,25 @@
+# ::tok A pair of hands split a bundle of bananas on top of a box of oranges .
+# ::node	h	hand	3-4
+# ::node	s	split-01	4-5
+# ::node	b3	bundle	6-7
+# ::node	b	banana	8-9
+# ::node	t	top	10-11
+# ::node	b2	box	13-14
+# ::node	c	contain-01	13-14
+# ::node	o	orange	15-16
+# ::root	s	split-01
+# ::edge	split-01	ARG0	hand	s	h	
+# ::edge	split-01	ARG1	bundle	s	b3	
+# ::edge	bundle	consist-of	banana	b3	b	
+# ::edge	split-01	location	top	s	t	
+# ::edge	top	part-of	box	t	b2	
+# ::edge	box	ARG0-of	contain-01	b2	c	
+# ::edge	contain-01	ARG1	orange	c	o	
+(s / split-01
+    :ARG0 (h / hand)
+    :ARG1 (b3 / bundle
+        :consist-of (b / banana))
+    :location (t / top
+        :part-of (b2 / box
+            :ARG0-of (c / contain-01
+                :ARG1 (o / orange)))))

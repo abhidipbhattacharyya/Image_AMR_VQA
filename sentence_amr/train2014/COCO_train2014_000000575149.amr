@@ -1,0 +1,34 @@
+# ::tok South western style building with a stage coach stop sign .
+# ::node	n	name	0-1
+# ::node	0	South	0-1
+# ::node	w	world-region	1-2
+# ::node	1	West	1-2
+# ::node	s4	style	2-3
+# ::node	b	building	3-4
+# ::node	s2	stage	6-7
+# ::node	c	coach-01	7-8
+# ::node	s3	stop-01	8-9
+# ::node	s	signal-07	9-10
+# ::node	t	thing	10-11
+# ::root	b	building
+# ::edge	name	op1	South	n	0	
+# ::edge	world-region	name	name	w	n	
+# ::edge	name	op2	West	n	1	
+# ::edge	style	mod	world-region	s4	w	
+# ::edge	building	mod	style	b	s4	
+# ::edge	coach-01	ARG2	stage	c	s2	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	thing	ARG0-of	signal-07	t	s	
+# ::edge	thing	ARG0-of	coach-01	t	c	
+# ::edge	building	prep-with	thing	b	t	
+(b / building
+    :mod (s4 / style
+        :mod (w / world-region
+            :name (n / name
+                :op1 "South"
+                :op2 "West")))
+    :prep-with (t / thing
+        :ARG0-of (s / signal-07
+            :ARG1 (s3 / stop-01))
+        :ARG0-of (c / coach-01
+            :ARG2 (s2 / stage))))

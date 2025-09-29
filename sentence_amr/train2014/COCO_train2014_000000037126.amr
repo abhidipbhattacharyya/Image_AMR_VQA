@@ -1,0 +1,22 @@
+# ::tok Camera flash reflected in a mirror in a small tiled bathroom .
+# ::node	c	camera	0-1
+# ::node	f	flash-01	1-2
+# ::node	r	reflect-01	2-3
+# ::node	m	mirror	5-6
+# ::node	s	small	8-9
+# ::node	t	tile-01	9-10
+# ::node	b	bathroom	10-11
+# ::root	r	reflect-01
+# ::edge	flash-01	ARG0	camera	f	c	
+# ::edge	reflect-01	ARG1	flash-01	r	f	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	bathroom	ARG1-of	tile-01	b	t	
+# ::edge	bathroom	mod	small	b	s	
+# ::edge	mirror	location	bathroom	m	b	
+(r / reflect-01
+    :ARG1 (f / flash-01
+        :ARG0 (c / camera))
+    :ARG2 (m / mirror
+        :location (b / bathroom
+            :ARG1-of (t / tile-01)
+            :mod (s / small))))

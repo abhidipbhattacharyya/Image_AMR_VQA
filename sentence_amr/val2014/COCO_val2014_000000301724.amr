@@ -1,0 +1,41 @@
+# ::tok A bike with a green wagon attached to it holding a red case while parked under a red umbrella next to doors .
+# ::node	b	bike	1-2
+# ::node	g	green-02	4-5
+# ::node	w	wagon	5-6
+# ::node	a	attach-01	6-7
+# ::node	h	hold-01	9-10
+# ::node	r	red-02	11-12
+# ::node	c	case	12-13
+# ::node	p	park-01	14-15
+# ::node	u2	under	15-16
+# ::node	u	umbrella	18-19
+# ::node	n	next-to	19-20
+# ::node	d	door	21-22
+# ::root	b	bike
+# ::edge	wagon	ARG1-of	green-02	w	g	
+# ::edge	attach-01	ARG2	wagon	a	w	
+# ::edge	bike	ARG1-of	attach-01	b	a	
+# ::edge	bike	ARG0-of	hold-01	b	h	
+# ::edge	case	ARG1-of	red-02	c	r	
+# ::edge	hold-01	ARG1	case	h	c	
+# ::edge	park-01	ARG1	bike	p	b	
+# ::edge	bike	time	park-01	b	p	
+# ::edge	park-01	ARG2	under	p	u2	
+# ::edge	under	op1	umbrella	u2	u	
+# ::edge	red-02	ARG1	umbrella	r	u	
+# ::edge	umbrella	location	next-to	u	n	
+# ::edge	next-to	op1	door	n	d	
+(b / bike
+    :ARG0-of (h / hold-01
+        :ARG1 (c / case
+            :ARG1-of (r / red-02
+                :ARG1 (u / umbrella
+                    :location (n / next-to
+                        :op1 (d / door))))))
+    :ARG1-of (a / attach-01
+        :ARG2 (w / wagon
+            :ARG1-of (g / green-02)))
+    :time (p / park-01
+        :ARG1 b
+        :ARG2 (u2 / under
+            :op1 u)))

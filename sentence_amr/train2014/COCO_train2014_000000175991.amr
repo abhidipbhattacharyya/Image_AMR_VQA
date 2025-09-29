@@ -1,0 +1,22 @@
+# ::tok Clock tower ascending into overcast sky from buildings below
+# ::node	t	tower	0-1
+# ::node	t2	tower	1-2
+# ::node	c	climb-01	2-3
+# ::node	o	overcast	4-5
+# ::node	s	sky	5-6
+# ::node	b2	building	7-8
+# ::node	b	below	8-9
+# ::root	c	climb-01
+# ::edge	tower	consist-of	tower	t2	t	
+# ::edge	climb-01	ARG1	tower	c	t2	
+# ::edge	sky	mod	overcast	s	o	
+# ::edge	climb-01	destination	sky	c	s	
+# ::edge	climb-01	source	building	c	b2	
+# ::edge	building	location	below	b2	b	
+(c / climb-01
+    :ARG1 (t2 / tower
+        :consist-of (t / tower))
+    :destination (s / sky
+        :mod (o / overcast))
+    :source (b2 / building
+        :location (b / below)))

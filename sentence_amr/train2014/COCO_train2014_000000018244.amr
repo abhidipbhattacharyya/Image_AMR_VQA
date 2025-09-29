@@ -1,0 +1,37 @@
+# ::tok A three tiered plate holding small appetizers , finger sandwiches , and and assortment of pastry
+# ::node	0	3	1-2
+# ::node	t	tier	2-3
+# ::node	p2	plate	3-4
+# ::node	h	hold-01	4-5
+# ::node	s2	small	5-6
+# ::node	v	vegetable	6-7
+# ::node	e	eat-01	6-7
+# ::node	a	and	7-8
+# ::node	f	finger	8-9
+# ::node	s	sandwich	9-10
+# ::node	a2	assortment	13-14
+# ::node	p	pastry	15-16
+# ::root	p2	plate
+# ::edge	tier	quant	3	t	0	
+# ::edge	plate	consist-of	tier	p2	t	
+# ::edge	plate	ARG0-of	hold-01	p2	h	
+# ::edge	vegetable	mod	small	v	s2	
+# ::edge	vegetable	ARG1-of	eat-01	v	e	
+# ::edge	and	op1	vegetable	a	v	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	sandwich	mod	finger	s	f	
+# ::edge	and	op2	sandwich	a	s	
+# ::edge	and	op3	assortment	a	a2	
+# ::edge	assortment	mod	pastry	a2	p	
+(p2 / plate
+    :ARG0-of (h / hold-01
+        :ARG1 (a / and
+            :op1 (v / vegetable
+                :ARG1-of (e / eat-01)
+                :mod (s2 / small))
+            :op2 (s / sandwich
+                :mod (f / finger))
+            :op3 (a2 / assortment
+                :mod (p / pastry))))
+    :consist-of (t / tier
+        :quant 3))

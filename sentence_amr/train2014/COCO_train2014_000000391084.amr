@@ -1,0 +1,39 @@
+# ::tok A tea kettle sitting on a stove in a kitchen next to a counter with a cup with utensils in it .
+# ::node	t	tea	1-2
+# ::node	k	kettle	2-3
+# ::node	s	sit-01	3-4
+# ::node	s2	stove	6-7
+# ::node	k2	kitchen	9-10
+# ::node	n	next-to	10-11
+# ::node	c	counter	13-14
+# ::node	h	have-03	14-15
+# ::node	c3	cup	16-17
+# ::node	h2	have-03	17-18
+# ::node	e	enzyme	18-19
+# ::node	c2	counter-01	18-19
+# ::root	s	sit-01
+# ::edge	kettle	mod	tea	k	t	
+# ::edge	sit-01	ARG1	kettle	s	k	
+# ::edge	sit-01	ARG2	stove	s	s2	
+# ::edge	sit-01	location	kitchen	s	k2	
+# ::edge	kitchen	location-of	next-to	k2	n	
+# ::edge	next-to	op1	counter	n	c	
+# ::edge	kettle	ARG0-of	have-03	k	h	
+# ::edge	have-03	ARG1	cup	h	c3	
+# ::edge	cup	ARG0-of	have-03	c3	h2	
+# ::edge	have-03	ARG1	enzyme	h2	e	
+# ::edge	enzyme	ARG0-of	counter-01	e	c2	
+# ::edge	counter-01	ARG1	cup	c2	c3	
+(s / sit-01
+    :ARG1 (k / kettle
+        :ARG0-of (h / have-03
+            :ARG1 (c3 / cup
+                :ARG0-of (h2 / have-03
+                    :ARG1 (e / enzyme
+                        :ARG0-of (c2 / counter-01
+                            :ARG1 c3)))))
+        :mod (t / tea))
+    :ARG2 (s2 / stove)
+    :location (k2 / kitchen
+        :location-of (n / next-to
+            :op1 (c / counter))))

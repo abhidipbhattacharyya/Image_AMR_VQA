@@ -1,0 +1,46 @@
+# ::tok A table that has a plate with pieces of square cut pizza on it and a remote control behind it .
+# ::node	t	table	1-2
+# ::node	h	have-03	3-4
+# ::node	p3	plate	5-6
+# ::node	h2	have-03	6-7
+# ::node	p	piece	7-8
+# ::node	s	square	9-10
+# ::node	c2	cut-01	10-11
+# ::node	p2	pizza	11-12
+# ::node	b	be-located-at-91	12-13
+# ::node	a	and	14-15
+# ::node	r	remote	16-17
+# ::node	c	control	17-18
+# ::node	b2	behind	18-19
+# ::root	t	table
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	plate	ARG0-of	have-03	p3	h2	
+# ::edge	cut-01	manner	square	c2	s	
+# ::edge	pizza	ARG1-of	cut-01	p2	c2	
+# ::edge	piece	consist-of	pizza	p	p2	
+# ::edge	be-located-at-91	ARG1	plate	b	p3	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	control	mod	remote	c	r	
+# ::edge	and	op2	control	a	c	
+# ::edge	control	location	behind	c	b2	
+# ::edge	behind	op1	plate	b2	p3	
+# ::edge	table	rel	piece	t	p	
+# ::edge	table	rel	have-03	t	h	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / be-located-at-91
+                :ARG1 (p3 / plate
+                    :ARG0-of (h2 / have-03))
+                :ARG2 t)
+            :op2 (c / control
+                :location (b2 / behind
+                    :op1 p3)
+                :mod (r / remote))))
+    :rel (p / piece
+        :consist-of (p2 / pizza
+            :ARG1-of (c2 / cut-01
+                :manner (s / square))))
+    :rel h)

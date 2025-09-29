@@ -1,0 +1,31 @@
+# ::tok A bear is laying on a dirt patch near a broken tree and some rocks .
+# ::node	b	bear	1-2
+# ::node	l	lay-01	3-4
+# ::node	d	dirt	6-7
+# ::node	p	patch	7-8
+# ::node	n	near-02	8-9
+# ::node	b2	break-01	10-11
+# ::node	t	tree	11-12
+# ::node	a	and	12-13
+# ::node	s	some	13-14
+# ::node	r	rock	14-15
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	bear	l	b	
+# ::edge	patch	consist-of	dirt	p	d	
+# ::edge	lay-01	ARG2	patch	l	p	
+# ::edge	patch	ARG1-of	near-02	p	n	
+# ::edge	tree	ARG1-of	break-01	t	b2	
+# ::edge	and	op1	tree	a	t	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	rock	quant	some	r	s	
+# ::edge	and	op2	rock	a	r	
+(l / lay-01
+    :ARG1 (b / bear)
+    :ARG2 (p / patch
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (t / tree
+                    :ARG1-of (b2 / break-01))
+                :op2 (r / rock
+                    :quant (s / some))))
+        :consist-of (d / dirt)))

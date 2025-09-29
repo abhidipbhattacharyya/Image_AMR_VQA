@@ -1,0 +1,39 @@
+# ::tok Dual train tracks with a train on one of them and a water tower in the background .
+# ::node	d	double	0-1
+# ::node	t4	train	1-2
+# ::node	t2	track	2-3
+# ::node	t3	track	2-3
+# ::node	h	have-03	3-4
+# ::node	t5	train	5-6
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::node	a	and	10-11
+# ::node	w	water	12-13
+# ::node	t	tower	13-14
+# ::node	b	background	16-17
+# ::root	a	and
+# ::edge	track	purpose	train	t2	t4	
+# ::edge	track	mod	double	t2	d	
+# ::edge	track	ARG0-of	have-03	t2	h	
+# ::edge	have-03	ARG1	train	h	t5	
+# ::edge	track	quant	1	t3	0	
+# ::edge	track	ARG1-of	include-91	t3	i	
+# ::edge	include-91	ARG2	track	i	t2	
+# ::edge	and	op1	track	a	t2	
+# ::edge	tower	mod	water	t	w	
+# ::edge	and	op2	tower	a	t	
+# ::edge	tower	location	background	t	b	
+# ::edge	and	rel	track	a	t3	
+(a / and
+    :op1 (t2 / track
+        :purpose (t4 / train)
+        :ARG0-of (h / have-03
+            :ARG1 (t5 / train))
+        :mod (d / double))
+    :op2 (t / tower
+        :location (b / background)
+        :mod (w / water))
+    :rel (t3 / track
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 t2)))

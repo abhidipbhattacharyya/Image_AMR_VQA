@@ -1,0 +1,40 @@
+# ::tok Double decker bus , Brishton Marina 7 , on street cleared of snow .
+# ::node	d2	double-01	0-1
+# ::node	d	decker	1-2
+# ::node	b	bus	2-3
+# ::node	b2	byline-91	3-4
+# ::node	c	city	4-5
+# ::node	1	Brishton	4-5
+# ::node	h	harbor	5-6
+# ::node	2	Marina	5-6
+# ::node	n	name	6-7
+# ::node	0	7	6-7
+# ::node	s2	street	9-10
+# ::node	c2	clear-01	10-11
+# ::node	s	snow	12-13
+# ::root	b2	byline-91
+# ::edge	decker	ARG1-of	double-01	d	d2	
+# ::edge	bus	mod	decker	b	d	
+# ::edge	byline-91	ARG1	bus	b2	b	
+# ::edge	harbor	location	city	h	c	
+# ::edge	byline-91	location	harbor	b2	h	
+# ::edge	name	op2	Marina	n	2	
+# ::edge	name	op1	Brishton	n	1	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op3	7	n	0	
+# ::edge	bus	location	street	b	s2	
+# ::edge	street	ARG1-of	clear-01	s2	c2	
+# ::edge	clear-01	ARG2	snow	c2	s	
+(b2 / byline-91
+    :ARG1 (b / bus
+        :location (s2 / street
+            :ARG1-of (c2 / clear-01
+                :ARG2 (s / snow)))
+        :mod (d / decker
+            :ARG1-of (d2 / double-01)))
+    :location (h / harbor
+        :location (c / city
+            :name (n / name
+                :op1 "Brishton"
+                :op2 "Marina"
+                :op3 7))))

@@ -1,0 +1,36 @@
+# ::tok A person posing on skis right at the edge of where the snow stops and dry ground begins .
+# ::node	p	person	1-2
+# ::node	p2	pose-01	2-3
+# ::node	s	ski-01	4-5
+# ::node	r	right	5-6
+# ::node	e	edge	8-9
+# ::node	s2	snow	12-13
+# ::node	s3	stop-01	13-14
+# ::node	a	and	14-15
+# ::node	d	dry-02	15-16
+# ::node	g	ground	16-17
+# ::node	b	begin-01	17-18
+# ::root	p2	pose-01
+# ::edge	pose-01	ARG0	person	p2	p	
+# ::edge	pose-01	manner	ski-01	p2	s	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	edge	mod	right	e	r	
+# ::edge	pose-01	location	edge	p2	e	
+# ::edge	stop-01	ARG1	snow	s3	s2	
+# ::edge	and	op1	stop-01	a	s3	
+# ::edge	edge	location-of	and	e	a	
+# ::edge	ground	ARG1-of	dry-02	g	d	
+# ::edge	begin-01	ARG1	ground	b	g	
+# ::edge	and	op2	begin-01	a	b	
+(p2 / pose-01
+    :ARG0 (p / person)
+    :location (e / edge
+        :location-of (a / and
+            :op1 (s3 / stop-01
+                :ARG1 (s2 / snow))
+            :op2 (b / begin-01
+                :ARG1 (g / ground
+                    :ARG1-of (d / dry-02))))
+        :mod (r / right))
+    :manner (s / ski-01
+        :ARG0 p))

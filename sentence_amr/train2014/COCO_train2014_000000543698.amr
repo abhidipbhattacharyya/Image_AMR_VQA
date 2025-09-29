@@ -1,0 +1,30 @@
+# ::tok Snowboarder upside down while airborne on a snowboarding half - pipe .
+# ::node	p	person	0-1
+# ::node	s	snow	0-1
+# ::node	u	upside	1-2
+# ::node	d	down-03	2-3
+# ::node	c	cause-01	3-4
+# ::node	a	airborne	4-5
+# ::node	s2	snow-01	7-8
+# ::node	h	half	8-9
+# ::node	p2	pipe	10-11
+# ::root	p	person
+# ::edge	down-03	manner	upside	d	u	
+# ::edge	down-03	ARG1	snow	d	s	
+# ::edge	cause-01	ARG1	down-03	c	d	
+# ::edge	person	ARG0-of	cause-01	p	c	
+# ::edge	airborne	domain	person	a	p	
+# ::edge	snow-01	manner	airborne	s2	a	
+# ::edge	person	ARG0-of	snow-01	p	s2	
+# ::edge	pipe	mod	half	p2	h	
+# ::edge	snow-01	mod	pipe	s2	p2	
+(p / person
+    :ARG0-of (c / cause-01
+        :ARG1 (d / down-03
+            :ARG1 (s / snow)
+            :manner (u / upside)))
+    :ARG0-of (s2 / snow-01
+        :manner (a / airborne
+            :domain p)
+        :mod (p2 / pipe
+            :mod (h / half))))

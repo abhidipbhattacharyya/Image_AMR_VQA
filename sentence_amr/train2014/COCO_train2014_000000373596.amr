@@ -1,0 +1,33 @@
+# ::tok A yellow airplane next to a bulletin board with pilots ID 's attached .
+# ::node	y	yellow-02	1-2
+# ::node	a	airplane	2-3
+# ::node	n	next-to	3-4
+# ::node	b2	bulletin	6-7
+# ::node	b	board	7-8
+# ::node	p	person	9-10
+# ::node	p2	pilot-01	9-10
+# ::node	d	document-01	10-11
+# ::node	i	identity	10-11
+# ::node	a2	attach-01	12-13
+# ::root	a	airplane
+# ::edge	airplane	ARG1-of	yellow-02	a	y	
+# ::edge	airplane	location	next-to	a	n	
+# ::edge	board	mod	bulletin	b	b2	
+# ::edge	next-to	op1	board	n	b	
+# ::edge	person	ARG0-of	pilot-01	p	p2	
+# ::edge	airplane	ARG0-of	document-01	a	d	
+# ::edge	document-01	ARG1	identity	d	i	
+# ::edge	identity	mod	person	i	p	
+# ::edge	identity	ARG1-of	attach-01	i	a2	
+# ::edge	attach-01	ARG2	airplane	a2	a	
+(a / airplane
+    :ARG0-of (d / document-01
+        :ARG1 (i / identity
+            :ARG1-of (a2 / attach-01
+                :ARG2 a)
+            :mod (p / person
+                :ARG0-of (p2 / pilot-01))))
+    :ARG1-of (y / yellow-02)
+    :location (n / next-to
+        :op1 (b / board
+            :mod (b2 / bulletin))))

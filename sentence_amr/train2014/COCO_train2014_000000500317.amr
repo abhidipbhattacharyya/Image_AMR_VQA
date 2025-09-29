@@ -1,0 +1,43 @@
+# ::tok Logging truck hauling logs moving down fairly barren hill , though smoke / fog / cloud .
+# ::node	l2	logistics	0-1
+# ::node	t	truck	1-2
+# ::node	h	haul-01	2-3
+# ::node	l	log-03	3-4
+# ::node	m	move-01	4-5
+# ::node	d	down	5-6
+# ::node	f	fair-04	6-7
+# ::node	b	barren	7-8
+# ::node	h3	hill	8-9
+# ::node	h2	have-concession-91	10-11
+# ::node	s2	smoke	11-12
+# ::node	s	slash	12-13
+# ::node	f2	fog	13-14
+# ::node	c	cloud	15-16
+# ::root	h2	have-concession-91
+# ::edge	truck	mod	logistics	t	l2	
+# ::edge	truck	ARG0-of	haul-01	t	h	
+# ::edge	haul-01	ARG1	log-03	h	l	
+# ::edge	truck	ARG1-of	move-01	t	m	
+# ::edge	move-01	direction	down	m	d	
+# ::edge	barren	ARG1-of	fair-04	b	f	
+# ::edge	hill	mod	barren	h3	b	
+# ::edge	move-01	path	hill	m	h3	
+# ::edge	have-concession-91	ARG1	truck	h2	t	
+# ::edge	slash	op1	smoke	s	s2	
+# ::edge	have-concession-91	ARG2	slash	h2	s	
+# ::edge	slash	op2	fog	s	f2	
+# ::edge	slash	op3	cloud	s	c	
+(h2 / have-concession-91
+    :ARG1 (t / truck
+        :ARG0-of (h / haul-01
+            :ARG1 (l / log-03))
+        :ARG1-of (m / move-01
+            :direction (d / down)
+            :path (h3 / hill
+                :mod (b / barren
+                    :ARG1-of (f / fair-04))))
+        :mod (l2 / logistics))
+    :ARG2 (s / slash
+        :op1 (s2 / smoke)
+        :op2 (f2 / fog)
+        :op3 (c / cloud)))

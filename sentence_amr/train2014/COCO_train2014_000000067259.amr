@@ -1,0 +1,34 @@
+# ::tok Surf boards lined up on the beach while people nearby look at a tourist map .
+# ::node	s	surf-01	0-1
+# ::node	b2	board	1-2
+# ::node	l	line-up-02	2-3
+# ::node	b	beach	6-7
+# ::node	c	contrast-01	7-8
+# ::node	p	person	8-9
+# ::node	n	nearby	9-10
+# ::node	l2	look-01	10-11
+# ::node	p2	person	13-14
+# ::node	t	tour-01	13-14
+# ::node	m	map	14-15
+# ::root	c	contrast-01
+# ::edge	board	purpose	surf-01	b2	s	
+# ::edge	line-up-02	ARG1	board	l	b2	
+# ::edge	line-up-02	location	beach	l	b	
+# ::edge	contrast-01	ARG1	line-up-02	c	l	
+# ::edge	look-01	location	nearby	l2	n	
+# ::edge	look-01	ARG0	person	l2	p	
+# ::edge	contrast-01	ARG2	look-01	c	l2	
+# ::edge	person	ARG0-of	tour-01	p2	t	
+# ::edge	map	topic	person	m	p2	
+# ::edge	look-01	ARG1	map	l2	m	
+(c / contrast-01
+    :ARG1 (l / line-up-02
+        :ARG1 (b2 / board
+            :purpose (s / surf-01))
+        :location (b / beach))
+    :ARG2 (l2 / look-01
+        :ARG0 (p / person)
+        :ARG1 (m / map
+            :topic (p2 / person
+                :ARG0-of (t / tour-01)))
+        :location (n / nearby)))

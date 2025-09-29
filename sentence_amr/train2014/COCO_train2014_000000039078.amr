@@ -1,0 +1,22 @@
+# ::tok A bus that is stopped along side a curb waiting for passengers
+# ::node	b	bus	1-2
+# ::node	s2	stop-01	4-5
+# ::node	a	along	5-6
+# ::node	s	side	6-7
+# ::node	c	curb	8-9
+# ::node	w	wait-01	9-10
+# ::node	p	passenger	11-12
+# ::root	b	bus
+# ::edge	bus	ARG1-of	stop-01	b	s2	
+# ::edge	stop-01	location	along	s2	a	
+# ::edge	along	op1	side	a	s	
+# ::edge	side	op1	curb	s	c	
+# ::edge	bus	ARG1-of	wait-01	b	w	
+# ::edge	wait-01	ARG2	passenger	w	p	
+(b / bus
+    :ARG1-of (s2 / stop-01
+        :location (a / along
+            :op1 (s / side
+                :op1 (c / curb))))
+    :ARG1-of (w / wait-01
+        :ARG2 (p / passenger)))

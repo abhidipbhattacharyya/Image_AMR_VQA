@@ -1,0 +1,34 @@
+# ::tok A fire extinguisher with a lot of snow around it and sun behind it .
+# ::node	f	fire	1-2
+# ::node	t	thing	2-3
+# ::node	e	extinguish-01	2-3
+# ::node	l	lot	5-6
+# ::node	s	snow	7-8
+# ::node	a2	around	8-9
+# ::node	a	and	10-11
+# ::node	s2	sun	11-12
+# ::node	b	behind	12-13
+# ::root	t	thing
+# ::edge	thing	ARG2-of	extinguish-01	t	e	
+# ::edge	extinguish-01	ARG1	fire	e	f	
+# ::edge	snow	quant	lot	s	l	
+# ::edge	snow	location	around	s	a2	
+# ::edge	around	op1	thing	a2	t	
+# ::edge	and	op1	around	a	a2	
+# ::edge	thing	location-of	and	t	a	
+# ::edge	and	op2	sun	a	s2	
+# ::edge	sun	location	behind	s2	b	
+# ::edge	behind	op1	thing	b	t	
+# ::edge	thing	rel	snow	t	s	
+(t / thing
+    :ARG2-of (e / extinguish-01
+        :ARG1 (f / fire))
+    :location-of (a / and
+        :op1 (a2 / around
+            :op1 t)
+        :op2 (s2 / sun
+            :location (b / behind
+                :op1 t)))
+    :rel (s / snow
+        :quant (l / lot)
+        :location a2))

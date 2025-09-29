@@ -1,0 +1,22 @@
+# ::tok A stop sign at the street corner is illuminated at night .
+# ::node	s2	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	s3	street	5-6
+# ::node	c	corner	6-7
+# ::node	i	illuminate-01	8-9
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::root	i	illuminate-01
+# ::edge	sign	purpose	stop-01	s	s2	
+# ::edge	corner	op1	street	c	s3	
+# ::edge	sign	location	corner	s	c	
+# ::edge	illuminate-01	ARG1	sign	i	s	
+# ::edge	illuminate-01	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(i / illuminate-01
+    :ARG1 (s / sign
+        :purpose (s2 / stop-01)
+        :location (c / corner
+            :op1 (s3 / street)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,48 @@
+# ::tok A male tennis player is reaching up with one hand and has a tennis racquet in his other hand .
+# ::node	m	male	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	r2	reach-03	5-6
+# ::node	u	up	6-7
+# ::node	0	1	8-9
+# ::node	h	hand	9-10
+# ::node	a	and	10-11
+# ::node	h3	have-03	11-12
+# ::node	r	racquet	14-15
+# ::node	o	other	17-18
+# ::node	h2	hand	18-19
+# ::root	a	and
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	reach-03	ARG0	person	r2	p	
+# ::edge	reach-03	direction	up	r2	u	
+# ::edge	hand	quant	1	h	0	
+# ::edge	reach-03	manner	hand	r2	h	
+# ::edge	person	part	hand	p	h	
+# ::edge	and	op1	reach-03	a	r2	
+# ::edge	and	op2	have-03	a	h3	
+# ::edge	have-03	ARG0	person	h3	p	
+# ::edge	have-03	ARG1	racquet	h3	r	
+# ::edge	racquet	mod	tennis	r	t	
+# ::edge	hand	mod	other	h2	o	
+# ::edge	have-03	location	hand	h3	h2	
+# ::edge	person	part	hand	p	h2	
+(a / and
+    :op1 (r2 / reach-03
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))
+            :mod (m / male)
+            :part (h / hand
+                :quant 1)
+            :part (h2 / hand
+                :mod (o / other)))
+        :direction (u / up)
+        :manner h)
+    :op2 (h3 / have-03
+        :ARG0 p
+        :ARG1 (r / racquet
+            :mod t)
+        :location h2))

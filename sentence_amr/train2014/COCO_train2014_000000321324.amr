@@ -1,0 +1,30 @@
+# ::tok Whole pizza on a table with bubbly crust around the edges .
+# ::node	w	whole	0-1
+# ::node	p	pizza	1-2
+# ::node	t	table	4-5
+# ::node	h	have-03	5-6
+# ::node	c	counter-01	6-7
+# ::node	b	bubbly	6-7
+# ::node	c2	crust	7-8
+# ::node	a	around	8-9
+# ::node	e	edge	10-11
+# ::root	p	pizza
+# ::edge	pizza	mod	whole	p	w	
+# ::edge	pizza	location	table	p	t	
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	pizza	ARG0-of	counter-01	p	c	
+# ::edge	counter-01	ARG4	pizza	c	p	
+# ::edge	crust	mod	bubbly	c2	b	
+# ::edge	have-03	ARG1	crust	h	c2	
+# ::edge	crust	location	around	c2	a	
+# ::edge	around	op1	edge	a	e	
+(p / pizza
+    :ARG0-of (h / have-03
+        :ARG1 (c2 / crust
+            :location (a / around
+                :op1 (e / edge))
+            :mod (b / bubbly)))
+    :ARG0-of (c / counter-01
+        :ARG4 p)
+    :location (t / table)
+    :mod (w / whole))

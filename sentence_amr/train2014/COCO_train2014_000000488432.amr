@@ -1,0 +1,37 @@
+# ::tok An old town street with people walking around , horse drawn carriages , and early cars .
+# ::node	o	old	1-2
+# ::node	t	town	2-3
+# ::node	s	street	3-4
+# ::node	p	person	5-6
+# ::node	w	walk-01	6-7
+# ::node	a2	around	7-8
+# ::node	h	horse	9-10
+# ::node	d	draw-02	10-11
+# ::node	c2	carriage	11-12
+# ::node	a	and	13-14
+# ::node	e	early	14-15
+# ::node	c	car	15-16
+# ::root	s	street
+# ::edge	street	mod	town	s	t	
+# ::edge	street	mod	old	s	o	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	around	w	a2	
+# ::edge	draw-02	ARG0	horse	d	h	
+# ::edge	carriage	ARG1-of	draw-02	c2	d	
+# ::edge	and	op2	carriage	a	c2	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	street	location-of	and	s	a	
+# ::edge	car	time	early	c	e	
+# ::edge	and	op3	car	a	c	
+(s / street
+    :location-of (a / and
+        :op1 (w / walk-01
+            :ARG0 (p / person)
+            :direction (a2 / around))
+        :op2 (c2 / carriage
+            :ARG1-of (d / draw-02
+                :ARG0 (h / horse)))
+        :op3 (c / car
+            :time (e / early)))
+    :mod (t / town)
+    :mod (o / old))

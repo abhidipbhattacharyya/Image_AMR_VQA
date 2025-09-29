@@ -1,0 +1,26 @@
+# ::tok Two children are holding slices of orange in their open mouths .
+# ::node	0	2	0-1
+# ::node	c	child	1-2
+# ::node	h	hold-01	3-4
+# ::node	s	slice	4-5
+# ::node	o2	orange	6-7
+# ::node	o	open-01	9-10
+# ::node	m	mouth	10-11
+# ::root	h	hold-01
+# ::edge	child	quant	2	c	0	
+# ::edge	hold-01	ARG0	child	h	c	
+# ::edge	hold-01	ARG1	slice	h	s	
+# ::edge	slice	consist-of	orange	s	o2	
+# ::edge	open-01	ARG0	child	o	c	
+# ::edge	mouth	ARG1-of	open-01	m	o	
+# ::edge	hold-01	location	mouth	h	m	
+# ::edge	child	part	mouth	c	m	
+(h / hold-01
+    :ARG0 (c / child
+        :quant 2
+        :part (m / mouth
+            :ARG1-of (o / open-01
+                :ARG0 c)))
+    :ARG1 (s / slice
+        :consist-of (o2 / orange))
+    :location m)

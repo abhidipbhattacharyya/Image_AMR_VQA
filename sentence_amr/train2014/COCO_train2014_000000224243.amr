@@ -1,0 +1,27 @@
+# ::tok A cut in half sub and other foods are ready to eat
+# ::node	c	cut-02	1-2
+# ::node	h	half	3-4
+# ::node	s	sub	4-5
+# ::node	a	and	5-6
+# ::node	o	other	6-7
+# ::node	f	food	7-8
+# ::node	r	ready-02	9-10
+# ::node	e	eat-01	11-12
+# ::root	r	ready-02
+# ::edge	sub	mod	half	s	h	
+# ::edge	cut-02	ARG1	sub	c	s	
+# ::edge	and	op1	cut-02	a	c	
+# ::edge	food	mod	other	f	o	
+# ::edge	and	op2	food	a	f	
+# ::edge	ready-02	ARG1	and	r	a	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	and	e	a	
+(r / ready-02
+    :ARG1 (a / and
+        :op1 (c / cut-02
+            :ARG1 (s / sub
+                :mod (h / half)))
+        :op2 (f / food
+            :mod (o / other)))
+    :ARG2 (e / eat-01
+        :ARG1 a))

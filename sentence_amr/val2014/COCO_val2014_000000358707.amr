@@ -1,0 +1,31 @@
+# ::tok A sign that reads " WATCH FOR SENIOR CITIZENS " sits on a pole on a residential street
+# ::node	s2	sign	1-2
+# ::node	r	read-01	3-4
+# ::node	w	watch-01	5-6
+# ::node	s	senior	7-8
+# ::node	p	person	8-9
+# ::node	p3	program	8-9
+# ::node	s3	sit-01	10-11
+# ::node	p2	pole	13-14
+# ::node	r2	residential	16-17
+# ::node	s4	street	17-18
+# ::root	s3	sit-01
+# ::edge	sign	ARG0-of	read-01	s2	r	
+# ::edge	read-01	ARG1	watch-01	r	w	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	person	mod	program	p	p3	
+# ::edge	program	mod	senior	p3	s	
+# ::edge	sit-01	ARG1	sign	s3	s2	
+# ::edge	sit-01	ARG2	pole	s3	p2	
+# ::edge	street	mod	residential	s4	r2	
+# ::edge	pole	location	street	p2	s4	
+(s3 / sit-01
+    :ARG1 (s2 / sign
+        :ARG0-of (r / read-01
+            :ARG1 (w / watch-01
+                :ARG0 (p / person
+                    :mod (p3 / program
+                        :mod (s / senior))))))
+    :ARG2 (p2 / pole
+        :location (s4 / street
+            :mod (r2 / residential))))

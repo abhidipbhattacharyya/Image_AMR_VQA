@@ -1,0 +1,50 @@
+# ::tok A tall clock tower with a building behind it and long pools of water with fountains in front of it .
+# ::node	t	tall	1-2
+# ::node	c3	clock	2-3
+# ::node	t2	tower	3-4
+# ::node	h	have-03	4-5
+# ::node	b2	building	6-7
+# ::node	b	behind	7-8
+# ::node	a	and	9-10
+# ::node	l	long-03	10-11
+# ::node	p	pool	11-12
+# ::node	w	water	13-14
+# ::node	h2	have-03	14-15
+# ::node	c	child	15-16
+# ::node	d	drink-01	15-16
+# ::node	c2	child	15-16
+# ::node	i	in-front-of	17-18
+# ::root	t2	tower
+# ::edge	tower	mod	clock	t2	c3	
+# ::edge	tower	mod	tall	t2	t	
+# ::edge	tower	ARG0-of	have-03	t2	h	
+# ::edge	building	location	behind	b2	b	
+# ::edge	behind	op1	tower	b	t2	
+# ::edge	and	op1	building	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	pool	ARG1-of	long-03	p	l	
+# ::edge	and	op2	pool	a	p	
+# ::edge	pool	consist-of	water	p	w	
+# ::edge	pool	ARG0-of	have-03	p	h2	
+# ::edge	have-03	ARG1	child	h2	c	
+# ::edge	child	ARG0-of	drink-01	c	d	
+# ::edge	drink-01	ARG2	child	d	c2	
+# ::edge	child	location	in-front-of	c2	i	
+# ::edge	in-front-of	op1	tower	i	t2	
+(t2 / tower
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b2 / building
+                :location (b / behind
+                    :op1 t2))
+            :op2 (p / pool
+                :ARG0-of (h2 / have-03
+                    :ARG1 (c / child
+                        :ARG0-of (d / drink-01
+                            :ARG2 (c2 / child
+                                :location (i / in-front-of
+                                    :op1 t2)))))
+                :ARG1-of (l / long-03)
+                :consist-of (w / water))))
+    :mod (c3 / clock)
+    :mod (t / tall))

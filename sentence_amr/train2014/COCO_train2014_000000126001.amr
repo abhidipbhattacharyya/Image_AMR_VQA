@@ -1,0 +1,40 @@
+# ::tok Elephant riding , tourist departing station in queue , appears to be southeast Asia .
+# ::node	e	elephant	0-1
+# ::node	r	ride-01	1-2
+# ::node	p	person	3-4
+# ::node	t	tour-01	3-4
+# ::node	d	depart-01	4-5
+# ::node	s	station	5-6
+# ::node	l	line-up-02	7-8
+# ::node	a	and	8-9
+# ::node	a2	appear-02	9-10
+# ::node	n	name	12-13
+# ::node	1	Southeast	12-13
+# ::node	w	world-region	13-14
+# ::node	0	Asia	13-14
+# ::root	a2	appear-02
+# ::edge	ride-01	ARG1	elephant	r	e	
+# ::edge	person	ARG0-of	tour-01	p	t	
+# ::edge	depart-01	ARG0	person	d	p	
+# ::edge	station	location-of	depart-01	s	d	
+# ::edge	station	ARG1-of	line-up-02	s	l	
+# ::edge	and	op2	station	a	s	
+# ::edge	and	op1	ride-01	a	r	
+# ::edge	appear-02	ARG1	and	a2	a	
+# ::edge	name	op1	Southeast	n	1	
+# ::edge	world-region	name	name	w	n	
+# ::edge	appear-02	ARG2	world-region	a2	w	
+# ::edge	name	op2	Asia	n	0	
+(a2 / appear-02
+    :ARG1 (a / and
+        :op1 (r / ride-01
+            :ARG1 (e / elephant))
+        :op2 (s / station
+            :ARG1-of (l / line-up-02)
+            :location-of (d / depart-01
+                :ARG0 (p / person
+                    :ARG0-of (t / tour-01)))))
+    :ARG2 (w / world-region
+        :name (n / name
+            :op1 "Southeast"
+            :op2 "Asia")))

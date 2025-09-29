@@ -1,0 +1,27 @@
+# ::tok A jet airplane rolling down a tarmac with its landing gear down .
+# ::node	j	jet	1-2
+# ::node	a	airplane	2-3
+# ::node	r	roll-01	3-4
+# ::node	d	down	4-5
+# ::node	t	tarmac	6-7
+# ::node	l	land-01	9-10
+# ::node	g	gear	10-11
+# ::node	d2	down-03	11-12
+# ::root	r	roll-01
+# ::edge	airplane	mod	jet	a	j	
+# ::edge	roll-01	ARG1	airplane	r	a	
+# ::edge	roll-01	direction	down	r	d	
+# ::edge	roll-01	path	tarmac	r	t	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	airplane	part	gear	a	g	
+# ::edge	down-03	ARG1	gear	d2	g	
+# ::edge	roll-01	manner	down-03	r	d2	
+(r / roll-01
+    :ARG1 (a / airplane
+        :mod (j / jet)
+        :part (g / gear
+            :ARG1-of (l / land-01)))
+    :direction (d / down)
+    :manner (d2 / down-03
+        :ARG1 g)
+    :path (t / tarmac))

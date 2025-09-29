@@ -1,0 +1,28 @@
+# ::tok A train carriage parked by building at which the Queen Elizabeth is docked
+# ::node	t	train	1-2
+# ::node	c	carriage	2-3
+# ::node	p	park-01	3-4
+# ::node	b	building	5-6
+# ::node	n	name	9-10
+# ::node	1	Queen	9-10
+# ::node	s	ship	10-11
+# ::node	0	Elizabeth	10-11
+# ::node	d	dock-01	12-13
+# ::root	p	park-01
+# ::edge	carriage	mod	train	c	t	
+# ::edge	park-01	ARG1	carriage	p	c	
+# ::edge	park-01	ARG0	building	p	b	
+# ::edge	name	op1	Queen	n	1	
+# ::edge	ship	name	name	s	n	
+# ::edge	name	op2	Elizabeth	n	0	
+# ::edge	dock-01	ARG1	ship	d	s	
+# ::edge	building	ARG2-of	dock-01	b	d	
+(p / park-01
+    :ARG0 (b / building
+        :ARG2-of (d / dock-01
+            :ARG1 (s / ship
+                :name (n / name
+                    :op1 "Queen"
+                    :op2 "Elizabeth"))))
+    :ARG1 (c / carriage
+        :mod (t / train)))

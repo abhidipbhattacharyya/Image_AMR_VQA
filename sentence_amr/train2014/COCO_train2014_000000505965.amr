@@ -1,0 +1,34 @@
+# ::tok A red traffic light sits in front of an olive colored building with many windows .
+# ::node	r	red-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	s	sit-01	4-5
+# ::node	i	in-front-of	6-7
+# ::node	o	olive	9-10
+# ::node	c	color-01	10-11
+# ::node	b	building	11-12
+# ::node	h	have-03	12-13
+# ::node	m	many	13-14
+# ::node	w	window	14-15
+# ::root	s	sit-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	sit-01	ARG1	light	s	l	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	color-01	ARG2	olive	c	o	
+# ::edge	building	ARG1-of	color-01	b	c	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	window	quant	many	w	m	
+# ::edge	have-03	ARG1	window	h	w	
+(s / sit-01
+    :ARG1 (l / light
+        :ARG1-of (r / red-02)
+        :mod (t / traffic))
+    :ARG2 (i / in-front-of
+        :op1 (b / building
+            :ARG0-of (h / have-03
+                :ARG1 (w / window
+                    :quant (m / many)))
+            :ARG1-of (c / color-01
+                :ARG2 (o / olive)))))

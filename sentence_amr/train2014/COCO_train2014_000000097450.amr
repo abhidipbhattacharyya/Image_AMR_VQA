@@ -1,0 +1,42 @@
+# ::tok Young man about to bite a hot dog style sandwich , very deluxe contents , hot dog is not visible . . .
+# ::node	y	young	0-1
+# ::node	m	man	1-2
+# ::node	a	about-to	2-3
+# ::node	b	bite-01	4-5
+# ::node	h	hot-dog	7-8
+# ::node	s3	style	8-9
+# ::node	s	sandwich	9-10
+# ::node	v	very	11-12
+# ::node	d	deluxe	12-13
+# ::node	c	contain-01	13-14
+# ::node	0	-	18-19
+# ::node	p	possible-01	19-20
+# ::node	s2	see-01	19-20
+# ::root	p	possible-01
+# ::edge	man	mod	young	m	y	
+# ::edge	bite-01	time	about-to	b	a	
+# ::edge	man	ARG0-of	bite-01	m	b	
+# ::edge	style	mod	hot-dog	s3	h	
+# ::edge	sandwich	mod	style	s	s3	
+# ::edge	bite-01	ARG1	sandwich	b	s	
+# ::edge	deluxe	degree	very	d	v	
+# ::edge	contain-01	mod	deluxe	c	d	
+# ::edge	sandwich	ARG1-of	contain-01	s	c	
+# ::edge	possible-01	polarity	-	p	0	
+# ::edge	possible-01	ARG1	see-01	p	s2	
+# ::edge	see-01	ARG1	hot-dog	s2	h	
+# ::edge	possible-01	rel	man	p	m	
+(p / possible-01
+    :ARG1 (s2 / see-01
+        :ARG1 (h / hot-dog))
+    :polarity -
+    :rel (m / man
+        :ARG0-of (b / bite-01
+            :ARG1 (s / sandwich
+                :ARG1-of (c / contain-01
+                    :mod (d / deluxe
+                        :degree (v / very)))
+                :mod (s3 / style
+                    :mod h))
+            :time (a / about-to))
+        :mod (y / young)))

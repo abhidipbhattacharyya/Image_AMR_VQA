@@ -1,0 +1,29 @@
+# ::tok A construction worker installing and performing maintenance on a traffic light .
+# ::node	c	construct-01	1-2
+# ::node	p	person	2-3
+# ::node	w	work-01	2-3
+# ::node	i	install-01	3-4
+# ::node	a	and	4-5
+# ::node	m	maintain-01	6-7
+# ::node	t	traffic	9-10
+# ::node	l	light	10-11
+# ::root	a	and
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	construct-01	w	c	
+# ::edge	install-01	ARG0	person	i	p	
+# ::edge	and	op1	install-01	a	i	
+# ::edge	and	op2	maintain-01	a	m	
+# ::edge	maintain-01	ARG0	person	m	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	maintain-01	ARG1	light	m	l	
+# ::edge	install-01	ARG1	light	i	l	
+(a / and
+    :op1 (i / install-01
+        :ARG0 (p / person
+            :ARG0-of (w / work-01
+                :ARG1 (c / construct-01)))
+        :ARG1 (l / light
+            :mod (t / traffic)))
+    :op2 (m / maintain-01
+        :ARG0 p
+        :ARG1 l))

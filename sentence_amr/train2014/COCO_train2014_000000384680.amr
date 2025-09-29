@@ -1,0 +1,33 @@
+# ::tok A red pick up truck driving down a small road with a sign mounted on it 's flatbed .
+# ::node	r	red-02	1-2
+# ::node	p	pick-up-04	2-3
+# ::node	t	truck	4-5
+# ::node	d2	drive-01	5-6
+# ::node	d	down	6-7
+# ::node	s2	small	8-9
+# ::node	r2	road	9-10
+# ::node	s	sign	12-13
+# ::node	m	mount-03	13-14
+# ::node	f	flatbed	17-18
+# ::root	t	truck
+# ::edge	truck	ARG0-of	pick-up-04	t	p	
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	truck	ARG0-of	drive-01	t	d2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	road	mod	small	r2	s2	
+# ::edge	drive-01	ARG1	road	d2	r2	
+# ::edge	truck	part	sign	t	s	
+# ::edge	sign	ARG1-of	mount-03	s	m	
+# ::edge	mount-03	location	flatbed	m	f	
+# ::edge	truck	part	flatbed	t	f	
+(t / truck
+    :ARG0-of (p / pick-up-04)
+    :ARG0-of (d2 / drive-01
+        :ARG1 (r2 / road
+            :mod (s2 / small))
+        :direction (d / down))
+    :ARG1-of (r / red-02)
+    :part (s / sign
+        :ARG1-of (m / mount-03
+            :location (f / flatbed)))
+    :part f)

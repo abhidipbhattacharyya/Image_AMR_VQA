@@ -1,0 +1,40 @@
+# ::tok Guy raises his arm up as he tossed the tennis ball in the air to serve to the other side
+# ::node	g	guy	0-1
+# ::node	r	raise-01	1-2
+# ::node	a2	arm	3-4
+# ::node	u	up	4-5
+# ::node	t2	toss-01	7-8
+# ::node	t	tennis	9-10
+# ::node	b	ball	10-11
+# ::node	a	air	13-14
+# ::node	s	serve-02	15-16
+# ::node	o	other	18-19
+# ::node	s2	side	19-20
+# ::root	r	raise-01
+# ::edge	raise-01	ARG0	guy	r	g	
+# ::edge	raise-01	ARG1	arm	r	a2	
+# ::edge	guy	part	arm	g	a2	
+# ::edge	raise-01	direction	up	r	u	
+# ::edge	raise-01	time	toss-01	r	t2	
+# ::edge	toss-01	ARG0	guy	t2	g	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	toss-01	ARG1	ball	t2	b	
+# ::edge	toss-01	destination	air	t2	a	
+# ::edge	toss-01	purpose	serve-02	t2	s	
+# ::edge	serve-02	ARG0	guy	s	g	
+# ::edge	side	mod	other	s2	o	
+# ::edge	serve-02	ARG2	side	s	s2	
+(r / raise-01
+    :ARG0 (g / guy
+        :part (a2 / arm))
+    :ARG1 a2
+    :direction (u / up)
+    :time (t2 / toss-01
+        :purpose (s / serve-02
+            :ARG0 g
+            :ARG2 (s2 / side
+                :mod (o / other)))
+        :ARG0 g
+        :ARG1 (b / ball
+            :mod (t / tennis))
+        :destination (a / air)))

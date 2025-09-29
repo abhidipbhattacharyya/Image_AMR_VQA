@@ -1,0 +1,55 @@
+# ::tok A city street intersection in evening , with two cops on motorcycles in intersection , and cars at red stop lights wit ha few pedestrians on sidewalk .
+# ::node	c2	city	1-2
+# ::node	s3	street	2-3
+# ::node	i	intersect-01	3-4
+# ::node	d	date-entity	5-6
+# ::node	e	evening	5-6
+# ::node	0	2	8-9
+# ::node	c3	cop	9-10
+# ::node	m	motorcycle	11-12
+# ::node	a	and	15-16
+# ::node	c	car	16-17
+# ::node	r	red-02	18-19
+# ::node	s2	stop-01	19-20
+# ::node	l	light	20-21
+# ::node	f	few	23-24
+# ::node	p	person	24-25
+# ::node	w	walk-01	24-25
+# ::node	b	be-located-at-91	25-26
+# ::node	s	sidewalk	26-27
+# ::root	i	intersect-01
+# ::edge	street	mod	city	s3	c2	
+# ::edge	intersect-01	ARG1	street	i	s3	
+# ::edge	intersect-01	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+# ::edge	cop	quant	2	c3	0	
+# ::edge	cop	poss-of	motorcycle	c3	m	
+# ::edge	and	op1	cop	a	c3	
+# ::edge	intersect-01	location-of	and	i	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	light	mod	stop-01	l	s2	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	car	location	light	c	l	
+# ::edge	person	quant	few	p	f	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	and	ARG2-of	be-located-at-91	a	b	
+# ::edge	person	location	sidewalk	p	s	
+(i / intersect-01
+    :ARG1 (s3 / street
+        :mod (c2 / city))
+    :location-of (a / and
+        :ARG2-of (b / be-located-at-91
+            :ARG1 (p / person
+                :quant (f / few)
+                :ARG0-of (w / walk-01)
+                :location (s / sidewalk)))
+        :op1 (c3 / cop
+            :quant 2
+            :poss-of (m / motorcycle))
+        :op2 (c / car
+            :location (l / light
+                :ARG1-of (r / red-02)
+                :mod (s2 / stop-01))))
+    :time (d / date-entity
+        :dayperiod (e / evening)))

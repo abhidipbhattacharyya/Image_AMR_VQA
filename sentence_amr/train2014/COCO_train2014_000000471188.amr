@@ -1,0 +1,30 @@
+# ::tok Two double decker buses passing each other by on a busy street in London .
+# ::node	0	2	0-1
+# ::node	d	double-decker	2-3
+# ::node	b	bus	3-4
+# ::node	p	pass-by-17	4-5
+# ::node	b2	busy-02	10-11
+# ::node	s	street	11-12
+# ::node	c	city	13-14
+# ::node	n	name	13-14
+# ::node	1	London	13-14
+# ::root	p	pass-by-17
+# ::edge	bus	mod	double-decker	b	d	
+# ::edge	bus	quant	2	b	0	
+# ::edge	pass-by-17	ARG1	bus	p	b	
+# ::edge	pass-by-17	ARG0	bus	p	b	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	pass-by-17	location	street	p	s	
+# ::edge	street	location	city	s	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	London	n	1	
+(p / pass-by-17
+    :ARG0 (b / bus
+        :quant 2
+        :mod (d / double-decker))
+    :ARG1 b
+    :location (s / street
+        :ARG1-of (b2 / busy-02)
+        :location (c / city
+            :name (n / name
+                :op1 "London"))))

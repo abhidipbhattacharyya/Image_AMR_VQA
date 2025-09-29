@@ -1,0 +1,45 @@
+# ::tok Two giraffes , one adult , one young walk in a fenced area as another lays on the ground .
+# ::node	2	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	0	1	3-4
+# ::node	a	adult	4-5
+# ::node	a2	and	5-6
+# ::node	1	1	6-7
+# ::node	y	young	7-8
+# ::node	w	walk-01	8-9
+# ::node	f	fence	11-12
+# ::node	a4	area	12-13
+# ::node	a3	another	14-15
+# ::node	l	lay-01	15-16
+# ::node	g3	ground	18-19
+# ::root	w	walk-01
+# ::edge	giraffe	quant	2	g	2	
+# ::edge	giraffe	quant	1	g	0	
+# ::edge	giraffe	mod	adult	g	a	
+# ::edge	and	op2	giraffe	a2	g2	
+# ::edge	and	op1	giraffe	a2	g	
+# ::edge	giraffe	quant	1	g2	1	
+# ::edge	giraffe	mod	young	g2	y	
+# ::edge	walk-01	ARG0	and	w	a2	
+# ::edge	area	mod	fence	a4	f	
+# ::edge	walk-01	ARG2	area	w	a4	
+# ::edge	giraffe	quant	another	g2	a3	
+# ::edge	lay-01	ARG1	another	l	a3	
+# ::edge	walk-01	time	lay-01	w	l	
+# ::edge	lay-01	ARG2	ground	l	g3	
+(w / walk-01
+    :ARG0 (a2 / and
+        :op1 (g / giraffe
+            :quant 2
+            :quant 1
+            :mod (a / adult))
+        :op2 (g2 / giraffe
+            :quant 1
+            :quant (a3 / another)
+            :mod (y / young)))
+    :ARG2 (a4 / area
+        :mod (f / fence))
+    :time (l / lay-01
+        :ARG1 a3
+        :ARG2 (g3 / ground)))

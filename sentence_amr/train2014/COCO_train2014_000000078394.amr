@@ -1,0 +1,39 @@
+# ::tok An iPhone is placed on a lap with other small books and a cluttered desk .
+# ::node	p3	product	1-2
+# ::node	n	name	1-2
+# ::node	0	iPhone	1-2
+# ::node	p	place-01	3-4
+# ::node	l	lap	6-7
+# ::node	o	other	8-9
+# ::node	s	small	9-10
+# ::node	b	book	10-11
+# ::node	a	and	11-12
+# ::node	c	clutch-01	13-14
+# ::node	p2	possible-01	13-14
+# ::node	d	desk	14-15
+# ::root	p	place-01
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	iPhone	n	0	
+# ::edge	place-01	ARG1	product	p	p3	
+# ::edge	place-01	ARG2	lap	p	l	
+# ::edge	book	mod	small	b	s	
+# ::edge	book	mod	other	b	o	
+# ::edge	and	op2	book	a	b	
+# ::edge	place-01	accompanier	and	p	a	
+# ::edge	and	op1	product	a	p3	
+# ::edge	clutch-01	ARG1-of	possible-01	c	p2	
+# ::edge	desk	ARG1-of	clutch-01	d	c	
+# ::edge	and	op3	desk	a	d	
+(p / place-01
+    :ARG1 (p3 / product
+        :name (n / name
+            :op1 "iPhone"))
+    :ARG2 (l / lap)
+    :accompanier (a / and
+        :op1 p3
+        :op2 (b / book
+            :mod (s / small)
+            :mod (o / other))
+        :op3 (d / desk
+            :ARG1-of (c / clutch-01
+                :ARG1-of (p2 / possible-01)))))

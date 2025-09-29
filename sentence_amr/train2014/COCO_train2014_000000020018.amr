@@ -1,0 +1,28 @@
+# ::tok A giraffe is is facing the camera while the rear of another giraffe appears in the background .
+# ::node	g	giraffe	1-2
+# ::node	f	face-01	4-5
+# ::node	c	camera	6-7
+# ::node	c2	contrast-01	7-8
+# ::node	r	rear	9-10
+# ::node	a	another	11-12
+# ::node	g2	giraffe	12-13
+# ::node	a2	appear-01	13-14
+# ::node	b	background	16-17
+# ::root	c2	contrast-01
+# ::edge	face-01	ARG0	giraffe	f	g	
+# ::edge	face-01	ARG1	camera	f	c	
+# ::edge	contrast-01	ARG1	face-01	c2	f	
+# ::edge	giraffe	mod	another	g2	a	
+# ::edge	rear	part-of	giraffe	r	g2	
+# ::edge	appear-01	ARG1	rear	a2	r	
+# ::edge	contrast-01	ARG2	appear-01	c2	a2	
+# ::edge	appear-01	location	background	a2	b	
+(c2 / contrast-01
+    :ARG1 (f / face-01
+        :ARG0 (g / giraffe)
+        :ARG1 (c / camera))
+    :ARG2 (a2 / appear-01
+        :ARG1 (r / rear
+            :part-of (g2 / giraffe
+                :mod (a / another)))
+        :location (b / background)))

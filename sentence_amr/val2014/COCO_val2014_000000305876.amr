@@ -1,0 +1,30 @@
+# ::tok Orange seats on a train with Yellow doors and lime green floors .
+# ::node	r	Orange	0-1
+# ::node	s	seat	1-2
+# ::node	t	train	4-5
+# ::node	y	yellow-02	6-7
+# ::node	d	door	7-8
+# ::node	a	and	8-9
+# ::node	l	lime	9-10
+# ::node	g	green-02	10-11
+# ::node	f	floor	11-12
+# ::root	s	seat
+# ::edge	seat	mod	Orange	s	r	
+# ::edge	seat	location	train	s	t	
+# ::edge	door	ARG1-of	yellow-02	d	y	
+# ::edge	train	part	door	t	d	
+# ::edge	and	op1	door	a	d	
+# ::edge	train	part	and	t	a	
+# ::edge	green-02	mod	lime	g	l	
+# ::edge	floor	ARG1-of	green-02	f	g	
+# ::edge	and	op2	floor	a	f	
+(s / seat
+    :location (t / train
+        :part (d / door
+            :ARG1-of (y / yellow-02))
+        :part (a / and
+            :op1 d
+            :op2 (f / floor
+                :ARG1-of (g / green-02
+                    :mod (l / lime)))))
+    :mod (r / Orange))

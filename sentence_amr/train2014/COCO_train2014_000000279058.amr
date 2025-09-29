@@ -1,0 +1,85 @@
+# ::tok Person in wet suit from front , looking to side , holding a surfboard and standing in water up to knees , in a large body of water with a pier in background against an evening pink sky with some clouds .
+# ::node	p	person	0-1
+# ::node	w3	wet-01	2-3
+# ::node	s5	suit	3-4
+# ::node	f	front	5-6
+# ::node	l2	look-01	7-8
+# ::node	s	side	9-10
+# ::node	h3	hold-01	11-12
+# ::node	s6	surfboard	13-14
+# ::node	a	and	14-15
+# ::node	s4	stand-01	15-16
+# ::node	w	water	17-18
+# ::node	u	up-to	18-19
+# ::node	k	knee	20-21
+# ::node	l	large	24-25
+# ::node	b2	body	25-26
+# ::node	w2	water	27-28
+# ::node	h	have-03	28-29
+# ::node	p2	pier	30-31
+# ::node	b	background	32-33
+# ::node	d	date-entity	35-36
+# ::node	e	evening	35-36
+# ::node	p3	pink-04	36-37
+# ::node	s2	sky	37-38
+# ::node	h2	have-03	38-39
+# ::node	s3	some	39-40
+# ::node	c	cloud	40-41
+# ::root	a	and
+# ::edge	suit	ARG1-of	wet-01	s5	w3	
+# ::edge	suit	prep-from	front	s5	f	
+# ::edge	look-01	ARG0	person	l2	p	
+# ::edge	look-01	direction	side	l2	s	
+# ::edge	hold-01	ARG0	person	h3	p	
+# ::edge	hold-01	ARG1	surfboard	h3	s6	
+# ::edge	and	op2	hold-01	a	h3	
+# ::edge	and	op1	look-01	a	l2	
+# ::edge	and	op3	stand-01	a	s4	
+# ::edge	stand-01	ARG1	person	s4	p	
+# ::edge	stand-01	ARG2	water	s4	w	
+# ::edge	water	location	up-to	w	u	
+# ::edge	up-to	op1	knee	u	k	
+# ::edge	person	part	knee	p	k	
+# ::edge	body	mod	large	b2	l	
+# ::edge	and	location	body	a	b2	
+# ::edge	body	consist-of	water	b2	w2	
+# ::edge	body	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	pier	h	p2	
+# ::edge	pier	location	background	p2	b	
+# ::edge	date-entity	dayperiod	evening	d	e	
+# ::edge	sky	ARG1-of	pink-04	s2	p3	
+# ::edge	sky	time	date-entity	s2	d	
+# ::edge	have-03	prep-against	sky	h	s2	
+# ::edge	sky	ARG0-of	have-03	s2	h2	
+# ::edge	cloud	quant	some	c	s3	
+# ::edge	have-03	ARG1	cloud	h2	c	
+# ::edge	and	rel	suit	a	s5	
+(a / and
+    :location (b2 / body
+        :ARG0-of (h / have-03
+            :ARG1 (p2 / pier
+                :location (b / background))
+            :prep-against (s2 / sky
+                :ARG0-of (h2 / have-03
+                    :ARG1 (c / cloud
+                        :quant (s3 / some)))
+                :ARG1-of (p3 / pink-04)
+                :time (d / date-entity
+                    :dayperiod (e / evening))))
+        :consist-of (w2 / water)
+        :mod (l / large))
+    :op1 (l2 / look-01
+        :ARG0 (p / person
+            :part (k / knee))
+        :direction (s / side))
+    :op2 (h3 / hold-01
+        :ARG0 p
+        :ARG1 (s6 / surfboard))
+    :op3 (s4 / stand-01
+        :ARG1 p
+        :ARG2 (w / water
+            :location (u / up-to
+                :op1 k)))
+    :rel (s5 / suit
+        :ARG1-of (w3 / wet-01)
+        :prep-from (f / front)))

@@ -1,0 +1,39 @@
+# ::tok some zebras standing together , with one looking in a different direction than the others
+# ::node	s	some	0-1
+# ::node	e	elephant	1-2
+# ::node	l	lion	1-2
+# ::node	s2	stand-01	2-3
+# ::node	t	together	3-4
+# ::node	a	and	4-5
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	l2	look-01	7-8
+# ::node	d	differ-02	10-11
+# ::node	d2	direction	11-12
+# ::node	o	other	14-15
+# ::root	a	and
+# ::edge	elephant	quant	some	e	s	
+# ::edge	stand-01	ARG1	elephant	s2	e	
+# ::edge	stand-01	mod	together	s2	t	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	include-91	ARG2	lion	i	l	
+# ::edge	elephant	ARG1-of	include-91	e	i	
+# ::edge	lion	quant	1	l	0	
+# ::edge	and	op2	look-01	a	l2	
+# ::edge	look-01	ARG0	lion	l2	l	
+# ::edge	direction	ARG1-of	differ-02	d2	d	
+# ::edge	look-01	direction	direction	l2	d2	
+# ::edge	differ-02	ARG2	other	d	o	
+(a / and
+    :op1 (s2 / stand-01
+        :ARG1 (e / elephant
+            :quant (s / some)
+            :ARG1-of (i / include-91
+                :ARG2 (l / lion
+                    :quant 1)))
+        :mod (t / together))
+    :op2 (l2 / look-01
+        :ARG0 l
+        :direction (d2 / direction
+            :ARG1-of (d / differ-02
+                :ARG2 (o / other)))))

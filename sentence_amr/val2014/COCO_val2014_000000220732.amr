@@ -1,0 +1,37 @@
+# ::tok A bus with its serial number that can be seen from the air overlooks a panel truck and another bus .
+# ::node	b	bus	1-2
+# ::node	s2	serial	4-5
+# ::node	n	number	5-6
+# ::node	p2	possible-01	7-8
+# ::node	s	see-01	9-10
+# ::node	a	air	12-13
+# ::node	o	overlook-01	13-14
+# ::node	p	panel	15-16
+# ::node	t	truck	16-17
+# ::node	a2	and	17-18
+# ::node	a3	another	18-19
+# ::node	b2	bus	19-20
+# ::root	o	overlook-01
+# ::edge	number	mod	serial	n	s2	
+# ::edge	bus	mod	number	b	n	
+# ::edge	see-01	ARG1-of	possible-01	s	p2	
+# ::edge	bus	ARG1-of	see-01	b	s	
+# ::edge	see-01	source	air	s	a	
+# ::edge	overlook-01	ARG0	bus	o	b	
+# ::edge	truck	mod	panel	t	p	
+# ::edge	and	op1	truck	a2	t	
+# ::edge	overlook-01	ARG1	and	o	a2	
+# ::edge	bus	mod	another	b2	a3	
+# ::edge	and	op2	bus	a2	b2	
+(o / overlook-01
+    :ARG0 (b / bus
+        :ARG1-of (s / see-01
+            :ARG1-of (p2 / possible-01)
+            :source (a / air))
+        :mod (n / number
+            :mod (s2 / serial)))
+    :ARG1 (a2 / and
+        :op1 (t / truck
+            :mod (p / panel))
+        :op2 (b2 / bus
+            :mod (a3 / another))))

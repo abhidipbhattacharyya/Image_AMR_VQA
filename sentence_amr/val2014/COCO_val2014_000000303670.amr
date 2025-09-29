@@ -1,0 +1,31 @@
+# ::tok a meal on a table which includes pizza in a box and a bottle of beer along with a beer mug
+# ::node	m	meal	1-2
+# ::node	t	table	4-5
+# ::node	i	include-01	6-7
+# ::node	p	pizza	7-8
+# ::node	b4	box	10-11
+# ::node	a	and	11-12
+# ::node	b3	bottle	13-14
+# ::node	b	beer	15-16
+# ::node	b2	beer	19-20
+# ::node	m2	mug	20-21
+# ::root	m	meal
+# ::edge	meal	location	table	m	t	
+# ::edge	meal	ARG2-of	include-01	m	i	
+# ::edge	pizza	location	box	p	b4	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	beer	quant	bottle	b	b3	
+# ::edge	and	op2	beer	a	b	
+# ::edge	mug	mod	beer	m2	b2	
+# ::edge	and	op3	mug	a	m2	
+(m / meal
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (p / pizza
+                :location (b4 / box))
+            :op2 (b / beer
+                :quant (b3 / bottle))
+            :op3 (m2 / mug
+                :mod (b2 / beer))))
+    :location (t / table))

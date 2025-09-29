@@ -1,0 +1,89 @@
+# ::tok A black and white shot show blinds that do not cover a pair of facility - style windows , and right inside them , a horizontal rail , a pair of women , not facing outside , and a pair of small boys that are touching the rail and looking out .
+# ::node	b	black-04	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	s	shot	4-5
+# ::node	s2	show-01	5-6
+# ::node	b2	blind	6-7
+# ::node	0	-	9-10
+# ::node	c	cover-02	10-11
+# ::node	p	pair	12-13
+# ::node	f2	facility	14-15
+# ::node	s4	style	16-17
+# ::node	w2	window	17-18
+# ::node	a2	and	19-20
+# ::node	r2	right	20-21
+# ::node	i	inside	21-22
+# ::node	h	horizontal	25-26
+# ::node	r	rail	26-27
+# ::node	p2	pair	29-30
+# ::node	w3	woman	31-32
+# ::node	1	-	33-34
+# ::node	f	face-01	34-35
+# ::node	o2	outside	35-36
+# ::node	p3	pair	39-40
+# ::node	s3	small	41-42
+# ::node	b3	boy	42-43
+# ::node	t	touch-01	45-46
+# ::node	l	look-01	49-50
+# ::node	o	out	50-51
+# ::root	s2	show-01
+# ::edge	and	op1	black-04	a	b	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	shot	consist-of	and	s	a	
+# ::edge	show-01	ARG0	shot	s2	s	
+# ::edge	cover-02	polarity	-	c	0	
+# ::edge	blind	ARG2-of	cover-02	b2	c	
+# ::edge	style	mod	facility	s4	f2	
+# ::edge	window	mod	style	w2	s4	
+# ::edge	window	quant	pair	w2	p	
+# ::edge	cover-02	ARG1	window	c	w2	
+# ::edge	and	op1	blind	a2	b2	
+# ::edge	show-01	ARG1	and	s2	a2	
+# ::edge	inside	mod	right	i	r2	
+# ::edge	inside	op1	window	i	w2	
+# ::edge	rail	mod	horizontal	r	h	
+# ::edge	and	op2	rail	a2	r	
+# ::edge	woman	quant	pair	w3	p2	
+# ::edge	and	op3	woman	a2	w3	
+# ::edge	face-01	polarity	-	f	1	
+# ::edge	woman	ARG0-of	face-01	w3	f	
+# ::edge	face-01	ARG1	outside	f	o2	
+# ::edge	boy	mod	small	b3	s3	
+# ::edge	boy	quant	pair	b3	p3	
+# ::edge	and	op4	boy	a2	b3	
+# ::edge	boy	ARG0-of	touch-01	b3	t	
+# ::edge	touch-01	ARG1	rail	t	r	
+# ::edge	boy	ARG0-of	look-01	b3	l	
+# ::edge	look-01	ARG1	out	l	o	
+# ::edge	show-01	rel	inside	s2	i	
+(s2 / show-01
+    :ARG0 (s / shot
+        :consist-of (a / and
+            :op1 (b / black-04)
+            :op2 (w / white-03)))
+    :ARG1 (a2 / and
+        :op1 (b2 / blind
+            :ARG2-of (c / cover-02
+                :ARG1 (w2 / window
+                    :quant (p / pair)
+                    :mod (s4 / style
+                        :mod (f2 / facility)))
+                :polarity -))
+        :op2 (r / rail
+            :mod (h / horizontal))
+        :op3 (w3 / woman
+            :quant (p2 / pair)
+            :ARG0-of (f / face-01
+                :ARG1 (o2 / outside)
+                :polarity -))
+        :op4 (b3 / boy
+            :quant (p3 / pair)
+            :ARG0-of (t / touch-01
+                :ARG1 r)
+            :ARG0-of (l / look-01
+                :ARG1 (o / out))
+            :mod (s3 / small)))
+    :rel (i / inside
+        :mod (r2 / right)
+        :op1 w2))

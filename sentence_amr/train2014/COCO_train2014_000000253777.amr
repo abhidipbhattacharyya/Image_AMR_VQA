@@ -1,0 +1,52 @@
+# ::tok a cream themed living room with two paintings on the wall , a modern theme , a flat screen tv , and a large couch .
+# ::node	c2	cream	1-2
+# ::node	s2	style-01	2-3
+# ::node	l2	living	3-4
+# ::node	r	room	4-5
+# ::node	h	have-03	5-6
+# ::node	0	2	6-7
+# ::node	p2	picture	7-8
+# ::node	p	paint-02	7-8
+# ::node	w	wall	10-11
+# ::node	m	modern-02	13-14
+# ::node	t2	theme	14-15
+# ::node	f	flat-06	17-18
+# ::node	s	screen	18-19
+# ::node	t	television	19-20
+# ::node	a	and	21-22
+# ::node	l	large	23-24
+# ::node	c	couch	24-25
+# ::root	r	room
+# ::edge	style-01	ARG2	cream	s2	c2	
+# ::edge	room	mod	living	r	l2	
+# ::edge	room	ARG1-of	style-01	r	s2	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	picture	quant	2	p2	0	
+# ::edge	picture	ARG1-of	paint-02	p2	p	
+# ::edge	picture	location	wall	p2	w	
+# ::edge	theme	ARG1-of	modern-02	t2	m	
+# ::edge	screen	ARG1-of	flat-06	s	f	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op3	television	a	t	
+# ::edge	and	op2	theme	a	t2	
+# ::edge	and	op1	picture	a	p2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	couch	mod	large	c	l	
+# ::edge	and	op4	couch	a	c	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p2 / picture
+                :quant 2
+                :ARG1-of (p / paint-02)
+                :location (w / wall))
+            :op2 (t2 / theme
+                :ARG1-of (m / modern-02))
+            :op3 (t / television
+                :mod (s / screen
+                    :ARG1-of (f / flat-06)))
+            :op4 (c / couch
+                :mod (l / large))))
+    :ARG1-of (s2 / style-01
+        :ARG2 (c2 / cream))
+    :mod (l2 / living))

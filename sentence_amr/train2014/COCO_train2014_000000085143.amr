@@ -1,0 +1,91 @@
+# ::tok Several flash drives , a small notepad and pen , earbud headphones , small zippered pouch , an Asus laptop , and a paperback copy of " Eat Pray Love " arranged in a grid pattern .
+# ::node	s	several	0-1
+# ::node	f	flash	1-2
+# ::node	d	drive	2-3
+# ::node	s2	small	5-6
+# ::node	n3	notepad	6-7
+# ::node	a	and	7-8
+# ::node	p3	pen	8-9
+# ::node	e	earbud	10-11
+# ::node	h	headphones	11-12
+# ::node	s3	small	13-14
+# ::node	z	zip-03	14-15
+# ::node	p4	pouch	15-16
+# ::node	c	company	18-19
+# ::node	n	name	18-19
+# ::node	0	Asus	18-19
+# ::node	l	laptop	19-20
+# ::node	a2	and	21-22
+# ::node	p	paperback	23-24
+# ::node	t	thing	24-25
+# ::node	c2	copy-01	24-25
+# ::node	b	book	26-27
+# ::node	n2	name	27-28
+# ::node	1	Eat	27-28
+# ::node	3	Pray	28-29
+# ::node	2	Love	29-30
+# ::node	a3	arrange-01	31-32
+# ::node	g	grid	34-35
+# ::node	p2	pattern	35-36
+# ::root	a2	and
+# ::edge	drive	mod	flash	d	f	
+# ::edge	drive	quant	several	d	s	
+# ::edge	notepad	mod	small	n3	s2	
+# ::edge	and	op1	notepad	a	n3	
+# ::edge	and	op2	pen	a	p3	
+# ::edge	pen	mod	small	p3	s2	
+# ::edge	headphones	mod	earbud	h	e	
+# ::edge	pouch	ARG1-of	zip-03	p4	z	
+# ::edge	pouch	mod	small	p4	s3	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Asus	n	0	
+# ::edge	laptop	mod	company	l	c	
+# ::edge	and	op6	laptop	a2	l	
+# ::edge	and	op5	pouch	a2	p4	
+# ::edge	and	op4	pouch	a2	p4	
+# ::edge	and	op3	headphones	a2	h	
+# ::edge	and	op2	notepad	a2	n3	
+# ::edge	and	op1	drive	a2	d	
+# ::edge	and	op7	thing	a2	t	
+# ::edge	thing	ARG2-of	copy-01	t	c2	
+# ::edge	copy-01	mod	paperback	c2	p	
+# ::edge	copy-01	ARG1	book	c2	b	
+# ::edge	book	name	name	b	n2	
+# ::edge	name	op1	Eat	n2	1	
+# ::edge	name	op2	Pray	n2	3	
+# ::edge	name	op3	Love	n2	2	
+# ::edge	and	ARG1-of	arrange-01	a2	a3	
+# ::edge	pattern	mod	grid	p2	g	
+# ::edge	arrange-01	manner	pattern	a3	p2	
+# ::edge	and	rel	and	a2	a	
+(a2 / and
+    :ARG1-of (a3 / arrange-01
+        :manner (p2 / pattern
+            :mod (g / grid)))
+    :op1 (d / drive
+        :quant (s / several)
+        :mod (f / flash))
+    :op2 (n3 / notepad
+        :mod (s2 / small))
+    :op3 (h / headphones
+        :mod (e / earbud))
+    :op4 (p4 / pouch
+        :ARG1-of (z / zip-03)
+        :mod (s3 / small))
+    :op5 p4
+    :op6 (l / laptop
+        :mod (c / company
+            :name (n / name
+                :op1 "Asus")))
+    :op7 (t / thing
+        :ARG2-of (c2 / copy-01
+            :ARG1 (b / book
+                :name (n2 / name
+                    :op1 "Eat"
+                    :op2 "Pray"
+                    :op3 "Love"))
+            :mod (p / paperback)))
+    :rel (a / and
+        :op1 n3
+        :op2 (p3 / pen
+            :mod s2)))

@@ -1,0 +1,28 @@
+# ::tok A wall with a set of two rows of chairs below a wall clock .
+# ::node	w	wall	1-2
+# ::node	h	have-03	2-3
+# ::node	s	set	4-5
+# ::node	0	2	6-7
+# ::node	r	row	7-8
+# ::node	c	chair	9-10
+# ::node	b	below	10-11
+# ::node	w2	wall	12-13
+# ::node	c2	clock	13-14
+# ::root	w	wall
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	have-03	ARG1	set	h	s	
+# ::edge	row	quant	2	r	0	
+# ::edge	set	consist-of	row	s	r	
+# ::edge	row	consist-of	chair	r	c	
+# ::edge	wall	location	below	w	b	
+# ::edge	clock	mod	wall	c2	w2	
+# ::edge	below	op1	clock	b	c2	
+(w / wall
+    :ARG0-of (h / have-03
+        :ARG1 (s / set
+            :consist-of (r / row
+                :quant 2
+                :consist-of (c / chair))))
+    :location (b / below
+        :op1 (c2 / clock
+            :mod (w2 / wall))))

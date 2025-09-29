@@ -1,0 +1,25 @@
+# ::tok City bus driving through pedestrian saturated area near crosswalk .
+# ::node	c	city	0-1
+# ::node	b	bus	1-2
+# ::node	d	drive-01	2-3
+# ::node	p	pedestrian	4-5
+# ::node	s	saturate-01	5-6
+# ::node	a	area	6-7
+# ::node	n	near-02	7-8
+# ::node	c2	cross-02	8-9
+# ::root	d	drive-01
+# ::edge	bus	mod	city	b	c	
+# ::edge	drive-01	ARG0	bus	d	b	
+# ::edge	area	ARG1-of	saturate-01	a	s	
+# ::edge	area	mod	pedestrian	a	p	
+# ::edge	drive-01	ARG1	area	d	a	
+# ::edge	area	ARG1-of	near-02	a	n	
+# ::edge	near-02	ARG2	cross-02	n	c2	
+(d / drive-01
+    :ARG0 (b / bus
+        :mod (c / city))
+    :ARG1 (a / area
+        :ARG1-of (s / saturate-01)
+        :ARG1-of (n / near-02
+            :ARG2 (c2 / cross-02))
+        :mod (p / pedestrian)))

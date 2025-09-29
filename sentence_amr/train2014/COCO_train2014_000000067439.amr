@@ -1,0 +1,37 @@
+# ::tok A red double decker bus that reads " Hackney Central 38 " on a city block .
+# ::node	r2	red-02	1-2
+# ::node	0	2	2-3
+# ::node	d	deck	3-4
+# ::node	b3	bus	4-5
+# ::node	r	read-01	6-7
+# ::node	n	name	8-9
+# ::node	3	Hackney	8-9
+# ::node	2	Central	9-10
+# ::node	1	38	10-11
+# ::node	b2	building	11-12
+# ::node	c	city	14-15
+# ::node	b	block	15-16
+# ::root	b3	bus
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b3	d	
+# ::edge	bus	ARG1-of	red-02	b3	r2	
+# ::edge	bus	ARG1-of	read-01	b3	r	
+# ::edge	name	op1	Hackney	n	3	
+# ::edge	name	op2	Central	n	2	
+# ::edge	name	op3	38	n	1	
+# ::edge	building	name	name	b2	n	
+# ::edge	read-01	ARG3	building	r	b2	
+# ::edge	block	mod	city	b	c	
+# ::edge	bus	location	block	b3	b	
+(b3 / bus
+    :ARG1-of (r2 / red-02)
+    :ARG1-of (r / read-01
+        :ARG3 (b2 / building
+            :name (n / name
+                :op1 "Hackney"
+                :op2 "Central"
+                :op3 38)))
+    :location (b / block
+        :mod (c / city))
+    :mod (d / deck
+        :quant 2))

@@ -1,0 +1,36 @@
+# ::tok some oranges , apples , and bananas clustered and stacked high
+# ::node	s	some	0-1
+# ::node	s2	some	0-1
+# ::node	s3	some	0-1
+# ::node	o	orange	1-2
+# ::node	a3	apple	3-4
+# ::node	a	and	5-6
+# ::node	b	banana	6-7
+# ::node	l	Cluster	7-8
+# ::node	a2	and	8-9
+# ::node	s4	stack-01	9-10
+# ::node	h	high-02	10-11
+# ::root	a2	and
+# ::edge	orange	quant	some	o	s	
+# ::edge	apple	quant	some	a3	s2	
+# ::edge	and	op2	apple	a	a3	
+# ::edge	and	op1	orange	a	o	
+# ::edge	and	op3	banana	a	b	
+# ::edge	banana	quant	some	b	s3	
+# ::edge	Cluster	domain	and	l	a	
+# ::edge	and	op1	Cluster	a2	l	
+# ::edge	and	op2	stack-01	a2	s4	
+# ::edge	stack-01	ARG1	and	s4	a	
+# ::edge	stack-01	ARG1-of	high-02	s4	h	
+(a2 / and
+    :op1 (l / Cluster
+        :domain (a / and
+            :op1 (o / orange
+                :quant (s / some))
+            :op2 (a3 / apple
+                :quant (s2 / some))
+            :op3 (b / banana
+                :quant (s3 / some))))
+    :op2 (s4 / stack-01
+        :ARG1 a
+        :ARG1-of (h / high-02)))

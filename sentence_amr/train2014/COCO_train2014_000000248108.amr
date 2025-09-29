@@ -1,0 +1,40 @@
+# ::tok A street sign says Emile - Buploye and Sherbrooke and a traffic signal .
+# ::node	s4	street	1-2
+# ::node	s2	sign	2-3
+# ::node	s	say-01	3-4
+# ::node	n	name	4-5
+# ::node	0	E-4	4-5
+# ::node	c2	company	6-7
+# ::node	e	employ-01	6-7
+# ::node	a	and	7-8
+# ::node	c	city	8-9
+# ::node	n2	name	8-9
+# ::node	1	Sherbrooke	8-9
+# ::node	t	traffic	11-12
+# ::node	s3	signal	12-13
+# ::root	s	say-01
+# ::edge	sign	location	street	s2	s4	
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	name	op1	E-4	n	0	
+# ::edge	company	name	name	c2	n	
+# ::edge	company	ARG1-of	employ-01	c2	e	
+# ::edge	and	op1	company	a	c2	
+# ::edge	say-01	ARG1	and	s	a	
+# ::edge	and	op2	city	a	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	Sherbrooke	n2	1	
+# ::edge	signal	mod	traffic	s3	t	
+# ::edge	and	op3	signal	a	s3	
+(s / say-01
+    :ARG0 (s2 / sign
+        :location (s4 / street))
+    :ARG1 (a / and
+        :op1 (c2 / company
+            :name (n / name
+                :op1 "E-4")
+            :ARG1-of (e / employ-01))
+        :op2 (c / city
+            :name (n2 / name
+                :op1 "Sherbrooke"))
+        :op3 (s3 / signal
+            :mod (t / traffic))))

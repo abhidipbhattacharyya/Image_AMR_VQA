@@ -1,0 +1,30 @@
+# ::tok A meal of a bar - b - q sandwich with toppings and a fork on the side .
+# ::node	m	meal	1-2
+# ::node	1	Turkey	8-9
+# ::node	s	sandwich	9-10
+# ::node	h	have-03	10-11
+# ::node	c	continent	11-12
+# ::node	n	name	11-12
+# ::node	0	English	11-12
+# ::node	f	fork	14-15
+# ::node	s2	side	17-18
+# ::root	m	meal
+# ::edge	sandwich	mod	Turkey	s	1	
+# ::edge	meal	consist-of	sandwich	m	s	
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	sandwich	mod	continent	s	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Turkey	n	1	
+# ::edge	name	op2	English	n	0	
+# ::edge	side	location-of	fork	s2	f	
+# ::edge	sandwich	part	side	s	s2	
+(m / meal
+    :consist-of (s / sandwich
+        :ARG0-of (h / have-03)
+        :mod "Turkey"
+        :mod (c / continent
+            :name (n / name
+                :op1 "Turkey"
+                :op2 "English"))
+        :part (s2 / side
+            :location-of (f / fork))))

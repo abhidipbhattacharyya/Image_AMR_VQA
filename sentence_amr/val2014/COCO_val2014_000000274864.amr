@@ -1,0 +1,33 @@
+# ::tok Several tall buildings on a street and one of them has a clock on it .
+# ::node	s	several	0-1
+# ::node	t	tall	1-2
+# ::node	b	building	2-3
+# ::node	b2	building	2-3
+# ::node	s2	street	5-6
+# ::node	a	and	6-7
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::node	h	have-03	10-11
+# ::node	c	clock	12-13
+# ::root	a	and
+# ::edge	building	mod	tall	b	t	
+# ::edge	building	quant	several	b	s	
+# ::edge	building	location	street	b	s2	
+# ::edge	and	op1	building	a	b	
+# ::edge	building	quant	1	b2	0	
+# ::edge	building	ARG1-of	include-91	b2	i	
+# ::edge	include-91	ARG2	building	i	b	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	building	h	b2	
+# ::edge	have-03	ARG1	clock	h	c	
+(a / and
+    :op1 (b / building
+        :quant (s / several)
+        :location (s2 / street)
+        :mod (t / tall))
+    :op2 (h / have-03
+        :ARG0 (b2 / building
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 b))
+        :ARG1 (c / clock)))

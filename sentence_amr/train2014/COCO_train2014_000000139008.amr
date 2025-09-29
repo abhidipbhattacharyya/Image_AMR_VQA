@@ -1,0 +1,46 @@
+# ::tok A woman 's handbag with the contents poured out of it , including a hair brush , gum and other items .
+# ::node	w	woman	1-2
+# ::node	h2	handbag	3-4
+# ::node	t	thing	6-7
+# ::node	c	contain-01	6-7
+# ::node	p	pour-01	7-8
+# ::node	o2	out-06	8-9
+# ::node	i	include-01	12-13
+# ::node	h	hair	14-15
+# ::node	b	brush	15-16
+# ::node	a	and	16-17
+# ::node	g	gum	17-18
+# ::node	o	other	19-20
+# ::node	i2	item	20-21
+# ::root	p	pour-01
+# ::edge	handbag	poss	woman	h2	w	
+# ::edge	handbag	part	thing	h2	t	
+# ::edge	thing	ARG1-of	contain-01	t	c	
+# ::edge	contain-01	ARG0	handbag	c	h2	
+# ::edge	pour-01	ARG1	handbag	p	h2	
+# ::edge	pour-01	ARG2	out-06	p	o2	
+# ::edge	out-06	ARG1	handbag	o2	h2	
+# ::edge	out-06	ARG2	handbag	o2	h2	
+# ::edge	handbag	ARG2-of	include-01	h2	i	
+# ::edge	brush	purpose	hair	b	h	
+# ::edge	and	op1	brush	a	b	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	gum	a	g	
+# ::edge	item	mod	other	i2	o	
+# ::edge	and	op3	item	a	i2	
+(p / pour-01
+    :ARG1 (h2 / handbag
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (b / brush
+                    :purpose (h / hair))
+                :op2 (g / gum)
+                :op3 (i2 / item
+                    :mod (o / other))))
+        :part (t / thing
+            :ARG1-of (c / contain-01
+                :ARG0 h2))
+        :poss (w / woman))
+    :ARG2 (o2 / out-06
+        :ARG1 h2
+        :ARG2 h2))

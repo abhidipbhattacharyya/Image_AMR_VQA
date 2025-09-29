@@ -1,0 +1,46 @@
+# ::tok A stone wall with ivy growing across it and a clock tower above it with a weathervane on top of the clock tower .
+# ::node	s	stone	1-2
+# ::node	w	wall	2-3
+# ::node	h	have-03	3-4
+# ::node	i	ivy	4-5
+# ::node	g	grow-03	5-6
+# ::node	a2	across	6-7
+# ::node	a3	and	8-9
+# ::node	c	clock	10-11
+# ::node	t2	tower	11-12
+# ::node	a	above	12-13
+# ::node	h2	have-03	14-15
+# ::node	w2	weathervane	16-17
+# ::node	t	top	18-19
+# ::root	a3	and
+# ::edge	wall	consist-of	stone	w	s	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	grow-03	ARG1	ivy	g	i	
+# ::edge	have-03	ARG1	grow-03	h	g	
+# ::edge	grow-03	location	across	g	a2	
+# ::edge	across	op1	wall	a2	w	
+# ::edge	and	op1	wall	a3	w	
+# ::edge	tower	mod	clock	t2	c	
+# ::edge	and	op2	tower	a3	t2	
+# ::edge	tower	location	above	t2	a	
+# ::edge	above	op1	wall	a	w	
+# ::edge	tower	ARG0-of	have-03	t2	h2	
+# ::edge	have-03	ARG1	weathervane	h2	w2	
+# ::edge	weathervane	location	top	w2	t	
+# ::edge	tower	part	top	t2	t	
+(a3 / and
+    :op1 (w / wall
+        :ARG0-of (h / have-03
+            :ARG1 (g / grow-03
+                :ARG1 (i / ivy)
+                :location (a2 / across
+                    :op1 w)))
+        :consist-of (s / stone))
+    :op2 (t2 / tower
+        :ARG0-of (h2 / have-03
+            :ARG1 (w2 / weathervane
+                :location (t / top)))
+        :location (a / above
+            :op1 w)
+        :mod (c / clock)
+        :part t))

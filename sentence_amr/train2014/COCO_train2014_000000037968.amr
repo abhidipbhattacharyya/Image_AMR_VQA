@@ -1,0 +1,25 @@
+# ::tok Oversized vehicles can be a nuisance to other drivers on the freeway .
+# ::node	a	appropriate	0-1
+# ::node	v	vehicle	1-2
+# ::node	p2	possible-01	2-3
+# ::node	n	nuisance	5-6
+# ::node	o	other	7-8
+# ::node	p	person	8-9
+# ::node	d	drive-01	8-9
+# ::node	f	freeway	11-12
+# ::root	p2	possible-01
+# ::edge	vehicle	mod	appropriate	v	a	
+# ::edge	possible-01	ARG1	nuisance	p2	n	
+# ::edge	nuisance	domain	vehicle	n	v	
+# ::edge	person	mod	other	p	o	
+# ::edge	nuisance	beneficiary	person	n	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	drive-01	location	freeway	d	f	
+(p2 / possible-01
+    :ARG1 (n / nuisance
+        :beneficiary (p / person
+            :ARG0-of (d / drive-01
+                :location (f / freeway))
+            :mod (o / other))
+        :domain (v / vehicle
+            :mod (a / appropriate))))

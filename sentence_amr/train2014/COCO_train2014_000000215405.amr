@@ -1,0 +1,56 @@
+# ::tok A banana is made up to be like boat , and white and blue icing are supposed to be waves crashing around and over the boat .
+# ::node	b	banana	1-2
+# ::node	m	make-up-10	3-4
+# ::node	r	resemble-01	7-8
+# ::node	b3	boat	8-9
+# ::node	a	and	10-11
+# ::node	w2	white-03	11-12
+# ::node	a2	and	12-13
+# ::node	b2	blue	13-14
+# ::node	i	icing	14-15
+# ::node	i2	icing	14-15
+# ::node	s	suppose-02	16-17
+# ::node	w	wave	19-20
+# ::node	c	crash-01	20-21
+# ::node	a4	around	21-22
+# ::node	a3	and	22-23
+# ::node	o	over	23-24
+# ::node	b4	boat	25-26
+# ::root	a	and
+# ::edge	make-up-10	ARG1	banana	m	b	
+# ::edge	make-up-10	ARG2	resemble-01	m	r	
+# ::edge	resemble-01	ARG1	banana	r	b	
+# ::edge	resemble-01	ARG2	boat	r	b3	
+# ::edge	and	op1	make-up-10	a	m	
+# ::edge	and	op1	icing	a2	i	
+# ::edge	icing	ARG1-of	white-03	i	w2	
+# ::edge	icing	mod	blue	i2	b2	
+# ::edge	and	op2	icing	a2	i2	
+# ::edge	suppose-02	ARG1	and	s	a2	
+# ::edge	and	op2	suppose-02	a	s	
+# ::edge	suppose-02	ARG2	wave	s	w	
+# ::edge	wave	ARG0-of	crash-01	w	c	
+# ::edge	and	op1	around	a3	a4	
+# ::edge	crash-01	manner	and	c	a3	
+# ::edge	and	op2	over	a3	o	
+# ::edge	over	op1	boat	o	b4	
+# ::edge	around	op1	boat	a4	b4	
+(a / and
+    :op1 (m / make-up-10
+        :ARG1 (b / banana)
+        :ARG2 (r / resemble-01
+            :ARG1 b
+            :ARG2 (b3 / boat)))
+    :op2 (s / suppose-02
+        :ARG1 (a2 / and
+            :op1 (i / icing
+                :ARG1-of (w2 / white-03))
+            :op2 (i2 / icing
+                :mod (b2 / blue)))
+        :ARG2 (w / wave
+            :ARG0-of (c / crash-01
+                :manner (a3 / and
+                    :op1 (a4 / around
+                        :op1 (b4 / boat))
+                    :op2 (o / over
+                        :op1 b4))))))

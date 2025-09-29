@@ -1,0 +1,39 @@
+# ::tok A man standing on his skiesat night with a light on his head .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	h	have-03	7-8
+# ::node	l	light	9-10
+# ::node	h2	head	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	have-03	ARG1	light	h	l	
+# ::edge	light	location	head	l	h2	
+# ::edge	man	part	head	m	h2	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (l / light
+                :location (h2 / head)))
+        :part h2)
+    :time (d / date-entity
+        :dayperiod (n / night)))
+
+
+# ::tok a city is close behind him .
+# ::node	c	city	1-2
+# ::node	c2	close-10	3-4
+# ::node	b	behind	4-5
+# ::node	h	he	5-6
+# ::root	c2	close-10
+# ::edge	close-10	ARG1	city	c2	c	
+# ::edge	close-10	ARG2	behind	c2	b	
+# ::edge	behind	op1	he	b	h	
+(c2 / close-10
+    :ARG1 (c / city)
+    :ARG2 (b / behind
+        :op1 (h / he)))

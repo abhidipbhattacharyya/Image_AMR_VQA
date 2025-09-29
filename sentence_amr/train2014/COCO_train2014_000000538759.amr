@@ -1,0 +1,25 @@
+# ::tok A cat is resting on a bed , behind a dog that is chewing on a teddy bear .
+# ::node	c	cat	1-2
+# ::node	r	rest-01	3-4
+# ::node	b2	bed	6-7
+# ::node	b3	behind	8-9
+# ::node	d	dog	10-11
+# ::node	c2	chew-01	13-14
+# ::node	t	teddy	16-17
+# ::node	b	bear	17-18
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	cat	r	c	
+# ::edge	rest-01	ARG2	bed	r	b2	
+# ::edge	bed	location	behind	b2	b3	
+# ::edge	behind	op1	dog	b3	d	
+# ::edge	dog	ARG0-of	chew-01	d	c2	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	chew-01	ARG1	bear	c2	b	
+(r / rest-01
+    :ARG1 (c / cat)
+    :ARG2 (b2 / bed
+        :location (b3 / behind
+            :op1 (d / dog
+                :ARG0-of (c2 / chew-01
+                    :ARG1 (b / bear
+                        :mod (t / teddy)))))))

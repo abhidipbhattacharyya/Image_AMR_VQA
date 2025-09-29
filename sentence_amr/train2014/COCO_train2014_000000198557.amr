@@ -1,0 +1,19 @@
+# ::tok The commuter train is waiting on any interested passengers .
+# ::node	c	commute-01	1-2
+# ::node	t	train	2-3
+# ::node	w	wait-01	4-5
+# ::node	a	any	6-7
+# ::node	i	interest-01	7-8
+# ::node	p	passenger	8-9
+# ::root	w	wait-01
+# ::edge	train	ARG0-of	commute-01	t	c	
+# ::edge	wait-01	ARG1	train	w	t	
+# ::edge	passenger	ARG1-of	interest-01	p	i	
+# ::edge	passenger	mod	any	p	a	
+# ::edge	wait-01	ARG2	passenger	w	p	
+(w / wait-01
+    :ARG1 (t / train
+        :ARG0-of (c / commute-01))
+    :ARG2 (p / passenger
+        :ARG1-of (i / interest-01)
+        :mod (a / any)))

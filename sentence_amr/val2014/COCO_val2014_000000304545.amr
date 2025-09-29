@@ -1,0 +1,37 @@
+# ::tok A small carry - on bag , strapped to the handle of a larger suitcase from the same set of luggage .
+# ::node	s3	small	1-2
+# ::node	c	carry-on-02	2-3
+# ::node	b	bag	5-6
+# ::node	s4	strap-01	7-8
+# ::node	h	handle	10-11
+# ::node	h2	have-degree-91	13-14
+# ::node	l	large	13-14
+# ::node	m	more	13-14
+# ::node	s5	suitcase	14-15
+# ::node	s	same-01	17-18
+# ::node	s2	set	18-19
+# ::node	l2	luggage	20-21
+# ::root	b	bag
+# ::edge	bag	ARG1-of	carry-on-02	b	c	
+# ::edge	bag	mod	small	b	s3	
+# ::edge	bag	ARG1-of	strap-01	b	s4	
+# ::edge	strap-01	ARG2	handle	s4	h	
+# ::edge	have-degree-91	ARG2	large	h2	l	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	suitcase	ARG1-of	have-degree-91	s5	h2	
+# ::edge	handle	part-of	suitcase	h	s5	
+# ::edge	set	ARG1-of	same-01	s2	s	
+# ::edge	suitcase	source	set	s5	s2	
+# ::edge	set	consist-of	luggage	s2	l2	
+(b / bag
+    :ARG1-of (c / carry-on-02)
+    :ARG1-of (s4 / strap-01
+        :ARG2 (h / handle
+            :part-of (s5 / suitcase
+                :ARG1-of (h2 / have-degree-91
+                    :ARG2 (l / large)
+                    :ARG3 (m / more))
+                :source (s2 / set
+                    :ARG1-of (s / same-01)
+                    :consist-of (l2 / luggage)))))
+    :mod (s3 / small))

@@ -1,0 +1,27 @@
+# ::tok Blue Mercedes dump truck is unloading at the dump site .
+# ::node	l	Blue	0-1
+# ::node	c	car-make	1-2
+# ::node	n	name	1-2
+# ::node	0	Mercedes	1-2
+# ::node	d	dump-01	2-3
+# ::node	t	truck	3-4
+# ::node	u	unload-02	5-6
+# ::node	s	site	9-10
+# ::root	u	unload-02
+# ::edge	car-make	mod	Blue	c	l	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	Mercedes	n	0	
+# ::edge	truck	ARG0-of	dump-01	t	d	
+# ::edge	truck	mod	car-make	t	c	
+# ::edge	unload-02	ARG1	truck	u	t	
+# ::edge	unload-02	location	site	u	s	
+# ::edge	site	purpose	dump-01	s	d	
+(u / unload-02
+    :ARG1 (t / truck
+        :ARG0-of (d / dump-01)
+        :mod (c / car-make
+            :name (n / name
+                :op1 "Mercedes")
+            :mod (l / Blue)))
+    :location (s / site
+        :purpose d))

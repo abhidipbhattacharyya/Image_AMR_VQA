@@ -1,0 +1,25 @@
+# ::tok Colorful lights reflect off the items inside this bathroom stall
+# ::node	c	color	0-1
+# ::node	l	light	1-2
+# ::node	r	reflect-01	2-3
+# ::node	i2	item	5-6
+# ::node	i	inside	6-7
+# ::node	t	this	7-8
+# ::node	b	bathroom	8-9
+# ::node	s	stall	9-10
+# ::root	r	reflect-01
+# ::edge	light	mod	color	l	c	
+# ::edge	reflect-01	ARG1	light	r	l	
+# ::edge	reflect-01	ARG2	item	r	i2	
+# ::edge	item	location	inside	i2	i	
+# ::edge	stall	location	bathroom	s	b	
+# ::edge	stall	mod	this	s	t	
+# ::edge	inside	op1	stall	i	s	
+(r / reflect-01
+    :ARG1 (l / light
+        :mod (c / color))
+    :ARG2 (i2 / item
+        :location (i / inside
+            :op1 (s / stall
+                :location (b / bathroom)
+                :mod (t / this)))))

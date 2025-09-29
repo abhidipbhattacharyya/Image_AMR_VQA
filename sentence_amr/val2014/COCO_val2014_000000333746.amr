@@ -1,0 +1,22 @@
+# ::tok Railroad stop gates down for a passing passenger train .
+# ::node	r	railway	0-1
+# ::node	s	stop-01	1-2
+# ::node	g	gate	2-3
+# ::node	d	down-01	3-4
+# ::node	p	pass-03	6-7
+# ::node	p2	passenger	7-8
+# ::node	t	train	8-9
+# ::root	d	down-01
+# ::edge	stop-01	location	railway	s	r	
+# ::edge	gate	location-of	stop-01	g	s	
+# ::edge	down-01	ARG1	gate	d	g	
+# ::edge	train	mod	passenger	t	p2	
+# ::edge	train	ARG1-of	pass-03	t	p	
+# ::edge	down-01	beneficiary	train	d	t	
+(d / down-01
+    :ARG1 (g / gate
+        :location-of (s / stop-01
+            :location (r / railway)))
+    :beneficiary (t / train
+        :ARG1-of (p / pass-03)
+        :mod (p2 / passenger)))

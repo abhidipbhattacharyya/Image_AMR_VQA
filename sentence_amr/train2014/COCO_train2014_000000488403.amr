@@ -1,0 +1,25 @@
+# ::tok A traffic light sitting next to a street with lots of traffic .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s	sit-01	3-4
+# ::node	n	next-to	4-5
+# ::node	s2	street	7-8
+# ::node	h	have-03	8-9
+# ::node	l2	lot	9-10
+# ::node	t2	traffic	11-12
+# ::root	s	sit-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	sit-01	ARG1	light	s	l	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	street	n	s2	
+# ::edge	street	ARG0-of	have-03	s2	h	
+# ::edge	traffic	quant	lot	t2	l2	
+# ::edge	have-03	ARG1	traffic	h	t2	
+(s / sit-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :ARG2 (n / next-to
+        :op1 (s2 / street
+            :ARG0-of (h / have-03
+                :ARG1 (t2 / traffic
+                    :quant (l2 / lot))))))

@@ -1,0 +1,21 @@
+# ::tok A bus stopped at an intersection waiting for the light to change .
+# ::node	b	bus	1-2
+# ::node	s	stop-01	2-3
+# ::node	i	intersect-01	5-6
+# ::node	w	wait-01	6-7
+# ::node	l	light	9-10
+# ::node	c	change-01	11-12
+# ::root	s	stop-01
+# ::edge	stop-01	ARG1	bus	s	b	
+# ::edge	stop-01	location	intersect-01	s	i	
+# ::edge	stop-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG1	bus	w	b	
+# ::edge	change-01	ARG1	light	c	l	
+# ::edge	wait-01	ARG2	change-01	w	c	
+(s / stop-01
+    :ARG1 (b / bus)
+    :location (i / intersect-01)
+    :time (w / wait-01
+        :ARG1 b
+        :ARG2 (c / change-01
+            :ARG1 (l / light))))

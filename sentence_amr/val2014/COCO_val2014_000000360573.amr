@@ -1,0 +1,25 @@
+# ::tok Motorcycle in the foreground with people and other motorcycles around it
+# ::node	m	motorcycle	0-1
+# ::node	b	be-located-at-91	1-2
+# ::node	f	foreground	3-4
+# ::node	p	person	5-6
+# ::node	a	and	6-7
+# ::node	o	other	7-8
+# ::node	m2	motorcycle	8-9
+# ::node	a2	around	9-10
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	motorcycle	b	m	
+# ::edge	be-located-at-91	ARG2	foreground	b	f	
+# ::edge	and	op1	person	a	p	
+# ::edge	motorcycle	mod	other	m2	o	
+# ::edge	and	op2	motorcycle	a	m2	
+# ::edge	around	location-of	and	a2	a	
+# ::edge	motorcycle	location	around	m	a2	
+(b / be-located-at-91
+    :ARG1 (m / motorcycle
+        :location (a2 / around
+            :location-of (a / and
+                :op1 (p / person)
+                :op2 (m2 / motorcycle
+                    :mod (o / other)))))
+    :ARG2 (f / foreground))

@@ -1,0 +1,34 @@
+# ::tok Lunch recipe calls for whole eggs baked inside bread , served with tomatoes on the vine .
+# ::node	l	lunch-01	0-1
+# ::node	r	recipe	1-2
+# ::node	c	call-03	2-3
+# ::node	w	whole	4-5
+# ::node	e	egg	5-6
+# ::node	b	bake-01	6-7
+# ::node	i	inside	7-8
+# ::node	b2	bread	8-9
+# ::node	s	serve-02	10-11
+# ::node	t	tomato	12-13
+# ::node	v	vine	15-16
+# ::root	c	call-03
+# ::edge	recipe	mod	lunch-01	r	l	
+# ::edge	call-03	ARG0	recipe	c	r	
+# ::edge	egg	mod	whole	e	w	
+# ::edge	call-03	ARG1	egg	c	e	
+# ::edge	egg	ARG1-of	bake-01	e	b	
+# ::edge	bake-01	location	inside	b	i	
+# ::edge	inside	op1	bread	i	b2	
+# ::edge	egg	ARG1-of	serve-02	e	s	
+# ::edge	serve-02	accompanier	tomato	s	t	
+# ::edge	tomato	location	vine	t	v	
+(c / call-03
+    :ARG0 (r / recipe
+        :mod (l / lunch-01))
+    :ARG1 (e / egg
+        :ARG1-of (b / bake-01
+            :location (i / inside
+                :op1 (b2 / bread)))
+        :ARG1-of (s / serve-02
+            :accompanier (t / tomato
+                :location (v / vine)))
+        :mod (w / whole)))

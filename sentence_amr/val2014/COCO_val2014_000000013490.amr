@@ -1,0 +1,30 @@
+# ::tok A homemade loaf of bread is baked and ready for peanut butter spread .
+# ::node	h	homemade	1-2
+# ::node	l	loaf	2-3
+# ::node	b2	bread	4-5
+# ::node	b	bake-01	6-7
+# ::node	a	and	7-8
+# ::node	r	ready-02	8-9
+# ::node	p	peanut	10-11
+# ::node	b3	butter	11-12
+# ::node	s	spread-02	12-13
+# ::root	a	and
+# ::edge	loaf	mod	homemade	l	h	
+# ::edge	loaf	mod	bread	l	b2	
+# ::edge	bake-01	ARG1	loaf	b	l	
+# ::edge	and	op1	bake-01	a	b	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	loaf	r	l	
+# ::edge	butter	mod	peanut	b3	p	
+# ::edge	spread-02	ARG1	butter	s	b3	
+# ::edge	ready-02	ARG2	spread-02	r	s	
+(a / and
+    :op1 (b / bake-01
+        :ARG1 (l / loaf
+            :mod (h / homemade)
+            :mod (b2 / bread)))
+    :op2 (r / ready-02
+        :ARG1 l
+        :ARG2 (s / spread-02
+            :ARG1 (b3 / butter
+                :mod (p / peanut)))))

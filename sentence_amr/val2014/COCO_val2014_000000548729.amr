@@ -1,0 +1,60 @@
+# ::tok a line of people stand behind a table with many bottles of wine as some of them sip at glasses of wine
+# ::node	l	line	1-2
+# ::node	p	person	3-4
+# ::node	s3	stand-01	4-5
+# ::node	b	behind	5-6
+# ::node	t	table	7-8
+# ::node	h	have-03	8-9
+# ::node	m	many	9-10
+# ::node	0	1	9-10
+# ::node	v	volume-quantity	10-11
+# ::node	b2	bottle	10-11
+# ::node	w	wine	12-13
+# ::node	p2	person	14-15
+# ::node	s2	some	14-15
+# ::node	i	include-91	15-16
+# ::node	s	sip-01	17-18
+# ::node	v2	volume-quantity	19-20
+# ::node	g	glasses	19-20
+# ::node	1	1	19-20
+# ::node	w2	wine	21-22
+# ::root	s3	stand-01
+# ::edge	line	consist-of	person	l	p	
+# ::edge	stand-01	ARG1	line	s3	l	
+# ::edge	stand-01	ARG2	behind	s3	b	
+# ::edge	behind	op1	table	b	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	many	op1	volume-quantity	m	v	
+# ::edge	volume-quantity	unit	bottle	v	b2	
+# ::edge	wine	quant	many	w	m	
+# ::edge	have-03	ARG1	wine	h	w	
+# ::edge	person	quant	some	p2	s2	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	sip-01	ARG0	person	s	p2	
+# ::edge	stand-01	time	sip-01	s3	s	
+# ::edge	volume-quantity	unit	glasses	v2	g	
+# ::edge	volume-quantity	quant	1	v2	1	
+# ::edge	wine	quant	volume-quantity	w2	v2	
+# ::edge	sip-01	ARG1	wine	s	w2	
+(s3 / stand-01
+    :ARG1 (l / line
+        :consist-of (p / person))
+    :ARG2 (b / behind
+        :op1 (t / table
+            :ARG0-of (h / have-03
+                :ARG1 (w / wine
+                    :quant (m / many
+                        :op1 (v / volume-quantity
+                            :quant 1
+                            :unit (b2 / bottle)))))))
+    :time (s / sip-01
+        :ARG0 (p2 / person
+            :quant (s2 / some)
+            :ARG1-of (i / include-91
+                :ARG2 p))
+        :ARG1 (w2 / wine
+            :quant (v2 / volume-quantity
+                :quant 1
+                :unit (g / glasses)))))

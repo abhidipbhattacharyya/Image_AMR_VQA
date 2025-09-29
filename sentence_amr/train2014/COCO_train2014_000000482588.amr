@@ -1,0 +1,28 @@
+# ::tok A motor scooter with two adults and two children riding on it in a street .
+# ::node	m	motor	1-2
+# ::node	s	scooter	2-3
+# ::node	0	2	4-5
+# ::node	a	adult	5-6
+# ::node	a2	and	6-7
+# ::node	1	2	7-8
+# ::node	c	child	8-9
+# ::node	r	ride-01	9-10
+# ::node	s2	street	14-15
+# ::root	s	scooter
+# ::edge	scooter	mod	motor	s	m	
+# ::edge	adult	quant	2	a	0	
+# ::edge	and	op1	adult	a2	a	
+# ::edge	child	quant	2	c	1	
+# ::edge	and	op2	child	a2	c	
+# ::edge	ride-01	ARG0	and	r	a2	
+# ::edge	scooter	ARG1-of	ride-01	s	r	
+# ::edge	ride-01	location	street	r	s2	
+(s / scooter
+    :ARG1-of (r / ride-01
+        :ARG0 (a2 / and
+            :op1 (a / adult
+                :quant 2)
+            :op2 (c / child
+                :quant 2))
+        :location (s2 / street))
+    :mod (m / motor))

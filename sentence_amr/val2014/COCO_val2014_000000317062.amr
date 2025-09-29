@@ -1,0 +1,40 @@
+# ::tok A wooden desk that has a Apple desktop computer on it and a cellular phone on a mouse pad .
+# ::node	w	wood	1-2
+# ::node	d	desk	2-3
+# ::node	h	have-03	4-5
+# ::node	c2	company	6-7
+# ::node	n	name	6-7
+# ::node	0	Apple	6-7
+# ::node	d2	desktop	7-8
+# ::node	c3	computer	8-9
+# ::node	a	and	11-12
+# ::node	c	cell	13-14
+# ::node	p2	phone	14-15
+# ::node	m	mouse	17-18
+# ::node	p	pad	18-19
+# ::root	d	desk
+# ::edge	desk	consist-of	wood	d	w	
+# ::edge	desk	ARG0-of	have-03	d	h	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Apple	n	0	
+# ::edge	computer	mod	desktop	c3	d2	
+# ::edge	computer	mod	company	c3	c2	
+# ::edge	and	op1	computer	a	c3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	phone	mod	cell	p2	c	
+# ::edge	and	op2	phone	a	p2	
+# ::edge	pad	mod	mouse	p	m	
+# ::edge	phone	location	pad	p2	p	
+(d / desk
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c3 / computer
+                :mod (d2 / desktop)
+                :mod (c2 / company
+                    :name (n / name
+                        :op1 "Apple")))
+            :op2 (p2 / phone
+                :location (p / pad
+                    :mod (m / mouse))
+                :mod (c / cell))))
+    :consist-of (w / wood))

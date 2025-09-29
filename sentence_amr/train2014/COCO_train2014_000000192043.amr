@@ -1,0 +1,41 @@
+# ::tok A man behind a podium throwing a Frisbee and an outstretched hand trying to catch it .
+# ::node	m	man	1-2
+# ::node	b	behind	2-3
+# ::node	p	podium	4-5
+# ::node	t	throw-01	5-6
+# ::node	d	disc	7-8
+# ::node	n	name	7-8
+# ::node	0	Frisbee	7-8
+# ::node	a	and	8-9
+# ::node	e	extend-01	10-11
+# ::node	h	hand	11-12
+# ::node	t2	try-01	12-13
+# ::node	c	catch-03	14-15
+# ::root	m	man
+# ::edge	man	location	behind	m	b	
+# ::edge	behind	op1	podium	b	p	
+# ::edge	man	ARG0-of	throw-01	m	t	
+# ::edge	disc	name	name	d	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	and	op1	disc	a	d	
+# ::edge	throw-01	ARG1	and	t	a	
+# ::edge	hand	ARG1-of	extend-01	h	e	
+# ::edge	and	op2	hand	a	h	
+# ::edge	man	ARG0-of	try-01	m	t2	
+# ::edge	try-01	ARG1	catch-03	t2	c	
+# ::edge	catch-03	ARG1	disc	c	d	
+# ::edge	catch-03	ARG0	man	c	m	
+(m / man
+    :ARG0-of (t / throw-01
+        :ARG1 (a / and
+            :op1 (d / disc
+                :name (n / name
+                    :op1 "Frisbee"))
+            :op2 (h / hand
+                :ARG1-of (e / extend-01))))
+    :ARG0-of (t2 / try-01
+        :ARG1 (c / catch-03
+            :ARG0 m
+            :ARG1 d))
+    :location (b / behind
+        :op1 (p / podium)))

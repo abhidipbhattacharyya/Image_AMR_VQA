@@ -1,0 +1,32 @@
+# ::tok A giraffe sticks its purple tongue through a fence to accept a cracker from child .
+# ::node	g	giraffe	1-2
+# ::node	s	stick-01	2-3
+# ::node	p	purple-02	4-5
+# ::node	t2	tongue	5-6
+# ::node	t	through	6-7
+# ::node	f	fence	8-9
+# ::node	a	accept-01	10-11
+# ::node	c2	cracker	12-13
+# ::node	c	child	14-15
+# ::root	s	stick-01
+# ::edge	stick-01	ARG0	giraffe	s	g	
+# ::edge	tongue	ARG1-of	purple-02	t2	p	
+# ::edge	stick-01	ARG1	tongue	s	t2	
+# ::edge	giraffe	part	tongue	g	t2	
+# ::edge	stick-01	ARG2	through	s	t	
+# ::edge	through	op1	fence	t	f	
+# ::edge	stick-01	purpose	accept-01	s	a	
+# ::edge	accept-01	ARG0	giraffe	a	g	
+# ::edge	accept-01	ARG1	cracker	a	c2	
+# ::edge	accept-01	ARG2	child	a	c	
+(s / stick-01
+    :purpose (a / accept-01
+        :ARG0 (g / giraffe
+            :part (t2 / tongue
+                :ARG1-of (p / purple-02)))
+        :ARG1 (c2 / cracker)
+        :ARG2 (c / child))
+    :ARG0 g
+    :ARG1 t2
+    :ARG2 (t / through
+        :op1 (f / fence)))

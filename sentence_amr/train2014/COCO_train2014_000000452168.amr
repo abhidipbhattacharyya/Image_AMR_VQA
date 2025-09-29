@@ -1,0 +1,28 @@
+# ::tok Ironically , the bird is sitting right next to a no birds allowed sign .
+# ::node	i	ironic	0-1
+# ::node	b	bird	3-4
+# ::node	s2	sit-01	5-6
+# ::node	r	right	6-7
+# ::node	n	next-to	7-8
+# ::node	t	thing	9-10
+# ::node	0	-	10-11
+# ::node	a	allow-01	12-13
+# ::node	s	signal-07	13-14
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	bird	s2	b	
+# ::edge	sit-01	mod	ironic	s2	i	
+# ::edge	next-to	mod	right	n	r	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	thing	n	t	
+# ::edge	allow-01	polarity	-	a	0	
+# ::edge	signal-07	ARG1-of	allow-01	s	a	
+# ::edge	thing	ARG0-of	signal-07	t	s	
+(s2 / sit-01
+    :ARG1 (b / bird)
+    :ARG2 (n / next-to
+        :mod (r / right)
+        :op1 (t / thing
+            :ARG0-of (s / signal-07
+                :ARG1-of (a / allow-01
+                    :polarity -))))
+    :mod (i / ironic))

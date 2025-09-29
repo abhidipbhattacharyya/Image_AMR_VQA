@@ -1,0 +1,31 @@
+# ::tok A clock showing four o'clock with bells to toll the hour mounted on the outside of a building
+# ::node	c	clock	1-2
+# ::node	s	show-01	2-3
+# ::node	d	date-entity	3-4
+# ::node	0	4	3-4
+# ::node	b	bell	6-7
+# ::node	t	toll-02	8-9
+# ::node	h	hour	10-11
+# ::node	m	mount-03	11-12
+# ::node	o	outside	14-15
+# ::node	b2	building	17-18
+# ::root	c	clock
+# ::edge	clock	ARG0-of	show-01	c	s	
+# ::edge	date-entity	time	4	d	0	
+# ::edge	toll-02	ARG0	bell	t	b	
+# ::edge	hour	time-of	toll-02	h	t	
+# ::edge	hour	time	date-entity	h	d	
+# ::edge	show-01	ARG1	hour	s	h	
+# ::edge	clock	ARG1-of	mount-03	c	m	
+# ::edge	mount-03	location	outside	m	o	
+# ::edge	outside	op1	building	o	b2	
+(c / clock
+    :ARG0-of (s / show-01
+        :ARG1 (h / hour
+            :time (d / date-entity
+                :time 4)
+            :time-of (t / toll-02
+                :ARG0 (b / bell))))
+    :ARG1-of (m / mount-03
+        :location (o / outside
+            :op1 (b2 / building))))

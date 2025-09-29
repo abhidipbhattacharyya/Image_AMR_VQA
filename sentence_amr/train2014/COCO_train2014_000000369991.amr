@@ -1,0 +1,79 @@
+# ::tok A paneled building with an open entryway leads to a wooden deck with high fences that create a tight corridor on the deck , the space of which holds a baby giraffe and an adult giraffe reaching down to nuzzle the baby .
+# ::node	p	panel	1-2
+# ::node	b3	building	2-3
+# ::node	o	open-09	5-6
+# ::node	e	entryway	6-7
+# ::node	l	lead-01	7-8
+# ::node	w	wood	10-11
+# ::node	d	deck	11-12
+# ::node	h	have-03	12-13
+# ::node	h2	high-02	13-14
+# ::node	f	fence	14-15
+# ::node	c2	create-01	16-17
+# ::node	t	tight-05	18-19
+# ::node	c	corridor	19-20
+# ::node	s	space	25-26
+# ::node	h3	hold-01	28-29
+# ::node	b	baby	30-31
+# ::node	g	giraffe	31-32
+# ::node	a2	and	32-33
+# ::node	a	adult	34-35
+# ::node	g2	giraffe	35-36
+# ::node	r	reach-03	36-37
+# ::node	d2	down	37-38
+# ::node	m	monetary-quantity	39-40
+# ::node	b2	breastfeed-01	39-40
+# ::root	l	lead-01
+# ::edge	building	consist-of	panel	b3	p	
+# ::edge	entryway	ARG1-of	open-09	e	o	
+# ::edge	building	part	entryway	b3	e	
+# ::edge	lead-01	ARG0	building	l	b3	
+# ::edge	deck	consist-of	wood	d	w	
+# ::edge	lead-01	ARG4	deck	l	d	
+# ::edge	deck	ARG0-of	have-03	d	h	
+# ::edge	fence	ARG1-of	high-02	f	h2	
+# ::edge	have-03	ARG1	fence	h	f	
+# ::edge	deck	ARG0-of	create-01	d	c2	
+# ::edge	corridor	ARG1-of	tight-05	c	t	
+# ::edge	create-01	ARG1	corridor	c2	c	
+# ::edge	corridor	location	deck	c	d	
+# ::edge	deck	location-of	space	d	s	
+# ::edge	space	ARG0-of	hold-01	s	h3	
+# ::edge	giraffe	mod	baby	g	b	
+# ::edge	and	op1	giraffe	a2	g	
+# ::edge	hold-01	ARG1	and	h3	a2	
+# ::edge	giraffe	mod	adult	g2	a	
+# ::edge	and	op2	giraffe	a2	g2	
+# ::edge	giraffe	ARG0-of	reach-03	g2	r	
+# ::edge	reach-03	ARG2	down	r	d2	
+# ::edge	reach-03	ARG1	monetary-quantity	r	m	
+# ::edge	monetary-quantity	ARG2-of	breastfeed-01	m	b2	
+# ::edge	breastfeed-01	ARG0	and	b2	a2	
+# ::edge	breastfeed-01	ARG1	giraffe	b2	g	
+(l / lead-01
+    :ARG0 (b3 / building
+        :consist-of (p / panel)
+        :part (e / entryway
+            :ARG1-of (o / open-09)))
+    :ARG4 (d / deck
+        :ARG0-of (h / have-03
+            :ARG1 (f / fence
+                :ARG1-of (h2 / high-02)))
+        :ARG0-of (c2 / create-01
+            :ARG1 (c / corridor
+                :ARG1-of (t / tight-05)
+                :location d))
+        :consist-of (w / wood)
+        :location-of (s / space
+            :ARG0-of (h3 / hold-01
+                :ARG1 (a2 / and
+                    :op1 (g / giraffe
+                        :mod (b / baby))
+                    :op2 (g2 / giraffe
+                        :ARG0-of (r / reach-03
+                            :ARG1 (m / monetary-quantity
+                                :ARG2-of (b2 / breastfeed-01
+                                    :ARG0 a2
+                                    :ARG1 g))
+                            :ARG2 (d2 / down))
+                        :mod (a / adult)))))))

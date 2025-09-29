@@ -1,0 +1,24 @@
+# ::tok a stop sign by the road altered to say something different
+# ::node	s4	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	r	road	5-6
+# ::node	a	alter-01	6-7
+# ::node	s	say-01	8-9
+# ::node	s3	something	9-10
+# ::node	d	differ-02	10-11
+# ::root	a	alter-01
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	signal-07	location	road	s2	r	
+# ::edge	alter-01	ARG1	signal-07	a	s2	
+# ::edge	alter-01	ARG3	say-01	a	s	
+# ::edge	say-01	ARG0	signal-07	s	s2	
+# ::edge	say-01	ARG1	something	s	s3	
+# ::edge	something	ARG1-of	differ-02	s3	d	
+(a / alter-01
+    :ARG1 (s2 / signal-07
+        :ARG1 (s4 / stop-01)
+        :location (r / road))
+    :ARG3 (s / say-01
+        :ARG0 s2
+        :ARG1 (s3 / something
+            :ARG1-of (d / differ-02))))

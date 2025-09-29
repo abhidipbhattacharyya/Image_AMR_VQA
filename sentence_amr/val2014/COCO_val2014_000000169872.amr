@@ -1,0 +1,41 @@
+# ::tok A laptop sits precariously on a desk , with a second keyboard in front of it , and windows behind it .
+# ::node	l	laptop	1-2
+# ::node	s	sit-01	2-3
+# ::node	p	precise	3-4
+# ::node	d	desk	6-7
+# ::node	h	have-03	8-9
+# ::node	o	ordinal-entity	10-11
+# ::node	0	2	10-11
+# ::node	k	keyboard	11-12
+# ::node	i	in-front-of	13-14
+# ::node	a	and	17-18
+# ::node	w	window	18-19
+# ::node	b	behind	19-20
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	laptop	s	l	
+# ::edge	sit-01	manner	precise	s	p	
+# ::edge	sit-01	ARG2	desk	s	d	
+# ::edge	laptop	ARG0-of	have-03	l	h	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	keyboard	ord	ordinal-entity	k	o	
+# ::edge	keyboard	location	in-front-of	k	i	
+# ::edge	in-front-of	op1	laptop	i	l	
+# ::edge	and	op1	keyboard	a	k	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	window	a	w	
+# ::edge	window	location	behind	w	b	
+# ::edge	behind	op1	laptop	b	l	
+(s / sit-01
+    :ARG1 (l / laptop
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (k / keyboard
+                    :location (i / in-front-of
+                        :op1 l)
+                    :ord (o / ordinal-entity
+                        :value 2))
+                :op2 (w / window
+                    :location (b / behind
+                        :op1 l)))))
+    :ARG2 (d / desk)
+    :manner (p / precise))

@@ -1,0 +1,27 @@
+# ::tok A model of a train traveling over a bridge with cars passing under neath .
+# ::node	m	model-01	1-2
+# ::node	t	train	4-5
+# ::node	t2	travel-01	5-6
+# ::node	o	over	6-7
+# ::node	b	bridge	8-9
+# ::node	c	car	10-11
+# ::node	p	pass-03	11-12
+# ::node	u	under	12-13
+# ::root	m	model-01
+# ::edge	model-01	ARG1	train	m	t	
+# ::edge	train	ARG0-of	travel-01	t	t2	
+# ::edge	travel-01	path	over	t2	o	
+# ::edge	over	op1	bridge	o	b	
+# ::edge	pass-03	ARG1	car	p	c	
+# ::edge	train	location-of	pass-03	t	p	
+# ::edge	pass-03	path	under	p	u	
+# ::edge	under	op1	bridge	u	b	
+(m / model-01
+    :ARG1 (t / train
+        :ARG0-of (t2 / travel-01
+            :path (o / over
+                :op1 (b / bridge)))
+        :location-of (p / pass-03
+            :ARG1 (c / car)
+            :path (u / under
+                :op1 b))))

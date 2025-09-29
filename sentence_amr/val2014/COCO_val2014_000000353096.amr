@@ -1,0 +1,46 @@
+# ::tok An Apple desktop computer system is turned on with a monitor , keyboard , mouse , two speakers , and other peripherals .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	1	Apple	1-2
+# ::node	d	desktop	2-3
+# ::node	c2	computer	3-4
+# ::node	s2	system	4-5
+# ::node	t	turn-on-13	6-7
+# ::node	m	monitor	10-11
+# ::node	k	keyboard	12-13
+# ::node	m2	mouse	14-15
+# ::node	0	2	16-17
+# ::node	s	speaker	17-18
+# ::node	a	and	19-20
+# ::node	o	other	20-21
+# ::node	c3	computer	21-22
+# ::root	t	turn-on-13
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Apple	n	1	
+# ::edge	computer	mod	desktop	c2	d	
+# ::edge	system	mod	computer	s2	c2	
+# ::edge	system	mod	company	s2	c	
+# ::edge	turn-on-13	ARG1	system	t	s2	
+# ::edge	speaker	quant	2	s	0	
+# ::edge	and	op4	speaker	a	s	
+# ::edge	and	op3	mouse	a	m2	
+# ::edge	and	op2	keyboard	a	k	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	turn-on-13	instrument	and	t	a	
+# ::edge	computer	mod	other	c3	o	
+# ::edge	and	op5	computer	a	c3	
+(t / turn-on-13
+    :ARG1 (s2 / system
+        :mod (c2 / computer
+            :mod (d / desktop))
+        :mod (c / company
+            :name (n / name
+                :op1 "Apple")))
+    :instrument (a / and
+        :op1 (m / monitor)
+        :op2 (k / keyboard)
+        :op3 (m2 / mouse)
+        :op4 (s / speaker
+            :quant 2)
+        :op5 (c3 / computer
+            :mod (o / other))))

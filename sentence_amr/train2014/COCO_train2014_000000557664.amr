@@ -1,0 +1,34 @@
+# ::tok A large number of signs , with Chinese lettering , attached to buildings along a street .
+# ::node	l	large	1-2
+# ::node	n2	number	2-3
+# ::node	s	sign	4-5
+# ::node	c	country	7-8
+# ::node	n	name	7-8
+# ::node	0	China	7-8
+# ::node	l2	letter	8-9
+# ::node	a2	attach-01	10-11
+# ::node	b	building	12-13
+# ::node	a	along	13-14
+# ::node	s2	street	15-16
+# ::root	a2	attach-01
+# ::edge	number	mod	large	n2	l	
+# ::edge	sign	quant	number	s	n2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	letter	mod	country	l2	c	
+# ::edge	sign	mod	letter	s	l2	
+# ::edge	attach-01	ARG1	sign	a2	s	
+# ::edge	attach-01	ARG2	building	a2	b	
+# ::edge	building	location	along	b	a	
+# ::edge	along	op1	street	a	s2	
+(a2 / attach-01
+    :ARG1 (s / sign
+        :quant (n2 / number
+            :mod (l / large))
+        :mod (l2 / letter
+            :mod (c / country
+                :name (n / name
+                    :op1 "China"))))
+    :ARG2 (b / building
+        :location (a / along
+            :op1 (s2 / street))))

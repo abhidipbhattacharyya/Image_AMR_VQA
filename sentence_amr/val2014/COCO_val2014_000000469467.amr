@@ -1,0 +1,61 @@
+# ::tok One picture shows Andy Warhol with a banana to his face , the other image shows a woman holding a banana to her ear .
+# ::node	o	one	0-1
+# ::node	p2	picture	1-2
+# ::node	s	show-01	2-3
+# ::node	p	person	3-4
+# ::node	n	name	3-4
+# ::node	0	Andy	3-4
+# ::node	1	Warhol	4-5
+# ::node	b	banana	7-8
+# ::node	f	face	10-11
+# ::node	a	and	11-12
+# ::node	o2	other	13-14
+# ::node	i	image	14-15
+# ::node	s2	show-01	15-16
+# ::node	w	woman	17-18
+# ::node	h	hold-01	18-19
+# ::node	h2	hold-01	18-19
+# ::node	b2	banana	20-21
+# ::node	e	ear	23-24
+# ::root	a	and
+# ::edge	picture	mod	one	p2	o	
+# ::edge	show-01	ARG0	picture	s	p2	
+# ::edge	show-01	ARG1	person	s	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Andy	n	0	
+# ::edge	name	op2	Warhol	n	1	
+# ::edge	face	direction	banana	f	b	
+# ::edge	person	part	face	p	f	
+# ::edge	show-01	manner	face	s	f	
+# ::edge	and	op1	show-01	a	s	
+# ::edge	image	mod	other	i	o2	
+# ::edge	show-01	ARG0	image	s2	i	
+# ::edge	and	op2	show-01	a	s2	
+# ::edge	show-01	ARG1	woman	s2	w	
+# ::edge	woman	ARG0-of	hold-01	w	h	
+# ::edge	hold-01	ARG1	banana	h	b	
+# ::edge	woman	ARG0-of	hold-01	w	h2	
+# ::edge	hold-01	ARG1	banana	h2	b2	
+# ::edge	hold-01	location	ear	h2	e	
+# ::edge	woman	part	ear	w	e	
+(a / and
+    :op1 (s / show-01
+        :ARG0 (p2 / picture
+            :mod (o / one))
+        :ARG1 (p / person
+            :name (n / name
+                :op1 "Andy"
+                :op2 "Warhol")
+            :part (f / face
+                :direction (b / banana)))
+        :manner f)
+    :op2 (s2 / show-01
+        :ARG0 (i / image
+            :mod (o2 / other))
+        :ARG1 (w / woman
+            :ARG0-of (h / hold-01
+                :ARG1 b)
+            :ARG0-of (h2 / hold-01
+                :ARG1 (b2 / banana)
+                :location (e / ear))
+            :part e)))

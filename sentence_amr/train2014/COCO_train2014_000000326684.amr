@@ -1,0 +1,31 @@
+# ::tok A carless street showing traffic lights and lights from the street poles .
+# ::node	d	drive-01	1-2
+# ::node	0	-	1-2
+# ::node	s2	street	2-3
+# ::node	s	show-01	3-4
+# ::node	t	traffic	4-5
+# ::node	l	light	5-6
+# ::node	a	and	6-7
+# ::node	l2	light	7-8
+# ::node	s3	street	10-11
+# ::node	p	pole	11-12
+# ::root	s2	street
+# ::edge	drive-01	polarity	-	d	0	
+# ::edge	street	ARG1-of	drive-01	s2	d	
+# ::edge	street	ARG0-of	show-01	s2	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	light	a	l2	
+# ::edge	pole	mod	street	p	s3	
+# ::edge	and	source	pole	a	p	
+(s2 / street
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (l / light
+                :mod (t / traffic))
+            :op2 (l2 / light)
+            :source (p / pole
+                :mod (s3 / street))))
+    :ARG1-of (d / drive-01
+        :polarity -))

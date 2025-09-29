@@ -1,0 +1,28 @@
+# ::tok A yellow fire hydrant at night that is lit by bright street lights .
+# ::node	y	yellow-02	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	d	date-entity	5-6
+# ::node	n	night	5-6
+# ::node	l2	light-04	8-9
+# ::node	b	bright-02	10-11
+# ::node	s	street	11-12
+# ::node	l	light	12-13
+# ::root	h	hydrant
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	yellow-02	h	y	
+# ::edge	hydrant	time	date-entity	h	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	hydrant	ARG1-of	light-04	h	l2	
+# ::edge	light	mod	street	l	s	
+# ::edge	light	ARG1-of	bright-02	l	b	
+# ::edge	light-04	ARG0	light	l2	l	
+(h / hydrant
+    :ARG1-of (y / yellow-02)
+    :ARG1-of (l2 / light-04
+        :ARG0 (l / light
+            :ARG1-of (b / bright-02)
+            :mod (s / street)))
+    :mod (f / fire)
+    :time (d / date-entity
+        :dayperiod (n / night)))

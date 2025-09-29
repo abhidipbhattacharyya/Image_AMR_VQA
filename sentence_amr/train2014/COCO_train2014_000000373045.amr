@@ -1,0 +1,30 @@
+# ::tok A bullet style train passes under a pedestrian bridge as it pulls into a station .
+# ::node	b2	bullet	1-2
+# ::node	s2	style	2-3
+# ::node	t	train	3-4
+# ::node	p	pass-02	4-5
+# ::node	u	under	5-6
+# ::node	p2	pedestrian	7-8
+# ::node	b	bridge	8-9
+# ::node	p3	pull-01	11-12
+# ::node	s	station	14-15
+# ::root	p	pass-02
+# ::edge	style	mod	bullet	s2	b2	
+# ::edge	train	mod	style	t	s2	
+# ::edge	pass-02	ARG0	train	p	t	
+# ::edge	pass-02	ARG1	under	p	u	
+# ::edge	bridge	mod	pedestrian	b	p2	
+# ::edge	under	op1	bridge	u	b	
+# ::edge	pass-02	time	pull-01	p	p3	
+# ::edge	pull-01	ARG0	train	p3	t	
+# ::edge	pull-01	ARG2	station	p3	s	
+(p / pass-02
+    :ARG0 (t / train
+        :mod (s2 / style
+            :mod (b2 / bullet)))
+    :ARG1 (u / under
+        :op1 (b / bridge
+            :mod (p2 / pedestrian)))
+    :time (p3 / pull-01
+        :ARG0 t
+        :ARG2 (s / station)))

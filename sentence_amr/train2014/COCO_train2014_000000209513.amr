@@ -1,0 +1,32 @@
+# ::tok A tennis player is jumping to hit the ball while a photographer captures it .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	j	jump-03	4-5
+# ::node	h	hit-01	6-7
+# ::node	b	ball	8-9
+# ::node	p2	person	11-12
+# ::node	p3	photograph-01	11-12
+# ::node	c	capture-01	12-13
+# ::root	j	jump-03
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	tennis	p4	t	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	jump-03	purpose	hit-01	j	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	person	ARG0-of	photograph-01	p2	p3	
+# ::edge	capture-01	ARG0	person	c	p2	
+# ::edge	capture-01	ARG1	ball	c	b	
+# ::edge	jump-03	time	capture-01	j	c	
+(j / jump-03
+    :purpose (h / hit-01
+        :ARG0 (p / person
+            :ARG0-of (p4 / play-01
+                :ARG1 (t / tennis)))
+        :ARG1 (b / ball))
+    :ARG0 p
+    :time (c / capture-01
+        :ARG0 (p2 / person
+            :ARG0-of (p3 / photograph-01))
+        :ARG1 b))

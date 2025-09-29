@@ -1,0 +1,31 @@
+# ::tok a passenger bus heading toward City Campus turns on an empty street
+# ::node	p	passenger	1-2
+# ::node	b	bus	2-3
+# ::node	h	head-02	3-4
+# ::node	n	name	5-6
+# ::node	1	City	5-6
+# ::node	u	university	6-7
+# ::node	0	Campus	6-7
+# ::node	t	turn-01	7-8
+# ::node	e	empty-02	10-11
+# ::node	s	street	11-12
+# ::root	t	turn-01
+# ::edge	bus	mod	passenger	b	p	
+# ::edge	bus	ARG0-of	head-02	b	h	
+# ::edge	name	op1	City	n	1	
+# ::edge	university	name	name	u	n	
+# ::edge	head-02	ARG1	university	h	u	
+# ::edge	name	op2	Campus	n	0	
+# ::edge	turn-01	ARG0	bus	t	b	
+# ::edge	street	ARG1-of	empty-02	s	e	
+# ::edge	turn-01	direction	street	t	s	
+(t / turn-01
+    :ARG0 (b / bus
+        :ARG0-of (h / head-02
+            :ARG1 (u / university
+                :name (n / name
+                    :op1 "City"
+                    :op2 "Campus")))
+        :mod (p / passenger))
+    :direction (s / street
+        :ARG1-of (e / empty-02)))

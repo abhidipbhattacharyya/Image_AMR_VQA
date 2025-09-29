@@ -1,0 +1,34 @@
+# ::tok this floor has a pattern of black and white tiles the sink is the same pattern
+# ::node	t	this	0-1
+# ::node	f	floor	1-2
+# ::node	h	have-03	2-3
+# ::node	p	pattern	4-5
+# ::node	b	black-04	6-7
+# ::node	a	and	7-8
+# ::node	w	white-03	8-9
+# ::node	t2	tile	9-10
+# ::node	s2	sink	11-12
+# ::node	s	same-01	14-15
+# ::node	p2	pattern	15-16
+# ::root	h	have-03
+# ::edge	floor	mod	this	f	t	
+# ::edge	have-03	ARG0	floor	h	f	
+# ::edge	have-03	ARG1	pattern	h	p	
+# ::edge	and	op1	black-04	a	b	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	tile	consist-of	and	t2	a	
+# ::edge	pattern	consist-of	tile	p	t2	
+# ::edge	same-01	ARG1	sink	s	s2	
+# ::edge	same-01	ARG2	pattern	s	p2	
+# ::edge	have-03	rel	same-01	h	s	
+(h / have-03
+    :ARG0 (f / floor
+        :mod (t / this))
+    :ARG1 (p / pattern
+        :consist-of (t2 / tile
+            :consist-of (a / and
+                :op1 (b / black-04)
+                :op2 (w / white-03))))
+    :rel (s / same-01
+        :ARG1 (s2 / sink)
+        :ARG2 (p2 / pattern)))

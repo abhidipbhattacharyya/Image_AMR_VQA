@@ -1,0 +1,30 @@
+# ::tok the group of ultimate Frisbee players try to intercept a toss
+# ::node	g	group	1-2
+# ::node	u	ultimate	3-4
+# ::node	d	disc	4-5
+# ::node	r	Frisbee	4-5
+# ::node	p	person	5-6
+# ::node	p2	play-01	5-6
+# ::node	t2	try-01	6-7
+# ::node	i	intercept-01	8-9
+# ::node	t	toss-01	10-11
+# ::root	t2	try-01
+# ::edge	disc	mod	ultimate	d	u	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	disc	p2	d	
+# ::edge	try-01	ARG0	group	t2	g	
+# ::edge	try-01	ARG1	intercept-01	t2	i	
+# ::edge	intercept-01	ARG0	group	i	g	
+# ::edge	intercept-01	ARG1	toss-01	i	t	
+# ::edge	try-01	rel	Frisbee	t2	r	
+(t2 / try-01
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (d / disc
+                    :mod (u / ultimate)))))
+    :ARG1 (i / intercept-01
+        :ARG0 g
+        :ARG1 (t / toss-01))
+    :rel (r / Frisbee))

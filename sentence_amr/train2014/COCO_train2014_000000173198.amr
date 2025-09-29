@@ -1,0 +1,53 @@
+# ::tok A red fire truck with a fire fighter standing next to a giant baby hanging off the side of one of it 's door .
+# ::node	r	red-02	1-2
+# ::node	f2	fire	2-3
+# ::node	t	truck	3-4
+# ::node	h2	have-03	4-5
+# ::node	p	person	7-8
+# ::node	f	fight-01	7-8
+# ::node	s2	stand-01	8-9
+# ::node	n	next-to	9-10
+# ::node	g	giant	12-13
+# ::node	b	baby	13-14
+# ::node	h	hang-01	14-15
+# ::node	s	side	17-18
+# ::node	0	1	19-20
+# ::node	i	include-91	20-21
+# ::node	d	door	23-24
+# ::node	d2	door	23-24
+# ::root	s2	stand-01
+# ::edge	truck	mod	fire	t	f2	
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	truck	ARG0-of	have-03	t	h2	
+# ::edge	have-03	ARG1	person	h2	p	
+# ::edge	person	ARG0-of	fight-01	p	f	
+# ::edge	fight-01	ARG1	fire	f	f2	
+# ::edge	stand-01	ARG1	truck	s2	t	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	baby	mod	giant	b	g	
+# ::edge	next-to	op1	baby	n	b	
+# ::edge	baby	ARG1-of	hang-01	b	h	
+# ::edge	hang-01	ARG2	side	h	s	
+# ::edge	door	ARG1-of	include-91	d	i	
+# ::edge	door	quant	1	d	0	
+# ::edge	side	part-of	door	s	d	
+# ::edge	include-91	ARG2	door	i	d2	
+# ::edge	truck	part	door	t	d2	
+(s2 / stand-01
+    :ARG1 (t / truck
+        :ARG0-of (h2 / have-03
+            :ARG1 (p / person
+                :ARG0-of (f / fight-01
+                    :ARG1 (f2 / fire))))
+        :ARG1-of (r / red-02)
+        :mod f2
+        :part (d2 / door))
+    :ARG2 (n / next-to
+        :op1 (b / baby
+            :ARG1-of (h / hang-01
+                :ARG2 (s / side
+                    :part-of (d / door
+                        :quant 1
+                        :ARG1-of (i / include-91
+                            :ARG2 d2))))
+            :mod (g / giant))))

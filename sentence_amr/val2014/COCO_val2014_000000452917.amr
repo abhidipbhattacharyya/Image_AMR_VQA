@@ -1,0 +1,33 @@
+# ::tok Male skateboarder in mid air performing stunt on nighttime street .
+# ::node	m	male	0-1
+# ::node	p3	person	1-2
+# ::node	s	skate-01	1-2
+# ::node	m2	middle	3-4
+# ::node	a	air	4-5
+# ::node	p	perform-01	5-6
+# ::node	p2	perform-01	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::node	s2	street	9-10
+# ::root	p	perform-01
+# ::edge	person	mod	male	p3	m	
+# ::edge	person	ARG0-of	skate-01	p3	s	
+# ::edge	air	mod	middle	a	m2	
+# ::edge	person	location	air	p3	a	
+# ::edge	perform-01	ARG0	person	p	p3	
+# ::edge	perform-01	manner	perform-01	p	p2	
+# ::edge	perform-01	ARG0	person	p2	p3	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	street	time	date-entity	s2	d	
+# ::edge	perform-01	location	street	p	s2	
+(p / perform-01
+    :ARG0 (p3 / person
+        :ARG0-of (s / skate-01)
+        :location (a / air
+            :mod (m2 / middle))
+        :mod (m / male))
+    :location (s2 / street
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :manner (p2 / perform-01
+        :ARG0 p3))

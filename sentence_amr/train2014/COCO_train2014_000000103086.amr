@@ -1,0 +1,26 @@
+# ::tok A red train stopped at the station with people waiting to get on .
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	s2	stop-01	3-4
+# ::node	s	station	6-7
+# ::node	p	person	8-9
+# ::node	w	wait-01	9-10
+# ::node	g	get-05	11-12
+# ::root	s2	stop-01
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG2	train	g	t	
+# ::edge	stop-01	rel	wait-01	s2	w	
+(s2 / stop-01
+    :ARG1 (t / train
+        :ARG1-of (r / red-02))
+    :location (s / station)
+    :rel (w / wait-01
+        :ARG2 (g / get-05
+            :ARG1 (p / person
+                :ARG1-of w)
+            :ARG2 t)))

@@ -1,0 +1,24 @@
+# ::tok a street light sits in front of a street with traffic on it
+# ::node	s2	street	1-2
+# ::node	l	light	2-3
+# ::node	s	sit-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	s3	street	8-9
+# ::node	h	have-03	9-10
+# ::node	t	traffic	10-11
+# ::root	s	sit-01
+# ::edge	light	mod	street	l	s2	
+# ::edge	sit-01	ARG1	light	s	l	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	street	i	s3	
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	traffic	h	t	
+# ::edge	traffic	location	street	t	s3	
+(s / sit-01
+    :ARG1 (l / light
+        :mod (s2 / street))
+    :ARG2 (i / in-front-of
+        :op1 (s3 / street
+            :ARG0-of (h / have-03
+                :ARG1 (t / traffic
+                    :location s3)))))

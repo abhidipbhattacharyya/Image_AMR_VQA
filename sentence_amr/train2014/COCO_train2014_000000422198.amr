@@ -1,0 +1,31 @@
+# ::tok A screen is showing a plane flying over a map of the Atlantic Ocean .
+# ::node	s	screen	1-2
+# ::node	s2	show-01	3-4
+# ::node	p	plane	5-6
+# ::node	f	fly-01	6-7
+# ::node	o2	over	7-8
+# ::node	m	map	9-10
+# ::node	n	name	12-13
+# ::node	0	Atlantic	12-13
+# ::node	o	ocean	13-14
+# ::node	1	Ocean	13-14
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	screen	s2	s	
+# ::edge	show-01	ARG1	plane	s2	p	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	path	over	f	o2	
+# ::edge	over	op1	map	o2	m	
+# ::edge	name	op1	Atlantic	n	0	
+# ::edge	ocean	name	name	o	n	
+# ::edge	map	mod	ocean	m	o	
+# ::edge	name	op2	Ocean	n	1	
+(s2 / show-01
+    :ARG0 (s / screen)
+    :ARG1 (p / plane
+        :ARG2-of (f / fly-01
+            :path (o2 / over
+                :op1 (m / map
+                    :mod (o / ocean
+                        :name (n / name
+                            :op1 "Atlantic"
+                            :op2 "Ocean")))))))

@@ -1,0 +1,62 @@
+# ::tok There are two photos , they are both of a couple sitting on a bench .
+# ::node	0	2	2-3
+# ::node	p	photo	3-4
+# ::node	b2	both	7-8
+# ::node	c	couple	10-11
+# ::node	s	sit-01	11-12
+# ::node	b	bench	14-15
+# ::root	p	photo
+# ::edge	photo	quant	2	p	0	
+# ::edge	photo	mod	both	p	b2	
+# ::edge	photo	consist-of	couple	p	c	
+# ::edge	couple	ARG1-of	sit-01	c	s	
+# ::edge	sit-01	ARG2	bench	s	b	
+(p / photo
+    :quant 2
+    :consist-of (c / couple
+        :ARG1-of (s / sit-01
+            :ARG2 (b / bench)))
+    :mod (b2 / both))
+
+
+# ::tok The top photo is their lower half and the bottom photo is their upper half .
+# ::node	t2	top	1-2
+# ::node	p	photo	2-3
+# ::node	t	they	4-5
+# ::node	l	low-04	5-6
+# ::node	h3	have-degree-91	5-6
+# ::node	m	more	5-6
+# ::node	h	half	6-7
+# ::node	a	and	7-8
+# ::node	b	bottom	9-10
+# ::node	p2	photo	10-11
+# ::node	u	upper	13-14
+# ::node	h2	half	14-15
+# ::root	a	and
+# ::edge	photo	location	top	p	t2	
+# ::edge	low-04	ARG2-of	have-degree-91	l	h3	
+# ::edge	have-degree-91	ARG3	more	h3	m	
+# ::edge	have-degree-91	ARG1	half	h3	h	
+# ::edge	half	ARG1-of	low-04	h	l	
+# ::edge	half	part-of	they	h	t	
+# ::edge	and	op1	photo	a	p	
+# ::edge	photo	location	bottom	p2	b	
+# ::edge	half	mod	upper	h2	u	
+# ::edge	half	domain	photo	h2	p2	
+# ::edge	and	op2	half	a	h2	
+# ::edge	they	part	half	t	h2	
+# ::edge	and	rel	have-degree-91	a	h3	
+(a / and
+    :op1 (p / photo
+        :location (t2 / top))
+    :op2 (h2 / half
+        :domain (p2 / photo
+            :location (b / bottom))
+        :mod (u / upper))
+    :rel (h3 / have-degree-91
+        :ARG1 (h / half
+            :ARG1-of (l / low-04
+                :ARG2-of h3)
+            :part-of (t / they
+                :part h2))
+        :ARG3 (m / more)))

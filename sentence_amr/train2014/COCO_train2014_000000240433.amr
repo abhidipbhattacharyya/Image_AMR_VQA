@@ -1,0 +1,48 @@
+# ::tok A man wearing big white sunglasses and a black and white checkered bracelet is staring at the camera with his mouth wide open .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	b	big	3-4
+# ::node	w2	white-03	4-5
+# ::node	s2	sunglasses	5-6
+# ::node	a	and	6-7
+# ::node	b2	black-04	8-9
+# ::node	a2	and	9-10
+# ::node	p	pattern	11-12
+# ::node	b3	bracelet	12-13
+# ::node	s	stare-01	14-15
+# ::node	c	camera	17-18
+# ::node	m2	mouth	20-21
+# ::node	w3	wide-02	21-22
+# ::node	o	open-01	22-23
+# ::root	s	stare-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	sunglasses	ARG1-of	white-03	s2	w2	
+# ::edge	sunglasses	mod	big	s2	b	
+# ::edge	and	op1	sunglasses	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op1	black-04	a2	b2	
+# ::edge	and	op2	pattern	a2	p	
+# ::edge	bracelet	consist-of	and	b3	a2	
+# ::edge	and	op2	bracelet	a	b3	
+# ::edge	stare-01	ARG0	man	s	m	
+# ::edge	stare-01	ARG1	camera	s	c	
+# ::edge	man	part	mouth	m	m2	
+# ::edge	open-01	ARG1-of	wide-02	o	w3	
+# ::edge	open-01	ARG1	mouth	o	m2	
+# ::edge	stare-01	manner	open-01	s	o	
+(s / stare-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s2 / sunglasses
+                    :ARG1-of (w2 / white-03)
+                    :mod (b / big))
+                :op2 (b3 / bracelet
+                    :consist-of (a2 / and
+                        :op1 (b2 / black-04)
+                        :op2 (p / pattern)))))
+        :part (m2 / mouth))
+    :ARG1 (c / camera)
+    :manner (o / open-01
+        :ARG1 m2
+        :ARG1-of (w3 / wide-02)))

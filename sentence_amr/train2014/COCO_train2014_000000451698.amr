@@ -1,0 +1,47 @@
+# ::tok A wood dining table with a sandwich on a plate and a cup of coffee beside it .
+# ::node	w	wood	1-2
+# ::node	d	dine-01	2-3
+# ::node	t	table	3-4
+# ::node	h	have-03	4-5
+# ::node	s	sandwich	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	p	plate	9-10
+# ::node	a	and	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	c2	cup	12-13
+# ::node	c	coffee	14-15
+# ::node	b2	be-located-at-91	15-16
+# ::node	b3	beside	15-16
+# ::root	t	table
+# ::edge	table	purpose	dine-01	t	d	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	be-located-at-91	ARG1	sandwich	b	s	
+# ::edge	be-located-at-91	ARG2	plate	b	p	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	be-located-at-91	ARG1	coffee	b2	c	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	table	b2	t	
+# ::edge	be-located-at-91	ARG2	beside	b2	b3	
+# ::edge	beside	op1	table	b3	t	
+(t / table
+    :purpose (d / dine-01)
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / be-located-at-91
+                :ARG1 (s / sandwich)
+                :ARG2 (p / plate))
+            :op2 (b2 / be-located-at-91
+                :ARG1 (c / coffee
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (c2 / cup)))
+                :ARG2 t
+                :ARG2 (b3 / beside
+                    :op1 t))))
+    :consist-of (w / wood))

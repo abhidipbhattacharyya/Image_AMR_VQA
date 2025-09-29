@@ -1,0 +1,44 @@
+# ::tok A glass of wine , a pepper mill , and oil and vinegar cruets are sitting on the counter .
+# ::node	g	glass	1-2
+# ::node	w	wine	3-4
+# ::node	p	pepper	6-7
+# ::node	m	mill	7-8
+# ::node	a	and	9-10
+# ::node	o	oil	10-11
+# ::node	a2	and	11-12
+# ::node	v	vinegar	12-13
+# ::node	c	cocktail	13-14
+# ::node	s	ship	13-14
+# ::node	c2	cocktail	13-14
+# ::node	s2	sit-01	15-16
+# ::node	c3	counter	18-19
+# ::root	s2	sit-01
+# ::edge	wine	quant	glass	w	g	
+# ::edge	mill	mod	pepper	m	p	
+# ::edge	and	op2	mill	a	m	
+# ::edge	and	op1	wine	a	w	
+# ::edge	oil	op3	and	o	a2	
+# ::edge	and	op1	cocktail	a2	c	
+# ::edge	cocktail	mod	oil	c	o	
+# ::edge	and	op2	ship	a2	s	
+# ::edge	ship	mod	oil	s	o	
+# ::edge	cocktail	mod	vinegar	c2	v	
+# ::edge	and	op2	cocktail	a2	c2	
+# ::edge	sit-01	ARG1	and	s2	a	
+# ::edge	sit-01	ARG2	counter	s2	c3	
+# ::edge	sit-01	rel	and	s2	a2	
+(s2 / sit-01
+    :ARG1 (a / and
+        :op1 (w / wine
+            :quant (g / glass))
+        :op2 (m / mill
+            :mod (p / pepper)))
+    :ARG2 (c3 / counter)
+    :rel (a2 / and
+        :op1 (c / cocktail
+            :mod (o / oil
+                :op3 a2))
+        :op2 (s / ship
+            :mod o)
+        :op2 (c2 / cocktail
+            :mod (v / vinegar))))

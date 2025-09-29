@@ -1,0 +1,25 @@
+# ::tok Pizza with toppings served on a tray sitting on a table .
+# ::node	p	protein	0-1
+# ::node	c	continent	2-3
+# ::node	n	name	2-3
+# ::node	0	Health	2-3
+# ::node	s	serve-02	3-4
+# ::node	t2	tray	6-7
+# ::node	s2	sit-01	7-8
+# ::node	t	table	10-11
+# ::root	p	protein
+# ::edge	protein	mod	continent	p	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op2	Health	n	0	
+# ::edge	protein	ARG1-of	serve-02	p	s	
+# ::edge	serve-02	location	tray	s	t2	
+# ::edge	tray	ARG1-of	sit-01	t2	s2	
+# ::edge	sit-01	ARG2	table	s2	t	
+(p / protein
+    :ARG1-of (s / serve-02
+        :location (t2 / tray
+            :ARG1-of (s2 / sit-01
+                :ARG2 (t / table))))
+    :mod (c / continent
+        :name (n / name
+            :op2 "Health")))

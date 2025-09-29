@@ -1,0 +1,27 @@
+# ::tok A train leaving a train station with two red brick towers .
+# ::node	t2	train	1-2
+# ::node	l	leave-11	2-3
+# ::node	s	station	5-6
+# ::node	h	have-03	6-7
+# ::node	0	2	7-8
+# ::node	r	red-02	8-9
+# ::node	b	brick	9-10
+# ::node	t	tower	10-11
+# ::root	l	leave-11
+# ::edge	leave-11	ARG0	train	l	t2	
+# ::edge	leave-11	ARG1	station	l	s	
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	tower	consist-of	brick	t	b	
+# ::edge	tower	quant	2	t	0	
+# ::edge	have-03	ARG1	tower	h	t	
+(l / leave-11
+    :ARG0 (t2 / train)
+    :ARG1 (s / station
+        :ARG0-of (h / have-03
+            :ARG1 (t / tower
+                :quant 2
+                :consist-of (b / brick
+                    :ARG1-of (r / red-02))))
+        :mod t2))

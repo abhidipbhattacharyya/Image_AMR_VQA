@@ -1,0 +1,49 @@
+# ::tok A rural road with three octagonal signs , two are stop signs and one has the word " Go " painted on it .
+# ::node	r2	rural	1-2
+# ::node	r	road	2-3
+# ::node	h	have-03	3-4
+# ::node	2	3	4-5
+# ::node	v	volume-quantity	5-6
+# ::node	o	octagonal	5-6
+# ::node	s	sign	6-7
+# ::node	s2	sign	6-7
+# ::node	1	2	8-9
+# ::node	s3	stop-01	10-11
+# ::node	a	and	12-13
+# ::node	0	1	13-14
+# ::node	t	thing	15-16
+# ::node	w	word	16-17
+# ::node	g	go-01	18-19
+# ::node	p	paint-01	20-21
+# ::root	r	road
+# ::edge	road	mod	rural	r	r2	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	volume-quantity	quant	3	v	2	
+# ::edge	volume-quantity	mod	octagonal	v	o	
+# ::edge	sign	mod	volume-quantity	s	v	
+# ::edge	sign	quant	2	s2	1	
+# ::edge	sign	mod	stop-01	s2	s3	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	thing	quant	1	t	0	
+# ::edge	word	mod	go-01	w	g	
+# ::edge	paint-01	ARG1	word	p	w	
+# ::edge	paint-01	ARG2	thing	p	t	
+# ::edge	and	op3	paint-01	a	p	
+(r / road
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :mod (v / volume-quantity
+                    :quant 3
+                    :mod (o / octagonal)))
+            :op2 (s2 / sign
+                :quant 2
+                :mod (s3 / stop-01))
+            :op3 (p / paint-01
+                :ARG1 (w / word
+                    :mod (g / go-01))
+                :ARG2 (t / thing
+                    :quant 1))))
+    :mod (r2 / rural))

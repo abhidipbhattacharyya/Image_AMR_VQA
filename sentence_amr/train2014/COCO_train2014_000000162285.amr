@@ -1,0 +1,37 @@
+# ::tok A sandwich cut in half sits on paper with a cup of pasta between the two halves .
+# ::node	s	sandwich	1-2
+# ::node	c2	cut-02	2-3
+# ::node	h	half	4-5
+# ::node	s2	sit-01	5-6
+# ::node	p	paper	7-8
+# ::node	a	and	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c	cup	10-11
+# ::node	p2	pasta	12-13
+# ::node	b	between	13-14
+# ::node	h2	half	16-17
+# ::root	a	and
+# ::edge	sandwich	ARG1-of	cut-02	s	c2	
+# ::edge	cut-02	mod	half	c2	h	
+# ::edge	sit-01	ARG1	sandwich	s2	s	
+# ::edge	sit-01	ARG2	paper	s2	p	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	pasta	quant	volume-quantity	p2	v	
+# ::edge	between	op2	pasta	b	p2	
+# ::edge	and	op2	between	a	b	
+# ::edge	between	op1	half	b	h2	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (s / sandwich
+            :ARG1-of (c2 / cut-02
+                :mod (h / half)))
+        :ARG2 (p / paper))
+    :op2 (b / between
+        :op1 (h2 / half)
+        :op2 (p2 / pasta
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c / cup)))))

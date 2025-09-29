@@ -1,0 +1,24 @@
+# ::tok A man drives a bus with several buses parked behind it .
+# ::node	m	man	1-2
+# ::node	d	drive-01	2-3
+# ::node	b2	bus	4-5
+# ::node	s	several	6-7
+# ::node	b3	bus	7-8
+# ::node	p	park-01	8-9
+# ::node	b	behind	9-10
+# ::root	d	drive-01
+# ::edge	drive-01	ARG0	man	d	m	
+# ::edge	drive-01	ARG1	bus	d	b2	
+# ::edge	bus	quant	several	b3	s	
+# ::edge	park-01	ARG1	bus	p	b3	
+# ::edge	drive-01	prep-with	park-01	d	p	
+# ::edge	park-01	ARG2	behind	p	b	
+# ::edge	behind	op1	bus	b	b2	
+(d / drive-01
+    :ARG0 (m / man)
+    :ARG1 (b2 / bus)
+    :prep-with (p / park-01
+        :ARG1 (b3 / bus
+            :quant (s / several))
+        :ARG2 (b / behind
+            :op1 b2)))

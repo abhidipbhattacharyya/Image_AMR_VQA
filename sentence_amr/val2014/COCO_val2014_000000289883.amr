@@ -1,0 +1,28 @@
+# ::tok A double bus is coming around a street corner near a traffic light .
+# ::node	d	double	1-2
+# ::node	b	bus	2-3
+# ::node	c	come-01	4-5
+# ::node	a	around	5-6
+# ::node	s	street	7-8
+# ::node	c2	corner	8-9
+# ::node	n	near-02	9-10
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	c	come-01
+# ::edge	bus	mod	double	b	d	
+# ::edge	come-01	ARG1	bus	c	b	
+# ::edge	come-01	path	around	c	a	
+# ::edge	corner	mod	street	c2	s	
+# ::edge	around	op1	corner	a	c2	
+# ::edge	corner	ARG1-of	near-02	c2	n	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	near-02	ARG2	light	n	l	
+(c / come-01
+    :ARG1 (b / bus
+        :mod (d / double))
+    :path (a / around
+        :op1 (c2 / corner
+            :ARG1-of (n / near-02
+                :ARG2 (l / light
+                    :mod (t / traffic)))
+            :mod (s / street))))

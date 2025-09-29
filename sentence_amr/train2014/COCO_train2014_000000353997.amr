@@ -1,0 +1,31 @@
+# ::tok Bananas in a large pile on a tile counter with Starbucks flavoring nearby
+# ::node	b	banana	0-1
+# ::node	l	large	3-4
+# ::node	p	pile-01	4-5
+# ::node	t	tile	7-8
+# ::node	c2	counter	8-9
+# ::node	c	company	10-11
+# ::node	n	name	10-11
+# ::node	0	Starbucks	10-11
+# ::node	f	flavor-00	11-12
+# ::node	n2	nearby	12-13
+# ::root	b	banana
+# ::edge	pile-01	mod	large	p	l	
+# ::edge	banana	ARG1-of	pile-01	b	p	
+# ::edge	counter	mod	tile	c2	t	
+# ::edge	pile-01	location	counter	p	c2	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Starbucks	n	0	
+# ::edge	flavor-00	ARG0	company	f	c	
+# ::edge	banana	location-of	flavor-00	b	f	
+# ::edge	counter	location	nearby	c2	n2	
+(b / banana
+    :ARG1-of (p / pile-01
+        :location (c2 / counter
+            :location (n2 / nearby)
+            :mod (t / tile))
+        :mod (l / large))
+    :location-of (f / flavor-00
+        :ARG0 (c / company
+            :name (n / name
+                :op1 "Starbucks"))))

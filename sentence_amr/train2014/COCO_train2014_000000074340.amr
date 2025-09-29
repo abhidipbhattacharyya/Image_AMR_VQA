@@ -1,0 +1,32 @@
+# ::tok A skiing kid tries to stop before he runs over another kid that fell .
+# ::node	s	ski-01	1-2
+# ::node	k	kid	2-3
+# ::node	t	try-01	3-4
+# ::node	s2	stop-01	5-6
+# ::node	b	before	6-7
+# ::node	r	run-over-12	8-9
+# ::node	a	another	10-11
+# ::node	k2	kid	11-12
+# ::node	f	fall-01	13-14
+# ::root	t	try-01
+# ::edge	kid	ARG0-of	ski-01	k	s	
+# ::edge	try-01	ARG0	kid	t	k	
+# ::edge	try-01	ARG1	stop-01	t	s2	
+# ::edge	stop-01	ARG0	kid	s2	k	
+# ::edge	try-01	time	before	t	b	
+# ::edge	before	op1	run-over-12	b	r	
+# ::edge	run-over-12	ARG0	kid	r	k	
+# ::edge	kid	mod	another	k2	a	
+# ::edge	run-over-12	ARG1	kid	r	k2	
+# ::edge	kid	ARG1-of	fall-01	k2	f	
+(t / try-01
+    :ARG0 (k / kid
+        :ARG0-of (s / ski-01))
+    :ARG1 (s2 / stop-01
+        :ARG0 k)
+    :time (b / before
+        :op1 (r / run-over-12
+            :ARG0 k
+            :ARG1 (k2 / kid
+                :ARG1-of (f / fall-01)
+                :mod (a / another)))))

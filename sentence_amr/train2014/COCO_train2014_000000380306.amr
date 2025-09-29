@@ -1,0 +1,31 @@
+# ::tok Several people are standing , walking or running at a train station .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	stand-01	3-4
+# ::node	w	walk-01	5-6
+# ::node	o	or	6-7
+# ::node	r	run-02	7-8
+# ::node	t	train	10-11
+# ::node	s3	station	11-12
+# ::root	o	or
+# ::edge	person	quant	several	p	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	or	op2	walk-01	o	w	
+# ::edge	or	op1	stand-01	o	s2	
+# ::edge	or	op3	run-02	o	r	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	station	mod	train	s3	t	
+# ::edge	or	location	station	o	s3	
+# ::edge	walk-01	ARG2	station	w	s3	
+(o / or
+    :location (s3 / station
+        :mod (t / train))
+    :op1 (s2 / stand-01
+        :ARG1 (p / person
+            :quant (s / several)))
+    :op2 (w / walk-01
+        :ARG0 p
+        :ARG2 s3)
+    :op3 (r / run-02
+        :ARG0 p))

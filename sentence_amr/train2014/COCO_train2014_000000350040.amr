@@ -1,0 +1,25 @@
+# ::tok Urban area intersection with traffic signals displayed at sunset .
+# ::node	u	urban	0-1
+# ::node	a	area	1-2
+# ::node	i	intersect-01	2-3
+# ::node	t	traffic	4-5
+# ::node	s	signal-07	5-6
+# ::node	d2	display-01	6-7
+# ::node	d	date-entity	8-9
+# ::node	s2	sunset	8-9
+# ::root	i	intersect-01
+# ::edge	area	mod	urban	a	u	
+# ::edge	intersect-01	ARG1	area	i	a	
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	intersect-01	location-of	signal-07	i	s	
+# ::edge	signal-07	ARG1-of	display-01	s	d2	
+# ::edge	display-01	time	date-entity	d2	d	
+# ::edge	date-entity	dayperiod	sunset	d	s2	
+(i / intersect-01
+    :ARG1 (a / area
+        :mod (u / urban))
+    :location-of (s / signal-07
+        :ARG1 (t / traffic)
+        :ARG1-of (d2 / display-01
+            :time (d / date-entity
+                :dayperiod (s2 / sunset)))))

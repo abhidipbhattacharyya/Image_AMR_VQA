@@ -1,0 +1,28 @@
+# ::tok A yellow an red colored train that is approaching a pickup / drop off point .
+# ::node	y	yellow-02	1-2
+# ::node	r	red-02	3-4
+# ::node	c	color-01	4-5
+# ::node	t	train	5-6
+# ::node	a	approach-01	8-9
+# ::node	p	pick-up-04	10-11
+# ::node	s	slash	11-12
+# ::node	d	drop-off-03	12-13
+# ::node	p2	point	14-15
+# ::root	t	train
+# ::edge	color-01	ARG2	red-02	c	r	
+# ::edge	train	ARG1-of	color-01	t	c	
+# ::edge	train	ARG1-of	yellow-02	t	y	
+# ::edge	train	ARG1-of	approach-01	t	a	
+# ::edge	slash	op1	pick-up-04	s	p	
+# ::edge	slash	op2	drop-off-03	s	d	
+# ::edge	point	location-of	slash	p2	s	
+# ::edge	approach-01	ARG2	point	a	p2	
+(t / train
+    :ARG1-of (c / color-01
+        :ARG2 (r / red-02))
+    :ARG1-of (y / yellow-02)
+    :ARG1-of (a / approach-01
+        :ARG2 (p2 / point
+            :location-of (s / slash
+                :op1 (p / pick-up-04)
+                :op2 (d / drop-off-03)))))

@@ -1,0 +1,55 @@
+# ::tok A pink box of doughnuts , a two liter bottle of Coca Cola , a bottle of liquor and a shot glass are on a table .
+# ::node	p	pink-04	1-2
+# ::node	b4	box	2-3
+# ::node	d	donut	4-5
+# ::node	0	2	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	l2	liter	8-9
+# ::node	b2	bottle	9-10
+# ::node	n	name	11-12
+# ::node	1	Coca	11-12
+# ::node	p2	product	12-13
+# ::node	2	Cola	12-13
+# ::node	b3	bottle	15-16
+# ::node	l	liquor	17-18
+# ::node	a	and	18-19
+# ::node	s	shoot-01	20-21
+# ::node	g	glass	21-22
+# ::node	b	be-located-at-91	23-24
+# ::node	t	table	25-26
+# ::root	b	be-located-at-91
+# ::edge	box	ARG1-of	pink-04	b4	p	
+# ::edge	box	consist-of	donut	b4	d	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	liter	v	l2	
+# ::edge	bottle	mod	volume-quantity	b2	v	
+# ::edge	name	op1	Coca	n	1	
+# ::edge	product	name	name	p2	n	
+# ::edge	bottle	consist-of	product	b2	p2	
+# ::edge	name	op2	Cola	n	2	
+# ::edge	bottle	quant-of	liquor	b3	l	
+# ::edge	and	op3	bottle	a	b3	
+# ::edge	and	op2	bottle	a	b2	
+# ::edge	and	op1	box	a	b4	
+# ::edge	glass	mod	shoot-01	g	s	
+# ::edge	and	op4	glass	a	g	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (b4 / box
+            :ARG1-of (p / pink-04)
+            :consist-of (d / donut))
+        :op2 (b2 / bottle
+            :consist-of (p2 / product
+                :name (n / name
+                    :op1 "Coca"
+                    :op2 "Cola"))
+            :mod (v / volume-quantity
+                :quant 2
+                :unit (l2 / liter)))
+        :op3 (b3 / bottle
+            :quant-of (l / liquor))
+        :op4 (g / glass
+            :mod (s / shoot-01)))
+    :ARG2 (t / table))

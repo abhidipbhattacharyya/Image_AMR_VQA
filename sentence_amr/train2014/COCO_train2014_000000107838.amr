@@ -1,0 +1,25 @@
+# ::tok Large jet parked at gate with service modules preparing plane .
+# ::node	l	large	0-1
+# ::node	j	jet	1-2
+# ::node	p	park-01	2-3
+# ::node	g	gate	4-5
+# ::node	s	service-05	6-7
+# ::node	m	module	7-8
+# ::node	p3	prepare-02	8-9
+# ::node	p2	plane	9-10
+# ::root	p	park-01
+# ::edge	jet	mod	large	j	l	
+# ::edge	park-01	ARG1	jet	p	j	
+# ::edge	park-01	ARG2	gate	p	g	
+# ::edge	module	ARG0-of	service-05	m	s	
+# ::edge	jet	prep-with	module	j	m	
+# ::edge	module	ARG0-of	prepare-02	m	p3	
+# ::edge	prepare-02	ARG1	plane	p3	p2	
+(p / park-01
+    :ARG1 (j / jet
+        :mod (l / large)
+        :prep-with (m / module
+            :ARG0-of (s / service-05)
+            :ARG0-of (p3 / prepare-02
+                :ARG1 (p2 / plane))))
+    :ARG2 (g / gate))

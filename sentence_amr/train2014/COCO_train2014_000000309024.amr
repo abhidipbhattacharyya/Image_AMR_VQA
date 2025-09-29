@@ -1,0 +1,27 @@
+# ::tok Two passenger trains passing each other with many power lines overhead .
+# ::node	0	2	0-1
+# ::node	p2	passenger	1-2
+# ::node	t	train	2-3
+# ::node	p	pass-03	3-4
+# ::node	m	many	7-8
+# ::node	p3	power-01	8-9
+# ::node	l	line	9-10
+# ::node	o	overhead	10-11
+# ::root	p	pass-03
+# ::edge	train	mod	passenger	t	p2	
+# ::edge	train	quant	2	t	0	
+# ::edge	pass-03	ARG1	train	p	t	
+# ::edge	pass-03	ARG0	train	p	t	
+# ::edge	line	ARG0-of	power-01	l	p3	
+# ::edge	line	quant	many	l	m	
+# ::edge	pass-03	prep-with	line	p	l	
+# ::edge	line	location	overhead	l	o	
+(p / pass-03
+    :ARG0 (t / train
+        :quant 2
+        :mod (p2 / passenger))
+    :ARG1 t
+    :prep-with (l / line
+        :quant (m / many)
+        :ARG0-of (p3 / power-01)
+        :location (o / overhead)))

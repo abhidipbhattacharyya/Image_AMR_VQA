@@ -1,0 +1,26 @@
+# ::tok Adult holding plate with food items on green plate for consumption .
+# ::node	a	adult	0-1
+# ::node	h	hold-01	1-2
+# ::node	p	plate	2-3
+# ::node	f	food	4-5
+# ::node	i	item	5-6
+# ::node	g	green-02	7-8
+# ::node	c	consume-01	10-11
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	adult	h	a	
+# ::edge	hold-01	ARG1	plate	h	p	
+# ::edge	item	mod	food	i	f	
+# ::edge	plate	consist-of	item	p	i	
+# ::edge	plate	ARG1-of	green-02	p	g	
+# ::edge	consume-01	ARG1	item	c	i	
+# ::edge	hold-01	purpose	consume-01	h	c	
+# ::edge	consume-01	ARG0	adult	c	a	
+(h / hold-01
+    :purpose (c / consume-01
+        :ARG0 (a / adult)
+        :ARG1 (i / item
+            :mod (f / food)))
+    :ARG0 a
+    :ARG1 (p / plate
+        :ARG1-of (g / green-02)
+        :consist-of i))

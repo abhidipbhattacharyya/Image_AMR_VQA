@@ -1,0 +1,33 @@
+# ::tok A person hands putting toothpaste on a toothbrush getting ready to brush their teeth .
+# ::node	p	person	1-2
+# ::node	h	hand	2-3
+# ::node	p2	put-01	3-4
+# ::node	t3	toothpaste	4-5
+# ::node	t2	toothbrush	7-8
+# ::node	r	ready-01	9-10
+# ::node	b	brush-01	11-12
+# ::node	t	tooth	13-14
+# ::root	p2	put-01
+# ::edge	hand	part-of	person	h	p	
+# ::edge	put-01	ARG0	hand	p2	h	
+# ::edge	put-01	ARG1	toothpaste	p2	t3	
+# ::edge	put-01	ARG2	toothbrush	p2	t2	
+# ::edge	put-01	purpose	ready-01	p2	r	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	brush-01	r	b	
+# ::edge	brush-01	ARG0	person	b	p	
+# ::edge	brush-01	ARG1	tooth	b	t	
+# ::edge	person	part	tooth	p	t	
+(p2 / put-01
+    :purpose (r / ready-01
+        :ARG0 (p / person
+            :part (t / tooth))
+        :ARG1 p
+        :ARG2 (b / brush-01
+            :ARG0 p
+            :ARG1 t))
+    :ARG0 (h / hand
+        :part-of p)
+    :ARG1 (t3 / toothpaste)
+    :ARG2 (t2 / toothbrush))

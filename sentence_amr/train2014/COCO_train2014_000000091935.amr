@@ -1,0 +1,30 @@
+# ::tok A large red Rawtenstall truck is parked , allowing people to aboard .
+# ::node	l	large	1-2
+# ::node	r	red-02	2-3
+# ::node	n	name	3-4
+# ::node	0	Rawtenstall	3-4
+# ::node	t	truck	4-5
+# ::node	p	park-01	6-7
+# ::node	a	allow-01	8-9
+# ::node	p2	person	9-10
+# ::node	b	board-01	11-12
+# ::root	p	park-01
+# ::edge	name	op1	Rawtenstall	n	0	
+# ::edge	truck	name	name	t	n	
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	truck	mod	large	t	l	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG0-of	allow-01	p	a	
+# ::edge	board-01	ARG0	person	b	p2	
+# ::edge	allow-01	ARG1	board-01	a	b	
+# ::edge	board-01	ARG1	truck	b	t	
+(p / park-01
+    :ARG0-of (a / allow-01
+        :ARG1 (b / board-01
+            :ARG0 (p2 / person)
+            :ARG1 (t / truck
+                :name (n / name
+                    :op1 "Rawtenstall")
+                :ARG1-of (r / red-02)
+                :mod (l / large))))
+    :ARG1 t)

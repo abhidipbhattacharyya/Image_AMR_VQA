@@ -1,0 +1,57 @@
+# ::tok Small sized used white refrigerator with door open , on stone driveway and stone walled back ground , looking as if ready for disposal .
+# ::node	s2	small	0-1
+# ::node	s	size-01	1-2
+# ::node	u	use-01	2-3
+# ::node	w2	white-03	3-4
+# ::node	r2	refrigerator	4-5
+# ::node	d2	door	6-7
+# ::node	o	open-09	7-8
+# ::node	s3	stone	10-11
+# ::node	d3	driveway	11-12
+# ::node	a	and	12-13
+# ::node	a2	and	12-13
+# ::node	w	wall-off-01	14-15
+# ::node	g	ground	16-17
+# ::node	l	look-02	18-19
+# ::node	r	ready-02	21-22
+# ::node	d	dispose-01	23-24
+# ::root	l	look-02
+# ::edge	size-01	ARG2	small	s	s2	
+# ::edge	refrigerator	ARG1-of	white-03	r2	w2	
+# ::edge	refrigerator	ARG1-of	use-01	r2	u	
+# ::edge	refrigerator	ARG1-of	size-01	r2	s	
+# ::edge	open-09	ARG1	door	o	d2	
+# ::edge	driveway	mod	stone	d3	s3	
+# ::edge	and	op2	driveway	a	d3	
+# ::edge	and	op1	open-09	a	o	
+# ::edge	refrigerator	location	and	r2	a	
+# ::edge	and	op1	driveway	a2	d3	
+# ::edge	refrigerator	location	and	r2	a2	
+# ::edge	wall-off-01	ARG2	and	w	a2	
+# ::edge	ground	ARG1-of	wall-off-01	g	w	
+# ::edge	and	op2	ground	a2	g	
+# ::edge	look-02	ARG0	refrigerator	l	r2	
+# ::edge	look-02	ARG1	ready-02	l	r	
+# ::edge	ready-02	ARG1	refrigerator	r	r2	
+# ::edge	ready-02	ARG2	dispose-01	r	d	
+# ::edge	dispose-01	ARG1	refrigerator	d	r2	
+(l / look-02
+    :ARG0 (r2 / refrigerator
+        :ARG1-of (w2 / white-03)
+        :ARG1-of (u / use-01)
+        :ARG1-of (s / size-01
+            :ARG2 (s2 / small))
+        :location (a / and
+            :op1 (o / open-09
+                :ARG1 (d2 / door))
+            :op2 (d3 / driveway
+                :mod (s3 / stone)))
+        :location (a2 / and
+            :op1 d3
+            :op2 (g / ground
+                :ARG1-of (w / wall-off-01
+                    :ARG2 a2))))
+    :ARG1 (r / ready-02
+        :ARG1 r2
+        :ARG2 (d / dispose-01
+            :ARG1 r2)))

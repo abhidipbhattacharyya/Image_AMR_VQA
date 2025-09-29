@@ -1,0 +1,27 @@
+# ::tok A pair of scissor blades are on a metal working station .
+# ::node	p	pair	1-2
+# ::node	s	scissor	3-4
+# ::node	c	continent	4-5
+# ::node	s2	shave-01	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	m	metal	8-9
+# ::node	w	work-07	9-10
+# ::node	s3	station	10-11
+# ::root	b	be-located-at-91
+# ::edge	continent	quant	pair	c	p	
+# ::edge	scissor	ARG0-of	shave-01	s	s2	
+# ::edge	shave-01	instrument	scissor	s2	s	
+# ::edge	be-located-at-91	ARG1	continent	b	c	
+# ::edge	work-07	ARG1	metal	w	m	
+# ::edge	station	location-of	work-07	s3	w	
+# ::edge	be-located-at-91	ARG2	station	b	s3	
+# ::edge	be-located-at-91	rel	shave-01	b	s2	
+(b / be-located-at-91
+    :ARG1 (c / continent
+        :quant (p / pair))
+    :ARG2 (s3 / station
+        :location-of (w / work-07
+            :ARG1 (m / metal)))
+    :rel (s2 / shave-01
+        :instrument (s / scissor
+            :ARG0-of s2)))

@@ -1,0 +1,27 @@
+# ::tok A busy train station has passengers getting on and off the trains .
+# ::node	b	busy-01	1-2
+# ::node	t	train	2-3
+# ::node	s	station	3-4
+# ::node	h	have-03	4-5
+# ::node	p	passenger	5-6
+# ::node	g	get-05	6-7
+# ::node	o	out-06	9-10
+# ::node	t2	train	11-12
+# ::root	h	have-03
+# ::edge	station	mod	train	s	t	
+# ::edge	station	ARG1-of	busy-01	s	b	
+# ::edge	have-03	ARG0	station	h	s	
+# ::edge	have-03	ARG1	passenger	h	p	
+# ::edge	passenger	ARG1-of	get-05	p	g	
+# ::edge	passenger	ARG1-of	out-06	p	o	
+# ::edge	out-06	ARG2	train	o	t2	
+# ::edge	get-05	ARG2	train	g	t2	
+(h / have-03
+    :ARG0 (s / station
+        :ARG1-of (b / busy-01)
+        :mod (t / train))
+    :ARG1 (p / passenger
+        :ARG1-of (g / get-05
+            :ARG2 (t2 / train))
+        :ARG1-of (o / out-06
+            :ARG2 t2)))

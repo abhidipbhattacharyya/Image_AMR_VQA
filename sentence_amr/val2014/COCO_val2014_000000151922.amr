@@ -1,0 +1,25 @@
+# ::tok A traffic sign showing the walking symbol in green highlight
+# ::node	t2	traffic	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	3-4
+# ::node	w	walk-01	5-6
+# ::node	t	thing	6-7
+# ::node	s3	symbolize-01	6-7
+# ::node	g	green-02	8-9
+# ::node	h	highlight-01	9-10
+# ::root	s	show-01
+# ::edge	sign	mod	traffic	s2	t2	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	show-01	ARG1	thing	s	t	
+# ::edge	thing	ARG1-of	symbolize-01	t	s3	
+# ::edge	symbolize-01	ARG2	walk-01	s3	w	
+# ::edge	highlight-01	ARG1-of	green-02	h	g	
+# ::edge	show-01	ARG1-of	highlight-01	s	h	
+(s / show-01
+    :ARG0 (s2 / sign
+        :mod (t2 / traffic))
+    :ARG1 (t / thing
+        :ARG1-of (s3 / symbolize-01
+            :ARG2 (w / walk-01)))
+    :ARG1-of (h / highlight-01
+        :ARG1-of (g / green-02)))

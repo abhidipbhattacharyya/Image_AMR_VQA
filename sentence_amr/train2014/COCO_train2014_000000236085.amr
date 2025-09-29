@@ -1,0 +1,49 @@
+# ::tok A baseball field with a batter fully extending his bat and stepping out of the batters box towards first base .
+# ::node	b2	baseball	1-2
+# ::node	f	field	2-3
+# ::node	p	person	5-6
+# ::node	b4	batter-01	5-6
+# ::node	f2	full-09	6-7
+# ::node	e	extend-01	7-8
+# ::node	b3	bat	9-10
+# ::node	a	and	10-11
+# ::node	s	step-01	11-12
+# ::node	o2	out-of	12-13
+# ::node	b5	box	16-17
+# ::node	o	ordinal-entity	18-19
+# ::node	0	1	18-19
+# ::node	b	base	19-20
+# ::root	f	field
+# ::edge	field	mod	baseball	f	b2	
+# ::edge	person	ARG0-of	batter-01	p	b4	
+# ::edge	extend-01	ARG1-of	full-09	e	f2	
+# ::edge	extend-01	ARG0	person	e	p	
+# ::edge	extend-01	ARG1	bat	e	b3	
+# ::edge	bat	poss	person	b3	p	
+# ::edge	and	op1	extend-01	a	e	
+# ::edge	field	location-of	and	f	a	
+# ::edge	and	op2	step-01	a	s	
+# ::edge	step-01	ARG1	person	s	p	
+# ::edge	step-01	direction	out-of	s	o2	
+# ::edge	out-of	op1	box	o2	b5	
+# ::edge	box	poss	person	b5	p	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b	o	
+# ::edge	step-01	destination	base	s	b	
+(f / field
+    :location-of (a / and
+        :op1 (e / extend-01
+            :ARG0 (p / person
+                :ARG0-of (b4 / batter-01))
+            :ARG1 (b3 / bat
+                :poss p)
+            :ARG1-of (f2 / full-09))
+        :op2 (s / step-01
+            :ARG1 p
+            :destination (b / base
+                :ord (o / ordinal-entity
+                    :value 1))
+            :direction (o2 / out-of
+                :op1 (b5 / box
+                    :poss p))))
+    :mod (b2 / baseball))

@@ -1,0 +1,30 @@
+# ::tok A train stopped at a station with the conductor leaning out of a window .
+# ::node	t	train	1-2
+# ::node	s2	stop-01	2-3
+# ::node	s	station	5-6
+# ::node	p	person	8-9
+# ::node	h	have-org-role-91	8-9
+# ::node	c	conductor	8-9
+# ::node	l	lean-01	9-10
+# ::node	o	out	10-11
+# ::node	w	window	13-14
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	train	h	t	
+# ::edge	have-org-role-91	ARG2	conductor	h	c	
+# ::edge	lean-01	ARG1	person	l	p	
+# ::edge	stop-01	time-of	lean-01	s2	l	
+# ::edge	lean-01	ARG2	out	l	o	
+# ::edge	out	op1	window	o	w	
+(s2 / stop-01
+    :ARG1 (t / train)
+    :location (s / station)
+    :time-of (l / lean-01
+        :ARG1 (p / person
+            :ARG0-of (h / have-org-role-91
+                :ARG1 t
+                :ARG2 (c / conductor)))
+        :ARG2 (o / out
+            :op1 (w / window))))

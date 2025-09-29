@@ -1,0 +1,31 @@
+# ::tok A skier that just made a jump several feet up in the air .
+# ::node	p	person	1-2
+# ::node	s2	ski-01	1-2
+# ::node	j2	just	3-4
+# ::node	j	jump-03	6-7
+# ::node	s	several	7-8
+# ::node	0	1	7-8
+# ::node	d	distance-quantity	8-9
+# ::node	f	foot	8-9
+# ::node	u	up-03	9-10
+# ::node	a	air	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	jump-03	mod	just	j	j2	
+# ::edge	person	ARG0-of	jump-03	p	j	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	several	op1	distance-quantity	s	d	
+# ::edge	distance-quantity	unit	foot	d	f	
+# ::edge	up-03	extent	several	u	s	
+# ::edge	jump-03	direction	up-03	j	u	
+# ::edge	up-03	ARG2	air	u	a	
+(p / person
+    :ARG0-of (s2 / ski-01)
+    :ARG0-of (j / jump-03
+        :direction (u / up-03
+            :ARG2 (a / air)
+            :extent (s / several
+                :op1 (d / distance-quantity
+                    :quant 1
+                    :unit (f / foot))))
+        :mod (j2 / just)))

@@ -1,0 +1,43 @@
+# ::tok One plate holds a slice of cheese pizza and another holds a slice of ham and pineapple pizza .
+# ::node	o	one	0-1
+# ::node	p3	plate	1-2
+# ::node	p4	plate	1-2
+# ::node	h2	hold-01	2-3
+# ::node	s	slice	4-5
+# ::node	c	cheese	6-7
+# ::node	p2	pizza	7-8
+# ::node	a	and	8-9
+# ::node	a3	another	9-10
+# ::node	h3	hold-01	10-11
+# ::node	s2	slice	12-13
+# ::node	h	ham	14-15
+# ::node	a2	and	15-16
+# ::node	p	pineapple	16-17
+# ::root	a	and
+# ::edge	plate	mod	one	p3	o	
+# ::edge	hold-01	ARG0	plate	h2	p3	
+# ::edge	hold-01	ARG1	slice	h2	s	
+# ::edge	pizza	mod	cheese	p2	c	
+# ::edge	slice	consist-of	pizza	s	p2	
+# ::edge	and	op1	hold-01	a	h2	
+# ::edge	plate	mod	another	p4	a3	
+# ::edge	and	op2	hold-01	a	h3	
+# ::edge	hold-01	ARG0	plate	h3	p4	
+# ::edge	hold-01	ARG1	slice	h3	s2	
+# ::edge	and	op1	ham	a2	h	
+# ::edge	slice	consist-of	and	s2	a2	
+# ::edge	and	op2	pineapple	a2	p	
+(a / and
+    :op1 (h2 / hold-01
+        :ARG0 (p3 / plate
+            :mod (o / one))
+        :ARG1 (s / slice
+            :consist-of (p2 / pizza
+                :mod (c / cheese))))
+    :op2 (h3 / hold-01
+        :ARG0 (p4 / plate
+            :mod (a3 / another))
+        :ARG1 (s2 / slice
+            :consist-of (a2 / and
+                :op1 (h / ham)
+                :op2 (p / pineapple)))))

@@ -1,0 +1,29 @@
+# ::tok a number of people sitting and standing in a field near tents
+# ::node	n2	number	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	a	and	5-6
+# ::node	s2	stand-01	6-7
+# ::node	f	field	9-10
+# ::node	n	near-02	10-11
+# ::node	t	tent	11-12
+# ::root	a	and
+# ::edge	person	quant	number	p	n2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	field	s2	f	
+# ::edge	sit-01	ARG2	field	s	f	
+# ::edge	field	ARG1-of	near-02	f	n	
+# ::edge	near-02	ARG2	tent	n	t	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p / person
+            :quant (n2 / number))
+        :ARG2 (f / field
+            :ARG1-of (n / near-02
+                :ARG2 (t / tent))))
+    :op2 (s2 / stand-01
+        :ARG1 p
+        :ARG2 f))

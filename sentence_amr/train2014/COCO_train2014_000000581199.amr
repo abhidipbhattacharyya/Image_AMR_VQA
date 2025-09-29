@@ -1,0 +1,39 @@
+# ::tok Two people are eating pizza from a plate on a table with a can of Coke and a bottle on it .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	e	eat-01	3-4
+# ::node	p2	pizza	4-5
+# ::node	p3	plate	7-8
+# ::node	t	table	10-11
+# ::node	c	can	13-14
+# ::node	p4	product	15-16
+# ::node	n	name	15-16
+# ::node	1	Coke	15-16
+# ::node	a	and	16-17
+# ::node	b	bottle	18-19
+# ::root	e	eat-01
+# ::edge	person	quant	2	p	0	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	pizza	e	p2	
+# ::edge	eat-01	source	plate	e	p3	
+# ::edge	plate	location	table	p3	t	
+# ::edge	can	mod	product	c	p4	
+# ::edge	product	name	name	p4	n	
+# ::edge	name	op1	Coke	n	1	
+# ::edge	and	op1	can	a	c	
+# ::edge	table	location-of	and	t	a	
+# ::edge	and	op2	bottle	a	b	
+# ::edge	product	consist	bottle	p4	b	
+(e / eat-01
+    :ARG0 (p / person
+        :quant 2)
+    :ARG1 (p2 / pizza)
+    :source (p3 / plate
+        :location (t / table
+            :location-of (a / and
+                :op1 (c / can
+                    :mod (p4 / product
+                        :name (n / name
+                            :op1 "Coke")
+                        :consist (b / bottle)))
+                :op2 b))))

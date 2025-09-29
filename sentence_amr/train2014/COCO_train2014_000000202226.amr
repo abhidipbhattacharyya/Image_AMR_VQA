@@ -1,0 +1,48 @@
+# ::tok A large salad is topped with cucumber and avocado pieces and red and yellow cherry tomatoes .
+# ::node	l	large	1-2
+# ::node	s	salad	2-3
+# ::node	t	top-01	4-5
+# ::node	c4	cucumber	6-7
+# ::node	a	and	7-8
+# ::node	a3	avocado	8-9
+# ::node	p	piece	9-10
+# ::node	p2	piece	9-10
+# ::node	r	red-02	11-12
+# ::node	a2	and	12-13
+# ::node	y	yellow-02	13-14
+# ::node	c	cherry	14-15
+# ::node	c2	cherrypick-01	15-16
+# ::node	v	variable	15-16
+# ::node	c3	cherrypick-01	15-16
+# ::root	t	top-01
+# ::edge	salad	mod	large	s	l	
+# ::edge	top-01	ARG1	salad	t	s	
+# ::edge	top-01	ARG2	and	t	a	
+# ::edge	avocado	op1	piece	a3	p	
+# ::edge	piece	mod	cucumber	p	c4	
+# ::edge	piece	consist-of	avocado	p2	a3	
+# ::edge	and	op2	piece	a	p2	
+# ::edge	and	op3	and	a	a2	
+# ::edge	cherrypick-01	ARG1	cherry	c2	c	
+# ::edge	and	op1	cherrypick-01	a	c2	
+# ::edge	cherrypick-01	mod	variable	c2	v	
+# ::edge	variable	ARG1-of	red-02	v	r	
+# ::edge	cherrypick-01	mod	cherry	c3	c	
+# ::edge	and	op2	cherrypick-01	a2	c3	
+# ::edge	top-01	rel	yellow-02	t	y	
+(t / top-01
+    :ARG1 (s / salad
+        :mod (l / large))
+    :ARG2 (a / and
+        :op1 (c2 / cherrypick-01
+            :ARG1 (c / cherry)
+            :mod (v / variable
+                :ARG1-of (r / red-02)))
+        :op2 (p2 / piece
+            :consist-of (a3 / avocado
+                :op1 (p / piece
+                    :mod (c4 / cucumber))))
+        :op3 (a2 / and
+            :op2 (c3 / cherrypick-01
+                :mod c)))
+    :rel (y / yellow-02))

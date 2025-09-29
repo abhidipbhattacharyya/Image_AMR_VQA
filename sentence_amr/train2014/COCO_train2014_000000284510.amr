@@ -1,0 +1,38 @@
+# ::tok a boy crouches as a car drives through a giant puddle of water and sends up a giant splash of water
+# ::node	b	boy	1-2
+# ::node	c2	crouch-01	2-3
+# ::node	c	car	5-6
+# ::node	d	drive-01	6-7
+# ::node	g	giant	9-10
+# ::node	p	puddle	10-11
+# ::node	w	water	12-13
+# ::node	a	and	13-14
+# ::node	s	send-03	14-15
+# ::node	u	up	15-16
+# ::node	s2	splash-01	18-19
+# ::root	c2	crouch-01
+# ::edge	crouch-01	ARG0	boy	c2	b	
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	puddle	mod	giant	p	g	
+# ::edge	drive-01	ARG1	puddle	d	p	
+# ::edge	puddle	consist-of	water	p	w	
+# ::edge	and	op1	drive-01	a	d	
+# ::edge	crouch-01	time	and	c2	a	
+# ::edge	and	op2	send-03	a	s	
+# ::edge	send-03	ARG0	car	s	c	
+# ::edge	send-03	direction	up	s	u	
+# ::edge	send-03	ARG1	splash-01	s	s2	
+# ::edge	splash-01	ARG1	giant	s2	g	
+(c2 / crouch-01
+    :ARG0 (b / boy)
+    :time (a / and
+        :op1 (d / drive-01
+            :ARG0 (c / car)
+            :ARG1 (p / puddle
+                :consist-of (w / water)
+                :mod (g / giant)))
+        :op2 (s / send-03
+            :ARG0 c
+            :ARG1 (s2 / splash-01
+                :ARG1 g)
+            :direction (u / up))))

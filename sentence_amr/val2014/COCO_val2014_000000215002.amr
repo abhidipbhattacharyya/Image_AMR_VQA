@@ -1,0 +1,34 @@
+# ::tok A computer station with a very tall stake of french fry cartons
+# ::node	c2	computer	1-2
+# ::node	s2	station	2-3
+# ::node	h	have-03	3-4
+# ::node	v	very	5-6
+# ::node	t	tall	6-7
+# ::node	s	stake-01	7-8
+# ::node	c3	country	9-10
+# ::node	n	name	9-10
+# ::node	0	France	9-10
+# ::node	f	fry-01	10-11
+# ::node	c	cart	11-12
+# ::root	s2	station
+# ::edge	station	mod	computer	s2	c2	
+# ::edge	station	ARG0-of	have-03	s2	h	
+# ::edge	tall	degree	very	t	v	
+# ::edge	stake-01	mod	tall	s	t	
+# ::edge	have-03	ARG1	stake-01	h	s	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	cart	ARG2-of	fry-01	c	f	
+# ::edge	cart	mod	country	c	c3	
+# ::edge	stake-01	ARG2	cart	s	c	
+(s2 / station
+    :ARG0-of (h / have-03
+        :ARG1 (s / stake-01
+            :ARG2 (c / cart
+                :ARG2-of (f / fry-01)
+                :mod (c3 / country
+                    :name (n / name
+                        :op1 "France")))
+            :mod (t / tall
+                :degree (v / very))))
+    :mod (c2 / computer))

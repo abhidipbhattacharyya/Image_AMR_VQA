@@ -1,0 +1,32 @@
+# ::tok A dog sticks its head out of the car and is reflected in the side mirror .
+# ::node	d	dog	1-2
+# ::node	s2	stick-01	2-3
+# ::node	h	head	4-5
+# ::node	o	out-06	5-6
+# ::node	c	car	8-9
+# ::node	a	and	9-10
+# ::node	r	reflect-01	11-12
+# ::node	s	side	14-15
+# ::node	m	mirror	15-16
+# ::root	a	and
+# ::edge	stick-01	ARG0	dog	s2	d	
+# ::edge	stick-01	ARG1	head	s2	h	
+# ::edge	dog	part	head	d	h	
+# ::edge	stick-01	ARG2	out-06	s2	o	
+# ::edge	out-06	ARG2	car	o	c	
+# ::edge	and	op1	stick-01	a	s2	
+# ::edge	and	op2	reflect-01	a	r	
+# ::edge	reflect-01	ARG1	dog	r	d	
+# ::edge	mirror	mod	side	m	s	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+(a / and
+    :op1 (s2 / stick-01
+        :ARG0 (d / dog
+            :part (h / head))
+        :ARG1 h
+        :ARG2 (o / out-06
+            :ARG2 (c / car)))
+    :op2 (r / reflect-01
+        :ARG1 d
+        :ARG2 (m / mirror
+            :mod (s / side))))

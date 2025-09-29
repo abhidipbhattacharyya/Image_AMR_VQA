@@ -1,0 +1,28 @@
+# ::tok A truck with a tarp - covered bed is parked under an overcast sky .
+# ::node	t2	truck	1-2
+# ::node	t	tarp	4-5
+# ::node	c	cover-02	6-7
+# ::node	b	bed	7-8
+# ::node	p	park-01	9-10
+# ::node	u	under	10-11
+# ::node	g	give-01	12-13
+# ::node	o	overcast	12-13
+# ::node	s	sky	13-14
+# ::root	p	park-01
+# ::edge	cover-02	ARG2	tarp	c	t	
+# ::edge	bed	ARG1-of	cover-02	b	c	
+# ::edge	truck	part	bed	t2	b	
+# ::edge	park-01	ARG1	truck	p	t2	
+# ::edge	park-01	location	under	p	u	
+# ::edge	give-01	ARG2	overcast	g	o	
+# ::edge	sky	ARG1-of	give-01	s	g	
+# ::edge	under	op1	sky	u	s	
+(p / park-01
+    :ARG1 (t2 / truck
+        :part (b / bed
+            :ARG1-of (c / cover-02
+                :ARG2 (t / tarp))))
+    :location (u / under
+        :op1 (s / sky
+            :ARG1-of (g / give-01
+                :ARG2 (o / overcast)))))

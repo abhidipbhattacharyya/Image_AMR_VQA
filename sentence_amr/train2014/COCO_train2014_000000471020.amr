@@ -1,0 +1,25 @@
+# ::tok There is a street lamp on the same pole as the traffic lights
+# ::node	s2	street	3-4
+# ::node	l	lamp	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	s	same-01	7-8
+# ::node	p	pole	8-9
+# ::node	p2	pole	8-9
+# ::node	t	traffic	11-12
+# ::node	l2	light	12-13
+# ::root	b	be-located-at-91
+# ::edge	lamp	mod	street	l	s2	
+# ::edge	be-located-at-91	ARG1	lamp	b	l	
+# ::edge	pole	ARG1-of	same-01	p	s	
+# ::edge	be-located-at-91	ARG2	pole	b	p	
+# ::edge	same-01	ARG2	pole	s	p2	
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	pole	mod	light	p2	l2	
+(b / be-located-at-91
+    :ARG1 (l / lamp
+        :mod (s2 / street))
+    :ARG2 (p / pole
+        :ARG1-of (s / same-01
+            :ARG2 (p2 / pole
+                :mod (l2 / light
+                    :mod (t / traffic))))))

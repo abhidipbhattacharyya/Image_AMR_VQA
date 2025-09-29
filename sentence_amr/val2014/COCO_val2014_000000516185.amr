@@ -1,0 +1,32 @@
+# ::tok Double Decker bus at station with passengers preparing to board .
+# ::node	1	Double	0-1
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Decker	1-2
+# ::node	b2	bus	2-3
+# ::node	s	station	4-5
+# ::node	p	passenger	6-7
+# ::node	p2	prepare-02	7-8
+# ::node	b	board-01	9-10
+# ::root	b2	bus
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Double	n	1	
+# ::edge	name	op2	Decker	n	0	
+# ::edge	bus	mod	company	b2	c	
+# ::edge	bus	location	station	b2	s	
+# ::edge	bus	location-of	passenger	b2	p	
+# ::edge	passenger	ARG0-of	prepare-02	p	p2	
+# ::edge	prepare-02	ARG2	board-01	p2	b	
+# ::edge	board-01	ARG0	passenger	b	p	
+# ::edge	board-01	ARG1	bus	b	b2	
+(b2 / bus
+    :location (s / station)
+    :location-of (p / passenger
+        :ARG0-of (p2 / prepare-02
+            :ARG2 (b / board-01
+                :ARG0 p
+                :ARG1 b2)))
+    :mod (c / company
+        :name (n / name
+            :op1 "Double"
+            :op2 "Decker")))

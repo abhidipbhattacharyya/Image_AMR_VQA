@@ -1,0 +1,48 @@
+# ::tok A blue printed suitcase is sitting on a table next to a candle holder and a chair with a unicorn towel over it .
+# ::node	b2	blue	1-2
+# ::node	p	print-01	2-3
+# ::node	s2	suitcase	3-4
+# ::node	s	sit-01	5-6
+# ::node	t	table	8-9
+# ::node	n	next-to	9-10
+# ::node	c	candle	12-13
+# ::node	t2	thing	13-14
+# ::node	h	hold-01	13-14
+# ::node	a	and	14-15
+# ::node	c2	chair	16-17
+# ::node	u	unicorn	19-20
+# ::node	t3	towel	20-21
+# ::node	b	be-located-at-91	21-22
+# ::node	o	over	21-22
+# ::root	s	sit-01
+# ::edge	print-01	mod	blue	p	b2	
+# ::edge	suitcase	ARG1-of	print-01	s2	p	
+# ::edge	sit-01	ARG1	suitcase	s	s2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	thing	ARG0-of	hold-01	t2	h	
+# ::edge	hold-01	ARG1	candle	h	c	
+# ::edge	and	op1	thing	a	t2	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	chair	a	c2	
+# ::edge	towel	mod	unicorn	t3	u	
+# ::edge	be-located-at-91	ARG1	towel	b	t3	
+# ::edge	chair	ARG2-of	be-located-at-91	c2	b	
+# ::edge	be-located-at-91	ARG2	over	b	o	
+# ::edge	over	op1	thing	o	t2	
+(s / sit-01
+    :ARG1 (s2 / suitcase
+        :ARG1-of (p / print-01
+            :mod (b2 / blue)))
+    :ARG2 (t / table
+        :location-of (n / next-to
+            :op1 (a / and
+                :op1 (t2 / thing
+                    :ARG0-of (h / hold-01
+                        :ARG1 (c / candle)))
+                :op2 (c2 / chair
+                    :ARG2-of (b / be-located-at-91
+                        :ARG1 (t3 / towel
+                            :mod (u / unicorn))
+                        :ARG2 (o / over
+                            :op1 t2)))))))

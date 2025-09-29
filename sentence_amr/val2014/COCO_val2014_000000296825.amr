@@ -1,0 +1,36 @@
+# ::tok A yellow and red van that reads " Foot Stinks " on it 's right passenger door .
+# ::node	y	yellow-02	1-2
+# ::node	a	and	2-3
+# ::node	r2	red-02	3-4
+# ::node	v	van	4-5
+# ::node	v2	van	4-5
+# ::node	r	read-01	6-7
+# ::node	f	foot	8-9
+# ::node	s	stink-01	9-10
+# ::node	r3	right-04	14-15
+# ::node	p	passenger	15-16
+# ::node	d	door	16-17
+# ::root	a	and
+# ::edge	and	op1	van	a	v	
+# ::edge	van	ARG1-of	yellow-02	v	y	
+# ::edge	van	ARG1-of	red-02	v2	r2	
+# ::edge	and	op2	van	a	v2	
+# ::edge	and	ARG0-of	read-01	a	r	
+# ::edge	stink-01	ARG1	foot	s	f	
+# ::edge	read-01	ARG3	stink-01	r	s	
+# ::edge	door	mod	passenger	d	p	
+# ::edge	door	ARG1-of	right-04	d	r3	
+# ::edge	and	location	door	a	d	
+# ::edge	van	part	door	v	d	
+(a / and
+    :ARG0-of (r / read-01
+        :ARG3 (s / stink-01
+            :ARG1 (f / foot)))
+    :location (d / door
+        :ARG1-of (r3 / right-04)
+        :mod (p / passenger))
+    :op1 (v / van
+        :ARG1-of (y / yellow-02)
+        :part d)
+    :op2 (v2 / van
+        :ARG1-of (r2 / red-02)))

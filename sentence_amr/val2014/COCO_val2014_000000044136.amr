@@ -1,0 +1,47 @@
+# ::tok Two men sitting at a table , one with a bottle in his hand and the other has a bow tie on .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	i2	include-91	7-8
+# ::node	i3	include-91	7-8
+# ::node	0	1	7-8
+# ::node	b	bottle	10-11
+# ::node	i	in-ones-hands-04	13-14
+# ::node	a	and	14-15
+# ::node	h	have-03	17-18
+# ::node	b2	bow-01	19-20
+# ::node	t2	tie	20-21
+# ::root	a	and
+# ::edge	man	quant	2	m2	1	
+# ::edge	sit-01	ARG1	man	s	m2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	man	ARG2-of	include-91	m	i2	
+# ::edge	include-91	ARG1	man	i2	m	
+# ::edge	man	ARG2-of	include-91	m2	i3	
+# ::edge	include-91	ARG1	man	i3	m	
+# ::edge	man	quant	1	m	0	
+# ::edge	in-ones-hands-04	ARG1	bottle	i	b	
+# ::edge	man	ARG0-of	in-ones-hands-04	m	i	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	man	h	m2	
+# ::edge	tie	mod	bow-01	t2	b2	
+# ::edge	have-03	ARG1	tie	h	t2	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m2 / man
+            :quant 2
+            :ARG2-of (i3 / include-91
+                :ARG1 (m / man
+                    :quant 1
+                    :ARG0-of (i / in-ones-hands-04
+                        :ARG1 (b / bottle))
+                    :ARG2-of (i2 / include-91
+                        :ARG1 m))))
+        :ARG2 (t / table))
+    :op2 (h / have-03
+        :ARG0 m2
+        :ARG1 (t2 / tie
+            :mod (b2 / bow-01))))

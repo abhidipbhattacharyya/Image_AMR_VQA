@@ -1,0 +1,31 @@
+# ::tok Two yellow traffic signs showing a left arrow and a speed limit .
+# ::node	0	2	0-1
+# ::node	y	yellow-02	1-2
+# ::node	t	traffic	2-3
+# ::node	s2	sign	3-4
+# ::node	s	show-01	4-5
+# ::node	l	left-20	6-7
+# ::node	a2	arrow	7-8
+# ::node	a	and	8-9
+# ::node	s3	speed-01	10-11
+# ::node	l2	limit-01	11-12
+# ::root	s2	sign
+# ::edge	sign	purpose	traffic	s2	t	
+# ::edge	sign	ARG1-of	yellow-02	s2	y	
+# ::edge	sign	quant	2	s2	0	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	arrow	ARG1-of	left-20	a2	l	
+# ::edge	and	op1	arrow	a	a2	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	limit-01	ARG1	speed-01	l2	s3	
+# ::edge	and	op2	limit-01	a	l2	
+(s2 / sign
+    :purpose (t / traffic)
+    :quant 2
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (a2 / arrow
+                :ARG1-of (l / left-20))
+            :op2 (l2 / limit-01
+                :ARG1 (s3 / speed-01))))
+    :ARG1-of (y / yellow-02))

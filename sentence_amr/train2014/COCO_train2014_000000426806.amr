@@ -1,0 +1,35 @@
+# ::tok Two in floor toilets in separate stalls with the doors open .
+# ::node	0	2	0-1
+# ::node	f	floor	2-3
+# ::node	t	toilet	3-4
+# ::node	s	separate-02	5-6
+# ::node	s2	stall-01	6-7
+# ::node	h	have-03	7-8
+# ::node	p	person	8-9
+# ::node	d	door	9-10
+# ::node	o	open-09	10-11
+# ::node	e	event	11-12
+# ::root	e	event
+# ::edge	toilet	location	floor	t	f	
+# ::edge	stall-01	ARG1-of	separate-02	s2	s	
+# ::edge	toilet	location	stall-01	t	s2	
+# ::edge	have-03	ARG1	toilet	h	t	
+# ::edge	toilet	ARG0-of	have-03	t	h	
+# ::edge	person	location	toilet	p	t	
+# ::edge	person	quant	2	p	0	
+# ::edge	stall-01	part	door	s2	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	person	manner	open-09	p	o	
+# ::edge	event	mod	person	e	p	
+(e / event
+    :mod (p / person
+        :quant 2
+        :location (t / toilet
+            :ARG0-of (h / have-03
+                :ARG1 t)
+            :location (f / floor)
+            :location (s2 / stall-01
+                :ARG1-of (s / separate-02)
+                :part (d / door)))
+        :manner (o / open-09
+            :ARG1 d)))

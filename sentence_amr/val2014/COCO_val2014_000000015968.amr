@@ -1,0 +1,39 @@
+# ::tok A man sitting on a couch in a black suit and tie looking impatient .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	couch	5-6
+# ::node	w	wear-01	6-7
+# ::node	b	black-04	8-9
+# ::node	s2	suit	9-10
+# ::node	a	and	10-11
+# ::node	t	tie	11-12
+# ::node	l	look-02	12-13
+# ::node	p	patient-01	13-14
+# ::node	e	event	14-15
+# ::node	0	-	14-15
+# ::root	e	event
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	sit-01	ARG2	couch	s	c	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	suit	ARG1-of	black-04	s2	b	
+# ::edge	and	op1	suit	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	tie	a	t	
+# ::edge	man	ARG0-of	look-02	m	l	
+# ::edge	look-02	ARG1	patient-01	l	p	
+# ::edge	patient-01	ARG1	man	p	m	
+# ::edge	event	mod	man	e	m	
+# ::edge	patient-01	polarity	-	p	0	
+(e / event
+    :mod (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s2 / suit
+                    :ARG1-of (b / black-04))
+                :op2 (t / tie)))
+        :ARG0-of (l / look-02
+            :ARG1 (p / patient-01
+                :ARG1 m
+                :polarity -))
+        :ARG1-of (s / sit-01
+            :ARG2 (c / couch))))

@@ -1,0 +1,37 @@
+# ::tok Hamburger with lettuce and tomato , served with french fries covered in ketchup .
+# ::node	h2	hunger-01	0-1
+# ::node	h	health	0-1
+# ::node	l	lettuce	2-3
+# ::node	a	and	3-4
+# ::node	t	tomato	4-5
+# ::node	s	serve-02	6-7
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	c2	cover-02	10-11
+# ::node	k	ketchup	12-13
+# ::root	h2	hunger-01
+# ::edge	hunger-01	ARG1	health	h2	h	
+# ::edge	and	op1	lettuce	a	l	
+# ::edge	hunger-01	accompanier	and	h2	a	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	hunger-01	ARG1-of	serve-02	h2	s	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	serve-02	accompanier	fry-01	s	f	
+# ::edge	fry-01	ARG1-of	cover-02	f	c2	
+# ::edge	cover-02	ARG2	ketchup	c2	k	
+(h2 / hunger-01
+    :ARG1 (h / health)
+    :ARG1-of (s / serve-02
+        :accompanier (f / fry-01
+            :ARG1-of (c2 / cover-02
+                :ARG2 (k / ketchup))
+            :mod (c / country
+                :name (n / name
+                    :op1 "France"))))
+    :accompanier (a / and
+        :op1 (l / lettuce)
+        :op2 (t / tomato)))

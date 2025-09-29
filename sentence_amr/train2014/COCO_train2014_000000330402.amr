@@ -1,0 +1,44 @@
+# ::tok Two animals eating two orange pumpkin type vegetables with tree trunks and branches behind them .
+# ::node	0	2	0-1
+# ::node	a2	animal	1-2
+# ::node	e	eat-01	2-3
+# ::node	1	2	3-4
+# ::node	o	orange	4-5
+# ::node	p	pumpkin	5-6
+# ::node	t2	type	6-7
+# ::node	v	vegetable	7-8
+# ::node	t	tree	9-10
+# ::node	b2	branch	10-11
+# ::node	a	and	11-12
+# ::node	b3	branch	12-13
+# ::node	b	behind	13-14
+# ::root	e	eat-01
+# ::edge	animal	quant	2	a2	0	
+# ::edge	eat-01	ARG0	animal	e	a2	
+# ::edge	type	mod	pumpkin	t2	p	
+# ::edge	type	mod	orange	t2	o	
+# ::edge	vegetable	mod	type	v	t2	
+# ::edge	vegetable	quant	2	v	1	
+# ::edge	eat-01	ARG1	vegetable	e	v	
+# ::edge	branch	part-of	tree	b2	t	
+# ::edge	and	op1	branch	a	b2	
+# ::edge	vegetable	part	and	v	a	
+# ::edge	and	op2	branch	a	b3	
+# ::edge	tree	part	branch	t	b3	
+# ::edge	and	location	behind	a	b	
+# ::edge	behind	op1	vegetable	b	v	
+(e / eat-01
+    :ARG0 (a2 / animal
+        :quant 2)
+    :ARG1 (v / vegetable
+        :quant 2
+        :mod (t2 / type
+            :mod (p / pumpkin)
+            :mod (o / orange))
+        :part (a / and
+            :location (b / behind
+                :op1 v)
+            :op1 (b2 / branch
+                :part-of (t / tree
+                    :part (b3 / branch)))
+            :op2 b3)))

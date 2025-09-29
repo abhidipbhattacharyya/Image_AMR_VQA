@@ -1,0 +1,68 @@
+# ::tok A close up of a country sign , the picture is a personified bus that is freaking out because it is about to hit a biker , and the sign below reads ' danger traversee de route ' .
+# ::node	c2	close-10	1-2
+# ::node	c3	country	5-6
+# ::node	s2	sign	6-7
+# ::node	p4	picture	9-10
+# ::node	p	person	12-13
+# ::node	s4	symbolize-01	12-13
+# ::node	b3	bus	13-14
+# ::node	f	freak-out-02	16-17
+# ::node	c	cause-01	18-19
+# ::node	a	about-to	21-22
+# ::node	h	hit-01	23-24
+# ::node	p2	person	25-26
+# ::node	b2	bike-01	25-26
+# ::node	a2	and	27-28
+# ::node	s3	sign	29-30
+# ::node	b	below	30-31
+# ::node	r	read-01	31-32
+# ::node	d	danger	33-34
+# ::node	p3	person	34-35
+# ::node	s	see-01	34-35
+# ::node	r2	route	36-37
+# ::root	a2	and
+# ::edge	sign	mod	country	s2	c3	
+# ::edge	close-10	ARG1	sign	c2	s2	
+# ::edge	person	poss-of	picture	p	p4	
+# ::edge	person	ARG1-of	symbolize-01	p	s4	
+# ::edge	bus	mod	person	b3	p	
+# ::edge	bus	ARG1-of	freak-out-02	b3	f	
+# ::edge	freak-out-02	ARG1-of	cause-01	f	c	
+# ::edge	hit-01	time	about-to	h	a	
+# ::edge	cause-01	ARG0	hit-01	c	h	
+# ::edge	hit-01	ARG0	bus	h	b3	
+# ::edge	hit-01	ARG1	person	h	p2	
+# ::edge	person	ARG0-of	bike-01	p2	b2	
+# ::edge	and	op2	person	a2	p	
+# ::edge	and	op1	close-10	a2	c2	
+# ::edge	sign	location	below	s3	b	
+# ::edge	read-01	ARG0	sign	r	s3	
+# ::edge	and	op3	read-01	a2	r	
+# ::edge	read-01	ARG3	person	r	p3	
+# ::edge	person	ARG0-of	see-01	p3	s	
+# ::edge	see-01	mod	danger	s	d	
+# ::edge	see-01	ARG1	route	s	r2	
+# ::edge	and	rel	freak-out-02	a2	f	
+(a2 / and
+    :op1 (c2 / close-10
+        :ARG1 (s2 / sign
+            :mod (c3 / country)))
+    :op2 (p / person
+        :ARG1-of (s4 / symbolize-01)
+        :poss-of (p4 / picture))
+    :op3 (r / read-01
+        :ARG0 (s3 / sign
+            :location (b / below))
+        :ARG3 (p3 / person
+            :ARG0-of (s / see-01
+                :ARG1 (r2 / route)
+                :mod (d / danger))))
+    :rel (f / freak-out-02
+        :ARG1-of (c / cause-01
+            :ARG0 (h / hit-01
+                :ARG0 (b3 / bus
+                    :ARG1-of f
+                    :mod p)
+                :ARG1 (p2 / person
+                    :ARG0-of (b2 / bike-01))
+                :time (a / about-to)))))

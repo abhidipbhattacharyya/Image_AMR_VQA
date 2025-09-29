@@ -1,0 +1,30 @@
+# ::tok Airport with two planes parked at their gates and one plane leaving .
+# ::node	a	airport	0-1
+# ::node	1	2	2-3
+# ::node	p2	plane	3-4
+# ::node	p	park-01	4-5
+# ::node	g	gate	7-8
+# ::node	a2	and	8-9
+# ::node	0	1	9-10
+# ::node	p3	plane	10-11
+# ::node	l	leave-11	11-12
+# ::root	a	airport
+# ::edge	plane	quant	2	p2	1	
+# ::edge	park-01	ARG1	plane	p	p2	
+# ::edge	park-01	ARG2	gate	p	g	
+# ::edge	gate	poss	plane	g	p2	
+# ::edge	and	op1	park-01	a2	p	
+# ::edge	airport	location-of	and	a	a2	
+# ::edge	plane	quant	1	p3	0	
+# ::edge	leave-11	ARG0	plane	l	p3	
+# ::edge	and	op2	leave-11	a2	l	
+(a / airport
+    :location-of (a2 / and
+        :op1 (p / park-01
+            :ARG1 (p2 / plane
+                :quant 2)
+            :ARG2 (g / gate
+                :poss p2))
+        :op2 (l / leave-11
+            :ARG0 (p3 / plane
+                :quant 1))))

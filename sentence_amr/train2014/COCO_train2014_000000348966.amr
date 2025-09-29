@@ -1,0 +1,42 @@
+# ::tok A wooden table with two beverages and two donuts next to one of the beverages .
+# ::node	w	wood	1-2
+# ::node	t	table	2-3
+# ::node	h	have-03	3-4
+# ::node	1	2	4-5
+# ::node	b	beverage	5-6
+# ::node	a	and	6-7
+# ::node	2	2	7-8
+# ::node	d	donut	8-9
+# ::node	n	next-to	9-10
+# ::node	t2	thing	11-12
+# ::node	i	include-91	11-12
+# ::node	0	1	11-12
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	beverage	quant	2	b	1	
+# ::edge	and	op1	beverage	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	donut	quant	2	d	2	
+# ::edge	and	op2	donut	a	d	
+# ::edge	table	location	next-to	t	n	
+# ::edge	next-to	op1	thing	n	t2	
+# ::edge	thing	ARG1-of	include-91	t2	i	
+# ::edge	include-91	ARG2	beverage	i	b	
+# ::edge	thing	quant	1	t2	0	
+# ::edge	event	mod	table	e	t	
+(e / event
+    :mod (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b / beverage
+                    :quant 2)
+                :op2 (d / donut
+                    :quant 2)))
+        :consist-of (w / wood)
+        :location (n / next-to
+            :op1 (t2 / thing
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 b)))))

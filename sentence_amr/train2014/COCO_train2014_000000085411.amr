@@ -1,0 +1,39 @@
+# ::tok A rather blurry remote , with the channel and volume buttons are the only pieces very visible .
+# ::node	r	rather	1-2
+# ::node	b	blur-01	2-3
+# ::node	r2	remote	3-4
+# ::node	c	channel	7-8
+# ::node	a	and	8-9
+# ::node	v2	volume	9-10
+# ::node	b2	button	10-11
+# ::node	o	only	13-14
+# ::node	p	piece	14-15
+# ::node	v	very	15-16
+# ::node	p2	possible-01	16-17
+# ::node	s	see-01	16-17
+# ::root	p2	possible-01
+# ::edge	blur-01	degree	rather	b	r	
+# ::edge	remote	ARG1-of	blur-01	r2	b	
+# ::edge	and	op1	remote	a	r2	
+# ::edge	remote	part	and	r2	a	
+# ::edge	button	mod	volume	b2	v2	
+# ::edge	and	op2	button	a	b2	
+# ::edge	piece	mod	only	p	o	
+# ::edge	piece	domain	remote	p	r2	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	degree	very	s	v	
+# ::edge	see-01	ARG1	piece	s	p	
+# ::edge	possible-01	rel	channel	p2	c	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (p / piece
+            :domain (r2 / remote
+                :ARG1-of (b / blur-01
+                    :degree (r / rather))
+                :part (a / and
+                    :op1 r2
+                    :op2 (b2 / button
+                        :mod (v2 / volume))))
+            :mod (o / only))
+        :degree (v / very))
+    :rel (c / channel))

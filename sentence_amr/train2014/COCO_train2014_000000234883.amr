@@ -1,0 +1,27 @@
+# ::tok A traffic signal with a street sign hanging off the side of it .
+# ::node	t	traffic	1-2
+# ::node	s3	signal	2-3
+# ::node	h2	have-03	3-4
+# ::node	s4	street	5-6
+# ::node	s2	sign	6-7
+# ::node	h	hang-01	7-8
+# ::node	o	off	8-9
+# ::node	s	side	10-11
+# ::root	s3	signal
+# ::edge	signal	purpose	traffic	s3	t	
+# ::edge	signal	ARG0-of	have-03	s3	h2	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	have-03	ARG1	sign	h2	s2	
+# ::edge	sign	ARG1-of	hang-01	s2	h	
+# ::edge	hang-01	ARG2	off	h	o	
+# ::edge	off	op1	side	o	s	
+# ::edge	signal	part	side	s3	s	
+(s3 / signal
+    :purpose (t / traffic)
+    :ARG0-of (h2 / have-03
+        :ARG1 (s2 / sign
+            :ARG1-of (h / hang-01
+                :ARG2 (o / off
+                    :op1 (s / side)))
+            :mod (s4 / street)))
+    :part s)

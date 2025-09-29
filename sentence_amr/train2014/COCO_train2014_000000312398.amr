@@ -1,0 +1,25 @@
+# ::tok A group of people at a restaurant seated in a row of two person tables .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	r	restaurant	6-7
+# ::node	s	seat-01	7-8
+# ::node	r2	row	10-11
+# ::node	0	2	12-13
+# ::node	p2	person	13-14
+# ::node	t	table	14-15
+# ::root	s	seat-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	seat-01	location	restaurant	s	r	
+# ::edge	seat-01	ARG1	group	s	g	
+# ::edge	seat-01	ARG2	row	s	r2	
+# ::edge	person	quant	2	p2	0	
+# ::edge	table	consist-of	person	t	p2	
+# ::edge	row	consist-of	table	r2	t	
+(s / seat-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (r2 / row
+        :consist-of (t / table
+            :consist-of (p2 / person
+                :quant 2)))
+    :location (r / restaurant))

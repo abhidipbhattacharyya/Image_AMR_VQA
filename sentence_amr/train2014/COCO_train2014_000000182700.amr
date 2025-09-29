@@ -1,0 +1,29 @@
+# ::tok A vintage photo of a steam locomotive leaving or entering a station .
+# ::node	v	vintage	1-2
+# ::node	p	photograph-01	2-3
+# ::node	s2	steam	5-6
+# ::node	l2	locomotive	6-7
+# ::node	l	leave-11	7-8
+# ::node	o	or	8-9
+# ::node	e	enter-01	9-10
+# ::node	s	station	11-12
+# ::root	p	photograph-01
+# ::edge	photograph-01	mod	vintage	p	v	
+# ::edge	locomotive	mod	steam	l2	s2	
+# ::edge	leave-11	ARG0	locomotive	l	l2	
+# ::edge	or	op1	leave-11	o	l	
+# ::edge	photograph-01	ARG1	or	p	o	
+# ::edge	or	op2	enter-01	o	e	
+# ::edge	enter-01	ARG0	locomotive	e	l2	
+# ::edge	enter-01	ARG1	station	e	s	
+# ::edge	leave-11	ARG1	station	l	s	
+(p / photograph-01
+    :ARG1 (o / or
+        :op1 (l / leave-11
+            :ARG0 (l2 / locomotive
+                :mod (s2 / steam))
+            :ARG1 (s / station))
+        :op2 (e / enter-01
+            :ARG0 l2
+            :ARG1 s))
+    :mod (v / vintage))

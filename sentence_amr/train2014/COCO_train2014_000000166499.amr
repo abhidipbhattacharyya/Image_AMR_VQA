@@ -1,0 +1,27 @@
+# ::tok A city bus and truck fight over the same small space on a city street .
+# ::node	c	city	1-2
+# ::node	b	bus	2-3
+# ::node	t	truck	4-5
+# ::node	f	fight-01	5-6
+# ::node	s	same-01	8-9
+# ::node	s2	small	9-10
+# ::node	s3	space	10-11
+# ::node	s4	street	14-15
+# ::root	f	fight-01
+# ::edge	fight-01	ARG1	truck	f	t	
+# ::edge	fight-01	ARG0	bus	f	b	
+# ::edge	fight-01	mod	city	f	c	
+# ::edge	space	mod	small	s3	s2	
+# ::edge	space	ARG1-of	same-01	s3	s	
+# ::edge	fight-01	ARG2	space	f	s3	
+# ::edge	space	location	street	s3	s4	
+# ::edge	street	mod	city	s4	c	
+(f / fight-01
+    :ARG0 (b / bus)
+    :ARG1 (t / truck)
+    :ARG2 (s3 / space
+        :ARG1-of (s / same-01)
+        :location (s4 / street
+            :mod (c / city))
+        :mod (s2 / small))
+    :mod c)

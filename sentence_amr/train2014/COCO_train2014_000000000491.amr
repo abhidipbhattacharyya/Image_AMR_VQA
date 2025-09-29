@@ -1,0 +1,36 @@
+# ::tok This bear is a soft , furry prize children want to win a the summer carnival .
+# ::node	t	this	0-1
+# ::node	b	bear	1-2
+# ::node	s	soft-02	4-5
+# ::node	f	furry	6-7
+# ::node	p	prize	7-8
+# ::node	c2	child	8-9
+# ::node	w	want-01	9-10
+# ::node	w2	win-01	11-12
+# ::node	d	date-entity	14-15
+# ::node	s2	summer	14-15
+# ::node	c	carnival	15-16
+# ::root	p	prize
+# ::edge	bear	mod	this	b	t	
+# ::edge	prize	mod	furry	p	f	
+# ::edge	prize	ARG1-of	soft-02	p	s	
+# ::edge	prize	domain	bear	p	b	
+# ::edge	want-01	ARG0	child	w	c2	
+# ::edge	win-01	ARG1-of	want-01	w2	w	
+# ::edge	win-01	ARG0	child	w2	c2	
+# ::edge	prize	ARG2-of	win-01	p	w2	
+# ::edge	date-entity	season	summer	d	s2	
+# ::edge	carnival	time	date-entity	c	d	
+# ::edge	win-01	ARG1	carnival	w2	c	
+(p / prize
+    :ARG1-of (s / soft-02)
+    :ARG2-of (w2 / win-01
+        :ARG0 (c2 / child)
+        :ARG1 (c / carnival
+            :time (d / date-entity
+                :season (s2 / summer)))
+        :ARG1-of (w / want-01
+            :ARG0 c2))
+    :domain (b / bear
+        :mod (t / this))
+    :mod (f / furry))

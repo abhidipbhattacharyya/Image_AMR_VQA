@@ -1,0 +1,30 @@
+# ::tok A cow is licking it 's nose as another cow stands staring behind him .
+# ::node	c	cow	1-2
+# ::node	l	lick-01	3-4
+# ::node	n	nose	6-7
+# ::node	a	another	8-9
+# ::node	c2	cow	9-10
+# ::node	s	stand-01	10-11
+# ::node	s2	stare-01	11-12
+# ::node	b	behind	12-13
+# ::node	h	he	13-14
+# ::root	l	lick-01
+# ::edge	lick-01	ARG0	cow	l	c	
+# ::edge	lick-01	ARG1	nose	l	n	
+# ::edge	cow	part	nose	c	n	
+# ::edge	cow	mod	another	c2	a	
+# ::edge	stand-01	ARG1	cow	s	c2	
+# ::edge	lick-01	time	stand-01	l	s	
+# ::edge	cow	ARG0-of	stare-01	c2	s2	
+# ::edge	stare-01	ARG2	behind	s2	b	
+# ::edge	behind	op1	he	b	h	
+(l / lick-01
+    :ARG0 (c / cow
+        :part (n / nose))
+    :ARG1 n
+    :time (s / stand-01
+        :ARG1 (c2 / cow
+            :ARG0-of (s2 / stare-01
+                :ARG2 (b / behind
+                    :op1 (h / he)))
+            :mod (a / another))))

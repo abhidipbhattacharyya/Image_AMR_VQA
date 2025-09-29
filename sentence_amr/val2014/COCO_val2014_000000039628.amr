@@ -1,0 +1,22 @@
+# ::tok Two trains adjacent to each other that are near a train station platform .
+# ::node	0	2	0-1
+# ::node	t	train	1-2
+# ::node	b	border-01	2-3
+# ::node	n	near-02	8-9
+# ::node	t2	train	10-11
+# ::node	s	station	11-12
+# ::node	p	platform	12-13
+# ::root	b	border-01
+# ::edge	train	quant	2	t	0	
+# ::edge	border-01	ARG1	train	b	t	
+# ::edge	train	ARG1-of	near-02	t	n	
+# ::edge	station	mod	train	s	t2	
+# ::edge	platform	purpose	station	p	s	
+# ::edge	near-02	ARG2	platform	n	p	
+(b / border-01
+    :ARG1 (t / train
+        :quant 2
+        :ARG1-of (n / near-02
+            :ARG2 (p / platform
+                :purpose (s / station
+                    :mod (t2 / train))))))

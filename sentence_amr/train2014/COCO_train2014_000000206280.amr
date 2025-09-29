@@ -1,0 +1,39 @@
+# ::tok A dining and kitchen area combination with people cooking and other sitting at the dining table while a dog begs .
+# ::node	d	dine-01	1-2
+# ::node	k	kitchen	3-4
+# ::node	a2	area	4-5
+# ::node	c	combine-01	5-6
+# ::node	p	person	7-8
+# ::node	c2	cook-01	8-9
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	s	sit-01	11-12
+# ::node	t	table	15-16
+# ::node	d2	dog	18-19
+# ::node	b	beg-01	19-20
+# ::root	c	combine-01
+# ::edge	area	mod	kitchen	a2	k	
+# ::edge	area	mod	dine-01	a2	d	
+# ::edge	combine-01	ARG1	area	c	a2	
+# ::edge	person	ARG0-of	cook-01	p	c2	
+# ::edge	and	op1	person	a	p	
+# ::edge	combine-01	ARG2	and	c	a	
+# ::edge	sit-01	ARG1	other	s	o	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	dine-01	location	table	d	t	
+# ::edge	beg-01	ARG0	dog	b	d2	
+# ::edge	sit-01	time	beg-01	s	b	
+(c / combine-01
+    :ARG1 (a2 / area
+        :mod (k / kitchen)
+        :mod (d / dine-01
+            :location (t / table)))
+    :ARG2 (a / and
+        :op1 (p / person
+            :ARG0-of (c2 / cook-01))
+        :op2 (s / sit-01
+            :ARG1 (o / other)
+            :ARG2 t
+            :time (b / beg-01
+                :ARG0 (d2 / dog)))))

@@ -1,0 +1,49 @@
+# ::tok two benches , a small statue and some street signs stand between a street curb and the brick facade of a large building .
+# ::node	0	2	0-1
+# ::node	b	bench	1-2
+# ::node	s2	small	4-5
+# ::node	s5	statue	5-6
+# ::node	a	and	6-7
+# ::node	s3	some	7-8
+# ::node	s6	street	8-9
+# ::node	s	sign	9-10
+# ::node	s4	stand-01	10-11
+# ::node	b2	between	11-12
+# ::node	s7	street	13-14
+# ::node	c	curb	14-15
+# ::node	b3	brick	17-18
+# ::node	f	facade	18-19
+# ::node	l	large	21-22
+# ::node	b4	building	22-23
+# ::root	s4	stand-01
+# ::edge	bench	quant	2	b	0	
+# ::edge	statue	mod	small	s5	s2	
+# ::edge	and	op2	statue	a	s5	
+# ::edge	and	op1	bench	a	b	
+# ::edge	sign	mod	street	s	s6	
+# ::edge	sign	quant	some	s	s3	
+# ::edge	and	op3	sign	a	s	
+# ::edge	stand-01	ARG1	and	s4	a	
+# ::edge	stand-01	ARG2	between	s4	b2	
+# ::edge	curb	mod	street	c	s7	
+# ::edge	between	op1	curb	b2	c	
+# ::edge	facade	consist-of	brick	f	b3	
+# ::edge	between	op2	facade	b2	f	
+# ::edge	building	mod	large	b4	l	
+# ::edge	facade	part-of	building	f	b4	
+(s4 / stand-01
+    :ARG1 (a / and
+        :op1 (b / bench
+            :quant 2)
+        :op2 (s5 / statue
+            :mod (s2 / small))
+        :op3 (s / sign
+            :quant (s3 / some)
+            :mod (s6 / street)))
+    :ARG2 (b2 / between
+        :op1 (c / curb
+            :mod (s7 / street))
+        :op2 (f / facade
+            :consist-of (b3 / brick)
+            :part-of (b4 / building
+                :mod (l / large)))))

@@ -1,0 +1,34 @@
+# ::tok A long metal arm with two red traffic lights and a traffic camera
+# ::node	l2	long-03	1-2
+# ::node	m	metal	2-3
+# ::node	a2	arm	3-4
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	r	red-02	6-7
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	a	and	9-10
+# ::node	t2	traffic	11-12
+# ::node	c	camera	12-13
+# ::root	a2	arm
+# ::edge	arm	consist-of	metal	a2	m	
+# ::edge	arm	ARG1-of	long-03	a2	l2	
+# ::edge	arm	ARG0-of	have-03	a2	h	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	light	quant	2	l	0	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	camera	mod	traffic	c	t2	
+# ::edge	and	op2	camera	a	c	
+(a2 / arm
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / light
+                :quant 2
+                :ARG1-of (r / red-02)
+                :mod (t / traffic))
+            :op2 (c / camera
+                :mod (t2 / traffic))))
+    :ARG1-of (l2 / long-03)
+    :consist-of (m / metal))

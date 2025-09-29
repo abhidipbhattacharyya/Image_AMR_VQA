@@ -1,0 +1,31 @@
+# ::tok Blurred image of an outdoor vehicle kiosk with patrons standing in front of it .
+# ::node	b	blur-01	0-1
+# ::node	i	image	1-2
+# ::node	o	outdoor	4-5
+# ::node	v	vehicle	5-6
+# ::node	k	kiosk	6-7
+# ::node	p	passenger	8-9
+# ::node	d	drink-01	8-9
+# ::node	s	stand-01	9-10
+# ::node	i2	in-front-of	11-12
+# ::node	c	cause-01	14-15
+# ::root	i	image
+# ::edge	image	ARG1-of	blur-01	i	b	
+# ::edge	kiosk	mod	vehicle	k	v	
+# ::edge	kiosk	location	outdoor	k	o	
+# ::edge	passenger	ARG0-of	drink-01	p	d	
+# ::edge	stand-01	ARG1	passenger	s	p	
+# ::edge	stand-01	ARG2	in-front-of	s	i2	
+# ::edge	in-front-of	op1	kiosk	i2	k	
+# ::edge	cause-01	ARG1	stand-01	c	s	
+# ::edge	image	ARG0-of	cause-01	i	c	
+(i / image
+    :ARG0-of (c / cause-01
+        :ARG1 (s / stand-01
+            :ARG1 (p / passenger
+                :ARG0-of (d / drink-01))
+            :ARG2 (i2 / in-front-of
+                :op1 (k / kiosk
+                    :location (o / outdoor)
+                    :mod (v / vehicle)))))
+    :ARG1-of (b / blur-01))

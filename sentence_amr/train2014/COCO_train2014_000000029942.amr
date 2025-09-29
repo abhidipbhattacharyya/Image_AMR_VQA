@@ -1,0 +1,33 @@
+# ::tok a group of people sitting at tables , some with open laptops in front of them
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	table	6-7
+# ::node	i2	include-91	8-9
+# ::node	s2	some	8-9
+# ::node	o	open-01	10-11
+# ::node	p2	person	11-12
+# ::node	c	computer	11-12
+# ::node	i	in-front-of	13-14
+# ::root	s	sit-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	person	ARG2-of	include-91	p	i2	
+# ::edge	person	ARG1-of	open-01	p2	o	
+# ::edge	person	mod	some	p2	s2	
+# ::edge	include-91	ARG1	person	i2	p2	
+# ::edge	person	part	computer	p2	c	
+# ::edge	person	location	in-front-of	p2	i	
+# ::edge	in-front-of	op1	group	i	g	
+(s / sit-01
+    :ARG1 (g / group
+        :consist-of (p / person
+            :ARG2-of (i2 / include-91
+                :ARG1 (p2 / person
+                    :ARG1-of (o / open-01)
+                    :location (i / in-front-of
+                        :op1 g)
+                    :mod (s2 / some)
+                    :part (c / computer)))))
+    :ARG2 (t / table))

@@ -1,0 +1,42 @@
+# ::tok A frosted cake that reads " congratulations kate and luke on your upcoming arrival . "
+# ::node	i	ice	1-2
+# ::node	c	cake	2-3
+# ::node	r	read-01	4-5
+# ::node	c3	congratulate-01	6-7
+# ::node	p	person	7-8
+# ::node	n	name	7-8
+# ::node	0	kate	7-8
+# ::node	a	and	8-9
+# ::node	p2	person	9-10
+# ::node	n2	name	9-10
+# ::node	1	nuke	9-10
+# ::node	c2	come-up-13	12-13
+# ::node	a2	arrive-01	13-14
+# ::root	c	cake
+# ::edge	cake	mod	ice	c	i	
+# ::edge	cake	ARG1-of	read-01	c	r	
+# ::edge	read-01	ARG3	congratulate-01	r	c3	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	kate	n	0	
+# ::edge	and	op1	person	a	p	
+# ::edge	congratulate-01	ARG1	and	c3	a	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	name	name	p2	n2	
+# ::edge	name	op1	nuke	n2	1	
+# ::edge	arrive-01	ARG1-of	come-up-13	a2	c2	
+# ::edge	arrive-01	ARG1	and	a2	a	
+# ::edge	congratulate-01	ARG2	arrive-01	c3	a2	
+(c / cake
+    :ARG1-of (r / read-01
+        :ARG3 (c3 / congratulate-01
+            :ARG1 (a / and
+                :op1 (p / person
+                    :name (n / name
+                        :op1 "kate"))
+                :op2 (p2 / person
+                    :name (n2 / name
+                        :op1 "nuke")))
+            :ARG2 (a2 / arrive-01
+                :ARG1 a
+                :ARG1-of (c2 / come-up-13))))
+    :mod (i / ice))

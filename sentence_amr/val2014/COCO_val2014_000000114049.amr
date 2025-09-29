@@ -1,0 +1,26 @@
+# ::tok People inside a commuter train , with their luggage and bicycles .
+# ::node	p	person	0-1
+# ::node	i	inside	1-2
+# ::node	c	commute-01	3-4
+# ::node	t	train	4-5
+# ::node	l	luggage	8-9
+# ::node	a	and	9-10
+# ::node	b	bicycle	10-11
+# ::root	p	person
+# ::edge	person	location	inside	p	i	
+# ::edge	train	ARG0-of	commute-01	t	c	
+# ::edge	inside	op1	train	i	t	
+# ::edge	luggage	poss	person	l	p	
+# ::edge	and	op1	luggage	a	l	
+# ::edge	person	accompanier	and	p	a	
+# ::edge	and	op2	bicycle	a	b	
+# ::edge	bicycle	poss	person	b	p	
+(p / person
+    :accompanier (a / and
+        :op1 (l / luggage
+            :poss p)
+        :op2 (b / bicycle
+            :poss p))
+    :location (i / inside
+        :op1 (t / train
+            :ARG0-of (c / commute-01))))

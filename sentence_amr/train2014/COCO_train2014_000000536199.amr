@@ -1,0 +1,25 @@
+# ::tok A one way sign that is hanging next to a red light in front of a building .
+# ::node	o	one-way	2-3
+# ::node	s	sign	3-4
+# ::node	h	hang-01	6-7
+# ::node	n	next-to	7-8
+# ::node	r	red-02	10-11
+# ::node	l	light	11-12
+# ::node	i	in-front-of	13-14
+# ::node	b	building	16-17
+# ::root	s	sign
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	sign	ARG1-of	hang-01	s	h	
+# ::edge	hang-01	ARG2	next-to	h	n	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	next-to	op1	light	n	l	
+# ::edge	light	location	in-front-of	l	i	
+# ::edge	in-front-of	op1	building	i	b	
+(s / sign
+    :ARG1-of (h / hang-01
+        :ARG2 (n / next-to
+            :op1 (l / light
+                :ARG1-of (r / red-02)
+                :location (i / in-front-of
+                    :op1 (b / building)))))
+    :mod (o / one-way))

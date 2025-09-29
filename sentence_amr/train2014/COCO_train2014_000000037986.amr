@@ -1,0 +1,27 @@
+# ::tok A hospital bed is in the upright position while a laptop sits open .
+# ::node	h	hospital	1-2
+# ::node	b	bed	2-3
+# ::node	u	upright	6-7
+# ::node	p	position-01	7-8
+# ::node	c	contrast-01	8-9
+# ::node	l	laptop	10-11
+# ::node	s	sit-01	11-12
+# ::node	o	open-01	12-13
+# ::root	c	contrast-01
+# ::edge	bed	mod	hospital	b	h	
+# ::edge	position-01	ARG2	upright	p	u	
+# ::edge	position-01	ARG1	bed	p	b	
+# ::edge	contrast-01	ARG1	position-01	c	p	
+# ::edge	sit-01	ARG1	laptop	s	l	
+# ::edge	contrast-01	ARG2	sit-01	c	s	
+# ::edge	sit-01	ARG2	open-01	s	o	
+# ::edge	open-01	ARG1	laptop	o	l	
+(c / contrast-01
+    :ARG1 (p / position-01
+        :ARG1 (b / bed
+            :mod (h / hospital))
+        :ARG2 (u / upright))
+    :ARG2 (s / sit-01
+        :ARG1 (l / laptop)
+        :ARG2 (o / open-01
+            :ARG1 l)))

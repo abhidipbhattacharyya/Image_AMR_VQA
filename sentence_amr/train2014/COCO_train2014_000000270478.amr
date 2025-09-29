@@ -1,0 +1,32 @@
+# ::tok A single surfer watching the waves roll in to see if they are any good ones .
+# ::node	s2	single-02	1-2
+# ::node	p	person	2-3
+# ::node	s3	surf-01	2-3
+# ::node	w	watch-01	3-4
+# ::node	w2	wave	5-6
+# ::node	r	roll-01	6-7
+# ::node	s	see-01	9-10
+# ::node	a	any	13-14
+# ::node	g	good-02	14-15
+# ::root	w	watch-01
+# ::edge	person	ARG1-of	single-02	p	s2	
+# ::edge	person	ARG0-of	surf-01	p	s3	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	roll-01	ARG1	wave	r	w2	
+# ::edge	watch-01	ARG1	roll-01	w	r	
+# ::edge	watch-01	purpose	see-01	w	s	
+# ::edge	see-01	ARG0	person	s	p	
+# ::edge	good-02	mod	any	g	a	
+# ::edge	see-01	ARG1	good-02	s	g	
+# ::edge	good-02	ARG1	wave	g	w2	
+(w / watch-01
+    :purpose (s / see-01
+        :ARG0 (p / person
+            :ARG0-of (s3 / surf-01)
+            :ARG1-of (s2 / single-02))
+        :ARG1 (g / good-02
+            :ARG1 (w2 / wave)
+            :mod (a / any)))
+    :ARG0 p
+    :ARG1 (r / roll-01
+        :ARG1 w2))

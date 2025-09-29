@@ -1,0 +1,33 @@
+# ::tok A kitchen with a white refrigerator and a small counter area and cabinets next to the refrigerator .
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	w	white-03	4-5
+# ::node	r	refrigerator	5-6
+# ::node	s	small	8-9
+# ::node	c2	counter	9-10
+# ::node	a2	area	10-11
+# ::node	a	and	11-12
+# ::node	c	cabinet	12-13
+# ::node	n	next-to	13-14
+# ::root	k	kitchen
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	refrigerator	ARG1-of	white-03	r	w	
+# ::edge	area	location-of	counter	a2	c2	
+# ::edge	area	mod	small	a2	s	
+# ::edge	and	op2	area	a	a2	
+# ::edge	and	op1	refrigerator	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	cabinet	a	c	
+# ::edge	cabinet	location	next-to	c	n	
+# ::edge	next-to	op1	refrigerator	n	r	
+(k / kitchen
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (r / refrigerator
+                :ARG1-of (w / white-03))
+            :op2 (a2 / area
+                :location-of (c2 / counter)
+                :mod (s / small))
+            :op3 (c / cabinet
+                :location (n / next-to
+                    :op1 r)))))

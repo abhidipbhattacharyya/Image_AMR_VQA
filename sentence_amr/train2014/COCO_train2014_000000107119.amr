@@ -1,0 +1,40 @@
+# ::tok A soccer player reaches for a kick as an opposing player moves in to block .
+# ::node	s	soccer	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	r	reach-03	3-4
+# ::node	k	kick-01	6-7
+# ::node	o	oppose-01	9-10
+# ::node	p2	person	10-11
+# ::node	p4	play-01	10-11
+# ::node	m	move-01	11-12
+# ::node	i	in	12-13
+# ::node	b	block-01	14-15
+# ::root	r	reach-03
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	soccer	p3	s	
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	reach-03	ARG1	kick-01	r	k	
+# ::edge	kick-01	ARG0	person	k	p	
+# ::edge	oppose-01	ARG1	person	o	p	
+# ::edge	person	ARG0-of	oppose-01	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	move-01	ARG0	person	m	p2	
+# ::edge	reach-03	time	move-01	r	m	
+# ::edge	move-01	direction	in	m	i	
+# ::edge	move-01	purpose	block-01	m	b	
+# ::edge	block-01	ARG0	person	b	p2	
+(r / reach-03
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (s / soccer)))
+    :ARG1 (k / kick-01
+        :ARG0 p)
+    :time (m / move-01
+        :purpose (b / block-01
+            :ARG0 (p2 / person
+                :ARG0-of (o / oppose-01
+                    :ARG1 p)
+                :ARG0-of (p4 / play-01)))
+        :ARG0 p2
+        :direction (i / in)))

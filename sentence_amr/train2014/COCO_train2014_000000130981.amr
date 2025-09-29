@@ -1,0 +1,29 @@
+# ::tok Several Zebras are scattered together trying to eat .
+# ::node	s2	several	0-1
+# ::node	r	river	1-2
+# ::node	n	name	1-2
+# ::node	0	hurricane	1-2
+# ::node	s	scatter-01	3-4
+# ::node	t	together	4-5
+# ::node	t2	try-01	5-6
+# ::node	e	eat-01	7-8
+# ::root	s	scatter-01
+# ::edge	river	quant	several	r	s2	
+# ::edge	river	name	name	r	n	
+# ::edge	name	op1	hurricane	n	0	
+# ::edge	scatter-01	ARG1	river	s	r	
+# ::edge	scatter-01	mod	together	s	t	
+# ::edge	scatter-01	manner	try-01	s	t2	
+# ::edge	try-01	ARG0	river	t2	r	
+# ::edge	try-01	ARG1	eat-01	t2	e	
+# ::edge	eat-01	ARG0	river	e	r	
+(s / scatter-01
+    :ARG1 (r / river
+        :name (n / name
+            :op1 "hurricane")
+        :quant (s2 / several))
+    :manner (t2 / try-01
+        :ARG0 r
+        :ARG1 (e / eat-01
+            :ARG0 r))
+    :mod (t / together))

@@ -1,0 +1,28 @@
+# ::tok Small slice of pizza sitting on a table next to the bottle of beer .
+# ::node	s3	small	0-1
+# ::node	s2	slice	1-2
+# ::node	p	pizza	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	table	7-8
+# ::node	n	next-to	8-9
+# ::node	b2	bottle	11-12
+# ::node	c	contain-01	11-12
+# ::node	b	beer	13-14
+# ::root	s	sit-01
+# ::edge	slice	mod	small	s2	s3	
+# ::edge	slice	mod	pizza	s2	p	
+# ::edge	sit-01	ARG1	slice	s	s2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	next-to	op1	bottle	n	b2	
+# ::edge	bottle	ARG0-of	contain-01	b2	c	
+# ::edge	contain-01	ARG1	beer	c	b	
+(s / sit-01
+    :ARG1 (s2 / slice
+        :mod (s3 / small)
+        :mod (p / pizza))
+    :ARG2 (t / table
+        :location-of (n / next-to
+            :op1 (b2 / bottle
+                :ARG0-of (c / contain-01
+                    :ARG1 (b / beer))))))

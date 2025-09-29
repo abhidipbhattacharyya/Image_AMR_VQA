@@ -1,0 +1,47 @@
+# ::tok A white plate has food that includes rice and sauce on it while a cup of coffee sits near it .
+# ::node	w	white-03	1-2
+# ::node	p	plate	2-3
+# ::node	h	have-03	3-4
+# ::node	f	food	4-5
+# ::node	i	include-01	6-7
+# ::node	r	rice	7-8
+# ::node	a	and	8-9
+# ::node	s	sauce	9-10
+# ::node	v	volume-quantity	13-14
+# ::node	0	1	13-14
+# ::node	c2	cup	14-15
+# ::node	c	coffee	16-17
+# ::node	s2	sit-01	17-18
+# ::node	n	near-02	18-19
+# ::root	h	have-03
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	have-03	ARG0	plate	h	p	
+# ::edge	have-03	ARG1	food	h	f	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	and	op1	rice	a	r	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	sauce	a	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	sit-01	ARG1	coffee	s2	c	
+# ::edge	have-03	time	sit-01	h	s2	
+# ::edge	sit-01	ARG2	near-02	s2	n	
+# ::edge	near-02	ARG1	coffee	n	c	
+# ::edge	near-02	ARG2	plate	n	p	
+(h / have-03
+    :ARG0 (p / plate
+        :ARG1-of (w / white-03))
+    :ARG1 (f / food
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (r / rice)
+                :op2 (s / sauce))))
+    :time (s2 / sit-01
+        :ARG1 (c / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c2 / cup)))
+        :ARG2 (n / near-02
+            :ARG1 c
+            :ARG2 p)))

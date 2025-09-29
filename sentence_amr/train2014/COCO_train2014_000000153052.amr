@@ -1,0 +1,27 @@
+# ::tok Baseball players approaching field as crowd circles them completely .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	a	approach-01	2-3
+# ::node	f	field	3-4
+# ::node	c3	crowd	5-6
+# ::node	c	circle-01	6-7
+# ::node	c2	complete-02	8-9
+# ::root	a	approach-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	approach-01	ARG1	person	a	p	
+# ::edge	approach-01	ARG2	field	a	f	
+# ::edge	circle-01	ARG0	crowd	c	c3	
+# ::edge	approach-01	time	circle-01	a	c	
+# ::edge	circle-01	ARG1	person	c	p	
+# ::edge	circle-01	ARG1-of	complete-02	c	c2	
+(a / approach-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (f / field)
+    :time (c / circle-01
+        :ARG0 (c3 / crowd)
+        :ARG1 p
+        :ARG1-of (c2 / complete-02)))

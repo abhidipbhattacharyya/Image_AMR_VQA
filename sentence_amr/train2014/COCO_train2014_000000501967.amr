@@ -1,0 +1,40 @@
+# ::tok A wood - paneled cabin with a bunk bed and shelf filled with sleeping bags and luggage .
+# ::node	w	wood	1-2
+# ::node	p	panel	3-4
+# ::node	c	cabin	4-5
+# ::node	h	have-03	5-6
+# ::node	b3	bunk	7-8
+# ::node	b2	bed	8-9
+# ::node	a	and	9-10
+# ::node	s	shelf	10-11
+# ::node	f	fill-01	11-12
+# ::node	s2	sleep-01	13-14
+# ::node	b	bag	14-15
+# ::node	a2	and	15-16
+# ::node	l	luggage	16-17
+# ::root	c	cabin
+# ::edge	panel	consist-of	wood	p	w	
+# ::edge	cabin	part	panel	c	p	
+# ::edge	cabin	ARG0-of	have-03	c	h	
+# ::edge	bed	mod	bunk	b2	b3	
+# ::edge	and	op1	bed	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	shelf	a	s	
+# ::edge	and	ARG1-of	fill-01	a	f	
+# ::edge	bag	purpose	sleep-01	b	s2	
+# ::edge	and	op1	bag	a2	b	
+# ::edge	fill-01	ARG2	and	f	a2	
+# ::edge	and	op2	luggage	a2	l	
+(c / cabin
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG1-of (f / fill-01
+                :ARG2 (a2 / and
+                    :op1 (b / bag
+                        :purpose (s2 / sleep-01))
+                    :op2 (l / luggage)))
+            :op1 (b2 / bed
+                :mod (b3 / bunk))
+            :op2 (s / shelf)))
+    :part (p / panel
+        :consist-of (w / wood)))

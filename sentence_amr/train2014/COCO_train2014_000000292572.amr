@@ -1,0 +1,34 @@
+# ::tok street signs showing the intersection of Hilltop and Prosperity avenue
+# ::node	s3	street	0-1
+# ::node	s2	sign	1-2
+# ::node	s	show-01	2-3
+# ::node	i	intersect-01	4-5
+# ::node	n	name	6-7
+# ::node	1	Hilltop	6-7
+# ::node	2	Prosperity	8-9
+# ::node	r	road	9-10
+# ::node	r2	road	9-10
+# ::node	n2	name	9-10
+# ::node	0	Avenue	9-10
+# ::root	s2	sign
+# ::edge	sign	location	street	s2	s3	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	show-01	ARG1	intersect-01	s	i	
+# ::edge	name	op1	Hilltop	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	intersect-01	ARG0	road	i	r2	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op1	Prosperity	n2	2	
+# ::edge	name	op2	Avenue	n2	0	
+(s2 / sign
+    :ARG0-of (s / show-01
+        :ARG1 (i / intersect-01
+            :ARG0 (r2 / road
+                :name (n2 / name
+                    :op1 "Prosperity"
+                    :op2 "Avenue"))
+            :ARG1 (r / road
+                :name (n / name
+                    :op1 "Hilltop"))))
+    :location (s3 / street))

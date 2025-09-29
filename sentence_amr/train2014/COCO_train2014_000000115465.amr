@@ -1,0 +1,27 @@
+# ::tok A man is reaching into a microwave over to remove a plate of fish filets .
+# ::node	m	man	1-2
+# ::node	r	reach-03	3-4
+# ::node	m2	microwave	6-7
+# ::node	o	over	7-8
+# ::node	r2	remove-01	9-10
+# ::node	p	plate	11-12
+# ::node	f2	fish	13-14
+# ::node	f	file-01	14-15
+# ::root	r	reach-03
+# ::edge	reach-03	ARG0	man	r	m	
+# ::edge	reach-03	ARG2	microwave	r	m2	
+# ::edge	reach-03	direction	over	r	o	
+# ::edge	reach-03	purpose	remove-01	r	r2	
+# ::edge	remove-01	ARG0	man	r2	m	
+# ::edge	remove-01	ARG1	plate	r2	p	
+# ::edge	file-01	ARG1	fish	f	f2	
+# ::edge	plate	consist-of	file-01	p	f	
+(r / reach-03
+    :purpose (r2 / remove-01
+        :ARG0 (m / man)
+        :ARG1 (p / plate
+            :consist-of (f / file-01
+                :ARG1 (f2 / fish))))
+    :ARG0 m
+    :ARG2 (m2 / microwave)
+    :direction (o / over))

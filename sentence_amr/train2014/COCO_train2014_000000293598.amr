@@ -1,0 +1,28 @@
+# ::tok Sheep in grassy field grazing while shepherd watches from hilltop .
+# ::node	l	lamb	0-1
+# ::node	g	grass	2-3
+# ::node	f	field	3-4
+# ::node	g2	graze-01	4-5
+# ::node	p	person	6-7
+# ::node	s	shepherd-01	6-7
+# ::node	w	watch-01	7-8
+# ::node	h	hilltop	9-10
+# ::node	a	and	10-11
+# ::root	a	and
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	graze-01	ARG1	field	g2	f	
+# ::edge	lamb	ARG0-of	graze-01	l	g2	
+# ::edge	person	ARG0-of	shepherd-01	p	s	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	location	hilltop	w	h	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	and	op1	lamb	a	l	
+(a / and
+    :op1 (l / lamb
+        :ARG0-of (g2 / graze-01
+            :ARG1 (f / field
+                :consist-of (g / grass))))
+    :op2 (w / watch-01
+        :ARG0 (p / person
+            :ARG0-of (s / shepherd-01))
+        :location (h / hilltop)))

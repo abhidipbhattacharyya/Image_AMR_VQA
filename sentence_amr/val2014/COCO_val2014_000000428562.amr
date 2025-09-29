@@ -1,0 +1,28 @@
+# ::tok A lot of sheep in a very small fenced in stall with hay on the floor .
+# ::node	l	lot	1-2
+# ::node	s	sheep	3-4
+# ::node	v	very	6-7
+# ::node	s2	small	7-8
+# ::node	f2	free-04	8-9
+# ::node	s3	stall	10-11
+# ::node	h	have-03	11-12
+# ::node	h2	hay	12-13
+# ::node	f	floor	15-16
+# ::root	s	sheep
+# ::edge	sheep	quant	lot	s	l	
+# ::edge	small	degree	very	s2	v	
+# ::edge	stall	ARG1-of	free-04	s3	f2	
+# ::edge	stall	mod	small	s3	s2	
+# ::edge	sheep	location	stall	s	s3	
+# ::edge	stall	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	hay	h	h2	
+# ::edge	hay	location	floor	h2	f	
+(s / sheep
+    :quant (l / lot)
+    :location (s3 / stall
+        :ARG0-of (h / have-03
+            :ARG1 (h2 / hay
+                :location (f / floor)))
+        :ARG1-of (f2 / free-04)
+        :mod (s2 / small
+            :degree (v / very))))

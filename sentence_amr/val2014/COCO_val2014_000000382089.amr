@@ -1,0 +1,37 @@
+# ::tok A street intersection is showing a traffic light , a fire sign , and vehicles parked down the street .
+# ::node	s3	street	1-2
+# ::node	i	intersect-01	2-3
+# ::node	s	show-01	4-5
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	f	fire	10-11
+# ::node	s2	sign	11-12
+# ::node	a	and	13-14
+# ::node	v	vehicle	14-15
+# ::node	p	park-01	15-16
+# ::node	d	down	16-17
+# ::node	s4	street	18-19
+# ::root	s	show-01
+# ::edge	intersect-01	ARG1	street	i	s3	
+# ::edge	show-01	ARG0	intersect-01	s	i	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	sign	topic	fire	s2	f	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	light	a	l	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op3	vehicle	a	v	
+# ::edge	vehicle	ARG1-of	park-01	v	p	
+# ::edge	park-01	ARG2	down	p	d	
+# ::edge	down	op1	street	d	s4	
+(s / show-01
+    :ARG0 (i / intersect-01
+        :ARG1 (s3 / street))
+    :ARG1 (a / and
+        :op1 (l / light
+            :mod (t / traffic))
+        :op2 (s2 / sign
+            :topic (f / fire))
+        :op3 (v / vehicle
+            :ARG1-of (p / park-01
+                :ARG2 (d / down
+                    :op1 (s4 / street))))))

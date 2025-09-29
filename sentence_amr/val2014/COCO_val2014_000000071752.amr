@@ -1,0 +1,27 @@
+# ::tok a group of people standing by the side of the road waiting for a bus to pull up
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s2	stand-01	4-5
+# ::node	s	side	7-8
+# ::node	r	road	10-11
+# ::node	w	wait-01	11-12
+# ::node	b	bus	14-15
+# ::node	p2	pull-01	16-17
+# ::root	s2	stand-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	stand-01	ARG1	group	s2	g	
+# ::edge	stand-01	ARG2	side	s2	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	group	ARG1-of	wait-01	g	w	
+# ::edge	pull-01	ARG0	bus	p2	b	
+# ::edge	wait-01	ARG2	pull-01	w	p2	
+# ::edge	pull-01	ARG1	group	p2	g	
+(s2 / stand-01
+    :ARG1 (g / group
+        :ARG1-of (w / wait-01
+            :ARG2 (p2 / pull-01
+                :ARG0 (b / bus)
+                :ARG1 g))
+        :consist-of (p / person))
+    :ARG2 (s / side
+        :part-of (r / road)))

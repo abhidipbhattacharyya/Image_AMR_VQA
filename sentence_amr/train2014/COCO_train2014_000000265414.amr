@@ -1,0 +1,43 @@
+# ::tok Two giraffes are standing together and one is rubbing its head on the other ones neck .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	s	stand-01	3-4
+# ::node	t	together	4-5
+# ::node	a	and	5-6
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	r	rub-01	8-9
+# ::node	h	head	10-11
+# ::node	o	other	13-14
+# ::node	n	neck	15-16
+# ::root	a	and
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	mod	together	s	t	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	giraffe	ARG1-of	include-91	g2	i	
+# ::edge	include-91	ARG2	giraffe	i	g	
+# ::edge	giraffe	quant	1	g2	0	
+# ::edge	and	op2	rub-01	a	r	
+# ::edge	rub-01	ARG0	giraffe	r	g2	
+# ::edge	rub-01	ARG1	head	r	h	
+# ::edge	giraffe	part	head	g2	h	
+# ::edge	giraffe	mod	other	g2	o	
+# ::edge	rub-01	location	neck	r	n	
+# ::edge	giraffe	part	neck	g2	n	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (g / giraffe
+            :quant 2)
+        :mod (t / together))
+    :op2 (r / rub-01
+        :ARG0 (g2 / giraffe
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 g)
+            :mod (o / other)
+            :part (h / head)
+            :part (n / neck))
+        :ARG1 h
+        :location n))

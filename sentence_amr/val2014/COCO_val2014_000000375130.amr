@@ -1,0 +1,31 @@
+# ::tok a road at night illuminated with car head lights and street lights
+# ::node	r	road	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	i	illuminate-01	4-5
+# ::node	c	car	6-7
+# ::node	h	head	7-8
+# ::node	l	light	8-9
+# ::node	a	and	9-10
+# ::node	s	street	10-11
+# ::node	l2	light	11-12
+# ::root	r	road
+# ::edge	road	time	date-entity	r	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	road	ARG1-of	illuminate-01	r	i	
+# ::edge	light	mod	head	l	h	
+# ::edge	light	part-of	car	l	c	
+# ::edge	and	op1	light	a	l	
+# ::edge	illuminate-01	ARG0	and	i	a	
+# ::edge	light	mod	street	l2	s	
+# ::edge	and	op2	light	a	l2	
+(r / road
+    :ARG1-of (i / illuminate-01
+        :ARG0 (a / and
+            :op1 (l / light
+                :mod (h / head)
+                :part-of (c / car))
+            :op2 (l2 / light
+                :mod (s / street))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

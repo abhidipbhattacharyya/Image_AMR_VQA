@@ -1,0 +1,41 @@
+# ::tok A blue and white train engine pulling lots of brown train cars through a rural area .
+# ::node	b	blue	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	t	train	4-5
+# ::node	e	engine	5-6
+# ::node	e2	engine	5-6
+# ::node	p	pull-01	6-7
+# ::node	l	lot	7-8
+# ::node	r	Brown	9-10
+# ::node	c	car	11-12
+# ::node	r2	rural	14-15
+# ::node	a2	area	15-16
+# ::root	p	pull-01
+# ::edge	engine	mod	train	e	t	
+# ::edge	and	op1	engine	a	e	
+# ::edge	engine	mod	blue	e	b	
+# ::edge	engine	mod	train	e2	t	
+# ::edge	engine	ARG1-of	white-03	e2	w	
+# ::edge	and	op2	engine	a	e2	
+# ::edge	pull-01	ARG0	and	p	a	
+# ::edge	car	mod	Brown	c	r	
+# ::edge	car	quant	lot	c	l	
+# ::edge	pull-01	ARG1	car	p	c	
+# ::edge	car	mod	train	c	t	
+# ::edge	area	mod	rural	a2	r2	
+# ::edge	pull-01	path	area	p	a2	
+(p / pull-01
+    :ARG0 (a / and
+        :op1 (e / engine
+            :mod (t / train)
+            :mod (b / blue))
+        :op2 (e2 / engine
+            :ARG1-of (w / white-03)
+            :mod t))
+    :ARG1 (c / car
+        :quant (l / lot)
+        :mod (r / Brown)
+        :mod t)
+    :path (a2 / area
+        :mod (r2 / rural)))

@@ -1,0 +1,28 @@
+# ::tok Elevated bridge runs alongside the railroad tracks and over land .
+# ::node	e	elevate-01	0-1
+# ::node	b	bridge	1-2
+# ::node	r2	run-04	2-3
+# ::node	a	alongside	3-4
+# ::node	r	railroad	5-6
+# ::node	t	track	6-7
+# ::node	a2	and	7-8
+# ::node	o	over	8-9
+# ::node	l	land	9-10
+# ::root	r2	run-04
+# ::edge	bridge	ARG1-of	elevate-01	b	e	
+# ::edge	run-04	ARG1	bridge	r2	b	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	alongside	op1	track	a	t	
+# ::edge	and	op1	alongside	a2	a	
+# ::edge	run-04	path	and	r2	a2	
+# ::edge	and	op2	over	a2	o	
+# ::edge	over	op1	land	o	l	
+(r2 / run-04
+    :ARG1 (b / bridge
+        :ARG1-of (e / elevate-01))
+    :path (a2 / and
+        :op1 (a / alongside
+            :op1 (t / track
+                :mod (r / railroad)))
+        :op2 (o / over
+            :op1 (l / land))))

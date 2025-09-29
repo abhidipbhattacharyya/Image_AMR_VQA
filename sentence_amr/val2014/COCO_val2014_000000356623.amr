@@ -1,0 +1,34 @@
+# ::tok a group of people on motorcycles riding through a rock tunnel and a sign says falling rock
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	m	motorcycle	5-6
+# ::node	r	ride-01	6-7
+# ::node	r2	rock	9-10
+# ::node	t	tunnel	10-11
+# ::node	a	and	11-12
+# ::node	s2	sign	13-14
+# ::node	s	say-01	14-15
+# ::node	f	fall-01	15-16
+# ::node	r3	rock	16-17
+# ::root	a	and
+# ::edge	group	consist-of	person	g	p	
+# ::edge	ride-01	ARG1	motorcycle	r	m	
+# ::edge	group	ARG0-of	ride-01	g	r	
+# ::edge	tunnel	mod	rock	t	r2	
+# ::edge	ride-01	path	tunnel	r	t	
+# ::edge	and	op1	group	a	g	
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	and	op2	say-01	a	s	
+# ::edge	say-01	ARG1	fall-01	s	f	
+# ::edge	fall-01	ARG1	rock	f	r3	
+(a / and
+    :op1 (g / group
+        :ARG0-of (r / ride-01
+            :ARG1 (m / motorcycle)
+            :path (t / tunnel
+                :mod (r2 / rock)))
+        :consist-of (p / person))
+    :op2 (s / say-01
+        :ARG0 (s2 / sign)
+        :ARG1 (f / fall-01
+            :ARG1 (r3 / rock))))

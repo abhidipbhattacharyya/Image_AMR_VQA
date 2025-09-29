@@ -1,0 +1,45 @@
+# ::tok A man sitting on a seat and reading a book , next to a woman that has an electronic music device in her hands with headphones attached to it .
+# ::node	m	man	1-2
+# ::node	s2	sit-01	2-3
+# ::node	s	seat	5-6
+# ::node	a	and	6-7
+# ::node	r	read-01	7-8
+# ::node	b	book	9-10
+# ::node	n	next-to	11-12
+# ::node	w	woman	14-15
+# ::node	e	electronic	18-19
+# ::node	m2	music	19-20
+# ::node	d	device	20-21
+# ::node	i	in-ones-hands-04	23-24
+# ::node	s3	speaker	25-26
+# ::node	a2	attach-01	26-27
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	seat	s2	s	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	read-01	a	r	
+# ::edge	read-01	ARG0	man	r	m	
+# ::edge	read-01	ARG1	book	r	b	
+# ::edge	and	location	next-to	a	n	
+# ::edge	next-to	op1	woman	n	w	
+# ::edge	music	mod	electronic	m2	e	
+# ::edge	device	mod	music	d	m2	
+# ::edge	in-ones-hands-04	ARG1	device	i	d	
+# ::edge	woman	ARG0-of	in-ones-hands-04	w	i	
+# ::edge	attach-01	ARG2	speaker	a2	s3	
+# ::edge	device	ARG1-of	attach-01	d	a2	
+(a / and
+    :location (n / next-to
+        :op1 (w / woman
+            :ARG0-of (i / in-ones-hands-04
+                :ARG1 (d / device
+                    :ARG1-of (a2 / attach-01
+                        :ARG2 (s3 / speaker))
+                    :mod (m2 / music
+                        :mod (e / electronic))))))
+    :op1 (s2 / sit-01
+        :ARG1 (m / man)
+        :ARG2 (s / seat))
+    :op2 (r / read-01
+        :ARG0 m
+        :ARG1 (b / book)))

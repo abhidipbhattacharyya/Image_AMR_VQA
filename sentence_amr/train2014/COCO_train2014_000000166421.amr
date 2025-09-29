@@ -1,0 +1,29 @@
+# ::tok Train tracks that are merging , one of the tracks has a train on it .
+# ::node	t3	train	0-1
+# ::node	t	track	1-2
+# ::node	m	merge-01	4-5
+# ::node	0	1	6-7
+# ::node	i	include-91	7-8
+# ::node	t2	track	9-10
+# ::node	h	have-03	10-11
+# ::node	t4	train	12-13
+# ::root	h	have-03
+# ::edge	track	purpose	train	t	t3	
+# ::edge	track	ARG1-of	merge-01	t	m	
+# ::edge	include-91	ARG2	1	i	0	
+# ::edge	track	ARG1-of	include-91	t2	i	
+# ::edge	track	quant	1	t2	0	
+# ::edge	have-03	ARG0	track	h	t2	
+# ::edge	have-03	ARG1	train	h	t4	
+# ::edge	train	location	track	t4	t2	
+# ::edge	have-03	rel	track	h	t	
+(h / have-03
+    :ARG0 (t2 / track
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 1))
+    :ARG1 (t4 / train
+        :location t2)
+    :rel (t / track
+        :purpose (t3 / train)
+        :ARG1-of (m / merge-01)))

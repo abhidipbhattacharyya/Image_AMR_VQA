@@ -1,0 +1,22 @@
+# ::tok A police truck sits behind barriers adjacent to an intersection .
+# ::node	p	police	1-2
+# ::node	t	truck	2-3
+# ::node	s	sit-01	3-4
+# ::node	b2	behind	4-5
+# ::node	b	barrier	5-6
+# ::node	b3	border-01	6-7
+# ::node	i	intersect-01	9-10
+# ::root	s	sit-01
+# ::edge	truck	mod	police	t	p	
+# ::edge	sit-01	ARG1	truck	s	t	
+# ::edge	sit-01	ARG2	behind	s	b2	
+# ::edge	behind	op1	barrier	b2	b	
+# ::edge	barrier	ARG1-of	border-01	b	b3	
+# ::edge	border-01	ARG2	intersect-01	b3	i	
+(s / sit-01
+    :ARG1 (t / truck
+        :mod (p / police))
+    :ARG2 (b2 / behind
+        :op1 (b / barrier
+            :ARG1-of (b3 / border-01
+                :ARG2 (i / intersect-01)))))

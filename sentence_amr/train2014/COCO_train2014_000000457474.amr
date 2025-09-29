@@ -1,0 +1,31 @@
+# ::tok A view out of a vehicle window of the rearview mirror and a pickup truck with an overfull load in the bed .
+# ::node	v2	view-01	1-2
+# ::node	v	vehicle	5-6
+# ::node	w	window	6-7
+# ::node	r	rearview	9-10
+# ::node	m	mirror	10-11
+# ::node	p	pickup	13-14
+# ::node	t	truck	14-15
+# ::node	o	over-03	17-18
+# ::node	l	load	18-19
+# ::node	b	bed	21-22
+# ::root	v2	view-01
+# ::edge	window	part-of	vehicle	w	v	
+# ::edge	view-01	source	window	v2	w	
+# ::edge	mirror	mod	rearview	m	r	
+# ::edge	window	part-of	mirror	w	m	
+# ::edge	truck	mod	pickup	t	p	
+# ::edge	view-01	ARG1	truck	v2	t	
+# ::edge	load	ARG1-of	over-03	l	o	
+# ::edge	truck	part	load	t	l	
+# ::edge	load	location	bed	l	b	
+(v2 / view-01
+    :ARG1 (t / truck
+        :mod (p / pickup)
+        :part (l / load
+            :ARG1-of (o / over-03)
+            :location (b / bed)))
+    :source (w / window
+        :part-of (v / vehicle)
+        :part-of (m / mirror
+            :mod (r / rearview))))

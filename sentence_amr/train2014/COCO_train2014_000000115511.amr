@@ -1,0 +1,64 @@
+# ::tok There are two plates one left a cupcake wrapper and the other is a half uneaten cake sitting next to an empty wine glass and a blue cup .
+# ::node	2	2	2-3
+# ::node	p	plate	3-4
+# ::node	p2	plate	3-4
+# ::node	1	1	4-5
+# ::node	l	leave-14	5-6
+# ::node	c3	cupcake	7-8
+# ::node	w2	wrap-01	8-9
+# ::node	a	and	9-10
+# ::node	o	other	11-12
+# ::node	h	half	14-15
+# ::node	e	eat-01	15-16
+# ::node	0	-	15-16
+# ::node	c	cake	16-17
+# ::node	s	sit-01	17-18
+# ::node	n	next-to	18-19
+# ::node	e2	empty-02	21-22
+# ::node	w	wine	22-23
+# ::node	g	glass	23-24
+# ::node	a2	and	24-25
+# ::node	b	blue	26-27
+# ::node	c2	cup	27-28
+# ::root	a	and
+# ::edge	plate	quant	2	p	2	
+# ::edge	plate	quant	1	p	1	
+# ::edge	leave-14	ARG0	plate	l	p	
+# ::edge	wrap-01	ARG1	cupcake	w2	c3	
+# ::edge	leave-14	ARG1	wrap-01	l	w2	
+# ::edge	and	op1	leave-14	a	l	
+# ::edge	plate	mod	other	p2	o	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	eat-01	polarity	-	e	0	
+# ::edge	cake	ARG1-of	eat-01	c	e	
+# ::edge	plate	domain	cake	p2	c	
+# ::edge	cake	ARG1-of	sit-01	c	s	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	glass	mod	wine	g	w	
+# ::edge	glass	ARG1-of	empty-02	g	e2	
+# ::edge	and	op1	glass	a2	g	
+# ::edge	next-to	op1	and	n	a2	
+# ::edge	cup	mod	blue	c2	b	
+# ::edge	and	op2	cup	a2	c2	
+# ::edge	and	rel	plate	a	p2	
+(a / and
+    :op1 (l / leave-14
+        :ARG0 (p / plate
+            :quant 2
+            :quant 1)
+        :ARG1 (w2 / wrap-01
+            :ARG1 (c3 / cupcake)))
+    :rel (p2 / plate
+        :domain (c / cake
+            :ARG1-of (e / eat-01
+                :degree (h / half)
+                :polarity -)
+            :ARG1-of (s / sit-01
+                :ARG2 (n / next-to
+                    :op1 (a2 / and
+                        :op1 (g / glass
+                            :ARG1-of (e2 / empty-02)
+                            :mod (w / wine))
+                        :op2 (c2 / cup
+                            :mod (b / blue))))))
+        :mod (o / other)))

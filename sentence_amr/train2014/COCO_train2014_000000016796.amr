@@ -1,0 +1,31 @@
+# ::tok A sandwich with a bite out of half of it with coffee and a side dish .
+# ::node	s	sandwich	1-2
+# ::node	b	bite	4-5
+# ::node	i	include-91	6-7
+# ::node	h	half	7-8
+# ::node	i2	it	9-10
+# ::node	a	accompany-01	10-11
+# ::node	c	coffee	11-12
+# ::node	a2	and	12-13
+# ::node	s2	side	14-15
+# ::node	d	dish	15-16
+# ::root	s	sandwich
+# ::edge	bite	ARG1-of	include-91	b	i	
+# ::edge	include-91	ARG2	half	i	h	
+# ::edge	half	part-of	it	h	i2	
+# ::edge	accompany-01	ARG1	bite	a	b	
+# ::edge	sandwich	ARG0-of	accompany-01	s	a	
+# ::edge	and	op1	coffee	a2	c	
+# ::edge	accompany-01	accompanier	and	a	a2	
+# ::edge	dish	mod	side	d	s2	
+# ::edge	and	op2	dish	a2	d	
+(s / sandwich
+    :ARG0-of (a / accompany-01
+        :ARG1 (b / bite
+            :ARG1-of (i / include-91
+                :ARG2 (h / half
+                    :part-of (i2 / it))))
+        :accompanier (a2 / and
+            :op1 (c / coffee)
+            :op2 (d / dish
+                :mod (s2 / side)))))

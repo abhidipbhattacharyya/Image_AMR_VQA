@@ -1,0 +1,43 @@
+# ::tok People on a long field of grass with trees lining one side and a area of water on the other side .
+# ::node	p	person	0-1
+# ::node	l2	long-03	3-4
+# ::node	f	field	4-5
+# ::node	g	grass	6-7
+# ::node	h	have-03	7-8
+# ::node	t	tree	8-9
+# ::node	l	line-01	9-10
+# ::node	0	1	10-11
+# ::node	s	side	11-12
+# ::node	a	and	12-13
+# ::node	a2	area	14-15
+# ::node	w	water	16-17
+# ::node	o	other	19-20
+# ::node	s2	side	20-21
+# ::root	p	person
+# ::edge	field	ARG1-of	long-03	f	l2	
+# ::edge	person	location	field	p	f	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	line-01	ARG2	tree	l	t	
+# ::edge	side	quant	1	s	0	
+# ::edge	line-01	ARG1	side	l	s	
+# ::edge	and	op1	line-01	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	area	a	a2	
+# ::edge	area	mod	water	a2	w	
+# ::edge	side	mod	other	s2	o	
+# ::edge	area	location	side	a2	s2	
+(p / person
+    :location (f / field
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (l / line-01
+                    :ARG1 (s / side
+                        :quant 1)
+                    :ARG2 (t / tree))
+                :op2 (a2 / area
+                    :location (s2 / side
+                        :mod (o / other))
+                    :mod (w / water))))
+        :ARG1-of (l2 / long-03)
+        :consist-of (g / grass)))

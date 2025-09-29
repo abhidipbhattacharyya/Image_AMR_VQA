@@ -1,0 +1,40 @@
+# ::tok A city building 's windows reflect other city buildings in the background ; a traffic light is in the foreground .
+# ::node	c	city	1-2
+# ::node	b3	building	2-3
+# ::node	w	window	4-5
+# ::node	r	reflect-01	5-6
+# ::node	o	other	6-7
+# ::node	c2	city	7-8
+# ::node	b4	building	8-9
+# ::node	b	background	11-12
+# ::node	a	and	12-13
+# ::node	t	traffic	14-15
+# ::node	l	light	15-16
+# ::node	b2	be-located-at-91	17-18
+# ::node	f	foreground	19-20
+# ::root	a	and
+# ::edge	building	mod	city	b3	c	
+# ::edge	window	part-of	building	w	b3	
+# ::edge	reflect-01	ARG1	window	r	w	
+# ::edge	building	mod	city	b4	c2	
+# ::edge	building	mod	other	b4	o	
+# ::edge	reflect-01	ARG2	building	r	b4	
+# ::edge	building	location	background	b4	b	
+# ::edge	and	op1	reflect-01	a	r	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	be-located-at-91	ARG1	light	b2	l	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	foreground	b2	f	
+(a / and
+    :op1 (r / reflect-01
+        :ARG1 (w / window
+            :part-of (b3 / building
+                :mod (c / city)))
+        :ARG2 (b4 / building
+            :location (b / background)
+            :mod (c2 / city)
+            :mod (o / other)))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (l / light
+            :mod (t / traffic))
+        :ARG2 (f / foreground)))

@@ -1,0 +1,25 @@
+# ::tok A vent in the middle of a strip of sheet metal mounted on a concrete structure .
+# ::node	v	vent	1-2
+# ::node	m2	middle	4-5
+# ::node	s2	strip	7-8
+# ::node	s	sheet	9-10
+# ::node	m	metal	10-11
+# ::node	m3	mount-03	11-12
+# ::node	c	concrete	14-15
+# ::node	s3	structure	15-16
+# ::root	v	vent
+# ::edge	vent	location	middle	v	m2	
+# ::edge	middle	part-of	strip	m2	s2	
+# ::edge	metal	consist-of	sheet	m	s	
+# ::edge	strip	consist-of	metal	s2	m	
+# ::edge	strip	ARG1-of	mount-03	s2	m3	
+# ::edge	structure	mod	concrete	s3	c	
+# ::edge	mount-03	location	structure	m3	s3	
+(v / vent
+    :location (m2 / middle
+        :part-of (s2 / strip
+            :ARG1-of (m3 / mount-03
+                :location (s3 / structure
+                    :mod (c / concrete)))
+            :consist-of (m / metal
+                :consist-of (s / sheet)))))

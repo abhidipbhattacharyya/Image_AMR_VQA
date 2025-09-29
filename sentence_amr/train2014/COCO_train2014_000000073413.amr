@@ -1,0 +1,28 @@
+# ::tok Outside a bus stop there is a bus and a double - decker bus .
+# ::node	o	outside	0-1
+# ::node	l	location	1-2
+# ::node	b	bus	2-3
+# ::node	s	stop-01	3-4
+# ::node	b2	bus	7-8
+# ::node	a	and	8-9
+# ::node	0	2	10-11
+# ::node	d	deck	12-13
+# ::node	b3	bus	13-14
+# ::root	a	and
+# ::edge	outside	op1	location	o	l	
+# ::edge	stop-01	ARG1	bus	s	b	
+# ::edge	location	location-of	stop-01	l	s	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	and	location	outside	a	o	
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b3	d	
+# ::edge	and	op2	bus	a	b3	
+(a / and
+    :location (o / outside
+        :op1 (l / location
+            :location-of (s / stop-01
+                :ARG1 (b / bus))))
+    :op1 (b2 / bus)
+    :op2 (b3 / bus
+        :mod (d / deck
+            :quant 2)))

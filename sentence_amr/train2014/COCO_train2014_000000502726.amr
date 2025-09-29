@@ -1,0 +1,30 @@
+# ::tok Sunlight streams through a window onto a living room 's coffee table and couches .
+# ::node	s2	sun	0-1
+# ::node	s	stream-01	1-2
+# ::node	w	window	4-5
+# ::node	l	living	7-8
+# ::node	r	room	8-9
+# ::node	c	coffee	10-11
+# ::node	t	table	11-12
+# ::node	a	and	12-13
+# ::node	c2	couch	13-14
+# ::root	s	stream-01
+# ::edge	stream-01	ARG1	sun	s	s2	
+# ::edge	stream-01	path	window	s	w	
+# ::edge	room	mod	living	r	l	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	table	part-of	room	t	r	
+# ::edge	and	op1	table	a	t	
+# ::edge	stream-01	destination	and	s	a	
+# ::edge	and	op2	couch	a	c2	
+# ::edge	room	part	couch	r	c2	
+(s / stream-01
+    :ARG1 (s2 / sun)
+    :destination (a / and
+        :op1 (t / table
+            :mod (c / coffee)
+            :part-of (r / room
+                :mod (l / living)
+                :part (c2 / couch)))
+        :op2 c2)
+    :path (w / window))

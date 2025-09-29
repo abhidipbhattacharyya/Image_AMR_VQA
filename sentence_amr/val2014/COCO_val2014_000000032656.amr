@@ -1,0 +1,26 @@
+# ::tok a birthday cake made to look like it 's bleeding after being stabbed
+# ::node	b	birthday	1-2
+# ::node	c	cake	2-3
+# ::node	m	make-02	3-4
+# ::node	l	look-02	5-6
+# ::node	b2	bleed-01	9-10
+# ::node	a	after	10-11
+# ::node	s	stab-01	12-13
+# ::root	m	make-02
+# ::edge	cake	mod	birthday	c	b	
+# ::edge	make-02	ARG1	cake	m	c	
+# ::edge	make-02	ARG0-of	look-02	m	l	
+# ::edge	look-02	ARG1	bleed-01	l	b2	
+# ::edge	bleed-01	ARG1	cake	b2	c	
+# ::edge	make-02	time	after	m	a	
+# ::edge	after	op1	stab-01	a	s	
+# ::edge	stab-01	ARG1	cake	s	c	
+(m / make-02
+    :ARG0-of (l / look-02
+        :ARG1 (b2 / bleed-01
+            :ARG1 (c / cake
+                :mod (b / birthday))))
+    :ARG1 c
+    :time (a / after
+        :op1 (s / stab-01
+            :ARG1 c)))

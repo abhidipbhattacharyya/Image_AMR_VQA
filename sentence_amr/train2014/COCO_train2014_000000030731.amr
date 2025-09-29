@@ -1,0 +1,34 @@
+# ::tok The sailboat icomes close to shore where people can see each other .
+# ::node	s	sailboat	1-2
+# ::node	i	island	2-3
+# ::node	n	name	2-3
+# ::node	0	terrorism	2-3
+# ::node	c	close-10	3-4
+# ::node	s3	shore	5-6
+# ::node	p	person	7-8
+# ::node	p2	possible-01	8-9
+# ::node	s2	see-01	9-10
+# ::node	e	each	10-11
+# ::node	o	other	11-12
+# ::root	c	close-10
+# ::edge	island	part-of	sailboat	i	s	
+# ::edge	island	name	name	i	n	
+# ::edge	name	op1	terrorism	n	0	
+# ::edge	close-10	ARG1	island	c	i	
+# ::edge	close-10	ARG2	shore	c	s3	
+# ::edge	shore	location-of	possible-01	s3	p2	
+# ::edge	possible-01	ARG1	see-01	p2	s2	
+# ::edge	see-01	ARG0	person	s2	p	
+# ::edge	other	mod	each	o	e	
+# ::edge	see-01	ARG1	other	s2	o	
+(c / close-10
+    :ARG1 (i / island
+        :name (n / name
+            :op1 "terrorism")
+        :part-of (s / sailboat))
+    :ARG2 (s3 / shore
+        :location-of (p2 / possible-01
+            :ARG1 (s2 / see-01
+                :ARG0 (p / person)
+                :ARG1 (o / other
+                    :mod (e / each))))))

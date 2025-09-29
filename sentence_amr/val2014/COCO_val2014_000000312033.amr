@@ -1,0 +1,46 @@
+# ::tok Little League baseball players , including a pitcher , a hitter , and two umpires .
+# ::node	2	Little	0-1
+# ::node	l	league	1-2
+# ::node	1	League	1-2
+# ::node	b	baseball	2-3
+# ::node	p	person	3-4
+# ::node	p5	play-01	3-4
+# ::node	n	name	3-4
+# ::node	i	include-01	5-6
+# ::node	p4	pitcher	7-8
+# ::node	a	and	8-9
+# ::node	p2	person	10-11
+# ::node	h	hit-01	10-11
+# ::node	0	2	13-14
+# ::node	p3	person	14-15
+# ::node	u	umpire-01	14-15
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p5	
+# ::edge	play-01	ARG1	baseball	p5	b	
+# ::edge	play-01	ARG2	league	p5	l	
+# ::edge	name	op2	League	n	1	
+# ::edge	league	name	name	l	n	
+# ::edge	name	op1	Little	n	2	
+# ::edge	person	ARG2-of	include-01	p	i	
+# ::edge	and	op1	pitcher	a	p4	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	hit-01	p2	h	
+# ::edge	person	quant	2	p3	0	
+# ::edge	and	op3	person	a	p3	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+(p / person
+    :ARG0-of (p5 / play-01
+        :ARG1 (b / baseball)
+        :ARG2 (l / league
+            :name (n / name
+                :op1 "Little"
+                :op2 "League")))
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (p4 / pitcher)
+            :op2 (p2 / person
+                :ARG0-of (h / hit-01))
+            :op3 (p3 / person
+                :quant 2
+                :ARG0-of (u / umpire-01)))))

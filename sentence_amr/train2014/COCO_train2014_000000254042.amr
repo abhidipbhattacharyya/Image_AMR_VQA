@@ -1,0 +1,29 @@
+# ::tok A lifeguard watching the ocean to ensure the safety of the beach patrons .
+# ::node	l	lifeguard	1-2
+# ::node	w	watch-01	2-3
+# ::node	o	ocean	4-5
+# ::node	e	ensure-01	6-7
+# ::node	s	safe-01	8-9
+# ::node	b	beach	11-12
+# ::node	p	patient	12-13
+# ::node	h	have-org-role-91	12-13
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	lifeguard	w	l	
+# ::edge	watch-01	ARG1	ocean	w	o	
+# ::edge	watch-01	purpose	ensure-01	w	e	
+# ::edge	ensure-01	ARG0	lifeguard	e	l	
+# ::edge	ensure-01	ARG1	safe-01	e	s	
+# ::edge	beach	ARG1	patient	b	p	
+# ::edge	patient	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	beach	h	b	
+# ::edge	watch-01	rel	patient	w	p	
+(w / watch-01
+    :purpose (e / ensure-01
+        :ARG0 (l / lifeguard)
+        :ARG1 (s / safe-01))
+    :ARG0 l
+    :ARG1 (o / ocean)
+    :rel (p / patient
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (b / beach
+                :ARG1 p))))

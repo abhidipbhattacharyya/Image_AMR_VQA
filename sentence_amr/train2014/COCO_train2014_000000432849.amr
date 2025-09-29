@@ -1,0 +1,35 @@
+# ::tok The shadow of the train can be seen on the building next to it as it chugs along down the rails .
+# ::node	s2	shadow	1-2
+# ::node	t2	train	4-5
+# ::node	p	possible-01	5-6
+# ::node	s	see-01	7-8
+# ::node	b	building	10-11
+# ::node	n	next-to	11-12
+# ::node	c	chomp-01	16-17
+# ::node	a	along	17-18
+# ::node	d	down	18-19
+# ::node	t	track	20-21
+# ::root	p	possible-01
+# ::edge	shadow	poss	train	s2	t2	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	shadow	s	s2	
+# ::edge	see-01	location	building	s	b	
+# ::edge	building	location	next-to	b	n	
+# ::edge	next-to	op1	train	n	t2	
+# ::edge	see-01	time	chomp-01	s	c	
+# ::edge	chomp-01	ARG0	train	c	t2	
+# ::edge	chomp-01	ARG1	along	c	a	
+# ::edge	chomp-01	direction	down	c	d	
+# ::edge	chomp-01	path	track	c	t	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (s2 / shadow
+            :poss (t2 / train))
+        :location (b / building
+            :location (n / next-to
+                :op1 t2))
+        :time (c / chomp-01
+            :ARG0 t2
+            :ARG1 (a / along)
+            :direction (d / down)
+            :path (t / track))))

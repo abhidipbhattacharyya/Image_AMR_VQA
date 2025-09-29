@@ -1,0 +1,28 @@
+# ::tok A photo taken at night of the street with the headlights causing a light blur .
+# ::node	p	photograph-01	1-2
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	s	street	7-8
+# ::node	b2	bulb	10-11
+# ::node	l2	light-04	10-11
+# ::node	c	cause-01	11-12
+# ::node	l	light	13-14
+# ::node	b	blur-01	14-15
+# ::root	p	photograph-01
+# ::edge	photograph-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	photograph-01	ARG1	street	p	s	
+# ::edge	street	part	bulb	s	b2	
+# ::edge	bulb	ARG0-of	light-04	b2	l2	
+# ::edge	bulb	ARG0-of	cause-01	b2	c	
+# ::edge	blur-01	ARG2	light	b	l	
+# ::edge	cause-01	ARG1	blur-01	c	b	
+(p / photograph-01
+    :ARG1 (s / street
+        :part (b2 / bulb
+            :ARG0-of (l2 / light-04)
+            :ARG0-of (c / cause-01
+                :ARG1 (b / blur-01
+                    :ARG2 (l / light)))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

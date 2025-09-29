@@ -1,0 +1,34 @@
+# ::tok A big yellow truck parked in a parking lot surrounded by red brick buildings .
+# ::node	b	big	1-2
+# ::node	y	yellow	2-3
+# ::node	t	truck	3-4
+# ::node	p	park-01	4-5
+# ::node	p2	park-01	7-8
+# ::node	l	lot	8-9
+# ::node	s	surround-01	9-10
+# ::node	r	red-02	11-12
+# ::node	b2	brick	12-13
+# ::node	b3	building	13-14
+# ::node	a	and	14-15
+# ::root	a	and
+# ::edge	truck	mod	yellow	t	y	
+# ::edge	truck	mod	big	t	b	
+# ::edge	truck	ARG1-of	park-01	t	p	
+# ::edge	lot	ARG2-of	park-01	l	p2	
+# ::edge	park-01	location	lot	p	l	
+# ::edge	truck	ARG2-of	surround-01	t	s	
+# ::edge	brick	ARG1-of	red-02	b2	r	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	surround-01	ARG1	building	s	b3	
+# ::edge	and	op1	truck	a	t	
+(a / and
+    :op1 (t / truck
+        :ARG1-of (p / park-01
+            :location (l / lot
+                :ARG2-of (p2 / park-01)))
+        :ARG2-of (s / surround-01
+            :ARG1 (b3 / building
+                :consist-of (b2 / brick
+                    :ARG1-of (r / red-02))))
+        :mod (y / yellow)
+        :mod (b / big)))

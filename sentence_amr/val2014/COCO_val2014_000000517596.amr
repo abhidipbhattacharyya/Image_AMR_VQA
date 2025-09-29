@@ -1,0 +1,22 @@
+# ::tok A train is stopping at the train station while the people are getting on broad .
+# ::node	t	train	1-2
+# ::node	s2	stop-01	3-4
+# ::node	t2	train	6-7
+# ::node	s	station	7-8
+# ::node	p	person	10-11
+# ::node	g	get-05	12-13
+# ::node	b	broad-02	14-15
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	stop-01	time	get-05	s2	g	
+# ::edge	get-05	ARG2	broad-02	g	b	
+(s2 / stop-01
+    :ARG1 (t / train)
+    :location (s / station
+        :mod (t2 / train))
+    :time (g / get-05
+        :ARG1 (p / person)
+        :ARG2 (b / broad-02)))

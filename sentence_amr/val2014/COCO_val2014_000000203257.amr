@@ -1,0 +1,32 @@
+# ::tok A busy freeway , with lots of cars , buses , and a subway entrance next to it .
+# ::node	b2	busy-02	1-2
+# ::node	f	freeway	2-3
+# ::node	l	lot	5-6
+# ::node	c	car	7-8
+# ::node	b	bus	9-10
+# ::node	a	and	11-12
+# ::node	s	subway	13-14
+# ::node	e	entrance	14-15
+# ::node	n	next-to	15-16
+# ::root	f	freeway
+# ::edge	freeway	ARG1-of	busy-02	f	b2	
+# ::edge	car	quant	lot	c	l	
+# ::edge	bus	quant	lot	b	l	
+# ::edge	and	op2	bus	a	b	
+# ::edge	and	op1	car	a	c	
+# ::edge	entrance	mod	subway	e	s	
+# ::edge	and	op3	entrance	a	e	
+# ::edge	and	location	next-to	a	n	
+# ::edge	next-to	op1	freeway	n	f	
+# ::edge	freeway	rel	and	f	a	
+(f / freeway
+    :ARG1-of (b2 / busy-02)
+    :rel (a / and
+        :location (n / next-to
+            :op1 f)
+        :op1 (c / car
+            :quant (l / lot))
+        :op2 (b / bus
+            :quant l)
+        :op3 (e / entrance
+            :mod (s / subway))))

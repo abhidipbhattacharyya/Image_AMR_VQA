@@ -1,0 +1,25 @@
+# ::tok A train engine sitting in a warehouse next to other train engines .
+# ::node	t	train	1-2
+# ::node	e	engine	2-3
+# ::node	s	sit-01	3-4
+# ::node	w	warehouse	6-7
+# ::node	n	next-to	7-8
+# ::node	o	other	9-10
+# ::node	t2	train	10-11
+# ::node	e2	engine	11-12
+# ::root	s	sit-01
+# ::edge	engine	mod	train	e	t	
+# ::edge	sit-01	ARG1	engine	s	e	
+# ::edge	sit-01	ARG2	warehouse	s	w	
+# ::edge	warehouse	location-of	next-to	w	n	
+# ::edge	engine	mod	train	e2	t2	
+# ::edge	engine	mod	other	e2	o	
+# ::edge	next-to	op1	engine	n	e2	
+(s / sit-01
+    :ARG1 (e / engine
+        :mod (t / train))
+    :ARG2 (w / warehouse
+        :location-of (n / next-to
+            :op1 (e2 / engine
+                :mod (t2 / train)
+                :mod (o / other)))))

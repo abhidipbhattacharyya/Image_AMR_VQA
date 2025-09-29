@@ -1,0 +1,34 @@
+# ::tok A person holding an extra large hot dog with veggie fixing and condiments
+# ::node	p	person	1-2
+# ::node	h	hold-01	2-3
+# ::node	e	extra	4-5
+# ::node	l	large	5-6
+# ::node	h2	hot-dog	7-8
+# ::node	v	vegetable	9-10
+# ::node	f	fix-02	10-11
+# ::node	a	and	11-12
+# ::node	c	conference	12-13
+# ::node	n	name	12-13
+# ::node	d	direct-02	12-13
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	large	degree	extra	l	e	
+# ::edge	hot-dog	mod	large	h2	l	
+# ::edge	hold-01	ARG1	hot-dog	h	h2	
+# ::edge	fix-02	ARG1	vegetable	f	v	
+# ::edge	and	op1	fix-02	a	f	
+# ::edge	hot-dog	accompanier	and	h2	a	
+# ::edge	and	op2	conference	a	c	
+# ::edge	conference	name	name	c	n	
+# ::edge	conference	ARG1-of	direct-02	c	d	
+(h / hold-01
+    :ARG0 (p / person)
+    :ARG1 (h2 / hot-dog
+        :accompanier (a / and
+            :op1 (f / fix-02
+                :ARG1 (v / vegetable))
+            :op2 (c / conference
+                :name (n / name)
+                :ARG1-of (d / direct-02)))
+        :mod (l / large
+            :degree (e / extra))))

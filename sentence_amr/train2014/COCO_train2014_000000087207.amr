@@ -1,0 +1,37 @@
+# ::tok Several people carry open umbrellas on a wet city street that is surrounded by tall colorful buildings .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	c	carry-01	2-3
+# ::node	o	open-01	3-4
+# ::node	u	umbrella	4-5
+# ::node	w	wet-01	7-8
+# ::node	c2	city	8-9
+# ::node	s2	street	9-10
+# ::node	s3	surround-01	12-13
+# ::node	t	tall	14-15
+# ::node	c3	colorful	15-16
+# ::node	b	building	16-17
+# ::root	c	carry-01
+# ::edge	person	quant	several	p	s	
+# ::edge	carry-01	ARG0	person	c	p	
+# ::edge	umbrella	ARG1-of	open-01	u	o	
+# ::edge	carry-01	ARG1	umbrella	c	u	
+# ::edge	street	mod	city	s2	c2	
+# ::edge	street	ARG1-of	wet-01	s2	w	
+# ::edge	carry-01	location	street	c	s2	
+# ::edge	street	ARG2-of	surround-01	s2	s3	
+# ::edge	building	mod	colorful	b	c3	
+# ::edge	building	mod	tall	b	t	
+# ::edge	surround-01	ARG1	building	s3	b	
+(c / carry-01
+    :ARG0 (p / person
+        :quant (s / several))
+    :ARG1 (u / umbrella
+        :ARG1-of (o / open-01))
+    :location (s2 / street
+        :ARG1-of (w / wet-01)
+        :ARG2-of (s3 / surround-01
+            :ARG1 (b / building
+                :mod (c3 / colorful)
+                :mod (t / tall)))
+        :mod (c2 / city)))

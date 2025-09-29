@@ -1,0 +1,39 @@
+# ::tok Some people in the sand and some people are near the rail in front of a building with a clock on it .
+# ::node	p	person	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	s	sand	4-5
+# ::node	a	and	5-6
+# ::node	s2	some	6-7
+# ::node	p2	person	7-8
+# ::node	n	near-02	9-10
+# ::node	r	rail	11-12
+# ::node	i	in-front-of	13-14
+# ::node	b2	building	16-17
+# ::node	h	have-03	17-18
+# ::node	c	clock	19-20
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	sand	b	s	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	person	mod	some	p	s2	
+# ::edge	person	mod	some	p2	s2	
+# ::edge	near-02	ARG1	person	n	p2	
+# ::edge	and	op2	near-02	a	n	
+# ::edge	near-02	ARG2	rail	n	r	
+# ::edge	rail	location	in-front-of	r	i	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	clock	h	c	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (p / person
+            :mod (s2 / some))
+        :ARG2 (s / sand))
+    :op2 (n / near-02
+        :ARG1 (p2 / person
+            :mod s2)
+        :ARG2 (r / rail
+            :location (i / in-front-of
+                :op1 (b2 / building
+                    :ARG0-of (h / have-03
+                        :ARG1 (c / clock)))))))

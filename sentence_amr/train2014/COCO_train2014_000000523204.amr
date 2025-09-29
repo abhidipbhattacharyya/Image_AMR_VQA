@@ -1,0 +1,28 @@
+# ::tok The canadian gas station sign is lit up at night .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Canada	1-2
+# ::node	g	gas	2-3
+# ::node	s2	station	3-4
+# ::node	s	sign	4-5
+# ::node	l	light-04	6-7
+# ::node	d	date-entity	9-10
+# ::node	n2	night	9-10
+# ::root	l	light-04
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Canada	n	0	
+# ::edge	station	mod	gas	s2	g	
+# ::edge	station	mod	country	s2	c	
+# ::edge	sign	mod	station	s	s2	
+# ::edge	light-04	ARG1	sign	l	s	
+# ::edge	light-04	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(l / light-04
+    :ARG1 (s / sign
+        :mod (s2 / station
+            :mod (g / gas)
+            :mod (c / country
+                :name (n / name
+                    :op1 "Canada"))))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

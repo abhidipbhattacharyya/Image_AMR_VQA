@@ -1,0 +1,37 @@
+# ::tok A small child in show gear and boots holding a snowboard under one arm .
+# ::node	s2	small	1-2
+# ::node	c	child	2-3
+# ::node	w	wear-01	3-4
+# ::node	s	show-01	4-5
+# ::node	g	gear	5-6
+# ::node	a	and	6-7
+# ::node	b	boot	7-8
+# ::node	h	hold-01	8-9
+# ::node	s3	snowboard	10-11
+# ::node	u	under	11-12
+# ::node	0	1	12-13
+# ::node	a2	arm	13-14
+# ::root	c	child
+# ::edge	child	mod	small	c	s2	
+# ::edge	child	ARG0-of	wear-01	c	w	
+# ::edge	gear	ARG1-of	show-01	g	s	
+# ::edge	and	op1	gear	a	g	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	boot	a	b	
+# ::edge	child	ARG0-of	hold-01	c	h	
+# ::edge	hold-01	ARG1	snowboard	h	s3	
+# ::edge	snowboard	location	under	s3	u	
+# ::edge	arm	quant	1	a2	0	
+# ::edge	under	op1	arm	u	a2	
+(c / child
+    :ARG0-of (w / wear-01
+        :ARG1 (a / and
+            :op1 (g / gear
+                :ARG1-of (s / show-01))
+            :op2 (b / boot)))
+    :ARG0-of (h / hold-01
+        :ARG1 (s3 / snowboard
+            :location (u / under
+                :op1 (a2 / arm
+                    :quant 1))))
+    :mod (s2 / small))

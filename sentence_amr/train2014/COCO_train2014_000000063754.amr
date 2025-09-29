@@ -1,0 +1,29 @@
+# ::tok A baseball player in his hitting stance waiting to swing for a pitch .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	h	hit-01	5-6
+# ::node	s	stand-11	6-7
+# ::node	w	wait-01	7-8
+# ::node	s2	swing-02	9-10
+# ::node	p2	pitch	12-13
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	stand-11	ARG1	hit-01	s	h	
+# ::edge	stand-11	ARG0	person	s	p	
+# ::edge	wait-01	ARG1	stand-11	w	s	
+# ::edge	wait-01	ARG2	swing-02	w	s2	
+# ::edge	swing-02	ARG0	person	s2	p	
+# ::edge	swing-02	purpose	pitch	s2	p2	
+(w / wait-01
+    :ARG1 (s / stand-11
+        :ARG0 (p / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (b / baseball)))
+        :ARG1 (h / hit-01
+            :ARG0 p))
+    :ARG2 (s2 / swing-02
+        :purpose (p2 / pitch)
+        :ARG0 p))

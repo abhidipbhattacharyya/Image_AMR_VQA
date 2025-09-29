@@ -1,0 +1,61 @@
+# ::tok A foggy beam of light reveals one small tree and one lone pedestrian with an umbrella to be the only visible creatures out on the sidewalk on a gloomy night .
+# ::node	f	foggy	1-2
+# ::node	b	beam	2-3
+# ::node	l	light	4-5
+# ::node	r	reveal-01	5-6
+# ::node	0	1	6-7
+# ::node	s3	small	7-8
+# ::node	t	tree	8-9
+# ::node	a	and	9-10
+# ::node	1	1	10-11
+# ::node	l2	lone	11-12
+# ::node	p	pedestrian	12-13
+# ::node	h	have-03	13-14
+# ::node	u	umbrella	15-16
+# ::node	o	only	19-20
+# ::node	s	see-01	20-21
+# ::node	c	creature	21-22
+# ::node	s2	sidewalk	25-26
+# ::node	g	gloomy	28-29
+# ::node	d	date-entity	29-30
+# ::node	n	night	29-30
+# ::root	r	reveal-01
+# ::edge	beam	mod	foggy	b	f	
+# ::edge	beam	mod	light	b	l	
+# ::edge	reveal-01	ARG0	beam	r	b	
+# ::edge	tree	mod	small	t	s3	
+# ::edge	tree	quant	1	t	0	
+# ::edge	and	op1	tree	a	t	
+# ::edge	pedestrian	mod	lone	p	l2	
+# ::edge	pedestrian	quant	1	p	1	
+# ::edge	and	op2	pedestrian	a	p	
+# ::edge	pedestrian	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	umbrella	h	u	
+# ::edge	creature	ARG1-of	see-01	c	s	
+# ::edge	creature	mod	only	c	o	
+# ::edge	creature	domain	and	c	a	
+# ::edge	reveal-01	ARG1	creature	r	c	
+# ::edge	creature	location	sidewalk	c	s2	
+# ::edge	date-entity	mod	gloomy	d	g	
+# ::edge	see-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(r / reveal-01
+    :ARG0 (b / beam
+        :mod (f / foggy)
+        :mod (l / light))
+    :ARG1 (c / creature
+        :ARG1-of (s / see-01
+            :time (d / date-entity
+                :dayperiod (n / night)
+                :mod (g / gloomy)))
+        :domain (a / and
+            :op1 (t / tree
+                :quant 1
+                :mod (s3 / small))
+            :op2 (p / pedestrian
+                :quant 1
+                :ARG0-of (h / have-03
+                    :ARG1 (u / umbrella))
+                :mod (l2 / lone)))
+        :location (s2 / sidewalk)
+        :mod (o / only)))

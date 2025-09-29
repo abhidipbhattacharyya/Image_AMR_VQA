@@ -1,0 +1,19 @@
+# ::tok Traffic waits at the red light while it looks like its going to storm
+# ::node	t	traffic	0-1
+# ::node	w	wait-01	1-2
+# ::node	r	red-02	4-5
+# ::node	l	light	5-6
+# ::node	l2	look-02	8-9
+# ::node	s	storm-01	13-14
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	traffic	w	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	wait-01	ARG2	light	w	l	
+# ::edge	wait-01	time	look-02	w	l2	
+# ::edge	look-02	ARG1	storm-01	l2	s	
+(w / wait-01
+    :ARG1 (t / traffic)
+    :ARG2 (l / light
+        :ARG1-of (r / red-02))
+    :time (l2 / look-02
+        :ARG1 (s / storm-01)))

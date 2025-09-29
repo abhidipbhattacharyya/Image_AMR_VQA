@@ -1,0 +1,37 @@
+# ::tok A large red bus reading Paddington with the number 205 is moving down the road .
+# ::node	l	large	1-2
+# ::node	r2	red-02	2-3
+# ::node	b	bus	3-4
+# ::node	r	read-01	4-5
+# ::node	l2	local-region	5-6
+# ::node	n	name	5-6
+# ::node	1	Paddington	5-6
+# ::node	n2	number	8-9
+# ::node	0	205	9-10
+# ::node	m	move-01	11-12
+# ::node	d	down	12-13
+# ::node	r3	road	14-15
+# ::root	m	move-01
+# ::edge	bus	ARG1-of	red-02	b	r2	
+# ::edge	bus	mod	large	b	l	
+# ::edge	bus	ARG0-of	read-01	b	r	
+# ::edge	read-01	ARG3	local-region	r	l2	
+# ::edge	local-region	name	name	l2	n	
+# ::edge	name	op1	Paddington	n	1	
+# ::edge	bus	mod	number	b	n2	
+# ::edge	number	value	205	n2	0	
+# ::edge	move-01	ARG1	bus	m	b	
+# ::edge	move-01	direction	down	m	d	
+# ::edge	move-01	ARG2	road	m	r3	
+(m / move-01
+    :ARG1 (b / bus
+        :ARG0-of (r / read-01
+            :ARG3 (l2 / local-region
+                :name (n / name
+                    :op1 "Paddington")))
+        :ARG1-of (r2 / red-02)
+        :mod (l / large)
+        :mod (n2 / number
+            :value 205))
+    :ARG2 (r3 / road)
+    :direction (d / down))

@@ -1,0 +1,28 @@
+# ::tok It is a double occupancy hotel room with two beds and a television .
+# ::node	d	double	3-4
+# ::node	o	occupy-01	4-5
+# ::node	h2	hotel	5-6
+# ::node	r	room	6-7
+# ::node	h	have-03	7-8
+# ::node	0	2	8-9
+# ::node	b	bed	9-10
+# ::node	a	and	10-11
+# ::node	t	television	12-13
+# ::root	r	room
+# ::edge	occupy-01	mod	double	o	d	
+# ::edge	room	location	hotel	r	h2	
+# ::edge	room	ARG1-of	occupy-01	r	o	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	television	a	t	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bed
+                :quant 2)
+            :op2 (t / television)))
+    :ARG1-of (o / occupy-01
+        :mod (d / double))
+    :location (h2 / hotel))

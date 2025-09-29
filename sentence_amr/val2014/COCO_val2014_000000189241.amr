@@ -1,0 +1,25 @@
+# ::tok A chef and assistant prepare hamburgers outside on the table .
+# ::node	c	chef	1-2
+# ::node	a	and	2-3
+# ::node	p	person	3-4
+# ::node	a2	assist-01	3-4
+# ::node	p2	prepare-01	4-5
+# ::node	b	burger	5-6
+# ::node	o	outside	6-7
+# ::node	t	table	9-10
+# ::root	p2	prepare-01
+# ::edge	and	op1	chef	a	c	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	assist-01	p	a2	
+# ::edge	prepare-01	ARG0	and	p2	a	
+# ::edge	prepare-01	ARG1	burger	p2	b	
+# ::edge	table	location	outside	t	o	
+# ::edge	prepare-01	location	table	p2	t	
+(p2 / prepare-01
+    :ARG0 (a / and
+        :op1 (c / chef)
+        :op2 (p / person
+            :ARG0-of (a2 / assist-01)))
+    :ARG1 (b / burger)
+    :location (t / table
+        :location (o / outside)))

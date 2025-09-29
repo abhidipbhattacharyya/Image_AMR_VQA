@@ -1,0 +1,35 @@
+# ::tok Four people walkint down to a beach with two of them carrying surfboards .
+# ::node	1	4	0-1
+# ::node	p	person	1-2
+# ::node	p2	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	d	down	3-4
+# ::node	b	beach	6-7
+# ::node	0	2	8-9
+# ::node	i	include-91	9-10
+# ::node	c	carry-01	11-12
+# ::node	s	surf-01	12-13
+# ::root	w	walk-01
+# ::edge	person	quant	4	p	1	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	down	w	d	
+# ::edge	walk-01	ARG2	beach	w	b	
+# ::edge	person	quant	2	p2	0	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	person	ARG0-of	carry-01	p2	c	
+# ::edge	carry-01	ARG1	surf-01	c	s	
+# ::edge	surf-01	ARG0	person	s	p2	
+# ::edge	walk-01	rel	carry-01	w	c	
+(w / walk-01
+    :ARG0 (p / person
+        :quant 4)
+    :ARG2 (b / beach)
+    :direction (d / down)
+    :rel (c / carry-01
+        :ARG1 (s / surf-01
+            :ARG0 (p2 / person
+                :quant 2
+                :ARG0-of c
+                :ARG1-of (i / include-91
+                    :ARG2 p)))))

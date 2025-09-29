@@ -1,0 +1,31 @@
+# ::tok A drivers side rear view mirror on an auto waiting at a red traffic light .
+# ::node	p	person	1-2
+# ::node	d	drive-01	1-2
+# ::node	s	side	2-3
+# ::node	r	rearview	4-5
+# ::node	m	mirror	5-6
+# ::node	a	auto	8-9
+# ::node	w	wait-01	9-10
+# ::node	r2	red-02	12-13
+# ::node	t	traffic	13-14
+# ::node	l	light	14-15
+# ::root	m	mirror
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	mirror	mod	rearview	m	r	
+# ::edge	mirror	mod	side	m	s	
+# ::edge	mirror	poss	person	m	p	
+# ::edge	mirror	part-of	auto	m	a	
+# ::edge	auto	ARG1-of	wait-01	a	w	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r2	
+# ::edge	wait-01	location	light	w	l	
+(m / mirror
+    :mod (r / rearview)
+    :mod (s / side)
+    :part-of (a / auto
+        :ARG1-of (w / wait-01
+            :location (l / light
+                :ARG1-of (r2 / red-02)
+                :mod (t / traffic))))
+    :poss (p / person
+        :ARG0-of (d / drive-01)))

@@ -1,0 +1,60 @@
+# ::tok A table set for two with plate of fired chicken , biscuit , mashed potato or grits and a cup of black coffee ..
+# ::node	t	table	1-2
+# ::node	s	set-01	2-3
+# ::node	p	person	4-5
+# ::node	1	2	4-5
+# ::node	p2	plate	6-7
+# ::node	f	fire-04	8-9
+# ::node	c	chicken	9-10
+# ::node	a	and	10-11
+# ::node	a2	and	10-11
+# ::node	b	biscuit	11-12
+# ::node	m2	mix-01	13-14
+# ::node	m	mashed	13-14
+# ::node	p3	potato	14-15
+# ::node	g	grit-01	16-17
+# ::node	v	volume-quantity	18-19
+# ::node	0	1	18-19
+# ::node	c3	cup	19-20
+# ::node	b2	black-04	21-22
+# ::node	c2	coffee	22-23
+# ::root	t	table
+# ::edge	table	ARG1-of	set-01	t	s	
+# ::edge	set-01	ARG2	person	s	p	
+# ::edge	person	quant	2	p	1	
+# ::edge	chicken	ARG1-of	fire-04	c	f	
+# ::edge	and	op1	chicken	a	c	
+# ::edge	plate	consist-of	and	p2	a	
+# ::edge	and	op1	chicken	a2	c	
+# ::edge	plate	consist-of	and	p2	a2	
+# ::edge	and	op2	biscuit	a2	b	
+# ::edge	potato	mod	mashed	p3	m	
+# ::edge	potato	ARG1-of	mix-01	p3	m2	
+# ::edge	and	op3	potato	a2	p3	
+# ::edge	and	op4	grit-01	a2	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	coffee	ARG1-of	black-04	c2	b2	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	and	op2	coffee	a	c2	
+# ::edge	table	rel	plate	t	p2	
+(t / table
+    :ARG1-of (s / set-01
+        :ARG2 (p / person
+            :quant 2))
+    :rel (p2 / plate
+        :consist-of (a / and
+            :op1 (c / chicken
+                :ARG1-of (f / fire-04))
+            :op2 (c2 / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c3 / cup))
+                :ARG1-of (b2 / black-04)))
+        :consist-of (a2 / and
+            :op1 c
+            :op2 (b / biscuit)
+            :op3 (p3 / potato
+                :ARG1-of (m2 / mix-01)
+                :mod (m / mashed))
+            :op4 (g / grit-01))))

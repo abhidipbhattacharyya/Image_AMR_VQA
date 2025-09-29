@@ -1,0 +1,35 @@
+# ::tok Red / yellow train with people standing nearby waiting to board .
+# ::node	r	red-02	0-1
+# ::node	s	slash	1-2
+# ::node	y	yellow-02	2-3
+# ::node	t	train	3-4
+# ::node	t2	train	3-4
+# ::node	p	person	5-6
+# ::node	s2	stand-01	6-7
+# ::node	n	nearby	7-8
+# ::node	w	wait-01	8-9
+# ::node	b	board-01	10-11
+# ::root	s	slash
+# ::edge	slash	op1	train	s	t	
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	train	ARG1-of	yellow-02	t2	y	
+# ::edge	slash	op2	train	s	t2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	slash	location-of	stand-01	s	s2	
+# ::edge	stand-01	ARG2	nearby	s2	n	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	board-01	ARG1	train	b	t	
+(s / slash
+    :location-of (s2 / stand-01
+        :ARG1 (p / person
+            :ARG1-of (w / wait-01
+                :ARG2 (b / board-01
+                    :ARG0 p
+                    :ARG1 (t / train
+                        :ARG1-of (r / red-02)))))
+        :ARG2 (n / nearby))
+    :op1 t
+    :op2 (t2 / train
+        :ARG1-of (y / yellow-02)))

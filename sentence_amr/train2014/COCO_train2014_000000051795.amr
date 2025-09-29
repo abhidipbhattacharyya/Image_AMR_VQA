@@ -1,0 +1,30 @@
+# ::tok A cluster of bananas with the words " I Love You XXX " written on them .
+# ::node	c	cluster	1-2
+# ::node	b	banana	3-4
+# ::node	w	word-01	6-7
+# ::node	i	i	8-9
+# ::node	l	love-01	9-10
+# ::node	y	you	10-11
+# ::node	n	name	11-12
+# ::node	0	XXX	11-12
+# ::node	w2	write-01	13-14
+# ::root	c	cluster
+# ::edge	cluster	consist-of	banana	c	b	
+# ::edge	cluster	ARG0-of	word-01	c	w	
+# ::edge	love-01	ARG0	i	l	i	
+# ::edge	word-01	ARG1	love-01	w	l	
+# ::edge	love-01	ARG1	you	l	y	
+# ::edge	you	name	name	y	n	
+# ::edge	name	op1	XXX	n	0	
+# ::edge	love-01	ARG1-of	write-01	l	w2	
+# ::edge	write-01	location	cluster	w2	c	
+(c / cluster
+    :ARG0-of (w / word-01
+        :ARG1 (l / love-01
+            :ARG0 (i / i)
+            :ARG1 (y / you
+                :name (n / name
+                    :op1 "XXX"))
+            :ARG1-of (w2 / write-01
+                :location c)))
+    :consist-of (b / banana))

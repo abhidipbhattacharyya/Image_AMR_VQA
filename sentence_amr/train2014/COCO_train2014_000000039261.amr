@@ -1,0 +1,36 @@
+# ::tok A sumo wrestler is shown wielding a baseball bat and awaiting an incoming pitch .
+# ::node	s2	sumo	1-2
+# ::node	p	person	2-3
+# ::node	w2	wrestle-01	2-3
+# ::node	s	show-01	4-5
+# ::node	w	wield-01	5-6
+# ::node	b	baseball	7-8
+# ::node	b2	bat	8-9
+# ::node	a	and	9-10
+# ::node	a2	await-01	10-11
+# ::node	i	incoming	12-13
+# ::node	t	throw-01	13-14
+# ::root	s	show-01
+# ::edge	person	mod	sumo	p	s2	
+# ::edge	person	ARG0-of	wrestle-01	p	w2	
+# ::edge	wield-01	ARG0	person	w	p	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	wield-01	ARG1	bat	w	b2	
+# ::edge	and	op1	wield-01	a	w	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	await-01	a	a2	
+# ::edge	await-01	ARG1	person	a2	p	
+# ::edge	throw-01	mod	incoming	t	i	
+# ::edge	await-01	ARG2	throw-01	a2	t	
+(s / show-01
+    :ARG1 (a / and
+        :op1 (w / wield-01
+            :ARG0 (p / person
+                :ARG0-of (w2 / wrestle-01)
+                :mod (s2 / sumo))
+            :ARG1 (b2 / bat
+                :mod (b / baseball)))
+        :op2 (a2 / await-01
+            :ARG1 p
+            :ARG2 (t / throw-01
+                :mod (i / incoming)))))

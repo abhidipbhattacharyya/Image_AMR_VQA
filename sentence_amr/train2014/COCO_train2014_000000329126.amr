@@ -1,0 +1,34 @@
+# ::tok The stop sign has been vandalized and tells others to stop eating animals .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	v	vandalize-01	5-6
+# ::node	a	and	6-7
+# ::node	t	tell-01	7-8
+# ::node	o	other	8-9
+# ::node	s3	stop-01	10-11
+# ::node	e	eat-01	11-12
+# ::node	a2	animal	12-13
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	vandalize-01	ARG1	signal-07	v	s	
+# ::edge	and	op1	vandalize-01	a	v	
+# ::edge	and	op2	tell-01	a	t	
+# ::edge	tell-01	ARG0	signal-07	t	s	
+# ::edge	tell-01	ARG2	other	t	o	
+# ::edge	stop-01	ARG0	other	s3	o	
+# ::edge	tell-01	ARG1	stop-01	t	s3	
+# ::edge	stop-01	ARG1	eat-01	s3	e	
+# ::edge	eat-01	ARG0	other	e	o	
+# ::edge	eat-01	ARG1	animal	e	a2	
+(a / and
+    :op1 (v / vandalize-01
+        :ARG1 (s / signal-07
+            :ARG1 (s2 / stop-01)))
+    :op2 (t / tell-01
+        :ARG0 s
+        :ARG1 (s3 / stop-01
+            :ARG0 (o / other)
+            :ARG1 (e / eat-01
+                :ARG0 o
+                :ARG1 (a2 / animal)))
+        :ARG2 o))

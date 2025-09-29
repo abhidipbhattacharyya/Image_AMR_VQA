@@ -1,0 +1,22 @@
+# ::tok A street sign showing turning directions for specific lanes .
+# ::node	s4	street	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	3-4
+# ::node	t	turn-01	4-5
+# ::node	d	direct-01	5-6
+# ::node	s3	specific-02	7-8
+# ::node	l	lane	8-9
+# ::root	s2	sign
+# ::edge	sign	location	street	s2	s4	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	direct-01	ARG2	turn-01	d	t	
+# ::edge	show-01	ARG1	direct-01	s	d	
+# ::edge	lane	ARG1-of	specific-02	l	s3	
+# ::edge	direct-01	ARG1	lane	d	l	
+(s2 / sign
+    :ARG0-of (s / show-01
+        :ARG1 (d / direct-01
+            :ARG1 (l / lane
+                :ARG1-of (s3 / specific-02))
+            :ARG2 (t / turn-01)))
+    :location (s4 / street))

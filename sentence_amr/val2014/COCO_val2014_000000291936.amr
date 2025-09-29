@@ -1,0 +1,42 @@
+# ::tok A man in gray pants and a red hat stands near an outside kiosk and it is raining .
+# ::node	m	man	1-2
+# ::node	g	gray-02	3-4
+# ::node	p	pants	4-5
+# ::node	a	and	5-6
+# ::node	w	wear-01	5-6
+# ::node	r2	red-02	7-8
+# ::node	h	hat	8-9
+# ::node	s	stand-01	9-10
+# ::node	n	near-02	10-11
+# ::node	o	outside	12-13
+# ::node	k	kiosk	13-14
+# ::node	a2	and	14-15
+# ::node	r	rain-01	17-18
+# ::root	a2	and
+# ::edge	pants	ARG1-of	gray-02	p	g	
+# ::edge	and	op1	pants	a	p	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	hat	ARG1-of	red-02	h	r2	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	kiosk	location	outside	k	o	
+# ::edge	near-02	ARG2	kiosk	n	k	
+# ::edge	and	op1	stand-01	a2	s	
+# ::edge	and	op2	rain-01	a2	r	
+# ::edge	and	rel	and	a2	a	
+(a2 / and
+    :op1 (s / stand-01
+        :ARG1 (m / man
+            :ARG0-of (w / wear-01
+                :ARG1 (h / hat
+                    :ARG1-of (r2 / red-02))))
+        :ARG2 (n / near-02
+            :ARG1 m
+            :ARG2 (k / kiosk
+                :location (o / outside))))
+    :op2 (r / rain-01)
+    :rel (a / and
+        :op1 (p / pants
+            :ARG1-of (g / gray-02))))

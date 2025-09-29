@@ -1,0 +1,37 @@
+# ::tok A bathroom with green walls that has two sinks and two toilets with one bathtub .
+# ::node	b	bathroom	1-2
+# ::node	g	green-02	3-4
+# ::node	w	wall	4-5
+# ::node	h	have-03	6-7
+# ::node	1	2	7-8
+# ::node	s	sink-01	8-9
+# ::node	a	and	9-10
+# ::node	2	2	10-11
+# ::node	t	toilet	11-12
+# ::node	h2	have-03	12-13
+# ::node	0	1	13-14
+# ::node	b2	bathtub	14-15
+# ::root	b	bathroom
+# ::edge	wall	ARG1-of	green-02	w	g	
+# ::edge	bathroom	part	wall	b	w	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	sink-01	quant	2	s	1	
+# ::edge	and	op1	sink-01	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	toilet	quant	2	t	2	
+# ::edge	and	op2	toilet	a	t	
+# ::edge	toilet	ARG0-of	have-03	t	h2	
+# ::edge	bathtub	quant	1	b2	0	
+# ::edge	have-03	ARG1	bathtub	h2	b2	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sink-01
+                :quant 2)
+            :op2 (t / toilet
+                :quant 2
+                :ARG0-of (h2 / have-03
+                    :ARG1 (b2 / bathtub
+                        :quant 1)))))
+    :part (w / wall
+        :ARG1-of (g / green-02)))

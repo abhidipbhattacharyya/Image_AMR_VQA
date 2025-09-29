@@ -1,0 +1,37 @@
+# ::tok An umpire , catcher , and batter surrounding the home plate during a baseball game
+# ::node	p	person	1-2
+# ::node	u	umpire-01	1-2
+# ::node	p2	person	3-4
+# ::node	c	catch-01	3-4
+# ::node	a	and	5-6
+# ::node	p3	person	6-7
+# ::node	b2	batter-01	6-7
+# ::node	s	surround-01	7-8
+# ::node	h	home	9-10
+# ::node	p4	plate	10-11
+# ::node	b	baseball	13-14
+# ::node	g	game	14-15
+# ::root	s	surround-01
+# ::edge	person	ARG0-of	umpire-01	p	u	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	and	op2	person	a	p2	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op3	person	a	p3	
+# ::edge	person	ARG0-of	batter-01	p3	b2	
+# ::edge	surround-01	ARG1	and	s	a	
+# ::edge	plate	mod	home	p4	h	
+# ::edge	surround-01	ARG2	plate	s	p4	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	surround-01	time	game	s	g	
+(s / surround-01
+    :ARG1 (a / and
+        :op1 (p / person
+            :ARG0-of (u / umpire-01))
+        :op2 (p2 / person
+            :ARG0-of (c / catch-01))
+        :op3 (p3 / person
+            :ARG0-of (b2 / batter-01)))
+    :ARG2 (p4 / plate
+        :mod (h / home))
+    :time (g / game
+        :mod (b / baseball)))

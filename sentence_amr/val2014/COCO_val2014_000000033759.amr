@@ -1,0 +1,33 @@
+# ::tok A young baseball player stands at the plate , in motion to hit an oncoming ball .
+# ::node	y	young	1-2
+# ::node	b2	baseball	2-3
+# ::node	p	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	s	stand-01	4-5
+# ::node	p2	plate	7-8
+# ::node	m	move-01	10-11
+# ::node	h	hit-01	12-13
+# ::node	c	come-on-25	14-15
+# ::node	b	ball	15-16
+# ::root	s	stand-01
+# ::edge	person	mod	young	p	y	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	plate	s	p2	
+# ::edge	person	ARG1-of	move-01	p	m	
+# ::edge	move-01	purpose	hit-01	m	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	ball	ARG1-of	come-on-25	b	c	
+# ::edge	hit-01	ARG1	ball	h	b	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball))
+        :ARG1-of (m / move-01
+            :purpose (h / hit-01
+                :ARG0 p
+                :ARG1 (b / ball
+                    :ARG1-of (c / come-on-25))))
+        :mod (y / young))
+    :ARG2 (p2 / plate))

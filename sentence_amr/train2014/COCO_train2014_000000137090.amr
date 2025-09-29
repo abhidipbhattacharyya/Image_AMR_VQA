@@ -1,0 +1,37 @@
+# ::tok Outdoor shot of an airport with people riding bikes and skateboards around the perimeter .
+# ::node	o	outdoor	0-1
+# ::node	s	shoot-03	1-2
+# ::node	a	airport	4-5
+# ::node	p2	person	6-7
+# ::node	r	ride-01	7-8
+# ::node	b	bike-01	8-9
+# ::node	a2	and	9-10
+# ::node	s2	skate-01	10-11
+# ::node	a3	around	11-12
+# ::node	p	perimeter	13-14
+# ::root	s	shoot-03
+# ::edge	shoot-03	location	outdoor	s	o	
+# ::edge	shoot-03	ARG1	airport	s	a	
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	bike-01	ARG0	person	b	p2	
+# ::edge	and	op1	bike-01	a2	b	
+# ::edge	ride-01	ARG1	and	r	a2	
+# ::edge	and	op2	skate-01	a2	s2	
+# ::edge	skate-01	ARG0	person	s2	p2	
+# ::edge	person	location	around	p2	a3	
+# ::edge	around	op1	perimeter	a3	p	
+# ::edge	airport	part	perimeter	a	p	
+# ::edge	shoot-03	rel	ride-01	s	r	
+(s / shoot-03
+    :ARG1 (a / airport
+        :part (p / perimeter))
+    :location (o / outdoor)
+    :rel (r / ride-01
+        :ARG1 (a2 / and
+            :op1 (b / bike-01
+                :ARG0 (p2 / person
+                    :ARG0-of r
+                    :location (a3 / around
+                        :op1 p)))
+            :op2 (s2 / skate-01
+                :ARG0 p2))))

@@ -1,0 +1,23 @@
+# ::tok The pizza is uncooked but ready to be put in the oven .
+# ::node	p	pizza	1-2
+# ::node	c	cook-01	3-4
+# ::node	h	have-concession-91	4-5
+# ::node	r	ready-02	5-6
+# ::node	p2	put-01	8-9
+# ::node	o	oven	11-12
+# ::root	h	have-concession-91
+# ::edge	cook-01	ARG1	pizza	c	p	
+# ::edge	have-concession-91	ARG2	cook-01	h	c	
+# ::edge	have-concession-91	ARG1	ready-02	h	r	
+# ::edge	ready-02	ARG1	pizza	r	p	
+# ::edge	ready-02	ARG2	put-01	r	p2	
+# ::edge	put-01	ARG1	pizza	p2	p	
+# ::edge	put-01	ARG2	oven	p2	o	
+(h / have-concession-91
+    :ARG1 (r / ready-02
+        :ARG1 (p / pizza)
+        :ARG2 (p2 / put-01
+            :ARG1 p
+            :ARG2 (o / oven)))
+    :ARG2 (c / cook-01
+        :ARG1 p))

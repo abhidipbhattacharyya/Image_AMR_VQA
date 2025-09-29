@@ -1,0 +1,42 @@
+# ::tok A man is seated at a table with a slice of pizza and holding a Pizza Hut salt shaker .
+# ::node	m	man	1-2
+# ::node	s3	sit-01	3-4
+# ::node	t	table	6-7
+# ::node	s4	slice	9-10
+# ::node	p	pizza	11-12
+# ::node	a	and	12-13
+# ::node	h	hold-01	13-14
+# ::node	n	name	15-16
+# ::node	1	Pizza	15-16
+# ::node	c	company	16-17
+# ::node	0	Hut	16-17
+# ::node	s	salt	17-18
+# ::node	s2	shaker	18-19
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s3	m	
+# ::edge	sit-01	ARG2	table	s3	t	
+# ::edge	pizza	quant	slice	p	s4	
+# ::edge	sit-01	accompanier	pizza	s3	p	
+# ::edge	and	op1	sit-01	a	s3	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	name	op1	Pizza	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Hut	n	0	
+# ::edge	shaker	consist-of	salt	s2	s	
+# ::edge	shaker	mod	company	s2	c	
+# ::edge	hold-01	ARG1	shaker	h	s2	
+(a / and
+    :op1 (s3 / sit-01
+        :ARG1 (m / man)
+        :ARG2 (t / table)
+        :accompanier (p / pizza
+            :quant (s4 / slice)))
+    :op2 (h / hold-01
+        :ARG0 m
+        :ARG1 (s2 / shaker
+            :consist-of (s / salt)
+            :mod (c / company
+                :name (n / name
+                    :op1 "Pizza"
+                    :op2 "Hut")))))

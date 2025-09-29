@@ -1,0 +1,28 @@
+# ::tok People in a dining hall listen to a speaker over coffee and desert .
+# ::node	p	person	0-1
+# ::node	d2	dine-01	3-4
+# ::node	h	hall	4-5
+# ::node	l	listen-01	5-6
+# ::node	p2	person	8-9
+# ::node	s	speak-01	8-9
+# ::node	c	coffee	10-11
+# ::node	a	and	11-12
+# ::node	d	desert	12-13
+# ::root	l	listen-01
+# ::edge	hall	mod	dine-01	h	d2	
+# ::edge	person	location	hall	p	h	
+# ::edge	listen-01	ARG0	person	l	p	
+# ::edge	listen-01	ARG1	person	l	p2	
+# ::edge	person	ARG0-of	speak-01	p2	s	
+# ::edge	and	op1	coffee	a	c	
+# ::edge	listen-01	medium	and	l	a	
+# ::edge	and	op2	desert	a	d	
+(l / listen-01
+    :ARG0 (p / person
+        :location (h / hall
+            :mod (d2 / dine-01)))
+    :ARG1 (p2 / person
+        :ARG0-of (s / speak-01))
+    :medium (a / and
+        :op1 (c / coffee)
+        :op2 (d / desert)))

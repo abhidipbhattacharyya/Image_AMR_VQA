@@ -1,0 +1,43 @@
+# ::tok People eating Asian and Western snack foods in a living room .
+# ::node	p	person	0-1
+# ::node	e	eat-01	1-2
+# ::node	c	continent	2-3
+# ::node	n	name	2-3
+# ::node	0	Asia	2-3
+# ::node	a	and	3-4
+# ::node	w	world-region	4-5
+# ::node	n2	name	4-5
+# ::node	1	West	4-5
+# ::node	s	snack-01	5-6
+# ::node	f	food	6-7
+# ::node	f2	food	6-7
+# ::node	l	living	9-10
+# ::node	r	room	10-11
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	world-region	name	name	w	n2	
+# ::edge	name	op1	West	n2	1	
+# ::edge	food	ARG1-of	snack-01	f	s	
+# ::edge	and	op1	food	a	f	
+# ::edge	food	mod	continent	f	c	
+# ::edge	food	mod	world-region	f2	w	
+# ::edge	and	op2	food	a	f2	
+# ::edge	room	mod	living	r	l	
+# ::edge	eat-01	location	room	e	r	
+(e / eat-01
+    :ARG0 (p / person)
+    :ARG1 (a / and
+        :op1 (f / food
+            :ARG1-of (s / snack-01)
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Asia")))
+        :op2 (f2 / food
+            :mod (w / world-region
+                :name (n2 / name
+                    :op1 "West"))))
+    :location (r / room
+        :mod (l / living)))

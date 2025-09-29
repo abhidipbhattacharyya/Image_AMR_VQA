@@ -1,0 +1,30 @@
+# ::tok window with a multi colord curtain over the window next to window is a bed
+# ::node	w	window	0-1
+# ::node	h	have-03	1-2
+# ::node	m	multiple	3-4
+# ::node	c	color	4-5
+# ::node	c2	curtain	5-6
+# ::node	o	over	6-7
+# ::node	w2	window	8-9
+# ::node	n	next-to	9-10
+# ::node	b	bed	14-15
+# ::root	b	bed
+# ::edge	window	ARG0-of	have-03	w	h	
+# ::edge	color	quant	multiple	c	m	
+# ::edge	curtain	mod	color	c2	c	
+# ::edge	have-03	ARG1	curtain	h	c2	
+# ::edge	curtain	location	over	c2	o	
+# ::edge	over	op1	window	o	w2	
+# ::edge	window	location	next-to	w2	n	
+# ::edge	next-to	op1	window	n	w	
+# ::edge	bed	domain	window	b	w	
+(b / bed
+    :domain (w / window
+        :ARG0-of (h / have-03
+            :ARG1 (c2 / curtain
+                :location (o / over
+                    :op1 (w2 / window
+                        :location (n / next-to
+                            :op1 w)))
+                :mod (c / color
+                    :quant (m / multiple))))))

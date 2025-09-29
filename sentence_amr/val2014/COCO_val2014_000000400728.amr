@@ -1,0 +1,53 @@
+# ::tok A city street with stores across the street and a bicycle parked on the side of the street with a dog sitting in the front basket .
+# ::node	c	city	1-2
+# ::node	s4	street	2-3
+# ::node	h	have-03	3-4
+# ::node	s3	store	4-5
+# ::node	a	across	5-6
+# ::node	s5	street	7-8
+# ::node	a2	and	8-9
+# ::node	b2	bicycle	10-11
+# ::node	p	park-01	11-12
+# ::node	s	side	14-15
+# ::node	d	dog	20-21
+# ::node	s2	sit-01	21-22
+# ::node	h2	have-03	21-22
+# ::node	f	front	24-25
+# ::node	b	basket	25-26
+# ::node	a3	and	26-27
+# ::root	s4	street
+# ::edge	street	mod	city	s4	c	
+# ::edge	street	ARG0-of	have-03	s4	h	
+# ::edge	store	location	across	s3	a	
+# ::edge	across	op1	street	a	s5	
+# ::edge	and	op1	store	a2	s3	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	bicycle	a2	b2	
+# ::edge	bicycle	ARG1-of	park-01	b2	p	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	street	part	side	s5	s	
+# ::edge	sit-01	ARG1	dog	s2	d	
+# ::edge	dog	ARG0-of	have-03	d	h2	
+# ::edge	basket	mod	front	b	f	
+# ::edge	have-03	ARG1	basket	h2	b	
+# ::edge	and	op2	sit-01	a3	s2	
+# ::edge	and	op1	bicycle	a3	b2	
+# ::edge	bicycle	op3	and	b2	a3	
+(s4 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (s3 / store
+                :location (a / across
+                    :op1 (s5 / street
+                        :part (s / side))))
+            :op2 (b2 / bicycle
+                :ARG1-of (p / park-01
+                    :ARG2 s)
+                :op3 (a3 / and
+                    :op1 b2
+                    :op2 (s2 / sit-01
+                        :ARG1 (d / dog
+                            :ARG0-of (h2 / have-03
+                                :ARG1 (b / basket
+                                    :mod (f / front)))))))))
+    :mod (c / city))

@@ -1,0 +1,57 @@
+# ::tok an artistic image of a man brushing his hair as his reflection in the mirror brushes his teeth and reaches through the mirror to shave the man 's face
+# ::node	a2	artistic	1-2
+# ::node	i	image	2-3
+# ::node	m	man	5-6
+# ::node	b	brush-01	6-7
+# ::node	h	hair	8-9
+# ::node	r2	reflect-01	11-12
+# ::node	t	thing	13-14
+# ::node	m2	mirror	14-15
+# ::node	b2	brush-01	15-16
+# ::node	t2	tooth	17-18
+# ::node	a	and	18-19
+# ::node	r	reach-03	19-20
+# ::node	s	shave-01	24-25
+# ::node	f	face	28-29
+# ::root	i	image
+# ::edge	image	mod	artistic	i	a2	
+# ::edge	image	topic	man	i	m	
+# ::edge	man	ARG0-of	brush-01	m	b	
+# ::edge	brush-01	ARG1	hair	b	h	
+# ::edge	man	part	hair	m	h	
+# ::edge	reflect-01	ARG2	man	r2	m	
+# ::edge	thing	ARG1-of	reflect-01	t	r2	
+# ::edge	reflect-01	location	mirror	r2	m2	
+# ::edge	brush-01	ARG0	thing	b2	t	
+# ::edge	brush-01	ARG1	tooth	b2	t2	
+# ::edge	man	part	tooth	m	t2	
+# ::edge	and	op1	brush-01	a	b2	
+# ::edge	brush-01	time	and	b	a	
+# ::edge	and	op2	reach-03	a	r	
+# ::edge	reach-03	ARG0	mirror	r	m2	
+# ::edge	reach-03	ARG2	man	r	m	
+# ::edge	reach-03	ARG1	shave-01	r	s	
+# ::edge	shave-01	ARG0	man	s	m	
+# ::edge	shave-01	ARG2	face	s	f	
+# ::edge	man	part	face	m	f	
+(i / image
+    :mod (a2 / artistic)
+    :topic (m / man
+        :ARG0-of (b / brush-01
+            :ARG1 (h / hair)
+            :time (a / and
+                :op1 (b2 / brush-01
+                    :ARG0 (t / thing
+                        :ARG1-of (r2 / reflect-01
+                            :ARG2 m
+                            :location (m2 / mirror)))
+                    :ARG1 (t2 / tooth))
+                :op2 (r / reach-03
+                    :ARG0 m2
+                    :ARG1 (s / shave-01
+                        :ARG0 m
+                        :ARG2 (f / face))
+                    :ARG2 m)))
+        :part h
+        :part t2
+        :part f))

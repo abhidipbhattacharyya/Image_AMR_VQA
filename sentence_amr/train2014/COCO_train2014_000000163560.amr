@@ -1,0 +1,26 @@
+# ::tok People holding flag poles in order to fly flags in a town square .
+# ::node	p	person	0-1
+# ::node	h	hold-01	1-2
+# ::node	f	flag	2-3
+# ::node	p2	pole	3-4
+# ::node	f2	fly-06	7-8
+# ::node	t	town	11-12
+# ::node	s	square	12-13
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	pole	mod	flag	p2	f	
+# ::edge	hold-01	ARG1	pole	h	p2	
+# ::edge	fly-06	ARG1	flag	f2	f	
+# ::edge	hold-01	purpose	fly-06	h	f2	
+# ::edge	fly-06	ARG0	person	f2	p	
+# ::edge	square	mod	town	s	t	
+# ::edge	fly-06	location	square	f2	s	
+(h / hold-01
+    :purpose (f2 / fly-06
+        :ARG0 (p / person)
+        :ARG1 (f / flag)
+        :location (s / square
+            :mod (t / town)))
+    :ARG0 p
+    :ARG1 (p2 / pole
+        :mod f))

@@ -1,0 +1,43 @@
+# ::tok A small bathroom with a white bathtub , white pedestal sink , white tile walls , and black tile floor .
+# ::node	s2	small	1-2
+# ::node	b	bathroom	2-3
+# ::node	h	have-03	3-4
+# ::node	w2	white-03	5-6
+# ::node	b2	bathtub	6-7
+# ::node	p	pedestal	9-10
+# ::node	s	sink	10-11
+# ::node	w3	white-03	12-13
+# ::node	t	tile	13-14
+# ::node	w	wall	14-15
+# ::node	a	and	16-17
+# ::node	b3	black-04	17-18
+# ::node	t2	tile	18-19
+# ::node	f	floor	19-20
+# ::root	b	bathroom
+# ::edge	bathroom	mod	small	b	s2	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	bathtub	ARG1-of	white-03	b2	w2	
+# ::edge	sink	mod	pedestal	s	p	
+# ::edge	tile	ARG1-of	white-03	t	w3	
+# ::edge	wall	consist-of	tile	w	t	
+# ::edge	and	op3	wall	a	w	
+# ::edge	and	op2	sink	a	s	
+# ::edge	and	op1	bathtub	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	tile	ARG1-of	black-04	t2	b3	
+# ::edge	floor	consist-of	tile	f	t2	
+# ::edge	and	op4	floor	a	f	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b2 / bathtub
+                :ARG1-of (w2 / white-03))
+            :op2 (s / sink
+                :mod (p / pedestal))
+            :op3 (w / wall
+                :consist-of (t / tile
+                    :ARG1-of (w3 / white-03)))
+            :op4 (f / floor
+                :consist-of (t2 / tile
+                    :ARG1-of (b3 / black-04)))))
+    :mod (s2 / small))

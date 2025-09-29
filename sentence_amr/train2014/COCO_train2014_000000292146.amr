@@ -1,0 +1,27 @@
+# ::tok A rack filled with different types of bicycles and people riding on them .
+# ::node	r	rack	1-2
+# ::node	f	fill-01	2-3
+# ::node	d	differ-02	4-5
+# ::node	t	type	5-6
+# ::node	b	bicycle	7-8
+# ::node	a	and	8-9
+# ::node	p	person	9-10
+# ::node	r2	ride-01	10-11
+# ::root	r	rack
+# ::edge	rack	ARG1-of	fill-01	r	f	
+# ::edge	type	ARG1-of	differ-02	t	d	
+# ::edge	bicycle	mod	type	b	t	
+# ::edge	and	op1	bicycle	a	b	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	ride-01	p	r2	
+# ::edge	ride-01	ARG1	bicycle	r2	b	
+(r / rack
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (b / bicycle
+                :mod (t / type
+                    :ARG1-of (d / differ-02)))
+            :op2 (p / person
+                :ARG0-of (r2 / ride-01
+                    :ARG1 b)))))

@@ -1,0 +1,25 @@
+# ::tok a road with some cars waiting for the street light to turn green
+# ::node	r	road	1-2
+# ::node	s	some	3-4
+# ::node	c	car	4-5
+# ::node	w	wait-01	5-6
+# ::node	s2	street	8-9
+# ::node	l	light	9-10
+# ::node	t	turn-01	11-12
+# ::node	g	green-02	12-13
+# ::root	r	road
+# ::edge	car	quant	some	c	s	
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	road	location-of	wait-01	r	w	
+# ::edge	light	mod	street	l	s2	
+# ::edge	turn-01	ARG1	light	t	l	
+# ::edge	wait-01	ARG2	turn-01	w	t	
+# ::edge	turn-01	ARG1-of	green-02	t	g	
+(r / road
+    :location-of (w / wait-01
+        :ARG1 (c / car
+            :quant (s / some))
+        :ARG2 (t / turn-01
+            :ARG1 (l / light
+                :mod (s2 / street))
+            :ARG1-of (g / green-02))))

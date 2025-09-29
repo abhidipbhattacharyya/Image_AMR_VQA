@@ -1,0 +1,33 @@
+# ::tok a gian building having alot of glass windows and a clock built into the outside of it
+# ::node	s	spaceship	1-2
+# ::node	b2	building	2-3
+# ::node	h	have-03	3-4
+# ::node	l	lot	4-5
+# ::node	g	glass	6-7
+# ::node	w	window	7-8
+# ::node	a	and	8-9
+# ::node	c	clock	10-11
+# ::node	b	build-01	11-12
+# ::node	o	outside	14-15
+# ::root	b2	building
+# ::edge	building	mod	spaceship	b2	s	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	window	mod	glass	w	g	
+# ::edge	window	quant	lot	w	l	
+# ::edge	and	op1	window	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	clock	a	c	
+# ::edge	clock	ARG1-of	build-01	c	b	
+# ::edge	build-01	location	outside	b	o	
+# ::edge	building	part	outside	b2	o	
+(b2 / building
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (w / window
+                :quant (l / lot)
+                :mod (g / glass))
+            :op2 (c / clock
+                :ARG1-of (b / build-01
+                    :location (o / outside)))))
+    :mod (s / spaceship)
+    :part o)

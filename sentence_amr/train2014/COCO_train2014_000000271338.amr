@@ -1,0 +1,71 @@
+# ::tok The view shows a stunning skyline at one end , and in the foreground an ugly barricade , behind which stands a man looking up , his arm aloft , as if trying to get a shot of the skyline .
+# ::node	v	view-01	1-2
+# ::node	s2	show-01	2-3
+# ::node	s5	stun-01	4-5
+# ::node	s3	skyline	5-6
+# ::node	0	1	7-8
+# ::node	e	end	8-9
+# ::node	a2	and	10-11
+# ::node	f	foreground	13-14
+# ::node	u	ugly	15-16
+# ::node	b	barricade	16-17
+# ::node	b2	behind	18-19
+# ::node	s4	stand-01	20-21
+# ::node	m	man	22-23
+# ::node	l	look-01	23-24
+# ::node	u2	up	24-25
+# ::node	a3	arm	27-28
+# ::node	a	aloft	28-29
+# ::node	t	try-01	32-33
+# ::node	g	get-01	34-35
+# ::node	s	shoot-03	36-37
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	view-01	s2	v	
+# ::edge	skyline	ARG0-of	stun-01	s3	s5	
+# ::edge	end	quant	1	e	0	
+# ::edge	skyline	location	end	s3	e	
+# ::edge	and	op1	skyline	a2	s3	
+# ::edge	show-01	ARG1	and	s2	a2	
+# ::edge	barricade	mod	ugly	b	u	
+# ::edge	barricade	location	foreground	b	f	
+# ::edge	and	op2	barricade	a2	b	
+# ::edge	stand-01	location	behind	s4	b2	
+# ::edge	barricade	ARG2-of	stand-01	b	s4	
+# ::edge	stand-01	ARG1	man	s4	m	
+# ::edge	man	ARG0-of	look-01	m	l	
+# ::edge	look-01	direction	up	l	u2	
+# ::edge	man	part	arm	m	a3	
+# ::edge	aloft	domain	arm	a	a3	
+# ::edge	look-01	manner	aloft	l	a	
+# ::edge	try-01	ARG0	man	t	m	
+# ::edge	look-01	manner	try-01	l	t	
+# ::edge	try-01	ARG1	get-01	t	g	
+# ::edge	get-01	ARG0	man	g	m	
+# ::edge	get-01	ARG1	shoot-03	g	s	
+# ::edge	shoot-03	ARG0	man	s	m	
+# ::edge	shoot-03	ARG1	skyline	s	s3	
+(s2 / show-01
+    :ARG0 (v / view-01)
+    :ARG1 (a2 / and
+        :op1 (s3 / skyline
+            :ARG0-of (s5 / stun-01)
+            :location (e / end
+                :quant 1))
+        :op2 (b / barricade
+            :ARG2-of (s4 / stand-01
+                :ARG1 (m / man
+                    :ARG0-of (l / look-01
+                        :direction (u2 / up)
+                        :manner (a / aloft
+                            :domain (a3 / arm))
+                        :manner (t / try-01
+                            :ARG0 m
+                            :ARG1 (g / get-01
+                                :ARG0 m
+                                :ARG1 (s / shoot-03
+                                    :ARG0 m
+                                    :ARG1 s3))))
+                    :part a3)
+                :location (b2 / behind))
+            :location (f / foreground)
+            :mod (u / ugly))))

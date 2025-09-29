@@ -1,0 +1,43 @@
+# ::tok Several Delta airplanes parked on the landing strip area in front of a Renaissance Hotel .
+# ::node	s	several	0-1
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Delta	1-2
+# ::node	a	airplane	2-3
+# ::node	p	park-01	3-4
+# ::node	l	land-01	6-7
+# ::node	s2	strip	7-8
+# ::node	a2	area	8-9
+# ::node	i	in-front-of	10-11
+# ::node	n2	name	13-14
+# ::node	2	Renaissance	13-14
+# ::node	h	hotel	14-15
+# ::node	1	Hotel	14-15
+# ::root	p	park-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Delta	n	0	
+# ::edge	airplane	mod	company	a	c	
+# ::edge	airplane	quant	several	a	s	
+# ::edge	park-01	ARG1	airplane	p	a	
+# ::edge	strip	location-of	land-01	s2	l	
+# ::edge	area	location	strip	a2	s2	
+# ::edge	park-01	ARG2	area	p	a2	
+# ::edge	area	location	in-front-of	a2	i	
+# ::edge	name	op1	Renaissance	n2	2	
+# ::edge	hotel	name	name	h	n2	
+# ::edge	in-front-of	op1	hotel	i	h	
+# ::edge	name	op2	Hotel	n2	1	
+(p / park-01
+    :ARG1 (a / airplane
+        :quant (s / several)
+        :mod (c / company
+            :name (n / name
+                :op1 "Delta")))
+    :ARG2 (a2 / area
+        :location (s2 / strip
+            :location-of (l / land-01))
+        :location (i / in-front-of
+            :op1 (h / hotel
+                :name (n2 / name
+                    :op1 "Renaissance"
+                    :op2 "Hotel")))))

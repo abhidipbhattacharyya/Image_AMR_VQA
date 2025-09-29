@@ -1,0 +1,48 @@
+# ::tok A man wearing a blue dress shirt , with a red , white and blue striped neck tie .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	b	blue	4-5
+# ::node	d	dress	5-6
+# ::node	s	shirt	6-7
+# ::node	h	have-03	8-9
+# ::node	r	red-02	10-11
+# ::node	w2	white-03	12-13
+# ::node	a	and	13-14
+# ::node	b2	blue	14-15
+# ::node	s2	stripe	15-16
+# ::node	s3	striped	15-16
+# ::node	n	neck	16-17
+# ::node	t	tie	17-18
+# ::node	t2	tie	17-18
+# ::root	m	man
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	shirt	mod	dress	s	d	
+# ::edge	shirt	mod	blue	s	b	
+# ::edge	wear-01	ARG1	shirt	w	s	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	stripe	a	s2	
+# ::edge	stripe	ARG1-of	red-02	s2	r	
+# ::edge	blue	op2	striped	b2	s3	
+# ::edge	tie	mod	neck	t	n	
+# ::edge	and	op2	tie	a	t	
+# ::edge	tie	ARG1-of	white-03	t	w2	
+# ::edge	tie	mod	neck	t2	n	
+# ::edge	and	op3	tie	a	t2	
+# ::edge	man	rel	blue	m	b2	
+(m / man
+    :ARG0-of (w / wear-01
+        :ARG1 (s / shirt
+            :mod (d / dress)
+            :mod (b / blue)))
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / stripe
+                :ARG1-of (r / red-02))
+            :op2 (t / tie
+                :ARG1-of (w2 / white-03)
+                :mod (n / neck))
+            :op3 (t2 / tie
+                :mod n)))
+    :rel (b2 / blue
+        :op2 (s3 / striped)))

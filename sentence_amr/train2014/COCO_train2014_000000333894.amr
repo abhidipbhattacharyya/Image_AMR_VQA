@@ -1,0 +1,24 @@
+# ::tok Several war planes follow a refueling plane while flying .
+# ::node	s	several	0-1
+# ::node	w	war	1-2
+# ::node	p	plane	2-3
+# ::node	f2	follow-01	3-4
+# ::node	r	refuel-01	5-6
+# ::node	p2	plane	6-7
+# ::node	f	fly-01	8-9
+# ::root	f2	follow-01
+# ::edge	plane	mod	war	p	w	
+# ::edge	plane	quant	several	p	s	
+# ::edge	follow-01	ARG1	plane	f2	p	
+# ::edge	plane	ARG0-of	refuel-01	p2	r	
+# ::edge	follow-01	ARG2	plane	f2	p2	
+# ::edge	follow-01	time	fly-01	f2	f	
+# ::edge	fly-01	ARG2	plane	f	p	
+(f2 / follow-01
+    :ARG1 (p / plane
+        :quant (s / several)
+        :mod (w / war))
+    :ARG2 (p2 / plane
+        :ARG0-of (r / refuel-01))
+    :time (f / fly-01
+        :ARG2 p))

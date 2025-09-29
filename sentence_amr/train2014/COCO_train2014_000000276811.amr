@@ -1,0 +1,33 @@
+# ::tok A group of nicely dressed men posing with one of them holding a blue vase .
+# ::node	g	group	1-2
+# ::node	n	nice-01	3-4
+# ::node	d	dress-01	4-5
+# ::node	m	man	5-6
+# ::node	p	pose-01	6-7
+# ::node	o	one	8-9
+# ::node	i	include-91	9-10
+# ::node	h	hold-01	11-12
+# ::node	b	blue	13-14
+# ::node	v	vase	14-15
+# ::root	p	pose-01
+# ::edge	dress-01	ARG1-of	nice-01	d	n	
+# ::edge	man	ARG1-of	dress-01	m	d	
+# ::edge	group	consist-of	man	g	m	
+# ::edge	pose-01	ARG0	group	p	g	
+# ::edge	pose-01	accompanier	one	p	o	
+# ::edge	one	ARG1-of	include-91	o	i	
+# ::edge	include-91	ARG2	group	i	g	
+# ::edge	one	ARG0-of	hold-01	o	h	
+# ::edge	vase	mod	blue	v	b	
+# ::edge	hold-01	ARG1	vase	h	v	
+(p / pose-01
+    :ARG0 (g / group
+        :consist-of (m / man
+            :ARG1-of (d / dress-01
+                :ARG1-of (n / nice-01))))
+    :accompanier (o / one
+        :ARG0-of (h / hold-01
+            :ARG1 (v / vase
+                :mod (b / blue)))
+        :ARG1-of (i / include-91
+            :ARG2 g)))

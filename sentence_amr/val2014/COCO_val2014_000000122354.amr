@@ -1,0 +1,31 @@
+# ::tok The warning sign is on a busy street near a large , three story building .
+# ::node	w	warn-01	1-2
+# ::node	s	sign	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	b3	busy-02	6-7
+# ::node	s3	street	7-8
+# ::node	n	near-02	8-9
+# ::node	l	large	10-11
+# ::node	0	3	12-13
+# ::node	s2	story	13-14
+# ::node	b2	building	14-15
+# ::root	b	be-located-at-91
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	be-located-at-91	ARG1	sign	b	s	
+# ::edge	street	ARG1-of	busy-02	s3	b3	
+# ::edge	be-located-at-91	ARG2	street	b	s3	
+# ::edge	street	ARG1-of	near-02	s3	n	
+# ::edge	story	quant	3	s2	0	
+# ::edge	building	part	story	b2	s2	
+# ::edge	building	mod	large	b2	l	
+# ::edge	near-02	ARG2	building	n	b2	
+(b / be-located-at-91
+    :ARG1 (s / sign
+        :ARG0-of (w / warn-01))
+    :ARG2 (s3 / street
+        :ARG1-of (b3 / busy-02)
+        :ARG1-of (n / near-02
+            :ARG2 (b2 / building
+                :mod (l / large)
+                :part (s2 / story
+                    :quant 3)))))

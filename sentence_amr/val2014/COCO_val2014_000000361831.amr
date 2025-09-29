@@ -1,0 +1,41 @@
+# ::tok A small address sign reads 2 Allenby Toe and has graffiti .
+# ::node	s2	small	1-2
+# ::node	a	address	2-3
+# ::node	s	sign	3-4
+# ::node	r	read-01	4-5
+# ::node	n	name	5-6
+# ::node	0	2	5-6
+# ::node	1	Allenby	6-7
+# ::node	l	location	7-8
+# ::node	2	Toe	7-8
+# ::node	a2	and	8-9
+# ::node	h	have-03	9-10
+# ::node	g	graffiti-01	10-11
+# ::root	a2	and
+# ::edge	sign	mod	address	s	a	
+# ::edge	sign	mod	small	s	s2	
+# ::edge	read-01	ARG0	sign	r	s	
+# ::edge	name	op1	Allenby	n	1	
+# ::edge	location	quant	2	l	0	
+# ::edge	location	name	name	l	n	
+# ::edge	read-01	ARG3	location	r	l	
+# ::edge	name	op2	Toe	n	2	
+# ::edge	and	op1	read-01	a2	r	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG0	sign	h	s	
+# ::edge	have-03	ARG1	graffiti-01	h	g	
+# ::edge	graffiti-01	ARG0	sign	g	s	
+(a2 / and
+    :op1 (r / read-01
+        :ARG0 (s / sign
+            :mod (a / address)
+            :mod (s2 / small))
+        :ARG3 (l / location
+            :name (n / name
+                :op1 "Allenby"
+                :op2 "Toe")
+            :quant 2))
+    :op2 (h / have-03
+        :ARG0 s
+        :ARG1 (g / graffiti-01
+            :ARG0 s)))

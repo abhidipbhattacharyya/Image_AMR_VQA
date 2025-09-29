@@ -1,0 +1,36 @@
+# ::tok A bus going on a road On one side of road are buildings On other side is footpath .
+# ::node	b2	bus	1-2
+# ::node	g	go-01	2-3
+# ::node	r	road	5-6
+# ::node	0	1	7-8
+# ::node	s	side	8-9
+# ::node	r2	road	10-11
+# ::node	b	building	12-13
+# ::node	o	other	14-15
+# ::node	s2	side	15-16
+# ::node	f	footpath	17-18
+# ::node	m	multi-sentence	18-19
+# ::root	m	multi-sentence
+# ::edge	bus	ARG1-of	go-01	b2	g	
+# ::edge	go-01	ARG4	road	g	r	
+# ::edge	side	quant	1	s	0	
+# ::edge	side	part-of	road	s	r2	
+# ::edge	building	location	side	b	s	
+# ::edge	side	mod	other	s2	o	
+# ::edge	road	part	side	r	s2	
+# ::edge	footpath	location	side	f	s2	
+# ::edge	multi-sentence	snt2	footpath	m	f	
+# ::edge	multi-sentence	snt1	building	m	b	
+# ::edge	multi-sentence	rel	bus	m	b2	
+(m / multi-sentence
+    :rel (b2 / bus
+        :ARG1-of (g / go-01
+            :ARG4 (r / road
+                :part (s2 / side
+                    :mod (o / other)))))
+    :snt1 (b / building
+        :location (s / side
+            :quant 1
+            :part-of (r2 / road)))
+    :snt2 (f / footpath
+        :location s2))

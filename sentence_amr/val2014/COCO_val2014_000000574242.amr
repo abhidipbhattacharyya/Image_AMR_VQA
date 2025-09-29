@@ -1,0 +1,28 @@
+# ::tok A stop sign is reflected in the chrome exterior coating of a car 's side mirror .
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	r	reflect-01	4-5
+# ::node	c2	chrome	7-8
+# ::node	e	exterior	8-9
+# ::node	c3	coat-01	9-10
+# ::node	c	car	12-13
+# ::node	s	side	14-15
+# ::node	m	mirror	15-16
+# ::root	r	reflect-01
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	reflect-01	ARG1	signal-07	r	s2	
+# ::edge	coat-01	ARG2	exterior	c3	e	
+# ::edge	coat-01	mod	chrome	c3	c2	
+# ::edge	reflect-01	ARG2	coat-01	r	c3	
+# ::edge	mirror	mod	side	m	s	
+# ::edge	mirror	part-of	car	m	c	
+# ::edge	coat-01	ARG1	mirror	c3	m	
+(r / reflect-01
+    :ARG1 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG2 (c3 / coat-01
+        :ARG1 (m / mirror
+            :mod (s / side)
+            :part-of (c / car))
+        :ARG2 (e / exterior)
+        :mod (c2 / chrome)))

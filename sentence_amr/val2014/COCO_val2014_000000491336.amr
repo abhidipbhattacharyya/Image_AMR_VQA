@@ -1,0 +1,31 @@
+# ::tok A red " Ford " tow truck parked next to a brick building .
+# ::node	r	red-02	1-2
+# ::node	c	car-make	3-4
+# ::node	n	name	3-4
+# ::node	0	Ford	3-4
+# ::node	t	tow-01	5-6
+# ::node	t2	truck	6-7
+# ::node	p	park-01	7-8
+# ::node	n2	next-to	8-9
+# ::node	b	brick	11-12
+# ::node	b2	building	12-13
+# ::root	p	park-01
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	Ford	n	0	
+# ::edge	truck	ARG0-of	tow-01	t2	t	
+# ::edge	truck	mod	car-make	t2	c	
+# ::edge	truck	ARG1-of	red-02	t2	r	
+# ::edge	park-01	ARG1	truck	p	t2	
+# ::edge	park-01	ARG2	next-to	p	n2	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	next-to	op1	building	n2	b2	
+(p / park-01
+    :ARG1 (t2 / truck
+        :ARG0-of (t / tow-01)
+        :ARG1-of (r / red-02)
+        :mod (c / car-make
+            :name (n / name
+                :op1 "Ford")))
+    :ARG2 (n2 / next-to
+        :op1 (b2 / building
+            :consist-of (b / brick))))

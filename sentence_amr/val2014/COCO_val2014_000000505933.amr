@@ -1,0 +1,25 @@
+# ::tok Two trains going in opposite directions on tracks over busy streets .
+# ::node	0	2	0-1
+# ::node	t2	train	1-2
+# ::node	g	go-01	2-3
+# ::node	o	opposite-01	4-5
+# ::node	t	track	7-8
+# ::node	o2	over	8-9
+# ::node	b	busy-01	9-10
+# ::node	s	street	10-11
+# ::root	g	go-01
+# ::edge	train	quant	2	t2	0	
+# ::edge	go-01	ARG1	train	g	t2	
+# ::edge	go-01	direction	opposite-01	g	o	
+# ::edge	go-01	location	track	g	t	
+# ::edge	track	location	over	t	o2	
+# ::edge	street	ARG1-of	busy-01	s	b	
+# ::edge	over	op1	street	o2	s	
+(g / go-01
+    :ARG1 (t2 / train
+        :quant 2)
+    :direction (o / opposite-01)
+    :location (t / track
+        :location (o2 / over
+            :op1 (s / street
+                :ARG1-of (b / busy-01)))))

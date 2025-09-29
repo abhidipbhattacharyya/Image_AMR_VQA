@@ -1,0 +1,28 @@
+# ::tok A soccer pitch at the goalies end with players from two different teams .
+# ::node	s	soccer	1-2
+# ::node	p2	pitch	2-3
+# ::node	g	goal	5-6
+# ::node	e	end-01	6-7
+# ::node	p	person	8-9
+# ::node	p3	play-01	8-9
+# ::node	0	2	10-11
+# ::node	d	differ-02	11-12
+# ::node	t	team	12-13
+# ::root	e	end-01
+# ::edge	pitch	mod	soccer	p2	s	
+# ::edge	end-01	ARG1	goal	e	g	
+# ::edge	end-01	location	pitch	e	p2	
+# ::edge	end-01	ARG2	person	e	p	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	team	ARG1-of	differ-02	t	d	
+# ::edge	team	quant	2	t	0	
+# ::edge	play-01	ARG1	team	p3	t	
+(e / end-01
+    :ARG1 (g / goal)
+    :ARG2 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (t / team
+                :quant 2
+                :ARG1-of (d / differ-02))))
+    :location (p2 / pitch
+        :mod (s / soccer)))

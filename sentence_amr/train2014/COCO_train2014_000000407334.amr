@@ -1,0 +1,33 @@
+# ::tok One giraffe is resting it 's head against a building while two other giraffes are standing nearby .
+# ::node	0	1	0-1
+# ::node	g	giraffe	1-2
+# ::node	r	rest-01	3-4
+# ::node	h	head	6-7
+# ::node	b	building	9-10
+# ::node	1	2	11-12
+# ::node	o	other	12-13
+# ::node	g2	giraffe	13-14
+# ::node	s	stand-01	15-16
+# ::node	n	nearby	16-17
+# ::root	r	rest-01
+# ::edge	giraffe	quant	1	g	0	
+# ::edge	rest-01	ARG0	giraffe	r	g	
+# ::edge	rest-01	ARG1	head	r	h	
+# ::edge	giraffe	part	head	g	h	
+# ::edge	rest-01	ARG2	building	r	b	
+# ::edge	giraffe	mod	other	g2	o	
+# ::edge	giraffe	quant	2	g2	1	
+# ::edge	stand-01	ARG1	giraffe	s	g2	
+# ::edge	rest-01	time	stand-01	r	s	
+# ::edge	stand-01	ARG2	nearby	s	n	
+(r / rest-01
+    :ARG0 (g / giraffe
+        :quant 1
+        :part (h / head))
+    :ARG1 h
+    :ARG2 (b / building)
+    :time (s / stand-01
+        :ARG1 (g2 / giraffe
+            :quant 2
+            :mod (o / other))
+        :ARG2 (n / nearby)))

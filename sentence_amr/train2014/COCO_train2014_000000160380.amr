@@ -1,0 +1,39 @@
+# ::tok A store called Bedder Sleep , with a homeless man sleeping on a bench outside it .
+# ::node	s2	store	1-2
+# ::node	n	name	1-2
+# ::node	1	Bedder	3-4
+# ::node	2	Sleep	4-5
+# ::node	h	have-03	6-7
+# ::node	h2	have-03	8-9
+# ::node	h3	home	8-9
+# ::node	m	man	9-10
+# ::node	s	sleep-01	10-11
+# ::node	b	bench	13-14
+# ::node	o	outside	14-15
+# ::node	0	-	14-15
+# ::root	h	have-03
+# ::edge	store	name	name	s2	n	
+# ::edge	name	op1	Bedder	n	1	
+# ::edge	name	op2	Sleep	n	2	
+# ::edge	have-03	ARG0	store	h	s2	
+# ::edge	have-03	ARG1	home	h2	h3	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	have-03	ARG1	man	h	m	
+# ::edge	man	ARG0-of	sleep-01	m	s	
+# ::edge	sleep-01	ARG1	bench	s	b	
+# ::edge	bench	location	outside	b	o	
+# ::edge	outside	op1	store	o	s2	
+# ::edge	have-03	polarity	-	h2	0	
+(h / have-03
+    :ARG0 (s2 / store
+        :name (n / name
+            :op1 "Bedder"
+            :op2 "Sleep"))
+    :ARG1 (m / man
+        :ARG0-of (h2 / have-03
+            :ARG1 (h3 / home)
+            :polarity -)
+        :ARG0-of (s / sleep-01
+            :ARG1 (b / bench
+                :location (o / outside
+                    :op1 s2)))))

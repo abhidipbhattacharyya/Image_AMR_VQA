@@ -1,0 +1,37 @@
+# ::tok A male tennis player leaping into the air to hit a tennis ball above his head
+# ::node	m	male	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	l	leap-03	4-5
+# ::node	a2	air	7-8
+# ::node	h2	hit-01	9-10
+# ::node	b	ball	12-13
+# ::node	a	above	13-14
+# ::node	h	head	15-16
+# ::root	p	person
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	leap-03	p	l	
+# ::edge	leap-03	destination	air	l	a2	
+# ::edge	leap-03	purpose	hit-01	l	h2	
+# ::edge	hit-01	ARG0	person	h2	p	
+# ::edge	hit-01	ARG1	ball	h2	b	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	ball	location	above	b	a	
+# ::edge	above	op1	head	a	h	
+# ::edge	person	part	head	p	h	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (l / leap-03
+        :purpose (h2 / hit-01
+            :ARG0 p
+            :ARG1 (b / ball
+                :location (a / above
+                    :op1 (h / head))
+                :mod t))
+        :destination (a2 / air))
+    :mod (m / male)
+    :part h)

@@ -1,0 +1,22 @@
+# ::tok Lanes of cars stopped at a traffic light are viewed from a distance .
+# ::node	l	lane	0-1
+# ::node	c	car	2-3
+# ::node	s	stop-01	3-4
+# ::node	t	traffic	6-7
+# ::node	l2	light	7-8
+# ::node	v	view-01	9-10
+# ::node	d	distance	12-13
+# ::root	v	view-01
+# ::edge	lane	consist-of	car	l	c	
+# ::edge	car	ARG1-of	stop-01	c	s	
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	stop-01	location	light	s	l2	
+# ::edge	view-01	ARG1	lane	v	l	
+# ::edge	view-01	source	distance	v	d	
+(v / view-01
+    :ARG1 (l / lane
+        :consist-of (c / car
+            :ARG1-of (s / stop-01
+                :location (l2 / light
+                    :mod (t / traffic)))))
+    :source (d / distance))

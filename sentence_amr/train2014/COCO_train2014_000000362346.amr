@@ -1,0 +1,29 @@
+# ::tok A giraffe must spread its front legs to reach a morsel in the grass .
+# ::node	g	giraffe	1-2
+# ::node	o	obligate-01	2-3
+# ::node	s	spread-02	3-4
+# ::node	f	front	5-6
+# ::node	l	leg	6-7
+# ::node	r	reach-01	8-9
+# ::node	m	morsel	10-11
+# ::node	g2	grass	13-14
+# ::root	o	obligate-01
+# ::edge	obligate-01	ARG1	giraffe	o	g	
+# ::edge	obligate-01	ARG2	spread-02	o	s	
+# ::edge	leg	mod	front	l	f	
+# ::edge	spread-02	ARG1	leg	s	l	
+# ::edge	giraffe	part	leg	g	l	
+# ::edge	spread-02	purpose	reach-01	s	r	
+# ::edge	reach-01	ARG0	giraffe	r	g	
+# ::edge	reach-01	ARG1	morsel	r	m	
+# ::edge	morsel	location	grass	m	g2	
+(o / obligate-01
+    :ARG1 (g / giraffe
+        :part (l / leg
+            :mod (f / front)))
+    :ARG2 (s / spread-02
+        :purpose (r / reach-01
+            :ARG0 g
+            :ARG1 (m / morsel
+                :location (g2 / grass)))
+        :ARG1 l))

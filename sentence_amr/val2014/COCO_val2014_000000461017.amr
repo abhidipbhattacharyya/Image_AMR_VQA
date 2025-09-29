@@ -1,0 +1,38 @@
+# ::tok A plane getting ready to land on a runway with another parked on the side or waiting to take off .
+# ::node	p2	plane	1-2
+# ::node	p3	plane	1-2
+# ::node	r	ready-01	3-4
+# ::node	l	land-01	5-6
+# ::node	r2	runway	8-9
+# ::node	a	another	10-11
+# ::node	p	park-01	11-12
+# ::node	s	side	14-15
+# ::node	o	or	15-16
+# ::node	w	wait-01	16-17
+# ::node	t	take-off-19	18-19
+# ::root	o	or
+# ::edge	ready-01	ARG1	plane	r	p2	
+# ::edge	ready-01	ARG2	land-01	r	l	
+# ::edge	land-01	ARG1	plane	l	p2	
+# ::edge	land-01	location	runway	l	r2	
+# ::edge	plane	mod	another	p3	a	
+# ::edge	plane	ARG1-of	park-01	p3	p	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	or	op1	ready-01	o	r	
+# ::edge	or	op2	wait-01	o	w	
+# ::edge	wait-01	ARG1	plane	w	p3	
+# ::edge	wait-01	ARG2	take-off-19	w	t	
+# ::edge	take-off-19	ARG1	plane	t	p3	
+(o / or
+    :op1 (r / ready-01
+        :ARG1 (p2 / plane)
+        :ARG2 (l / land-01
+            :ARG1 p2
+            :location (r2 / runway)))
+    :op2 (w / wait-01
+        :ARG1 (p3 / plane
+            :ARG1-of (p / park-01
+                :ARG2 (s / side))
+            :mod (a / another))
+        :ARG2 (t / take-off-19
+            :ARG1 p3)))

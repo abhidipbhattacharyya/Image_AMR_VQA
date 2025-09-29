@@ -1,0 +1,44 @@
+# ::tok The Royal Observatory Greenwich sign has a strange machine that looks like a clock but is not one .
+# ::node	3	Royal	1-2
+# ::node	2	Observatory	2-3
+# ::node	n	name	3-4
+# ::node	1	Greenwich	3-4
+# ::node	s	sign	4-5
+# ::node	h	have-03	5-6
+# ::node	s2	strange	7-8
+# ::node	m	machine	8-9
+# ::node	l	look-02	10-11
+# ::node	l2	look-02	10-11
+# ::node	c	clock	13-14
+# ::node	c2	contrast-01	14-15
+# ::node	0	-	16-17
+# ::root	h	have-03
+# ::edge	name	op2	Observatory	n	2	
+# ::edge	name	op1	Royal	n	3	
+# ::edge	name	op3	Greenwich	n	1	
+# ::edge	sign	name	name	s	n	
+# ::edge	have-03	ARG0	sign	h	s	
+# ::edge	machine	mod	strange	m	s2	
+# ::edge	have-03	ARG1	machine	h	m	
+# ::edge	machine	ARG0-of	look-02	m	l	
+# ::edge	look-02	ARG0	machine	l2	m	
+# ::edge	look-02	ARG1	clock	l2	c	
+# ::edge	look-02	ARG1	clock	l	c	
+# ::edge	contrast-01	ARG2	look-02	c2	l2	
+# ::edge	look-02	ARG1-of	contrast-01	l	c2	
+# ::edge	look-02	polarity	-	l2	0	
+(h / have-03
+    :ARG0 (s / sign
+        :name (n / name
+            :op1 "Royal"
+            :op2 "Observatory"
+            :op3 "Greenwich"))
+    :ARG1 (m / machine
+        :ARG0-of (l / look-02
+            :ARG1 (c / clock)
+            :ARG1-of (c2 / contrast-01
+                :ARG2 (l2 / look-02
+                    :ARG0 m
+                    :ARG1 c
+                    :polarity -)))
+        :mod (s2 / strange)))

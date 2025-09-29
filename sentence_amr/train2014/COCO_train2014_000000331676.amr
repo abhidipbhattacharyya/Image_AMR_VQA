@@ -1,0 +1,28 @@
+# ::tok Culinary workers preparing food items in commercial setting .
+# ::node	m	monetary-quantity	0-1
+# ::node	w	work-01	0-1
+# ::node	p	person	1-2
+# ::node	w2	work-01	1-2
+# ::node	p2	prepare-01	2-3
+# ::node	f	food	3-4
+# ::node	i	item	4-5
+# ::node	c	commerce	6-7
+# ::node	s	setting	7-8
+# ::root	p2	prepare-01
+# ::edge	monetary-quantity	ARG1-of	work-01	m	w	
+# ::edge	person	ARG0-of	work-01	p	w2	
+# ::edge	work-01	ARG1	monetary-quantity	w2	m	
+# ::edge	prepare-01	ARG0	person	p2	p	
+# ::edge	item	mod	food	i	f	
+# ::edge	prepare-01	ARG1	item	p2	i	
+# ::edge	setting	mod	commerce	s	c	
+# ::edge	prepare-01	location	setting	p2	s	
+(p2 / prepare-01
+    :ARG0 (p / person
+        :ARG0-of (w2 / work-01
+            :ARG1 (m / monetary-quantity
+                :ARG1-of (w / work-01))))
+    :ARG1 (i / item
+        :mod (f / food))
+    :location (s / setting
+        :mod (c / commerce)))

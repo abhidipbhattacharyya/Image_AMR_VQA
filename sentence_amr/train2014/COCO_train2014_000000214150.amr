@@ -1,0 +1,58 @@
+# ::tok A grassy and dirt area of land , with several zebras standing next to one another and one resting it 's head on another zebra .
+# ::node	g	grass	1-2
+# ::node	d	dirt	3-4
+# ::node	a4	area	4-5
+# ::node	l	land	6-7
+# ::node	h	have-03	8-9
+# ::node	s	several	9-10
+# ::node	e	elephant	10-11
+# ::node	a2	animal	10-11
+# ::node	s2	stand-01	11-12
+# ::node	n	next-to	12-13
+# ::node	a	and	16-17
+# ::node	i	include-91	17-18
+# ::node	0	1	17-18
+# ::node	r	rest-01	18-19
+# ::node	h2	head	21-22
+# ::node	a3	another	23-24
+# ::node	z	zebra	24-25
+# ::root	a4	area
+# ::edge	area	mod	dirt	a4	d	
+# ::edge	area	consist-of	grass	a4	g	
+# ::edge	area	mod	land	a4	l	
+# ::edge	area	ARG0-of	have-03	a4	h	
+# ::edge	elephant	quant	several	e	s	
+# ::edge	stand-01	ARG1	elephant	s2	e	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	elephant	n	e	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	animal	ARG1-of	include-91	a2	i	
+# ::edge	include-91	ARG2	elephant	i	e	
+# ::edge	animal	quant	1	a2	0	
+# ::edge	and	op2	rest-01	a	r	
+# ::edge	rest-01	ARG0	animal	r	a2	
+# ::edge	rest-01	ARG1	head	r	h2	
+# ::edge	animal	part	head	a2	h2	
+# ::edge	zebra	mod	another	z	a3	
+# ::edge	rest-01	ARG2	zebra	r	z	
+(a4 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / stand-01
+                :ARG1 (e / elephant
+                    :quant (s / several))
+                :ARG2 (n / next-to
+                    :op1 e))
+            :op2 (r / rest-01
+                :ARG0 (a2 / animal
+                    :quant 1
+                    :ARG1-of (i / include-91
+                        :ARG2 e)
+                    :part (h2 / head))
+                :ARG1 h2
+                :ARG2 (z / zebra
+                    :mod (a3 / another)))))
+    :consist-of (g / grass)
+    :mod (d / dirt)
+    :mod (l / land))

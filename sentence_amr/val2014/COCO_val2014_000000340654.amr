@@ -1,0 +1,28 @@
+# ::tok A quiet big city street corner is pictured with a traffic light .
+# ::node	q	quiet-04	1-2
+# ::node	b	big	2-3
+# ::node	c	city	3-4
+# ::node	s	street	4-5
+# ::node	c2	corner	5-6
+# ::node	p	picture-01	7-8
+# ::node	h	have-03	8-9
+# ::node	t	traffic	10-11
+# ::node	l	light	11-12
+# ::root	p	picture-01
+# ::edge	street	location	city	s	c	
+# ::edge	street	mod	big	s	b	
+# ::edge	corner	mod	street	c2	s	
+# ::edge	corner	ARG1-of	quiet-04	c2	q	
+# ::edge	picture-01	ARG1	corner	p	c2	
+# ::edge	corner	ARG0-of	have-03	c2	h	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	have-03	ARG1	light	h	l	
+(p / picture-01
+    :ARG1 (c2 / corner
+        :ARG0-of (h / have-03
+            :ARG1 (l / light
+                :mod (t / traffic)))
+        :ARG1-of (q / quiet-04)
+        :mod (s / street
+            :location (c / city)
+            :mod (b / big))))

@@ -1,0 +1,37 @@
+# ::tok Picture of an airport landing field with a plane one one end and a big truck on the other .
+# ::node	p	picture-01	0-1
+# ::node	a	airport	3-4
+# ::node	l	land-01	4-5
+# ::node	f	field	5-6
+# ::node	p2	plane	8-9
+# ::node	0	1	10-11
+# ::node	e	end	11-12
+# ::node	e2	end	11-12
+# ::node	a2	and	12-13
+# ::node	b	big	14-15
+# ::node	t	truck	15-16
+# ::node	o	other	18-19
+# ::root	p	picture-01
+# ::edge	land-01	location	airport	l	a	
+# ::edge	field	location-of	land-01	f	l	
+# ::edge	picture-01	ARG1	field	p	f	
+# ::edge	end	quant	1	e	0	
+# ::edge	plane	part	end	p2	e	
+# ::edge	and	op1	plane	a2	p2	
+# ::edge	field	part	and	f	a2	
+# ::edge	truck	mod	big	t	b	
+# ::edge	and	op2	truck	a2	t	
+# ::edge	truck	location	end	t	e2	
+# ::edge	end	mod	other	e2	o	
+(p / picture-01
+    :ARG1 (f / field
+        :location-of (l / land-01
+            :location (a / airport))
+        :part (a2 / and
+            :op1 (p2 / plane
+                :part (e / end
+                    :quant 1))
+            :op2 (t / truck
+                :location (e2 / end
+                    :mod (o / other))
+                :mod (b / big)))))

@@ -1,0 +1,46 @@
+# ::tok Boxes of Brussels sprouts sit on a table in front of boxes of broccoli and cauliflower .
+# ::node	b	box	0-1
+# ::node	c2	city	2-3
+# ::node	n	name	2-3
+# ::node	0	Brussels	2-3
+# ::node	m	magazine	3-4
+# ::node	n2	name	3-4
+# ::node	1	sprouts	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	table	7-8
+# ::node	i	in-front-of	9-10
+# ::node	b2	box	11-12
+# ::node	b3	box	11-12
+# ::node	b4	broccoli	13-14
+# ::node	a	and	14-15
+# ::node	c	cauliflower	15-16
+# ::root	s	sit-01
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Brussels	n	0	
+# ::edge	magazine	mod	city	m	c2	
+# ::edge	box	quant-of	magazine	b	m	
+# ::edge	magazine	name	name	m	n2	
+# ::edge	name	op1	sprouts	n2	1	
+# ::edge	sit-01	ARG1	box	s	b	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location	in-front-of	t	i	
+# ::edge	in-front-of	op1	box	i	b2	
+# ::edge	box	op2	box	b2	b3	
+# ::edge	and	op1	broccoli	a	b4	
+# ::edge	box	consist-of	and	b3	a	
+# ::edge	and	op2	cauliflower	a	c	
+(s / sit-01
+    :ARG1 (b / box
+        :quant-of (m / magazine
+            :name (n2 / name
+                :op1 "sprouts")
+            :mod (c2 / city
+                :name (n / name
+                    :op1 "Brussels"))))
+    :ARG2 (t / table
+        :location (i / in-front-of
+            :op1 (b2 / box
+                :op2 (b3 / box
+                    :consist-of (a / and
+                        :op1 (b4 / broccoli)
+                        :op2 (c / cauliflower)))))))

@@ -1,0 +1,31 @@
+# ::tok A male mannequin with a shirt and tie undone wearing laced up underwear .
+# ::node	m	male	1-2
+# ::node	m2	mannequin	2-3
+# ::node	s	shirt	5-6
+# ::node	a	and	6-7
+# ::node	t	tie	7-8
+# ::node	t2	tie-01	8-9
+# ::node	0	-	8-9
+# ::node	w	wear-01	9-10
+# ::node	l	lace-02	10-11
+# ::node	u	underwear	12-13
+# ::root	m2	mannequin
+# ::edge	mannequin	mod	male	m2	m	
+# ::edge	and	op1	shirt	a	s	
+# ::edge	and	op2	tie	a	t	
+# ::edge	tie-01	ARG1	and	t2	a	
+# ::edge	mannequin	mod	tie-01	m2	t2	
+# ::edge	tie-01	polarity	-	t2	0	
+# ::edge	mannequin	ARG0-of	wear-01	m2	w	
+# ::edge	underwear	ARG2-of	lace-02	u	l	
+# ::edge	wear-01	ARG1	underwear	w	u	
+(m2 / mannequin
+    :ARG0-of (w / wear-01
+        :ARG1 (u / underwear
+            :ARG2-of (l / lace-02)))
+    :mod (m / male)
+    :mod (t2 / tie-01
+        :ARG1 (a / and
+            :op1 (s / shirt)
+            :op2 (t / tie))
+        :polarity -))

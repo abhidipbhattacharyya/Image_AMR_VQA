@@ -1,0 +1,27 @@
+# ::tok People with bags are being stopped by a guard before they go in a building .
+# ::node	p	person	0-1
+# ::node	h	have-03	1-2
+# ::node	b	bag	2-3
+# ::node	s	stop-01	5-6
+# ::node	g2	guard	8-9
+# ::node	b2	before	9-10
+# ::node	g	go-02	11-12
+# ::node	b3	building	14-15
+# ::root	s	stop-01
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	bag	h	b	
+# ::edge	stop-01	ARG1	person	s	p	
+# ::edge	stop-01	ARG0	guard	s	g2	
+# ::edge	stop-01	time	before	s	b2	
+# ::edge	before	op1	go-02	b2	g	
+# ::edge	go-02	ARG0	person	g	p	
+# ::edge	go-02	ARG4	building	g	b3	
+(s / stop-01
+    :ARG0 (g2 / guard)
+    :ARG1 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (b / bag)))
+    :time (b2 / before
+        :op1 (g / go-02
+            :ARG0 p
+            :ARG4 (b3 / building))))

@@ -1,0 +1,29 @@
+# ::tok a glass window with a clock behind it and trees reflected in the glass
+# ::node	g	glass	1-2
+# ::node	w	window	2-3
+# ::node	h	have-03	3-4
+# ::node	c	clock	5-6
+# ::node	b	behind	6-7
+# ::node	a	and	8-9
+# ::node	t	tree	9-10
+# ::node	r	reflect-01	10-11
+# ::root	w	window
+# ::edge	window	consist-of	glass	w	g	
+# ::edge	window	ARG0-of	have-03	w	h	
+# ::edge	clock	location	behind	c	b	
+# ::edge	behind	op1	window	b	w	
+# ::edge	and	op1	clock	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	reflect-01	ARG2	tree	r	t	
+# ::edge	and	op2	reflect-01	a	r	
+# ::edge	reflect-01	ARG1	glass	r	g	
+(w / window
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / clock
+                :location (b / behind
+                    :op1 w))
+            :op2 (r / reflect-01
+                :ARG1 (g / glass)
+                :ARG2 (t / tree))))
+    :consist-of g)

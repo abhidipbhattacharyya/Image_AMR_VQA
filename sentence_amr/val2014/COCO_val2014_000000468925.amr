@@ -1,0 +1,37 @@
+# ::tok French bread on a plate with eggs , bacon and banana slices atop the bread .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	France	0-1
+# ::node	b3	bread	1-2
+# ::node	p	plate	4-5
+# ::node	i	include-01	5-6
+# ::node	e	egg	6-7
+# ::node	b	bacon	8-9
+# ::node	a	and	9-10
+# ::node	b2	banana	10-11
+# ::node	s	slice	11-12
+# ::node	a2	atop	12-13
+# ::root	a2	atop
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	bread	mod	country	b3	c	
+# ::edge	plate	ARG2-of	include-01	p	i	
+# ::edge	and	op2	bacon	a	b	
+# ::edge	and	op1	egg	a	e	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	slice	mod	banana	s	b2	
+# ::edge	and	op3	slice	a	s	
+# ::edge	atop	domain	plate	a2	p	
+# ::edge	atop	ARG1	bread	a2	b3	
+(a2 / atop
+    :ARG1 (b3 / bread
+        :mod (c / country
+            :name (n / name
+                :op1 "France")))
+    :domain (p / plate
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (e / egg)
+                :op2 (b / bacon)
+                :op3 (s / slice
+                    :mod (b2 / banana))))))

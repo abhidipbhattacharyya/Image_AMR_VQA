@@ -1,0 +1,26 @@
+# ::tok A plane parked on the tarmac with with a connection for loading attached to it .
+# ::node	p2	plane	1-2
+# ::node	p	park-01	2-3
+# ::node	t	tarmac	5-6
+# ::node	t2	thing	8-9
+# ::node	c	connect-01	9-10
+# ::node	l	load-01	11-12
+# ::node	a	attach-01	12-13
+# ::root	p2	plane
+# ::edge	plane	ARG1-of	park-01	p2	p	
+# ::edge	park-01	ARG2	tarmac	p	t	
+# ::edge	plane	part	thing	p2	t2	
+# ::edge	thing	ARG3-of	connect-01	t2	c	
+# ::edge	connect-01	purpose	load-01	c	l	
+# ::edge	load-01	ARG2	plane	l	p2	
+# ::edge	thing	ARG1-of	attach-01	t2	a	
+# ::edge	attach-01	ARG2	plane	a	p2	
+(p2 / plane
+    :ARG1-of (p / park-01
+        :ARG2 (t / tarmac))
+    :part (t2 / thing
+        :ARG1-of (a / attach-01
+            :ARG2 p2)
+        :ARG3-of (c / connect-01
+            :purpose (l / load-01
+                :ARG2 p2))))

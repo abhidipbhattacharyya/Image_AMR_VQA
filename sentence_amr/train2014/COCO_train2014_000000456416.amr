@@ -1,0 +1,33 @@
+# ::tok These buses have mot left the station yet for their daily routes .
+# ::node	t2	this	0-1
+# ::node	b	bus	1-2
+# ::node	l	leave-11	4-5
+# ::node	s	station	6-7
+# ::node	y	yet	7-8
+# ::node	r	rate-entity-91	10-11
+# ::node	t	temporal-quantity	10-11
+# ::node	d	day	10-11
+# ::node	0	1	10-11
+# ::node	r2	route	11-12
+# ::root	l	leave-11
+# ::edge	bus	mod	this	b	t2	
+# ::edge	leave-11	ARG0	bus	l	b	
+# ::edge	leave-11	ARG1	station	l	s	
+# ::edge	leave-11	time	yet	l	y	
+# ::edge	rate-entity-91	ARG3	temporal-quantity	r	t	
+# ::edge	temporal-quantity	unit	day	t	d	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	route	frequency	rate-entity-91	r2	r	
+# ::edge	leave-11	purpose	route	l	r2	
+# ::edge	route	poss	bus	r2	b	
+(l / leave-11
+    :purpose (r2 / route
+        :frequency (r / rate-entity-91
+            :ARG3 (t / temporal-quantity
+                :quant 1
+                :unit (d / day)))
+        :poss (b / bus
+            :mod (t2 / this)))
+    :ARG0 b
+    :ARG1 (s / station)
+    :time (y / yet))

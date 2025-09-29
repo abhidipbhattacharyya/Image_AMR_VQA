@@ -1,0 +1,25 @@
+# ::tok A passenger train passes a freight train traveling in opposite directions
+# ::node	p2	passenger	1-2
+# ::node	t	train	2-3
+# ::node	p	pass-02	3-4
+# ::node	f	freight	5-6
+# ::node	t2	train	6-7
+# ::node	t3	travel-01	7-8
+# ::node	o	opposite-01	9-10
+# ::node	d	direction	10-11
+# ::root	p	pass-02
+# ::edge	train	mod	passenger	t	p2	
+# ::edge	pass-02	ARG0	train	p	t	
+# ::edge	train	mod	freight	t2	f	
+# ::edge	pass-02	ARG1	train	p	t2	
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	travel-01	ARG1	direction	t3	d	
+(p / pass-02
+    :ARG0 (t / train
+        :mod (p2 / passenger))
+    :ARG1 (t2 / train
+        :ARG0-of (t3 / travel-01
+            :ARG1 (d / direction
+                :ARG1-of (o / opposite-01)))
+        :mod (f / freight)))

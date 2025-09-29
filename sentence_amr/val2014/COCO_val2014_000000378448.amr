@@ -1,0 +1,64 @@
+# ::tok The words " Connect_Anywhere " cover a black and white photo of an unattended backpack left beside the window of an airport terminal overlooking the tarmac and a commercial airplane .
+# ::node	w3	word	1-2
+# ::node	n	name	3-4
+# ::node	1	Connect_Anywhere	3-4
+# ::node	b4	broadcast-program	4-5
+# ::node	c2	cover-01	5-6
+# ::node	b3	black-04	7-8
+# ::node	w	white-03	9-10
+# ::node	p	photo	10-11
+# ::node	a4	attend-02	13-14
+# ::node	0	-	13-14
+# ::node	b	backpack	14-15
+# ::node	l	leave-12	15-16
+# ::node	b2	beside	16-17
+# ::node	w2	window	18-19
+# ::node	a2	airport	21-22
+# ::node	t2	terminal	22-23
+# ::node	o	overlook-02	23-24
+# ::node	t	tarmac	25-26
+# ::node	a3	and	26-27
+# ::node	c	commerce	28-29
+# ::node	a	airplane	29-30
+# ::root	c2	cover-01
+# ::edge	name	op1	Connect_Anywhere	n	1	
+# ::edge	broadcast-program	name	name	b4	n	
+# ::edge	word	mod	broadcast-program	w3	b4	
+# ::edge	cover-01	ARG2	word	c2	w3	
+# ::edge	photo	ARG1-of	white-03	p	w	
+# ::edge	photo	ARG1-of	black-04	p	b3	
+# ::edge	cover-01	ARG1	photo	c2	p	
+# ::edge	attend-02	polarity	-	a4	0	
+# ::edge	backpack	ARG1-of	attend-02	b	a4	
+# ::edge	photo	topic	backpack	p	b	
+# ::edge	backpack	ARG1-of	leave-12	b	l	
+# ::edge	leave-12	ARG2	beside	l	b2	
+# ::edge	beside	op1	window	b2	w2	
+# ::edge	terminal	mod	airport	t2	a2	
+# ::edge	window	part-of	terminal	w2	t2	
+# ::edge	window	ARG0-of	overlook-02	w2	o	
+# ::edge	and	op1	tarmac	a3	t	
+# ::edge	overlook-02	ARG1	and	o	a3	
+# ::edge	airplane	mod	commerce	a	c	
+# ::edge	and	op2	airplane	a3	a	
+(c2 / cover-01
+    :ARG1 (p / photo
+        :ARG1-of (w / white-03)
+        :ARG1-of (b3 / black-04)
+        :topic (b / backpack
+            :ARG1-of (a4 / attend-02
+                :polarity -)
+            :ARG1-of (l / leave-12
+                :ARG2 (b2 / beside
+                    :op1 (w2 / window
+                        :ARG0-of (o / overlook-02
+                            :ARG1 (a3 / and
+                                :op1 (t / tarmac)
+                                :op2 (a / airplane
+                                    :mod (c / commerce))))
+                        :part-of (t2 / terminal
+                            :mod (a2 / airport)))))))
+    :ARG2 (w3 / word
+        :mod (b4 / broadcast-program
+            :name (n / name
+                :op1 "Connect_Anywhere"))))

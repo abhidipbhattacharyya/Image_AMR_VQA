@@ -1,0 +1,31 @@
+# ::tok Two keyboards on a table connected to a computer and a flat screen monitor .
+# ::node	0	2	0-1
+# ::node	k	keyboard	1-2
+# ::node	t	table	4-5
+# ::node	c2	connect-01	5-6
+# ::node	c	computer	8-9
+# ::node	a	and	9-10
+# ::node	f	flat-06	11-12
+# ::node	s	screen	12-13
+# ::node	m	monitor	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	keyboard	quant	2	k	0	
+# ::edge	keyboard	location	table	k	t	
+# ::edge	keyboard	ARG1-of	connect-01	k	c2	
+# ::edge	and	op1	computer	a	c	
+# ::edge	connect-01	ARG2	and	c2	a	
+# ::edge	screen	ARG1-of	flat-06	s	f	
+# ::edge	monitor	part	screen	m	s	
+# ::edge	and	op2	monitor	a	m	
+# ::edge	event	mod	keyboard	e	k	
+(e / event
+    :mod (k / keyboard
+        :quant 2
+        :ARG1-of (c2 / connect-01
+            :ARG2 (a / and
+                :op1 (c / computer)
+                :op2 (m / monitor
+                    :part (s / screen
+                        :ARG1-of (f / flat-06)))))
+        :location (t / table)))

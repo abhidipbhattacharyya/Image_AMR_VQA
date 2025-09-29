@@ -1,0 +1,34 @@
+# ::tok Two hot dogs and two cups of soda is sitting on a window sill .
+# ::node	0	2	0-1
+# ::node	h	hot-05	1-2
+# ::node	d	dog	2-3
+# ::node	a	and	3-4
+# ::node	1	2	4-5
+# ::node	v	volume-quantity	5-6
+# ::node	c	cup	5-6
+# ::node	s3	soda	7-8
+# ::node	s2	sit-01	9-10
+# ::node	w	window	12-13
+# ::node	s	sill	13-14
+# ::root	s2	sit-01
+# ::edge	dog	ARG1-of	hot-05	d	h	
+# ::edge	dog	quant	2	d	0	
+# ::edge	and	op1	dog	a	d	
+# ::edge	volume-quantity	quant	2	v	1	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	soda	quant	volume-quantity	s3	v	
+# ::edge	and	op2	soda	a	s3	
+# ::edge	sit-01	ARG1	and	s2	a	
+# ::edge	sill	mod	window	s	w	
+# ::edge	sit-01	ARG2	sill	s2	s	
+(s2 / sit-01
+    :ARG1 (a / and
+        :op1 (d / dog
+            :quant 2
+            :ARG1-of (h / hot-05))
+        :op2 (s3 / soda
+            :quant (v / volume-quantity
+                :quant 2
+                :unit (c / cup))))
+    :ARG2 (s / sill
+        :mod (w / window)))

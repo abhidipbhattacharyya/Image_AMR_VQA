@@ -1,0 +1,43 @@
+# ::tok A soccer game with players from both teams going after the ball and other players close behind .
+# ::node	s	soccer	1-2
+# ::node	g	game	2-3
+# ::node	p	person	4-5
+# ::node	p3	play-01	4-5
+# ::node	b3	both	6-7
+# ::node	t	team	7-8
+# ::node	g2	go-03	8-9
+# ::node	b	ball	11-12
+# ::node	a	and	12-13
+# ::node	o	other	13-14
+# ::node	p2	person	14-15
+# ::node	p4	play-01	14-15
+# ::node	c	close-10	15-16
+# ::node	b2	behind	16-17
+# ::root	g	game
+# ::edge	game	mod	soccer	g	s	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	team	mod	both	t	b3	
+# ::edge	person	source	team	p	t	
+# ::edge	go-03	ARG0	person	g2	p	
+# ::edge	go-03	ARG1	ball	g2	b	
+# ::edge	and	op1	go-03	a	g2	
+# ::edge	game	subevent	and	g	a	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	close-10	ARG1	person	c	p2	
+# ::edge	and	op2	close-10	a	c	
+# ::edge	close-10	ARG2	behind	c	b2	
+(g / game
+    :mod (s / soccer)
+    :subevent (a / and
+        :op1 (g2 / go-03
+            :ARG0 (p / person
+                :ARG0-of (p3 / play-01)
+                :source (t / team
+                    :mod (b3 / both)))
+            :ARG1 (b / ball))
+        :op2 (c / close-10
+            :ARG1 (p2 / person
+                :ARG0-of (p4 / play-01)
+                :mod (o / other))
+            :ARG2 (b2 / behind))))

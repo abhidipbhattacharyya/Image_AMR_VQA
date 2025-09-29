@@ -1,0 +1,38 @@
+# ::tok A fire hydrant and bicycle are covered with snow as they stand next to each other near a street corner .
+# ::node	f	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	a	and	3-4
+# ::node	b	bicycle	4-5
+# ::node	c2	cover-02	6-7
+# ::node	s	snow	8-9
+# ::node	s2	stand-01	11-12
+# ::node	n2	next-to	12-13
+# ::node	n	near-02	16-17
+# ::node	s3	street	18-19
+# ::node	c	corner	19-20
+# ::root	c2	cover-02
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	and	op1	hydrant	a	h	
+# ::edge	and	op2	bicycle	a	b	
+# ::edge	cover-02	ARG1	and	c2	a	
+# ::edge	cover-02	ARG2	snow	c2	s	
+# ::edge	cover-02	time	stand-01	c2	s2	
+# ::edge	stand-01	ARG1	and	s2	a	
+# ::edge	stand-01	ARG2	next-to	s2	n2	
+# ::edge	next-to	op1	and	n2	a	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	corner	mod	street	c	s3	
+# ::edge	near-02	ARG2	corner	n	c	
+(c2 / cover-02
+    :ARG1 (a / and
+        :ARG1-of (n / near-02
+            :ARG2 (c / corner
+                :mod (s3 / street)))
+        :op1 (h / hydrant
+            :mod (f / fire))
+        :op2 (b / bicycle))
+    :ARG2 (s / snow)
+    :time (s2 / stand-01
+        :ARG1 a
+        :ARG2 (n2 / next-to
+            :op1 a)))

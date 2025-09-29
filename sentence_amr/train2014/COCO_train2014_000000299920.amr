@@ -1,0 +1,62 @@
+# ::tok A composite image of a skateboarder in yellow ; the image shows the skateboarder in 7 different positions from left to right as he goes from a crouched position to a jump and back down again .
+# ::node	c	composite	1-2
+# ::node	i	image	2-3
+# ::node	p	person	5-6
+# ::node	s2	skate-01	5-6
+# ::node	y	yellow-02	7-8
+# ::node	s	show-01	11-12
+# ::node	0	7	15-16
+# ::node	d	differ-02	16-17
+# ::node	p3	position-01	17-18
+# ::node	l	left-20	19-20
+# ::node	r	right-04	21-22
+# ::node	g	go-02	24-25
+# ::node	c2	crouch-01	27-28
+# ::node	p2	position	28-29
+# ::node	j	jump-03	31-32
+# ::node	a2	and	32-33
+# ::node	b	back-02	33-34
+# ::node	d2	down	34-35
+# ::node	a	again	35-36
+# ::root	s	show-01
+# ::edge	image	mod	composite	i	c	
+# ::edge	image	topic	person	i	p	
+# ::edge	person	ARG0-of	skate-01	p	s2	
+# ::edge	person	ARG1-of	yellow-02	p	y	
+# ::edge	show-01	ARG0	image	s	i	
+# ::edge	position-01	ARG1-of	differ-02	p3	d	
+# ::edge	position-01	quant	7	p3	0	
+# ::edge	show-01	ARG1	position-01	s	p3	
+# ::edge	position-01	ARG1	person	p3	p	
+# ::edge	position-01	source	left-20	p3	l	
+# ::edge	position-01	prep-to	right-04	p3	r	
+# ::edge	position-01	time	go-02	p3	g	
+# ::edge	go-02	ARG0	person	g	p	
+# ::edge	position	mod	crouch-01	p2	c2	
+# ::edge	go-02	ARG3	position	g	p2	
+# ::edge	and	op1	jump-03	a2	j	
+# ::edge	go-02	ARG4	and	g	a2	
+# ::edge	and	op2	back-02	a2	b	
+# ::edge	back-02	direction	down	b	d2	
+# ::edge	back-02	mod	again	b	a	
+(s / show-01
+    :ARG0 (i / image
+        :mod (c / composite)
+        :topic (p / person
+            :ARG0-of (s2 / skate-01)
+            :ARG1-of (y / yellow-02)))
+    :ARG1 (p3 / position-01
+        :quant 7
+        :ARG1 p
+        :ARG1-of (d / differ-02)
+        :prep-to (r / right-04)
+        :source (l / left-20)
+        :time (g / go-02
+            :ARG0 p
+            :ARG3 (p2 / position
+                :mod (c2 / crouch-01))
+            :ARG4 (a2 / and
+                :op1 (j / jump-03)
+                :op2 (b / back-02
+                    :direction (d2 / down)
+                    :mod (a / again))))))

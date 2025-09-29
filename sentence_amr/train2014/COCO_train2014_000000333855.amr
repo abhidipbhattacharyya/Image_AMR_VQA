@@ -1,0 +1,36 @@
+# ::tok A baseball player in a Boston uniform walking away from the diamond with a baseball bat .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	c	city	5-6
+# ::node	n	name	5-6
+# ::node	0	Boston	5-6
+# ::node	u	uniform	6-7
+# ::node	w	walk-01	7-8
+# ::node	a	away	8-9
+# ::node	d	diamond	11-12
+# ::node	b2	bat	15-16
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Boston	n	0	
+# ::edge	uniform	mod	city	u	c	
+# ::edge	person	mod	uniform	p	u	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	direction	away	w	a	
+# ::edge	walk-01	source	diamond	w	d	
+# ::edge	walk-01	instrument	bat	w	b2	
+# ::edge	bat	mod	baseball	b2	b	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (w / walk-01
+        :direction (a / away)
+        :instrument (b2 / bat
+            :mod b)
+        :source (d / diamond))
+    :mod (u / uniform
+        :mod (c / city
+            :name (n / name
+                :op1 "Boston"))))

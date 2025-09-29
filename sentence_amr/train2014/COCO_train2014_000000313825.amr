@@ -1,0 +1,28 @@
+# ::tok Male doing high flying trick next to stairway at outdoor area .
+# ::node	m	male	0-1
+# ::node	d	do-02	1-2
+# ::node	h	high-02	2-3
+# ::node	f	fly-01	3-4
+# ::node	t	trick-01	4-5
+# ::node	n	next-to	5-6
+# ::node	s	stairway	7-8
+# ::node	o	outdoor	9-10
+# ::node	a	area	10-11
+# ::root	d	do-02
+# ::edge	do-02	ARG0	male	d	m	
+# ::edge	fly-01	ARG1-of	high-02	f	h	
+# ::edge	trick-01	mod	fly-01	t	f	
+# ::edge	do-02	ARG1	trick-01	d	t	
+# ::edge	do-02	location	next-to	d	n	
+# ::edge	next-to	op1	stairway	n	s	
+# ::edge	area	mod	outdoor	a	o	
+# ::edge	stairway	location	area	s	a	
+(d / do-02
+    :ARG0 (m / male)
+    :ARG1 (t / trick-01
+        :mod (f / fly-01
+            :ARG1-of (h / high-02)))
+    :location (n / next-to
+        :op1 (s / stairway
+            :location (a / area
+                :mod (o / outdoor)))))

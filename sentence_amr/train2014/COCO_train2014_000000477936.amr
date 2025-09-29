@@ -1,0 +1,28 @@
+# ::tok many people flying kites at night lights and buildings
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	f	fly-01	2-3
+# ::node	o	Korea	3-4
+# ::node	d	date-entity	5-6
+# ::node	n	night	5-6
+# ::node	l	light	6-7
+# ::node	a	and	7-8
+# ::node	b	building	8-9
+# ::root	p	person
+# ::edge	person	quant	many	p	m	
+# ::edge	person	ARG0-of	fly-01	p	f	
+# ::edge	fly-01	ARG2	Korea	f	o	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	time	date-entity	l	d	
+# ::edge	and	op1	light	a	l	
+# ::edge	fly-01	location	and	f	a	
+# ::edge	and	op2	building	a	b	
+(p / person
+    :quant (m / many)
+    :ARG0-of (f / fly-01
+        :ARG2 (o / Korea)
+        :location (a / and
+            :op1 (l / light
+                :time (d / date-entity
+                    :dayperiod (n / night)))
+            :op2 (b / building))))

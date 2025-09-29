@@ -1,0 +1,36 @@
+# ::tok A airliner with Chinese writing imprinted on the side is in the air .
+# ::node	a2	airliner	1-2
+# ::node	h	have-03	2-3
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	China	3-4
+# ::node	w	write-01	4-5
+# ::node	t2	thing	5-6
+# ::node	t	tattoo-01	5-6
+# ::node	s	side	8-9
+# ::node	b	be-located-at-91	10-11
+# ::node	a	air	12-13
+# ::root	b	be-located-at-91
+# ::edge	airliner	ARG0-of	have-03	a2	h	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	write-01	ARG0	country	w	c	
+# ::edge	thing	ARG2-of	write-01	t2	w	
+# ::edge	have-03	ARG1	thing	h	t2	
+# ::edge	thing	ARG2-of	tattoo-01	t2	t	
+# ::edge	tattoo-01	location	side	t	s	
+# ::edge	airliner	part	side	a2	s	
+# ::edge	be-located-at-91	ARG1	airliner	b	a2	
+# ::edge	be-located-at-91	ARG2	air	b	a	
+(b / be-located-at-91
+    :ARG1 (a2 / airliner
+        :ARG0-of (h / have-03
+            :ARG1 (t2 / thing
+                :ARG2-of (w / write-01
+                    :ARG0 (c / country
+                        :name (n / name
+                            :op1 "China")))
+                :ARG2-of (t / tattoo-01
+                    :location (s / side))))
+        :part s)
+    :ARG2 (a / air))

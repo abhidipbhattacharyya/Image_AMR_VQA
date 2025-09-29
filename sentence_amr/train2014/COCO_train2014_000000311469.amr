@@ -1,0 +1,31 @@
+# ::tok Warning sign in foreign language near water possibly warning of flood area .
+# ::node	w	warn-01	0-1
+# ::node	s	signal-07	1-2
+# ::node	f2	foreign	3-4
+# ::node	l	language	4-5
+# ::node	n	near-02	5-6
+# ::node	w3	water	6-7
+# ::node	p	possible-01	7-8
+# ::node	w2	warn-01	8-9
+# ::node	f	flood-01	10-11
+# ::node	a	area	11-12
+# ::root	s	signal-07
+# ::edge	signal-07	ARG0-of	warn-01	s	w	
+# ::edge	language	mod	foreign	l	f2	
+# ::edge	signal-07	medium	language	s	l	
+# ::edge	signal-07	ARG1-of	near-02	s	n	
+# ::edge	near-02	ARG2	water	n	w3	
+# ::edge	warn-01	ARG1-of	possible-01	w2	p	
+# ::edge	signal-07	ARG0-of	warn-01	s	w2	
+# ::edge	area	location-of	flood-01	a	f	
+# ::edge	warn-01	ARG1	area	w2	a	
+(s / signal-07
+    :ARG0-of (w / warn-01)
+    :ARG0-of (w2 / warn-01
+        :ARG1 (a / area
+            :location-of (f / flood-01))
+        :ARG1-of (p / possible-01))
+    :ARG1-of (n / near-02
+        :ARG2 (w3 / water))
+    :medium (l / language
+        :mod (f2 / foreign)))

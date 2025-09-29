@@ -1,0 +1,39 @@
+# ::tok A bed has no comforter in a room with plaid curtains and plaid bedskirt .
+# ::node	b	bed	1-2
+# ::node	h	have-03	2-3
+# ::node	0	-	3-4
+# ::node	c	comforter	4-5
+# ::node	r	room	7-8
+# ::node	h2	have-03	8-9
+# ::node	p	political-party	9-10
+# ::node	n	name	9-10
+# ::node	1	Plaid	9-10
+# ::node	c2	curtain	10-11
+# ::node	a	and	11-12
+# ::node	b2	bedskirt	13-14
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bed	h	b	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	comforter	h	c	
+# ::edge	have-03	location	room	h	r	
+# ::edge	room	ARG0-of	have-03	r	h2	
+# ::edge	political-party	name	name	p	n	
+# ::edge	name	op1	Plaid	n	1	
+# ::edge	curtain	mod	political-party	c2	p	
+# ::edge	and	op1	curtain	a	c2	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op2	bedskirt	a	b2	
+# ::edge	bedskirt	mod	political-party	b2	p	
+(h / have-03
+    :ARG0 (b / bed)
+    :ARG1 (c / comforter)
+    :location (r / room
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (c2 / curtain
+                    :mod (p / political-party
+                        :name (n / name
+                            :op1 "Plaid")))
+                :op2 (b2 / bedskirt
+                    :mod p))))
+    :polarity -)

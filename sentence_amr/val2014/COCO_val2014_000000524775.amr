@@ -1,0 +1,54 @@
+# ::tok Double - Decker buses in Edinburgh , Scotland ; one is a parked tour bus .
+# ::node	c2	company	2-3
+# ::node	n	name	2-3
+# ::node	4	foreign	2-3
+# ::node	1	Decker	2-3
+# ::node	b	bus	3-4
+# ::node	c	city	5-6
+# ::node	n2	name	5-6
+# ::node	2	Edinburgh	5-6
+# ::node	c3	country	7-8
+# ::node	n3	name	7-8
+# ::node	3	Scotland	7-8
+# ::node	a	and	8-9
+# ::node	i	include-91	9-10
+# ::node	0	1	9-10
+# ::node	p	park-01	12-13
+# ::node	t	tour-01	13-14
+# ::node	b2	bus	14-15
+# ::root	a	and
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	foreign	n	4	
+# ::edge	name	op2	Decker	n	1	
+# ::edge	bus	mod	company	b	c2	
+# ::edge	bus	location	city	b	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	Edinburgh	n2	2	
+# ::edge	city	location	country	c	c3	
+# ::edge	country	name	name	c3	n3	
+# ::edge	name	op1	Scotland	n3	3	
+# ::edge	and	op1	bus	a	b	
+# ::edge	include-91	ARG2	bus	i	b	
+# ::edge	bus	ARG1-of	tour-01	b2	t	
+# ::edge	bus	quant	1	b2	0	
+# ::edge	bus	ARG1-of	include-91	b2	i	
+# ::edge	and	op2	bus	a	b2	
+# ::edge	and	rel	park-01	a	p	
+(a / and
+    :op1 (b / bus
+        :location (c / city
+            :name (n2 / name
+                :op1 "Edinburgh")
+            :location (c3 / country
+                :name (n3 / name
+                    :op1 "Scotland")))
+        :mod (c2 / company
+            :name (n / name
+                :op1 "foreign"
+                :op2 "Decker")))
+    :op2 (b2 / bus
+        :quant 1
+        :ARG1-of (t / tour-01)
+        :ARG1-of (i / include-91
+            :ARG2 b))
+    :rel (p / park-01))

@@ -1,0 +1,22 @@
+# ::tok A convoy of big rig trucks driving into a check point .
+# ::node	c2	convoy	1-2
+# ::node	b	big	3-4
+# ::node	r	rig	4-5
+# ::node	t	truck	5-6
+# ::node	d	drive-01	6-7
+# ::node	c	check-01	9-10
+# ::node	p	point	10-11
+# ::root	d	drive-01
+# ::edge	rig	mod	big	r	b	
+# ::edge	truck	mod	rig	t	r	
+# ::edge	convoy	consist-of	truck	c2	t	
+# ::edge	drive-01	ARG0	convoy	d	c2	
+# ::edge	point	location-of	check-01	p	c	
+# ::edge	drive-01	destination	point	d	p	
+(d / drive-01
+    :ARG0 (c2 / convoy
+        :consist-of (t / truck
+            :mod (r / rig
+                :mod (b / big))))
+    :destination (p / point
+        :location-of (c / check-01)))

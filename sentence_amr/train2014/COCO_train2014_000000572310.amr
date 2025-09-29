@@ -1,0 +1,36 @@
+# ::tok A parking lot full of motorcycles all displaying Harley Davidson memorabilia .
+# ::node	p	park-01	1-2
+# ::node	l	lot	2-3
+# ::node	f	fill-01	3-4
+# ::node	m2	motorcycle	5-6
+# ::node	n	name	5-6
+# ::node	a	all	6-7
+# ::node	d	display-01	7-8
+# ::node	c	company	8-9
+# ::node	1	Harley	8-9
+# ::node	0	Davidson	9-10
+# ::node	m	memorabilia	10-11
+# ::root	l	lot
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	lot	ARG1-of	fill-01	l	f	
+# ::edge	fill-01	ARG2	motorcycle	f	m2	
+# ::edge	all	ARG0-of	display-01	a	d	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Harley	n	1	
+# ::edge	name	op2	Davidson	n	0	
+# ::edge	memorabilia	mod	company	m	c	
+# ::edge	display-01	ARG1	memorabilia	d	m	
+# ::edge	memorabilia	mod	all	m	a	
+# ::edge	lot	rel	display-01	l	d	
+(l / lot
+    :purpose (p / park-01)
+    :ARG1-of (f / fill-01
+        :ARG2 (m2 / motorcycle))
+    :rel (d / display-01
+        :ARG1 (m / memorabilia
+            :mod (c / company
+                :name (n / name
+                    :op1 "Harley"
+                    :op2 "Davidson"))
+            :mod (a / all
+                :ARG0-of d))))

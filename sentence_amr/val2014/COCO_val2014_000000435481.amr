@@ -1,0 +1,28 @@
+# ::tok a subway train pulls away from the station leaving some passengers behind
+# ::node	s3	subway	1-2
+# ::node	t	train	2-3
+# ::node	p2	pull-01	3-4
+# ::node	a	away	4-5
+# ::node	s2	station	7-8
+# ::node	l	leave-12	8-9
+# ::node	s	some	9-10
+# ::node	p	passenger	10-11
+# ::node	b	behind	11-12
+# ::root	p2	pull-01
+# ::edge	train	mod	subway	t	s3	
+# ::edge	pull-01	ARG0	train	p2	t	
+# ::edge	pull-01	ARG2	away	p2	a	
+# ::edge	away	op1	station	a	s2	
+# ::edge	train	ARG0-of	leave-12	t	l	
+# ::edge	passenger	quant	some	p	s	
+# ::edge	leave-12	ARG1	passenger	l	p	
+# ::edge	leave-12	ARG2	behind	l	b	
+(p2 / pull-01
+    :ARG0 (t / train
+        :ARG0-of (l / leave-12
+            :ARG1 (p / passenger
+                :quant (s / some))
+            :ARG2 (b / behind))
+        :mod (s3 / subway))
+    :ARG2 (a / away
+        :op1 (s2 / station)))

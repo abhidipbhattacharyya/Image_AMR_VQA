@@ -1,0 +1,40 @@
+# ::tok An egg and bacon sandwich with a toasted bun sitting on a plate with french fries .
+# ::node	e	egg	1-2
+# ::node	a	and	2-3
+# ::node	b	bacon	3-4
+# ::node	s2	sandwich	4-5
+# ::node	h	have-03	5-6
+# ::node	s	salt-01	7-8
+# ::node	b2	bun	8-9
+# ::node	s3	sit-01	9-10
+# ::node	p	plate	12-13
+# ::node	c	country	14-15
+# ::node	n	name	14-15
+# ::node	0	France	14-15
+# ::node	f	fry-01	15-16
+# ::root	s3	sit-01
+# ::edge	and	op1	egg	a	e	
+# ::edge	and	op2	bacon	a	b	
+# ::edge	sandwich	consist-of	and	s2	a	
+# ::edge	sandwich	ARG0-of	have-03	s2	h	
+# ::edge	bun	ARG1-of	salt-01	b2	s	
+# ::edge	have-03	ARG1	bun	h	b2	
+# ::edge	sit-01	ARG1	sandwich	s3	s2	
+# ::edge	sit-01	ARG2	plate	s3	p	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG0	country	f	c	
+# ::edge	plate	accompanier	fry-01	p	f	
+(s3 / sit-01
+    :ARG1 (s2 / sandwich
+        :ARG0-of (h / have-03
+            :ARG1 (b2 / bun
+                :ARG1-of (s / salt-01)))
+        :consist-of (a / and
+            :op1 (e / egg)
+            :op2 (b / bacon)))
+    :ARG2 (p / plate
+        :accompanier (f / fry-01
+            :ARG0 (c / country
+                :name (n / name
+                    :op1 "France")))))

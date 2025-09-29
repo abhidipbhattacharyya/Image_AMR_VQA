@@ -1,0 +1,39 @@
+# ::tok A set of train tracks with a street sign next to them that reads 34th Street .
+# ::node	s	set	1-2
+# ::node	t2	train	3-4
+# ::node	t	track	4-5
+# ::node	h	have-03	5-6
+# ::node	s3	street	7-8
+# ::node	s2	sign	8-9
+# ::node	n2	next-to	9-10
+# ::node	r	read-01	13-14
+# ::node	n	name	14-15
+# ::node	0	34th	14-15
+# ::node	r2	road	15-16
+# ::node	1	Street	15-16
+# ::root	s	set
+# ::edge	track	mod	train	t	t2	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	set	ARG0-of	have-03	s	h	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	next-to	s2	n2	
+# ::edge	next-to	op1	track	n2	t	
+# ::edge	sign	ARG0-of	read-01	s2	r	
+# ::edge	name	op1	34th	n	0	
+# ::edge	road	name	name	r2	n	
+# ::edge	read-01	ARG3	road	r	r2	
+# ::edge	name	op2	Street	n	1	
+(s / set
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :ARG0-of (r / read-01
+                :ARG3 (r2 / road
+                    :name (n / name
+                        :op1 "34th"
+                        :op2 "Street")))
+            :location (n2 / next-to
+                :op1 (t / track
+                    :mod (t2 / train)))
+            :mod (s3 / street)))
+    :consist-of t)

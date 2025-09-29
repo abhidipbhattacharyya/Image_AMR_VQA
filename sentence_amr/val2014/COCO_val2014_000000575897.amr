@@ -1,0 +1,37 @@
+# ::tok A sunny day and new snow make perfect conditions for down hill skiers .
+# ::node	s3	sunny	1-2
+# ::node	d	day	2-3
+# ::node	a	and	3-4
+# ::node	n	new-01	4-5
+# ::node	s2	snow	5-6
+# ::node	m	make-01	6-7
+# ::node	p	perfect-02	7-8
+# ::node	c	condition-02	8-9
+# ::node	d2	down	10-11
+# ::node	h	hill	11-12
+# ::node	p2	person	12-13
+# ::node	s	ski-01	12-13
+# ::root	m	make-01
+# ::edge	day	mod	sunny	d	s3	
+# ::edge	and	op1	day	a	d	
+# ::edge	snow	ARG1-of	new-01	s2	n	
+# ::edge	and	op2	snow	a	s2	
+# ::edge	make-01	ARG0	and	m	a	
+# ::edge	condition-02	ARG1-of	perfect-02	c	p	
+# ::edge	make-01	ARG1	condition-02	m	c	
+# ::edge	hill	direction	down	h	d2	
+# ::edge	condition-02	ARG1	person	c	p2	
+# ::edge	person	ARG0-of	ski-01	p2	s	
+# ::edge	ski-01	ARG1	hill	s	h	
+(m / make-01
+    :ARG0 (a / and
+        :op1 (d / day
+            :mod (s3 / sunny))
+        :op2 (s2 / snow
+            :ARG1-of (n / new-01)))
+    :ARG1 (c / condition-02
+        :ARG1 (p2 / person
+            :ARG0-of (s / ski-01
+                :ARG1 (h / hill
+                    :direction (d2 / down))))
+        :ARG1-of (p / perfect-02)))

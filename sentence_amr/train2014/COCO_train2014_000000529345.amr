@@ -1,0 +1,29 @@
+# ::tok A couple of pizzas on the table site ready to be sliced and eaten .
+# ::node	c	couple	1-2
+# ::node	p	pizzeria	3-4
+# ::node	t	table	6-7
+# ::node	s	site	7-8
+# ::node	r	ready-02	8-9
+# ::node	s2	slice-01	11-12
+# ::node	a	and	12-13
+# ::node	e	eat-01	13-14
+# ::root	r	ready-02
+# ::edge	pizzeria	quant	couple	p	c	
+# ::edge	site	mod	table	s	t	
+# ::edge	ready-02	location	site	r	s	
+# ::edge	ready-02	ARG1	pizzeria	r	p	
+# ::edge	slice-01	ARG1	pizzeria	s2	p	
+# ::edge	and	op1	slice-01	a	s2	
+# ::edge	ready-02	ARG2	and	r	a	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG1	pizzeria	e	p	
+(r / ready-02
+    :ARG1 (p / pizzeria
+        :quant (c / couple))
+    :ARG2 (a / and
+        :op1 (s2 / slice-01
+            :ARG1 p)
+        :op2 (e / eat-01
+            :ARG1 p))
+    :location (s / site
+        :mod (t / table)))

@@ -1,0 +1,34 @@
+# ::tok Some traffic lights suspended over a road by some parked cars and houses .
+# ::node	s	some	0-1
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s3	suspend-01	3-4
+# ::node	o	over	4-5
+# ::node	r	road	6-7
+# ::node	s2	some	8-9
+# ::node	p	park-01	9-10
+# ::node	c	car	10-11
+# ::node	a	and	11-12
+# ::node	h	house	12-13
+# ::root	s3	suspend-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	some	l	s	
+# ::edge	suspend-01	ARG1	light	s3	l	
+# ::edge	suspend-01	location	over	s3	o	
+# ::edge	over	op1	road	o	r	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	ARG1-of	park-01	a	p	
+# ::edge	and	quant	some	a	s2	
+# ::edge	suspend-01	prep-by	and	s3	a	
+# ::edge	and	op2	house	a	h	
+(s3 / suspend-01
+    :ARG1 (l / light
+        :quant (s / some)
+        :mod (t / traffic))
+    :location (o / over
+        :op1 (r / road))
+    :prep-by (a / and
+        :quant (s2 / some)
+        :ARG1-of (p / park-01)
+        :op1 (c / car)
+        :op2 (h / house)))

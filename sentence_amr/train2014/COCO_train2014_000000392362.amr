@@ -1,0 +1,31 @@
+# ::tok Fruit juice is spilled all over a counter next to a knife and two pastries .
+# ::node	f	fruit	0-1
+# ::node	j	juice	1-2
+# ::node	s	spill-01	3-4
+# ::node	a	all-over	5-6
+# ::node	c	counter	7-8
+# ::node	n	next-to	8-9
+# ::node	k	knife	11-12
+# ::node	a2	and	12-13
+# ::node	0	2	13-14
+# ::node	p	pastries	14-15
+# ::root	s	spill-01
+# ::edge	juice	source	fruit	j	f	
+# ::edge	spill-01	ARG1	juice	s	j	
+# ::edge	spill-01	ARG2	all-over	s	a	
+# ::edge	all-over	op1	counter	a	c	
+# ::edge	counter	location-of	next-to	c	n	
+# ::edge	and	op1	knife	a2	k	
+# ::edge	next-to	op1	and	n	a2	
+# ::edge	pastries	quant	2	p	0	
+# ::edge	and	op2	pastries	a2	p	
+(s / spill-01
+    :ARG1 (j / juice
+        :source (f / fruit))
+    :ARG2 (a / all-over
+        :op1 (c / counter
+            :location-of (n / next-to
+                :op1 (a2 / and
+                    :op1 (k / knife)
+                    :op2 (p / pastries
+                        :quant 2))))))

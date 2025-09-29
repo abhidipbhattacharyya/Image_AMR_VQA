@@ -1,0 +1,28 @@
+# ::tok A driver 's view shows a red car driving through an intersection in a city .
+# ::node	p	person	1-2
+# ::node	d	drive-01	1-2
+# ::node	v	view-01	3-4
+# ::node	s	show-01	4-5
+# ::node	r	red-02	6-7
+# ::node	c	car	7-8
+# ::node	d2	drive-01	8-9
+# ::node	i	intersect-01	11-12
+# ::node	c2	city	14-15
+# ::root	s	show-01
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	view-01	ARG0	person	v	p	
+# ::edge	show-01	ARG0	view-01	s	v	
+# ::edge	car	ARG1-of	red-02	c	r	
+# ::edge	drive-01	ARG0	car	d2	c	
+# ::edge	show-01	ARG1	drive-01	s	d2	
+# ::edge	drive-01	path	intersect-01	d2	i	
+# ::edge	intersect-01	location	city	i	c2	
+(s / show-01
+    :ARG0 (v / view-01
+        :ARG0 (p / person
+            :ARG0-of (d / drive-01)))
+    :ARG1 (d2 / drive-01
+        :ARG0 (c / car
+            :ARG1-of (r / red-02))
+        :path (i / intersect-01
+            :location (c2 / city))))

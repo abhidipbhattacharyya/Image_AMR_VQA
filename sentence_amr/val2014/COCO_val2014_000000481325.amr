@@ -1,0 +1,30 @@
+# ::tok Someone walking down the street and street lights and a one way street sign
+# ::node	s2	someone	0-1
+# ::node	w	walk-01	1-2
+# ::node	d	down	2-3
+# ::node	s3	street	4-5
+# ::node	a	and	5-6
+# ::node	l	light	7-8
+# ::node	o	one-way	11-12
+# ::node	s4	street	12-13
+# ::node	s	sign	13-14
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	someone	w	s2	
+# ::edge	walk-01	direction	down	w	d	
+# ::edge	and	op1	street	a	s3	
+# ::edge	walk-01	ARG2	and	w	a	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	mod	street	l	s3	
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	and	op3	sign	a	s	
+(w / walk-01
+    :ARG0 (s2 / someone)
+    :ARG2 (a / and
+        :op1 (s3 / street)
+        :op2 (l / light
+            :mod s3)
+        :op3 (s / sign
+            :mod (s4 / street)
+            :mod (o / one-way)))
+    :direction (d / down))

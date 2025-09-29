@@ -1,0 +1,46 @@
+# ::tok A two way street sign with Via Rodeo on one and North Rodeo Drive on the other .
+# ::node	t	two-way	2-3
+# ::node	s2	street	3-4
+# ::node	s	sign	4-5
+# ::node	n	name	6-7
+# ::node	4	Via	6-7
+# ::node	2	Rodeo	7-8
+# ::node	r	road	8-9
+# ::node	o	one	9-10
+# ::node	a	and	10-11
+# ::node	n2	name	11-12
+# ::node	1	North	11-12
+# ::node	3	Rodeo	12-13
+# ::node	r2	road	13-14
+# ::node	0	Drive	13-14
+# ::node	o2	other	16-17
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	mod	two-way	s	t	
+# ::edge	name	op1	Via	n	4	
+# ::edge	name	op2	Rodeo	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	road	location	one	r	o	
+# ::edge	and	op1	road	a	r	
+# ::edge	sign	accompanier	and	s	a	
+# ::edge	name	op1	North	n2	1	
+# ::edge	name	op2	Rodeo	n2	3	
+# ::edge	road	name	name	r2	n2	
+# ::edge	and	op2	road	a	r2	
+# ::edge	name	op3	Drive	n2	0	
+# ::edge	road	location	other	r2	o2	
+(s / sign
+    :accompanier (a / and
+        :op1 (r / road
+            :name (n / name
+                :op1 "Via"
+                :op2 "Rodeo")
+            :location (o / one))
+        :op2 (r2 / road
+            :name (n2 / name
+                :op1 "North"
+                :op2 "Rodeo"
+                :op3 "Drive")
+            :location (o2 / other)))
+    :mod (s2 / street)
+    :mod (t / two-way))

@@ -1,0 +1,30 @@
+# ::tok A Train with yellow and red caboose cars passing through a town .
+# ::node	t2	train	1-2
+# ::node	y	yellow-02	3-4
+# ::node	a	and	4-5
+# ::node	r	red-02	5-6
+# ::node	c	caboose	6-7
+# ::node	c2	car	7-8
+# ::node	c3	car	7-8
+# ::node	p	pass-03	8-9
+# ::node	t	town	11-12
+# ::root	t2	train
+# ::edge	train	consist-of	and	t2	a	
+# ::edge	car	mod	caboose	c2	c	
+# ::edge	and	op1	car	a	c2	
+# ::edge	car	ARG1-of	yellow-02	c2	y	
+# ::edge	car	mod	red-02	c3	r	
+# ::edge	car	ARG1-of	red-02	c3	r	
+# ::edge	and	op2	car	a	c3	
+# ::edge	train	ARG0-of	pass-03	t2	p	
+# ::edge	pass-03	path	town	p	t	
+(t2 / train
+    :ARG0-of (p / pass-03
+        :path (t / town))
+    :consist-of (a / and
+        :op1 (c2 / car
+            :ARG1-of (y / yellow-02)
+            :mod (c / caboose))
+        :op2 (c3 / car
+            :ARG1-of (r / red-02)
+            :mod r)))

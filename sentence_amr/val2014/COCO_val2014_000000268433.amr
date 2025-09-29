@@ -1,0 +1,31 @@
+# ::tok a big clock on a pole and very tall buildings lite up in the night
+# ::node	b	big	1-2
+# ::node	c	clock	2-3
+# ::node	p	pole	5-6
+# ::node	a	and	6-7
+# ::node	v	very	7-8
+# ::node	t	tall	8-9
+# ::node	b2	building	9-10
+# ::node	l	light-up-08	10-11
+# ::node	d	date-entity	14-15
+# ::node	n	night	14-15
+# ::root	l	light-up-08
+# ::edge	clock	mod	big	c	b	
+# ::edge	clock	location	pole	c	p	
+# ::edge	and	op1	clock	a	c	
+# ::edge	tall	degree	very	t	v	
+# ::edge	building	mod	tall	b2	t	
+# ::edge	and	op2	building	a	b2	
+# ::edge	light-up-08	ARG0	and	l	a	
+# ::edge	light-up-08	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(l / light-up-08
+    :ARG0 (a / and
+        :op1 (c / clock
+            :location (p / pole)
+            :mod (b / big))
+        :op2 (b2 / building
+            :mod (t / tall
+                :degree (v / very))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

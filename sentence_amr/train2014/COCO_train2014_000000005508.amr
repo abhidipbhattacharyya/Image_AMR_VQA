@@ -1,0 +1,57 @@
+# ::tok A group of people are gathered together and one person has a game controller and someone else standing is looking at a machine with a light on .
+# ::node	g3	group	1-2
+# ::node	p	person	3-4
+# ::node	g2	gather-03	5-6
+# ::node	t2	together	6-7
+# ::node	0	1	8-9
+# ::node	p2	person	9-10
+# ::node	h	have-03	10-11
+# ::node	g	game	12-13
+# ::node	t	thing	13-14
+# ::node	c	control-01	13-14
+# ::node	a	and	14-15
+# ::node	s	someone	15-16
+# ::node	e	else	16-17
+# ::node	s2	stand-01	17-18
+# ::node	l2	look-01	19-20
+# ::node	m	machine	22-23
+# ::node	l	light	25-26
+# ::node	o	on-01	26-27
+# ::root	a	and
+# ::edge	group	consist-of	person	g3	p	
+# ::edge	gather-03	ARG1	group	g2	g3	
+# ::edge	gather-03	mod	together	g2	t2	
+# ::edge	person	quant	1	p2	0	
+# ::edge	have-03	ARG0	person	h	p2	
+# ::edge	have-03	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	and	op1	gather-03	a	g2	
+# ::edge	someone	mod	else	s	e	
+# ::edge	someone	ARG1-of	stand-01	s	s2	
+# ::edge	look-01	ARG0	someone	l2	s	
+# ::edge	and	op3	look-01	a	l2	
+# ::edge	look-01	ARG1	machine	l2	m	
+# ::edge	machine	part	light	m	l	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	machine	manner	on-01	m	o	
+(a / and
+    :op1 (g2 / gather-03
+        :ARG1 (g3 / group
+            :consist-of (p / person))
+        :mod (t2 / together))
+    :op2 (h / have-03
+        :ARG0 (p2 / person
+            :quant 1)
+        :ARG1 (t / thing
+            :ARG0-of (c / control-01
+                :ARG1 (g / game))))
+    :op3 (l2 / look-01
+        :ARG0 (s / someone
+            :ARG1-of (s2 / stand-01)
+            :mod (e / else))
+        :ARG1 (m / machine
+            :manner (o / on-01
+                :ARG1 (l / light))
+            :part l)))

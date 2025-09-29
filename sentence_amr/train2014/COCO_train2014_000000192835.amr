@@ -1,0 +1,36 @@
+# ::tok A man holds a laptop that has a message about Barack Obama written on its screen .
+# ::node	m	man	1-2
+# ::node	h2	hold-01	2-3
+# ::node	l	laptop	4-5
+# ::node	h	have-03	6-7
+# ::node	m2	message-01	8-9
+# ::node	p	person	10-11
+# ::node	n	name	10-11
+# ::node	0	Barack	10-11
+# ::node	1	Obama	11-12
+# ::node	w	write-01	12-13
+# ::node	s	screen	15-16
+# ::root	h2	hold-01
+# ::edge	hold-01	ARG0	man	h2	m	
+# ::edge	hold-01	ARG1	laptop	h2	l	
+# ::edge	laptop	ARG0-of	have-03	l	h	
+# ::edge	have-03	ARG1	message-01	h	m2	
+# ::edge	message-01	topic	person	m2	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Barack	n	0	
+# ::edge	name	op2	Obama	n	1	
+# ::edge	message-01	ARG1-of	write-01	m2	w	
+# ::edge	write-01	location	screen	w	s	
+# ::edge	laptop	part	screen	l	s	
+(h2 / hold-01
+    :ARG0 (m / man)
+    :ARG1 (l / laptop
+        :ARG0-of (h / have-03
+            :ARG1 (m2 / message-01
+                :ARG1-of (w / write-01
+                    :location (s / screen))
+                :topic (p / person
+                    :name (n / name
+                        :op1 "Barack"
+                        :op2 "Obama"))))
+        :part s))

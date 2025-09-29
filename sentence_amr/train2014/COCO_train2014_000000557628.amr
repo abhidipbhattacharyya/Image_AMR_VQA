@@ -1,0 +1,37 @@
+# ::tok Three men and a woman are standing in a kitchen one man is wearing a mask .
+# ::node	1	3	0-1
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	w2	woman	4-5
+# ::node	s	stand-01	6-7
+# ::node	k	kitchen	9-10
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	m2	man	11-12
+# ::node	w	wear-01	13-14
+# ::node	m3	mask	15-16
+# ::node	m4	multi-sentence	16-17
+# ::root	m4	multi-sentence
+# ::edge	man	quant	3	m	1	
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG2	kitchen	s	k	
+# ::edge	and	ARG2-of	include-91	a	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG0-of	wear-01	m2	w	
+# ::edge	wear-01	ARG1	mask	w	m3	
+# ::edge	multi-sentence	snt1	stand-01	m4	s	
+(m4 / multi-sentence
+    :snt1 (s / stand-01
+        :ARG1 (a / and
+            :ARG2-of (i / include-91
+                :ARG1 (m2 / man
+                    :quant 1
+                    :ARG0-of (w / wear-01
+                        :ARG1 (m3 / mask))))
+            :op1 (m / man
+                :quant 3)
+            :op2 (w2 / woman))
+        :ARG2 (k / kitchen)))

@@ -1,0 +1,36 @@
+# ::tok A cat sitting in a concrete parking area with a piece of paper blowing in the wind over his head .
+# ::node	c	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	c2	concrete-02	5-6
+# ::node	p2	park-01	6-7
+# ::node	a	area	7-8
+# ::node	p3	piece	10-11
+# ::node	p	paper	12-13
+# ::node	b	blow-01	13-14
+# ::node	w	wind	16-17
+# ::node	o	over	17-18
+# ::node	h	head	19-20
+# ::root	c	cat
+# ::edge	cat	ARG1-of	sit-01	c	s	
+# ::edge	area	ARG2-of	park-01	a	p2	
+# ::edge	area	ARG1-of	concrete-02	a	c2	
+# ::edge	sit-01	ARG2	area	s	a	
+# ::edge	piece	mod	paper	p3	p	
+# ::edge	piece	ARG0-of	blow-01	p3	b	
+# ::edge	blow-01	direction	wind	b	w	
+# ::edge	blow-01	ARG2	over	b	o	
+# ::edge	over	op1	head	o	h	
+# ::edge	cat	part	head	c	h	
+# ::edge	cat	rel	piece	c	p3	
+(c / cat
+    :ARG1-of (s / sit-01
+        :ARG2 (a / area
+            :ARG1-of (c2 / concrete-02)
+            :ARG2-of (p2 / park-01)))
+    :part (h / head)
+    :rel (p3 / piece
+        :ARG0-of (b / blow-01
+            :ARG2 (o / over
+                :op1 h)
+            :direction (w / wind))
+        :mod (p / paper)))

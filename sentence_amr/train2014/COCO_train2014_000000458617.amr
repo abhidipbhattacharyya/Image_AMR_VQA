@@ -1,0 +1,42 @@
+# ::tok A pile of tiny sandwiches without crusts sits beside a pile of crusts and various sandwich fillers .
+# ::node	p	pile	1-2
+# ::node	t	tiny	3-4
+# ::node	s	sandwich	4-5
+# ::node	h	have-03	5-6
+# ::node	0	-	5-6
+# ::node	c	crusts	6-7
+# ::node	s3	sit-01	7-8
+# ::node	b	beside	8-9
+# ::node	p2	pile	10-11
+# ::node	s2	sandwich	12-13
+# ::node	a	and	13-14
+# ::node	v	various	14-15
+# ::node	f	fill-01	16-17
+# ::root	s3	sit-01
+# ::edge	sandwich	mod	tiny	s	t	
+# ::edge	pile	consist-of	sandwich	p	s	
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	crusts	h	c	
+# ::edge	sit-01	ARG1	pile	s3	p	
+# ::edge	sit-01	ARG2	beside	s3	b	
+# ::edge	beside	op1	pile	b	p2	
+# ::edge	and	op1	sandwich	a	s2	
+# ::edge	pile	consist-of	and	p2	a	
+# ::edge	fill-01	mod	various	f	v	
+# ::edge	and	op2	fill-01	a	f	
+# ::edge	fill-01	ARG1	sandwich	f	s2	
+(s3 / sit-01
+    :ARG1 (p / pile
+        :consist-of (s / sandwich
+            :ARG0-of (h / have-03
+                :ARG1 (c / crusts)
+                :polarity -)
+            :mod (t / tiny)))
+    :ARG2 (b / beside
+        :op1 (p2 / pile
+            :consist-of (a / and
+                :op1 (s2 / sandwich)
+                :op2 (f / fill-01
+                    :ARG1 s2
+                    :mod (v / various))))))

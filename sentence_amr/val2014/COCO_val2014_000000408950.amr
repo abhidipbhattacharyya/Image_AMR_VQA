@@ -1,0 +1,36 @@
+# ::tok A red two level city bus on a street with cars behind it and in the other lane .
+# ::node	r	red-02	1-2
+# ::node	0	2	2-3
+# ::node	l2	level	3-4
+# ::node	c2	city	4-5
+# ::node	b2	bus	5-6
+# ::node	s	street	8-9
+# ::node	c	car	10-11
+# ::node	b	behind	11-12
+# ::node	a	and	13-14
+# ::node	o	other	16-17
+# ::node	l	lane	17-18
+# ::root	b2	bus
+# ::edge	level	quant	2	l2	0	
+# ::edge	bus	mod	city	b2	c2	
+# ::edge	bus	mod	level	b2	l2	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	bus	location	street	b2	s	
+# ::edge	car	location	behind	c	b	
+# ::edge	behind	op1	bus	b	b2	
+# ::edge	and	op1	car	a	c	
+# ::edge	street	location-of	and	s	a	
+# ::edge	lane	mod	other	l	o	
+# ::edge	and	op2	lane	a	l	
+(b2 / bus
+    :ARG1-of (r / red-02)
+    :location (s / street
+        :location-of (a / and
+            :op1 (c / car
+                :location (b / behind
+                    :op1 b2))
+            :op2 (l / lane
+                :mod (o / other))))
+    :mod (c2 / city)
+    :mod (l2 / level
+        :quant 2))

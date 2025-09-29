@@ -1,0 +1,27 @@
+# ::tok Trolley used for transporting personal luggage to guests rooms .
+# ::node	b	bus	0-1
+# ::node	u	use-01	1-2
+# ::node	t	transport-01	3-4
+# ::node	p2	personal-02	4-5
+# ::node	l	luggage	5-6
+# ::node	p	person	7-8
+# ::node	g	guest	7-8
+# ::node	r	room	8-9
+# ::root	u	use-01
+# ::edge	use-01	ARG1	bus	u	b	
+# ::edge	use-01	ARG2	transport-01	u	t	
+# ::edge	transport-01	ARG0	bus	t	b	
+# ::edge	luggage	ARG1-of	personal-02	l	p2	
+# ::edge	transport-01	ARG1	luggage	t	l	
+# ::edge	person	mod	guest	p	g	
+# ::edge	room	poss	person	r	p	
+# ::edge	transport-01	ARG3	room	t	r	
+(u / use-01
+    :ARG1 (b / bus)
+    :ARG2 (t / transport-01
+        :ARG0 b
+        :ARG1 (l / luggage
+            :ARG1-of (p2 / personal-02))
+        :ARG3 (r / room
+            :poss (p / person
+                :mod (g / guest)))))

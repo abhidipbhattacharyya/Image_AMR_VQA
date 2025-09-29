@@ -1,0 +1,53 @@
+# ::tok Two men , one wearing a suit and one wearing a military uniform , standing together
+# ::node	2	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	m3	man	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	w	wear-01	4-5
+# ::node	s2	suit	6-7
+# ::node	a	and	7-8
+# ::node	w2	wear-01	9-10
+# ::node	m4	military	11-12
+# ::node	u	uniform	12-13
+# ::node	s	stand-01	14-15
+# ::node	t	together	15-16
+# ::root	s	stand-01
+# ::edge	man	quant	2	m	2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	include-91	ARG1	man	i	m	
+# ::edge	include-91	ARG1	man	i2	m3	
+# ::edge	man	ARG2-of	include-91	m	i2	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	quant	1	m3	1	
+# ::edge	man	ARG0-of	wear-01	m2	w	
+# ::edge	wear-01	ARG1	suit	w	s2	
+# ::edge	and	op2	man	a	m3	
+# ::edge	and	op1	include-91	a	i	
+# ::edge	man	ARG0-of	wear-01	m3	w2	
+# ::edge	uniform	mod	military	u	m4	
+# ::edge	wear-01	ARG1	uniform	w2	u	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	mod	together	s	t	
+# ::edge	stand-01	rel	man	s	m2	
+(s / stand-01
+    :ARG1 (a / and
+        :op1 (i / include-91
+            :ARG1 (m / man
+                :quant 2
+                :ARG2-of i
+                :ARG2-of (i2 / include-91
+                    :ARG1 (m3 / man
+                        :quant 1
+                        :ARG0-of (w2 / wear-01
+                            :ARG1 (u / uniform
+                                :mod (m4 / military)))))))
+        :op2 m3)
+    :mod (t / together)
+    :rel (m2 / man
+        :quant 1
+        :ARG0-of (w / wear-01
+            :ARG1 (s2 / suit))))

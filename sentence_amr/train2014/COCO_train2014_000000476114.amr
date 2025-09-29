@@ -1,0 +1,62 @@
+# ::tok Two giraffes , one older and young younger , stand together .
+# ::node	2	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	g3	giraffe	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	h	have-degree-91	4-5
+# ::node	o	old	4-5
+# ::node	a	and	5-6
+# ::node	y	young	6-7
+# ::node	y2	young	7-8
+# ::node	m	more	7-8
+# ::node	h2	have-degree-91	7-8
+# ::node	y3	young	7-8
+# ::node	m2	more	7-8
+# ::node	s	stand-01	9-10
+# ::node	t	together	10-11
+# ::root	s	stand-01
+# ::edge	giraffe	quant	2	g	2	
+# ::edge	include-91	ARG1	giraffe	i	g2	
+# ::edge	giraffe	ARG2-of	include-91	g	i	
+# ::edge	include-91	ARG1	giraffe	i2	g3	
+# ::edge	giraffe	ARG2-of	include-91	g	i2	
+# ::edge	giraffe	quant	1	g2	0	
+# ::edge	giraffe	quant	1	g3	1	
+# ::edge	giraffe	ARG1-of	have-degree-91	g2	h	
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	and	op2	giraffe	a	g3	
+# ::edge	and	op1	giraffe	a	g2	
+# ::edge	giraffe	mod	young	g3	y	
+# ::edge	include-91	ARG2	young	i2	y2	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	young	ARG1-of	have-degree-91	y2	h2	
+# ::edge	have-degree-91	ARG2	young	h2	y3	
+# ::edge	have-degree-91	ARG3	more	h2	m2	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	mod	together	s	t	
+# ::edge	stand-01	rel	giraffe	s	g	
+(s / stand-01
+    :ARG1 (a / and
+        :op1 (g2 / giraffe
+            :quant 1
+            :ARG1-of (h / have-degree-91
+                :ARG2 (o / old)
+                :ARG3 (m / more)))
+        :op2 (g3 / giraffe
+            :quant 1
+            :mod (y / young)))
+    :mod (t / together)
+    :rel (g / giraffe
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 g2)
+        :ARG2-of (i2 / include-91
+            :ARG1 g3
+            :ARG2 (y2 / young
+                :ARG1-of (h2 / have-degree-91
+                    :ARG2 (y3 / young)
+                    :ARG3 (m2 / more))))))

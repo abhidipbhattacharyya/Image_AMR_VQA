@@ -1,0 +1,25 @@
+# ::tok Tightly made platform bed with one table light turned on .
+# ::node	t2	tight-05	0-1
+# ::node	m	make-01	1-2
+# ::node	p	platform	2-3
+# ::node	b	bed	3-4
+# ::node	0	1	5-6
+# ::node	t	table	6-7
+# ::node	l	light	7-8
+# ::node	t3	turn-on-13	8-9
+# ::root	b	bed
+# ::edge	make-01	manner	tight-05	m	t2	
+# ::edge	bed	mod	platform	b	p	
+# ::edge	bed	ARG1-of	make-01	b	m	
+# ::edge	light	mod	table	l	t	
+# ::edge	light	quant	1	l	0	
+# ::edge	turn-on-13	ARG1	light	t3	l	
+# ::edge	bed	manner	turn-on-13	b	t3	
+(b / bed
+    :ARG1-of (m / make-01
+        :manner (t2 / tight-05))
+    :manner (t3 / turn-on-13
+        :ARG1 (l / light
+            :quant 1
+            :mod (t / table)))
+    :mod (p / platform))

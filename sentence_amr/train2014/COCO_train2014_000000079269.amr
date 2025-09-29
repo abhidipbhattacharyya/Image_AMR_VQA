@@ -1,0 +1,45 @@
+# ::tok Serve yourself lunch counter full of juice , milk and coffee drinks , sandwiches and dessert squares .
+# ::node	s2	serve-02	0-1
+# ::node	y	you	0-1
+# ::node	0	imperative	0-1
+# ::node	l	lunch	2-3
+# ::node	c2	counter	3-4
+# ::node	f	fill-01	4-5
+# ::node	j	juice	6-7
+# ::node	m	milk	8-9
+# ::node	a	and	9-10
+# ::node	c	coffee	10-11
+# ::node	d2	drink	11-12
+# ::node	s	sandwich	13-14
+# ::node	d	dessert	15-16
+# ::node	s3	square	16-17
+# ::root	s2	serve-02
+# ::edge	serve-02	ARG2	you	s2	y	
+# ::edge	serve-02	ARG0	you	s2	y	
+# ::edge	serve-02	mode	imperative	s2	0	
+# ::edge	counter	mod	lunch	c2	l	
+# ::edge	serve-02	ARG1	counter	s2	c2	
+# ::edge	counter	ARG1-of	fill-01	c2	f	
+# ::edge	and	op2	milk	a	m	
+# ::edge	and	op1	juice	a	j	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	drink	mod	coffee	d2	c	
+# ::edge	and	op3	drink	a	d2	
+# ::edge	and	op4	sandwich	a	s	
+# ::edge	square	mod	dessert	s3	d	
+# ::edge	and	op5	square	a	s3	
+(s2 / serve-02
+    :ARG0 (y / you)
+    :ARG1 (c2 / counter
+        :ARG1-of (f / fill-01
+            :ARG2 (a / and
+                :op1 (j / juice)
+                :op2 (m / milk)
+                :op3 (d2 / drink
+                    :mod (c / coffee))
+                :op4 (s / sandwich)
+                :op5 (s3 / square
+                    :mod (d / dessert))))
+        :mod (l / lunch))
+    :ARG2 y
+    :mode imperative)

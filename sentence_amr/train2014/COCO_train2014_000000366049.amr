@@ -1,0 +1,24 @@
+# ::tok Microwave oven connected to a coffeemaker sitting on display in the store .
+# ::node	m	microwave	0-1
+# ::node	o	oven	1-2
+# ::node	c2	connect-01	2-3
+# ::node	c	coffeemaker	5-6
+# ::node	s	sit-01	6-7
+# ::node	d	display-01	8-9
+# ::node	s2	store	11-12
+# ::root	c2	connect-01
+# ::edge	oven	mod	microwave	o	m	
+# ::edge	connect-01	ARG1	oven	c2	o	
+# ::edge	connect-01	ARG2	coffeemaker	c2	c	
+# ::edge	coffeemaker	ARG1-of	sit-01	c	s	
+# ::edge	sit-01	ARG2	display-01	s	d	
+# ::edge	display-01	ARG1	oven	d	o	
+# ::edge	display-01	location	store	d	s2	
+(c2 / connect-01
+    :ARG1 (o / oven
+        :mod (m / microwave))
+    :ARG2 (c / coffeemaker
+        :ARG1-of (s / sit-01
+            :ARG2 (d / display-01
+                :ARG1 o
+                :location (s2 / store)))))

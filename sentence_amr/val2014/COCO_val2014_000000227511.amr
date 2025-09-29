@@ -1,0 +1,28 @@
+# ::tok Several cars parked along the side of a street next to a street sign .
+# ::node	s	several	0-1
+# ::node	c	car	1-2
+# ::node	p	park-01	2-3
+# ::node	a	along	3-4
+# ::node	s2	side	5-6
+# ::node	s4	street	8-9
+# ::node	n	next-to	9-10
+# ::node	s5	street	12-13
+# ::node	s3	sign	13-14
+# ::root	p	park-01
+# ::edge	car	quant	several	c	s	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	location	along	p	a	
+# ::edge	along	op1	side	a	s2	
+# ::edge	side	part-of	street	s2	s4	
+# ::edge	street	location	next-to	s4	n	
+# ::edge	sign	mod	street	s3	s5	
+# ::edge	next-to	op1	sign	n	s3	
+(p / park-01
+    :ARG1 (c / car
+        :quant (s / several))
+    :location (a / along
+        :op1 (s2 / side
+            :part-of (s4 / street
+                :location (n / next-to
+                    :op1 (s3 / sign
+                        :mod (s5 / street)))))))

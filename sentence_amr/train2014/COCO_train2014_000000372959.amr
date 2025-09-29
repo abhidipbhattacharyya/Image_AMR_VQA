@@ -1,0 +1,37 @@
+# ::tok Zebras grazing on grass in large open area near trees .
+# ::node	a	animal	0-1
+# ::node	n	name	0-1
+# ::node	1	i	0-1
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	g2	graze-01	1-2
+# ::node	g	grass	3-4
+# ::node	l	large	5-6
+# ::node	o	open-06	6-7
+# ::node	a2	area	7-8
+# ::node	n2	near-02	8-9
+# ::node	t	tree	9-10
+# ::root	g2	graze-01
+# ::edge	animal	name	name	a	n	
+# ::edge	name	op1	i	n	1	
+# ::edge	animal	quant	multiple	a	m	
+# ::edge	multiple	op1	12	m	0	
+# ::edge	graze-01	ARG1	animal	g2	a	
+# ::edge	graze-01	ARG2	grass	g2	g	
+# ::edge	area	ARG1-of	open-06	a2	o	
+# ::edge	area	mod	large	a2	l	
+# ::edge	graze-01	location	area	g2	a2	
+# ::edge	area	ARG1-of	near-02	a2	n2	
+# ::edge	near-02	ARG2	tree	n2	t	
+(g2 / graze-01
+    :ARG1 (a / animal
+        :name (n / name
+            :op1 "i")
+        :quant (m / multiple
+            :op1 12))
+    :ARG2 (g / grass)
+    :location (a2 / area
+        :ARG1-of (o / open-06)
+        :ARG1-of (n2 / near-02
+            :ARG2 (t / tree))
+        :mod (l / large)))

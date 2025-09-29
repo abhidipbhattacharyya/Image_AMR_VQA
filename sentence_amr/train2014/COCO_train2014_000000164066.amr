@@ -1,0 +1,36 @@
+# ::tok Some food is in a food processor and in a clear plastic container .
+# ::node	s	some	0-1
+# ::node	f	food	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	f2	food	5-6
+# ::node	t	thing	6-7
+# ::node	p2	process-01	6-7
+# ::node	a	and	7-8
+# ::node	b2	be-located-at-91	8-9
+# ::node	c	clear-08	10-11
+# ::node	p	plastic	11-12
+# ::node	c2	container	12-13
+# ::root	a	and
+# ::edge	food	quant	some	f	s	
+# ::edge	be-located-at-91	ARG1	food	b	f	
+# ::edge	be-located-at-91	ARG2	thing	b	t	
+# ::edge	thing	ARG0-of	process-01	t	p2	
+# ::edge	process-01	ARG1	food	p2	f2	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG1	food	b2	f	
+# ::edge	container	consist-of	plastic	c2	p	
+# ::edge	container	ARG1-of	clear-08	c2	c	
+# ::edge	be-located-at-91	ARG2	container	b2	c2	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (f / food
+            :quant (s / some))
+        :ARG2 (t / thing
+            :ARG0-of (p2 / process-01
+                :ARG1 (f2 / food))))
+    :op2 (b2 / be-located-at-91
+        :ARG1 f
+        :ARG2 (c2 / container
+            :ARG1-of (c / clear-08)
+            :consist-of (p / plastic))))

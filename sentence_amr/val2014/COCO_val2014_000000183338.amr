@@ -1,0 +1,40 @@
+# ::tok In a four player game of tennis the back court player takes a high twist to return the ball .
+# ::node	0	4	2-3
+# ::node	g	game	4-5
+# ::node	t	tennis	6-7
+# ::node	b	back	8-9
+# ::node	c	court	9-10
+# ::node	p	person	10-11
+# ::node	p2	play-01	10-11
+# ::node	h	high-02	13-14
+# ::node	t2	twist-01	14-15
+# ::node	r	return-02	16-17
+# ::node	b2	ball	18-19
+# ::root	t2	twist-01
+# ::edge	game	quant	4	g	0	
+# ::edge	game	mod	tennis	g	t	
+# ::edge	court	mod	back	c	b	
+# ::edge	game	poss	person	g	p	
+# ::edge	person	quant	4	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	twist-01	ARG1-of	high-02	t2	h	
+# ::edge	twist-01	ARG1	person	t2	p	
+# ::edge	twist-01	subevent-of	game	t2	g	
+# ::edge	twist-01	purpose	return-02	t2	r	
+# ::edge	return-02	ARG0	person	r	p	
+# ::edge	return-02	ARG1	ball	r	b2	
+# ::edge	twist-01	rel	court	t2	c	
+(t2 / twist-01
+    :purpose (r / return-02
+        :ARG0 (p / person
+            :quant 4
+            :ARG0-of (p2 / play-01))
+        :ARG1 (b2 / ball))
+    :ARG1 p
+    :ARG1-of (h / high-02)
+    :rel (c / court
+        :mod (b / back))
+    :subevent-of (g / game
+        :quant 4
+        :mod (t / tennis)
+        :poss p))

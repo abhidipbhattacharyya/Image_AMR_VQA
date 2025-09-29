@@ -1,0 +1,40 @@
+# ::tok The giraffes crane their necks over the small fence because the fence is small and their necks are not small .
+# ::node	g	giraffe	1-2
+# ::node	c2	crane	2-3
+# ::node	n	neck	4-5
+# ::node	o	over	5-6
+# ::node	s	small	7-8
+# ::node	c	cause-01	9-10
+# ::node	f	fence	11-12
+# ::node	s2	small	13-14
+# ::node	a	and	14-15
+# ::node	0	-	18-19
+# ::node	s3	small	19-20
+# ::root	c2	crane
+# ::edge	crane	ARG0	giraffe	c2	g	
+# ::edge	crane	location	neck	c2	n	
+# ::edge	giraffe	part	neck	g	n	
+# ::edge	crane	destination	over	c2	o	
+# ::edge	crane	ARG1-of	cause-01	c2	c	
+# ::edge	fence	mod	small	f	s	
+# ::edge	over	op1	fence	o	f	
+# ::edge	small	domain	fence	s2	f	
+# ::edge	and	op1	small	a	s2	
+# ::edge	cause-01	ARG0	and	c	a	
+# ::edge	small	polarity	-	s3	0	
+# ::edge	and	op2	small	a	s3	
+# ::edge	small	domain	neck	s3	n	
+(c2 / crane
+    :ARG0 (g / giraffe
+        :part (n / neck))
+    :ARG1-of (c / cause-01
+        :ARG0 (a / and
+            :op1 (s2 / small
+                :domain (f / fence
+                    :mod (s / small)))
+            :op2 (s3 / small
+                :domain n
+                :polarity -)))
+    :destination (o / over
+        :op1 f)
+    :location n)

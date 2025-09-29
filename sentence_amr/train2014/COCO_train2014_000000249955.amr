@@ -1,0 +1,21 @@
+# ::tok A dog in the middle of the field is a dog behind him is a fence .
+# ::node	d	dog	1-2
+# ::node	m	middle	4-5
+# ::node	f2	field	7-8
+# ::node	d2	dog	10-11
+# ::node	b	behind	11-12
+# ::node	f	fence	15-16
+# ::root	d2	dog
+# ::edge	dog	location	middle	d	m	
+# ::edge	middle	part-of	field	m	f2	
+# ::edge	dog	domain	dog	d2	d	
+# ::edge	behind	op1	dog	b	d	
+# ::edge	fence	location	behind	f	b	
+# ::edge	dog	domain	fence	d2	f	
+(d2 / dog
+    :domain (d / dog
+        :location (m / middle
+            :part-of (f2 / field)))
+    :domain (f / fence
+        :location (b / behind
+            :op1 d)))

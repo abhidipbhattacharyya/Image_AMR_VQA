@@ -1,0 +1,28 @@
+# ::tok A double decker bus on a road with a bus driver standing in the doorway
+# ::node	0	2	1-2
+# ::node	d	deck	2-3
+# ::node	b	bus	3-4
+# ::node	r	road	6-7
+# ::node	b2	bus	9-10
+# ::node	p	person	10-11
+# ::node	d3	drive-01	10-11
+# ::node	s	stand-01	11-12
+# ::node	d2	doorway	14-15
+# ::root	b	bus
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	bus	location	road	b	r	
+# ::edge	person	ARG0-of	drive-01	p	d3	
+# ::edge	drive-01	ARG1	bus	d3	b2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	bus	location-of	stand-01	b	s	
+# ::edge	stand-01	ARG2	doorway	s	d2	
+(b / bus
+    :location (r / road)
+    :location-of (s / stand-01
+        :ARG1 (p / person
+            :ARG0-of (d3 / drive-01
+                :ARG1 (b2 / bus)))
+        :ARG2 (d2 / doorway))
+    :mod (d / deck
+        :quant 2))

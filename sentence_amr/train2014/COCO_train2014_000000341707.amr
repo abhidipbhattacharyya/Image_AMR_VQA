@@ -1,0 +1,25 @@
+# ::tok Some type of cheese casserole enclosed in parchment paper in the oven .
+# ::node	s	some	0-1
+# ::node	t	type	1-2
+# ::node	c2	cheese	3-4
+# ::node	c	casserole	4-5
+# ::node	e	enclose-01	5-6
+# ::node	p2	parchment	7-8
+# ::node	p	paper	8-9
+# ::node	o	oven	11-12
+# ::root	e	enclose-01
+# ::edge	type	mod	some	t	s	
+# ::edge	casserole	mod	cheese	c	c2	
+# ::edge	casserole	mod	type	c	t	
+# ::edge	enclose-01	ARG1	casserole	e	c	
+# ::edge	paper	consist-of	parchment	p	p2	
+# ::edge	enclose-01	ARG2	paper	e	p	
+# ::edge	enclose-01	location	oven	e	o	
+(e / enclose-01
+    :ARG1 (c / casserole
+        :mod (c2 / cheese)
+        :mod (t / type
+            :mod (s / some)))
+    :ARG2 (p / paper
+        :consist-of (p2 / parchment))
+    :location (o / oven))

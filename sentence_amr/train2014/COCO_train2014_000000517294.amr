@@ -1,0 +1,52 @@
+# ::tok A zebra rolls on its back on a dirt road while three other zebras stand around and eat grass in the background .
+# ::node	z	zebra	1-2
+# ::node	r2	roll-01	2-3
+# ::node	b	back	5-6
+# ::node	d	dirt	8-9
+# ::node	r	road	9-10
+# ::node	0	3	11-12
+# ::node	o	other	12-13
+# ::node	e2	elephant	13-14
+# ::node	s	stand-01	14-15
+# ::node	a2	around	15-16
+# ::node	a	and	16-17
+# ::node	c	contrast-01	16-17
+# ::node	e	eat-01	17-18
+# ::node	g	grass	18-19
+# ::node	b2	background	21-22
+# ::root	a	and
+# ::edge	roll-01	ARG0	zebra	r2	z	
+# ::edge	roll-01	manner	back	r2	b	
+# ::edge	zebra	part	back	z	b	
+# ::edge	road	mod	dirt	r	d	
+# ::edge	roll-01	location	road	r2	r	
+# ::edge	elephant	mod	other	e2	o	
+# ::edge	elephant	quant	3	e2	0	
+# ::edge	stand-01	ARG1	elephant	s	e2	
+# ::edge	stand-01	ARG2	around	s	a2	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	contrast-01	a	c	
+# ::edge	contrast-01	ARG1	stand-01	c	s	
+# ::edge	contrast-01	ARG2	eat-01	c	e	
+# ::edge	eat-01	ARG0	elephant	e	e2	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	eat-01	location	background	e	b2	
+# ::edge	and	rel	roll-01	a	r2	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (e2 / elephant
+            :quant 3
+            :mod (o / other))
+        :ARG2 (a2 / around))
+    :op2 (c / contrast-01
+        :ARG1 s
+        :ARG2 (e / eat-01
+            :ARG0 e2
+            :ARG1 (g / grass)
+            :location (b2 / background)))
+    :rel (r2 / roll-01
+        :ARG0 (z / zebra
+            :part (b / back))
+        :location (r / road
+            :mod (d / dirt))
+        :manner b))

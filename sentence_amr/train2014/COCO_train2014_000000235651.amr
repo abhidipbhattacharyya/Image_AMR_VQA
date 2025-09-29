@@ -1,0 +1,22 @@
+# ::tok The television in the waiting room is off but the light is on .
+# ::node	t	television	1-2
+# ::node	w	wait-01	4-5
+# ::node	r	room	5-6
+# ::node	t2	turn-off-07	7-8
+# ::node	c	contrast-01	8-9
+# ::node	l	light	10-11
+# ::node	o	on-01	12-13
+# ::root	c	contrast-01
+# ::edge	room	ARG2-of	wait-01	r	w	
+# ::edge	television	location	room	t	r	
+# ::edge	turn-off-07	ARG1	television	t2	t	
+# ::edge	contrast-01	ARG1	turn-off-07	c	t2	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	contrast-01	ARG2	on-01	c	o	
+(c / contrast-01
+    :ARG1 (t2 / turn-off-07
+        :ARG1 (t / television
+            :location (r / room
+                :ARG2-of (w / wait-01))))
+    :ARG2 (o / on-01
+        :ARG1 (l / light)))

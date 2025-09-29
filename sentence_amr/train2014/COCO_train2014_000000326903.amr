@@ -1,0 +1,51 @@
+# ::tok A plate with a fried fish sandwich and potato chips along with two containers on condiments .
+# ::node	p	plate	1-2
+# ::node	f2	fry-01	4-5
+# ::node	f	fish	5-6
+# ::node	s	sandwich	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	p2	potato	8-9
+# ::node	c	chip	9-10
+# ::node	0	2	12-13
+# ::node	c2	container	13-14
+# ::node	r	religion	15-16
+# ::node	n	name	15-16
+# ::node	r2	religion	15-16
+# ::node	n2	name	15-16
+# ::node	1	Ocean	15-16
+# ::node	2	condiments	15-16
+# ::root	a	and
+# ::edge	sandwich	mod	fish	s	f	
+# ::edge	sandwich	ARG1-of	fry-01	s	f2	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	and	op1	sandwich	a2	s	
+# ::edge	plate	accompanier	and	p	a2	
+# ::edge	chip	consist-of	potato	c	p2	
+# ::edge	and	op2	chip	a2	c	
+# ::edge	container	quant	2	c2	0	
+# ::edge	and	op2	container	a	c2	
+# ::edge	container	mod	religion	c2	r	
+# ::edge	religion	name	name	r	n	
+# ::edge	container	mod	religion	c2	r2	
+# ::edge	religion	name	name	r2	n2	
+# ::edge	name	op1	Ocean	n2	1	
+# ::edge	name	op1	condiments	n2	2	
+# ::edge	and	rel	plate	a	p	
+(a / and
+    :op1 (s / sandwich
+        :ARG1-of (f2 / fry-01)
+        :mod (f / fish))
+    :op2 (c2 / container
+        :quant 2
+        :mod (r / religion
+            :name (n / name))
+        :mod (r2 / religion
+            :name (n2 / name
+                :op1 "Ocean"
+                :op1 "condiments")))
+    :rel (p / plate
+        :accompanier (a2 / and
+            :op1 s
+            :op2 (c / chip
+                :consist-of (p2 / potato)))))

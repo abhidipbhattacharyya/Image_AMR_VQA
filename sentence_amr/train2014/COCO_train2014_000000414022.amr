@@ -1,0 +1,34 @@
+# ::tok I cant tell whether its turning into night or if s bad storm is coming .
+# ::node	i	i	0-1
+# ::node	p	possible-01	1-2
+# ::node	0	-	1-2
+# ::node	t	tell-02	2-3
+# ::node	i2	it	4-5
+# ::node	t2	turn-02	5-6
+# ::node	n	night	7-8
+# ::node	o	or	8-9
+# ::node	b	bad-07	11-12
+# ::node	s	storm	12-13
+# ::node	c	come-01	14-15
+# ::root	p	possible-01
+# ::edge	possible-01	polarity	-	p	0	
+# ::edge	possible-01	ARG1	tell-02	p	t	
+# ::edge	tell-02	ARG0	i	t	i	
+# ::edge	turn-02	ARG1	it	t2	i2	
+# ::edge	turn-02	ARG2	night	t2	n	
+# ::edge	or	op1	turn-02	o	t2	
+# ::edge	tell-02	ARG1	or	t	o	
+# ::edge	storm	ARG1-of	bad-07	s	b	
+# ::edge	come-01	ARG1	storm	c	s	
+# ::edge	or	op2	come-01	o	c	
+(p / possible-01
+    :ARG1 (t / tell-02
+        :ARG0 (i / i)
+        :ARG1 (o / or
+            :op1 (t2 / turn-02
+                :ARG1 (i2 / it)
+                :ARG2 (n / night))
+            :op2 (c / come-01
+                :ARG1 (s / storm
+                    :ARG1-of (b / bad-07)))))
+    :polarity -)

@@ -1,0 +1,32 @@
+# ::tok A train is parked and several people are standing near it on a brick sidewalk .
+# ::node	t	train	1-2
+# ::node	p	park-01	3-4
+# ::node	a	and	4-5
+# ::node	s	several	5-6
+# ::node	p2	person	6-7
+# ::node	s3	stand-01	8-9
+# ::node	n	near-02	9-10
+# ::node	b	brick	13-14
+# ::node	s2	sidewalk	14-15
+# ::root	a	and
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	person	quant	several	p2	s	
+# ::edge	stand-01	ARG0	person	s3	p2	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	stand-01	ARG2	near-02	s3	n	
+# ::edge	near-02	ARG1	person	n	p2	
+# ::edge	near-02	ARG2	train	n	t	
+# ::edge	sidewalk	consist-of	brick	s2	b	
+# ::edge	stand-01	location	sidewalk	s3	s2	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (t / train))
+    :op2 (s3 / stand-01
+        :ARG0 (p2 / person
+            :quant (s / several))
+        :ARG2 (n / near-02
+            :ARG1 p2
+            :ARG2 t)
+        :location (s2 / sidewalk
+            :consist-of (b / brick))))

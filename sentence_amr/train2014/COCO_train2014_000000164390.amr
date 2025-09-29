@@ -1,0 +1,43 @@
+# ::tok A Bud Light beer delivery truck that is parked in front of a castle like building , with dark skies .
+# ::node	n	name	1-2
+# ::node	0	Bud	1-2
+# ::node	1	Light	2-3
+# ::node	b	beer	3-4
+# ::node	d2	deliver-01	4-5
+# ::node	t	truck	5-6
+# ::node	p	park-01	8-9
+# ::node	i	in-front-of	10-11
+# ::node	c	castle	13-14
+# ::node	r	resemble-01	14-15
+# ::node	b2	building	15-16
+# ::node	h	have-03	17-18
+# ::node	d	dark-02	18-19
+# ::node	s	sky	19-20
+# ::root	t	truck
+# ::edge	name	op1	Bud	n	0	
+# ::edge	name	op2	Light	n	1	
+# ::edge	beer	name	name	b	n	
+# ::edge	deliver-01	ARG1	beer	d2	b	
+# ::edge	truck	ARG0-of	deliver-01	t	d2	
+# ::edge	truck	ARG1-of	park-01	t	p	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	resemble-01	ARG2	castle	r	c	
+# ::edge	building	ARG1-of	resemble-01	b2	r	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	sky	ARG1-of	dark-02	s	d	
+# ::edge	have-03	ARG1	sky	h	s	
+(t / truck
+    :ARG0-of (d2 / deliver-01
+        :ARG1 (b / beer
+            :name (n / name
+                :op1 "Bud"
+                :op2 "Light")))
+    :ARG1-of (p / park-01
+        :ARG2 (i / in-front-of
+            :op1 (b2 / building
+                :ARG0-of (h / have-03
+                    :ARG1 (s / sky
+                        :ARG1-of (d / dark-02)))
+                :ARG1-of (r / resemble-01
+                    :ARG2 (c / castle))))))

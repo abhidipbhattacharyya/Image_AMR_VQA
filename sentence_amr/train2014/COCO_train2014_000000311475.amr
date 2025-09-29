@@ -1,0 +1,31 @@
+# ::tok A plane docked at the gate on a tarmac , with another plane speeding up the runway in the background .
+# ::node	p	plane	1-2
+# ::node	d	dock-01	2-3
+# ::node	g	gate	5-6
+# ::node	t	tarmac	8-9
+# ::node	a	another	11-12
+# ::node	p2	plane	12-13
+# ::node	s	speed-01	13-14
+# ::node	u	up	14-15
+# ::node	r	runway	16-17
+# ::node	b	background	19-20
+# ::root	d	dock-01
+# ::edge	dock-01	ARG1	plane	d	p	
+# ::edge	dock-01	ARG2	gate	d	g	
+# ::edge	gate	location	tarmac	g	t	
+# ::edge	plane	mod	another	p2	a	
+# ::edge	speed-01	ARG0	plane	s	p2	
+# ::edge	plane	time-of	speed-01	p	s	
+# ::edge	speed-01	direction	up	s	u	
+# ::edge	speed-01	location	runway	s	r	
+# ::edge	speed-01	location	background	s	b	
+(d / dock-01
+    :ARG1 (p / plane
+        :time-of (s / speed-01
+            :ARG0 (p2 / plane
+                :mod (a / another))
+            :direction (u / up)
+            :location (r / runway)
+            :location (b / background)))
+    :ARG2 (g / gate
+        :location (t / tarmac)))

@@ -1,0 +1,31 @@
+# ::tok Someone is using their phone to send a text or play a game .
+# ::node	s2	someone	0-1
+# ::node	u	use-01	2-3
+# ::node	p	phone	4-5
+# ::node	s	send-01	6-7
+# ::node	t	text	8-9
+# ::node	o	or	9-10
+# ::node	p2	play-01	10-11
+# ::node	g	game	12-13
+# ::root	u	use-01
+# ::edge	use-01	ARG0	someone	u	s2	
+# ::edge	use-01	ARG1	phone	u	p	
+# ::edge	phone	poss	someone	p	s2	
+# ::edge	send-01	ARG0	someone	s	s2	
+# ::edge	send-01	ARG1	text	s	t	
+# ::edge	or	op1	send-01	o	s	
+# ::edge	use-01	ARG2	or	u	o	
+# ::edge	or	op2	play-01	o	p2	
+# ::edge	play-01	ARG0	someone	p2	s2	
+# ::edge	play-01	ARG1	game	p2	g	
+(u / use-01
+    :ARG0 (s2 / someone)
+    :ARG1 (p / phone
+        :poss s2)
+    :ARG2 (o / or
+        :op1 (s / send-01
+            :ARG0 s2
+            :ARG1 (t / text))
+        :op2 (p2 / play-01
+            :ARG0 s2
+            :ARG1 (g / game))))

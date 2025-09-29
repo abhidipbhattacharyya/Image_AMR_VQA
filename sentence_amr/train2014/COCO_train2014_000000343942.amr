@@ -1,0 +1,34 @@
+# ::tok A passenger turbo prop airplane with it 's landing gear down flying low over the water .
+# ::node	p	passenger	1-2
+# ::node	t	turbo	2-3
+# ::node	p2	prop	3-4
+# ::node	a	airplane	4-5
+# ::node	l	land-01	8-9
+# ::node	g	gear	9-10
+# ::node	d	down-03	10-11
+# ::node	f	fly-01	11-12
+# ::node	l2	low-04	12-13
+# ::node	o	over	13-14
+# ::node	w	water	15-16
+# ::root	a	airplane
+# ::edge	airplane	mod	prop	a	p2	
+# ::edge	airplane	mod	turbo	a	t	
+# ::edge	airplane	mod	passenger	a	p	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	airplane	part	gear	a	g	
+# ::edge	gear	ARG1-of	down-03	g	d	
+# ::edge	airplane	ARG0-of	fly-01	a	f	
+# ::edge	fly-01	ARG1-of	low-04	f	l2	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	over	op1	water	o	w	
+(a / airplane
+    :ARG0-of (f / fly-01
+        :ARG1-of (l2 / low-04)
+        :path (o / over
+            :op1 (w / water)))
+    :mod (p2 / prop)
+    :mod (t / turbo)
+    :mod (p / passenger)
+    :part (g / gear
+        :ARG1-of (l / land-01)
+        :ARG1-of (d / down-03)))

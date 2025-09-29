@@ -1,0 +1,28 @@
+# ::tok A wooden table with four place mats and a blue bowl .
+# ::node	w	wood	1-2
+# ::node	t	table	2-3
+# ::node	h	have-03	3-4
+# ::node	0	4	4-5
+# ::node	p	place-01	5-6
+# ::node	b	blanket	6-7
+# ::node	a	and	7-8
+# ::node	b2	blue	9-10
+# ::node	b3	bowl	10-11
+# ::root	t	table
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	blanket	ARG2-of	place-01	b	p	
+# ::edge	blanket	quant	4	b	0	
+# ::edge	and	op1	blanket	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	bowl	mod	blue	b3	b2	
+# ::edge	and	op2	bowl	a	b3	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / blanket
+                :quant 4
+                :ARG2-of (p / place-01))
+            :op2 (b3 / bowl
+                :mod (b2 / blue))))
+    :consist-of (w / wood))

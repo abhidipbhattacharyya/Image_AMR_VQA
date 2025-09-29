@@ -1,0 +1,40 @@
+# ::tok a public bathroom with two stalls , three sinks , and two larger sinks
+# ::node	p	public-02	1-2
+# ::node	b	bathroom	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	s3	stall-01	5-6
+# ::node	2	3	7-8
+# ::node	s	sink-01	8-9
+# ::node	a	and	10-11
+# ::node	1	2	11-12
+# ::node	h2	have-degree-91	12-13
+# ::node	l	large	12-13
+# ::node	m	more	12-13
+# ::node	s2	sink-01	13-14
+# ::root	b	bathroom
+# ::edge	bathroom	ARG1-of	public-02	b	p	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	stall-01	quant	2	s3	0	
+# ::edge	sink-01	quant	3	s	2	
+# ::edge	and	op2	sink-01	a	s	
+# ::edge	and	op1	stall-01	a	s3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	have-degree-91	ARG2	large	h2	l	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	sink-01	ARG1-of	have-degree-91	s2	h2	
+# ::edge	sink-01	quant	2	s2	1	
+# ::edge	and	op3	sink-01	a	s2	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s3 / stall-01
+                :quant 2)
+            :op2 (s / sink-01
+                :quant 3)
+            :op3 (s2 / sink-01
+                :quant 2
+                :ARG1-of (h2 / have-degree-91
+                    :ARG2 (l / large)
+                    :ARG3 (m / more)))))
+    :ARG1-of (p / public-02))

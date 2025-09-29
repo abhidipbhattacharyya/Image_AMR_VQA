@@ -1,0 +1,39 @@
+# ::tok A baseball player at bat during a stadium game with an umpire and catcher behind him .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	b2	bat-01	4-5
+# ::node	s	stadium	7-8
+# ::node	g	game	8-9
+# ::node	p2	person	11-12
+# ::node	u	umpire-01	11-12
+# ::node	a	and	12-13
+# ::node	p3	person	13-14
+# ::node	c	catch-01	13-14
+# ::node	b3	behind	14-15
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	person	ARG0-of	bat-01	p	b2	
+# ::edge	game	location	stadium	g	s	
+# ::edge	bat-01	time	game	b2	g	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	and	op1	person	a	p2	
+# ::edge	person	accompanier	and	p	a	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+# ::edge	and	location	behind	a	b3	
+# ::edge	behind	op1	person	b3	p	
+(p / person
+    :ARG0-of (p4 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (b2 / bat-01
+        :time (g / game
+            :location (s / stadium)))
+    :accompanier (a / and
+        :location (b3 / behind
+            :op1 p)
+        :op1 (p2 / person
+            :ARG0-of (u / umpire-01))
+        :op2 (p3 / person
+            :ARG0-of (c / catch-01))))

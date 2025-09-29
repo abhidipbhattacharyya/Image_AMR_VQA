@@ -1,0 +1,26 @@
+# ::tok A man standing on a trolley loading or unloading a refrigerator .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	t	trolley	5-6
+# ::node	l	load-01	6-7
+# ::node	o	or	7-8
+# ::node	u	unload-02	8-9
+# ::node	r	refrigerator	10-11
+# ::root	o	or
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	trolley	s	t	
+# ::edge	trolley	ARG1-of	load-01	t	l	
+# ::edge	or	op1	stand-01	o	s	
+# ::edge	or	op2	unload-02	o	u	
+# ::edge	unload-02	ARG1	man	u	m	
+# ::edge	unload-02	ARG2	refrigerator	u	r	
+# ::edge	load-01	ARG2	refrigerator	l	r	
+(o / or
+    :op1 (s / stand-01
+        :ARG1 (m / man)
+        :ARG2 (t / trolley
+            :ARG1-of (l / load-01
+                :ARG2 (r / refrigerator))))
+    :op2 (u / unload-02
+        :ARG1 m
+        :ARG2 r))

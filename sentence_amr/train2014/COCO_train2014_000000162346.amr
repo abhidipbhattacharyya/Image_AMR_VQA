@@ -1,0 +1,25 @@
+# ::tok A man is using a tiny microwave that is seated on a cluttered refrigerator .
+# ::node	m	man	1-2
+# ::node	u	use-01	3-4
+# ::node	t	tiny	5-6
+# ::node	m2	microwave	6-7
+# ::node	s	seat-01	9-10
+# ::node	l	literal	12-13
+# ::node	c	clean-04	12-13
+# ::node	r	refrigerator	13-14
+# ::root	u	use-01
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	microwave	mod	tiny	m2	t	
+# ::edge	use-01	ARG1	microwave	u	m2	
+# ::edge	microwave	ARG1-of	seat-01	m2	s	
+# ::edge	microwave	mod	literal	m2	l	
+# ::edge	refrigerator	ARG1-of	clean-04	r	c	
+# ::edge	seat-01	ARG2	refrigerator	s	r	
+(u / use-01
+    :ARG0 (m / man)
+    :ARG1 (m2 / microwave
+        :ARG1-of (s / seat-01
+            :ARG2 (r / refrigerator
+                :ARG1-of (c / clean-04)))
+        :mod (t / tiny)
+        :mod (l / literal)))

@@ -1,0 +1,43 @@
+# ::tok This looks like a McDonald 's in a Chinese or Japanese community .
+# ::node	t	this	0-1
+# ::node	r	resemble-01	2-3
+# ::node	c3	company	4-5
+# ::node	n	name	4-5
+# ::node	2	McDonald's	4-5
+# ::node	c4	country	8-9
+# ::node	n2	name	8-9
+# ::node	0	China	8-9
+# ::node	o	or	9-10
+# ::node	c5	country	10-11
+# ::node	n3	name	10-11
+# ::node	1	Japan	10-11
+# ::node	c	community	11-12
+# ::node	c2	community	11-12
+# ::root	r	resemble-01
+# ::edge	resemble-01	ARG1	this	r	t	
+# ::edge	resemble-01	ARG2	company	r	c3	
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op1	McDonald's	n	2	
+# ::edge	country	name	name	c4	n2	
+# ::edge	name	op1	China	n2	0	
+# ::edge	company	location	or	c3	o	
+# ::edge	country	name	name	c5	n3	
+# ::edge	name	op1	Japan	n3	1	
+# ::edge	or	op1	community	o	c	
+# ::edge	community	mod	country	c	c4	
+# ::edge	community	mod	country	c2	c5	
+# ::edge	or	op2	community	o	c2	
+(r / resemble-01
+    :ARG1 (t / this)
+    :ARG2 (c3 / company
+        :name (n / name
+            :op1 "McDonald's")
+        :location (o / or
+            :op1 (c / community
+                :mod (c4 / country
+                    :name (n2 / name
+                        :op1 "China")))
+            :op2 (c2 / community
+                :mod (c5 / country
+                    :name (n3 / name
+                        :op1 "Japan"))))))

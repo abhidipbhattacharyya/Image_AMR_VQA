@@ -1,0 +1,28 @@
+# ::tok A fire truck on the other side of a divider between two parallel roads .
+# ::node	f	fire	1-2
+# ::node	t	truck	2-3
+# ::node	o	other	5-6
+# ::node	s	side	6-7
+# ::node	d	divider	9-10
+# ::node	b	between	10-11
+# ::node	0	2	11-12
+# ::node	p	parallel	12-13
+# ::node	r	road	13-14
+# ::root	t	truck
+# ::edge	truck	mod	fire	t	f	
+# ::edge	side	mod	other	s	o	
+# ::edge	truck	location	side	t	s	
+# ::edge	side	part-of	divider	s	d	
+# ::edge	divider	location	between	d	b	
+# ::edge	road	mod	parallel	r	p	
+# ::edge	road	quant	2	r	0	
+# ::edge	between	op1	road	b	r	
+(t / truck
+    :location (s / side
+        :mod (o / other)
+        :part-of (d / divider
+            :location (b / between
+                :op1 (r / road
+                    :quant 2
+                    :mod (p / parallel)))))
+    :mod (f / fire))

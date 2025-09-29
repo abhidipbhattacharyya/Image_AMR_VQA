@@ -1,0 +1,33 @@
+# ::tok two bikes parked on the street with pizza delivery boxes attached to their back ends
+# ::node	0	2	0-1
+# ::node	b2	bike-01	1-2
+# ::node	p	park-01	2-3
+# ::node	s	street	5-6
+# ::node	p2	pizza	7-8
+# ::node	d	deliver-01	8-9
+# ::node	b3	box	9-10
+# ::node	a	attach-01	10-11
+# ::node	b	back	13-14
+# ::node	e	end	14-15
+# ::root	p	park-01
+# ::edge	bike-01	quant	2	b2	0	
+# ::edge	park-01	ARG1	bike-01	p	b2	
+# ::edge	park-01	ARG2	street	p	s	
+# ::edge	deliver-01	ARG1	pizza	d	p2	
+# ::edge	box	ARG0-of	deliver-01	b3	d	
+# ::edge	attach-01	ARG1	box	a	b3	
+# ::edge	bike-01	prep-with	attach-01	b2	a	
+# ::edge	end	mod	back	e	b	
+# ::edge	attach-01	ARG2	end	a	e	
+# ::edge	bike-01	part	end	b2	e	
+(p / park-01
+    :ARG1 (b2 / bike-01
+        :quant 2
+        :part (e / end
+            :mod (b / back))
+        :prep-with (a / attach-01
+            :ARG1 (b3 / box
+                :ARG0-of (d / deliver-01
+                    :ARG1 (p2 / pizza)))
+            :ARG2 e))
+    :ARG2 (s / street))

@@ -1,0 +1,28 @@
+# ::tok Dozens of individuals all crossing the street on Broadway .
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	i	individual	2-3
+# ::node	a	all	3-4
+# ::node	c	cross-02	4-5
+# ::node	s	street	6-7
+# ::node	r	road	8-9
+# ::node	n	name	8-9
+# ::node	1	Broadway	8-9
+# ::root	c	cross-02
+# ::edge	multiple	op1	12	m	0	
+# ::edge	individual	quant	multiple	i	m	
+# ::edge	individual	mod	all	i	a	
+# ::edge	cross-02	ARG0	individual	c	i	
+# ::edge	cross-02	ARG1	street	c	s	
+# ::edge	street	location	road	s	r	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op1	Broadway	n	1	
+(c / cross-02
+    :ARG0 (i / individual
+        :quant (m / multiple
+            :op1 12)
+        :mod (a / all))
+    :ARG1 (s / street
+        :location (r / road
+            :name (n / name
+                :op1 "Broadway"))))

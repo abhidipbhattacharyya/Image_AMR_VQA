@@ -1,0 +1,41 @@
+# ::tok A male tennis player on the baseline of a hard surface tennis court , with people in the stands watching him play .
+# ::node	m	male	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	b	baseline	6-7
+# ::node	h	hard-04	9-10
+# ::node	s2	surface	10-11
+# ::node	c	court	12-13
+# ::node	p2	person	15-16
+# ::node	s	stand-01	18-19
+# ::node	w	watch-01	19-20
+# ::node	p4	play-01	21-22
+# ::root	p	person
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	person	location	baseline	p	b	
+# ::edge	surface	ARG1-of	hard-04	s2	h	
+# ::edge	court	mod	surface	c	s2	
+# ::edge	baseline	poss	court	b	c	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	person	accompanier	person	p	p2	
+# ::edge	person	ARG2-of	stand-01	p2	s	
+# ::edge	person	ARG0-of	watch-01	p2	w	
+# ::edge	watch-01	ARG1	play-01	w	p4	
+# ::edge	play-01	ARG0	person	p4	p	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (t / tennis))
+    :accompanier (p2 / person
+        :ARG0-of (w / watch-01
+            :ARG1 (p4 / play-01
+                :ARG0 p))
+        :ARG2-of (s / stand-01))
+    :location (b / baseline
+        :poss (c / court
+            :mod (s2 / surface
+                :ARG1-of (h / hard-04))
+            :mod t))
+    :mod (m / male))

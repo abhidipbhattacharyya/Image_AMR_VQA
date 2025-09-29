@@ -1,0 +1,34 @@
+# ::tok A living room with three wooden rockers and one wood railed couch .
+# ::node	l	living	1-2
+# ::node	r2	room	2-3
+# ::node	h	have-03	3-4
+# ::node	1	3	4-5
+# ::node	w	wood	5-6
+# ::node	r	rock	6-7
+# ::node	a	and	7-8
+# ::node	0	1	8-9
+# ::node	w2	wood	9-10
+# ::node	s	seat-01	10-11
+# ::node	c	couch	11-12
+# ::root	r2	room
+# ::edge	room	mod	living	r2	l	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	rock	mod	wood	r	w	
+# ::edge	rock	quant	3	r	1	
+# ::edge	and	op1	rock	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	seat-01	ARG2	wood	s	w2	
+# ::edge	couch	ARG1-of	seat-01	c	s	
+# ::edge	couch	quant	1	c	0	
+# ::edge	and	op2	couch	a	c	
+(r2 / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (r / rock
+                :quant 3
+                :mod (w / wood))
+            :op2 (c / couch
+                :quant 1
+                :ARG1-of (s / seat-01
+                    :ARG2 (w2 / wood)))))
+    :mod (l / living))

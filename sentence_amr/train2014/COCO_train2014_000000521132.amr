@@ -1,0 +1,40 @@
+# ::tok Intersection street signs displaying Plaza Drive and Coe Avenue .
+# ::node	i	intersect-01	0-1
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	d	display-01	3-4
+# ::node	n	name	4-5
+# ::node	3	Plaza	4-5
+# ::node	r	road	5-6
+# ::node	2	Drive	5-6
+# ::node	a	and	6-7
+# ::node	n2	name	7-8
+# ::node	1	Coe	7-8
+# ::node	r2	road	8-9
+# ::node	0	Avenue	8-9
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG1-of	intersect-01	s	i	
+# ::edge	sign	ARG0-of	display-01	s	d	
+# ::edge	name	op1	Plaza	n	3	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	Drive	n	2	
+# ::edge	and	op1	road	a	r	
+# ::edge	display-01	ARG1	and	d	a	
+# ::edge	name	op1	Coe	n2	1	
+# ::edge	road	name	name	r2	n2	
+# ::edge	and	op2	road	a	r2	
+# ::edge	name	op2	Avenue	n2	0	
+(s / sign
+    :ARG0-of (d / display-01
+        :ARG1 (a / and
+            :op1 (r / road
+                :name (n / name
+                    :op1 "Plaza"
+                    :op2 "Drive"))
+            :op2 (r2 / road
+                :name (n2 / name
+                    :op1 "Coe"
+                    :op2 "Avenue"))))
+    :ARG1-of (i / intersect-01)
+    :mod (s2 / street))

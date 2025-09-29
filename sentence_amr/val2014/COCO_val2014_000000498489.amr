@@ -1,0 +1,37 @@
+# ::tok A dog sitting in a neat but small living room witha number of glass vases on a mantel .
+# ::node	d	dog	1-2
+# ::node	s	sit-01	2-3
+# ::node	n	neat	5-6
+# ::node	c	contrast-01	6-7
+# ::node	s2	small	7-8
+# ::node	l	living	8-9
+# ::node	r	room	9-10
+# ::node	h	have-03	10-11
+# ::node	n2	number	11-12
+# ::node	g	glass	13-14
+# ::node	i	inch	14-15
+# ::node	m	mantel	17-18
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	dog	s	d	
+# ::edge	neat	ARG1-of	contrast-01	n	c	
+# ::edge	contrast-01	ARG2	small	c	s2	
+# ::edge	room	mod	living	r	l	
+# ::edge	room	mod	neat	r	n	
+# ::edge	sit-01	ARG2	room	s	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	inch	mod	glass	i	g	
+# ::edge	inch	quant	number	i	n2	
+# ::edge	have-03	ARG1	inch	h	i	
+# ::edge	inch	location	mantel	i	m	
+(s / sit-01
+    :ARG1 (d / dog)
+    :ARG2 (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (i / inch
+                :quant (n2 / number)
+                :location (m / mantel)
+                :mod (g / glass)))
+        :mod (l / living)
+        :mod (n / neat
+            :ARG1-of (c / contrast-01
+                :ARG2 (s2 / small)))))

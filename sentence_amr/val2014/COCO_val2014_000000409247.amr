@@ -1,0 +1,38 @@
+# ::tok A cat attempts to use a lap top computer while sitting on a brown wooden lawn chair
+# ::node	c	cat	1-2
+# ::node	a	attempt-01	2-3
+# ::node	u	use-01	4-5
+# ::node	l	lap	6-7
+# ::node	t	top	7-8
+# ::node	c3	computer	8-9
+# ::node	s	sit-01	10-11
+# ::node	b	brown-01	13-14
+# ::node	w	wood	14-15
+# ::node	l2	lawn	15-16
+# ::node	c2	chair	16-17
+# ::root	a	attempt-01
+# ::edge	attempt-01	ARG0	cat	a	c	
+# ::edge	attempt-01	ARG1	use-01	a	u	
+# ::edge	use-01	ARG0	cat	u	c	
+# ::edge	top	mod	lap	t	l	
+# ::edge	computer	mod	top	c3	t	
+# ::edge	use-01	ARG1	computer	u	c3	
+# ::edge	attempt-01	time	sit-01	a	s	
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	chair	mod	lawn	c2	l2	
+# ::edge	chair	consist-of	wood	c2	w	
+# ::edge	chair	ARG1-of	brown-01	c2	b	
+# ::edge	sit-01	ARG2	chair	s	c2	
+(a / attempt-01
+    :ARG0 (c / cat)
+    :ARG1 (u / use-01
+        :ARG0 c
+        :ARG1 (c3 / computer
+            :mod (t / top
+                :mod (l / lap))))
+    :time (s / sit-01
+        :ARG1 c
+        :ARG2 (c2 / chair
+            :ARG1-of (b / brown-01)
+            :consist-of (w / wood)
+            :mod (l2 / lawn))))

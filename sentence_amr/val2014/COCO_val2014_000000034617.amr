@@ -1,0 +1,30 @@
+# ::tok Someone put a face over a baby giraffe that a man is trying to weigh .
+# ::node	s	someone	0-1
+# ::node	p	put-01	1-2
+# ::node	f	face	3-4
+# ::node	o	over	4-5
+# ::node	b	baby	6-7
+# ::node	g	giraffe	7-8
+# ::node	m	man	10-11
+# ::node	t	try-01	12-13
+# ::node	w	weigh-01	14-15
+# ::root	p	put-01
+# ::edge	put-01	ARG0	someone	p	s	
+# ::edge	put-01	ARG1	face	p	f	
+# ::edge	put-01	ARG2	over	p	o	
+# ::edge	giraffe	mod	baby	g	b	
+# ::edge	over	op1	giraffe	o	g	
+# ::edge	try-01	ARG0	man	t	m	
+# ::edge	weigh-01	ARG1-of	try-01	w	t	
+# ::edge	weigh-01	ARG0	man	w	m	
+# ::edge	giraffe	ARG1-of	weigh-01	g	w	
+(p / put-01
+    :ARG0 (s / someone)
+    :ARG1 (f / face)
+    :ARG2 (o / over
+        :op1 (g / giraffe
+            :ARG1-of (w / weigh-01
+                :ARG0 (m / man)
+                :ARG1-of (t / try-01
+                    :ARG0 m))
+            :mod (b / baby))))

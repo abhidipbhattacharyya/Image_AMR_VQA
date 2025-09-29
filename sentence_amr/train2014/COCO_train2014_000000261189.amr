@@ -1,0 +1,29 @@
+# ::tok A woman on a tennis court ready for her opponent to send her the ball .
+# ::node	w	woman	1-2
+# ::node	t	tennis	4-5
+# ::node	c	court	5-6
+# ::node	r	ready-02	6-7
+# ::node	p	person	9-10
+# ::node	o	oppose-01	9-10
+# ::node	s	send-01	11-12
+# ::node	b	ball	14-15
+# ::root	w	woman
+# ::edge	court	mod	tennis	c	t	
+# ::edge	woman	location	court	w	c	
+# ::edge	woman	ARG1-of	ready-02	w	r	
+# ::edge	person	ARG0-of	oppose-01	p	o	
+# ::edge	oppose-01	ARG1	woman	o	w	
+# ::edge	send-01	ARG0	person	s	p	
+# ::edge	ready-02	ARG2	send-01	r	s	
+# ::edge	send-01	ARG2	woman	s	w	
+# ::edge	send-01	ARG1	ball	s	b	
+(w / woman
+    :ARG1-of (r / ready-02
+        :ARG2 (s / send-01
+            :ARG0 (p / person
+                :ARG0-of (o / oppose-01
+                    :ARG1 w))
+            :ARG1 (b / ball)
+            :ARG2 w))
+    :location (c / court
+        :mod (t / tennis)))

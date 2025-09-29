@@ -1,0 +1,31 @@
+# ::tok A bright red London double decked bus waiting at curbside .
+# ::node	b	bright-02	1-2
+# ::node	r	red-02	2-3
+# ::node	c	city	3-4
+# ::node	n	name	3-4
+# ::node	0	London	3-4
+# ::node	d2	double-01	4-5
+# ::node	d	deck	5-6
+# ::node	b2	bus	6-7
+# ::node	w	wait-01	7-8
+# ::node	c2	curb-01	9-10
+# ::root	w	wait-01
+# ::edge	red-02	ARG1-of	bright-02	r	b	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	London	n	0	
+# ::edge	deck	ARG1-of	double-01	d	d2	
+# ::edge	bus	mod	deck	b2	d	
+# ::edge	bus	location	city	b2	c	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	wait-01	ARG1	bus	w	b2	
+# ::edge	wait-01	location	curb-01	w	c2	
+(w / wait-01
+    :ARG1 (b2 / bus
+        :ARG1-of (r / red-02
+            :ARG1-of (b / bright-02))
+        :location (c / city
+            :name (n / name
+                :op1 "London"))
+        :mod (d / deck
+            :ARG1-of (d2 / double-01)))
+    :location (c2 / curb-01))

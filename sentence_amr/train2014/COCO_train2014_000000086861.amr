@@ -1,0 +1,37 @@
+# ::tok A pizza on a cutting board on a table next to a salad and glasses of wine .
+# ::node	p	pizza	1-2
+# ::node	c	cut-01	4-5
+# ::node	b	board	5-6
+# ::node	t	table	8-9
+# ::node	n	next-to	9-10
+# ::node	h	have-purpose-91	10-11
+# ::node	s	salad	12-13
+# ::node	a	and	13-14
+# ::node	v	volume-quantity	14-15
+# ::node	g	glass	14-15
+# ::node	0	1	14-15
+# ::node	w	wine	16-17
+# ::root	h	have-purpose-91
+# ::edge	board	mod	cut-01	b	c	
+# ::edge	next-to	location	table	n	t	
+# ::edge	pizza	location	next-to	p	n	
+# ::edge	have-purpose-91	ARG2	board	h	b	
+# ::edge	have-purpose-91	ARG1	pizza	h	p	
+# ::edge	and	op1	salad	a	s	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	volume-quantity	a	v	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	quant-of	wine	v	w	
+(h / have-purpose-91
+    :ARG1 (p / pizza
+        :location (n / next-to
+            :location (t / table)
+            :op1 (a / and
+                :op1 (s / salad)
+                :op2 (v / volume-quantity
+                    :quant 1
+                    :quant-of (w / wine)
+                    :unit (g / glass)))))
+    :ARG2 (b / board
+        :mod (c / cut-01)))

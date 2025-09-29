@@ -1,0 +1,39 @@
+# ::tok A bakery with customer at the counter and various types of donuts in the display case in front of the customers .
+# ::node	b	bakery	1-2
+# ::node	h	have-03	2-3
+# ::node	c3	customer	3-4
+# ::node	b2	be-located-at-91	4-5
+# ::node	c2	counter	6-7
+# ::node	a	and	7-8
+# ::node	v	various	8-9
+# ::node	t	type	9-10
+# ::node	d2	donut	11-12
+# ::node	d	display-01	14-15
+# ::node	c	case	15-16
+# ::node	i	in-front-of	17-18
+# ::root	b	bakery
+# ::edge	bakery	ARG0-of	have-03	b	h	
+# ::edge	be-located-at-91	ARG1	customer	b2	c3	
+# ::edge	be-located-at-91	ARG2	counter	b2	c2	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	type	mod	various	t	v	
+# ::edge	donut	mod	type	d2	t	
+# ::edge	and	op2	donut	a	d2	
+# ::edge	case	ARG1-of	display-01	c	d	
+# ::edge	donut	location	case	d2	c	
+# ::edge	case	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	customer	i	c3	
+(b / bakery
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b2 / be-located-at-91
+                :ARG1 (c3 / customer)
+                :ARG2 (c2 / counter))
+            :op2 (d2 / donut
+                :location (c / case
+                    :ARG1-of (d / display-01)
+                    :location (i / in-front-of
+                        :op1 c3))
+                :mod (t / type
+                    :mod (v / various))))))

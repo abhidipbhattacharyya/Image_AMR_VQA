@@ -1,0 +1,27 @@
+# ::tok a group of building with a church with a built in clock in the side of it
+# ::node	g	group	1-2
+# ::node	b2	building	3-4
+# ::node	h	have-03	4-5
+# ::node	c	church	6-7
+# ::node	h2	have-03	7-8
+# ::node	b	build-01	9-10
+# ::node	c2	clock	11-12
+# ::node	s	side	14-15
+# ::root	g	group
+# ::edge	group	consist-of	building	g	b2	
+# ::edge	group	ARG0-of	have-03	g	h	
+# ::edge	have-03	ARG1	church	h	c	
+# ::edge	church	ARG0-of	have-03	c	h2	
+# ::edge	clock	ARG1-of	build-01	c2	b	
+# ::edge	have-03	ARG1	clock	h2	c2	
+# ::edge	clock	location	side	c2	s	
+# ::edge	church	part	side	c	s	
+(g / group
+    :ARG0-of (h / have-03
+        :ARG1 (c / church
+            :ARG0-of (h2 / have-03
+                :ARG1 (c2 / clock
+                    :ARG1-of (b / build-01)
+                    :location (s / side)))
+            :part s))
+    :consist-of (b2 / building))

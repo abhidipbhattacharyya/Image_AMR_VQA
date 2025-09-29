@@ -1,0 +1,33 @@
+# ::tok A full trashcan is beside the commode in a public restroom toilet that needs to be cleaned .
+# ::node	f	fill-01	1-2
+# ::node	t2	trashcan	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	b2	beside	4-5
+# ::node	c2	commode	6-7
+# ::node	p	public-02	9-10
+# ::node	r	restroom	10-11
+# ::node	t	toilet	11-12
+# ::node	n	need-01	13-14
+# ::node	c	clean-01	16-17
+# ::root	b	be-located-at-91
+# ::edge	trashcan	ARG1-of	fill-01	t2	f	
+# ::edge	be-located-at-91	ARG1	trashcan	b	t2	
+# ::edge	be-located-at-91	ARG2	beside	b	b2	
+# ::edge	beside	op1	commode	b2	c2	
+# ::edge	restroom	ARG1-of	public-02	r	p	
+# ::edge	toilet	location	restroom	t	r	
+# ::edge	commode	location	toilet	c2	t	
+# ::edge	trashcan	ARG0-of	need-01	t2	n	
+# ::edge	need-01	ARG1	clean-01	n	c	
+# ::edge	clean-01	ARG1	trashcan	c	t2	
+(b / be-located-at-91
+    :ARG1 (t2 / trashcan
+        :ARG0-of (n / need-01
+            :ARG1 (c / clean-01
+                :ARG1 t2))
+        :ARG1-of (f / fill-01))
+    :ARG2 (b2 / beside
+        :op1 (c2 / commode
+            :location (t / toilet
+                :location (r / restroom
+                    :ARG1-of (p / public-02))))))

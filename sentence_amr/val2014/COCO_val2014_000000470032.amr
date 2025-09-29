@@ -1,0 +1,29 @@
+# ::tok A parrot is hanging down from one wire to chew on another wire .
+# ::node	p2	person	1-2
+# ::node	p	parrot-01	1-2
+# ::node	h	hang-01	3-4
+# ::node	d	down	4-5
+# ::node	c	chew-01	9-10
+# ::node	a	another	11-12
+# ::node	w	wire	12-13
+# ::node	w2	wire	12-13
+# ::root	h	hang-01
+# ::edge	person	ARG0-of	parrot-01	p2	p	
+# ::edge	hang-01	ARG1	person	h	p2	
+# ::edge	hang-01	direction	down	h	d	
+# ::edge	hang-01	purpose	chew-01	h	c	
+# ::edge	chew-01	ARG0	person	c	p2	
+# ::edge	wire	mod	another	w	a	
+# ::edge	chew-01	ARG1	wire	c	w	
+# ::edge	wire	mod	another	w2	a	
+# ::edge	chew-01	ARG1	wire	c	w2	
+(h / hang-01
+    :purpose (c / chew-01
+        :ARG0 (p2 / person
+            :ARG0-of (p / parrot-01))
+        :ARG1 (w / wire
+            :mod (a / another))
+        :ARG1 (w2 / wire
+            :mod a))
+    :ARG1 p2
+    :direction (d / down))

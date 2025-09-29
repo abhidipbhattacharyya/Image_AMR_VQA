@@ -1,0 +1,42 @@
+# ::tok A small white room with an unmade bed that has a backpack and a pair of glasses resting on it .
+# ::node	s	small	1-2
+# ::node	w	white-03	2-3
+# ::node	r2	room	3-4
+# ::node	h	have-03	4-5
+# ::node	m	make-01	6-7
+# ::node	0	-	6-7
+# ::node	b2	bed	7-8
+# ::node	h2	have-03	9-10
+# ::node	b	backpack	11-12
+# ::node	a	and	12-13
+# ::node	p	pair	14-15
+# ::node	g	glasses	16-17
+# ::node	r	rest-01	17-18
+# ::root	r2	room
+# ::edge	room	ARG1-of	white-03	r2	w	
+# ::edge	room	mod	small	r2	s	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	make-01	polarity	-	m	0	
+# ::edge	bed	ARG1-of	make-01	b2	m	
+# ::edge	have-03	ARG1	bed	h	b2	
+# ::edge	bed	ARG0-of	have-03	b2	h2	
+# ::edge	and	op1	backpack	a	b	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	glasses	quant	pair	g	p	
+# ::edge	and	op2	glasses	a	g	
+# ::edge	and	ARG1-of	rest-01	a	r	
+# ::edge	rest-01	ARG2	bed	r	b2	
+(r2 / room
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / bed
+            :ARG0-of (h2 / have-03
+                :ARG1 (a / and
+                    :ARG1-of (r / rest-01
+                        :ARG2 b2)
+                    :op1 (b / backpack)
+                    :op2 (g / glasses
+                        :quant (p / pair))))
+            :ARG1-of (m / make-01
+                :polarity -)))
+    :ARG1-of (w / white-03)
+    :mod (s / small))

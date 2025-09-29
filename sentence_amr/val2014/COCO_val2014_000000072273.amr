@@ -1,0 +1,34 @@
+# ::tok A pizza has been topped the hot dog pieces , french fries , and cheese .
+# ::node	p2	pizza	1-2
+# ::node	t	top-01	4-5
+# ::node	h	hot-05	6-7
+# ::node	d	dog	7-8
+# ::node	p	piece	8-9
+# ::node	c2	country	10-11
+# ::node	n	name	10-11
+# ::node	0	France	10-11
+# ::node	f	fry-01	11-12
+# ::node	a	and	13-14
+# ::node	c	cheese	14-15
+# ::root	t	top-01
+# ::edge	top-01	ARG1	pizza	t	p2	
+# ::edge	dog	ARG1-of	hot-05	d	h	
+# ::edge	piece	consist-of	dog	p	d	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG2	country	f	c2	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	and	op1	piece	a	p	
+# ::edge	top-01	ARG2	and	t	a	
+# ::edge	and	op3	cheese	a	c	
+(t / top-01
+    :ARG1 (p2 / pizza)
+    :ARG2 (a / and
+        :op1 (p / piece
+            :consist-of (d / dog
+                :ARG1-of (h / hot-05)))
+        :op2 (f / fry-01
+            :ARG2 (c2 / country
+                :name (n / name
+                    :op1 "France")))
+        :op3 (c / cheese)))

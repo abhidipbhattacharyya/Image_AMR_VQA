@@ -1,0 +1,28 @@
+# ::tok A red metro bus stopped beside a sidewalk in the city as traffic passes .
+# ::node	r	red-02	1-2
+# ::node	m	metro	2-3
+# ::node	b2	bus	3-4
+# ::node	s2	stop-01	4-5
+# ::node	b	beside	5-6
+# ::node	s	sidewalk	7-8
+# ::node	c	city	10-11
+# ::node	t	traffic	12-13
+# ::node	p	pass-03	13-14
+# ::root	s2	stop-01
+# ::edge	bus	mod	metro	b2	m	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	stop-01	ARG1	bus	s2	b2	
+# ::edge	stop-01	location	beside	s2	b	
+# ::edge	beside	op1	sidewalk	b	s	
+# ::edge	sidewalk	location	city	s	c	
+# ::edge	pass-03	ARG1	traffic	p	t	
+# ::edge	stop-01	time	pass-03	s2	p	
+(s2 / stop-01
+    :ARG1 (b2 / bus
+        :ARG1-of (r / red-02)
+        :mod (m / metro))
+    :location (b / beside
+        :op1 (s / sidewalk
+            :location (c / city)))
+    :time (p / pass-03
+        :ARG1 (t / traffic)))

@@ -1,0 +1,42 @@
+# ::tok a number of people sitting and standing playing nintendo wii
+# ::node	n2	number	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	a	and	5-6
+# ::node	s2	stand-01	6-7
+# ::node	p2	play-01	7-8
+# ::node	g	game	8-9
+# ::node	n	name	8-9
+# ::node	0	Occupy	8-9
+# ::node	1	Warfare	8-9
+# ::node	a2	and	9-10
+# ::root	a	and
+# ::edge	person	quant	number	p	n2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	and	ARG2	play-01	a	p2	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	play-01	ARG1	game	p2	g	
+# ::edge	game	name	name	g	n	
+# ::edge	name	op1	Occupy	n	0	
+# ::edge	name	op2	Warfare	n	1	
+# ::edge	name	op3	and	n	a2	
+# ::edge	and	op2	stand-01	a2	s2	
+# ::edge	and	op1	sit-01	a2	s	
+(a / and
+    :ARG2 (p2 / play-01
+        :ARG0 (p / person
+            :quant (n2 / number))
+        :ARG1 (g / game
+            :name (n / name
+                :op1 "Occupy"
+                :op2 "Warfare"
+                :op3 (a2 / "and"
+                    :op1 (s / sit-01
+                        :ARG1 p)
+                    :op2 (s2 / stand-01
+                        :ARG1 p)))))
+    :op1 s
+    :op2 s2)

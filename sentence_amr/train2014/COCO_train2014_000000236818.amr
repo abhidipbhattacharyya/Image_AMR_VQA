@@ -1,0 +1,26 @@
+# ::tok A baseball player holding a bag in his hand while on a baseball field .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	h2	hold-01	3-4
+# ::node	b	bag	5-6
+# ::node	h	hand	8-9
+# ::node	f	field	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	hold-01	ARG1	bag	h2	b	
+# ::edge	hold-01	location	hand	h2	h	
+# ::edge	person	part	hand	p	h	
+# ::edge	hold-01	location	field	h2	f	
+# ::edge	field	mod	baseball	f	b2	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG0-of (h2 / hold-01
+        :ARG1 (b / bag)
+        :location (h / hand)
+        :location (f / field
+            :mod b2))
+    :part h)

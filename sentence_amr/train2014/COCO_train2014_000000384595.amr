@@ -1,0 +1,27 @@
+# ::tok A baseball player is swinging the bat as the ball is within reach .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	swing-02	4-5
+# ::node	b3	bat	6-7
+# ::node	b	ball	9-10
+# ::node	u	up-to	11-12
+# ::node	r	reach-01	12-13
+# ::root	s	swing-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	bat	s	b3	
+# ::edge	reach-01	degree	up-to	r	u	
+# ::edge	reach-01	ARG1	ball	r	b	
+# ::edge	swing-02	time	reach-01	s	r	
+# ::edge	reach-01	ARG0	person	r	p	
+(s / swing-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b2 / baseball)))
+    :ARG1 (b3 / bat)
+    :time (r / reach-01
+        :ARG0 p
+        :ARG1 (b / ball)
+        :degree (u / up-to)))

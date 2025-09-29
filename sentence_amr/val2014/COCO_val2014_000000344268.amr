@@ -1,0 +1,57 @@
+# ::tok United States President Barack Obama gives a speech in front of American and Russian flags .
+# ::node	n	name	0-1
+# ::node	4	United	0-1
+# ::node	c	country	1-2
+# ::node	3	States	1-2
+# ::node	h	have-org-role-91	2-3
+# ::node	p2	president	2-3
+# ::node	p	person	3-4
+# ::node	n2	name	3-4
+# ::node	0	Barack	3-4
+# ::node	1	Obama	4-5
+# ::node	s	speak-01	7-8
+# ::node	i	in-front-of	9-10
+# ::node	a	and	12-13
+# ::node	c2	country	13-14
+# ::node	n3	name	13-14
+# ::node	2	Russia	13-14
+# ::node	f	flag	14-15
+# ::node	f2	flag	14-15
+# ::root	s	speak-01
+# ::edge	name	op1	United	n	4	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op2	States	n	3	
+# ::edge	have-org-role-91	ARG1	country	h	c	
+# ::edge	have-org-role-91	ARG2	president	h	p2	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	person	name	name	p	n2	
+# ::edge	name	op1	Barack	n2	0	
+# ::edge	name	op2	Obama	n2	1	
+# ::edge	speak-01	ARG0	person	s	p	
+# ::edge	speak-01	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	country	name	name	c2	n3	
+# ::edge	name	op1	Russia	n3	2	
+# ::edge	and	op1	flag	a	f	
+# ::edge	flag	mod	country	f	c	
+# ::edge	flag	mod	country	f2	c2	
+# ::edge	and	op2	flag	a	f2	
+(s / speak-01
+    :ARG0 (p / person
+        :name (n2 / name
+            :op1 "Barack"
+            :op2 "Obama")
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (c / country
+                :name (n / name
+                    :op1 "United"
+                    :op2 "States"))
+            :ARG2 (p2 / president)))
+    :location (i / in-front-of
+        :op1 (a / and
+            :op1 (f / flag
+                :mod c)
+            :op2 (f2 / flag
+                :mod (c2 / country
+                    :name (n3 / name
+                        :op1 "Russia"))))))

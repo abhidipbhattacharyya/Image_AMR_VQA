@@ -1,0 +1,27 @@
+# ::tok Tennis player watching ball fall at a competition .
+# ::node	m	multi-sentence	0-1
+# ::node	e	Tennis	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	w	watch-01	2-3
+# ::node	b	ball	3-4
+# ::node	f	fall-01	4-5
+# ::node	c	compete-01	7-8
+# ::root	m	multi-sentence
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	Tennis	p2	e	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	multi-sentence	snt2	watch-01	m	w	
+# ::edge	fall-01	ARG1	ball	f	b	
+# ::edge	watch-01	ARG1	fall-01	w	f	
+# ::edge	fall-01	subevent-of	compete-01	f	c	
+# ::edge	compete-01	ARG0	person	c	p	
+(m / multi-sentence
+    :snt2 (w / watch-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (e / Tennis)))
+        :ARG1 (f / fall-01
+            :ARG1 (b / ball)
+            :subevent-of (c / compete-01
+                :ARG0 p))))

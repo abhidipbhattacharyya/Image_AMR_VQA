@@ -1,0 +1,32 @@
+# ::tok A room of wood with a wood burning stove and a protection cage around it .
+# ::node	r	room	1-2
+# ::node	w	wood	3-4
+# ::node	h	have-03	4-5
+# ::node	b	burn-01	7-8
+# ::node	s	stove	8-9
+# ::node	a	and	9-10
+# ::node	p	protect-01	11-12
+# ::node	c	cage	12-13
+# ::node	a2	around	13-14
+# ::root	r	room
+# ::edge	room	consist-of	wood	r	w	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	burn-01	ARG1	wood	b	w	
+# ::edge	stove	ARG0-of	burn-01	s	b	
+# ::edge	and	op1	stove	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cage	ARG0-of	protect-01	c	p	
+# ::edge	and	op2	cage	a	c	
+# ::edge	cage	location	around	c	a2	
+# ::edge	around	op1	stove	a2	s	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / stove
+                :ARG0-of (b / burn-01
+                    :ARG1 (w / wood)))
+            :op2 (c / cage
+                :ARG0-of (p / protect-01)
+                :location (a2 / around
+                    :op1 s))))
+    :consist-of w)

@@ -1,0 +1,34 @@
+# ::tok A public restroom with two sinks and a paper towel and soap dispenser .
+# ::node	p2	public-02	1-2
+# ::node	r	restroom	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	s	sink-01	5-6
+# ::node	p	paper	8-9
+# ::node	t2	towel	9-10
+# ::node	a2	and	10-11
+# ::node	s2	soap	11-12
+# ::node	t	thing	12-13
+# ::node	a	administer-01	12-13
+# ::root	r	restroom
+# ::edge	restroom	ARG1-of	public-02	r	p2	
+# ::edge	restroom	ARG0-of	have-03	r	h	
+# ::edge	sink-01	quant	2	s	0	
+# ::edge	towel	consist-of	paper	t2	p	
+# ::edge	and	op2	towel	a2	t2	
+# ::edge	and	op1	sink-01	a2	s	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op3	thing	a2	t	
+# ::edge	thing	ARG0-of	administer-01	t	a	
+# ::edge	administer-01	ARG1	soap	a	s2	
+(r / restroom
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (s / sink-01
+                :quant 2)
+            :op2 (t2 / towel
+                :consist-of (p / paper))
+            :op3 (t / thing
+                :ARG0-of (a / administer-01
+                    :ARG1 (s2 / soap)))))
+    :ARG1-of (p2 / public-02))

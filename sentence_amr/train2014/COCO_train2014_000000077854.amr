@@ -1,0 +1,28 @@
+# ::tok Airport showing several planes arriving and a few parked .
+# ::node	a	airport	0-1
+# ::node	s2	show-01	1-2
+# ::node	s	several	2-3
+# ::node	p2	plane	3-4
+# ::node	p3	plane	3-4
+# ::node	a3	arrive-01	4-5
+# ::node	a2	and	5-6
+# ::node	f	few	7-8
+# ::node	p	park-01	8-9
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	airport	s2	a	
+# ::edge	plane	quant	several	p2	s	
+# ::edge	arrive-01	ARG1	plane	a3	p2	
+# ::edge	and	op1	arrive-01	a2	a3	
+# ::edge	show-01	ARG1	and	s2	a2	
+# ::edge	plane	quant	few	p3	f	
+# ::edge	and	op2	park-01	a2	p	
+# ::edge	park-01	ARG1	plane	p	p3	
+(s2 / show-01
+    :ARG0 (a / airport)
+    :ARG1 (a2 / and
+        :op1 (a3 / arrive-01
+            :ARG1 (p2 / plane
+                :quant (s / several)))
+        :op2 (p / park-01
+            :ARG1 (p3 / plane
+                :quant (f / few)))))

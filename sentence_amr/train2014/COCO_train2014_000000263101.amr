@@ -1,0 +1,31 @@
+# ::tok A train is passing through a residential area with houses , trees , cars and pedestrians .
+# ::node	t	train	1-2
+# ::node	p	pass-03	3-4
+# ::node	r	residential	6-7
+# ::node	a2	area	7-8
+# ::node	h	house	9-10
+# ::node	t2	tree	11-12
+# ::node	c	car	13-14
+# ::node	a	and	14-15
+# ::node	p2	person	15-16
+# ::node	w	walk-01	15-16
+# ::root	p	pass-03
+# ::edge	pass-03	ARG1	train	p	t	
+# ::edge	area	mod	residential	a2	r	
+# ::edge	pass-03	path	area	p	a2	
+# ::edge	and	op3	car	a	c	
+# ::edge	and	op2	tree	a	t2	
+# ::edge	and	op1	house	a	h	
+# ::edge	area	consist-of	and	a2	a	
+# ::edge	and	op4	person	a	p2	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+(p / pass-03
+    :ARG1 (t / train)
+    :path (a2 / area
+        :consist-of (a / and
+            :op1 (h / house)
+            :op2 (t2 / tree)
+            :op3 (c / car)
+            :op4 (p2 / person
+                :ARG0-of (w / walk-01)))
+        :mod (r / residential)))

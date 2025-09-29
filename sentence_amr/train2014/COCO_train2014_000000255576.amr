@@ -1,0 +1,27 @@
+# ::tok Train with a large series of cars behind it during the day .
+# ::node	t	train	0-1
+# ::node	l	large	3-4
+# ::node	s	series	4-5
+# ::node	c	car	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	b2	behind	7-8
+# ::node	c2	cause-01	9-10
+# ::node	d	day	11-12
+# ::root	t	train
+# ::edge	series	mod	large	s	l	
+# ::edge	car	quant	series	c	s	
+# ::edge	be-located-at-91	ARG1	car	b	c	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	train	b2	t	
+# ::edge	cause-01	ARG1	be-located-at-91	c2	b	
+# ::edge	train	ARG0-of	cause-01	t	c2	
+# ::edge	train	time	day	t	d	
+(t / train
+    :ARG0-of (c2 / cause-01
+        :ARG1 (b / be-located-at-91
+            :ARG1 (c / car
+                :quant (s / series
+                    :mod (l / large)))
+            :ARG2 (b2 / behind
+                :op1 t)))
+    :time (d / day))

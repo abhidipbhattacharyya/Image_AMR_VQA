@@ -1,0 +1,100 @@
+# ::tok In the foreground , two blurry blobs , In most of the shot a large expanse of water holds two wetsuit wearers , seen only from their torsos on up , and a third wetsuit wearer , riding a surfboard on a curl of wave .
+# ::node	f	foreground	2-3
+# ::node	a2	and	3-4
+# ::node	0	2	4-5
+# ::node	b2	blur-01	5-6
+# ::node	a	amount	6-7
+# ::node	b	beach	6-7
+# ::node	m2	multi-sentence	7-8
+# ::node	m	most	9-10
+# ::node	i	include-91	9-10
+# ::node	s2	shot	12-13
+# ::node	l	large	14-15
+# ::node	e	expanse	15-16
+# ::node	w	water	17-18
+# ::node	h	hold-01	18-19
+# ::node	1	2	19-20
+# ::node	w5	wetsuit	20-21
+# ::node	p	person	21-22
+# ::node	w3	wear-01	21-22
+# ::node	s	see-01	23-24
+# ::node	o	only	24-25
+# ::node	3	expressive	27-28
+# ::node	u	up	29-30
+# ::node	a3	and	31-32
+# ::node	o2	ordinal-entity	33-34
+# ::node	2	3	33-34
+# ::node	p2	person	35-36
+# ::node	w4	wear-01	35-36
+# ::node	r	ride-01	37-38
+# ::node	s3	surfboard	39-40
+# ::node	c	curl-up-02	42-43
+# ::node	w2	wave	44-45
+# ::root	m2	multi-sentence
+# ::edge	and	location	foreground	a2	f	
+# ::edge	amount	ARG1-of	blur-01	a	b2	
+# ::edge	amount	quant	2	a	0	
+# ::edge	and	op1	amount	a2	a	
+# ::edge	multi-sentence	snt1	and	m2	a2	
+# ::edge	most	ARG1-of	include-91	m	i	
+# ::edge	include-91	ARG2	shot	i	s2	
+# ::edge	shot	quant	most	s2	m	
+# ::edge	expanse	mod	large	e	l	
+# ::edge	expanse	consist-of	water	e	w	
+# ::edge	hold-01	ARG0	expanse	h	e	
+# ::edge	hold-01	location	and	h	a2	
+# ::edge	multi-sentence	snt2	hold-01	m2	h	
+# ::edge	person	quant	2	p	1	
+# ::edge	person	ARG0-of	wear-01	p	w3	
+# ::edge	wear-01	ARG1	wetsuit	w3	w5	
+# ::edge	person	ARG1-of	see-01	p	s	
+# ::edge	see-01	mod	only	s	o	
+# ::edge	up	mode	expressive	u	3	
+# ::edge	see-01	prep-from	up	s	u	
+# ::edge	and	op1	person	a3	p	
+# ::edge	hold-01	ARG1	and	h	a3	
+# ::edge	ordinal-entity	value	3	o2	2	
+# ::edge	person	ord	ordinal-entity	p2	o2	
+# ::edge	and	op2	person	a3	p2	
+# ::edge	person	ARG0-of	wear-01	p2	w4	
+# ::edge	wear-01	ARG1	wetsuit	w4	w5	
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	ride-01	ARG1	surfboard	r	s3	
+# ::edge	ride-01	ARG1-of	curl-up-02	r	c	
+# ::edge	curl-up-02	location	wave	c	w2	
+# ::edge	multi-sentence	rel	include-91	m2	i	
+# ::edge	multi-sentence	rel	beach	m2	b	
+(m2 / multi-sentence
+    :rel (i / include-91
+        :ARG2 (s2 / shot
+            :quant (m / most
+                :ARG1-of i)))
+    :rel (b / beach)
+    :snt1 (a2 / and
+        :location (f / foreground)
+        :op1 (a / amount
+            :quant 2
+            :ARG1-of (b2 / blur-01)))
+    :snt2 (h / hold-01
+        :ARG0 (e / expanse
+            :consist-of (w / water)
+            :mod (l / large))
+        :ARG1 (a3 / and
+            :op1 (p / person
+                :quant 2
+                :ARG0-of (w3 / wear-01
+                    :ARG1 (w5 / wetsuit))
+                :ARG1-of (s / see-01
+                    :mod (o / only)
+                    :prep-from (u / up
+                        :mode expressive)))
+            :op2 (p2 / person
+                :ARG0-of (w4 / wear-01
+                    :ARG1 w5)
+                :ARG0-of (r / ride-01
+                    :ARG1 (s3 / surfboard)
+                    :ARG1-of (c / curl-up-02
+                        :location (w2 / wave)))
+                :ord (o2 / ordinal-entity
+                    :value 3)))
+        :location a2))

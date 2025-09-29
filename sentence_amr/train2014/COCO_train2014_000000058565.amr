@@ -1,0 +1,44 @@
+# ::tok A Japan Airlines passenger jet climbs skyward with its wheels still down after takeoff .
+# ::node	n	name	1-2
+# ::node	1	Japan	1-2
+# ::node	c2	company	2-3
+# ::node	0	Airlines	2-3
+# ::node	p	passenger	3-4
+# ::node	j	jet	4-5
+# ::node	c	climb-01	5-6
+# ::node	s	skyward	6-7
+# ::node	w	wheel	9-10
+# ::node	s2	still	10-11
+# ::node	d	down-03	11-12
+# ::node	a	after	12-13
+# ::node	t	take-off-19	13-14
+# ::root	c	climb-01
+# ::edge	name	op1	Japan	n	1	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op2	Airlines	n	0	
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	mod	company	j	c2	
+# ::edge	climb-01	ARG0	jet	c	j	
+# ::edge	climb-01	direction	skyward	c	s	
+# ::edge	jet	part	wheel	j	w	
+# ::edge	down-03	mod	still	d	s2	
+# ::edge	down-03	ARG1	wheel	d	w	
+# ::edge	climb-01	manner	down-03	c	d	
+# ::edge	climb-01	time	after	c	a	
+# ::edge	after	op1	take-off-19	a	t	
+# ::edge	take-off-19	ARG1	jet	t	j	
+(c / climb-01
+    :ARG0 (j / jet
+        :mod (p / passenger)
+        :mod (c2 / company
+            :name (n / name
+                :op1 "Japan"
+                :op2 "Airlines"))
+        :part (w / wheel))
+    :direction (s / skyward)
+    :manner (d / down-03
+        :ARG1 w
+        :mod (s2 / still))
+    :time (a / after
+        :op1 (t / take-off-19
+            :ARG1 j)))

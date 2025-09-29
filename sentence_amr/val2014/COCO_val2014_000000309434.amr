@@ -1,0 +1,25 @@
+# ::tok Two planes fly next to each other with only the sky visible in the background .
+# ::node	0	2	0-1
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	n	next-to	3-4
+# ::node	o	only	8-9
+# ::node	s2	sky	10-11
+# ::node	s	see-01	11-12
+# ::node	b	background	14-15
+# ::root	f	fly-01
+# ::edge	plane	quant	2	p	0	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	fly-01	location	next-to	f	n	
+# ::edge	sky	mod	only	s2	o	
+# ::edge	fly-01	prep-with	sky	f	s2	
+# ::edge	sky	ARG1-of	see-01	s2	s	
+# ::edge	see-01	location	background	s	b	
+(f / fly-01
+    :ARG2 (p / plane
+        :quant 2)
+    :location (n / next-to)
+    :prep-with (s2 / sky
+        :ARG1-of (s / see-01
+            :location (b / background))
+        :mod (o / only)))

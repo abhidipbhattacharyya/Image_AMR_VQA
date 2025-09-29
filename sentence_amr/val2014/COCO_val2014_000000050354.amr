@@ -1,0 +1,43 @@
+# ::tok An old iron square steam train pulling gray passenger cars down a track past a bicyclist .
+# ::node	o	old	1-2
+# ::node	i	iron	2-3
+# ::node	s	square	3-4
+# ::node	s2	steam	4-5
+# ::node	t2	train	5-6
+# ::node	p4	pull-01	6-7
+# ::node	g	gray-02	7-8
+# ::node	p	passenger	8-9
+# ::node	c	car	9-10
+# ::node	d	down	10-11
+# ::node	t	track	12-13
+# ::node	p2	past	13-14
+# ::node	p3	person	15-16
+# ::node	b	bicycle-01	15-16
+# ::root	p4	pull-01
+# ::edge	train	mod	steam	t2	s2	
+# ::edge	train	mod	square	t2	s	
+# ::edge	train	consist-of	iron	t2	i	
+# ::edge	train	mod	old	t2	o	
+# ::edge	pull-01	ARG0	train	p4	t2	
+# ::edge	car	mod	passenger	c	p	
+# ::edge	car	ARG1-of	gray-02	c	g	
+# ::edge	pull-01	ARG1	car	p4	c	
+# ::edge	pull-01	direction	down	p4	d	
+# ::edge	pull-01	path	track	p4	t	
+# ::edge	pull-01	path	past	p4	p2	
+# ::edge	past	op1	person	p2	p3	
+# ::edge	person	ARG0-of	bicycle-01	p3	b	
+(p4 / pull-01
+    :ARG0 (t2 / train
+        :consist-of (i / iron)
+        :mod (s2 / steam)
+        :mod (s / square)
+        :mod (o / old))
+    :ARG1 (c / car
+        :ARG1-of (g / gray-02)
+        :mod (p / passenger))
+    :direction (d / down)
+    :path (t / track)
+    :path (p2 / past
+        :op1 (p3 / person
+            :ARG0-of (b / bicycle-01))))

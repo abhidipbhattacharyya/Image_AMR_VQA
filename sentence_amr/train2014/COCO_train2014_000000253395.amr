@@ -1,0 +1,28 @@
+# ::tok A room service pizza and an order of fries rest on a linen tablecloth .
+# ::node	r2	room	1-2
+# ::node	s	serve-02	2-3
+# ::node	p	pizza	3-4
+# ::node	a	and	4-5
+# ::node	o	order-02	6-7
+# ::node	f	fry-01	8-9
+# ::node	r	rest-01	9-10
+# ::node	l	linen	12-13
+# ::node	t	tablecloth	13-14
+# ::root	r	rest-01
+# ::edge	serve-02	ARG2	room	s	r2	
+# ::edge	pizza	ARG1-of	serve-02	p	s	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	and	op2	order-02	a	o	
+# ::edge	order-02	ARG1	fry-01	o	f	
+# ::edge	rest-01	ARG1	and	r	a	
+# ::edge	tablecloth	consist-of	linen	t	l	
+# ::edge	rest-01	ARG2	tablecloth	r	t	
+(r / rest-01
+    :ARG1 (a / and
+        :op1 (p / pizza
+            :ARG1-of (s / serve-02
+                :ARG2 (r2 / room)))
+        :op2 (o / order-02
+            :ARG1 (f / fry-01)))
+    :ARG2 (t / tablecloth
+        :consist-of (l / linen)))

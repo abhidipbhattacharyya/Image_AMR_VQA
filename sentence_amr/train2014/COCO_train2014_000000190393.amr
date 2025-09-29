@@ -1,0 +1,31 @@
+# ::tok The blue wheelchair with oversided " dumbbell " wheels sits atop the tiled floor .
+# ::node	b	blue	1-2
+# ::node	w2	wheelchair	2-3
+# ::node	o2	owe-01	4-5
+# ::node	o	over-03	4-5
+# ::node	d	dumbbell	6-7
+# ::node	w	wheel	8-9
+# ::node	s	sit-01	9-10
+# ::node	a	atop	10-11
+# ::node	t	tile-01	12-13
+# ::node	f	floor	13-14
+# ::root	s	sit-01
+# ::edge	wheelchair	mod	blue	w2	b	
+# ::edge	owe-01	ARG1-of	over-03	o2	o	
+# ::edge	owe-01	ARG1	dumbbell	o2	d	
+# ::edge	wheel	ARG0-of	owe-01	w	o2	
+# ::edge	wheelchair	part	wheel	w2	w	
+# ::edge	sit-01	ARG1	wheelchair	s	w2	
+# ::edge	sit-01	ARG2	atop	s	a	
+# ::edge	floor	ARG1-of	tile-01	f	t	
+# ::edge	atop	op1	floor	a	f	
+(s / sit-01
+    :ARG1 (w2 / wheelchair
+        :mod (b / blue)
+        :part (w / wheel
+            :ARG0-of (o2 / owe-01
+                :ARG1 (d / dumbbell)
+                :ARG1-of (o / over-03))))
+    :ARG2 (a / atop
+        :op1 (f / floor
+            :ARG1-of (t / tile-01))))

@@ -1,0 +1,35 @@
+# ::tok A coffee cup with a couple of tooth brushes and a tube of tooth paste .
+# ::node	c	coffee	1-2
+# ::node	c4	cup	2-3
+# ::node	c3	couple	5-6
+# ::node	t	tooth	7-8
+# ::node	b	brush	8-9
+# ::node	a	and	9-10
+# ::node	h	have-03	9-10
+# ::node	t2	tube	11-12
+# ::node	c2	contain-01	11-12
+# ::node	p	paste	14-15
+# ::root	a	and
+# ::edge	cup	mod	coffee	c4	c	
+# ::edge	brush	mod	tooth	b	t	
+# ::edge	brush	quant	couple	b	c3	
+# ::edge	and	op1	brush	a	b	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG1	brush	h	b	
+# ::edge	and	op2	tube	a	t2	
+# ::edge	tube	ARG0-of	contain-01	t2	c2	
+# ::edge	contain-01	ARG1	paste	c2	p	
+# ::edge	paste	mod	tooth	p	t	
+# ::edge	and	rel	cup	a	c4	
+(a / and
+    :op1 (b / brush
+        :quant (c3 / couple)
+        :mod (t / tooth))
+    :op2 (h / have-03
+        :ARG1 b)
+    :op2 (t2 / tube
+        :ARG0-of (c2 / contain-01
+            :ARG1 (p / paste
+                :mod t)))
+    :rel (c4 / cup
+        :mod (c / coffee)))

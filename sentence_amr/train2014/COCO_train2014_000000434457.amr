@@ -1,0 +1,19 @@
+# ::tok a night time setting with the lights on in the buildings
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	s	setting	3-4
+# ::node	l	light	6-7
+# ::node	o	on-01	7-8
+# ::node	b	building	10-11
+# ::root	s	setting
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	setting	time	date-entity	s	d	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	setting	time	on-01	s	o	
+# ::edge	setting	location	building	s	b	
+(s / setting
+    :location (b / building)
+    :time (d / date-entity
+        :dayperiod (n / night))
+    :time (o / on-01
+        :ARG1 (l / light)))

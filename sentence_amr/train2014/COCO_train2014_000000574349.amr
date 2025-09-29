@@ -1,0 +1,36 @@
+# ::tok Ostrich and zebra enclosed in fencing and just grazing surrounded by bare trees .
+# ::node	o	ostrich	0-1
+# ::node	a	and	1-2
+# ::node	z	zebra	2-3
+# ::node	c	confine-01	3-4
+# ::node	f	fencing	5-6
+# ::node	a2	and	6-7
+# ::node	j	just	7-8
+# ::node	g	graze-01	8-9
+# ::node	s	surround-01	9-10
+# ::node	b	bare-02	11-12
+# ::node	t	tree	12-13
+# ::root	a2	and
+# ::edge	and	op1	ostrich	a	o	
+# ::edge	and	op2	zebra	a	z	
+# ::edge	confine-01	ARG1	and	c	a	
+# ::edge	confine-01	ARG2	fencing	c	f	
+# ::edge	and	op1	confine-01	a2	c	
+# ::edge	graze-01	mod	just	g	j	
+# ::edge	and	op2	graze-01	a2	g	
+# ::edge	graze-01	ARG0	and	g	a	
+# ::edge	and	ARG2-of	surround-01	a	s	
+# ::edge	tree	ARG1-of	bare-02	t	b	
+# ::edge	surround-01	ARG1	tree	s	t	
+(a2 / and
+    :op1 (c / confine-01
+        :ARG1 (a / and
+            :ARG2-of (s / surround-01
+                :ARG1 (t / tree
+                    :ARG1-of (b / bare-02)))
+            :op1 (o / ostrich)
+            :op2 (z / zebra))
+        :ARG2 (f / fencing))
+    :op2 (g / graze-01
+        :ARG0 a
+        :mod (j / just)))

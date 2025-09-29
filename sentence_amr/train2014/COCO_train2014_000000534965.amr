@@ -1,0 +1,46 @@
+# ::tok The mall in Washington DC right next the the Washington Monument and kites flying
+# ::node	m	mall	1-2
+# ::node	c	city	3-4
+# ::node	n	name	3-4
+# ::node	2	Washington	3-4
+# ::node	0	DC	4-5
+# ::node	r	right	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	n3	next-to	6-7
+# ::node	n2	name	9-10
+# ::node	3	Washington	9-10
+# ::node	b2	building	10-11
+# ::node	1	Monument	10-11
+# ::node	a	and	11-12
+# ::node	o	Korea	12-13
+# ::node	f	fly-01	13-14
+# ::root	a	and
+# ::edge	mall	location	city	m	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Washington	n	2	
+# ::edge	name	op2	DC	n	0	
+# ::edge	be-located-at-91	ARG1	mall	b	m	
+# ::edge	be-located-at-91	ARG2	next-to	b	n3	
+# ::edge	next-to	mod	right	n3	r	
+# ::edge	name	op1	Washington	n2	3	
+# ::edge	building	name	name	b2	n2	
+# ::edge	next-to	op1	building	n3	b2	
+# ::edge	name	op2	Monument	n2	1	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	Korea	a	o	
+# ::edge	Korea	ARG1-of	fly-01	o	f	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (m / mall
+            :location (c / city
+                :name (n / name
+                    :op1 "Washington"
+                    :op2 "DC")))
+        :ARG2 (n3 / next-to
+            :mod (r / right)
+            :op1 (b2 / building
+                :name (n2 / name
+                    :op1 "Washington"
+                    :op2 "Monument"))))
+    :op2 (o / Korea
+        :ARG1-of (f / fly-01)))

@@ -1,0 +1,48 @@
+# ::tok The sink of a hotel bathroom with toiletries on one side and a coffee maker on the other side .
+# ::node	s4	sink	1-2
+# ::node	h2	hotel	4-5
+# ::node	b	bathroom	5-6
+# ::node	h	have-03	6-7
+# ::node	u	urinal	7-8
+# ::node	t	thing	8-9
+# ::node	o	one	9-10
+# ::node	s	side	10-11
+# ::node	s2	side	10-11
+# ::node	a	and	11-12
+# ::node	c	coffee	13-14
+# ::node	t2	thing	14-15
+# ::node	m	make-01	14-15
+# ::node	o2	other	17-18
+# ::node	s3	side	18-19
+# ::root	s4	sink
+# ::edge	bathroom	location	hotel	b	h2	
+# ::edge	sink	part-of	bathroom	s4	b	
+# ::edge	sink	ARG0-of	have-03	s4	h	
+# ::edge	thing	mod	urinal	t	u	
+# ::edge	side	mod	one	s	o	
+# ::edge	thing	location	side	t	s	
+# ::edge	and	op1	thing	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	thing	a	t2	
+# ::edge	thing	ARG0-of	make-01	t2	m	
+# ::edge	make-01	ARG1	coffee	m	c	
+# ::edge	side	mod	other	s3	o2	
+# ::edge	side	location	side	s2	s3	
+# ::edge	side	part-of	side	s3	s2	
+# ::edge	sink	rel	side	s4	s3	
+(s4 / sink
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / thing
+                :location (s / side
+                    :mod (o / one))
+                :mod (u / urinal))
+            :op2 (t2 / thing
+                :ARG0-of (m / make-01
+                    :ARG1 (c / coffee)))))
+    :part-of (b / bathroom
+        :location (h2 / hotel))
+    :rel (s3 / side
+        :mod (o2 / other)
+        :part-of (s2 / side
+            :location s3)))

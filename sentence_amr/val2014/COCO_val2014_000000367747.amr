@@ -1,0 +1,34 @@
+# ::tok Multiple sets of train tracks with a subway train traveling on one of the tracks .
+# ::node	m	multiple	0-1
+# ::node	s	set	1-2
+# ::node	t4	train	3-4
+# ::node	t	track	4-5
+# ::node	s2	subway	7-8
+# ::node	t5	train	8-9
+# ::node	t6	travel-01	9-10
+# ::node	0	1	11-12
+# ::node	i	include-91	12-13
+# ::node	t2	track	14-15
+# ::node	t3	track	14-15
+# ::root	t	track
+# ::edge	set	quant	multiple	s	m	
+# ::edge	track	mod	train	t	t4	
+# ::edge	track	consist-of	set	t	s	
+# ::edge	train	mod	subway	t5	s2	
+# ::edge	travel-01	ARG0	train	t6	t5	
+# ::edge	track	location-of	travel-01	t	t6	
+# ::edge	track	ARG1-of	include-91	t2	i	
+# ::edge	track	quant	1	t2	0	
+# ::edge	travel-01	ARG1	track	t6	t2	
+# ::edge	include-91	ARG2	track	i	t3	
+(t / track
+    :consist-of (s / set
+        :quant (m / multiple))
+    :location-of (t6 / travel-01
+        :ARG0 (t5 / train
+            :mod (s2 / subway))
+        :ARG1 (t2 / track
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (t3 / track))))
+    :mod (t4 / train))

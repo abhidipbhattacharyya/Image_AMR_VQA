@@ -1,0 +1,31 @@
+# ::tok A snowy day with a train on the tracks at a train stop that has no passengers waiting on the platform .
+# ::node	s	snowy-02	1-2
+# ::node	d	day	2-3
+# ::node	t2	train	5-6
+# ::node	t	track	8-9
+# ::node	t3	train	11-12
+# ::node	s2	stop-01	12-13
+# ::node	0	-	15-16
+# ::node	p	passenger	16-17
+# ::node	w	wait-01	17-18
+# ::node	p2	platform	20-21
+# ::root	d	day
+# ::edge	day	ARG2-of	snowy-02	d	s	
+# ::edge	day	time-of	train	d	t2	
+# ::edge	train	location	track	t2	t	
+# ::edge	stop-01	ARG1	train	s2	t3	
+# ::edge	train	location	stop-01	t2	s2	
+# ::edge	passenger	polarity	-	p	0	
+# ::edge	wait-01	ARG1	passenger	w	p	
+# ::edge	stop-01	location-of	wait-01	s2	w	
+# ::edge	wait-01	ARG2	platform	w	p2	
+(d / day
+    :ARG2-of (s / snowy-02)
+    :time-of (t2 / train
+        :location (t / track)
+        :location (s2 / stop-01
+            :ARG1 (t3 / train)
+            :location-of (w / wait-01
+                :ARG1 (p / passenger
+                    :polarity -)
+                :ARG2 (p2 / platform)))))

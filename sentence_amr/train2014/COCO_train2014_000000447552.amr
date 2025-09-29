@@ -1,0 +1,36 @@
+# ::tok A bathroom stall has red tiles , a toilet , trash can , and toilet seat covers .
+# ::node	b	bathroom	1-2
+# ::node	s2	stall	2-3
+# ::node	h	have-03	3-4
+# ::node	r	red-02	4-5
+# ::node	t	tile	5-6
+# ::node	t2	toilet	8-9
+# ::node	t3	trash	10-11
+# ::node	c	can	11-12
+# ::node	a	and	13-14
+# ::node	s	seat	15-16
+# ::node	c2	cover-02	16-17
+# ::root	h	have-03
+# ::edge	stall	mod	bathroom	s2	b	
+# ::edge	have-03	ARG0	stall	h	s2	
+# ::edge	tile	ARG1-of	red-02	t	r	
+# ::edge	can	purpose	trash	c	t3	
+# ::edge	and	op3	can	a	c	
+# ::edge	and	op2	toilet	a	t2	
+# ::edge	and	op1	tile	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	toilet	part	seat	t2	s	
+# ::edge	cover-02	ARG1	seat	c2	s	
+# ::edge	and	op4	cover-02	a	c2	
+(h / have-03
+    :ARG0 (s2 / stall
+        :mod (b / bathroom))
+    :ARG1 (a / and
+        :op1 (t / tile
+            :ARG1-of (r / red-02))
+        :op2 (t2 / toilet
+            :part (s / seat))
+        :op3 (c / can
+            :purpose (t3 / trash))
+        :op4 (c2 / cover-02
+            :ARG1 s)))

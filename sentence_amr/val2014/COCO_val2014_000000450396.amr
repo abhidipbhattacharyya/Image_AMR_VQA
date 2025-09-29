@@ -1,0 +1,33 @@
+# ::tok A man in a pink tie next to a woman with sunglasses on her head .
+# ::node	m	man	1-2
+# ::node	p	pink-04	4-5
+# ::node	t	tie	5-6
+# ::node	n	next-to	6-7
+# ::node	h	have-03	7-8
+# ::node	w	woman	9-10
+# ::node	h2	have-03	10-11
+# ::node	s	sunglasses	11-12
+# ::node	h3	head	14-15
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	tie	ARG1-of	pink-04	t	p	
+# ::edge	man	location	next-to	m	n	
+# ::edge	have-03	ARG1	tie	h	t	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	next-to	op1	woman	n	w	
+# ::edge	woman	ARG0-of	have-03	w	h2	
+# ::edge	have-03	ARG1	sunglasses	h2	s	
+# ::edge	woman	part	head	w	h3	
+# ::edge	have-03	location	head	h2	h3	
+# ::edge	event	mod	man	e	m	
+(e / event
+    :mod (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (t / tie
+                :ARG1-of (p / pink-04)))
+        :location (n / next-to
+            :op1 (w / woman
+                :ARG0-of (h2 / have-03
+                    :ARG1 (s / sunglasses)
+                    :location (h3 / head))
+                :part h3))))

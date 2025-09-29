@@ -1,0 +1,33 @@
+# ::tok Many vehicles are waiting for their green light , while the left lane has an arrow .
+# ::node	m	many	0-1
+# ::node	v	vehicle	1-2
+# ::node	w	wait-01	3-4
+# ::node	g	green-02	6-7
+# ::node	l3	light	7-8
+# ::node	c	contrast-01	9-10
+# ::node	l2	left-20	11-12
+# ::node	l	lane	12-13
+# ::node	h	have-03	13-14
+# ::node	a	arrow	15-16
+# ::root	c	contrast-01
+# ::edge	vehicle	quant	many	v	m	
+# ::edge	wait-01	ARG1	vehicle	w	v	
+# ::edge	light	ARG1-of	green-02	l3	g	
+# ::edge	wait-01	ARG2	light	w	l3	
+# ::edge	light	poss	vehicle	l3	v	
+# ::edge	contrast-01	ARG1	wait-01	c	w	
+# ::edge	lane	ARG1-of	left-20	l	l2	
+# ::edge	have-03	ARG0	lane	h	l	
+# ::edge	contrast-01	ARG2	have-03	c	h	
+# ::edge	have-03	ARG1	arrow	h	a	
+(c / contrast-01
+    :ARG1 (w / wait-01
+        :ARG1 (v / vehicle
+            :quant (m / many))
+        :ARG2 (l3 / light
+            :ARG1-of (g / green-02)
+            :poss v))
+    :ARG2 (h / have-03
+        :ARG0 (l / lane
+            :ARG1-of (l2 / left-20))
+        :ARG1 (a / arrow)))

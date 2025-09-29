@@ -1,0 +1,63 @@
+# ::tok A baseball player is tagged while trying to make it back to first base after trying to steal second while the batter looks on .
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	t	tag-01	4-5
+# ::node	t2	try-01	6-7
+# ::node	m	make-it-14	8-9
+# ::node	b	back	10-11
+# ::node	o	ordinal-entity	12-13
+# ::node	0	1	12-13
+# ::node	b2	base	13-14
+# ::node	a	after	14-15
+# ::node	t3	try-01	15-16
+# ::node	s	steal-01	17-18
+# ::node	o2	ordinal-entity	18-19
+# ::node	1	2	18-19
+# ::node	p2	person	21-22
+# ::node	b4	batter-01	21-22
+# ::node	l	look-01	22-23
+# ::root	t	tag-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b3	
+# ::edge	tag-01	ARG1	person	t	p	
+# ::edge	tag-01	time	try-01	t	t2	
+# ::edge	try-01	ARG0	person	t2	p	
+# ::edge	try-01	ARG1	make-it-14	t2	m	
+# ::edge	make-it-14	ARG0	person	m	p	
+# ::edge	make-it-14	direction	back	m	b	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	make-it-14	ARG1	base	m	b2	
+# ::edge	try-01	time	after	t2	a	
+# ::edge	after	op1	try-01	a	t3	
+# ::edge	try-01	ARG0	person	t3	p	
+# ::edge	try-01	ARG1	steal-01	t3	s	
+# ::edge	steal-01	ARG0	person	s	p	
+# ::edge	ordinal-entity	value	2	o2	1	
+# ::edge	person	ARG0-of	batter-01	p2	b4	
+# ::edge	look-01	ARG0	person	l	p2	
+# ::edge	tag-01	ARG1-of	look-01	t	l	
+# ::edge	tag-01	rel	ordinal-entity	t	o2	
+(t / tag-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b3 / baseball)))
+    :ARG1-of (l / look-01
+        :ARG0 (p2 / person
+            :ARG0-of (b4 / batter-01)))
+    :rel (o2 / ordinal-entity
+        :value 2)
+    :time (t2 / try-01
+        :ARG0 p
+        :ARG1 (m / make-it-14
+            :ARG0 p
+            :ARG1 (b2 / base
+                :ord (o / ordinal-entity
+                    :value 1))
+            :direction (b / back))
+        :time (a / after
+            :op1 (t3 / try-01
+                :ARG0 p
+                :ARG1 (s / steal-01
+                    :ARG0 p)))))

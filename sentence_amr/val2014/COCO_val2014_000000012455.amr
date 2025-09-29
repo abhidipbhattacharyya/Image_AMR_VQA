@@ -1,0 +1,40 @@
+# ::tok A lone person sits in a chair at one of three piers as the sun sits low in the distance .
+# ::node	l	lone	1-2
+# ::node	p	person	2-3
+# ::node	s	sit-01	3-4
+# ::node	c	chair	6-7
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	1	3	10-11
+# ::node	p2	pier	11-12
+# ::node	p3	pier	11-12
+# ::node	s3	sun	14-15
+# ::node	s2	sit-01	15-16
+# ::node	l2	low-04	16-17
+# ::node	d	distance	19-20
+# ::root	s	sit-01
+# ::edge	person	mod	lone	p	l	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	pier	ARG1-of	include-91	p2	i	
+# ::edge	pier	quant	1	p2	0	
+# ::edge	sit-01	location	pier	s	p2	
+# ::edge	pier	quant	3	p3	1	
+# ::edge	include-91	ARG2	pier	i	p3	
+# ::edge	sit-01	ARG1	sun	s2	s3	
+# ::edge	sit-01	time	sit-01	s	s2	
+# ::edge	sit-01	ARG2	low-04	s2	l2	
+# ::edge	low-04	location	distance	l2	d	
+(s / sit-01
+    :ARG1 (p / person
+        :mod (l / lone))
+    :ARG2 (c / chair)
+    :location (p2 / pier
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (p3 / pier
+                :quant 3)))
+    :time (s2 / sit-01
+        :ARG1 (s3 / sun)
+        :ARG2 (l2 / low-04
+            :location (d / distance))))

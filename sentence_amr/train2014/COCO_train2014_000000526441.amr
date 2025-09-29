@@ -1,0 +1,31 @@
+# ::tok This is the railroad crossing marked by alerting sign , cone , and traffic lights .
+# ::node	t	this	0-1
+# ::node	r	railroad	3-4
+# ::node	c2	cross-02	4-5
+# ::node	m	mark-02	5-6
+# ::node	a	alert-01	7-8
+# ::node	s	sign	8-9
+# ::node	a2	and	9-10
+# ::node	c	cone	10-11
+# ::node	t2	traffic	13-14
+# ::node	l	light	14-15
+# ::root	c2	cross-02
+# ::edge	cross-02	ARG1	railroad	c2	r	
+# ::edge	cross-02	domain	this	c2	t	
+# ::edge	cross-02	ARG1-of	mark-02	c2	m	
+# ::edge	and	op1	sign	a2	s	
+# ::edge	and	ARG0-of	alert-01	a2	a	
+# ::edge	mark-02	ARG0	and	m	a2	
+# ::edge	and	op2	cone	a2	c	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	and	op3	light	a2	l	
+(c2 / cross-02
+    :ARG1 (r / railroad)
+    :ARG1-of (m / mark-02
+        :ARG0 (a2 / and
+            :ARG0-of (a / alert-01)
+            :op1 (s / sign)
+            :op2 (c / cone)
+            :op3 (l / light
+                :mod (t2 / traffic))))
+    :domain (t / this))

@@ -1,0 +1,33 @@
+# ::tok An airplane parked in an airport apron area with various people standing in front of it .
+# ::node	a	airplane	1-2
+# ::node	p	park-01	2-3
+# ::node	a2	airport	5-6
+# ::node	a3	apron	6-7
+# ::node	a4	area	7-8
+# ::node	v	various	9-10
+# ::node	p2	person	10-11
+# ::node	s	stand-01	11-12
+# ::node	i	in-front-of	13-14
+# ::node	c	cause-01	16-17
+# ::root	p	park-01
+# ::edge	park-01	ARG1	airplane	p	a	
+# ::edge	apron	mod	airport	a3	a2	
+# ::edge	area	location-of	apron	a4	a3	
+# ::edge	park-01	ARG2	area	p	a4	
+# ::edge	person	mod	various	p2	v	
+# ::edge	stand-01	ARG0	person	s	p2	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	airplane	i	a	
+# ::edge	cause-01	ARG1	stand-01	c	s	
+# ::edge	airplane	ARG0-of	cause-01	a	c	
+(p / park-01
+    :ARG1 (a / airplane
+        :ARG0-of (c / cause-01
+            :ARG1 (s / stand-01
+                :ARG0 (p2 / person
+                    :mod (v / various))
+                :ARG2 (i / in-front-of
+                    :op1 a))))
+    :ARG2 (a4 / area
+        :location-of (a3 / apron
+            :mod (a2 / airport))))

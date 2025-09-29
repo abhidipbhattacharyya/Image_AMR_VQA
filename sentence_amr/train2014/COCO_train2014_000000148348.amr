@@ -1,0 +1,36 @@
+# ::tok Rows of green bananas on a tree with big green leaves .
+# ::node	m	multiple	0-1
+# ::node	d	distance-quantity	0-1
+# ::node	w	week	0-1
+# ::node	0	1	0-1
+# ::node	g	green-02	2-3
+# ::node	b	banana	3-4
+# ::node	b2	be-located-at-91	4-5
+# ::node	t	tree	6-7
+# ::node	h	have-03	7-8
+# ::node	b3	big	8-9
+# ::node	b4	branch	10-11
+# ::root	b2	be-located-at-91
+# ::edge	multiple	op1	distance-quantity	m	d	
+# ::edge	distance-quantity	unit	week	d	w	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	banana	quant	multiple	b	m	
+# ::edge	be-located-at-91	ARG1	banana	b2	b	
+# ::edge	be-located-at-91	ARG2	tree	b2	t	
+# ::edge	tree	ARG0-of	have-03	t	h	
+# ::edge	branch	mod	big	b4	b3	
+# ::edge	have-03	ARG1	branch	h	b4	
+# ::edge	green-02	ARG1	branch	g	b4	
+(b2 / be-located-at-91
+    :ARG1 (b / banana
+        :quant (m / multiple
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (w / week)))
+        :ARG1-of (g / green-02
+            :ARG1 (b4 / branch
+                :mod (b3 / big))))
+    :ARG2 (t / tree
+        :ARG0-of (h / have-03
+            :ARG1 b4)))

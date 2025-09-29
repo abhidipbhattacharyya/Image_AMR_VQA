@@ -1,0 +1,28 @@
+# ::tok A medical examination room with a bed for the patient and a stool for the doctor .
+# ::node	m	medicine	1-2
+# ::node	e	examine-01	2-3
+# ::node	r	room	3-4
+# ::node	h	have-03	4-5
+# ::node	b	bed	6-7
+# ::node	p	patient	9-10
+# ::node	a	and	10-11
+# ::node	s	stool	12-13
+# ::node	d	doctor	15-16
+# ::root	r	room
+# ::edge	room	purpose	examine-01	r	e	
+# ::edge	room	mod	medicine	r	m	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	beneficiary	patient	b	p	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	stool	a	s	
+# ::edge	stool	beneficiary	doctor	s	d	
+(r / room
+    :purpose (e / examine-01)
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bed
+                :beneficiary (p / patient))
+            :op2 (s / stool
+                :beneficiary (d / doctor))))
+    :mod (m / medicine))

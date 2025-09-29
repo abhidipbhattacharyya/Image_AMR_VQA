@@ -1,0 +1,30 @@
+# ::tok Three toilets in a room with stickers on two of the toilets .
+# ::node	1	3	0-1
+# ::node	t2	toilet	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	r	room	4-5
+# ::node	t	thing	6-7
+# ::node	s	stick-01	6-7
+# ::node	0	2	8-9
+# ::node	i	include-91	9-10
+# ::node	t3	toilet	11-12
+# ::root	b	be-located-at-91
+# ::edge	toilet	quant	3	t2	1	
+# ::edge	be-located-at-91	ARG1	toilet	b	t2	
+# ::edge	be-located-at-91	ARG2	room	b	r	
+# ::edge	room	location-of	thing	r	t	
+# ::edge	thing	ARG1-of	stick-01	t	s	
+# ::edge	include-91	ARG2	toilet	i	t2	
+# ::edge	toilet	ARG1-of	include-91	t3	i	
+# ::edge	toilet	quant	2	t3	0	
+# ::edge	stick-01	location	toilet	s	t3	
+(b / be-located-at-91
+    :ARG1 (t2 / toilet
+        :quant 3)
+    :ARG2 (r / room
+        :location-of (t / thing
+            :ARG1-of (s / stick-01
+                :location (t3 / toilet
+                    :quant 2
+                    :ARG1-of (i / include-91
+                        :ARG2 t2))))))

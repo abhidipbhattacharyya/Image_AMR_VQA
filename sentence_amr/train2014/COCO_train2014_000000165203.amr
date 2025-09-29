@@ -1,0 +1,28 @@
+# ::tok A street sign indicating pedestrians crossing , near a yellow light .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	i	indicate-01	3-4
+# ::node	p	person	4-5
+# ::node	w	walk-01	4-5
+# ::node	c	cross-02	5-6
+# ::node	n	near-02	7-8
+# ::node	y	yellow-02	9-10
+# ::node	l	light	10-11
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	indicate-01	ARG1	cross-02	i	c	
+# ::edge	sign	ARG1-of	near-02	s	n	
+# ::edge	light	ARG1-of	yellow-02	l	y	
+# ::edge	near-02	ARG2	light	n	l	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (c / cross-02
+            :ARG0 (p / person
+                :ARG0-of (w / walk-01))))
+    :ARG1-of (n / near-02
+        :ARG2 (l / light
+            :ARG1-of (y / yellow-02)))
+    :mod (s2 / street))

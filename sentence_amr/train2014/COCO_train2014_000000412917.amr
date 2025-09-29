@@ -1,0 +1,37 @@
+# ::tok A public restroom stall with toilet , grab bars , toilet paper dispenser , and mirrored walls .
+# ::node	p2	public-02	1-2
+# ::node	r2	restroom	2-3
+# ::node	s	stall	3-4
+# ::node	h	have-03	4-5
+# ::node	t	toilet	5-6
+# ::node	g	grab-01	7-8
+# ::node	b	bar	8-9
+# ::node	p	paper	11-12
+# ::node	d	dispenser	12-13
+# ::node	a	and	14-15
+# ::node	r	reflect-01	15-16
+# ::node	w	wall	16-17
+# ::root	s	stall
+# ::edge	restroom	ARG1-of	public-02	r2	p2	
+# ::edge	stall	location	restroom	s	r2	
+# ::edge	stall	ARG0-of	have-03	s	h	
+# ::edge	bar	ARG1-of	grab-01	b	g	
+# ::edge	dispenser	instrument-of	paper	d	p	
+# ::edge	and	op3	dispenser	a	d	
+# ::edge	and	op2	bar	a	b	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	wall	ARG1-of	reflect-01	w	r	
+# ::edge	and	op4	wall	a	w	
+(s / stall
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / toilet)
+            :op2 (b / bar
+                :ARG1-of (g / grab-01))
+            :op3 (d / dispenser
+                :instrument-of (p / paper))
+            :op4 (w / wall
+                :ARG1-of (r / reflect-01))))
+    :location (r2 / restroom
+        :ARG1-of (p2 / public-02)))

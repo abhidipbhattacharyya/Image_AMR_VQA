@@ -1,0 +1,55 @@
+# ::tok Biscuits , grilled chicken , and vegetables on a china plate on a table with a damask tablecloth and crystal candlesticks .
+# ::node	f	food-dish	0-1
+# ::node	n	name	0-1
+# ::node	1	biscuit	0-1
+# ::node	b	broil-01	2-3
+# ::node	c	chicken	3-4
+# ::node	a	and	5-6
+# ::node	v	vegetable	6-7
+# ::node	c2	country	9-10
+# ::node	n2	name	9-10
+# ::node	0	China	9-10
+# ::node	p	plate	10-11
+# ::node	t	table	13-14
+# ::node	h	have-03	14-15
+# ::node	d	damask	16-17
+# ::node	t2	tablecloth	17-18
+# ::node	a2	and	18-19
+# ::node	c3	crystal	19-20
+# ::node	o	ornament	20-21
+# ::root	a	and
+# ::edge	food-dish	name	name	f	n	
+# ::edge	name	op1	biscuit	n	1	
+# ::edge	chicken	ARG1-of	broil-01	c	b	
+# ::edge	and	op2	chicken	a	c	
+# ::edge	and	op1	food-dish	a	f	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	China	n2	0	
+# ::edge	plate	mod	country	p	c2	
+# ::edge	and	location	plate	a	p	
+# ::edge	and	location	table	a	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	tablecloth	mod	damask	t2	d	
+# ::edge	and	op1	tablecloth	a2	t2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	ornament	mod	crystal	o	c3	
+# ::edge	and	op2	ornament	a2	o	
+(a / and
+    :location (p / plate
+        :mod (c2 / country
+            :name (n2 / name
+                :op1 "China")))
+    :location (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (t2 / tablecloth
+                    :mod (d / damask))
+                :op2 (o / ornament
+                    :mod (c3 / crystal)))))
+    :op1 (f / food-dish
+        :name (n / name
+            :op1 "biscuit"))
+    :op2 (c / chicken
+        :ARG1-of (b / broil-01))
+    :op3 (v / vegetable))

@@ -1,0 +1,29 @@
+# ::tok Guy patiently waits on his surfboard for the best wave
+# ::node	g2	guy	0-1
+# ::node	p	patient-01	1-2
+# ::node	w	wait-01	2-3
+# ::node	s	surf-01	5-6
+# ::node	h	have-degree-91	8-9
+# ::node	g	good-02	8-9
+# ::node	m	most	8-9
+# ::node	w2	wave	9-10
+# ::root	w	wait-01
+# ::edge	wait-01	ARG2-of	patient-01	w	p	
+# ::edge	wait-01	ARG1	guy	w	g2	
+# ::edge	wait-01	location	surf-01	w	s	
+# ::edge	surf-01	ARG0	guy	s	g2	
+# ::edge	have-degree-91	ARG2	good-02	h	g	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	good-02	ARG1	wave	g	w2	
+# ::edge	wave	ARG1-of	have-degree-91	w2	h	
+# ::edge	wait-01	ARG2	wave	w	w2	
+(w / wait-01
+    :ARG1 (g2 / guy)
+    :ARG2 (w2 / wave
+        :ARG1-of (h / have-degree-91
+            :ARG2 (g / good-02
+                :ARG1 w2)
+            :ARG3 (m / most)))
+    :ARG2-of (p / patient-01)
+    :location (s / surf-01
+        :ARG0 g2))

@@ -1,0 +1,24 @@
+# ::tok People are sitting on benches as they watch people walk by .
+# ::node	p	person	0-1
+# ::node	s	sit-01	2-3
+# ::node	b	bench	4-5
+# ::node	w2	watch-01	7-8
+# ::node	p2	person	8-9
+# ::node	w	walk-01	9-10
+# ::node	b2	by	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	sit-01	time	watch-01	s	w2	
+# ::edge	watch-01	ARG0	person	w2	p	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	watch-01	ARG1	walk-01	w2	w	
+# ::edge	walk-01	ARG2	by	w	b2	
+(s / sit-01
+    :ARG1 (p / person)
+    :ARG2 (b / bench)
+    :time (w2 / watch-01
+        :ARG0 p
+        :ARG1 (w / walk-01
+            :ARG0 (p2 / person)
+            :ARG2 (b2 / by))))

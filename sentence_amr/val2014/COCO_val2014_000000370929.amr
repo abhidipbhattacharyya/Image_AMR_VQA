@@ -1,0 +1,25 @@
+# ::tok Silver passenger train coming to a train station in the morning .
+# ::node	g	gold	0-1
+# ::node	p	passenger	1-2
+# ::node	t	train	2-3
+# ::node	c	come-01	3-4
+# ::node	t2	train	6-7
+# ::node	s	station	7-8
+# ::node	d	date-entity	10-11
+# ::node	m	morning	10-11
+# ::root	c	come-01
+# ::edge	train	mod	passenger	t	p	
+# ::edge	train	mod	gold	t	g	
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	come-01	ARG4	station	c	s	
+# ::edge	come-01	time	date-entity	c	d	
+# ::edge	date-entity	dayperiod	morning	d	m	
+(c / come-01
+    :ARG1 (t / train
+        :mod (p / passenger)
+        :mod (g / gold))
+    :ARG4 (s / station
+        :mod (t2 / train))
+    :time (d / date-entity
+        :dayperiod (m / morning)))

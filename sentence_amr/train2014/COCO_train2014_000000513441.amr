@@ -1,0 +1,31 @@
+# ::tok Passenger jet , on runway , white with blue trim , USA AIRWAYS .
+# ::node	p	passenger	0-1
+# ::node	j	jet	1-2
+# ::node	r	runway	4-5
+# ::node	w	white-03	6-7
+# ::node	b	blue	8-9
+# ::node	t	trim	9-10
+# ::node	c	company	11-12
+# ::node	n	name	11-12
+# ::node	0	USA	11-12
+# ::node	1	airline	12-13
+# ::root	j	jet
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	location	runway	j	r	
+# ::edge	jet	ARG1-of	white-03	j	w	
+# ::edge	trim	mod	blue	t	b	
+# ::edge	jet	part	trim	j	t	
+# ::edge	jet	mod	company	j	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	USA	n	0	
+# ::edge	name	op2	airline	n	1	
+(j / jet
+    :ARG1-of (w / white-03)
+    :location (r / runway)
+    :mod (p / passenger)
+    :mod (c / company
+        :name (n / name
+            :op1 "USA"
+            :op2 "airline"))
+    :part (t / trim
+        :mod (b / blue)))

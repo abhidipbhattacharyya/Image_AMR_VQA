@@ -1,0 +1,31 @@
+# ::tok A dinner of a pork sandwich and french fries , with beer as a beverage .
+# ::node	d	dinner	1-2
+# ::node	p	pork	4-5
+# ::node	s	sandwich	5-6
+# ::node	a	and	6-7
+# ::node	c	country	7-8
+# ::node	n	name	7-8
+# ::node	0	France	7-8
+# ::node	f	fry-01	8-9
+# ::node	b	beer	11-12
+# ::node	b2	beverage	14-15
+# ::root	d	dinner
+# ::edge	sandwich	consist-of	pork	s	p	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	dinner	consist-of	and	d	a	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	and	accompanier	beer	a	b	
+# ::edge	beer	mod	beverage	b	b2	
+(d / dinner
+    :consist-of (a / and
+        :accompanier (b / beer
+            :mod (b2 / beverage))
+        :op1 (s / sandwich
+            :consist-of (p / pork))
+        :op2 (f / fry-01
+            :mod (c / country
+                :name (n / name
+                    :op1 "France")))))

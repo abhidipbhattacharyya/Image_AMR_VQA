@@ -1,0 +1,43 @@
+# ::tok one lady is on the computer one is digging through a backpack there 's a man on the phone and another man on a computer
+# ::node	o	one	0-1
+# ::node	l	lady	1-2
+# ::node	c	computer	5-6
+# ::node	o2	one	6-7
+# ::node	d	dig-01	8-9
+# ::node	t	through	9-10
+# ::node	b	backpack	11-12
+# ::node	m	man	15-16
+# ::node	p	phone	18-19
+# ::node	m3	multi-sentence	19-20
+# ::node	a	and	19-20
+# ::node	a2	another	20-21
+# ::node	m2	man	21-22
+# ::node	c2	computer	24-25
+# ::root	m3	multi-sentence
+# ::edge	lady	quant	one	l	o	
+# ::edge	lady	medium	computer	l	c	
+# ::edge	dig-01	ARG0	one	d	o2	
+# ::edge	dig-01	ARG2	through	d	t	
+# ::edge	through	op1	backpack	t	b	
+# ::edge	man	medium	phone	m	p	
+# ::edge	multi-sentence	snt2	dig-01	m3	d	
+# ::edge	multi-sentence	snt1	lady	m3	l	
+# ::edge	multi-sentence	snt3	and	m3	a	
+# ::edge	and	op1	man	a	m	
+# ::edge	man	mod	another	m2	a2	
+# ::edge	and	op2	man	a	m2	
+# ::edge	man	location	computer	m2	c2	
+(m3 / multi-sentence
+    :snt1 (l / lady
+        :quant (o / one)
+        :medium (c / computer))
+    :snt2 (d / dig-01
+        :ARG0 (o2 / one)
+        :ARG2 (t / through
+            :op1 (b / backpack)))
+    :snt3 (a / and
+        :op1 (m / man
+            :medium (p / phone))
+        :op2 (m2 / man
+            :location (c2 / computer)
+            :mod (a2 / another))))

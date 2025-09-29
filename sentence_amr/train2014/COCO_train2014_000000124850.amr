@@ -1,0 +1,32 @@
+# ::tok A cat is standing and looking forward underneath a bench where a woman is sleeping .
+# ::node	c	cat	1-2
+# ::node	s2	stand-01	3-4
+# ::node	a	and	4-5
+# ::node	l	look-01	5-6
+# ::node	f	forward	6-7
+# ::node	u	underneath	7-8
+# ::node	b	bench	9-10
+# ::node	w	woman	12-13
+# ::node	s	sleep-01	14-15
+# ::root	a	and
+# ::edge	stand-01	ARG1	cat	s2	c	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	cat	l	c	
+# ::edge	look-01	direction	forward	l	f	
+# ::edge	look-01	ARG1	underneath	l	u	
+# ::edge	stand-01	ARG2	underneath	s2	u	
+# ::edge	underneath	op1	bench	u	b	
+# ::edge	sleep-01	ARG0	woman	s	w	
+# ::edge	bench	location-of	sleep-01	b	s	
+(a / and
+    :op1 (s2 / stand-01
+        :ARG1 (c / cat)
+        :ARG2 (u / underneath
+            :op1 (b / bench
+                :location-of (s / sleep-01
+                    :ARG0 (w / woman)))))
+    :op2 (l / look-01
+        :ARG0 c
+        :ARG1 u
+        :direction (f / forward)))

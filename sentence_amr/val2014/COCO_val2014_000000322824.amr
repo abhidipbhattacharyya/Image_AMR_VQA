@@ -1,0 +1,28 @@
+# ::tok Traffic lights in front of large buildings with a one way sign .
+# ::node	t	traffic	0-1
+# ::node	l2	light	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	i	in-front-of	3-4
+# ::node	l	large	5-6
+# ::node	b2	building	6-7
+# ::node	h	have-03	7-8
+# ::node	o	one-way	10-11
+# ::node	s	sign	11-12
+# ::root	b	be-located-at-91
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	be-located-at-91	ARG1	light	b	l2	
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	building	mod	large	b2	l	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	have-03	ARG1	sign	h	s	
+(b / be-located-at-91
+    :ARG1 (l2 / light
+        :mod (t / traffic))
+    :ARG2 (i / in-front-of
+        :op1 (b2 / building
+            :ARG0-of (h / have-03
+                :ARG1 (s / sign
+                    :mod (o / one-way)))
+            :mod (l / large))))

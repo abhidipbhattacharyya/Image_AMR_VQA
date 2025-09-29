@@ -1,0 +1,25 @@
+# ::tok A pair of parking meters that take credit cards as well as change .
+# ::node	p	pair	1-2
+# ::node	p2	park-01	3-4
+# ::node	m	meter	4-5
+# ::node	t	take-01	6-7
+# ::node	c3	credit-01	7-8
+# ::node	c	card	8-9
+# ::node	a	and	9-10
+# ::node	c2	change	12-13
+# ::root	m	meter
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	meter	quant	pair	m	p	
+# ::edge	meter	ARG0-of	take-01	m	t	
+# ::edge	card	mod	credit-01	c	c3	
+# ::edge	and	op1	card	a	c	
+# ::edge	take-01	ARG1	and	t	a	
+# ::edge	and	op2	change	a	c2	
+(m / meter
+    :purpose (p2 / park-01)
+    :quant (p / pair)
+    :ARG0-of (t / take-01
+        :ARG1 (a / and
+            :op1 (c / card
+                :mod (c3 / credit-01))
+            :op2 (c2 / change))))

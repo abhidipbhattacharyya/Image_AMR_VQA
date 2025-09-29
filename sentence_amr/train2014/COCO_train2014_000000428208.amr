@@ -1,0 +1,31 @@
+# ::tok Containers filled with various kinds of food including beans potatoes and asparagus .
+# ::node	c	container	0-1
+# ::node	f	fill-01	1-2
+# ::node	v	various	3-4
+# ::node	k	kind	4-5
+# ::node	f2	food	6-7
+# ::node	i	include-01	7-8
+# ::node	b	bean	8-9
+# ::node	p	potato	9-10
+# ::node	a	and	10-11
+# ::node	a2	asparagus	11-12
+# ::root	c	container
+# ::edge	container	ARG1-of	fill-01	c	f	
+# ::edge	kind	mod	various	k	v	
+# ::edge	food	mod	kind	f2	k	
+# ::edge	fill-01	ARG2	food	f	f2	
+# ::edge	food	ARG2-of	include-01	f2	i	
+# ::edge	potato	consist-of	bean	p	b	
+# ::edge	and	op2	potato	a	p	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op1	asparagus	a	a2	
+(c / container
+    :ARG1-of (f / fill-01
+        :ARG2 (f2 / food
+            :ARG2-of (i / include-01
+                :ARG1 (a / and
+                    :op1 (a2 / asparagus)
+                    :op2 (p / potato
+                        :consist-of (b / bean))))
+            :mod (k / kind
+                :mod (v / various)))))

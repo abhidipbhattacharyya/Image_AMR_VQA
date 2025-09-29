@@ -1,0 +1,27 @@
+# ::tok Yellow taxi parked on the side of the road with a meter in front of it .
+# ::node	y	yellow-02	0-1
+# ::node	t	taxi	1-2
+# ::node	p	park-01	2-3
+# ::node	s	side	5-6
+# ::node	r	road	8-9
+# ::node	h	have-03	9-10
+# ::node	m	meter	11-12
+# ::node	i	in-front-of	13-14
+# ::root	p	park-01
+# ::edge	taxi	ARG1-of	yellow-02	t	y	
+# ::edge	park-01	ARG1	taxi	p	t	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	taxi	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	meter	h	m	
+# ::edge	meter	location	in-front-of	m	i	
+# ::edge	in-front-of	op1	taxi	i	t	
+(p / park-01
+    :ARG1 (t / taxi
+        :ARG0-of (h / have-03
+            :ARG1 (m / meter
+                :location (i / in-front-of
+                    :op1 t)))
+        :ARG1-of (y / yellow-02))
+    :ARG2 (s / side
+        :part-of (r / road)))

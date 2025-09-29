@@ -1,0 +1,34 @@
+# ::tok A gray Ford Crown Victoria parked on a city street at night .
+# ::node	g	gray-02	1-2
+# ::node	c	car-make	2-3
+# ::node	n	name	2-3
+# ::node	1	Ford	2-3
+# ::node	0	Crown	3-4
+# ::node	2	Victoria	4-5
+# ::node	p	park-01	5-6
+# ::node	c2	city	8-9
+# ::node	s	street	9-10
+# ::node	d	date-entity	11-12
+# ::node	n2	night	11-12
+# ::root	p	park-01
+# ::edge	car-make	ARG1-of	gray-02	c	g	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	Ford	n	1	
+# ::edge	name	op2	Crown	n	0	
+# ::edge	name	op3	Victoria	n	2	
+# ::edge	park-01	ARG1	car-make	p	c	
+# ::edge	street	mod	city	s	c2	
+# ::edge	park-01	location	street	p	s	
+# ::edge	park-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(p / park-01
+    :ARG1 (c / car-make
+        :name (n / name
+            :op1 "Ford"
+            :op2 "Crown"
+            :op3 "Victoria")
+        :ARG1-of (g / gray-02))
+    :location (s / street
+        :mod (c2 / city))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

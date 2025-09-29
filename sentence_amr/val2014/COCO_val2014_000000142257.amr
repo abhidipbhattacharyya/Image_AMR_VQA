@@ -1,0 +1,25 @@
+# ::tok A street with cars and traffic lights on it during day .
+# ::node	s	street	1-2
+# ::node	c	car	3-4
+# ::node	a	and	4-5
+# ::node	t	traffic	5-6
+# ::node	l	light	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	r	rate-entity-91	10-11
+# ::node	d	day	10-11
+# ::root	s	street
+# ::edge	and	op1	car	a	c	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op2	light	a	l	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	street	ARG2-of	be-located-at-91	s	b	
+# ::edge	be-located-at-91	time	rate-entity-91	b	r	
+# ::edge	rate-entity-91	ARG1	day	r	d	
+(s / street
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (a / and
+            :op1 (c / car)
+            :op2 (l / light
+                :mod (t / traffic)))
+        :time (r / rate-entity-91
+            :ARG1 (d / day))))

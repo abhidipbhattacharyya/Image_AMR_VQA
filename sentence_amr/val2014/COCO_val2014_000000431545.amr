@@ -1,0 +1,31 @@
+# ::tok Baseball player runs toward base while others stand around
+# ::node	b2	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	r	run-02	2-3
+# ::node	t	toward	3-4
+# ::node	b	base	4-5
+# ::node	c	contrast-01	5-6
+# ::node	o	other	6-7
+# ::node	s	stand-01	7-8
+# ::node	a	around	8-9
+# ::root	c	contrast-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	run-02	direction	toward	r	t	
+# ::edge	toward	op1	base	t	b	
+# ::edge	contrast-01	ARG1	run-02	c	r	
+# ::edge	stand-01	ARG1	other	s	o	
+# ::edge	contrast-01	ARG2	stand-01	c	s	
+# ::edge	stand-01	ARG2	around	s	a	
+(c / contrast-01
+    :ARG1 (r / run-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b2 / baseball)))
+        :direction (t / toward
+            :op1 (b / base)))
+    :ARG2 (s / stand-01
+        :ARG1 (o / other)
+        :ARG2 (a / around)))

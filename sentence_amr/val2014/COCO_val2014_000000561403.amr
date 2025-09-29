@@ -1,0 +1,49 @@
+# ::tok An office desk with a lot of technology including a flat screen PC monitor , a laptop computer , a tablet and an iPhone .
+# ::node	o	office	1-2
+# ::node	d	desk	2-3
+# ::node	l2	lot	5-6
+# ::node	t2	technology	7-8
+# ::node	i	include-01	8-9
+# ::node	f	flat-06	10-11
+# ::node	s	screen	11-12
+# ::node	c	computer	12-13
+# ::node	m	monitor	13-14
+# ::node	l	laptop	16-17
+# ::node	c2	computer	17-18
+# ::node	t	tablet	20-21
+# ::node	a	and	21-22
+# ::node	p	product	23-24
+# ::node	n	name	23-24
+# ::node	0	iPhone	23-24
+# ::root	d	desk
+# ::edge	desk	mod	office	d	o	
+# ::edge	technology	quant	lot	t2	l2	
+# ::edge	desk	prep-with	technology	d	t2	
+# ::edge	technology	ARG2-of	include-01	t2	i	
+# ::edge	screen	ARG1-of	flat-06	s	f	
+# ::edge	computer	mod	screen	c	s	
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	computer	mod	laptop	c2	l	
+# ::edge	and	op3	tablet	a	t	
+# ::edge	and	op2	computer	a	c2	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op4	product	a	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	iPhone	n	0	
+(d / desk
+    :mod (o / office)
+    :prep-with (t2 / technology
+        :quant (l2 / lot)
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (m / monitor
+                    :mod (c / computer
+                        :mod (s / screen
+                            :ARG1-of (f / flat-06))))
+                :op2 (c2 / computer
+                    :mod (l / laptop))
+                :op3 (t / tablet)
+                :op4 (p / product
+                    :name (n / name
+                        :op1 "iPhone"))))))

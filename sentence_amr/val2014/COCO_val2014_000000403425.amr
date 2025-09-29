@@ -1,0 +1,74 @@
+# ::tok A group of zebras ; four adults zebras and two young ones , from the side , walking in the same direction across the dirt with sparse grass in front and a few shrubs behind them .
+# ::node	g2	group	1-2
+# ::node	e	elephant	3-4
+# ::node	a5	animal	3-4
+# ::node	1	4	5-6
+# ::node	a2	adult	6-7
+# ::node	e2	elephant	7-8
+# ::node	a3	and	8-9
+# ::node	0	2	9-10
+# ::node	y	young	10-11
+# ::node	s2	side	15-16
+# ::node	w	walk-01	17-18
+# ::node	s	same-01	20-21
+# ::node	d	direction	21-22
+# ::node	a	across	22-23
+# ::node	d2	dirt	24-25
+# ::node	h	have-03	25-26
+# ::node	s3	sparse	26-27
+# ::node	g	grass	27-28
+# ::node	f2	front	29-30
+# ::node	a4	and	30-31
+# ::node	f	few	32-33
+# ::node	b2	bush	33-34
+# ::node	b	behind	34-35
+# ::root	w	walk-01
+# ::edge	group	consist-of	elephant	g2	e	
+# ::edge	elephant	quant	4	e	1	
+# ::edge	animal	mod	adult	a5	a2	
+# ::edge	animal	consist-of	elephant	a5	e2	
+# ::edge	and	op1	elephant	a3	e2	
+# ::edge	and	op2	animal	a3	a5	
+# ::edge	group	consist-of	and	g2	a3	
+# ::edge	animal	quant	2	a5	0	
+# ::edge	animal	mod	young	a5	y	
+# ::edge	group	source	side	g2	s2	
+# ::edge	walk-01	ARG0	group	w	g2	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	walk-01	direction	direction	w	d	
+# ::edge	walk-01	ARG2	across	w	a	
+# ::edge	across	op1	dirt	a	d2	
+# ::edge	elephant	ARG0-of	have-03	e	h	
+# ::edge	grass	mod	sparse	g	s3	
+# ::edge	grass	location	front	g	f2	
+# ::edge	and	op1	grass	a4	g	
+# ::edge	have-03	ARG1	and	h	a4	
+# ::edge	bush	quant	few	b2	f	
+# ::edge	and	op2	bush	a4	b2	
+# ::edge	bush	location	behind	b2	b	
+# ::edge	behind	op1	elephant	b	e	
+(w / walk-01
+    :ARG0 (g2 / group
+        :consist-of (e / elephant
+            :quant 4
+            :ARG0-of (h / have-03
+                :ARG1 (a4 / and
+                    :op1 (g / grass
+                        :location (f2 / front)
+                        :mod (s3 / sparse))
+                    :op2 (b2 / bush
+                        :quant (f / few)
+                        :location (b / behind
+                            :op1 e)))))
+        :consist-of (a3 / and
+            :op1 (e2 / elephant)
+            :op2 (a5 / animal
+                :quant 2
+                :consist-of e2
+                :mod (a2 / adult)
+                :mod (y / young)))
+        :source (s2 / side))
+    :ARG2 (a / across
+        :op1 (d2 / dirt))
+    :direction (d / direction
+        :ARG1-of (s / same-01)))

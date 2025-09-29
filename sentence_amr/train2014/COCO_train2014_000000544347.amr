@@ -1,0 +1,37 @@
+# ::tok There are two toilets in this room which have no toilet lids or toilet seats .
+# ::node	2	2	2-3
+# ::node	t2	toilet	3-4
+# ::node	t	this	5-6
+# ::node	r	room	6-7
+# ::node	h	have-03	8-9
+# ::node	0	-	9-10
+# ::node	1	-	9-10
+# ::node	b	bin	11-12
+# ::node	o	or	12-13
+# ::node	s	seat	14-15
+# ::root	t2	toilet
+# ::edge	toilet	quant	2	t2	2	
+# ::edge	room	mod	this	r	t	
+# ::edge	toilet	location	room	t2	r	
+# ::edge	toilet	ARG0-of	have-03	t2	h	
+# ::edge	have-03	polarity	-	h	1	
+# ::edge	bin	polarity	-	b	0	
+# ::edge	toilet	part	bin	t2	b	
+# ::edge	or	op1	bin	o	b	
+# ::edge	have-03	ARG1	or	h	o	
+# ::edge	or	op2	seat	o	s	
+# ::edge	seat	polarity	-	s	0	
+# ::edge	toilet	part	seat	t2	s	
+(t2 / toilet
+    :quant 2
+    :ARG0-of (h / have-03
+        :ARG1 (o / or
+            :op1 (b / bin
+                :polarity -)
+            :op2 (s / seat
+                :polarity -))
+        :polarity -)
+    :location (r / room
+        :mod (t / this))
+    :part b
+    :part s)

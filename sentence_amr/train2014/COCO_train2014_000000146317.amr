@@ -1,0 +1,39 @@
+# ::tok A set of three white and orange double decker buses parked in front of a building .
+# ::node	s	set	1-2
+# ::node	0	3	3-4
+# ::node	w	white-03	4-5
+# ::node	a	and	5-6
+# ::node	o	orange	6-7
+# ::node	d2	double	7-8
+# ::node	d	decker	8-9
+# ::node	b2	bus	9-10
+# ::node	b3	bus	9-10
+# ::node	p	park-01	10-11
+# ::node	i	in-front-of	12-13
+# ::node	b	building	15-16
+# ::root	p	park-01
+# ::edge	and	quant	3	a	0	
+# ::edge	set	consist-of	and	s	a	
+# ::edge	decker	mod	double	d	d2	
+# ::edge	bus	mod	decker	b2	d	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	bus	ARG1-of	white-03	b2	w	
+# ::edge	bus	mod	decker	b3	d	
+# ::edge	bus	mod	orange	b3	o	
+# ::edge	and	op2	bus	a	b3	
+# ::edge	park-01	ARG1	set	p	s	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	in-front-of	op1	building	i	b	
+(p / park-01
+    :ARG1 (s / set
+        :consist-of (a / and
+            :quant 3
+            :op1 (b2 / bus
+                :ARG1-of (w / white-03)
+                :mod (d / decker
+                    :mod (d2 / double)))
+            :op2 (b3 / bus
+                :mod d
+                :mod (o / orange))))
+    :ARG2 (i / in-front-of
+        :op1 (b / building)))

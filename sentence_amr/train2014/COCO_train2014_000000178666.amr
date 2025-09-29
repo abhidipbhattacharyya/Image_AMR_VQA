@@ -1,0 +1,46 @@
+# ::tok A city street at crosswalk with cars , buildings , and pedestrians , one of which is holding an open floral umbrella , on a wet day .
+# ::node	c2	city	1-2
+# ::node	s	street	2-3
+# ::node	c3	cross-02	4-5
+# ::node	c	car	6-7
+# ::node	b	building	8-9
+# ::node	a	and	10-11
+# ::node	p	person	11-12
+# ::node	w	walk-01	11-12
+# ::node	i	include-91	13-14
+# ::node	h	hold-01	17-18
+# ::node	o	open-01	19-20
+# ::node	f	floral	20-21
+# ::node	u	umbrella	21-22
+# ::node	w2	wet-01	25-26
+# ::node	d	day	26-27
+# ::root	s	street
+# ::edge	street	mod	city	s	c2	
+# ::edge	street	location	cross-02	s	c3	
+# ::edge	and	op2	building	a	b	
+# ::edge	and	op1	car	a	c	
+# ::edge	street	consist-of	and	s	a	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	ARG2-of	include-91	a	i	
+# ::edge	include-91	ARG1	hold-01	i	h	
+# ::edge	umbrella	mod	floral	u	f	
+# ::edge	umbrella	ARG1-of	open-01	u	o	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	day	ARG1-of	wet-01	d	w2	
+# ::edge	hold-01	time	day	h	d	
+(s / street
+    :consist-of (a / and
+        :ARG2-of (i / include-91
+            :ARG1 (h / hold-01
+                :ARG1 (u / umbrella
+                    :ARG1-of (o / open-01)
+                    :mod (f / floral))
+                :time (d / day
+                    :ARG1-of (w2 / wet-01))))
+        :op1 (c / car)
+        :op2 (b / building)
+        :op3 (p / person
+            :ARG0-of (w / walk-01)))
+    :location (c3 / cross-02)
+    :mod (c2 / city))

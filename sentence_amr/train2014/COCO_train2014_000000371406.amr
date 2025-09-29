@@ -1,0 +1,34 @@
+# ::tok Two cows sticking their heads through the bars of their enclosure to eat hay .
+# ::node	0	2	0-1
+# ::node	c	cow	1-2
+# ::node	s	stick-01	2-3
+# ::node	h2	head	4-5
+# ::node	t	through	5-6
+# ::node	b	bar	7-8
+# ::node	e2	enclosure	10-11
+# ::node	e	eat-01	12-13
+# ::node	h	hay	13-14
+# ::root	s	stick-01
+# ::edge	cow	quant	2	c	0	
+# ::edge	stick-01	ARG0	cow	s	c	
+# ::edge	stick-01	ARG1	head	s	h2	
+# ::edge	cow	part	head	c	h2	
+# ::edge	stick-01	ARG2	through	s	t	
+# ::edge	through	op1	bar	t	b	
+# ::edge	bar	part-of	enclosure	b	e2	
+# ::edge	enclosure	poss	cow	e2	c	
+# ::edge	stick-01	purpose	eat-01	s	e	
+# ::edge	eat-01	ARG0	cow	e	c	
+# ::edge	eat-01	ARG1	hay	e	h	
+(s / stick-01
+    :purpose (e / eat-01
+        :ARG0 (c / cow
+            :quant 2
+            :part (h2 / head))
+        :ARG1 (h / hay))
+    :ARG0 c
+    :ARG1 h2
+    :ARG2 (t / through
+        :op1 (b / bar
+            :part-of (e2 / enclosure
+                :poss c))))

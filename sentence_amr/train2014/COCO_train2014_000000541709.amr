@@ -1,0 +1,36 @@
+# ::tok Stop sign and sign forbidding cars to enter near a commercial business area
+# ::node	s3	stop-01	0-1
+# ::node	s	signal-07	1-2
+# ::node	a	and	2-3
+# ::node	s2	signal-07	3-4
+# ::node	f	forbid-01	4-5
+# ::node	c	car	5-6
+# ::node	e	enter-01	7-8
+# ::node	n	near-02	8-9
+# ::node	c2	commerce	10-11
+# ::node	b	business	11-12
+# ::node	a2	area	12-13
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	signal-07	ARG0-of	forbid-01	s2	f	
+# ::edge	forbid-01	ARG2	car	f	c	
+# ::edge	enter-01	ARG0	car	e	c	
+# ::edge	forbid-01	ARG1	enter-01	f	e	
+# ::edge	enter-01	ARG1-of	near-02	e	n	
+# ::edge	area	mod	business	a2	b	
+# ::edge	area	mod	commerce	a2	c2	
+# ::edge	near-02	ARG2	area	n	a2	
+(a / and
+    :op1 (s / signal-07
+        :ARG1 (s3 / stop-01))
+    :op2 (s2 / signal-07
+        :ARG0-of (f / forbid-01
+            :ARG1 (e / enter-01
+                :ARG0 (c / car)
+                :ARG1-of (n / near-02
+                    :ARG2 (a2 / area
+                        :mod (b / business)
+                        :mod (c2 / commerce))))
+            :ARG2 c)))

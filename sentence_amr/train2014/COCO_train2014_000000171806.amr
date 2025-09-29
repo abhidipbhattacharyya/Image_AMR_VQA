@@ -1,0 +1,30 @@
+# ::tok A diamond shaped sign is sitting in the middle of the street as cars are riding on the side .
+# ::node	d	diamond	1-2
+# ::node	s	shape-01	2-3
+# ::node	s3	sign	3-4
+# ::node	s4	sit-01	5-6
+# ::node	m	middle	8-9
+# ::node	s5	street	11-12
+# ::node	c	car	13-14
+# ::node	r	ride-01	15-16
+# ::node	s2	side	18-19
+# ::root	s4	sit-01
+# ::edge	shape-01	ARG2	diamond	s	d	
+# ::edge	sign	ARG1-of	shape-01	s3	s	
+# ::edge	sit-01	ARG1	sign	s4	s3	
+# ::edge	sit-01	ARG2	middle	s4	m	
+# ::edge	middle	part-of	street	m	s5	
+# ::edge	ride-01	ARG0	car	r	c	
+# ::edge	sit-01	time	ride-01	s4	r	
+# ::edge	ride-01	ARG1	side	r	s2	
+# ::edge	street	part	side	s5	s2	
+(s4 / sit-01
+    :ARG1 (s3 / sign
+        :ARG1-of (s / shape-01
+            :ARG2 (d / diamond)))
+    :ARG2 (m / middle
+        :part-of (s5 / street
+            :part (s2 / side)))
+    :time (r / ride-01
+        :ARG0 (c / car)
+        :ARG1 s2))

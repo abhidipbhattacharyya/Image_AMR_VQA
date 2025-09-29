@@ -1,0 +1,32 @@
+# ::tok A red boat on a river with a lit ferry boat in the distance .
+# ::node	r	red-02	1-2
+# ::node	b2	boat	2-3
+# ::node	r2	river	5-6
+# ::node	l	light-04	8-9
+# ::node	f	ferry-01	9-10
+# ::node	b3	boat	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	d	distance	13-14
+# ::node	a	and	14-15
+# ::root	a	and
+# ::edge	boat	ARG1-of	red-02	b2	r	
+# ::edge	boat	location	river	b2	r2	
+# ::edge	boat	ARG0-of	ferry-01	b3	f	
+# ::edge	boat	ARG1-of	light-04	b3	l	
+# ::edge	be-located-at-91	ARG1	boat	b	b3	
+# ::edge	be-located-at-91	ARG2	boat	b	b2	
+# ::edge	distance	ARG2-of	be-located-at-91	d	b	
+# ::edge	boat	location	distance	b2	d	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	and	op1	boat	a	b2	
+(a / and
+    :op1 (b2 / boat
+        :ARG1-of (r / red-02)
+        :location (r2 / river)
+        :location (d / distance
+            :ARG2-of (b / be-located-at-91
+                :ARG1 (b3 / boat
+                    :ARG0-of (f / ferry-01)
+                    :ARG1-of (l / light-04))
+                :ARG2 b2)))
+    :op2 b)

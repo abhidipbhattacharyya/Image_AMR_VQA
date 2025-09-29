@@ -1,0 +1,40 @@
+# ::tok A coast guard boat alongside a smaller boat with people in it in the ocean
+# ::node	n	name	1-2
+# ::node	0	Coast	1-2
+# ::node	m	military	2-3
+# ::node	1	Guard	2-3
+# ::node	b2	boat	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	a	alongside	4-5
+# ::node	h	have-degree-91	6-7
+# ::node	s	small	6-7
+# ::node	m2	more	6-7
+# ::node	b3	boat	7-8
+# ::node	p	person	9-10
+# ::node	o	ocean	14-15
+# ::root	b	be-located-at-91
+# ::edge	name	op1	Coast	n	0	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op2	Guard	n	1	
+# ::edge	boat	mod	military	b2	m	
+# ::edge	be-located-at-91	ARG1	boat	b	b2	
+# ::edge	be-located-at-91	ARG2	alongside	b	a	
+# ::edge	have-degree-91	ARG2	small	h	s	
+# ::edge	have-degree-91	ARG3	more	h	m2	
+# ::edge	boat	ARG1-of	have-degree-91	b3	h	
+# ::edge	alongside	op1	boat	a	b3	
+# ::edge	boat	location-of	person	b3	p	
+# ::edge	boat	location	ocean	b3	o	
+(b / be-located-at-91
+    :ARG1 (b2 / boat
+        :mod (m / military
+            :name (n / name
+                :op1 "Coast"
+                :op2 "Guard")))
+    :ARG2 (a / alongside
+        :op1 (b3 / boat
+            :ARG1-of (h / have-degree-91
+                :ARG2 (s / small)
+                :ARG3 (m2 / more))
+            :location (o / ocean)
+            :location-of (p / person))))

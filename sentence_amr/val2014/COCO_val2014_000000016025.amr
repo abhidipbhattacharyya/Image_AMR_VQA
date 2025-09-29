@@ -1,0 +1,39 @@
+# ::tok A cat laying on the top of a television with one of it 's legs hanging down over the screen .
+# ::node	c	cat	1-2
+# ::node	l	lay-01	2-3
+# ::node	t2	top	5-6
+# ::node	t	television	8-9
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	l2	leg	14-15
+# ::node	l3	leg	14-15
+# ::node	h	hang-01	15-16
+# ::node	d	down	16-17
+# ::node	o	over	17-18
+# ::node	s	screen	19-20
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	cat	l	c	
+# ::edge	lay-01	ARG2	top	l	t2	
+# ::edge	top	part-of	television	t2	t	
+# ::edge	include-91	ARG2	leg	i	l2	
+# ::edge	cat	part	leg	c	l2	
+# ::edge	leg	ARG1-of	include-91	l3	i	
+# ::edge	leg	quant	1	l3	0	
+# ::edge	hang-01	ARG1	leg	h	l3	
+# ::edge	television	ARG0-of	hang-01	t	h	
+# ::edge	hang-01	ARG2	down	h	d	
+# ::edge	down	location	over	d	o	
+# ::edge	over	op1	screen	o	s	
+(l / lay-01
+    :ARG1 (c / cat
+        :part (l2 / leg))
+    :ARG2 (t2 / top
+        :part-of (t / television
+            :ARG0-of (h / hang-01
+                :ARG1 (l3 / leg
+                    :quant 1
+                    :ARG1-of (i / include-91
+                        :ARG2 l2))
+                :ARG2 (d / down
+                    :location (o / over
+                        :op1 (s / screen)))))))

@@ -1,0 +1,29 @@
+# ::tok A nest full of hatch - lings mouths open waiting to be fed
+# ::node	n	nest	1-2
+# ::node	f2	full-09	2-3
+# ::node	h	hatch	4-5
+# ::node	l	lip	6-7
+# ::node	m	mouth	7-8
+# ::node	o	open-01	8-9
+# ::node	w	wait-01	9-10
+# ::node	f	feed-01	12-13
+# ::root	o	open-01
+# ::edge	nest	ARG1-of	full-09	n	f2	
+# ::edge	lip	part-of	hatch	l	h	
+# ::edge	mouth	part-of	lip	m	l	
+# ::edge	full-09	ARG2	mouth	f2	m	
+# ::edge	open-01	ARG1	nest	o	n	
+# ::edge	open-01	purpose	wait-01	o	w	
+# ::edge	wait-01	ARG1	nest	w	n	
+# ::edge	wait-01	ARG2	feed-01	w	f	
+# ::edge	feed-01	ARG2	nest	f	n	
+(o / open-01
+    :purpose (w / wait-01
+        :ARG1 (n / nest
+            :ARG1-of (f2 / full-09
+                :ARG2 (m / mouth
+                    :part-of (l / lip
+                        :part-of (h / hatch)))))
+        :ARG2 (f / feed-01
+            :ARG2 n))
+    :ARG1 n)

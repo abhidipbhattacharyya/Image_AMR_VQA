@@ -1,0 +1,49 @@
+# ::tok A set of train tracks with cargo train cars on one side and people on the other side near several buildings .
+# ::node	s	set	1-2
+# ::node	t2	train	3-4
+# ::node	t	track	4-5
+# ::node	h	have-03	5-6
+# ::node	c2	cargo	6-7
+# ::node	t3	train	7-8
+# ::node	c	car	8-9
+# ::node	o	one	10-11
+# ::node	s3	side	11-12
+# ::node	a	and	12-13
+# ::node	p	person	13-14
+# ::node	o2	other	16-17
+# ::node	s4	side	17-18
+# ::node	n	near-02	18-19
+# ::node	s2	several	19-20
+# ::node	b	building	20-21
+# ::root	s	set
+# ::edge	track	mod	train	t	t2	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	track	ARG0-of	have-03	t	h	
+# ::edge	train	mod	cargo	t3	c2	
+# ::edge	car	mod	train	c	t3	
+# ::edge	side	mod	one	s3	o	
+# ::edge	car	location	side	c	s3	
+# ::edge	and	op1	car	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	side	mod	other	s4	o2	
+# ::edge	person	location	side	p	s4	
+# ::edge	person	ARG1-of	near-02	p	n	
+# ::edge	building	quant	several	b	s2	
+# ::edge	near-02	ARG2	building	n	b	
+(s / set
+    :consist-of (t / track
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c / car
+                    :location (s3 / side
+                        :mod (o / one))
+                    :mod (t3 / train
+                        :mod (c2 / cargo)))
+                :op2 (p / person
+                    :ARG1-of (n / near-02
+                        :ARG2 (b / building
+                            :quant (s2 / several)))
+                    :location (s4 / side
+                        :mod (o2 / other)))))
+        :mod (t2 / train)))

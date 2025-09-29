@@ -1,0 +1,24 @@
+# ::tok Prone surfer paddling while waiting for a wave to break .
+# ::node	p3	prison	0-1
+# ::node	p2	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	p	paddle-01	2-3
+# ::node	w	wait-01	4-5
+# ::node	w2	wave	7-8
+# ::node	b	break-01	9-10
+# ::root	p	paddle-01
+# ::edge	person	mod	prison	p2	p3	
+# ::edge	person	ARG0-of	surf-01	p2	s	
+# ::edge	paddle-01	ARG0	person	p	p2	
+# ::edge	paddle-01	time	wait-01	p	w	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	break-01	ARG1	wave	b	w2	
+# ::edge	wait-01	ARG2	break-01	w	b	
+(p / paddle-01
+    :ARG0 (p2 / person
+        :ARG0-of (s / surf-01)
+        :mod (p3 / prison))
+    :time (w / wait-01
+        :ARG1 p2
+        :ARG2 (b / break-01
+            :ARG1 (w2 / wave))))

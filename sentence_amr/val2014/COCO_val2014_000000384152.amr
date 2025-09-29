@@ -1,0 +1,44 @@
+# ::tok A person dressed in a pink teddy bear costume standing on a street corner with a group of people waiting to cross the street .
+# ::node	p	person	1-2
+# ::node	d	dress-01	2-3
+# ::node	p3	pink-04	5-6
+# ::node	t	teddy	6-7
+# ::node	b	bear	7-8
+# ::node	c2	costume	8-9
+# ::node	s	stand-01	9-10
+# ::node	s2	street	12-13
+# ::node	c	corner	13-14
+# ::node	g	group	16-17
+# ::node	p2	person	18-19
+# ::node	w	wait-01	19-20
+# ::node	c3	cross-02	21-22
+# ::root	s	stand-01
+# ::edge	person	ARG1-of	dress-01	p	d	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	bear	ARG1-of	pink-04	b	p3	
+# ::edge	costume	mod	bear	c2	b	
+# ::edge	dress-01	ARG2	costume	d	c2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	corner	op1	street	c	s2	
+# ::edge	stand-01	ARG2	corner	s	c	
+# ::edge	person	accompanier	group	p	g	
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	group	ARG1-of	wait-01	g	w	
+# ::edge	wait-01	ARG2	cross-02	w	c3	
+# ::edge	cross-02	ARG0	group	c3	g	
+# ::edge	cross-02	ARG1	street	c3	s2	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG1-of (d / dress-01
+            :ARG2 (c2 / costume
+                :mod (b / bear
+                    :ARG1-of (p3 / pink-04)
+                    :mod (t / teddy))))
+        :accompanier (g / group
+            :ARG1-of (w / wait-01
+                :ARG2 (c3 / cross-02
+                    :ARG0 g
+                    :ARG1 (s2 / street)))
+            :consist-of (p2 / person)))
+    :ARG2 (c / corner
+        :op1 s2))

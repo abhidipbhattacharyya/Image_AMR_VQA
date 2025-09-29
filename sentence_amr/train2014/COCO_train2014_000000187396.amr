@@ -1,0 +1,36 @@
+# ::tok Two decker bus entering leaving Winchester Bus Station .
+# ::node	0	2	0-1
+# ::node	d	deck	1-2
+# ::node	b	bus	2-3
+# ::node	e	enter-01	3-4
+# ::node	l	leave-11	4-5
+# ::node	n	name	5-6
+# ::node	3	Winchester	5-6
+# ::node	1	Bus	6-7
+# ::node	s	station	7-8
+# ::node	2	Station	7-8
+# ::node	a	and	8-9
+# ::root	a	and
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	enter-01	ARG0	bus	e	b	
+# ::edge	leave-11	ARG0	bus	l	b	
+# ::edge	name	op1	Winchester	n	3	
+# ::edge	name	op2	Bus	n	1	
+# ::edge	station	name	name	s	n	
+# ::edge	leave-11	ARG1	station	l	s	
+# ::edge	name	op3	Station	n	2	
+# ::edge	and	op2	leave-11	a	l	
+# ::edge	and	op1	enter-01	a	e	
+(a / and
+    :op1 (e / enter-01
+        :ARG0 (b / bus
+            :mod (d / deck
+                :quant 2)))
+    :op2 (l / leave-11
+        :ARG0 b
+        :ARG1 (s / station
+            :name (n / name
+                :op1 "Winchester"
+                :op2 "Bus"
+                :op3 "Station"))))

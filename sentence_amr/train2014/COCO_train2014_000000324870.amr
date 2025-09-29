@@ -1,0 +1,22 @@
+# ::tok A train operator sitting in the front of a train ride .
+# ::node	t	train	1-2
+# ::node	p	person	2-3
+# ::node	o	operate-01	2-3
+# ::node	s	sit-01	3-4
+# ::node	f	front	6-7
+# ::node	t2	train	9-10
+# ::node	r	ride-01	10-11
+# ::root	s	sit-01
+# ::edge	person	ARG0-of	operate-01	p	o	
+# ::edge	operate-01	ARG1	train	o	t	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	front	s	f	
+# ::edge	ride-01	ARG1	train	r	t2	
+# ::edge	front	part-of	ride-01	f	r	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (o / operate-01
+            :ARG1 (t / train)))
+    :ARG2 (f / front
+        :part-of (r / ride-01
+            :ARG1 (t2 / train))))

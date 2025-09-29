@@ -1,0 +1,39 @@
+# ::tok The hanging traffic light shows green on one side and red on the other .
+# ::node	h	hanging-07	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	s	show-01	4-5
+# ::node	s2	show-01	4-5
+# ::node	g	green-02	5-6
+# ::node	o	one	7-8
+# ::node	s3	side	8-9
+# ::node	s4	side	8-9
+# ::node	a	and	9-10
+# ::node	r	red-02	10-11
+# ::node	o2	other	13-14
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	hanging-07	l	h	
+# ::edge	show-01	ARG0	light	s	l	
+# ::edge	show-01	ARG0	light	s2	l	
+# ::edge	show-01	ARG1	green-02	s	g	
+# ::edge	side	mod	one	s3	o	
+# ::edge	show-01	location	side	s	s3	
+# ::edge	show-01	location	side	s2	s4	
+# ::edge	and	op2	show-01	a	s2	
+# ::edge	and	op1	show-01	a	s	
+# ::edge	show-01	ARG1	red-02	s2	r	
+# ::edge	side	mod	other	s4	o2	
+(a / and
+    :op1 (s / show-01
+        :ARG0 (l / light
+            :ARG1-of (h / hanging-07)
+            :mod (t / traffic))
+        :ARG1 (g / green-02)
+        :location (s3 / side
+            :mod (o / one)))
+    :op2 (s2 / show-01
+        :ARG0 l
+        :ARG1 (r / red-02)
+        :location (s4 / side
+            :mod (o2 / other))))

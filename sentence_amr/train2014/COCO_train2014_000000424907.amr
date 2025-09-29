@@ -1,0 +1,25 @@
+# ::tok People standing at a bus stop with a bus on the curb at night
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	b	bus	4-5
+# ::node	s2	stop-01	5-6
+# ::node	b2	bus	8-9
+# ::node	c	curb	11-12
+# ::node	d	date-entity	13-14
+# ::node	n	night	13-14
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stop-01	ARG1	bus	s2	b	
+# ::edge	stand-01	ARG2	stop-01	s	s2	
+# ::edge	stop-01	accompanier	bus	s2	b2	
+# ::edge	bus	location	curb	b2	c	
+# ::edge	stand-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s / stand-01
+    :ARG1 (p / person)
+    :ARG2 (s2 / stop-01
+        :ARG1 (b / bus)
+        :accompanier (b2 / bus
+            :location (c / curb)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

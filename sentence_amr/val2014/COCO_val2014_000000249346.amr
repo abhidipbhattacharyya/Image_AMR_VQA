@@ -1,0 +1,52 @@
+# ::tok LARGE BLACK AND WHITE PANDA BEAR WALKING AROUND IN AN ENCLOSURE
+# ::node	r	race	0-1
+# ::node	1	race	0-1
+# ::node	b3	black-05	1-2
+# ::node	a	and	2-3
+# ::node	w2	white-02	3-4
+# ::node	n	name	4-5
+# ::node	f	foot	4-5
+# ::node	c	continent	4-5
+# ::node	n2	name	4-5
+# ::node	0	Navy	4-5
+# ::node	b	bear	5-6
+# ::node	b2	bear	5-6
+# ::node	w	walk-01	6-7
+# ::node	a2	around	7-8
+# ::node	i	include-01	10-11
+# ::root	w	walk-01
+# ::edge	race	ARG1-of	black-05	r	b3	
+# ::edge	and	op1	race	a	r	
+# ::edge	name	op2	race	n	1	
+# ::edge	race	name	name	r	n	
+# ::edge	race	mod	foot	r	f	
+# ::edge	continent	name	name	c	n2	
+# ::edge	name	op1	Navy	n2	0	
+# ::edge	bear	mod	continent	b	c	
+# ::edge	and	op1	bear	a	b	
+# ::edge	bear	mod	race	b	r	
+# ::edge	bear	mod	continent	b2	c	
+# ::edge	bear	ARG1-of	white-02	b2	w2	
+# ::edge	and	op2	bear	a	b2	
+# ::edge	walk-01	ARG0	and	w	a	
+# ::edge	walk-01	mod	race	w	r	
+# ::edge	walk-01	direction	around	w	a2	
+# ::edge	bear	ARG2-of	include-01	b2	i	
+(w / walk-01
+    :ARG0 (a / and
+        :op1 (r / race
+            :name (n / name
+                :op2 "race")
+            :ARG1-of (b3 / black-05)
+            :mod (f / foot))
+        :op1 (b / bear
+            :mod (c / continent
+                :name (n2 / name
+                    :op1 "Navy"))
+            :mod r)
+        :op2 (b2 / bear
+            :ARG1-of (w2 / white-02)
+            :ARG2-of (i / include-01)
+            :mod c))
+    :direction (a2 / around)
+    :mod r)

@@ -1,0 +1,36 @@
+# ::tok A room in a home that has a fireplace and a flat screen television hanging over the top of the fireplace .
+# ::node	r	room	1-2
+# ::node	h3	home	4-5
+# ::node	h2	have-03	6-7
+# ::node	f	fireplace	8-9
+# ::node	a	and	9-10
+# ::node	f2	flat	11-12
+# ::node	s	screen	12-13
+# ::node	t	television	13-14
+# ::node	h	hang-01	14-15
+# ::node	o	over	15-16
+# ::node	t2	top	17-18
+# ::root	r	room
+# ::edge	room	location	home	r	h3	
+# ::edge	home	ARG0-of	have-03	h3	h2	
+# ::edge	and	op1	fireplace	a	f	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	screen	mod	flat	s	f2	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op2	television	a	t	
+# ::edge	television	ARG1-of	hang-01	t	h	
+# ::edge	hang-01	ARG2	over	h	o	
+# ::edge	over	op1	top	o	t2	
+# ::edge	fireplace	part	top	f	t2	
+(r / room
+    :location (h3 / home
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (f / fireplace
+                    :part (t2 / top))
+                :op2 (t / television
+                    :ARG1-of (h / hang-01
+                        :ARG2 (o / over
+                            :op1 t2))
+                    :mod (s / screen
+                        :mod (f2 / flat)))))))

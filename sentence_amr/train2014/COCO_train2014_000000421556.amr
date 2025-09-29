@@ -1,0 +1,39 @@
+# ::tok TWO TIER BUS ON
+# ::node	0	2	0-1
+# ::node	b	bus	2-3
+# ::node	c	carry-on-02	3-4
+# ::root	c	carry-on-02
+# ::edge	bus	quant	2	b	0	
+# ::edge	carry-on-02	ARG0	bus	c	b	
+(c / carry-on-02
+    :ARG0 (b / bus
+        :quant 2))
+
+
+# ::tok A STREET GOING ONE WAY WITH ANOTHER BUS GOING THE OTHER
+# ::node	s	street	1-2
+# ::node	g	go-01	2-3
+# ::node	w	way	4-5
+# ::node	a	another	6-7
+# ::node	b	bus	7-8
+# ::node	g3	go-02	8-9
+# ::node	g2	go-01	8-9
+# ::node	o	other	10-11
+# ::root	g	go-01
+# ::edge	go-01	ARG1	street	g	s	
+# ::edge	bus	mod	another	b	a	
+# ::edge	go-02	ARG1	bus	g3	b	
+# ::edge	go-02	manner	way	g3	w	
+# ::edge	street	ARG0-of	go-02	s	g3	
+# ::edge	go-01	ARG1	bus	g2	b	
+# ::edge	street	ARG4-of	go-01	s	g2	
+# ::edge	go-01	mod	other	g2	o	
+(g / go-01
+    :ARG1 (s / street
+        :ARG0-of (g3 / go-02
+            :ARG1 (b / bus
+                :mod (a / another))
+            :manner (w / way))
+        :ARG4-of (g2 / go-01
+            :ARG1 b
+            :mod (o / other))))

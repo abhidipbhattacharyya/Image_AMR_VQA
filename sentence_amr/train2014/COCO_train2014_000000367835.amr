@@ -1,0 +1,40 @@
+# ::tok A room containing a bright red couch with white walls , books on a tall bookcase , and several plants .
+# ::node	r2	room	1-2
+# ::node	c	contain-01	2-3
+# ::node	b3	bright-02	4-5
+# ::node	r	red-02	5-6
+# ::node	c2	couch	6-7
+# ::node	w2	white-03	8-9
+# ::node	w	wall	9-10
+# ::node	b	book	11-12
+# ::node	t	tall	14-15
+# ::node	b2	bookcase	15-16
+# ::node	a	and	17-18
+# ::node	s	several	18-19
+# ::node	p	plant	19-20
+# ::root	r2	room
+# ::edge	room	ARG0-of	contain-01	r2	c	
+# ::edge	red-02	ARG1-of	bright-02	r	b3	
+# ::edge	couch	ARG1-of	red-02	c2	r	
+# ::edge	wall	ARG1-of	white-03	w	w2	
+# ::edge	couch	part	wall	c2	w	
+# ::edge	bookcase	mod	tall	b2	t	
+# ::edge	book	location	bookcase	b	b2	
+# ::edge	and	op2	book	a	b	
+# ::edge	and	op1	couch	a	c2	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	plant	quant	several	p	s	
+# ::edge	and	op3	plant	a	p	
+(r2 / room
+    :ARG0-of (c / contain-01
+        :ARG1 (a / and
+            :op1 (c2 / couch
+                :ARG1-of (r / red-02
+                    :ARG1-of (b3 / bright-02))
+                :part (w / wall
+                    :ARG1-of (w2 / white-03)))
+            :op2 (b / book
+                :location (b2 / bookcase
+                    :mod (t / tall)))
+            :op3 (p / plant
+                :quant (s / several)))))

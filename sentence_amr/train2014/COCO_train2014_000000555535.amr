@@ -1,0 +1,40 @@
+# ::tok A postcard shows a streamliner on the Florida East Coast with airplanes in the air .
+# ::node	p	postcard	1-2
+# ::node	s	show-01	2-3
+# ::node	s3	streamliner	4-5
+# ::node	n	name	7-8
+# ::node	s2	state	7-8
+# ::node	n2	name	7-8
+# ::node	2	Florida	7-8
+# ::node	1	East	8-9
+# ::node	c	country-region	9-10
+# ::node	0	Coast	9-10
+# ::node	h	have-03	10-11
+# ::node	a2	airplane	11-12
+# ::node	a	air	14-15
+# ::root	s	show-01
+# ::edge	show-01	ARG0	postcard	s	p	
+# ::edge	show-01	ARG1	streamliner	s	s3	
+# ::edge	state	name	name	s2	n2	
+# ::edge	name	op1	Florida	n2	2	
+# ::edge	name	op1	East	n	1	
+# ::edge	country-region	part-of	state	c	s2	
+# ::edge	country-region	name	name	c	n	
+# ::edge	streamliner	location	country-region	s3	c	
+# ::edge	name	op2	Coast	n	0	
+# ::edge	streamliner	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	airplane	h	a2	
+# ::edge	airplane	location	air	a2	a	
+(s / show-01
+    :ARG0 (p / postcard)
+    :ARG1 (s3 / streamliner
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / airplane
+                :location (a / air)))
+        :location (c / country-region
+            :name (n / name
+                :op1 "East"
+                :op2 "Coast")
+            :part-of (s2 / state
+                :name (n2 / name
+                    :op1 "Florida")))))

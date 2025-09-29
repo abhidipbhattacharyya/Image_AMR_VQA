@@ -1,0 +1,31 @@
+# ::tok Scissors are laying next to an opened pack of AA batteries .
+# ::node	v	variable	0-1
+# ::node	n	name	0-1
+# ::node	0	Scissors	0-1
+# ::node	l	lay-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	o	open-01	6-7
+# ::node	p	pack	7-8
+# ::node	a	act-02	9-10
+# ::node	a2	affirmative	9-10
+# ::node	b	battery	10-11
+# ::root	l	lay-01
+# ::edge	variable	name	name	v	n	
+# ::edge	name	op1	Scissors	n	0	
+# ::edge	lay-01	ARG1	variable	l	v	
+# ::edge	lay-01	ARG2	next-to	l	n2	
+# ::edge	pack	ARG1-of	open-01	p	o	
+# ::edge	next-to	op1	pack	n2	p	
+# ::edge	act-02	mod	affirmative	a	a2	
+# ::edge	battery	ARG0-of	act-02	b	a	
+# ::edge	pack	consist-of	battery	p	b	
+(l / lay-01
+    :ARG1 (v / variable
+        :name (n / name
+            :op1 "Scissors"))
+    :ARG2 (n2 / next-to
+        :op1 (p / pack
+            :ARG1-of (o / open-01)
+            :consist-of (b / battery
+                :ARG0-of (a / act-02
+                    :mod (a2 / affirmative))))))

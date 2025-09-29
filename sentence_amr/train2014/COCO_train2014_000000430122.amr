@@ -1,0 +1,27 @@
+# ::tok A group of drivers proceed through a street as the lights turn green
+# ::node	g2	group	1-2
+# ::node	p	person	3-4
+# ::node	d	drive-01	3-4
+# ::node	p2	proceed-01	4-5
+# ::node	s	street	7-8
+# ::node	l	light	10-11
+# ::node	t	turn-01	11-12
+# ::node	g	green-02	12-13
+# ::root	p2	proceed-01
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	proceed-01	ARG0	group	p2	g2	
+# ::edge	proceed-01	ARG1	street	p2	s	
+# ::edge	turn-01	ARG1	light	t	l	
+# ::edge	proceed-01	time	turn-01	p2	t	
+# ::edge	turn-01	ARG2	green-02	t	g	
+# ::edge	green-02	ARG1	light	g	l	
+(p2 / proceed-01
+    :ARG0 (g2 / group
+        :consist-of (p / person
+            :ARG0-of (d / drive-01)))
+    :ARG1 (s / street)
+    :time (t / turn-01
+        :ARG1 (l / light)
+        :ARG2 (g / green-02
+            :ARG1 l)))

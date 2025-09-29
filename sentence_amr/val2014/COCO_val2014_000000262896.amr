@@ -1,0 +1,36 @@
+# ::tok A dish with blue trim , on a black and red tray with food covered in brown gravy .
+# ::node	d	dish	1-2
+# ::node	b2	blue	3-4
+# ::node	t2	trim	4-5
+# ::node	b	black-04	8-9
+# ::node	a	and	9-10
+# ::node	r	red-02	10-11
+# ::node	t	tray	11-12
+# ::node	f	food	13-14
+# ::node	c	cover-02	14-15
+# ::node	b3	brown	16-17
+# ::node	g	gravy	17-18
+# ::root	d	dish
+# ::edge	trim	mod	blue	t2	b2	
+# ::edge	dish	prep-with	trim	d	t2	
+# ::edge	and	op1	dish	a	d	
+# ::edge	and	op2	red-02	a	r	
+# ::edge	tray	consist-of	and	t	a	
+# ::edge	dish	location	tray	d	t	
+# ::edge	tray	consist-of	food	t	f	
+# ::edge	food	ARG1-of	cover-02	f	c	
+# ::edge	gravy	mod	brown	g	b3	
+# ::edge	cover-02	ARG2	gravy	c	g	
+# ::edge	dish	rel	black-04	d	b	
+(d / dish
+    :location (t / tray
+        :consist-of (a / and
+            :op1 d
+            :op2 (r / red-02))
+        :consist-of (f / food
+            :ARG1-of (c / cover-02
+                :ARG2 (g / gravy
+                    :mod (b3 / brown)))))
+    :prep-with (t2 / trim
+        :mod (b2 / blue))
+    :rel (b / black-04))

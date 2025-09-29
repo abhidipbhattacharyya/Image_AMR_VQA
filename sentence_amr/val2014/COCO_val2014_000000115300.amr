@@ -1,0 +1,28 @@
+# ::tok A zebra grazing in a field behind a fence with a danger warning sign .
+# ::node	z	zebra	1-2
+# ::node	g	graze-01	2-3
+# ::node	f2	field	5-6
+# ::node	b	behind	6-7
+# ::node	f	fence	8-9
+# ::node	h	have-03	9-10
+# ::node	d	danger	11-12
+# ::node	w	warn-01	12-13
+# ::node	s	sign	13-14
+# ::root	g	graze-01
+# ::edge	graze-01	ARG0	zebra	g	z	
+# ::edge	graze-01	ARG1	field	g	f2	
+# ::edge	field	location	behind	f2	b	
+# ::edge	behind	op1	fence	b	f	
+# ::edge	field	ARG0-of	have-03	f2	h	
+# ::edge	warn-01	ARG1	danger	w	d	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	have-03	ARG1	sign	h	s	
+(g / graze-01
+    :ARG0 (z / zebra)
+    :ARG1 (f2 / field
+        :ARG0-of (h / have-03
+            :ARG1 (s / sign
+                :ARG0-of (w / warn-01
+                    :ARG1 (d / danger))))
+        :location (b / behind
+            :op1 (f / fence))))

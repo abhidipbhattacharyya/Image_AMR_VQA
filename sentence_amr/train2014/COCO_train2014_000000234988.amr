@@ -1,0 +1,25 @@
+# ::tok A speed limit sign posted on the side of a building on a metal pole .
+# ::node	s3	speed-01	1-2
+# ::node	l	limit-01	2-3
+# ::node	s2	sign	3-4
+# ::node	p2	post-01	4-5
+# ::node	s	side	7-8
+# ::node	b	building	10-11
+# ::node	m	metal	13-14
+# ::node	p	pole	14-15
+# ::root	p2	post-01
+# ::edge	limit-01	ARG1	speed-01	l	s3	
+# ::edge	sign	ARG0-of	limit-01	s2	l	
+# ::edge	post-01	ARG1	sign	p2	s2	
+# ::edge	post-01	ARG2	side	p2	s	
+# ::edge	side	part-of	building	s	b	
+# ::edge	pole	consist-of	metal	p	m	
+# ::edge	side	location	pole	s	p	
+(p2 / post-01
+    :ARG1 (s2 / sign
+        :ARG0-of (l / limit-01
+            :ARG1 (s3 / speed-01)))
+    :ARG2 (s / side
+        :location (p / pole
+            :consist-of (m / metal))
+        :part-of (b / building)))

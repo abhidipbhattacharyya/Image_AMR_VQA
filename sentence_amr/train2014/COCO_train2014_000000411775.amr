@@ -1,0 +1,40 @@
+# ::tok Cars travel down an interstate highway on the way to Baltimore and Washington .
+# ::node	c	car	0-1
+# ::node	t	travel-01	1-2
+# ::node	d	down	2-3
+# ::node	i	interstate	4-5
+# ::node	h	highway	5-6
+# ::node	w	way	8-9
+# ::node	c2	city	10-11
+# ::node	n	name	10-11
+# ::node	0	Baltimore	10-11
+# ::node	a	and	11-12
+# ::node	c3	city	12-13
+# ::node	n2	name	12-13
+# ::node	1	Washington	12-13
+# ::root	t	travel-01
+# ::edge	travel-01	ARG0	car	t	c	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	highway	mod	interstate	h	i	
+# ::edge	travel-01	ARG1	highway	t	h	
+# ::edge	travel-01	subevent-of	way	t	w	
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Baltimore	n	0	
+# ::edge	and	op1	city	a	c2	
+# ::edge	way	destination	and	w	a	
+# ::edge	and	op2	city	a	c3	
+# ::edge	city	name	name	c3	n2	
+# ::edge	name	op1	Washington	n2	1	
+(t / travel-01
+    :ARG0 (c / car)
+    :ARG1 (h / highway
+        :mod (i / interstate))
+    :direction (d / down)
+    :subevent-of (w / way
+        :destination (a / and
+            :op1 (c2 / city
+                :name (n / name
+                    :op1 "Baltimore"))
+            :op2 (c3 / city
+                :name (n2 / name
+                    :op1 "Washington")))))

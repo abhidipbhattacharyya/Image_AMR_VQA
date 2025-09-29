@@ -1,0 +1,36 @@
+# ::tok A group of adults and children sit around a rectangular shaped table , eating
+# ::node	g	group	1-2
+# ::node	a	adult	3-4
+# ::node	a2	and	4-5
+# ::node	c	child	5-6
+# ::node	s2	sit-01	6-7
+# ::node	a4	around	7-8
+# ::node	r	rectangular	9-10
+# ::node	s	shape-01	10-11
+# ::node	t	table	11-12
+# ::node	a3	and	12-13
+# ::node	e	eat-01	13-14
+# ::root	a3	and
+# ::edge	and	op1	adult	a2	a	
+# ::edge	group	consist-of	and	g	a2	
+# ::edge	and	op2	child	a2	c	
+# ::edge	sit-01	ARG1	group	s2	g	
+# ::edge	sit-01	ARG2	around	s2	a4	
+# ::edge	shape-01	ARG2	rectangular	s	r	
+# ::edge	table	ARG1-of	shape-01	t	s	
+# ::edge	around	op1	table	a4	t	
+# ::edge	and	op1	sit-01	a3	s2	
+# ::edge	and	op2	eat-01	a3	e	
+# ::edge	eat-01	ARG0	group	e	g	
+(a3 / and
+    :op1 (s2 / sit-01
+        :ARG1 (g / group
+            :consist-of (a2 / and
+                :op1 (a / adult)
+                :op2 (c / child)))
+        :ARG2 (a4 / around
+            :op1 (t / table
+                :ARG1-of (s / shape-01
+                    :ARG2 (r / rectangular)))))
+    :op2 (e / eat-01
+        :ARG0 g))

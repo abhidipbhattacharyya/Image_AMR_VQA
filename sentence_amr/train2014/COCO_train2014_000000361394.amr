@@ -1,0 +1,83 @@
+# ::tok An man and woman in formal attire , stand in the angle created between a pair of multi - paned windows and a linen - covered table that is holding a green and white bouquet and a plate with a white cake , as both cut into the cake .
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	w5	woman	3-4
+# ::node	f	formal	5-6
+# ::node	a4	attire-01	6-7
+# ::node	s	stand-01	8-9
+# ::node	a3	angle	11-12
+# ::node	c3	create-01	12-13
+# ::node	b	between	13-14
+# ::node	p	pair	15-16
+# ::node	m2	multiple	17-18
+# ::node	w3	window	19-20
+# ::node	w4	window	20-21
+# ::node	l	linen	23-24
+# ::node	c2	cover-02	25-26
+# ::node	t	table	26-27
+# ::node	h	hold-01	29-30
+# ::node	g	green-02	31-32
+# ::node	a2	and	32-33
+# ::node	w	white-03	33-34
+# ::node	b2	bouquet	34-35
+# ::node	b3	bouquet	34-35
+# ::node	p2	plate	37-38
+# ::node	w2	white-03	40-41
+# ::node	c	cake	41-42
+# ::node	c4	cut-01	45-46
+# ::root	s	stand-01
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w5	
+# ::edge	attire-01	ARG2	formal	a4	f	
+# ::edge	and	ARG1-of	attire-01	a	a4	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG2	angle	s	a3	
+# ::edge	angle	ARG1-of	create-01	a3	c3	
+# ::edge	create-01	location	between	c3	b	
+# ::edge	window	quant	multiple	w3	m2	
+# ::edge	window	mod	window	w4	w3	
+# ::edge	window	quant	pair	w4	p	
+# ::edge	between	op1	window	b	w4	
+# ::edge	cover-02	ARG2	linen	c2	l	
+# ::edge	table	ARG1-of	cover-02	t	c2	
+# ::edge	between	op2	table	b	t	
+# ::edge	table	ARG0-of	hold-01	t	h	
+# ::edge	hold-01	ARG1	and	h	a2	
+# ::edge	and	op1	bouquet	a2	b2	
+# ::edge	bouquet	ARG1-of	green-02	b2	g	
+# ::edge	bouquet	ARG1-of	white-03	b3	w	
+# ::edge	and	op2	bouquet	a2	b3	
+# ::edge	and	op3	plate	a2	p2	
+# ::edge	cake	ARG1-of	white-03	c	w2	
+# ::edge	plate	prep-with	cake	p2	c	
+# ::edge	cut-01	ARG1	cake	c4	c	
+# ::edge	stand-01	time	cut-01	s	c4	
+# ::edge	cut-01	ARG0	and	c4	a	
+(s / stand-01
+    :ARG1 (a / and
+        :ARG1-of (a4 / attire-01
+            :ARG2 (f / formal))
+        :op1 (m / man)
+        :op2 (w5 / woman))
+    :ARG2 (a3 / angle
+        :ARG1-of (c3 / create-01
+            :location (b / between
+                :op1 (w4 / window
+                    :quant (p / pair)
+                    :mod (w3 / window
+                        :quant (m2 / multiple)))
+                :op2 (t / table
+                    :ARG0-of (h / hold-01
+                        :ARG1 (a2 / and
+                            :op1 (b2 / bouquet
+                                :ARG1-of (g / green-02))
+                            :op2 (b3 / bouquet
+                                :ARG1-of (w / white-03))
+                            :op3 (p2 / plate
+                                :prep-with (c / cake
+                                    :ARG1-of (w2 / white-03)))))
+                    :ARG1-of (c2 / cover-02
+                        :ARG2 (l / linen))))))
+    :time (c4 / cut-01
+        :ARG0 a
+        :ARG1 c))

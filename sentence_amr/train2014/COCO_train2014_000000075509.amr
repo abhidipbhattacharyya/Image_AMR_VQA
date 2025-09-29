@@ -1,0 +1,28 @@
+# ::tok Some vehicle car beds are sitting in front of a large window indoors .
+# ::node	s2	some	0-1
+# ::node	v	vehicle	1-2
+# ::node	c	car	2-3
+# ::node	b	bed	3-4
+# ::node	s	sit-01	5-6
+# ::node	i	in-front-of	7-8
+# ::node	l	large	10-11
+# ::node	w	window	11-12
+# ::node	i2	indoors	12-13
+# ::root	s	sit-01
+# ::edge	car	mod	vehicle	c	v	
+# ::edge	bed	mod	car	b	c	
+# ::edge	bed	quant	some	b	s2	
+# ::edge	sit-01	ARG1	bed	s	b	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	window	mod	large	w	l	
+# ::edge	in-front-of	op1	window	i	w	
+# ::edge	window	location	indoors	w	i2	
+(s / sit-01
+    :ARG1 (b / bed
+        :quant (s2 / some)
+        :mod (c / car
+            :mod (v / vehicle)))
+    :ARG2 (i / in-front-of
+        :op1 (w / window
+            :location (i2 / indoors)
+            :mod (l / large))))

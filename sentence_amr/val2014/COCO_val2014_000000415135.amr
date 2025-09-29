@@ -1,0 +1,26 @@
+# ::tok some people sitting on a tram to take them to the top of the mountain
+# ::node	s2	some	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	t3	tram	5-6
+# ::node	t	take-01	7-8
+# ::node	t2	top	11-12
+# ::node	m	mountain	14-15
+# ::root	s	sit-01
+# ::edge	person	quant	some	p	s2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	tram	s	t3	
+# ::edge	take-01	ARG0	tram	t	t3	
+# ::edge	sit-01	purpose	take-01	s	t	
+# ::edge	take-01	ARG1	person	t	p	
+# ::edge	take-01	ARG3	top	t	t2	
+# ::edge	top	part-of	mountain	t2	m	
+(s / sit-01
+    :purpose (t / take-01
+        :ARG0 (t3 / tram)
+        :ARG1 (p / person
+            :quant (s2 / some))
+        :ARG3 (t2 / top
+            :part-of (m / mountain)))
+    :ARG1 p
+    :ARG2 t3)

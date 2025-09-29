@@ -1,0 +1,30 @@
+# ::tok A person in a silly shirt sits at a table so they can eat some pizza
+# ::node	p	person	1-2
+# ::node	s2	silly	4-5
+# ::node	s	shirt	5-6
+# ::node	s3	sit-01	6-7
+# ::node	t	table	9-10
+# ::node	p3	possible-01	12-13
+# ::node	e	eat-01	13-14
+# ::node	s4	some	14-15
+# ::node	p2	pizza	15-16
+# ::root	s3	sit-01
+# ::edge	shirt	mod	silly	s	s2	
+# ::edge	person	mod	shirt	p	s	
+# ::edge	sit-01	ARG1	person	s3	p	
+# ::edge	sit-01	ARG2	table	s3	t	
+# ::edge	sit-01	purpose	possible-01	s3	p3	
+# ::edge	possible-01	ARG1	eat-01	p3	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	pizza	quant	some	p2	s4	
+# ::edge	eat-01	ARG1	pizza	e	p2	
+(s3 / sit-01
+    :purpose (p3 / possible-01
+        :ARG1 (e / eat-01
+            :ARG0 (p / person
+                :mod (s / shirt
+                    :mod (s2 / silly)))
+            :ARG1 (p2 / pizza
+                :quant (s4 / some))))
+    :ARG1 p
+    :ARG2 (t / table))

@@ -1,0 +1,55 @@
+# ::tok A person wearing a helmet and some sort of skis with wheels is smiling as he lifts his ski sticks into the air ; there is no snow .
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	h	helmet	4-5
+# ::node	a2	and	5-6
+# ::node	s5	some	6-7
+# ::node	s6	sort	7-8
+# ::node	s	ski-01	9-10
+# ::node	w2	wheel	11-12
+# ::node	s3	smile-01	13-14
+# ::node	l	lift-01	16-17
+# ::node	s2	ski-01	18-19
+# ::node	s7	stick	19-20
+# ::node	a	air	22-23
+# ::node	m	multi-sentence	23-24
+# ::node	0	-	26-27
+# ::node	s4	snow-01	27-28
+# ::root	m	multi-sentence
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	and	op1	helmet	a2	h	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	sort	mod	some	s6	s5	
+# ::edge	ski-01	mod	sort	s	s6	
+# ::edge	and	op2	ski-01	a2	s	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	ski-01	part	wheel	s	w2	
+# ::edge	smile-01	ARG0	person	s3	p	
+# ::edge	smile-01	time	lift-01	s3	l	
+# ::edge	lift-01	ARG0	person	l	p	
+# ::edge	stick	instrument-of	ski-01	s7	s2	
+# ::edge	lift-01	ARG1	stick	l	s7	
+# ::edge	stick	poss	person	s7	p	
+# ::edge	lift-01	ARG4	air	l	a	
+# ::edge	multi-sentence	snt1	smile-01	m	s3	
+# ::edge	snow-01	polarity	-	s4	0	
+# ::edge	multi-sentence	snt2	snow-01	m	s4	
+(m / multi-sentence
+    :snt1 (s3 / smile-01
+        :ARG0 (p / person
+            :ARG0-of (w / wear-01
+                :ARG1 (a2 / and
+                    :op1 (h / helmet)
+                    :op2 (s / ski-01
+                        :ARG0 p
+                        :mod (s6 / sort
+                            :mod (s5 / some))
+                        :part (w2 / wheel)))))
+        :time (l / lift-01
+            :ARG0 p
+            :ARG1 (s7 / stick
+                :instrument-of (s2 / ski-01)
+                :poss p)
+            :ARG4 (a / air)))
+    :snt2 (s4 / snow-01
+        :polarity -))

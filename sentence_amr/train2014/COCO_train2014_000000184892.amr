@@ -1,0 +1,37 @@
+# ::tok Woman begins to crouch down as she rides the wave to not fall off surfboard
+# ::node	w2	woman	0-1
+# ::node	b	begin-01	1-2
+# ::node	c	crouch-01	3-4
+# ::node	d	down	4-5
+# ::node	r	ride-01	7-8
+# ::node	w	wave	9-10
+# ::node	0	-	11-12
+# ::node	f	fall-01	12-13
+# ::node	o	off	13-14
+# ::node	s	surfboard	14-15
+# ::root	b	begin-01
+# ::edge	begin-01	ARG0	woman	b	w2	
+# ::edge	begin-01	ARG1	crouch-01	b	c	
+# ::edge	crouch-01	ARG0	woman	c	w2	
+# ::edge	crouch-01	direction	down	c	d	
+# ::edge	crouch-01	time	ride-01	c	r	
+# ::edge	ride-01	ARG0	woman	r	w2	
+# ::edge	ride-01	ARG1	wave	r	w	
+# ::edge	fall-01	polarity	-	f	0	
+# ::edge	crouch-01	purpose	fall-01	c	f	
+# ::edge	fall-01	ARG1	woman	f	w2	
+# ::edge	fall-01	direction	off	f	o	
+# ::edge	fall-01	op1	surfboard	f	s	
+(b / begin-01
+    :ARG0 (w2 / woman)
+    :ARG1 (c / crouch-01
+        :purpose (f / fall-01
+            :ARG1 w2
+            :direction (o / off)
+            :op1 (s / surfboard)
+            :polarity -)
+        :ARG0 w2
+        :direction (d / down)
+        :time (r / ride-01
+            :ARG0 w2
+            :ARG1 (w / wave))))

@@ -1,0 +1,24 @@
+# ::tok a car is parked outside a building getting an electrical charge
+# ::node	c	car	1-2
+# ::node	p	park-01	3-4
+# ::node	o	outside	4-5
+# ::node	b	building	6-7
+# ::node	g	get-01	7-8
+# ::node	e	electricity	9-10
+# ::node	c2	charge-03	10-11
+# ::root	p	park-01
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	outside	p	o	
+# ::edge	outside	op1	building	o	b	
+# ::edge	car	ARG0-of	get-01	c	g	
+# ::edge	charge-03	ARG0	electricity	c2	e	
+# ::edge	get-01	ARG1	charge-03	g	c2	
+# ::edge	charge-03	ARG1	car	c2	c	
+(p / park-01
+    :ARG1 (c / car
+        :ARG0-of (g / get-01
+            :ARG1 (c2 / charge-03
+                :ARG0 (e / electricity)
+                :ARG1 c)))
+    :ARG2 (o / outside
+        :op1 (b / building)))

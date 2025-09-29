@@ -1,0 +1,31 @@
+# ::tok The ram guards the ewe closely to keep other males from mating with her .
+# ::node	r	ram	1-2
+# ::node	g	guard-01	2-3
+# ::node	e	ewe	4-5
+# ::node	c	close-10	5-6
+# ::node	k	keep-04	7-8
+# ::node	o	other	8-9
+# ::node	m	male	9-10
+# ::node	m2	mate-02	11-12
+# ::root	g	guard-01
+# ::edge	guard-01	ARG0	ram	g	r	
+# ::edge	guard-01	ARG1	ewe	g	e	
+# ::edge	guard-01	ARG1-of	close-10	g	c	
+# ::edge	guard-01	purpose	keep-04	g	k	
+# ::edge	keep-04	ARG0	ram	k	r	
+# ::edge	male	mod	other	m	o	
+# ::edge	keep-04	ARG1	male	k	m	
+# ::edge	mate-02	ARG0	male	m2	m	
+# ::edge	keep-04	ARG2	mate-02	k	m2	
+# ::edge	mate-02	ARG1	ewe	m2	e	
+(g / guard-01
+    :purpose (k / keep-04
+        :ARG0 (r / ram)
+        :ARG1 (m / male
+            :mod (o / other))
+        :ARG2 (m2 / mate-02
+            :ARG0 m
+            :ARG1 (e / ewe)))
+    :ARG0 r
+    :ARG1 e
+    :ARG1-of (c / close-10))

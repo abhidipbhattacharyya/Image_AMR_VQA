@@ -1,0 +1,33 @@
+# ::tok A tank with a soldier saluting from it drives down a street that is lined with people in uniform .
+# ::node	t	tank	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	soldier	4-5
+# ::node	s	salute-01	5-6
+# ::node	d2	drive-01	8-9
+# ::node	d	down	9-10
+# ::node	s3	street	11-12
+# ::node	l	line-01	14-15
+# ::node	p	person	16-17
+# ::node	u	uniform-01	18-19
+# ::root	d2	drive-01
+# ::edge	tank	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	soldier	h	s2	
+# ::edge	soldier	ARG0-of	salute-01	s2	s	
+# ::edge	salute-01	location	tank	s	t	
+# ::edge	drive-01	ARG0	tank	d2	t	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s3	
+# ::edge	street	ARG1-of	line-01	s3	l	
+# ::edge	line-01	ARG2	person	l	p	
+# ::edge	person	ARG1-of	uniform-01	p	u	
+(d2 / drive-01
+    :ARG0 (t / tank
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / soldier
+                :ARG0-of (s / salute-01
+                    :location t))))
+    :ARG1 (s3 / street
+        :ARG1-of (l / line-01
+            :ARG2 (p / person
+                :ARG1-of (u / uniform-01))))
+    :direction (d / down))

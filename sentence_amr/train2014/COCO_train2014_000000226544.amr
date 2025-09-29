@@ -1,0 +1,30 @@
+# ::tok 2 giraffes in a grassy enclosure , one sitting , one standing .
+# ::node	0	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	g2	grass	4-5
+# ::node	e	enclosure	5-6
+# ::node	s	sit-01	8-9
+# ::node	i	include-91	10-11
+# ::node	o	one	10-11
+# ::node	s2	stand-01	11-12
+# ::root	b	be-located-at-91
+# ::edge	giraffe	quant	2	g	0	
+# ::edge	be-located-at-91	ARG1	giraffe	b	g	
+# ::edge	enclosure	consist-of	grass	e	g2	
+# ::edge	be-located-at-91	ARG2	enclosure	b	e	
+# ::edge	giraffe	ARG1-of	sit-01	g	s	
+# ::edge	giraffe	ARG2-of	include-91	g	i	
+# ::edge	include-91	ARG1	one	i	o	
+# ::edge	stand-01	ARG1	one	s2	o	
+# ::edge	giraffe	ARG2-of	stand-01	g	s2	
+(b / be-located-at-91
+    :ARG1 (g / giraffe
+        :quant 2
+        :ARG1-of (s / sit-01)
+        :ARG2-of (i / include-91
+            :ARG1 (o / one))
+        :ARG2-of (s2 / stand-01
+            :ARG1 o))
+    :ARG2 (e / enclosure
+        :consist-of (g2 / grass)))

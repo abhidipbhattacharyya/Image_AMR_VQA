@@ -1,0 +1,21 @@
+# ::tok Luggage at an airport on a turn table waiting for pickup .
+# ::node	b	baggage	0-1
+# ::node	a	airport	3-4
+# ::node	b2	be-located-at-91	4-5
+# ::node	t	table	7-8
+# ::node	w	wait-01	8-9
+# ::node	p	pick-up-04	10-11
+# ::root	b2	be-located-at-91
+# ::edge	be-located-at-91	location	airport	b2	a	
+# ::edge	be-located-at-91	ARG1	baggage	b2	b	
+# ::edge	be-located-at-91	ARG2	table	b2	t	
+# ::edge	baggage	ARG1-of	wait-01	b	w	
+# ::edge	wait-01	ARG2	pick-up-04	w	p	
+# ::edge	pick-up-04	ARG1	baggage	p	b	
+(b2 / be-located-at-91
+    :ARG1 (b / baggage
+        :ARG1-of (w / wait-01
+            :ARG2 (p / pick-up-04
+                :ARG1 b)))
+    :ARG2 (t / table)
+    :location (a / airport))

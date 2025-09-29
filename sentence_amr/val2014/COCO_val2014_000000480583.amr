@@ -1,0 +1,37 @@
+# ::tok Trays and trays of fresh baked donuts including glazed , powdered and chocolate .
+# ::node	m	multiple	0-1
+# ::node	a	and	1-2
+# ::node	r	Trayvon	2-3
+# ::node	f	fresh-04	4-5
+# ::node	b	bake-01	5-6
+# ::node	d	donut	6-7
+# ::node	i	include-01	7-8
+# ::node	g	glaze-01	8-9
+# ::node	a2	and	9-10
+# ::node	p	powder-01	10-11
+# ::node	c	chocolate	12-13
+# ::node	c2	chocolate	12-13
+# ::root	a	and
+# ::edge	and	op1	multiple	a	m	
+# ::edge	multiple	op2	Trayvon	m	r	
+# ::edge	bake-01	ARG1-of	fresh-04	b	f	
+# ::edge	donut	ARG1-of	bake-01	d	b	
+# ::edge	multiple	consist-of	donut	m	d	
+# ::edge	donut	ARG2-of	include-01	d	i	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op1	chocolate	a2	c	
+# ::edge	chocolate	ARG1-of	glaze-01	c	g	
+# ::edge	chocolate	ARG1-of	powder-01	c2	p	
+# ::edge	and	op2	chocolate	a2	c2	
+(a / and
+    :op1 (m / multiple
+        :consist-of (d / donut
+            :ARG1-of (b / bake-01
+                :ARG1-of (f / fresh-04))
+            :ARG2-of (i / include-01
+                :ARG1 (a2 / and
+                    :op1 (c / chocolate
+                        :ARG1-of (g / glaze-01))
+                    :op2 (c2 / chocolate
+                        :ARG1-of (p / powder-01)))))
+        :op2 (r / Trayvon)))

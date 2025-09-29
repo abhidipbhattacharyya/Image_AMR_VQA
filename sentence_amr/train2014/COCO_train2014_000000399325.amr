@@ -1,0 +1,39 @@
+# ::tok a black and yellow bus driving down the bus with a double decker bus behind it .
+# ::node	b3	black-04	1-2
+# ::node	a	and	2-3
+# ::node	y	yellow-02	3-4
+# ::node	b4	bus	4-5
+# ::node	b5	bus	4-5
+# ::node	d3	drive-01	5-6
+# ::node	d2	down	6-7
+# ::node	0	2	11-12
+# ::node	d	deck	12-13
+# ::node	b6	bus	13-14
+# ::node	b	be-located-at-91	14-15
+# ::node	b2	behind	14-15
+# ::root	a	and
+# ::edge	and	op1	bus	a	b4	
+# ::edge	bus	ARG1-of	black-04	b4	b3	
+# ::edge	bus	ARG1-of	yellow-02	b5	y	
+# ::edge	and	op2	bus	a	b5	
+# ::edge	and	ARG0-of	drive-01	a	d3	
+# ::edge	drive-01	direction	down	d3	d2	
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b6	d	
+# ::edge	be-located-at-91	ARG1	bus	b	b6	
+# ::edge	bus	ARG2-of	be-located-at-91	b4	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	bus	b2	b4	
+(a / and
+    :ARG0-of (d3 / drive-01
+        :direction (d2 / down))
+    :op1 (b4 / bus
+        :ARG1-of (b3 / black-04)
+        :ARG2-of (b / be-located-at-91
+            :ARG1 (b6 / bus
+                :mod (d / deck
+                    :quant 2))
+            :ARG2 (b2 / behind
+                :op1 b4)))
+    :op2 (b5 / bus
+        :ARG1-of (y / yellow-02)))

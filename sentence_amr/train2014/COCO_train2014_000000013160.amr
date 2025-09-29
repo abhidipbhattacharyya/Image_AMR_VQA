@@ -1,0 +1,39 @@
+# ::tok A laptop setting on a small desk next to a glass box on a pedestal with electric wires coming from it .
+# ::node	l	laptop	1-2
+# ::node	s	set-01	2-3
+# ::node	s2	small	5-6
+# ::node	d	desk	6-7
+# ::node	n	next-to	7-8
+# ::node	g	glass	10-11
+# ::node	b	box	11-12
+# ::node	p	pedestal	14-15
+# ::node	h	have-03	15-16
+# ::node	e	electric	16-17
+# ::node	w	wire	17-18
+# ::node	c	come-01	18-19
+# ::root	s	set-01
+# ::edge	set-01	ARG1	laptop	s	l	
+# ::edge	desk	mod	small	d	s2	
+# ::edge	set-01	ARG2	desk	s	d	
+# ::edge	desk	location-of	next-to	d	n	
+# ::edge	box	consist-of	glass	b	g	
+# ::edge	next-to	op1	box	n	b	
+# ::edge	box	location	pedestal	b	p	
+# ::edge	box	ARG0-of	have-03	b	h	
+# ::edge	wire	mod	electric	w	e	
+# ::edge	have-03	ARG1	wire	h	w	
+# ::edge	wire	ARG1-of	come-01	w	c	
+# ::edge	come-01	ARG3	box	c	b	
+(s / set-01
+    :ARG1 (l / laptop)
+    :ARG2 (d / desk
+        :location-of (n / next-to
+            :op1 (b / box
+                :ARG0-of (h / have-03
+                    :ARG1 (w / wire
+                        :ARG1-of (c / come-01
+                            :ARG3 b)
+                        :mod (e / electric)))
+                :consist-of (g / glass)
+                :location (p / pedestal)))
+        :mod (s2 / small)))

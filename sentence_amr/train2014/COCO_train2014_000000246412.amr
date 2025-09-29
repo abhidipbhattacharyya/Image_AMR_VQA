@@ -1,0 +1,48 @@
+# ::tok A baseball player getting ready to bat while a catcher squats behind him preparing to catch the ball .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	r	ready-01	4-5
+# ::node	b3	bat-01	6-7
+# ::node	p2	person	9-10
+# ::node	c	catch-01	9-10
+# ::node	s	squat-01	10-11
+# ::node	b4	behind	11-12
+# ::node	p4	prepare-02	13-14
+# ::node	c2	catch-01	15-16
+# ::node	b	ball	17-18
+# ::node	a	and	18-19
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG2	bat-01	r	b3	
+# ::edge	bat-01	ARG0	person	b3	p	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	squat-01	ARG1	person	s	p2	
+# ::edge	squat-01	location	behind	s	b4	
+# ::edge	behind	op1	person	b4	p	
+# ::edge	squat-01	purpose	prepare-02	s	p4	
+# ::edge	prepare-02	ARG0	person	p4	p2	
+# ::edge	prepare-02	ARG2	catch-01	p4	c2	
+# ::edge	catch-01	ARG0	person	c2	p2	
+# ::edge	catch-01	ARG1	ball	c2	b	
+# ::edge	and	op2	squat-01	a	s	
+# ::edge	and	op1	ready-01	a	r	
+(a / and
+    :op1 (r / ready-01
+        :ARG1 (p / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (b2 / baseball)))
+        :ARG2 (b3 / bat-01
+            :ARG0 p))
+    :op2 (s / squat-01
+        :purpose (p4 / prepare-02
+            :ARG0 (p2 / person
+                :ARG0-of (c / catch-01))
+            :ARG2 (c2 / catch-01
+                :ARG0 p2
+                :ARG1 (b / ball)))
+        :ARG1 p2
+        :location (b4 / behind
+            :op1 p)))

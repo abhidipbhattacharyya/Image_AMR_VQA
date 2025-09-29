@@ -1,0 +1,101 @@
+# ::tok While a purple / blue sky with what looks like a kite or a loose para - sail floating in it covers most of a distance shot , the bottommost part shows grassy side banks and a body of water with a water skier being pulled .
+# ::node	c	contrast-01	0-1
+# ::node	p5	purple-02	2-3
+# ::node	s7	slash	3-4
+# ::node	b2	blue	4-5
+# ::node	s6	sky	5-6
+# ::node	h	have-03	6-7
+# ::node	t	thing	7-8
+# ::node	l	look-02	8-9
+# ::node	k	kite	11-12
+# ::node	o	or	12-13
+# ::node	l2	loose-04	14-15
+# ::node	p	para	15-16
+# ::node	s	sail	17-18
+# ::node	f	float-01	18-19
+# ::node	c2	cover-02	21-22
+# ::node	m	most	22-23
+# ::node	i	include-91	22-23
+# ::node	d	distance	25-26
+# ::node	s2	shoot-03	26-27
+# ::node	b4	bottommost	29-30
+# ::node	p2	part	30-31
+# ::node	s3	show-01	31-32
+# ::node	g	grass	32-33
+# ::node	s4	side	33-34
+# ::node	b	bank	34-35
+# ::node	a	and	35-36
+# ::node	b3	body	37-38
+# ::node	w	water	39-40
+# ::node	w2	water	42-43
+# ::node	p3	person	43-44
+# ::node	s5	ski-01	43-44
+# ::node	p4	pull-01	45-46
+# ::root	c	contrast-01
+# ::edge	slash	op1	purple-02	s7	p5	
+# ::edge	slash	op2	blue	s7	b2	
+# ::edge	sky	mod	slash	s6	s7	
+# ::edge	sky	ARG0-of	have-03	s6	h	
+# ::edge	have-03	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	look-02	t	l	
+# ::edge	or	op1	kite	o	k	
+# ::edge	look-02	ARG1	or	l	o	
+# ::edge	sail	mod	para	s	p	
+# ::edge	sail	ARG1-of	loose-04	s	l2	
+# ::edge	or	op2	sail	o	s	
+# ::edge	thing	ARG1-of	float-01	t	f	
+# ::edge	float-01	ARG2	sky	f	s6	
+# ::edge	cover-02	ARG2	slash	c2	s7	
+# ::edge	contrast-01	ARG2	cover-02	c	c2	
+# ::edge	cover-02	ARG1	most	c2	m	
+# ::edge	most	ARG1-of	include-91	m	i	
+# ::edge	shoot-03	extent	distance	s2	d	
+# ::edge	include-91	ARG2	shoot-03	i	s2	
+# ::edge	part	mod	bottommost	p2	b4	
+# ::edge	show-01	ARG0	part	s3	p2	
+# ::edge	contrast-01	ARG1	show-01	c	s3	
+# ::edge	bank	mod	side	b	s4	
+# ::edge	bank	consist-of	grass	b	g	
+# ::edge	and	op1	bank	a	b	
+# ::edge	show-01	ARG1	and	s3	a	
+# ::edge	and	op2	body	a	b3	
+# ::edge	body	consist-of	water	b3	w	
+# ::edge	person	ARG0-of	ski-01	p3	s5	
+# ::edge	ski-01	ARG1	water	s5	w2	
+# ::edge	pull-01	ARG1	person	p4	p3	
+# ::edge	body	location-of	pull-01	b3	p4	
+# ::edge	contrast-01	rel	have-03	c	h	
+(c / contrast-01
+    :ARG1 (s3 / show-01
+        :ARG0 (p2 / part
+            :mod (b4 / bottommost))
+        :ARG1 (a / and
+            :op1 (b / bank
+                :consist-of (g / grass)
+                :mod (s4 / side))
+            :op2 (b3 / body
+                :consist-of (w / water)
+                :location-of (p4 / pull-01
+                    :ARG1 (p3 / person
+                        :ARG0-of (s5 / ski-01
+                            :ARG1 (w2 / water)))))))
+    :ARG2 (c2 / cover-02
+        :ARG1 (m / most
+            :ARG1-of (i / include-91
+                :ARG2 (s2 / shoot-03
+                    :extent (d / distance))))
+        :ARG2 (s7 / slash
+            :op1 (p5 / purple-02)
+            :op2 (b2 / blue)))
+    :rel (h / have-03
+        :ARG1 (t / thing
+            :ARG0-of (l / look-02
+                :ARG1 (o / or
+                    :op1 (k / kite)
+                    :op2 (s / sail
+                        :ARG1-of (l2 / loose-04)
+                        :mod (p / para))))
+            :ARG1-of (f / float-01
+                :ARG2 (s6 / sky
+                    :ARG0-of h
+                    :mod s7)))))

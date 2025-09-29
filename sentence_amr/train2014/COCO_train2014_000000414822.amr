@@ -1,0 +1,24 @@
+# ::tok People wait for their baggage at an airport baggage claim area .
+# ::node	p	person	0-1
+# ::node	w	wait-01	1-2
+# ::node	b	baggage	4-5
+# ::node	a	airport	7-8
+# ::node	b2	baggage	8-9
+# ::node	c	claim-02	9-10
+# ::node	a2	area	10-11
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	baggage	w	b	
+# ::edge	baggage	poss	person	b	p	
+# ::edge	claim-02	ARG1	baggage	c	b2	
+# ::edge	claim-02	ARG4	airport	c	a	
+# ::edge	area	location-of	claim-02	a2	c	
+# ::edge	wait-01	location	area	w	a2	
+(w / wait-01
+    :ARG1 (p / person)
+    :ARG2 (b / baggage
+        :poss p)
+    :location (a2 / area
+        :location-of (c / claim-02
+            :ARG1 (b2 / baggage)
+            :ARG4 (a / airport))))

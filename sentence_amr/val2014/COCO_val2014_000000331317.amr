@@ -1,0 +1,33 @@
+# ::tok A clock set up in front of windows where you can see the shadows of people inside .
+# ::node	c	clock	1-2
+# ::node	s2	set-up-03	2-3
+# ::node	i	in-front-of	5-6
+# ::node	w	window	7-8
+# ::node	y	you	9-10
+# ::node	p2	possible-01	10-11
+# ::node	s	see-01	11-12
+# ::node	s3	shadow	13-14
+# ::node	p	person	15-16
+# ::node	i2	inside	16-17
+# ::root	s2	set-up-03
+# ::edge	set-up-03	ARG1	clock	s2	c	
+# ::edge	set-up-03	location	in-front-of	s2	i	
+# ::edge	in-front-of	op1	window	i	w	
+# ::edge	window	location-of	possible-01	w	p2	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	see-01	ARG1	shadow	s	s3	
+# ::edge	shadow	poss	person	s3	p	
+# ::edge	person	location	inside	p	i2	
+# ::edge	inside	op1	window	i2	w	
+(s2 / set-up-03
+    :ARG1 (c / clock)
+    :location (i / in-front-of
+        :op1 (w / window
+            :location-of (p2 / possible-01
+                :ARG1 (s / see-01
+                    :ARG0 (y / you)
+                    :ARG1 (s3 / shadow
+                        :poss (p / person
+                            :location (i2 / inside
+                                :op1 w))))))))

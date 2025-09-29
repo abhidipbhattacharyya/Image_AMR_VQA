@@ -1,0 +1,33 @@
+# ::tok A bed with covers turned down and a messenger bag against a pillow .
+# ::node	b2	bed	1-2
+# ::node	c	cover-02	3-4
+# ::node	t2	turn-down-05	4-5
+# ::node	a2	and	6-7
+# ::node	a3	and	6-7
+# ::node	m	messenger	8-9
+# ::node	b	bag	9-10
+# ::node	a	against	10-11
+# ::node	t	thing	11-12
+# ::node	p	pillow	12-13
+# ::root	a2	and
+# ::edge	and	op1	turn-down-05	a2	t2	
+# ::edge	turn-down-05	ARG1	and	t2	a3	
+# ::edge	and	op1	turn-down-05	a3	t2	
+# ::edge	bag	purpose	messenger	b	m	
+# ::edge	and	op2	bag	a3	b	
+# ::edge	bag	location	against	b	a	
+# ::edge	and	op1	thing	a3	t	
+# ::edge	thing	ARG1-of	cover-02	t	c	
+# ::edge	against	op1	pillow	a	p	
+# ::edge	and	rel	bed	a2	b2	
+(a2 / and
+    :op1 (t2 / turn-down-05
+        :ARG1 (a3 / and
+            :op1 t2
+            :op1 (t / thing
+                :ARG1-of (c / cover-02))
+            :op2 (b / bag
+                :purpose (m / messenger)
+                :location (a / against
+                    :op1 (p / pillow)))))
+    :rel (b2 / bed))

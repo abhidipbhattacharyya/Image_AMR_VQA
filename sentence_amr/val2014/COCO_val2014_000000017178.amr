@@ -1,0 +1,34 @@
+# ::tok A silver sports car is parked beside horse droppings left by a group of horses .
+# ::node	s	silver	1-2
+# ::node	s2	sport	2-3
+# ::node	c	car	3-4
+# ::node	p	park-01	5-6
+# ::node	t	thing	6-7
+# ::node	s3	stand-01	6-7
+# ::node	d	drool-01	8-9
+# ::node	l	leave-12	9-10
+# ::node	g	group	12-13
+# ::node	h	horse	14-15
+# ::node	h2	horse	14-15
+# ::root	p	park-01
+# ::edge	car	mod	sport	c	s2	
+# ::edge	car	mod	silver	c	s	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	thing	p	t	
+# ::edge	thing	ARG1-of	stand-01	t	s3	
+# ::edge	thing	ARG1-of	drool-01	t	d	
+# ::edge	drool-01	ARG1-of	leave-12	d	l	
+# ::edge	leave-12	ARG0	group	l	g	
+# ::edge	group	consist-of	horse	g	h	
+# ::edge	group	consist-of	horse	g	h2	
+(p / park-01
+    :ARG1 (c / car
+        :mod (s2 / sport)
+        :mod (s / silver))
+    :ARG2 (t / thing
+        :ARG1-of (s3 / stand-01)
+        :ARG1-of (d / drool-01
+            :ARG1-of (l / leave-12
+                :ARG0 (g / group
+                    :consist-of (h / horse)
+                    :consist-of (h2 / horse))))))

@@ -1,0 +1,24 @@
+# ::tok A kitchen counter with ingredients measured and ready to mix in a bowl .
+# ::node	k	kitchen	1-2
+# ::node	c	counter	2-3
+# ::node	i	ingredient	4-5
+# ::node	m	measure-01	5-6
+# ::node	r	ready-02	7-8
+# ::node	m2	mix-01	9-10
+# ::node	b	bowl	12-13
+# ::root	c	counter
+# ::edge	counter	location	kitchen	c	k	
+# ::edge	ingredient	ARG1-of	measure-01	i	m	
+# ::edge	ingredient	ARG1-of	ready-02	i	r	
+# ::edge	ready-02	ARG2	mix-01	r	m2	
+# ::edge	mix-01	ARG1	ingredient	m2	i	
+# ::edge	mix-01	ARG2	bowl	m2	b	
+# ::edge	counter	rel	ready-02	c	r	
+(c / counter
+    :location (k / kitchen)
+    :rel (r / ready-02
+        :ARG2 (m2 / mix-01
+            :ARG1 (i / ingredient
+                :ARG1-of (m / measure-01)
+                :ARG1-of r)
+            :ARG2 (b / bowl))))

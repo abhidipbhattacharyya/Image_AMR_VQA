@@ -1,0 +1,25 @@
+# ::tok Person holding a electronic device so that you can see the screen .
+# ::node	p	person	0-1
+# ::node	h	hold-01	1-2
+# ::node	e	electronic	3-4
+# ::node	d	device	4-5
+# ::node	y	you	7-8
+# ::node	p2	possible-01	8-9
+# ::node	s2	see-01	9-10
+# ::node	s	screen	11-12
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	device	mod	electronic	d	e	
+# ::edge	hold-01	ARG1	device	h	d	
+# ::edge	hold-01	purpose	possible-01	h	p2	
+# ::edge	possible-01	ARG1	see-01	p2	s2	
+# ::edge	see-01	ARG0	you	s2	y	
+# ::edge	see-01	ARG1	screen	s2	s	
+(h / hold-01
+    :purpose (p2 / possible-01
+        :ARG1 (s2 / see-01
+            :ARG0 (y / you)
+            :ARG1 (s / screen)))
+    :ARG0 (p / person)
+    :ARG1 (d / device
+        :mod (e / electronic)))

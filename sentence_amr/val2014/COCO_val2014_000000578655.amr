@@ -1,0 +1,37 @@
+# ::tok A kite is flying high above the choppy waves as the surfer cuts through the waves .
+# ::node	k	kite	1-2
+# ::node	f	fly-01	3-4
+# ::node	h	high-02	4-5
+# ::node	a	above	5-6
+# ::node	v	variable	7-8
+# ::node	n	name	7-8
+# ::node	c	choppy	7-8
+# ::node	w	wave	8-9
+# ::node	p	person	11-12
+# ::node	s	surf-01	11-12
+# ::node	c2	cut-01	12-13
+# ::node	w2	wave	15-16
+# ::root	f	fly-01
+# ::edge	fly-01	ARG2	kite	f	k	
+# ::edge	fly-01	ARG1-of	high-02	f	h	
+# ::edge	fly-01	path	above	f	a	
+# ::edge	variable	name	name	v	n	
+# ::edge	wave	mod	choppy	w	c	
+# ::edge	wave	mod	variable	w	v	
+# ::edge	above	op1	wave	a	w	
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	cut-01	ARG0	person	c2	p	
+# ::edge	fly-01	time	cut-01	f	c2	
+# ::edge	cut-01	ARG1	wave	c2	w2	
+(f / fly-01
+    :ARG1-of (h / high-02)
+    :ARG2 (k / kite)
+    :path (a / above
+        :op1 (w / wave
+            :mod (c / choppy)
+            :mod (v / variable
+                :name (n / name))))
+    :time (c2 / cut-01
+        :ARG0 (p / person
+            :ARG0-of (s / surf-01))
+        :ARG1 (w2 / wave)))

@@ -1,0 +1,46 @@
+# ::tok A crowd of people walking outside on a sunny day in front of the Ferry Building in San Francisco .
+# ::node	c2	crowd	1-2
+# ::node	p	person	3-4
+# ::node	w	walk-01	4-5
+# ::node	o	outside	5-6
+# ::node	s	sunny	8-9
+# ::node	d	day	9-10
+# ::node	i	in-front-of	11-12
+# ::node	n	name	14-15
+# ::node	1	Ferry	14-15
+# ::node	b	building	15-16
+# ::node	0	Building	15-16
+# ::node	c	city	17-18
+# ::node	n2	name	17-18
+# ::node	3	San	17-18
+# ::node	2	Francisco	18-19
+# ::root	w	walk-01
+# ::edge	crowd	consist-of	person	c2	p	
+# ::edge	walk-01	ARG0	crowd	w	c2	
+# ::edge	walk-01	ARG2	outside	w	o	
+# ::edge	day	mod	sunny	d	s	
+# ::edge	walk-01	time	day	w	d	
+# ::edge	walk-01	location	in-front-of	w	i	
+# ::edge	name	op1	Ferry	n	1	
+# ::edge	building	name	name	b	n	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	name	op2	Building	n	0	
+# ::edge	building	location	city	b	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	San	n2	3	
+# ::edge	name	op2	Francisco	n2	2	
+(w / walk-01
+    :ARG0 (c2 / crowd
+        :consist-of (p / person))
+    :ARG2 (o / outside)
+    :location (i / in-front-of
+        :op1 (b / building
+            :name (n / name
+                :op1 "Ferry"
+                :op2 "Building")
+            :location (c / city
+                :name (n2 / name
+                    :op1 "San"
+                    :op2 "Francisco"))))
+    :time (d / day
+        :mod (s / sunny)))

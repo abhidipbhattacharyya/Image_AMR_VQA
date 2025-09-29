@@ -1,0 +1,40 @@
+# ::tok An Apple computer monitor , keyboard and wireless mouse sit on a wooden surface .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	1	Apple	1-2
+# ::node	c2	computer	2-3
+# ::node	m	monitor	3-4
+# ::node	k	keyboard	5-6
+# ::node	a	and	6-7
+# ::node	w	wire	7-8
+# ::node	0	-	7-8
+# ::node	m2	mouse	8-9
+# ::node	s	sit-01	9-10
+# ::node	w2	wood	12-13
+# ::node	s2	surface	13-14
+# ::root	s	sit-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Apple	n	1	
+# ::edge	monitor	mod	computer	m	c2	
+# ::edge	monitor	mod	company	m	c	
+# ::edge	and	op2	keyboard	a	k	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	wire	polarity	-	w	0	
+# ::edge	mouse	part	wire	m2	w	
+# ::edge	and	op3	mouse	a	m2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	surface	consist-of	wood	s2	w2	
+# ::edge	sit-01	ARG2	surface	s	s2	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (m / monitor
+            :mod (c2 / computer)
+            :mod (c / company
+                :name (n / name
+                    :op1 "Apple")))
+        :op2 (k / keyboard)
+        :op3 (m2 / mouse
+            :part (w / wire
+                :polarity -)))
+    :ARG2 (s2 / surface
+        :consist-of (w2 / wood)))

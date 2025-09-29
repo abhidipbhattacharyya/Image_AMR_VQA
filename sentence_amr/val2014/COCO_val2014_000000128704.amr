@@ -1,0 +1,35 @@
+# ::tok A man who is holding a garbage bag while a lot of people around him are sitting and eating .
+# ::node	m	man	1-2
+# ::node	h	hold-01	4-5
+# ::node	g	garbage	6-7
+# ::node	b	bag	7-8
+# ::node	l	lot	10-11
+# ::node	p	person	12-13
+# ::node	a2	around	13-14
+# ::node	s	sit-01	16-17
+# ::node	a	and	17-18
+# ::node	e	eat-01	18-19
+# ::root	m	man
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	bag	mod	garbage	b	g	
+# ::edge	hold-01	ARG1	bag	h	b	
+# ::edge	person	quant	lot	p	l	
+# ::edge	person	location	around	p	a2	
+# ::edge	around	op1	man	a2	m	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	hold-01	time	and	h	a	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG0	person	e	p	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (b / bag
+            :mod (g / garbage))
+        :time (a / and
+            :op1 (s / sit-01
+                :ARG1 (p / person
+                    :quant (l / lot)
+                    :location (a2 / around
+                        :op1 m)))
+            :op2 (e / eat-01
+                :ARG0 p))))

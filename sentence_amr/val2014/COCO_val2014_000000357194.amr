@@ -1,0 +1,67 @@
+# ::tok a photo of someones living room complete with , bookshelf full of dvds , two leather chairs , a flat screen tv , fireplace , and a overly large decorative clock .
+# ::node	p	photo	1-2
+# ::node	s2	someone	3-4
+# ::node	l3	living	4-5
+# ::node	r	room	5-6
+# ::node	c3	complete-03	6-7
+# ::node	b	bookshelf	9-10
+# ::node	f	fill-01	10-11
+# ::node	f4	format	12-13
+# ::node	d2	digital	12-13
+# ::node	v	versatile	12-13
+# ::node	0	2	14-15
+# ::node	l2	leather	15-16
+# ::node	c	chair	16-17
+# ::node	f3	flat-06	19-20
+# ::node	s	screen	20-21
+# ::node	t	television	21-22
+# ::node	a	and	22-23
+# ::node	f2	fireplace	23-24
+# ::node	o	over-03	27-28
+# ::node	l	large	28-29
+# ::node	d	decorative	29-30
+# ::node	c2	clock	30-31
+# ::root	p	photo
+# ::edge	room	mod	living	r	l3	
+# ::edge	room	poss	someone	r	s2	
+# ::edge	photo	topic	room	p	r	
+# ::edge	photo	ARG1-of	complete-03	p	c3	
+# ::edge	bookshelf	ARG1-of	fill-01	b	f	
+# ::edge	fill-01	ARG2	format	f	f4	
+# ::edge	format	mod	digital	f4	d2	
+# ::edge	format	mod	versatile	f4	v	
+# ::edge	chair	mod	leather	c	l2	
+# ::edge	chair	quant	2	c	0	
+# ::edge	screen	ARG1-of	flat-06	s	f3	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op3	television	a	t	
+# ::edge	and	op2	chair	a	c	
+# ::edge	and	op1	bookshelf	a	b	
+# ::edge	complete-03	ARG2	and	c3	a	
+# ::edge	and	op4	fireplace	a	f2	
+# ::edge	large	ARG1-of	over-03	l	o	
+# ::edge	clock	mod	decorative	c2	d	
+# ::edge	clock	mod	large	c2	l	
+# ::edge	and	op5	clock	a	c2	
+(p / photo
+    :ARG1-of (c3 / complete-03
+        :ARG2 (a / and
+            :op1 (b / bookshelf
+                :ARG1-of (f / fill-01
+                    :ARG2 (f4 / format
+                        :mod (d2 / digital)
+                        :mod (v / versatile))))
+            :op2 (c / chair
+                :quant 2
+                :mod (l2 / leather))
+            :op3 (t / television
+                :mod (s / screen
+                    :ARG1-of (f3 / flat-06)))
+            :op4 (f2 / fireplace)
+            :op5 (c2 / clock
+                :mod (d / decorative)
+                :mod (l / large
+                    :ARG1-of (o / over-03)))))
+    :topic (r / room
+        :mod (l3 / living)
+        :poss (s2 / someone)))

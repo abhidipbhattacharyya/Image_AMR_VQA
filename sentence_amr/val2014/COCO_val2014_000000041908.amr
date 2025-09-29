@@ -1,0 +1,42 @@
+# ::tok Two donkeys are standing together .
+# ::node	0	2	0-1
+# ::node	h	horse	1-2
+# ::node	s	stand-01	3-4
+# ::node	t	together	4-5
+# ::root	s	stand-01
+# ::edge	horse	quant	2	h	0	
+# ::edge	stand-01	ARG1	horse	s	h	
+# ::edge	stand-01	mod	together	s	t	
+(s / stand-01
+    :ARG1 (h / horse
+        :quant 2)
+    :mod (t / together))
+
+
+# ::tok One is facing out and the other one has his head bent .
+# ::node	o	one	0-1
+# ::node	f	face-01	2-3
+# ::node	o4	out	3-4
+# ::node	a	and	4-5
+# ::node	o3	other	6-7
+# ::node	o2	one	7-8
+# ::node	h	head	10-11
+# ::node	b	bend-01	11-12
+# ::root	a	and
+# ::edge	face-01	ARG0	one	f	o	
+# ::edge	face-01	direction	out	f	o4	
+# ::edge	and	op1	face-01	a	f	
+# ::edge	one	mod	other	o2	o3	
+# ::edge	one	part	head	o2	h	
+# ::edge	bend-01	ARG1	head	b	h	
+# ::edge	bend-01	ARG0	one	b	o2	
+# ::edge	and	op2	bend-01	a	b	
+(a / and
+    :op1 (f / face-01
+        :ARG0 (o / one)
+        :direction (o4 / out))
+    :op2 (b / bend-01
+        :ARG0 (o2 / one
+            :mod (o3 / other)
+            :part (h / head))
+        :ARG1 h))

@@ -1,0 +1,28 @@
+# ::tok A plane is sitting on the ground while someone is either fixing it or checking it out .
+# ::node	p	plane	1-2
+# ::node	s	sit-01	3-4
+# ::node	g	ground	6-7
+# ::node	s2	someone	8-9
+# ::node	f	fix-02	11-12
+# ::node	o	or	13-14
+# ::node	c	check-out-05	14-15
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	ground	s	g	
+# ::edge	fix-02	ARG0	someone	f	s2	
+# ::edge	fix-02	ARG1	plane	f	p	
+# ::edge	or	op1	fix-02	o	f	
+# ::edge	sit-01	time	or	s	o	
+# ::edge	or	op2	check-out-05	o	c	
+# ::edge	check-out-05	ARG0	someone	c	s2	
+# ::edge	check-out-05	ARG1	plane	c	p	
+(s / sit-01
+    :ARG1 (p / plane)
+    :ARG2 (g / ground)
+    :time (o / or
+        :op1 (f / fix-02
+            :ARG0 (s2 / someone)
+            :ARG1 p)
+        :op2 (c / check-out-05
+            :ARG0 s2
+            :ARG1 p)))

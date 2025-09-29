@@ -1,0 +1,24 @@
+# ::tok A Red train stopped at a passenger platform with its doors open .
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	s	stop-01	3-4
+# ::node	p	passenger	6-7
+# ::node	p2	platform	7-8
+# ::node	d	door	10-11
+# ::node	o	open-09	11-12
+# ::root	s	stop-01
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	stop-01	ARG1	train	s	t	
+# ::edge	platform	mod	passenger	p2	p	
+# ::edge	stop-01	location	platform	s	p2	
+# ::edge	train	part	door	t	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	stop-01	manner	open-09	s	o	
+(s / stop-01
+    :ARG1 (t / train
+        :ARG1-of (r / red-02)
+        :part (d / door))
+    :location (p2 / platform
+        :mod (p / passenger))
+    :manner (o / open-09
+        :ARG1 d))

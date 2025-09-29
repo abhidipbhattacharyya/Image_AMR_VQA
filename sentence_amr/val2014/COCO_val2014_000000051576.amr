@@ -1,0 +1,27 @@
+# ::tok A zebra standing in a field grazing as another looks alert .
+# ::node	z	zebra	1-2
+# ::node	z2	zebra	1-2
+# ::node	s	stand-01	2-3
+# ::node	f	field	5-6
+# ::node	g	graze-01	6-7
+# ::node	a2	another	8-9
+# ::node	l	look-02	9-10
+# ::node	a	alert-01	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	zebra	s	z	
+# ::edge	stand-01	ARG2	field	s	f	
+# ::edge	field	ARG1-of	graze-01	f	g	
+# ::edge	zebra	mod	another	z2	a2	
+# ::edge	zebra	ARG0-of	look-02	z2	l	
+# ::edge	look-02	ARG1	alert-01	l	a	
+# ::edge	alert-01	ARG1	zebra	a	z2	
+# ::edge	stand-01	rel	look-02	s	l	
+(s / stand-01
+    :ARG1 (z / zebra)
+    :ARG2 (f / field
+        :ARG1-of (g / graze-01))
+    :rel (l / look-02
+        :ARG1 (a / alert-01
+            :ARG1 (z2 / zebra
+                :ARG0-of l
+                :mod (a2 / another)))))

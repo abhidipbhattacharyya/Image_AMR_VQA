@@ -1,0 +1,42 @@
+# ::tok In a desert area , a black dog leaps from the ground as a white Frisbee hovers near his nose .
+# ::node	d	desert	2-3
+# ::node	a	area	3-4
+# ::node	b	black-04	6-7
+# ::node	d3	dog	7-8
+# ::node	l	leap-03	8-9
+# ::node	g	ground	11-12
+# ::node	w	white-03	14-15
+# ::node	d2	disc	15-16
+# ::node	n	name	15-16
+# ::node	0	Frisbee	15-16
+# ::node	h	hover-01	16-17
+# ::node	n2	near-02	17-18
+# ::node	n3	nose	19-20
+# ::root	h	hover-01
+# ::edge	area	mod	desert	a	d	
+# ::edge	dog	ARG1-of	black-04	d3	b	
+# ::edge	leap-03	ARG0	dog	l	d3	
+# ::edge	leap-03	source	ground	l	g	
+# ::edge	disc	ARG1-of	white-03	d2	w	
+# ::edge	disc	name	name	d2	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	hover-01	ARG1	disc	h	d2	
+# ::edge	hover-01	location	area	h	a	
+# ::edge	hover-01	ARG1-of	near-02	h	n2	
+# ::edge	near-02	ARG2	nose	n2	n3	
+# ::edge	dog	part	nose	d3	n3	
+# ::edge	hover-01	rel	leap-03	h	l	
+(h / hover-01
+    :ARG1 (d2 / disc
+        :name (n / name
+            :op1 "Frisbee")
+        :ARG1-of (w / white-03))
+    :ARG1-of (n2 / near-02
+        :ARG2 (n3 / nose))
+    :location (a / area
+        :mod (d / desert))
+    :rel (l / leap-03
+        :ARG0 (d3 / dog
+            :ARG1-of (b / black-04)
+            :part n3)
+        :source (g / ground)))

@@ -1,0 +1,35 @@
+# ::tok A young man poses for a camera while wearing a tie but no shirt .
+# ::node	y	young	1-2
+# ::node	m	man	2-3
+# ::node	p	pose-01	3-4
+# ::node	c	camera	6-7
+# ::node	w	wear-01	8-9
+# ::node	w2	wear-01	8-9
+# ::node	t	tie	10-11
+# ::node	c2	contrast-01	11-12
+# ::node	0	-	12-13
+# ::node	s	shirt	13-14
+# ::root	p	pose-01
+# ::edge	man	mod	young	m	y	
+# ::edge	pose-01	ARG0	man	p	m	
+# ::edge	pose-01	ARG2	camera	p	c	
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	wear-01	ARG0	man	w2	m	
+# ::edge	wear-01	ARG1	tie	w	t	
+# ::edge	contrast-01	ARG2	wear-01	c2	w2	
+# ::edge	contrast-01	ARG1	wear-01	c2	w	
+# ::edge	pose-01	time	contrast-01	p	c2	
+# ::edge	wear-01	polarity	-	w2	0	
+# ::edge	wear-01	ARG1	shirt	w2	s	
+(p / pose-01
+    :ARG0 (m / man
+        :mod (y / young))
+    :ARG2 (c / camera)
+    :time (c2 / contrast-01
+        :ARG1 (w / wear-01
+            :ARG0 m
+            :ARG1 (t / tie))
+        :ARG2 (w2 / wear-01
+            :ARG0 m
+            :ARG1 (s / shirt)
+            :polarity -)))

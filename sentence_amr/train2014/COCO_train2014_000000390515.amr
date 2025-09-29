@@ -1,0 +1,45 @@
+# ::tok A man rests on a sidewalk bench near some parked cars , while pedestrians and a pigeon wander past .
+# ::node	m	man	1-2
+# ::node	r	rest-01	2-3
+# ::node	s	sidewalk	5-6
+# ::node	b	bench	6-7
+# ::node	n	near-02	7-8
+# ::node	s2	some	8-9
+# ::node	p	park-01	9-10
+# ::node	c	car	10-11
+# ::node	p3	person	13-14
+# ::node	w	walk-01	13-14
+# ::node	a	and	14-15
+# ::node	p4	pigeon	16-17
+# ::node	w2	wander-01	17-18
+# ::node	p2	past	18-19
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	man	r	m	
+# ::edge	bench	location	sidewalk	b	s	
+# ::edge	rest-01	ARG2	bench	r	b	
+# ::edge	bench	ARG1-of	near-02	b	n	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	car	quant	some	c	s2	
+# ::edge	near-02	ARG2	car	n	c	
+# ::edge	person	ARG0-of	walk-01	p3	w	
+# ::edge	and	op1	person	a	p3	
+# ::edge	and	op2	pigeon	a	p4	
+# ::edge	wander-01	ARG0	and	w2	a	
+# ::edge	rest-01	time	wander-01	r	w2	
+# ::edge	wander-01	direction	past	w2	p2	
+# ::edge	past	op1	bench	p2	b	
+(r / rest-01
+    :ARG1 (m / man)
+    :ARG2 (b / bench
+        :ARG1-of (n / near-02
+            :ARG2 (c / car
+                :quant (s2 / some)
+                :ARG1-of (p / park-01)))
+        :location (s / sidewalk))
+    :time (w2 / wander-01
+        :ARG0 (a / and
+            :op1 (p3 / person
+                :ARG0-of (w / walk-01))
+            :op2 (p4 / pigeon))
+        :direction (p2 / past
+            :op1 b)))

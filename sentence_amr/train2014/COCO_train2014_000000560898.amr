@@ -1,0 +1,34 @@
+# ::tok Dozens of orange , white and red umbrellas flying in the air .
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	o	orange	2-3
+# ::node	w	white-03	4-5
+# ::node	a2	and	5-6
+# ::node	r	red-02	6-7
+# ::node	u	umbrella	7-8
+# ::node	u2	umbrella	7-8
+# ::node	u3	umbrella	7-8
+# ::node	f	fly-01	8-9
+# ::node	a	air	11-12
+# ::root	f	fly-01
+# ::edge	multiple	op1	12	m	0	
+# ::edge	and	quant	multiple	a2	m	
+# ::edge	and	op1	umbrella	a2	u	
+# ::edge	umbrella	mod	orange	u	o	
+# ::edge	and	op2	umbrella	a2	u2	
+# ::edge	umbrella	ARG1-of	white-03	u2	w	
+# ::edge	umbrella	ARG1-of	red-02	u3	r	
+# ::edge	and	op3	umbrella	a2	u3	
+# ::edge	fly-01	ARG1	and	f	a2	
+# ::edge	fly-01	direction	air	f	a	
+(f / fly-01
+    :ARG1 (a2 / and
+        :quant (m / multiple
+            :op1 12)
+        :op1 (u / umbrella
+            :mod (o / orange))
+        :op2 (u2 / umbrella
+            :ARG1-of (w / white-03))
+        :op3 (u3 / umbrella
+            :ARG1-of (r / red-02)))
+    :direction (a / air))

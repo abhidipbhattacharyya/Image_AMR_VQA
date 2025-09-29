@@ -1,0 +1,31 @@
+# ::tok a motorcyclist on a red motorcycle speeds down an urban road towards a taxi and a mail truck .
+# ::node	m2	motorcycle	1-2
+# ::node	r	red-02	4-5
+# ::node	s	speed-01	6-7
+# ::node	d	down	7-8
+# ::node	u	urban	9-10
+# ::node	r2	road	10-11
+# ::node	t	taxi	13-14
+# ::node	a	and	14-15
+# ::node	m	mail-01	16-17
+# ::node	t2	truck	17-18
+# ::root	s	speed-01
+# ::edge	motorcycle	ARG1-of	red-02	m2	r	
+# ::edge	speed-01	ARG0	motorcycle	s	m2	
+# ::edge	speed-01	direction	down	s	d	
+# ::edge	road	mod	urban	r2	u	
+# ::edge	speed-01	path	road	s	r2	
+# ::edge	and	op1	taxi	a	t	
+# ::edge	speed-01	direction	and	s	a	
+# ::edge	truck	mod	mail-01	t2	m	
+# ::edge	and	op2	truck	a	t2	
+(s / speed-01
+    :ARG0 (m2 / motorcycle
+        :ARG1-of (r / red-02))
+    :direction (d / down)
+    :direction (a / and
+        :op1 (t / taxi)
+        :op2 (t2 / truck
+            :mod (m / mail-01)))
+    :path (r2 / road
+        :mod (u / urban)))

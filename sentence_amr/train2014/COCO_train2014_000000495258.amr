@@ -1,0 +1,31 @@
+# ::tok An old fashioned steam engine pulling Union Pacific cars .
+# ::node	o	old	1-2
+# ::node	f	fashion	2-3
+# ::node	s	steam	3-4
+# ::node	e	engine	4-5
+# ::node	p	pull-01	5-6
+# ::node	n	name	6-7
+# ::node	1	Union	6-7
+# ::node	c2	company	7-8
+# ::node	0	Pacific	7-8
+# ::node	c	car	8-9
+# ::root	e	engine
+# ::edge	fashion	mod	old	f	o	
+# ::edge	engine	mod	steam	e	s	
+# ::edge	engine	mod	fashion	e	f	
+# ::edge	engine	ARG0-of	pull-01	e	p	
+# ::edge	name	op1	Union	n	1	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op2	Pacific	n	0	
+# ::edge	car	mod	company	c	c2	
+# ::edge	pull-01	ARG1	car	p	c	
+(e / engine
+    :ARG0-of (p / pull-01
+        :ARG1 (c / car
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "Union"
+                    :op2 "Pacific"))))
+    :mod (s / steam)
+    :mod (f / fashion
+        :mod (o / old)))

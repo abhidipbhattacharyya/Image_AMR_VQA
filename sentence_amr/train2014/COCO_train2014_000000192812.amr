@@ -1,0 +1,34 @@
+# ::tok A time lapse shot of a snowboarder landing on top of a snow covered truck .
+# ::node	t	time	1-2
+# ::node	l2	lapse	2-3
+# ::node	s	shoot-03	3-4
+# ::node	p	person	6-7
+# ::node	b	board-05	6-7
+# ::node	s2	snow	6-7
+# ::node	l	land-01	7-8
+# ::node	t2	top	9-10
+# ::node	s3	snow	12-13
+# ::node	c	cover-02	13-14
+# ::node	t3	truck	14-15
+# ::root	s	shoot-03
+# ::edge	lapse	mod	time	l2	t	
+# ::edge	shoot-03	time	lapse	s	l2	
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	board-05	ARG1	snow	b	s2	
+# ::edge	land-01	ARG1	person	l	p	
+# ::edge	shoot-03	ARG1	land-01	s	l	
+# ::edge	land-01	ARG4	top	l	t2	
+# ::edge	cover-02	ARG2	snow	c	s3	
+# ::edge	truck	ARG1-of	cover-02	t3	c	
+# ::edge	top	part-of	truck	t2	t3	
+(s / shoot-03
+    :ARG1 (l / land-01
+        :ARG1 (p / person
+            :ARG0-of (b / board-05
+                :ARG1 (s2 / snow)))
+        :ARG4 (t2 / top
+            :part-of (t3 / truck
+                :ARG1-of (c / cover-02
+                    :ARG2 (s3 / snow)))))
+    :time (l2 / lapse
+        :mod (t / time)))

@@ -1,0 +1,28 @@
+# ::tok A man standing in a room holding up a glass of wine .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	r	room	5-6
+# ::node	h	hold-01	6-7
+# ::node	u	up	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	g	glass	9-10
+# ::node	w	wine	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	location	room	s	r	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	mod	up	h	u	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	hold-01	ARG1	wine	h	w	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (h / hold-01
+            :ARG1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass)))
+            :mod (u / up)))
+    :location (r / room))

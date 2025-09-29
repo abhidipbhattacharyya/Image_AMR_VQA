@@ -1,0 +1,37 @@
+# ::tok A roadway with two street signs that read " Give Way " and " Watch For Cyclists " .
+# ::node	r2	roadway	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	s2	street	4-5
+# ::node	s	sign	5-6
+# ::node	r	read-01	7-8
+# ::node	g	give-01	9-10
+# ::node	w2	way	10-11
+# ::node	a	and	12-13
+# ::node	w	watch-01	14-15
+# ::node	p	person	16-17
+# ::node	c	cycle-01	16-17
+# ::root	r2	roadway
+# ::edge	roadway	ARG0-of	have-03	r2	h	
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	quant	2	s	0	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	give-01	ARG1	way	g	w2	
+# ::edge	and	op1	give-01	a	g	
+# ::edge	read-01	ARG3	and	r	a	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	ARG1	person	w	p	
+# ::edge	person	ARG0-of	cycle-01	p	c	
+(r2 / roadway
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :quant 2
+            :ARG1-of (r / read-01
+                :ARG3 (a / and
+                    :op1 (g / give-01
+                        :ARG1 (w2 / way))
+                    :op2 (w / watch-01
+                        :ARG1 (p / person
+                            :ARG0-of (c / cycle-01)))))
+            :mod (s2 / street))))

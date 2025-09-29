@@ -1,0 +1,36 @@
+# ::tok Double decker bus parked on a city street , passengers are entering and exiting the bus .
+# ::node	d2	double-01	0-1
+# ::node	d	deck	1-2
+# ::node	b	bus	2-3
+# ::node	p	park-01	3-4
+# ::node	c	city	6-7
+# ::node	s	street	7-8
+# ::node	p2	passenger	9-10
+# ::node	p3	passenger	9-10
+# ::node	e	enter-01	11-12
+# ::node	a	and	12-13
+# ::node	e2	exit-01	13-14
+# ::root	a	and
+# ::edge	deck	ARG1-of	double-01	d	d2	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	bus	ARG1-of	park-01	b	p	
+# ::edge	street	mod	city	s	c	
+# ::edge	park-01	ARG2	street	p	s	
+# ::edge	enter-01	ARG0	passenger	e	p2	
+# ::edge	enter-01	ARG1	bus	e	b	
+# ::edge	and	op1	enter-01	a	e	
+# ::edge	and	op2	exit-01	a	e2	
+# ::edge	exit-01	ARG0	passenger	e2	p3	
+# ::edge	exit-01	ARG1	bus	e2	b	
+(a / and
+    :op1 (e / enter-01
+        :ARG0 (p2 / passenger)
+        :ARG1 (b / bus
+            :ARG1-of (p / park-01
+                :ARG2 (s / street
+                    :mod (c / city)))
+            :mod (d / deck
+                :ARG1-of (d2 / double-01))))
+    :op2 (e2 / exit-01
+        :ARG0 (p3 / passenger)
+        :ARG1 b))

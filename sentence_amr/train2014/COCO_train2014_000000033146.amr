@@ -1,0 +1,73 @@
+# ::tok A long hauler with numerous packages with packing tape , as well as other items surrounded by plastic strips , rests half on well - trimmed grass , and half on a parking lot with many other vehicles .
+# ::node	l	long-03	1-2
+# ::node	h3	haul-01	2-3
+# ::node	n	numerous	4-5
+# ::node	p2	package	5-6
+# ::node	p	pack-01	7-8
+# ::node	t	tape	8-9
+# ::node	a	and	9-10
+# ::node	o	other	13-14
+# ::node	i	item	14-15
+# ::node	s2	surround-01	15-16
+# ::node	p4	plastic	17-18
+# ::node	s	strip	18-19
+# ::node	r	rest-02	20-21
+# ::node	h	half	21-22
+# ::node	w	well-09	23-24
+# ::node	t2	trim-02	25-26
+# ::node	g	grass	26-27
+# ::node	a2	and	28-29
+# ::node	h2	half	29-30
+# ::node	p3	park-01	32-33
+# ::node	l2	lot	33-34
+# ::node	m	many	35-36
+# ::node	o2	other	36-37
+# ::node	v	vehicle	37-38
+# ::root	r	rest-02
+# ::edge	haul-01	ARG1-of	long-03	h3	l	
+# ::edge	package	quant	numerous	p2	n	
+# ::edge	tape	ARG3-of	pack-01	t	p	
+# ::edge	package	consist-of	tape	p2	t	
+# ::edge	and	op1	package	a	p2	
+# ::edge	haul-01	ARG1	and	h3	a	
+# ::edge	item	mod	other	i	o	
+# ::edge	and	op2	item	a	i	
+# ::edge	item	ARG1-of	surround-01	i	s2	
+# ::edge	strip	consist-of	plastic	s	p4	
+# ::edge	surround-01	ARG2	strip	s2	s	
+# ::edge	rest-02	ARG1	haul-01	r	h3	
+# ::edge	trim-02	ARG1-of	well-09	t2	w	
+# ::edge	grass	ARG1-of	trim-02	g	t2	
+# ::edge	and	op1	grass	a2	g	
+# ::edge	rest-02	ARG2	and	r	a2	
+# ::edge	lot	purpose	park-01	l2	p3	
+# ::edge	lot	mod	half	l2	h2	
+# ::edge	and	op2	lot	a2	l2	
+# ::edge	vehicle	mod	other	v	o2	
+# ::edge	vehicle	quant	many	v	m	
+# ::edge	lot	location-of	vehicle	l2	v	
+# ::edge	rest-02	rel	half	r	h	
+(r / rest-02
+    :ARG1 (h3 / haul-01
+        :ARG1 (a / and
+            :op1 (p2 / package
+                :quant (n / numerous)
+                :consist-of (t / tape
+                    :ARG3-of (p / pack-01)))
+            :op2 (i / item
+                :ARG1-of (s2 / surround-01
+                    :ARG2 (s / strip
+                        :consist-of (p4 / plastic)))
+                :mod (o / other)))
+        :ARG1-of (l / long-03))
+    :ARG2 (a2 / and
+        :op1 (g / grass
+            :ARG1-of (t2 / trim-02
+                :ARG1-of (w / well-09)))
+        :op2 (l2 / lot
+            :purpose (p3 / park-01)
+            :location-of (v / vehicle
+                :quant (m / many)
+                :mod (o2 / other))
+            :mod (h2 / half)))
+    :rel (h / half))

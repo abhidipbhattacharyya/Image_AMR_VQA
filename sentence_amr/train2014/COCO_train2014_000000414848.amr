@@ -1,0 +1,31 @@
+# ::tok A city street with a street light and large industrial style buildings in the background .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	s2	street	5-6
+# ::node	l2	light	6-7
+# ::node	a	and	7-8
+# ::node	l	large	8-9
+# ::node	i	industry	9-10
+# ::node	s3	style	10-11
+# ::node	b2	building	11-12
+# ::node	b	background	14-15
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	light	mod	street	l2	s2	
+# ::edge	and	op1	light	a	l2	
+# ::edge	street	location-of	and	s	a	
+# ::edge	style	mod	industry	s3	i	
+# ::edge	building	mod	style	b2	s3	
+# ::edge	building	mod	large	b2	l	
+# ::edge	and	op2	building	a	b2	
+# ::edge	and	location	background	a	b	
+(s / street
+    :location-of (a / and
+        :location (b / background)
+        :op1 (l2 / light
+            :mod (s2 / street))
+        :op2 (b2 / building
+            :mod (s3 / style
+                :mod (i / industry))
+            :mod (l / large)))
+    :mod (c / city))

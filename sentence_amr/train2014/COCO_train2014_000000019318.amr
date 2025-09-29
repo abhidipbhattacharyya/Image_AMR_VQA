@@ -1,0 +1,39 @@
+# ::tok In a baseball game the base runner takes out the baseman while sliding into second base .
+# ::node	b4	baseball	2-3
+# ::node	g	game	3-4
+# ::node	b	base	5-6
+# ::node	p	person	6-7
+# ::node	r	run-02	6-7
+# ::node	t	take-out-11	7-8
+# ::node	p2	person	10-11
+# ::node	b3	base-01	10-11
+# ::node	s	slide-01	12-13
+# ::node	o	ordinal-entity	14-15
+# ::node	0	2	14-15
+# ::node	b2	base	15-16
+# ::root	t	take-out-11
+# ::edge	game	mod	baseball	g	b4	
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	run-02	mod	base	r	b	
+# ::edge	take-out-11	ARG0	person	t	p	
+# ::edge	take-out-11	time	game	t	g	
+# ::edge	take-out-11	ARG1	person	t	p2	
+# ::edge	person	ARG0-of	base-01	p2	b3	
+# ::edge	take-out-11	time	slide-01	t	s	
+# ::edge	slide-01	ARG1	person	s	p	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	slide-01	destination	base	s	b2	
+(t / take-out-11
+    :ARG0 (p / person
+        :ARG0-of (r / run-02
+            :mod (b / base)))
+    :ARG1 (p2 / person
+        :ARG0-of (b3 / base-01))
+    :time (g / game
+        :mod (b4 / baseball))
+    :time (s / slide-01
+        :ARG1 p
+        :destination (b2 / base
+            :ord (o / ordinal-entity
+                :value 2))))

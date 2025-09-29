@@ -1,0 +1,25 @@
+# ::tok Many colored umbrellas hanging from an outdoor open grid ceiling .
+# ::node	m	many	0-1
+# ::node	c2	color-01	1-2
+# ::node	u	umbrella	2-3
+# ::node	h	hang-01	3-4
+# ::node	o2	outdoor	6-7
+# ::node	o	open-06	7-8
+# ::node	g	grid	8-9
+# ::node	c	ceiling	9-10
+# ::root	u	umbrella
+# ::edge	umbrella	ARG1-of	color-01	u	c2	
+# ::edge	umbrella	quant	many	u	m	
+# ::edge	umbrella	ARG1-of	hang-01	u	h	
+# ::edge	grid	ARG1-of	open-06	g	o	
+# ::edge	ceiling	mod	grid	c	g	
+# ::edge	ceiling	location	outdoor	c	o2	
+# ::edge	hang-01	ARG2	ceiling	h	c	
+(u / umbrella
+    :quant (m / many)
+    :ARG1-of (c2 / color-01)
+    :ARG1-of (h / hang-01
+        :ARG2 (c / ceiling
+            :location (o2 / outdoor)
+            :mod (g / grid
+                :ARG1-of (o / open-06)))))

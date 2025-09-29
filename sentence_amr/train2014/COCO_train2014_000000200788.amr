@@ -1,0 +1,22 @@
+# ::tok Several stopped cars waiting in front of a traffic light .
+# ::node	s	several	0-1
+# ::node	s2	stop-01	1-2
+# ::node	c	car	2-3
+# ::node	w	wait-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	t	traffic	8-9
+# ::node	l	light	9-10
+# ::root	w	wait-01
+# ::edge	car	ARG1-of	stop-01	c	s2	
+# ::edge	car	quant	several	c	s	
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	wait-01	location	in-front-of	w	i	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	in-front-of	op1	light	i	l	
+(w / wait-01
+    :ARG1 (c / car
+        :quant (s / several)
+        :ARG1-of (s2 / stop-01))
+    :location (i / in-front-of
+        :op1 (l / light
+            :mod (t / traffic))))

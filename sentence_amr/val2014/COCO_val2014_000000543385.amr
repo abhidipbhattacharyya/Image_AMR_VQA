@@ -1,0 +1,33 @@
+# ::tok Zebras standing in the dirt with a pond of water behind them .
+# ::node	p	person	0-1
+# ::node	p2	political-party	0-1
+# ::node	n	name	0-1
+# ::node	m	multiple	0-1
+# ::node	s	spoil	0-1
+# ::node	s2	stand-01	1-2
+# ::node	d	dirt	4-5
+# ::node	p3	pond	7-8
+# ::node	w	water	9-10
+# ::node	b	behind	10-11
+# ::root	s2	stand-01
+# ::edge	person	mod	political-party	p	p2	
+# ::edge	political-party	name	name	p2	n	
+# ::edge	person	quant	multiple	p	m	
+# ::edge	multiple	op1	spoil	m	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	dirt	s2	d	
+# ::edge	spoil	location-of	pond	s	p3	
+# ::edge	pond	consist-of	water	p3	w	
+# ::edge	pond	location	behind	p3	b	
+# ::edge	behind	op1	person	b	p	
+(s2 / stand-01
+    :ARG1 (p / person
+        :quant (m / multiple
+            :op1 (s / spoil
+                :location-of (p3 / pond
+                    :consist-of (w / water)
+                    :location (b / behind
+                        :op1 p))))
+        :mod (p2 / political-party
+            :name (n / name)))
+    :ARG2 (d / dirt))

@@ -1,0 +1,36 @@
+# ::tok A man in the street looking over his shoulder giving someone else the middle finger .
+# ::node	m	man	1-2
+# ::node	s3	street	4-5
+# ::node	l	look-01	5-6
+# ::node	o	over	6-7
+# ::node	s	shoulder	8-9
+# ::node	g	give-01	9-10
+# ::node	s2	someone	10-11
+# ::node	e	else	11-12
+# ::node	m2	middle	13-14
+# ::node	f	finger	14-15
+# ::node	e2	event	15-16
+# ::root	e2	event
+# ::edge	man	location	street	m	s3	
+# ::edge	man	ARG0-of	look-01	m	l	
+# ::edge	look-01	ARG1	over	l	o	
+# ::edge	over	op1	shoulder	o	s	
+# ::edge	man	part	shoulder	m	s	
+# ::edge	man	ARG0-of	give-01	m	g	
+# ::edge	give-01	ARG2	someone	g	s2	
+# ::edge	someone	mod	else	s2	e	
+# ::edge	finger	mod	middle	f	m2	
+# ::edge	give-01	ARG1	finger	g	f	
+# ::edge	event	mod	man	e2	m	
+(e2 / event
+    :mod (m / man
+        :ARG0-of (l / look-01
+            :ARG1 (o / over
+                :op1 (s / shoulder)))
+        :ARG0-of (g / give-01
+            :ARG1 (f / finger
+                :mod (m2 / middle))
+            :ARG2 (s2 / someone
+                :mod (e / else)))
+        :location (s3 / street)
+        :part s))

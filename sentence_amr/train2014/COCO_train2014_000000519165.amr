@@ -1,0 +1,31 @@
+# ::tok A train station with various sets of tracks and two passenger trains on the tracks .
+# ::node	t2	train	1-2
+# ::node	s2	station	2-3
+# ::node	h	have-03	3-4
+# ::node	v	various	4-5
+# ::node	s	set	5-6
+# ::node	t	track	7-8
+# ::node	a	and	8-9
+# ::node	0	2	9-10
+# ::node	p	passenger	10-11
+# ::node	t3	train	11-12
+# ::root	s2	station
+# ::edge	station	mod	train	s2	t2	
+# ::edge	station	ARG0-of	have-03	s2	h	
+# ::edge	set	mod	various	s	v	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	and	op1	set	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	train	mod	passenger	t3	p	
+# ::edge	train	quant	2	t3	0	
+# ::edge	and	op2	train	a	t3	
+(s2 / station
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / set
+                :consist-of (t / track)
+                :mod (v / various))
+            :op2 (t3 / train
+                :quant 2
+                :mod (p / passenger))))
+    :mod (t2 / train))

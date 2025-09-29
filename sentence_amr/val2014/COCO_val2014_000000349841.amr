@@ -1,0 +1,28 @@
+# ::tok A large SBS Transit bus is traveling down the street .
+# ::node	l	large	1-2
+# ::node	n	name	2-3
+# ::node	0	SBS	2-3
+# ::node	c	company	3-4
+# ::node	1	Transit	3-4
+# ::node	b	bus	4-5
+# ::node	t	travel-01	6-7
+# ::node	d	down	7-8
+# ::node	s	street	9-10
+# ::root	t	travel-01
+# ::edge	name	op1	SBS	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Transit	n	1	
+# ::edge	bus	mod	company	b	c	
+# ::edge	bus	mod	large	b	l	
+# ::edge	travel-01	ARG0	bus	t	b	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	ARG1	street	t	s	
+(t / travel-01
+    :ARG0 (b / bus
+        :mod (c / company
+            :name (n / name
+                :op1 "SBS"
+                :op2 "Transit"))
+        :mod (l / large))
+    :ARG1 (s / street)
+    :direction (d / down))

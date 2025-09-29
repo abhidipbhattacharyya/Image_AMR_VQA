@@ -1,0 +1,33 @@
+# ::tok A stove in a kitchen with a red kettle and a pot of utensils on it and a microwave above it
+# ::node	s2	stove	1-2
+# ::node	k2	kitchen	4-5
+# ::node	r	red-02	7-8
+# ::node	k	kettle	8-9
+# ::node	a2	and	9-10
+# ::node	p	pot	11-12
+# ::node	e	enzyme	13-14
+# ::node	s	serve-01	13-14
+# ::node	m	microwave	18-19
+# ::node	a	above	19-20
+# ::root	s2	stove
+# ::edge	stove	location	kitchen	s2	k2	
+# ::edge	kettle	ARG1-of	red-02	k	r	
+# ::edge	and	op1	kettle	a2	k	
+# ::edge	stove	location-of	and	s2	a2	
+# ::edge	and	op2	pot	a2	p	
+# ::edge	pot	mod	enzyme	p	e	
+# ::edge	enzyme	ARG0-of	serve-01	e	s	
+# ::edge	and	op3	microwave	a2	m	
+# ::edge	microwave	location	above	m	a	
+# ::edge	above	op1	stove	a	s2	
+(s2 / stove
+    :location (k2 / kitchen)
+    :location-of (a2 / and
+        :op1 (k / kettle
+            :ARG1-of (r / red-02))
+        :op2 (p / pot
+            :mod (e / enzyme
+                :ARG0-of (s / serve-01)))
+        :op3 (m / microwave
+            :location (a / above
+                :op1 s2))))

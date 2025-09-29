@@ -1,0 +1,53 @@
+# ::tok Two small puppies are eating from a food dish and one of the puppies is gray and white while the other is black and white .
+# ::node	1	2	0-1
+# ::node	s	small	1-2
+# ::node	p	puppy	2-3
+# ::node	e	eat-01	4-5
+# ::node	f	food	7-8
+# ::node	d	dish	8-9
+# ::node	a	and	9-10
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	p2	puppy	13-14
+# ::node	p3	puppy	13-14
+# ::node	g	gray-02	15-16
+# ::node	a2	and	16-17
+# ::node	w	white-03	17-18
+# ::node	o	other	20-21
+# ::node	b	black-and-white	22-23
+# ::root	a	and
+# ::edge	puppy	mod	small	p	s	
+# ::edge	puppy	quant	2	p	1	
+# ::edge	eat-01	ARG0	puppy	e	p	
+# ::edge	dish	mod	food	d	f	
+# ::edge	eat-01	location	dish	e	d	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	include-91	ARG2	puppy	i	p	
+# ::edge	puppy	ARG1-of	include-91	p2	i	
+# ::edge	puppy	quant	1	p2	0	
+# ::edge	gray-02	ARG1	puppy	g	p2	
+# ::edge	and	op1	gray-02	a2	g	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op2	white-03	a2	w	
+# ::edge	white-03	ARG1	puppy	w	p2	
+# ::edge	puppy	mod	other	p3	o	
+# ::edge	puppy	mod	black-and-white	p3	b	
+# ::edge	and	rel	puppy	a	p3	
+(a / and
+    :op1 (e / eat-01
+        :ARG0 (p / puppy
+            :quant 2
+            :mod (s / small))
+        :location (d / dish
+            :mod (f / food)))
+    :op2 (a2 / and
+        :op1 (g / gray-02
+            :ARG1 (p2 / puppy
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 p)))
+        :op2 (w / white-03
+            :ARG1 p2))
+    :rel (p3 / puppy
+        :mod (o / other)
+        :mod (b / black-and-white)))

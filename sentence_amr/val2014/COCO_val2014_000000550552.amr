@@ -1,0 +1,35 @@
+# ::tok A kitchen features two tables and chairs and white interior cabinets and white shudders .
+# ::node	k	kitchen	1-2
+# ::node	f	feature-01	2-3
+# ::node	0	2	3-4
+# ::node	t	table	4-5
+# ::node	a	and	5-6
+# ::node	c2	chair	6-7
+# ::node	w	white-03	8-9
+# ::node	i	interior	9-10
+# ::node	c	cabinet	10-11
+# ::node	s	shudder-01	13-14
+# ::root	f	feature-01
+# ::edge	feature-01	ARG2	kitchen	f	k	
+# ::edge	table	quant	2	t	0	
+# ::edge	and	op1	table	a	t	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	and	op2	chair	a	c2	
+# ::edge	chair	quant	table	c2	t	
+# ::edge	cabinet	mod	interior	c	i	
+# ::edge	cabinet	ARG1-of	white-03	c	w	
+# ::edge	and	op3	cabinet	a	c	
+# ::edge	and	op4	shudder-01	a	s	
+# ::edge	white-03	ARG1	shudder-01	w	s	
+(f / feature-01
+    :ARG1 (a / and
+        :op1 (t / table
+            :quant 2)
+        :op2 (c2 / chair
+            :quant t)
+        :op3 (c / cabinet
+            :ARG1-of (w / white-03
+                :ARG1 (s / shudder-01))
+            :mod (i / interior))
+        :op4 s)
+    :ARG2 (k / kitchen))

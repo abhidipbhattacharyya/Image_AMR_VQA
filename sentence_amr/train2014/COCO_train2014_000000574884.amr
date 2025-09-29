@@ -1,0 +1,28 @@
+# ::tok A plane flies above a structure of colorful walls and steel girders
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	a	above	3-4
+# ::node	s2	structure	5-6
+# ::node	c	colorful	7-8
+# ::node	w	wall	8-9
+# ::node	a2	and	9-10
+# ::node	s	steel	10-11
+# ::node	g	girder	11-12
+# ::root	f	fly-01
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	fly-01	path	above	f	a	
+# ::edge	above	op1	structure	a	s2	
+# ::edge	wall	mod	colorful	w	c	
+# ::edge	and	op1	wall	a2	w	
+# ::edge	structure	consist-of	and	s2	a2	
+# ::edge	girder	consist-of	steel	g	s	
+# ::edge	and	op2	girder	a2	g	
+(f / fly-01
+    :ARG2 (p / plane)
+    :path (a / above
+        :op1 (s2 / structure
+            :consist-of (a2 / and
+                :op1 (w / wall
+                    :mod (c / colorful))
+                :op2 (g / girder
+                    :consist-of (s / steel))))))

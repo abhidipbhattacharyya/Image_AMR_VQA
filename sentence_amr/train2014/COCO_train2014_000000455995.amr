@@ -1,0 +1,38 @@
+# ::tok A baseball player swinging a bat while a catcher is behind him with his mitt out .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	swing-02	3-4
+# ::node	b2	bat	5-6
+# ::node	c	catcher	8-9
+# ::node	b3	be-located-at-91	10-11
+# ::node	b4	behind	10-11
+# ::node	m	mitt	14-15
+# ::node	o	out-06	15-16
+# ::node	c2	cause-01	16-17
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	person	ARG0-of	swing-02	p	s	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	be-located-at-91	ARG1	catcher	b3	c	
+# ::edge	be-located-at-91	ARG2	behind	b3	b4	
+# ::edge	behind	op1	person	b4	p	
+# ::edge	mitt	poss	catcher	m	c	
+# ::edge	out-06	ARG1	mitt	o	m	
+# ::edge	be-located-at-91	manner	out-06	b3	o	
+# ::edge	cause-01	ARG1	be-located-at-91	c2	b3	
+# ::edge	person	ARG0-of	cause-01	p	c2	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (s / swing-02
+        :ARG1 (b2 / bat))
+    :ARG0-of (c2 / cause-01
+        :ARG1 (b3 / be-located-at-91
+            :ARG1 (c / catcher)
+            :ARG2 (b4 / behind
+                :op1 p)
+            :manner (o / out-06
+                :ARG1 (m / mitt
+                    :poss c)))))

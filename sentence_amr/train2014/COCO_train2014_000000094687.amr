@@ -1,0 +1,26 @@
+# ::tok Passengers waiting patiently for their flight at the airport terminal
+# ::node	p3	person	0-1
+# ::node	p	passenger	0-1
+# ::node	w	wait-01	1-2
+# ::node	p2	patient-01	2-3
+# ::node	f	fly-01	5-6
+# ::node	a	airport	8-9
+# ::node	t	terminal	9-10
+# ::root	p3	person
+# ::edge	person	mod	passenger	p3	p	
+# ::edge	person	ARG1-of	wait-01	p3	w	
+# ::edge	wait-01	ARG2-of	patient-01	w	p2	
+# ::edge	patient-01	ARG1	person	p2	p3	
+# ::edge	wait-01	ARG2	fly-01	w	f	
+# ::edge	fly-01	ARG1	person	f	p3	
+# ::edge	terminal	mod	airport	t	a	
+# ::edge	fly-01	location	terminal	f	t	
+(p3 / person
+    :ARG1-of (w / wait-01
+        :ARG2 (f / fly-01
+            :ARG1 p3
+            :location (t / terminal
+                :mod (a / airport)))
+        :ARG2-of (p2 / patient-01
+            :ARG1 p3))
+    :mod (p / passenger))

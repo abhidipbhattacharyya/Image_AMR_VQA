@@ -1,0 +1,40 @@
+# ::tok One tray of french fries and one tray with hot dog on red tabletop .
+# ::node	0	1	0-1
+# ::node	t2	tray	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	2	France	3-4
+# ::node	f	fry-01	4-5
+# ::node	a	and	5-6
+# ::node	1	1	6-7
+# ::node	t3	tray	7-8
+# ::node	e	eat-01	9-10
+# ::node	h	hot-dog	10-11
+# ::node	r	red-02	12-13
+# ::node	t	tabletop	13-14
+# ::root	a	and
+# ::edge	tray	quant	1	t2	0	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	2	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	tray	consist-of	fry-01	t2	f	
+# ::edge	and	op1	tray	a	t2	
+# ::edge	tray	quant	1	t3	1	
+# ::edge	eat-01	ARG0	tray	e	t3	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG1	hot-dog	e	h	
+# ::edge	tabletop	ARG1-of	red-02	t	r	
+# ::edge	tray	location	tabletop	t3	t	
+(a / and
+    :op1 (t2 / tray
+        :quant 1
+        :consist-of (f / fry-01
+            :mod (c / country
+                :name (n / name
+                    :op1 "France"))))
+    :op2 (e / eat-01
+        :ARG0 (t3 / tray
+            :quant 1
+            :location (t / tabletop
+                :ARG1-of (r / red-02)))
+        :ARG1 (h / hot-dog)))

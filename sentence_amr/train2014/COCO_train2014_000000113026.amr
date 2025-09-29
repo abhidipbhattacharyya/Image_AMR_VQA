@@ -1,0 +1,40 @@
+# ::tok A pitcher partly covers another baseball player during a game sponsored by Comcast .
+# ::node	p2	person	1-2
+# ::node	t	throw-01	1-2
+# ::node	p	part	2-3
+# ::node	c2	cover-02	3-4
+# ::node	a	another	4-5
+# ::node	b	baseball	5-6
+# ::node	p3	person	6-7
+# ::node	p4	play-01	6-7
+# ::node	g	game	9-10
+# ::node	s	sponsor-01	10-11
+# ::node	c	company	12-13
+# ::node	n	name	12-13
+# ::node	0	Comcast	12-13
+# ::root	c2	cover-02
+# ::edge	person	ARG0-of	throw-01	p2	t	
+# ::edge	cover-02	degree	part	c2	p	
+# ::edge	cover-02	ARG0	person	c2	p2	
+# ::edge	person	mod	another	p3	a	
+# ::edge	cover-02	ARG1	person	c2	p3	
+# ::edge	person	ARG0-of	play-01	p3	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	cover-02	time	game	c2	g	
+# ::edge	game	ARG1-of	sponsor-01	g	s	
+# ::edge	sponsor-01	ARG0	company	s	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Comcast	n	0	
+(c2 / cover-02
+    :ARG0 (p2 / person
+        :ARG0-of (t / throw-01))
+    :ARG1 (p3 / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (b / baseball))
+        :mod (a / another))
+    :degree (p / part)
+    :time (g / game
+        :ARG1-of (s / sponsor-01
+            :ARG0 (c / company
+                :name (n / name
+                    :op1 "Comcast")))))

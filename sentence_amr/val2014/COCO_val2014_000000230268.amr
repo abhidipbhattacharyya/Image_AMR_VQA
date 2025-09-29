@@ -1,0 +1,28 @@
+# ::tok The bed in the bedroom is made up and ready to sleep in .
+# ::node	b	bed	1-2
+# ::node	b2	bedroom	4-5
+# ::node	m	make-01	6-7
+# ::node	a	also	7-8
+# ::node	a2	and	8-9
+# ::node	r	ready-01	9-10
+# ::node	s	sleep-00	11-12
+# ::root	a2	and
+# ::edge	bed	location	bedroom	b	b2	
+# ::edge	make-01	ARG1	bed	m	b	
+# ::edge	make-01	mod	also	m	a	
+# ::edge	and	op1	make-01	a2	m	
+# ::edge	and	op2	ready-01	a2	r	
+# ::edge	ready-01	ARG1	bed	r	b	
+# ::edge	ready-01	ARG2	sleep-00	r	s	
+# ::edge	sleep-00	ARG1	bed	s	b	
+# ::edge	sleep-00	ARG0	bed	s	b	
+(a2 / and
+    :op1 (m / make-01
+        :ARG1 (b / bed
+            :location (b2 / bedroom))
+        :mod (a / also))
+    :op2 (r / ready-01
+        :ARG1 b
+        :ARG2 (s / sleep-00
+            :ARG0 b
+            :ARG1 b)))

@@ -1,0 +1,50 @@
+# ::tok A woman and a little girl in blue are making pancakes and another person with her hands are putting on some cheese .
+# ::node	w	woman	1-2
+# ::node	a	and	2-3
+# ::node	l	little	4-5
+# ::node	g	girl	5-6
+# ::node	b	blue	7-8
+# ::node	m	make-01	9-10
+# ::node	e	enzyme	10-11
+# ::node	c2	cook-01	10-11
+# ::node	a2	and	11-12
+# ::node	a3	another	12-13
+# ::node	p	person	13-14
+# ::node	h	hand	16-17
+# ::node	p2	put-on-08	18-19
+# ::node	s	some	20-21
+# ::node	c	cheese	21-22
+# ::root	a2	and
+# ::edge	and	op1	woman	a	w	
+# ::edge	girl	mod	little	g	l	
+# ::edge	and	op2	girl	a	g	
+# ::edge	girl	mod	blue	g	b	
+# ::edge	make-01	ARG0	and	m	a	
+# ::edge	make-01	ARG1	enzyme	m	e	
+# ::edge	enzyme	ARG1-of	cook-01	e	c2	
+# ::edge	cook-01	ARG0	and	c2	a	
+# ::edge	and	op1	make-01	a2	m	
+# ::edge	person	mod	another	p	a3	
+# ::edge	person	part	hand	p	h	
+# ::edge	put-on-08	manner	hand	p2	h	
+# ::edge	put-on-08	ARG0	person	p2	p	
+# ::edge	and	op2	put-on-08	a2	p2	
+# ::edge	cheese	quant	some	c	s	
+# ::edge	put-on-08	ARG1	cheese	p2	c	
+(a2 / and
+    :op1 (m / make-01
+        :ARG0 (a / and
+            :op1 (w / woman)
+            :op2 (g / girl
+                :mod (l / little)
+                :mod (b / blue)))
+        :ARG1 (e / enzyme
+            :ARG1-of (c2 / cook-01
+                :ARG0 a)))
+    :op2 (p2 / put-on-08
+        :ARG0 (p / person
+            :mod (a3 / another)
+            :part (h / hand))
+        :ARG1 (c / cheese
+            :quant (s / some))
+        :manner h))

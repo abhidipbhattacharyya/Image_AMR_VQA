@@ -1,0 +1,24 @@
+# ::tok A red light stops traffic while the cars wait for it to chance .
+# ::node	r	red-02	1-2
+# ::node	l	light	2-3
+# ::node	s	stop-01	3-4
+# ::node	t	traffic	4-5
+# ::node	c	car	7-8
+# ::node	w	wait-01	8-9
+# ::node	c2	chance-02	12-13
+# ::root	s	stop-01
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	stop-01	ARG0	light	s	l	
+# ::edge	stop-01	ARG1	traffic	s	t	
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	stop-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG2	chance-02	w	c2	
+# ::edge	chance-02	ARG0	light	c2	l	
+(s / stop-01
+    :ARG0 (l / light
+        :ARG1-of (r / red-02))
+    :ARG1 (t / traffic)
+    :time (w / wait-01
+        :ARG1 (c / car)
+        :ARG2 (c2 / chance-02
+            :ARG0 l)))

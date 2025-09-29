@@ -1,0 +1,37 @@
+# ::tok A glass vase containing pink flowers sitting on a counter next to squash and two plates .
+# ::node	g	glass	1-2
+# ::node	v	vase	2-3
+# ::node	c	contain-01	3-4
+# ::node	p	pink-04	4-5
+# ::node	f	flower	5-6
+# ::node	s	sit-01	6-7
+# ::node	c2	counter	9-10
+# ::node	n	next-to	10-11
+# ::node	s2	squash	12-13
+# ::node	a	and	13-14
+# ::node	0	2	14-15
+# ::node	p2	plate	15-16
+# ::root	s	sit-01
+# ::edge	vase	consist-of	glass	v	g	
+# ::edge	vase	ARG0-of	contain-01	v	c	
+# ::edge	flower	ARG1-of	pink-04	f	p	
+# ::edge	contain-01	ARG1	flower	c	f	
+# ::edge	sit-01	ARG1	vase	s	v	
+# ::edge	sit-01	ARG2	counter	s	c2	
+# ::edge	counter	location-of	next-to	c2	n	
+# ::edge	and	op1	squash	a	s2	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	plate	quant	2	p2	0	
+# ::edge	and	op2	plate	a	p2	
+(s / sit-01
+    :ARG1 (v / vase
+        :ARG0-of (c / contain-01
+            :ARG1 (f / flower
+                :ARG1-of (p / pink-04)))
+        :consist-of (g / glass))
+    :ARG2 (c2 / counter
+        :location-of (n / next-to
+            :op1 (a / and
+                :op1 (s2 / squash)
+                :op2 (p2 / plate
+                    :quant 2)))))

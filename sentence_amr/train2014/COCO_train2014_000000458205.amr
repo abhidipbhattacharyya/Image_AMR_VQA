@@ -1,0 +1,42 @@
+# ::tok Jumbo jet parked on the runway either just landing or getting ready for takeoff .
+# ::node	g	gulf	0-1
+# ::node	n	name	0-1
+# ::node	0	Jumbo	0-1
+# ::node	j	jet	1-2
+# ::node	p	park-01	2-3
+# ::node	r2	runway	5-6
+# ::node	j2	just	7-8
+# ::node	l	land-01	8-9
+# ::node	o	or	9-10
+# ::node	r	ready-01	11-12
+# ::node	t	take-off-19	13-14
+# ::root	p	park-01
+# ::edge	gulf	name	name	g	n	
+# ::edge	name	op1	Jumbo	n	0	
+# ::edge	jet	mod	gulf	j	g	
+# ::edge	park-01	ARG1	jet	p	j	
+# ::edge	park-01	ARG2	runway	p	r2	
+# ::edge	land-01	mod	just	l	j2	
+# ::edge	land-01	ARG1	jet	l	j	
+# ::edge	or	op1	land-01	o	l	
+# ::edge	jet	mod	or	j	o	
+# ::edge	or	op2	ready-01	o	r	
+# ::edge	ready-01	ARG1	jet	r	j	
+# ::edge	ready-01	ARG0	jet	r	j	
+# ::edge	ready-01	ARG2	take-off-19	r	t	
+# ::edge	take-off-19	ARG1	jet	t	j	
+(p / park-01
+    :ARG1 (j / jet
+        :mod (g / gulf
+            :name (n / name
+                :op1 "Jumbo"))
+        :mod (o / or
+            :op1 (l / land-01
+                :ARG1 j
+                :mod (j2 / just))
+            :op2 (r / ready-01
+                :ARG0 j
+                :ARG1 j
+                :ARG2 (t / take-off-19
+                    :ARG1 j))))
+    :ARG2 (r2 / runway))

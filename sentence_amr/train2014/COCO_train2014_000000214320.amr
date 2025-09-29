@@ -1,0 +1,36 @@
+# ::tok Giraffe on grass plane with lots of brush , distracted by photographer from eating leaves on tree .
+# ::node	a	animal	0-1
+# ::node	g	grass	2-3
+# ::node	p3	plane	3-4
+# ::node	l2	lot	5-6
+# ::node	b	brush	7-8
+# ::node	d	distract-01	9-10
+# ::node	p	person	11-12
+# ::node	p2	photograph-01	11-12
+# ::node	e	eat-01	13-14
+# ::node	l	leaf	14-15
+# ::node	t	tree	16-17
+# ::root	a	animal
+# ::edge	plane	mod	grass	p3	g	
+# ::edge	animal	location	plane	a	p3	
+# ::edge	brush	quant	lot	b	l2	
+# ::edge	plane	prep-with	brush	p3	b	
+# ::edge	animal	ARG1-of	distract-01	a	d	
+# ::edge	distract-01	ARG0	person	d	p	
+# ::edge	person	ARG0-of	photograph-01	p	p2	
+# ::edge	distract-01	ARG2	eat-01	d	e	
+# ::edge	eat-01	ARG0	animal	e	a	
+# ::edge	eat-01	ARG1	leaf	e	l	
+# ::edge	leaf	location	tree	l	t	
+(a / animal
+    :ARG1-of (d / distract-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / photograph-01))
+        :ARG2 (e / eat-01
+            :ARG0 a
+            :ARG1 (l / leaf
+                :location (t / tree))))
+    :location (p3 / plane
+        :mod (g / grass)
+        :prep-with (b / brush
+            :quant (l2 / lot))))

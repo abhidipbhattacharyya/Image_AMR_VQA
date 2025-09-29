@@ -1,0 +1,28 @@
+# ::tok Fire hydrants along the marathon route keep the runners cooled down .
+# ::node	f	fire-03	0-1
+# ::node	t	tactic	1-2
+# ::node	a	along	2-3
+# ::node	m	marathon	4-5
+# ::node	r	route	5-6
+# ::node	k	keep-02	6-7
+# ::node	p	person	8-9
+# ::node	r2	run-02	8-9
+# ::node	c	cool-06	9-10
+# ::root	k	keep-02
+# ::edge	tactic	purpose	fire-03	t	f	
+# ::edge	tactic	location	along	t	a	
+# ::edge	route	mod	marathon	r	m	
+# ::edge	along	op1	route	a	r	
+# ::edge	keep-02	ARG0	tactic	k	t	
+# ::edge	person	ARG0-of	run-02	p	r2	
+# ::edge	cool-06	ARG1	person	c	p	
+# ::edge	keep-02	ARG1	cool-06	k	c	
+(k / keep-02
+    :ARG0 (t / tactic
+        :purpose (f / fire-03)
+        :location (a / along
+            :op1 (r / route
+                :mod (m / marathon))))
+    :ARG1 (c / cool-06
+        :ARG1 (p / person
+            :ARG0-of (r2 / run-02))))

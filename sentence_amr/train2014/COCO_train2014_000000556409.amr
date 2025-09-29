@@ -1,0 +1,68 @@
+# ::tok The shot shows the gauges on a motorcycle closeup , and past it a second motorcycle , no rider , just a helmet on the seat , and all of it by a path in a wooded area .
+# ::node	s2	shot	1-2
+# ::node	s3	show-01	2-3
+# ::node	g	gauge-01	4-5
+# ::node	m	motorcycle	7-8
+# ::node	c	close-10	8-9
+# ::node	a2	and	10-11
+# ::node	p	past	11-12
+# ::node	o	ordinal-entity	14-15
+# ::node	1	2	14-15
+# ::node	m2	motorcycle	15-16
+# ::node	0	-	17-18
+# ::node	p3	person	18-19
+# ::node	r	ride-01	18-19
+# ::node	j	just	20-21
+# ::node	h	helmet	22-23
+# ::node	s	seat	25-26
+# ::node	a3	and	27-28
+# ::node	a	all	28-29
+# ::node	p2	path	33-34
+# ::node	w	wood	36-37
+# ::node	a4	area	37-38
+# ::root	s3	show-01
+# ::edge	show-01	ARG0	shot	s3	s2	
+# ::edge	gauge-01	location	motorcycle	g	m	
+# ::edge	close-10	ARG1	motorcycle	c	m	
+# ::edge	show-01	manner	close-10	s3	c	
+# ::edge	and	op1	gauge-01	a2	g	
+# ::edge	show-01	ARG1	and	s3	a2	
+# ::edge	past	op1	motorcycle	p	m	
+# ::edge	ordinal-entity	value	2	o	1	
+# ::edge	motorcycle	ord	ordinal-entity	m2	o	
+# ::edge	motorcycle	location	past	m2	p	
+# ::edge	and	op2	motorcycle	a2	m2	
+# ::edge	person	polarity	-	p3	0	
+# ::edge	person	ARG0-of	ride-01	p3	r	
+# ::edge	helmet	mod	just	h	j	
+# ::edge	helmet	location	seat	h	s	
+# ::edge	and	op2	helmet	a3	h	
+# ::edge	and	op1	person	a3	p3	
+# ::edge	motorcycle	mod	and	m2	a3	
+# ::edge	and	op3	all	a2	a	
+# ::edge	all	location	path	a	p2	
+# ::edge	area	mod	wood	a4	w	
+# ::edge	path	location	area	p2	a4	
+(s3 / show-01
+    :ARG0 (s2 / shot)
+    :ARG1 (a2 / and
+        :op1 (g / gauge-01
+            :location (m / motorcycle))
+        :op2 (m2 / motorcycle
+            :location (p / past
+                :op1 m)
+            :mod (a3 / and
+                :op1 (p3 / person
+                    :ARG0-of (r / ride-01)
+                    :polarity -)
+                :op2 (h / helmet
+                    :location (s / seat)
+                    :mod (j / just)))
+            :ord (o / ordinal-entity
+                :value 2))
+        :op3 (a / all
+            :location (p2 / path
+                :location (a4 / area
+                    :mod (w / wood)))))
+    :manner (c / close-10
+        :ARG1 m))

@@ -1,0 +1,42 @@
+# ::tok A shop window display of pumpkins , melons , fruit and other vegetables next to bottles of wine .
+# ::node	s	shop	1-2
+# ::node	w2	window	2-3
+# ::node	d	display-01	3-4
+# ::node	p	pump-01	5-6
+# ::node	a	and	6-7
+# ::node	w	watermelon	7-8
+# ::node	f	fruit	9-10
+# ::node	o	other	11-12
+# ::node	v	vegetable	12-13
+# ::node	n	next-to	13-14
+# ::node	b	bottle	15-16
+# ::node	c	contain-01	15-16
+# ::node	w3	wine	17-18
+# ::root	d	display-01
+# ::edge	window	part-of	shop	w2	s	
+# ::edge	display-01	location	window	d	w2	
+# ::edge	pump-01	ARG1	and	p	a	
+# ::edge	and	op1	watermelon	a	w	
+# ::edge	watermelon	ARG2-of	pump-01	w	p	
+# ::edge	and	op2	fruit	a	f	
+# ::edge	vegetable	mod	other	v	o	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	display-01	location	next-to	d	n	
+# ::edge	next-to	op1	bottle	n	b	
+# ::edge	bottle	ARG0-of	contain-01	b	c	
+# ::edge	contain-01	ARG1	wine	c	w3	
+# ::edge	display-01	rel	and	d	a	
+(d / display-01
+    :location (w2 / window
+        :part-of (s / shop))
+    :location (n / next-to
+        :op1 (b / bottle
+            :ARG0-of (c / contain-01
+                :ARG1 (w3 / wine))))
+    :rel (a / and
+        :op1 (w / watermelon
+            :ARG2-of (p / pump-01
+                :ARG1 a))
+        :op2 (f / fruit)
+        :op3 (v / vegetable
+            :mod (o / other))))

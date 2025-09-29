@@ -1,0 +1,39 @@
+# ::tok A large British Airways passenger jet flying through the sky with it 's landing gear down .
+# ::node	l2	large	1-2
+# ::node	n	name	2-3
+# ::node	1	British	2-3
+# ::node	c	company	3-4
+# ::node	0	Airways	3-4
+# ::node	p	passenger	4-5
+# ::node	j	jet	5-6
+# ::node	f	fly-01	6-7
+# ::node	s	sky	9-10
+# ::node	l	land-01	13-14
+# ::node	g	gear	14-15
+# ::node	d	down-03	15-16
+# ::root	j	jet
+# ::edge	name	op1	British	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airways	n	0	
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	mod	company	j	c	
+# ::edge	jet	mod	large	j	l2	
+# ::edge	jet	ARG2-of	fly-01	j	f	
+# ::edge	fly-01	path	sky	f	s	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	jet	part	gear	j	g	
+# ::edge	down-03	ARG1	gear	d	g	
+# ::edge	fly-01	manner	down-03	f	d	
+(j / jet
+    :ARG2-of (f / fly-01
+        :manner (d / down-03
+            :ARG1 (g / gear
+                :ARG1-of (l / land-01)))
+        :path (s / sky))
+    :mod (p / passenger)
+    :mod (c / company
+        :name (n / name
+            :op1 "British"
+            :op2 "Airways"))
+    :mod (l2 / large)
+    :part g)

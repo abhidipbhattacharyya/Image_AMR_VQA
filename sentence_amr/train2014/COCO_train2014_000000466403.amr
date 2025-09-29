@@ -1,0 +1,28 @@
+# ::tok A stop sign is lightly dusted with snow as large buildings loom in the background .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	l2	light-06	4-5
+# ::node	d	dust-01	5-6
+# ::node	s2	snow	7-8
+# ::node	l	large	9-10
+# ::node	b2	building	10-11
+# ::node	l3	loom-01	11-12
+# ::node	b	background	14-15
+# ::root	d	dust-01
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	dust-01	ARG1-of	light-06	d	l2	
+# ::edge	dust-01	ARG1	signal-07	d	s	
+# ::edge	dust-01	ARG2	snow	d	s2	
+# ::edge	building	mod	large	b2	l	
+# ::edge	loom-01	ARG1	building	l3	b2	
+# ::edge	dust-01	time	loom-01	d	l3	
+# ::edge	loom-01	location	background	l3	b	
+(d / dust-01
+    :ARG1 (s / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG1-of (l2 / light-06)
+    :ARG2 (s2 / snow)
+    :time (l3 / loom-01
+        :ARG1 (b2 / building
+            :mod (l / large))
+        :location (b / background)))

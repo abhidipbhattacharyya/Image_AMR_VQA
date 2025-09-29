@@ -1,0 +1,39 @@
+# ::tok very many cellphones placed on a table others not showing anything on the screen
+# ::node	v	very	0-1
+# ::node	m	many	1-2
+# ::node	p	phone	2-3
+# ::node	p2	phone	2-3
+# ::node	p3	place-01	3-4
+# ::node	t	table	6-7
+# ::node	o	other	7-8
+# ::node	c	contrast-01	8-9
+# ::node	0	-	8-9
+# ::node	s2	show-01	9-10
+# ::node	a	anything	10-11
+# ::node	s	screen	13-14
+# ::root	c	contrast-01
+# ::edge	many	degree	very	m	v	
+# ::edge	phone	quant	many	p	m	
+# ::edge	place-01	ARG1	phone	p3	p	
+# ::edge	place-01	ARG2	table	p3	t	
+# ::edge	phone	mod	other	p2	o	
+# ::edge	contrast-01	ARG2	place-01	c	p3	
+# ::edge	contrast-01	ARG1	place-01	c	p3	
+# ::edge	show-01	polarity	-	s2	0	
+# ::edge	phone	ARG0-of	show-01	p2	s2	
+# ::edge	show-01	ARG1	anything	s2	a	
+# ::edge	show-01	location	screen	s2	s	
+# ::edge	contrast-01	rel	phone	c	p2	
+(c / contrast-01
+    :ARG1 (p3 / place-01
+        :ARG1 (p / phone
+            :quant (m / many
+                :degree (v / very)))
+        :ARG2 (t / table))
+    :ARG2 p3
+    :rel (p2 / phone
+        :ARG0-of (s2 / show-01
+            :ARG1 (a / anything)
+            :location (s / screen)
+            :polarity -)
+        :mod (o / other)))

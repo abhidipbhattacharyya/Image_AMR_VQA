@@ -1,0 +1,25 @@
+# ::tok Disconnected sections of a passenger train parked in a train yard .
+# ::node	c	connect-01	0-1
+# ::node	s	section	1-2
+# ::node	p2	passenger	4-5
+# ::node	t	train	5-6
+# ::node	p	park-01	6-7
+# ::node	t2	train	9-10
+# ::node	y	yard	10-11
+# ::node	0	-	10-11
+# ::root	s	section
+# ::edge	section	ARG1-of	connect-01	s	c	
+# ::edge	train	mod	passenger	t	p2	
+# ::edge	section	part-of	train	s	t	
+# ::edge	section	ARG1-of	park-01	s	p	
+# ::edge	yard	mod	train	y	t2	
+# ::edge	park-01	ARG2	yard	p	y	
+# ::edge	connect-01	polarity	-	c	0	
+(s / section
+    :ARG1-of (c / connect-01
+        :polarity -)
+    :ARG1-of (p / park-01
+        :ARG2 (y / yard
+            :mod (t2 / train)))
+    :part-of (t / train
+        :mod (p2 / passenger)))

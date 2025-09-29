@@ -1,0 +1,30 @@
+# ::tok A red , two level bus with it ; s doors open on the street and passengers inside the bus .
+# ::node	r	red-02	1-2
+# ::node	0	2	3-4
+# ::node	l	level	4-5
+# ::node	b	bus	5-6
+# ::node	d	door	10-11
+# ::node	o	open-01	11-12
+# ::node	s	street	14-15
+# ::node	a	and	15-16
+# ::node	p	passenger	16-17
+# ::root	a	and
+# ::edge	level	quant	2	l	0	
+# ::edge	bus	mod	level	b	l	
+# ::edge	bus	ARG1-of	red-02	b	r	
+# ::edge	bus	part	door	b	d	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	open-01	location	street	o	s	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	and	op2	passenger	a	p	
+# ::edge	passenger	location	bus	p	b	
+(a / and
+    :op1 (o / open-01
+        :ARG1 (d / door)
+        :location (s / street))
+    :op2 (p / passenger
+        :location (b / bus
+            :ARG1-of (r / red-02)
+            :mod (l / level
+                :quant 2)
+            :part d)))

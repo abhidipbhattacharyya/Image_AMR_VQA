@@ -1,0 +1,28 @@
+# ::tok Traffic sign with graffiti displayed near white building in urban area .
+# ::node	t	traffic	0-1
+# ::node	s	sign	1-2
+# ::node	g	graffiti-01	3-4
+# ::node	d	display-01	4-5
+# ::node	n	near-02	5-6
+# ::node	w	white-03	6-7
+# ::node	b	building	7-8
+# ::node	u	urban	9-10
+# ::node	a	area	10-11
+# ::root	s	sign
+# ::edge	sign	purpose	traffic	s	t	
+# ::edge	sign	ARG2-of	graffiti-01	s	g	
+# ::edge	sign	ARG1-of	display-01	s	d	
+# ::edge	display-01	ARG1-of	near-02	d	n	
+# ::edge	building	ARG1-of	white-03	b	w	
+# ::edge	near-02	ARG2	building	n	b	
+# ::edge	area	mod	urban	a	u	
+# ::edge	display-01	location	area	d	a	
+(s / sign
+    :purpose (t / traffic)
+    :ARG1-of (d / display-01
+        :ARG1-of (n / near-02
+            :ARG2 (b / building
+                :ARG1-of (w / white-03)))
+        :location (a / area
+            :mod (u / urban)))
+    :ARG2-of (g / graffiti-01))

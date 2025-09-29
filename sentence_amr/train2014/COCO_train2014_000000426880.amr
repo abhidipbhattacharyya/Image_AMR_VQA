@@ -1,0 +1,34 @@
+# ::tok A bowl of broccoli sitting next to a bowl of beans and a cup of yogurt .
+# ::node	b2	bowl	1-2
+# ::node	b4	broccoli	3-4
+# ::node	s	sit-01	4-5
+# ::node	n	next-to	5-6
+# ::node	b3	bowl	8-9
+# ::node	b	bean	10-11
+# ::node	a	and	11-12
+# ::node	0	1	12-13
+# ::node	c	cup	13-14
+# ::node	v	volume-quantity	14-15
+# ::node	y	yogurt	15-16
+# ::root	s	sit-01
+# ::edge	broccoli	quant	bowl	b4	b2	
+# ::edge	sit-01	ARG1	broccoli	s	b4	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	bowl	consist-of	bean	b3	b	
+# ::edge	and	op1	bowl	a	b3	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	yogurt	quant	volume-quantity	y	v	
+# ::edge	and	op2	yogurt	a	y	
+(s / sit-01
+    :ARG1 (b4 / broccoli
+        :quant (b2 / bowl))
+    :ARG2 (n / next-to
+        :op1 (a / and
+            :op1 (b3 / bowl
+                :consist-of (b / bean))
+            :op2 (y / yogurt
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c / cup))))))

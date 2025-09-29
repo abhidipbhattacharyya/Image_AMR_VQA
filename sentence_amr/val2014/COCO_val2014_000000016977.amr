@@ -1,0 +1,35 @@
+# ::tok Cars try to maneuver into parking spaces along a densely packed city street .
+# ::node	c	car	0-1
+# ::node	t	try-01	1-2
+# ::node	m	maneuver-01	3-4
+# ::node	p2	park-01	5-6
+# ::node	s	space	6-7
+# ::node	a	along	7-8
+# ::node	d	dense	9-10
+# ::node	p	pack-01	10-11
+# ::node	c2	city	11-12
+# ::node	s2	street	12-13
+# ::root	t	try-01
+# ::edge	try-01	ARG0	car	t	c	
+# ::edge	try-01	ARG1	maneuver-01	t	m	
+# ::edge	maneuver-01	ARG0	car	m	c	
+# ::edge	park-01	ARG0	car	p2	c	
+# ::edge	space	ARG2-of	park-01	s	p2	
+# ::edge	maneuver-01	ARG2	space	m	s	
+# ::edge	space	location	along	s	a	
+# ::edge	pack-01	manner	dense	p	d	
+# ::edge	street	mod	city	s2	c2	
+# ::edge	street	ARG1-of	pack-01	s2	p	
+# ::edge	along	op1	street	a	s2	
+(t / try-01
+    :ARG0 (c / car)
+    :ARG1 (m / maneuver-01
+        :ARG0 c
+        :ARG2 (s / space
+            :ARG2-of (p2 / park-01
+                :ARG0 c)
+            :location (a / along
+                :op1 (s2 / street
+                    :ARG1-of (p / pack-01
+                        :manner (d / dense))
+                    :mod (c2 / city))))))

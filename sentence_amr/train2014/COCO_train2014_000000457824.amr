@@ -1,0 +1,33 @@
+# ::tok Sign indicating motorists to stop at intersection with trees lining sides .
+# ::node	s2	signal-07	0-1
+# ::node	i	indicate-01	1-2
+# ::node	p	person	2-3
+# ::node	d	drive-01	2-3
+# ::node	a	automobile	2-3
+# ::node	s3	stop-01	4-5
+# ::node	i2	intersect-01	6-7
+# ::node	t	tree	8-9
+# ::node	l	line-01	9-10
+# ::node	s	side	10-11
+# ::root	s2	signal-07
+# ::edge	signal-07	ARG0-of	indicate-01	s2	i	
+# ::edge	indicate-01	ARG2	person	i	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	drive-01	ARG1	automobile	d	a	
+# ::edge	stop-01	ARG0	person	s3	p	
+# ::edge	indicate-01	ARG1	stop-01	i	s3	
+# ::edge	stop-01	location	intersect-01	s3	i2	
+# ::edge	intersect-01	ARG1	tree	i2	t	
+# ::edge	tree	ARG0-of	line-01	t	l	
+# ::edge	line-01	ARG1	side	l	s	
+(s2 / signal-07
+    :ARG0-of (i / indicate-01
+        :ARG1 (s3 / stop-01
+            :ARG0 (p / person
+                :ARG0-of (d / drive-01
+                    :ARG1 (a / automobile)))
+            :location (i2 / intersect-01
+                :ARG1 (t / tree
+                    :ARG0-of (l / line-01
+                        :ARG1 (s / side)))))
+        :ARG2 p))

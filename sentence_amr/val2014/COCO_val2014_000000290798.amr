@@ -1,0 +1,31 @@
+# ::tok Heavily loaded green truck with passengers on back in roadway in urban area .
+# ::node	h	heavy	0-1
+# ::node	l	load-01	1-2
+# ::node	g	green-02	2-3
+# ::node	t	truck	3-4
+# ::node	p	passenger	5-6
+# ::node	b	back	7-8
+# ::node	r	roadway	9-10
+# ::node	b2	be-located-at-91	10-11
+# ::node	u	urban	11-12
+# ::node	a	area	12-13
+# ::root	b2	be-located-at-91
+# ::edge	load-01	degree	heavy	l	h	
+# ::edge	truck	ARG1-of	green-02	t	g	
+# ::edge	truck	ARG1-of	load-01	t	l	
+# ::edge	truck	location-of	passenger	t	p	
+# ::edge	be-located-at-91	ARG2	roadway	b2	r	
+# ::edge	be-located-at-91	ARG1	truck	b2	t	
+# ::edge	area	mod	urban	a	u	
+# ::edge	roadway	location	area	r	a	
+# ::edge	be-located-at-91	rel	back	b2	b	
+(b2 / be-located-at-91
+    :ARG1 (t / truck
+        :ARG1-of (g / green-02)
+        :ARG1-of (l / load-01
+            :degree (h / heavy))
+        :location-of (p / passenger))
+    :ARG2 (r / roadway
+        :location (a / area
+            :mod (u / urban)))
+    :rel (b / back))

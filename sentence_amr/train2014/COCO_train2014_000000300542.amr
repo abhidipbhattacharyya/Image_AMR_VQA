@@ -1,0 +1,31 @@
+# ::tok A chef in a kitchen pours gravy on one of several plates of food .
+# ::node	c	chef	1-2
+# ::node	k	kitchen	4-5
+# ::node	p3	pour-01	5-6
+# ::node	g	gravy	6-7
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	s	several	10-11
+# ::node	p	plate	11-12
+# ::node	p2	plate	11-12
+# ::node	f	food	13-14
+# ::root	p3	pour-01
+# ::edge	chef	location	kitchen	c	k	
+# ::edge	pour-01	ARG0	chef	p3	c	
+# ::edge	pour-01	ARG1	gravy	p3	g	
+# ::edge	plate	ARG1-of	include-91	p	i	
+# ::edge	plate	quant	1	p	0	
+# ::edge	pour-01	location	plate	p3	p	
+# ::edge	plate	quant	several	p2	s	
+# ::edge	include-91	ARG2	plate	i	p2	
+# ::edge	plate	consist-of	food	p2	f	
+(p3 / pour-01
+    :ARG0 (c / chef
+        :location (k / kitchen))
+    :ARG1 (g / gravy)
+    :location (p / plate
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (p2 / plate
+                :quant (s / several)
+                :consist-of (f / food)))))

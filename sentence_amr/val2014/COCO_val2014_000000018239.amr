@@ -1,0 +1,25 @@
+# ::tok Some brown and white horses are separated by stick fences .
+# ::node	s2	some	0-1
+# ::node	r	Brown	1-2
+# ::node	w	white-03	3-4
+# ::node	h	horse	4-5
+# ::node	h2	horse	4-5
+# ::node	s	separate-01	6-7
+# ::node	s3	stick	8-9
+# ::node	f	fence	9-10
+# ::root	s	separate-01
+# ::edge	horse	mod	Brown	h	r	
+# ::edge	horse	quant	some	h	s2	
+# ::edge	horse	ARG1-of	white-03	h2	w	
+# ::edge	separate-01	ARG2	horse	s	h2	
+# ::edge	separate-01	ARG1	horse	s	h	
+# ::edge	fence	consist-of	stick	f	s3	
+# ::edge	separate-01	ARG0	fence	s	f	
+(s / separate-01
+    :ARG0 (f / fence
+        :consist-of (s3 / stick))
+    :ARG1 (h / horse
+        :quant (s2 / some)
+        :mod (r / Brown))
+    :ARG2 (h2 / horse
+        :ARG1-of (w / white-03)))

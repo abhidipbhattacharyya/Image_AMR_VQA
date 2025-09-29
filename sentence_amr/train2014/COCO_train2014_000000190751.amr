@@ -1,0 +1,39 @@
+# ::tok A train with many cars is on one of three sets of train tracks
+# ::node	t2	train	1-2
+# ::node	h	have-03	2-3
+# ::node	m	many	3-4
+# ::node	c	car	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::node	1	3	9-10
+# ::node	s	set	10-11
+# ::node	s2	set	10-11
+# ::node	t3	train	12-13
+# ::node	t	track	13-14
+# ::root	b	be-located-at-91
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	car	quant	many	c	m	
+# ::edge	have-03	ARG1	car	h	c	
+# ::edge	be-located-at-91	ARG1	train	b	t2	
+# ::edge	set	ARG1-of	include-91	s	i	
+# ::edge	set	quant	1	s	0	
+# ::edge	be-located-at-91	ARG2	set	b	s	
+# ::edge	set	quant	3	s2	1	
+# ::edge	include-91	ARG2	set	i	s2	
+# ::edge	track	purpose	train	t	t3	
+# ::edge	track	consist-of	set	t	s2	
+# ::edge	set	part-of	track	s2	t	
+(b / be-located-at-91
+    :ARG1 (t2 / train
+        :ARG0-of (h / have-03
+            :ARG1 (c / car
+                :quant (m / many))))
+    :ARG2 (s / set
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (s2 / set
+                :quant 3
+                :part-of (t / track
+                    :purpose (t3 / train)
+                    :consist-of s2)))))

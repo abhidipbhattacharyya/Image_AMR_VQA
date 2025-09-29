@@ -1,0 +1,31 @@
+# ::tok Homeless person sleeping on a bench in a brick paved public area .
+# ::node	h	have-03	0-1
+# ::node	h2	home	0-1
+# ::node	p2	person	1-2
+# ::node	s	sleep-01	2-3
+# ::node	b	bench	5-6
+# ::node	b2	brick	8-9
+# ::node	p	pave-01	9-10
+# ::node	p3	public-02	10-11
+# ::node	a	area	11-12
+# ::node	0	-	11-12
+# ::root	s	sleep-01
+# ::edge	have-03	ARG1	home	h	h2	
+# ::edge	person	ARG0-of	have-03	p2	h	
+# ::edge	sleep-01	ARG0	person	s	p2	
+# ::edge	sleep-01	ARG1	bench	s	b	
+# ::edge	pave-01	ARG2	brick	p	b2	
+# ::edge	area	ARG1-of	public-02	a	p3	
+# ::edge	area	ARG1-of	pave-01	a	p	
+# ::edge	bench	location	area	b	a	
+# ::edge	have-03	polarity	-	h	0	
+(s / sleep-01
+    :ARG0 (p2 / person
+        :ARG0-of (h / have-03
+            :ARG1 (h2 / home)
+            :polarity -))
+    :ARG1 (b / bench
+        :location (a / area
+            :ARG1-of (p3 / public-02)
+            :ARG1-of (p / pave-01
+                :ARG2 (b2 / brick)))))

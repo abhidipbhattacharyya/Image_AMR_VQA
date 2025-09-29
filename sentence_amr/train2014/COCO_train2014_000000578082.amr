@@ -1,0 +1,39 @@
+# ::tok A cow is out in front of a grassy field and a cow and a baby cow are in the background along with other cows .
+# ::node	c	cow	1-2
+# ::node	o2	out-06	3-4
+# ::node	i	in-front-of	5-6
+# ::node	g	grass	8-9
+# ::node	f	field	9-10
+# ::node	a	and	13-14
+# ::node	b	baby	15-16
+# ::node	c2	cow	16-17
+# ::node	b3	be-located-at-91	18-19
+# ::node	b2	background	20-21
+# ::node	o	other	23-24
+# ::node	c3	cow	24-25
+# ::root	b3	be-located-at-91
+# ::edge	out-06	ARG1	cow	o2	c	
+# ::edge	out-06	ARG2	in-front-of	o2	i	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	in-front-of	op1	field	i	f	
+# ::edge	and	op1	cow	a	c	
+# ::edge	cow	mod	baby	c2	b	
+# ::edge	and	op2	cow	a	c2	
+# ::edge	be-located-at-91	ARG1	and	b3	a	
+# ::edge	be-located-at-91	ARG2	background	b3	b2	
+# ::edge	cow	mod	other	c3	o	
+# ::edge	and	op3	cow	a	c3	
+# ::edge	be-located-at-91	rel	out-06	b3	o2	
+(b3 / be-located-at-91
+    :ARG1 (a / and
+        :op1 (c / cow)
+        :op2 (c2 / cow
+            :mod (b / baby))
+        :op3 (c3 / cow
+            :mod (o / other)))
+    :ARG2 (b2 / background)
+    :rel (o2 / out-06
+        :ARG1 c
+        :ARG2 (i / in-front-of
+            :op1 (f / field
+                :consist-of (g / grass)))))

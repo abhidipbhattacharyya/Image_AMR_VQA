@@ -1,0 +1,28 @@
+# ::tok The sign clearly shows that bananas cost fifteen cents each .
+# ::node	s2	sign	1-2
+# ::node	c2	clear-06	2-3
+# ::node	s	show-01	3-4
+# ::node	b	banana	5-6
+# ::node	c3	cost-01	6-7
+# ::node	0	15	7-8
+# ::node	m	monetary-quantity	8-9
+# ::node	c	cent	8-9
+# ::node	e	each	9-10
+# ::root	s	show-01
+# ::edge	show-01	ARG1-of	clear-06	s	c2	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	cost-01	ARG1	banana	c3	b	
+# ::edge	show-01	ARG1	cost-01	s	c3	
+# ::edge	monetary-quantity	quant	15	m	0	
+# ::edge	cost-01	ARG2	monetary-quantity	c3	m	
+# ::edge	monetary-quantity	unit	cent	m	c	
+# ::edge	cost-01	mod	each	c3	e	
+(s / show-01
+    :ARG0 (s2 / sign)
+    :ARG1 (c3 / cost-01
+        :ARG1 (b / banana)
+        :ARG2 (m / monetary-quantity
+            :quant 15
+            :unit (c / cent))
+        :mod (e / each))
+    :ARG1-of (c2 / clear-06))

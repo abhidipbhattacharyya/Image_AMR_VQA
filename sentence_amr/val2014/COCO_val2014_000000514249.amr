@@ -1,0 +1,34 @@
+# ::tok A white fire hydrant sitting next to news paper dispensers at night .
+# ::node	w	white-03	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	s	sit-01	4-5
+# ::node	n2	next-to	5-6
+# ::node	n	news	7-8
+# ::node	p	paper	8-9
+# ::node	d2	device	9-10
+# ::node	a	administer-01	9-10
+# ::node	d	date-entity	11-12
+# ::node	n3	night	11-12
+# ::root	s	sit-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	white-03	h	w	
+# ::edge	sit-01	ARG1	hydrant	s	h	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	paper	mod	news	p	n	
+# ::edge	next-to	op1	device	n2	d2	
+# ::edge	device	ARG0-of	administer-01	d2	a	
+# ::edge	administer-01	ARG1	paper	a	p	
+# ::edge	sit-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n3	
+(s / sit-01
+    :ARG1 (h / hydrant
+        :ARG1-of (w / white-03)
+        :mod (f / fire))
+    :ARG2 (n2 / next-to
+        :op1 (d2 / device
+            :ARG0-of (a / administer-01
+                :ARG1 (p / paper
+                    :mod (n / news)))))
+    :time (d / date-entity
+        :dayperiod (n3 / night)))

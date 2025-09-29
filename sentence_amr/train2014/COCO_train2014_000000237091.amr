@@ -1,0 +1,33 @@
+# ::tok some people sitting on surfboards in the water as a big boat goes by in the back
+# ::node	s2	some	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	s3	surf-01	4-5
+# ::node	w	water	7-8
+# ::node	b2	big	10-11
+# ::node	b3	boat	11-12
+# ::node	g	go-01	12-13
+# ::node	b4	by	13-14
+# ::node	b	back	16-17
+# ::root	s	sit-01
+# ::edge	person	quant	some	p	s2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	surf-01	s	s3	
+# ::edge	surf-01	ARG0	person	s3	p	
+# ::edge	surf-01	location	water	s3	w	
+# ::edge	boat	mod	big	b3	b2	
+# ::edge	go-01	ARG1	boat	g	b3	
+# ::edge	sit-01	time	go-01	s	g	
+# ::edge	go-01	path	by	g	b4	
+# ::edge	go-01	location	back	g	b	
+(s / sit-01
+    :ARG1 (p / person
+        :quant (s2 / some))
+    :ARG2 (s3 / surf-01
+        :ARG0 p
+        :location (w / water))
+    :time (g / go-01
+        :ARG1 (b3 / boat
+            :mod (b2 / big))
+        :location (b / back)
+        :path (b4 / by)))

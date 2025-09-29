@@ -1,0 +1,33 @@
+# ::tok a passenger with their arm wrapped around the neck of the driver of a green pick up truck
+# ::node	p	passenger	1-2
+# ::node	a	arm	4-5
+# ::node	w	wrap-01	5-6
+# ::node	a2	around	6-7
+# ::node	n	neck	8-9
+# ::node	p2	person	11-12
+# ::node	d	drive-01	11-12
+# ::node	g	green-02	14-15
+# ::node	p3	pick-up-04	15-16
+# ::node	t	truck	17-18
+# ::root	p	passenger
+# ::edge	passenger	part	arm	p	a	
+# ::edge	wrap-01	ARG1	arm	w	a	
+# ::edge	passenger	manner	wrap-01	p	w	
+# ::edge	wrap-01	ARG2	around	w	a2	
+# ::edge	around	op1	neck	a2	n	
+# ::edge	neck	part-of	person	n	p2	
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	truck	ARG2-of	pick-up-04	t	p3	
+# ::edge	truck	ARG1-of	green-02	t	g	
+# ::edge	drive-01	ARG1	truck	d	t	
+(p / passenger
+    :manner (w / wrap-01
+        :ARG1 (a / arm)
+        :ARG2 (a2 / around
+            :op1 (n / neck
+                :part-of (p2 / person
+                    :ARG0-of (d / drive-01
+                        :ARG1 (t / truck
+                            :ARG1-of (g / green-02)
+                            :ARG2-of (p3 / pick-up-04)))))))
+    :part a)

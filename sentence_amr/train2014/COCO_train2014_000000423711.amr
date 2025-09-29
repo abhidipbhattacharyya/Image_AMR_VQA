@@ -1,0 +1,24 @@
+# ::tok Many people sitting at tables , in preparation a food establishment .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	4-5
+# ::node	p2	prepare-01	7-8
+# ::node	f	food	9-10
+# ::node	e	establish-01	10-11
+# ::root	s	sit-01
+# ::edge	person	quant	many	p	m	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	sit-01	purpose	prepare-01	s	p2	
+# ::edge	prepare-01	ARG0	person	p2	p	
+# ::edge	establish-01	ARG1	food	e	f	
+# ::edge	prepare-01	ARG1	establish-01	p2	e	
+(s / sit-01
+    :purpose (p2 / prepare-01
+        :ARG0 (p / person
+            :quant (m / many))
+        :ARG1 (e / establish-01
+            :ARG1 (f / food)))
+    :ARG1 p
+    :ARG2 (t / table))

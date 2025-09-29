@@ -1,0 +1,30 @@
+# ::tok Small vehicles are near two airliners that have portable stairs on their sides .
+# ::node	s2	small	0-1
+# ::node	v	vehicle	1-2
+# ::node	n	near-02	3-4
+# ::node	0	2	4-5
+# ::node	a	airliner	5-6
+# ::node	h	have-03	7-8
+# ::node	p	portable	8-9
+# ::node	s3	stair	9-10
+# ::node	s	side	12-13
+# ::root	n	near-02
+# ::edge	vehicle	mod	small	v	s2	
+# ::edge	near-02	ARG1	vehicle	n	v	
+# ::edge	airliner	quant	2	a	0	
+# ::edge	near-02	ARG2	airliner	n	a	
+# ::edge	airliner	ARG0-of	have-03	a	h	
+# ::edge	stair	mod	portable	s3	p	
+# ::edge	have-03	ARG1	stair	h	s3	
+# ::edge	stair	location	side	s3	s	
+# ::edge	airliner	part	side	a	s	
+(n / near-02
+    :ARG1 (v / vehicle
+        :mod (s2 / small))
+    :ARG2 (a / airliner
+        :quant 2
+        :ARG0-of (h / have-03
+            :ARG1 (s3 / stair
+                :location (s / side)
+                :mod (p / portable)))
+        :part s))

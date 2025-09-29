@@ -1,0 +1,41 @@
+# ::tok Dude crouching down and grabbing skateboard in mid air after coming off of ramp
+# ::node	d2	dude	0-1
+# ::node	c2	crouch-01	1-2
+# ::node	d	down	2-3
+# ::node	a3	and	3-4
+# ::node	g	grab-01	4-5
+# ::node	s	skateboard	5-6
+# ::node	m	middle	7-8
+# ::node	a2	air	8-9
+# ::node	a	after	9-10
+# ::node	c	come-01	10-11
+# ::node	o	off	11-12
+# ::node	r	ramp	13-14
+# ::root	a3	and
+# ::edge	crouch-01	ARG0	dude	c2	d2	
+# ::edge	crouch-01	direction	down	c2	d	
+# ::edge	and	op1	crouch-01	a3	c2	
+# ::edge	and	op2	grab-01	a3	g	
+# ::edge	grab-01	ARG0	dude	g	d2	
+# ::edge	grab-01	ARG1	skateboard	g	s	
+# ::edge	air	mod	middle	a2	m	
+# ::edge	grab-01	location	air	g	a2	
+# ::edge	and	time	after	a3	a	
+# ::edge	after	op1	come-01	a	c	
+# ::edge	come-01	ARG1	dude	c	d2	
+# ::edge	come-01	direction	off	c	o	
+# ::edge	off	op1	ramp	o	r	
+(a3 / and
+    :op1 (c2 / crouch-01
+        :ARG0 (d2 / dude)
+        :direction (d / down))
+    :op2 (g / grab-01
+        :ARG0 d2
+        :ARG1 (s / skateboard)
+        :location (a2 / air
+            :mod (m / middle)))
+    :time (a / after
+        :op1 (c / come-01
+            :ARG1 d2
+            :direction (o / off
+                :op1 (r / ramp)))))

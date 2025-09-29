@@ -1,0 +1,28 @@
+# ::tok An old parking meter sets with time expired in front of a parked vehicle .
+# ::node	o	old	1-2
+# ::node	p	park-01	2-3
+# ::node	m	meter	3-4
+# ::node	s	set	4-5
+# ::node	t	time	6-7
+# ::node	e	expire-01	7-8
+# ::node	i	in-front-of	9-10
+# ::node	p2	park-01	12-13
+# ::node	v	vehicle	13-14
+# ::root	s	set
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	mod	old	m	o	
+# ::edge	set	mod	meter	s	m	
+# ::edge	expire-01	ARG1	time	e	t	
+# ::edge	set	ARG0-of	expire-01	s	e	
+# ::edge	set	location	in-front-of	s	i	
+# ::edge	vehicle	ARG1-of	park-01	v	p2	
+# ::edge	in-front-of	op1	vehicle	i	v	
+(s / set
+    :ARG0-of (e / expire-01
+        :ARG1 (t / time))
+    :location (i / in-front-of
+        :op1 (v / vehicle
+            :ARG1-of (p2 / park-01)))
+    :mod (m / meter
+        :purpose (p / park-01)
+        :mod (o / old)))

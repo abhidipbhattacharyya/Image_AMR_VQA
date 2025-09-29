@@ -1,0 +1,27 @@
+# ::tok The video game console is on the table next to the game controller .
+# ::node	v	video	1-2
+# ::node	g	game	2-3
+# ::node	c	console	3-4
+# ::node	t	table	7-8
+# ::node	n	next-to	8-9
+# ::node	t2	thing	12-13
+# ::node	c2	control-01	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	game	mod	video	g	v	
+# ::edge	console	mod	game	c	g	
+# ::edge	next-to	location	table	n	t	
+# ::edge	console	location	next-to	c	n	
+# ::edge	next-to	op1	thing	n	t2	
+# ::edge	thing	ARG0-of	control-01	t2	c2	
+# ::edge	control-01	ARG1	game	c2	g	
+# ::edge	event	mod	console	e	c	
+(e / event
+    :mod (c / console
+        :location (n / next-to
+            :location (t / table)
+            :op1 (t2 / thing
+                :ARG0-of (c2 / control-01
+                    :ARG1 (g / game
+                        :mod (v / video)))))
+        :mod g))

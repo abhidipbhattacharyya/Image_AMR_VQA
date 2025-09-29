@@ -1,0 +1,28 @@
+# ::tok A multicolored bus with Russian lettering on the back parked by a sidewalk .
+# ::node	m	multiple	1-2
+# ::node	b2	bus	2-3
+# ::node	c	country	4-5
+# ::node	n	name	4-5
+# ::node	0	Russia	4-5
+# ::node	l	letter	5-6
+# ::node	b	back	8-9
+# ::node	p	park-01	9-10
+# ::node	s	sidewalk	12-13
+# ::root	b2	bus
+# ::edge	bus	mod	multiple	b2	m	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Russia	n	0	
+# ::edge	letter	mod	country	l	c	
+# ::edge	bus	mod	letter	b2	l	
+# ::edge	bus	location	back	b2	b	
+# ::edge	bus	ARG1-of	park-01	b2	p	
+# ::edge	park-01	ARG2	sidewalk	p	s	
+(b2 / bus
+    :ARG1-of (p / park-01
+        :ARG2 (s / sidewalk))
+    :location (b / back)
+    :mod (m / multiple)
+    :mod (l / letter
+        :mod (c / country
+            :name (n / name
+                :op1 "Russia"))))

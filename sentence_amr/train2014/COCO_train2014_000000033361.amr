@@ -1,0 +1,27 @@
+# ::tok A chair is made out of stuffed pandas attached to each other in a clump .
+# ::node	c	chair	1-2
+# ::node	m	make-01	3-4
+# ::node	s	stuff-01	6-7
+# ::node	p	panda	7-8
+# ::node	a	attach-01	8-9
+# ::node	e	each	10-11
+# ::node	o	other	11-12
+# ::node	c2	clump	14-15
+# ::root	m	make-01
+# ::edge	make-01	ARG1	chair	m	c	
+# ::edge	panda	ARG1-of	stuff-01	p	s	
+# ::edge	make-01	ARG2	panda	m	p	
+# ::edge	panda	ARG1-of	attach-01	p	a	
+# ::edge	other	mod	each	o	e	
+# ::edge	attach-01	ARG2	other	a	o	
+# ::edge	clump	consist-of	panda	c2	p	
+# ::edge	panda	manner	clump	p	c2	
+(m / make-01
+    :ARG1 (c / chair)
+    :ARG2 (p / panda
+        :ARG1-of (s / stuff-01)
+        :ARG1-of (a / attach-01
+            :ARG2 (o / other
+                :mod (e / each)))
+        :manner (c2 / clump
+            :consist-of p)))

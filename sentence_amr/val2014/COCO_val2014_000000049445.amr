@@ -1,0 +1,31 @@
+# ::tok A cloth sheet with various hiking and and travel gear items on it .
+# ::node	c	cloth	1-2
+# ::node	s	sheet	2-3
+# ::node	v	various	4-5
+# ::node	h	hike-01	5-6
+# ::node	a	and	7-8
+# ::node	t	travel-01	8-9
+# ::node	g	gear	9-10
+# ::node	g2	gear	9-10
+# ::node	i	item	10-11
+# ::node	i2	item	10-11
+# ::root	s	sheet
+# ::edge	sheet	consist-of	cloth	s	c	
+# ::edge	and	mod	various	a	v	
+# ::edge	sheet	consist-of	and	s	a	
+# ::edge	gear	mod	hike-01	g	h	
+# ::edge	gear	mod	travel-01	g2	t	
+# ::edge	item	mod	gear	i	g	
+# ::edge	and	op1	item	a	i	
+# ::edge	item	mod	gear	i2	g2	
+# ::edge	and	op2	item	a	i2	
+(s / sheet
+    :consist-of (c / cloth)
+    :consist-of (a / and
+        :mod (v / various)
+        :op1 (i / item
+            :mod (g / gear
+                :mod (h / hike-01)))
+        :op2 (i2 / item
+            :mod (g2 / gear
+                :mod (t / travel-01)))))

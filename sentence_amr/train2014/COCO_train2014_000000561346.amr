@@ -1,0 +1,34 @@
+# ::tok A man standing next to a couch holding a wii game controller .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	c2	couch	6-7
+# ::node	h	hold-01	7-8
+# ::node	p	product	9-10
+# ::node	n	name	9-10
+# ::node	0	W	9-10
+# ::node	g	game	10-11
+# ::node	t	thing	11-12
+# ::node	c	control-01	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	couch	n2	c2	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	W	n	0	
+# ::edge	game	mod	product	g	p	
+# ::edge	hold-01	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	control-01	ARG1	game	c	g	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (h / hold-01
+            :ARG1 (t / thing
+                :ARG0-of (c / control-01
+                    :ARG1 (g / game
+                        :mod (p / product
+                            :name (n / name
+                                :op1 "W")))))))
+    :ARG2 (n2 / next-to
+        :op1 (c2 / couch)))

@@ -1,0 +1,45 @@
+# ::tok A city is lit up at twilight near a river and a clock tower is lit up in the distance as a large boat is seen on the river .
+# ::node	c	city	1-2
+# ::node	l2	light-up-08	3-4
+# ::node	d	date-entity	6-7
+# ::node	t2	twilight	6-7
+# ::node	n	near-02	7-8
+# ::node	r	river	9-10
+# ::node	a	and	10-11
+# ::node	c2	clock	12-13
+# ::node	t	tower	13-14
+# ::node	l3	light-up-08	15-16
+# ::node	d2	distance	19-20
+# ::node	l	large	22-23
+# ::node	b	boat	23-24
+# ::node	s	see-01	25-26
+# ::root	a	and
+# ::edge	light-up-08	ARG1	city	l2	c	
+# ::edge	light-up-08	time	date-entity	l2	d	
+# ::edge	date-entity	dayperiod	twilight	d	t2	
+# ::edge	city	ARG1-of	near-02	c	n	
+# ::edge	near-02	ARG2	river	n	r	
+# ::edge	and	op1	light-up-08	a	l2	
+# ::edge	tower	mod	clock	t	c2	
+# ::edge	light-up-08	ARG1	tower	l3	t	
+# ::edge	and	op2	light-up-08	a	l3	
+# ::edge	light-up-08	location	distance	l3	d2	
+# ::edge	boat	mod	large	b	l	
+# ::edge	see-01	ARG1	boat	s	b	
+# ::edge	and	time	see-01	a	s	
+# ::edge	see-01	location	river	s	r	
+(a / and
+    :op1 (l2 / light-up-08
+        :ARG1 (c / city
+            :ARG1-of (n / near-02
+                :ARG2 (r / river)))
+        :time (d / date-entity
+            :dayperiod (t2 / twilight)))
+    :op2 (l3 / light-up-08
+        :ARG1 (t / tower
+            :mod (c2 / clock))
+        :location (d2 / distance))
+    :time (s / see-01
+        :ARG1 (b / boat
+            :mod (l / large))
+        :location r))

@@ -1,0 +1,35 @@
+# ::tok Two people , one male the other female , pass by while talking on their cellphones .
+# ::node	1	2	0-1
+# ::node	p2	person	1-2
+# ::node	0	1	3-4
+# ::node	m	male	4-5
+# ::node	o	other	6-7
+# ::node	f	female	7-8
+# ::node	a	and	8-9
+# ::node	p	pass-by-17	9-10
+# ::node	t	talk-01	12-13
+# ::node	p3	phone	15-16
+# ::root	p	pass-by-17
+# ::edge	person	quant	2	p2	1	
+# ::edge	male	quant	1	m	0	
+# ::edge	female	mod	other	f	o	
+# ::edge	and	op2	female	a	f	
+# ::edge	and	op1	male	a	m	
+# ::edge	person	domain	and	p2	a	
+# ::edge	pass-by-17	ARG0	person	p	p2	
+# ::edge	pass-by-17	time	talk-01	p	t	
+# ::edge	talk-01	ARG0	person	t	p2	
+# ::edge	talk-01	instrument	phone	t	p3	
+# ::edge	phone	poss	person	p3	p2	
+(p / pass-by-17
+    :ARG0 (p2 / person
+        :quant 2
+        :domain (a / and
+            :op1 (m / male
+                :quant 1)
+            :op2 (f / female
+                :mod (o / other))))
+    :time (t / talk-01
+        :ARG0 p2
+        :instrument (p3 / phone
+            :poss p2)))

@@ -1,0 +1,24 @@
+# ::tok A person on a motor cycle in the street with blurry buildings behind them .
+# ::node	p	person	1-2
+# ::node	m	motorcycle	4-5
+# ::node	s	street	8-9
+# ::node	h	have-03	9-10
+# ::node	b2	blur-01	10-11
+# ::node	b3	building	11-12
+# ::node	b	behind	12-13
+# ::root	p	person
+# ::edge	have-03	ARG1	street	h	s	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	building	ARG1-of	blur-01	b3	b2	
+# ::edge	behind	location-of	building	b	b3	
+# ::edge	person	location	behind	p	b	
+# ::edge	behind	op1	person	b	p	
+# ::edge	person	rel	motorcycle	p	m	
+(p / person
+    :ARG0-of (h / have-03
+        :ARG1 (s / street))
+    :location (b / behind
+        :location-of (b3 / building
+            :ARG1-of (b2 / blur-01))
+        :op1 p)
+    :rel (m / motorcycle))

@@ -1,0 +1,44 @@
+# ::tok A man at a party with a long red ribbon around his neck and a plastic cup of beer in his hand .
+# ::node	m	man	1-2
+# ::node	p	party	4-5
+# ::node	h2	have-03	5-6
+# ::node	l	long-03	7-8
+# ::node	r	red-02	8-9
+# ::node	r2	ribbon	9-10
+# ::node	a2	around	10-11
+# ::node	n	neck	12-13
+# ::node	a	and	13-14
+# ::node	p2	plastic	15-16
+# ::node	c	cup	16-17
+# ::node	b	beer	18-19
+# ::node	h	hand	21-22
+# ::root	m	man
+# ::edge	man	location	party	m	p	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	ribbon	ARG1-of	red-02	r2	r	
+# ::edge	ribbon	ARG1-of	long-03	r2	l	
+# ::edge	ribbon	mod	around	r2	a2	
+# ::edge	around	op1	neck	a2	n	
+# ::edge	man	part	neck	m	n	
+# ::edge	and	op1	ribbon	a	r2	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	cup	consist-of	plastic	c	p2	
+# ::edge	beer	consist-of	cup	b	c	
+# ::edge	and	op2	beer	a	b	
+# ::edge	beer	location	hand	b	h	
+# ::edge	man	part	hand	m	h	
+(m / man
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (r2 / ribbon
+                :ARG1-of (r / red-02)
+                :ARG1-of (l / long-03)
+                :mod (a2 / around
+                    :op1 (n / neck)))
+            :op2 (b / beer
+                :consist-of (c / cup
+                    :consist-of (p2 / plastic))
+                :location (h / hand))))
+    :location (p / party)
+    :part n
+    :part h)

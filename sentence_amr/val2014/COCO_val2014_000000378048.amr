@@ -1,0 +1,48 @@
+# ::tok People sitting and some standing on the grass with a kite flying and palm trees in the background near buildings .
+# ::node	p2	person	0-1
+# ::node	s	sit-01	1-2
+# ::node	a	and	2-3
+# ::node	p3	person	3-4
+# ::node	s2	some	3-4
+# ::node	s3	stand-01	4-5
+# ::node	g	grass	7-8
+# ::node	h	have-03	8-9
+# ::node	k	kite	10-11
+# ::node	f	fly-01	11-12
+# ::node	p	palm	13-14
+# ::node	t	tree	14-15
+# ::node	b	background	17-18
+# ::node	n	near-02	18-19
+# ::node	b2	building	19-20
+# ::root	a	and
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	person	quant	some	p3	s2	
+# ::edge	stand-01	ARG1	person	s3	p3	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	stand-01	ARG2	grass	s3	g	
+# ::edge	sit-01	ARG2	grass	s	g	
+# ::edge	person	ARG0-of	have-03	p3	h	
+# ::edge	have-03	ARG1	kite	h	k	
+# ::edge	kite	ARG0-of	fly-01	k	f	
+# ::edge	tree	mod	palm	t	p	
+# ::edge	and	op3	tree	a	t	
+# ::edge	and	location	background	a	b	
+# ::edge	background	ARG1-of	near-02	b	n	
+# ::edge	near-02	ARG2	building	n	b2	
+(a / and
+    :location (b / background
+        :ARG1-of (n / near-02
+            :ARG2 (b2 / building)))
+    :op1 (s / sit-01
+        :ARG1 (p2 / person)
+        :ARG2 (g / grass))
+    :op2 (s3 / stand-01
+        :ARG1 (p3 / person
+            :quant (s2 / some)
+            :ARG0-of (h / have-03
+                :ARG1 (k / kite
+                    :ARG0-of (f / fly-01))))
+        :ARG2 g)
+    :op3 (t / tree
+        :mod (p / palm)))

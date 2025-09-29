@@ -1,0 +1,32 @@
+# ::tok A baseball player swinging a bat while standing near home plate .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s2	swing-02	3-4
+# ::node	b2	bat	5-6
+# ::node	s	stand-01	7-8
+# ::node	n	near-02	8-9
+# ::node	h	home	9-10
+# ::node	p2	plate	10-11
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	person	ARG0-of	swing-02	p	s2	
+# ::edge	swing-02	ARG1	bat	s2	b2	
+# ::edge	person	time	stand-01	p	s	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	near-02	ARG2	plate	n	p2	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (s2 / swing-02
+        :ARG1 (b2 / bat))
+    :time (s / stand-01
+        :ARG1 p
+        :ARG2 (n / near-02
+            :ARG1 p
+            :ARG2 (p2 / plate
+                :mod (h / home)))))

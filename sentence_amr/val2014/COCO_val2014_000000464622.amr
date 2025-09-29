@@ -1,0 +1,31 @@
+# ::tok There are orange slices in canning jars without lids .
+# ::node	o	orange	2-3
+# ::node	s	slice	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	c2	can-01	5-6
+# ::node	c	cabinet	6-7
+# ::node	h	have-03	7-8
+# ::node	0	-	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	l	liter	8-9
+# ::node	1	1	8-9
+# ::root	b	be-located-at-91
+# ::edge	slice	consist-of	orange	s	o	
+# ::edge	be-located-at-91	ARG1	slice	b	s	
+# ::edge	cabinet	ARG0-of	can-01	c	c2	
+# ::edge	be-located-at-91	ARG2	cabinet	b	c	
+# ::edge	cabinet	ARG0-of	have-03	c	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	volume-quantity	h	v	
+# ::edge	volume-quantity	unit	liter	v	l	
+# ::edge	volume-quantity	quant	1	v	1	
+(b / be-located-at-91
+    :ARG1 (s / slice
+        :consist-of (o / orange))
+    :ARG2 (c / cabinet
+        :ARG0-of (c2 / can-01)
+        :ARG0-of (h / have-03
+            :ARG1 (v / volume-quantity
+                :quant 1
+                :unit (l / liter))
+            :polarity -)))

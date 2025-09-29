@@ -1,0 +1,46 @@
+# ::tok A replica of a horse drawn carriage , with several figures including a carriage driver and passengers , is displayed .
+# ::node	r	replica	1-2
+# ::node	h2	horse	4-5
+# ::node	d2	draw-02	5-6
+# ::node	c	carriage	6-7
+# ::node	h	have-03	8-9
+# ::node	s	several	9-10
+# ::node	f	figure	10-11
+# ::node	i	include-01	11-12
+# ::node	c2	carriage	13-14
+# ::node	p2	person	14-15
+# ::node	d3	drive-01	14-15
+# ::node	a	and	15-16
+# ::node	p3	person	16-17
+# ::node	p	passenger	16-17
+# ::node	d	display-01	19-20
+# ::root	d	display-01
+# ::edge	draw-02	ARG0	horse	d2	h2	
+# ::edge	carriage	ARG1-of	draw-02	c	d2	
+# ::edge	replica	topic	carriage	r	c	
+# ::edge	replica	ARG0-of	have-03	r	h	
+# ::edge	figure	quant	several	f	s	
+# ::edge	have-03	ARG1	figure	h	f	
+# ::edge	figure	ARG2-of	include-01	f	i	
+# ::edge	person	ARG0-of	drive-01	p2	d3	
+# ::edge	drive-01	ARG1	carriage	d3	c2	
+# ::edge	and	op1	person	a	p2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	mod	passenger	p3	p	
+# ::edge	display-01	ARG1	replica	d	r	
+(d / display-01
+    :ARG1 (r / replica
+        :ARG0-of (h / have-03
+            :ARG1 (f / figure
+                :quant (s / several)
+                :ARG2-of (i / include-01
+                    :ARG1 (a / and
+                        :op1 (p2 / person
+                            :ARG0-of (d3 / drive-01
+                                :ARG1 (c2 / carriage)))
+                        :op2 (p3 / person
+                            :mod (p / passenger))))))
+        :topic (c / carriage
+            :ARG1-of (d2 / draw-02
+                :ARG0 (h2 / horse)))))

@@ -1,0 +1,33 @@
+# ::tok The corner of a stone building with street signs and graffiti covered carvings .
+# ::node	c2	corner	1-2
+# ::node	s2	stone	4-5
+# ::node	b	building	5-6
+# ::node	s3	street	7-8
+# ::node	s	sign	8-9
+# ::node	a	and	9-10
+# ::node	g	graffiti-01	10-11
+# ::node	c3	cover-02	11-12
+# ::node	t	thing	12-13
+# ::node	c	car	12-13
+# ::root	t	thing
+# ::edge	building	consist-of	stone	b	s2	
+# ::edge	corner	part-of	building	c2	b	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	and	op1	sign	a	s	
+# ::edge	building	consist-of	and	b	a	
+# ::edge	cover-02	ARG2	graffiti-01	c3	g	
+# ::edge	thing	ARG1-of	cover-02	t	c3	
+# ::edge	and	op2	thing	a	t	
+# ::edge	cover-02	ARG1	car	c3	c	
+# ::edge	thing	rel	corner	t	c2	
+(t / thing
+    :ARG1-of (c3 / cover-02
+        :ARG1 (c / car)
+        :ARG2 (g / graffiti-01))
+    :rel (c2 / corner
+        :part-of (b / building
+            :consist-of (s2 / stone)
+            :consist-of (a / and
+                :op1 (s / sign
+                    :mod (s3 / street))
+                :op2 t))))

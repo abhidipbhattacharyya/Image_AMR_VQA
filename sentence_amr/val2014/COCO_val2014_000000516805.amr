@@ -1,0 +1,33 @@
+# ::tok A picnic table at a campsite is loaded with tons of camping gear .
+# ::node	p	picnic-01	1-2
+# ::node	t	table	2-3
+# ::node	s	site	5-6
+# ::node	c	camp-02	5-6
+# ::node	l	load-01	7-8
+# ::node	m2	multiple	9-10
+# ::node	m	mass-quantity	9-10
+# ::node	t2	ton	9-10
+# ::node	0	1	9-10
+# ::node	g	gear	12-13
+# ::root	l	load-01
+# ::edge	table	purpose	picnic-01	t	p	
+# ::edge	table	location	site	t	s	
+# ::edge	site	location-of	camp-02	s	c	
+# ::edge	load-01	ARG1	table	l	t	
+# ::edge	multiple	op1	mass-quantity	m2	m	
+# ::edge	mass-quantity	unit	ton	m	t2	
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	gear	quant	multiple	g	m2	
+# ::edge	load-01	ARG2	gear	l	g	
+# ::edge	gear	purpose	camp-02	g	c	
+(l / load-01
+    :ARG1 (t / table
+        :purpose (p / picnic-01)
+        :location (s / site
+            :location-of (c / camp-02)))
+    :ARG2 (g / gear
+        :purpose c
+        :quant (m2 / multiple
+            :op1 (m / mass-quantity
+                :quant 1
+                :unit (t2 / ton)))))

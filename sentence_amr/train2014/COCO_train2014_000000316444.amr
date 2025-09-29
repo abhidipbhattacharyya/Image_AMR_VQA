@@ -1,0 +1,45 @@
+# ::tok Cheese and pepperoni slice pizza is sitting on a brown table with some napkins .
+# ::node	c	country-region	0-1
+# ::node	n	name	0-1
+# ::node	0	Chechnya	0-1
+# ::node	a	and	1-2
+# ::node	p	pepperoni	2-3
+# ::node	s3	slice-01	3-4
+# ::node	s2	slice	3-4
+# ::node	p2	pizza	4-5
+# ::node	p3	pizza	4-5
+# ::node	s	sit-01	6-7
+# ::node	b	brown-01	9-10
+# ::node	t	table	10-11
+# ::node	s4	some	12-13
+# ::node	p4	plate	13-14
+# ::root	s	sit-01
+# ::edge	country-region	name	name	c	n	
+# ::edge	name	op1	Chechnya	n	0	
+# ::edge	slice-01	ARG1	pepperoni	s3	p	
+# ::edge	slice	mod	pepperoni	s2	p	
+# ::edge	pizza	ARG2-of	slice-01	p2	s3	
+# ::edge	and	op1	pizza	a	p2	
+# ::edge	pizza	mod	country-region	p2	c	
+# ::edge	pizza	mod	slice	p3	s2	
+# ::edge	and	op2	pizza	a	p3	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	table	ARG1-of	brown-01	t	b	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	plate	quant	some	p4	s4	
+# ::edge	sit-01	accompanier	plate	s	p4	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (p2 / pizza
+            :ARG2-of (s3 / slice-01
+                :ARG1 (p / pepperoni))
+            :mod (c / country-region
+                :name (n / name
+                    :op1 "Chechnya")))
+        :op2 (p3 / pizza
+            :mod (s2 / slice
+                :mod p)))
+    :ARG2 (t / table
+        :ARG1-of (b / brown-01))
+    :accompanier (p4 / plate
+        :quant (s4 / some)))

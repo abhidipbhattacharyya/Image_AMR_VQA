@@ -1,0 +1,37 @@
+# ::tok A serving dish with four compartments containing a bagel , a hard boiled egg , bacon and fruit .
+# ::node	s	serve-02	1-2
+# ::node	d2	dish	2-3
+# ::node	0	4	4-5
+# ::node	d	department	5-6
+# ::node	c	contain-01	6-7
+# ::node	b2	bagel	8-9
+# ::node	h	hard-04	11-12
+# ::node	b3	boil-01	12-13
+# ::node	e	egg	13-14
+# ::node	b	bacon	15-16
+# ::node	a	and	16-17
+# ::node	f	fruit	17-18
+# ::root	d2	dish
+# ::edge	dish	ARG2-of	serve-02	d2	s	
+# ::edge	department	quant	4	d	0	
+# ::edge	dish	part	department	d2	d	
+# ::edge	department	ARG0-of	contain-01	d	c	
+# ::edge	boil-01	ARG1-of	hard-04	b3	h	
+# ::edge	egg	ARG1-of	boil-01	e	b3	
+# ::edge	and	op3	bacon	a	b	
+# ::edge	and	op2	egg	a	e	
+# ::edge	and	op1	bagel	a	b2	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	and	op4	fruit	a	f	
+(d2 / dish
+    :ARG2-of (s / serve-02)
+    :part (d / department
+        :quant 4
+        :ARG0-of (c / contain-01
+            :ARG1 (a / and
+                :op1 (b2 / bagel)
+                :op2 (e / egg
+                    :ARG1-of (b3 / boil-01
+                        :ARG1-of (h / hard-04)))
+                :op3 (b / bacon)
+                :op4 (f / fruit)))))

@@ -1,0 +1,22 @@
+# ::tok Hanging traffic lights with an extra light for a turn lane
+# ::node	h	hanging-07	0-1
+# ::node	t	traffic	1-2
+# ::node	l2	light	2-3
+# ::node	e	extra	5-6
+# ::node	l3	light	6-7
+# ::node	t2	turn-01	9-10
+# ::node	l	lane	10-11
+# ::root	h	hanging-07
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	hanging-07	ARG1	light	h	l2	
+# ::edge	light	mod	extra	l3	e	
+# ::edge	hanging-07	ARG2	light	h	l3	
+# ::edge	lane	purpose	turn-01	l	t2	
+# ::edge	light	purpose	lane	l3	l	
+(h / hanging-07
+    :ARG1 (l2 / light
+        :mod (t / traffic))
+    :ARG2 (l3 / light
+        :purpose (l / lane
+            :purpose (t2 / turn-01))
+        :mod (e / extra)))

@@ -1,0 +1,30 @@
+# ::tok The devices plugged into the computer are not helped by the fact that it 's made by Dell
+# ::node	d	device	1-2
+# ::node	p	plug-04	2-3
+# ::node	c2	computer	5-6
+# ::node	0	-	7-8
+# ::node	h	help-01	8-9
+# ::node	m	make-01	15-16
+# ::node	c	company	17-18
+# ::node	n	name	17-18
+# ::node	1	Dell	17-18
+# ::root	h	help-01
+# ::edge	device	ARG1-of	plug-04	d	p	
+# ::edge	plug-04	ARG2	computer	p	c2	
+# ::edge	help-01	polarity	-	h	0	
+# ::edge	help-01	ARG1	device	h	d	
+# ::edge	help-01	ARG0	make-01	h	m	
+# ::edge	make-01	ARG1	device	m	d	
+# ::edge	make-01	ARG0	company	m	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Dell	n	1	
+(h / help-01
+    :ARG0 (m / make-01
+        :ARG0 (c / company
+            :name (n / name
+                :op1 "Dell"))
+        :ARG1 (d / device
+            :ARG1-of (p / plug-04
+                :ARG2 (c2 / computer))))
+    :ARG1 d
+    :polarity -)

@@ -1,0 +1,52 @@
+# ::tok A man sits in the back of a blue boat while a lady sitting toward the middle paddles while some ducks swim off to the side .
+# ::node	m	man	1-2
+# ::node	s2	sit-01	2-3
+# ::node	b	back	5-6
+# ::node	b2	blue	8-9
+# ::node	b3	boat	9-10
+# ::node	l	lady	12-13
+# ::node	s3	sit-01	13-14
+# ::node	t2	toward	14-15
+# ::node	m2	middle	16-17
+# ::node	t	thing	17-18
+# ::node	p	paddle-01	17-18
+# ::node	a	and	18-19
+# ::node	s4	some	19-20
+# ::node	d	duck	20-21
+# ::node	s5	swim-01	21-22
+# ::node	o	off	22-23
+# ::node	s	side	25-26
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	back	s2	b	
+# ::edge	boat	mod	blue	b3	b2	
+# ::edge	back	part-of	boat	b	b3	
+# ::edge	sit-01	ARG1	lady	s3	l	
+# ::edge	sit-01	ARG2	toward	s3	t2	
+# ::edge	thing	mod	middle	t	m2	
+# ::edge	toward	op1	thing	t2	t	
+# ::edge	thing	ARG1-of	paddle-01	t	p	
+# ::edge	and	op2	sit-01	a	s3	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	duck	quant	some	d	s4	
+# ::edge	swim-01	ARG0	duck	s5	d	
+# ::edge	and	op3	swim-01	a	s5	
+# ::edge	swim-01	mod	off	s5	o	
+# ::edge	swim-01	direction	side	s5	s	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (m / man)
+        :ARG2 (b / back
+            :part-of (b3 / boat
+                :mod (b2 / blue))))
+    :op2 (s3 / sit-01
+        :ARG1 (l / lady)
+        :ARG2 (t2 / toward
+            :op1 (t / thing
+                :ARG1-of (p / paddle-01)
+                :mod (m2 / middle))))
+    :op3 (s5 / swim-01
+        :ARG0 (d / duck
+            :quant (s4 / some))
+        :direction (s / side)
+        :mod (o / off)))

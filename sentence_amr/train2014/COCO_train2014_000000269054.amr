@@ -1,0 +1,60 @@
+# ::tok A small dog sleeping partially on a towel and partially on the dirt and grass with an empty two liter of Coca - Cola in his paws .
+# ::node	s2	small	1-2
+# ::node	d2	dog	2-3
+# ::node	s	sleep-01	3-4
+# ::node	t	towel	7-8
+# ::node	a	and	8-9
+# ::node	p	part	9-10
+# ::node	d	dirt	12-13
+# ::node	a2	and	13-14
+# ::node	g	grass	14-15
+# ::node	e	empty-02	17-18
+# ::node	0	2	18-19
+# ::node	v	volume-quantity	19-20
+# ::node	l	liter	19-20
+# ::node	c	company	21-22
+# ::node	n	name	21-22
+# ::node	w	water	21-22
+# ::node	1	Coca	21-22
+# ::node	b	be-located-at-91	24-25
+# ::node	f	foot	26-27
+# ::root	d2	dog
+# ::edge	dog	mod	small	d2	s2	
+# ::edge	dog	ARG0-of	sleep-01	d2	s	
+# ::edge	and	op1	towel	a	t	
+# ::edge	sleep-01	location	and	s	a	
+# ::edge	and	degree	part	a	p	
+# ::edge	and	op1	dirt	a2	d	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op2	grass	a2	g	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	liter	v	l	
+# ::edge	company	quant	volume-quantity	c	v	
+# ::edge	company	ARG1-of	empty-02	c	e	
+# ::edge	company	name	name	c	n	
+# ::edge	company	op1	water	c	w	
+# ::edge	name	op1	Coca	n	1	
+# ::edge	be-located-at-91	ARG1	company	b	c	
+# ::edge	sleep-01	manner	be-located-at-91	s	b	
+# ::edge	be-located-at-91	ARG2	foot	b	f	
+# ::edge	dog	part	foot	d2	f	
+(d2 / dog
+    :ARG0-of (s / sleep-01
+        :location (a / and
+            :degree (p / part)
+            :op1 (t / towel)
+            :op2 (a2 / and
+                :op1 (d / dirt)
+                :op2 (g / grass)))
+        :manner (b / be-located-at-91
+            :ARG1 (c / company
+                :name (n / name
+                    :op1 "Coca")
+                :quant (v / volume-quantity
+                    :quant 2
+                    :unit (l / liter))
+                :ARG1-of (e / empty-02)
+                :op1 (w / water))
+            :ARG2 (f / foot)))
+    :mod (s2 / small)
+    :part f)

@@ -1,0 +1,25 @@
+# ::tok Traffic signals , stop signs and windmills at a busy intersection .
+# ::node	t	traffic	0-1
+# ::node	s	signal-07	1-2
+# ::node	s3	stop-01	3-4
+# ::node	s2	signal-07	4-5
+# ::node	a	and	5-6
+# ::node	w	wind	6-7
+# ::node	b	busy-02	9-10
+# ::node	i	intersect-01	10-11
+# ::root	a	and
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	and	op3	wind	a	w	
+# ::edge	intersect-01	ARG1-of	busy-02	i	b	
+# ::edge	and	location	intersect-01	a	i	
+(a / and
+    :location (i / intersect-01
+        :ARG1-of (b / busy-02))
+    :op1 (s / signal-07
+        :ARG1 (t / traffic))
+    :op2 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :op3 (w / wind))

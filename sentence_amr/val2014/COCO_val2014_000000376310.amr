@@ -1,0 +1,33 @@
+# ::tok A purple bathroom with three sinks and a purple countertop with a mirror surrounded with light bulbs .
+# ::node	p	purple-02	1-2
+# ::node	b	bathroom	2-3
+# ::node	0	3	4-5
+# ::node	s	sink-01	5-6
+# ::node	a	and	6-7
+# ::node	c	countertop	9-10
+# ::node	m	mirror	12-13
+# ::node	s2	surround-01	13-14
+# ::node	l	light-04	15-16
+# ::node	b2	bulb	16-17
+# ::root	b	bathroom
+# ::edge	bathroom	ARG1-of	purple-02	b	p	
+# ::edge	sink-01	quant	3	s	0	
+# ::edge	and	op1	sink-01	a	s	
+# ::edge	bathroom	part	and	b	a	
+# ::edge	and	op2	countertop	a	c	
+# ::edge	purple-02	ARG1	countertop	p	c	
+# ::edge	countertop	part	mirror	c	m	
+# ::edge	mirror	ARG2-of	surround-01	m	s2	
+# ::edge	bulb	ARG0-of	light-04	b2	l	
+# ::edge	surround-01	ARG1	bulb	s2	b2	
+(b / bathroom
+    :ARG1-of (p / purple-02
+        :ARG1 (c / countertop
+            :part (m / mirror
+                :ARG2-of (s2 / surround-01
+                    :ARG1 (b2 / bulb
+                        :ARG0-of (l / light-04))))))
+    :part (a / and
+        :op1 (s / sink-01
+            :quant 3)
+        :op2 c))

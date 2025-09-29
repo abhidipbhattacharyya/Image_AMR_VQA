@@ -1,0 +1,21 @@
+# ::tok Passengers wait for a train as it approaches the platform .
+# ::node	p2	person	0-1
+# ::node	p	passenger	0-1
+# ::node	w	wait-01	1-2
+# ::node	t	train	4-5
+# ::node	a	approach-01	7-8
+# ::node	p3	platform	9-10
+# ::root	w	wait-01
+# ::edge	person	mod	passenger	p2	p	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	wait-01	ARG2	train	w	t	
+# ::edge	approach-01	ARG1	train	a	t	
+# ::edge	wait-01	time	approach-01	w	a	
+# ::edge	approach-01	ARG2	platform	a	p3	
+(w / wait-01
+    :ARG1 (p2 / person
+        :mod (p / passenger))
+    :ARG2 (t / train)
+    :time (a / approach-01
+        :ARG1 t
+        :ARG2 (p3 / platform)))

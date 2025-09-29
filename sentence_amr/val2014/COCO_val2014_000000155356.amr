@@ -1,0 +1,25 @@
+# ::tok A train drives passed a station as another pulls up to the platform .
+# ::node	t	train	1-2
+# ::node	t2	train	1-2
+# ::node	d	drive-01	2-3
+# ::node	p	pass-03	3-4
+# ::node	s	station	5-6
+# ::node	a	another	7-8
+# ::node	p3	pull-01	8-9
+# ::node	p2	platform	12-13
+# ::root	d	drive-01
+# ::edge	drive-01	ARG0	train	d	t	
+# ::edge	drive-01	path	pass-03	d	p	
+# ::edge	pass-03	ARG1	station	p	s	
+# ::edge	train	mod	another	t2	a	
+# ::edge	drive-01	time	pull-01	d	p3	
+# ::edge	pull-01	ARG0	train	p3	t2	
+# ::edge	pull-01	ARG2	platform	p3	p2	
+(d / drive-01
+    :ARG0 (t / train)
+    :path (p / pass-03
+        :ARG1 (s / station))
+    :time (p3 / pull-01
+        :ARG0 (t2 / train
+            :mod (a / another))
+        :ARG2 (p2 / platform)))

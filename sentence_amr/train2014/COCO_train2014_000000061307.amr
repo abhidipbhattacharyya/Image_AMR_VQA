@@ -1,0 +1,27 @@
+# ::tok A sandwich is displayed on a plate along with lemon slices and raw carrots .
+# ::node	s	sandwich	1-2
+# ::node	d	display-01	3-4
+# ::node	p	plate	6-7
+# ::node	l	lemon	9-10
+# ::node	s2	slice	10-11
+# ::node	a	and	11-12
+# ::node	r	raw	12-13
+# ::node	c	carrot	13-14
+# ::root	d	display-01
+# ::edge	display-01	ARG1	sandwich	d	s	
+# ::edge	display-01	ARG2	plate	d	p	
+# ::edge	slice	consist-of	lemon	s2	l	
+# ::edge	and	op2	slice	a	s2	
+# ::edge	display-01	accompanier	and	d	a	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	carrot	mod	raw	c	r	
+# ::edge	and	op3	carrot	a	c	
+(d / display-01
+    :ARG1 (s / sandwich)
+    :ARG2 (p / plate)
+    :accompanier (a / and
+        :op1 s
+        :op2 (s2 / slice
+            :consist-of (l / lemon))
+        :op3 (c / carrot
+            :mod (r / raw))))

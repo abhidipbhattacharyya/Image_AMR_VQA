@@ -1,0 +1,36 @@
+# ::tok A stopwatch wristwatch reads 32.30 in the foreground , while a bike and a stop sign is in the background .
+# ::node	s2	stop-01	1-2
+# ::node	w	wristwatch	2-3
+# ::node	r	read-01	3-4
+# ::node	0	32.30	4-5
+# ::node	f	foreground	7-8
+# ::node	c	contrast-01	9-10
+# ::node	b2	bike	11-12
+# ::node	a	and	12-13
+# ::node	s3	stop-01	14-15
+# ::node	s	signal-07	15-16
+# ::node	b	be-located-at-91	17-18
+# ::root	c	contrast-01
+# ::edge	wristwatch	purpose	stop-01	w	s2	
+# ::edge	read-01	ARG1	wristwatch	r	w	
+# ::edge	read-01	ARG3	32.30	r	0	
+# ::edge	read-01	location	foreground	r	f	
+# ::edge	contrast-01	ARG1	read-01	c	r	
+# ::edge	and	op1	bike	a	b2	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	and	op2	signal-07	a	s	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	contrast-01	ARG2	be-located-at-91	c	b	
+# ::edge	be-located-at-91	ARG2	foreground	b	f	
+(c / contrast-01
+    :ARG1 (r / read-01
+        :ARG1 (w / wristwatch
+            :purpose (s2 / stop-01))
+        :ARG3 32.30
+        :location (f / foreground))
+    :ARG2 (b / be-located-at-91
+        :ARG1 (a / and
+            :op1 (b2 / bike)
+            :op2 (s / signal-07
+                :ARG1 (s3 / stop-01)))
+        :ARG2 f))

@@ -1,0 +1,33 @@
+# ::tok Cat wedged between two large oak doors trying to get out .
+# ::node	c	cat	0-1
+# ::node	w	wedge-01	1-2
+# ::node	b	between	2-3
+# ::node	0	2	3-4
+# ::node	l	large	4-5
+# ::node	o	oak	5-6
+# ::node	d	door	6-7
+# ::node	t	try-01	7-8
+# ::node	g	get-05	9-10
+# ::node	o2	out	10-11
+# ::root	w	wedge-01
+# ::edge	wedge-01	ARG1	cat	w	c	
+# ::edge	wedge-01	ARG2	between	w	b	
+# ::edge	door	mod	oak	d	o	
+# ::edge	door	mod	large	d	l	
+# ::edge	door	quant	2	d	0	
+# ::edge	between	op1	door	b	d	
+# ::edge	wedge-01	ARG0-of	try-01	w	t	
+# ::edge	try-01	ARG1	get-05	t	g	
+# ::edge	get-05	ARG1	cat	g	c	
+# ::edge	get-05	ARG2	out	g	o2	
+(w / wedge-01
+    :ARG0-of (t / try-01
+        :ARG1 (g / get-05
+            :ARG1 (c / cat)
+            :ARG2 (o2 / out)))
+    :ARG1 c
+    :ARG2 (b / between
+        :op1 (d / door
+            :quant 2
+            :mod (o / oak)
+            :mod (l / large))))

@@ -1,0 +1,34 @@
+# ::tok Model T cars driving down a street next to a freeway sign .
+# ::node	m	model-01	0-1
+# ::node	0	Model	0-1
+# ::node	n	name	1-2
+# ::node	1	T	1-2
+# ::node	c	car	2-3
+# ::node	d2	drive-01	3-4
+# ::node	d	down	4-5
+# ::node	s2	street	6-7
+# ::node	n2	next-to	7-8
+# ::node	f	freeway	10-11
+# ::node	s	sign	11-12
+# ::root	d2	drive-01
+# ::edge	name	op1	Model	n	0	
+# ::edge	name	op2	T	n	1	
+# ::edge	car	name	name	c	n	
+# ::edge	car	ARG1-of	model-01	c	m	
+# ::edge	drive-01	ARG0	car	d2	c	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s2	
+# ::edge	street	location	next-to	s2	n2	
+# ::edge	sign	mod	freeway	s	f	
+# ::edge	next-to	op1	sign	n2	s	
+(d2 / drive-01
+    :ARG0 (c / car
+        :name (n / name
+            :op1 "Model"
+            :op2 "T")
+        :ARG1-of (m / model-01))
+    :ARG1 (s2 / street
+        :location (n2 / next-to
+            :op1 (s / sign
+                :mod (f / freeway))))
+    :direction (d / down))

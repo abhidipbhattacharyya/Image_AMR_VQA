@@ -1,0 +1,30 @@
+# ::tok a bus pauses at an intersection as a truck passes through it , beneath a street light .
+# ::node	b2	bus	1-2
+# ::node	p2	pause-01	2-3
+# ::node	i	intersect-01	5-6
+# ::node	t2	truck	8-9
+# ::node	p	pass-03	9-10
+# ::node	b	beneath	13-14
+# ::node	t	thing	14-15
+# ::node	s	street	15-16
+# ::node	l	light	16-17
+# ::root	p2	pause-01
+# ::edge	pause-01	ARG1	bus	p2	b2	
+# ::edge	pause-01	location	intersect-01	p2	i	
+# ::edge	pass-03	ARG1	truck	p	t2	
+# ::edge	pause-01	time	pass-03	p2	p	
+# ::edge	pass-03	path	bus	p	b2	
+# ::edge	pause-01	location	beneath	p2	b	
+# ::edge	beneath	op1	thing	b	t	
+# ::edge	light	mod	street	l	s	
+# ::edge	thing	mod	light	t	l	
+(p2 / pause-01
+    :ARG1 (b2 / bus)
+    :location (i / intersect-01)
+    :location (b / beneath
+        :op1 (t / thing
+            :mod (l / light
+                :mod (s / street))))
+    :time (p / pass-03
+        :ARG1 (t2 / truck)
+        :path b2))

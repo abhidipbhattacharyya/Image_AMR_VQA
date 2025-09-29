@@ -1,0 +1,28 @@
+# ::tok A stop sign posted to a railroad crossing sign indicating there are three tracks .
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	p	post-01	3-4
+# ::node	r	railroad	6-7
+# ::node	c	cross-02	7-8
+# ::node	s	sign	8-9
+# ::node	i	indicate-01	9-10
+# ::node	0	3	12-13
+# ::node	t	track	13-14
+# ::root	p	post-01
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	post-01	ARG1	signal-07	p	s2	
+# ::edge	cross-02	ARG1	railroad	c	r	
+# ::edge	sign	ARG0-of	cross-02	s	c	
+# ::edge	post-01	ARG2	sign	p	s	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	track	quant	3	t	0	
+# ::edge	indicate-01	ARG1	track	i	t	
+(p / post-01
+    :ARG1 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG2 (s / sign
+        :ARG0-of (c / cross-02
+            :ARG1 (r / railroad))
+        :ARG0-of (i / indicate-01
+            :ARG1 (t / track
+                :quant 3))))

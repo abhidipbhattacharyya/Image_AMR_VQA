@@ -1,0 +1,21 @@
+# ::tok A commuter train that is stopped at the station for loading of passengers .
+# ::node	c	commute-01	1-2
+# ::node	t	train	2-3
+# ::node	s2	stop-01	5-6
+# ::node	s	station	8-9
+# ::node	l	load-01	10-11
+# ::node	p	passenger	12-13
+# ::root	t	train
+# ::edge	train	ARG0-of	commute-01	t	c	
+# ::edge	train	ARG1-of	stop-01	t	s2	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	stop-01	purpose	load-01	s2	l	
+# ::edge	load-01	ARG1	train	l	t	
+# ::edge	load-01	ARG2	passenger	l	p	
+(t / train
+    :ARG0-of (c / commute-01)
+    :ARG1-of (s2 / stop-01
+        :purpose (l / load-01
+            :ARG1 t
+            :ARG2 (p / passenger))
+        :location (s / station)))

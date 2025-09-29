@@ -1,0 +1,48 @@
+# ::tok A living room holds two brown couches , several lamps and has a large curtain on one wall .
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	h2	hold-01	3-4
+# ::node	0	2	4-5
+# ::node	b	brown-01	5-6
+# ::node	c	couch	6-7
+# ::node	a	and	7-8
+# ::node	s	several	8-9
+# ::node	b2	bulb	9-10
+# ::node	a2	and	10-11
+# ::node	h	have-03	11-12
+# ::node	l	large	13-14
+# ::node	c2	curtain	14-15
+# ::node	o	one	16-17
+# ::node	w	wall	17-18
+# ::root	a2	and
+# ::edge	room	mod	living	r	l2	
+# ::edge	hold-01	ARG0	room	h2	r	
+# ::edge	couch	ARG1-of	brown-01	c	b	
+# ::edge	couch	quant	2	c	0	
+# ::edge	and	op1	couch	a	c	
+# ::edge	hold-01	ARG1	and	h2	a	
+# ::edge	bulb	quant	several	b2	s	
+# ::edge	and	op2	bulb	a	b2	
+# ::edge	and	op1	hold-01	a2	h2	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	curtain	mod	large	c2	l	
+# ::edge	have-03	ARG1	curtain	h	c2	
+# ::edge	wall	mod	one	w	o	
+# ::edge	curtain	location	wall	c2	w	
+(a2 / and
+    :op1 (h2 / hold-01
+        :ARG0 (r / room
+            :mod (l2 / living))
+        :ARG1 (a / and
+            :op1 (c / couch
+                :quant 2
+                :ARG1-of (b / brown-01))
+            :op2 (b2 / bulb
+                :quant (s / several))))
+    :op2 (h / have-03
+        :ARG0 r
+        :ARG1 (c2 / curtain
+            :location (w / wall
+                :mod (o / one))
+            :mod (l / large))))

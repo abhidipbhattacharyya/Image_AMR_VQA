@@ -1,0 +1,34 @@
+# ::tok A grilled ham and cheese is stacked on a plate , accompanied by a cup of coffee .
+# ::node	b	broil-01	1-2
+# ::node	h	ham	2-3
+# ::node	a2	and	3-4
+# ::node	c	cheese	4-5
+# ::node	s	stack-01	6-7
+# ::node	p	plate	9-10
+# ::node	a	accompany-01	11-12
+# ::node	v	volume-quantity	13-14
+# ::node	0	1	13-14
+# ::node	c3	cup	14-15
+# ::node	c2	coffee	16-17
+# ::root	s	stack-01
+# ::edge	ham	ARG1-of	broil-01	h	b	
+# ::edge	and	op1	ham	a2	h	
+# ::edge	and	op2	cheese	a2	c	
+# ::edge	stack-01	ARG1	and	s	a2	
+# ::edge	stack-01	ARG2	plate	s	p	
+# ::edge	and	ARG1-of	accompany-01	a2	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	accompany-01	ARG0	coffee	a	c2	
+(s / stack-01
+    :ARG1 (a2 / and
+        :ARG1-of (a / accompany-01
+            :ARG0 (c2 / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c3 / cup))))
+        :op1 (h / ham
+            :ARG1-of (b / broil-01))
+        :op2 (c / cheese))
+    :ARG2 (p / plate))

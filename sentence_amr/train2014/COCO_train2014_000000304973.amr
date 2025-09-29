@@ -1,0 +1,25 @@
+# ::tok A bucket collects drips of water , inside a metal basin .
+# ::node	b2	bucket	1-2
+# ::node	c	collect-01	2-3
+# ::node	d	drip-01	3-4
+# ::node	t	thing	4-5
+# ::node	w	water	5-6
+# ::node	i	inside	7-8
+# ::node	m	metal	9-10
+# ::node	b	basin	10-11
+# ::root	c	collect-01
+# ::edge	collect-01	ARG0	bucket	c	b2	
+# ::edge	thing	ARG1-of	drip-01	t	d	
+# ::edge	collect-01	ARG1	thing	c	t	
+# ::edge	drip-01	ARG1	water	d	w	
+# ::edge	collect-01	location	inside	c	i	
+# ::edge	basin	consist-of	metal	b	m	
+# ::edge	inside	op1	basin	i	b	
+(c / collect-01
+    :ARG0 (b2 / bucket)
+    :ARG1 (t / thing
+        :ARG1-of (d / drip-01
+            :ARG1 (w / water)))
+    :location (i / inside
+        :op1 (b / basin
+            :consist-of (m / metal))))

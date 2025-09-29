@@ -1,0 +1,30 @@
+# ::tok A man stands in a lobby with uncombed hair and holding a bottle .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	l	lobby	5-6
+# ::node	w	wear-01	7-8
+# ::node	c	compromise-01	7-8
+# ::node	0	-	7-8
+# ::node	h	hair	8-9
+# ::node	h2	hold-01	10-11
+# ::node	b	bottle	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	location	lobby	s	l	
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	compromise-01	polarity	-	c	0	
+# ::edge	hair	ARG1-of	compromise-01	h	c	
+# ::edge	wear-01	ARG1	hair	w	h	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	bottle	h2	b	
+# ::edge	stand-01	rel	wear-01	s	w	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (h2 / hold-01
+            :ARG1 (b / bottle)))
+    :location (l / lobby)
+    :rel (w / wear-01
+        :ARG0 m
+        :ARG1 (h / hair
+            :ARG1-of (c / compromise-01
+                :polarity -))))

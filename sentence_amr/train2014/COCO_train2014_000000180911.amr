@@ -1,0 +1,37 @@
+# ::tok A couple of STOP signs before turning to the right on a one - way road that have the view of mountains on the left .
+# ::node	c	couple	1-2
+# ::node	s2	stop-01	3-4
+# ::node	s	sign	4-5
+# ::node	b	before	5-6
+# ::node	t	turn-01	6-7
+# ::node	r	right-04	9-10
+# ::node	o	one-way	14-15
+# ::node	r2	road	15-16
+# ::node	h	have-03	17-18
+# ::node	v	view-01	19-20
+# ::node	m	mountain	21-22
+# ::node	l	left-20	24-25
+# ::root	s	sign
+# ::edge	sign	topic	stop-01	s	s2	
+# ::edge	sign	quant	couple	s	c	
+# ::edge	sign	time	before	s	b	
+# ::edge	before	op1	turn-01	b	t	
+# ::edge	turn-01	direction	right-04	t	r	
+# ::edge	road	mod	one-way	r2	o	
+# ::edge	turn-01	location	road	t	r2	
+# ::edge	road	ARG0-of	have-03	r2	h	
+# ::edge	have-03	ARG1	view-01	h	v	
+# ::edge	view-01	ARG1	mountain	v	m	
+# ::edge	mountain	location	left-20	m	l	
+(s / sign
+    :quant (c / couple)
+    :time (b / before
+        :op1 (t / turn-01
+            :direction (r / right-04)
+            :location (r2 / road
+                :ARG0-of (h / have-03
+                    :ARG1 (v / view-01
+                        :ARG1 (m / mountain
+                            :location (l / left-20))))
+                :mod (o / one-way))))
+    :topic (s2 / stop-01))

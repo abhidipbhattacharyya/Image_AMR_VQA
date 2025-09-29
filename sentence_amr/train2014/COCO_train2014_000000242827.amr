@@ -1,0 +1,42 @@
+# ::tok Pieces of a brown and white swirl cake sit on plates next to strawberries .
+# ::node	p	piece	0-1
+# ::node	b	brown-01	3-4
+# ::node	a	and	4-5
+# ::node	w	white-03	5-6
+# ::node	s2	swirl-01	6-7
+# ::node	c	cake	7-8
+# ::node	s	sit-01	8-9
+# ::node	p2	plate	10-11
+# ::node	n2	next-to	11-12
+# ::node	r	rocket	13-14
+# ::node	m	mountain	13-14
+# ::node	n	name	13-14
+# ::node	0	Walmart	13-14
+# ::root	s	sit-01
+# ::edge	and	op1	brown-01	a	b	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	cake	ARG1-of	swirl-01	c	s2	
+# ::edge	and	op1	cake	a	c	
+# ::edge	cake	ARG1-of	brown-01	c	b	
+# ::edge	sit-01	ARG1	piece	s	p	
+# ::edge	sit-01	ARG2	plate	s	p2	
+# ::edge	plate	location	next-to	p2	n2	
+# ::edge	next-to	op1	rocket	n2	r	
+# ::edge	rocket	mod	mountain	r	m	
+# ::edge	mountain	name	name	m	n	
+# ::edge	name	op1	Walmart	n	0	
+# ::edge	sit-01	rel	and	s	a	
+(s / sit-01
+    :ARG1 (p / piece)
+    :ARG2 (p2 / plate
+        :location (n2 / next-to
+            :op1 (r / rocket
+                :mod (m / mountain
+                    :name (n / name
+                        :op1 "Walmart")))))
+    :rel (a / and
+        :op1 (b / brown-01)
+        :op1 (c / cake
+            :ARG1-of (s2 / swirl-01)
+            :ARG1-of b)
+        :op2 (w / white-03)))

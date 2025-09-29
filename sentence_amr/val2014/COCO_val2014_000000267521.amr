@@ -1,0 +1,28 @@
+# ::tok An American Airlines jet plane parked near a terminal .
+# ::node	n	name	1-2
+# ::node	1	American	1-2
+# ::node	c	company	2-3
+# ::node	0	Airlines	2-3
+# ::node	j	jet	3-4
+# ::node	p2	plane	4-5
+# ::node	p	park-01	5-6
+# ::node	n2	near-02	6-7
+# ::node	t	terminal	8-9
+# ::root	p	park-01
+# ::edge	name	op1	American	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airlines	n	0	
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	plane	mod	company	p2	c	
+# ::edge	park-01	ARG1	plane	p	p2	
+# ::edge	park-01	ARG1-of	near-02	p	n2	
+# ::edge	near-02	ARG2	terminal	n2	t	
+(p / park-01
+    :ARG1 (p2 / plane
+        :mod (j / jet)
+        :mod (c / company
+            :name (n / name
+                :op1 "American"
+                :op2 "Airlines")))
+    :ARG1-of (n2 / near-02
+        :ARG2 (t / terminal)))

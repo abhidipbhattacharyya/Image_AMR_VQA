@@ -1,0 +1,27 @@
+# ::tok The spotlight is on the snow skier as he catches air during the night .
+# ::node	s3	spotlight-01	1-2
+# ::node	s2	snow	5-6
+# ::node	p	person	6-7
+# ::node	s	ski-01	6-7
+# ::node	c	catch-01	9-10
+# ::node	a	air	10-11
+# ::node	d	date-entity	13-14
+# ::node	n	night	13-14
+# ::root	s3	spotlight-01
+# ::edge	spotlight-01	ARG1	person	s3	p	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	ski-01	ARG1	snow	s	s2	
+# ::edge	catch-01	ARG0	person	c	p	
+# ::edge	spotlight-01	time	catch-01	s3	c	
+# ::edge	catch-01	ARG1	air	c	a	
+# ::edge	catch-01	time	date-entity	c	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s3 / spotlight-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01
+            :ARG1 (s2 / snow)))
+    :time (c / catch-01
+        :ARG0 p
+        :ARG1 (a / air)
+        :time (d / date-entity
+            :dayperiod (n / night))))

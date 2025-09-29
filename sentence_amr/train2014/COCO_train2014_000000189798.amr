@@ -1,0 +1,20 @@
+# ::tok A train pulling into a station or taking off from a station .
+# ::node	t2	train	1-2
+# ::node	p	pull-01	2-3
+# ::node	s	station	5-6
+# ::node	o	or	6-7
+# ::node	t	take-off-19	7-8
+# ::root	o	or
+# ::edge	pull-01	ARG1	train	p	t2	
+# ::edge	pull-01	ARG2	station	p	s	
+# ::edge	or	op1	pull-01	o	p	
+# ::edge	or	op2	take-off-19	o	t	
+# ::edge	take-off-19	ARG3	station	t	s	
+# ::edge	take-off-19	ARG1	train	t	t2	
+(o / or
+    :op1 (p / pull-01
+        :ARG1 (t2 / train)
+        :ARG2 (s / station))
+    :op2 (t / take-off-19
+        :ARG1 t2
+        :ARG3 s))

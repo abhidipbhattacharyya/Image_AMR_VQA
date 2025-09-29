@@ -1,0 +1,31 @@
+# ::tok Two trains are coming down the tracks , a steam engine and a modern train .
+# ::node	0	2	0-1
+# ::node	t2	train	1-2
+# ::node	c	come-01	3-4
+# ::node	d	down	4-5
+# ::node	t	track	6-7
+# ::node	s	steam	9-10
+# ::node	e	engine	10-11
+# ::node	a	and	11-12
+# ::node	m	modern-02	13-14
+# ::node	t3	train	14-15
+# ::root	c	come-01
+# ::edge	train	quant	2	t2	0	
+# ::edge	come-01	ARG1	train	c	t2	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	come-01	path	track	c	t	
+# ::edge	engine	mod	steam	e	s	
+# ::edge	and	op1	engine	a	e	
+# ::edge	train	consist-of	and	t2	a	
+# ::edge	train	ARG1-of	modern-02	t3	m	
+# ::edge	and	op2	train	a	t3	
+(c / come-01
+    :ARG1 (t2 / train
+        :quant 2
+        :consist-of (a / and
+            :op1 (e / engine
+                :mod (s / steam))
+            :op2 (t3 / train
+                :ARG1-of (m / modern-02))))
+    :direction (d / down)
+    :path (t / track))

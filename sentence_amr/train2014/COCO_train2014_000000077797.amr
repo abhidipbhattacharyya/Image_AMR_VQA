@@ -1,0 +1,28 @@
+# ::tok A table top model of a three unit bus type people mover .
+# ::node	t	table	1-2
+# ::node	t2	top	2-3
+# ::node	m	model	3-4
+# ::node	0	3	6-7
+# ::node	u	unit	7-8
+# ::node	b	bus	8-9
+# ::node	t3	type-03	9-10
+# ::node	p	person	10-11
+# ::node	m2	mover	11-12
+# ::root	m	model
+# ::edge	top	mod	table	t2	t	
+# ::edge	model	mod	top	m	t2	
+# ::edge	unit	quant	3	u	0	
+# ::edge	bus	consist-of	unit	b	u	
+# ::edge	type-03	ARG2	bus	t3	b	
+# ::edge	mover	mod	person	m2	p	
+# ::edge	mover	ARG1-of	type-03	m2	t3	
+# ::edge	model	topic	mover	m	m2	
+(m / model
+    :mod (t2 / top
+        :mod (t / table))
+    :topic (m2 / mover
+        :ARG1-of (t3 / type-03
+            :ARG2 (b / bus
+                :consist-of (u / unit
+                    :quant 3)))
+        :mod (p / person)))

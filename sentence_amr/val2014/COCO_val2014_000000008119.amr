@@ -1,0 +1,51 @@
+# ::tok A baseball game with the hitter attempting the bunt the ball and people watching from the lawn behind the third base line .
+# ::node	b3	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	h	hit-01	5-6
+# ::node	a2	attempt-01	6-7
+# ::node	b4	bat-01	8-9
+# ::node	b	ball	10-11
+# ::node	a	and	11-12
+# ::node	p2	person	12-13
+# ::node	w	watch-01	13-14
+# ::node	l	lawn	16-17
+# ::node	b5	behind	17-18
+# ::node	o	ordinal-entity	19-20
+# ::node	0	3	19-20
+# ::node	b2	base	20-21
+# ::node	l2	line	21-22
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b3	
+# ::edge	person	ARG0-of	hit-01	p	h	
+# ::edge	attempt-01	ARG0	person	a2	p	
+# ::edge	attempt-01	ARG1	bat-01	a2	b4	
+# ::edge	bat-01	ARG0	person	b4	p	
+# ::edge	bat-01	ARG1	ball	b4	b	
+# ::edge	and	op1	attempt-01	a	a2	
+# ::edge	game	time-of	and	g	a	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	source	lawn	w	l	
+# ::edge	lawn	location	behind	l	b5	
+# ::edge	ordinal-entity	value	3	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	line	mod	base	l2	b2	
+# ::edge	behind	op1	line	b5	l2	
+(g / game
+    :mod (b3 / baseball)
+    :time-of (a / and
+        :op1 (a2 / attempt-01
+            :ARG0 (p / person
+                :ARG0-of (h / hit-01))
+            :ARG1 (b4 / bat-01
+                :ARG0 p
+                :ARG1 (b / ball)))
+        :op2 (w / watch-01
+            :ARG0 (p2 / person)
+            :source (l / lawn
+                :location (b5 / behind
+                    :op1 (l2 / line
+                        :mod (b2 / base
+                            :ord (o / ordinal-entity
+                                :value 3))))))))

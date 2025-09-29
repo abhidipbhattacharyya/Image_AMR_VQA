@@ -1,0 +1,43 @@
+# ::tok A student 's copy of Shakespeare 's " Bill Bryson " sits on a table outside .
+# ::node	p	person	1-2
+# ::node	s2	study-01	1-2
+# ::node	t2	thing	3-4
+# ::node	c	copy-01	3-4
+# ::node	n	name	3-4
+# ::node	p2	person	5-6
+# ::node	2	Shakespeare	5-6
+# ::node	b	book	6-7
+# ::node	n2	name	8-9
+# ::node	0	Bill	8-9
+# ::node	1	Bryson	9-10
+# ::node	s	sit-01	11-12
+# ::node	t	table	14-15
+# ::node	o	outside	15-16
+# ::root	s	sit-01
+# ::edge	person	ARG0-of	study-01	p	s2	
+# ::edge	thing	ARG2-of	copy-01	t2	c	
+# ::edge	copy-01	ARG0	person	c	p	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Shakespeare	n	2	
+# ::edge	book	source	person	b	p2	
+# ::edge	copy-01	ARG1	book	c	b	
+# ::edge	book	name	name	b	n2	
+# ::edge	name	op1	Bill	n2	0	
+# ::edge	name	op2	Bryson	n2	1	
+# ::edge	sit-01	ARG1	thing	s	t2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location	outside	t	o	
+(s / sit-01
+    :ARG1 (t2 / thing
+        :ARG2-of (c / copy-01
+            :ARG0 (p / person
+                :ARG0-of (s2 / study-01))
+            :ARG1 (b / book
+                :name (n2 / name
+                    :op1 "Bill"
+                    :op2 "Bryson")
+                :source (p2 / person
+                    :name (n / name
+                        :op1 "Shakespeare")))))
+    :ARG2 (t / table
+        :location (o / outside)))

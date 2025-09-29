@@ -1,0 +1,27 @@
+# ::tok Competitive downhill skiers many people watching them race
+# ::node	c	compete-01	0-1
+# ::node	d	downhill	1-2
+# ::node	p	person	2-3
+# ::node	s	ski-01	2-3
+# ::node	m	many	3-4
+# ::node	p2	person	4-5
+# ::node	w	watch-01	5-6
+# ::node	r	race-02	7-8
+# ::root	p	person
+# ::edge	person	ARG0-of	compete-01	p	c	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	ski-01	direction	downhill	s	d	
+# ::edge	person	quant	many	p2	m	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	race-02	ARG1-of	watch-01	r	w	
+# ::edge	person	ARG0-of	race-02	p2	r	
+# ::edge	person	rel	person	p	p2	
+(p / person
+    :ARG0-of (c / compete-01)
+    :ARG0-of (s / ski-01
+        :direction (d / downhill))
+    :rel (p2 / person
+        :quant (m / many)
+        :ARG0-of (r / race-02
+            :ARG1-of (w / watch-01
+                :ARG0 p2))))

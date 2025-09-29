@@ -1,0 +1,46 @@
+# ::tok The Asian city street is crowded with happy , young shoppers , the women holding sun - shielding parasols .
+# ::node	c2	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	c	city	2-3
+# ::node	s3	street	3-4
+# ::node	c3	crowd-01	5-6
+# ::node	h	happy-01	7-8
+# ::node	y	young	9-10
+# ::node	p	person	10-11
+# ::node	s2	shop-01	10-11
+# ::node	w	woman	13-14
+# ::node	h2	hold-01	14-15
+# ::node	s4	sun	15-16
+# ::node	s	shield-01	17-18
+# ::node	u	umbrella	18-19
+# ::root	c3	crowd-01
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	street	mod	city	s3	c	
+# ::edge	street	mod	continent	s3	c2	
+# ::edge	crowd-01	ARG1	street	c3	s3	
+# ::edge	person	mod	young	p	y	
+# ::edge	person	ARG1-of	happy-01	p	h	
+# ::edge	crowd-01	ARG2	person	c3	p	
+# ::edge	person	ARG0-of	shop-01	p	s2	
+# ::edge	person	mod	woman	p	w	
+# ::edge	woman	ARG0-of	hold-01	w	h2	
+# ::edge	shield-01	ARG1	sun	s	s4	
+# ::edge	umbrella	ARG0-of	shield-01	u	s	
+# ::edge	hold-01	ARG1	umbrella	h2	u	
+(c3 / crowd-01
+    :ARG1 (s3 / street
+        :mod (c / city)
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG2 (p / person
+        :ARG0-of (s2 / shop-01)
+        :ARG1-of (h / happy-01)
+        :mod (y / young)
+        :mod (w / woman
+            :ARG0-of (h2 / hold-01
+                :ARG1 (u / umbrella
+                    :ARG0-of (s / shield-01
+                        :ARG1 (s4 / sun)))))))

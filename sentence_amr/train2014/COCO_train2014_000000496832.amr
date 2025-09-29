@@ -1,0 +1,33 @@
+# ::tok A woman struggles to close a suitcase after stuffing it full of clothes .
+# ::node	w	woman	1-2
+# ::node	s	struggle-02	2-3
+# ::node	c	close-01	4-5
+# ::node	s3	suitcase	6-7
+# ::node	a	after	7-8
+# ::node	s2	stuff-01	8-9
+# ::node	f	fill-01	10-11
+# ::node	c2	clothes	12-13
+# ::root	s	struggle-02
+# ::edge	struggle-02	ARG0	woman	s	w	
+# ::edge	struggle-02	ARG1	close-01	s	c	
+# ::edge	close-01	ARG0	woman	c	w	
+# ::edge	close-01	ARG1	suitcase	c	s3	
+# ::edge	struggle-02	time	after	s	a	
+# ::edge	after	op1	stuff-01	a	s2	
+# ::edge	stuff-01	ARG2	suitcase	s2	s3	
+# ::edge	stuff-01	ARG0	woman	s2	w	
+# ::edge	stuff-01	ARG1	fill-01	s2	f	
+# ::edge	fill-01	ARG1	suitcase	f	s3	
+# ::edge	fill-01	ARG2	clothes	f	c2	
+(s / struggle-02
+    :ARG0 (w / woman)
+    :ARG1 (c / close-01
+        :ARG0 w
+        :ARG1 (s3 / suitcase))
+    :time (a / after
+        :op1 (s2 / stuff-01
+            :ARG0 w
+            :ARG1 (f / fill-01
+                :ARG1 s3
+                :ARG2 (c2 / clothes))
+            :ARG2 s3)))

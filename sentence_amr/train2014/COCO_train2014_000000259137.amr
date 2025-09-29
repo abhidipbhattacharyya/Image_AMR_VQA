@@ -1,0 +1,45 @@
+# ::tok A group of people line up for food next to a long table with many cookers and pots on top
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	l	line-up-02	4-5
+# ::node	f	food	7-8
+# ::node	n	next-to	8-9
+# ::node	l2	long-03	11-12
+# ::node	t	table	12-13
+# ::node	h	have-03	13-14
+# ::node	m	many	14-15
+# ::node	p2	person	15-16
+# ::node	c	cook-01	15-16
+# ::node	a	and	16-17
+# ::node	p3	pot	17-18
+# ::node	t2	top	19-20
+# ::root	l	line-up-02
+# ::edge	group	consist-of	person	g	p	
+# ::edge	line-up-02	ARG1	group	l	g	
+# ::edge	line-up-02	purpose	food	l	f	
+# ::edge	line-up-02	location	next-to	l	n	
+# ::edge	table	ARG1-of	long-03	t	l2	
+# ::edge	next-to	op1	table	n	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	person	quant	many	p2	m	
+# ::edge	person	ARG0-of	cook-01	p2	c	
+# ::edge	and	op1	person	a	p2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	pot	a	p3	
+# ::edge	pot	quant	many	p3	m	
+# ::edge	and	location	top	a	t2	
+(l / line-up-02
+    :purpose (f / food)
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :location (n / next-to
+        :op1 (t / table
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :location (t2 / top)
+                    :op1 (p2 / person
+                        :quant (m / many)
+                        :ARG0-of (c / cook-01))
+                    :op2 (p3 / pot
+                        :quant m)))
+            :ARG1-of (l2 / long-03))))

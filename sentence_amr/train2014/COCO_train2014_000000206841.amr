@@ -1,0 +1,44 @@
+# ::tok A birthday cake that has a lot of have burnt and melted candles on top that are not lit anymore .
+# ::node	b	birthday	1-2
+# ::node	c	cake	2-3
+# ::node	h	have-03	4-5
+# ::node	l2	lot	6-7
+# ::node	b2	burn-01	9-10
+# ::node	a	and	10-11
+# ::node	m	melt-01	11-12
+# ::node	c2	candle	12-13
+# ::node	c3	candle	12-13
+# ::node	t	top	14-15
+# ::node	0	-	17-18
+# ::node	l	light-04	18-19
+# ::node	a2	anymore	19-20
+# ::root	a	and
+# ::edge	cake	mod	birthday	c	b	
+# ::edge	cake	ARG0-of	have-03	c	h	
+# ::edge	and	op1	candle	a	c2	
+# ::edge	candle	ARG1-of	burn-01	c2	b2	
+# ::edge	candle	quant	lot	c2	l2	
+# ::edge	candle	ARG1-of	melt-01	c3	m	
+# ::edge	and	op2	candle	a	c3	
+# ::edge	candle	quant	lot	c3	l2	
+# ::edge	and	location	top	a	t	
+# ::edge	cake	part	top	c	t	
+# ::edge	light-04	polarity	-	l	0	
+# ::edge	candle	ARG1-of	light-04	c3	l	
+# ::edge	light-04	time	anymore	l	a2	
+# ::edge	and	rel	cake	a	c	
+(a / and
+    :location (t / top)
+    :op1 (c2 / candle
+        :quant (l2 / lot)
+        :ARG1-of (b2 / burn-01))
+    :op2 (c3 / candle
+        :quant l2
+        :ARG1-of (m / melt-01)
+        :ARG1-of (l / light-04
+            :polarity -
+            :time (a2 / anymore)))
+    :rel (c / cake
+        :ARG0-of (h / have-03)
+        :mod (b / birthday)
+        :part t))

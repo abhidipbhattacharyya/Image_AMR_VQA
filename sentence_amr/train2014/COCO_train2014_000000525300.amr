@@ -1,0 +1,34 @@
+# ::tok A group of small children lined up to take their turn to hit a baseball at a stadium .
+# ::node	g	group	1-2
+# ::node	s	small	3-4
+# ::node	c	child	4-5
+# ::node	l	line-up-02	5-6
+# ::node	t	take-01	8-9
+# ::node	t2	turn-01	10-11
+# ::node	h	hit-01	12-13
+# ::node	b	baseball	14-15
+# ::node	s2	stadium	17-18
+# ::root	l	line-up-02
+# ::edge	child	mod	small	c	s	
+# ::edge	group	consist-of	child	g	c	
+# ::edge	line-up-02	ARG1	group	l	g	
+# ::edge	line-up-02	purpose	take-01	l	t	
+# ::edge	take-01	ARG0	group	t	g	
+# ::edge	take-01	ARG1	turn-01	t	t2	
+# ::edge	turn-01	ARG1	group	t2	g	
+# ::edge	turn-01	purpose	hit-01	t2	h	
+# ::edge	hit-01	ARG0	group	h	g	
+# ::edge	hit-01	ARG1	baseball	h	b	
+# ::edge	hit-01	location	stadium	h	s2	
+(l / line-up-02
+    :purpose (t / take-01
+        :ARG0 (g / group
+            :consist-of (c / child
+                :mod (s / small)))
+        :ARG1 (t2 / turn-01
+            :purpose (h / hit-01
+                :ARG0 g
+                :ARG1 (b / baseball)
+                :location (s2 / stadium))
+            :ARG1 g))
+    :ARG1 g)

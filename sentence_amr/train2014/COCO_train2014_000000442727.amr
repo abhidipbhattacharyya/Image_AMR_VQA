@@ -1,0 +1,31 @@
+# ::tok A table contains a can opener and a glass tray filled with vegetables in sauce .
+# ::node	t	table	1-2
+# ::node	c2	contain-01	2-3
+# ::node	c	can	4-5
+# ::node	o	open-01	5-6
+# ::node	a	and	6-7
+# ::node	g	glass	8-9
+# ::node	t2	tray	9-10
+# ::node	f	fill-01	10-11
+# ::node	v	vegetable	12-13
+# ::node	s	sauce	14-15
+# ::root	c2	contain-01
+# ::edge	contain-01	ARG0	table	c2	t	
+# ::edge	open-01	ARG1	can	o	c	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	tray	consist-of	glass	t2	g	
+# ::edge	and	op2	tray	a	t2	
+# ::edge	tray	ARG1-of	fill-01	t2	f	
+# ::edge	fill-01	ARG2	vegetable	f	v	
+# ::edge	vegetable	prep-in	sauce	v	s	
+(c2 / contain-01
+    :ARG0 (t / table)
+    :ARG1 (a / and
+        :op1 (o / open-01
+            :ARG1 (c / can))
+        :op2 (t2 / tray
+            :ARG1-of (f / fill-01
+                :ARG2 (v / vegetable
+                    :prep-in (s / sauce)))
+            :consist-of (g / glass))))

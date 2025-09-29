@@ -1,0 +1,40 @@
+# ::tok A box of kleenex , a candle , and some bottled creams are next to a bathtub .
+# ::node	b4	box	1-2
+# ::node	p	product	3-4
+# ::node	n	name	3-4
+# ::node	0	Kleenex	3-4
+# ::node	c	candle	6-7
+# ::node	a	and	8-9
+# ::node	s	some	9-10
+# ::node	b3	bottle-01	10-11
+# ::node	p2	product	11-12
+# ::node	m	moisturize-01	11-12
+# ::node	b2	be-located-at-91	13-14
+# ::node	n2	next-to	13-14
+# ::node	b	bathtub	16-17
+# ::root	b2	be-located-at-91
+# ::edge	box	consist-of	product	b4	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Kleenex	n	0	
+# ::edge	and	op2	candle	a	c	
+# ::edge	and	op1	box	a	b4	
+# ::edge	product	ARG1-of	bottle-01	p2	b3	
+# ::edge	product	quant	some	p2	s	
+# ::edge	and	op3	product	a	p2	
+# ::edge	product	ARG2-of	moisturize-01	p2	m	
+# ::edge	be-located-at-91	ARG1	and	b2	a	
+# ::edge	be-located-at-91	ARG2	next-to	b2	n2	
+# ::edge	next-to	op1	bathtub	n2	b	
+(b2 / be-located-at-91
+    :ARG1 (a / and
+        :op1 (b4 / box
+            :consist-of (p / product
+                :name (n / name
+                    :op1 "Kleenex")))
+        :op2 (c / candle)
+        :op3 (p2 / product
+            :quant (s / some)
+            :ARG1-of (b3 / bottle-01)
+            :ARG2-of (m / moisturize-01)))
+    :ARG2 (n2 / next-to
+        :op1 (b / bathtub)))

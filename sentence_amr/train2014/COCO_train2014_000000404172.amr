@@ -1,0 +1,43 @@
+# ::tok Fluffy pins back his ears and growls a warning at the weird cat in the mirror .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Fluffy	0-1
+# ::node	p2	pin-01	1-2
+# ::node	b	back	2-3
+# ::node	e	ear	4-5
+# ::node	a	and	5-6
+# ::node	g	growl-01	6-7
+# ::node	w	warn-01	8-9
+# ::node	w2	weird	11-12
+# ::node	c	cat	12-13
+# ::node	m	mirror	15-16
+# ::root	a	and
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Fluffy	n	0	
+# ::edge	pin-01	ARG0	person	p2	p	
+# ::edge	pin-01	ARG2	back	p2	b	
+# ::edge	back	op1	ear	b	e	
+# ::edge	person	part	ear	p	e	
+# ::edge	and	op1	pin-01	a	p2	
+# ::edge	and	op2	growl-01	a	g	
+# ::edge	growl-01	ARG0	person	g	p	
+# ::edge	growl-01	ARG1	warn-01	g	w	
+# ::edge	warn-01	ARG0	person	w	p	
+# ::edge	cat	mod	weird	c	w2	
+# ::edge	warn-01	ARG2	cat	w	c	
+# ::edge	cat	location	mirror	c	m	
+(a / and
+    :op1 (p2 / pin-01
+        :ARG0 (p / person
+            :name (n / name
+                :op1 "Fluffy")
+            :part (e / ear))
+        :ARG2 (b / back
+            :op1 e))
+    :op2 (g / growl-01
+        :ARG0 p
+        :ARG1 (w / warn-01
+            :ARG0 p
+            :ARG2 (c / cat
+                :location (m / mirror)
+                :mod (w2 / weird)))))

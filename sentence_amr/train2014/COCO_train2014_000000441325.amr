@@ -1,0 +1,32 @@
+# ::tok A few individuals pouring and smelling glasses of wine .
+# ::node	f	few	1-2
+# ::node	i	individual	2-3
+# ::node	p	pour-01	3-4
+# ::node	a	and	4-5
+# ::node	s	smell-01	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	g	glasses	6-7
+# ::node	0	1	6-7
+# ::node	w	wine	8-9
+# ::root	a	and
+# ::edge	individual	quant	few	i	f	
+# ::edge	pour-01	ARG0	individual	p	i	
+# ::edge	and	op1	pour-01	a	p	
+# ::edge	and	op2	smell-01	a	s	
+# ::edge	smell-01	ARG0	individual	s	i	
+# ::edge	volume-quantity	unit	glasses	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	smell-01	ARG1	wine	s	w	
+# ::edge	pour-01	ARG1	wine	p	w	
+(a / and
+    :op1 (p / pour-01
+        :ARG0 (i / individual
+            :quant (f / few))
+        :ARG1 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glasses))))
+    :op2 (s / smell-01
+        :ARG0 i
+        :ARG1 w))

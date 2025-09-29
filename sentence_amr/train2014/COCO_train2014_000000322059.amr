@@ -1,0 +1,57 @@
+# ::tok Large boats floating by the shore in a large body of water , and beside one of the large boats is a tiny raft with people in it .
+# ::node	l	large	0-1
+# ::node	b3	boat	1-2
+# ::node	f	float-01	2-3
+# ::node	s	shore	5-6
+# ::node	l2	large	8-9
+# ::node	b6	body	9-10
+# ::node	w	water	11-12
+# ::node	a	and	13-14
+# ::node	b	be-located-at-91	14-15
+# ::node	b2	beside	14-15
+# ::node	0	1	15-16
+# ::node	i	include-91	16-17
+# ::node	b4	boat	19-20
+# ::node	b5	boat	19-20
+# ::node	t	tiny	22-23
+# ::node	r	raft	23-24
+# ::node	h	have-03	24-25
+# ::node	p	person	25-26
+# ::root	a	and
+# ::edge	boat	mod	large	b3	l	
+# ::edge	boat	ARG1-of	float-01	b3	f	
+# ::edge	float-01	location	shore	f	s	
+# ::edge	body	mod	large	b6	l2	
+# ::edge	float-01	location	body	f	b6	
+# ::edge	body	consist-of	water	b6	w	
+# ::edge	and	op1	boat	a	b3	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	beside	b	b2	
+# ::edge	boat	ARG1-of	include-91	b4	i	
+# ::edge	boat	quant	1	b4	0	
+# ::edge	beside	op1	boat	b2	b4	
+# ::edge	include-91	ARG2	boat	i	b5	
+# ::edge	boat	mod	large	b5	l	
+# ::edge	raft	mod	tiny	r	t	
+# ::edge	be-located-at-91	ARG1	raft	b	r	
+# ::edge	raft	ARG0-of	have-03	r	h	
+# ::edge	have-03	ARG1	person	h	p	
+(a / and
+    :op1 (b3 / boat
+        :ARG1-of (f / float-01
+            :location (s / shore)
+            :location (b6 / body
+                :consist-of (w / water)
+                :mod (l2 / large)))
+        :mod (l / large))
+    :op2 (b / be-located-at-91
+        :ARG1 (r / raft
+            :ARG0-of (h / have-03
+                :ARG1 (p / person))
+            :mod (t / tiny))
+        :ARG2 (b2 / beside
+            :op1 (b4 / boat
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 (b5 / boat
+                        :mod l))))))

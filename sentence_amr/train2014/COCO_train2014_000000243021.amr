@@ -1,0 +1,39 @@
+# ::tok A buffet table set up with servers and several people eating and getting more food .
+# ::node	b	buffet	1-2
+# ::node	t	table	2-3
+# ::node	s2	set-up-03	3-4
+# ::node	p	person	6-7
+# ::node	s	server	6-7
+# ::node	s3	several	8-9
+# ::node	p2	person	9-10
+# ::node	e	eat-01	10-11
+# ::node	a	and	11-12
+# ::node	g	get-01	12-13
+# ::node	m	more	13-14
+# ::node	f	food	14-15
+# ::root	t	table
+# ::edge	table	mod	buffet	t	b	
+# ::edge	table	ARG1-of	set-up-03	t	s2	
+# ::edge	person	mod	server	p	s	
+# ::edge	person	quant	several	p2	s3	
+# ::edge	eat-01	ARG0	person	e	p2	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	and	op1	person	a	p	
+# ::edge	table	location-of	and	t	a	
+# ::edge	and	op3	get-01	a	g	
+# ::edge	get-01	ARG0	person	g	p2	
+# ::edge	food	quant	more	f	m	
+# ::edge	get-01	ARG1	food	g	f	
+(t / table
+    :ARG1-of (s2 / set-up-03)
+    :location-of (a / and
+        :op1 (p / person
+            :mod (s / server))
+        :op2 (e / eat-01
+            :ARG0 (p2 / person
+                :quant (s3 / several)))
+        :op3 (g / get-01
+            :ARG0 p2
+            :ARG1 (f / food
+                :quant (m / more))))
+    :mod (b / buffet))

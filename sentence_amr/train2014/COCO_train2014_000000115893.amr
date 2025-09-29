@@ -1,0 +1,25 @@
+# ::tok A television control room with computer monitors and control boards .
+# ::node	t	television	1-2
+# ::node	c2	control-01	2-3
+# ::node	r	room	3-4
+# ::node	c	computer	5-6
+# ::node	m	monitor	6-7
+# ::node	a	and	7-8
+# ::node	c3	control-01	8-9
+# ::node	b	board	9-10
+# ::root	r	room
+# ::edge	control-01	ARG1	television	c2	t	
+# ::edge	room	ARG0-of	control-01	r	c2	
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	room	part	and	r	a	
+# ::edge	board	ARG0-of	control-01	b	c3	
+# ::edge	and	op2	board	a	b	
+(r / room
+    :ARG0-of (c2 / control-01
+        :ARG1 (t / television))
+    :part (a / and
+        :op1 (m / monitor
+            :mod (c / computer))
+        :op2 (b / board
+            :ARG0-of (c3 / control-01))))

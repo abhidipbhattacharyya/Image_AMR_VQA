@@ -1,0 +1,37 @@
+# ::tok A beach covered in umbrellas shows a cloudless sky and sand tracked by beachcombers .
+# ::node	b	beach	1-2
+# ::node	c	cover-02	2-3
+# ::node	u	umbrella	4-5
+# ::node	s2	show-01	5-6
+# ::node	h	have-03	7-8
+# ::node	0	-	7-8
+# ::node	s3	sky	8-9
+# ::node	a	and	9-10
+# ::node	s	sand	10-11
+# ::node	t	track-01	11-12
+# ::node	p	person	13-14
+# ::node	b2	beach	13-14
+# ::root	s2	show-01
+# ::edge	beach	ARG1-of	cover-02	b	c	
+# ::edge	cover-02	ARG2	umbrella	c	u	
+# ::edge	show-01	ARG0	beach	s2	b	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	sky	h	s3	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	show-01	ARG1	and	s2	a	
+# ::edge	and	op2	sand	a	s	
+# ::edge	and	ARG1-of	track-01	a	t	
+# ::edge	track-01	ARG0	person	t	p	
+# ::edge	person	location	beach	p	b2	
+(s2 / show-01
+    :ARG0 (b / beach
+        :ARG1-of (c / cover-02
+            :ARG2 (u / umbrella)))
+    :ARG1 (a / and
+        :ARG1-of (t / track-01
+            :ARG0 (p / person
+                :location (b2 / beach)))
+        :op1 (h / have-03
+            :ARG1 (s3 / sky)
+            :polarity -)
+        :op2 (s / sand)))

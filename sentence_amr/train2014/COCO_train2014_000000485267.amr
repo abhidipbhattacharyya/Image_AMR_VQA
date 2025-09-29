@@ -1,0 +1,33 @@
+# ::tok A baseball game with the pitcher in his follow - through and the batter preparing to swing .
+# ::node	b	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	t	throw-01	5-6
+# ::node	f	follow-up-03	10-11
+# ::node	a	and	11-12
+# ::node	p2	person	13-14
+# ::node	s	strike-01	13-14
+# ::node	p3	prepare-02	14-15
+# ::node	s2	swing-02	16-17
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b	
+# ::edge	person	ARG0-of	throw-01	p	t	
+# ::edge	follow-up-03	ARG0	person	f	p	
+# ::edge	and	op1	follow-up-03	a	f	
+# ::edge	game	accompanier	and	g	a	
+# ::edge	person	ARG0-of	strike-01	p2	s	
+# ::edge	prepare-02	ARG0	person	p3	p2	
+# ::edge	and	op2	prepare-02	a	p3	
+# ::edge	prepare-02	ARG2	swing-02	p3	s2	
+# ::edge	swing-02	ARG0	person	s2	p2	
+(g / game
+    :accompanier (a / and
+        :op1 (f / follow-up-03
+            :ARG0 (p / person
+                :ARG0-of (t / throw-01)))
+        :op2 (p3 / prepare-02
+            :ARG0 (p2 / person
+                :ARG0-of (s / strike-01))
+            :ARG2 (s2 / swing-02
+                :ARG0 p2)))
+    :mod (b / baseball))

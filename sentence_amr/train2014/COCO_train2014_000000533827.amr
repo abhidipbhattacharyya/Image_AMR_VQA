@@ -1,0 +1,25 @@
+# ::tok Mini taxi changing lanes in a street with pedestrians in the background .
+# ::node	i	Mini	0-1
+# ::node	t	taxi	1-2
+# ::node	c	change-01	2-3
+# ::node	l	lane	3-4
+# ::node	s	street	6-7
+# ::node	w	walk-01	8-9
+# ::node	t2	thing	9-10
+# ::node	b	background	11-12
+# ::root	c	change-01
+# ::edge	taxi	mod	Mini	t	i	
+# ::edge	change-01	ARG0	taxi	c	t	
+# ::edge	change-01	ARG1	lane	c	l	
+# ::edge	change-01	location	street	c	s	
+# ::edge	thing	ARG0-of	walk-01	t2	w	
+# ::edge	street	location-of	thing	s	t2	
+# ::edge	thing	location	background	t2	b	
+(c / change-01
+    :ARG0 (t / taxi
+        :mod (i / Mini))
+    :ARG1 (l / lane)
+    :location (s / street
+        :location-of (t2 / thing
+            :ARG0-of (w / walk-01)
+            :location (b / background))))

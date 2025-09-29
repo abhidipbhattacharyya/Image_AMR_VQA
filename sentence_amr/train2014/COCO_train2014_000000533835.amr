@@ -1,0 +1,32 @@
+# ::tok A plane being loaded or unloaded is parked in an empty area with a car in the background .
+# ::node	p2	plane	1-2
+# ::node	l	load-01	3-4
+# ::node	o	or	4-5
+# ::node	u	unload-02	5-6
+# ::node	p	park-01	7-8
+# ::node	e	empty-02	10-11
+# ::node	a	area	11-12
+# ::node	c	car	14-15
+# ::node	b	background	17-18
+# ::root	p	park-01
+# ::edge	load-01	ARG1	plane	l	p2	
+# ::edge	or	op1	load-01	o	l	
+# ::edge	plane	mod	or	p2	o	
+# ::edge	or	op2	unload-02	o	u	
+# ::edge	unload-02	ARG1	plane	u	p2	
+# ::edge	park-01	ARG1	plane	p	p2	
+# ::edge	area	ARG1-of	empty-02	a	e	
+# ::edge	park-01	ARG2	area	p	a	
+# ::edge	park-01	accompanier	car	p	c	
+# ::edge	car	location	background	c	b	
+(p / park-01
+    :ARG1 (p2 / plane
+        :mod (o / or
+            :op1 (l / load-01
+                :ARG1 p2)
+            :op2 (u / unload-02
+                :ARG1 p2)))
+    :ARG2 (a / area
+        :ARG1-of (e / empty-02))
+    :accompanier (c / car
+        :location (b / background)))

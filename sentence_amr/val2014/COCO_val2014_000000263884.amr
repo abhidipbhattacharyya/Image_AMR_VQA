@@ -1,0 +1,28 @@
+# ::tok A large group of trains parked next to each other on railroad tracks .
+# ::node	l	large	1-2
+# ::node	g	group	2-3
+# ::node	t2	train	4-5
+# ::node	p	park-01	5-6
+# ::node	n	next-to	6-7
+# ::node	e	each	8-9
+# ::node	o	other	9-10
+# ::node	r	railroad	11-12
+# ::node	t	track	12-13
+# ::root	p	park-01
+# ::edge	group	mod	large	g	l	
+# ::edge	group	consist-of	train	g	t2	
+# ::edge	park-01	ARG1	group	p	g	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	each	n	e	
+# ::edge	each	mod	other	e	o	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	next-to	location	track	n	t	
+(p / park-01
+    :ARG1 (g / group
+        :consist-of (t2 / train)
+        :mod (l / large))
+    :ARG2 (n / next-to
+        :location (t / track
+            :mod (r / railroad))
+        :op1 (e / each
+            :mod (o / other))))

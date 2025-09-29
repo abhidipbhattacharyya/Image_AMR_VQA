@@ -1,0 +1,49 @@
+# ::tok A hot dog with chili and cheese , onion rings with barbecue sauce and french fries with chili on cheese .
+# ::node	e	eat-01	1-2
+# ::node	h	hot-dog	2-3
+# ::node	c3	chili	4-5
+# ::node	a	and	5-6
+# ::node	a2	and	5-6
+# ::node	c	cheese	6-7
+# ::node	o	onion	8-9
+# ::node	r	ring	9-10
+# ::node	b	barbecue	11-12
+# ::node	s	sauce	12-13
+# ::node	c5	country	14-15
+# ::node	n	name	14-15
+# ::node	0	France	14-15
+# ::node	f	fry-01	15-16
+# ::node	c4	chili	17-18
+# ::node	c2	cheese	19-20
+# ::root	e	eat-01
+# ::edge	and	op1	hot-dog	a	h	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	and	op1	chili	a2	c3	
+# ::edge	eat-01	accompanier	and	e	a2	
+# ::edge	and	op2	cheese	a2	c	
+# ::edge	ring	consist-of	onion	r	o	
+# ::edge	and	op2	ring	a	r	
+# ::edge	sauce	mod	barbecue	s	b	
+# ::edge	ring	accompanier	sauce	r	s	
+# ::edge	country	name	name	c5	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c5	
+# ::edge	and	op3	fry-01	a	f	
+# ::edge	fry-01	ARG1	chili	f	c4	
+# ::edge	chili	prep-on	cheese	c4	c2	
+(e / eat-01
+    :ARG1 (a / and
+        :op1 (h / hot-dog)
+        :op2 (r / ring
+            :accompanier (s / sauce
+                :mod (b / barbecue))
+            :consist-of (o / onion))
+        :op3 (f / fry-01
+            :ARG1 (c4 / chili
+                :prep-on (c2 / cheese))
+            :mod (c5 / country
+                :name (n / name
+                    :op1 "France"))))
+    :accompanier (a2 / and
+        :op1 (c3 / chili)
+        :op2 (c / cheese)))

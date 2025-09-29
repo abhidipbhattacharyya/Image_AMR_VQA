@@ -1,0 +1,28 @@
+# ::tok A classic bomber plane flying through the air over some land below .
+# ::node	c	classic	1-2
+# ::node	b2	bomb-01	2-3
+# ::node	p	plane	3-4
+# ::node	f	fly-01	4-5
+# ::node	a	air	7-8
+# ::node	o	over	8-9
+# ::node	s	some	9-10
+# ::node	l	land	10-11
+# ::node	b	below	11-12
+# ::root	p	plane
+# ::edge	plane	ARG0-of	bomb-01	p	b2	
+# ::edge	plane	mod	classic	p	c	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	path	air	f	a	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	land	mod	some	l	s	
+# ::edge	over	op1	land	o	l	
+# ::edge	land	location	below	l	b	
+(p / plane
+    :ARG0-of (b2 / bomb-01)
+    :ARG2-of (f / fly-01
+        :path (a / air)
+        :path (o / over
+            :op1 (l / land
+                :location (b / below)
+                :mod (s / some))))
+    :mod (c / classic))

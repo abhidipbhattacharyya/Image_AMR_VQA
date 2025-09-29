@@ -1,0 +1,36 @@
+# ::tok People outside at a carnival like setting , standing and walking on the grass with different booths around them .
+# ::node	p	person	0-1
+# ::node	o	outside	1-2
+# ::node	c	carnival	4-5
+# ::node	r	resemble-01	5-6
+# ::node	s	setting	6-7
+# ::node	s2	stand-01	8-9
+# ::node	w	walk-01	10-11
+# ::node	g	grass	13-14
+# ::node	d	differ-02	15-16
+# ::node	b	booth	16-17
+# ::node	a	around	17-18
+# ::root	p	person
+# ::edge	person	location	outside	p	o	
+# ::edge	resemble-01	ARG2	carnival	r	c	
+# ::edge	setting	ARG1-of	resemble-01	s	r	
+# ::edge	outside	op1	setting	o	s	
+# ::edge	person	ARG1-of	stand-01	p	s2	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	ARG2	grass	w	g	
+# ::edge	stand-01	ARG2	grass	s2	g	
+# ::edge	booth	ARG1-of	differ-02	b	d	
+# ::edge	around	location-of	booth	a	b	
+# ::edge	person	op1-of	around	p	a	
+(p / person
+    :ARG0-of (w / walk-01
+        :ARG2 (g / grass))
+    :ARG1-of (s2 / stand-01
+        :ARG2 g)
+    :location (o / outside
+        :op1 (s / setting
+            :ARG1-of (r / resemble-01
+                :ARG2 (c / carnival))))
+    :op1-of (a / around
+        :location-of (b / booth
+            :ARG1-of (d / differ-02))))

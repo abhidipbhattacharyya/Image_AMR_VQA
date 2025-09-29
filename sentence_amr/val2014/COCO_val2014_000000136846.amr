@@ -1,0 +1,29 @@
+# ::tok A truck pulling two trailers behind it while driving down the highway .
+# ::node	t2	truck	1-2
+# ::node	p	pull-01	2-3
+# ::node	0	2	3-4
+# ::node	t	trailer	4-5
+# ::node	b	behind	5-6
+# ::node	d2	drive-01	8-9
+# ::node	d	down	9-10
+# ::node	h	highway	11-12
+# ::root	t2	truck
+# ::edge	truck	ARG0-of	pull-01	t2	p	
+# ::edge	trailer	quant	2	t	0	
+# ::edge	pull-01	ARG1	trailer	p	t	
+# ::edge	pull-01	ARG2	behind	p	b	
+# ::edge	behind	op1	truck	b	t2	
+# ::edge	truck	time	drive-01	t2	d2	
+# ::edge	drive-01	ARG0	truck	d2	t2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	highway	d2	h	
+(t2 / truck
+    :ARG0-of (p / pull-01
+        :ARG1 (t / trailer
+            :quant 2)
+        :ARG2 (b / behind
+            :op1 t2))
+    :time (d2 / drive-01
+        :ARG0 t2
+        :ARG1 (h / highway)
+        :direction (d / down)))

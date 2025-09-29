@@ -1,0 +1,22 @@
+# ::tok The traffic lights are directing where the traffic should go .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	d	direct-01	4-5
+# ::node	l2	location	5-6
+# ::node	t2	traffic	7-8
+# ::node	r	recommend-01	8-9
+# ::node	g	go-02	9-10
+# ::root	d	direct-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	direct-01	ARG0	light	d	l	
+# ::edge	direct-01	ARG1	location	d	l2	
+# ::edge	go-02	ARG1-of	recommend-01	g	r	
+# ::edge	go-02	ARG0	traffic	g	t2	
+# ::edge	location	ARG4-of	go-02	l2	g	
+(d / direct-01
+    :ARG0 (l / light
+        :mod (t / traffic))
+    :ARG1 (l2 / location
+        :ARG4-of (g / go-02
+            :ARG0 (t2 / traffic)
+            :ARG1-of (r / recommend-01))))

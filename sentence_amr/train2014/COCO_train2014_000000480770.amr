@@ -1,0 +1,84 @@
+# ::tok A street view shows a building entrance and traffic , including a bus , in the background , and to the foreground , a black iron fence , and a bench with an older , seated person , looking at a flock of pigeons scattered on the ground and bench .
+# ::node	s4	street	1-2
+# ::node	v	view-01	2-3
+# ::node	s3	show-01	3-4
+# ::node	b5	building	5-6
+# ::node	e	enter-01	6-7
+# ::node	a	and	7-8
+# ::node	t	traffic	8-9
+# ::node	i	include-91	10-11
+# ::node	b6	bus	12-13
+# ::node	b	background	16-17
+# ::node	f3	foreground	21-22
+# ::node	b4	black-04	24-25
+# ::node	i2	iron	25-26
+# ::node	f	fence	26-27
+# ::node	b2	bench	30-31
+# ::node	h	have-03	31-32
+# ::node	h2	have-degree-91	33-34
+# ::node	o	old	33-34
+# ::node	m	more	33-34
+# ::node	s2	seat-01	35-36
+# ::node	p	person	36-37
+# ::node	l	look-01	38-39
+# ::node	f2	flock	41-42
+# ::node	b3	bird	43-44
+# ::node	s	scatter-01	44-45
+# ::node	g	ground	47-48
+# ::node	a2	and	48-49
+# ::root	s3	show-01
+# ::edge	view-01	ARG1	street	v	s4	
+# ::edge	show-01	ARG0	view-01	s3	v	
+# ::edge	enter-01	ARG1	building	e	b5	
+# ::edge	and	op1	enter-01	a	e	
+# ::edge	show-01	ARG1	and	s3	a	
+# ::edge	and	op2	traffic	a	t	
+# ::edge	traffic	ARG2-of	include-91	t	i	
+# ::edge	include-91	ARG1	bus	i	b6	
+# ::edge	bus	location	background	b6	b	
+# ::edge	iron	ARG1-of	black-04	i2	b4	
+# ::edge	fence	consist-of	iron	f	i2	
+# ::edge	fence	location	foreground	f	f3	
+# ::edge	and	op3	fence	a	f	
+# ::edge	and	op4	bench	a	b2	
+# ::edge	bench	ARG0-of	have-03	b2	h	
+# ::edge	have-degree-91	ARG2	old	h2	o	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	person	ARG1-of	seat-01	p	s2	
+# ::edge	person	ARG1-of	have-degree-91	p	h2	
+# ::edge	have-03	ARG1	person	h	p	
+# ::edge	person	ARG0-of	look-01	p	l	
+# ::edge	look-01	ARG1	flock	l	f2	
+# ::edge	flock	consist-of	bird	f2	b3	
+# ::edge	flock	ARG1-of	scatter-01	f2	s	
+# ::edge	and	op1	ground	a2	g	
+# ::edge	scatter-01	ARG2	and	s	a2	
+# ::edge	and	op2	bench	a2	b2	
+(s3 / show-01
+    :ARG0 (v / view-01
+        :ARG1 (s4 / street))
+    :ARG1 (a / and
+        :op1 (e / enter-01
+            :ARG1 (b5 / building))
+        :op2 (t / traffic
+            :ARG2-of (i / include-91
+                :ARG1 (b6 / bus
+                    :location (b / background))))
+        :op3 (f / fence
+            :consist-of (i2 / iron
+                :ARG1-of (b4 / black-04))
+            :location (f3 / foreground))
+        :op4 (b2 / bench
+            :ARG0-of (h / have-03
+                :ARG1 (p / person
+                    :ARG0-of (l / look-01
+                        :ARG1 (f2 / flock
+                            :ARG1-of (s / scatter-01
+                                :ARG2 (a2 / and
+                                    :op1 (g / ground)
+                                    :op2 b2))
+                            :consist-of (b3 / bird)))
+                    :ARG1-of (s2 / seat-01)
+                    :ARG1-of (h2 / have-degree-91
+                        :ARG2 (o / old)
+                        :ARG3 (m / more)))))))

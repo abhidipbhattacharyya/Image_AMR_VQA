@@ -1,0 +1,73 @@
+# ::tok A concrete wall and a smaller slat fence border an environment with logs and a single tree , surrounded by several zebras , including one that is nuzzling another .
+# ::node	c	concrete	1-2
+# ::node	w	wall	2-3
+# ::node	a	and	3-4
+# ::node	h2	have-degree-91	5-6
+# ::node	s3	small	5-6
+# ::node	m	more	5-6
+# ::node	s2	slat	6-7
+# ::node	f	fence	7-8
+# ::node	b	border-01	8-9
+# ::node	e	environment	10-11
+# ::node	h	have-03	11-12
+# ::node	t	tree	12-13
+# ::node	a2	and	13-14
+# ::node	0	1	15-16
+# ::node	t2	tree	16-17
+# ::node	s4	surround-01	18-19
+# ::node	s	several	20-21
+# ::node	a3	animal	21-22
+# ::node	a4	animal	21-22
+# ::node	a5	animal	21-22
+# ::node	i	include-91	23-24
+# ::node	1	1	24-25
+# ::node	n	nope	27-28
+# ::node	a6	another	28-29
+# ::root	b	border-01
+# ::edge	wall	mod	concrete	w	c	
+# ::edge	and	op1	wall	a	w	
+# ::edge	have-degree-91	ARG2	small	h2	s3	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	fence	mod	slat	f	s2	
+# ::edge	fence	ARG1-of	have-degree-91	f	h2	
+# ::edge	and	op2	fence	a	f	
+# ::edge	border-01	ARG1	and	b	a	
+# ::edge	border-01	ARG2	environment	b	e	
+# ::edge	environment	ARG0-of	have-03	e	h	
+# ::edge	and	op1	tree	a2	t	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	tree	quant	1	t2	0	
+# ::edge	and	op2	tree	a2	t2	
+# ::edge	environment	ARG2-of	surround-01	e	s4	
+# ::edge	animal	quant	several	a3	s	
+# ::edge	surround-01	ARG1	animal	s4	a3	
+# ::edge	include-91	ARG1	animal	i	a4	
+# ::edge	animal	ARG2-of	include-91	a3	i	
+# ::edge	animal	quant	1	a4	1	
+# ::edge	animal	mod	nope	a5	n	
+# ::edge	animal	mod	another	a5	a6	
+# ::edge	border-01	rel	animal	b	a5	
+(b / border-01
+    :ARG1 (a / and
+        :op1 (w / wall
+            :mod (c / concrete))
+        :op2 (f / fence
+            :ARG1-of (h2 / have-degree-91
+                :ARG2 (s3 / small)
+                :ARG3 (m / more))
+            :mod (s2 / slat)))
+    :ARG2 (e / environment
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (t / tree)
+                :op2 (t2 / tree
+                    :quant 1)))
+        :ARG2-of (s4 / surround-01
+            :ARG1 (a3 / animal
+                :quant (s / several)
+                :ARG2-of (i / include-91
+                    :ARG1 (a4 / animal
+                        :quant 1)))))
+    :rel (a5 / animal
+        :mod (n / nope)
+        :mod (a6 / another)))

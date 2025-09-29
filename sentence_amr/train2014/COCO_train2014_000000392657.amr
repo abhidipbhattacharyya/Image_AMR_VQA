@@ -1,0 +1,39 @@
+# ::tok Two young children , one laying on the floor and one running forward .
+# ::node	2	2	0-1
+# ::node	y	young	1-2
+# ::node	c	child	2-3
+# ::node	i	include-91	4-5
+# ::node	i2	include-91	4-5
+# ::node	0	1	4-5
+# ::node	1	1	4-5
+# ::node	l	lay-01	5-6
+# ::node	f	floor	8-9
+# ::node	a	and	9-10
+# ::node	r	run-02	11-12
+# ::node	f2	forward	12-13
+# ::root	c	child
+# ::edge	child	mod	young	c	y	
+# ::edge	child	quant	2	c	2	
+# ::edge	child	ARG2-of	include-91	c	i	
+# ::edge	child	ARG2-of	include-91	c	i2	
+# ::edge	lay-01	ARG1	1	l	0	
+# ::edge	lay-01	ARG2	floor	l	f	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op2	run-02	a	r	
+# ::edge	run-02	quant	1	r	1	
+# ::edge	run-02	ARG0	include-91	r	i2	
+# ::edge	run-02	direction	forward	r	f2	
+(c / child
+    :quant 2
+    :ARG2-of (i / include-91
+        :ARG1 (a / and
+            :op1 (l / lay-01
+                :ARG1 1
+                :ARG2 (f / floor))
+            :op2 (r / run-02
+                :quant 1
+                :ARG0 (i2 / include-91)
+                :direction (f2 / forward))))
+    :ARG2-of i2
+    :mod (y / young))

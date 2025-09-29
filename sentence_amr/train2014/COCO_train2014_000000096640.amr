@@ -1,0 +1,22 @@
+# ::tok A transit bus traveling down a street by other traffic .
+# ::node	t2	transit-01	1-2
+# ::node	b	bus	2-3
+# ::node	t3	travel-01	3-4
+# ::node	d	down	4-5
+# ::node	s	street	6-7
+# ::node	o	other	8-9
+# ::node	t	traffic	9-10
+# ::root	b	bus
+# ::edge	bus	ARG2-of	transit-01	b	t2	
+# ::edge	bus	ARG0-of	travel-01	b	t3	
+# ::edge	travel-01	direction	down	t3	d	
+# ::edge	travel-01	ARG1	street	t3	s	
+# ::edge	traffic	mod	other	t	o	
+# ::edge	travel-01	path	traffic	t3	t	
+(b / bus
+    :ARG0-of (t3 / travel-01
+        :ARG1 (s / street)
+        :direction (d / down)
+        :path (t / traffic
+            :mod (o / other)))
+    :ARG2-of (t2 / transit-01))

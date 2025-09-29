@@ -1,0 +1,33 @@
+# ::tok A bus stop area with people standing on the sidewalk and buses on the street next to the stop .
+# ::node	b	bus	1-2
+# ::node	s3	stop-01	2-3
+# ::node	a2	area	3-4
+# ::node	p	person	5-6
+# ::node	s2	stand-01	6-7
+# ::node	s	sidewalk	9-10
+# ::node	a	and	10-11
+# ::node	b2	bus	11-12
+# ::node	s4	street	14-15
+# ::node	n	next-to	15-16
+# ::root	a2	area
+# ::edge	stop-01	ARG1	bus	s3	b	
+# ::edge	area	location-of	stop-01	a2	s3	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	sidewalk	s2	s	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	area	location-of	and	a2	a	
+# ::edge	and	op2	bus	a	b2	
+# ::edge	bus	location	street	b2	s4	
+# ::edge	street	location	next-to	s4	n	
+# ::edge	next-to	op1	stop-01	n	s3	
+(a2 / area
+    :location-of (s3 / stop-01
+        :ARG1 (b / bus))
+    :location-of (a / and
+        :op1 (s2 / stand-01
+            :ARG1 (p / person)
+            :ARG2 (s / sidewalk))
+        :op2 (b2 / bus
+            :location (s4 / street
+                :location (n / next-to
+                    :op1 s3)))))

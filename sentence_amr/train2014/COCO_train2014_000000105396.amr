@@ -1,0 +1,22 @@
+# ::tok A traffic light suspended in a white sky with a green signal .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s3	suspend-01	3-4
+# ::node	w	white-03	6-7
+# ::node	s2	sky	7-8
+# ::node	g	green-02	10-11
+# ::node	s	signal-07	11-12
+# ::root	s3	suspend-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	suspend-01	ARG1	light	s3	l	
+# ::edge	sky	ARG1-of	white-03	s2	w	
+# ::edge	suspend-01	location	sky	s3	s2	
+# ::edge	signal-07	ARG1	green-02	s	g	
+# ::edge	light	ARG0-of	signal-07	l	s	
+(s3 / suspend-01
+    :ARG1 (l / light
+        :ARG0-of (s / signal-07
+            :ARG1 (g / green-02))
+        :mod (t / traffic))
+    :location (s2 / sky
+        :ARG1-of (w / white-03)))

@@ -1,0 +1,28 @@
+# ::tok People in a room with one man working on a laptop while another looks on .
+# ::node	p	person	0-1
+# ::node	r	room	3-4
+# ::node	0	1	5-6
+# ::node	m	man	6-7
+# ::node	m2	man	6-7
+# ::node	w	work-01	7-8
+# ::node	l	laptop	10-11
+# ::node	a	another	12-13
+# ::node	l2	look-01	13-14
+# ::root	p	person
+# ::edge	person	location	room	p	r	
+# ::edge	man	quant	1	m	0	
+# ::edge	work-01	ARG0	man	w	m	
+# ::edge	person	accompanier	work-01	p	w	
+# ::edge	work-01	ARG1	laptop	w	l	
+# ::edge	man	mod	another	m2	a	
+# ::edge	look-01	ARG0	man	l2	m2	
+# ::edge	work-01	time	look-01	w	l2	
+(p / person
+    :accompanier (w / work-01
+        :ARG0 (m / man
+            :quant 1)
+        :ARG1 (l / laptop)
+        :time (l2 / look-01
+            :ARG0 (m2 / man
+                :mod (a / another))))
+    :location (r / room))

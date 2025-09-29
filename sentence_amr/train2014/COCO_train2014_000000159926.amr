@@ -1,0 +1,22 @@
+# ::tok A transit bus at night time at a stop on the side of a street .
+# ::node	t	transit-01	1-2
+# ::node	b	bus	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	s2	stop-01	8-9
+# ::node	s	side	11-12
+# ::node	s3	street	14-15
+# ::root	b	bus
+# ::edge	bus	ARG2-of	transit-01	b	t	
+# ::edge	bus	time	date-entity	b	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	bus	location	stop-01	b	s2	
+# ::edge	stop-01	location	side	s2	s	
+# ::edge	side	part-of	street	s	s3	
+(b / bus
+    :ARG2-of (t / transit-01)
+    :location (s2 / stop-01
+        :location (s / side
+            :part-of (s3 / street)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

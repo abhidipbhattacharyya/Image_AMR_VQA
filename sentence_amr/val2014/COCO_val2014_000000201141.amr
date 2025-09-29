@@ -1,0 +1,37 @@
+# ::tok A man sitting in a vendor booth with bananas and food hanging by hooks .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	p	person	5-6
+# ::node	v	vend-01	5-6
+# ::node	b2	booth	6-7
+# ::node	h2	have-03	7-8
+# ::node	b	banana	8-9
+# ::node	a	and	9-10
+# ::node	f	food	10-11
+# ::node	h	hang-01	11-12
+# ::node	t	thing	13-14
+# ::node	h3	hook-01	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	booth	mod	person	b2	p	
+# ::edge	sit-01	ARG2	booth	s	b2	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	and	op1	banana	a	b	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op2	food	a	f	
+# ::edge	and	ARG1-of	hang-01	a	h	
+# ::edge	hang-01	ARG2	thing	h	t	
+# ::edge	thing	ARG2-of	hook-01	t	h3	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :ARG1-of (h / hang-01
+                    :ARG2 (t / thing
+                        :ARG2-of (h3 / hook-01)))
+                :op1 (b / banana)
+                :op2 (f / food))))
+    :ARG2 (b2 / booth
+        :mod (p / person
+            :ARG0-of (v / vend-01))))

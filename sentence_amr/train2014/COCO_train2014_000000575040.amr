@@ -1,0 +1,37 @@
+# ::tok Train or subway cars in open area appearing to be entering city with caution sign .
+# ::node	t	train	0-1
+# ::node	o2	or	1-2
+# ::node	s2	subway	2-3
+# ::node	c	car	3-4
+# ::node	c2	car	3-4
+# ::node	o	open-06	5-6
+# ::node	a2	area	6-7
+# ::node	a	appear-02	7-8
+# ::node	e	enter-01	10-11
+# ::node	c4	city	11-12
+# ::node	c3	caution-01	13-14
+# ::node	s	sign	14-15
+# ::root	a	appear-02
+# ::edge	or	op1	car	o2	c	
+# ::edge	car	mod	train	c	t	
+# ::edge	car	mod	subway	c2	s2	
+# ::edge	or	op2	car	o2	c2	
+# ::edge	area	ARG1-of	open-06	a2	o	
+# ::edge	or	location	area	o2	a2	
+# ::edge	appear-02	ARG1	enter-01	a	e	
+# ::edge	enter-01	ARG0	or	e	o2	
+# ::edge	enter-01	ARG1	city	e	c4	
+# ::edge	sign	topic	caution-01	s	c3	
+# ::edge	enter-01	manner	sign	e	s	
+(a / appear-02
+    :ARG1 (e / enter-01
+        :ARG0 (o2 / or
+            :location (a2 / area
+                :ARG1-of (o / open-06))
+            :op1 (c / car
+                :mod (t / train))
+            :op2 (c2 / car
+                :mod (s2 / subway)))
+        :ARG1 (c4 / city)
+        :manner (s / sign
+            :topic (c3 / caution-01))))

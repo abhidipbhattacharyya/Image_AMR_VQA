@@ -1,0 +1,25 @@
+# ::tok in the rear view mirror you can see there is a bus behind the car
+# ::node	r	rearview	3-4
+# ::node	m	mirror	4-5
+# ::node	y	you	5-6
+# ::node	p	possible-01	6-7
+# ::node	s	see-01	7-8
+# ::node	b2	bus	11-12
+# ::node	b	behind	12-13
+# ::node	c	car	14-15
+# ::root	p	possible-01
+# ::edge	mirror	mod	rearview	m	r	
+# ::edge	possible-01	location	mirror	p	m	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	see-01	ARG1	bus	s	b2	
+# ::edge	bus	location	behind	b2	b	
+# ::edge	behind	op1	car	b	c	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG0 (y / you)
+        :ARG1 (b2 / bus
+            :location (b / behind
+                :op1 (c / car))))
+    :location (m / mirror
+        :mod (r / rearview)))

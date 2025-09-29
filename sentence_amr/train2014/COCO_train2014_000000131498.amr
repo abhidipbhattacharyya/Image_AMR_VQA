@@ -1,0 +1,52 @@
+# ::tok A table topped with plates filled with a hot dog in a bun and a pile of French fries and chilly cheese fries .
+# ::node	t	table	1-2
+# ::node	t2	top-02	2-3
+# ::node	p2	plate	4-5
+# ::node	f	fill-01	5-6
+# ::node	e	eat-01	8-9
+# ::node	h	hot-dog	9-10
+# ::node	b	bun	12-13
+# ::node	a	and	13-14
+# ::node	p	pile-01	15-16
+# ::node	c3	country	17-18
+# ::node	n	name	17-18
+# ::node	0	France	17-18
+# ::node	f2	fry-01	18-19
+# ::node	a2	and	19-20
+# ::node	c2	chill-01	20-21
+# ::node	c	cheese	21-22
+# ::node	f3	fry-01	22-23
+# ::root	t2	top-02
+# ::edge	top-02	ARG1	table	t2	t	
+# ::edge	plate	ARG1-of	fill-01	p2	f	
+# ::edge	hot-dog	ARG1-of	eat-01	h	e	
+# ::edge	hot-dog	consist-of	bun	h	b	
+# ::edge	and	op1	hot-dog	a	h	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	pile-01	a	p	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f2	c3	
+# ::edge	and	op1	fry-01	a2	f2	
+# ::edge	pile-01	ARG1	and	p	a2	
+# ::edge	fry-01	ARG1	cheese	f3	c	
+# ::edge	fry-01	ARG1-of	chill-01	f3	c2	
+# ::edge	and	op2	fry-01	a2	f3	
+# ::edge	top-02	rel	plate	t2	p2	
+(t2 / top-02
+    :ARG1 (t / table)
+    :rel (p2 / plate
+        :ARG1-of (f / fill-01
+            :ARG2 (a / and
+                :op1 (h / hot-dog
+                    :ARG1-of (e / eat-01)
+                    :consist-of (b / bun))
+                :op2 (p / pile-01
+                    :ARG1 (a2 / and
+                        :op1 (f2 / fry-01
+                            :mod (c3 / country
+                                :name (n / name
+                                    :op1 "France")))
+                        :op2 (f3 / fry-01
+                            :ARG1 (c / cheese)
+                            :ARG1-of (c2 / chill-01))))))))

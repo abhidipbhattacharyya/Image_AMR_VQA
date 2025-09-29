@@ -1,0 +1,29 @@
+# ::tok Dog looking attentive and alert with pizza in foreground
+# ::node	d	dog	0-1
+# ::node	l	look-02	1-2
+# ::node	a3	attend-02	2-3
+# ::node	a2	and	3-4
+# ::node	a	alert-01	4-5
+# ::node	p	pizza	6-7
+# ::node	c	cause-01	7-8
+# ::node	f	foreground	8-9
+# ::root	l	look-02
+# ::edge	look-02	ARG0	dog	l	d	
+# ::edge	attend-02	ARG0	dog	a3	d	
+# ::edge	and	op1	attend-02	a2	a3	
+# ::edge	look-02	ARG1	and	l	a2	
+# ::edge	and	op2	alert-01	a2	a	
+# ::edge	alert-01	ARG1	dog	a	d	
+# ::edge	and	ARG1-of	cause-01	a2	c	
+# ::edge	cause-01	ARG0	foreground	c	f	
+# ::edge	foreground	mod	pizza	f	p	
+(l / look-02
+    :ARG0 (d / dog)
+    :ARG1 (a2 / and
+        :ARG1-of (c / cause-01
+            :ARG0 (f / foreground
+                :mod (p / pizza)))
+        :op1 (a3 / attend-02
+            :ARG0 d)
+        :op2 (a / alert-01
+            :ARG1 d)))

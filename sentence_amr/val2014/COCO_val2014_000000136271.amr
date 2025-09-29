@@ -1,0 +1,36 @@
+# ::tok A produce stand with various types of fruits in bins for sale with the prices above the stands .
+# ::node	p2	produce	1-2
+# ::node	s2	stand	2-3
+# ::node	h	have-03	3-4
+# ::node	v	various	4-5
+# ::node	t2	type	5-6
+# ::node	f	fruit	7-8
+# ::node	b	bin	9-10
+# ::node	s	sell-01	11-12
+# ::node	t	thing	13-14
+# ::node	p	price-01	14-15
+# ::node	a	above	15-16
+# ::root	s2	stand
+# ::edge	stand	mod	produce	s2	p2	
+# ::edge	stand	ARG0-of	have-03	s2	h	
+# ::edge	type	mod	various	t2	v	
+# ::edge	fruit	mod	type	f	t2	
+# ::edge	have-03	ARG1	fruit	h	f	
+# ::edge	fruit	location	bin	f	b	
+# ::edge	fruit	ARG1-of	sell-01	f	s	
+# ::edge	stand	prep-with	thing	s2	t	
+# ::edge	thing	ARG2-of	price-01	t	p	
+# ::edge	thing	location	above	t	a	
+# ::edge	above	op1	stand	a	s2	
+(s2 / stand
+    :ARG0-of (h / have-03
+        :ARG1 (f / fruit
+            :ARG1-of (s / sell-01)
+            :location (b / bin)
+            :mod (t2 / type
+                :mod (v / various))))
+    :mod (p2 / produce)
+    :prep-with (t / thing
+        :ARG2-of (p / price-01)
+        :location (a / above
+            :op1 s2)))

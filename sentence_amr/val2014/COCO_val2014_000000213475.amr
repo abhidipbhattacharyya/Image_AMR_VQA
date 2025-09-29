@@ -1,0 +1,34 @@
+# ::tok A street scene in the evening with a lone car and traffic light showing red .
+# ::node	s3	street	1-2
+# ::node	s	scene	2-3
+# ::node	d	date-entity	5-6
+# ::node	e	evening	5-6
+# ::node	l2	lone	8-9
+# ::node	c	car	9-10
+# ::node	a	and	10-11
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::node	s2	show-01	13-14
+# ::node	r	red-02	14-15
+# ::root	s	scene
+# ::edge	scene	location	street	s	s3	
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	mod	lone	a	l2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op2	light	a	l	
+# ::edge	show-01	ARG0	and	s2	a	
+# ::edge	scene	location-of	show-01	s	s2	
+# ::edge	show-01	ARG1	red-02	s2	r	
+(s / scene
+    :location (s3 / street)
+    :location-of (s2 / show-01
+        :ARG0 (a / and
+            :mod (l2 / lone)
+            :op1 (c / car)
+            :op2 (l / light
+                :mod (t / traffic)))
+        :ARG1 (r / red-02))
+    :time (d / date-entity
+        :dayperiod (e / evening)))

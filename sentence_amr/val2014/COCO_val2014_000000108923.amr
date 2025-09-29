@@ -1,0 +1,24 @@
+# ::tok A CAT IS SITTING DOWN WATCHING A TV SCREEN WITH GEESE ON IT
+# ::node	c	cat	1-2
+# ::node	d	down-01	4-5
+# ::node	w	watch-01	5-6
+# ::node	t	television	7-8
+# ::node	b	broadcast-program	8-9
+# ::node	p	person	10-11
+# ::node	n	neighbor-01	10-11
+# ::root	w	watch-01
+# ::edge	cat	ARG1-of	down-01	c	d	
+# ::edge	watch-01	ARG0	cat	w	c	
+# ::edge	broadcast-program	medium	television	b	t	
+# ::edge	watch-01	ARG1	broadcast-program	w	b	
+# ::edge	broadcast-program	accompanier	person	b	p	
+# ::edge	person	ARG1-of	neighbor-01	p	n	
+# ::edge	neighbor-01	ARG2	broadcast-program	n	b	
+(w / watch-01
+    :ARG0 (c / cat
+        :ARG1-of (d / down-01))
+    :ARG1 (b / broadcast-program
+        :accompanier (p / person
+            :ARG1-of (n / neighbor-01
+                :ARG2 b))
+        :medium (t / television)))

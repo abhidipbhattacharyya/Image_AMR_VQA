@@ -1,0 +1,27 @@
+# ::tok A bus pulling up in a outdoor environment with another bus close behind it .
+# ::node	b2	bus	1-2
+# ::node	p	pull-01	2-3
+# ::node	o	outdoor	6-7
+# ::node	e	environment	7-8
+# ::node	a	another	9-10
+# ::node	b3	bus	10-11
+# ::node	c	close-10	11-12
+# ::node	b	behind	12-13
+# ::root	p	pull-01
+# ::edge	pull-01	ARG1	bus	p	b2	
+# ::edge	environment	mod	outdoor	e	o	
+# ::edge	pull-01	location	environment	p	e	
+# ::edge	bus	mod	another	b3	a	
+# ::edge	behind	ARG1-of	close-10	b	c	
+# ::edge	behind	location-of	bus	b	b3	
+# ::edge	pull-01	location	behind	p	b	
+# ::edge	behind	op1	bus	b	b2	
+(p / pull-01
+    :ARG1 (b2 / bus)
+    :location (e / environment
+        :mod (o / outdoor))
+    :location (b / behind
+        :ARG1-of (c / close-10)
+        :location-of (b3 / bus
+            :mod (a / another))
+        :op1 b2))

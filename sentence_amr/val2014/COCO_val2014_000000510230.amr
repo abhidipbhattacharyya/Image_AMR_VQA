@@ -1,0 +1,25 @@
+# ::tok a stop sign and street signs close to some businesses
+# ::node	s4	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	a	and	3-4
+# ::node	s5	street	4-5
+# ::node	s	sign	5-6
+# ::node	c	close-10	6-7
+# ::node	s3	some	8-9
+# ::node	b	business	9-10
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	sign	mod	street	s	s5	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	ARG1-of	close-10	a	c	
+# ::edge	business	quant	some	b	s3	
+# ::edge	close-10	ARG2	business	c	b	
+(a / and
+    :ARG1-of (c / close-10
+        :ARG2 (b / business
+            :quant (s3 / some)))
+    :op1 (s2 / signal-07
+        :ARG1 (s4 / stop-01))
+    :op2 (s / sign
+        :mod (s5 / street)))

@@ -1,0 +1,37 @@
+# ::tok An intersection in Colorado shows traffic includes train , bus , pedestrian and car
+# ::node	i2	intersect-01	1-2
+# ::node	s2	state	3-4
+# ::node	n	name	3-4
+# ::node	0	Colorado	3-4
+# ::node	s	show-01	4-5
+# ::node	t	traffic	5-6
+# ::node	i	include-01	6-7
+# ::node	t2	train	7-8
+# ::node	a	and	8-9
+# ::node	b	bus	9-10
+# ::node	p	pedestrian	11-12
+# ::node	c	car	13-14
+# ::root	s	show-01
+# ::edge	intersect-01	location	state	i2	s2	
+# ::edge	state	name	name	s2	n	
+# ::edge	name	op1	Colorado	n	0	
+# ::edge	show-01	ARG0	intersect-01	s	i2	
+# ::edge	include-01	ARG2	traffic	i	t	
+# ::edge	show-01	ARG1	include-01	s	i	
+# ::edge	and	op1	train	a	t2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	bus	a	b	
+# ::edge	and	op3	pedestrian	a	p	
+# ::edge	and	op4	car	a	c	
+(s / show-01
+    :ARG0 (i2 / intersect-01
+        :location (s2 / state
+            :name (n / name
+                :op1 "Colorado")))
+    :ARG1 (i / include-01
+        :ARG1 (a / and
+            :op1 (t2 / train)
+            :op2 (b / bus)
+            :op3 (p / pedestrian)
+            :op4 (c / car))
+        :ARG2 (t / traffic)))

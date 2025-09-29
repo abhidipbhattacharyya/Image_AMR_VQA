@@ -1,0 +1,33 @@
+# ::tok Two trains are on tracks in a commuter strain station with people standing on the platform between them .
+# ::node	0	2	0-1
+# ::node	t2	train	1-2
+# ::node	t	track	4-5
+# ::node	c	commute-01	7-8
+# ::node	s3	strain-01	8-9
+# ::node	s2	station	9-10
+# ::node	p	person	11-12
+# ::node	s	stand-01	12-13
+# ::node	p2	platform	15-16
+# ::node	b	between	16-17
+# ::root	t	track
+# ::edge	train	quant	2	t2	0	
+# ::edge	track	location-of	train	t	t2	
+# ::edge	strain-01	ARG0-of	commute-01	s3	c	
+# ::edge	station	mod	strain-01	s2	s3	
+# ::edge	track	location	station	t	s2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	track	location-of	stand-01	t	s	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	stand-01	location	between	s	b	
+# ::edge	between	op1	train	b	t2	
+(t / track
+    :location (s2 / station
+        :mod (s3 / strain-01
+            :ARG0-of (c / commute-01)))
+    :location-of (t2 / train
+        :quant 2)
+    :location-of (s / stand-01
+        :ARG1 (p / person)
+        :ARG2 (p2 / platform)
+        :location (b / between
+            :op1 t2)))

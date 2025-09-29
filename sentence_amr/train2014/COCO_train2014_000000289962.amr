@@ -1,0 +1,37 @@
+# ::tok A person walking past a traffic light at Walnut Depot in the Bronx .
+# ::node	p2	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	p	past	3-4
+# ::node	t	traffic	5-6
+# ::node	l	light	6-7
+# ::node	n	name	8-9
+# ::node	2	Walnut	8-9
+# ::node	c2	company	9-10
+# ::node	1	Depot	9-10
+# ::node	c	city-district	12-13
+# ::node	n2	name	12-13
+# ::node	0	Bronx	12-13
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	walk-01	ARG2	past	w	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	past	op1	light	p	l	
+# ::edge	name	op1	Walnut	n	2	
+# ::edge	company	name	name	c2	n	
+# ::edge	walk-01	location	company	w	c2	
+# ::edge	name	op2	Depot	n	1	
+# ::edge	company	location	city-district	c2	c	
+# ::edge	city-district	name	name	c	n2	
+# ::edge	name	op1	Bronx	n2	0	
+(w / walk-01
+    :ARG0 (p2 / person)
+    :ARG2 (p / past
+        :op1 (l / light
+            :mod (t / traffic)))
+    :location (c2 / company
+        :name (n / name
+            :op1 "Walnut"
+            :op2 "Depot")
+        :location (c / city-district
+            :name (n2 / name
+                :op1 "Bronx"))))

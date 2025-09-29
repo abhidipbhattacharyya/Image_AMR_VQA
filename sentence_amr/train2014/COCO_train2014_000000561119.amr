@@ -1,0 +1,36 @@
+# ::tok A blue and yellow sign reading " traffic school is boring slow down . "
+# ::node	b	blue	1-2
+# ::node	a	and	2-3
+# ::node	y	yellow-02	3-4
+# ::node	s2	sign	4-5
+# ::node	s3	sign	4-5
+# ::node	r	read-01	5-6
+# ::node	t	traffic	7-8
+# ::node	s	school	8-9
+# ::node	b2	bore-02	10-11
+# ::node	s4	slow-down-03	11-12
+# ::node	a2	and	13-14
+# ::root	a2	and
+# ::edge	and	op1	sign	a	s2	
+# ::edge	sign	mod	blue	s2	b	
+# ::edge	sign	ARG1-of	yellow-02	s3	y	
+# ::edge	and	op2	sign	a	s3	
+# ::edge	and	ARG1-of	read-01	a	r	
+# ::edge	school	mod	traffic	s	t	
+# ::edge	bore-02	ARG0	school	b2	s	
+# ::edge	slow-down-03	ARG0	bore-02	s4	b2	
+# ::edge	read-01	ARG3	slow-down-03	r	s4	
+# ::edge	and	op2	slow-down-03	a2	s4	
+# ::edge	and	op1	and	a2	a	
+(a2 / and
+    :op1 (a / and
+        :ARG1-of (r / read-01
+            :ARG3 (s4 / slow-down-03
+                :ARG0 (b2 / bore-02
+                    :ARG0 (s / school
+                        :mod (t / traffic)))))
+        :op1 (s2 / sign
+            :mod (b / blue))
+        :op2 (s3 / sign
+            :ARG1-of (y / yellow-02)))
+    :op2 s4)

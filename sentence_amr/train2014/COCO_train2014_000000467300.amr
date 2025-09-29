@@ -1,0 +1,63 @@
+# ::tok A table with a white table cloth and a man and woman are holding each other 's hand as they cut an orange three tiered wedding cake .
+# ::node	t	table	1-2
+# ::node	h2	have-03	2-3
+# ::node	w2	white-03	4-5
+# ::node	t2	table	5-6
+# ::node	c2	cloth	6-7
+# ::node	a	and	7-8
+# ::node	m	man	9-10
+# ::node	a2	and	10-11
+# ::node	a3	and	10-11
+# ::node	w3	woman	11-12
+# ::node	h3	hold-01	13-14
+# ::node	h	hand	17-18
+# ::node	c3	cut-01	20-21
+# ::node	o	orange	22-23
+# ::node	0	3	23-24
+# ::node	t3	tier	24-25
+# ::node	w	wed-01	25-26
+# ::node	c	cake	26-27
+# ::root	c3	cut-01
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	cloth	mod	table	c2	t2	
+# ::edge	cloth	ARG1-of	white-03	c2	w2	
+# ::edge	have-03	ARG1	cloth	h2	c2	
+# ::edge	and	op1	table	a	t	
+# ::edge	and	op1	man	a2	m	
+# ::edge	and	op1	man	a3	m	
+# ::edge	and	op2	woman	a3	w3	
+# ::edge	and	op2	woman	a2	w3	
+# ::edge	hold-01	ARG0	and	h3	a2	
+# ::edge	and	op2	hold-01	a	h3	
+# ::edge	hold-01	ARG1	hand	h3	h	
+# ::edge	and	part	hand	a3	h	
+# ::edge	cut-01	ARG0	and	c3	a2	
+# ::edge	tier	quant	3	t3	0	
+# ::edge	cake	mod	wed-01	c	w	
+# ::edge	cake	mod	tier	c	t3	
+# ::edge	cut-01	ARG1	cake	c3	c	
+# ::edge	cut-01	rel	and	c3	a	
+# ::edge	cut-01	rel	and	c3	a3	
+# ::edge	cut-01	rel	orange	c3	o	
+(c3 / cut-01
+    :ARG0 (a2 / and
+        :op1 (m / man)
+        :op2 (w3 / woman))
+    :ARG1 (c / cake
+        :mod (w / wed-01)
+        :mod (t3 / tier
+            :quant 3))
+    :rel (a / and
+        :op1 (t / table
+            :ARG0-of (h2 / have-03
+                :ARG1 (c2 / cloth
+                    :ARG1-of (w2 / white-03)
+                    :mod (t2 / table))))
+        :op2 (h3 / hold-01
+            :ARG0 a2
+            :ARG1 (h / hand)))
+    :rel (a3 / and
+        :op1 m
+        :op2 w3
+        :part h)
+    :rel (o / orange))

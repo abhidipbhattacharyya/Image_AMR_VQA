@@ -1,0 +1,25 @@
+# ::tok A stop sign mounted on a pole in front of a gas station sign .
+# ::node	s4	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	m	mount-03	3-4
+# ::node	p	pole	6-7
+# ::node	i	in-front-of	8-9
+# ::node	g	gas	11-12
+# ::node	s3	station	12-13
+# ::node	s2	sign	13-14
+# ::root	m	mount-03
+# ::edge	sign	purpose	stop-01	s	s4	
+# ::edge	mount-03	ARG1	sign	m	s	
+# ::edge	mount-03	ARG2	pole	m	p	
+# ::edge	mount-03	location	in-front-of	m	i	
+# ::edge	station	mod	gas	s3	g	
+# ::edge	sign	mod	station	s2	s3	
+# ::edge	in-front-of	op1	sign	i	s2	
+(m / mount-03
+    :ARG1 (s / sign
+        :purpose (s4 / stop-01))
+    :ARG2 (p / pole)
+    :location (i / in-front-of
+        :op1 (s2 / sign
+            :mod (s3 / station
+                :mod (g / gas)))))

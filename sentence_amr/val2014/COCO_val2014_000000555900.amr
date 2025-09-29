@@ -1,0 +1,50 @@
+# ::tok A stainless steel toaster oven on a marble counter with a muffin pan inside and two muffins on plates in front of it .
+# ::node	s	stainless	1-2
+# ::node	s2	steel	2-3
+# ::node	t	toaster	3-4
+# ::node	o	oven	4-5
+# ::node	m	marble	7-8
+# ::node	c	counter	8-9
+# ::node	h	have-03	9-10
+# ::node	m2	muffin	11-12
+# ::node	p	pan	12-13
+# ::node	i2	inside	13-14
+# ::node	a2	and	14-15
+# ::node	0	2	15-16
+# ::node	a	Pan	16-17
+# ::node	p2	plate	18-19
+# ::node	i	in-front-of	20-21
+# ::root	o	oven
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	oven	mod	toaster	o	t	
+# ::edge	oven	consist-of	steel	o	s2	
+# ::edge	counter	consist-of	marble	c	m	
+# ::edge	oven	location	counter	o	c	
+# ::edge	oven	ARG0-of	have-03	o	h	
+# ::edge	pan	mod	muffin	p	m2	
+# ::edge	pan	location	inside	p	i2	
+# ::edge	inside	op1	oven	i2	o	
+# ::edge	and	op1	pan	a2	p	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	Pan	quant	2	a	0	
+# ::edge	and	op2	Pan	a2	a	
+# ::edge	Pan	location	plate	a	p2	
+# ::edge	plate	location	in-front-of	p2	i	
+# ::edge	in-front-of	op1	oven	i	o	
+(o / oven
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (p / pan
+                :location (i2 / inside
+                    :op1 o)
+                :mod (m2 / muffin))
+            :op2 (a / Pan
+                :quant 2
+                :location (p2 / plate
+                    :location (i / in-front-of
+                        :op1 o)))))
+    :consist-of (s2 / steel
+        :mod (s / stainless))
+    :location (c / counter
+        :consist-of (m / marble))
+    :mod (t / toaster))

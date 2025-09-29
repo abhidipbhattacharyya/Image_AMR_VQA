@@ -1,0 +1,30 @@
+# ::tok A street looks empty near industrial buildings and wire fences .
+# ::node	s	street	1-2
+# ::node	l	look-02	2-3
+# ::node	e	empty-02	3-4
+# ::node	n	near-02	4-5
+# ::node	i	industry	5-6
+# ::node	b	building	6-7
+# ::node	a	and	7-8
+# ::node	w	wire	8-9
+# ::node	f	fence	9-10
+# ::root	l	look-02
+# ::edge	look-02	ARG0	street	l	s	
+# ::edge	look-02	ARG1	empty-02	l	e	
+# ::edge	empty-02	ARG1	street	e	s	
+# ::edge	street	ARG1-of	near-02	s	n	
+# ::edge	building	mod	industry	b	i	
+# ::edge	and	op1	building	a	b	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	fence	mod	wire	f	w	
+# ::edge	and	op2	fence	a	f	
+(l / look-02
+    :ARG0 (s / street
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (b / building
+                    :mod (i / industry))
+                :op2 (f / fence
+                    :mod (w / wire)))))
+    :ARG1 (e / empty-02
+        :ARG1 s))

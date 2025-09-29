@@ -1,0 +1,45 @@
+# ::tok A black cooking tray with an uncooked pizza on it , with a lot of cheese and other toppings .
+# ::node	b	black-04	1-2
+# ::node	c3	cook-01	2-3
+# ::node	t	tray	3-4
+# ::node	c4	cook-01	6-7
+# ::node	p	pizza	7-8
+# ::node	l	lot	13-14
+# ::node	0	-	14-15
+# ::node	c	cheese	15-16
+# ::node	a	and	16-17
+# ::node	o	other	17-18
+# ::node	c2	continent	18-19
+# ::node	n	name	18-19
+# ::node	h	health	18-19
+# ::node	m	mean-01	19-20
+# ::root	t	tray
+# ::edge	tray	location-of	cook-01	t	c3	
+# ::edge	tray	ARG1-of	black-04	t	b	
+# ::edge	pizza	ARG1-of	cook-01	p	c4	
+# ::edge	tray	location-of	pizza	t	p	
+# ::edge	cook-01	polarity	-	c4	0	
+# ::edge	cheese	quant	lot	c	l	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	tray	consist-of	and	t	a	
+# ::edge	continent	name	name	c2	n	
+# ::edge	cook-01	op2	health	c4	h	
+# ::edge	health	mod	cook-01	h	c4	
+# ::edge	mean-01	ARG2	continent	m	c2	
+# ::edge	tray	ARG1-of	mean-01	t	m	
+# ::edge	tray	rel	other	t	o	
+(t / tray
+    :ARG1-of (b / black-04)
+    :ARG1-of (m / mean-01
+        :ARG2 (c2 / continent
+            :name (n / name)))
+    :consist-of (a / and
+        :op1 (c / cheese
+            :quant (l / lot)))
+    :location-of (c3 / cook-01)
+    :location-of (p / pizza
+        :ARG1-of (c4 / cook-01
+            :op2 (h / health
+                :mod c4)
+            :polarity -))
+    :rel (o / other))

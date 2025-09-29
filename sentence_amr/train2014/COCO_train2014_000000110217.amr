@@ -1,0 +1,34 @@
+# ::tok A wooden gate with a stop sign closes off a rural park trail for the night .
+# ::node	w	wood	1-2
+# ::node	g	gate	2-3
+# ::node	h	have-03	3-4
+# ::node	s2	stop-01	5-6
+# ::node	s	signal-07	6-7
+# ::node	c	close-off-05	7-8
+# ::node	r	rural	10-11
+# ::node	p	park	11-12
+# ::node	t	trail	12-13
+# ::node	d	date-entity	15-16
+# ::node	n	night	15-16
+# ::root	c	close-off-05
+# ::edge	gate	mod	wood	g	w	
+# ::edge	gate	ARG0-of	have-03	g	h	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	have-03	ARG1	signal-07	h	s	
+# ::edge	close-off-05	ARG0	gate	c	g	
+# ::edge	park	mod	rural	p	r	
+# ::edge	trail	mod	park	t	p	
+# ::edge	close-off-05	ARG1	trail	c	t	
+# ::edge	close-off-05	time	date-entity	c	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(c / close-off-05
+    :ARG0 (g / gate
+        :ARG0-of (h / have-03
+            :ARG1 (s / signal-07
+                :ARG1 (s2 / stop-01)))
+        :mod (w / wood))
+    :ARG1 (t / trail
+        :mod (p / park
+            :mod (r / rural)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

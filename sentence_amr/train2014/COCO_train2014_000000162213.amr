@@ -1,0 +1,25 @@
+# ::tok A large carrot chopped into a pieces and a peeled onion .
+# ::node	l	large	1-2
+# ::node	c	carrot	2-3
+# ::node	c2	chop-01	3-4
+# ::node	p	piece	6-7
+# ::node	a	and	7-8
+# ::node	d	date-entity	9-10
+# ::node	e	extract-01	9-10
+# ::node	o	onion	10-11
+# ::root	c2	chop-01
+# ::edge	carrot	mod	large	c	l	
+# ::edge	chop-01	ARG1	carrot	c2	c	
+# ::edge	and	op1	piece	a	p	
+# ::edge	chop-01	ARG3	and	c2	a	
+# ::edge	chop-01	time	date-entity	c2	d	
+# ::edge	onion	ARG1-of	extract-01	o	e	
+# ::edge	and	op2	onion	a	o	
+(c2 / chop-01
+    :ARG1 (c / carrot
+        :mod (l / large))
+    :ARG3 (a / and
+        :op1 (p / piece)
+        :op2 (o / onion
+            :ARG1-of (e / extract-01)))
+    :time (d / date-entity))

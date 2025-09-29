@@ -1,0 +1,39 @@
+# ::tok An ancient - looking clock on a building has two bells with a soldier stationed at each end .
+# ::node	a	ancient	1-2
+# ::node	l	look-02	3-4
+# ::node	c	clock	4-5
+# ::node	b2	building	7-8
+# ::node	h	have-03	8-9
+# ::node	0	2	9-10
+# ::node	b	bell	10-11
+# ::node	h2	have-03	11-12
+# ::node	s	soldier	13-14
+# ::node	s2	station-01	14-15
+# ::node	e	each	16-17
+# ::node	e2	end	17-18
+# ::root	h	have-03
+# ::edge	look-02	ARG1	ancient	l	a	
+# ::edge	clock	ARG0-of	look-02	c	l	
+# ::edge	clock	part-of	building	c	b2	
+# ::edge	have-03	ARG0	clock	h	c	
+# ::edge	bell	quant	2	b	0	
+# ::edge	have-03	ARG1	bell	h	b	
+# ::edge	bell	ARG0-of	have-03	b	h2	
+# ::edge	have-03	ARG1	soldier	h2	s	
+# ::edge	soldier	ARG1-of	station-01	s	s2	
+# ::edge	end	mod	each	e2	e	
+# ::edge	station-01	ARG2	end	s2	e2	
+# ::edge	building	part	end	b2	e2	
+(h / have-03
+    :ARG0 (c / clock
+        :ARG0-of (l / look-02
+            :ARG1 (a / ancient))
+        :part-of (b2 / building
+            :part (e2 / end
+                :mod (e / each))))
+    :ARG1 (b / bell
+        :quant 2
+        :ARG0-of (h2 / have-03
+            :ARG1 (s / soldier
+                :ARG1-of (s2 / station-01
+                    :ARG2 e2)))))

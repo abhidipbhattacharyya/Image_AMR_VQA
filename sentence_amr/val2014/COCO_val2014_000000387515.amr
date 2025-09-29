@@ -1,0 +1,24 @@
+# ::tok An old bus rigged out to run on overhead electrical lines
+# ::node	o	old	1-2
+# ::node	b	bus	2-3
+# ::node	r	rig-01	3-4
+# ::node	r2	run-01	6-7
+# ::node	o2	overhead	8-9
+# ::node	e	electricity	9-10
+# ::node	l	line	10-11
+# ::root	r	rig-01
+# ::edge	bus	mod	old	b	o	
+# ::edge	rig-01	ARG1	bus	r	b	
+# ::edge	rig-01	ARG2	run-01	r	r2	
+# ::edge	run-01	ARG1	bus	r2	b	
+# ::edge	line	mod	electricity	l	e	
+# ::edge	line	location	overhead	l	o2	
+# ::edge	run-01	location	line	r2	l	
+(r / rig-01
+    :ARG1 (b / bus
+        :mod (o / old))
+    :ARG2 (r2 / run-01
+        :ARG1 b
+        :location (l / line
+            :location (o2 / overhead)
+            :mod (e / electricity))))

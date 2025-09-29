@@ -1,0 +1,41 @@
+# ::tok One zebra playfully neighs at the other in their enclosure .
+# ::node	0	1	0-1
+# ::node	z	zebra	1-2
+# ::node	z2	zebra	1-2
+# ::node	p	play-01	2-3
+# ::node	m	monetary-quantity	3-4
+# ::node	n	neighbor-01	3-4
+# ::node	o	other	6-7
+# ::node	a	and	8-9
+# ::node	e	enclosure	9-10
+# ::node	s	say-01	10-11
+# ::root	s	say-01
+# ::edge	zebra	quant	1	z	0	
+# ::edge	play-01	ARG0	zebra	p	z2	
+# ::edge	monetary-quantity	unit	zebra	m	z	
+# ::edge	monetary-quantity	ARG1-of	neighbor-01	m	n	
+# ::edge	neighbor-01	manner	play-01	n	p	
+# ::edge	neighbor-01	ARG2	zebra	n	z2	
+# ::edge	zebra	mod	other	z2	o	
+# ::edge	and	op2	zebra	a	z2	
+# ::edge	and	op1	zebra	a	z	
+# ::edge	enclosure	poss	and	e	a	
+# ::edge	neighbor-01	location	enclosure	n	e	
+# ::edge	say-01	ARG1	and	s	a	
+# ::edge	say-01	ARG2	zebra	s	z	
+# ::edge	say-01	rel	monetary-quantity	s	m	
+(s / say-01
+    :ARG1 (a / and
+        :op1 (z / zebra
+            :quant 1)
+        :op2 (z2 / zebra
+            :mod (o / other)))
+    :ARG2 z
+    :rel (m / monetary-quantity
+        :ARG1-of (n / neighbor-01
+            :ARG2 z2
+            :location (e / enclosure
+                :poss a)
+            :manner (p / play-01
+                :ARG0 z2))
+        :unit z))

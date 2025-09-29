@@ -1,0 +1,22 @@
+# ::tok A worker in an overstock warehouse pushes a cart with merchandise .
+# ::node	p	person	1-2
+# ::node	w2	work-01	1-2
+# ::node	s	stock-01	4-5
+# ::node	w	warehouse	5-6
+# ::node	p2	push-01	6-7
+# ::node	c	cart	8-9
+# ::node	m	merchandise	10-11
+# ::root	p2	push-01
+# ::edge	person	ARG0-of	work-01	p	w2	
+# ::edge	warehouse	ARG1-of	stock-01	w	s	
+# ::edge	work-01	ARG2	warehouse	w2	w	
+# ::edge	push-01	ARG0	person	p2	p	
+# ::edge	push-01	ARG1	cart	p2	c	
+# ::edge	cart	consist-of	merchandise	c	m	
+(p2 / push-01
+    :ARG0 (p / person
+        :ARG0-of (w2 / work-01
+            :ARG2 (w / warehouse
+                :ARG1-of (s / stock-01))))
+    :ARG1 (c / cart
+        :consist-of (m / merchandise)))

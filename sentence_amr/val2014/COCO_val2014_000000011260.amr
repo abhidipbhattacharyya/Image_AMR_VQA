@@ -1,0 +1,30 @@
+# ::tok Train traveling along a track getting ready to cross a bridge over the water .
+# ::node	t2	train	0-1
+# ::node	t3	travel-01	1-2
+# ::node	a	along	2-3
+# ::node	t	track	4-5
+# ::node	r	ready-01	6-7
+# ::node	c	cross-02	8-9
+# ::node	b	bridge	10-11
+# ::node	o	over	11-12
+# ::node	w	water	13-14
+# ::root	r	ready-01
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	travel-01	path	along	t3	a	
+# ::edge	along	op1	track	a	t	
+# ::edge	ready-01	ARG1	train	r	t2	
+# ::edge	ready-01	ARG2	cross-02	r	c	
+# ::edge	cross-02	ARG0	train	c	t2	
+# ::edge	cross-02	ARG1	bridge	c	b	
+# ::edge	bridge	location	over	b	o	
+# ::edge	over	op1	water	o	w	
+(r / ready-01
+    :ARG1 (t2 / train
+        :ARG0-of (t3 / travel-01
+            :path (a / along
+                :op1 (t / track))))
+    :ARG2 (c / cross-02
+        :ARG0 t2
+        :ARG1 (b / bridge
+            :location (o / over
+                :op1 (w / water)))))

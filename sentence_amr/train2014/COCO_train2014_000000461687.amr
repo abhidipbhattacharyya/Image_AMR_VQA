@@ -1,0 +1,36 @@
+# ::tok A park bench sits empty in a grassy field and mountain with wild animals in the background .
+# ::node	p	park	1-2
+# ::node	b2	bench	2-3
+# ::node	s	sit-01	3-4
+# ::node	e	empty-02	4-5
+# ::node	g	grass	7-8
+# ::node	f	field	8-9
+# ::node	a	and	9-10
+# ::node	m	mountain	10-11
+# ::node	w	wild	12-13
+# ::node	a2	animal	13-14
+# ::node	b	background	16-17
+# ::root	s	sit-01
+# ::edge	bench	mod	park	b2	p	
+# ::edge	sit-01	ARG1	bench	s	b2	
+# ::edge	sit-01	manner	empty-02	s	e	
+# ::edge	empty-02	ARG1	bench	e	b2	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	and	op1	field	a	f	
+# ::edge	sit-01	location	and	s	a	
+# ::edge	and	op2	mountain	a	m	
+# ::edge	animal	mod	wild	a2	w	
+# ::edge	and	location-of	animal	a	a2	
+# ::edge	animal	location	background	a2	b	
+(s / sit-01
+    :ARG1 (b2 / bench
+        :mod (p / park))
+    :location (a / and
+        :location-of (a2 / animal
+            :location (b / background)
+            :mod (w / wild))
+        :op1 (f / field
+            :consist-of (g / grass))
+        :op2 (m / mountain))
+    :manner (e / empty-02
+        :ARG1 b2))

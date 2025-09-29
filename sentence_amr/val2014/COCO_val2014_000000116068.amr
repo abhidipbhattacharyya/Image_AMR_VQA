@@ -1,0 +1,46 @@
+# ::tok A man looks at the kite he 's holding while another man and woman look off camera in the same direction .
+# ::node	m	man	1-2
+# ::node	l	look-01	2-3
+# ::node	k	kite	5-6
+# ::node	h	hold-01	8-9
+# ::node	a2	another	10-11
+# ::node	m2	man	11-12
+# ::node	a	and	12-13
+# ::node	w	woman	13-14
+# ::node	l2	look-01	14-15
+# ::node	o	off	15-16
+# ::node	c	camera	16-17
+# ::node	s	same-01	19-20
+# ::node	d	direction	20-21
+# ::root	l	look-01
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	look-01	ARG1	kite	l	k	
+# ::edge	kite	ARG1-of	hold-01	k	h	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	man	mod	another	m2	a2	
+# ::edge	and	op1	man	a	m2	
+# ::edge	and	op2	woman	a	w	
+# ::edge	woman	mod	another	w	a2	
+# ::edge	look-01	ARG0	and	l2	a	
+# ::edge	look-01	time	look-01	l	l2	
+# ::edge	look-01	direction	off	l2	o	
+# ::edge	off	op1	camera	o	c	
+# ::edge	same-01	ARG2	kite	s	k	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	look-01	direction	direction	l2	d	
+(l / look-01
+    :ARG0 (m / man)
+    :ARG1 (k / kite
+        :ARG1-of (h / hold-01
+            :ARG0 m))
+    :time (l2 / look-01
+        :ARG0 (a / and
+            :op1 (m2 / man
+                :mod (a2 / another))
+            :op2 (w / woman
+                :mod a2))
+        :direction (o / off
+            :op1 (c / camera))
+        :direction (d / direction
+            :ARG1-of (s / same-01
+                :ARG2 k))))

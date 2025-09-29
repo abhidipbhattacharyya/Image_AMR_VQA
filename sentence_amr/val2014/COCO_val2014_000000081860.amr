@@ -1,0 +1,40 @@
+# ::tok Mostly men in suits posing for a group picture in front of a " TRADE WINDS - ASIA " sign .
+# ::node	m2	most	0-1
+# ::node	m	man	1-2
+# ::node	s2	suit	3-4
+# ::node	p2	pose-01	4-5
+# ::node	g	group	7-8
+# ::node	p	picture-01	8-9
+# ::node	i	in-front-of	10-11
+# ::node	t	trade-01	14-15
+# ::node	w	win-01	15-16
+# ::node	c	continent	17-18
+# ::node	n	name	17-18
+# ::node	0	Asia	17-18
+# ::node	s	sign	19-20
+# ::root	m	man
+# ::edge	man	mod	most	m	m2	
+# ::edge	man	mod	suit	m	s2	
+# ::edge	man	ARG0-of	pose-01	m	p2	
+# ::edge	picture-01	mod	group	p	g	
+# ::edge	pose-01	ARG2	picture-01	p2	p	
+# ::edge	picture-01	location	in-front-of	p	i	
+# ::edge	win-01	ARG0	trade-01	w	t	
+# ::edge	win-01	ARG2	continent	w	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	sign	mod	win-01	s	w	
+# ::edge	in-front-of	op1	sign	i	s	
+(m / man
+    :ARG0-of (p2 / pose-01
+        :ARG2 (p / picture-01
+            :location (i / in-front-of
+                :op1 (s / sign
+                    :mod (w / win-01
+                        :ARG0 (t / trade-01)
+                        :ARG2 (c / continent
+                            :name (n / name
+                                :op1 "Asia")))))
+            :mod (g / group)))
+    :mod (m2 / most)
+    :mod (s2 / suit))

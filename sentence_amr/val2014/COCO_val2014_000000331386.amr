@@ -1,0 +1,50 @@
+# ::tok Two buses , one extended , one double decker , make their way through an intersection with lots of pedestrians .
+# ::node	2	2	0-1
+# ::node	b	bus	1-2
+# ::node	b2	bus	1-2
+# ::node	e	extend-01	4-5
+# ::node	a	and	5-6
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	1	1	6-7
+# ::node	d	deck	8-9
+# ::node	m	make-19	10-11
+# ::node	w2	way	12-13
+# ::node	i2	intersect-01	15-16
+# ::node	l	lot	17-18
+# ::node	p	person	19-20
+# ::node	w	walk-01	19-20
+# ::root	m	make-19
+# ::edge	bus	quant	2	b	2	
+# ::edge	bus	ARG1-of	extend-01	b2	e	
+# ::edge	and	op2	bus	a	b2	
+# ::edge	and	op1	bus	a	b	
+# ::edge	bus	ARG1-of	include-91	b2	i	
+# ::edge	include-91	ARG2	bus	i	b	
+# ::edge	bus	quant	1	b2	0	
+# ::edge	deck	quant	1	d	1	
+# ::edge	include-91	ARG2	deck	i	d	
+# ::edge	make-19	ARG0	and	m	a	
+# ::edge	make-19	ARG1	way	m	w2	
+# ::edge	way	poss	and	w2	a	
+# ::edge	make-19	path	intersect-01	m	i2	
+# ::edge	person	quant	lot	p	l	
+# ::edge	intersect-01	ARG0	person	i2	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+(m / make-19
+    :ARG0 (a / and
+        :op1 (b / bus
+            :quant 2)
+        :op2 (b2 / bus
+            :quant 1
+            :ARG1-of (e / extend-01)
+            :ARG1-of (i / include-91
+                :ARG2 b
+                :ARG2 (d / deck
+                    :quant 1))))
+    :ARG1 (w2 / way
+        :poss a)
+    :path (i2 / intersect-01
+        :ARG0 (p / person
+            :quant (l / lot)
+            :ARG0-of (w / walk-01))))

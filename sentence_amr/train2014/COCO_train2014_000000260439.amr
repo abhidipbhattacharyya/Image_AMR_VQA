@@ -1,0 +1,42 @@
+# ::tok Baseball fans are watching a player swing a baseball bat while a catcher is in position to catch the ball .
+# ::node	b2	baseball	0-1
+# ::node	f	fan	1-2
+# ::node	w	watch-01	3-4
+# ::node	p	person	5-6
+# ::node	p3	play-01	5-6
+# ::node	s	swing-02	6-7
+# ::node	b3	baseball	8-9
+# ::node	b4	bat	9-10
+# ::node	p2	person	12-13
+# ::node	c	catch-01	12-13
+# ::node	p4	position-01	15-16
+# ::node	c2	catch-01	17-18
+# ::node	b	ball	19-20
+# ::root	w	watch-01
+# ::edge	fan	mod	baseball	f	b2	
+# ::edge	watch-01	ARG0	fan	w	f	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	watch-01	ARG1	swing-02	w	s	
+# ::edge	bat	mod	baseball	b4	b3	
+# ::edge	swing-02	ARG1	bat	s	b4	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	position-01	ARG1	person	p4	p2	
+# ::edge	swing-02	time	position-01	s	p4	
+# ::edge	position-01	ARG2	catch-01	p4	c2	
+# ::edge	catch-01	ARG0	person	c2	p2	
+# ::edge	catch-01	ARG1	ball	c2	b	
+(w / watch-01
+    :ARG0 (f / fan
+        :mod (b2 / baseball))
+    :ARG1 (s / swing-02
+        :ARG0 (p / person
+            :ARG0-of (p3 / play-01))
+        :ARG1 (b4 / bat
+            :mod (b3 / baseball))
+        :time (p4 / position-01
+            :ARG1 (p2 / person
+                :ARG0-of (c / catch-01))
+            :ARG2 (c2 / catch-01
+                :ARG0 p2
+                :ARG1 (b / ball)))))

@@ -1,0 +1,36 @@
+# ::tok An orange train engine moves down the track with one train car behind it .
+# ::node	o	orange	1-2
+# ::node	t2	train	2-3
+# ::node	e	engine	3-4
+# ::node	m	move-01	4-5
+# ::node	d	down	5-6
+# ::node	t	track	7-8
+# ::node	0	1	9-10
+# ::node	t3	train	10-11
+# ::node	c	car	11-12
+# ::node	b	be-located-at-91	12-13
+# ::node	b2	behind	12-13
+# ::root	m	move-01
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	engine	mod	orange	e	o	
+# ::edge	move-01	ARG1	engine	m	e	
+# ::edge	move-01	direction	down	m	d	
+# ::edge	move-01	path	track	m	t	
+# ::edge	car	mod	train	c	t3	
+# ::edge	car	quant	1	c	0	
+# ::edge	be-located-at-91	ARG1	car	b	c	
+# ::edge	move-01	ARG2-of	be-located-at-91	m	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	engine	b2	e	
+(m / move-01
+    :ARG1 (e / engine
+        :mod (o / orange)
+        :part-of (t2 / train))
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (c / car
+            :quant 1
+            :mod (t3 / train))
+        :ARG2 (b2 / behind
+            :op1 e))
+    :direction (d / down)
+    :path (t / track))

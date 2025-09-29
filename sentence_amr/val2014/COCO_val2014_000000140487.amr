@@ -1,0 +1,42 @@
+# ::tok A man rides his bike in a room while a person sits nearby and another stands behind the sofa .
+# ::node	m	man	1-2
+# ::node	r	ride-01	2-3
+# ::node	b2	bike	4-5
+# ::node	r2	room	7-8
+# ::node	p	person	10-11
+# ::node	p2	person	10-11
+# ::node	s	sit-01	11-12
+# ::node	n	nearby	12-13
+# ::node	a	and	13-14
+# ::node	a2	another	14-15
+# ::node	s3	stand-01	15-16
+# ::node	b	behind	16-17
+# ::node	s2	sofa	18-19
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	ride-01	ARG1	bike	r	b2	
+# ::edge	bike	poss	man	b2	m	
+# ::edge	ride-01	location	room	r	r2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	nearby	s	n	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	ride-01	time	and	r	a	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	stand-01	ARG1	person	s3	p2	
+# ::edge	stand-01	ARG2	behind	s3	b	
+# ::edge	behind	op1	sofa	b	s2	
+(r / ride-01
+    :ARG0 (m / man)
+    :ARG1 (b2 / bike
+        :poss m)
+    :location (r2 / room)
+    :time (a / and
+        :op1 (s / sit-01
+            :ARG1 (p / person)
+            :ARG2 (n / nearby))
+        :op2 (s3 / stand-01
+            :ARG1 (p2 / person
+                :mod (a2 / another))
+            :ARG2 (b / behind
+                :op1 (s2 / sofa)))))

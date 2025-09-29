@@ -1,0 +1,25 @@
+# ::tok Small truck just passing through an intersection with a green traffic light .
+# ::node	s	small	0-1
+# ::node	t2	truck	1-2
+# ::node	j	just	2-3
+# ::node	p	pass-03	3-4
+# ::node	i	intersect-01	6-7
+# ::node	g	green-02	9-10
+# ::node	t	traffic	10-11
+# ::node	l	light	11-12
+# ::root	p	pass-03
+# ::edge	truck	mod	small	t2	s	
+# ::edge	pass-03	mod	just	p	j	
+# ::edge	pass-03	ARG1	truck	p	t2	
+# ::edge	pass-03	path	intersect-01	p	i	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	green-02	l	g	
+# ::edge	intersect-01	ARG1	light	i	l	
+(p / pass-03
+    :ARG1 (t2 / truck
+        :mod (s / small))
+    :mod (j / just)
+    :path (i / intersect-01
+        :ARG1 (l / light
+            :ARG1-of (g / green-02)
+            :mod (t / traffic))))

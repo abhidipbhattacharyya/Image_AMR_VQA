@@ -1,0 +1,21 @@
+# ::tok A train that 's coming up to a train station for people to get on .
+# ::node	t	train	1-2
+# ::node	c	come-01	4-5
+# ::node	t2	train	8-9
+# ::node	s	station	9-10
+# ::node	p	person	11-12
+# ::node	g	get-05	13-14
+# ::root	c	come-01
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	come-01	ARG4	station	c	s	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	come-01	purpose	get-05	c	g	
+# ::edge	get-05	ARG2	train	g	t	
+(c / come-01
+    :purpose (g / get-05
+        :ARG1 (p / person)
+        :ARG2 (t / train))
+    :ARG1 t
+    :ARG4 (s / station
+        :mod (t2 / train)))

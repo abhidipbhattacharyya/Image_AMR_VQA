@@ -1,0 +1,55 @@
+# ::tok Two surfers , one swimming out to surf and one falling off their board .
+# ::node	2	2	0-1
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	a	and	2-3
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	s3	swim-01	4-5
+# ::node	o2	out	5-6
+# ::node	s2	surf-01	7-8
+# ::node	a2	and	8-9
+# ::node	p2	person	9-10
+# ::node	f	fall-01	10-11
+# ::node	o	off	11-12
+# ::node	b	board	13-14
+# ::root	a	and
+# ::edge	person	quant	2	p	2	
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	and	op1	person	a	p	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	ARG2-of	include-91	p	i2	
+# ::edge	swim-01	ARG0	1	s3	0	
+# ::edge	swim-01	direction	out	s3	o2	
+# ::edge	swim-01	purpose	surf-01	s3	s2	
+# ::edge	surf-01	ARG0	person	s2	p	
+# ::edge	and	op1	swim-01	a2	s3	
+# ::edge	include-91	ARG1	and	i	a2	
+# ::edge	and	op2	person	a2	p2	
+# ::edge	person	ARG1-of	include-91	p2	i2	
+# ::edge	person	quant	1	p2	1	
+# ::edge	person	ARG1-of	fall-01	p2	f	
+# ::edge	fall-01	ARG4	off	f	o	
+# ::edge	off	op1	board	o	b	
+# ::edge	board	poss	person	b	p	
+(a / and
+    :op1 (p / person
+        :quant 2
+        :ARG0-of (s / surf-01)
+        :ARG2-of (i / include-91
+            :ARG1 (a2 / and
+                :op1 (s3 / swim-01
+                    :purpose (s2 / surf-01
+                        :ARG0 p)
+                    :ARG0 1
+                    :direction (o2 / out))
+                :op2 (p2 / person
+                    :quant 1
+                    :ARG1-of (i2 / include-91)
+                    :ARG1-of (f / fall-01
+                        :ARG4 (o / off
+                            :op1 (b / board
+                                :poss p))))))
+        :ARG2-of i2))

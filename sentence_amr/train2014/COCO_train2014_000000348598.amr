@@ -1,0 +1,33 @@
+# ::tok A clock affixed to a light pole with a U.S. flag atop the pole .
+# ::node	c	clock	1-2
+# ::node	a	affix-01	2-3
+# ::node	l	light-04	5-6
+# ::node	p	pole	6-7
+# ::node	h	have-03	7-8
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	U.S.	9-10
+# ::node	f	flag	10-11
+# ::node	a2	atop	11-12
+# ::root	a	affix-01
+# ::edge	affix-01	ARG1	clock	a	c	
+# ::edge	pole	ARG0-of	light-04	p	l	
+# ::edge	affix-01	ARG2	pole	a	p	
+# ::edge	pole	ARG0-of	have-03	p	h	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	U.S.	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	pole	location	atop	p	a2	
+# ::edge	atop	op1	pole	a2	p	
+(a / affix-01
+    :ARG1 (c / clock)
+    :ARG2 (p / pole
+        :ARG0-of (l / light-04)
+        :ARG0-of (h / have-03
+            :ARG1 (f / flag
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "U.S."))))
+        :location (a2 / atop
+            :op1 p)))

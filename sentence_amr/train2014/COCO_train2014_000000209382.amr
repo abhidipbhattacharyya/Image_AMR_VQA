@@ -1,0 +1,31 @@
+# ::tok A stop sign directs traffic , with blue sky and palm trees behind .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	d	direct-01	3-4
+# ::node	t	traffic	4-5
+# ::node	b2	blue	7-8
+# ::node	s2	sky	8-9
+# ::node	a	and	9-10
+# ::node	p	palm	10-11
+# ::node	t2	tree	11-12
+# ::node	b	behind	12-13
+# ::root	d	direct-01
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	direct-01	ARG0	signal-07	d	s	
+# ::edge	direct-01	ARG1	traffic	d	t	
+# ::edge	sky	mod	blue	s2	b2	
+# ::edge	and	op1	sky	a	s2	
+# ::edge	direct-01	prep-with	and	d	a	
+# ::edge	tree	mod	palm	t2	p	
+# ::edge	and	op2	tree	a	t2	
+# ::edge	and	location	behind	a	b	
+(d / direct-01
+    :ARG0 (s / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG1 (t / traffic)
+    :prep-with (a / and
+        :location (b / behind)
+        :op1 (s2 / sky
+            :mod (b2 / blue))
+        :op2 (t2 / tree
+            :mod (p / palm))))

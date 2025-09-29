@@ -1,0 +1,46 @@
+# ::tok Road with very tall grass on each side and barriers preventing motor vehicles from going any further
+# ::node	r	road	0-1
+# ::node	h	have-03	1-2
+# ::node	v2	very	2-3
+# ::node	t	tall	3-4
+# ::node	g2	grass	4-5
+# ::node	e	each	6-7
+# ::node	s	side	7-8
+# ::node	a	and	8-9
+# ::node	b	barrier	9-10
+# ::node	p	prevent-01	10-11
+# ::node	m	motor	11-12
+# ::node	v	vehicle	12-13
+# ::node	g	go-01	14-15
+# ::node	a2	any	15-16
+# ::node	f	further-01	16-17
+# ::root	r	road
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	tall	degree	very	t	v2	
+# ::edge	grass	mod	tall	g2	t	
+# ::edge	side	mod	each	s	e	
+# ::edge	grass	location	side	g2	s	
+# ::edge	and	op1	grass	a	g2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	barrier	a	b	
+# ::edge	barrier	ARG0-of	prevent-01	b	p	
+# ::edge	vehicle	mod	motor	v	m	
+# ::edge	go-01	ARG1	vehicle	g	v	
+# ::edge	prevent-01	ARG1	go-01	p	g	
+# ::edge	further-01	mod	any	f	a2	
+# ::edge	go-01	ARG2	further-01	g	f	
+(r / road
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (g2 / grass
+                :location (s / side
+                    :mod (e / each))
+                :mod (t / tall
+                    :degree (v2 / very)))
+            :op2 (b / barrier
+                :ARG0-of (p / prevent-01
+                    :ARG1 (g / go-01
+                        :ARG1 (v / vehicle
+                            :mod (m / motor))
+                        :ARG2 (f / further-01
+                            :mod (a2 / any))))))))

@@ -1,0 +1,23 @@
+# ::tok Something baking in a pan in the oven and rising out of the pan .
+# ::node	s	something	0-1
+# ::node	b	bake-01	1-2
+# ::node	p	pan	4-5
+# ::node	o2	oven	7-8
+# ::node	r	rise-01	9-10
+# ::node	o	out-of	10-11
+# ::root	s	something
+# ::edge	something	ARG1-of	bake-01	s	b	
+# ::edge	bake-01	location	pan	b	p	
+# ::edge	pan	location	oven	p	o2	
+# ::edge	rise-01	ARG4	pan	r	p	
+# ::edge	something	ARG1-of	rise-01	s	r	
+# ::edge	rise-01	direction	out-of	r	o	
+# ::edge	out-of	op1	pan	o	p	
+(s / something
+    :ARG1-of (b / bake-01
+        :location (p / pan
+            :location (o2 / oven)))
+    :ARG1-of (r / rise-01
+        :ARG4 p
+        :direction (o / out-of
+            :op1 p)))

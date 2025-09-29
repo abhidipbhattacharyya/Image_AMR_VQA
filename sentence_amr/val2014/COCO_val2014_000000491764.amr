@@ -1,0 +1,36 @@
+# ::tok Commuter train running parallel to a street with apartments and office buildings near by .
+# ::node	c	commute-01	0-1
+# ::node	t	train	1-2
+# ::node	r	run-04	2-3
+# ::node	p	parallel	3-4
+# ::node	s	street	6-7
+# ::node	h	have-03	7-8
+# ::node	a2	apartment	8-9
+# ::node	a	and	9-10
+# ::node	o	office	10-11
+# ::node	b	building	11-12
+# ::node	n	near-02	12-13
+# ::root	r	run-04
+# ::edge	train	ARG0-of	commute-01	t	c	
+# ::edge	run-04	ARG1	train	r	t	
+# ::edge	run-04	manner	parallel	r	p	
+# ::edge	run-04	ARG2	street	r	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	and	op1	apartment	a	a2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	building	mod	office	b	o	
+# ::edge	and	op2	building	a	b	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	near-02	ARG2	street	n	s	
+(r / run-04
+    :ARG1 (t / train
+        :ARG0-of (c / commute-01))
+    :ARG2 (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :ARG1-of (n / near-02
+                    :ARG2 s)
+                :op1 (a2 / apartment)
+                :op2 (b / building
+                    :mod (o / office)))))
+    :manner (p / parallel))

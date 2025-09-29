@@ -1,0 +1,29 @@
+# ::tok a porcelain toilet that must be used by crouching over it rather than sitting on it
+# ::node	p	porcelain	1-2
+# ::node	t	toilet	2-3
+# ::node	o	obligate-01	4-5
+# ::node	u	use-01	6-7
+# ::node	c	crouch-01	8-9
+# ::node	o2	over	9-10
+# ::node	i	instead-of-91	11-12
+# ::node	s	sit-01	13-14
+# ::root	t	toilet
+# ::edge	toilet	mod	porcelain	t	p	
+# ::edge	use-01	ARG2-of	obligate-01	u	o	
+# ::edge	toilet	ARG1-of	use-01	t	u	
+# ::edge	use-01	manner	crouch-01	u	c	
+# ::edge	crouch-01	location	over	c	o2	
+# ::edge	over	op1	toilet	o2	t	
+# ::edge	crouch-01	ARG1-of	instead-of-91	c	i	
+# ::edge	instead-of-91	ARG2	sit-01	i	s	
+# ::edge	sit-01	ARG2	toilet	s	t	
+(t / toilet
+    :ARG1-of (u / use-01
+        :ARG2-of (o / obligate-01)
+        :manner (c / crouch-01
+            :ARG1-of (i / instead-of-91
+                :ARG2 (s / sit-01
+                    :ARG2 t))
+            :location (o2 / over
+                :op1 t)))
+    :mod (p / porcelain))

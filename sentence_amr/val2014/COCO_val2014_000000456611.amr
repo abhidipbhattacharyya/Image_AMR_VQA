@@ -1,0 +1,30 @@
+# ::tok A damaged sign that says " STATE LAW YIELD TO PEDESTRIANS WITHIN CROSSWALK . "
+# ::node	d	damage-01	1-2
+# ::node	s2	sign	2-3
+# ::node	s	say-01	4-5
+# ::node	s3	state	6-7
+# ::node	l	law	7-8
+# ::node	t	throw-01	8-9
+# ::node	p	person	10-11
+# ::node	d2	displace-01	10-11
+# ::node	w	walk-01	12-13
+# ::root	s2	sign
+# ::edge	sign	ARG1-of	damage-01	s2	d	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	law	mod	state	l	s3	
+# ::edge	throw-01	ARG0	law	t	l	
+# ::edge	say-01	ARG1	throw-01	s	t	
+# ::edge	throw-01	ARG2	person	t	p	
+# ::edge	person	ARG1-of	displace-01	p	d2	
+# ::edge	throw-01	manner	walk-01	t	w	
+# ::edge	person	poss	walk-01	p	w	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (t / throw-01
+            :ARG0 (l / law
+                :mod (s3 / state))
+            :ARG2 (p / person
+                :ARG1-of (d2 / displace-01)
+                :poss (w / walk-01))
+            :manner w))
+    :ARG1-of (d / damage-01))

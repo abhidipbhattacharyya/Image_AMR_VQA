@@ -1,0 +1,34 @@
+# ::tok A man with an apron in a kitchen with fridge and bottles of wine
+# ::node	m	man	1-2
+# ::node	a2	apron	4-5
+# ::node	k	kitchen	7-8
+# ::node	h	have-03	8-9
+# ::node	f	fridge	9-10
+# ::node	a	and	10-11
+# ::node	m2	multiple	11-12
+# ::node	v	volume-quantity	11-12
+# ::node	b	bottle	11-12
+# ::node	0	1	11-12
+# ::node	w	wine	13-14
+# ::root	m	man
+# ::edge	man	location	kitchen	m	k	
+# ::edge	have-03	ARG1	apron	h	a2	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	and	op1	fridge	a	f	
+# ::edge	man	accompanier	and	m	a	
+# ::edge	multiple	op1	volume-quantity	m2	v	
+# ::edge	volume-quantity	unit	bottle	v	b	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	wine	quant	multiple	w	m2	
+# ::edge	and	op2	wine	a	w	
+(m / man
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / apron))
+    :accompanier (a / and
+        :op1 (f / fridge)
+        :op2 (w / wine
+            :quant (m2 / multiple
+                :op1 (v / volume-quantity
+                    :quant 1
+                    :unit (b / bottle)))))
+    :location (k / kitchen))

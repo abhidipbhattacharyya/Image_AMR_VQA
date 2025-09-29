@@ -1,0 +1,26 @@
+# ::tok A toddler is running through a kitchen while some adults stand close by .
+# ::node	t	toddler	1-2
+# ::node	r	run-02	3-4
+# ::node	k	kitchen	6-7
+# ::node	s	some	8-9
+# ::node	a	adult	9-10
+# ::node	s2	stand-01	10-11
+# ::node	c	close-10	11-12
+# ::root	r	run-02
+# ::edge	run-02	ARG0	toddler	r	t	
+# ::edge	run-02	path	kitchen	r	k	
+# ::edge	adult	quant	some	a	s	
+# ::edge	stand-01	ARG1	adult	s2	a	
+# ::edge	run-02	time	stand-01	r	s2	
+# ::edge	stand-01	ARG2	close-10	s2	c	
+# ::edge	close-10	ARG2	adult	c	a	
+# ::edge	close-10	ARG1	toddler	c	t	
+(r / run-02
+    :ARG0 (t / toddler)
+    :path (k / kitchen)
+    :time (s2 / stand-01
+        :ARG1 (a / adult
+            :quant (s / some))
+        :ARG2 (c / close-10
+            :ARG1 t
+            :ARG2 a)))

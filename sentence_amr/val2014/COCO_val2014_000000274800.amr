@@ -1,0 +1,33 @@
+# ::tok Sleeping tabby cat laying among cat scratching post and sleeping bag .
+# ::node	s2	sleep-01	0-1
+# ::node	t	tabby	1-2
+# ::node	c	cat	2-3
+# ::node	l	lay-01	3-4
+# ::node	a	among	4-5
+# ::node	s	scratch-02	6-7
+# ::node	p	post	7-8
+# ::node	a2	and	8-9
+# ::node	s3	sleep-01	9-10
+# ::node	b	bag	10-11
+# ::root	l	lay-01
+# ::edge	cat	mod	tabby	c	t	
+# ::edge	cat	ARG0-of	sleep-01	c	s2	
+# ::edge	lay-01	ARG1	cat	l	c	
+# ::edge	lay-01	ARG2	among	l	a	
+# ::edge	scratch-02	ARG0	cat	s	c	
+# ::edge	post	purpose	scratch-02	p	s	
+# ::edge	and	op1	post	a2	p	
+# ::edge	among	op1	and	a	a2	
+# ::edge	bag	purpose	sleep-01	b	s3	
+# ::edge	and	op2	bag	a2	b	
+(l / lay-01
+    :ARG1 (c / cat
+        :ARG0-of (s2 / sleep-01)
+        :mod (t / tabby))
+    :ARG2 (a / among
+        :op1 (a2 / and
+            :op1 (p / post
+                :purpose (s / scratch-02
+                    :ARG0 c))
+            :op2 (b / bag
+                :purpose (s3 / sleep-01)))))

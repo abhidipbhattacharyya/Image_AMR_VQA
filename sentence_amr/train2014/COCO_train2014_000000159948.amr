@@ -1,0 +1,51 @@
+# ::tok Several people stand around two of them holding bikes with many more bikes parked in the background .
+# ::node	s	several	0-1
+# ::node	p2	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	a	around	3-4
+# ::node	0	2	4-5
+# ::node	i	include-91	5-6
+# ::node	t	they	6-7
+# ::node	h2	hold-01	7-8
+# ::node	b2	bike-01	8-9
+# ::node	b3	bike-01	8-9
+# ::node	m	many	10-11
+# ::node	h	have-quant-91	11-12
+# ::node	m2	more	11-12
+# ::node	b4	bike-01	12-13
+# ::node	p	park-01	13-14
+# ::node	b	background	16-17
+# ::root	s2	stand-01
+# ::edge	person	quant	several	p2	s	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	stand-01	ARG2	around	s2	a	
+# ::edge	include-91	ARG2	they	i	t	
+# ::edge	person	ARG0-of	hold-01	p2	h2	
+# ::edge	hold-01	ARG1	bike-01	h2	b2	
+# ::edge	bike-01	ARG0	person	b2	p2	
+# ::edge	bike-01	ARG1-of	include-91	b3	i	
+# ::edge	bike-01	quant	2	b3	0	
+# ::edge	around	op1	bike-01	a	b3	
+# ::edge	have-quant-91	ARG2	many	h	m	
+# ::edge	have-quant-91	ARG3	more	h	m2	
+# ::edge	bike-01	ARG1-of	have-quant-91	b4	h	
+# ::edge	bike-01	part	bike-01	b3	b4	
+# ::edge	bike-01	ARG1-of	park-01	b4	p	
+# ::edge	park-01	location	background	p	b	
+(s2 / stand-01
+    :ARG1 (p2 / person
+        :quant (s / several)
+        :ARG0-of (h2 / hold-01
+            :ARG1 (b2 / bike-01
+                :ARG0 p2)))
+    :ARG2 (a / around
+        :op1 (b3 / bike-01
+            :quant 2
+            :ARG1-of (i / include-91
+                :ARG2 (t / they))
+            :part (b4 / bike-01
+                :ARG1-of (h / have-quant-91
+                    :ARG2 (m / many)
+                    :ARG3 (m2 / more))
+                :ARG1-of (p / park-01
+                    :location (b / background))))))

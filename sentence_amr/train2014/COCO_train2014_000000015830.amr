@@ -1,0 +1,34 @@
+# ::tok A red street sign featuring pictures of bulldogs reading Bulldog Blvd .
+# ::node	r2	red-02	1-2
+# ::node	s2	street	2-3
+# ::node	s	sign	3-4
+# ::node	f	feature-01	4-5
+# ::node	p	picture	5-6
+# ::node	d	dog	7-8
+# ::node	r	read-01	8-9
+# ::node	n	name	9-10
+# ::node	1	Bulldog	9-10
+# ::node	r3	road	10-11
+# ::node	0	Boulevard	10-11
+# ::root	s	sign
+# ::edge	sign	location	street	s	s2	
+# ::edge	sign	ARG1-of	red-02	s	r2	
+# ::edge	sign	ARG2-of	feature-01	s	f	
+# ::edge	feature-01	ARG1	picture	f	p	
+# ::edge	picture	mod	dog	p	d	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	name	op1	Bulldog	n	1	
+# ::edge	road	name	name	r3	n	
+# ::edge	read-01	ARG3	road	r	r3	
+# ::edge	name	op2	Boulevard	n	0	
+(s / sign
+    :ARG1-of (r2 / red-02)
+    :ARG1-of (r / read-01
+        :ARG3 (r3 / road
+            :name (n / name
+                :op1 "Bulldog"
+                :op2 "Boulevard")))
+    :ARG2-of (f / feature-01
+        :ARG1 (p / picture
+            :mod (d / dog)))
+    :location (s2 / street))

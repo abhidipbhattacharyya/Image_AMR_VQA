@@ -1,0 +1,34 @@
+# ::tok View of two adjacent corners with " One Way " signs facing in opposite directions
+# ::node	v	view-01	0-1
+# ::node	0	2	2-3
+# ::node	b	border-01	3-4
+# ::node	c	corner	4-5
+# ::node	o	one	7-8
+# ::node	w	way	8-9
+# ::node	s	say-01	9-10
+# ::node	s2	sign	10-11
+# ::node	f	face-01	11-12
+# ::node	o2	opposite-01	13-14
+# ::node	d	direction	14-15
+# ::root	v	view-01
+# ::edge	corner	ARG1-of	border-01	c	b	
+# ::edge	corner	quant	2	c	0	
+# ::edge	view-01	ARG1	corner	v	c	
+# ::edge	way	mod	one	w	o	
+# ::edge	say-01	ARG1	way	s	w	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	corner	location-of	sign	c	s2	
+# ::edge	corner	ARG0-of	face-01	c	f	
+# ::edge	direction	ARG1-of	opposite-01	d	o2	
+# ::edge	face-01	ARG1	direction	f	d	
+(v / view-01
+    :ARG1 (c / corner
+        :quant 2
+        :ARG0-of (f / face-01
+            :ARG1 (d / direction
+                :ARG1-of (o2 / opposite-01)))
+        :ARG1-of (b / border-01)
+        :location-of (s2 / sign
+            :ARG0-of (s / say-01
+                :ARG1 (w / way
+                    :mod (o / one))))))

@@ -1,0 +1,22 @@
+# ::tok Several fruits with Chinese characters written on them .
+# ::node	s	several	0-1
+# ::node	f	fruit	1-2
+# ::node	c2	country	3-4
+# ::node	n	name	3-4
+# ::node	0	China	3-4
+# ::node	c	character	4-5
+# ::node	w	write-01	5-6
+# ::root	f	fruit
+# ::edge	fruit	quant	several	f	s	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	character	mod	country	c	c2	
+# ::edge	write-01	ARG1	character	w	c	
+# ::edge	fruit	location-of	write-01	f	w	
+(f / fruit
+    :quant (s / several)
+    :location-of (w / write-01
+        :ARG1 (c / character
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "China")))))

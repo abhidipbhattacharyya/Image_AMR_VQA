@@ -1,0 +1,28 @@
+# ::tok a box filled with snow covered oranges in a kitchen next to a juicer .
+# ::node	b	box	1-2
+# ::node	f	fill-01	2-3
+# ::node	s	snow	4-5
+# ::node	c	cover-02	5-6
+# ::node	o	orange	6-7
+# ::node	k	kitchen	9-10
+# ::node	n	next-to	10-11
+# ::node	j	juicer	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	box	ARG1-of	fill-01	b	f	
+# ::edge	cover-02	ARG2	snow	c	s	
+# ::edge	orange	ARG1-of	cover-02	o	c	
+# ::edge	fill-01	ARG2	orange	f	o	
+# ::edge	next-to	location	kitchen	n	k	
+# ::edge	box	location	next-to	b	n	
+# ::edge	next-to	op1	juicer	n	j	
+# ::edge	event	mod	box	e	b	
+(e / event
+    :mod (b / box
+        :ARG1-of (f / fill-01
+            :ARG2 (o / orange
+                :ARG1-of (c / cover-02
+                    :ARG2 (s / snow))))
+        :location (n / next-to
+            :location (k / kitchen)
+            :op1 (j / juicer))))

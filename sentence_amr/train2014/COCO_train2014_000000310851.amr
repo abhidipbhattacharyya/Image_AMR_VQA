@@ -1,0 +1,28 @@
+# ::tok Red buses with " London Bridge " in sign in front of buildings
+# ::node	r	red-02	0-1
+# ::node	b2	bus	1-2
+# ::node	n	name	4-5
+# ::node	1	London	4-5
+# ::node	s2	station	5-6
+# ::node	0	Bridge	5-6
+# ::node	s	sign	8-9
+# ::node	i	in-front-of	10-11
+# ::node	b	building	12-13
+# ::root	b2	bus
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	name	op1	London	n	1	
+# ::edge	station	name	name	s2	n	
+# ::edge	name	op2	Bridge	n	0	
+# ::edge	sign	mod	station	s	s2	
+# ::edge	bus	location-of	sign	b2	s	
+# ::edge	bus	location	in-front-of	b2	i	
+# ::edge	in-front-of	op1	building	i	b	
+(b2 / bus
+    :ARG1-of (r / red-02)
+    :location (i / in-front-of
+        :op1 (b / building))
+    :location-of (s / sign
+        :mod (s2 / station
+            :name (n / name
+                :op1 "London"
+                :op2 "Bridge"))))

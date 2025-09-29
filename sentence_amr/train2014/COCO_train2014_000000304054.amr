@@ -1,0 +1,32 @@
+# ::tok A child standing next to and holding on to a red fire hydrant on a sidewalk .
+# ::node	c	child	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	a	and	5-6
+# ::node	h	hold-on-06	6-7
+# ::node	r	red-02	10-11
+# ::node	f	fire	11-12
+# ::node	h2	hydrant	12-13
+# ::node	s	sidewalk	15-16
+# ::root	a	and
+# ::edge	stand-01	ARG1	child	s2	c	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	and	op2	hold-on-06	a	h	
+# ::edge	hold-on-06	ARG0	child	h	c	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	red-02	h2	r	
+# ::edge	hold-on-06	ARG1	hydrant	h	h2	
+# ::edge	next-to	op1	hydrant	n	h2	
+# ::edge	and	location	sidewalk	a	s	
+(a / and
+    :location (s / sidewalk)
+    :op1 (s2 / stand-01
+        :ARG1 (c / child)
+        :ARG2 (n / next-to
+            :op1 (h2 / hydrant
+                :ARG1-of (r / red-02)
+                :mod (f / fire))))
+    :op2 (h / hold-on-06
+        :ARG0 c
+        :ARG1 h2))

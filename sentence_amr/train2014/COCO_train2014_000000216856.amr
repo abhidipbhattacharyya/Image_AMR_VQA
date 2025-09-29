@@ -1,0 +1,27 @@
+# ::tok A man gropes for a tennis ball he can not reach during a match .
+# ::node	m	man	1-2
+# ::node	g	grope-01	2-3
+# ::node	t	tennis	5-6
+# ::node	b	ball	6-7
+# ::node	p	possible-01	8-9
+# ::node	0	-	9-10
+# ::node	r	reach-01	10-11
+# ::node	m2	match-03	13-14
+# ::root	g	grope-01
+# ::edge	grope-01	ARG0	man	g	m	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	grope-01	ARG2	ball	g	b	
+# ::edge	possible-01	polarity	-	p	0	
+# ::edge	reach-01	ARG1-of	possible-01	r	p	
+# ::edge	ball	ARG1-of	reach-01	b	r	
+# ::edge	reach-01	ARG0	man	r	m	
+# ::edge	reach-01	time	match-03	r	m2	
+(g / grope-01
+    :ARG0 (m / man)
+    :ARG2 (b / ball
+        :ARG1-of (r / reach-01
+            :ARG0 m
+            :ARG1-of (p / possible-01
+                :polarity -)
+            :time (m2 / match-03))
+        :mod (t / tennis)))

@@ -1,0 +1,39 @@
+# ::tok Several bowls on food sit on a wood table and include carrots , bread and berries .
+# ::node	s	several	0-1
+# ::node	p	pound	1-2
+# ::node	f	food	3-4
+# ::node	s2	sit-01	4-5
+# ::node	w	wood	7-8
+# ::node	t	table	8-9
+# ::node	a	and	9-10
+# ::node	i	include-01	10-11
+# ::node	c	carrot	11-12
+# ::node	a2	and	12-13
+# ::node	b	bread	13-14
+# ::node	f2	fruit	15-16
+# ::root	a	and
+# ::edge	pound	quant	several	p	s	
+# ::edge	pound	part-of	food	p	f	
+# ::edge	sit-01	ARG1	pound	s2	p	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	sit-01	ARG2	table	s2	t	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	include-01	a	i	
+# ::edge	include-01	ARG2	pound	i	p	
+# ::edge	and	op1	carrot	a2	c	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op2	bread	a2	b	
+# ::edge	and	op3	fruit	a2	f2	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / pound
+            :quant (s / several)
+            :part-of (f / food))
+        :ARG2 (t / table
+            :consist-of (w / wood)))
+    :op2 (i / include-01
+        :ARG1 (a2 / and
+            :op1 (c / carrot)
+            :op2 (b / bread)
+            :op3 (f2 / fruit))
+        :ARG2 p))

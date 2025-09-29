@@ -1,0 +1,25 @@
+# ::tok a group of red public transit buses sitting in a bus yard
+# ::node	g	group	1-2
+# ::node	r	red-02	3-4
+# ::node	p	public-02	4-5
+# ::node	t	transit-01	5-6
+# ::node	b	bus	6-7
+# ::node	s	sit-01	7-8
+# ::node	b2	bus	10-11
+# ::node	y	yard	11-12
+# ::root	s	sit-01
+# ::edge	transit-01	ARG1-of	public-02	t	p	
+# ::edge	bus	ARG2-of	transit-01	b	t	
+# ::edge	bus	ARG1-of	red-02	b	r	
+# ::edge	group	consist-of	bus	g	b	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	yard	mod	bus	y	b2	
+# ::edge	sit-01	ARG2	yard	s	y	
+(s / sit-01
+    :ARG1 (g / group
+        :consist-of (b / bus
+            :ARG1-of (r / red-02)
+            :ARG2-of (t / transit-01
+                :ARG1-of (p / public-02))))
+    :ARG2 (y / yard
+        :mod (b2 / bus)))

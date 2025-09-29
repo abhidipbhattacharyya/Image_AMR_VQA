@@ -1,0 +1,54 @@
+# ::tok A table containing two pizzas covered with green beans and spinach next to a bottle of beer and a glass of wine .
+# ::node	t	table	1-2
+# ::node	c	contain-01	2-3
+# ::node	1	2	3-4
+# ::node	p	pizzeria	4-5
+# ::node	c2	cover-02	5-6
+# ::node	g2	green-02	7-8
+# ::node	b	bean	8-9
+# ::node	a	and	9-10
+# ::node	s	spinach	10-11
+# ::node	n	next-to	11-12
+# ::node	0	1	13-14
+# ::node	b3	bottle	14-15
+# ::node	b2	beer	16-17
+# ::node	a2	and	17-18
+# ::node	v	volume-quantity	19-20
+# ::node	g	glass	19-20
+# ::node	w	wine	21-22
+# ::root	a2	and
+# ::edge	table	ARG0-of	contain-01	t	c	
+# ::edge	pizzeria	quant	2	p	1	
+# ::edge	contain-01	ARG1	pizzeria	c	p	
+# ::edge	pizzeria	ARG1-of	cover-02	p	c2	
+# ::edge	bean	ARG1-of	green-02	b	g2	
+# ::edge	and	op1	bean	a	b	
+# ::edge	cover-02	ARG2	and	c2	a	
+# ::edge	and	op2	spinach	a	s	
+# ::edge	table	location	next-to	t	n	
+# ::edge	and	op1	beer	a2	b2	
+# ::edge	and	quant	1	a2	0	
+# ::edge	beer	quant	volume-quantity	b2	v	
+# ::edge	volume-quantity	unit	bottle	v	b3	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	and	op2	wine	a2	w	
+# ::edge	and	rel	table	a2	t	
+(a2 / and
+    :quant 1
+    :op1 (b2 / beer
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (b3 / bottle)
+            :unit (g / glass)))
+    :op2 (w / wine)
+    :rel (t / table
+        :ARG0-of (c / contain-01
+            :ARG1 (p / pizzeria
+                :quant 2
+                :ARG1-of (c2 / cover-02
+                    :ARG2 (a / and
+                        :op1 (b / bean
+                            :ARG1-of (g2 / green-02))
+                        :op2 (s / spinach)))))
+        :location (n / next-to)))

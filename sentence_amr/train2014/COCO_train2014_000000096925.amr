@@ -1,0 +1,37 @@
+# ::tok A team of people on bikes with various flags from different countries is riding behind a car on the street .
+# ::node	t	team	1-2
+# ::node	p	person	3-4
+# ::node	b2	bike-01	5-6
+# ::node	h	have-03	6-7
+# ::node	v	various	7-8
+# ::node	f	flag	8-9
+# ::node	d	differ-02	10-11
+# ::node	c2	country	11-12
+# ::node	r	ride-01	13-14
+# ::node	b	behind	14-15
+# ::node	c	car	16-17
+# ::node	s	street	19-20
+# ::root	r	ride-01
+# ::edge	team	consist-of	person	t	p	
+# ::edge	team	ARG0-of	bike-01	t	b2	
+# ::edge	team	ARG0-of	have-03	t	h	
+# ::edge	flag	mod	various	f	v	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	country	ARG1-of	differ-02	c2	d	
+# ::edge	flag	source	country	f	c2	
+# ::edge	ride-01	ARG0	team	r	t	
+# ::edge	ride-01	ARG1	behind	r	b	
+# ::edge	behind	op1	car	b	c	
+# ::edge	ride-01	location	street	r	s	
+(r / ride-01
+    :ARG0 (t / team
+        :ARG0-of (b2 / bike-01)
+        :ARG0-of (h / have-03
+            :ARG1 (f / flag
+                :mod (v / various)
+                :source (c2 / country
+                    :ARG1-of (d / differ-02))))
+        :consist-of (p / person))
+    :ARG1 (b / behind
+        :op1 (c / car))
+    :location (s / street))

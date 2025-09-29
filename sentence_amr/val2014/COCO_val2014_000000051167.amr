@@ -1,0 +1,39 @@
+# ::tok A trolly bus is sitting in front of a bus stop as a man and women walk by .
+# ::node	t	trolly	1-2
+# ::node	b	bus	2-3
+# ::node	s	sit-01	4-5
+# ::node	i	in-front-of	6-7
+# ::node	f	facility	8-9
+# ::node	b2	bus	9-10
+# ::node	s2	stop-01	10-11
+# ::node	m	man	13-14
+# ::node	a	and	14-15
+# ::node	w2	woman	15-16
+# ::node	w	walk-01	16-17
+# ::node	b3	by	17-18
+# ::root	s	sit-01
+# ::edge	bus	mod	trolly	b	t	
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	facility	i	f	
+# ::edge	stop-01	ARG1	bus	s2	b2	
+# ::edge	facility	location-of	stop-01	f	s2	
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	walk-01	ARG0	and	w	a	
+# ::edge	sit-01	time	walk-01	s	w	
+# ::edge	walk-01	direction	by	w	b3	
+# ::edge	by	op1	stop-01	b3	s2	
+(s / sit-01
+    :ARG1 (b / bus
+        :mod (t / trolly))
+    :ARG2 (i / in-front-of
+        :op1 (f / facility
+            :location-of (s2 / stop-01
+                :ARG1 (b2 / bus))))
+    :time (w / walk-01
+        :ARG0 (a / and
+            :op1 (m / man)
+            :op2 (w2 / woman))
+        :direction (b3 / by
+            :op1 s2)))

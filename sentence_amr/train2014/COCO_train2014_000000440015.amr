@@ -1,0 +1,31 @@
+# ::tok A number of boxes on a sidewalk some of which are attached to a wrought iron gate
+# ::node	n	number	1-2
+# ::node	b	box	3-4
+# ::node	b2	box	3-4
+# ::node	s	sidewalk	6-7
+# ::node	i	include-91	7-8
+# ::node	s2	some	7-8
+# ::node	a	attach-01	11-12
+# ::node	w	work-08	14-15
+# ::node	i2	iron	15-16
+# ::node	g	gate	16-17
+# ::root	b	box
+# ::edge	box	quant	number	b	n	
+# ::edge	box	location	sidewalk	b	s	
+# ::edge	include-91	ARG1	box	i	b2	
+# ::edge	box	ARG2-of	include-91	b	i	
+# ::edge	box	mod	some	b2	s2	
+# ::edge	box	ARG1-of	attach-01	b2	a	
+# ::edge	iron	ARG1-of	work-08	i2	w	
+# ::edge	gate	mod	iron	g	i2	
+# ::edge	attach-01	ARG2	gate	a	g	
+(b / box
+    :quant (n / number)
+    :ARG2-of (i / include-91
+        :ARG1 (b2 / box
+            :ARG1-of (a / attach-01
+                :ARG2 (g / gate
+                    :mod (i2 / iron
+                        :ARG1-of (w / work-08))))
+            :mod (s2 / some)))
+    :location (s / sidewalk))

@@ -1,0 +1,44 @@
+# ::tok A cheesy sandwich on a sub bun is sitting alongside french fries and waiting for the taking .
+# ::node	c	cheesy	1-2
+# ::node	s	sandwich	2-3
+# ::node	s3	sub	5-6
+# ::node	b	bun	6-7
+# ::node	s2	sit-01	8-9
+# ::node	a	alongside	9-10
+# ::node	c2	country	10-11
+# ::node	n	name	10-11
+# ::node	0	France	10-11
+# ::node	f	fry-01	11-12
+# ::node	a2	and	12-13
+# ::node	w	wait-01	13-14
+# ::node	t	take-01	16-17
+# ::root	a2	and
+# ::edge	sandwich	mod	cheesy	s	c	
+# ::edge	bun	mod	sub	b	s3	
+# ::edge	sandwich	location	bun	s	b	
+# ::edge	sit-01	ARG1	sandwich	s2	s	
+# ::edge	sit-01	ARG2	alongside	s2	a	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c2	
+# ::edge	alongside	op1	fry-01	a	f	
+# ::edge	and	op1	sit-01	a2	s2	
+# ::edge	and	op2	wait-01	a2	w	
+# ::edge	wait-01	ARG1	sandwich	w	s	
+# ::edge	wait-01	ARG2	take-01	w	t	
+# ::edge	take-01	ARG1	sandwich	t	s	
+(a2 / and
+    :op1 (s2 / sit-01
+        :ARG1 (s / sandwich
+            :location (b / bun
+                :mod (s3 / sub))
+            :mod (c / cheesy))
+        :ARG2 (a / alongside
+            :op1 (f / fry-01
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "France")))))
+    :op2 (w / wait-01
+        :ARG1 s
+        :ARG2 (t / take-01
+            :ARG1 s)))

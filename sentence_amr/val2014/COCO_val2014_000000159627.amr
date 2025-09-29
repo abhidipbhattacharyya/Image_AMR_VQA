@@ -1,0 +1,25 @@
+# ::tok A bus that is reading " 89 Portola Plaza " is traveling on .
+# ::node	b	bus	1-2
+# ::node	r	read-01	4-5
+# ::node	0	89	6-7
+# ::node	n	name	7-8
+# ::node	2	Portola	7-8
+# ::node	f	facility	8-9
+# ::node	1	Plaza	8-9
+# ::node	t	travel-01	11-12
+# ::root	t	travel-01
+# ::edge	bus	ARG0-of	read-01	b	r	
+# ::edge	name	op1	89	n	0	
+# ::edge	name	op2	Portola	n	2	
+# ::edge	facility	name	name	f	n	
+# ::edge	read-01	ARG3	facility	r	f	
+# ::edge	name	op3	Plaza	n	1	
+# ::edge	travel-01	ARG0	bus	t	b	
+(t / travel-01
+    :ARG0 (b / bus
+        :ARG0-of (r / read-01
+            :ARG3 (f / facility
+                :name (n / name
+                    :op1 89
+                    :op2 "Portola"
+                    :op3 "Plaza")))))

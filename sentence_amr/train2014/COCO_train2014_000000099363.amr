@@ -1,0 +1,58 @@
+# ::tok A male skier with an Olympic number bib on and flags and a Vancouver 2010 sign in the background .
+# ::node	m	male	1-2
+# ::node	p	person	2-3
+# ::node	s2	ski-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	g	game	5-6
+# ::node	n	name	5-6
+# ::node	2	Olympic	5-6
+# ::node	1	Games	5-6
+# ::node	n3	number	6-7
+# ::node	b2	bib	7-8
+# ::node	a	and	9-10
+# ::node	f	flag	10-11
+# ::node	c	city	13-14
+# ::node	n2	name	13-14
+# ::node	3	Vancouver	13-14
+# ::node	d	date-entity	14-15
+# ::node	0	2010	14-15
+# ::node	s	sign	15-16
+# ::node	b	background	18-19
+# ::root	p	person
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	game	name	name	g	n	
+# ::edge	name	op1	Olympic	n	2	
+# ::edge	name	op2	Games	n	1	
+# ::edge	number	mod	game	n3	g	
+# ::edge	bib	mod	number	b2	n3	
+# ::edge	and	op1	bib	a	b2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	flag	a	f	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	Vancouver	n2	3	
+# ::edge	date-entity	year	2010	d	0	
+# ::edge	sign	time	date-entity	s	d	
+# ::edge	sign	mod	city	s	c	
+# ::edge	and	op3	sign	a	s	
+# ::edge	sign	location	background	s	b	
+(p / person
+    :ARG0-of (s2 / ski-01)
+    :ARG0-of (w / wear-01
+        :ARG1 (a / and
+            :op1 (b2 / bib
+                :mod (n3 / number
+                    :mod (g / game
+                        :name (n / name
+                            :op1 "Olympic"
+                            :op2 "Games"))))
+            :op2 (f / flag)
+            :op3 (s / sign
+                :location (b / background)
+                :mod (c / city
+                    :name (n2 / name
+                        :op1 "Vancouver"))
+                :time (d / date-entity
+                    :year 2010))))
+    :mod (m / male))

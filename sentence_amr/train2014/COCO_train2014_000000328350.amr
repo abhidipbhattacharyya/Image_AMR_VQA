@@ -1,0 +1,19 @@
+# ::tok A big truck that is coming up to a stoplights controlled intersection .
+# ::node	b	big	1-2
+# ::node	t	truck	2-3
+# ::node	c	come-01	5-6
+# ::node	s	stop-01	9-10
+# ::node	c2	control-01	10-11
+# ::node	i	intersect-01	11-12
+# ::root	t	truck
+# ::edge	truck	mod	big	t	b	
+# ::edge	truck	ARG1-of	come-01	t	c	
+# ::edge	control-01	ARG0	stop-01	c2	s	
+# ::edge	intersect-01	ARG1-of	control-01	i	c2	
+# ::edge	come-01	ARG4	intersect-01	c	i	
+(t / truck
+    :ARG1-of (c / come-01
+        :ARG4 (i / intersect-01
+            :ARG1-of (c2 / control-01
+                :ARG0 (s / stop-01))))
+    :mod (b / big))

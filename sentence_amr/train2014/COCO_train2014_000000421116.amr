@@ -1,0 +1,45 @@
+# ::tok A group of motorcycles parked on the side of a street that runs past a building with a large group of people standing in front of it .
+# ::node	g	group	1-2
+# ::node	m	motorcycle	3-4
+# ::node	p	park-01	4-5
+# ::node	s	side	7-8
+# ::node	s3	street	10-11
+# ::node	r	run-04	12-13
+# ::node	p2	past	13-14
+# ::node	b	building	15-16
+# ::node	h	have-03	16-17
+# ::node	l	large	18-19
+# ::node	g2	group	19-20
+# ::node	p3	person	21-22
+# ::node	s2	stand-01	22-23
+# ::node	i	in-front-of	24-25
+# ::root	p	park-01
+# ::edge	group	consist-of	motorcycle	g	m	
+# ::edge	park-01	ARG1	group	p	g	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	street	s	s3	
+# ::edge	street	ARG1-of	run-04	s3	r	
+# ::edge	run-04	path	past	r	p2	
+# ::edge	past	op1	building	p2	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	group	mod	large	g2	l	
+# ::edge	group	consist-of	person	g2	p3	
+# ::edge	stand-01	ARG0	group	s2	g2	
+# ::edge	have-03	ARG1	stand-01	h	s2	
+# ::edge	stand-01	ARG2	in-front-of	s2	i	
+# ::edge	in-front-of	op1	building	i	b	
+(p / park-01
+    :ARG1 (g / group
+        :consist-of (m / motorcycle))
+    :ARG2 (s / side
+        :part-of (s3 / street
+            :ARG1-of (r / run-04
+                :path (p2 / past
+                    :op1 (b / building
+                        :ARG0-of (h / have-03
+                            :ARG1 (s2 / stand-01
+                                :ARG0 (g2 / group
+                                    :consist-of (p3 / person)
+                                    :mod (l / large))
+                                :ARG2 (i / in-front-of
+                                    :op1 b)))))))))

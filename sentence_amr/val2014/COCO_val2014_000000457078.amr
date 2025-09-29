@@ -1,0 +1,40 @@
+# ::tok A room with a cluttered desk , lots of collectible items on shelves and many posters on the walls .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	l	literal	4-5
+# ::node	d	desk	5-6
+# ::node	l2	lot	7-8
+# ::node	c	collect-01	9-10
+# ::node	p	possible-01	9-10
+# ::node	i	item	10-11
+# ::node	s	shelf	12-13
+# ::node	a	and	13-14
+# ::node	m	many	14-15
+# ::node	p2	poster	15-16
+# ::node	w	wall	18-19
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	desk	mod	literal	d	l	
+# ::edge	collect-01	ARG1-of	possible-01	c	p	
+# ::edge	item	ARG1-of	collect-01	i	c	
+# ::edge	item	quant	lot	i	l2	
+# ::edge	item	location	shelf	i	s	
+# ::edge	and	op2	item	a	i	
+# ::edge	and	op1	desk	a	d	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	poster	quant	many	p2	m	
+# ::edge	and	op3	poster	a	p2	
+# ::edge	poster	location	wall	p2	w	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (d / desk
+                :mod (l / literal))
+            :op2 (i / item
+                :quant (l2 / lot)
+                :ARG1-of (c / collect-01
+                    :ARG1-of (p / possible-01))
+                :location (s / shelf))
+            :op3 (p2 / poster
+                :quant (m / many)
+                :location (w / wall)))))

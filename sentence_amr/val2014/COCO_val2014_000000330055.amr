@@ -1,0 +1,35 @@
+# ::tok A baseball game with a player hand up stating their team is number one .
+# ::node	b	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	p2	play-01	5-6
+# ::node	h	hand-01	6-7
+# ::node	u	up	7-8
+# ::node	s	state-01	8-9
+# ::node	t	team	10-11
+# ::node	o	ordinal-entity	13-14
+# ::node	0	1	13-14
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	hand-01	ARG0	person	h	p	
+# ::edge	game	manner	hand-01	g	h	
+# ::edge	hand-01	direction	up	h	u	
+# ::edge	hand-01	purpose	state-01	h	s	
+# ::edge	state-01	ARG0	person	s	p	
+# ::edge	state-01	ARG1	team	s	t	
+# ::edge	team	poss	person	t	p	
+# ::edge	team	ord	ordinal-entity	t	o	
+# ::edge	ordinal-entity	value	1	o	0	
+(g / game
+    :manner (h / hand-01
+        :purpose (s / state-01
+            :ARG0 (p / person
+                :ARG0-of (p2 / play-01))
+            :ARG1 (t / team
+                :ord (o / ordinal-entity
+                    :value 1)
+                :poss p))
+        :ARG0 p
+        :direction (u / up))
+    :mod (b / baseball))

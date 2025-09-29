@@ -1,0 +1,27 @@
+# ::tok To wine glasses are stitting at the table awaiting the guests to return to their seat .
+# ::node	w	wine	1-2
+# ::node	g	glass	2-3
+# ::node	t	St	4-5
+# ::node	t2	table	7-8
+# ::node	a	await-01	8-9
+# ::node	g2	guest	10-11
+# ::node	r	return-01	12-13
+# ::node	s	seat	15-16
+# ::root	t	St
+# ::edge	glass	mod	wine	g	w	
+# ::edge	St	domain	glass	t	g	
+# ::edge	St	location	table	t	t2	
+# ::edge	glass	ARG1-of	await-01	g	a	
+# ::edge	return-01	ARG1	guest	r	g2	
+# ::edge	await-01	ARG2	return-01	a	r	
+# ::edge	return-01	ARG4	seat	r	s	
+# ::edge	seat	poss	guest	s	g2	
+(t / St
+    :domain (g / glass
+        :ARG1-of (a / await-01
+            :ARG2 (r / return-01
+                :ARG1 (g2 / guest)
+                :ARG4 (s / seat
+                    :poss g2)))
+        :mod (w / wine))
+    :location (t2 / table))

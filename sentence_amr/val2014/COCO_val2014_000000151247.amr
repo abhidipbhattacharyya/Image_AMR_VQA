@@ -1,0 +1,30 @@
+# ::tok A toilet seat cover raised with a number of signs posted on the wall behind it .
+# ::node	t	toilet	1-2
+# ::node	s	seat	2-3
+# ::node	c	cover-02	3-4
+# ::node	r	raise-01	4-5
+# ::node	n	number	7-8
+# ::node	s2	sign	9-10
+# ::node	p	post-01	10-11
+# ::node	w	wall	13-14
+# ::node	b	behind	14-15
+# ::root	r	raise-01
+# ::edge	seat	mod	toilet	s	t	
+# ::edge	cover-02	ARG1	seat	c	s	
+# ::edge	raise-01	ARG1	cover-02	r	c	
+# ::edge	sign	quant	number	s2	n	
+# ::edge	post-01	ARG1	sign	p	s2	
+# ::edge	raise-01	instrument	post-01	r	p	
+# ::edge	post-01	ARG2	wall	p	w	
+# ::edge	wall	location	behind	w	b	
+# ::edge	behind	op1	seat	b	s	
+(r / raise-01
+    :ARG1 (c / cover-02
+        :ARG1 (s / seat
+            :mod (t / toilet)))
+    :instrument (p / post-01
+        :ARG1 (s2 / sign
+            :quant (n / number))
+        :ARG2 (w / wall
+            :location (b / behind
+                :op1 s))))

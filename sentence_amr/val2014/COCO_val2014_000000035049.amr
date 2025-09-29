@@ -1,0 +1,34 @@
+# ::tok One kid player stands with bat as others sit on bench during baseball game .
+# ::node	0	1	0-1
+# ::node	k	kid	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s2	stand-01	3-4
+# ::node	b2	bat	5-6
+# ::node	o	other	7-8
+# ::node	s	sit-01	8-9
+# ::node	b3	bench	10-11
+# ::node	b	baseball	12-13
+# ::node	g	game	13-14
+# ::root	s2	stand-01
+# ::edge	person	mod	kid	p	k	
+# ::edge	person	quant	1	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	instrument	bat	s2	b2	
+# ::edge	sit-01	ARG1	other	s	o	
+# ::edge	stand-01	time	sit-01	s2	s	
+# ::edge	sit-01	ARG2	bench	s	b3	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	stand-01	time	game	s2	g	
+(s2 / stand-01
+    :ARG1 (p / person
+        :quant 1
+        :ARG0-of (p2 / play-01)
+        :mod (k / kid))
+    :instrument (b2 / bat)
+    :time (s / sit-01
+        :ARG1 (o / other)
+        :ARG2 (b3 / bench))
+    :time (g / game
+        :mod (b / baseball)))

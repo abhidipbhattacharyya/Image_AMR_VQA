@@ -1,0 +1,34 @@
+# ::tok A pair of scissors , a tape measure , and a spool of thread sitting on a piece of folded fabric .
+# ::node	p	pair	1-2
+# ::node	s	scissors	3-4
+# ::node	t	tape	6-7
+# ::node	m	measure	7-8
+# ::node	a	and	9-10
+# ::node	s3	spool	11-12
+# ::node	t2	thread	13-14
+# ::node	s2	sit-01	14-15
+# ::node	p2	piece	17-18
+# ::node	f2	fold-03	19-20
+# ::node	f	fabric	20-21
+# ::root	s2	sit-01
+# ::edge	pair	consist-of	scissors	p	s	
+# ::edge	measure	mod	tape	m	t	
+# ::edge	and	op2	measure	a	m	
+# ::edge	and	op1	pair	a	p	
+# ::edge	and	op3	spool	a	s3	
+# ::edge	spool	consist-of	thread	s3	t2	
+# ::edge	sit-01	ARG1	and	s2	a	
+# ::edge	sit-01	ARG2	piece	s2	p2	
+# ::edge	fabric	ARG1-of	fold-03	f	f2	
+# ::edge	piece	consist-of	fabric	p2	f	
+(s2 / sit-01
+    :ARG1 (a / and
+        :op1 (p / pair
+            :consist-of (s / scissors))
+        :op2 (m / measure
+            :mod (t / tape))
+        :op3 (s3 / spool
+            :consist-of (t2 / thread)))
+    :ARG2 (p2 / piece
+        :consist-of (f / fabric
+            :ARG1-of (f2 / fold-03))))

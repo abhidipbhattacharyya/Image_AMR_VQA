@@ -1,0 +1,33 @@
+# ::tok A city bus on a street next to a sidewalk of pedestrians standing and walking .
+# ::node	c	city	1-2
+# ::node	b	bus	2-3
+# ::node	s3	street	5-6
+# ::node	n	next-to	6-7
+# ::node	s	sidewalk	9-10
+# ::node	w	walk-01	11-12
+# ::node	s2	stand-01	12-13
+# ::node	a	and	13-14
+# ::node	w2	walk-01	14-15
+# ::node	p	person	15-16
+# ::root	b	bus
+# ::edge	bus	mod	city	b	c	
+# ::edge	bus	location	street	b	s3	
+# ::edge	street	location-of	next-to	s3	n	
+# ::edge	next-to	op1	sidewalk	n	s	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	sidewalk	consist-of	and	s	a	
+# ::edge	and	op2	walk-01	a	w2	
+# ::edge	walk-01	ARG0	person	w2	p	
+# ::edge	person	ARG1-of	stand-01	p	s2	
+# ::edge	bus	rel	walk-01	b	w	
+(b / bus
+    :location (s3 / street
+        :location-of (n / next-to
+            :op1 (s / sidewalk
+                :consist-of (a / and
+                    :op1 (s2 / stand-01)
+                    :op2 (w2 / walk-01
+                        :ARG0 (p / person
+                            :ARG1-of s2))))))
+    :mod (c / city)
+    :rel (w / walk-01))

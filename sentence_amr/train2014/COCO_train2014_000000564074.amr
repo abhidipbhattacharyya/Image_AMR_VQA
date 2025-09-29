@@ -1,0 +1,31 @@
+# ::tok Traffic intersection at night with a foreclosure sign near a hydrant on the side of the road .
+# ::node	t	traffic	0-1
+# ::node	i	intersect-01	1-2
+# ::node	d	date-entity	3-4
+# ::node	n2	night	3-4
+# ::node	f	foreclose-01	6-7
+# ::node	s2	sign	7-8
+# ::node	n	near-02	8-9
+# ::node	h	hydrant	10-11
+# ::node	s	side	13-14
+# ::node	r	road	16-17
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	traffic	i	t	
+# ::edge	intersect-01	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	sign	topic	foreclose-01	s2	f	
+# ::edge	intersect-01	location-of	sign	i	s2	
+# ::edge	sign	ARG1-of	near-02	s2	n	
+# ::edge	near-02	ARG2	hydrant	n	h	
+# ::edge	hydrant	location	side	h	s	
+# ::edge	side	part-of	road	s	r	
+(i / intersect-01
+    :ARG1 (t / traffic)
+    :location-of (s2 / sign
+        :ARG1-of (n / near-02
+            :ARG2 (h / hydrant
+                :location (s / side
+                    :part-of (r / road))))
+        :topic (f / foreclose-01))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

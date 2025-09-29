@@ -1,0 +1,19 @@
+# ::tok A train is exiting a tunnel that goes underneath a town
+# ::node	t2	train	1-2
+# ::node	e	exit-01	3-4
+# ::node	t3	tunnel	5-6
+# ::node	g	go-01	7-8
+# ::node	u	underneath	8-9
+# ::node	t	town	10-11
+# ::root	e	exit-01
+# ::edge	exit-01	ARG0	train	e	t2	
+# ::edge	exit-01	ARG1	tunnel	e	t3	
+# ::edge	tunnel	ARG1-of	go-01	t3	g	
+# ::edge	go-01	ARG4	underneath	g	u	
+# ::edge	underneath	op1	town	u	t	
+(e / exit-01
+    :ARG0 (t2 / train)
+    :ARG1 (t3 / tunnel
+        :ARG1-of (g / go-01
+            :ARG4 (u / underneath
+                :op1 (t / town)))))

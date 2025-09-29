@@ -1,0 +1,44 @@
+# ::tok A bathroom has no mirror or shower curtain , blue and brown walls , and tan tile .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	0	-	3-4
+# ::node	m	mirror	4-5
+# ::node	o	or	5-6
+# ::node	s	shower	6-7
+# ::node	c	curtain	7-8
+# ::node	b2	blue	9-10
+# ::node	a	and	10-11
+# ::node	b3	brown	11-12
+# ::node	w	wall	12-13
+# ::node	t	tan-01	15-16
+# ::node	t2	tile	16-17
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	or	op1	have-03	o	h	
+# ::edge	curtain	mod	shower	c	s	
+# ::edge	or	op2	curtain	o	c	
+# ::edge	and	op1	or	a	o	
+# ::edge	and	op2	brown	a	b3	
+# ::edge	wall	consist-of	and	w	a	
+# ::edge	or	op3	wall	o	w	
+# ::edge	tile	ARG1-of	tan-01	t2	t	
+# ::edge	and	op4	tile	a	t2	
+# ::edge	have-03	rel	or	h	o	
+# ::edge	have-03	rel	mirror	h	m	
+# ::edge	have-03	rel	blue	h	b2	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :polarity -
+    :rel (o / or
+        :op1 h
+        :op2 (c / curtain
+            :mod (s / shower))
+        :op3 (w / wall
+            :consist-of (a / and
+                :op1 o
+                :op2 (b3 / brown)
+                :op4 (t2 / tile
+                    :ARG1-of (t / tan-01)))))
+    :rel (m / mirror)
+    :rel (b2 / blue))

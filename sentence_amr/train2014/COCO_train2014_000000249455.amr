@@ -1,0 +1,85 @@
+# ::tok A man sitting cross legged on wood floor with Asian rugs , holing a gaming control , with coffee table with lace , flowers , and trays , and sofa behind him , and papers and gaming device and cord around him .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	c5	cross-02	3-4
+# ::node	w	wood	6-7
+# ::node	f	floor	7-8
+# ::node	c2	continent	9-10
+# ::node	n	name	9-10
+# ::node	0	Asia	9-10
+# ::node	f2	floor	10-11
+# ::node	h	hole-up-01	12-13
+# ::node	g	game	14-15
+# ::node	c3	control-01	15-16
+# ::node	c	coffee	18-19
+# ::node	t	table	19-20
+# ::node	l	lace	21-22
+# ::node	f3	flower	23-24
+# ::node	t2	truffle	26-27
+# ::node	a	and	28-29
+# ::node	s2	sofa	29-30
+# ::node	b	behind	30-31
+# ::node	p	paper	34-35
+# ::node	d	device	37-38
+# ::node	c4	cord	39-40
+# ::node	a2	around	40-41
+# ::root	m	man
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	sit-01	manner	cross-02	s	c5	
+# ::edge	cross-02	ARG0	man	c5	m	
+# ::edge	floor	consist-of	wood	f	w	
+# ::edge	sit-01	ARG2	floor	s	f	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	floor	mod	continent	f2	c2	
+# ::edge	sit-01	instrument	floor	s	f2	
+# ::edge	man	ARG0-of	hole-up-01	m	h	
+# ::edge	control-01	ARG1	game	c3	g	
+# ::edge	hole-up-01	ARG1	control-01	h	c3	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	table	part	lace	t	l	
+# ::edge	table	part	flower	t	f3	
+# ::edge	table	part	truffle	t	t2	
+# ::edge	and	op3	truffle	a	t2	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	op1	table	a	t	
+# ::edge	man	accompanier	and	m	a	
+# ::edge	and	op4	sofa	a	s2	
+# ::edge	sofa	location	behind	s2	b	
+# ::edge	behind	op1	man	b	m	
+# ::edge	and	op5	paper	a	p	
+# ::edge	game	op6	device	g	d	
+# ::edge	device	mod	game	d	g	
+# ::edge	and	op7	cord	a	c4	
+# ::edge	cord	location	around	c4	a2	
+# ::edge	around	op1	man	a2	m	
+(m / man
+    :ARG0-of (h / hole-up-01
+        :ARG1 (c3 / control-01
+            :ARG1 (g / game
+                :op6 (d / device
+                    :mod g))))
+    :ARG1-of (s / sit-01
+        :ARG2 (f / floor
+            :consist-of (w / wood))
+        :instrument (f2 / floor
+            :mod (c2 / continent
+                :name (n / name
+                    :op1 "Asia")))
+        :manner (c5 / cross-02
+            :ARG0 m))
+    :accompanier (a / and
+        :op1 (t / table
+            :mod (c / coffee)
+            :part (l / lace)
+            :part (f3 / flower)
+            :part (t2 / truffle))
+        :op2 t
+        :op3 t2
+        :op4 (s2 / sofa
+            :location (b / behind
+                :op1 m))
+        :op5 (p / paper)
+        :op7 (c4 / cord
+            :location (a2 / around
+                :op1 m))))

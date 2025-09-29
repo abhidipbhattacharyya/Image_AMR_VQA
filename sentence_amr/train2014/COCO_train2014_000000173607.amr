@@ -1,0 +1,55 @@
+# ::tok Chinatown has many restaurants and signs with English and Chinese letters .
+# ::node	c	city-district	0-1
+# ::node	n	name	0-1
+# ::node	1	Chinatown	0-1
+# ::node	h	have-03	1-2
+# ::node	m	many	2-3
+# ::node	r	restaurant	3-4
+# ::node	a	and	4-5
+# ::node	s	sign	5-6
+# ::node	h2	have-03	6-7
+# ::node	l	language	7-8
+# ::node	n2	name	7-8
+# ::node	2	English	7-8
+# ::node	a2	and	8-9
+# ::node	c2	country	9-10
+# ::node	n3	name	9-10
+# ::node	0	China	9-10
+# ::node	l2	letter	10-11
+# ::node	l3	letter	10-11
+# ::root	h	have-03
+# ::edge	city-district	name	name	c	n	
+# ::edge	name	op1	Chinatown	n	1	
+# ::edge	have-03	ARG0	city-district	h	c	
+# ::edge	and	op1	restaurant	a	r	
+# ::edge	and	quant	many	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	ARG0-of	have-03	a	h2	
+# ::edge	language	name	name	l	n2	
+# ::edge	name	op1	English	n2	2	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	country	name	name	c2	n3	
+# ::edge	name	op1	China	n3	0	
+# ::edge	and	op1	letter	a2	l2	
+# ::edge	letter	mod	language	l2	l	
+# ::edge	letter	mod	country	l3	c2	
+# ::edge	and	op2	letter	a2	l3	
+(h / have-03
+    :ARG0 (c / city-district
+        :name (n / name
+            :op1 "Chinatown"))
+    :ARG1 (a / and
+        :quant (m / many)
+        :ARG0-of (h2 / have-03
+            :ARG1 (a2 / and
+                :op1 (l2 / letter
+                    :mod (l / language
+                        :name (n2 / name
+                            :op1 "English")))
+                :op2 (l3 / letter
+                    :mod (c2 / country
+                        :name (n3 / name
+                            :op1 "China")))))
+        :op1 (r / restaurant)
+        :op2 (s / sign)))

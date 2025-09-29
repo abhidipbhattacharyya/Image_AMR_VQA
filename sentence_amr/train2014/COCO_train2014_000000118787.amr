@@ -1,0 +1,28 @@
+# ::tok Cars waiting at a stoplight at night with city lights in background .
+# ::node	c	car	0-1
+# ::node	w	wait-01	1-2
+# ::node	s	stoplight	4-5
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	c2	city	8-9
+# ::node	l	light	9-10
+# ::node	b2	be-located-at-91	10-11
+# ::node	b	background	11-12
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	wait-01	location	stoplight	w	s	
+# ::edge	wait-01	time	date-entity	w	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	mod	city	l	c2	
+# ::edge	be-located-at-91	ARG2	light	b2	l	
+# ::edge	car	ARG1-of	be-located-at-91	c	b2	
+# ::edge	be-located-at-91	location	background	b2	b	
+(w / wait-01
+    :ARG1 (c / car
+        :ARG1-of (b2 / be-located-at-91
+            :ARG2 (l / light
+                :mod (c2 / city))
+            :location (b / background)))
+    :location (s / stoplight)
+    :time (d / date-entity
+        :dayperiod (n / night)))

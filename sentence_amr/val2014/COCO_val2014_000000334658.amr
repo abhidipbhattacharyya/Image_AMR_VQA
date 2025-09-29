@@ -1,0 +1,39 @@
+# ::tok An intersection with two street signs , a Stop sign and a Cross Traffic Does Not stop beneath it
+# ::node	i	intersect-01	1-2
+# ::node	1	2	3-4
+# ::node	s5	street	4-5
+# ::node	s	sign	5-6
+# ::node	s3	stop-01	8-9
+# ::node	s2	sign	9-10
+# ::node	a	and	10-11
+# ::node	c	cross-02	12-13
+# ::node	t	traffic	13-14
+# ::node	0	-	15-16
+# ::node	s4	stop-01	16-17
+# ::node	b	beneath	17-18
+# ::root	s4	stop-01
+# ::edge	sign	mod	street	s	s5	
+# ::edge	sign	quant	2	s	1	
+# ::edge	sign	purpose	stop-01	s2	s3	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	traffic	ARG0-of	cross-02	t	c	
+# ::edge	and	op3	traffic	a	t	
+# ::edge	stop-01	polarity	-	s4	0	
+# ::edge	stop-01	ARG1	intersect-01	s4	i	
+# ::edge	stop-01	location	beneath	s4	b	
+# ::edge	beneath	op1	intersect-01	b	i	
+(s4 / stop-01
+    :ARG1 (i / intersect-01
+        :ARG1 (a / and
+            :op1 (s / sign
+                :quant 2
+                :mod (s5 / street))
+            :op2 (s2 / sign
+                :purpose (s3 / stop-01))
+            :op3 (t / traffic
+                :ARG0-of (c / cross-02))))
+    :location (b / beneath
+        :op1 i)
+    :polarity -)

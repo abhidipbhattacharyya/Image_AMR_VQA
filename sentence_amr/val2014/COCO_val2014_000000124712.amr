@@ -1,0 +1,33 @@
+# ::tok Fans sit in camping chairs along a fence to watch a children 's baseball game .
+# ::node	f	fan	0-1
+# ::node	s	sit-01	1-2
+# ::node	c	camp-02	3-4
+# ::node	c2	chair	4-5
+# ::node	a	along	5-6
+# ::node	f2	fence	7-8
+# ::node	w	watch-01	9-10
+# ::node	c3	child	11-12
+# ::node	b	baseball	13-14
+# ::node	g	game	14-15
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	fan	s	f	
+# ::edge	chair	purpose	camp-02	c2	c	
+# ::edge	sit-01	ARG2	chair	s	c2	
+# ::edge	chair	location	along	c2	a	
+# ::edge	along	op1	fence	a	f2	
+# ::edge	sit-01	purpose	watch-01	s	w	
+# ::edge	watch-01	ARG0	fan	w	f	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	mod	child	g	c3	
+# ::edge	watch-01	ARG1	game	w	g	
+(s / sit-01
+    :purpose (w / watch-01
+        :ARG0 (f / fan)
+        :ARG1 (g / game
+            :mod (b / baseball)
+            :mod (c3 / child)))
+    :ARG1 f
+    :ARG2 (c2 / chair
+        :purpose (c / camp-02)
+        :location (a / along
+            :op1 (f2 / fence))))

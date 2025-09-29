@@ -1,0 +1,34 @@
+# ::tok A computer has a blue or black screen with white numbers and letters .
+# ::node	c	computer	1-2
+# ::node	h	have-03	2-3
+# ::node	b2	blue	4-5
+# ::node	o	or	5-6
+# ::node	b	black-04	6-7
+# ::node	s	screen	7-8
+# ::node	s2	screen	7-8
+# ::node	w	white-03	9-10
+# ::node	n	number	10-11
+# ::node	a	and	11-12
+# ::node	l	letter	12-13
+# ::root	h	have-03
+# ::edge	have-03	ARG0	computer	h	c	
+# ::edge	have-03	ARG1	or	h	o	
+# ::edge	or	op1	screen	o	s	
+# ::edge	screen	mod	blue	s	b2	
+# ::edge	screen	ARG1-of	black-04	s2	b	
+# ::edge	or	op2	screen	o	s2	
+# ::edge	and	op1	number	a	n	
+# ::edge	and	ARG1-of	white-03	a	w	
+# ::edge	or	consist-of	and	o	a	
+# ::edge	and	op2	letter	a	l	
+(h / have-03
+    :ARG0 (c / computer)
+    :ARG1 (o / or
+        :consist-of (a / and
+            :ARG1-of (w / white-03)
+            :op1 (n / number)
+            :op2 (l / letter))
+        :op1 (s / screen
+            :mod (b2 / blue))
+        :op2 (s2 / screen
+            :ARG1-of (b / black-04))))

@@ -1,0 +1,36 @@
+# ::tok A young man at home plate taking a high pitch as the catcher catches the ball .
+# ::node	y	young	1-2
+# ::node	m	man	2-3
+# ::node	h2	home	4-5
+# ::node	p2	plate	5-6
+# ::node	t	take-01	6-7
+# ::node	h	high-02	8-9
+# ::node	t2	throw-01	9-10
+# ::node	p	person	12-13
+# ::node	c	catch-01	12-13
+# ::node	c2	catch-01	13-14
+# ::node	b	ball	15-16
+# ::root	t	take-01
+# ::edge	man	mod	young	m	y	
+# ::edge	plate	mod	home	p2	h2	
+# ::edge	man	location	plate	m	p2	
+# ::edge	take-01	ARG0	man	t	m	
+# ::edge	throw-01	ARG1-of	high-02	t2	h	
+# ::edge	take-01	ARG1	throw-01	t	t2	
+# ::edge	throw-01	ARG0	man	t2	m	
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	catch-01	ARG0	person	c2	p	
+# ::edge	take-01	time	catch-01	t	c2	
+# ::edge	catch-01	ARG1	ball	c2	b	
+(t / take-01
+    :ARG0 (m / man
+        :location (p2 / plate
+            :mod (h2 / home))
+        :mod (y / young))
+    :ARG1 (t2 / throw-01
+        :ARG0 m
+        :ARG1-of (h / high-02))
+    :time (c2 / catch-01
+        :ARG0 (p / person
+            :ARG0-of (c / catch-01))
+        :ARG1 (b / ball)))

@@ -1,0 +1,39 @@
+# ::tok Some African Americans are dressed in ties and working .
+# ::node	s	some	0-1
+# ::node	c	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Africa	1-2
+# ::node	p	person	2-3
+# ::node	c2	country	2-3
+# ::node	n2	name	2-3
+# ::node	1	America	2-3
+# ::node	d	dress-01	4-5
+# ::node	t	tie	6-7
+# ::node	a	and	7-8
+# ::node	w	work-01	8-9
+# ::root	a	and
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Africa	n	0	
+# ::edge	person	mod	continent	p	c	
+# ::edge	person	quant	some	p	s	
+# ::edge	person	mod	country	p	c2	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	America	n2	1	
+# ::edge	dress-01	ARG1	person	d	p	
+# ::edge	dress-01	ARG2	tie	d	t	
+# ::edge	and	op1	dress-01	a	d	
+# ::edge	and	op2	work-01	a	w	
+# ::edge	work-01	ARG0	person	w	p	
+(a / and
+    :op1 (d / dress-01
+        :ARG1 (p / person
+            :quant (s / some)
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Africa"))
+            :mod (c2 / country
+                :name (n2 / name
+                    :op1 "America")))
+        :ARG2 (t / tie))
+    :op2 (w / work-01
+        :ARG0 p))

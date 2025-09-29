@@ -1,0 +1,36 @@
+# ::tok A person bends down with a Frisbee in an area with large rocks and picnic tables .
+# ::node	p	person	1-2
+# ::node	b	bend-01	2-3
+# ::node	d	down	3-4
+# ::node	r	Frisbee	6-7
+# ::node	a2	area	9-10
+# ::node	h	have-03	10-11
+# ::node	l	large	11-12
+# ::node	r2	rock	12-13
+# ::node	a	and	13-14
+# ::node	p2	picnic	14-15
+# ::node	t	table	15-16
+# ::root	b	bend-01
+# ::edge	bend-01	ARG0	person	b	p	
+# ::edge	bend-01	direction	down	b	d	
+# ::edge	bend-01	location	area	b	a2	
+# ::edge	have-03	ARG1	area	h	a2	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	rock	mod	large	r2	l	
+# ::edge	and	op1	rock	a	r2	
+# ::edge	area	part	and	a2	a	
+# ::edge	table	mod	picnic	t	p2	
+# ::edge	and	op2	table	a	t	
+# ::edge	bend-01	rel	Frisbee	b	r	
+(b / bend-01
+    :ARG0 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / area
+                :part (a / and
+                    :op1 (r2 / rock
+                        :mod (l / large))
+                    :op2 (t / table
+                        :mod (p2 / picnic))))))
+    :direction (d / down)
+    :location a2
+    :rel (r / Frisbee))

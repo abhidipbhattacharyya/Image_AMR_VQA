@@ -1,0 +1,34 @@
+# ::tok There is a SUV truck parked out in the desert range if the grass in the safarga
+# ::node	s2	sport	2-3
+# ::node	v	vehicle	3-4
+# ::node	n	name	3-4
+# ::node	0	SUV	3-4
+# ::node	t	truck	4-5
+# ::node	p	park-01	5-6
+# ::node	r2	relative-position	7-8
+# ::node	d	desert	9-10
+# ::node	r	range-01	10-11
+# ::node	g	grass	13-14
+# ::node	s	safarga	16-17
+# ::root	p	park-01
+# ::edge	vehicle	mod	sport	v	s2	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	SUV	n	0	
+# ::edge	truck	mod	vehicle	t	v	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	location	relative-position	p	r2	
+# ::edge	range-01	ARG1	desert	r	d	
+# ::edge	relative-position	op1	range-01	r2	r	
+# ::edge	relative-position	op1	grass	r2	g	
+# ::edge	grass	location	safarga	g	s	
+(p / park-01
+    :ARG1 (t / truck
+        :mod (v / vehicle
+            :name (n / name
+                :op1 "SUV")
+            :mod (s2 / sport)))
+    :location (r2 / relative-position
+        :op1 (r / range-01
+            :ARG1 (d / desert))
+        :op1 (g / grass
+            :location (s / safarga))))

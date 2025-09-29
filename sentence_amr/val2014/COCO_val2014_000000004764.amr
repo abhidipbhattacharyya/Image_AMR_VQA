@@ -1,0 +1,42 @@
+# ::tok A motorcycle with a flat rear tire sits in a workshop , while a person stands behind it , facing away from the camera .
+# ::node	m	motorcycle	1-2
+# ::node	f2	flat-06	4-5
+# ::node	r	rear	5-6
+# ::node	t	tire	6-7
+# ::node	s	sit-01	7-8
+# ::node	w	workshop	10-11
+# ::node	a	and	11-12
+# ::node	p	person	14-15
+# ::node	s2	stand-01	15-16
+# ::node	b	behind	16-17
+# ::node	f	face-01	19-20
+# ::node	a2	away	20-21
+# ::node	c	camera	23-24
+# ::root	a	and
+# ::edge	tire	mod	rear	t	r	
+# ::edge	tire	ARG1-of	flat-06	t	f2	
+# ::edge	motorcycle	part	tire	m	t	
+# ::edge	sit-01	ARG1	motorcycle	s	m	
+# ::edge	sit-01	ARG2	workshop	s	w	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG2	behind	s2	b	
+# ::edge	behind	op1	motorcycle	b	m	
+# ::edge	person	ARG0-of	face-01	p	f	
+# ::edge	face-01	ARG1	away	f	a2	
+# ::edge	away	op1	camera	a2	c	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / motorcycle
+            :part (t / tire
+                :ARG1-of (f2 / flat-06)
+                :mod (r / rear)))
+        :ARG2 (w / workshop))
+    :op2 (s2 / stand-01
+        :ARG1 (p / person
+            :ARG0-of (f / face-01
+                :ARG1 (a2 / away
+                    :op1 (c / camera))))
+        :ARG2 (b / behind
+            :op1 m)))

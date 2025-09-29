@@ -1,0 +1,25 @@
+# ::tok A stop sign at a two way street with a hanging traffic light .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	t2	two-way	6-7
+# ::node	s3	street	7-8
+# ::node	h2	have-03	8-9
+# ::node	h	hang-01	10-11
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	street	mod	two-way	s3	t2	
+# ::edge	signal-07	location	street	s	s3	
+# ::edge	street	ARG0-of	have-03	s3	h2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	hang-01	l	h	
+# ::edge	have-03	ARG1	light	h2	l	
+(s / signal-07
+    :ARG1 (s2 / stop-01)
+    :location (s3 / street
+        :ARG0-of (h2 / have-03
+            :ARG1 (l / light
+                :ARG1-of (h / hang-01)
+                :mod (t / traffic)))
+        :mod (t2 / two-way)))

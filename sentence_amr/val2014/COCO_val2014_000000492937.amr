@@ -1,0 +1,36 @@
+# ::tok The bicycle is locked to the metal pole as the young man waits to board the mass transit train .
+# ::node	b	bicycle	1-2
+# ::node	l	lock-01	3-4
+# ::node	m3	metal	6-7
+# ::node	p	pole	7-8
+# ::node	y	young	10-11
+# ::node	m	man	11-12
+# ::node	w	wait-01	12-13
+# ::node	b2	board-01	14-15
+# ::node	m2	mass	16-17
+# ::node	t2	transit-01	17-18
+# ::node	t	train	18-19
+# ::root	l	lock-01
+# ::edge	lock-01	ARG1	bicycle	l	b	
+# ::edge	pole	mod	metal	p	m3	
+# ::edge	lock-01	ARG2	pole	l	p	
+# ::edge	man	mod	young	m	y	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	lock-01	time	wait-01	l	w	
+# ::edge	wait-01	ARG2	board-01	w	b2	
+# ::edge	board-01	ARG0	man	b2	m	
+# ::edge	transit-01	mod	mass	t2	m2	
+# ::edge	train	ARG2-of	transit-01	t	t2	
+# ::edge	board-01	ARG1	train	b2	t	
+(l / lock-01
+    :ARG1 (b / bicycle)
+    :ARG2 (p / pole
+        :mod (m3 / metal))
+    :time (w / wait-01
+        :ARG1 (m / man
+            :mod (y / young))
+        :ARG2 (b2 / board-01
+            :ARG0 m
+            :ARG1 (t / train
+                :ARG2-of (t2 / transit-01
+                    :mod (m2 / mass))))))

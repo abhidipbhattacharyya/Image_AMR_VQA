@@ -1,0 +1,35 @@
+# ::tok A few people walking onto a beach for a day of swimming and fun .
+# ::node	f	few	1-2
+# ::node	p	person	2-3
+# ::node	w	walk-01	3-4
+# ::node	b	beach	6-7
+# ::node	0	1	8-9
+# ::node	t	temporal-quantity	9-10
+# ::node	d	day	9-10
+# ::node	s	swim-01	11-12
+# ::node	a	and	12-13
+# ::node	f2	fun-01	13-14
+# ::root	w	walk-01
+# ::edge	person	quant	few	p	f	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	destination	beach	w	b	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	walk-01	purpose	temporal-quantity	w	t	
+# ::edge	temporal-quantity	unit	day	t	d	
+# ::edge	swim-01	ARG0	person	s	p	
+# ::edge	and	op1	swim-01	a	s	
+# ::edge	temporal-quantity	duration-of	and	t	a	
+# ::edge	and	op2	fun-01	a	f2	
+# ::edge	fun-01	ARG0	person	f2	p	
+(w / walk-01
+    :purpose (t / temporal-quantity
+        :quant 1
+        :duration-of (a / and
+            :op1 (s / swim-01
+                :ARG0 (p / person
+                    :quant (f / few)))
+            :op2 (f2 / fun-01
+                :ARG0 p))
+        :unit (d / day))
+    :ARG0 p
+    :destination (b / beach))

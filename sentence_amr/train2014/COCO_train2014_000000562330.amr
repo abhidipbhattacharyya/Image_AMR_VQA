@@ -1,0 +1,31 @@
+# ::tok A military truck is among other vehicles parked alongside the street in this city .
+# ::node	m	military	1-2
+# ::node	t2	truck	2-3
+# ::node	i	include-91	4-5
+# ::node	o	other	5-6
+# ::node	v	vehicle	6-7
+# ::node	p	park-01	7-8
+# ::node	a	alongside	8-9
+# ::node	s	street	10-11
+# ::node	t	this	12-13
+# ::node	c	city	13-14
+# ::root	i	include-91
+# ::edge	truck	mod	military	t2	m	
+# ::edge	include-91	ARG1	truck	i	t2	
+# ::edge	vehicle	mod	other	v	o	
+# ::edge	include-91	ARG2	vehicle	i	v	
+# ::edge	vehicle	ARG1-of	park-01	v	p	
+# ::edge	park-01	ARG2	alongside	p	a	
+# ::edge	alongside	op1	street	a	s	
+# ::edge	city	mod	this	c	t	
+# ::edge	street	location	city	s	c	
+(i / include-91
+    :ARG1 (t2 / truck
+        :mod (m / military))
+    :ARG2 (v / vehicle
+        :ARG1-of (p / park-01
+            :ARG2 (a / alongside
+                :op1 (s / street
+                    :location (c / city
+                        :mod (t / this)))))
+        :mod (o / other)))

@@ -1,0 +1,31 @@
+# ::tok A sign above a building is visible in the background while there are street signs in the foreground .
+# ::node	s2	sign	1-2
+# ::node	a	above	2-3
+# ::node	b2	building	4-5
+# ::node	p	possible-01	6-7
+# ::node	s	see-01	6-7
+# ::node	b	background	9-10
+# ::node	c	contrast-01	10-11
+# ::node	s4	street	13-14
+# ::node	s3	sign	14-15
+# ::node	f	foreground	17-18
+# ::root	p	possible-01
+# ::edge	sign	location	above	s2	a	
+# ::edge	above	op1	building	a	b2	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	sign	s	s2	
+# ::edge	sign	location	background	s2	b	
+# ::edge	possible-01	ARG1-of	contrast-01	p	c	
+# ::edge	sign	mod	street	s3	s4	
+# ::edge	contrast-01	ARG2	sign	c	s3	
+# ::edge	sign	location	foreground	s3	f	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (s2 / sign
+            :location (a / above
+                :op1 (b2 / building))
+            :location (b / background)))
+    :ARG1-of (c / contrast-01
+        :ARG2 (s3 / sign
+            :location (f / foreground)
+            :mod (s4 / street))))

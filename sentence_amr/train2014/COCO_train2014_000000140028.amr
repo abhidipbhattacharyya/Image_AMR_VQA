@@ -1,0 +1,31 @@
+# ::tok People standing next to each other under umbrellas about to give a cheer
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	n	next-to	2-3
+# ::node	u2	under	6-7
+# ::node	u	umbrella	7-8
+# ::node	a	about-to	8-9
+# ::node	g	give-01	10-11
+# ::node	c	cheer-02	12-13
+# ::root	g	give-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	person	n	p	
+# ::edge	stand-01	location	under	s	u2	
+# ::edge	under	op1	umbrella	u2	u	
+# ::edge	give-01	time	about-to	g	a	
+# ::edge	give-01	ARG0	person	g	p	
+# ::edge	give-01	ARG1	cheer-02	g	c	
+# ::edge	cheer-02	ARG0	person	c	p	
+# ::edge	give-01	rel	stand-01	g	s	
+(g / give-01
+    :ARG0 (p / person)
+    :ARG1 (c / cheer-02
+        :ARG0 p)
+    :rel (s / stand-01
+        :ARG1 p
+        :ARG2 (n / next-to
+            :op1 p)
+        :location (u2 / under
+            :op1 (u / umbrella)))
+    :time (a / about-to))

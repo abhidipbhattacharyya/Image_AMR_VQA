@@ -1,0 +1,47 @@
+# ::tok Many people are observing and walking near several fruit stands , some trees , and buildings in the distance .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	o	observe-01	3-4
+# ::node	a	and	4-5
+# ::node	w	walk-01	5-6
+# ::node	n	near-02	6-7
+# ::node	s	several	7-8
+# ::node	f	fruit	8-9
+# ::node	s3	stand	9-10
+# ::node	s2	some	11-12
+# ::node	t	tree	12-13
+# ::node	a2	and	14-15
+# ::node	b	building	15-16
+# ::node	d	distance	18-19
+# ::root	a	and
+# ::edge	person	quant	many	p	m	
+# ::edge	observe-01	ARG0	person	o	p	
+# ::edge	and	op1	observe-01	a	o	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	stand	mod	fruit	s3	f	
+# ::edge	stand	quant	several	s3	s	
+# ::edge	tree	mod	some	t	s2	
+# ::edge	and	op2	tree	a2	t	
+# ::edge	and	op1	stand	a2	s3	
+# ::edge	near-02	ARG2	and	n	a2	
+# ::edge	observe-01	ARG1	and	o	a2	
+# ::edge	and	op3	building	a2	b	
+# ::edge	building	location	distance	b	d	
+(a / and
+    :ARG1-of (n / near-02
+        :ARG2 (a2 / and
+            :op1 (s3 / stand
+                :quant (s / several)
+                :mod (f / fruit))
+            :op2 (t / tree
+                :mod (s2 / some))
+            :op3 (b / building
+                :location (d / distance))))
+    :op1 (o / observe-01
+        :ARG0 (p / person
+            :quant (m / many))
+        :ARG1 a2)
+    :op2 (w / walk-01
+        :ARG0 p))

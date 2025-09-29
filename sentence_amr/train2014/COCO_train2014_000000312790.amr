@@ -1,0 +1,28 @@
+# ::tok Several types of boats sit out in the open water in front of a hillside .
+# ::node	s	several	0-1
+# ::node	t	type	1-2
+# ::node	b	boat	3-4
+# ::node	s2	sit-01	4-5
+# ::node	o2	out	5-6
+# ::node	o	open-06	8-9
+# ::node	w	water	9-10
+# ::node	i	in-front-of	11-12
+# ::node	h	hillside	14-15
+# ::root	s2	sit-01
+# ::edge	type	quant	several	t	s	
+# ::edge	boat	mod	type	b	t	
+# ::edge	sit-01	ARG1	boat	s2	b	
+# ::edge	sit-01	ARG2	out	s2	o2	
+# ::edge	water	ARG1-of	open-06	w	o	
+# ::edge	out	location	water	o2	w	
+# ::edge	water	location	in-front-of	w	i	
+# ::edge	in-front-of	op1	hillside	i	h	
+(s2 / sit-01
+    :ARG1 (b / boat
+        :mod (t / type
+            :quant (s / several)))
+    :ARG2 (o2 / out
+        :location (w / water
+            :ARG1-of (o / open-06)
+            :location (i / in-front-of
+                :op1 (h / hillside)))))

@@ -1,0 +1,32 @@
+# ::tok A person is holding a donut and broke off one piece with the other hand .
+# ::node	p	person	1-2
+# ::node	h2	hold-01	3-4
+# ::node	d	donut	5-6
+# ::node	a	and	6-7
+# ::node	b	break-01	7-8
+# ::node	0	1	9-10
+# ::node	p2	piece	10-11
+# ::node	o	other	13-14
+# ::node	h	hand	14-15
+# ::root	a	and
+# ::edge	hold-01	ARG0	person	h2	p	
+# ::edge	hold-01	ARG1	donut	h2	d	
+# ::edge	and	op1	hold-01	a	h2	
+# ::edge	and	op2	break-01	a	b	
+# ::edge	break-01	ARG0	person	b	p	
+# ::edge	piece	quant	1	p2	0	
+# ::edge	break-01	ARG1	piece	b	p2	
+# ::edge	hand	mod	other	h	o	
+# ::edge	break-01	instrument	hand	b	h	
+# ::edge	person	part	hand	p	h	
+(a / and
+    :op1 (h2 / hold-01
+        :ARG0 (p / person
+            :part (h / hand
+                :mod (o / other)))
+        :ARG1 (d / donut))
+    :op2 (b / break-01
+        :ARG0 p
+        :ARG1 (p2 / piece
+            :quant 1)
+        :instrument h))

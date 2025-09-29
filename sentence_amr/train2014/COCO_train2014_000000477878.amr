@@ -1,0 +1,28 @@
+# ::tok A street full of driving cars at night under a traffic light .
+# ::node	s	street	1-2
+# ::node	f	full-09	2-3
+# ::node	d2	drive-01	4-5
+# ::node	c	car	5-6
+# ::node	d	date-entity	7-8
+# ::node	n	night	7-8
+# ::node	u	under	8-9
+# ::node	t	traffic	10-11
+# ::node	l	light	11-12
+# ::root	s	street
+# ::edge	street	ARG1-of	full-09	s	f	
+# ::edge	car	ARG1-of	drive-01	c	d2	
+# ::edge	full-09	ARG2	car	f	c	
+# ::edge	drive-01	time	date-entity	d2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	street	location	under	s	u	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	under	op1	light	u	l	
+(s / street
+    :ARG1-of (f / full-09
+        :ARG2 (c / car
+            :ARG1-of (d2 / drive-01
+                :time (d / date-entity
+                    :dayperiod (n / night)))))
+    :location (u / under
+        :op1 (l / light
+            :mod (t / traffic))))

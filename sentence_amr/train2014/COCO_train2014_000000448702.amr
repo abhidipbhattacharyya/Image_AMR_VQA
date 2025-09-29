@@ -1,0 +1,33 @@
+# ::tok a red fire hydrant with a sign saying do not drink attached to it
+# ::node	r	red-02	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	s2	sign	6-7
+# ::node	s	say-01	7-8
+# ::node	y	you	8-9
+# ::node	1	imperative	8-9
+# ::node	0	-	9-10
+# ::node	d	drink-01	10-11
+# ::node	a	attach-01	11-12
+# ::root	h	hydrant
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	hydrant	location-of	sign	h	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	drink-01	polarity	-	d	0	
+# ::edge	drink-01	mode	imperative	d	1	
+# ::edge	drink-01	ARG0	you	d	y	
+# ::edge	say-01	ARG1	drink-01	s	d	
+# ::edge	hydrant	ARG1-of	attach-01	h	a	
+# ::edge	attach-01	ARG2	hydrant	a	h	
+(h / hydrant
+    :ARG1-of (r / red-02)
+    :ARG1-of (a / attach-01
+        :ARG2 h)
+    :location-of (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (d / drink-01
+                :ARG0 (y / you)
+                :mode imperative
+                :polarity -)))
+    :mod (f / fire))

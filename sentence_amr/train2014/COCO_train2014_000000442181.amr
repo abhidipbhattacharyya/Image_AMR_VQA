@@ -1,0 +1,24 @@
+# ::tok A wood stove with the door open revealing the fire inside .
+# ::node	w	wood	1-2
+# ::node	s	stove	2-3
+# ::node	d	door	5-6
+# ::node	o	open-09	6-7
+# ::node	r	reveal-01	7-8
+# ::node	f	fire	9-10
+# ::node	i	inside	10-11
+# ::root	s	stove
+# ::edge	stove	consist-of	wood	s	w	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	stove	condition	open-09	s	o	
+# ::edge	stove	ARG0-of	reveal-01	s	r	
+# ::edge	reveal-01	ARG1	fire	r	f	
+# ::edge	fire	location	inside	f	i	
+# ::edge	inside	op1	door	i	d	
+(s / stove
+    :ARG0-of (r / reveal-01
+        :ARG1 (f / fire
+            :location (i / inside
+                :op1 (d / door))))
+    :condition (o / open-09
+        :ARG1 d)
+    :consist-of (w / wood))

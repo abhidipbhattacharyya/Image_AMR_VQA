@@ -1,0 +1,44 @@
+# ::tok Sitting on a table is a pizza that is sitting on a wooden pot holder along with a bottle of wine , pizza cutter , plates and glasses .
+# ::node	t	table	3-4
+# ::node	p	pizza	6-7
+# ::node	s	sit-01	9-10
+# ::node	w2	wood	12-13
+# ::node	p3	pot	13-14
+# ::node	t2	thing	14-15
+# ::node	h	hold-01	14-15
+# ::node	b	bottle	18-19
+# ::node	w	wine	20-21
+# ::node	c	cut-01	23-24
+# ::node	p2	plate	25-26
+# ::node	a	and	26-27
+# ::node	g	glass	27-28
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	pizza	s	p	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	thing	mod	wood	t2	w2	
+# ::edge	sit-01	ARG2	thing	s	t2	
+# ::edge	thing	ARG0-of	hold-01	t2	h	
+# ::edge	hold-01	ARG1	pot	h	p3	
+# ::edge	bottle	consist-of	wine	b	w	
+# ::edge	cut-01	ARG1	pizza	c	p	
+# ::edge	and	op3	plate	a	p2	
+# ::edge	and	op2	cut-01	a	c	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	pizza	accompanier	and	p	a	
+# ::edge	and	op4	glass	a	g	
+# ::edge	sit-01	rel	bottle	s	b	
+(s / sit-01
+    :ARG1 (p / pizza
+        :accompanier (a / and
+            :op1 p
+            :op2 (c / cut-01
+                :ARG1 p)
+            :op3 (p2 / plate)
+            :op4 (g / glass)))
+    :ARG2 (t / table)
+    :ARG2 (t2 / thing
+        :ARG0-of (h / hold-01
+            :ARG1 (p3 / pot))
+        :mod (w2 / wood))
+    :rel (b / bottle
+        :consist-of (w / wine)))

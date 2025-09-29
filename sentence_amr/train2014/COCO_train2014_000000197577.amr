@@ -1,0 +1,46 @@
+# ::tok pork chops and broccoli on one plate a glass of chocolate milk and salad on another plate
+# ::node	p3	pork	0-1
+# ::node	p4	pound	1-2
+# ::node	a	and	2-3
+# ::node	b	broccoli	3-4
+# ::node	o	one	5-6
+# ::node	p	plate	6-7
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	c	chocolate	10-11
+# ::node	m	milk	11-12
+# ::node	a2	and	12-13
+# ::node	s	salad	13-14
+# ::node	a3	another	15-16
+# ::node	p2	plate	16-17
+# ::root	a	and
+# ::edge	pork	unit	pound	p3	p4	
+# ::edge	and	op1	pork	a	p3	
+# ::edge	and	op2	broccoli	a	b	
+# ::edge	plate	mod	one	p	o	
+# ::edge	and	location	plate	a	p	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	milk	mod	chocolate	m	c	
+# ::edge	milk	quant	volume-quantity	m	v	
+# ::edge	and	op1	milk	a2	m	
+# ::edge	and	op3	and	a	a2	
+# ::edge	and	op2	salad	a2	s	
+# ::edge	plate	mod	another	p2	a3	
+# ::edge	salad	location	plate	s	p2	
+(a / and
+    :location (p / plate
+        :mod (o / one))
+    :op1 (p3 / pork
+        :unit (p4 / pound))
+    :op2 (b / broccoli)
+    :op3 (a2 / and
+        :op1 (m / milk
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :mod (c / chocolate))
+        :op2 (s / salad
+            :location (p2 / plate
+                :mod (a3 / another)))))

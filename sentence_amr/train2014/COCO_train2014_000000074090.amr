@@ -1,0 +1,30 @@
+# ::tok A baseball player wearing a uniform while standing next to home plate .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	u	uniform	5-6
+# ::node	s	stand-01	7-8
+# ::node	n	next-to	8-9
+# ::node	h	home	10-11
+# ::node	p2	plate	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	wear-01	ARG1	uniform	w	u	
+# ::edge	wear-01	time	stand-01	w	s	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	next-to	op1	plate	n	p2	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (w / wear-01
+        :ARG1 (u / uniform)
+        :time (s / stand-01
+            :ARG1 p
+            :ARG2 (n / next-to
+                :op1 (p2 / plate
+                    :mod (h / home))))))

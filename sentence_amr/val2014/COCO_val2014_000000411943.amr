@@ -1,0 +1,35 @@
+# ::tok This room only has a toilet and the tank for the toilet is suspended on the wall above the toilet .
+# ::node	t2	this	0-1
+# ::node	r	room	1-2
+# ::node	o	only	2-3
+# ::node	h	have-03	3-4
+# ::node	t3	toilet	5-6
+# ::node	a2	and	6-7
+# ::node	t	tank	8-9
+# ::node	s	suspend-02	13-14
+# ::node	w	wall	16-17
+# ::node	a	above	17-18
+# ::root	a2	and
+# ::edge	room	mod	this	r	t2	
+# ::edge	have-03	mod	only	h	o	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	have-03	ARG1	toilet	h	t3	
+# ::edge	and	op1	have-03	a2	h	
+# ::edge	tank	purpose	toilet	t	t3	
+# ::edge	suspend-02	ARG1	tank	s	t	
+# ::edge	and	op2	suspend-02	a2	s	
+# ::edge	suspend-02	ARG2	wall	s	w	
+# ::edge	wall	location	above	w	a	
+# ::edge	above	op1	toilet	a	t3	
+(a2 / and
+    :op1 (h / have-03
+        :ARG0 (r / room
+            :mod (t2 / this))
+        :ARG1 (t3 / toilet)
+        :mod (o / only))
+    :op2 (s / suspend-02
+        :ARG1 (t / tank
+            :purpose t3)
+        :ARG2 (w / wall
+            :location (a / above
+                :op1 t3))))

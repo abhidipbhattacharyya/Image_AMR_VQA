@@ -1,0 +1,24 @@
+# ::tok A parking meter sitting next to a parking lot at night .
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	s	sit-01	3-4
+# ::node	n	next-to	4-5
+# ::node	l	lot	8-9
+# ::node	d	date-entity	10-11
+# ::node	n2	night	10-11
+# ::root	s	sit-01
+# ::edge	meter	mod	park-01	m	p	
+# ::edge	sit-01	ARG1	meter	s	m	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	lot	n	l	
+# ::edge	lot	mod	park-01	l	p	
+# ::edge	sit-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(s / sit-01
+    :ARG1 (m / meter
+        :mod (p / park-01))
+    :ARG2 (n / next-to
+        :op1 (l / lot
+            :mod p))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

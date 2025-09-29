@@ -1,0 +1,24 @@
+# ::tok a fully cooked pizza sitting on a tray with a spatula digging into it
+# ::node	f	full	1-2
+# ::node	c	cook-01	2-3
+# ::node	p	pizza	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	tray	7-8
+# ::node	s2	spatula	10-11
+# ::node	d	dig-01	11-12
+# ::root	d	dig-01
+# ::edge	cook-01	degree	full	c	f	
+# ::edge	pizza	ARG1-of	cook-01	p	c	
+# ::edge	pizza	ARG1-of	sit-01	p	s	
+# ::edge	sit-01	ARG2	tray	s	t	
+# ::edge	dig-01	instrument	spatula	d	s2	
+# ::edge	dig-01	ARG2	pizza	d	p	
+# ::edge	dig-01	ARG0	pizza	d	p	
+(d / dig-01
+    :ARG0 (p / pizza
+        :ARG1-of (c / cook-01
+            :degree (f / full))
+        :ARG1-of (s / sit-01
+            :ARG2 (t / tray)))
+    :ARG2 p
+    :instrument (s2 / spatula))

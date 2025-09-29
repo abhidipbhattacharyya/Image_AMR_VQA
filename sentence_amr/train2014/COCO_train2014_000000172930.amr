@@ -1,0 +1,25 @@
+# ::tok Quite unique traffic signal that determines access into a restricted area
+# ::node	q	quite	0-1
+# ::node	u	unique-01	1-2
+# ::node	t	traffic	2-3
+# ::node	s	signal	3-4
+# ::node	d	determine-01	5-6
+# ::node	a	access-01	6-7
+# ::node	r	restrict-01	9-10
+# ::node	a2	area	10-11
+# ::root	s	signal
+# ::edge	unique-01	degree	quite	u	q	
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	signal	ARG1-of	unique-01	s	u	
+# ::edge	signal	ARG0-of	determine-01	s	d	
+# ::edge	determine-01	ARG1	access-01	d	a	
+# ::edge	area	ARG1-of	restrict-01	a2	r	
+# ::edge	access-01	ARG1	area	a	a2	
+(s / signal
+    :ARG0-of (d / determine-01
+        :ARG1 (a / access-01
+            :ARG1 (a2 / area
+                :ARG1-of (r / restrict-01))))
+    :ARG1-of (u / unique-01
+        :degree (q / quite))
+    :mod (t / traffic))

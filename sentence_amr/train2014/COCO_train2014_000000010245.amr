@@ -1,0 +1,22 @@
+# ::tok Someone sleeps on a bed almost completely covered in a blanket .
+# ::node	s2	someone	0-1
+# ::node	s	sleep-01	1-2
+# ::node	b	bed	4-5
+# ::node	a	almost	5-6
+# ::node	c	complete	6-7
+# ::node	c2	cover-02	7-8
+# ::node	b2	blanket	10-11
+# ::root	s	sleep-01
+# ::edge	sleep-01	ARG0	someone	s	s2	
+# ::edge	sleep-01	location	bed	s	b	
+# ::edge	complete	mod	almost	c	a	
+# ::edge	cover-02	degree	complete	c2	c	
+# ::edge	bed	ARG1-of	cover-02	b	c2	
+# ::edge	cover-02	ARG2	blanket	c2	b2	
+(s / sleep-01
+    :ARG0 (s2 / someone)
+    :location (b / bed
+        :ARG1-of (c2 / cover-02
+            :ARG2 (b2 / blanket)
+            :degree (c / complete
+                :mod (a / almost)))))

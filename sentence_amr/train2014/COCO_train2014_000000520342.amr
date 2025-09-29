@@ -1,0 +1,34 @@
+# ::tok The emergency brake is enabled to keep the car from rolling down the hill .
+# ::node	e	emergency	1-2
+# ::node	b	brake-01	2-3
+# ::node	e2	enable-01	4-5
+# ::node	k	keep-04	6-7
+# ::node	c	car	8-9
+# ::node	0	-	9-10
+# ::node	r	roll-01	10-11
+# ::node	d	down-03	11-12
+# ::node	h	hill	13-14
+# ::root	e2	enable-01
+# ::edge	brake-01	mod	emergency	b	e	
+# ::edge	enable-01	ARG1	brake-01	e2	b	
+# ::edge	enable-01	purpose	keep-04	e2	k	
+# ::edge	keep-04	ARG0	brake-01	k	b	
+# ::edge	keep-04	ARG1	car	k	c	
+# ::edge	roll-01	polarity	-	r	0	
+# ::edge	roll-01	ARG1	car	r	c	
+# ::edge	keep-04	ARG2	roll-01	k	r	
+# ::edge	roll-01	direction	down-03	r	d	
+# ::edge	down-03	ARG1	car	d	c	
+# ::edge	down-03	ARG3	hill	d	h	
+(e2 / enable-01
+    :purpose (k / keep-04
+        :ARG0 (b / brake-01
+            :mod (e / emergency))
+        :ARG1 (c / car)
+        :ARG2 (r / roll-01
+            :ARG1 c
+            :direction (d / down-03
+                :ARG1 c
+                :ARG3 (h / hill))
+            :polarity -))
+    :ARG1 b)

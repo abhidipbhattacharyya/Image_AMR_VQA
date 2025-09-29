@@ -1,0 +1,39 @@
+# ::tok FOUR VEHICLES IN SNOW COVERED PARKING LOT , WITH ONLY ONE VEHICLE COVERED IN SNOW , AND A SUITCASE
+# ::node	1	4	0-1
+# ::node	v	vehicle	1-2
+# ::node	s	snow-01	3-4
+# ::node	p	park-01	5-6
+# ::node	l	lot	6-7
+# ::node	h	have-03	8-9
+# ::node	o	only	9-10
+# ::node	0	1	10-11
+# ::node	v2	vehicle	11-12
+# ::node	c2	cover-01	12-13
+# ::node	a	and	16-17
+# ::node	c	case-03	18-19
+# ::root	h	have-03
+# ::edge	vehicle	quant	4	v	1	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	lot	mod	snow-01	l	s	
+# ::edge	vehicle	location	lot	v	l	
+# ::edge	have-03	ARG0	vehicle	h	v	
+# ::edge	vehicle	quant	1	v2	0	
+# ::edge	vehicle	mod	only	v2	o	
+# ::edge	vehicle	ARG1-of	cover-01	v2	c2	
+# ::edge	cover-01	ARG2	snow-01	c2	s	
+# ::edge	and	op1	vehicle	a	v2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	case-03	a	c	
+(h / have-03
+    :ARG0 (v / vehicle
+        :quant 4
+        :location (l / lot
+            :ARG2-of (p / park-01)
+            :mod (s / snow-01)))
+    :ARG1 (a / and
+        :op1 (v2 / vehicle
+            :quant 1
+            :ARG1-of (c2 / cover-01
+                :ARG2 s)
+            :mod (o / only))
+        :op2 (c / case-03)))

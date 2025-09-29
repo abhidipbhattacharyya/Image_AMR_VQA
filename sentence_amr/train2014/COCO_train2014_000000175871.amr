@@ -1,0 +1,21 @@
+# ::tok A microwave that needs to be cleaned due to a spilled substance
+# ::node	m	microwave	1-2
+# ::node	n	need-01	3-4
+# ::node	c2	clean-01	6-7
+# ::node	c	cause-01	7-8
+# ::node	s	spill-01	10-11
+# ::node	s2	substance	11-12
+# ::root	m	microwave
+# ::edge	microwave	ARG0-of	need-01	m	n	
+# ::edge	need-01	ARG1	clean-01	n	c2	
+# ::edge	clean-01	ARG1	microwave	c2	m	
+# ::edge	need-01	ARG1-of	cause-01	n	c	
+# ::edge	substance	ARG1-of	spill-01	s2	s	
+# ::edge	cause-01	ARG0	substance	c	s2	
+(m / microwave
+    :ARG0-of (n / need-01
+        :ARG1 (c2 / clean-01
+            :ARG1 m)
+        :ARG1-of (c / cause-01
+            :ARG0 (s2 / substance
+                :ARG1-of (s / spill-01)))))

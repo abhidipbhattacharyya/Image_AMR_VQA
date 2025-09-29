@@ -1,0 +1,31 @@
+# ::tok Baseball player swinging at ball that is going toward catcher 's glove
+# ::node	b2	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	s	swing-02	2-3
+# ::node	b	ball	4-5
+# ::node	g2	go-01	7-8
+# ::node	t	toward	8-9
+# ::node	p2	person	9-10
+# ::node	c	catch-01	9-10
+# ::node	g	glove	11-12
+# ::root	s	swing-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	direction	ball	s	b	
+# ::edge	ball	ARG1-of	go-01	b	g2	
+# ::edge	go-01	direction	toward	g2	t	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	glove	part-of	person	g	p2	
+# ::edge	toward	op1	glove	t	g	
+(s / swing-02
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball)))
+    :direction (b / ball
+        :ARG1-of (g2 / go-01
+            :direction (t / toward
+                :op1 (g / glove
+                    :part-of (p2 / person
+                        :ARG0-of (c / catch-01)))))))

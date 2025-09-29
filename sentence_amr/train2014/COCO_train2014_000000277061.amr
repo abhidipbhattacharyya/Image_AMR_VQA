@@ -1,0 +1,32 @@
+# ::tok A baseball batter hitting a ball during the day or at least trying to .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	b3	batter-01	2-3
+# ::node	h	hit-01	3-4
+# ::node	b	ball	5-6
+# ::node	d	day	8-9
+# ::node	o	or	9-10
+# ::node	a	at-least	11-12
+# ::node	t	try-01	12-13
+# ::root	o	or
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	batter-01	ARG1	baseball	b3	b2	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	hit-01	time	day	h	d	
+# ::edge	or	op1	hit-01	o	h	
+# ::edge	try-01	mod	at-least	t	a	
+# ::edge	or	op2	try-01	o	t	
+# ::edge	try-01	ARG1	hit-01	t	h	
+# ::edge	try-01	ARG0	person	t	p	
+(o / or
+    :op1 (h / hit-01
+        :ARG0 (p / person
+            :ARG0-of (b3 / batter-01
+                :ARG1 (b2 / baseball)))
+        :ARG1 (b / ball)
+        :time (d / day))
+    :op2 (t / try-01
+        :ARG0 p
+        :ARG1 h
+        :mod (a / at-least)))

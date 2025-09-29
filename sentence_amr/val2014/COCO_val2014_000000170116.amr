@@ -1,0 +1,24 @@
+# ::tok The batting line up is pinned on the fridge so everyone can see it
+# ::node	b	bat	1-2
+# ::node	l	line-up-02	2-3
+# ::node	p	pin-01	5-6
+# ::node	f	fridge	8-9
+# ::node	e	everyone	10-11
+# ::node	p2	possible-01	11-12
+# ::node	s	see-01	12-13
+# ::root	p	pin-01
+# ::edge	line-up-02	ARG1	bat	l	b	
+# ::edge	pin-01	ARG1	line-up-02	p	l	
+# ::edge	pin-01	ARG2	fridge	p	f	
+# ::edge	pin-01	purpose	possible-01	p	p2	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	everyone	s	e	
+# ::edge	see-01	ARG1	line-up-02	s	l	
+(p / pin-01
+    :purpose (p2 / possible-01
+        :ARG1 (s / see-01
+            :ARG0 (e / everyone)
+            :ARG1 (l / line-up-02
+                :ARG1 (b / bat))))
+    :ARG1 l
+    :ARG2 (f / fridge))

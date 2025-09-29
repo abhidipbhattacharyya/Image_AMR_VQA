@@ -1,0 +1,28 @@
+# ::tok Driver examining a minor traffic accident between a bus and a car .
+# ::node	p	person	0-1
+# ::node	d	drive-01	0-1
+# ::node	e	examine-01	1-2
+# ::node	m	minor-01	3-4
+# ::node	t	traffic	4-5
+# ::node	a	accident	5-6
+# ::node	b	between	6-7
+# ::node	b2	bus	8-9
+# ::node	c	car	11-12
+# ::root	e	examine-01
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	examine-01	ARG0	person	e	p	
+# ::edge	accident	mod	traffic	a	t	
+# ::edge	accident	ARG1-of	minor-01	a	m	
+# ::edge	examine-01	ARG1	accident	e	a	
+# ::edge	accident	mod	between	a	b	
+# ::edge	between	op1	bus	b	b2	
+# ::edge	between	op2	car	b	c	
+(e / examine-01
+    :ARG0 (p / person
+        :ARG0-of (d / drive-01))
+    :ARG1 (a / accident
+        :ARG1-of (m / minor-01)
+        :mod (t / traffic)
+        :mod (b / between
+            :op1 (b2 / bus)
+            :op2 (c / car))))

@@ -1,0 +1,28 @@
+# ::tok A pizza resting on a plate near several glasses of wine ,
+# ::node	p	pizza	1-2
+# ::node	r	rest-01	2-3
+# ::node	p2	plate	5-6
+# ::node	n	near-02	6-7
+# ::node	s	several	7-8
+# ::node	0	1	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	g	glasses	8-9
+# ::node	w	wine	10-11
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	pizza	r	p	
+# ::edge	rest-01	ARG2	plate	r	p2	
+# ::edge	plate	ARG1-of	near-02	p2	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	several	op1	volume-quantity	s	v	
+# ::edge	volume-quantity	unit	glasses	v	g	
+# ::edge	wine	quant	several	w	s	
+# ::edge	near-02	ARG2	wine	n	w	
+(r / rest-01
+    :ARG1 (p / pizza)
+    :ARG2 (p2 / plate
+        :ARG1-of (n / near-02
+            :ARG2 (w / wine
+                :quant (s / several
+                    :op1 (v / volume-quantity
+                        :quant 1
+                        :unit (g / glasses)))))))

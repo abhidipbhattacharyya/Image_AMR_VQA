@@ -1,0 +1,28 @@
+# ::tok A commercial grade stove with approximately 12 burners and a couple of ovens .
+# ::node	c	commerce	1-2
+# ::node	g	grade	2-3
+# ::node	s	stove	3-4
+# ::node	a2	approximately	5-6
+# ::node	0	12	6-7
+# ::node	b	burn-01	7-8
+# ::node	a	and	8-9
+# ::node	c2	couple	10-11
+# ::node	o	oven	12-13
+# ::root	s	stove
+# ::edge	grade	mod	commerce	g	c	
+# ::edge	stove	mod	grade	s	g	
+# ::edge	approximately	op1	12	a2	0	
+# ::edge	burn-01	quant	approximately	b	a2	
+# ::edge	and	op1	burn-01	a	b	
+# ::edge	stove	part	and	s	a	
+# ::edge	oven	quant	couple	o	c2	
+# ::edge	and	op2	oven	a	o	
+(s / stove
+    :mod (g / grade
+        :mod (c / commerce))
+    :part (a / and
+        :op1 (b / burn-01
+            :quant (a2 / approximately
+                :op1 12))
+        :op2 (o / oven
+            :quant (c2 / couple))))

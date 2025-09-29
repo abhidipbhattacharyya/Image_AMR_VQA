@@ -1,0 +1,40 @@
+# ::tok A passenger train engine pulling cars behind it on tracks and connected to wires above it .
+# ::node	p	passenger	1-2
+# ::node	t2	train	2-3
+# ::node	e	engine	3-4
+# ::node	p2	pull-01	4-5
+# ::node	c	car	5-6
+# ::node	b	behind	6-7
+# ::node	t	track	9-10
+# ::node	a2	and	10-11
+# ::node	c2	connect-01	11-12
+# ::node	w	wire	13-14
+# ::node	a	above	14-15
+# ::root	a2	and
+# ::edge	train	mod	passenger	t2	p	
+# ::edge	engine	mod	train	e	t2	
+# ::edge	pull-01	ARG0	engine	p2	e	
+# ::edge	pull-01	ARG1	car	p2	c	
+# ::edge	pull-01	ARG2	behind	p2	b	
+# ::edge	behind	op1	engine	b	e	
+# ::edge	pull-01	location	track	p2	t	
+# ::edge	and	op1	pull-01	a2	p2	
+# ::edge	and	op2	connect-01	a2	c2	
+# ::edge	connect-01	ARG1	engine	c2	e	
+# ::edge	connect-01	ARG2	wire	c2	w	
+# ::edge	wire	location	above	w	a	
+# ::edge	above	op1	engine	a	e	
+(a2 / and
+    :op1 (p2 / pull-01
+        :ARG0 (e / engine
+            :mod (t2 / train
+                :mod (p / passenger)))
+        :ARG1 (c / car)
+        :ARG2 (b / behind
+            :op1 e)
+        :location (t / track))
+    :op2 (c2 / connect-01
+        :ARG1 e
+        :ARG2 (w / wire
+            :location (a / above
+                :op1 e))))

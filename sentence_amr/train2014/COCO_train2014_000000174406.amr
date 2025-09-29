@@ -1,0 +1,47 @@
+# ::tok A picture of a yellow road sign by a road with a wizard and below it says " You Cannot Pass " .
+# ::node	p2	picture-01	1-2
+# ::node	y	yellow-02	4-5
+# ::node	r	road	5-6
+# ::node	s2	sign	6-7
+# ::node	r2	road	9-10
+# ::node	h	have-03	10-11
+# ::node	w	wizard	12-13
+# ::node	a	and	13-14
+# ::node	b	below	14-15
+# ::node	s	say-01	16-17
+# ::node	y2	you	18-19
+# ::node	p3	possible-01	19-20
+# ::node	0	-	19-20
+# ::node	p	pass-03	20-21
+# ::root	a	and
+# ::edge	sign	mod	road	s2	r	
+# ::edge	sign	ARG1-of	yellow-02	s2	y	
+# ::edge	picture-01	ARG1	sign	p2	s2	
+# ::edge	sign	location	road	s2	r2	
+# ::edge	road	ARG0-of	have-03	r2	h	
+# ::edge	have-03	ARG1	wizard	h	w	
+# ::edge	and	op1	picture-01	a	p2	
+# ::edge	below	op1	sign	b	s2	
+# ::edge	say-01	location	below	s	b	
+# ::edge	and	op2	say-01	a	s	
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	say-01	ARG1	possible-01	s	p3	
+# ::edge	possible-01	polarity	-	p3	0	
+# ::edge	possible-01	ARG1	pass-03	p3	p	
+# ::edge	pass-03	ARG1	you	p	y2	
+(a / and
+    :op1 (p2 / picture-01
+        :ARG1 (s2 / sign
+            :ARG1-of (y / yellow-02)
+            :location (r2 / road
+                :ARG0-of (h / have-03
+                    :ARG1 (w / wizard)))
+            :mod (r / road)))
+    :op2 (s / say-01
+        :ARG0 s2
+        :ARG1 (p3 / possible-01
+            :ARG1 (p / pass-03
+                :ARG1 (y2 / you))
+            :polarity -)
+        :location (b / below
+            :op1 s2)))

@@ -1,0 +1,48 @@
+# ::tok Four cats lay on a desk near two computer monitors and a keyboard while near them a bowl holds medicine bottles .
+# ::node	1	4	0-1
+# ::node	c	cat	1-2
+# ::node	l	lay-01	2-3
+# ::node	d	desk	5-6
+# ::node	n	near-02	6-7
+# ::node	0	2	7-8
+# ::node	c2	computer	8-9
+# ::node	m2	monitor	9-10
+# ::node	a	and	10-11
+# ::node	k	keyboard	12-13
+# ::node	n2	near-02	14-15
+# ::node	b2	bowl	17-18
+# ::node	h	hold-01	18-19
+# ::node	m	medicine	19-20
+# ::node	b	bottle	20-21
+# ::root	l	lay-01
+# ::edge	cat	quant	4	c	1	
+# ::edge	lay-01	ARG1	cat	l	c	
+# ::edge	lay-01	ARG2	desk	l	d	
+# ::edge	desk	ARG1-of	near-02	d	n	
+# ::edge	monitor	mod	computer	m2	c2	
+# ::edge	monitor	quant	2	m2	0	
+# ::edge	and	op1	monitor	a	m2	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	and	op2	keyboard	a	k	
+# ::edge	near-02	ARG2	desk	n2	d	
+# ::edge	hold-01	ARG0	bowl	h	b2	
+# ::edge	hold-01	location	near-02	h	n2	
+# ::edge	lay-01	time	hold-01	l	h	
+# ::edge	bottle	mod	medicine	b	m	
+# ::edge	hold-01	ARG1	bottle	h	b	
+(l / lay-01
+    :ARG1 (c / cat
+        :quant 4)
+    :ARG2 (d / desk
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (m2 / monitor
+                    :quant 2
+                    :mod (c2 / computer))
+                :op2 (k / keyboard))))
+    :time (h / hold-01
+        :ARG0 (b2 / bowl)
+        :ARG1 (b / bottle
+            :mod (m / medicine))
+        :location (n2 / near-02
+            :ARG2 d)))

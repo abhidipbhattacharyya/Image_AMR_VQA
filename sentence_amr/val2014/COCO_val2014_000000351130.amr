@@ -1,0 +1,96 @@
+# ::tok Seen through a wire fence , is a stadium area with watchers and many vacant chairs , a dugout with a railing and many men leaning on it , and a playing area with a lunging , uniformed batter with a catcher and an umpire behind him .
+# ::node	s	see-01	0-1
+# ::node	t	through	1-2
+# ::node	w3	wire	3-4
+# ::node	f	fence	4-5
+# ::node	s2	stadium	8-9
+# ::node	a3	area	9-10
+# ::node	h	have-03	10-11
+# ::node	p	person	11-12
+# ::node	w	watch-01	11-12
+# ::node	a	and	12-13
+# ::node	m2	many	13-14
+# ::node	e	empty-02	14-15
+# ::node	c2	chair	15-16
+# ::node	d	dugout	18-19
+# ::node	h2	have-03	19-20
+# ::node	r	railing	21-22
+# ::node	m3	many	23-24
+# ::node	m	man	24-25
+# ::node	l	lean-01	25-26
+# ::node	p4	play-01	31-32
+# ::node	a4	area	32-33
+# ::node	h3	have-03	33-34
+# ::node	w2	wide-02	35-36
+# ::node	u2	uniform-01	37-38
+# ::node	p2	person	38-39
+# ::node	s3	strike-01	38-39
+# ::node	c	catcher	41-42
+# ::node	a2	and	42-43
+# ::node	p3	person	44-45
+# ::node	u	umpire-01	44-45
+# ::node	b	behind	45-46
+# ::root	a3	area
+# ::edge	see-01	path	through	s	t	
+# ::edge	fence	mod	wire	f	w3	
+# ::edge	through	op1	fence	t	f	
+# ::edge	area	mod	stadium	a3	s2	
+# ::edge	area	ARG1-of	see-01	a3	s	
+# ::edge	area	ARG0-of	have-03	a3	h	
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	and	op1	person	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	chair	ARG1-of	empty-02	c2	e	
+# ::edge	chair	quant	many	c2	m2	
+# ::edge	and	op2	chair	a	c2	
+# ::edge	and	op3	dugout	a	d	
+# ::edge	dugout	ARG0-of	have-03	d	h2	
+# ::edge	have-03	ARG1	railing	h2	r	
+# ::edge	man	quant	many	m	m3	
+# ::edge	lean-01	ARG1	man	l	m	
+# ::edge	railing	ARG2-of	lean-01	r	l	
+# ::edge	area	location-of	play-01	a4	p4	
+# ::edge	and	op4	area	a	a4	
+# ::edge	area	ARG0-of	have-03	a4	h3	
+# ::edge	person	ARG1-of	uniform-01	p2	u2	
+# ::edge	person	ARG1-of	wide-02	p2	w2	
+# ::edge	have-03	ARG1	person	h3	p2	
+# ::edge	person	ARG0-of	strike-01	p2	s3	
+# ::edge	and	op1	catcher	a2	c	
+# ::edge	person	accompanier	and	p2	a2	
+# ::edge	and	op2	person	a2	p3	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+# ::edge	and	location	behind	a2	b	
+# ::edge	behind	op1	catcher	b	c	
+(a3 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p / person
+                :ARG0-of (w / watch-01))
+            :op2 (c2 / chair
+                :quant (m2 / many)
+                :ARG1-of (e / empty-02))
+            :op3 (d / dugout
+                :ARG0-of (h2 / have-03
+                    :ARG1 (r / railing
+                        :ARG2-of (l / lean-01
+                            :ARG1 (m / man
+                                :quant (m3 / many))))))
+            :op4 (a4 / area
+                :ARG0-of (h3 / have-03
+                    :ARG1 (p2 / person
+                        :ARG0-of (s3 / strike-01)
+                        :ARG1-of (u2 / uniform-01)
+                        :ARG1-of (w2 / wide-02)
+                        :accompanier (a2 / and
+                            :location (b / behind
+                                :op1 (c / catcher))
+                            :op1 c
+                            :op2 (p3 / person
+                                :ARG0-of (u / umpire-01)))))
+                :location-of (p4 / play-01))))
+    :ARG1-of (s / see-01
+        :path (t / through
+            :op1 (f / fence
+                :mod (w3 / wire))))
+    :mod (s2 / stadium))

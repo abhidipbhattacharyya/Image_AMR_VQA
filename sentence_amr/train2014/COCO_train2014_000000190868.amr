@@ -1,0 +1,30 @@
+# ::tok A train runs along a railroad track , with another close behind .
+# ::node	t2	train	1-2
+# ::node	t3	train	1-2
+# ::node	r2	run-04	2-3
+# ::node	a	along	3-4
+# ::node	r	railroad	5-6
+# ::node	t	track	6-7
+# ::node	a2	another	9-10
+# ::node	c	close-10	10-11
+# ::node	b	behind	11-12
+# ::root	r2	run-04
+# ::edge	run-04	ARG1	train	r2	t2	
+# ::edge	run-04	path	along	r2	a	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	along	op1	track	a	t	
+# ::edge	train	mod	another	t3	a2	
+# ::edge	close-10	ARG1	train	c	t3	
+# ::edge	behind	ARG2-of	close-10	b	c	
+# ::edge	train	location	behind	t3	b	
+# ::edge	run-04	rel	train	r2	t3	
+(r2 / run-04
+    :ARG1 (t2 / train)
+    :path (a / along
+        :op1 (t / track
+            :mod (r / railroad)))
+    :rel (t3 / train
+        :location (b / behind
+            :ARG2-of (c / close-10
+                :ARG1 t3))
+        :mod (a2 / another)))

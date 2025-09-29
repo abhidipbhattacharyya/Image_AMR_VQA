@@ -1,0 +1,34 @@
+# ::tok a corner with a stop sign , red light poles and a yellow shopping cart .
+# ::node	c2	corner	1-2
+# ::node	h	have-03	2-3
+# ::node	s3	stop-01	4-5
+# ::node	s2	signal-07	5-6
+# ::node	r	red-02	7-8
+# ::node	l	light	8-9
+# ::node	p	pole	9-10
+# ::node	a	and	10-11
+# ::node	y	yellow-02	12-13
+# ::node	s	shop-01	13-14
+# ::node	c	cart	14-15
+# ::root	c2	corner
+# ::edge	corner	ARG0-of	have-03	c2	h	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	pole	mod	light	p	l	
+# ::edge	pole	ARG1-of	red-02	p	r	
+# ::edge	and	op2	pole	a	p	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cart	purpose	shop-01	c	s	
+# ::edge	cart	ARG1-of	yellow-02	c	y	
+# ::edge	and	op3	cart	a	c	
+(c2 / corner
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / signal-07
+                :ARG1 (s3 / stop-01))
+            :op2 (p / pole
+                :ARG1-of (r / red-02)
+                :mod (l / light))
+            :op3 (c / cart
+                :purpose (s / shop-01)
+                :ARG1-of (y / yellow-02)))))

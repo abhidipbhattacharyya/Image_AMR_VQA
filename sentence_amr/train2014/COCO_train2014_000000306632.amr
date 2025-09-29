@@ -1,0 +1,40 @@
+# ::tok A group of people in front of a table containing two cakes are smiling in the same direction that a woman is pointing .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	i	in-front-of	5-6
+# ::node	t	table	8-9
+# ::node	c2	contain-01	9-10
+# ::node	0	2	10-11
+# ::node	c	cake	11-12
+# ::node	s2	smile-01	13-14
+# ::node	s	same-01	16-17
+# ::node	d	direction	17-18
+# ::node	d2	direction	17-18
+# ::node	w	woman	20-21
+# ::node	p2	point-01	22-23
+# ::root	s2	smile-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	group	location	in-front-of	g	i	
+# ::edge	in-front-of	op1	table	i	t	
+# ::edge	table	ARG0-of	contain-01	t	c2	
+# ::edge	cake	quant	2	c	0	
+# ::edge	contain-01	ARG1	cake	c2	c	
+# ::edge	smile-01	ARG0	group	s2	g	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	smile-01	direction	direction	s2	d	
+# ::edge	same-01	ARG2	direction	s	d2	
+# ::edge	point-01	ARG0	woman	p2	w	
+# ::edge	direction	ARG1-of	point-01	d2	p2	
+(s2 / smile-01
+    :ARG0 (g / group
+        :consist-of (p / person)
+        :location (i / in-front-of
+            :op1 (t / table
+                :ARG0-of (c2 / contain-01
+                    :ARG1 (c / cake
+                        :quant 2)))))
+    :direction (d / direction
+        :ARG1-of (s / same-01
+            :ARG2 (d2 / direction
+                :ARG1-of (p2 / point-01
+                    :ARG0 (w / woman))))))

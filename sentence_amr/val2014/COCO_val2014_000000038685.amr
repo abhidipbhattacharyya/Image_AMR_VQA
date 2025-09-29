@@ -1,0 +1,33 @@
+# ::tok Chinese subway signs and directional map signs on a street .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	China	0-1
+# ::node	s4	subway	1-2
+# ::node	s	sign	2-3
+# ::node	a	and	3-4
+# ::node	d	direct-01	4-5
+# ::node	m	map	5-6
+# ::node	s2	sign	6-7
+# ::node	s3	street	9-10
+# ::root	a	and
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	sign	mod	subway	s	s4	
+# ::edge	sign	mod	country	s	c	
+# ::edge	and	op1	sign	a	s	
+# ::edge	map	ARG0-of	direct-01	m	d	
+# ::edge	sign	purpose	map	s2	m	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	sign	mod	country	s2	c	
+# ::edge	and	location	street	a	s3	
+(a / and
+    :location (s3 / street)
+    :op1 (s / sign
+        :mod (s4 / subway)
+        :mod (c / country
+            :name (n / name
+                :op1 "China")))
+    :op2 (s2 / sign
+        :purpose (m / map
+            :ARG0-of (d / direct-01))
+        :mod c))

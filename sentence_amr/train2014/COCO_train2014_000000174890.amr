@@ -1,0 +1,52 @@
+# ::tok Signs East 34th Street and Fifth Avenue with a no parking sign surrounded by a brick building .
+# ::node	s2	signal-07	0-1
+# ::node	n	name	1-2
+# ::node	3	East	1-2
+# ::node	1	34th	2-3
+# ::node	r	road	3-4
+# ::node	5	Street	3-4
+# ::node	a	and	4-5
+# ::node	n2	name	5-6
+# ::node	4	Fifth	5-6
+# ::node	r2	road	6-7
+# ::node	2	Avenue	6-7
+# ::node	0	-	9-10
+# ::node	p	park-01	10-11
+# ::node	s	sign	11-12
+# ::node	s3	surround-01	12-13
+# ::node	b	brick	15-16
+# ::node	b2	building	16-17
+# ::root	s2	signal-07
+# ::edge	name	op1	East	n	3	
+# ::edge	name	op2	34th	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op3	Street	n	5	
+# ::edge	and	op1	road	a	r	
+# ::edge	signal-07	ARG1	and	s2	a	
+# ::edge	name	op1	Fifth	n2	4	
+# ::edge	road	name	name	r2	n2	
+# ::edge	and	op2	road	a	r2	
+# ::edge	name	op2	Avenue	n2	2	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	sign	topic	park-01	s	p	
+# ::edge	signal-07	ARG0	sign	s2	s	
+# ::edge	and	ARG2-of	surround-01	a	s3	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	surround-01	ARG1	building	s3	b2	
+(s2 / signal-07
+    :ARG0 (s / sign
+        :topic (p / park-01
+            :polarity -))
+    :ARG1 (a / and
+        :ARG2-of (s3 / surround-01
+            :ARG1 (b2 / building
+                :consist-of (b / brick)))
+        :op1 (r / road
+            :name (n / name
+                :op1 "East"
+                :op2 "34th"
+                :op3 "Street"))
+        :op2 (r2 / road
+            :name (n2 / name
+                :op1 "Fifth"
+                :op2 "Avenue"))))

@@ -1,0 +1,34 @@
+# ::tok A tourist bus is parked in a tree - lined parking lot next to a radio tower .
+# ::node	p3	person	1-2
+# ::node	t	tour-01	1-2
+# ::node	b	bus	2-3
+# ::node	p	park-01	4-5
+# ::node	t3	tree	7-8
+# ::node	l	line-01	9-10
+# ::node	p2	park-01	10-11
+# ::node	l2	lot	11-12
+# ::node	n	next-to	12-13
+# ::node	r	radio	15-16
+# ::node	t2	tower	16-17
+# ::root	p	park-01
+# ::edge	person	ARG0-of	tour-01	p3	t	
+# ::edge	bus	mod	person	b	p3	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	line-01	ARG2	tree	l	t3	
+# ::edge	lot	ARG2-of	park-01	l2	p2	
+# ::edge	lot	ARG1-of	line-01	l2	l	
+# ::edge	park-01	ARG2	lot	p	l2	
+# ::edge	lot	location	next-to	l2	n	
+# ::edge	tower	mod	radio	t2	r	
+# ::edge	next-to	op1	tower	n	t2	
+(p / park-01
+    :ARG1 (b / bus
+        :mod (p3 / person
+            :ARG0-of (t / tour-01)))
+    :ARG2 (l2 / lot
+        :ARG1-of (l / line-01
+            :ARG2 (t3 / tree))
+        :ARG2-of (p2 / park-01)
+        :location (n / next-to
+            :op1 (t2 / tower
+                :mod (r / radio)))))

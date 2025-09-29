@@ -1,0 +1,37 @@
+# ::tok A green garbage collection truck parked behind a pile of various items including a blue mailbox .
+# ::node	g2	green-02	1-2
+# ::node	g	garbage	2-3
+# ::node	c	collect-01	3-4
+# ::node	t	truck	4-5
+# ::node	p	park-01	5-6
+# ::node	b	behind	6-7
+# ::node	p2	pile-01	8-9
+# ::node	v	various	10-11
+# ::node	i2	item	11-12
+# ::node	i	include-91	12-13
+# ::node	b2	blue	14-15
+# ::node	m	mailbox	15-16
+# ::root	p	park-01
+# ::edge	collect-01	ARG1	garbage	c	g	
+# ::edge	truck	ARG0-of	collect-01	t	c	
+# ::edge	truck	ARG1-of	green-02	t	g2	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG2	behind	p	b	
+# ::edge	behind	op1	pile-01	b	p2	
+# ::edge	item	mod	various	i2	v	
+# ::edge	pile-01	ARG1	item	p2	i2	
+# ::edge	item	ARG2-of	include-91	i2	i	
+# ::edge	mailbox	mod	blue	m	b2	
+# ::edge	include-91	ARG1	mailbox	i	m	
+(p / park-01
+    :ARG1 (t / truck
+        :ARG0-of (c / collect-01
+            :ARG1 (g / garbage))
+        :ARG1-of (g2 / green-02))
+    :ARG2 (b / behind
+        :op1 (p2 / pile-01
+            :ARG1 (i2 / item
+                :ARG2-of (i / include-91
+                    :ARG1 (m / mailbox
+                        :mod (b2 / blue)))
+                :mod (v / various)))))

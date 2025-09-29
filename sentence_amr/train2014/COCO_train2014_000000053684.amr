@@ -1,0 +1,40 @@
+# ::tok A tram is moving along some rails near some warehouse storage buildings and street lights .
+# ::node	t	tram	1-2
+# ::node	m	move-01	3-4
+# ::node	a	along	4-5
+# ::node	r	rail-01	6-7
+# ::node	n	near-02	7-8
+# ::node	s	some	8-9
+# ::node	s2	some	8-9
+# ::node	w	warehouse	9-10
+# ::node	s3	store-01	10-11
+# ::node	b	building	11-12
+# ::node	a2	and	12-13
+# ::node	s4	street	13-14
+# ::node	l	light	14-15
+# ::root	m	move-01
+# ::edge	move-01	ARG1	tram	m	t	
+# ::edge	move-01	path	along	m	a	
+# ::edge	along	op1	rail-01	a	r	
+# ::edge	rail-01	ARG1-of	near-02	r	n	
+# ::edge	store-01	ARG1	warehouse	s3	w	
+# ::edge	building	ARG2-of	store-01	b	s3	
+# ::edge	building	quant	some	b	s	
+# ::edge	and	op1	building	a2	b	
+# ::edge	near-02	ARG2	and	n	a2	
+# ::edge	light	mod	street	l	s4	
+# ::edge	and	op2	light	a2	l	
+# ::edge	light	mod	some	l	s2	
+(m / move-01
+    :ARG1 (t / tram)
+    :path (a / along
+        :op1 (r / rail-01
+            :ARG1-of (n / near-02
+                :ARG2 (a2 / and
+                    :op1 (b / building
+                        :quant (s / some)
+                        :ARG2-of (s3 / store-01
+                            :ARG1 (w / warehouse)))
+                    :op2 (l / light
+                        :mod (s4 / street)
+                        :mod (s2 / some)))))))

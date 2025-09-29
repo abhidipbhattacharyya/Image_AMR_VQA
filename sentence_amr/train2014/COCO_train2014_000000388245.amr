@@ -1,0 +1,43 @@
+# ::tok A cafeteria tray of three dishes : french fries , chickpeas with sauce - covered meat , and a noodle dish .
+# ::node	c	cafeteria	1-2
+# ::node	t	tray	2-3
+# ::node	0	3	4-5
+# ::node	d	dish	5-6
+# ::node	f	french	7-8
+# ::node	f2	fry-01	8-9
+# ::node	c2	chickpeas	10-11
+# ::node	s	sauce	12-13
+# ::node	c3	cover-02	14-15
+# ::node	m	meat	15-16
+# ::node	a	and	17-18
+# ::node	n	noodle	19-20
+# ::node	d2	dish	20-21
+# ::node	m2	multi-sentence	21-22
+# ::root	m2	multi-sentence
+# ::edge	tray	mod	cafeteria	t	c	
+# ::edge	dish	quant	3	d	0	
+# ::edge	tray	consist-of	dish	t	d	
+# ::edge	fry-01	mod	french	f2	f	
+# ::edge	cover-02	ARG2	sauce	c3	s	
+# ::edge	meat	ARG1-of	cover-02	m	c3	
+# ::edge	chickpeas	accompanier	meat	c2	m	
+# ::edge	and	op2	chickpeas	a	c2	
+# ::edge	and	op1	fry-01	a	f2	
+# ::edge	dish	domain	and	d	a	
+# ::edge	dish	mod	noodle	d2	n	
+# ::edge	and	op3	dish	a	d2	
+# ::edge	multi-sentence	snt1	tray	m2	t	
+(m2 / multi-sentence
+    :snt1 (t / tray
+        :consist-of (d / dish
+            :quant 3
+            :domain (a / and
+                :op1 (f2 / fry-01
+                    :mod (f / french))
+                :op2 (c2 / chickpeas
+                    :accompanier (m / meat
+                        :ARG1-of (c3 / cover-02
+                            :ARG2 (s / sauce))))
+                :op3 (d2 / dish
+                    :mod (n / noodle))))
+        :mod (c / cafeteria)))

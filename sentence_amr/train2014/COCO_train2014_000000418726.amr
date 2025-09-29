@@ -1,0 +1,43 @@
+# ::tok Someone is stocking up on cool summer treats , a case of root beer and a case of freezer pops .
+# ::node	s	someone	0-1
+# ::node	s2	stock-01	2-3
+# ::node	c3	cool-04	5-6
+# ::node	d	date-entity	6-7
+# ::node	s3	summer	6-7
+# ::node	t	treat-01	7-8
+# ::node	a	and	8-9
+# ::node	0	1	9-10
+# ::node	c	case	10-11
+# ::node	r	root	12-13
+# ::node	b	beer	13-14
+# ::node	c2	case	16-17
+# ::node	f	freezer	18-19
+# ::node	p	pop	19-20
+# ::root	s2	stock-01
+# ::edge	stock-01	ARG0	someone	s2	s	
+# ::edge	date-entity	season	summer	d	s3	
+# ::edge	treat-01	time	date-entity	t	d	
+# ::edge	treat-01	ARG1-of	cool-04	t	c3	
+# ::edge	and	op1	treat-01	a	t	
+# ::edge	stock-01	ARG1	and	s2	a	
+# ::edge	beer	mod	root	b	r	
+# ::edge	beer	unit	case	b	c	
+# ::edge	beer	quant	1	b	0	
+# ::edge	and	op2	beer	a	b	
+# ::edge	pop	source	freezer	p	f	
+# ::edge	pop	quant	case	p	c2	
+# ::edge	and	op3	pop	a	p	
+(s2 / stock-01
+    :ARG0 (s / someone)
+    :ARG1 (a / and
+        :op1 (t / treat-01
+            :ARG1-of (c3 / cool-04)
+            :time (d / date-entity
+                :season (s3 / summer)))
+        :op2 (b / beer
+            :quant 1
+            :mod (r / root)
+            :unit (c / case))
+        :op3 (p / pop
+            :quant (c2 / case)
+            :source (f / freezer))))

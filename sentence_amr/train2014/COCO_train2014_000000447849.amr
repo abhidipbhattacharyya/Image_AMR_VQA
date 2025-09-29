@@ -1,0 +1,27 @@
+# ::tok Finger pointing to a parking meeter that reads " Free " on it
+# ::node	p2	person	0-1
+# ::node	f	finger	0-1
+# ::node	p4	point-01	1-2
+# ::node	p	park-01	4-5
+# ::node	p3	person	5-6
+# ::node	m	meet-03	5-6
+# ::node	r	read-01	7-8
+# ::node	f2	free-03	9-10
+# ::root	p4	point-01
+# ::edge	person	mod	finger	p2	f	
+# ::edge	point-01	ARG0	person	p4	p2	
+# ::edge	point-01	ARG2	person	p4	p3	
+# ::edge	person	ARG0-of	meet-03	p3	m	
+# ::edge	meet-03	ARG1	park-01	m	p	
+# ::edge	read-01	location	person	r	p3	
+# ::edge	person	ARG1-of	read-01	p3	r	
+# ::edge	read-01	ARG3	free-03	r	f2	
+(p4 / point-01
+    :ARG0 (p2 / person
+        :mod (f / finger))
+    :ARG2 (p3 / person
+        :ARG0-of (m / meet-03
+            :ARG1 (p / park-01))
+        :ARG1-of (r / read-01
+            :ARG3 (f2 / free-03)
+            :location p3)))

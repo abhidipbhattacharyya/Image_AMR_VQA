@@ -1,0 +1,24 @@
+# ::tok Plane taking off the runway with it 's landing gears still out .
+# ::node	p	plane	0-1
+# ::node	t	take-off-19	1-2
+# ::node	r	runway	4-5
+# ::node	l	land-01	8-9
+# ::node	o	Congress	9-10
+# ::node	s	still	10-11
+# ::node	o2	out-06	11-12
+# ::root	t	take-off-19
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	take-off-19	ARG2	runway	t	r	
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	Congress	part-of	land-01	o	l	
+# ::edge	out-06	mod	still	o2	s	
+# ::edge	out-06	ARG1	Congress	o2	o	
+# ::edge	take-off-19	manner	out-06	t	o2	
+(t / take-off-19
+    :ARG1 (p / plane)
+    :ARG2 (r / runway)
+    :manner (o2 / out-06
+        :ARG1 (o / Congress
+            :part-of (l / land-01
+                :ARG1 p))
+        :mod (s / still)))

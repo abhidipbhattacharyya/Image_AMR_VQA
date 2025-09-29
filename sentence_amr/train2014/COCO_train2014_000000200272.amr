@@ -1,0 +1,34 @@
+# ::tok A plate of beans , cherry tomatoes , and two sausages on a bun with coleslaw and mustard .
+# ::node	p	plate	1-2
+# ::node	b	bean	3-4
+# ::node	c	cherry	5-6
+# ::node	t	tomato	6-7
+# ::node	a	and	8-9
+# ::node	0	2	9-10
+# ::node	m	meat	10-11
+# ::node	b2	bun	13-14
+# ::node	c2	coleslaw	15-16
+# ::node	a2	and	16-17
+# ::node	m2	mustard	17-18
+# ::root	b2	bun
+# ::edge	tomato	mod	cherry	t	c	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	and	op1	bean	a	b	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	meat	quant	2	m	0	
+# ::edge	and	op3	meat	a	m	
+# ::edge	bun	consist-of	plate	b2	p	
+# ::edge	and	op1	coleslaw	a2	c2	
+# ::edge	bun	accompanier	and	b2	a2	
+# ::edge	and	op2	mustard	a2	m2	
+(b2 / bun
+    :accompanier (a2 / and
+        :op1 (c2 / coleslaw)
+        :op2 (m2 / mustard))
+    :consist-of (p / plate
+        :consist-of (a / and
+            :op1 (b / bean)
+            :op2 (t / tomato
+                :mod (c / cherry))
+            :op3 (m / meat
+                :quant 2))))

@@ -1,0 +1,30 @@
+# ::tok A bicycle sitting at the base of a stop sign with a one way sign on it .
+# ::node	b2	bicycle	1-2
+# ::node	s3	sit-01	2-3
+# ::node	b	base	5-6
+# ::node	s4	stop-01	8-9
+# ::node	s2	signal-07	9-10
+# ::node	h	have-03	10-11
+# ::node	0	1	12-13
+# ::node	w	way	13-14
+# ::node	s	sign	14-15
+# ::root	s3	sit-01
+# ::edge	sit-01	ARG1	bicycle	s3	b2	
+# ::edge	sit-01	ARG2	base	s3	b	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	base	mod	signal-07	b	s2	
+# ::edge	signal-07	ARG0-of	have-03	s2	h	
+# ::edge	way	quant	1	w	0	
+# ::edge	sign	mod	way	s	w	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	bicycle	s	b2	
+(s3 / sit-01
+    :ARG1 (b2 / bicycle)
+    :ARG2 (b / base
+        :mod (s2 / signal-07
+            :ARG0-of (h / have-03
+                :ARG1 (s / sign
+                    :location b2
+                    :mod (w / way
+                        :quant 1)))
+            :ARG1 (s4 / stop-01))))

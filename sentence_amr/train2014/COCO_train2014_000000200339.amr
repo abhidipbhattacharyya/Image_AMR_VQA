@@ -1,0 +1,62 @@
+# ::tok A microwave oven with a white bowl inside has empty black and white bowls sitting in front of it , along with spoons and other clutter .
+# ::node	m	microwave	1-2
+# ::node	o2	oven	2-3
+# ::node	w	white-03	5-6
+# ::node	b2	bowl	6-7
+# ::node	i2	inside	7-8
+# ::node	h	have-03	8-9
+# ::node	e	empty-02	9-10
+# ::node	b	black-04	10-11
+# ::node	a	and	11-12
+# ::node	p	pound	13-14
+# ::node	p2	pound	13-14
+# ::node	s	sit-01	14-15
+# ::node	i	in-front-of	16-17
+# ::node	s2	spoon	22-23
+# ::node	a2	and	23-24
+# ::node	o	other	24-25
+# ::node	c	clutter	25-26
+# ::root	h	have-03
+# ::edge	oven	mod	microwave	o2	m	
+# ::edge	bowl	ARG1-of	white-03	b2	w	
+# ::edge	oven	prep-with	bowl	o2	b2	
+# ::edge	bowl	location	inside	b2	i2	
+# ::edge	inside	op1	oven	i2	o2	
+# ::edge	have-03	ARG0	oven	h	o2	
+# ::edge	and	ARG1-of	empty-02	a	e	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	pound	a	p	
+# ::edge	pound	ARG1-of	white-03	p	w	
+# ::edge	and	op2	pound	a	p2	
+# ::edge	white-03	ARG1	pound	w	p2	
+# ::edge	and	ARG1-of	sit-01	a	s	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	oven	i	o2	
+# ::edge	and	op2	spoon	a2	s2	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	bowl	a2	b2	
+# ::edge	clutter	mod	other	c	o	
+# ::edge	and	op3	clutter	a2	c	
+# ::edge	have-03	rel	black-04	h	b	
+(h / have-03
+    :ARG0 (o2 / oven
+        :mod (m / microwave)
+        :prep-with (b2 / bowl
+            :ARG1-of (w / white-03
+                :ARG1 (p2 / pound))
+            :location (i2 / inside
+                :op1 o2)))
+    :ARG1 (a / and
+        :ARG1-of (e / empty-02)
+        :ARG1-of (s / sit-01
+            :ARG2 (i / in-front-of
+                :op1 o2))
+        :op1 (p / pound
+            :ARG1-of w)
+        :op2 p2
+        :op2 (a2 / and
+            :op1 b2
+            :op2 (s2 / spoon)
+            :op3 (c / clutter
+                :mod (o / other))))
+    :rel (b / black-04))

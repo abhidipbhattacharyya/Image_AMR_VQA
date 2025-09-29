@@ -1,0 +1,40 @@
+# ::tok A german shepherd wearing a muzzle walked by a woman in a blue shirt .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Germany	1-2
+# ::node	p	person	2-3
+# ::node	s	shepherd-01	2-3
+# ::node	w2	wear-01	3-4
+# ::node	m	muzzle	5-6
+# ::node	w	walk-01	6-7
+# ::node	b2	by	7-8
+# ::node	w4	woman	9-10
+# ::node	w3	wear-01	10-11
+# ::node	b	blue	12-13
+# ::node	s2	shirt	13-14
+# ::root	w	walk-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Germany	n	0	
+# ::edge	person	mod	country	p	c	
+# ::edge	person	ARG0-of	shepherd-01	p	s	
+# ::edge	person	ARG0-of	wear-01	p	w2	
+# ::edge	wear-01	ARG1	muzzle	w2	m	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	path	by	w	b2	
+# ::edge	by	op1	woman	b2	w4	
+# ::edge	woman	ARG0-of	wear-01	w4	w3	
+# ::edge	shirt	mod	blue	s2	b	
+# ::edge	wear-01	ARG1	shirt	w3	s2	
+(w / walk-01
+    :ARG0 (p / person
+        :ARG0-of (s / shepherd-01)
+        :ARG0-of (w2 / wear-01
+            :ARG1 (m / muzzle))
+        :mod (c / country
+            :name (n / name
+                :op1 "Germany")))
+    :path (b2 / by
+        :op1 (w4 / woman
+            :ARG0-of (w3 / wear-01
+                :ARG1 (s2 / shirt
+                    :mod (b / blue))))))

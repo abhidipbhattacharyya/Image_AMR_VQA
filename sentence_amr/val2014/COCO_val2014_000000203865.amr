@@ -1,0 +1,27 @@
+# ::tok Crosstown bus driver at curb waiting for his passengers .
+# ::node	0	Crosstown	0-1
+# ::node	b	bus	1-2
+# ::node	p2	person	2-3
+# ::node	d	drive-01	2-3
+# ::node	c	curb	4-5
+# ::node	w	wait-01	5-6
+# ::node	p	passenger	8-9
+# ::node	n	name	8-9
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	drive-01	ARG1	bus	d	b	
+# ::edge	wait-01	location	curb	w	c	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	wait-01	ARG2	passenger	w	p	
+# ::edge	passenger	poss	person	p	p2	
+# ::edge	bus	name	name	b	n	
+# ::edge	name	op1	Crosstown	n	0	
+(w / wait-01
+    :ARG1 (p2 / person
+        :ARG0-of (d / drive-01
+            :ARG1 (b / bus
+                :name (n / name
+                    :op1 "Crosstown"))))
+    :ARG2 (p / passenger
+        :poss p2)
+    :location (c / curb))

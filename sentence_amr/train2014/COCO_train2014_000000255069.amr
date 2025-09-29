@@ -1,0 +1,50 @@
+# ::tok Two civil war re - enactors sitting sitting down , and a third standing in the background
+# ::node	0	2	0-1
+# ::node	2	Civil	1-2
+# ::node	w	war	2-3
+# ::node	n	name	2-3
+# ::node	3	War	2-3
+# ::node	p	person	5-6
+# ::node	r	reenact-01	5-6
+# ::node	p2	person	5-6
+# ::node	s	sit-01	6-7
+# ::node	s2	sit-down-02	7-8
+# ::node	a	and	10-11
+# ::node	1	3	12-13
+# ::node	s3	stand-01	13-14
+# ::node	c	cause-01	14-15
+# ::node	b	background	16-17
+# ::root	a	and
+# ::edge	war	name	name	w	n	
+# ::edge	name	op1	Civil	n	2	
+# ::edge	name	op2	War	n	3	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	reenact-01	p	r	
+# ::edge	reenact-01	ARG1	war	r	w	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	manner	sit-down-02	s	s2	
+# ::edge	sit-down-02	ARG1	person	s2	p	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	quant	3	p2	1	
+# ::edge	stand-01	ARG1	person	s3	p2	
+# ::edge	cause-01	ARG1	stand-01	c	s3	
+# ::edge	person	ARG0-of	cause-01	p	c	
+# ::edge	stand-01	location	background	s3	b	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p / person
+            :quant 2
+            :ARG0-of (r / reenact-01
+                :ARG1 (w / war
+                    :name (n / name
+                        :op1 "Civil"
+                        :op2 "War")))
+            :ARG0-of (c / cause-01
+                :ARG1 (s3 / stand-01
+                    :ARG1 (p2 / person
+                        :quant 3)
+                    :location (b / background))))
+        :manner (s2 / sit-down-02
+            :ARG1 p))
+    :op2 p2)

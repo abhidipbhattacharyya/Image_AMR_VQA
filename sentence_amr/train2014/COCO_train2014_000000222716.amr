@@ -1,0 +1,31 @@
+# ::tok You can insert a card or coins in the automated parking ticket machine .
+# ::node	y	you	0-1
+# ::node	p2	possible-01	1-2
+# ::node	i	insert-01	2-3
+# ::node	c	card	4-5
+# ::node	o	or	5-6
+# ::node	c2	coin	6-7
+# ::node	a	automate-01	9-10
+# ::node	p	park-01	10-11
+# ::node	t	ticket-01	11-12
+# ::node	m	machine	12-13
+# ::root	p2	possible-01
+# ::edge	possible-01	ARG1	insert-01	p2	i	
+# ::edge	insert-01	ARG0	you	i	y	
+# ::edge	or	op1	card	o	c	
+# ::edge	insert-01	ARG1	or	i	o	
+# ::edge	or	op2	coin	o	c2	
+# ::edge	ticket-01	ARG2	park-01	t	p	
+# ::edge	machine	purpose	ticket-01	m	t	
+# ::edge	machine	ARG1-of	automate-01	m	a	
+# ::edge	insert-01	ARG2	machine	i	m	
+(p2 / possible-01
+    :ARG1 (i / insert-01
+        :ARG0 (y / you)
+        :ARG1 (o / or
+            :op1 (c / card)
+            :op2 (c2 / coin))
+        :ARG2 (m / machine
+            :purpose (t / ticket-01
+                :ARG2 (p / park-01))
+            :ARG1-of (a / automate-01))))

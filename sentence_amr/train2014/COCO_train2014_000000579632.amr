@@ -1,0 +1,37 @@
+# ::tok Two Cheeseburgers and french fries served on a white plate .
+# ::node	0	2	0-1
+# ::node	f	food-dish	1-2
+# ::node	n	name	1-2
+# ::node	1	Burger	1-2
+# ::node	a	and	2-3
+# ::node	c	country	3-4
+# ::node	n2	name	3-4
+# ::node	2	France	3-4
+# ::node	f2	fry-01	4-5
+# ::node	s	serve-02	5-6
+# ::node	w	white-03	8-9
+# ::node	p	plate	9-10
+# ::root	s	serve-02
+# ::edge	food-dish	quant	2	f	0	
+# ::edge	food-dish	name	name	f	n	
+# ::edge	name	op1	Burger	n	1	
+# ::edge	and	op1	food-dish	a	f	
+# ::edge	country	name	name	c	n2	
+# ::edge	name	op1	France	n2	2	
+# ::edge	fry-01	mod	country	f2	c	
+# ::edge	and	op2	fry-01	a	f2	
+# ::edge	serve-02	ARG1	and	s	a	
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	serve-02	prep-on	plate	s	p	
+(s / serve-02
+    :ARG1 (a / and
+        :op1 (f / food-dish
+            :name (n / name
+                :op1 "Burger")
+            :quant 2)
+        :op2 (f2 / fry-01
+            :mod (c / country
+                :name (n2 / name
+                    :op1 "France"))))
+    :prep-on (p / plate
+        :ARG1-of (w / white-03)))

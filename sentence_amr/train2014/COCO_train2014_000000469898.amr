@@ -1,0 +1,26 @@
+# ::tok Dog running around trying to heard the two sheep
+# ::node	d	dog	0-1
+# ::node	r	run-02	1-2
+# ::node	a	around	2-3
+# ::node	t	try-01	3-4
+# ::node	h	hear-01	5-6
+# ::node	0	2	7-8
+# ::node	s	sheep	8-9
+# ::root	r	run-02
+# ::edge	run-02	ARG0	dog	r	d	
+# ::edge	run-02	direction	around	r	a	
+# ::edge	run-02	purpose	try-01	r	t	
+# ::edge	try-01	ARG0	dog	t	d	
+# ::edge	try-01	ARG1	hear-01	t	h	
+# ::edge	hear-01	ARG0	dog	h	d	
+# ::edge	sheep	quant	2	s	0	
+# ::edge	hear-01	ARG1	sheep	h	s	
+(r / run-02
+    :purpose (t / try-01
+        :ARG0 (d / dog)
+        :ARG1 (h / hear-01
+            :ARG0 d
+            :ARG1 (s / sheep
+                :quant 2)))
+    :ARG0 d
+    :direction (a / around))

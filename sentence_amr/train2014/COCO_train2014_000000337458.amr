@@ -1,0 +1,31 @@
+# ::tok A dump style truck pulling onto a ramp near a metro train as people watch .
+# ::node	d	dump	1-2
+# ::node	s	style	2-3
+# ::node	t2	truck	3-4
+# ::node	p2	pull-01	4-5
+# ::node	r	ramp	7-8
+# ::node	n	near-02	8-9
+# ::node	m	metro	10-11
+# ::node	t	train	11-12
+# ::node	p	person	13-14
+# ::node	w	watch-01	14-15
+# ::root	p2	pull-01
+# ::edge	style	mod	dump	s	d	
+# ::edge	truck	mod	style	t2	s	
+# ::edge	pull-01	ARG1	truck	p2	t2	
+# ::edge	pull-01	ARG2	ramp	p2	r	
+# ::edge	ramp	ARG1-of	near-02	r	n	
+# ::edge	train	mod	metro	t	m	
+# ::edge	near-02	ARG2	train	n	t	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	pull-01	ARG1-of	watch-01	p2	w	
+(p2 / pull-01
+    :ARG1 (t2 / truck
+        :mod (s / style
+            :mod (d / dump)))
+    :ARG1-of (w / watch-01
+        :ARG0 (p / person))
+    :ARG2 (r / ramp
+        :ARG1-of (n / near-02
+            :ARG2 (t / train
+                :mod (m / metro)))))

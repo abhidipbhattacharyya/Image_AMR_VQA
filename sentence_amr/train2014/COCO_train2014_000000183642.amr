@@ -1,0 +1,40 @@
+# ::tok Two bicycles , one on top of the other in a room with a show rack and table .
+# ::node	1	2	0-1
+# ::node	b	bicycle	1-2
+# ::node	b2	bicycle	1-2
+# ::node	i	include-91	3-4
+# ::node	0	1	3-4
+# ::node	t2	top	5-6
+# ::node	o	other	8-9
+# ::node	r2	room	11-12
+# ::node	h	have-03	12-13
+# ::node	s	show-01	14-15
+# ::node	r	rack	15-16
+# ::node	a	and	16-17
+# ::node	t	table	17-18
+# ::root	b	bicycle
+# ::edge	bicycle	quant	2	b	1	
+# ::edge	include-91	ARG2	bicycle	i	b2	
+# ::edge	bicycle	ARG1-of	include-91	b	i	
+# ::edge	bicycle	quant	1	b2	0	
+# ::edge	bicycle	location	top	b2	t2	
+# ::edge	top	op1	other	t2	o	
+# ::edge	bicycle	location	room	b	r2	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	rack	purpose	show-01	r	s	
+# ::edge	and	op1	rack	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	table	a	t	
+(b / bicycle
+    :quant 2
+    :ARG1-of (i / include-91
+        :ARG2 (b2 / bicycle
+            :quant 1
+            :location (t2 / top
+                :op1 (o / other))))
+    :location (r2 / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (r / rack
+                    :purpose (s / show-01))
+                :op2 (t / table)))))

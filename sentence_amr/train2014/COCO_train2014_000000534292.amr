@@ -1,0 +1,39 @@
+# ::tok Woman bathes one child in big bucket on a bench while the other two wait for their turn
+# ::node	w2	woman	0-1
+# ::node	b	bathe-01	1-2
+# ::node	0	1	2-3
+# ::node	c	child	3-4
+# ::node	c2	child	3-4
+# ::node	b3	big	5-6
+# ::node	b4	bucket	6-7
+# ::node	b2	bench	9-10
+# ::node	o	other	12-13
+# ::node	1	2	13-14
+# ::node	w	wait-01	14-15
+# ::node	t	turn	17-18
+# ::root	b	bathe-01
+# ::edge	bathe-01	ARG0	woman	b	w2	
+# ::edge	child	quant	1	c	0	
+# ::edge	bathe-01	ARG1	child	b	c	
+# ::edge	bucket	mod	big	b4	b3	
+# ::edge	bathe-01	location	bucket	b	b4	
+# ::edge	bathe-01	location	bench	b	b2	
+# ::edge	child	mod	other	c2	o	
+# ::edge	child	quant	2	c2	1	
+# ::edge	wait-01	ARG1	child	w	c2	
+# ::edge	bathe-01	time	wait-01	b	w	
+# ::edge	wait-01	ARG2	turn	w	t	
+# ::edge	turn	poss	child	t	c2	
+(b / bathe-01
+    :ARG0 (w2 / woman)
+    :ARG1 (c / child
+        :quant 1)
+    :location (b4 / bucket
+        :mod (b3 / big))
+    :location (b2 / bench)
+    :time (w / wait-01
+        :ARG1 (c2 / child
+            :quant 2
+            :mod (o / other))
+        :ARG2 (t / turn
+            :poss c2)))

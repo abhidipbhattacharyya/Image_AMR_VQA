@@ -1,0 +1,39 @@
+# ::tok Small red train car passing through a narrow alley which passers by go about their business .
+# ::node	s	small	0-1
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	c	car	3-4
+# ::node	p	pass-03	4-5
+# ::node	n	narrow-02	7-8
+# ::node	a2	alley	8-9
+# ::node	p3	person	10-11
+# ::node	p2	pass-by-17	10-11
+# ::node	g	go-02	12-13
+# ::node	a	about	13-14
+# ::node	b	business	15-16
+# ::root	p	pass-03
+# ::edge	car	mod	train	c	t	
+# ::edge	car	ARG1-of	red-02	c	r	
+# ::edge	car	mod	small	c	s	
+# ::edge	pass-03	ARG1	car	p	c	
+# ::edge	alley	ARG1-of	narrow-02	a2	n	
+# ::edge	pass-03	path	alley	p	a2	
+# ::edge	person	ARG0-of	pass-by-17	p3	p2	
+# ::edge	go-02	ARG0	person	g	p3	
+# ::edge	alley	location-of	go-02	a2	g	
+# ::edge	go-02	ARG1	about	g	a	
+# ::edge	about	op1	business	a	b	
+# ::edge	business	poss	person	b	p3	
+(p / pass-03
+    :ARG1 (c / car
+        :ARG1-of (r / red-02)
+        :mod (t / train)
+        :mod (s / small))
+    :path (a2 / alley
+        :ARG1-of (n / narrow-02)
+        :location-of (g / go-02
+            :ARG0 (p3 / person
+                :ARG0-of (p2 / pass-by-17))
+            :ARG1 (a / about
+                :op1 (b / business
+                    :poss p3)))))

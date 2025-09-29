@@ -1,0 +1,33 @@
+# ::tok A box of donuts , some that are jelly filled , coconut , frosted , and have sprinkles .
+# ::node	b	box	1-2
+# ::node	d	donut	3-4
+# ::node	s	some	5-6
+# ::node	j	jelly	8-9
+# ::node	f	fill-01	9-10
+# ::node	c	coconut	11-12
+# ::node	f2	freeze-01	13-14
+# ::node	a	and	15-16
+# ::node	h	have-03	16-17
+# ::node	s2	sprinkle-01	17-18
+# ::root	b	box
+# ::edge	box	consist-of	donut	b	d	
+# ::edge	fill-01	ARG2	jelly	f	j	
+# ::edge	and	op3	freeze-01	a	f2	
+# ::edge	and	op2	fill-01	a	f	
+# ::edge	and	op1	fill-01	a	f	
+# ::edge	and	quant	some	a	s	
+# ::edge	donut	mod	and	d	a	
+# ::edge	and	op4	have-03	a	h	
+# ::edge	have-03	ARG1	sprinkle-01	h	s2	
+# ::edge	box	rel	coconut	b	c	
+(b / box
+    :consist-of (d / donut
+        :mod (a / and
+            :quant (s / some)
+            :op1 (f / fill-01
+                :ARG2 (j / jelly))
+            :op2 f
+            :op3 (f2 / freeze-01)
+            :op4 (h / have-03
+                :ARG1 (s2 / sprinkle-01))))
+    :rel (c / coconut))

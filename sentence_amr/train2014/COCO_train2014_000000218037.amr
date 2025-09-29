@@ -1,0 +1,31 @@
+# ::tok People boarding a very large military cargo jet plane setting on a runway .
+# ::node	p	person	0-1
+# ::node	b	board-01	1-2
+# ::node	v	very	3-4
+# ::node	l	large	4-5
+# ::node	m	military	5-6
+# ::node	c	cargo	6-7
+# ::node	j	jet	7-8
+# ::node	p2	plane	8-9
+# ::node	s	set-01	9-10
+# ::node	r	runway	12-13
+# ::root	b	board-01
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	large	degree	very	l	v	
+# ::edge	jet	mod	cargo	j	c	
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	plane	mod	military	p2	m	
+# ::edge	plane	mod	large	p2	l	
+# ::edge	board-01	ARG1	plane	b	p2	
+# ::edge	plane	ARG1-of	set-01	p2	s	
+# ::edge	set-01	ARG2	runway	s	r	
+(b / board-01
+    :ARG0 (p / person)
+    :ARG1 (p2 / plane
+        :ARG1-of (s / set-01
+            :ARG2 (r / runway))
+        :mod (j / jet
+            :mod (c / cargo))
+        :mod (m / military)
+        :mod (l / large
+            :degree (v / very))))

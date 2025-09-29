@@ -1,0 +1,28 @@
+# ::tok Several clocks in night scene with lights and crowd walking
+# ::node	s2	several	0-1
+# ::node	s3	sign	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	s	scene	4-5
+# ::node	l	light	6-7
+# ::node	a	and	7-8
+# ::node	c	crowd	8-9
+# ::node	w	walk-01	9-10
+# ::root	s	scene
+# ::edge	sign	quant	several	s3	s2	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	scene	mod	sign	s	s3	
+# ::edge	and	op1	light	a	l	
+# ::edge	scene	location-of	and	s	a	
+# ::edge	walk-01	ARG0	crowd	w	c	
+# ::edge	and	op2	walk-01	a	w	
+(s / scene
+    :location-of (a / and
+        :op1 (l / light)
+        :op2 (w / walk-01
+            :ARG0 (c / crowd)))
+    :mod (s3 / sign
+        :quant (s2 / several))
+    :time (d / date-entity
+        :dayperiod (n / night)))

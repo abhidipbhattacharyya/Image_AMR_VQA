@@ -1,0 +1,24 @@
+# ::tok A child goaltender attempts to block a ball in a soccer game .
+# ::node	c	child	1-2
+# ::node	g2	goaltender	2-3
+# ::node	a	attempt-01	3-4
+# ::node	b2	block-01	5-6
+# ::node	b	ball	7-8
+# ::node	s	soccer	10-11
+# ::node	g	game	11-12
+# ::root	a	attempt-01
+# ::edge	goaltender	mod	child	g2	c	
+# ::edge	attempt-01	ARG0	goaltender	a	g2	
+# ::edge	attempt-01	ARG1	block-01	a	b2	
+# ::edge	block-01	ARG0	goaltender	b2	g2	
+# ::edge	block-01	ARG1	ball	b2	b	
+# ::edge	game	mod	soccer	g	s	
+# ::edge	block-01	subevent-of	game	b2	g	
+(a / attempt-01
+    :ARG0 (g2 / goaltender
+        :mod (c / child))
+    :ARG1 (b2 / block-01
+        :ARG0 g2
+        :ARG1 (b / ball)
+        :subevent-of (g / game
+            :mod (s / soccer))))

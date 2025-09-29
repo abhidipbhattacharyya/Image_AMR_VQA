@@ -1,0 +1,60 @@
+# ::tok A pack of hotdogs are on the grill while a plate of them already cooked are on a plate on the side along with buns and about 5 other packs of weiners .
+# ::node	p	pack	1-2
+# ::node	h	hot-dog	3-4
+# ::node	b	be-located-at-91	5-6
+# ::node	g	grill	7-8
+# ::node	c	contrast-01	8-9
+# ::node	p3	plate	10-11
+# ::node	a3	already	13-14
+# ::node	c2	cook-01	14-15
+# ::node	b2	be-located-at-91	16-17
+# ::node	p4	plate	18-19
+# ::node	s	side	21-22
+# ::node	a	Pan	24-25
+# ::node	a4	and	25-26
+# ::node	a2	about	26-27
+# ::node	0	5	27-28
+# ::node	o	other	28-29
+# ::node	p2	pack	29-30
+# ::node	m	meat	31-32
+# ::node	d	dog	31-32
+# ::root	c	contrast-01
+# ::edge	pack	consist-of	hot-dog	p	h	
+# ::edge	be-located-at-91	ARG1	pack	b	p	
+# ::edge	be-located-at-91	ARG2	grill	b	g	
+# ::edge	contrast-01	ARG1	be-located-at-91	c	b	
+# ::edge	cook-01	time	already	c2	a3	
+# ::edge	plate	ARG1-of	cook-01	p3	c2	
+# ::edge	be-located-at-91	ARG1	plate	b2	p3	
+# ::edge	contrast-01	ARG2	be-located-at-91	c	b2	
+# ::edge	be-located-at-91	ARG2	plate	b2	p4	
+# ::edge	plate	location	side	p4	s	
+# ::edge	and	op2	Pan	a4	a	
+# ::edge	plate	accompanier	and	p3	a4	
+# ::edge	and	op1	pack	a4	p	
+# ::edge	about	op1	5	a2	0	
+# ::edge	pack	mod	other	p2	o	
+# ::edge	pack	quant	about	p2	a2	
+# ::edge	and	op3	pack	a4	p2	
+# ::edge	pack	consist-of	meat	p2	m	
+# ::edge	meat	consist-of	dog	m	d	
+(c / contrast-01
+    :ARG1 (b / be-located-at-91
+        :ARG1 (p / pack
+            :consist-of (h / hot-dog))
+        :ARG2 (g / grill))
+    :ARG2 (b2 / be-located-at-91
+        :ARG1 (p3 / plate
+            :ARG1-of (c2 / cook-01
+                :time (a3 / already))
+            :accompanier (a4 / and
+                :op1 p
+                :op2 (a / Pan)
+                :op3 (p2 / pack
+                    :quant (a2 / about
+                        :op1 5)
+                    :consist-of (m / meat
+                        :consist-of (d / dog))
+                    :mod (o / other))))
+        :ARG2 (p4 / plate
+            :location (s / side))))

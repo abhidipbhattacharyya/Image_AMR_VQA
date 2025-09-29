@@ -1,0 +1,31 @@
+# ::tok Bus driving along loaded with packages and bags on the luggage rack on the roof .
+# ::node	b2	bus	0-1
+# ::node	d	drive-01	1-2
+# ::node	a	along	2-3
+# ::node	l	load-01	3-4
+# ::node	p	package	5-6
+# ::node	a2	and	6-7
+# ::node	b	bag	7-8
+# ::node	l2	luggage	10-11
+# ::node	r	rack	11-12
+# ::node	r2	roof	14-15
+# ::root	d	drive-01
+# ::edge	drive-01	ARG1	bus	d	b2	
+# ::edge	drive-01	path	along	d	a	
+# ::edge	bus	ARG1-of	load-01	b2	l	
+# ::edge	and	op1	package	a2	p	
+# ::edge	load-01	ARG2	and	l	a2	
+# ::edge	and	op2	bag	a2	b	
+# ::edge	rack	mod	luggage	r	l2	
+# ::edge	and	location	rack	a2	r	
+# ::edge	rack	location	roof	r	r2	
+(d / drive-01
+    :ARG1 (b2 / bus
+        :ARG1-of (l / load-01
+            :ARG2 (a2 / and
+                :location (r / rack
+                    :location (r2 / roof)
+                    :mod (l2 / luggage))
+                :op1 (p / package)
+                :op2 (b / bag))))
+    :path (a / along))

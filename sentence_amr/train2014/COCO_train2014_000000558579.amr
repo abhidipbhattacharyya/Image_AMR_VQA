@@ -1,0 +1,36 @@
+# ::tok Snowboarder airborne while doing a trick near a cinder block wall and snow pile .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	a	airborne	1-2
+# ::node	t	trick-01	5-6
+# ::node	n	near-02	6-7
+# ::node	c	cinder	8-9
+# ::node	b	block	9-10
+# ::node	w	wall	10-11
+# ::node	a2	and	11-12
+# ::node	s2	snow	12-13
+# ::node	p2	pile-01	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	manner	airborne	p	a	
+# ::edge	person	time	trick-01	p	t	
+# ::edge	trick-01	ARG0	person	t	p	
+# ::edge	trick-01	ARG1-of	near-02	t	n	
+# ::edge	block	mod	cinder	b	c	
+# ::edge	wall	consist-of	block	w	b	
+# ::edge	and	op1	wall	a2	w	
+# ::edge	near-02	ARG2	and	n	a2	
+# ::edge	pile-01	ARG1	snow	p2	s2	
+# ::edge	and	op2	pile-01	a2	p2	
+(p / person
+    :ARG0-of (s / ski-01)
+    :manner (a / airborne)
+    :time (t / trick-01
+        :ARG0 p
+        :ARG1-of (n / near-02
+            :ARG2 (a2 / and
+                :op1 (w / wall
+                    :consist-of (b / block
+                        :mod (c / cinder)))
+                :op2 (p2 / pile-01
+                    :ARG1 (s2 / snow))))))

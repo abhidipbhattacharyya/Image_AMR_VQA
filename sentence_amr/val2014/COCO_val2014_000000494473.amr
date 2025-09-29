@@ -1,0 +1,30 @@
+# ::tok street lights street number with one way signs and stop sign
+# ::node	s4	street	0-1
+# ::node	l	light	1-2
+# ::node	s5	street	2-3
+# ::node	n	number	3-4
+# ::node	a	and	4-5
+# ::node	o	one-way	6-7
+# ::node	s	sign	7-8
+# ::node	s3	stop-01	9-10
+# ::node	s2	signal-07	10-11
+# ::root	a	and
+# ::edge	light	mod	street	l	s4	
+# ::edge	number	mod	street	n	s5	
+# ::edge	number	mod	street	n	s4	
+# ::edge	and	op1	number	a	n	
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	and	op2	sign	a	s	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	and	op3	signal-07	a	s2	
+# ::edge	and	rel	light	a	l	
+(a / and
+    :op1 (n / number
+        :mod (s5 / street)
+        :mod (s4 / street))
+    :op2 (s / sign
+        :mod (o / one-way))
+    :op3 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :rel (l / light
+        :mod s4))

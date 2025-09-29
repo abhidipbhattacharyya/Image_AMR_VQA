@@ -1,0 +1,31 @@
+# ::tok A slightly cloudy day , a red light and some cars drving in the direction of the camera .
+# ::node	s	slight	1-2
+# ::node	c3	cloudy-02	2-3
+# ::node	d	day	3-4
+# ::node	r	red-02	6-7
+# ::node	l	light	7-8
+# ::node	a	and	8-9
+# ::node	s2	some	9-10
+# ::node	c2	car	10-11
+# ::node	d2	drive-01	11-12
+# ::node	c	camera	17-18
+# ::root	a	and
+# ::edge	cloudy-02	degree	slight	c3	s	
+# ::edge	day	ARG1-of	cloudy-02	d	c3	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	op1	day	a	d	
+# ::edge	car	quant	some	c2	s2	
+# ::edge	drive-01	ARG0	car	d2	c2	
+# ::edge	and	op3	drive-01	a	d2	
+# ::edge	drive-01	direction	camera	d2	c	
+(a / and
+    :op1 (d / day
+        :ARG1-of (c3 / cloudy-02
+            :degree (s / slight)))
+    :op2 (l / light
+        :ARG1-of (r / red-02))
+    :op3 (d2 / drive-01
+        :ARG0 (c2 / car
+            :quant (s2 / some))
+        :direction (c / camera)))

@@ -1,0 +1,25 @@
+# ::tok Somebody is staying in this room because there is suitcase at the foot of the bed .
+# ::node	s	somebody	0-1
+# ::node	s2	stay-01	2-3
+# ::node	t	this	4-5
+# ::node	r	room	5-6
+# ::node	c	cause-01	6-7
+# ::node	s3	suitcase	9-10
+# ::node	f	foot	12-13
+# ::node	b	bed	15-16
+# ::root	s2	stay-01
+# ::edge	stay-01	ARG1	somebody	s2	s	
+# ::edge	room	mod	this	r	t	
+# ::edge	stay-01	location	room	s2	r	
+# ::edge	stay-01	ARG1-of	cause-01	s2	c	
+# ::edge	cause-01	ARG0	suitcase	c	s3	
+# ::edge	suitcase	location	foot	s3	f	
+# ::edge	foot	part-of	bed	f	b	
+(s2 / stay-01
+    :ARG1 (s / somebody)
+    :ARG1-of (c / cause-01
+        :ARG0 (s3 / suitcase
+            :location (f / foot
+                :part-of (b / bed))))
+    :location (r / room
+        :mod (t / this)))

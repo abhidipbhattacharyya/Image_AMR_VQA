@@ -1,0 +1,95 @@
+# ::tok Black night , a blurry shot shows a tall fence that angles , in a kind of Z shape , around what appears to be a parking area with a large building fronting it , as a kid with a red helmet takes a fierce swing in the batting area , inside the fence .
+# ::node	b2	black-07	0-1
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	b3	blur-01	4-5
+# ::node	s2	shot	5-6
+# ::node	s3	show-01	6-7
+# ::node	t	tall	8-9
+# ::node	f	fence	9-10
+# ::node	a	angle	11-12
+# ::node	k2	kind	15-16
+# ::node	s4	string-entity	17-18
+# ::node	0	Z	17-18
+# ::node	s	shape-01	18-19
+# ::node	a5	around	20-21
+# ::node	a2	appear-02	22-23
+# ::node	p	park-01	26-27
+# ::node	a3	area	27-28
+# ::node	h	have-03	28-29
+# ::node	l	large	30-31
+# ::node	b4	building	31-32
+# ::node	i	in-front-of	32-33
+# ::node	k	kid	37-38
+# ::node	h2	have-03	38-39
+# ::node	r	red-02	40-41
+# ::node	h3	helmet	41-42
+# ::node	f2	fierce	44-45
+# ::node	s5	swing-02	45-46
+# ::node	b	bat	48-49
+# ::node	a4	area	49-50
+# ::node	i2	inside	51-52
+# ::root	s3	show-01
+# ::edge	date-entity	ARG1-of	black-07	d	b2	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	shot	ARG1-of	blur-01	s2	b3	
+# ::edge	show-01	ARG0	shot	s3	s2	
+# ::edge	show-01	time	date-entity	s3	d	
+# ::edge	fence	mod	tall	f	t	
+# ::edge	show-01	ARG1	fence	s3	f	
+# ::edge	fence	mod	angle	f	a	
+# ::edge	string-entity	value	Z	s4	0	
+# ::edge	shape-01	ARG2	string-entity	s	s4	
+# ::edge	shape-01	mod	kind	s	k2	
+# ::edge	angle	ARG1-of	shape-01	a	s	
+# ::edge	fence	location	around	f	a5	
+# ::edge	area	location-of	park-01	a3	p	
+# ::edge	area	ARG1-of	appear-02	a3	a2	
+# ::edge	around	op1	area	a5	a3	
+# ::edge	area	ARG0-of	have-03	a3	h	
+# ::edge	building	mod	large	b4	l	
+# ::edge	have-03	ARG1	building	h	b4	
+# ::edge	building	location	in-front-of	b4	i	
+# ::edge	in-front-of	op1	area	i	a3	
+# ::edge	kid	ARG0-of	have-03	k	h2	
+# ::edge	helmet	ARG1-of	red-02	h3	r	
+# ::edge	have-03	ARG1	helmet	h2	h3	
+# ::edge	swing-02	mod	fierce	s5	f2	
+# ::edge	swing-02	ARG0	kid	s5	k	
+# ::edge	show-01	time	swing-02	s3	s5	
+# ::edge	area	mod	bat	a4	b	
+# ::edge	swing-02	location	area	s5	a4	
+# ::edge	area	location	inside	a4	i2	
+# ::edge	inside	op1	fence	i2	f	
+(s3 / show-01
+    :ARG0 (s2 / shot
+        :ARG1-of (b3 / blur-01))
+    :ARG1 (f / fence
+        :location (a5 / around
+            :op1 (a3 / area
+                :ARG0-of (h / have-03
+                    :ARG1 (b4 / building
+                        :location (i / in-front-of
+                            :op1 a3)
+                        :mod (l / large)))
+                :ARG1-of (a2 / appear-02)
+                :location-of (p / park-01)))
+        :mod (t / tall)
+        :mod (a / angle
+            :ARG1-of (s / shape-01
+                :ARG2 (s4 / string-entity
+                    :value "Z")
+                :mod (k2 / kind))))
+    :time (d / date-entity
+        :ARG1-of (b2 / black-07)
+        :dayperiod (n / night))
+    :time (s5 / swing-02
+        :ARG0 (k / kid
+            :ARG0-of (h2 / have-03
+                :ARG1 (h3 / helmet
+                    :ARG1-of (r / red-02))))
+        :location (a4 / area
+            :location (i2 / inside
+                :op1 f)
+            :mod (b / bat))
+        :mod (f2 / fierce)))

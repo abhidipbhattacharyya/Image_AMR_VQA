@@ -1,0 +1,39 @@
+# ::tok A man standing on a piece of equipment for a video game while holding the remote as four other people look on
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	p2	piece	5-6
+# ::node	e	equipment	7-8
+# ::node	v	video	10-11
+# ::node	g	game	11-12
+# ::node	h	hold-01	13-14
+# ::node	r	remote	15-16
+# ::node	0	4	17-18
+# ::node	o	other	18-19
+# ::node	p	person	19-20
+# ::node	l	look-01	20-21
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	piece	s	p2	
+# ::edge	piece	part-of	equipment	p2	e	
+# ::edge	game	mod	video	g	v	
+# ::edge	equipment	purpose	game	e	g	
+# ::edge	stand-01	time	hold-01	s	h	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	hold-01	ARG1	remote	h	r	
+# ::edge	person	mod	other	p	o	
+# ::edge	person	quant	4	p	0	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	stand-01	ARG1-of	look-01	s	l	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG1-of (l / look-01
+        :ARG0 (p / person
+            :quant 4
+            :mod (o / other)))
+    :ARG2 (p2 / piece
+        :part-of (e / equipment
+            :purpose (g / game
+                :mod (v / video))))
+    :time (h / hold-01
+        :ARG0 m
+        :ARG1 (r / remote)))

@@ -1,0 +1,43 @@
+# ::tok The person holds a ham and cheese sandwich and a giant M&M cookie wrapped in plastic .
+# ::node	p	person	1-2
+# ::node	h2	hold-01	2-3
+# ::node	h	ham	4-5
+# ::node	a	and	5-6
+# ::node	c	cheese	6-7
+# ::node	s	sandwich	7-8
+# ::node	s2	sandwich	7-8
+# ::node	g	giant	10-11
+# ::node	p3	product	11-12
+# ::node	n	name	11-12
+# ::node	0	M&Ms	11-12
+# ::node	c2	cookie	12-13
+# ::node	w	wrap-01	13-14
+# ::node	p2	plastic	15-16
+# ::root	h2	hold-01
+# ::edge	hold-01	ARG0	person	h2	p	
+# ::edge	hold-01	ARG1	and	h2	a	
+# ::edge	cheese	op1	sandwich	c	s	
+# ::edge	sandwich	mod	ham	s	h	
+# ::edge	sandwich	mod	cheese	s2	c	
+# ::edge	and	op2	sandwich	a	s2	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	M&Ms	n	0	
+# ::edge	cookie	mod	product	c2	p3	
+# ::edge	cookie	mod	giant	c2	g	
+# ::edge	and	op3	cookie	a	c2	
+# ::edge	cookie	ARG1-of	wrap-01	c2	w	
+# ::edge	wrap-01	ARG2	plastic	w	p2	
+(h2 / hold-01
+    :ARG0 (p / person)
+    :ARG1 (a / and
+        :op2 (s2 / sandwich
+            :mod (c / cheese
+                :op1 (s / sandwich
+                    :mod (h / ham))))
+        :op3 (c2 / cookie
+            :ARG1-of (w / wrap-01
+                :ARG2 (p2 / plastic))
+            :mod (p3 / product
+                :name (n / name
+                    :op1 "M&Ms"))
+            :mod (g / giant))))

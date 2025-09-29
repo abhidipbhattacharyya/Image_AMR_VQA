@@ -1,0 +1,25 @@
+# ::tok a person standing in a stone walled and floored room wearing a backpack
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	s2	stone	5-6
+# ::node	w	wall-off-01	6-7
+# ::node	f	floor-01	8-9
+# ::node	r	room	9-10
+# ::node	w2	wear-01	10-11
+# ::node	b	backpack	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	wall-off-01	ARG2	stone	w	s2	
+# ::edge	room	ARG1-of	floor-01	r	f	
+# ::edge	room	ARG1-of	wall-off-01	r	w	
+# ::edge	stand-01	ARG2	room	s	r	
+# ::edge	person	ARG0-of	wear-01	p	w2	
+# ::edge	wear-01	ARG1	backpack	w2	b	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (w2 / wear-01
+            :ARG1 (b / backpack)))
+    :ARG2 (r / room
+        :ARG1-of (f / floor-01)
+        :ARG1-of (w / wall-off-01
+            :ARG2 (s2 / stone))))

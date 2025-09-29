@@ -1,0 +1,28 @@
+# ::tok A crowded city street where cars are facing both directions in the same lane .
+# ::node	c3	crowd-01	1-2
+# ::node	c2	city	2-3
+# ::node	s2	street	3-4
+# ::node	c	car	5-6
+# ::node	f	face-01	7-8
+# ::node	b	both	8-9
+# ::node	d	direction	9-10
+# ::node	s	same-01	12-13
+# ::node	l	lane	13-14
+# ::root	s2	street
+# ::edge	street	mod	city	s2	c2	
+# ::edge	street	ARG1-of	crowd-01	s2	c3	
+# ::edge	face-01	ARG0	car	f	c	
+# ::edge	street	location-of	face-01	s2	f	
+# ::edge	direction	mod	both	d	b	
+# ::edge	face-01	ARG1	direction	f	d	
+# ::edge	lane	ARG1-of	same-01	l	s	
+# ::edge	street	location	lane	s2	l	
+(s2 / street
+    :ARG1-of (c3 / crowd-01)
+    :location (l / lane
+        :ARG1-of (s / same-01))
+    :location-of (f / face-01
+        :ARG0 (c / car)
+        :ARG1 (d / direction
+            :mod (b / both)))
+    :mod (c2 / city))

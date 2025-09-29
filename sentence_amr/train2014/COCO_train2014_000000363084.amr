@@ -1,0 +1,45 @@
+# ::tok A white dog is sitting on a bench and there is another white dog in front of him and both have muzzles on their mouths .
+# ::node	w	white-02	1-2
+# ::node	d	dog	2-3
+# ::node	s	sit-01	4-5
+# ::node	b	bench	7-8
+# ::node	a2	another	11-12
+# ::node	w2	white-02	12-13
+# ::node	d2	dog	13-14
+# ::node	i	in-front-of	15-16
+# ::node	a	and	18-19
+# ::node	b2	both	19-20
+# ::node	h	have-03	20-21
+# ::node	t	tooth	21-22
+# ::root	a	and
+# ::edge	dog	ARG1-of	white-02	d	w	
+# ::edge	sit-01	ARG1	dog	s	d	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	dog	ARG1-of	white-02	d2	w2	
+# ::edge	dog	mod	another	d2	a2	
+# ::edge	dog	location	in-front-of	d2	i	
+# ::edge	in-front-of	op1	dog	i	d	
+# ::edge	and	op2	dog	a	d2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	both	op2	dog	b2	d2	
+# ::edge	both	op1	dog	b2	d	
+# ::edge	have-03	ARG0	both	h	b2	
+# ::edge	and	op3	have-03	a	h	
+# ::edge	have-03	ARG1	tooth	h	t	
+# ::edge	dog	part	tooth	d2	t	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (d / dog
+            :ARG1-of (w / white-02))
+        :ARG2 (b / bench))
+    :op2 (d2 / dog
+        :ARG1-of (w2 / white-02)
+        :location (i / in-front-of
+            :op1 d)
+        :mod (a2 / another)
+        :part (t / tooth))
+    :op3 (h / have-03
+        :ARG0 (b2 / both
+            :op1 d
+            :op2 d2)
+        :ARG1 t))

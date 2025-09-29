@@ -1,0 +1,32 @@
+# ::tok The old train car painted red is starting to fade and rust .
+# ::node	o	old	1-2
+# ::node	t	train	2-3
+# ::node	c	car	3-4
+# ::node	p	paint-01	4-5
+# ::node	r	red-02	5-6
+# ::node	s	start-01	7-8
+# ::node	f	fade-01	9-10
+# ::node	a	and	10-11
+# ::node	r2	rust-01	11-12
+# ::root	s	start-01
+# ::edge	car	mod	train	c	t	
+# ::edge	car	mod	old	c	o	
+# ::edge	car	ARG1-of	paint-01	c	p	
+# ::edge	paint-01	ARG2	red-02	p	r	
+# ::edge	start-01	ARG0	car	s	c	
+# ::edge	fade-01	ARG1	car	f	c	
+# ::edge	and	op1	fade-01	a	f	
+# ::edge	start-01	ARG1	and	s	a	
+# ::edge	and	op2	rust-01	a	r2	
+# ::edge	rust-01	ARG1	car	r2	c	
+(s / start-01
+    :ARG0 (c / car
+        :ARG1-of (p / paint-01
+            :ARG2 (r / red-02))
+        :mod (t / train)
+        :mod (o / old))
+    :ARG1 (a / and
+        :op1 (f / fade-01
+            :ARG1 c)
+        :op2 (r2 / rust-01
+            :ARG1 c)))

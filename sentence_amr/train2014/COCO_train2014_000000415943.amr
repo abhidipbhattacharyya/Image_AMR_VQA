@@ -1,0 +1,46 @@
+# ::tok The front of a clock with two windows containing the figure of a woman in one and the figure of a man in the other .
+# ::node	f3	front	1-2
+# ::node	c	clock	4-5
+# ::node	c2	clock	4-5
+# ::node	h	have-03	5-6
+# ::node	0	2	6-7
+# ::node	w	window	7-8
+# ::node	w2	window	7-8
+# ::node	c3	contain-01	8-9
+# ::node	f	figure	10-11
+# ::node	w3	woman	13-14
+# ::node	o	one	15-16
+# ::node	a	and	16-17
+# ::node	f2	figure	18-19
+# ::node	m	man	21-22
+# ::node	o2	other	24-25
+# ::root	f3	front
+# ::edge	front	part-of	clock	f3	c	
+# ::edge	clock	ARG0-of	have-03	c	h	
+# ::edge	window	quant	2	w	0	
+# ::edge	have-03	ARG1	window	h	w	
+# ::edge	window	ARG0-of	contain-01	w	c3	
+# ::edge	figure	mod	woman	f	w3	
+# ::edge	woman	location	one	w3	o	
+# ::edge	and	op1	figure	a	f	
+# ::edge	contain-01	ARG1	and	c3	a	
+# ::edge	and	location	clock	a	c2	
+# ::edge	and	op2	figure	a	f2	
+# ::edge	figure	mod	man	f2	m	
+# ::edge	window	mod	other	w2	o2	
+# ::edge	front	rel	window	f3	w2	
+(f3 / front
+    :part-of (c / clock
+        :ARG0-of (h / have-03
+            :ARG1 (w / window
+                :quant 2
+                :ARG0-of (c3 / contain-01
+                    :ARG1 (a / and
+                        :location (c2 / clock)
+                        :op1 (f / figure
+                            :mod (w3 / woman
+                                :location (o / one)))
+                        :op2 (f2 / figure
+                            :mod (m / man)))))))
+    :rel (w2 / window
+        :mod (o2 / other)))

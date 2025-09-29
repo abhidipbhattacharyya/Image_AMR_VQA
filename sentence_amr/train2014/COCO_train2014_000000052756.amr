@@ -1,0 +1,37 @@
+# ::tok A woman entering a hotel like room with all wooden decor and a tv mounted on the dresser .
+# ::node	w	woman	1-2
+# ::node	e	enter-01	2-3
+# ::node	h	hotel	4-5
+# ::node	r	resemble-01	5-6
+# ::node	r2	room	6-7
+# ::node	a	all	8-9
+# ::node	w2	wood	9-10
+# ::node	d	decor	10-11
+# ::node	a2	and	11-12
+# ::node	t	television	13-14
+# ::node	m	mount-03	14-15
+# ::node	d2	dresser	17-18
+# ::root	e	enter-01
+# ::edge	enter-01	ARG0	woman	e	w	
+# ::edge	resemble-01	ARG2	hotel	r	h	
+# ::edge	room	ARG1-of	resemble-01	r2	r	
+# ::edge	enter-01	ARG1	room	e	r2	
+# ::edge	decor	consist-of	wood	d	w2	
+# ::edge	decor	mod	all	d	a	
+# ::edge	and	op1	decor	a2	d	
+# ::edge	room	part	and	r2	a2	
+# ::edge	and	op2	television	a2	t	
+# ::edge	television	ARG1-of	mount-03	t	m	
+# ::edge	mount-03	location	dresser	m	d2	
+(e / enter-01
+    :ARG0 (w / woman)
+    :ARG1 (r2 / room
+        :ARG1-of (r / resemble-01
+            :ARG2 (h / hotel))
+        :part (a2 / and
+            :op1 (d / decor
+                :consist-of (w2 / wood)
+                :mod (a / all))
+            :op2 (t / television
+                :ARG1-of (m / mount-03
+                    :location (d2 / dresser))))))

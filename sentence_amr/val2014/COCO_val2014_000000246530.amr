@@ -1,0 +1,56 @@
+# ::tok A fenced area ringed with trees and green leaves , shows two giraffes , their necks criss - crossing , so that their heads look in opposite directions .
+# ::node	c2	chain-01	1-2
+# ::node	a2	area	2-3
+# ::node	r	ring-01	3-4
+# ::node	t	tree	5-6
+# ::node	a	and	6-7
+# ::node	g2	green-02	7-8
+# ::node	l	leaf	8-9
+# ::node	s	show-01	10-11
+# ::node	0	2	11-12
+# ::node	g	giraffe	12-13
+# ::node	n	neck	15-16
+# ::node	c3	criss-cross-00	16-17
+# ::node	c	cause-01	20-21
+# ::node	h	head	23-24
+# ::node	l2	look-01	24-25
+# ::node	o	opposite-01	26-27
+# ::node	d	direction	27-28
+# ::root	s	show-01
+# ::edge	area	ARG1-of	chain-01	a2	c2	
+# ::edge	area	ARG1-of	ring-01	a2	r	
+# ::edge	and	op1	tree	a	t	
+# ::edge	ring-01	ARG2	and	r	a	
+# ::edge	leaf	ARG1-of	green-02	l	g2	
+# ::edge	and	op2	leaf	a	l	
+# ::edge	show-01	ARG0	area	s	a2	
+# ::edge	giraffe	quant	2	g	0	
+# ::edge	show-01	ARG1	giraffe	s	g	
+# ::edge	giraffe	part	neck	g	n	
+# ::edge	criss-cross-00	ARG0	neck	c3	n	
+# ::edge	giraffe	mod	criss-cross-00	g	c3	
+# ::edge	criss-cross-00	ARG0-of	cause-01	c3	c	
+# ::edge	giraffe	part	head	g	h	
+# ::edge	look-01	ARG0	head	l2	h	
+# ::edge	cause-01	ARG1	look-01	c	l2	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	look-01	ARG1	direction	l2	d	
+(s / show-01
+    :ARG0 (a2 / area
+        :ARG1-of (c2 / chain-01)
+        :ARG1-of (r / ring-01
+            :ARG2 (a / and
+                :op1 (t / tree)
+                :op2 (l / leaf
+                    :ARG1-of (g2 / green-02)))))
+    :ARG1 (g / giraffe
+        :quant 2
+        :mod (c3 / criss-cross-00
+            :ARG0 (n / neck)
+            :ARG0-of (c / cause-01
+                :ARG1 (l2 / look-01
+                    :ARG0 (h / head)
+                    :ARG1 (d / direction
+                        :ARG1-of (o / opposite-01)))))
+        :part n
+        :part h))

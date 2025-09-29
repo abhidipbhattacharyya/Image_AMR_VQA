@@ -1,0 +1,39 @@
+# ::tok a thee course meal Philly cheese steak with veg 's rice and bread
+# ::node	y	you	2-3
+# ::node	c3	course	2-3
+# ::node	m	meal	3-4
+# ::node	c2	city	4-5
+# ::node	n	name	4-5
+# ::node	0	Philly	4-5
+# ::node	c	cheese	5-6
+# ::node	s	steak	6-7
+# ::node	v	vegetable	8-9
+# ::node	r	rice	10-11
+# ::node	a	and	11-12
+# ::node	b	bread	12-13
+# ::root	m	meal
+# ::edge	meal	mod	course	m	c3	
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Philly	n	0	
+# ::edge	cheese	mod	city	c	c2	
+# ::edge	steak	mod	cheese	s	c	
+# ::edge	meal	mod	steak	m	s	
+# ::edge	rice	mod	vegetable	r	v	
+# ::edge	and	op1	rice	a	r	
+# ::edge	meal	accompanier	and	m	a	
+# ::edge	and	op2	bread	a	b	
+# ::edge	bread	mod	vegetable	b	v	
+# ::edge	meal	rel	you	m	y	
+(m / meal
+    :accompanier (a / and
+        :op1 (r / rice
+            :mod (v / vegetable))
+        :op2 (b / bread
+            :mod v))
+    :mod (c3 / course)
+    :mod (s / steak
+        :mod (c / cheese
+            :mod (c2 / city
+                :name (n / name
+                    :op1 "Philly"))))
+    :rel (y / you))

@@ -1,0 +1,39 @@
+# ::tok A pitcher throws a baseball to the catcher as a batter prepares to swing in a baseball game .
+# ::node	p	person	1-2
+# ::node	t	throw-01	1-2
+# ::node	t2	throw-01	2-3
+# ::node	b	baseball	4-5
+# ::node	p2	person	7-8
+# ::node	c	catch-01	7-8
+# ::node	p3	person	10-11
+# ::node	b3	batter-01	10-11
+# ::node	p4	prepare-02	11-12
+# ::node	s	swing-02	13-14
+# ::node	b2	baseball	16-17
+# ::node	g	game	17-18
+# ::root	t2	throw-01
+# ::edge	person	ARG0-of	throw-01	p	t	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	throw-01	ARG1	baseball	t2	b	
+# ::edge	throw-01	ARG2	person	t2	p2	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	person	ARG0-of	batter-01	p3	b3	
+# ::edge	prepare-02	ARG1	person	p4	p3	
+# ::edge	throw-01	time	prepare-02	t2	p4	
+# ::edge	prepare-02	ARG2	swing-02	p4	s	
+# ::edge	swing-02	ARG0	person	s	p3	
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	swing-02	subevent-of	game	s	g	
+(t2 / throw-01
+    :ARG0 (p / person
+        :ARG0-of (t / throw-01))
+    :ARG1 (b / baseball)
+    :ARG2 (p2 / person
+        :ARG0-of (c / catch-01))
+    :time (p4 / prepare-02
+        :ARG1 (p3 / person
+            :ARG0-of (b3 / batter-01))
+        :ARG2 (s / swing-02
+            :ARG0 p3
+            :subevent-of (g / game
+                :mod (b2 / baseball)))))

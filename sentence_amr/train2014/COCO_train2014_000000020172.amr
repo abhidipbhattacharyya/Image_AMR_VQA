@@ -1,0 +1,48 @@
+# ::tok A man with a large gray backpack standing on a platform next to other passengers waiting for a red train to come to a stop .
+# ::node	m	man	1-2
+# ::node	h	have-03	2-3
+# ::node	l	large	4-5
+# ::node	g	gray-02	5-6
+# ::node	b	backpack	6-7
+# ::node	s	stand-01	7-8
+# ::node	p2	platform	10-11
+# ::node	n	next-to	11-12
+# ::node	o	other	13-14
+# ::node	p	passenger	14-15
+# ::node	w	wait-01	15-16
+# ::node	r	red-02	18-19
+# ::node	t	train	19-20
+# ::node	c	come-01	21-22
+# ::node	s2	stop-01	24-25
+# ::root	s	stand-01
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	backpack	ARG1-of	gray-02	b	g	
+# ::edge	backpack	mod	large	b	l	
+# ::edge	have-03	ARG1	backpack	h	b	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	platform	location	next-to	p2	n	
+# ::edge	passenger	mod	other	p	o	
+# ::edge	next-to	op1	passenger	n	p	
+# ::edge	passenger	ARG1-of	wait-01	p	w	
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	wait-01	ARG2	come-01	w	c	
+# ::edge	come-01	ARG4	stop-01	c	s2	
+# ::edge	stop-01	ARG1	train	s2	t	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (b / backpack
+                :ARG1-of (g / gray-02)
+                :mod (l / large))))
+    :ARG2 (p2 / platform
+        :location (n / next-to
+            :op1 (p / passenger
+                :ARG1-of (w / wait-01
+                    :ARG2 (c / come-01
+                        :ARG1 (t / train
+                            :ARG1-of (r / red-02))
+                        :ARG4 (s2 / stop-01
+                            :ARG1 t)))
+                :mod (o / other)))))

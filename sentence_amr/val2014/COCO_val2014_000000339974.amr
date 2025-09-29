@@ -1,0 +1,25 @@
+# ::tok There is a street light with two green arrows in different directions
+# ::node	s	street	3-4
+# ::node	l	light	4-5
+# ::node	h	have-03	5-6
+# ::node	0	2	6-7
+# ::node	g	green-02	7-8
+# ::node	f	flag	8-9
+# ::node	d	differ-02	10-11
+# ::node	d2	direction	11-12
+# ::root	l	light
+# ::edge	light	mod	street	l	s	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	flag	ARG1-of	green-02	f	g	
+# ::edge	flag	quant	2	f	0	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	direction	ARG1-of	differ-02	d2	d	
+# ::edge	light	direction	direction	l	d2	
+(l / light
+    :ARG0-of (h / have-03
+        :ARG1 (f / flag
+            :quant 2
+            :ARG1-of (g / green-02)))
+    :direction (d2 / direction
+        :ARG1-of (d / differ-02))
+    :mod (s / street))

@@ -1,0 +1,45 @@
+# ::tok A person 's hand holding a Wii gaming control with the wrist leash and a beaded bracelet on wrist .
+# ::node	p	person	1-2
+# ::node	h	hand	3-4
+# ::node	h2	hold-01	4-5
+# ::node	p3	product	6-7
+# ::node	n	name	6-7
+# ::node	0	Wii	6-7
+# ::node	p2	play-01	7-8
+# ::node	c	control-01	8-9
+# ::node	t	thing	10-11
+# ::node	w	wrist	11-12
+# ::node	l	leash	12-13
+# ::node	a	and	13-14
+# ::node	e	earring	15-16
+# ::node	b	bracelet	16-17
+# ::root	h2	hold-01
+# ::edge	hand	part-of	person	h	p	
+# ::edge	hold-01	ARG0	hand	h2	h	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	play-01	ARG3	product	p2	p3	
+# ::edge	control-01	ARG1	play-01	c	p2	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	hold-01	ARG1	thing	h2	t	
+# ::edge	leash	mod	wrist	l	w	
+# ::edge	and	op1	leash	a	l	
+# ::edge	control-01	instrument	and	c	a	
+# ::edge	bracelet	consist-of	earring	b	e	
+# ::edge	and	op2	bracelet	a	b	
+# ::edge	bracelet	location	wrist	b	w	
+(h2 / hold-01
+    :ARG0 (h / hand
+        :part-of (p / person))
+    :ARG1 (t / thing
+        :ARG0-of (c / control-01
+            :ARG1 (p2 / play-01
+                :ARG3 (p3 / product
+                    :name (n / name
+                        :op1 "Wii")))
+            :instrument (a / and
+                :op1 (l / leash
+                    :mod (w / wrist))
+                :op2 (b / bracelet
+                    :consist-of (e / earring)
+                    :location w)))))

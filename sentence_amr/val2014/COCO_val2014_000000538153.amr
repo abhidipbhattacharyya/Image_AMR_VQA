@@ -1,0 +1,25 @@
+# ::tok Three mass transit trains underneath an overpass at a train stop .
+# ::node	0	3	0-1
+# ::node	m	mass	1-2
+# ::node	t3	transit-01	2-3
+# ::node	t	train	3-4
+# ::node	u	underneath	4-5
+# ::node	o	overpass	6-7
+# ::node	t2	train	9-10
+# ::node	s	stop-01	10-11
+# ::root	t	train
+# ::edge	transit-01	ARG2	mass	t3	m	
+# ::edge	train	ARG0-of	transit-01	t	t3	
+# ::edge	train	quant	3	t	0	
+# ::edge	train	location	underneath	t	u	
+# ::edge	underneath	op1	overpass	u	o	
+# ::edge	stop-01	ARG1	train	s	t2	
+# ::edge	overpass	location	stop-01	o	s	
+(t / train
+    :quant 3
+    :ARG0-of (t3 / transit-01
+        :ARG2 (m / mass))
+    :location (u / underneath
+        :op1 (o / overpass
+            :location (s / stop-01
+                :ARG1 (t2 / train)))))

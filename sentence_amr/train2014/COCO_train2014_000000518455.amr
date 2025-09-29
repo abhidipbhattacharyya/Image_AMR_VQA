@@ -1,0 +1,40 @@
+# ::tok many red and white stuffed bears holding hearts grouped together
+# ::node	m	many	0-1
+# ::node	m2	many	0-1
+# ::node	r	red-02	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	s	stuff-01	4-5
+# ::node	s2	stuff-01	4-5
+# ::node	b	bear	5-6
+# ::node	b2	bear	5-6
+# ::node	h2	hold-01	6-7
+# ::node	h	heart	7-8
+# ::node	g	group-01	8-9
+# ::node	t	together	9-10
+# ::root	g	group-01
+# ::edge	and	quant	many	a	m2	
+# ::edge	bear	ARG1-of	stuff-01	b	s	
+# ::edge	and	op1	bear	a	b	
+# ::edge	bear	ARG1-of	red-02	b	r	
+# ::edge	bear	ARG1-of	stuff-01	b2	s2	
+# ::edge	bear	ARG1-of	white-03	b2	w	
+# ::edge	and	op2	bear	a	b2	
+# ::edge	bear	ARG0-of	hold-01	b	h2	
+# ::edge	hold-01	ARG1	heart	h2	h	
+# ::edge	group-01	ARG1	and	g	a	
+# ::edge	group-01	mod	together	g	t	
+# ::edge	group-01	rel	many	g	m	
+(g / group-01
+    :ARG1 (a / and
+        :quant (m2 / many)
+        :op1 (b / bear
+            :ARG0-of (h2 / hold-01
+                :ARG1 (h / heart))
+            :ARG1-of (s / stuff-01)
+            :ARG1-of (r / red-02))
+        :op2 (b2 / bear
+            :ARG1-of (s2 / stuff-01)
+            :ARG1-of (w / white-03)))
+    :mod (t / together)
+    :rel (m / many))

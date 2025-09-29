@@ -1,0 +1,27 @@
+# ::tok Prepared rolls sit with stuffing on a tray , ready to be eaten .
+# ::node	p	prepare-02	0-1
+# ::node	r2	roll	1-2
+# ::node	s	sit-01	2-3
+# ::node	s2	stuff-01	4-5
+# ::node	t	thing	5-6
+# ::node	t2	tray	7-8
+# ::node	r	ready-02	9-10
+# ::node	e	eat-01	12-13
+# ::root	s	sit-01
+# ::edge	roll	ARG1-of	prepare-02	r2	p	
+# ::edge	sit-01	ARG1	roll	s	r2	
+# ::edge	thing	ARG2-of	stuff-01	t	s2	
+# ::edge	sit-01	ARG2	thing	s	t	
+# ::edge	stuff-01	location	tray	s2	t2	
+# ::edge	roll	ARG1-of	ready-02	r2	r	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	roll	e	r2	
+(s / sit-01
+    :ARG1 (r2 / roll
+        :ARG1-of (p / prepare-02)
+        :ARG1-of (r / ready-02
+            :ARG2 (e / eat-01
+                :ARG1 r2)))
+    :ARG2 (t / thing
+        :ARG2-of (s2 / stuff-01
+            :location (t2 / tray))))

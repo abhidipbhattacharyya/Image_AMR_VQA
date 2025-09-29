@@ -1,0 +1,38 @@
+# ::tok Female tennis player in full run on a blue court to complete a backhand return .
+# ::node	f	female	0-1
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	f2	full	4-5
+# ::node	r2	run-02	5-6
+# ::node	b2	blue	8-9
+# ::node	c2	court	9-10
+# ::node	c	complete-01	11-12
+# ::node	b	backhand	13-14
+# ::node	r	return-01	14-15
+# ::root	r2	run-02
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	run-02	manner	full	r2	f2	
+# ::edge	run-02	ARG0	person	r2	p	
+# ::edge	court	mod	blue	c2	b2	
+# ::edge	run-02	location	court	r2	c2	
+# ::edge	run-02	purpose	complete-01	r2	c	
+# ::edge	complete-01	ARG0	person	c	p	
+# ::edge	return-01	mod	backhand	r	b	
+# ::edge	complete-01	ARG1	return-01	c	r	
+# ::edge	return-01	ARG0	person	r	p	
+(r2 / run-02
+    :purpose (c / complete-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))
+            :mod (f / female))
+        :ARG1 (r / return-01
+            :ARG0 p
+            :mod (b / backhand)))
+    :ARG0 p
+    :location (c2 / court
+        :mod (b2 / blue))
+    :manner (f2 / full))

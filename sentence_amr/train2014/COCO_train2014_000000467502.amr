@@ -1,0 +1,36 @@
+# ::tok zebras standing in a circle as they eat hay out of a metal bowl
+# ::node	p	person	0-1
+# ::node	c2	country	0-1
+# ::node	n	name	0-1
+# ::node	0	today	0-1
+# ::node	i	institution	0-1
+# ::node	s	stand-01	1-2
+# ::node	c	circle	4-5
+# ::node	e	eat-01	7-8
+# ::node	h	hay	8-9
+# ::node	m	metal	12-13
+# ::node	b	bowl	13-14
+# ::root	s	stand-01
+# ::edge	person	mod	country	p	c2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	today	n	0	
+# ::edge	person	op2	institution	p	i	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	manner	circle	s	c	
+# ::edge	stand-01	time	eat-01	s	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	hay	e	h	
+# ::edge	bowl	consist-of	metal	b	m	
+# ::edge	eat-01	source	bowl	e	b	
+(s / stand-01
+    :ARG1 (p / person
+        :mod (c2 / country
+            :name (n / name
+                :op1 "today"))
+        :op2 (i / institution))
+    :manner (c / circle)
+    :time (e / eat-01
+        :ARG0 p
+        :ARG1 (h / hay)
+        :source (b / bowl
+            :consist-of (m / metal))))

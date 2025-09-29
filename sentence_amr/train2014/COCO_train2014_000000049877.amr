@@ -1,0 +1,33 @@
+# ::tok A steel basket with fruit in it , including ripe bananas , apples and an orange behind the bananas .
+# ::node	s	steel	1-2
+# ::node	b2	basket	2-3
+# ::node	f	fruit	4-5
+# ::node	i	include-01	8-9
+# ::node	r	ripe-02	9-10
+# ::node	b	banana	10-11
+# ::node	a	and	11-12
+# ::node	a2	apple	12-13
+# ::node	o	orange	15-16
+# ::node	b3	behind	16-17
+# ::root	b2	basket
+# ::edge	basket	consist-of	steel	b2	s	
+# ::edge	basket	location-of	fruit	b2	f	
+# ::edge	fruit	ARG2-of	include-01	f	i	
+# ::edge	banana	ARG1-of	ripe-02	b	r	
+# ::edge	and	op1	banana	a	b	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	apple	a	a2	
+# ::edge	and	op3	orange	a	o	
+# ::edge	orange	location	behind	o	b3	
+# ::edge	behind	op1	banana	b3	b	
+(b2 / basket
+    :consist-of (s / steel)
+    :location-of (f / fruit
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (b / banana
+                    :ARG1-of (r / ripe-02))
+                :op2 (a2 / apple)
+                :op3 (o / orange
+                    :location (b3 / behind
+                        :op1 b))))))

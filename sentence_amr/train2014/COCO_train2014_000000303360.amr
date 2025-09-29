@@ -1,0 +1,39 @@
+# ::tok A person aims an archery bow , while another person holds a game controller in a similar pose .
+# ::node	p	person	1-2
+# ::node	a	aim-01	2-3
+# ::node	a3	archery	4-5
+# ::node	b	bow	5-6
+# ::node	a2	another	8-9
+# ::node	p2	person	9-10
+# ::node	h	hold-01	10-11
+# ::node	g	game	12-13
+# ::node	t	thing	13-14
+# ::node	c	control-01	13-14
+# ::node	r	resemble-01	16-17
+# ::node	p3	pose-01	17-18
+# ::root	a	aim-01
+# ::edge	aim-01	ARG0	person	a	p	
+# ::edge	bow	mod	archery	b	a3	
+# ::edge	aim-01	ARG1	bow	a	b	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	aim-01	time	hold-01	a	h	
+# ::edge	hold-01	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	resemble-01	ARG2	hold-01	r	h	
+# ::edge	pose-01	ARG1-of	resemble-01	p3	r	
+# ::edge	hold-01	manner	pose-01	h	p3	
+(a / aim-01
+    :ARG0 (p / person)
+    :ARG1 (b / bow
+        :mod (a3 / archery))
+    :time (h / hold-01
+        :ARG0 (p2 / person
+            :mod (a2 / another))
+        :ARG1 (t / thing
+            :ARG0-of (c / control-01
+                :ARG1 (g / game)))
+        :manner (p3 / pose-01
+            :ARG1-of (r / resemble-01
+                :ARG2 h))))

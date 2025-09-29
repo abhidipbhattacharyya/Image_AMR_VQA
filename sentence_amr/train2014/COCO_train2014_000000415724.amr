@@ -1,0 +1,30 @@
+# ::tok A train traveling down train tracks with black smoke coming out of it .
+# ::node	t2	train	1-2
+# ::node	t4	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	t3	train	4-5
+# ::node	t	track	5-6
+# ::node	h	have-03	6-7
+# ::node	b	black-04	7-8
+# ::node	s	smoke	8-9
+# ::node	c	come-out-09	9-10
+# ::root	t2	train
+# ::edge	train	ARG0-of	travel-01	t2	t4	
+# ::edge	travel-01	direction	down	t4	d	
+# ::edge	track	mod	train	t	t3	
+# ::edge	down	op1	track	d	t	
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	smoke	ARG1-of	black-04	s	b	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	come-out-09	s	c	
+# ::edge	come-out-09	ARG2	train	c	t2	
+(t2 / train
+    :ARG0-of (t4 / travel-01
+        :direction (d / down
+            :op1 (t / track
+                :mod (t3 / train))))
+    :ARG0-of (h / have-03
+        :ARG1 (s / smoke
+            :ARG1-of (b / black-04)
+            :ARG1-of (c / come-out-09
+                :ARG2 t2))))

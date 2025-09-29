@@ -1,0 +1,62 @@
+# ::tok A STOP sign warns those turning onto Nicolet St to slow before they turn past the red and green foliage .
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	w	warn-01	3-4
+# ::node	p2	person	4-5
+# ::node	t	that	4-5
+# ::node	t2	turn-01	5-6
+# ::node	n	name	7-8
+# ::node	0	Nicolet	7-8
+# ::node	r2	road	8-9
+# ::node	1	Street	8-9
+# ::node	s2	slow-01	10-11
+# ::node	b	before	11-12
+# ::node	t3	turn-01	13-14
+# ::node	p	past	14-15
+# ::node	r	red-02	16-17
+# ::node	a	and	17-18
+# ::node	g	green-02	18-19
+# ::node	f	foliage	19-20
+# ::node	f2	foliage	19-20
+# ::root	w	warn-01
+# ::edge	sign	ARG0-of	stop-01	s	s3	
+# ::edge	warn-01	ARG0	sign	w	s	
+# ::edge	warn-01	ARG2	person	w	p2	
+# ::edge	person	mod	that	p2	t	
+# ::edge	person	ARG0-of	turn-01	p2	t2	
+# ::edge	name	op1	Nicolet	n	0	
+# ::edge	road	name	name	r2	n	
+# ::edge	turn-01	direction	road	t2	r2	
+# ::edge	name	op2	Street	n	1	
+# ::edge	slow-01	ARG0	person	s2	p2	
+# ::edge	warn-01	ARG1	slow-01	w	s2	
+# ::edge	slow-01	time	before	s2	b	
+# ::edge	before	op1	turn-01	b	t3	
+# ::edge	turn-01	ARG0	person	t3	p2	
+# ::edge	turn-01	path	past	t3	p	
+# ::edge	past	op1	and	p	a	
+# ::edge	and	op1	foliage	a	f	
+# ::edge	foliage	ARG1-of	red-02	f	r	
+# ::edge	foliage	ARG1-of	green-02	f2	g	
+# ::edge	and	op2	foliage	a	f2	
+(w / warn-01
+    :ARG0 (s / sign
+        :ARG0-of (s3 / stop-01))
+    :ARG1 (s2 / slow-01
+        :ARG0 (p2 / person
+            :ARG0-of (t2 / turn-01
+                :direction (r2 / road
+                    :name (n / name
+                        :op1 "Nicolet"
+                        :op2 "Street")))
+            :mod (t / that))
+        :time (b / before
+            :op1 (t3 / turn-01
+                :ARG0 p2
+                :path (p / past
+                    :op1 (a / and
+                        :op1 (f / foliage
+                            :ARG1-of (r / red-02))
+                        :op2 (f2 / foliage
+                            :ARG1-of (g / green-02)))))))
+    :ARG2 p2)

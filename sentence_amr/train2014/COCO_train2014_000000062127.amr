@@ -1,0 +1,100 @@
+# ::tok People , with and without skis , are moving through a crosswalk so obstructed by snow only the traffic light proves that there is one , while right ahead lies a town area with buildings that is also obstructed with piles of snow .
+# ::node	p	person	0-1
+# ::node	h	have-03	2-3
+# ::node	a3	and	3-4
+# ::node	h2	have-03	4-5
+# ::node	0	-	4-5
+# ::node	s	ski-01	5-6
+# ::node	m	move-01	8-9
+# ::node	c2	cross-02	11-12
+# ::node	h4	have-degree-91	12-13
+# ::node	s4	so	12-13
+# ::node	o	obstruct-01	13-14
+# ::node	s2	snow	15-16
+# ::node	o3	only	16-17
+# ::node	t2	traffic	18-19
+# ::node	l2	light	19-20
+# ::node	p3	prove-01	20-21
+# ::node	e	exist-01	23-24
+# ::node	c	contrast-01	26-27
+# ::node	r	right	27-28
+# ::node	a	ahead	28-29
+# ::node	l	lie-07	29-30
+# ::node	t	town	31-32
+# ::node	a4	area	32-33
+# ::node	h3	have-03	33-34
+# ::node	b	building	34-35
+# ::node	a2	also	37-38
+# ::node	o2	obstruct-01	38-39
+# ::node	p2	pile-01	40-41
+# ::node	s3	snow	42-43
+# ::root	c	contrast-01
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	and	op1	person	a3	p	
+# ::edge	and	op2	have-03	a3	h2	
+# ::edge	have-03	ARG0	person	h2	p	
+# ::edge	have-03	polarity	-	h2	0	
+# ::edge	have-03	ARG1	ski-01	h2	s	
+# ::edge	have-03	ARG1	ski-01	h	s	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	move-01	ARG0	and	m	a3	
+# ::edge	move-01	path	cross-02	m	c2	
+# ::edge	cross-02	ARG0	and	c2	a3	
+# ::edge	cross-02	ARG1-of	have-degree-91	c2	h4	
+# ::edge	have-degree-91	ARG3	so	h4	s4	
+# ::edge	have-degree-91	ARG2	obstruct-01	h4	o	
+# ::edge	obstruct-01	ARG1	cross-02	o	c2	
+# ::edge	obstruct-01	ARG0	snow	o	s2	
+# ::edge	light	mod	traffic	l2	t2	
+# ::edge	prove-01	ARG0	light	p3	l2	
+# ::edge	prove-01	mod	only	p3	o3	
+# ::edge	have-degree-91	ARG6	prove-01	h4	p3	
+# ::edge	prove-01	ARG1	exist-01	p3	e	
+# ::edge	exist-01	ARG1	cross-02	e	c2	
+# ::edge	contrast-01	ARG1	move-01	c	m	
+# ::edge	ahead	mod	right	a	r	
+# ::edge	lie-07	ARG2	ahead	l	a	
+# ::edge	contrast-01	ARG2	lie-07	c	l	
+# ::edge	area	mod	town	a4	t	
+# ::edge	lie-07	ARG1	area	l	a4	
+# ::edge	area	ARG0-of	have-03	a4	h3	
+# ::edge	have-03	ARG1	building	h3	b	
+# ::edge	obstruct-01	mod	also	o2	a2	
+# ::edge	building	ARG1-of	obstruct-01	b	o2	
+# ::edge	obstruct-01	ARG0	pile-01	o2	p2	
+# ::edge	pile-01	ARG1	snow	p2	s3	
+(c / contrast-01
+    :ARG1 (m / move-01
+        :ARG0 (a3 / and
+            :op1 (p / person
+                :ARG0-of (h / have-03
+                    :ARG1 (s / ski-01
+                        :ARG0 p)))
+            :op2 (h2 / have-03
+                :ARG0 p
+                :ARG1 s
+                :polarity -))
+        :path (c2 / cross-02
+            :ARG0 a3
+            :ARG1-of (h4 / have-degree-91
+                :ARG2 (o / obstruct-01
+                    :ARG0 (s2 / snow)
+                    :ARG1 c2)
+                :ARG3 (s4 / so)
+                :ARG6 (p3 / prove-01
+                    :ARG0 (l2 / light
+                        :mod (t2 / traffic))
+                    :ARG1 (e / exist-01
+                        :ARG1 c2)
+                    :mod (o3 / only)))))
+    :ARG2 (l / lie-07
+        :ARG1 (a4 / area
+            :ARG0-of (h3 / have-03
+                :ARG1 (b / building
+                    :ARG1-of (o2 / obstruct-01
+                        :ARG0 (p2 / pile-01
+                            :ARG1 (s3 / snow))
+                        :mod (a2 / also))))
+            :mod (t / town))
+        :ARG2 (a / ahead
+            :mod (r / right))))

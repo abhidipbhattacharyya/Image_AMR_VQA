@@ -1,0 +1,28 @@
+# ::tok A propeller plane flying in a daytime sky without clouds .
+# ::node	p2	propeller	1-2
+# ::node	p	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	d	date-entity	6-7
+# ::node	d2	daytime	6-7
+# ::node	s	sky	7-8
+# ::node	h	have-03	8-9
+# ::node	0	-	8-9
+# ::node	c	cloud	9-10
+# ::root	p	plane
+# ::edge	plane	mod	propeller	p	p2	
+# ::edge	plane	ARG0-of	fly-01	p	f	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+# ::edge	sky	time	date-entity	s	d	
+# ::edge	fly-01	location	sky	f	s	
+# ::edge	sky	ARG0-of	have-03	s	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	cloud	h	c	
+(p / plane
+    :ARG0-of (f / fly-01
+        :location (s / sky
+            :ARG0-of (h / have-03
+                :ARG1 (c / cloud)
+                :polarity -)
+            :time (d / date-entity
+                :dayperiod (d2 / daytime))))
+    :mod (p2 / propeller))

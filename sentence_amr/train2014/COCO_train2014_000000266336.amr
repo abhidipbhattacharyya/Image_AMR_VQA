@@ -1,0 +1,57 @@
+# ::tok Kitchen view with black microwave , black and stainless stove and almond fridge .
+# ::node	c	cabinet	0-1
+# ::node	v	view-01	1-2
+# ::node	b	black-04	3-4
+# ::node	m	microwave	4-5
+# ::node	b2	black-04	6-7
+# ::node	a2	and	7-8
+# ::node	s	stainless	8-9
+# ::node	s2	stove	9-10
+# ::node	s3	stove	9-10
+# ::node	a3	and	10-11
+# ::node	a	almond	11-12
+# ::node	f	fridge	12-13
+# ::root	v	view-01
+# ::edge	view-01	ARG1	cabinet	v	c	
+# ::edge	microwave	ARG1-of	black-04	m	b	
+# ::edge	and	op1	microwave	a2	m	
+# ::edge	stainless	op2	stove	s	s2	
+# ::edge	stove	ARG1-of	black-04	s2	b2	
+# ::edge	stove	mod	stainless	s3	s	
+# ::edge	and	op3	stove	a2	s3	
+# ::edge	and	op2	and	a3	a2	
+# ::edge	and	op1	microwave	a3	m	
+# ::edge	view-01	ARG0	and	v	a3	
+# ::edge	fridge	mod	almond	f	a	
+# ::edge	and	op4	fridge	a3	f	
+(v / view-01
+    :ARG0 (a3 / and
+        :op1 (m / microwave
+            :ARG1-of (b / black-04))
+        :op2 (a2 / and
+            :op1 m
+            :op3 (s3 / stove
+                :mod (s / stainless
+                    :op2 (s2 / stove
+                        :ARG1-of (b2 / black-04)))))
+        :op4 (f / fridge
+            :mod (a / almond)))
+    :ARG1 (c / cabinet))
+
+
+# ::tok Open empty cabinets .
+# ::node	o	open-01	0-1
+# ::node	y	you	0-1
+# ::node	0	imperative	0-1
+# ::node	e	empty-02	1-2
+# ::node	c	cabinet	2-3
+# ::root	o	open-01
+# ::edge	open-01	ARG0	you	o	y	
+# ::edge	open-01	mode	imperative	o	0	
+# ::edge	cabinet	ARG1-of	empty-02	c	e	
+# ::edge	open-01	ARG1	cabinet	o	c	
+(o / open-01
+    :ARG0 (y / you)
+    :ARG1 (c / cabinet
+        :ARG1-of (e / empty-02))
+    :mode imperative)

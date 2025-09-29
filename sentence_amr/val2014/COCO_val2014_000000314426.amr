@@ -1,0 +1,40 @@
+# ::tok Big Ben is always recognizable in London England .
+# ::node	n	name	0-1
+# ::node	1	Big	0-1
+# ::node	b	building	1-2
+# ::node	0	Ben	1-2
+# ::node	a	always	3-4
+# ::node	p	possible-01	4-5
+# ::node	r	recognize-02	4-5
+# ::node	c	city	6-7
+# ::node	n2	name	6-7
+# ::node	3	London	6-7
+# ::node	c2	country	7-8
+# ::node	n3	name	7-8
+# ::node	2	England	7-8
+# ::root	p	possible-01
+# ::edge	name	op1	Big	n	1	
+# ::edge	building	name	name	b	n	
+# ::edge	name	op2	Ben	n	0	
+# ::edge	possible-01	time	always	p	a	
+# ::edge	possible-01	ARG1	recognize-02	p	r	
+# ::edge	recognize-02	ARG1	building	r	b	
+# ::edge	recognize-02	location	city	r	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	London	n2	3	
+# ::edge	city	part-of	country	c	c2	
+# ::edge	country	name	name	c2	n3	
+# ::edge	name	op1	England	n3	2	
+(p / possible-01
+    :ARG1 (r / recognize-02
+        :ARG1 (b / building
+            :name (n / name
+                :op1 "Big"
+                :op2 "Ben"))
+        :location (c / city
+            :name (n2 / name
+                :op1 "London")
+            :part-of (c2 / country
+                :name (n3 / name
+                    :op1 "England"))))
+    :time (a / always))

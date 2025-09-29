@@ -1,0 +1,39 @@
+# ::tok Two kids are seated at a table while one kid blows out birthday candles on a cake .
+# ::node	1	2	0-1
+# ::node	k	kid	1-2
+# ::node	s	seat-01	3-4
+# ::node	t	table	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	k2	kid	9-10
+# ::node	b2	blow-01	10-11
+# ::node	b	birthday	12-13
+# ::node	c2	candle	13-14
+# ::node	c	cake	16-17
+# ::node	a	and	17-18
+# ::root	a	and
+# ::edge	kid	quant	2	k	1	
+# ::edge	seat-01	ARG1	kid	s	k	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	include-91	ARG2	kid	i	k	
+# ::edge	kid	quant	1	k2	0	
+# ::edge	kid	ARG1-of	include-91	k2	i	
+# ::edge	blow-01	ARG0	kid	b2	k2	
+# ::edge	candle	mod	birthday	c2	b	
+# ::edge	blow-01	ARG1	candle	b2	c2	
+# ::edge	blow-01	location	cake	b2	c	
+# ::edge	and	op2	blow-01	a	b2	
+# ::edge	and	op1	seat-01	a	s	
+(a / and
+    :op1 (s / seat-01
+        :ARG1 (k / kid
+            :quant 2)
+        :ARG2 (t / table))
+    :op2 (b2 / blow-01
+        :ARG0 (k2 / kid
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 k))
+        :ARG1 (c2 / candle
+            :mod (b / birthday))
+        :location (c / cake)))

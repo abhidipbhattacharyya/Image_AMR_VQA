@@ -1,0 +1,20 @@
+# ::tok a plane in the sky ready to fly to its destination
+# ::node	p	plane	1-2
+# ::node	s	sky	4-5
+# ::node	r	ready-02	5-6
+# ::node	f	fly-01	7-8
+# ::node	d	destination	10-11
+# ::root	p	plane
+# ::edge	plane	location	sky	p	s	
+# ::edge	plane	ARG1-of	ready-02	p	r	
+# ::edge	ready-02	ARG2	fly-01	r	f	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	fly-01	destination	destination	f	d	
+# ::edge	destination	poss	plane	d	p	
+(p / plane
+    :ARG1-of (r / ready-02
+        :ARG2 (f / fly-01
+            :ARG2 p
+            :destination (d / destination
+                :poss p)))
+    :location (s / sky))

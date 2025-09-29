@@ -1,0 +1,31 @@
+# ::tok Several skiers below chair lift on alpine densely fogged area .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	ski-01	1-2
+# ::node	b	below	2-3
+# ::node	c	chair	3-4
+# ::node	l	lift	4-5
+# ::node	a	alpine	6-7
+# ::node	d	dense	7-8
+# ::node	s3	snow-01	8-9
+# ::node	a2	area	9-10
+# ::root	p	person
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	person	location	below	p	b	
+# ::edge	lift	mod	chair	l	c	
+# ::edge	below	op1	lift	b	l	
+# ::edge	snow-01	manner	dense	s3	d	
+# ::edge	area	ARG1-of	snow-01	a2	s3	
+# ::edge	area	location	alpine	a2	a	
+# ::edge	ski-01	location	area	s2	a2	
+(p / person
+    :quant (s / several)
+    :ARG0-of (s2 / ski-01
+        :location (a2 / area
+            :ARG1-of (s3 / snow-01
+                :manner (d / dense))
+            :location (a / alpine)))
+    :location (b / below
+        :op1 (l / lift
+            :mod (c / chair))))

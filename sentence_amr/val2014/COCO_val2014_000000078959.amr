@@ -1,0 +1,30 @@
+# ::tok A green fruit tree yields fruit not yet ready for harvest .
+# ::node	g	green-02	1-2
+# ::node	f	fruit	2-3
+# ::node	t	tree	3-4
+# ::node	y2	yield-01	4-5
+# ::node	f2	fruit	5-6
+# ::node	0	-	6-7
+# ::node	y	yet	7-8
+# ::node	r	ready-02	8-9
+# ::node	h	harvest-01	10-11
+# ::root	y2	yield-01
+# ::edge	tree	mod	fruit	t	f	
+# ::edge	tree	ARG1-of	green-02	t	g	
+# ::edge	yield-01	ARG0	tree	y2	t	
+# ::edge	yield-01	ARG1	fruit	y2	f2	
+# ::edge	ready-02	time	yet	r	y	
+# ::edge	ready-02	polarity	-	r	0	
+# ::edge	fruit	ARG1-of	ready-02	f2	r	
+# ::edge	ready-02	ARG2	harvest-01	r	h	
+# ::edge	harvest-01	ARG1	fruit	h	f2	
+(y2 / yield-01
+    :ARG0 (t / tree
+        :ARG1-of (g / green-02)
+        :mod (f / fruit))
+    :ARG1 (f2 / fruit
+        :ARG1-of (r / ready-02
+            :ARG2 (h / harvest-01
+                :ARG1 f2)
+            :polarity -
+            :time (y / yet))))

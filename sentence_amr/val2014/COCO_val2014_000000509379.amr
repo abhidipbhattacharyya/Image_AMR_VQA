@@ -1,0 +1,39 @@
+# ::tok Hotel room with brown carpet , table lamp , two full queen beds with headboards .
+# ::node	h	hotel	0-1
+# ::node	r	room	1-2
+# ::node	b2	brown-01	3-4
+# ::node	c	carpet	4-5
+# ::node	a	and	5-6
+# ::node	t	table	6-7
+# ::node	l	lamp	7-8
+# ::node	0	2	9-10
+# ::node	f	full-09	10-11
+# ::node	q	queen	11-12
+# ::node	b	bed	12-13
+# ::node	c2	ceiling	14-15
+# ::root	r	room
+# ::edge	room	mod	hotel	r	h	
+# ::edge	carpet	ARG1-of	brown-01	c	b2	
+# ::edge	and	op1	carpet	a	c	
+# ::edge	room	location-of	and	r	a	
+# ::edge	lamp	mod	table	l	t	
+# ::edge	and	op2	lamp	a	l	
+# ::edge	bed	mod	queen	b	q	
+# ::edge	bed	ARG1-of	full-09	b	f	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op3	bed	a	b	
+# ::edge	bed	part	ceiling	b	c2	
+# ::edge	and	op4	ceiling	a	c2	
+(r / room
+    :location-of (a / and
+        :op1 (c / carpet
+            :ARG1-of (b2 / brown-01))
+        :op2 (l / lamp
+            :mod (t / table))
+        :op3 (b / bed
+            :quant 2
+            :ARG1-of (f / full-09)
+            :mod (q / queen)
+            :part (c2 / ceiling))
+        :op4 c2)
+    :mod (h / hotel))

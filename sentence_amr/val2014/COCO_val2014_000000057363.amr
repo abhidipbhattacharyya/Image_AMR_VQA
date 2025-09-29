@@ -1,0 +1,28 @@
+# ::tok A fire truck ( ladder truck ) drives down a street in the city .
+# ::node	f	fire	1-2
+# ::node	t	truck	2-3
+# ::node	m	mean-01	3-4
+# ::node	l	ladder	4-5
+# ::node	t2	truck	5-6
+# ::node	d2	drive-01	7-8
+# ::node	d	down	8-9
+# ::node	s	street	10-11
+# ::node	c	city	13-14
+# ::root	d2	drive-01
+# ::edge	truck	mod	fire	t	f	
+# ::edge	truck	ARG1-of	mean-01	t	m	
+# ::edge	truck	mod	ladder	t2	l	
+# ::edge	mean-01	ARG2	truck	m	t2	
+# ::edge	drive-01	ARG0	truck	d2	t	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s	
+# ::edge	street	location	city	s	c	
+(d2 / drive-01
+    :ARG0 (t / truck
+        :ARG1-of (m / mean-01
+            :ARG2 (t2 / truck
+                :mod (l / ladder)))
+        :mod (f / fire))
+    :ARG1 (s / street
+        :location (c / city))
+    :direction (d / down))

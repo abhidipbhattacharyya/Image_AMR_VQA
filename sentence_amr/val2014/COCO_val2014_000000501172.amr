@@ -1,0 +1,45 @@
+# ::tok A baseball player wearing sunglasses and a New York Yankees hat standing in a baseball field .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	s2	sunglasses	4-5
+# ::node	a	and	5-6
+# ::node	0	New	7-8
+# ::node	2	York	8-9
+# ::node	t	team	9-10
+# ::node	n	name	9-10
+# ::node	1	Yankees	9-10
+# ::node	h	hat	10-11
+# ::node	s	stand-01	11-12
+# ::node	f	field	15-16
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	and	op1	sunglasses	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op2	York	n	2	
+# ::edge	name	op1	New	n	0	
+# ::edge	name	op3	Yankees	n	1	
+# ::edge	hat	mod	team	h	t	
+# ::edge	and	op2	hat	a	h	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	field	s	f	
+# ::edge	field	mod	baseball	f	b	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball))
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s2 / sunglasses)
+                :op2 (h / hat
+                    :mod (t / team
+                        :name (n / name
+                            :op1 "New"
+                            :op2 "York"
+                            :op3 "Yankees"))))))
+    :ARG2 (f / field
+        :mod b))

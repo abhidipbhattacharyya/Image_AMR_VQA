@@ -1,0 +1,43 @@
+# ::tok A stop sign that is directly under the Bellon and Locust Ave signs .
+# ::node	s4	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	d	direct-02	5-6
+# ::node	u	under	6-7
+# ::node	n	name	8-9
+# ::node	1	Bellon	8-9
+# ::node	a	and	9-10
+# ::node	n2	name	10-11
+# ::node	2	Locust	10-11
+# ::node	r	road	11-12
+# ::node	r2	road	11-12
+# ::node	0	Ave	11-12
+# ::node	s2	sign	12-13
+# ::node	s3	sign	12-13
+# ::root	s	sign
+# ::edge	sign	purpose	stop-01	s	s4	
+# ::edge	under	ARG1-of	direct-02	u	d	
+# ::edge	sign	location	under	s	u	
+# ::edge	name	op1	Bellon	n	1	
+# ::edge	under	op1	and	u	a	
+# ::edge	name	op1	Locust	n2	2	
+# ::edge	road	name	name	r	n	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op2	Ave	n2	0	
+# ::edge	sign	mod	road	s2	r	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	sign	mod	road	s3	r2	
+# ::edge	and	op2	sign	a	s3	
+(s / sign
+    :purpose (s4 / stop-01)
+    :location (u / under
+        :ARG1-of (d / direct-02)
+        :op1 (a / and
+            :op1 (s2 / sign
+                :mod (r / road
+                    :name (n / name
+                        :op1 "Bellon")))
+            :op2 (s3 / sign
+                :mod (r2 / road
+                    :name (n2 / name
+                        :op1 "Locust"
+                        :op2 "Ave"))))))

@@ -1,0 +1,30 @@
+# ::tok A apple on a plate with a knife sticking out of it with what looks like blood pooled on the plate .
+# ::node	a	apple	1-2
+# ::node	p	plate	4-5
+# ::node	k	knife	7-8
+# ::node	s	stick-out-02	8-9
+# ::node	t	thing	13-14
+# ::node	l	look-02	14-15
+# ::node	r	resemble-01	15-16
+# ::node	b	blood	16-17
+# ::node	p2	pool-01	17-18
+# ::root	a	apple
+# ::edge	apple	location	plate	a	p	
+# ::edge	stick-out-02	ARG1	knife	s	k	
+# ::edge	plate	location-of	stick-out-02	p	s	
+# ::edge	thing	ARG0-of	look-02	t	l	
+# ::edge	thing	ARG1-of	resemble-01	t	r	
+# ::edge	resemble-01	ARG2	blood	r	b	
+# ::edge	pool-01	ARG1	thing	p2	t	
+# ::edge	pool-01	location	plate	p2	p	
+# ::edge	apple	ARG0-of	pool-01	a	p2	
+(a / apple
+    :ARG0-of (p2 / pool-01
+        :ARG1 (t / thing
+            :ARG0-of (l / look-02)
+            :ARG1-of (r / resemble-01
+                :ARG2 (b / blood)))
+        :location (p / plate
+            :location-of (s / stick-out-02
+                :ARG1 (k / knife))))
+    :location p)

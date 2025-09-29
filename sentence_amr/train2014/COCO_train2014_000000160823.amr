@@ -1,0 +1,31 @@
+# ::tok He has to wipe off the frisbee after the dog slobbered all over it .
+# ::node	h	he	0-1
+# ::node	o	obligate-01	1-2
+# ::node	w	wipe-01	3-4
+# ::node	f	frisbee	6-7
+# ::node	a	after	7-8
+# ::node	d	dog	9-10
+# ::node	d2	drool-01	10-11
+# ::node	a2	all-over	12-13
+# ::root	o	obligate-01
+# ::edge	obligate-01	ARG1	he	o	h	
+# ::edge	obligate-01	ARG2	wipe-01	o	w	
+# ::edge	wipe-01	ARG0	he	w	h	
+# ::edge	wipe-01	ARG1	frisbee	w	f	
+# ::edge	wipe-01	time	after	w	a	
+# ::edge	drool-01	ARG0	dog	d2	d	
+# ::edge	after	op1	drool-01	a	d2	
+# ::edge	drool-01	ARG1	frisbee	d2	f	
+# ::edge	drool-01	location	all-over	d2	a2	
+# ::edge	all-over	op1	frisbee	a2	f	
+(o / obligate-01
+    :ARG1 (h / he)
+    :ARG2 (w / wipe-01
+        :ARG0 h
+        :ARG1 (f / frisbee)
+        :time (a / after
+            :op1 (d2 / drool-01
+                :ARG0 (d / dog)
+                :ARG1 f
+                :location (a2 / all-over
+                    :op1 f)))))

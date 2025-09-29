@@ -1,0 +1,43 @@
+# ::tok This photo has a blurry background but you can see some nice wooden benches in the foreground .
+# ::node	t2	this	0-1
+# ::node	p	photo	1-2
+# ::node	h	have-03	2-3
+# ::node	b2	blur-01	4-5
+# ::node	b	background	5-6
+# ::node	c	contrast-01	6-7
+# ::node	y	you	7-8
+# ::node	p2	possible-01	8-9
+# ::node	s	see-01	9-10
+# ::node	s2	some	10-11
+# ::node	n	nice-01	11-12
+# ::node	w	wood	12-13
+# ::node	t	table	13-14
+# ::node	f	foreground	16-17
+# ::root	c	contrast-01
+# ::edge	photo	mod	this	p	t2	
+# ::edge	have-03	ARG0	photo	h	p	
+# ::edge	background	ARG1-of	blur-01	b	b2	
+# ::edge	have-03	ARG1	background	h	b	
+# ::edge	contrast-01	ARG1	have-03	c	h	
+# ::edge	contrast-01	ARG2	possible-01	c	p2	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	table	ARG1-of	nice-01	t	n	
+# ::edge	table	quant	some	t	s2	
+# ::edge	see-01	ARG1	table	s	t	
+# ::edge	table	location	foreground	t	f	
+(c / contrast-01
+    :ARG1 (h / have-03
+        :ARG0 (p / photo
+            :mod (t2 / this))
+        :ARG1 (b / background
+            :ARG1-of (b2 / blur-01)))
+    :ARG2 (p2 / possible-01
+        :ARG1 (s / see-01
+            :ARG0 (y / you)
+            :ARG1 (t / table
+                :quant (s2 / some)
+                :ARG1-of (n / nice-01)
+                :consist-of (w / wood)
+                :location (f / foreground)))))

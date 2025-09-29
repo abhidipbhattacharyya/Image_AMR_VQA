@@ -1,0 +1,30 @@
+# ::tok A woman is preparing a handmade pizza while another girl eats a pizza slice .
+# ::node	w	woman	1-2
+# ::node	p2	prepare-01	3-4
+# ::node	m	make-01	5-6
+# ::node	h	hand	5-6
+# ::node	p	pizza	6-7
+# ::node	a	another	8-9
+# ::node	g	girl	9-10
+# ::node	e	eat-01	10-11
+# ::node	s	slice	13-14
+# ::root	p2	prepare-01
+# ::edge	prepare-01	ARG0	woman	p2	w	
+# ::edge	make-01	ARG1	hand	m	h	
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	prepare-01	ARG1	pizza	p2	p	
+# ::edge	girl	mod	another	g	a	
+# ::edge	eat-01	ARG0	girl	e	g	
+# ::edge	prepare-01	time	eat-01	p2	e	
+# ::edge	eat-01	ARG1	slice	e	s	
+# ::edge	pizza	consist	slice	p	s	
+(p2 / prepare-01
+    :ARG0 (w / woman)
+    :ARG1 (p / pizza
+        :ARG1-of (m / make-01
+            :ARG1 (h / hand))
+        :consist (s / slice))
+    :time (e / eat-01
+        :ARG0 (g / girl
+            :mod (a / another))
+        :ARG1 s))

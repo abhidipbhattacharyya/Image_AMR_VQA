@@ -1,0 +1,25 @@
+# ::tok Two planes fly in opposite directions , with red and green fuel respectively .
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	o	opposite-01	4-5
+# ::node	r	red-02	8-9
+# ::node	a	and	9-10
+# ::node	g	green-02	10-11
+# ::node	f2	fuel	11-12
+# ::node	f3	fuel	11-12
+# ::root	f	fly-01
+# ::edge	fly-01	ARG1	plane	f	p	
+# ::edge	fly-01	direction	opposite-01	f	o	
+# ::edge	plane	location-of	and	p	a	
+# ::edge	and	op1	fuel	a	f2	
+# ::edge	fuel	ARG1-of	red-02	f2	r	
+# ::edge	fuel	ARG1-of	green-02	f3	g	
+# ::edge	and	op2	fuel	a	f3	
+(f / fly-01
+    :ARG1 (p / plane
+        :location-of (a / and
+            :op1 (f2 / fuel
+                :ARG1-of (r / red-02))
+            :op2 (f3 / fuel
+                :ARG1-of (g / green-02))))
+    :direction (o / opposite-01))

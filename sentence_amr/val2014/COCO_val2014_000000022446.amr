@@ -1,0 +1,40 @@
+# ::tok A plate of Asian meat next to a bowl of white rice and a cup of tea .
+# ::node	p	plate	1-2
+# ::node	c	continent	3-4
+# ::node	n	name	3-4
+# ::node	0	Asia	3-4
+# ::node	m	meat	4-5
+# ::node	n2	next-to	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	b2	bowl	8-9
+# ::node	w	white-02	10-11
+# ::node	r	rice	11-12
+# ::node	a	and	12-13
+# ::node	c2	cup	14-15
+# ::node	t	tea	16-17
+# ::root	b	be-located-at-91
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	meat	mod	continent	m	c	
+# ::edge	plate	consist-of	meat	p	m	
+# ::edge	be-located-at-91	ARG2	next-to	b	n2	
+# ::edge	be-located-at-91	ARG1	plate	b	p	
+# ::edge	rice	ARG1-of	white-02	r	w	
+# ::edge	rice	quant	bowl	r	b2	
+# ::edge	and	op1	rice	a	r	
+# ::edge	next-to	op1	and	n2	a	
+# ::edge	tea	quant	cup	t	c2	
+# ::edge	and	op2	tea	a	t	
+(b / be-located-at-91
+    :ARG1 (p / plate
+        :consist-of (m / meat
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Asia"))))
+    :ARG2 (n2 / next-to
+        :op1 (a / and
+            :op1 (r / rice
+                :quant (b2 / bowl)
+                :ARG1-of (w / white-02))
+            :op2 (t / tea
+                :quant (c2 / cup)))))

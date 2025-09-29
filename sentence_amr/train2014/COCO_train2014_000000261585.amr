@@ -1,0 +1,36 @@
+# ::tok People standing and sitting around some with umbrellas some without .
+# ::node	p	person	0-1
+# ::node	p2	person	0-1
+# ::node	s4	stand-01	1-2
+# ::node	a	and	2-3
+# ::node	s	sit-01	3-4
+# ::node	a2	around	4-5
+# ::node	s2	some	5-6
+# ::node	u	umbrella	7-8
+# ::node	s3	some	8-9
+# ::node	h	have-03	9-10
+# ::node	0	-	9-10
+# ::root	a	and
+# ::edge	stand-01	ARG1	person	s4	p	
+# ::edge	and	op1	stand-01	a	s4	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	stand-01	ARG2	around	s4	a2	
+# ::edge	person	quant	some	p	s2	
+# ::edge	person	instrument	umbrella	p	u	
+# ::edge	have-03	ARG0	some	h	s3	
+# ::edge	umbrella	ARG1-of	have-03	u	h	
+# ::edge	have-03	polarity	-	h	0	
+(a / and
+    :op1 (s4 / stand-01
+        :ARG1 (p / person
+            :quant (s2 / some)
+            :instrument (u / umbrella
+                :ARG1-of (h / have-03
+                    :ARG0 (s3 / some)
+                    :polarity -)))
+        :ARG2 (a2 / around))
+    :op2 (s / sit-01
+        :ARG1 (p2 / person)
+        :ARG2 a2))

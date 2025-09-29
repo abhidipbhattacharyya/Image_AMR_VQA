@@ -1,0 +1,36 @@
+# ::tok many toilets without its upper top part near each other on a dark background
+# ::node	m	many	0-1
+# ::node	t	toilet	1-2
+# ::node	0	-	2-3
+# ::node	u	upper	4-5
+# ::node	t2	top	5-6
+# ::node	p	part	6-7
+# ::node	n	near-02	7-8
+# ::node	e	each	8-9
+# ::node	o	other	9-10
+# ::node	d	dark-02	12-13
+# ::node	b	background	13-14
+# ::root	t	toilet
+# ::edge	toilet	quant	many	t	m	
+# ::edge	part	mod	top	p	t2	
+# ::edge	part	mod	upper	p	u	
+# ::edge	toilet	part	part	t	p	
+# ::edge	near-02	ARG1	part	n	p	
+# ::edge	near-02	polarity	-	n	0	
+# ::edge	toilet	manner	near-02	t	n	
+# ::edge	other	mod	each	o	e	
+# ::edge	near-02	ARG2	other	n	o	
+# ::edge	background	ARG1-of	dark-02	b	d	
+# ::edge	toilet	mod	background	t	b	
+(t / toilet
+    :quant (m / many)
+    :manner (n / near-02
+        :ARG1 (p / part
+            :mod (t2 / top)
+            :mod (u / upper))
+        :ARG2 (o / other
+            :mod (e / each))
+        :polarity -)
+    :mod (b / background
+        :ARG1-of (d / dark-02))
+    :part p)

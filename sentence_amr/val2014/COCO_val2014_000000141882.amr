@@ -1,0 +1,25 @@
+# ::tok People and luggage waiting in line at an airport check - in kiosk
+# ::node	p	person	0-1
+# ::node	a2	and	1-2
+# ::node	l2	luggage	2-3
+# ::node	w	wait-01	3-4
+# ::node	l	line	5-6
+# ::node	a	airport	8-9
+# ::node	c	check-in-02	9-10
+# ::node	k	kiosk	12-13
+# ::root	w	wait-01
+# ::edge	and	op1	person	a2	p	
+# ::edge	and	op2	luggage	a2	l2	
+# ::edge	wait-01	ARG1	and	w	a2	
+# ::edge	wait-01	manner	line	w	l	
+# ::edge	check-in-02	location	airport	c	a	
+# ::edge	kiosk	instrument-of	check-in-02	k	c	
+# ::edge	line	location	kiosk	l	k	
+(w / wait-01
+    :ARG1 (a2 / and
+        :op1 (p / person)
+        :op2 (l2 / luggage))
+    :manner (l / line
+        :location (k / kiosk
+            :instrument-of (c / check-in-02
+                :location (a / airport)))))

@@ -1,0 +1,28 @@
+# ::tok Pedestrian with rolling suitcase heading towards busses in urban setting .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	r	roll-01	2-3
+# ::node	s2	suitcase	3-4
+# ::node	h	head-02	4-5
+# ::node	b	bus	6-7
+# ::node	u	urban	8-9
+# ::node	s	setting	9-10
+# ::node	e	event	10-11
+# ::root	e	event
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	suitcase	ARG1-of	roll-01	s2	r	
+# ::edge	person	poss-of	suitcase	p	s2	
+# ::edge	person	ARG0-of	head-02	p	h	
+# ::edge	head-02	ARG1	bus	h	b	
+# ::edge	setting	mod	urban	s	u	
+# ::edge	head-02	location	setting	h	s	
+# ::edge	event	mod	person	e	p	
+(e / event
+    :mod (p / person
+        :ARG0-of (w / walk-01)
+        :ARG0-of (h / head-02
+            :ARG1 (b / bus)
+            :location (s / setting
+                :mod (u / urban)))
+        :poss-of (s2 / suitcase
+            :ARG1-of (r / roll-01))))

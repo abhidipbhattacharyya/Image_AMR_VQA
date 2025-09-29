@@ -1,0 +1,37 @@
+# ::tok A kitchen with white cabinets , an overhead microwave over and no stove or oven in place .
+# ::node	k	kitchen	1-2
+# ::node	w	white-03	3-4
+# ::node	c	cabinet	4-5
+# ::node	o4	overhead	7-8
+# ::node	m	microwave	8-9
+# ::node	o3	over	9-10
+# ::node	a	and	10-11
+# ::node	0	-	11-12
+# ::node	s	stove	12-13
+# ::node	o	or	13-14
+# ::node	o2	oven	14-15
+# ::node	i	in-place	16-17
+# ::root	k	kitchen
+# ::edge	cabinet	ARG1-of	white-03	c	w	
+# ::edge	microwave	location	overhead	m	o4	
+# ::edge	microwave	location	over	m	o3	
+# ::edge	and	op2	microwave	a	m	
+# ::edge	and	op1	cabinet	a	c	
+# ::edge	kitchen	part	and	k	a	
+# ::edge	or	op1	stove	o	s	
+# ::edge	or	polarity	-	o	0	
+# ::edge	or	op2	oven	o	o2	
+# ::edge	in-place	domain	or	i	o	
+# ::edge	and	op3	in-place	a	i	
+(k / kitchen
+    :part (a / and
+        :op1 (c / cabinet
+            :ARG1-of (w / white-03))
+        :op2 (m / microwave
+            :location (o4 / overhead)
+            :location (o3 / over))
+        :op3 (i / in-place
+            :domain (o / or
+                :op1 (s / stove)
+                :op2 (o2 / oven)
+                :polarity -))))

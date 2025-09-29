@@ -1,0 +1,42 @@
+# ::tok Hand with corn kernel feeding pigeon on hand , several other pigeons on stone tiled ground .
+# ::node	h	hand	0-1
+# ::node	c	corn	2-3
+# ::node	k	kernel	3-4
+# ::node	f	feed-01	4-5
+# ::node	p	pigeon	5-6
+# ::node	o	on-hand-15	7-8
+# ::node	a	and	8-9
+# ::node	s	several	9-10
+# ::node	o2	other	10-11
+# ::node	b	bird	11-12
+# ::node	s2	stone	13-14
+# ::node	t	tile-01	14-15
+# ::node	g	ground	15-16
+# ::root	a	and
+# ::edge	kernel	consist-of	corn	k	c	
+# ::edge	feed-01	ARG2	kernel	f	k	
+# ::edge	pigeon	ARG0-of	feed-01	p	f	
+# ::edge	on-hand-15	ARG2	pigeon	o	p	
+# ::edge	and	op1	on-hand-15	a	o	
+# ::edge	bird	mod	other	b	o2	
+# ::edge	bird	quant	several	b	s	
+# ::edge	and	op2	bird	a	b	
+# ::edge	bird	ARG0-of	feed-01	b	f	
+# ::edge	tile-01	ARG2	stone	t	s2	
+# ::edge	ground	ARG1-of	tile-01	g	t	
+# ::edge	bird	location	ground	b	g	
+# ::edge	and	rel	hand	a	h	
+(a / and
+    :op1 (o / on-hand-15
+        :ARG2 (p / pigeon
+            :ARG0-of (f / feed-01
+                :ARG2 (k / kernel
+                    :consist-of (c / corn)))))
+    :op2 (b / bird
+        :quant (s / several)
+        :ARG0-of f
+        :location (g / ground
+            :ARG1-of (t / tile-01
+                :ARG2 (s2 / stone)))
+        :mod (o2 / other))
+    :rel (h / hand))

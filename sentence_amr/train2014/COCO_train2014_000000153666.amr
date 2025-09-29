@@ -1,0 +1,25 @@
+# ::tok A green traffic sitting at the end of a road next to a red light .
+# ::node	g	green-02	1-2
+# ::node	t	traffic	2-3
+# ::node	s	sit-01	3-4
+# ::node	e	end-01	6-7
+# ::node	r2	road	9-10
+# ::node	n	next-to	10-11
+# ::node	r	red-02	13-14
+# ::node	l	light	14-15
+# ::root	s	sit-01
+# ::edge	traffic	ARG1-of	green-02	t	g	
+# ::edge	sit-01	ARG1	traffic	s	t	
+# ::edge	sit-01	ARG2	end-01	s	e	
+# ::edge	end-01	ARG1	road	e	r2	
+# ::edge	road	location	next-to	r2	n	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	next-to	op1	light	n	l	
+(s / sit-01
+    :ARG1 (t / traffic
+        :ARG1-of (g / green-02))
+    :ARG2 (e / end-01
+        :ARG1 (r2 / road
+            :location (n / next-to
+                :op1 (l / light
+                    :ARG1-of (r / red-02))))))

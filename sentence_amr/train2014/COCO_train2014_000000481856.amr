@@ -1,0 +1,33 @@
+# ::tok Sheep shun the snow and take advantage of a sunwarmed patch of bare grass .
+# ::node	h2	helicopter	0-1
+# ::node	s	shun-01	1-2
+# ::node	s2	snow-01	3-4
+# ::node	a	and	4-5
+# ::node	t	take-advantage-02	6-7
+# ::node	h	heat-01	9-10
+# ::node	s3	sun	9-10
+# ::node	p	patch	10-11
+# ::node	b	bare-02	12-13
+# ::node	g	grass	13-14
+# ::root	a	and
+# ::edge	shun-01	ARG0	helicopter	s	h2	
+# ::edge	shun-01	ARG1	snow-01	s	s2	
+# ::edge	and	op1	shun-01	a	s	
+# ::edge	and	op2	take-advantage-02	a	t	
+# ::edge	take-advantage-02	ARG0	helicopter	t	h2	
+# ::edge	heat-01	ARG0	sun	h	s3	
+# ::edge	patch	ARG1-of	heat-01	p	h	
+# ::edge	take-advantage-02	ARG1	patch	t	p	
+# ::edge	grass	ARG1-of	bare-02	g	b	
+# ::edge	patch	consist-of	grass	p	g	
+(a / and
+    :op1 (s / shun-01
+        :ARG0 (h2 / helicopter)
+        :ARG1 (s2 / snow-01))
+    :op2 (t / take-advantage-02
+        :ARG0 h2
+        :ARG1 (p / patch
+            :ARG1-of (h / heat-01
+                :ARG0 (s3 / sun))
+            :consist-of (g / grass
+                :ARG1-of (b / bare-02)))))

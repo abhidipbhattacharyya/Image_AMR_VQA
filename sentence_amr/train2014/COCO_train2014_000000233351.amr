@@ -1,0 +1,28 @@
+# ::tok A fire truck is following a group of motorcycles down a road with a crowd watching .
+# ::node	f	fire	1-2
+# ::node	t	truck	2-3
+# ::node	f2	follow-01	4-5
+# ::node	g	group	6-7
+# ::node	m	motorcycle	8-9
+# ::node	d	down	9-10
+# ::node	r	road	11-12
+# ::node	c	crowd	14-15
+# ::node	w	watch-01	15-16
+# ::root	f2	follow-01
+# ::edge	truck	mod	fire	t	f	
+# ::edge	follow-01	ARG1	truck	f2	t	
+# ::edge	follow-01	ARG2	group	f2	g	
+# ::edge	group	consist-of	motorcycle	g	m	
+# ::edge	group	direction	down	g	d	
+# ::edge	down	op1	road	d	r	
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	follow-01	ARG1-of	watch-01	f2	w	
+(f2 / follow-01
+    :ARG1 (t / truck
+        :mod (f / fire))
+    :ARG1-of (w / watch-01
+        :ARG0 (c / crowd))
+    :ARG2 (g / group
+        :consist-of (m / motorcycle)
+        :direction (d / down
+            :op1 (r / road))))

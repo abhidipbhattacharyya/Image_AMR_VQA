@@ -1,0 +1,95 @@
+# ::tok A small section of a room shows a portion of a window frame and below it a table with two chairs , one holding a jacket , while on the table rests some large shards of glass , two apples , two bananas , and a long vase .
+# ::node	s4	small	1-2
+# ::node	s	section	2-3
+# ::node	r2	room	5-6
+# ::node	s3	show-01	6-7
+# ::node	p	portion	8-9
+# ::node	w	window	11-12
+# ::node	f	frame	12-13
+# ::node	a	and	13-14
+# ::node	b2	below	14-15
+# ::node	t	table	17-18
+# ::node	h	have-03	18-19
+# ::node	1	2	19-20
+# ::node	c	chair	20-21
+# ::node	i	include-91	22-23
+# ::node	0	1	22-23
+# ::node	h2	hold-01	23-24
+# ::node	j	jacket	25-26
+# ::node	c2	contrast-01	27-28
+# ::node	r	rest-01	31-32
+# ::node	s5	some	32-33
+# ::node	l	large	33-34
+# ::node	s2	shatter-01	34-35
+# ::node	g	glass	36-37
+# ::node	a2	and	37-38
+# ::node	2	2	38-39
+# ::node	a3	apple	39-40
+# ::node	3	2	41-42
+# ::node	b	banana	42-43
+# ::node	l2	long-03	46-47
+# ::node	v	vase	47-48
+# ::root	c2	contrast-01
+# ::edge	section	mod	small	s	s4	
+# ::edge	section	part-of	room	s	r2	
+# ::edge	show-01	ARG0	section	s3	s	
+# ::edge	frame	part-of	window	f	w	
+# ::edge	portion	part-of	frame	p	f	
+# ::edge	and	op1	portion	a	p	
+# ::edge	show-01	ARG1	and	s3	a	
+# ::edge	below	op1	portion	b2	p	
+# ::edge	table	location	below	t	b2	
+# ::edge	and	op2	table	a	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	chair	quant	2	c	1	
+# ::edge	have-03	ARG1	chair	h	c	
+# ::edge	chair	ARG2-of	include-91	c	i	
+# ::edge	hold-01	ARG1	jacket	h2	j	
+# ::edge	contrast-01	ARG1	show-01	c2	s3	
+# ::edge	contrast-01	ARG2	rest-01	c2	r	
+# ::edge	rest-01	ARG2	table	r	t	
+# ::edge	shatter-01	mod	large	s2	l	
+# ::edge	shatter-01	mod	some	s2	s5	
+# ::edge	shatter-01	ARG1	glass	s2	g	
+# ::edge	and	op1	shatter-01	a2	s2	
+# ::edge	rest-01	ARG1	and	r	a2	
+# ::edge	apple	quant	2	a3	2	
+# ::edge	and	op2	apple	a2	a3	
+# ::edge	banana	quant	2	b	3	
+# ::edge	and	op3	banana	a2	b	
+# ::edge	vase	ARG1-of	long-03	v	l2	
+# ::edge	and	op4	vase	a2	v	
+# ::edge	contrast-01	rel	hold-01	c2	h2	
+# ::edge	contrast-01	rel	1	c2	0	
+(c2 / contrast-01
+    :ARG1 (s3 / show-01
+        :ARG0 (s / section
+            :mod (s4 / small)
+            :part-of (r2 / room))
+        :ARG1 (a / and
+            :op1 (p / portion
+                :part-of (f / frame
+                    :part-of (w / window)))
+            :op2 (t / table
+                :ARG0-of (h / have-03
+                    :ARG1 (c / chair
+                        :quant 2
+                        :ARG2-of (i / include-91)))
+                :location (b2 / below
+                    :op1 p))))
+    :ARG2 (r / rest-01
+        :ARG1 (a2 / and
+            :op1 (s2 / shatter-01
+                :ARG1 (g / glass)
+                :mod (l / large)
+                :mod (s5 / some))
+            :op2 (a3 / apple
+                :quant 2)
+            :op3 (b / banana
+                :quant 2)
+            :op4 (v / vase
+                :ARG1-of (l2 / long-03)))
+        :ARG2 t)
+    :rel (h2 / hold-01
+        :ARG1 (j / jacket))
+    :rel 1)

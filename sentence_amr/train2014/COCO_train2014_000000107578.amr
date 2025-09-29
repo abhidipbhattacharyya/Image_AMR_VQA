@@ -1,0 +1,31 @@
+# ::tok The baseball player is swinging at a pitch in an American League game .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	swing-02	4-5
+# ::node	p2	pitch	7-8
+# ::node	n	name	10-11
+# ::node	0	American	10-11
+# ::node	t	team	11-12
+# ::node	1	League	11-12
+# ::node	g	game	12-13
+# ::root	s	swing-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG2	pitch	s	p2	
+# ::edge	name	op1	American	n	0	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op2	League	n	1	
+# ::edge	game	mod	team	g	t	
+# ::edge	pitch	subevent-of	game	p2	g	
+(s / swing-02
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (p2 / pitch
+        :subevent-of (g / game
+            :mod (t / team
+                :name (n / name
+                    :op1 "American"
+                    :op2 "League")))))

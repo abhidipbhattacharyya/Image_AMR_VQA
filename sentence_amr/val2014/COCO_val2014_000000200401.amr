@@ -1,0 +1,30 @@
+# ::tok A parking meter with a sign reading , " Meter remains as a courtesy to cyclists "
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	s	sign	5-6
+# ::node	r	read-01	6-7
+# ::node	m2	meter	9-10
+# ::node	r2	remain-01	10-11
+# ::node	c	courtesy	13-14
+# ::node	p2	person	15-16
+# ::node	c2	cycle-01	15-16
+# ::root	r2	remain-01
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	prep-with	sign	m	s	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	remain-01	ARG1	meter	r2	m2	
+# ::edge	read-01	ARG3	remain-01	r	r2	
+# ::edge	remain-01	ARG3	courtesy	r2	c	
+# ::edge	courtesy	beneficiary	person	c	p2	
+# ::edge	person	ARG0-of	cycle-01	p2	c2	
+# ::edge	remain-01	rel	meter	r2	m	
+(r2 / remain-01
+    :ARG1 (m2 / meter)
+    :ARG3 (c / courtesy
+        :beneficiary (p2 / person
+            :ARG0-of (c2 / cycle-01)))
+    :rel (m / meter
+        :purpose (p / park-01)
+        :prep-with (s / sign
+            :ARG1-of (r / read-01
+                :ARG3 r2))))

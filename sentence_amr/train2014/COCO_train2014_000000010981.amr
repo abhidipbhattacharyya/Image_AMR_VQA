@@ -1,0 +1,25 @@
+# ::tok A train on a track pulling into a station with over cast skies .
+# ::node	t2	train	1-2
+# ::node	t	track	4-5
+# ::node	p	pull-01	5-6
+# ::node	s2	station	8-9
+# ::node	h	have-03	9-10
+# ::node	o	over	10-11
+# ::node	c	cast-01	11-12
+# ::node	s	sky	12-13
+# ::root	p	pull-01
+# ::edge	train	location	track	t2	t	
+# ::edge	pull-01	ARG0	train	p	t2	
+# ::edge	pull-01	ARG2	station	p	s2	
+# ::edge	station	ARG0-of	have-03	s2	h	
+# ::edge	cast-01	mod	over	c	o	
+# ::edge	sky	ARG1-of	cast-01	s	c	
+# ::edge	have-03	ARG1	sky	h	s	
+(p / pull-01
+    :ARG0 (t2 / train
+        :location (t / track))
+    :ARG2 (s2 / station
+        :ARG0-of (h / have-03
+            :ARG1 (s / sky
+                :ARG1-of (c / cast-01
+                    :mod (o / over))))))

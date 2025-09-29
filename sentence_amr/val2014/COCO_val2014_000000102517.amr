@@ -1,0 +1,41 @@
+# ::tok The subject in this black and white photo is making a face to show some type of disgust or dismay .
+# ::node	s3	subject	1-2
+# ::node	t	this	3-4
+# ::node	b	black-and-white	4-5
+# ::node	p	photo	7-8
+# ::node	f	face	11-12
+# ::node	s	show-01	13-14
+# ::node	s2	some	14-15
+# ::node	t2	type	15-16
+# ::node	d	disgust-01	17-18
+# ::node	o	or	18-19
+# ::node	o2	or	18-19
+# ::node	d2	dismay-01	19-20
+# ::root	o	or
+# ::edge	photo	mod	black-and-white	p	b	
+# ::edge	photo	mod	this	p	t	
+# ::edge	subject	location	photo	s3	p	
+# ::edge	show-01	ARG0	face	s	f	
+# ::edge	type	mod	some	t2	s2	
+# ::edge	disgust-01	mod	type	d	t2	
+# ::edge	or	op2	show-01	o	s	
+# ::edge	or	op1	face	o	f	
+# ::edge	or	op1	disgust-01	o2	d	
+# ::edge	show-01	ARG1	or	s	o2	
+# ::edge	or	op2	dismay-01	o2	d2	
+# ::edge	dismay-01	mod	type	d2	t2	
+# ::edge	or	rel	subject	o	s3	
+(o / or
+    :op1 (f / face)
+    :op2 (s / show-01
+        :ARG0 f
+        :ARG1 (o2 / or
+            :op1 (d / disgust-01
+                :mod (t2 / type
+                    :mod (s2 / some)))
+            :op2 (d2 / dismay-01
+                :mod t2)))
+    :rel (s3 / subject
+        :location (p / photo
+            :mod (b / black-and-white)
+            :mod (t / this))))

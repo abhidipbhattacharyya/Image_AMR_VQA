@@ -1,0 +1,30 @@
+# ::tok Chevrolet truck taillights and headlights from oncoming traffic .
+# ::node	n	name	0-1
+# ::node	0	Chevrolet	0-1
+# ::node	t2	truck	1-2
+# ::node	l	light	2-3
+# ::node	a	and	3-4
+# ::node	b	bulb	4-5
+# ::node	h	head	4-5
+# ::node	a2	approach-01	6-7
+# ::node	t	traffic	7-8
+# ::root	a	and
+# ::edge	name	op1	Chevrolet	n	0	
+# ::edge	truck	name	name	t2	n	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	part-of	truck	a	t2	
+# ::edge	and	op2	bulb	a	b	
+# ::edge	truck	part	bulb	t2	b	
+# ::edge	bulb	part	head	b	h	
+# ::edge	traffic	ARG1-of	approach-01	t	a2	
+# ::edge	and	source	traffic	a	t	
+(a / and
+    :op1 (l / light)
+    :op2 (b / bulb
+        :part (h / head))
+    :part-of (t2 / truck
+        :name (n / name
+            :op1 "Chevrolet")
+        :part b)
+    :source (t / traffic
+        :ARG1-of (a2 / approach-01)))

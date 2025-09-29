@@ -1,0 +1,31 @@
+# ::tok Some sort of mechanical device with a key board is hooked up to something like a tablet .
+# ::node	s	some	0-1
+# ::node	s3	sort	1-2
+# ::node	m	mechanics	3-4
+# ::node	d	device	4-5
+# ::node	k	key-02	7-8
+# ::node	b	board	8-9
+# ::node	h	hook-up-02	10-11
+# ::node	s2	something	13-14
+# ::node	r	resemble-01	14-15
+# ::node	t	tablet	16-17
+# ::root	h	hook-up-02
+# ::edge	sort	mod	some	s3	s	
+# ::edge	device	mod	mechanics	d	m	
+# ::edge	device	mod	sort	d	s3	
+# ::edge	board	ARG1-of	key-02	b	k	
+# ::edge	device	part	board	d	b	
+# ::edge	hook-up-02	ARG1	device	h	d	
+# ::edge	hook-up-02	ARG2	something	h	s2	
+# ::edge	something	ARG1-of	resemble-01	s2	r	
+# ::edge	resemble-01	ARG2	tablet	r	t	
+(h / hook-up-02
+    :ARG1 (d / device
+        :mod (m / mechanics)
+        :mod (s3 / sort
+            :mod (s / some))
+        :part (b / board
+            :ARG1-of (k / key-02)))
+    :ARG2 (s2 / something
+        :ARG1-of (r / resemble-01
+            :ARG2 (t / tablet))))

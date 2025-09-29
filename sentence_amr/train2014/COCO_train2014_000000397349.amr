@@ -1,0 +1,30 @@
+# ::tok A man riding a motor bike down a street with dead pig bodies on the back of it .
+# ::node	m	man	1-2
+# ::node	r	ride-01	2-3
+# ::node	m2	motorcycle	4-5
+# ::node	d2	down	6-7
+# ::node	s	street	8-9
+# ::node	d	die-01	10-11
+# ::node	p	pig	11-12
+# ::node	b2	body	12-13
+# ::node	b	back	15-16
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	ride-01	ARG1	motorcycle	r	m2	
+# ::edge	ride-01	direction	down	r	d2	
+# ::edge	ride-01	direction	street	r	s	
+# ::edge	pig	ARG1-of	die-01	p	d	
+# ::edge	body	mod	pig	b2	p	
+# ::edge	ride-01	accompanier	body	r	b2	
+# ::edge	body	location	back	b2	b	
+# ::edge	motorcycle	part	back	m2	b	
+(r / ride-01
+    :ARG0 (m / man)
+    :ARG1 (m2 / motorcycle
+        :part (b / back))
+    :accompanier (b2 / body
+        :location b
+        :mod (p / pig
+            :ARG1-of (d / die-01)))
+    :direction (d2 / down)
+    :direction (s / street))

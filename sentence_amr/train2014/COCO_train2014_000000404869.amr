@@ -1,0 +1,42 @@
+# ::tok A bunch of chopped uncooked vegetables together including potatoes , carrots and other types of vegetables .
+# ::node	b	bunch	1-2
+# ::node	c2	cook-01	3-4
+# ::node	0	-	3-4
+# ::node	c3	cook-01	4-5
+# ::node	v	vegetable	5-6
+# ::node	t	together	6-7
+# ::node	i	include-01	7-8
+# ::node	p	potato	8-9
+# ::node	a	and	9-10
+# ::node	c	carrot	10-11
+# ::node	o	other	12-13
+# ::node	t2	type	13-14
+# ::node	v2	vegetable	15-16
+# ::root	t	together
+# ::edge	cook-01	polarity	-	c2	0	
+# ::edge	cook-01	polarity	cook-01	c3	c2	
+# ::edge	vegetable	ARG1-of	cook-01	v	c3	
+# ::edge	vegetable	ARG1-of	cook-01	v	c2	
+# ::edge	vegetable	quant	bunch	v	b	
+# ::edge	together	domain	vegetable	t	v	
+# ::edge	vegetable	ARG2-of	include-01	v	i	
+# ::edge	and	op1	potato	a	p	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	carrot	a	c	
+# ::edge	type	mod	other	t2	o	
+# ::edge	vegetable	mod	type	v2	t2	
+# ::edge	and	op3	vegetable	a	v2	
+(t / together
+    :domain (v / vegetable
+        :quant (b / bunch)
+        :ARG1-of (c3 / cook-01
+            :polarity (c2 / cook-01
+                :polarity -))
+        :ARG1-of c2
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (p / potato)
+                :op2 (c / carrot)
+                :op3 (v2 / vegetable
+                    :mod (t2 / type
+                        :mod (o / other)))))))

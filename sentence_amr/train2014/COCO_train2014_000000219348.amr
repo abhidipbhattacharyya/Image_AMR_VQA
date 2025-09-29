@@ -1,0 +1,31 @@
+# ::tok The raw material of meal preperation including Broccoli is kept on the table .
+# ::node	r	raw	1-2
+# ::node	m	material	2-3
+# ::node	m2	meal	4-5
+# ::node	p	prepare-02	5-6
+# ::node	i	include-01	6-7
+# ::node	v	vegetable	7-8
+# ::node	n	name	7-8
+# ::node	0	Broccoli	7-8
+# ::node	k	keep-01	9-10
+# ::node	t	table	12-13
+# ::root	k	keep-01
+# ::edge	material	mod	raw	m	r	
+# ::edge	prepare-02	ARG1	meal	p	m2	
+# ::edge	material	purpose	prepare-02	m	p	
+# ::edge	material	ARG2-of	include-01	m	i	
+# ::edge	include-01	ARG1	vegetable	i	v	
+# ::edge	vegetable	name	name	v	n	
+# ::edge	name	op1	Broccoli	n	0	
+# ::edge	keep-01	ARG1	material	k	m	
+# ::edge	keep-01	location	table	k	t	
+(k / keep-01
+    :ARG1 (m / material
+        :purpose (p / prepare-02
+            :ARG1 (m2 / meal))
+        :ARG2-of (i / include-01
+            :ARG1 (v / vegetable
+                :name (n / name
+                    :op1 "Broccoli")))
+        :mod (r / raw))
+    :location (t / table))

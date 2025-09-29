@@ -1,0 +1,40 @@
+# ::tok An old WWII - era fighter aircraft idles on the tarmac near some grass .
+# ::node	o	old	1-2
+# ::node	w	war	2-3
+# ::node	n	name	2-3
+# ::node	0	WWII	2-3
+# ::node	1	War	2-3
+# ::node	e	era	4-5
+# ::node	f	fight-01	5-6
+# ::node	a	aircraft	6-7
+# ::node	i	idle-01	7-8
+# ::node	t	tarmac	10-11
+# ::node	n2	near-02	11-12
+# ::node	s	some	12-13
+# ::node	g	grass	13-14
+# ::root	i	idle-01
+# ::edge	war	name	name	w	n	
+# ::edge	name	op1	WWII	n	0	
+# ::edge	name	op2	War	n	1	
+# ::edge	era	mod	war	e	w	
+# ::edge	aircraft	ARG0-of	fight-01	a	f	
+# ::edge	aircraft	time	era	a	e	
+# ::edge	aircraft	mod	old	a	o	
+# ::edge	idle-01	ARG1	aircraft	i	a	
+# ::edge	idle-01	location	tarmac	i	t	
+# ::edge	tarmac	ARG1-of	near-02	t	n2	
+# ::edge	grass	quant	some	g	s	
+# ::edge	near-02	ARG2	grass	n2	g	
+(i / idle-01
+    :ARG1 (a / aircraft
+        :ARG0-of (f / fight-01)
+        :mod (o / old)
+        :time (e / era
+            :mod (w / war
+                :name (n / name
+                    :op1 "WWII"
+                    :op2 "War"))))
+    :location (t / tarmac
+        :ARG1-of (n2 / near-02
+            :ARG2 (g / grass
+                :quant (s / some)))))

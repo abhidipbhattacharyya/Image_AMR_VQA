@@ -1,0 +1,67 @@
+# ::tok A den with a couch with a cat by a window , two chairs , a table with three vases with one rose , a hanging ball lamp , and a television on a table .
+# ::node	d	den	1-2
+# ::node	h2	have-03	2-3
+# ::node	c3	couch	4-5
+# ::node	h3	have-03	5-6
+# ::node	c	cat	7-8
+# ::node	w	window	10-11
+# ::node	1	2	12-13
+# ::node	c2	chair	13-14
+# ::node	t	table	16-17
+# ::node	h4	have-03	17-18
+# ::node	h5	have-03	17-18
+# ::node	2	3	18-19
+# ::node	f	flower	19-20
+# ::node	0	1	21-22
+# ::node	r	rose	22-23
+# ::node	h	hang-01	25-26
+# ::node	b	ball	26-27
+# ::node	l	lamp	27-28
+# ::node	a	and	29-30
+# ::node	t2	television	31-32
+# ::root	d	den
+# ::edge	den	ARG0-of	have-03	d	h2	
+# ::edge	couch	ARG0-of	have-03	c3	h3	
+# ::edge	have-03	ARG1	cat	h3	c	
+# ::edge	have-03	location	window	h3	w	
+# ::edge	chair	quant	2	c2	1	
+# ::edge	have-03	ARG1	table	h4	t	
+# ::edge	den	ARG0-of	have-03	d	h4	
+# ::edge	table	ARG0-of	have-03	t	h5	
+# ::edge	flower	quant	3	f	2	
+# ::edge	have-03	ARG1	flower	h5	f	
+# ::edge	rose	quant	1	r	0	
+# ::edge	flower	mod	rose	f	r	
+# ::edge	lamp	mod	ball	l	b	
+# ::edge	lamp	ARG1-of	hang-01	l	h	
+# ::edge	table	part	lamp	t	l	
+# ::edge	and	op4	lamp	a	l	
+# ::edge	and	op3	table	a	t	
+# ::edge	and	op2	chair	a	c2	
+# ::edge	and	op1	couch	a	c3	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op5	television	a	t2	
+# ::edge	television	location	table	t2	t	
+(d / den
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (c3 / couch
+                :ARG0-of (h3 / have-03
+                    :ARG1 (c / cat)
+                    :location (w / window)))
+            :op2 (c2 / chair
+                :quant 2)
+            :op3 (t / table
+                :ARG0-of (h5 / have-03
+                    :ARG1 (f / flower
+                        :quant 3
+                        :mod (r / rose
+                            :quant 1)))
+                :part (l / lamp
+                    :ARG1-of (h / hang-01)
+                    :mod (b / ball)))
+            :op4 l
+            :op5 (t2 / television
+                :location t)))
+    :ARG0-of (h4 / have-03
+        :ARG1 t))

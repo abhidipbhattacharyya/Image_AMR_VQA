@@ -1,0 +1,46 @@
+# ::tok A box on a table with three cell phones on it , next to a cup of coffee and a pair of glasses .
+# ::node	b	box	1-2
+# ::node	t	table	4-5
+# ::node	h	have-03	5-6
+# ::node	2	3	6-7
+# ::node	c	cell	7-8
+# ::node	p	phone	8-9
+# ::node	n	next-to	12-13
+# ::node	v	volume-quantity	14-15
+# ::node	0	1	14-15
+# ::node	c3	cup	15-16
+# ::node	c2	coffee	17-18
+# ::node	a	and	18-19
+# ::node	1	1	20-21
+# ::node	g	glasses	22-23
+# ::node	e	event	23-24
+# ::root	e	event
+# ::edge	box	location	table	b	t	
+# ::edge	box	ARG0-of	have-03	b	h	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	phone	quant	3	p	2	
+# ::edge	have-03	ARG1	phone	h	p	
+# ::edge	box	location	next-to	b	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	and	op1	coffee	a	c2	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	glasses	quant	1	g	1	
+# ::edge	and	op2	glasses	a	g	
+# ::edge	event	mod	box	e	b	
+(e / event
+    :mod (b / box
+        :ARG0-of (h / have-03
+            :ARG1 (p / phone
+                :quant 3
+                :mod (c / cell)))
+        :location (t / table)
+        :location (n / next-to
+            :op1 (a / and
+                :op1 (c2 / coffee
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (c3 / cup)))
+                :op2 (g / glasses
+                    :quant 1)))))

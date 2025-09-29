@@ -1,0 +1,38 @@
+# ::tok A runway for airplane with one dual propellor plane parked on the runway and a person walking away from the plane .
+# ::node	r	runway	1-2
+# ::node	a	airplane	3-4
+# ::node	0	1	5-6
+# ::node	d	dual	6-7
+# ::node	p4	propellor	7-8
+# ::node	p3	plane	8-9
+# ::node	p	park-01	9-10
+# ::node	a2	and	13-14
+# ::node	p2	person	15-16
+# ::node	w	walk-01	16-17
+# ::node	a3	away	17-18
+# ::root	r	runway
+# ::edge	runway	purpose	airplane	r	a	
+# ::edge	propellor	mod	dual	p4	d	
+# ::edge	plane	mod	propellor	p3	p4	
+# ::edge	plane	quant	1	p3	0	
+# ::edge	park-01	ARG1	plane	p	p3	
+# ::edge	park-01	ARG2	runway	p	r	
+# ::edge	and	op1	park-01	a2	p	
+# ::edge	runway	location-of	and	r	a2	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	and	op2	walk-01	a2	w	
+# ::edge	walk-01	source	plane	w	p3	
+# ::edge	walk-01	direction	away	w	a3	
+(r / runway
+    :purpose (a / airplane)
+    :location-of (a2 / and
+        :op1 (p / park-01
+            :ARG1 (p3 / plane
+                :quant 1
+                :mod (p4 / propellor
+                    :mod (d / dual)))
+            :ARG2 r)
+        :op2 (w / walk-01
+            :ARG0 (p2 / person)
+            :direction (a3 / away)
+            :source p3)))

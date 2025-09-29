@@ -1,0 +1,22 @@
+# ::tok A train crosses a bridge as another emerges from a tunnel .
+# ::node	t	train	1-2
+# ::node	t2	train	1-2
+# ::node	c	cross-02	2-3
+# ::node	b	bridge	4-5
+# ::node	a	another	6-7
+# ::node	e	emerge-01	7-8
+# ::node	t3	tunnel	10-11
+# ::root	c	cross-02
+# ::edge	cross-02	ARG0	train	c	t	
+# ::edge	cross-02	ARG1	bridge	c	b	
+# ::edge	train	mod	another	t2	a	
+# ::edge	emerge-01	ARG0	train	e	t2	
+# ::edge	cross-02	time	emerge-01	c	e	
+# ::edge	emerge-01	source	tunnel	e	t3	
+(c / cross-02
+    :ARG0 (t / train)
+    :ARG1 (b / bridge)
+    :time (e / emerge-01
+        :ARG0 (t2 / train
+            :mod (a / another))
+        :source (t3 / tunnel)))

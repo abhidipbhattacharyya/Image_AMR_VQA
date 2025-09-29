@@ -1,0 +1,42 @@
+# ::tok A black traffic light in front of large buildings , one of which has a tall sign on top .
+# ::node	b	black-04	1-2
+# ::node	t3	traffic	2-3
+# ::node	l2	light	3-4
+# ::node	i	in-front-of	5-6
+# ::node	l	large	7-8
+# ::node	b2	building	8-9
+# ::node	b3	building	8-9
+# ::node	i2	include-91	10-11
+# ::node	0	1	10-11
+# ::node	h	have-03	13-14
+# ::node	t	tall	15-16
+# ::node	s	sign	16-17
+# ::node	t2	top	18-19
+# ::root	l2	light
+# ::edge	light	mod	traffic	l2	t3	
+# ::edge	light	ARG1-of	black-04	l2	b	
+# ::edge	light	location	in-front-of	l2	i	
+# ::edge	building	mod	large	b2	l	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	include-91	ARG1	building	i2	b3	
+# ::edge	building	ARG2-of	include-91	b2	i2	
+# ::edge	building	quant	1	b3	0	
+# ::edge	building	ARG0-of	have-03	b3	h	
+# ::edge	sign	mod	tall	s	t	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	top	s	t2	
+# ::edge	building	part	top	b2	t2	
+(l2 / light
+    :ARG1-of (b / black-04)
+    :location (i / in-front-of
+        :op1 (b2 / building
+            :ARG2-of (i2 / include-91
+                :ARG1 (b3 / building
+                    :quant 1
+                    :ARG0-of (h / have-03
+                        :ARG1 (s / sign
+                            :location (t2 / top)
+                            :mod (t / tall)))))
+            :mod (l / large)
+            :part t2))
+    :mod (t3 / traffic))

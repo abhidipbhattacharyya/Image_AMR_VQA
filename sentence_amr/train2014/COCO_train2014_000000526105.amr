@@ -1,0 +1,21 @@
+# ::tok stacks of pizzas in pans on a rack waiting to be cooked
+# ::node	s	stack-01	0-1
+# ::node	p	pizzeria	2-3
+# ::node	a	Pan	4-5
+# ::node	r	rack	7-8
+# ::node	w	wait-01	8-9
+# ::node	c	cook-01	11-12
+# ::root	s	stack-01
+# ::edge	stack-01	ARG1	pizzeria	s	p	
+# ::edge	pizzeria	location	Pan	p	a	
+# ::edge	Pan	location	rack	a	r	
+# ::edge	Pan	ARG1-of	wait-01	a	w	
+# ::edge	wait-01	ARG2	cook-01	w	c	
+# ::edge	cook-01	ARG1	pizzeria	c	p	
+(s / stack-01
+    :ARG1 (p / pizzeria
+        :location (a / Pan
+            :ARG1-of (w / wait-01
+                :ARG2 (c / cook-01
+                    :ARG1 p))
+            :location (r / rack))))

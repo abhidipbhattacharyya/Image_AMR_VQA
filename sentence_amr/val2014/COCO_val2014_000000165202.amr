@@ -1,0 +1,28 @@
+# ::tok A large white sign showing where to use the crosswalk at night .
+# ::node	l	large	1-2
+# ::node	w2	white-03	2-3
+# ::node	s2	sign	3-4
+# ::node	s	show-01	4-5
+# ::node	l2	location	5-6
+# ::node	u	use-01	7-8
+# ::node	w	walk-01	9-10
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	s2	sign
+# ::edge	sign	ARG1-of	white-03	s2	w2	
+# ::edge	sign	mod	large	s2	l	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	show-01	ARG1	location	s	l2	
+# ::edge	location	location-of	use-01	l2	u	
+# ::edge	use-01	ARG1	walk-01	u	w	
+# ::edge	use-01	time	date-entity	u	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s2 / sign
+    :ARG0-of (s / show-01
+        :ARG1 (l2 / location
+            :location-of (u / use-01
+                :ARG1 (w / walk-01)
+                :time (d / date-entity
+                    :dayperiod (n / night)))))
+    :ARG1-of (w2 / white-03)
+    :mod (l / large))

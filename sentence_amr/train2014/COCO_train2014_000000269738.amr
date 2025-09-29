@@ -1,0 +1,37 @@
+# ::tok A packed lunch consisting of two wraps , an orange with blueberries , raspberries , and carrots with broccoli
+# ::node	p	pack-01	1-2
+# ::node	l3	lunch	2-3
+# ::node	c2	consist-01	3-4
+# ::node	0	2	5-6
+# ::node	w	wrap	6-7
+# ::node	o	orange	9-10
+# ::node	h	have-03	10-11
+# ::node	l	Blue	11-12
+# ::node	l2	lemon	13-14
+# ::node	a	and	15-16
+# ::node	c	carrot	16-17
+# ::node	b	broccoli	18-19
+# ::root	l3	lunch
+# ::edge	lunch	ARG1-of	pack-01	l3	p	
+# ::edge	lunch	ARG1-of	consist-01	l3	c2	
+# ::edge	wrap	quant	2	w	0	
+# ::edge	orange	ARG0-of	have-03	o	h	
+# ::edge	have-03	ARG1	Blue	h	l	
+# ::edge	and	op2	orange	a	o	
+# ::edge	and	op1	wrap	a	w	
+# ::edge	consist-01	ARG2	and	c2	a	
+# ::edge	and	op3	carrot	a	c	
+# ::edge	carrot	op4	broccoli	c	b	
+# ::edge	lunch	rel	lemon	l3	l2	
+(l3 / lunch
+    :ARG1-of (p / pack-01)
+    :ARG1-of (c2 / consist-01
+        :ARG2 (a / and
+            :op1 (w / wrap
+                :quant 2)
+            :op2 (o / orange
+                :ARG0-of (h / have-03
+                    :ARG1 (l / Blue)))
+            :op3 (c / carrot
+                :op4 (b / broccoli))))
+    :rel (l2 / lemon))

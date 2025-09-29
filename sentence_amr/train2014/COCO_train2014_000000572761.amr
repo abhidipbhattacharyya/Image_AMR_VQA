@@ -1,0 +1,40 @@
+# ::tok A zebra foal feeding on hay in a trough while an older zebra eats hay from the ground .
+# ::node	z	zebra	1-2
+# ::node	f2	foal	2-3
+# ::node	f	feed-01	3-4
+# ::node	h2	hay	5-6
+# ::node	t	trough	8-9
+# ::node	c	contrast-01	9-10
+# ::node	h	have-degree-91	11-12
+# ::node	o	old	11-12
+# ::node	m	more	11-12
+# ::node	z2	zebra	12-13
+# ::node	e	eat-01	13-14
+# ::node	h3	hay	14-15
+# ::node	g	ground	17-18
+# ::root	c	contrast-01
+# ::edge	foal	mod	zebra	f2	z	
+# ::edge	foal	ARG2-of	feed-01	f2	f	
+# ::edge	feed-01	ARG1	hay	f	h2	
+# ::edge	feed-01	location	trough	f	t	
+# ::edge	contrast-01	ARG1	foal	c	f2	
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	zebra	ARG1-of	have-degree-91	z2	h	
+# ::edge	eat-01	ARG0	zebra	e	z2	
+# ::edge	contrast-01	ARG2	eat-01	c	e	
+# ::edge	eat-01	ARG1	hay	e	h3	
+# ::edge	hay	source	ground	h3	g	
+(c / contrast-01
+    :ARG1 (f2 / foal
+        :ARG2-of (f / feed-01
+            :ARG1 (h2 / hay)
+            :location (t / trough))
+        :mod (z / zebra))
+    :ARG2 (e / eat-01
+        :ARG0 (z2 / zebra
+            :ARG1-of (h / have-degree-91
+                :ARG2 (o / old)
+                :ARG3 (m / more)))
+        :ARG1 (h3 / hay
+            :source (g / ground))))

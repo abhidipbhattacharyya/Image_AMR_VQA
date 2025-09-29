@@ -1,0 +1,42 @@
+# ::tok A blue house makes a backdrop for a small dark bird perched on a tilted cup of bird feed attached to glass .
+# ::node	b3	blue	1-2
+# ::node	h	house	2-3
+# ::node	m	make-01	3-4
+# ::node	b	backdrop	5-6
+# ::node	s	small	8-9
+# ::node	d	dark-02	9-10
+# ::node	b2	bird	10-11
+# ::node	p	perch-01	11-12
+# ::node	t	topple-01	14-15
+# ::node	c	cup	15-16
+# ::node	f	feed-01	18-19
+# ::node	a	attach-01	19-20
+# ::node	g	glass	21-22
+# ::root	m	make-01
+# ::edge	house	mod	blue	h	b3	
+# ::edge	make-01	ARG0	house	m	h	
+# ::edge	make-01	ARG1	backdrop	m	b	
+# ::edge	bird	ARG1-of	dark-02	b2	d	
+# ::edge	bird	mod	small	b2	s	
+# ::edge	backdrop	beneficiary	bird	b	b2	
+# ::edge	bird	ARG1-of	perch-01	b2	p	
+# ::edge	cup	ARG1-of	topple-01	c	t	
+# ::edge	perch-01	ARG2	cup	p	c	
+# ::edge	cup	consist-of	feed-01	c	f	
+# ::edge	feed-01	ARG2	bird	f	b2	
+# ::edge	cup	ARG1-of	attach-01	c	a	
+# ::edge	attach-01	ARG2	glass	a	g	
+(m / make-01
+    :ARG0 (h / house
+        :mod (b3 / blue))
+    :ARG1 (b / backdrop
+        :beneficiary (b2 / bird
+            :ARG1-of (d / dark-02)
+            :ARG1-of (p / perch-01
+                :ARG2 (c / cup
+                    :ARG1-of (t / topple-01)
+                    :ARG1-of (a / attach-01
+                        :ARG2 (g / glass))
+                    :consist-of (f / feed-01
+                        :ARG2 b2)))
+            :mod (s / small))))

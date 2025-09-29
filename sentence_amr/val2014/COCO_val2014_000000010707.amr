@@ -1,0 +1,40 @@
+# ::tok Man with video game controller in living room with onlooker seated nearby .
+# ::node	m	man	0-1
+# ::node	v	video	2-3
+# ::node	g	game	3-4
+# ::node	p	person	4-5
+# ::node	c	control-01	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	l	living	6-7
+# ::node	r	room	7-8
+# ::node	p2	person	9-10
+# ::node	o	observe-01	9-10
+# ::node	s	seat-01	10-11
+# ::node	n	nearby	11-12
+# ::node	a	and	12-13
+# ::root	a	and
+# ::edge	game	mod	video	g	v	
+# ::edge	person	ARG0-of	control-01	p	c	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	room	mod	living	r	l	
+# ::edge	be-located-at-91	ARG2	room	b	r	
+# ::edge	person	ARG0-of	observe-01	p2	o	
+# ::edge	seat-01	ARG1	person	s	p2	
+# ::edge	seat-01	location	nearby	s	n	
+# ::edge	and	op2	seat-01	a	s	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	rel	man	a	m	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (p / person
+            :ARG0-of (c / control-01
+                :ARG1 (g / game
+                    :mod (v / video))))
+        :ARG2 (r / room
+            :mod (l / living)))
+    :op2 (s / seat-01
+        :ARG1 (p2 / person
+            :ARG0-of (o / observe-01))
+        :location (n / nearby))
+    :rel (m / man))

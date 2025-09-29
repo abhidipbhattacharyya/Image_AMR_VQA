@@ -1,0 +1,42 @@
+# ::tok A truck with the hood open sits in an area that has been lightly dusted with snow and is a wooded area with sparse trees .
+# ::node	t2	truck	1-2
+# ::node	h2	hood	4-5
+# ::node	o	open-01	5-6
+# ::node	s	sit-01	6-7
+# ::node	a	area	9-10
+# ::node	l	light-06	13-14
+# ::node	d	dust-01	14-15
+# ::node	s2	snow	16-17
+# ::node	w	wood	20-21
+# ::node	a2	area	21-22
+# ::node	h	have-03	22-23
+# ::node	s3	sparse	23-24
+# ::node	t	tree	24-25
+# ::root	s	sit-01
+# ::edge	hood	part-of	truck	h2	t2	
+# ::edge	hood	ARG1-of	open-01	h2	o	
+# ::edge	sit-01	ARG1	truck	s	t2	
+# ::edge	sit-01	ARG2	area	s	a	
+# ::edge	dust-01	ARG1-of	light-06	d	l	
+# ::edge	area	ARG2-of	dust-01	a	d	
+# ::edge	dust-01	ARG1	snow	d	s2	
+# ::edge	area	mod	wood	a2	w	
+# ::edge	area	domain	area	a	a2	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	tree	mod	sparse	t	s3	
+# ::edge	have-03	ARG1	tree	h	t	
+# ::edge	sit-01	rel	hood	s	h2	
+(s / sit-01
+    :ARG1 (t2 / truck)
+    :ARG2 (a / area
+        :ARG2-of (d / dust-01
+            :ARG1 (s2 / snow)
+            :ARG1-of (l / light-06))
+        :domain (a2 / area
+            :ARG0-of (h / have-03
+                :ARG1 (t / tree
+                    :mod (s3 / sparse)))
+            :mod (w / wood)))
+    :rel (h2 / hood
+        :ARG1-of (o / open-01)
+        :part-of t2))

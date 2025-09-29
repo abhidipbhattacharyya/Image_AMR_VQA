@@ -1,0 +1,29 @@
+# ::tok Many motorcycles are displayed in the store with descriptive signs posted near them .
+# ::node	m	many	0-1
+# ::node	m2	motorcycle	1-2
+# ::node	d2	display-01	3-4
+# ::node	s2	store	6-7
+# ::node	d	describe-01	8-9
+# ::node	s	sign	9-10
+# ::node	p	post-01	10-11
+# ::node	n	near-02	11-12
+# ::root	d2	display-01
+# ::edge	motorcycle	quant	many	m2	m	
+# ::edge	display-01	ARG1	motorcycle	d2	m2	
+# ::edge	display-01	ARG2	store	d2	s2	
+# ::edge	sign	ARG0-of	describe-01	s	d	
+# ::edge	display-01	prep-with	sign	d2	s	
+# ::edge	sign	ARG1-of	post-01	s	p	
+# ::edge	post-01	ARG2	near-02	p	n	
+# ::edge	near-02	ARG2	motorcycle	n	m2	
+# ::edge	near-02	ARG1	motorcycle	n	m2	
+(d2 / display-01
+    :ARG1 (m2 / motorcycle
+        :quant (m / many))
+    :ARG2 (s2 / store)
+    :prep-with (s / sign
+        :ARG0-of (d / describe-01)
+        :ARG1-of (p / post-01
+            :ARG2 (n / near-02
+                :ARG1 m2
+                :ARG2 m2))))

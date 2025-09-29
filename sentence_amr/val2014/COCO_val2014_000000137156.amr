@@ -1,0 +1,27 @@
+# ::tok Two cars are traveling on the road and wait at the traffic light .
+# ::node	0	2	0-1
+# ::node	c	car	1-2
+# ::node	t2	travel-01	3-4
+# ::node	r	road	6-7
+# ::node	a	and	7-8
+# ::node	w	wait-01	8-9
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	a	and
+# ::edge	car	quant	2	c	0	
+# ::edge	travel-01	ARG0	car	t2	c	
+# ::edge	travel-01	ARG1	road	t2	r	
+# ::edge	and	op1	travel-01	a	t2	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	wait-01	location	light	w	l	
+(a / and
+    :op1 (t2 / travel-01
+        :ARG0 (c / car
+            :quant 2)
+        :ARG1 (r / road))
+    :op2 (w / wait-01
+        :ARG1 c
+        :location (l / light
+            :mod (t / traffic))))

@@ -1,0 +1,25 @@
+# ::tok Two small planes flying side by side with clouds of smoke trailing them .
+# ::node	0	2	0-1
+# ::node	s2	small	1-2
+# ::node	p	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	s	side-by-side	6-7
+# ::node	c	cloud	8-9
+# ::node	s3	smoke	10-11
+# ::node	t	trail-01	11-12
+# ::root	p	plane
+# ::edge	plane	mod	small	p	s2	
+# ::edge	plane	quant	2	p	0	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	manner	side-by-side	f	s	
+# ::edge	cloud	consist-of	smoke	c	s3	
+# ::edge	trail-01	ARG0	cloud	t	c	
+# ::edge	plane	ARG1-of	trail-01	p	t	
+(p / plane
+    :quant 2
+    :ARG1-of (t / trail-01
+        :ARG0 (c / cloud
+            :consist-of (s3 / smoke)))
+    :ARG2-of (f / fly-01
+        :manner (s / side-by-side))
+    :mod (s2 / small))

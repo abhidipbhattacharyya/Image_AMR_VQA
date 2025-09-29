@@ -1,0 +1,26 @@
+# ::tok A passenger plane lands on the runway and begins to slow down .
+# ::node	p	passenger	1-2
+# ::node	p2	plane	2-3
+# ::node	l	land-01	3-4
+# ::node	r	runway	6-7
+# ::node	a	and	7-8
+# ::node	b	begin-01	8-9
+# ::node	s	slow-down-03	10-11
+# ::root	a	and
+# ::edge	plane	mod	passenger	p2	p	
+# ::edge	land-01	ARG1	plane	l	p2	
+# ::edge	land-01	location	runway	l	r	
+# ::edge	and	op1	land-01	a	l	
+# ::edge	and	op2	begin-01	a	b	
+# ::edge	begin-01	ARG0	plane	b	p2	
+# ::edge	begin-01	ARG1	slow-down-03	b	s	
+# ::edge	slow-down-03	ARG1	plane	s	p2	
+(a / and
+    :op1 (l / land-01
+        :ARG1 (p2 / plane
+            :mod (p / passenger))
+        :location (r / runway))
+    :op2 (b / begin-01
+        :ARG0 p2
+        :ARG1 (s / slow-down-03
+            :ARG1 p2)))

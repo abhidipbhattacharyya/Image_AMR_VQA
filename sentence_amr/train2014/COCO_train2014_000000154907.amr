@@ -1,0 +1,31 @@
+# ::tok A kite in the shape of a person wearing swim fins , flying over a beach .
+# ::node	k	kite	1-2
+# ::node	s	shape-01	4-5
+# ::node	p	person	7-8
+# ::node	w	wear-01	8-9
+# ::node	s3	swim-01	9-10
+# ::node	s2	shoe	10-11
+# ::node	f	finance-01	10-11
+# ::node	f2	fly-01	12-13
+# ::node	o	over	13-14
+# ::node	b	beach	15-16
+# ::root	k	kite
+# ::edge	kite	ARG1-of	shape-01	k	s	
+# ::edge	shape-01	ARG2	person	s	p	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	shoe	mod	swim-01	s2	s3	
+# ::edge	wear-01	ARG1	shoe	w	s2	
+# ::edge	shoe	ARG0-of	finance-01	s2	f	
+# ::edge	kite	ARG0-of	fly-01	k	f2	
+# ::edge	fly-01	path	over	f2	o	
+# ::edge	over	op1	beach	o	b	
+(k / kite
+    :ARG0-of (f2 / fly-01
+        :path (o / over
+            :op1 (b / beach)))
+    :ARG1-of (s / shape-01
+        :ARG2 (p / person
+            :ARG0-of (w / wear-01
+                :ARG1 (s2 / shoe
+                    :ARG0-of (f / finance-01)
+                    :mod (s3 / swim-01))))))

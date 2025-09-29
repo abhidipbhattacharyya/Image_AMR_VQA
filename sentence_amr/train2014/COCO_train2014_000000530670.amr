@@ -1,0 +1,32 @@
+# ::tok A person holds a long hot dog with mustard and ketchup in their hand .
+# ::node	p	person	1-2
+# ::node	h2	hold-01	2-3
+# ::node	l	long-03	4-5
+# ::node	e	eat-01	5-6
+# ::node	h3	hot-dog	6-7
+# ::node	m	mustard	8-9
+# ::node	a	and	9-10
+# ::node	k	ketchup	10-11
+# ::node	h	hand	13-14
+# ::root	h2	hold-01
+# ::edge	hold-01	ARG0	person	h2	p	
+# ::edge	hold-01	ARG1	eat-01	h2	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	hot-dog	e	h3	
+# ::edge	hot-dog	ARG1-of	long-03	h3	l	
+# ::edge	and	op1	mustard	a	m	
+# ::edge	eat-01	instrument	and	e	a	
+# ::edge	and	op2	ketchup	a	k	
+# ::edge	hold-01	location	hand	h2	h	
+# ::edge	person	part	hand	p	h	
+(h2 / hold-01
+    :ARG0 (p / person
+        :part (h / hand))
+    :ARG1 (e / eat-01
+        :ARG0 p
+        :ARG1 (h3 / hot-dog
+            :ARG1-of (l / long-03))
+        :instrument (a / and
+            :op1 (m / mustard)
+            :op2 (k / ketchup)))
+    :location h)

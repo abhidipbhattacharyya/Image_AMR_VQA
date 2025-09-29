@@ -1,0 +1,28 @@
+# ::tok Multiple bunches of bananas and plantains in an outdoor market .
+# ::node	m2	multiple	0-1
+# ::node	0	1	0-1
+# ::node	l	load	1-2
+# ::node	b	banana	3-4
+# ::node	a	and	4-5
+# ::node	p2	plant-01	5-6
+# ::node	p	plant	5-6
+# ::node	o	outdoor	8-9
+# ::node	m	market	9-10
+# ::root	m2	multiple
+# ::edge	load	quant	1	l	0	
+# ::edge	multiple	op1	load	m2	l	
+# ::edge	and	op1	banana	a	b	
+# ::edge	load	quant-of	and	l	a	
+# ::edge	and	op2	plant-01	a	p2	
+# ::edge	plant-01	ARG2	plant	p2	p	
+# ::edge	market	location	outdoor	m	o	
+# ::edge	load	location	market	l	m	
+(m2 / multiple
+    :op1 (l / load
+        :quant 1
+        :location (m / market
+            :location (o / outdoor))
+        :quant-of (a / and
+            :op1 (b / banana)
+            :op2 (p2 / plant-01
+                :ARG2 (p / plant)))))

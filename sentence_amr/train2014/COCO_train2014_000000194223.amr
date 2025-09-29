@@ -1,0 +1,24 @@
+# ::tok Train passenger cars waiting in a railyard that looks abandoned .
+# ::node	t	train	0-1
+# ::node	p	passenger	1-2
+# ::node	c	car	2-3
+# ::node	w	wait-01	3-4
+# ::node	r	railyard	6-7
+# ::node	l	look-02	8-9
+# ::node	a	abandon-01	9-10
+# ::root	w	wait-01
+# ::edge	car	mod	passenger	c	p	
+# ::edge	car	mod	train	c	t	
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	wait-01	location	railyard	w	r	
+# ::edge	railyard	ARG0-of	look-02	r	l	
+# ::edge	look-02	ARG1	abandon-01	l	a	
+# ::edge	abandon-01	ARG1	railyard	a	r	
+(w / wait-01
+    :ARG1 (c / car
+        :mod (p / passenger)
+        :mod (t / train))
+    :location (r / railyard
+        :ARG0-of (l / look-02
+            :ARG1 (a / abandon-01
+                :ARG1 r))))

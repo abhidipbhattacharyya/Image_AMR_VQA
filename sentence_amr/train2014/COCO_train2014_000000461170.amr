@@ -1,0 +1,40 @@
+# ::tok A horse - drawn carriage ride stopped at the gates of a European castle with three towers .
+# ::node	h2	horse	1-2
+# ::node	d	draw-02	3-4
+# ::node	c	carriage	4-5
+# ::node	r	ride-01	5-6
+# ::node	s	stop-01	6-7
+# ::node	g	gate	9-10
+# ::node	c3	continent	12-13
+# ::node	n	name	12-13
+# ::node	1	Europe	12-13
+# ::node	c2	castle	13-14
+# ::node	h	have-03	14-15
+# ::node	0	3	15-16
+# ::node	t	tower	16-17
+# ::root	s	stop-01
+# ::edge	draw-02	ARG0	horse	d	h2	
+# ::edge	ride-01	ARG1	carriage	r	c	
+# ::edge	ride-01	ARG1-of	draw-02	r	d	
+# ::edge	stop-01	ARG1	ride-01	s	r	
+# ::edge	stop-01	location	gate	s	g	
+# ::edge	continent	name	name	c3	n	
+# ::edge	name	op1	Europe	n	1	
+# ::edge	castle	mod	continent	c2	c3	
+# ::edge	gate	poss	castle	g	c2	
+# ::edge	castle	ARG0-of	have-03	c2	h	
+# ::edge	tower	quant	3	t	0	
+# ::edge	have-03	ARG1	tower	h	t	
+(s / stop-01
+    :ARG1 (r / ride-01
+        :ARG1 (c / carriage)
+        :ARG1-of (d / draw-02
+            :ARG0 (h2 / horse)))
+    :location (g / gate
+        :poss (c2 / castle
+            :ARG0-of (h / have-03
+                :ARG1 (t / tower
+                    :quant 3))
+            :mod (c3 / continent
+                :name (n / name
+                    :op1 "Europe")))))

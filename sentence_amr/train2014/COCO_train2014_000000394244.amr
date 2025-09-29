@@ -1,0 +1,30 @@
+# ::tok A view of the kitchen including the window view and door less cabinet .
+# ::node	v	view-01	1-2
+# ::node	k	kitchen	4-5
+# ::node	i	include-01	5-6
+# ::node	w	window	7-8
+# ::node	v2	view-01	8-9
+# ::node	a	and	9-10
+# ::node	d	door	10-11
+# ::node	l	less-than	11-12
+# ::node	c	cabinet	12-13
+# ::root	i	include-01
+# ::edge	view-01	ARG1	kitchen	v	k	
+# ::edge	include-01	ARG2	view-01	i	v	
+# ::edge	view-01	ARG1	window	v2	w	
+# ::edge	and	op1	view-01	a	v2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	door	mod	less-than	d	l	
+# ::edge	less-than	op1	window	l	w	
+# ::edge	cabinet	mod	door	c	d	
+# ::edge	and	op2	cabinet	a	c	
+(i / include-01
+    :ARG1 (a / and
+        :op1 (v2 / view-01
+            :ARG1 (w / window))
+        :op2 (c / cabinet
+            :mod (d / door
+                :mod (l / less-than
+                    :op1 w))))
+    :ARG2 (v / view-01
+        :ARG1 (k / kitchen)))

@@ -1,0 +1,33 @@
+# ::tok A large knife is displayed next to some chopped and sliced veggies .
+# ::node	l	large	1-2
+# ::node	k	knife	2-3
+# ::node	d	display-01	4-5
+# ::node	n	next-to	5-6
+# ::node	s3	some	7-8
+# ::node	s4	some	7-8
+# ::node	s	slice-01	8-9
+# ::node	s2	slice-01	10-11
+# ::node	v	vegetable	11-12
+# ::node	v2	vegetable	11-12
+# ::root	d	display-01
+# ::edge	knife	mod	large	k	l	
+# ::edge	display-01	ARG1	knife	d	k	
+# ::edge	display-01	ARG2	next-to	d	n	
+# ::edge	vegetable	ARG1-of	slice-01	v	s2	
+# ::edge	vegetable	ARG1-of	slice-01	v	s	
+# ::edge	vegetable	quant	some	v	s3	
+# ::edge	next-to	op1	vegetable	n	v	
+# ::edge	vegetable	ARG1-of	slice-01	v2	s2	
+# ::edge	vegetable	mod	some	v2	s4	
+# ::edge	next-to	op2	vegetable	n	v2	
+(d / display-01
+    :ARG1 (k / knife
+        :mod (l / large))
+    :ARG2 (n / next-to
+        :op1 (v / vegetable
+            :quant (s3 / some)
+            :ARG1-of (s2 / slice-01)
+            :ARG1-of (s / slice-01))
+        :op2 (v2 / vegetable
+            :ARG1-of s2
+            :mod (s4 / some))))

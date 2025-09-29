@@ -1,0 +1,23 @@
+# ::tok A train approaching a station where people are waiting to board .
+# ::node	t	train	1-2
+# ::node	a	approach-01	2-3
+# ::node	s	station	4-5
+# ::node	p	person	6-7
+# ::node	w	wait-01	8-9
+# ::node	b	board-01	10-11
+# ::root	a	approach-01
+# ::edge	approach-01	ARG1	train	a	t	
+# ::edge	approach-01	ARG2	station	a	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	station	location-of	wait-01	s	w	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	board-01	ARG1	train	b	t	
+(a / approach-01
+    :ARG1 (t / train)
+    :ARG2 (s / station
+        :location-of (w / wait-01
+            :ARG1 (p / person)
+            :ARG2 (b / board-01
+                :ARG0 p
+                :ARG1 t))))

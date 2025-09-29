@@ -1,0 +1,37 @@
+# ::tok A bathroom divided with the tub and toilet in one partition and the sink in the other half of the room .
+# ::node	b	bathroom	1-2
+# ::node	d	divide-02	2-3
+# ::node	t2	tub	5-6
+# ::node	a	and	6-7
+# ::node	a2	and	6-7
+# ::node	t	toilet	7-8
+# ::node	0	1	9-10
+# ::node	p	partition	10-11
+# ::node	s	sink	13-14
+# ::node	o	other	16-17
+# ::node	h	half	17-18
+# ::node	r	room	20-21
+# ::root	d	divide-02
+# ::edge	divide-02	ARG1	bathroom	d	b	
+# ::edge	divide-02	ARG2	and	d	a	
+# ::edge	and	op1	and	a	a2	
+# ::edge	and	op1	tub	a2	t2	
+# ::edge	and	op2	toilet	a2	t	
+# ::edge	partition	quant	1	p	0	
+# ::edge	and	location	partition	a2	p	
+# ::edge	and	op2	sink	a	s	
+# ::edge	half	mod	other	h	o	
+# ::edge	sink	location	half	s	h	
+# ::edge	half	part-of	room	h	r	
+(d / divide-02
+    :ARG1 (b / bathroom)
+    :ARG2 (a / and
+        :op1 (a2 / and
+            :location (p / partition
+                :quant 1)
+            :op1 (t2 / tub)
+            :op2 (t / toilet))
+        :op2 (s / sink
+            :location (h / half
+                :mod (o / other)
+                :part-of (r / room)))))

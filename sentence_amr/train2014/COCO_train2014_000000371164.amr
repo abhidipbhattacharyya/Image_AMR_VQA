@@ -1,0 +1,33 @@
+# ::tok A small children 's train on a small track with a conductor sitting in the front train engine .
+# ::node	s2	small	1-2
+# ::node	c	child	2-3
+# ::node	t2	train	4-5
+# ::node	s3	small	7-8
+# ::node	t	track	8-9
+# ::node	p	person	11-12
+# ::node	c2	conduct-01	11-12
+# ::node	s	sit-01	12-13
+# ::node	f	front	15-16
+# ::node	e	engine	17-18
+# ::root	s	sit-01
+# ::edge	child	mod	small	c	s2	
+# ::edge	train	poss	child	t2	c	
+# ::edge	track	mod	small	t	s3	
+# ::edge	train	location	track	t2	t	
+# ::edge	person	ARG0-of	conduct-01	p	c2	
+# ::edge	conduct-01	ARG1	train	c2	t2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	engine	location	front	e	f	
+# ::edge	sit-01	ARG2	engine	s	e	
+# ::edge	train	part	engine	t2	e	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (c2 / conduct-01
+            :ARG1 (t2 / train
+                :location (t / track
+                    :mod (s3 / small))
+                :part (e / engine
+                    :location (f / front))
+                :poss (c / child
+                    :mod (s2 / small)))))
+    :ARG2 e)

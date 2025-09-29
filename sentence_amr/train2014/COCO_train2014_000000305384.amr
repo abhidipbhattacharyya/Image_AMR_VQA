@@ -1,0 +1,31 @@
+# ::tok Several traffic signs , location signs and traffic lights on this street .
+# ::node	s	several	0-1
+# ::node	t2	traffic	1-2
+# ::node	s2	sign	2-3
+# ::node	l2	location	4-5
+# ::node	s3	sign	5-6
+# ::node	a	and	6-7
+# ::node	t3	traffic	7-8
+# ::node	l	light	8-9
+# ::node	t	this	10-11
+# ::node	s4	street	11-12
+# ::root	a	and
+# ::edge	sign	topic	traffic	s2	t2	
+# ::edge	sign	quant	several	s2	s	
+# ::edge	sign	purpose	location	s3	l2	
+# ::edge	and	op2	sign	a	s3	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	light	mod	traffic	l	t3	
+# ::edge	and	op3	light	a	l	
+# ::edge	street	mod	this	s4	t	
+# ::edge	and	location	street	a	s4	
+(a / and
+    :location (s4 / street
+        :mod (t / this))
+    :op1 (s2 / sign
+        :quant (s / several)
+        :topic (t2 / traffic))
+    :op2 (s3 / sign
+        :purpose (l2 / location))
+    :op3 (l / light
+        :mod (t3 / traffic)))

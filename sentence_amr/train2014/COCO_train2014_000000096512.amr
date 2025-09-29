@@ -1,0 +1,28 @@
+# ::tok A busy city intersection shows a few buses and lots of lights .
+# ::node	b2	busy-01	1-2
+# ::node	c	city	2-3
+# ::node	i	intersect-01	3-4
+# ::node	s	show-01	4-5
+# ::node	f	few	6-7
+# ::node	b	bus	7-8
+# ::node	a	and	8-9
+# ::node	l2	lot	9-10
+# ::node	l	light	11-12
+# ::root	s	show-01
+# ::edge	intersect-01	ARG1	city	i	c	
+# ::edge	intersect-01	ARG1-of	busy-01	i	b2	
+# ::edge	show-01	ARG0	intersect-01	s	i	
+# ::edge	bus	quant	few	b	f	
+# ::edge	and	op1	bus	a	b	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	light	quant	lot	l	l2	
+# ::edge	and	op2	light	a	l	
+(s / show-01
+    :ARG0 (i / intersect-01
+        :ARG1 (c / city)
+        :ARG1-of (b2 / busy-01))
+    :ARG1 (a / and
+        :op1 (b / bus
+            :quant (f / few))
+        :op2 (l / light
+            :quant (l2 / lot))))

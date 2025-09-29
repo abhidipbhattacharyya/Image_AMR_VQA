@@ -1,0 +1,34 @@
+# ::tok A lone biker travels the streets amongst cars and a UPS truck .
+# ::node	l	lone	1-2
+# ::node	p	person	2-3
+# ::node	b	bike-01	2-3
+# ::node	t	travel-01	3-4
+# ::node	s	street	5-6
+# ::node	a	amongst	6-7
+# ::node	c	car	7-8
+# ::node	c2	company	10-11
+# ::node	n	name	10-11
+# ::node	0	UPS	10-11
+# ::node	t2	truck	11-12
+# ::root	t	travel-01
+# ::edge	person	mod	lone	p	l	
+# ::edge	person	ARG0-of	bike-01	p	b	
+# ::edge	travel-01	ARG0	person	t	p	
+# ::edge	travel-01	ARG1	street	t	s	
+# ::edge	travel-01	location	amongst	t	a	
+# ::edge	amongst	op1	car	a	c	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	UPS	n	0	
+# ::edge	truck	mod	company	t2	c2	
+# ::edge	amongst	op2	truck	a	t2	
+(t / travel-01
+    :ARG0 (p / person
+        :ARG0-of (b / bike-01)
+        :mod (l / lone))
+    :ARG1 (s / street)
+    :location (a / amongst
+        :op1 (c / car)
+        :op2 (t2 / truck
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "UPS")))))

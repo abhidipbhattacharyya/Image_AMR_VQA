@@ -1,0 +1,28 @@
+# ::tok The bus driver is picking up people to bring to their destination
+# ::node	b2	bus	1-2
+# ::node	p	person	2-3
+# ::node	d2	drive-01	2-3
+# ::node	p3	pick-up-04	4-5
+# ::node	p2	person	6-7
+# ::node	b	bring-01	8-9
+# ::node	d	destination	11-12
+# ::root	p3	pick-up-04
+# ::edge	person	ARG0-of	drive-01	p	d2	
+# ::edge	drive-01	ARG1	bus	d2	b2	
+# ::edge	pick-up-04	ARG0	person	p3	p	
+# ::edge	pick-up-04	ARG1	person	p3	p2	
+# ::edge	bring-01	ARG1	person	b	p2	
+# ::edge	pick-up-04	purpose	bring-01	p3	b	
+# ::edge	bring-01	ARG0	person	b	p	
+# ::edge	bring-01	ARG2	destination	b	d	
+# ::edge	destination	poss	person	d	p2	
+(p3 / pick-up-04
+    :purpose (b / bring-01
+        :ARG0 (p / person
+            :ARG0-of (d2 / drive-01
+                :ARG1 (b2 / bus)))
+        :ARG1 (p2 / person)
+        :ARG2 (d / destination
+            :poss p2))
+    :ARG0 p
+    :ARG1 p2)

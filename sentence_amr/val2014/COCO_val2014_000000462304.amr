@@ -1,0 +1,28 @@
+# ::tok A set of shelves with three bunches of bananas and an orange cat
+# ::node	s	set	1-2
+# ::node	s2	shelf	3-4
+# ::node	h	have-03	4-5
+# ::node	0	3	5-6
+# ::node	l	load	6-7
+# ::node	b	banana	8-9
+# ::node	a	and	9-10
+# ::node	o	orange	11-12
+# ::node	c	cat	12-13
+# ::root	s	set
+# ::edge	set	consist-of	shelf	s	s2	
+# ::edge	set	ARG0-of	have-03	s	h	
+# ::edge	load	quant	3	l	0	
+# ::edge	load	consist-of	banana	l	b	
+# ::edge	and	op1	load	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cat	mod	orange	c	o	
+# ::edge	and	op2	cat	a	c	
+(s / set
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / load
+                :quant 3
+                :consist-of (b / banana))
+            :op2 (c / cat
+                :mod (o / orange))))
+    :consist-of (s2 / shelf))

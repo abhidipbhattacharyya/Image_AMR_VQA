@@ -1,0 +1,52 @@
+# ::tok The batter is waiting to swing at the baseball and the umpire is behind him as some of his teammates are watching .
+# ::node	p	person	1-2
+# ::node	b2	batter-01	1-2
+# ::node	w	wait-01	3-4
+# ::node	s2	swing-02	5-6
+# ::node	b	baseball	8-9
+# ::node	a	and	9-10
+# ::node	p2	person	11-12
+# ::node	u	umpire-01	11-12
+# ::node	b3	behind	13-14
+# ::node	p3	person	16-17
+# ::node	s	some	16-17
+# ::node	i	include-91	17-18
+# ::node	p4	person	19-20
+# ::node	t	teammate	19-20
+# ::node	w2	watch-01	21-22
+# ::root	a	and
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	swing-02	w	s2	
+# ::edge	swing-02	ARG0	person	s2	p	
+# ::edge	swing-02	ARG1	baseball	s2	b	
+# ::edge	and	op1	wait-01	a	w	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	person	location	behind	p2	b3	
+# ::edge	behind	op1	person	b3	p	
+# ::edge	person	quant	some	p3	s	
+# ::edge	person	ARG1-of	include-91	p3	i	
+# ::edge	include-91	ARG2	person	i	p4	
+# ::edge	person	mod	teammate	p4	t	
+# ::edge	teammate	poss	person	t	p	
+# ::edge	watch-01	ARG0	person	w2	p3	
+# ::edge	and	concession	watch-01	a	w2	
+(a / and
+    :concession (w2 / watch-01
+        :ARG0 (p3 / person
+            :quant (s / some)
+            :ARG1-of (i / include-91
+                :ARG2 (p4 / person
+                    :mod (t / teammate
+                        :poss (p / person
+                            :ARG0-of (b2 / batter-01)))))))
+    :op1 (w / wait-01
+        :ARG1 p
+        :ARG2 (s2 / swing-02
+            :ARG0 p
+            :ARG1 (b / baseball)))
+    :op2 (p2 / person
+        :ARG0-of (u / umpire-01)
+        :location (b3 / behind
+            :op1 p)))

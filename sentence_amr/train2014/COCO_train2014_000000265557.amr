@@ -1,0 +1,27 @@
+# ::tok A sign for free bus shuttles next to a bus out of service .
+# ::node	s3	signal-07	1-2
+# ::node	f	free-03	3-4
+# ::node	b	bus	4-5
+# ::node	s2	shuttle	5-6
+# ::node	n	next-to	6-7
+# ::node	b2	bus	9-10
+# ::node	o	out-06	10-11
+# ::node	s	serve-01	12-13
+# ::root	s3	signal-07
+# ::edge	shuttle	mod	bus	s2	b	
+# ::edge	shuttle	ARG1-of	free-03	s2	f	
+# ::edge	signal-07	ARG1	shuttle	s3	s2	
+# ::edge	shuttle	location	next-to	s2	n	
+# ::edge	next-to	op1	bus	n	b2	
+# ::edge	bus	ARG1-of	out-06	b2	o	
+# ::edge	out-06	ARG2	serve-01	o	s	
+# ::edge	serve-01	ARG1	bus	s	b2	
+(s3 / signal-07
+    :ARG1 (s2 / shuttle
+        :ARG1-of (f / free-03)
+        :location (n / next-to
+            :op1 (b2 / bus
+                :ARG1-of (o / out-06
+                    :ARG2 (s / serve-01
+                        :ARG1 b2))))
+        :mod (b / bus)))

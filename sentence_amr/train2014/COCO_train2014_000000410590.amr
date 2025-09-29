@@ -1,0 +1,48 @@
+# ::tok A city scene features public transit , cars , bikers and pedestrians surrounded by traffic signals and crosswalks .
+# ::node	c2	city	1-2
+# ::node	s	scene	2-3
+# ::node	f	feature-01	3-4
+# ::node	p2	public-02	4-5
+# ::node	t2	transit	5-6
+# ::node	c	car	7-8
+# ::node	b	bike-01	9-10
+# ::node	a	and	10-11
+# ::node	p	person	11-12
+# ::node	w	walk-01	11-12
+# ::node	s3	surround-01	12-13
+# ::node	t	traffic	14-15
+# ::node	s2	signal-07	15-16
+# ::node	a2	and	16-17
+# ::node	c3	cross-02	17-18
+# ::root	f	feature-01
+# ::edge	scene	mod	city	s	c2	
+# ::edge	feature-01	ARG2	scene	f	s	
+# ::edge	transit	ARG1-of	public-02	t2	p2	
+# ::edge	and	op3	bike-01	a	b	
+# ::edge	and	op2	car	a	c	
+# ::edge	and	op1	transit	a	t2	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	and	op4	person	a	p	
+# ::edge	person	ARG0-of	bike-01	p	b	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	ARG2-of	surround-01	a	s3	
+# ::edge	signal-07	ARG1	traffic	s2	t	
+# ::edge	and	op1	signal-07	a2	s2	
+# ::edge	surround-01	ARG1	and	s3	a2	
+# ::edge	and	op2	cross-02	a2	c3	
+(f / feature-01
+    :ARG1 (a / and
+        :ARG2-of (s3 / surround-01
+            :ARG1 (a2 / and
+                :op1 (s2 / signal-07
+                    :ARG1 (t / traffic))
+                :op2 (c3 / cross-02)))
+        :op1 (t2 / transit
+            :ARG1-of (p2 / public-02))
+        :op2 (c / car)
+        :op3 (b / bike-01)
+        :op4 (p / person
+            :ARG0-of b
+            :ARG0-of (w / walk-01)))
+    :ARG2 (s / scene
+        :mod (c2 / city)))

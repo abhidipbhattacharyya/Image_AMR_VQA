@@ -1,0 +1,28 @@
+# ::tok A bus with destination signs drives around a curve where children stand .
+# ::node	b	bus	1-2
+# ::node	h	have-03	2-3
+# ::node	d	destination	3-4
+# ::node	s	sign	4-5
+# ::node	d2	drive-01	5-6
+# ::node	a	around	6-7
+# ::node	c2	curve	8-9
+# ::node	c	child	10-11
+# ::node	s2	stand-01	11-12
+# ::root	d2	drive-01
+# ::edge	bus	ARG0-of	have-03	b	h	
+# ::edge	sign	mod	destination	s	d	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	drive-01	ARG0	bus	d2	b	
+# ::edge	drive-01	path	around	d2	a	
+# ::edge	around	op1	curve	a	c2	
+# ::edge	stand-01	ARG1	child	s2	c	
+# ::edge	curve	location-of	stand-01	c2	s2	
+(d2 / drive-01
+    :ARG0 (b / bus
+        :ARG0-of (h / have-03
+            :ARG1 (s / sign
+                :mod (d / destination))))
+    :path (a / around
+        :op1 (c2 / curve
+            :location-of (s2 / stand-01
+                :ARG1 (c / child)))))

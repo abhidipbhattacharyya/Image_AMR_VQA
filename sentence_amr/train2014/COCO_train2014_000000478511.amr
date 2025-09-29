@@ -1,0 +1,39 @@
+# ::tok A sign has asian writing and some picture with a line through them .
+# ::node	s	sign	1-2
+# ::node	h	have-03	2-3
+# ::node	c	continent	3-4
+# ::node	n	name	3-4
+# ::node	0	Asia	3-4
+# ::node	w	write-01	4-5
+# ::node	a	and	5-6
+# ::node	s2	some	6-7
+# ::node	p	picture	7-8
+# ::node	h2	have-03	8-9
+# ::node	l	line	10-11
+# ::node	t	through	11-12
+# ::root	h	have-03
+# ::edge	have-03	ARG0	sign	h	s	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	write-01	mod	continent	w	c	
+# ::edge	and	op1	write-01	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	picture	mod	some	p	s2	
+# ::edge	and	op2	picture	a	p	
+# ::edge	picture	ARG0-of	have-03	p	h2	
+# ::edge	have-03	ARG1	line	h2	l	
+# ::edge	line	path	through	l	t	
+# ::edge	through	op1	and	t	a	
+(h / have-03
+    :ARG0 (s / sign)
+    :ARG1 (a / and
+        :op1 (w / write-01
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Asia")))
+        :op2 (p / picture
+            :ARG0-of (h2 / have-03
+                :ARG1 (l / line
+                    :path (t / through
+                        :op1 a)))
+            :mod (s2 / some))))

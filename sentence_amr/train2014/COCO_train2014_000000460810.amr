@@ -1,0 +1,40 @@
+# ::tok Traffic , pedestrians , and cyclists move about beneath a Chinese archway .
+# ::node	t	traffic	0-1
+# ::node	p	person	2-3
+# ::node	w	walk-01	2-3
+# ::node	a2	and	4-5
+# ::node	p2	person	5-6
+# ::node	c2	cycle-01	5-6
+# ::node	m	move-01	6-7
+# ::node	a	about	7-8
+# ::node	b	beneath	8-9
+# ::node	c	country	10-11
+# ::node	n	name	10-11
+# ::node	0	China	10-11
+# ::node	a3	archway	11-12
+# ::root	m	move-01
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op2	person	a2	p	
+# ::edge	and	op1	traffic	a2	t	
+# ::edge	and	op3	person	a2	p2	
+# ::edge	person	ARG0-of	cycle-01	p2	c2	
+# ::edge	move-01	ARG1	and	m	a2	
+# ::edge	move-01	mod	about	m	a	
+# ::edge	move-01	ARG2	beneath	m	b	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	archway	mod	country	a3	c	
+# ::edge	beneath	op1	archway	b	a3	
+(m / move-01
+    :ARG1 (a2 / and
+        :op1 (t / traffic)
+        :op2 (p / person
+            :ARG0-of (w / walk-01))
+        :op3 (p2 / person
+            :ARG0-of (c2 / cycle-01)))
+    :ARG2 (b / beneath
+        :op1 (a3 / archway
+            :mod (c / country
+                :name (n / name
+                    :op1 "China"))))
+    :mod (a / about))

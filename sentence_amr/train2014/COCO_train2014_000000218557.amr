@@ -1,0 +1,34 @@
+# ::tok A sign reading " Confiserie en Gros " spans between two buildings .
+# ::node	s	sign	1-2
+# ::node	r	read-01	2-3
+# ::node	1	Confiserie	4-5
+# ::node	3	en	5-6
+# ::node	n	name	6-7
+# ::node	2	Gros	6-7
+# ::node	c	city	7-8
+# ::node	s2	span-01	8-9
+# ::node	b	between	9-10
+# ::node	0	2	10-11
+# ::node	b2	building	11-12
+# ::root	s2	span-01
+# ::edge	sign	ARG0-of	read-01	s	r	
+# ::edge	name	op2	en	n	3	
+# ::edge	name	op1	Confiserie	n	1	
+# ::edge	name	op3	Gros	n	2	
+# ::edge	city	name	name	c	n	
+# ::edge	read-01	ARG1	city	r	c	
+# ::edge	span-01	ARG0	sign	s2	s	
+# ::edge	span-01	ARG1	between	s2	b	
+# ::edge	building	quant	2	b2	0	
+# ::edge	between	op1	building	b	b2	
+(s2 / span-01
+    :ARG0 (s / sign
+        :ARG0-of (r / read-01
+            :ARG1 (c / city
+                :name (n / name
+                    :op1 "Confiserie"
+                    :op2 "en"
+                    :op3 "Gros"))))
+    :ARG1 (b / between
+        :op1 (b2 / building
+            :quant 2)))

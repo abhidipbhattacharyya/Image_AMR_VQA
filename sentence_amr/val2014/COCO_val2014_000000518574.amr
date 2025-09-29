@@ -1,0 +1,40 @@
+# ::tok A city street has cars and buses with a green traffic light near a street sign .
+# ::node	c2	city	1-2
+# ::node	s2	street	2-3
+# ::node	h	have-03	3-4
+# ::node	c	car	4-5
+# ::node	a	and	5-6
+# ::node	b	bus	6-7
+# ::node	h2	have-03	7-8
+# ::node	g	green-02	9-10
+# ::node	t	traffic	10-11
+# ::node	l	light	11-12
+# ::node	n	near-02	12-13
+# ::node	s3	street	14-15
+# ::node	s	sign	15-16
+# ::root	h	have-03
+# ::edge	street	mod	city	s2	c2	
+# ::edge	have-03	ARG0	street	h	s2	
+# ::edge	and	op1	car	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	bus	a	b	
+# ::edge	and	ARG0-of	have-03	a	h2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	green-02	l	g	
+# ::edge	have-03	ARG1	light	h2	l	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	near-02	ARG2	sign	n	s	
+(h / have-03
+    :ARG0 (s2 / street
+        :mod (c2 / city))
+    :ARG1 (a / and
+        :ARG0-of (h2 / have-03
+            :ARG1 (l / light
+                :ARG1-of (g / green-02)
+                :mod (t / traffic)))
+        :ARG1-of (n / near-02
+            :ARG2 (s / sign
+                :mod (s3 / street)))
+        :op1 (c / car)
+        :op2 (b / bus)))

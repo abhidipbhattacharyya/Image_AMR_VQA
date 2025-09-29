@@ -1,0 +1,38 @@
+# ::tok A large cow with small horns is sticking its tongue out and is surrounded by green grass .
+# ::node	l	large	1-2
+# ::node	c	cow	2-3
+# ::node	h	have-03	3-4
+# ::node	s	small	4-5
+# ::node	h2	horn	5-6
+# ::node	s2	stick-out-02	7-8
+# ::node	t	tongue	9-10
+# ::node	a	and	11-12
+# ::node	s3	surround-01	13-14
+# ::node	g2	green-02	15-16
+# ::node	g	grass	16-17
+# ::root	a	and
+# ::edge	cow	mod	large	c	l	
+# ::edge	cow	ARG0-of	have-03	c	h	
+# ::edge	horn	mod	small	h2	s	
+# ::edge	have-03	ARG1	horn	h	h2	
+# ::edge	stick-out-02	ARG0	cow	s2	c	
+# ::edge	stick-out-02	ARG1	tongue	s2	t	
+# ::edge	cow	part	tongue	c	t	
+# ::edge	and	op1	stick-out-02	a	s2	
+# ::edge	and	op2	surround-01	a	s3	
+# ::edge	surround-01	ARG2	cow	s3	c	
+# ::edge	grass	ARG1-of	green-02	g	g2	
+# ::edge	surround-01	ARG1	grass	s3	g	
+(a / and
+    :op1 (s2 / stick-out-02
+        :ARG0 (c / cow
+            :ARG0-of (h / have-03
+                :ARG1 (h2 / horn
+                    :mod (s / small)))
+            :mod (l / large)
+            :part (t / tongue))
+        :ARG1 t)
+    :op2 (s3 / surround-01
+        :ARG1 (g / grass
+            :ARG1-of (g2 / green-02))
+        :ARG2 c))

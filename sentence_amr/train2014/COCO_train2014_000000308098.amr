@@ -1,0 +1,34 @@
+# ::tok A red panda with one paw on log and other paw holding food to mouth .
+# ::node	r	red-02	1-2
+# ::node	p	panda	2-3
+# ::node	0	1	4-5
+# ::node	p2	paw	5-6
+# ::node	p3	paw	5-6
+# ::node	l	log	7-8
+# ::node	a	and	8-9
+# ::node	o	other	9-10
+# ::node	h	hold-01	11-12
+# ::node	f	food	12-13
+# ::node	m	mouth	14-15
+# ::root	p	panda
+# ::edge	panda	ARG1-of	red-02	p	r	
+# ::edge	paw	quant	1	p2	0	
+# ::edge	paw	location	log	p2	l	
+# ::edge	and	op2	paw	a	p3	
+# ::edge	and	op1	paw	a	p2	
+# ::edge	panda	part	and	p	a	
+# ::edge	paw	mod	other	p3	o	
+# ::edge	panda	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	food	h	f	
+# ::edge	hold-01	location	mouth	h	m	
+(p / panda
+    :ARG0-of (h / hold-01
+        :ARG1 (f / food)
+        :location (m / mouth))
+    :ARG1-of (r / red-02)
+    :part (a / and
+        :op1 (p2 / paw
+            :quant 1
+            :location (l / log))
+        :op2 (p3 / paw
+            :mod (o / other))))

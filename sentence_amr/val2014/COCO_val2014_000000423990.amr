@@ -1,0 +1,33 @@
+# ::tok A square wooden clock that reads 10:33 with a silver arch in front of it .
+# ::node	s2	square	1-2
+# ::node	w	wood	2-3
+# ::node	c	clock	3-4
+# ::node	r	read-01	5-6
+# ::node	d	date-entity	6-7
+# ::node	0	10:33	6-7
+# ::node	h	have-03	7-8
+# ::node	s	silver	9-10
+# ::node	a	arch	10-11
+# ::node	i	in-front-of	12-13
+# ::root	c	clock
+# ::edge	wood	mod	square	w	s2	
+# ::edge	clock	part	wood	c	w	
+# ::edge	clock	ARG0-of	read-01	c	r	
+# ::edge	read-01	ARG3	date-entity	r	d	
+# ::edge	date-entity	time	10:33	d	0	
+# ::edge	clock	ARG0-of	have-03	c	h	
+# ::edge	arch	consist-of	silver	a	s	
+# ::edge	have-03	ARG1	arch	h	a	
+# ::edge	arch	location	in-front-of	a	i	
+# ::edge	in-front-of	op1	clock	i	c	
+(c / clock
+    :ARG0-of (r / read-01
+        :ARG3 (d / date-entity
+            :time "10:33"))
+    :ARG0-of (h / have-03
+        :ARG1 (a / arch
+            :consist-of (s / silver)
+            :location (i / in-front-of
+                :op1 c)))
+    :part (w / wood
+        :mod (s2 / square)))

@@ -1,0 +1,74 @@
+# ::tok A sign that implores dog owners to pick up after their dogs , and then says , " Attention Dogs .
+# ::node	s2	signal-07	1-2
+# ::node	i	implore-01	3-4
+# ::node	p	person	5-6
+# ::node	o	own-01	5-6
+# ::node	p2	pick-up-04	7-8
+# ::node	a	after	9-10
+# ::node	d	dog	11-12
+# ::node	a2	and	13-14
+# ::node	t	then	14-15
+# ::node	s	say-01	15-16
+# ::node	a3	attend-02	18-19
+# ::root	a2	and
+# ::edge	signal-07	ARG0-of	implore-01	s2	i	
+# ::edge	implore-01	ARG1	person	i	p	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	pick-up-04	ARG0	person	p2	p	
+# ::edge	implore-01	ARG2	pick-up-04	i	p2	
+# ::edge	pick-up-04	ARG2	after	p2	a	
+# ::edge	after	op1	dog	a	d	
+# ::edge	own-01	ARG1	dog	o	d	
+# ::edge	dog	poss	person	d	p	
+# ::edge	and	op1	signal-07	a2	s2	
+# ::edge	say-01	time	then	s	t	
+# ::edge	and	op2	say-01	a2	s	
+# ::edge	say-01	ARG0	signal-07	s	s2	
+# ::edge	say-01	ARG1	attend-02	s	a3	
+# ::edge	attend-02	ARG1	dog	a3	d	
+(a2 / and
+    :op1 (s2 / signal-07
+        :ARG0-of (i / implore-01
+            :ARG1 (p / person
+                :ARG0-of (o / own-01
+                    :ARG1 (d / dog
+                        :poss p)))
+            :ARG2 (p2 / pick-up-04
+                :ARG0 p
+                :ARG2 (a / after
+                    :op1 d))))
+    :op2 (s / say-01
+        :ARG0 s2
+        :ARG1 (a3 / attend-02
+            :ARG1 d)
+        :time (t / then)))
+
+
+# ::tok Grrrr , Bark , Woof .
+# ::node	a2	anger-01	0-1
+# ::node	i	i	0-1
+# ::node	a	and	1-2
+# ::node	b	bark-01	2-3
+# ::node	p	person	3-4
+# ::node	n	nose	4-5
+# ::root	a	and
+# ::edge	anger-01	ARG1	i	a2	i	
+# ::edge	and	op1	anger-01	a	a2	
+# ::edge	person	ARG0-of	bark-01	p	b	
+# ::edge	and	op2	person	a	p	
+# ::edge	and	op3	nose	a	n	
+(a / and
+    :op1 (a2 / anger-01
+        :ARG1 (i / i))
+    :op2 (p / person
+        :ARG0-of (b / bark-01))
+    :op3 (n / nose))
+
+
+# ::tok Good Dog . "
+# ::node	g	good-02	0-1
+# ::node	d	dog	1-2
+# ::root	d	dog
+# ::edge	dog	ARG1-of	good-02	d	g	
+(d / dog
+    :ARG1-of (g / good-02))

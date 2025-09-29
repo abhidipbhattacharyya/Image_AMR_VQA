@@ -1,0 +1,36 @@
+# ::tok Freshly prepared dishes , including pasta and chicken legs , await serving at a restaurant .
+# ::node	f	fresh-04	0-1
+# ::node	p2	prepare-01	1-2
+# ::node	d	dish	2-3
+# ::node	i	include-01	4-5
+# ::node	p	pasta	5-6
+# ::node	a	and	6-7
+# ::node	c	chicken	7-8
+# ::node	l	leg	8-9
+# ::node	a2	await-01	10-11
+# ::node	s	serve-02	11-12
+# ::node	r	restaurant	14-15
+# ::root	a2	await-01
+# ::edge	prepare-01	ARG1-of	fresh-04	p2	f	
+# ::edge	dish	ARG1-of	prepare-01	d	p2	
+# ::edge	dish	ARG2-of	include-01	d	i	
+# ::edge	and	op1	pasta	a	p	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	leg	part-of	chicken	l	c	
+# ::edge	and	op2	leg	a	l	
+# ::edge	await-01	ARG1	dish	a2	d	
+# ::edge	await-01	ARG2	serve-02	a2	s	
+# ::edge	serve-02	ARG1	dish	s	d	
+# ::edge	serve-02	location	restaurant	s	r	
+(a2 / await-01
+    :ARG1 (d / dish
+        :ARG1-of (p2 / prepare-01
+            :ARG1-of (f / fresh-04))
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (p / pasta)
+                :op2 (l / leg
+                    :part-of (c / chicken)))))
+    :ARG2 (s / serve-02
+        :ARG1 d
+        :location (r / restaurant)))

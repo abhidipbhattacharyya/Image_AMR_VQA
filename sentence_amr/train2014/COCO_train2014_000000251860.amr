@@ -1,0 +1,31 @@
+# ::tok A train is parked on the side of a track in an outside station next to a red brick building .
+# ::node	t2	train	1-2
+# ::node	p	park-01	3-4
+# ::node	s	side	6-7
+# ::node	t	track	9-10
+# ::node	o	outside	12-13
+# ::node	s2	station	13-14
+# ::node	n	next-to	14-15
+# ::node	r	red-02	17-18
+# ::node	b	brick	18-19
+# ::node	b2	building	19-20
+# ::root	p	park-01
+# ::edge	park-01	ARG1	train	p	t2	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	track	s	t	
+# ::edge	station	location	outside	s2	o	
+# ::edge	side	location	station	s	s2	
+# ::edge	station	location	next-to	s2	n	
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	next-to	op1	building	n	b2	
+(p / park-01
+    :ARG1 (t2 / train)
+    :ARG2 (s / side
+        :location (s2 / station
+            :location (o / outside)
+            :location (n / next-to
+                :op1 (b2 / building
+                    :consist-of (b / brick
+                        :ARG1-of (r / red-02)))))
+        :part-of (t / track)))

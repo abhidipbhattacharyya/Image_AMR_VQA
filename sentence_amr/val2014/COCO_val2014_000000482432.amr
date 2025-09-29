@@ -1,0 +1,51 @@
+# ::tok A closeup of a toothbrush , dental floss , and Aveeno daily scrub sitting next to a sink
+# ::node	c	close-10	1-2
+# ::node	t3	toothbrush	4-5
+# ::node	t2	tooth	6-7
+# ::node	f	floss	7-8
+# ::node	a	and	9-10
+# ::node	p	product	10-11
+# ::node	n	name	10-11
+# ::node	1	Aveeno	10-11
+# ::node	r	rate-entity-91	11-12
+# ::node	t	temporal-quantity	11-12
+# ::node	d	day	11-12
+# ::node	0	1	11-12
+# ::node	s	scrub-01	12-13
+# ::node	s3	sit-01	13-14
+# ::node	n2	next-to	14-15
+# ::node	s2	sink	17-18
+# ::root	s3	sit-01
+# ::edge	floss	mod	tooth	f	t2	
+# ::edge	and	op2	floss	a	f	
+# ::edge	and	op1	toothbrush	a	t3	
+# ::edge	close-10	ARG1	and	c	a	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Aveeno	n	1	
+# ::edge	rate-entity-91	ARG3	temporal-quantity	r	t	
+# ::edge	temporal-quantity	unit	day	t	d	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	scrub-01	frequency	rate-entity-91	s	r	
+# ::edge	scrub-01	ARG1	product	s	p	
+# ::edge	and	op3	scrub-01	a	s	
+# ::edge	sit-01	ARG1	and	s3	a	
+# ::edge	sit-01	ARG1-of	close-10	s3	c	
+# ::edge	sit-01	ARG2	next-to	s3	n2	
+# ::edge	next-to	op1	sink	n2	s2	
+(s3 / sit-01
+    :ARG1 (a / and
+        :op1 (t3 / toothbrush)
+        :op2 (f / floss
+            :mod (t2 / tooth))
+        :op3 (s / scrub-01
+            :ARG1 (p / product
+                :name (n / name
+                    :op1 "Aveeno"))
+            :frequency (r / rate-entity-91
+                :ARG3 (t / temporal-quantity
+                    :quant 1
+                    :unit (d / day)))))
+    :ARG1-of (c / close-10
+        :ARG1 a)
+    :ARG2 (n2 / next-to
+        :op1 (s2 / sink)))

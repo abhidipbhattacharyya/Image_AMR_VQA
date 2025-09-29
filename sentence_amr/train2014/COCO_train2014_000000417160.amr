@@ -1,0 +1,36 @@
+# ::tok A man with a selection of wine bottles , with more bottles displayed on shelves behind him .
+# ::node	m	man	1-2
+# ::node	h	have-03	2-3
+# ::node	s	select-01	4-5
+# ::node	w	wine	6-7
+# ::node	b2	bottle	7-8
+# ::node	h2	have-quant-91	10-11
+# ::node	m2	more	10-11
+# ::node	b3	bottle	11-12
+# ::node	d	display-01	12-13
+# ::node	s2	shelf	14-15
+# ::node	b	behind	15-16
+# ::root	m	man
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	bottle	mod	wine	b2	w	
+# ::edge	bottle	ARG1-of	select-01	b2	s	
+# ::edge	have-03	ARG1	bottle	h	b2	
+# ::edge	have-quant-91	ARG3	more	h2	m2	
+# ::edge	bottle	ARG1-of	have-quant-91	b3	h2	
+# ::edge	display-01	ARG1	bottle	d	b3	
+# ::edge	man	ARG0-of	display-01	m	d	
+# ::edge	display-01	ARG2	shelf	d	s2	
+# ::edge	shelf	location	behind	s2	b	
+# ::edge	behind	op1	man	b	m	
+(m / man
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / bottle
+            :ARG1-of (s / select-01)
+            :mod (w / wine)))
+    :ARG0-of (d / display-01
+        :ARG1 (b3 / bottle
+            :ARG1-of (h2 / have-quant-91
+                :ARG3 (m2 / more)))
+        :ARG2 (s2 / shelf
+            :location (b / behind
+                :op1 m))))

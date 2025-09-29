@@ -1,0 +1,35 @@
+# ::tok A southwest airlines plane is standing on the jet way preparing to take off .
+# ::node	n	name	1-2
+# ::node	0	southwest	1-2
+# ::node	c	company	2-3
+# ::node	a	airline	2-3
+# ::node	p	plane	3-4
+# ::node	s	stand-01	5-6
+# ::node	j	jet	8-9
+# ::node	w	way	9-10
+# ::node	p2	prepare-02	10-11
+# ::node	t	take-off-19	12-13
+# ::root	s	stand-01
+# ::edge	name	op1	southwest	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	company	op2	airline	c	a	
+# ::edge	plane	poss	company	p	c	
+# ::edge	stand-01	ARG1	plane	s	p	
+# ::edge	way	mod	jet	w	j	
+# ::edge	stand-01	ARG2	way	s	w	
+# ::edge	stand-01	purpose	prepare-02	s	p2	
+# ::edge	prepare-02	ARG1	plane	p2	p	
+# ::edge	prepare-02	ARG2	take-off-19	p2	t	
+# ::edge	take-off-19	ARG1	plane	t	p	
+(s / stand-01
+    :purpose (p2 / prepare-02
+        :ARG1 (p / plane
+            :poss (c / company
+                :name (n / name
+                    :op1 "southwest")
+                :op2 (a / airline)))
+        :ARG2 (t / take-off-19
+            :ARG1 p))
+    :ARG1 p
+    :ARG2 (w / way
+        :mod (j / jet)))

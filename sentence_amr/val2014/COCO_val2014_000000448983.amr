@@ -1,0 +1,36 @@
+# ::tok A large Cathedral like church with a clock tower and people at the gate .
+# ::node	l	large	1-2
+# ::node	m	mosque	2-3
+# ::node	r	resemble-01	3-4
+# ::node	c	church	4-5
+# ::node	h	have-03	5-6
+# ::node	c2	clock	7-8
+# ::node	t	tower	8-9
+# ::node	a	and	9-10
+# ::node	a2	and	9-10
+# ::node	p	person	10-11
+# ::node	g	gate	13-14
+# ::root	a	and
+# ::edge	mosque	mod	large	m	l	
+# ::edge	mosque	ARG1-of	resemble-01	m	r	
+# ::edge	resemble-01	ARG2	church	r	c	
+# ::edge	church	ARG0-of	have-03	c	h	
+# ::edge	tower	mod	clock	t	c2	
+# ::edge	and	op1	tower	a	t	
+# ::edge	and	op1	tower	a2	t	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	person	a2	p	
+# ::edge	person	location	gate	p	g	
+# ::edge	and	rel	mosque	a	m	
+(a / and
+    :op1 (t / tower
+        :mod (c2 / clock))
+    :rel (m / mosque
+        :ARG1-of (r / resemble-01
+            :ARG2 (c / church
+                :ARG0-of (h / have-03
+                    :ARG1 (a2 / and
+                        :op1 t
+                        :op2 (p / person
+                            :location (g / gate))))))
+        :mod (l / large)))

@@ -1,0 +1,36 @@
+# ::tok A man holding a glass of wine while sitting at a table filled with wine glasses .
+# ::node	m	man	1-2
+# ::node	h	hold-01	2-3
+# ::node	v	volume-quantity	3-4
+# ::node	0	1	3-4
+# ::node	g	glass	4-5
+# ::node	w	wine	6-7
+# ::node	s	sit-01	8-9
+# ::node	t	table	11-12
+# ::node	f	fill-01	12-13
+# ::node	w2	wine	14-15
+# ::node	g2	glass	15-16
+# ::root	m	man
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	hold-01	ARG1	wine	h	w	
+# ::edge	man	time	sit-01	m	s	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	ARG1-of	fill-01	t	f	
+# ::edge	glass	mod	wine	g2	w2	
+# ::edge	fill-01	ARG2	glass	f	g2	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))))
+    :time (s / sit-01
+        :ARG1 m
+        :ARG2 (t / table
+            :ARG1-of (f / fill-01
+                :ARG2 (g2 / glass
+                    :mod (w2 / wine))))))

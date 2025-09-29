@@ -1,0 +1,33 @@
+# ::tok A stop sign is near a large building and the sidewalk has a dusting of snow .
+# ::node	s4	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	n	near-02	4-5
+# ::node	l	large	6-7
+# ::node	b	building	7-8
+# ::node	a	and	8-9
+# ::node	s	sidewalk	10-11
+# ::node	h	have-03	11-12
+# ::node	d	dust-01	13-14
+# ::node	s3	snow	15-16
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	near-02	ARG1	signal-07	n	s2	
+# ::edge	building	mod	large	b	l	
+# ::edge	near-02	ARG2	building	n	b	
+# ::edge	and	op1	near-02	a	n	
+# ::edge	have-03	ARG0	sidewalk	h	s	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG1	dust-01	h	d	
+# ::edge	dust-01	ARG2	sidewalk	d	s	
+# ::edge	dust-01	ARG1	snow	d	s3	
+(a / and
+    :op1 (n / near-02
+        :ARG1 (s2 / signal-07
+            :ARG1 (s4 / stop-01))
+        :ARG2 (b / building
+            :mod (l / large)))
+    :op2 (h / have-03
+        :ARG0 (s / sidewalk)
+        :ARG1 (d / dust-01
+            :ARG1 (s3 / snow)
+            :ARG2 s)))

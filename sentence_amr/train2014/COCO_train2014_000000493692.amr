@@ -1,0 +1,39 @@
+# ::tok A laptop is on a table and chairs next to it looking down the hall is a bookshelf full of books .
+# ::node	l	laptop	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	t	table	5-6
+# ::node	a	and	6-7
+# ::node	c	chair	7-8
+# ::node	n	next-to	8-9
+# ::node	l2	look-01	11-12
+# ::node	d	down	12-13
+# ::node	h	hall	14-15
+# ::node	b3	bookshelf	17-18
+# ::node	f	fill-01	18-19
+# ::node	b2	book	20-21
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	laptop	b	l	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	next-to	location-of	chair	n	c	
+# ::edge	and	op2	next-to	a	n	
+# ::edge	next-to	op1	table	n	t	
+# ::edge	look-01	direction	down	l2	d	
+# ::edge	down	op1	hall	d	h	
+# ::edge	bookshelf	ARG0-of	look-01	b3	l2	
+# ::edge	and	op3	bookshelf	a	b3	
+# ::edge	bookshelf	ARG1-of	fill-01	b3	f	
+# ::edge	fill-01	ARG2	book	f	b2	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (l / laptop)
+        :ARG2 (t / table))
+    :op2 (n / next-to
+        :location-of (c / chair)
+        :op1 t)
+    :op3 (b3 / bookshelf
+        :ARG0-of (l2 / look-01
+            :direction (d / down
+                :op1 (h / hall)))
+        :ARG1-of (f / fill-01
+            :ARG2 (b2 / book))))

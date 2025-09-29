@@ -1,0 +1,44 @@
+# ::tok A boy standing in a grass field and flying a red kite over his head , with other people in the distance .
+# ::node	b	boy	1-2
+# ::node	s	stand-01	2-3
+# ::node	g	grass	5-6
+# ::node	f	field	6-7
+# ::node	a	and	7-8
+# ::node	f2	fly-01	8-9
+# ::node	r	red-02	10-11
+# ::node	k	kite	11-12
+# ::node	o2	over	12-13
+# ::node	h	head	14-15
+# ::node	o	other	17-18
+# ::node	p	person	18-19
+# ::node	d	distance	21-22
+# ::root	a	and
+# ::edge	stand-01	ARG1	boy	s	b	
+# ::edge	field	mod	grass	f	g	
+# ::edge	stand-01	ARG2	field	s	f	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	fly-01	a	f2	
+# ::edge	fly-01	ARG0	boy	f2	b	
+# ::edge	kite	ARG1-of	red-02	k	r	
+# ::edge	fly-01	ARG1	kite	f2	k	
+# ::edge	fly-01	path	over	f2	o2	
+# ::edge	over	op1	head	o2	h	
+# ::edge	boy	part	head	b	h	
+# ::edge	person	mod	other	p	o	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	location	distance	p	d	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (b / boy
+            :part (h / head))
+        :ARG2 (f / field
+            :mod (g / grass)))
+    :op2 (f2 / fly-01
+        :ARG0 b
+        :ARG1 (k / kite
+            :ARG1-of (r / red-02))
+        :path (o2 / over
+            :op1 h))
+    :op3 (p / person
+        :location (d / distance)
+        :mod (o / other)))

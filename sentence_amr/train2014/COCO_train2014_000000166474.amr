@@ -1,0 +1,43 @@
+# ::tok A street in an East Asian city with signs on the stores and a person standing under an umbrella .
+# ::node	s4	street	1-2
+# ::node	n	name	4-5
+# ::node	1	East	4-5
+# ::node	w	world-region	5-6
+# ::node	0	Asia	5-6
+# ::node	c	city	6-7
+# ::node	h	have-03	7-8
+# ::node	s	sign	8-9
+# ::node	s3	store	11-12
+# ::node	a	and	12-13
+# ::node	p	person	14-15
+# ::node	s2	stand-01	15-16
+# ::node	u2	under	16-17
+# ::node	u	umbrella	18-19
+# ::root	s4	street
+# ::edge	name	op1	East	n	1	
+# ::edge	world-region	name	name	w	n	
+# ::edge	name	op2	Asia	n	0	
+# ::edge	city	location	world-region	c	w	
+# ::edge	street	location	city	s4	c	
+# ::edge	street	ARG0-of	have-03	s4	h	
+# ::edge	sign	location	store	s	s3	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	stand-01	ARG0	person	s2	p	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG2	under	s2	u2	
+# ::edge	under	op1	umbrella	u2	u	
+(s4 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :location (s3 / store))
+            :op2 (s2 / stand-01
+                :ARG0 (p / person)
+                :ARG2 (u2 / under
+                    :op1 (u / umbrella)))))
+    :location (c / city
+        :location (w / world-region
+            :name (n / name
+                :op1 "East"
+                :op2 "Asia"))))

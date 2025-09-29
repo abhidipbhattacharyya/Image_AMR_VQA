@@ -1,0 +1,28 @@
+# ::tok Old fashioned chests are stacked atop each other on a city block .
+# ::node	o	old	0-1
+# ::node	f	fashion	1-2
+# ::node	b	barrel	2-3
+# ::node	s	stack-01	4-5
+# ::node	a	atop	5-6
+# ::node	e	each	6-7
+# ::node	o2	other	7-8
+# ::node	c	city	10-11
+# ::node	b2	block	11-12
+# ::root	s	stack-01
+# ::edge	fashion	mod	old	f	o	
+# ::edge	barrel	mod	fashion	b	f	
+# ::edge	stack-01	ARG1	barrel	s	b	
+# ::edge	stack-01	ARG2	atop	s	a	
+# ::edge	atop	op1	each	a	e	
+# ::edge	each	mod	other	e	o2	
+# ::edge	block	mod	city	b2	c	
+# ::edge	stack-01	location	block	s	b2	
+(s / stack-01
+    :ARG1 (b / barrel
+        :mod (f / fashion
+            :mod (o / old)))
+    :ARG2 (a / atop
+        :op1 (e / each
+            :mod (o2 / other)))
+    :location (b2 / block
+        :mod (c / city)))

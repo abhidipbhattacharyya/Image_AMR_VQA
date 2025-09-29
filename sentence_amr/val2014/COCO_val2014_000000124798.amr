@@ -1,0 +1,25 @@
+# ::tok Traffic moves on a busy urban street with a crane in the background .
+# ::node	t	traffic	0-1
+# ::node	m	move-01	1-2
+# ::node	b2	busy-02	4-5
+# ::node	u	urban	5-6
+# ::node	s	street	6-7
+# ::node	h	have-03	7-8
+# ::node	c	crane	9-10
+# ::node	b	background	12-13
+# ::root	m	move-01
+# ::edge	move-01	ARG1	traffic	m	t	
+# ::edge	street	mod	urban	s	u	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	move-01	location	street	m	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	crane	h	c	
+# ::edge	crane	location	background	c	b	
+(m / move-01
+    :ARG1 (t / traffic)
+    :location (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (c / crane
+                :location (b / background)))
+        :ARG1-of (b2 / busy-02)
+        :mod (u / urban)))

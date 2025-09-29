@@ -1,0 +1,37 @@
+# ::tok A large British United passenger jet sitting on an airport runway .
+# ::node	l	large	1-2
+# ::node	n	name	2-3
+# ::node	c2	country	2-3
+# ::node	n2	name	2-3
+# ::node	0	Britain	2-3
+# ::node	c	company	3-4
+# ::node	1	United	3-4
+# ::node	p	passenger	4-5
+# ::node	j	jet	5-6
+# ::node	s	sit-01	6-7
+# ::node	a	airport	9-10
+# ::node	r	runway	10-11
+# ::root	s	sit-01
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	Britain	n2	0	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	United	n	1	
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	mod	company	j	c	
+# ::edge	jet	mod	country	j	c2	
+# ::edge	sit-01	ARG1	jet	s	j	
+# ::edge	runway	mod	airport	r	a	
+# ::edge	sit-01	ARG2	runway	s	r	
+# ::edge	sit-01	rel	large	s	l	
+(s / sit-01
+    :ARG1 (j / jet
+        :mod (p / passenger)
+        :mod (c / company
+            :name (n / name
+                :op1 "United"))
+        :mod (c2 / country
+            :name (n2 / name
+                :op1 "Britain")))
+    :ARG2 (r / runway
+        :mod (a / airport))
+    :rel (l / large))

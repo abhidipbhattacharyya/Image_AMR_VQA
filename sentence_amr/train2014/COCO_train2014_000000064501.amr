@@ -1,0 +1,42 @@
+# ::tok A baseball game with the pitcher in throwing motion and a base runner leading off of first base .
+# ::node	b3	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p2	pitcher	5-6
+# ::node	t	throw-01	7-8
+# ::node	m	motion-01	8-9
+# ::node	a	and	9-10
+# ::node	b	base	11-12
+# ::node	p	person	12-13
+# ::node	r	run-02	12-13
+# ::node	l	lead-01	13-14
+# ::node	o	ordinal-entity	16-17
+# ::node	0	1	16-17
+# ::node	b2	base	17-18
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b3	
+# ::edge	throw-01	ARG0	pitcher	t	p2	
+# ::edge	motion-01	ARG1	throw-01	m	t	
+# ::edge	pitcher	ARG0-of	motion-01	p2	m	
+# ::edge	and	op1	pitcher	a	p2	
+# ::edge	game	accompanier	and	g	a	
+# ::edge	person	mod	base	p	b	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	person	ARG0-of	lead-01	p	l	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	lead-01	ARG1	base	l	b2	
+(g / game
+    :accompanier (a / and
+        :op1 (p2 / pitcher
+            :ARG0-of (m / motion-01
+                :ARG1 (t / throw-01
+                    :ARG0 p2)))
+        :op2 (p / person
+            :ARG0-of (r / run-02)
+            :ARG0-of (l / lead-01
+                :ARG1 (b2 / base
+                    :ord (o / ordinal-entity
+                        :value 1)))
+            :mod (b / base)))
+    :mod (b3 / baseball))

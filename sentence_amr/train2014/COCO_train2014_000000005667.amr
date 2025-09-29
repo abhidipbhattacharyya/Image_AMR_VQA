@@ -1,0 +1,49 @@
+# ::tok An area with craft supplies in it including tape , white paper with heart cutouts , red ribbon and a pair of scissors .
+# ::node	a2	area	1-2
+# ::node	c	craft	3-4
+# ::node	s	supply-01	4-5
+# ::node	i	include-01	7-8
+# ::node	t	tape	8-9
+# ::node	a	and	9-10
+# ::node	w	white-03	10-11
+# ::node	p2	paper	11-12
+# ::node	h	have-03	12-13
+# ::node	h2	heart	13-14
+# ::node	b	border	14-15
+# ::node	r	red-02	16-17
+# ::node	r2	ribbon	17-18
+# ::node	0	1	19-20
+# ::node	p	pair	20-21
+# ::node	n	needle	22-23
+# ::root	a2	area
+# ::edge	supply-01	ARG1	craft	s	c	
+# ::edge	area	ARG2-of	supply-01	a2	s	
+# ::edge	supply-01	ARG2-of	include-01	s	i	
+# ::edge	and	op1	tape	a	t	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	paper	ARG1-of	white-03	p2	w	
+# ::edge	and	op2	paper	a	p2	
+# ::edge	paper	ARG0-of	have-03	p2	h	
+# ::edge	border	mod	heart	b	h2	
+# ::edge	have-03	ARG1	border	h	b	
+# ::edge	ribbon	ARG1-of	red-02	r2	r	
+# ::edge	and	op3	ribbon	a	r2	
+# ::edge	pair	quant	1	p	0	
+# ::edge	needle	quant	pair	n	p	
+# ::edge	and	op4	needle	a	n	
+(a2 / area
+    :ARG2-of (s / supply-01
+        :ARG1 (c / craft)
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (t / tape)
+                :op2 (p2 / paper
+                    :ARG0-of (h / have-03
+                        :ARG1 (b / border
+                            :mod (h2 / heart)))
+                    :ARG1-of (w / white-03))
+                :op3 (r2 / ribbon
+                    :ARG1-of (r / red-02))
+                :op4 (n / needle
+                    :quant (p / pair
+                        :quant 1))))))

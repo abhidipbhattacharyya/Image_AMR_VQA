@@ -1,0 +1,29 @@
+# ::tok A river with several boats in it and a fence around the edge of it .
+# ::node	r	river	1-2
+# ::node	s	several	3-4
+# ::node	b2	boat	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	a	and	7-8
+# ::node	f	fence	9-10
+# ::node	a2	around	10-11
+# ::node	e	edge	12-13
+# ::root	r	river
+# ::edge	boat	quant	several	b2	s	
+# ::edge	be-located-at-91	ARG1	boat	b	b2	
+# ::edge	be-located-at-91	ARG2	river	b	r	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	river	location-of	and	r	a	
+# ::edge	and	op2	fence	a	f	
+# ::edge	fence	location	around	f	a2	
+# ::edge	around	op1	edge	a2	e	
+# ::edge	river	part	edge	r	e	
+(r / river
+    :location-of (a / and
+        :op1 (b / be-located-at-91
+            :ARG1 (b2 / boat
+                :quant (s / several))
+            :ARG2 r)
+        :op2 (f / fence
+            :location (a2 / around
+                :op1 (e / edge))))
+    :part e)

@@ -1,0 +1,24 @@
+# ::tok Gated driveway at residential home with vehicles parked within .
+# ::node	g	gate-01	0-1
+# ::node	d	driveway	1-2
+# ::node	r	residential	3-4
+# ::node	h	home	4-5
+# ::node	v	vehicle	6-7
+# ::node	p	park-01	7-8
+# ::node	w	within	8-9
+# ::root	d	driveway
+# ::edge	driveway	ARG1-of	gate-01	d	g	
+# ::edge	home	mod	residential	h	r	
+# ::edge	driveway	location	home	d	h	
+# ::edge	park-01	ARG1	vehicle	p	v	
+# ::edge	driveway	location-of	park-01	d	p	
+# ::edge	park-01	location	within	p	w	
+# ::edge	within	op1	home	w	h	
+(d / driveway
+    :ARG1-of (g / gate-01)
+    :location (h / home
+        :mod (r / residential))
+    :location-of (p / park-01
+        :ARG1 (v / vehicle)
+        :location (w / within
+            :op1 h)))

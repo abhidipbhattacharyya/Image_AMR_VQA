@@ -1,0 +1,27 @@
+# ::tok A stop sign is in the foreground with a street scene behind it .
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	f	foreground	6-7
+# ::node	a	and	7-8
+# ::node	s4	street	9-10
+# ::node	s	scene	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	b2	behind	11-12
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	signal-07	location	foreground	s2	f	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	scene	mod	street	s	s4	
+# ::edge	be-located-at-91	ARG1	scene	b	s	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	signal-07	b2	s2	
+(a / and
+    :op1 (s2 / signal-07
+        :ARG1 (s3 / stop-01)
+        :location (f / foreground))
+    :op2 (b / be-located-at-91
+        :ARG1 (s / scene
+            :mod (s4 / street))
+        :ARG2 (b2 / behind
+            :op1 s2)))

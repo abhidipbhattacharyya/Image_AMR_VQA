@@ -1,0 +1,35 @@
+# ::tok A man takes a bite of a Kripsy Kreme doughnut while wearing a paper Kripsy Kreme hat .
+# ::node	m	man	1-2
+# ::node	b	bite-01	4-5
+# ::node	n	name	7-8
+# ::node	1	Kripsy	7-8
+# ::node	p2	product	8-9
+# ::node	0	Kreme	8-9
+# ::node	d	doughnut	9-10
+# ::node	w	wear-01	11-12
+# ::node	p	paper	13-14
+# ::node	h	hat	16-17
+# ::root	b	bite-01
+# ::edge	bite-01	ARG0	man	b	m	
+# ::edge	name	op1	Kripsy	n	1	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op2	Kreme	n	0	
+# ::edge	doughnut	mod	product	d	p2	
+# ::edge	bite-01	ARG1	doughnut	b	d	
+# ::edge	bite-01	time	wear-01	b	w	
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	hat	consist-of	paper	h	p	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	hat	mod	product	h	p2	
+(b / bite-01
+    :ARG0 (m / man)
+    :ARG1 (d / doughnut
+        :mod (p2 / product
+            :name (n / name
+                :op1 "Kripsy"
+                :op2 "Kreme")))
+    :time (w / wear-01
+        :ARG0 m
+        :ARG1 (h / hat
+            :consist-of (p / paper)
+            :mod p2)))

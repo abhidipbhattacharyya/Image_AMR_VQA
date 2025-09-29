@@ -1,0 +1,46 @@
+# ::tok A cake is pictured that is a combined Friday the 13th and Valentine 's Day Chocolate Layer Cake .
+# ::node	c	cake	1-2
+# ::node	p	picture-01	3-4
+# ::node	c2	combine-01	7-8
+# ::node	d	date-entity	8-9
+# ::node	f2	friday	8-9
+# ::node	0	13	10-11
+# ::node	f	festival	12-13
+# ::node	n	name	12-13
+# ::node	5	Valentine's	12-13
+# ::node	3	Day	14-15
+# ::node	2	Chocolate	15-16
+# ::node	4	Layer	16-17
+# ::node	n2	name	17-18
+# ::node	1	Cake	17-18
+# ::node	a	and	18-19
+# ::root	p	picture-01
+# ::edge	picture-01	ARG1	cake	p	c	
+# ::edge	cake	ARG1-of	combine-01	c	c2	
+# ::edge	date-entity	weekday	friday	d	f2	
+# ::edge	date-entity	day	13	d	0	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Valentine's	n	5	
+# ::edge	name	op2	Day	n	3	
+# ::edge	name	op2	Layer	n2	4	
+# ::edge	name	op1	Chocolate	n2	2	
+# ::edge	cake	name	name	c	n2	
+# ::edge	name	op3	Cake	n2	1	
+# ::edge	and	op2	festival	a	f	
+# ::edge	and	op1	date-entity	a	d	
+# ::edge	combine-01	ARG2	and	c2	a	
+(p / picture-01
+    :ARG1 (c / cake
+        :name (n2 / name
+            :op1 "Chocolate"
+            :op2 "Layer"
+            :op3 "Cake")
+        :ARG1-of (c2 / combine-01
+            :ARG2 (a / and
+                :op1 (d / date-entity
+                    :day 13
+                    :weekday (f2 / friday))
+                :op2 (f / festival
+                    :name (n / name
+                        :op1 "Valentine's"
+                        :op2 "Day"))))))

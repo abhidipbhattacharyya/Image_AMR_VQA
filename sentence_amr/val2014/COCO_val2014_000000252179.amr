@@ -1,0 +1,32 @@
+# ::tok A person holding a fork and holding their face close to a piece of cake on a plate .
+# ::node	p	person	1-2
+# ::node	h	hold-01	2-3
+# ::node	f2	fork	4-5
+# ::node	h2	hold-01	6-7
+# ::node	f	face	8-9
+# ::node	c2	close-10	9-10
+# ::node	p2	piece	12-13
+# ::node	c	cake	14-15
+# ::node	p3	plate	17-18
+# ::root	p	person
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	fork	h	f2	
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	hold-01	ARG1	face	h2	f	
+# ::edge	person	part	face	p	f	
+# ::edge	close-10	ARG1	face	c2	f	
+# ::edge	hold-01	manner	close-10	h2	c2	
+# ::edge	close-10	ARG2	piece	c2	p2	
+# ::edge	piece	part-of	cake	p2	c	
+# ::edge	piece	location	plate	p2	p3	
+(p / person
+    :ARG0-of (h / hold-01
+        :ARG1 (f2 / fork))
+    :ARG0-of (h2 / hold-01
+        :ARG1 (f / face)
+        :manner (c2 / close-10
+            :ARG1 f
+            :ARG2 (p2 / piece
+                :location (p3 / plate)
+                :part-of (c / cake))))
+    :part f)

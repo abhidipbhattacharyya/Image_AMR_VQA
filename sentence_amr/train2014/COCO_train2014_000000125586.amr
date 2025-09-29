@@ -1,0 +1,33 @@
+# ::tok some zebras standing next to each other and eating some grass
+# ::node	s	some	0-1
+# ::node	g	giraffe	1-2
+# ::node	s3	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	e	each	5-6
+# ::node	o	other	6-7
+# ::node	a	and	7-8
+# ::node	e2	eat-01	8-9
+# ::node	s2	some	9-10
+# ::node	g2	grass	10-11
+# ::root	a	and
+# ::edge	giraffe	quant	some	g	s	
+# ::edge	stand-01	ARG1	giraffe	s3	g	
+# ::edge	stand-01	ARG2	next-to	s3	n	
+# ::edge	next-to	op1	each	n	e	
+# ::edge	each	mod	other	e	o	
+# ::edge	and	op1	stand-01	a	s3	
+# ::edge	and	op2	eat-01	a	e2	
+# ::edge	eat-01	ARG0	giraffe	e2	g	
+# ::edge	grass	quant	some	g2	s2	
+# ::edge	eat-01	ARG1	grass	e2	g2	
+(a / and
+    :op1 (s3 / stand-01
+        :ARG1 (g / giraffe
+            :quant (s / some))
+        :ARG2 (n / next-to
+            :op1 (e / each
+                :mod (o / other))))
+    :op2 (e2 / eat-01
+        :ARG0 g
+        :ARG1 (g2 / grass
+            :quant (s2 / some))))

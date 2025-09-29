@@ -1,0 +1,31 @@
+# ::tok A bicyclist stopped beside a fence feeding or petting sheep .
+# ::node	b2	bicyclist	1-2
+# ::node	s2	stop-01	2-3
+# ::node	b	beside	3-4
+# ::node	f2	fence	5-6
+# ::node	f	feed-01	6-7
+# ::node	o	or	7-8
+# ::node	p	pet	8-9
+# ::node	s	sheep	9-10
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG0	bicyclist	s2	b2	
+# ::edge	stop-01	location	beside	s2	b	
+# ::edge	beside	op1	fence	b	f2	
+# ::edge	feed-01	ARG0	bicyclist	f	b2	
+# ::edge	or	op1	feed-01	o	f	
+# ::edge	stop-01	purpose	or	s2	o	
+# ::edge	or	op2	pet	o	p	
+# ::edge	pet	ARG0	bicyclist	p	b2	
+# ::edge	pet	ARG1	sheep	p	s	
+# ::edge	feed-01	ARG2	sheep	f	s	
+(s2 / stop-01
+    :purpose (o / or
+        :op1 (f / feed-01
+            :ARG0 (b2 / bicyclist)
+            :ARG2 (s / sheep))
+        :op2 (p / pet
+            :ARG0 b2
+            :ARG1 s))
+    :ARG0 b2
+    :location (b / beside
+        :op1 (f2 / fence)))

@@ -1,0 +1,52 @@
+# ::tok A sign at a street corner of East 33rd ST and Park Ave with a one way sign on top .
+# ::node	s	sign	1-2
+# ::node	s3	street	4-5
+# ::node	c	corner	5-6
+# ::node	n	name	7-8
+# ::node	2	East	7-8
+# ::node	0	33rd	8-9
+# ::node	r	road	9-10
+# ::node	t	Street	9-10
+# ::node	4	ST	9-10
+# ::node	a	and	10-11
+# ::node	n2	name	11-12
+# ::node	3	Park	11-12
+# ::node	1	Ave	12-13
+# ::node	h	have-03	13-14
+# ::node	o	one-way	16-17
+# ::node	s2	sign	17-18
+# ::node	t2	top	19-20
+# ::root	s	sign
+# ::edge	corner	mod	street	c	s3	
+# ::edge	sign	location	corner	s	c	
+# ::edge	name	op1	East	n	2	
+# ::edge	name	op2	33rd	n	0	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op3	ST	n	4	
+# ::edge	and	op2	Street	a	t	
+# ::edge	and	op1	road	a	r	
+# ::edge	corner	part-of	and	c	a	
+# ::edge	Street	name	name	t	n2	
+# ::edge	name	op1	Park	n2	3	
+# ::edge	name	op2	Ave	n2	1	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	sign	mod	one-way	s2	o	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	top	s2	t2	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :location (t2 / top)
+            :mod (o / one-way)))
+    :location (c / corner
+        :mod (s3 / street)
+        :part-of (a / and
+            :op1 (r / road
+                :name (n / name
+                    :op1 "East"
+                    :op2 "33rd"
+                    :op3 "ST"))
+            :op2 (t / Street
+                :name (n2 / name
+                    :op1 "Park"
+                    :op2 "Ave")))))

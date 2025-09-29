@@ -1,0 +1,60 @@
+# ::tok A baseball game with the pitcher delivering a pitch and a batter waiting at home plate for the ball , with a catcher and umpire behind the plate .
+# ::node	b2	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	s	strike-01	5-6
+# ::node	d	deliver-01	6-7
+# ::node	p5	pitch	8-9
+# ::node	a	and	9-10
+# ::node	p2	person	11-12
+# ::node	b3	batter-01	11-12
+# ::node	w	wait-01	12-13
+# ::node	h	home	14-15
+# ::node	p6	plate	15-16
+# ::node	b	ball	18-19
+# ::node	p3	person	22-23
+# ::node	c	catch-01	22-23
+# ::node	a2	and	23-24
+# ::node	p4	person	24-25
+# ::node	u	umpire-01	24-25
+# ::node	b4	behind	25-26
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	person	ARG0-of	strike-01	p	s	
+# ::edge	deliver-01	ARG0	person	d	p	
+# ::edge	deliver-01	ARG1	pitch	d	p5	
+# ::edge	and	op1	deliver-01	a	d	
+# ::edge	game	time-of	and	g	a	
+# ::edge	person	ARG0-of	batter-01	p2	b3	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	plate	mod	home	p6	h	
+# ::edge	wait-01	location	plate	w	p6	
+# ::edge	wait-01	ARG2	ball	w	b	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+# ::edge	and	op1	person	a2	p3	
+# ::edge	game	accompanier	and	g	a2	
+# ::edge	and	op2	person	a2	p4	
+# ::edge	person	ARG0-of	umpire-01	p4	u	
+# ::edge	and	location	behind	a2	b4	
+# ::edge	behind	op1	plate	b4	p6	
+(g / game
+    :accompanier (a2 / and
+        :location (b4 / behind
+            :op1 (p6 / plate
+                :mod (h / home)))
+        :op1 (p3 / person
+            :ARG0-of (c / catch-01))
+        :op2 (p4 / person
+            :ARG0-of (u / umpire-01)))
+    :mod (b2 / baseball)
+    :time-of (a / and
+        :op1 (d / deliver-01
+            :ARG0 (p / person
+                :ARG0-of (s / strike-01))
+            :ARG1 (p5 / pitch))
+        :op2 (w / wait-01
+            :ARG1 (p2 / person
+                :ARG0-of (b3 / batter-01))
+            :ARG2 (b / ball)
+            :location p6)))

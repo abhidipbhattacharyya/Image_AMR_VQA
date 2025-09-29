@@ -1,0 +1,39 @@
+# ::tok A stop sign at an intersection of King Street and Atlantic Avenue .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	i	intersect-01	5-6
+# ::node	n	name	7-8
+# ::node	2	King	7-8
+# ::node	r	road	8-9
+# ::node	s3	street	8-9
+# ::node	3	Street	8-9
+# ::node	a	and	9-10
+# ::node	n2	name	10-11
+# ::node	0	Atlantic	10-11
+# ::node	1	Avenue	11-12
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	signal-07	location	intersect-01	s	i	
+# ::edge	name	op1	King	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	name	op2	Street	n	3	
+# ::edge	and	op2	street	a	s3	
+# ::edge	and	op1	road	a	r	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	street	name	name	s3	n2	
+# ::edge	name	op1	Atlantic	n2	0	
+# ::edge	name	op2	Avenue	n2	1	
+(s / signal-07
+    :ARG1 (s2 / stop-01)
+    :location (i / intersect-01
+        :ARG1 (r / road
+            :name (n / name
+                :op1 "King"
+                :op2 "Street"))
+        :ARG1 (a / and
+            :op1 r
+            :op2 (s3 / street
+                :name (n2 / name
+                    :op1 "Atlantic"
+                    :op2 "Avenue")))))

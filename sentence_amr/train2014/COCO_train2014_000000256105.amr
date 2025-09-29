@@ -1,0 +1,23 @@
+# ::tok Passengers outside of a bus with passengers inside .
+# ::node	p3	person	0-1
+# ::node	p	passenger	0-1
+# ::node	o	outside	1-2
+# ::node	b	bus	4-5
+# ::node	p2	passenger	6-7
+# ::node	i	inside	7-8
+# ::root	p3	person
+# ::edge	person	location	outside	p3	o	
+# ::edge	outside	op1	bus	o	b	
+# ::edge	passenger	location	bus	p2	b	
+# ::edge	person	consist-of	passenger	p3	p2	
+# ::edge	bus	location	inside	b	i	
+# ::edge	inside	op1	bus	i	b	
+# ::edge	person	rel	passenger	p3	p	
+(p3 / person
+    :consist-of (p2 / passenger
+        :location (b / bus
+            :location (i / inside
+                :op1 b)))
+    :location (o / outside
+        :op1 b)
+    :rel (p / passenger))

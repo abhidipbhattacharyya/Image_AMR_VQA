@@ -1,0 +1,34 @@
+# ::tok A bus station with a bus parked in back and cars parked out front .
+# ::node	b2	bus	1-2
+# ::node	s	station	2-3
+# ::node	h	have-03	3-4
+# ::node	b3	bus	5-6
+# ::node	p	park-01	6-7
+# ::node	b	back	8-9
+# ::node	a	and	9-10
+# ::node	c	car	10-11
+# ::node	p2	park-01	11-12
+# ::node	o	out	12-13
+# ::node	f	front	13-14
+# ::root	s	station
+# ::edge	station	mod	bus	s	b2	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	park-01	ARG1	bus	p	b3	
+# ::edge	park-01	ARG2	back	p	b	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	park-01	ARG1	car	p2	c	
+# ::edge	and	op2	park-01	a	p2	
+# ::edge	park-01	location	out	p2	o	
+# ::edge	out	op1	front	o	f	
+(s / station
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p / park-01
+                :ARG1 (b3 / bus)
+                :ARG2 (b / back))
+            :op2 (p2 / park-01
+                :ARG1 (c / car)
+                :location (o / out
+                    :op1 (f / front)))))
+    :mod (b2 / bus))

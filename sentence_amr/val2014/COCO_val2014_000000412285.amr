@@ -1,0 +1,22 @@
+# ::tok Surfer launching off from water ramp as wave breaks .
+# ::node	p	person	0-1
+# ::node	s	surf-01	0-1
+# ::node	l	launch-01	1-2
+# ::node	w	water	4-5
+# ::node	r	ramp	5-6
+# ::node	w2	wave	7-8
+# ::node	b	break-01	8-9
+# ::root	l	launch-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	launch-01	ARG1	person	l	p	
+# ::edge	ramp	mod	water	r	w	
+# ::edge	launch-01	source	ramp	l	r	
+# ::edge	break-01	ARG1	wave	b	w2	
+# ::edge	launch-01	time	break-01	l	b	
+(l / launch-01
+    :ARG1 (p / person
+        :ARG0-of (s / surf-01))
+    :source (r / ramp
+        :mod (w / water))
+    :time (b / break-01
+        :ARG1 (w2 / wave)))

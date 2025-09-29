@@ -1,0 +1,41 @@
+# ::tok A car parked on the side of the road with a dog in the car and one beside the car .
+# ::node	c	car	1-2
+# ::node	p	park-01	2-3
+# ::node	s	side	5-6
+# ::node	r	road	8-9
+# ::node	h	have-03	9-10
+# ::node	d	dog	11-12
+# ::node	d2	dog	11-12
+# ::node	b	be-located-at-91	12-13
+# ::node	a	and	15-16
+# ::node	0	1	16-17
+# ::node	b2	be-located-at-91	17-18
+# ::node	b3	beside	17-18
+# ::root	a	and
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	car	ARG0-of	have-03	c	h	
+# ::edge	be-located-at-91	ARG1	dog	b	d	
+# ::edge	be-located-at-91	ARG2	car	b	c	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	dog	quant	1	d2	0	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	dog	b2	d2	
+# ::edge	be-located-at-91	ARG1	car	b2	c	
+# ::edge	be-located-at-91	ARG2	beside	b2	b3	
+# ::edge	beside	op1	car	b3	c	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (d / dog)
+        :ARG2 (c / car
+            :ARG0-of (h / have-03)
+            :ARG1-of (p / park-01
+                :ARG2 (s / side
+                    :part-of (r / road)))))
+    :op2 (b2 / be-located-at-91
+        :ARG1 c
+        :ARG2 (d2 / dog
+            :quant 1)
+        :ARG2 (b3 / beside
+            :op1 c)))

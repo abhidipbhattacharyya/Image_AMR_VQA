@@ -1,0 +1,33 @@
+# ::tok Motorcyclist parked near other motor cycles surrounded by other motorcyclist .
+# ::node	p2	person	0-1
+# ::node	m	motorcycle	0-1
+# ::node	p	park-01	1-2
+# ::node	n	near-02	2-3
+# ::node	o	other	3-4
+# ::node	m2	motorcycle	4-5
+# ::node	s	surround-01	6-7
+# ::node	o2	other	8-9
+# ::node	p3	person	9-10
+# ::node	m3	motorcycle	9-10
+# ::root	p	park-01
+# ::edge	park-01	ARG1	person	p	p2	
+# ::edge	park-01	ARG0	person	p	p2	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	motorcycle	mod	other	m2	o	
+# ::edge	near-02	ARG2	motorcycle	n	m2	
+# ::edge	person	ARG2-of	surround-01	p2	s	
+# ::edge	person	mod	other	p3	o2	
+# ::edge	surround-01	ARG1	person	s	p3	
+# ::edge	person	part	motorcycle	p3	m3	
+# ::edge	park-01	rel	motorcycle	p	m	
+(p / park-01
+    :ARG0 (p2 / person
+        :ARG2-of (s / surround-01
+            :ARG1 (p3 / person
+                :mod (o2 / other)
+                :part (m3 / motorcycle))))
+    :ARG1 p2
+    :ARG1-of (n / near-02
+        :ARG2 (m2 / motorcycle
+            :mod (o / other)))
+    :rel (m / motorcycle))

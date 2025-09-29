@@ -1,0 +1,42 @@
+# ::tok A man in a Santa Claus outfit smokes a cigarette while talking on the phone outside of a brick building .
+# ::node	m	man	1-2
+# ::node	n	name	4-5
+# ::node	1	Santa	4-5
+# ::node	p	person	5-6
+# ::node	0	Claus	5-6
+# ::node	o	outfit	6-7
+# ::node	s	smoke-02	7-8
+# ::node	c	cigarette	9-10
+# ::node	t	talk-01	11-12
+# ::node	p2	phone	14-15
+# ::node	o2	outside	15-16
+# ::node	b	brick	18-19
+# ::node	b2	building	19-20
+# ::root	s	smoke-02
+# ::edge	name	op1	Santa	n	1	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op2	Claus	n	0	
+# ::edge	outfit	mod	person	o	p	
+# ::edge	man	domain	outfit	m	o	
+# ::edge	smoke-02	ARG0	man	s	m	
+# ::edge	smoke-02	ARG1	cigarette	s	c	
+# ::edge	smoke-02	time	talk-01	s	t	
+# ::edge	talk-01	ARG0	man	t	m	
+# ::edge	talk-01	instrument	phone	t	p2	
+# ::edge	talk-01	location	outside	t	o2	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	outside	op1	building	o2	b2	
+(s / smoke-02
+    :ARG0 (m / man
+        :domain (o / outfit
+            :mod (p / person
+                :name (n / name
+                    :op1 "Santa"
+                    :op2 "Claus"))))
+    :ARG1 (c / cigarette)
+    :time (t / talk-01
+        :ARG0 m
+        :instrument (p2 / phone)
+        :location (o2 / outside
+            :op1 (b2 / building
+                :consist-of (b / brick)))))

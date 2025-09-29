@@ -1,0 +1,34 @@
+# ::tok A junk - hauling truck full of miscellaneous items , such as a metal boat and a lawn chair .
+# ::node	j	junk	1-2
+# ::node	h	haul-01	3-4
+# ::node	t	truck	4-5
+# ::node	f	fill-01	5-6
+# ::node	m2	miscellaneous	7-8
+# ::node	i	item	8-9
+# ::node	m	metal	13-14
+# ::node	b	boat	14-15
+# ::node	a	and	15-16
+# ::node	l	lawn	17-18
+# ::node	c	chair	18-19
+# ::root	t	truck
+# ::edge	haul-01	ARG1	junk	h	j	
+# ::edge	truck	ARG0-of	haul-01	t	h	
+# ::edge	truck	ARG1-of	fill-01	t	f	
+# ::edge	item	mod	miscellaneous	i	m2	
+# ::edge	fill-01	ARG2	item	f	i	
+# ::edge	boat	consist-of	metal	b	m	
+# ::edge	and	op1	boat	a	b	
+# ::edge	item	example	and	i	a	
+# ::edge	chair	mod	lawn	c	l	
+# ::edge	and	op2	chair	a	c	
+(t / truck
+    :ARG0-of (h / haul-01
+        :ARG1 (j / junk))
+    :ARG1-of (f / fill-01
+        :ARG2 (i / item
+            :example (a / and
+                :op1 (b / boat
+                    :consist-of (m / metal))
+                :op2 (c / chair
+                    :mod (l / lawn)))
+            :mod (m2 / miscellaneous))))

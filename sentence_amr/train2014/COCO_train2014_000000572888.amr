@@ -1,0 +1,40 @@
+# ::tok A ham on a cutting board with slicing knife and fork with bowls of carrots and acorn squash nearby .
+# ::node	h	ham	1-2
+# ::node	c2	cut-01	4-5
+# ::node	b	board	5-6
+# ::node	s	slice-01	7-8
+# ::node	k	knife	8-9
+# ::node	a2	and	9-10
+# ::node	f	fork	10-11
+# ::node	p	pound	12-13
+# ::node	c	carrot	14-15
+# ::node	a3	and	15-16
+# ::node	a	acorn	16-17
+# ::node	s2	squash	17-18
+# ::node	n	nearby	18-19
+# ::root	h	ham
+# ::edge	board	purpose	cut-01	b	c2	
+# ::edge	ham	location	board	h	b	
+# ::edge	knife	instrument-of	slice-01	k	s	
+# ::edge	and	op1	knife	a2	k	
+# ::edge	board	instrument	and	b	a2	
+# ::edge	and	op2	fork	a2	f	
+# ::edge	and	op1	carrot	a3	c	
+# ::edge	and	quant	pound	a3	p	
+# ::edge	and	instrument	and	a2	a3	
+# ::edge	squash	mod	acorn	s2	a	
+# ::edge	and	op2	squash	a3	s2	
+# ::edge	ham	location	nearby	h	n	
+(h / ham
+    :location (b / board
+        :purpose (c2 / cut-01)
+        :instrument (a2 / and
+            :instrument (a3 / and
+                :quant (p / pound)
+                :op1 (c / carrot)
+                :op2 (s2 / squash
+                    :mod (a / acorn)))
+            :op1 (k / knife
+                :instrument-of (s / slice-01))
+            :op2 (f / fork)))
+    :location (n / nearby))

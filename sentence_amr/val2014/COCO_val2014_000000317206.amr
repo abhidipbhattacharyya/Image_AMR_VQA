@@ -1,0 +1,35 @@
+# ::tok A stove is in the middle of the kitchen counter and has an exhaust hood above it .
+# ::node	s	stove	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	m	middle	5-6
+# ::node	k	kitchen	8-9
+# ::node	c	counter	9-10
+# ::node	a2	and	10-11
+# ::node	h	have-03	11-12
+# ::node	e	exhaust-01	13-14
+# ::node	h2	hood	14-15
+# ::node	a	above	15-16
+# ::root	a2	and
+# ::edge	be-located-at-91	ARG1	stove	b	s	
+# ::edge	be-located-at-91	ARG2	middle	b	m	
+# ::edge	counter	mod	kitchen	c	k	
+# ::edge	middle	part-of	counter	m	c	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG0	stove	h	s	
+# ::edge	hood	mod	exhaust-01	h2	e	
+# ::edge	have-03	ARG1	hood	h	h2	
+# ::edge	hood	location	above	h2	a	
+# ::edge	above	op1	stove	a	s	
+(a2 / and
+    :op1 (b / be-located-at-91
+        :ARG1 (s / stove)
+        :ARG2 (m / middle
+            :part-of (c / counter
+                :mod (k / kitchen))))
+    :op2 (h / have-03
+        :ARG0 s
+        :ARG1 (h2 / hood
+            :location (a / above
+                :op1 s)
+            :mod (e / exhaust-01))))

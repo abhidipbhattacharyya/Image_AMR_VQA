@@ -1,0 +1,28 @@
+# ::tok A vehicle parked next to a parking meter buried in snow near buildings .
+# ::node	v	vehicle	1-2
+# ::node	p	park-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	p2	park-01	6-7
+# ::node	m	meter	7-8
+# ::node	b2	bury-01	8-9
+# ::node	s	snow	10-11
+# ::node	n	near-02	11-12
+# ::node	b	building	12-13
+# ::root	v	vehicle
+# ::edge	vehicle	ARG1-of	park-01	v	p	
+# ::edge	park-01	ARG2	next-to	p	n2	
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	next-to	op1	meter	n2	m	
+# ::edge	vehicle	ARG1-of	bury-01	v	b2	
+# ::edge	bury-01	ARG2	snow	b2	s	
+# ::edge	snow	ARG1-of	near-02	s	n	
+# ::edge	near-02	ARG2	building	n	b	
+(v / vehicle
+    :ARG1-of (p / park-01
+        :ARG2 (n2 / next-to
+            :op1 (m / meter
+                :purpose (p2 / park-01))))
+    :ARG1-of (b2 / bury-01
+        :ARG2 (s / snow
+            :ARG1-of (n / near-02
+                :ARG2 (b / building)))))

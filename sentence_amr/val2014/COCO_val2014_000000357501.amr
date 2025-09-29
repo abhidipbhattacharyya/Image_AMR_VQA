@@ -1,0 +1,34 @@
+# ::tok A gold colored pair of scissors cutting into a piece of bejeweled fabric with other bejeweled items in the background .
+# ::node	g	gold	1-2
+# ::node	c	color-01	2-3
+# ::node	p	pair	3-4
+# ::node	s	scissors	5-6
+# ::node	c2	cut-01	6-7
+# ::node	p2	piece	9-10
+# ::node	e	Jew	11-12
+# ::node	f	fabric	12-13
+# ::node	o	other	14-15
+# ::node	i	item	16-17
+# ::node	b	background	19-20
+# ::root	c2	cut-01
+# ::edge	color-01	ARG2	gold	c	g	
+# ::edge	pair	ARG1-of	color-01	p	c	
+# ::edge	pair	consist-of	scissors	p	s	
+# ::edge	cut-01	ARG0	pair	c2	p	
+# ::edge	cut-01	destination	piece	c2	p2	
+# ::edge	fabric	mod	Jew	f	e	
+# ::edge	piece	consist-of	fabric	p2	f	
+# ::edge	item	mod	other	i	o	
+# ::edge	Jew	accompanier	item	e	i	
+# ::edge	item	location	background	i	b	
+(c2 / cut-01
+    :ARG0 (p / pair
+        :ARG1-of (c / color-01
+            :ARG2 (g / gold))
+        :consist-of (s / scissors))
+    :destination (p2 / piece
+        :consist-of (f / fabric
+            :mod (e / Jew
+                :accompanier (i / item
+                    :location (b / background)
+                    :mod (o / other))))))

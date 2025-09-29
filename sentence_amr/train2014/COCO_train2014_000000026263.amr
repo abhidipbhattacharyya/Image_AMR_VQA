@@ -1,0 +1,40 @@
+# ::tok " Sometimes a bit green ; Often slippery ; But always good for you ! " is a message written on a banana .
+# ::node	s2	sometimes	1-2
+# ::node	b2	bit	3-4
+# ::node	g2	green-02	4-5
+# ::node	o	often	6-7
+# ::node	s	slippery	7-8
+# ::node	a2	and	8-9
+# ::node	c	contrast-01	9-10
+# ::node	a	always	10-11
+# ::node	g	good-04	11-12
+# ::node	y	you	13-14
+# ::node	m	message-01	18-19
+# ::node	w	write-01	19-20
+# ::node	b	banana	22-23
+# ::root	m	message-01
+# ::edge	green-02	degree	bit	g2	b2	
+# ::edge	green-02	frequency	sometimes	g2	s2	
+# ::edge	slippery	frequency	often	s	o	
+# ::edge	and	op2	slippery	a2	s	
+# ::edge	and	op1	green-02	a2	g2	
+# ::edge	contrast-01	ARG1	and	c	a2	
+# ::edge	good-04	time	always	g	a	
+# ::edge	contrast-01	ARG2	good-04	c	g	
+# ::edge	good-04	ARG2	you	g	y	
+# ::edge	message-01	ARG1	contrast-01	m	c	
+# ::edge	message-01	ARG1-of	write-01	m	w	
+# ::edge	write-01	location	banana	w	b	
+(m / message-01
+    :ARG1 (c / contrast-01
+        :ARG1 (a2 / and
+            :op1 (g2 / green-02
+                :degree (b2 / bit)
+                :frequency (s2 / sometimes))
+            :op2 (s / slippery
+                :frequency (o / often)))
+        :ARG2 (g / good-04
+            :ARG2 (y / you)
+            :time (a / always)))
+    :ARG1-of (w / write-01
+        :location (b / banana)))

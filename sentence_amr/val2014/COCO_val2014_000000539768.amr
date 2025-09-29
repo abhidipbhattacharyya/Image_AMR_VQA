@@ -1,0 +1,40 @@
+# ::tok Street sign Haight and Ashbury with houses or apartments behind it .
+# ::node	s2	street	0-1
+# ::node	s	sign	1-2
+# ::node	n	name	2-3
+# ::node	1	Haight	2-3
+# ::node	a	and	3-4
+# ::node	c	city	4-5
+# ::node	c2	city	4-5
+# ::node	n2	name	4-5
+# ::node	0	Ashbury	4-5
+# ::node	h	house	6-7
+# ::node	o	or	7-8
+# ::node	a2	apartment	8-9
+# ::node	b	behind	9-10
+# ::root	a	and
+# ::edge	sign	mod	street	s	s2	
+# ::edge	name	op1	Haight	n	1	
+# ::edge	and	op1	sign	a	s	
+# ::edge	and	op2	city	a	c	
+# ::edge	city	name	name	c	n	
+# ::edge	and	op3	city	a	c2	
+# ::edge	city	name	name	c2	n2	
+# ::edge	name	op1	Ashbury	n2	0	
+# ::edge	or	op1	house	o	h	
+# ::edge	or	op2	apartment	o	a2	
+# ::edge	behind	op1	or	b	o	
+# ::edge	sign	location-of	behind	s	b	
+(a / and
+    :op1 (s / sign
+        :location-of (b / behind
+            :op1 (o / or
+                :op1 (h / house)
+                :op2 (a2 / apartment)))
+        :mod (s2 / street))
+    :op2 (c / city
+        :name (n / name
+            :op1 "Haight"))
+    :op3 (c2 / city
+        :name (n2 / name
+            :op1 "Ashbury")))

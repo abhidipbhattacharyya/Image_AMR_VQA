@@ -1,0 +1,33 @@
+# ::tok Colorful kites of all shapes and sizes flying in a cloudless sky .
+# ::node	b	bright-02	0-1
+# ::node	l	life	1-2
+# ::node	a	all	3-4
+# ::node	s	shape-01	4-5
+# ::node	a2	and	5-6
+# ::node	s2	size	6-7
+# ::node	f	fly-01	7-8
+# ::node	c	cloud	10-11
+# ::node	0	-	10-11
+# ::node	s3	sky	11-12
+# ::root	f	fly-01
+# ::edge	life	ARG1-of	bright-02	l	b	
+# ::edge	life	ARG1-of	shape-01	l	s	
+# ::edge	and	op1	all	a2	a	
+# ::edge	and	op2	size	a2	s2	
+# ::edge	size	mod	all	s2	a	
+# ::edge	fly-01	ARG2	and	f	a2	
+# ::edge	cloud	polarity	-	c	0	
+# ::edge	sky	mod	cloud	s3	c	
+# ::edge	fly-01	location	sky	f	s3	
+# ::edge	fly-01	rel	life	f	l	
+(f / fly-01
+    :ARG2 (a2 / and
+        :op1 (a / all)
+        :op2 (s2 / size
+            :mod a))
+    :location (s3 / sky
+        :mod (c / cloud
+            :polarity -))
+    :rel (l / life
+        :ARG1-of (b / bright-02)
+        :ARG1-of (s / shape-01)))

@@ -1,0 +1,28 @@
+# ::tok Many cars parked at night near a road covered with snow .
+# ::node	m	many	0-1
+# ::node	c	car	1-2
+# ::node	p	park-01	2-3
+# ::node	d	date-entity	4-5
+# ::node	n2	night	4-5
+# ::node	n	near-02	5-6
+# ::node	r	road	7-8
+# ::node	c2	coverage-06	8-9
+# ::node	s	snow	10-11
+# ::root	p	park-01
+# ::edge	car	quant	many	c	m	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	near-02	ARG2	road	n	r	
+# ::edge	road	ARG1-of	coverage-06	r	c2	
+# ::edge	coverage-06	ARG2	snow	c2	s	
+(p / park-01
+    :ARG1 (c / car
+        :quant (m / many))
+    :ARG1-of (n / near-02
+        :ARG2 (r / road
+            :ARG1-of (c2 / coverage-06
+                :ARG2 (s / snow))))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

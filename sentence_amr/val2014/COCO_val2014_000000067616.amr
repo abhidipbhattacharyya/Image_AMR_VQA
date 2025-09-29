@@ -1,0 +1,52 @@
+# ::tok Street scene with USA and Mexican flags flying from building above restaurant tables on sidewalk .
+# ::node	s3	street	0-1
+# ::node	s	scene	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	1	USA	3-4
+# ::node	a2	and	4-5
+# ::node	c2	country	5-6
+# ::node	n2	name	5-6
+# ::node	0	Mexico	5-6
+# ::node	f	flag	6-7
+# ::node	f2	flag	6-7
+# ::node	f3	fly-01	7-8
+# ::node	b	building	9-10
+# ::node	a	above	10-11
+# ::node	r	restaurant	11-12
+# ::node	t	table	12-13
+# ::node	s2	sidewalk	14-15
+# ::root	s	scene
+# ::edge	scene	location	street	s	s3	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	USA	n	1	
+# ::edge	scene	location-of	and	s	a2	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	Mexico	n2	0	
+# ::edge	and	op1	flag	a2	f	
+# ::edge	flag	mod	country	f	c	
+# ::edge	flag	mod	country	f2	c2	
+# ::edge	and	op2	flag	a2	f2	
+# ::edge	and	ARG1-of	fly-01	a2	f3	
+# ::edge	fly-01	source	building	f3	b	
+# ::edge	building	location	above	b	a	
+# ::edge	table	mod	restaurant	t	r	
+# ::edge	above	op1	table	a	t	
+# ::edge	table	location	sidewalk	t	s2	
+(s / scene
+    :location (s3 / street)
+    :location-of (a2 / and
+        :ARG1-of (f3 / fly-01
+            :source (b / building
+                :location (a / above
+                    :op1 (t / table
+                        :location (s2 / sidewalk)
+                        :mod (r / restaurant)))))
+        :op1 (f / flag
+            :mod (c / country
+                :name (n / name
+                    :op1 "USA")))
+        :op2 (f2 / flag
+            :mod (c2 / country
+                :name (n2 / name
+                    :op1 "Mexico")))))

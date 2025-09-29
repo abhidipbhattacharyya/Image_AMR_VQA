@@ -1,0 +1,24 @@
+# ::tok A train sitting next to a train station near other tracks .
+# ::node	t2	train	1-2
+# ::node	s	sit-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	s2	station	7-8
+# ::node	n	near-02	8-9
+# ::node	o	other	9-10
+# ::node	t	track	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	train	s	t2	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	station	n2	s2	
+# ::edge	station	mod	train	s2	t2	
+# ::edge	station	ARG1-of	near-02	s2	n	
+# ::edge	track	mod	other	t	o	
+# ::edge	near-02	ARG2	track	n	t	
+(s / sit-01
+    :ARG1 (t2 / train)
+    :ARG2 (n2 / next-to
+        :op1 (s2 / station
+            :ARG1-of (n / near-02
+                :ARG2 (t / track
+                    :mod (o / other)))
+            :mod t2)))

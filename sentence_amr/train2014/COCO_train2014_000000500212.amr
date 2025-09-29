@@ -1,0 +1,55 @@
+# ::tok a three part bowl with two bowls containing paint and the third bowl containing wooden popsicle sticks .
+# ::node	1	3	1-2
+# ::node	p2	part	2-3
+# ::node	b	bowl	3-4
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	p4	pound	6-7
+# ::node	c	contain-01	7-8
+# ::node	p	paint	8-9
+# ::node	a	and	9-10
+# ::node	o	ordinal-entity	11-12
+# ::node	2	3	11-12
+# ::node	b2	bowl	12-13
+# ::node	b3	bowl	12-13
+# ::node	c2	contain-01	13-14
+# ::node	w	wood	14-15
+# ::node	p3	popsicle	15-16
+# ::node	s	stick	16-17
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	part	quant	3	p2	1	
+# ::edge	bowl	mod	part	b	p2	
+# ::edge	bowl	ARG0-of	have-03	b	h	
+# ::edge	contain-01	ARG1	paint	c	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	ordinal-entity	value	3	o	2	
+# ::edge	and	op1	bowl	a	b2	
+# ::edge	bowl	ARG0-of	contain-01	b2	c	
+# ::edge	bowl	quant	2	b2	0	
+# ::edge	bowl	ord	ordinal-entity	b3	o	
+# ::edge	and	op2	bowl	a	b3	
+# ::edge	bowl	ARG0-of	contain-01	b3	c2	
+# ::edge	stick	consist-of	popsicle	s	p3	
+# ::edge	stick	consist-of	wood	s	w	
+# ::edge	contain-01	ARG1	stick	c2	s	
+# ::edge	event	mod	bowl	e	b	
+# ::edge	event	rel	pound	e	p4	
+(e / event
+    :mod (b / bowl
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b2 / bowl
+                    :quant 2
+                    :ARG0-of (c / contain-01
+                        :ARG1 (p / paint)))
+                :op2 (b3 / bowl
+                    :ARG0-of (c2 / contain-01
+                        :ARG1 (s / stick
+                            :consist-of (p3 / popsicle)
+                            :consist-of (w / wood)))
+                    :ord (o / ordinal-entity
+                        :value 3))))
+        :mod (p2 / part
+            :quant 3))
+    :rel (p4 / pound))

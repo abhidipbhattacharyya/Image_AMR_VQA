@@ -1,0 +1,24 @@
+# ::tok A traffic light sitting over a street with traffic on it .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s	sit-01	3-4
+# ::node	o	over	4-5
+# ::node	s2	street	6-7
+# ::node	t2	traffic	8-9
+# ::node	b	be-located-at-91	9-10
+# ::root	s	sit-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	sit-01	ARG1	light	s	l	
+# ::edge	sit-01	ARG2	over	s	o	
+# ::edge	over	op1	street	o	s2	
+# ::edge	traffic	location	street	t2	s2	
+# ::edge	be-located-at-91	ARG2	traffic	b	t2	
+# ::edge	street	ARG1-of	be-located-at-91	s2	b	
+(s / sit-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :ARG2 (o / over
+        :op1 (s2 / street
+            :ARG1-of (b / be-located-at-91
+                :ARG2 (t2 / traffic
+                    :location s2)))))

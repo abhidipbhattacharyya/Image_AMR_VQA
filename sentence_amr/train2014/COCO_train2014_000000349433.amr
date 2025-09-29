@@ -1,0 +1,30 @@
+# ::tok A jet plane flies overhead , paralleled by the black raven that flies beneath it .
+# ::node	j	jet	1-2
+# ::node	p2	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	o	overhead	4-5
+# ::node	p	parallel-01	6-7
+# ::node	b2	black-04	9-10
+# ::node	r	raven	10-11
+# ::node	f2	fly-01	12-13
+# ::node	b	beneath	13-14
+# ::root	f	fly-01
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	fly-01	ARG1	plane	f	p2	
+# ::edge	fly-01	path	overhead	f	o	
+# ::edge	fly-01	ARG1-of	parallel-01	f	p	
+# ::edge	raven	ARG1-of	black-04	r	b2	
+# ::edge	parallel-01	ARG0	raven	p	r	
+# ::edge	raven	ARG0-of	fly-01	r	f2	
+# ::edge	fly-01	location	beneath	f2	b	
+# ::edge	beneath	op1	plane	b	p2	
+(f / fly-01
+    :ARG1 (p2 / plane
+        :mod (j / jet))
+    :ARG1-of (p / parallel-01
+        :ARG0 (r / raven
+            :ARG0-of (f2 / fly-01
+                :location (b / beneath
+                    :op1 p2))
+            :ARG1-of (b2 / black-04)))
+    :path (o / overhead))

@@ -1,0 +1,42 @@
+# ::tok A man is getting ready to go skiing while someone to his left is walking up some stairs .
+# ::node	m	man	1-2
+# ::node	r	ready-01	4-5
+# ::node	g	go-02	6-7
+# ::node	s	ski-01	7-8
+# ::node	c	contrast-01	8-9
+# ::node	s3	someone	9-10
+# ::node	l	left-20	12-13
+# ::node	w	walk-01	14-15
+# ::node	u	up	15-16
+# ::node	s2	some	16-17
+# ::node	s4	stair	17-18
+# ::root	c	contrast-01
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	go-02	r	g	
+# ::edge	go-02	ARG0	man	g	m	
+# ::edge	go-02	ARG1	ski-01	g	s	
+# ::edge	ski-01	ARG0	man	s	m	
+# ::edge	contrast-01	ARG1	ready-01	c	r	
+# ::edge	someone	ARG1-of	left-20	s3	l	
+# ::edge	left-20	ARG2	man	l	m	
+# ::edge	walk-01	ARG0	someone	w	s3	
+# ::edge	contrast-01	ARG2	walk-01	c	w	
+# ::edge	walk-01	direction	up	w	u	
+# ::edge	stair	quant	some	s4	s2	
+# ::edge	walk-01	ARG2	stair	w	s4	
+(c / contrast-01
+    :ARG1 (r / ready-01
+        :ARG0 (m / man)
+        :ARG1 m
+        :ARG2 (g / go-02
+            :ARG0 m
+            :ARG1 (s / ski-01
+                :ARG0 m)))
+    :ARG2 (w / walk-01
+        :ARG0 (s3 / someone
+            :ARG1-of (l / left-20
+                :ARG2 m))
+        :ARG2 (s4 / stair
+            :quant (s2 / some))
+        :direction (u / up)))

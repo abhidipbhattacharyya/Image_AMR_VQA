@@ -1,0 +1,34 @@
+# ::tok Three men , two of whom are sitting on a bench , feed the pigeons beside the water .
+# ::node	1	3	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	0	2	3-4
+# ::node	i	include-91	4-5
+# ::node	s	sit-01	7-8
+# ::node	b	bench	10-11
+# ::node	f	feed-01	12-13
+# ::node	b3	bird	14-15
+# ::node	b2	beside	15-16
+# ::node	w	water	17-18
+# ::root	f	feed-01
+# ::edge	man	quant	3	m	1	
+# ::edge	man	quant	2	m2	0	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	man	ARG1-of	sit-01	m2	s	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	feed-01	ARG0	man	f	m	
+# ::edge	feed-01	ARG2	bird	f	b3	
+# ::edge	bird	location	beside	b3	b2	
+# ::edge	beside	op1	water	b2	w	
+(f / feed-01
+    :ARG0 (m / man
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1 (m2 / man
+                :quant 2
+                :ARG1-of (s / sit-01
+                    :ARG2 (b / bench)))))
+    :ARG2 (b3 / bird
+        :location (b2 / beside
+            :op1 (w / water))))

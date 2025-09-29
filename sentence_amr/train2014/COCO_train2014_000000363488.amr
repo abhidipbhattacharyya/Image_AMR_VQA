@@ -1,0 +1,35 @@
+# ::tok Three giraffes in their enclosure at a zoo graze at a tall tree or look around .
+# ::node	0	3	0-1
+# ::node	g	giraffe	1-2
+# ::node	e	enclosure	4-5
+# ::node	z	zoo	7-8
+# ::node	g2	graze-01	8-9
+# ::node	t	tall	11-12
+# ::node	t2	tree	12-13
+# ::node	o	or	13-14
+# ::node	l	look-01	14-15
+# ::node	a	around	15-16
+# ::root	o	or
+# ::edge	giraffe	quant	3	g	0	
+# ::edge	enclosure	poss	giraffe	e	g	
+# ::edge	enclosure	location	zoo	e	z	
+# ::edge	graze-01	location	enclosure	g2	e	
+# ::edge	graze-01	ARG0	giraffe	g2	g	
+# ::edge	tree	mod	tall	t2	t	
+# ::edge	graze-01	ARG1	tree	g2	t2	
+# ::edge	or	op1	graze-01	o	g2	
+# ::edge	or	op2	look-01	o	l	
+# ::edge	look-01	ARG0	giraffe	l	g	
+# ::edge	look-01	ARG1	around	l	a	
+(o / or
+    :op1 (g2 / graze-01
+        :ARG0 (g / giraffe
+            :quant 3)
+        :ARG1 (t2 / tree
+            :mod (t / tall))
+        :location (e / enclosure
+            :location (z / zoo)
+            :poss g))
+    :op2 (l / look-01
+        :ARG0 g
+        :ARG1 (a / around)))

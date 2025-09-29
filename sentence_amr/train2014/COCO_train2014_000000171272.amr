@@ -1,0 +1,39 @@
+# ::tok a person driving a motorcycle with another person riding next to them in an attached side car on a race track .
+# ::node	p	person	1-2
+# ::node	d	drive-01	2-3
+# ::node	m	motorcycle	4-5
+# ::node	a	another	6-7
+# ::node	p2	person	7-8
+# ::node	r2	ride-01	8-9
+# ::node	n	next-to	9-10
+# ::node	a2	attach-01	14-15
+# ::node	s	side	15-16
+# ::node	c	car	16-17
+# ::node	r	race-02	19-20
+# ::node	t	track	20-21
+# ::root	d	drive-01
+# ::edge	drive-01	ARG0	person	d	p	
+# ::edge	drive-01	ARG1	motorcycle	d	m	
+# ::edge	person	mod	another	p2	a	
+# ::edge	ride-01	ARG0	person	r2	p2	
+# ::edge	drive-01	accompanier	ride-01	d	r2	
+# ::edge	ride-01	location	next-to	r2	n	
+# ::edge	next-to	op1	person	n	p	
+# ::edge	car	mod	side	c	s	
+# ::edge	car	ARG1-of	attach-01	c	a2	
+# ::edge	ride-01	ARG1	car	r2	c	
+# ::edge	track	mod	race-02	t	r	
+# ::edge	car	location	track	c	t	
+(d / drive-01
+    :ARG0 (p / person)
+    :ARG1 (m / motorcycle)
+    :accompanier (r2 / ride-01
+        :ARG0 (p2 / person
+            :mod (a / another))
+        :ARG1 (c / car
+            :ARG1-of (a2 / attach-01)
+            :location (t / track
+                :mod (r / race-02))
+            :mod (s / side))
+        :location (n / next-to
+            :op1 p)))

@@ -1,0 +1,25 @@
+# ::tok a street light turns colors as no traffic is on the street
+# ::node	s	street	1-2
+# ::node	l	light	2-3
+# ::node	t2	turn-01	3-4
+# ::node	c2	color	4-5
+# ::node	c	cause-01	5-6
+# ::node	0	-	6-7
+# ::node	t	traffic	7-8
+# ::node	s2	street	11-12
+# ::root	t2	turn-01
+# ::edge	light	mod	street	l	s	
+# ::edge	turn-01	ARG1	light	t2	l	
+# ::edge	turn-01	mod	color	t2	c2	
+# ::edge	turn-01	ARG1-of	cause-01	t2	c	
+# ::edge	traffic	polarity	-	t	0	
+# ::edge	cause-01	ARG0	traffic	c	t	
+# ::edge	traffic	location	street	t	s2	
+(t2 / turn-01
+    :ARG1 (l / light
+        :mod (s / street))
+    :ARG1-of (c / cause-01
+        :ARG0 (t / traffic
+            :location (s2 / street)
+            :polarity -))
+    :mod (c2 / color))

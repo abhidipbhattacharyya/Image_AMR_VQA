@@ -1,0 +1,21 @@
+# ::tok Many sheep are scattered together in their fenced area .
+# ::node	m	many	0-1
+# ::node	s2	sheep	1-2
+# ::node	s	scatter-01	3-4
+# ::node	t	together	4-5
+# ::node	c	chain-01	7-8
+# ::node	a	area	8-9
+# ::root	s	scatter-01
+# ::edge	sheep	quant	many	s2	m	
+# ::edge	scatter-01	ARG1	sheep	s	s2	
+# ::edge	scatter-01	mod	together	s	t	
+# ::edge	chain-01	ARG2	sheep	c	s2	
+# ::edge	area	ARG1-of	chain-01	a	c	
+# ::edge	scatter-01	location	area	s	a	
+(s / scatter-01
+    :ARG1 (s2 / sheep
+        :quant (m / many))
+    :location (a / area
+        :ARG1-of (c / chain-01
+            :ARG2 s2))
+    :mod (t / together))

@@ -1,0 +1,45 @@
+# ::tok Outside view of the MGM Grand in Las Vegas with people sitting and walking .
+# ::node	o	outside	0-1
+# ::node	v	view-01	1-2
+# ::node	h	hotel	4-5
+# ::node	n	name	4-5
+# ::node	2	MGM	4-5
+# ::node	0	Grand	5-6
+# ::node	n2	name	7-8
+# ::node	1	Las	7-8
+# ::node	c	city	8-9
+# ::node	3	Vegas	8-9
+# ::node	p	person	10-11
+# ::node	s	sit-01	11-12
+# ::node	a	and	12-13
+# ::node	w	walk-01	13-14
+# ::root	v	view-01
+# ::edge	view-01	location	outside	v	o	
+# ::edge	view-01	ARG1	hotel	v	h	
+# ::edge	hotel	name	name	h	n	
+# ::edge	name	op1	MGM	n	2	
+# ::edge	name	op2	Grand	n	0	
+# ::edge	name	op1	Las	n2	1	
+# ::edge	city	name	name	c	n2	
+# ::edge	hotel	location	city	h	c	
+# ::edge	name	op2	Vegas	n2	3	
+# ::edge	person	ARG1-of	sit-01	p	s	
+# ::edge	and	op1	person	a	p	
+# ::edge	view-01	location-of	and	v	a	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG0	person	w	p	
+(v / view-01
+    :ARG1 (h / hotel
+        :name (n / name
+            :op1 "MGM"
+            :op2 "Grand")
+        :location (c / city
+            :name (n2 / name
+                :op1 "Las"
+                :op2 "Vegas")))
+    :location (o / outside)
+    :location-of (a / and
+        :op1 (p / person
+            :ARG1-of (s / sit-01))
+        :op2 (w / walk-01
+            :ARG0 p)))

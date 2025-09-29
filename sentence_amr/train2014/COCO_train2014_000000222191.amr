@@ -1,0 +1,28 @@
+# ::tok A blue truck with orange flames painted on it is carrying a large metal tube .
+# ::node	b	blue	1-2
+# ::node	t	truck	2-3
+# ::node	o	orange	4-5
+# ::node	f	flame	5-6
+# ::node	p	paint-01	6-7
+# ::node	c	carry-01	10-11
+# ::node	l	large	12-13
+# ::node	m	metal	13-14
+# ::node	t2	tube	14-15
+# ::root	c	carry-01
+# ::edge	truck	mod	blue	t	b	
+# ::edge	flame	mod	orange	f	o	
+# ::edge	paint-01	ARG2	flame	p	f	
+# ::edge	truck	ARG1-of	paint-01	t	p	
+# ::edge	carry-01	ARG0	truck	c	t	
+# ::edge	tube	consist-of	metal	t2	m	
+# ::edge	tube	mod	large	t2	l	
+# ::edge	carry-01	ARG1	tube	c	t2	
+(c / carry-01
+    :ARG0 (t / truck
+        :ARG1-of (p / paint-01
+            :ARG2 (f / flame
+                :mod (o / orange)))
+        :mod (b / blue))
+    :ARG1 (t2 / tube
+        :consist-of (m / metal)
+        :mod (l / large)))

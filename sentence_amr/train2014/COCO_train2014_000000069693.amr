@@ -1,0 +1,43 @@
+# ::tok Looking out of an airplane widow to the wing of the plane and another small plane is on the ground next to it .
+# ::node	l	look-01	0-1
+# ::node	o	out	1-2
+# ::node	a	airplane	4-5
+# ::node	d	die-01	5-6
+# ::node	w	wing	8-9
+# ::node	a3	another	13-14
+# ::node	s	small	14-15
+# ::node	p	plane	15-16
+# ::node	b	be-located-at-91	17-18
+# ::node	g	ground	19-20
+# ::node	n	next-to	20-21
+# ::node	a2	and	23-24
+# ::root	l	look-01
+# ::edge	look-01	direction	out	l	o	
+# ::edge	out	op1	airplane	o	a	
+# ::edge	airplane	ARG1-of	die-01	a	d	
+# ::edge	look-01	ARG2	wing	l	w	
+# ::edge	airplane	part	wing	a	w	
+# ::edge	plane	mod	small	p	s	
+# ::edge	plane	mod	another	p	a3	
+# ::edge	be-located-at-91	ARG1	plane	b	p	
+# ::edge	be-located-at-91	ARG2	ground	b	g	
+# ::edge	ground	location-of	next-to	g	n	
+# ::edge	next-to	op1	wing	n	w	
+# ::edge	and	op2	be-located-at-91	a2	b	
+# ::edge	and	op1	look-01	a2	l	
+# ::edge	look-01	ARG1	and	l	a2	
+(l / look-01
+    :ARG1 (a2 / and
+        :op1 l
+        :op2 (b / be-located-at-91
+            :ARG1 (p / plane
+                :mod (s / small)
+                :mod (a3 / another))
+            :ARG2 (g / ground
+                :location-of (n / next-to
+                    :op1 (w / wing)))))
+    :ARG2 w
+    :direction (o / out
+        :op1 (a / airplane
+            :ARG1-of (d / die-01)
+            :part w)))

@@ -1,0 +1,43 @@
+# ::tok A stop sign posted on a street with people riding motorcycles and a building with canopies in the distance .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	p2	post-01	3-4
+# ::node	s3	street	6-7
+# ::node	p	person	8-9
+# ::node	r	ride-01	9-10
+# ::node	m	motorcycle	10-11
+# ::node	a	and	11-12
+# ::node	b	building	13-14
+# ::node	h	have-03	14-15
+# ::node	c	city	15-16
+# ::node	n	name	15-16
+# ::node	0	Canada	15-16
+# ::node	d	distance	18-19
+# ::root	p2	post-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	post-01	ARG1	signal-07	p2	s	
+# ::edge	post-01	ARG2	street	p2	s3	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	motorcycle	r	m	
+# ::edge	and	op1	person	a	p	
+# ::edge	street	location-of	and	s3	a	
+# ::edge	and	op2	building	a	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	city	h	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Canada	n	0	
+# ::edge	building	location	distance	b	d	
+(p2 / post-01
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG2 (s3 / street
+        :location-of (a / and
+            :op1 (p / person
+                :ARG0-of (r / ride-01
+                    :ARG1 (m / motorcycle)))
+            :op2 (b / building
+                :ARG0-of (h / have-03
+                    :ARG1 (c / city
+                        :name (n / name
+                            :op1 "Canada")))
+                :location (d / distance)))))

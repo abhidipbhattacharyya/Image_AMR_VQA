@@ -1,0 +1,22 @@
+# ::tok Transport bus parked at curbside outside of brick building .
+# ::node	t	transport-01	0-1
+# ::node	b3	bus	1-2
+# ::node	p	park-01	2-3
+# ::node	c	curbside	4-5
+# ::node	o	outside	5-6
+# ::node	b	brick	7-8
+# ::node	b2	building	8-9
+# ::root	p	park-01
+# ::edge	bus	ARG0-of	transport-01	b3	t	
+# ::edge	park-01	ARG1	bus	p	b3	
+# ::edge	park-01	ARG2	curbside	p	c	
+# ::edge	curbside	location	outside	c	o	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	outside	op1	building	o	b2	
+(p / park-01
+    :ARG1 (b3 / bus
+        :ARG0-of (t / transport-01))
+    :ARG2 (c / curbside
+        :location (o / outside
+            :op1 (b2 / building
+                :consist-of (b / brick)))))

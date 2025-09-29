@@ -1,0 +1,36 @@
+# ::tok A person with their feet on a desk with a plate of pizza and a can of soda .
+# ::node	p	person	1-2
+# ::node	f	foot	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	d	desk	7-8
+# ::node	h	have-03	8-9
+# ::node	p3	plate	10-11
+# ::node	p2	pizza	12-13
+# ::node	a	and	13-14
+# ::node	0	1	14-15
+# ::node	c	can	15-16
+# ::node	s	soda	17-18
+# ::root	p	person
+# ::edge	person	part	foot	p	f	
+# ::edge	be-located-at-91	ARG1	foot	b	f	
+# ::edge	be-located-at-91	ARG2	desk	b	d	
+# ::edge	have-03	manner	be-located-at-91	h	b	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	plate	consist-of	pizza	p3	p2	
+# ::edge	and	op1	plate	a	p3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	can	quant	1	c	0	
+# ::edge	soda	consist-of	can	s	c	
+# ::edge	and	op2	soda	a	s	
+(p / person
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p3 / plate
+                :consist-of (p2 / pizza))
+            :op2 (s / soda
+                :consist-of (c / can
+                    :quant 1)))
+        :manner (b / be-located-at-91
+            :ARG1 (f / foot)
+            :ARG2 (d / desk)))
+    :part f)

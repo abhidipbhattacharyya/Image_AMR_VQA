@@ -1,0 +1,25 @@
+# ::tok Yellow school buses pass behind a walking caution sign .
+# ::node	y	yellow-02	0-1
+# ::node	s	school	1-2
+# ::node	b2	bus	2-3
+# ::node	p	pass-02	3-4
+# ::node	b	behind	4-5
+# ::node	w	walk-01	6-7
+# ::node	c	caution-01	7-8
+# ::node	s2	signal-07	8-9
+# ::root	p	pass-02
+# ::edge	bus	mod	school	b2	s	
+# ::edge	bus	ARG1-of	yellow-02	b2	y	
+# ::edge	pass-02	ARG0	bus	p	b2	
+# ::edge	pass-02	ARG1	behind	p	b	
+# ::edge	caution-01	purpose	walk-01	c	w	
+# ::edge	signal-07	ARG1	caution-01	s2	c	
+# ::edge	behind	op1	signal-07	b	s2	
+(p / pass-02
+    :ARG0 (b2 / bus
+        :ARG1-of (y / yellow-02)
+        :mod (s / school))
+    :ARG1 (b / behind
+        :op1 (s2 / signal-07
+            :ARG1 (c / caution-01
+                :purpose (w / walk-01)))))

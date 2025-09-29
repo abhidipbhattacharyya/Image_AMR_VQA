@@ -1,0 +1,31 @@
+# ::tok In this picture a blurry transit bus can be seen going down the street .
+# ::node	t	this	1-2
+# ::node	p	picture	2-3
+# ::node	b	blur-01	4-5
+# ::node	t2	transit-01	5-6
+# ::node	b2	bus	6-7
+# ::node	p2	possible-01	7-8
+# ::node	s	see-01	9-10
+# ::node	g	go-02	10-11
+# ::node	d	down	11-12
+# ::node	s2	street	13-14
+# ::root	p2	possible-01
+# ::edge	picture	mod	this	p	t	
+# ::edge	bus	ARG0-of	transit-01	b2	t2	
+# ::edge	bus	ARG1-of	blur-01	b2	b	
+# ::edge	possible-01	location	picture	p2	p	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG1	bus	s	b2	
+# ::edge	bus	ARG0-of	go-02	b2	g	
+# ::edge	go-02	direction	down	g	d	
+# ::edge	go-02	ARG1	street	g	s2	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (b2 / bus
+            :ARG0-of (t2 / transit-01)
+            :ARG0-of (g / go-02
+                :ARG1 (s2 / street)
+                :direction (d / down))
+            :ARG1-of (b / blur-01)))
+    :location (p / picture
+        :mod (t / this)))

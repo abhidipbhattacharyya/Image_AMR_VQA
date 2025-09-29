@@ -1,0 +1,24 @@
+# ::tok Two suitcases are ready to depart on the next available flight .
+# ::node	0	2	0-1
+# ::node	s	suitcase	1-2
+# ::node	r	ready-01	3-4
+# ::node	d	depart-01	5-6
+# ::node	n	next	8-9
+# ::node	a	available-02	9-10
+# ::node	f	fly-01	10-11
+# ::root	r	ready-01
+# ::edge	suitcase	quant	2	s	0	
+# ::edge	ready-01	ARG1	suitcase	r	s	
+# ::edge	ready-01	ARG2	depart-01	r	d	
+# ::edge	depart-01	ARG0	suitcase	d	s	
+# ::edge	fly-01	ARG2-of	available-02	f	a	
+# ::edge	fly-01	mod	next	f	n	
+# ::edge	depart-01	ARG1	fly-01	d	f	
+(r / ready-01
+    :ARG1 (s / suitcase
+        :quant 2)
+    :ARG2 (d / depart-01
+        :ARG0 s
+        :ARG1 (f / fly-01
+            :ARG2-of (a / available-02)
+            :mod (n / next))))

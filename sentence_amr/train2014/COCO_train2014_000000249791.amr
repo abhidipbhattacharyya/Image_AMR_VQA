@@ -1,0 +1,31 @@
+# ::tok Commercial jet , possibly Singapore Air , in flight , overcast skies .
+# ::node	c	commerce	0-1
+# ::node	j	jet	1-2
+# ::node	p	possible-01	3-4
+# ::node	n	name	4-5
+# ::node	1	Singapore	4-5
+# ::node	c2	company	5-6
+# ::node	0	Air	5-6
+# ::node	f	fly-01	8-9
+# ::node	o	overcast	10-11
+# ::node	s	sky	11-12
+# ::root	f	fly-01
+# ::edge	jet	mod	commerce	j	c	
+# ::edge	name	op1	Singapore	n	1	
+# ::edge	company	name	name	c2	n	
+# ::edge	company	ARG1-of	possible-01	c2	p	
+# ::edge	name	op2	Air	n	0	
+# ::edge	fly-01	ARG0	company	f	c2	
+# ::edge	fly-01	ARG2	jet	f	j	
+# ::edge	sky	mod	overcast	s	o	
+# ::edge	jet	location	sky	j	s	
+(f / fly-01
+    :ARG0 (c2 / company
+        :name (n / name
+            :op1 "Singapore"
+            :op2 "Air")
+        :ARG1-of (p / possible-01))
+    :ARG2 (j / jet
+        :location (s / sky
+            :mod (o / overcast))
+        :mod (c / commerce)))

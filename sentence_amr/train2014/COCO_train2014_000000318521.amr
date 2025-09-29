@@ -1,0 +1,33 @@
+# ::tok A man is standing up on a toilet peeking over at someone wearing dress shoes .
+# ::node	m	man	1-2
+# ::node	s3	stand-01	3-4
+# ::node	t	toilet	7-8
+# ::node	p	peep-02	8-9
+# ::node	o	over	9-10
+# ::node	s2	someone	11-12
+# ::node	w	wear-01	12-13
+# ::node	d	dress-01	13-14
+# ::node	s	shoe	14-15
+# ::node	a	and	15-16
+# ::root	a	and
+# ::edge	stand-01	ARG1	man	s3	m	
+# ::edge	stand-01	ARG2	toilet	s3	t	
+# ::edge	peep-02	ARG0	man	p	m	
+# ::edge	peep-02	direction	over	p	o	
+# ::edge	peep-02	ARG1	someone	p	s2	
+# ::edge	someone	ARG0-of	wear-01	s2	w	
+# ::edge	shoe	mod	dress-01	s	d	
+# ::edge	wear-01	ARG1	shoe	w	s	
+# ::edge	and	op2	peep-02	a	p	
+# ::edge	and	op1	stand-01	a	s3	
+(a / and
+    :op1 (s3 / stand-01
+        :ARG1 (m / man)
+        :ARG2 (t / toilet))
+    :op2 (p / peep-02
+        :ARG0 m
+        :ARG1 (s2 / someone
+            :ARG0-of (w / wear-01
+                :ARG1 (s / shoe
+                    :mod (d / dress-01))))
+        :direction (o / over)))

@@ -1,0 +1,26 @@
+# ::tok Baseball player in the motion of swinging his bat at the plate .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	m	move-01	4-5
+# ::node	s	swing-02	6-7
+# ::node	b2	bat	8-9
+# ::node	p2	plate	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	person	ARG1-of	move-01	p	m	
+# ::edge	move-01	ARG2	swing-02	m	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	bat	poss	person	b2	p	
+# ::edge	swing-02	destination	plate	s	p2	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b / baseball))
+    :ARG1-of (m / move-01
+        :ARG2 (s / swing-02
+            :ARG0 p
+            :ARG1 (b2 / bat
+                :poss p)
+            :destination (p2 / plate))))

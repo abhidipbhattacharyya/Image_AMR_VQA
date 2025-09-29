@@ -1,0 +1,23 @@
+# ::tok a train parked at a platform while people wait to get on it
+# ::node	t	train	1-2
+# ::node	p	park-01	2-3
+# ::node	p3	platform	5-6
+# ::node	p2	person	7-8
+# ::node	w	wait-01	8-9
+# ::node	g	get-05	10-11
+# ::root	p	park-01
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	platform	p	p3	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	park-01	time	wait-01	p	w	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG1	person	g	p2	
+# ::edge	get-05	ARG2	train	g	t	
+(p / park-01
+    :ARG1 (t / train)
+    :ARG2 (p3 / platform)
+    :time (w / wait-01
+        :ARG1 (p2 / person)
+        :ARG2 (g / get-05
+            :ARG1 p2
+            :ARG2 t)))

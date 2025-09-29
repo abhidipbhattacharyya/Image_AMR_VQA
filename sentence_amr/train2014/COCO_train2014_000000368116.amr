@@ -1,0 +1,27 @@
+# ::tok A boat passes through a canal with other boats moored on either side .
+# ::node	b	boat	1-2
+# ::node	p	pass-02	2-3
+# ::node	c	canal	5-6
+# ::node	o	other	7-8
+# ::node	b2	boat	8-9
+# ::node	m	moor-01	9-10
+# ::node	e	either	11-12
+# ::node	s	side	12-13
+# ::root	p	pass-02
+# ::edge	pass-02	ARG0	boat	p	b	
+# ::edge	pass-02	ARG1	canal	p	c	
+# ::edge	boat	mod	other	b2	o	
+# ::edge	moor-01	ARG1	boat	m	b2	
+# ::edge	canal	location-of	moor-01	c	m	
+# ::edge	side	mod	either	s	e	
+# ::edge	moor-01	ARG2	side	m	s	
+# ::edge	canal	part	side	c	s	
+(p / pass-02
+    :ARG0 (b / boat)
+    :ARG1 (c / canal
+        :location-of (m / moor-01
+            :ARG1 (b2 / boat
+                :mod (o / other))
+            :ARG2 (s / side
+                :mod (e / either)))
+        :part s))

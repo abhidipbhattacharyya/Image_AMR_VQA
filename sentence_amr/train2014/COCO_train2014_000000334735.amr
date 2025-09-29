@@ -1,0 +1,28 @@
+# ::tok a sign indicating that the next train will arrive shortly after 3 o'clock
+# ::node	s2	sign	1-2
+# ::node	i	indicate-01	2-3
+# ::node	n	next	5-6
+# ::node	t	train	6-7
+# ::node	a2	arrive-01	8-9
+# ::node	s	short-07	9-10
+# ::node	a	after	10-11
+# ::node	d	date-entity	11-12
+# ::node	0	3:00	11-12
+# ::root	s2	sign
+# ::edge	sign	ARG0-of	indicate-01	s2	i	
+# ::edge	train	mod	next	t	n	
+# ::edge	arrive-01	ARG1	train	a2	t	
+# ::edge	indicate-01	ARG1	arrive-01	i	a2	
+# ::edge	after	ARG1-of	short-07	a	s	
+# ::edge	arrive-01	time	after	a2	a	
+# ::edge	after	op1	date-entity	a	d	
+# ::edge	date-entity	time	3:00	d	0	
+(s2 / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (a2 / arrive-01
+            :ARG1 (t / train
+                :mod (n / next))
+            :time (a / after
+                :ARG1-of (s / short-07)
+                :op1 (d / date-entity
+                    :time "3:00")))))

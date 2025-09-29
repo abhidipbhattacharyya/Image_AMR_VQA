@@ -1,0 +1,36 @@
+# ::tok An oven with its door open next to two stacked open refrigerators and the open freezer .
+# ::node	o3	oven	1-2
+# ::node	d	door	4-5
+# ::node	o	open-01	5-6
+# ::node	n	next-to	6-7
+# ::node	0	2	8-9
+# ::node	s	stack-01	9-10
+# ::node	o2	open-01	10-11
+# ::node	r	refrigerator	11-12
+# ::node	a	and	12-13
+# ::node	f	freezer	15-16
+# ::node	e	event	16-17
+# ::root	e	event
+# ::edge	oven	part	door	o3	d	
+# ::edge	oven	ARG1-of	open-01	o3	o	
+# ::edge	oven	location	next-to	o3	n	
+# ::edge	refrigerator	ARG1-of	open-01	r	o2	
+# ::edge	refrigerator	ARG1-of	stack-01	r	s	
+# ::edge	refrigerator	quant	2	r	0	
+# ::edge	and	op1	refrigerator	a	r	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	freezer	a	f	
+# ::edge	open-01	ARG1	freezer	o	f	
+# ::edge	event	mod	oven	e	o3	
+(e / event
+    :mod (o3 / oven
+        :ARG1-of (o / open-01
+            :ARG1 (f / freezer))
+        :location (n / next-to
+            :op1 (a / and
+                :op1 (r / refrigerator
+                    :quant 2
+                    :ARG1-of (o2 / open-01)
+                    :ARG1-of (s / stack-01))
+                :op2 f))
+        :part (d / door)))

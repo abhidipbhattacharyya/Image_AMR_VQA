@@ -1,0 +1,34 @@
+# ::tok Plane directly head from current perspective flying backwards against yellow blue sky .
+# ::node	p2	plane	0-1
+# ::node	d	direct-02	1-2
+# ::node	h	head	2-3
+# ::node	c	current	4-5
+# ::node	p	perspective	5-6
+# ::node	f	fly-01	6-7
+# ::node	b	backwards	7-8
+# ::node	a	against	8-9
+# ::node	y	yellow-02	9-10
+# ::node	b2	blue	10-11
+# ::node	s	sky	11-12
+# ::root	h	head
+# ::edge	head	ARG1-of	direct-02	h	d	
+# ::edge	head	part-of	plane	h	p2	
+# ::edge	perspective	time	current	p	c	
+# ::edge	head	source	perspective	h	p	
+# ::edge	plane	ARG0-of	fly-01	p2	f	
+# ::edge	fly-01	direction	backwards	f	b	
+# ::edge	fly-01	direction	against	f	a	
+# ::edge	sky	mod	blue	s	b2	
+# ::edge	sky	ARG1-of	yellow-02	s	y	
+# ::edge	against	op1	sky	a	s	
+(h / head
+    :ARG1-of (d / direct-02)
+    :part-of (p2 / plane
+        :ARG0-of (f / fly-01
+            :direction (b / backwards)
+            :direction (a / against
+                :op1 (s / sky
+                    :ARG1-of (y / yellow-02)
+                    :mod (b2 / blue)))))
+    :source (p / perspective
+        :time (c / current)))

@@ -1,0 +1,31 @@
+# ::tok A red stop sign hanging from a traffic light that reads " ME " under stop .
+# ::node	r2	red-02	1-2
+# ::node	s2	stop-01	2-3
+# ::node	s	signal-07	3-4
+# ::node	h	hang-01	4-5
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	r	read-01	10-11
+# ::node	i	i	12-13
+# ::node	u	under	14-15
+# ::node	s3	stop-01	15-16
+# ::root	h	hang-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	signal-07	ARG1-of	red-02	s	r2	
+# ::edge	hang-01	ARG1	signal-07	h	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	hang-01	ARG2	light	h	l	
+# ::edge	signal-07	ARG1-of	read-01	s	r	
+# ::edge	read-01	ARG3	i	r	i	
+# ::edge	hang-01	location	under	h	u	
+# ::edge	under	op1	stop-01	u	s3	
+(h / hang-01
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01)
+        :ARG1-of (r2 / red-02)
+        :ARG1-of (r / read-01
+            :ARG3 (i / i)))
+    :ARG2 (l / light
+        :mod (t / traffic))
+    :location (u / under
+        :op1 (s3 / stop-01)))

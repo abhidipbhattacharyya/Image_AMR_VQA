@@ -1,0 +1,37 @@
+# ::tok Floating market vendor in Thailand selling food and drinks
+# ::node	f	float-01	0-1
+# ::node	m	market	1-2
+# ::node	p	person	2-3
+# ::node	v	vend-01	2-3
+# ::node	c	country	4-5
+# ::node	n	name	4-5
+# ::node	0	Thailand	4-5
+# ::node	s	sell-01	5-6
+# ::node	f2	food	6-7
+# ::node	a	and	7-8
+# ::node	t	thing	8-9
+# ::node	d	drink-01	8-9
+# ::root	s	sell-01
+# ::edge	market	ARG1-of	float-01	m	f	
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	vend-01	ARG1	market	v	m	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Thailand	n	0	
+# ::edge	sell-01	location	country	s	c	
+# ::edge	sell-01	ARG0	person	s	p	
+# ::edge	and	op1	food	a	f2	
+# ::edge	sell-01	ARG1	and	s	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG1-of	drink-01	t	d	
+(s / sell-01
+    :ARG0 (p / person
+        :ARG0-of (v / vend-01
+            :ARG1 (m / market
+                :ARG1-of (f / float-01))))
+    :ARG1 (a / and
+        :op1 (f2 / food)
+        :op2 (t / thing
+            :ARG1-of (d / drink-01)))
+    :location (c / country
+        :name (n / name
+            :op1 "Thailand")))

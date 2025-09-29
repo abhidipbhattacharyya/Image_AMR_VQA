@@ -1,0 +1,30 @@
+# ::tok A dog is sitting in a field of grass waiting for someone to occupy an empty chair .
+# ::node	d	dog	1-2
+# ::node	s	sit-01	3-4
+# ::node	f	field	6-7
+# ::node	g	grass	8-9
+# ::node	w	wait-01	9-10
+# ::node	s2	someone	11-12
+# ::node	o	occupy-01	13-14
+# ::node	e	empty-02	15-16
+# ::node	c	chair	16-17
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	dog	s	d	
+# ::edge	sit-01	ARG2	field	s	f	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	sit-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	dog	w	d	
+# ::edge	occupy-01	ARG0	someone	o	s2	
+# ::edge	wait-01	ARG2	occupy-01	w	o	
+# ::edge	chair	ARG1-of	empty-02	c	e	
+# ::edge	occupy-01	ARG1	chair	o	c	
+(s / sit-01
+    :purpose (w / wait-01
+        :ARG1 (d / dog)
+        :ARG2 (o / occupy-01
+            :ARG0 (s2 / someone)
+            :ARG1 (c / chair
+                :ARG1-of (e / empty-02))))
+    :ARG1 d
+    :ARG2 (f / field
+        :consist-of (g / grass)))

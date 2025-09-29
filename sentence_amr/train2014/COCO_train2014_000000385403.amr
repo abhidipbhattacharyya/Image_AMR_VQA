@@ -1,0 +1,33 @@
+# ::tok A bed in a room that has a stone floor and open style stairs in front of the bed .
+# ::node	b	bed	1-2
+# ::node	r	room	4-5
+# ::node	h	have-03	6-7
+# ::node	s2	stone	8-9
+# ::node	f	floor	9-10
+# ::node	a	and	10-11
+# ::node	o	open-01	11-12
+# ::node	s3	style	12-13
+# ::node	s	stair	13-14
+# ::node	i	in-front-of	15-16
+# ::root	b	bed
+# ::edge	bed	location	room	b	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	floor	consist-of	stone	f	s2	
+# ::edge	and	op1	floor	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	style	ARG1-of	open-01	s3	o	
+# ::edge	stair	mod	style	s	s3	
+# ::edge	and	op2	stair	a	s	
+# ::edge	stair	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	bed	i	b	
+(b / bed
+    :location (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (f / floor
+                    :consist-of (s2 / stone))
+                :op2 (s / stair
+                    :location (i / in-front-of
+                        :op1 b)
+                    :mod (s3 / style
+                        :ARG1-of (o / open-01)))))))

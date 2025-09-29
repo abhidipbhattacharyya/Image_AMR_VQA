@@ -1,0 +1,38 @@
+# ::tok Two trains pulling into or out of a station with people waiting on one side of the platform .
+# ::node	1	2	0-1
+# ::node	t	train	1-2
+# ::node	p3	pull-01	2-3
+# ::node	p4	pull-01	2-3
+# ::node	o	or	4-5
+# ::node	s2	station	8-9
+# ::node	p	person	10-11
+# ::node	w	wait-01	11-12
+# ::node	0	1	13-14
+# ::node	s	side	14-15
+# ::node	p2	platform	17-18
+# ::root	o	or
+# ::edge	train	quant	2	t	1	
+# ::edge	pull-01	ARG1	train	p3	t	
+# ::edge	pull-01	ARG1	train	p4	t	
+# ::edge	or	op2	pull-01	o	p4	
+# ::edge	or	op1	pull-01	o	p3	
+# ::edge	pull-01	ARG2	station	p4	s2	
+# ::edge	pull-01	ARG2	station	p3	s2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	train	location-of	wait-01	t	w	
+# ::edge	side	quant	1	s	0	
+# ::edge	wait-01	location	side	w	s	
+# ::edge	side	part-of	platform	s	p2	
+(o / or
+    :op1 (p3 / pull-01
+        :ARG1 (t / train
+            :quant 2
+            :location-of (w / wait-01
+                :ARG1 (p / person)
+                :location (s / side
+                    :quant 1
+                    :part-of (p2 / platform))))
+        :ARG2 (s2 / station))
+    :op2 (p4 / pull-01
+        :ARG1 t
+        :ARG2 s2))

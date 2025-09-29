@@ -1,0 +1,37 @@
+# ::tok A deep dish style pizza with a slice cut out of it next to a glass of white wine .
+# ::node	d	deep-02	1-2
+# ::node	d2	dish	2-3
+# ::node	s2	style	3-4
+# ::node	p	pizza	4-5
+# ::node	s	slice	7-8
+# ::node	c	cut-out-06	8-9
+# ::node	n	next-to	12-13
+# ::node	v	volume-quantity	14-15
+# ::node	0	1	14-15
+# ::node	g	glass	15-16
+# ::node	w	white-03	17-18
+# ::node	w2	wine	18-19
+# ::root	p	pizza
+# ::edge	dish	ARG1-of	deep-02	d2	d	
+# ::edge	style	mod	dish	s2	d2	
+# ::edge	pizza	mod	style	p	s2	
+# ::edge	cut-out-06	ARG1	slice	c	s	
+# ::edge	pizza	ARG2-of	cut-out-06	p	c	
+# ::edge	cut-out-06	location	next-to	c	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	ARG1-of	white-03	w2	w	
+# ::edge	wine	quant	volume-quantity	w2	v	
+# ::edge	next-to	op1	wine	n	w2	
+(p / pizza
+    :ARG2-of (c / cut-out-06
+        :ARG1 (s / slice)
+        :location (n / next-to
+            :op1 (w2 / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))
+                :ARG1-of (w / white-03))))
+    :mod (s2 / style
+        :mod (d2 / dish
+            :ARG1-of (d / deep-02))))

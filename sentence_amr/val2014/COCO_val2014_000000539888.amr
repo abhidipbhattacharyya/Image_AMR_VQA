@@ -1,0 +1,36 @@
+# ::tok Man with injured arm sitting on unmade bed looking at something in his hands .
+# ::node	m2	man	0-1
+# ::node	i2	injure-01	2-3
+# ::node	a	arm	3-4
+# ::node	s	sit-01	4-5
+# ::node	m	make-01	6-7
+# ::node	0	-	6-7
+# ::node	b	bed	7-8
+# ::node	l	look-01	8-9
+# ::node	s2	something	10-11
+# ::node	i	in-ones-hands-04	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	arm	ARG1-of	injure-01	a	i2	
+# ::edge	man	part	arm	m2	a	
+# ::edge	man	ARG1-of	sit-01	m2	s	
+# ::edge	make-01	polarity	-	m	0	
+# ::edge	bed	ARG1-of	make-01	b	m	
+# ::edge	sit-01	ARG2	bed	s	b	
+# ::edge	man	ARG0-of	look-01	m2	l	
+# ::edge	look-01	ARG1	something	l	s2	
+# ::edge	something	ARG1-of	in-ones-hands-04	s2	i	
+# ::edge	in-ones-hands-04	ARG0	man	i	m2	
+# ::edge	event	mod	man	e	m2	
+(e / event
+    :mod (m2 / man
+        :ARG0-of (l / look-01
+            :ARG1 (s2 / something
+                :ARG1-of (i / in-ones-hands-04
+                    :ARG0 m2)))
+        :ARG1-of (s / sit-01
+            :ARG2 (b / bed
+                :ARG1-of (m / make-01
+                    :polarity -)))
+        :part (a / arm
+            :ARG1-of (i2 / injure-01))))

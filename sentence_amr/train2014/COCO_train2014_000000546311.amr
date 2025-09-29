@@ -1,0 +1,32 @@
+# ::tok A person is finishing a slice of pizza from a mostly uneaten one in front of him .
+# ::node	p	person	1-2
+# ::node	f	finish-01	3-4
+# ::node	s	slice	5-6
+# ::node	p2	pizza	7-8
+# ::node	p3	pizza	7-8
+# ::node	m	most	10-11
+# ::node	e	eat-01	11-12
+# ::node	0	-	11-12
+# ::node	i	in-front-of	14-15
+# ::root	f	finish-01
+# ::edge	finish-01	ARG0	person	f	p	
+# ::edge	finish-01	ARG1	slice	f	s	
+# ::edge	slice	quant-of	pizza	s	p2	
+# ::edge	eat-01	mod	most	e	m	
+# ::edge	pizza	ARG1-of	eat-01	p3	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	polarity	-	e	0	
+# ::edge	pizza	location	in-front-of	p3	i	
+# ::edge	in-front-of	op1	person	i	p	
+# ::edge	finish-01	rel	pizza	f	p3	
+(f / finish-01
+    :ARG0 (p / person)
+    :ARG1 (s / slice
+        :quant-of (p2 / pizza))
+    :rel (p3 / pizza
+        :ARG1-of (e / eat-01
+            :ARG0 p
+            :mod (m / most)
+            :polarity -)
+        :location (i / in-front-of
+            :op1 p)))

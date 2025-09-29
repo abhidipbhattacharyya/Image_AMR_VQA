@@ -1,0 +1,31 @@
+# ::tok An old truck with no passenger door with tires and body painted in different colors .
+# ::node	o	old	1-2
+# ::node	t2	truck	2-3
+# ::node	0	-	4-5
+# ::node	p2	passenger	5-6
+# ::node	d2	door	6-7
+# ::node	t	tire	8-9
+# ::node	b	body	10-11
+# ::node	p	paint-01	11-12
+# ::node	d	differ-02	13-14
+# ::node	c	color	14-15
+# ::root	t2	truck
+# ::edge	truck	mod	old	t2	o	
+# ::edge	door	mod	passenger	d2	p2	
+# ::edge	door	polarity	-	d2	0	
+# ::edge	truck	part	door	t2	d2	
+# ::edge	truck	part	tire	t2	t	
+# ::edge	truck	part	body	t2	b	
+# ::edge	body	ARG1-of	paint-01	b	p	
+# ::edge	color	ARG1-of	differ-02	c	d	
+# ::edge	paint-01	ARG2	color	p	c	
+(t2 / truck
+    :mod (o / old)
+    :part (d2 / door
+        :mod (p2 / passenger)
+        :polarity -)
+    :part (t / tire)
+    :part (b / body
+        :ARG1-of (p / paint-01
+            :ARG2 (c / color
+                :ARG1-of (d / differ-02)))))

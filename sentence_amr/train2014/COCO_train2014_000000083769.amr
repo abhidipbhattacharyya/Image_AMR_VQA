@@ -1,0 +1,30 @@
+# ::tok A small plane flying in the air with two smoke lines behind it .
+# ::node	s	small	1-2
+# ::node	p	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	a	air	6-7
+# ::node	0	2	8-9
+# ::node	s2	smoke-01	9-10
+# ::node	l	line	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	b2	behind	11-12
+# ::root	p	plane
+# ::edge	plane	mod	small	p	s	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	location	air	f	a	
+# ::edge	line	ARG0-of	smoke-01	l	s2	
+# ::edge	line	quant	2	l	0	
+# ::edge	be-located-at-91	ARG2	line	b	l	
+# ::edge	plane	ARG1-of	be-located-at-91	p	b	
+# ::edge	be-located-at-91	location	behind	b	b2	
+# ::edge	behind	op1	plane	b2	p	
+(p / plane
+    :ARG1-of (b / be-located-at-91
+        :ARG2 (l / line
+            :quant 2
+            :ARG0-of (s2 / smoke-01))
+        :location (b2 / behind
+            :op1 p))
+    :ARG2-of (f / fly-01
+        :location (a / air))
+    :mod (s / small))

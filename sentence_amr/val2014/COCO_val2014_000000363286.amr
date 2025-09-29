@@ -1,0 +1,25 @@
+# ::tok Passengers sit inside a bus that includes television screens .
+# ::node	p	person	0-1
+# ::node	t2	travel-01	0-1
+# ::node	s2	sit-01	1-2
+# ::node	i2	inside	2-3
+# ::node	b	bus	4-5
+# ::node	i	include-01	6-7
+# ::node	t	television	7-8
+# ::node	s	screen	8-9
+# ::root	s2	sit-01
+# ::edge	person	ARG0-of	travel-01	p	t2	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	inside	s2	i2	
+# ::edge	inside	op1	bus	i2	b	
+# ::edge	bus	ARG2-of	include-01	b	i	
+# ::edge	screen	mod	television	s	t	
+# ::edge	include-01	ARG1	screen	i	s	
+(s2 / sit-01
+    :ARG1 (p / person
+        :ARG0-of (t2 / travel-01))
+    :ARG2 (i2 / inside
+        :op1 (b / bus
+            :ARG2-of (i / include-01
+                :ARG1 (s / screen
+                    :mod (t / television))))))

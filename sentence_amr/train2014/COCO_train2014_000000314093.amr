@@ -1,0 +1,34 @@
+# ::tok A reflection of a room in a circular mirror that has a desk with a computer and filing cabinets .
+# ::node	r	reflect-01	1-2
+# ::node	r2	room	4-5
+# ::node	c2	circular	7-8
+# ::node	m	mirror	8-9
+# ::node	h	have-03	10-11
+# ::node	d	desk	12-13
+# ::node	h2	have-03	13-14
+# ::node	c3	computer	15-16
+# ::node	a	and	16-17
+# ::node	f	file-01	17-18
+# ::node	c	cabinet	18-19
+# ::root	r	reflect-01
+# ::edge	reflect-01	ARG1	room	r	r2	
+# ::edge	mirror	mod	circular	m	c2	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	mirror	ARG0-of	have-03	m	h	
+# ::edge	desk	ARG0-of	have-03	d	h2	
+# ::edge	have-03	ARG1	computer	h2	c3	
+# ::edge	and	op1	desk	a	d	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cabinet	purpose	file-01	c	f	
+# ::edge	and	op2	cabinet	a	c	
+(r / reflect-01
+    :ARG1 (r2 / room)
+    :ARG2 (m / mirror
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (d / desk
+                    :ARG0-of (h2 / have-03
+                        :ARG1 (c3 / computer)))
+                :op2 (c / cabinet
+                    :purpose (f / file-01))))
+        :mod (c2 / circular)))

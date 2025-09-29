@@ -1,0 +1,28 @@
+# ::tok a bowl filled with apple slices and finely shredded carrots
+# ::node	b	bowl	1-2
+# ::node	f	fill-01	2-3
+# ::node	a2	apple	4-5
+# ::node	s2	slice	5-6
+# ::node	a	and	6-7
+# ::node	m	mass-quantity	7-8
+# ::node	f2	finely	7-8
+# ::node	s	shred-01	8-9
+# ::node	c	carrot	9-10
+# ::root	b	bowl
+# ::edge	bowl	ARG1-of	fill-01	b	f	
+# ::edge	slice	consist-of	apple	s2	a2	
+# ::edge	and	op1	slice	a	s2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	mass-quantity	degree	finely	m	f2	
+# ::edge	shred-01	degree	mass-quantity	s	m	
+# ::edge	carrot	ARG1-of	shred-01	c	s	
+# ::edge	and	op2	carrot	a	c	
+(b / bowl
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (s2 / slice
+                :consist-of (a2 / apple))
+            :op2 (c / carrot
+                :ARG1-of (s / shred-01
+                    :degree (m / mass-quantity
+                        :degree (f2 / finely)))))))

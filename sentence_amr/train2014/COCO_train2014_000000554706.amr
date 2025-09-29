@@ -1,0 +1,49 @@
+# ::tok A tray with French fries , two hot dogs , a drink and containers of ketchup and mayonnaise .
+# ::node	t	tray	1-2
+# ::node	h	have-03	2-3
+# ::node	c3	country	3-4
+# ::node	n	name	3-4
+# ::node	1	France	3-4
+# ::node	f	fry-01	4-5
+# ::node	0	2	6-7
+# ::node	e	eat-01	7-8
+# ::node	h2	hot-dog	8-9
+# ::node	d	drink	11-12
+# ::node	a	and	12-13
+# ::node	c2	container	13-14
+# ::node	c	contain-01	13-14
+# ::node	k	ketchup	15-16
+# ::node	a2	and	16-17
+# ::node	m	mayonnaise	17-18
+# ::root	h	have-03
+# ::edge	have-03	ARG0	tray	h	t	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	France	n	1	
+# ::edge	fry-01	mod	country	f	c3	
+# ::edge	hot-dog	ARG1-of	eat-01	h2	e	
+# ::edge	hot-dog	quant	2	h2	0	
+# ::edge	and	op3	drink	a	d	
+# ::edge	and	op2	hot-dog	a	h2	
+# ::edge	and	op1	fry-01	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op4	container	a	c2	
+# ::edge	container	ARG0-of	contain-01	c2	c	
+# ::edge	and	op1	ketchup	a2	k	
+# ::edge	contain-01	ARG1	and	c	a2	
+# ::edge	and	op2	mayonnaise	a2	m	
+(h / have-03
+    :ARG0 (t / tray)
+    :ARG1 (a / and
+        :op1 (f / fry-01
+            :mod (c3 / country
+                :name (n / name
+                    :op1 "France")))
+        :op2 (h2 / hot-dog
+            :quant 2
+            :ARG1-of (e / eat-01))
+        :op3 (d / drink)
+        :op4 (c2 / container
+            :ARG0-of (c / contain-01
+                :ARG1 (a2 / and
+                    :op1 (k / ketchup)
+                    :op2 (m / mayonnaise))))))

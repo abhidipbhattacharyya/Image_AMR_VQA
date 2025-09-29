@@ -1,0 +1,37 @@
+# ::tok An Arizona Diamondbacks sliding to homebase in an MLB professional baseball game .
+# ::node	0	Arizona	1-2
+# ::node	t	team	2-3
+# ::node	n	name	2-3
+# ::node	1	Diamondbacks	2-3
+# ::node	s	slide-01	3-4
+# ::node	h	homebase	5-6
+# ::node	l	league	8-9
+# ::node	n2	name	8-9
+# ::node	2	MLB	8-9
+# ::node	p	professional	9-10
+# ::node	b	baseball	10-11
+# ::node	g	game	11-12
+# ::root	s	slide-01
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Arizona	n	0	
+# ::edge	name	op2	Diamondbacks	n	1	
+# ::edge	slide-01	ARG1	team	s	t	
+# ::edge	slide-01	destination	homebase	s	h	
+# ::edge	league	name	name	l	n2	
+# ::edge	name	op1	MLB	n2	2	
+# ::edge	baseball	mod	professional	b	p	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	mod	league	g	l	
+# ::edge	slide-01	subevent-of	game	s	g	
+(s / slide-01
+    :ARG1 (t / team
+        :name (n / name
+            :op1 "Arizona"
+            :op2 "Diamondbacks"))
+    :destination (h / homebase)
+    :subevent-of (g / game
+        :mod (b / baseball
+            :mod (p / professional))
+        :mod (l / league
+            :name (n2 / name
+                :op1 "MLB"))))

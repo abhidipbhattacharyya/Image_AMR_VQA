@@ -1,0 +1,37 @@
+# ::tok A field of yellow flowers dominate the foreground while a train and windmills can be seen in the background .
+# ::node	f	field	1-2
+# ::node	y	yellow-02	3-4
+# ::node	f2	flower	4-5
+# ::node	d	dominate-01	5-6
+# ::node	f3	foreground	7-8
+# ::node	c	contrast-01	8-9
+# ::node	t	train	10-11
+# ::node	a	and	11-12
+# ::node	w	wind	12-13
+# ::node	p	possible-01	13-14
+# ::node	s	see-01	15-16
+# ::node	b	background	18-19
+# ::root	c	contrast-01
+# ::edge	flower	ARG1-of	yellow-02	f2	y	
+# ::edge	field	consist-of	flower	f	f2	
+# ::edge	dominate-01	ARG0	field	d	f	
+# ::edge	dominate-01	ARG1	foreground	d	f3	
+# ::edge	contrast-01	ARG1	dominate-01	c	d	
+# ::edge	and	op1	train	a	t	
+# ::edge	and	op2	wind	a	w	
+# ::edge	contrast-01	ARG2	possible-01	c	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	see-01	location	background	s	b	
+(c / contrast-01
+    :ARG1 (d / dominate-01
+        :ARG0 (f / field
+            :consist-of (f2 / flower
+                :ARG1-of (y / yellow-02)))
+        :ARG1 (f3 / foreground))
+    :ARG2 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG1 (a / and
+                :op1 (t / train)
+                :op2 (w / wind))
+            :location (b / background))))

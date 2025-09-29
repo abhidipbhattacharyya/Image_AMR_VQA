@@ -1,0 +1,57 @@
+# ::tok Dim light enters an almost colorless , narrow room , featuring a long metal counter top with a sink and cabinets below it .
+# ::node	d	dim	0-1
+# ::node	l	light	1-2
+# ::node	e	enter-01	2-3
+# ::node	a	almost	4-5
+# ::node	0	-	4-5
+# ::node	c2	color-01	5-6
+# ::node	n	narrow-02	7-8
+# ::node	r	room	8-9
+# ::node	f	feature-01	10-11
+# ::node	l2	long-03	12-13
+# ::node	m	metal	13-14
+# ::node	c3	counter	14-15
+# ::node	t	top	15-16
+# ::node	h	have-03	16-17
+# ::node	s	sink	18-19
+# ::node	a2	and	19-20
+# ::node	c	cabinet	20-21
+# ::node	b	below	21-22
+# ::root	e	enter-01
+# ::edge	light	mod	dim	l	d	
+# ::edge	enter-01	ARG0	light	e	l	
+# ::edge	color-01	polarity	-	c2	0	
+# ::edge	color-01	mod	almost	c2	a	
+# ::edge	room	ARG1-of	narrow-02	r	n	
+# ::edge	room	ARG1-of	color-01	r	c2	
+# ::edge	enter-01	ARG1	room	e	r	
+# ::edge	room	ARG2-of	feature-01	r	f	
+# ::edge	top	mod	counter	t	c3	
+# ::edge	top	consist-of	metal	t	m	
+# ::edge	top	ARG1-of	long-03	t	l2	
+# ::edge	have-03	ARG0	top	h	t	
+# ::edge	and	op1	sink	a2	s	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	cabinet	a2	c	
+# ::edge	and	location	below	a2	b	
+# ::edge	below	op1	sink	b	s	
+# ::edge	enter-01	rel	have-03	e	h	
+(e / enter-01
+    :ARG0 (l / light
+        :mod (d / dim))
+    :ARG1 (r / room
+        :ARG1-of (n / narrow-02)
+        :ARG1-of (c2 / color-01
+            :mod (a / almost)
+            :polarity -)
+        :ARG2-of (f / feature-01))
+    :rel (h / have-03
+        :ARG0 (t / top
+            :ARG1-of (l2 / long-03)
+            :consist-of (m / metal)
+            :mod (c3 / counter))
+        :ARG1 (a2 / and
+            :location (b / below
+                :op1 (s / sink))
+            :op1 s
+            :op2 (c / cabinet))))

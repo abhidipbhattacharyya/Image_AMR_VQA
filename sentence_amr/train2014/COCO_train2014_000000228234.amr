@@ -1,0 +1,33 @@
+# ::tok The elephant , restrained by many ropes , is being guided down the walkway by his trainer
+# ::node	e	elephant	1-2
+# ::node	r	restrain-01	3-4
+# ::node	m	many	5-6
+# ::node	s	string	6-7
+# ::node	t	tie-01	6-7
+# ::node	g	guide-01	10-11
+# ::node	d	down	11-12
+# ::node	w	walkway	13-14
+# ::node	p	person	16-17
+# ::node	t2	train-01	16-17
+# ::root	g	guide-01
+# ::edge	elephant	ARG1-of	restrain-01	e	r	
+# ::edge	string	quant	many	s	m	
+# ::edge	restrain-01	ARG0	string	r	s	
+# ::edge	string	ARG2-of	tie-01	s	t	
+# ::edge	guide-01	ARG1	elephant	g	e	
+# ::edge	guide-01	direction	down	g	d	
+# ::edge	guide-01	path	walkway	g	w	
+# ::edge	guide-01	ARG0	person	g	p	
+# ::edge	person	ARG0-of	train-01	p	t2	
+# ::edge	train-01	ARG1	elephant	t2	e	
+(g / guide-01
+    :ARG0 (p / person
+        :ARG0-of (t2 / train-01
+            :ARG1 (e / elephant
+                :ARG1-of (r / restrain-01
+                    :ARG0 (s / string
+                        :quant (m / many)
+                        :ARG2-of (t / tie-01))))))
+    :ARG1 e
+    :direction (d / down)
+    :path (w / walkway))

@@ -1,0 +1,43 @@
+# ::tok Two bowls full of lemon juice and rinds , and a bowl of lemon pits .
+# ::node	1	2	0-1
+# ::node	t	tank	1-2
+# ::node	f	full-09	2-3
+# ::node	l	lemon	4-5
+# ::node	j	juice	5-6
+# ::node	a	and	6-7
+# ::node	g	game	7-8
+# ::node	n	name	7-8
+# ::node	0	100	7-8
+# ::node	2	plan	7-8
+# ::node	a2	and	9-10
+# ::node	b	bowl	11-12
+# ::node	l2	lemon	13-14
+# ::node	p	pit	14-15
+# ::root	a2	and
+# ::edge	tank	quant	2	t	1	
+# ::edge	tank	ARG1-of	full-09	t	f	
+# ::edge	juice	source	lemon	j	l	
+# ::edge	and	op1	juice	a	j	
+# ::edge	full-09	ARG2	and	f	a	
+# ::edge	and	op2	game	a	g	
+# ::edge	game	name	name	g	n	
+# ::edge	name	quant	100	n	0	
+# ::edge	name	op2	plan	n	2	
+# ::edge	and	op1	tank	a2	t	
+# ::edge	pit	consist-of	lemon	p	l2	
+# ::edge	pit	quant	bowl	p	b	
+# ::edge	and	op3	pit	a2	p	
+(a2 / and
+    :op1 (t / tank
+        :quant 2
+        :ARG1-of (f / full-09
+            :ARG2 (a / and
+                :op1 (j / juice
+                    :source (l / lemon))
+                :op2 (g / game
+                    :name (n / name
+                        :quant 100
+                        :op2 "plan")))))
+    :op3 (p / pit
+        :quant (b / bowl)
+        :consist-of (l2 / lemon)))

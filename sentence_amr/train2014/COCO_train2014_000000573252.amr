@@ -1,0 +1,47 @@
+# ::tok A man in a snow suit stands on skis in the snow while holding ski poles as a mountain range covered with snow is in the background .
+# ::node	m	man	1-2
+# ::node	s3	snow	4-5
+# ::node	s6	suit	5-6
+# ::node	s5	stand-01	6-7
+# ::node	s	ski-01	8-9
+# ::node	s4	snow	11-12
+# ::node	h	hold-01	13-14
+# ::node	s2	ski-01	14-15
+# ::node	p	pole	15-16
+# ::node	m2	mountain	18-19
+# ::node	r	range	19-20
+# ::node	c	cover-02	20-21
+# ::node	b	background	26-27
+# ::node	m3	multi-sentence	27-28
+# ::root	m3	multi-sentence
+# ::edge	suit	mod	snow	s6	s3	
+# ::edge	man	mod	suit	m	s6	
+# ::edge	stand-01	ARG1	man	s5	m	
+# ::edge	stand-01	manner	ski-01	s5	s	
+# ::edge	ski-01	ARG0	man	s	m	
+# ::edge	stand-01	location	snow	s5	s4	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	pole	mod	ski-01	p	s2	
+# ::edge	hold-01	ARG1	pole	h	p	
+# ::edge	range	mod	mountain	r	m2	
+# ::edge	range	ARG1-of	cover-02	r	c	
+# ::edge	cover-02	ARG2	snow	c	s3	
+# ::edge	background	location-of	range	b	r	
+# ::edge	multi-sentence	snt2	background	m3	b	
+# ::edge	multi-sentence	snt1	stand-01	m3	s5	
+(m3 / multi-sentence
+    :snt1 (s5 / stand-01
+        :ARG1 (m / man
+            :ARG0-of (h / hold-01
+                :ARG1 (p / pole
+                    :mod (s2 / ski-01)))
+            :mod (s6 / suit
+                :mod (s3 / snow)))
+        :location (s4 / snow)
+        :manner (s / ski-01
+            :ARG0 m))
+    :snt2 (b / background
+        :location-of (r / range
+            :ARG1-of (c / cover-02
+                :ARG2 s3)
+            :mod (m2 / mountain))))

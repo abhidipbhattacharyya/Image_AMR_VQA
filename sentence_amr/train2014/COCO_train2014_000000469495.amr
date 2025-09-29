@@ -1,0 +1,51 @@
+# ::tok Several people sit on outdoor seats that also serve as planters for flowers while a woman stands in front of a small outdoor table .
+# ::node	s3	several	0-1
+# ::node	p	person	1-2
+# ::node	s4	sit-01	2-3
+# ::node	o	outdoor	4-5
+# ::node	s	seat	5-6
+# ::node	a	also	7-8
+# ::node	s2	serve-01	8-9
+# ::node	p2	person	10-11
+# ::node	p3	plan-01	10-11
+# ::node	f	flower	12-13
+# ::node	c	contrast-01	13-14
+# ::node	w	woman	15-16
+# ::node	s6	stand-01	16-17
+# ::node	i	in-front-of	18-19
+# ::node	s5	small	21-22
+# ::node	t	table	23-24
+# ::root	c	contrast-01
+# ::edge	person	quant	several	p	s3	
+# ::edge	sit-01	ARG1	person	s4	p	
+# ::edge	seat	location	outdoor	s	o	
+# ::edge	sit-01	ARG2	seat	s4	s	
+# ::edge	serve-01	mod	also	s2	a	
+# ::edge	seat	ARG0-of	serve-01	s	s2	
+# ::edge	serve-01	ARG1	person	s2	p2	
+# ::edge	person	ARG0-of	plan-01	p2	p3	
+# ::edge	plan-01	ARG1	flower	p3	f	
+# ::edge	contrast-01	ARG1	sit-01	c	s4	
+# ::edge	stand-01	ARG1	woman	s6	w	
+# ::edge	contrast-01	ARG2	stand-01	c	s6	
+# ::edge	stand-01	ARG2	in-front-of	s6	i	
+# ::edge	table	mod	small	t	s5	
+# ::edge	in-front-of	op1	table	i	t	
+# ::edge	table	location	outdoor	t	o	
+(c / contrast-01
+    :ARG1 (s4 / sit-01
+        :ARG1 (p / person
+            :quant (s3 / several))
+        :ARG2 (s / seat
+            :ARG0-of (s2 / serve-01
+                :ARG1 (p2 / person
+                    :ARG0-of (p3 / plan-01
+                        :ARG1 (f / flower)))
+                :mod (a / also))
+            :location (o / outdoor)))
+    :ARG2 (s6 / stand-01
+        :ARG1 (w / woman)
+        :ARG2 (i / in-front-of
+            :op1 (t / table
+                :location o
+                :mod (s5 / small)))))

@@ -1,0 +1,28 @@
+# ::tok A sign that reads 30th street , in middle of the city .
+# ::node	s	sign	1-2
+# ::node	r	read-01	3-4
+# ::node	n	name	4-5
+# ::node	0	30th	4-5
+# ::node	s3	street-address-91	5-6
+# ::node	s2	street	5-6
+# ::node	1	Street	5-6
+# ::node	m	middle	8-9
+# ::node	c	city	11-12
+# ::root	s	sign
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	name	op1	30th	n	0	
+# ::edge	read-01	ARG3	street-address-91	r	s3	
+# ::edge	street-address-91	ARG2	street	s3	s2	
+# ::edge	street	name	name	s2	n	
+# ::edge	name	op2	Street	n	1	
+# ::edge	sign	location	middle	s	m	
+# ::edge	middle	part-of	city	m	c	
+(s / sign
+    :ARG1-of (r / read-01
+        :ARG3 (s3 / street-address-91
+            :ARG2 (s2 / street
+                :name (n / name
+                    :op1 "30th"
+                    :op2 "Street"))))
+    :location (m / middle
+        :part-of (c / city)))

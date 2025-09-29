@@ -1,0 +1,33 @@
+# ::tok A cop riding a motorcycle on a rain soaked parking lot his emergency lights on .
+# ::node	c	cop	1-2
+# ::node	r2	ride-01	2-3
+# ::node	m	motorcycle	4-5
+# ::node	r	rain-01	7-8
+# ::node	s	soak-01	8-9
+# ::node	p	park-01	9-10
+# ::node	l2	lot	10-11
+# ::node	e	emergency	12-13
+# ::node	l	light	13-14
+# ::node	o	on-01	14-15
+# ::root	r2	ride-01
+# ::edge	ride-01	ARG0	cop	r2	c	
+# ::edge	ride-01	ARG1	motorcycle	r2	m	
+# ::edge	soak-01	ARG0	rain-01	s	r	
+# ::edge	lot	purpose	park-01	l2	p	
+# ::edge	lot	ARG1-of	soak-01	l2	s	
+# ::edge	ride-01	location	lot	r2	l2	
+# ::edge	light	mod	emergency	l	e	
+# ::edge	light	poss	cop	l	c	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	cop	ARG0-of	on-01	c	o	
+(r2 / ride-01
+    :ARG0 (c / cop
+        :ARG0-of (o / on-01
+            :ARG1 (l / light
+                :mod (e / emergency)
+                :poss c)))
+    :ARG1 (m / motorcycle)
+    :location (l2 / lot
+        :purpose (p / park-01)
+        :ARG1-of (s / soak-01
+            :ARG0 (r / rain-01))))

@@ -1,0 +1,25 @@
+# ::tok A blue truck with tarp covered trailer drives down the road .
+# ::node	b	blue	1-2
+# ::node	t3	truck	2-3
+# ::node	t	tarp	4-5
+# ::node	c	cover-02	5-6
+# ::node	t2	trailer	6-7
+# ::node	d2	drive-01	7-8
+# ::node	d	down	8-9
+# ::node	r	road	10-11
+# ::root	d2	drive-01
+# ::edge	truck	mod	blue	t3	b	
+# ::edge	cover-02	ARG2	tarp	c	t	
+# ::edge	trailer	ARG1-of	cover-02	t2	c	
+# ::edge	truck	part	trailer	t3	t2	
+# ::edge	drive-01	ARG0	truck	d2	t3	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	road	d2	r	
+(d2 / drive-01
+    :ARG0 (t3 / truck
+        :mod (b / blue)
+        :part (t2 / trailer
+            :ARG1-of (c / cover-02
+                :ARG2 (t / tarp))))
+    :ARG1 (r / road)
+    :direction (d / down))

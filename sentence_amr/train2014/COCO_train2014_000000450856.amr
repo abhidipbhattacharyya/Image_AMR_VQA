@@ -1,0 +1,37 @@
+# ::tok Those chocolate - covered donuts will probably be gone within five minutes .
+# ::node	t2	that	0-1
+# ::node	c	chocolate	1-2
+# ::node	c2	cover-02	3-4
+# ::node	d	donut	4-5
+# ::node	p	probable	6-7
+# ::node	g	go-02	8-9
+# ::node	a	after	9-10
+# ::node	u	up-to	9-10
+# ::node	t	temporal-quantity	10-11
+# ::node	0	5	10-11
+# ::node	m	minute	11-12
+# ::node	n	now	11-12
+# ::root	g	go-02
+# ::edge	cover-02	ARG2	chocolate	c2	c	
+# ::edge	donut	ARG1-of	cover-02	d	c2	
+# ::edge	donut	mod	that	d	t2	
+# ::edge	go-02	mod	probable	g	p	
+# ::edge	go-02	ARG0	donut	g	d	
+# ::edge	go-02	time	after	g	a	
+# ::edge	after	quant	up-to	a	u	
+# ::edge	up-to	op1	temporal-quantity	u	t	
+# ::edge	temporal-quantity	quant	5	t	0	
+# ::edge	temporal-quantity	unit	minute	t	m	
+# ::edge	after	op1	now	a	n	
+(g / go-02
+    :ARG0 (d / donut
+        :ARG1-of (c2 / cover-02
+            :ARG2 (c / chocolate))
+        :mod (t2 / that))
+    :mod (p / probable)
+    :time (a / after
+        :quant (u / up-to
+            :op1 (t / temporal-quantity
+                :quant 5
+                :unit (m / minute)))
+        :op1 (n / now)))

@@ -1,0 +1,38 @@
+# ::tok Drivers on the side road must yield and stop prior to turning on to the highway .
+# ::node	p	person	0-1
+# ::node	d	drive-01	0-1
+# ::node	s	side	3-4
+# ::node	r	road	4-5
+# ::node	o	obligate-01	5-6
+# ::node	y	yield-01	6-7
+# ::node	a	and	7-8
+# ::node	s2	stop-01	8-9
+# ::node	p2	prior	9-10
+# ::node	t	turn-01	11-12
+# ::node	h	highway	15-16
+# ::root	o	obligate-01
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	road	mod	side	r	s	
+# ::edge	person	location	road	p	r	
+# ::edge	yield-01	ARG0	person	y	p	
+# ::edge	and	op1	yield-01	a	y	
+# ::edge	obligate-01	ARG2	and	o	a	
+# ::edge	and	op2	stop-01	a	s2	
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	and	time	prior	a	p2	
+# ::edge	prior	op1	turn-01	p2	t	
+# ::edge	turn-01	ARG0	person	t	p	
+# ::edge	turn-01	direction	highway	t	h	
+(o / obligate-01
+    :ARG2 (a / and
+        :op1 (y / yield-01
+            :ARG0 (p / person
+                :ARG0-of (d / drive-01)
+                :location (r / road
+                    :mod (s / side))))
+        :op2 (s2 / stop-01
+            :ARG0 p)
+        :time (p2 / prior
+            :op1 (t / turn-01
+                :ARG0 p
+                :direction (h / highway)))))

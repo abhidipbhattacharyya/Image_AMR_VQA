@@ -1,0 +1,28 @@
+# ::tok That car may not be able to get around the cattle in the road .
+# ::node	t	that	0-1
+# ::node	c	car	1-2
+# ::node	p	possible-01	2-3
+# ::node	0	-	3-4
+# ::node	p2	possible-01	5-6
+# ::node	g	get-05	7-8
+# ::node	a	around	8-9
+# ::node	c2	cattle	10-11
+# ::node	r	road	13-14
+# ::root	p	possible-01
+# ::edge	car	mod	that	c	t	
+# ::edge	possible-01	polarity	-	p2	0	
+# ::edge	possible-01	ARG1	possible-01	p	p2	
+# ::edge	possible-01	ARG1	get-05	p2	g	
+# ::edge	get-05	ARG1	car	g	c	
+# ::edge	get-05	ARG2	around	g	a	
+# ::edge	around	op1	cattle	a	c2	
+# ::edge	cattle	location	road	c2	r	
+(p / possible-01
+    :ARG1 (p2 / possible-01
+        :ARG1 (g / get-05
+            :ARG1 (c / car
+                :mod (t / that))
+            :ARG2 (a / around
+                :op1 (c2 / cattle
+                    :location (r / road))))
+        :polarity -))

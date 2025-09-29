@@ -1,0 +1,33 @@
+# ::tok A close shot of a laptop with a glass of beer and chips .
+# ::node	c2	close-10	1-2
+# ::node	s	shot	2-3
+# ::node	l	laptop	5-6
+# ::node	h	have-03	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	b	beer	10-11
+# ::node	a	and	11-12
+# ::node	c	chip	12-13
+# ::root	s	shot
+# ::edge	shot	ARG1-of	close-10	s	c2	
+# ::edge	shot	mod	laptop	s	l	
+# ::edge	laptop	ARG0-of	have-03	l	h	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	beer	quant	volume-quantity	b	v	
+# ::edge	and	op1	beer	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	chip	a	c	
+# ::edge	chip	quant	volume-quantity	c	v	
+(s / shot
+    :ARG1-of (c2 / close-10)
+    :mod (l / laptop
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b / beer
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (g / glass)))
+                :op2 (c / chip
+                    :quant v)))))

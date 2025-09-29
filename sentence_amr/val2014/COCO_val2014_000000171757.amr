@@ -1,0 +1,30 @@
+# ::tok a group of people listening to music or possible playing video games
+# ::node	g2	group	1-2
+# ::node	p	person	3-4
+# ::node	l	listen-01	4-5
+# ::node	m	music	6-7
+# ::node	o	or	7-8
+# ::node	p3	possible-01	8-9
+# ::node	p2	play-01	9-10
+# ::node	v	video	10-11
+# ::node	g	game	11-12
+# ::root	g2	group
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	group	ARG0-of	listen-01	g2	l	
+# ::edge	or	op1	music	o	m	
+# ::edge	listen-01	ARG1	or	l	o	
+# ::edge	play-01	ARG1-of	possible-01	p2	p3	
+# ::edge	or	op2	play-01	o	p2	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	game	mod	video	g	v	
+# ::edge	play-01	ARG1	game	p2	g	
+(g2 / group
+    :ARG0-of (l / listen-01
+        :ARG1 (o / or
+            :op1 (m / music)
+            :op2 (p2 / play-01
+                :ARG0 (p / person)
+                :ARG1 (g / game
+                    :mod (v / video))
+                :ARG1-of (p3 / possible-01))))
+    :consist-of p)

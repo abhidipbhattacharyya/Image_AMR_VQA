@@ -1,0 +1,33 @@
+# ::tok A group of cross country snow skiers race across the course with a forest behind them .
+# ::node	g	group	1-2
+# ::node	c3	cross-02	3-4
+# ::node	c	country	4-5
+# ::node	s2	snow	5-6
+# ::node	p	person	6-7
+# ::node	s	ski-01	6-7
+# ::node	r	race-02	7-8
+# ::node	c2	course	10-11
+# ::node	f	forest	13-14
+# ::node	b	behind	14-15
+# ::root	r	race-02
+# ::edge	cross-02	ARG1	country	c3	c	
+# ::edge	person	ARG0-of	cross-02	p	c3	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	ski-01	ARG1	snow	s	s2	
+# ::edge	race-02	ARG0	group	r	g	
+# ::edge	race-02	path	course	r	c2	
+# ::edge	race-02	prep-with	forest	r	f	
+# ::edge	forest	location	behind	f	b	
+# ::edge	behind	op1	group	b	g	
+(r / race-02
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (c3 / cross-02
+                :ARG1 (c / country))
+            :ARG0-of (s / ski-01
+                :ARG1 (s2 / snow))))
+    :path (c2 / course)
+    :prep-with (f / forest
+        :location (b / behind
+            :op1 g)))

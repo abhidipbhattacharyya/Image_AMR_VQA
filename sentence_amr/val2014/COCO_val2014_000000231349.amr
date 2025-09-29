@@ -1,0 +1,27 @@
+# ::tok A test train with a not in service sign posted in it 's window .
+# ::node	t	test-01	1-2
+# ::node	t2	train	2-3
+# ::node	h	have-03	3-4
+# ::node	0	-	5-6
+# ::node	s	service-05	7-8
+# ::node	s2	sign	8-9
+# ::node	p	post-01	9-10
+# ::node	w	window	13-14
+# ::root	t2	train
+# ::edge	train	ARG0-of	test-01	t2	t	
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	service-05	polarity	-	s	0	
+# ::edge	sign	topic	service-05	s2	s	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	train	ARG1-of	post-01	t2	p	
+# ::edge	post-01	ARG2	window	p	w	
+# ::edge	train	part	window	t2	w	
+(t2 / train
+    :ARG0-of (t / test-01)
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :topic (s / service-05
+                :polarity -)))
+    :ARG1-of (p / post-01
+        :ARG2 (w / window))
+    :part w)

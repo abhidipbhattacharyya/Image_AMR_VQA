@@ -1,0 +1,51 @@
+# ::tok Three kids with one kid in swim suit other in suit and shorts and other in skirt and blouse .
+# ::node	1	3	0-1
+# ::node	k	kid	1-2
+# ::node	0	1	3-4
+# ::node	k2	kid	4-5
+# ::node	k3	kid	4-5
+# ::node	s5	swim	6-7
+# ::node	s3	suit	7-8
+# ::node	w	wear-01	9-10
+# ::node	w2	wear-01	9-10
+# ::node	w3	wear-01	9-10
+# ::node	s4	suit	10-11
+# ::node	a	and	11-12
+# ::node	s	shorts	12-13
+# ::node	s2	skirt	16-17
+# ::node	a2	and	17-18
+# ::node	b	blouse	18-19
+# ::root	k	kid
+# ::edge	kid	quant	3	k	1	
+# ::edge	kid	quant	1	k2	0	
+# ::edge	suit	mod	swim	s3	s5	
+# ::edge	wear-01	ARG1	suit	w	s3	
+# ::edge	kid	ARG0-of	wear-01	k2	w	
+# ::edge	wear-01	ARG1	kid	w2	k3	
+# ::edge	kid	ARG0-of	wear-01	k3	w2	
+# ::edge	kid	ARG0-of	wear-01	k3	w3	
+# ::edge	and	op1	suit	a	s4	
+# ::edge	wear-01	ARG1	and	w2	a	
+# ::edge	and	op2	shorts	a	s	
+# ::edge	and	op1	skirt	a2	s2	
+# ::edge	wear-01	ARG1	and	w3	a2	
+# ::edge	and	op2	blouse	a2	b	
+# ::edge	kid	rel	kid	k	k2	
+# ::edge	kid	rel	kid	k	k3	
+(k / kid
+    :quant 3
+    :rel (k2 / kid
+        :quant 1
+        :ARG0-of (w / wear-01
+            :ARG1 (s3 / suit
+                :mod (s5 / swim))))
+    :rel (k3 / kid
+        :ARG0-of (w2 / wear-01
+            :ARG1 k3
+            :ARG1 (a / and
+                :op1 (s4 / suit)
+                :op2 (s / shorts)))
+        :ARG0-of (w3 / wear-01
+            :ARG1 (a2 / and
+                :op1 (s2 / skirt)
+                :op2 (b / blouse)))))

@@ -1,0 +1,28 @@
+# ::tok A person on a motorcycle with multiple mirrors sits in traffic on a city street .
+# ::node	p	person	1-2
+# ::node	m2	motorcycle	4-5
+# ::node	h	have-03	5-6
+# ::node	m3	multiple	6-7
+# ::node	m	mirror	7-8
+# ::node	s	sit-01	8-9
+# ::node	t	traffic	10-11
+# ::node	c	city	13-14
+# ::node	s2	street	14-15
+# ::root	s	sit-01
+# ::edge	have-03	ARG1	motorcycle	h	m2	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	mirror	quant	multiple	m	m3	
+# ::edge	have-03	ARG1	mirror	h	m	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	traffic	s	t	
+# ::edge	street	mod	city	s2	c	
+# ::edge	traffic	location	street	t	s2	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (m2 / motorcycle)
+            :ARG1 (m / mirror
+                :quant (m3 / multiple))))
+    :ARG2 (t / traffic
+        :location (s2 / street
+            :mod (c / city))))

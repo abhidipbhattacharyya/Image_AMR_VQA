@@ -1,0 +1,34 @@
+# ::tok The baseball player has slid into base before the other player caught the ball .
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	slide-01	4-5
+# ::node	b2	base	6-7
+# ::node	b4	before	7-8
+# ::node	o	other	9-10
+# ::node	p2	person	10-11
+# ::node	p4	play-01	10-11
+# ::node	c	catch-01	11-12
+# ::node	b	ball	13-14
+# ::root	s	slide-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b3	
+# ::edge	slide-01	ARG1	person	s	p	
+# ::edge	slide-01	destination	base	s	b2	
+# ::edge	slide-01	time	before	s	b4	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	catch-01	ARG0	person	c	p2	
+# ::edge	before	op1	catch-01	b4	c	
+# ::edge	catch-01	ARG1	ball	c	b	
+(s / slide-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b3 / baseball)))
+    :destination (b2 / base)
+    :time (b4 / before
+        :op1 (c / catch-01
+            :ARG0 (p2 / person
+                :ARG0-of (p4 / play-01)
+                :mod (o / other))
+            :ARG1 (b / ball))))

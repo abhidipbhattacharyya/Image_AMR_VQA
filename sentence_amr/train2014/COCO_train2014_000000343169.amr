@@ -1,0 +1,39 @@
+# ::tok a kitchen area with a stove top and island next to a dining area with a kitchen table
+# ::node	k	kitchen	1-2
+# ::node	a2	area	2-3
+# ::node	h	have-03	3-4
+# ::node	s	stove	5-6
+# ::node	t2	top	6-7
+# ::node	a	and	7-8
+# ::node	i	island	8-9
+# ::node	n	next-to	9-10
+# ::node	d	dine-01	12-13
+# ::node	a3	area	13-14
+# ::node	h2	have-03	14-15
+# ::node	t	table	17-18
+# ::root	a2	area
+# ::edge	area	mod	kitchen	a2	k	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	top	mod	stove	t2	s	
+# ::edge	and	op1	top	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	island	a	i	
+# ::edge	area	location	next-to	a2	n	
+# ::edge	area	location-of	dine-01	a3	d	
+# ::edge	next-to	op1	area	n	a3	
+# ::edge	area	ARG0-of	have-03	a3	h2	
+# ::edge	have-03	ARG1	table	h2	t	
+# ::edge	table	mod	kitchen	t	k	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t2 / top
+                :mod (s / stove))
+            :op2 (i / island)))
+    :location (n / next-to
+        :op1 (a3 / area
+            :ARG0-of (h2 / have-03
+                :ARG1 (t / table
+                    :mod (k / kitchen)))
+            :location-of (d / dine-01)))
+    :mod k)

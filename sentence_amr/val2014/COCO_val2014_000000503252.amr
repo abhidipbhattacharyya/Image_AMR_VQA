@@ -1,0 +1,33 @@
+# ::tok A yellow parking meter set up to collect donations for the homeless .
+# ::node	y	yellow-02	1-2
+# ::node	p	park-01	2-3
+# ::node	m	meter	3-4
+# ::node	s	set-up-03	4-5
+# ::node	c	collect-01	7-8
+# ::node	d	donate-01	8-9
+# ::node	p2	person	10-11
+# ::node	h	have-03	11-12
+# ::node	h2	home	11-12
+# ::node	0	-	11-12
+# ::root	s	set-up-03
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	ARG1-of	yellow-02	m	y	
+# ::edge	set-up-03	ARG1	meter	s	m	
+# ::edge	set-up-03	purpose	collect-01	s	c	
+# ::edge	collect-01	ARG0	meter	c	m	
+# ::edge	collect-01	ARG1	donate-01	c	d	
+# ::edge	donate-01	ARG2	person	d	p2	
+# ::edge	person	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	home	h	h2	
+# ::edge	have-03	polarity	-	h	0	
+(s / set-up-03
+    :purpose (c / collect-01
+        :ARG0 (m / meter
+            :purpose (p / park-01)
+            :ARG1-of (y / yellow-02))
+        :ARG1 (d / donate-01
+            :ARG2 (p2 / person
+                :ARG0-of (h / have-03
+                    :ARG1 (h2 / home)
+                    :polarity -))))
+    :ARG1 m)

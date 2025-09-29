@@ -1,0 +1,44 @@
+# ::tok A rope strung between two cliffs with a woman standing on one cliff while a man is attempting to walk across the rope .
+# ::node	r	rope	1-2
+# ::node	s2	string-01	2-3
+# ::node	b	between	3-4
+# ::node	0	2	4-5
+# ::node	l	Cliff	5-6
+# ::node	w2	woman	8-9
+# ::node	s	stand-01	9-10
+# ::node	o	one	11-12
+# ::node	c	cliff	12-13
+# ::node	m	man	15-16
+# ::node	a2	attempt-01	17-18
+# ::node	w	walk-01	19-20
+# ::node	a	across	20-21
+# ::root	s2	string-01
+# ::edge	string-01	ARG1	rope	s2	r	
+# ::edge	string-01	ARG4	between	s2	b	
+# ::edge	Cliff	quant	2	l	0	
+# ::edge	between	op1	Cliff	b	l	
+# ::edge	stand-01	ARG1	woman	s	w2	
+# ::edge	rope	location-of	stand-01	r	s	
+# ::edge	cliff	mod	one	c	o	
+# ::edge	stand-01	location	cliff	s	c	
+# ::edge	attempt-01	ARG0	man	a2	m	
+# ::edge	string-01	time	attempt-01	s2	a2	
+# ::edge	attempt-01	ARG1	walk-01	a2	w	
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	ARG2	across	w	a	
+# ::edge	across	op1	rope	a	r	
+(s2 / string-01
+    :ARG1 (r / rope
+        :location-of (s / stand-01
+            :ARG1 (w2 / woman)
+            :location (c / cliff
+                :mod (o / one))))
+    :ARG4 (b / between
+        :op1 (l / Cliff
+            :quant 2))
+    :time (a2 / attempt-01
+        :ARG0 (m / man)
+        :ARG1 (w / walk-01
+            :ARG0 m
+            :ARG2 (a / across
+                :op1 r))))

@@ -1,0 +1,37 @@
+# ::tok A plate with a fried chicken breast topped with sauce garnished with cucumber slices and tomato wedges .
+# ::node	p	plate	1-2
+# ::node	f	fry-01	4-5
+# ::node	c	chicken	5-6
+# ::node	b	breast	6-7
+# ::node	t2	top-01	7-8
+# ::node	s	sauce	9-10
+# ::node	g	garner-01	10-11
+# ::node	c2	cucumber	12-13
+# ::node	s2	slice	13-14
+# ::node	a	and	14-15
+# ::node	t	tomato	15-16
+# ::node	w	wed-01	16-17
+# ::root	p	plate
+# ::edge	breast	part-of	chicken	b	c	
+# ::edge	breast	ARG1-of	fry-01	b	f	
+# ::edge	plate	part	breast	p	b	
+# ::edge	plate	ARG1-of	top-01	p	t2	
+# ::edge	top-01	ARG2	sauce	t2	s	
+# ::edge	sauce	ARG1-of	garner-01	s	g	
+# ::edge	slice	consist-of	cucumber	s2	c2	
+# ::edge	and	op1	slice	a	s2	
+# ::edge	garner-01	ARG2	and	g	a	
+# ::edge	wed-01	ARG2	tomato	w	t	
+# ::edge	and	op2	wed-01	a	w	
+(p / plate
+    :ARG1-of (t2 / top-01
+        :ARG2 (s / sauce
+            :ARG1-of (g / garner-01
+                :ARG2 (a / and
+                    :op1 (s2 / slice
+                        :consist-of (c2 / cucumber))
+                    :op2 (w / wed-01
+                        :ARG2 (t / tomato))))))
+    :part (b / breast
+        :ARG1-of (f / fry-01)
+        :part-of (c / chicken)))

@@ -1,0 +1,33 @@
+# ::tok A man stands next to a truck for delivering West Indian food .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	t	truck	6-7
+# ::node	d	deliver-01	8-9
+# ::node	n	name	9-10
+# ::node	1	West	9-10
+# ::node	w	world-region	10-11
+# ::node	0	India	10-11
+# ::node	f	food	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	truck	n2	t	
+# ::edge	stand-01	purpose	deliver-01	s	d	
+# ::edge	deliver-01	ARG0	man	d	m	
+# ::edge	name	op1	West	n	1	
+# ::edge	world-region	name	name	w	n	
+# ::edge	name	op2	India	n	0	
+# ::edge	food	source	world-region	f	w	
+# ::edge	deliver-01	ARG1	food	d	f	
+(s / stand-01
+    :purpose (d / deliver-01
+        :ARG0 (m / man)
+        :ARG1 (f / food
+            :source (w / world-region
+                :name (n / name
+                    :op1 "West"
+                    :op2 "India"))))
+    :ARG1 m
+    :ARG2 (n2 / next-to
+        :op1 (t / truck)))

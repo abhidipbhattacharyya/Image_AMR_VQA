@@ -1,0 +1,46 @@
+# ::tok An airport landing strip and apron area with an airplane parked and a grounds crew next to luggage equipment .
+# ::node	a2	airport	1-2
+# ::node	l	land-01	2-3
+# ::node	s	strip	3-4
+# ::node	a3	and	4-5
+# ::node	a5	apron	5-6
+# ::node	a6	area	6-7
+# ::node	a	airplane	9-10
+# ::node	p	park-01	10-11
+# ::node	a4	and	11-12
+# ::node	g	ground	13-14
+# ::node	p2	person	14-15
+# ::node	c	crew-01	14-15
+# ::node	n	next-to	15-16
+# ::node	l2	luggage	17-18
+# ::node	e	equipment	18-19
+# ::root	a3	and
+# ::edge	land-01	location	airport	l	a2	
+# ::edge	strip	location-of	land-01	s	l	
+# ::edge	and	op1	strip	a3	s	
+# ::edge	area	location-of	apron	a6	a5	
+# ::edge	and	op2	area	a3	a6	
+# ::edge	park-01	ARG1	airplane	p	a	
+# ::edge	and	op1	park-01	a4	p	
+# ::edge	and	location-of	and	a3	a4	
+# ::edge	and	op2	person	a4	p2	
+# ::edge	person	ARG0-of	crew-01	p2	c	
+# ::edge	crew-01	ARG1	ground	c	g	
+# ::edge	and	location	next-to	a4	n	
+# ::edge	equipment	mod	luggage	e	l2	
+# ::edge	next-to	op1	equipment	n	e	
+(a3 / and
+    :location-of (a4 / and
+        :location (n / next-to
+            :op1 (e / equipment
+                :mod (l2 / luggage)))
+        :op1 (p / park-01
+            :ARG1 (a / airplane))
+        :op2 (p2 / person
+            :ARG0-of (c / crew-01
+                :ARG1 (g / ground))))
+    :op1 (s / strip
+        :location-of (l / land-01
+            :location (a2 / airport)))
+    :op2 (a6 / area
+        :location-of (a5 / apron)))

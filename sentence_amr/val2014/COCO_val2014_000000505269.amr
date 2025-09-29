@@ -1,0 +1,34 @@
+# ::tok Someone holding a paper plate with a full hot dog and a half eaten hot dog on it .
+# ::node	s	someone	0-1
+# ::node	h3	hold-01	1-2
+# ::node	p	paper	3-4
+# ::node	p2	plate	4-5
+# ::node	h2	have-03	5-6
+# ::node	f	full-09	7-8
+# ::node	h4	hot-dog	9-10
+# ::node	a	and	10-11
+# ::node	h	half	12-13
+# ::node	e	eat-01	13-14
+# ::node	h5	hot-dog	15-16
+# ::root	h3	hold-01
+# ::edge	hold-01	ARG0	someone	h3	s	
+# ::edge	plate	consist-of	paper	p2	p	
+# ::edge	hold-01	ARG1	plate	h3	p2	
+# ::edge	plate	ARG0-of	have-03	p2	h2	
+# ::edge	hot-dog	ARG1-of	full-09	h4	f	
+# ::edge	and	op1	hot-dog	a	h4	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	hot-dog	ARG1-of	eat-01	h5	e	
+# ::edge	and	op2	hot-dog	a	h5	
+(h3 / hold-01
+    :ARG0 (s / someone)
+    :ARG1 (p2 / plate
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (h4 / hot-dog
+                    :ARG1-of (f / full-09))
+                :op2 (h5 / hot-dog
+                    :ARG1-of (e / eat-01
+                        :degree (h / half)))))
+        :consist-of (p / paper)))

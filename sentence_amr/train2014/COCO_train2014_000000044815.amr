@@ -1,0 +1,25 @@
+# ::tok A wooden counter at a store filled with ripe and unripe bananas .
+# ::node	w	wood	1-2
+# ::node	c	counter	2-3
+# ::node	s	store	5-6
+# ::node	f	fill-01	6-7
+# ::node	r	ripe-02	8-9
+# ::node	0	-	9-10
+# ::node	u	unripe	10-11
+# ::node	b	banana	11-12
+# ::root	c	counter
+# ::edge	counter	consist-of	wood	c	w	
+# ::edge	counter	location	store	c	s	
+# ::edge	counter	ARG1-of	fill-01	c	f	
+# ::edge	unripe	polarity	-	u	0	
+# ::edge	banana	mod	unripe	b	u	
+# ::edge	banana	ARG1-of	ripe-02	b	r	
+# ::edge	fill-01	ARG2	banana	f	b	
+(c / counter
+    :ARG1-of (f / fill-01
+        :ARG2 (b / banana
+            :ARG1-of (r / ripe-02)
+            :mod (u / unripe
+                :polarity -)))
+    :consist-of (w / wood)
+    :location (s / store))

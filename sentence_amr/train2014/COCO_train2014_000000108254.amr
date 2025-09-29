@@ -1,0 +1,40 @@
+# ::tok A double - sink vanity is in front of a wide mirror with side lighting in this rest room .
+# ::node	d	double	1-2
+# ::node	s2	sink	3-4
+# ::node	v	vanity	4-5
+# ::node	i	in-front-of	7-8
+# ::node	w	wide-02	10-11
+# ::node	m	mirror	11-12
+# ::node	h	have-03	12-13
+# ::node	s	side	13-14
+# ::node	l	lighting	14-15
+# ::node	t	this	16-17
+# ::node	r	rest	17-18
+# ::node	r2	room	18-19
+# ::node	m2	multi-sentence	19-20
+# ::root	m2	multi-sentence
+# ::edge	sink	mod	double	s2	d	
+# ::edge	vanity	mod	sink	v	s2	
+# ::edge	vanity	location	in-front-of	v	i	
+# ::edge	mirror	ARG1-of	wide-02	m	w	
+# ::edge	in-front-of	op1	mirror	i	m	
+# ::edge	mirror	ARG0-of	have-03	m	h	
+# ::edge	lighting	mod	side	l	s	
+# ::edge	have-03	ARG1	lighting	h	l	
+# ::edge	room	mod	rest	r2	r	
+# ::edge	room	mod	this	r2	t	
+# ::edge	in-front-of	location	room	i	r2	
+# ::edge	multi-sentence	snt1	vanity	m2	v	
+(m2 / multi-sentence
+    :snt1 (v / vanity
+        :location (i / in-front-of
+            :location (r2 / room
+                :mod (r / rest)
+                :mod (t / this))
+            :op1 (m / mirror
+                :ARG0-of (h / have-03
+                    :ARG1 (l / lighting
+                        :mod (s / side)))
+                :ARG1-of (w / wide-02)))
+        :mod (s2 / sink
+            :mod (d / double))))

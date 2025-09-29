@@ -1,0 +1,48 @@
+# ::tok A toilet with flush handle but no visible tank and without lid , with a roll of unopened toilet paper on top .
+# ::node	t2	toilet	1-2
+# ::node	f	flush-01	3-4
+# ::node	h	handle	4-5
+# ::node	c	contrast-01	5-6
+# ::node	0	-	6-7
+# ::node	1	-	6-7
+# ::node	s	see-01	7-8
+# ::node	p2	possible-01	7-8
+# ::node	t	tank	8-9
+# ::node	a	and	9-10
+# ::node	l	lid	11-12
+# ::node	r	roll	15-16
+# ::node	o	open-01	17-18
+# ::node	p	paper	19-20
+# ::node	t3	top	21-22
+# ::root	t2	toilet
+# ::edge	handle	mod	flush-01	h	f	
+# ::edge	contrast-01	ARG1	handle	c	h	
+# ::edge	toilet	prep-with	contrast-01	t2	c	
+# ::edge	see-01	polarity	-	s	1	
+# ::edge	see-01	ARG1-of	possible-01	s	p2	
+# ::edge	tank	ARG1-of	see-01	t	s	
+# ::edge	and	op1	tank	a	t	
+# ::edge	contrast-01	ARG2	and	c	a	
+# ::edge	and	op2	lid	a	l	
+# ::edge	lid	polarity	-	l	0	
+# ::edge	toilet	op3	roll	t2	r	
+# ::edge	open-01	polarity	-	o	1	
+# ::edge	paper	ARG1-of	open-01	p	o	
+# ::edge	roll	consist-of	paper	r	p	
+# ::edge	roll	location	top	r	t3	
+(t2 / toilet
+    :op3 (r / roll
+        :consist-of (p / paper
+            :ARG1-of (o / open-01
+                :polarity -))
+        :location (t3 / top))
+    :prep-with (c / contrast-01
+        :ARG1 (h / handle
+            :mod (f / flush-01))
+        :ARG2 (a / and
+            :op1 (t / tank
+                :ARG1-of (s / see-01
+                    :ARG1-of (p2 / possible-01)
+                    :polarity -))
+            :op2 (l / lid
+                :polarity -))))

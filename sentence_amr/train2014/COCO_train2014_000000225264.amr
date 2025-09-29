@@ -1,0 +1,40 @@
+# ::tok Zebra in a wood log zoo fence eating feed from a black iron bowl .
+# ::node	c	city-district	0-1
+# ::node	n	name	0-1
+# ::node	0	Zimbabwe	0-1
+# ::node	w	wood	3-4
+# ::node	l	log	4-5
+# ::node	z	zoo	5-6
+# ::node	f2	fence	6-7
+# ::node	e	eat-01	7-8
+# ::node	f	feed-01	8-9
+# ::node	t	thing	9-10
+# ::node	b	black-04	11-12
+# ::node	i	iron	12-13
+# ::node	b2	bowl	13-14
+# ::root	e	eat-01
+# ::edge	city-district	name	name	c	n	
+# ::edge	name	op1	Zimbabwe	n	0	
+# ::edge	log	consist-of	wood	l	w	
+# ::edge	fence	mod	zoo	f2	z	
+# ::edge	fence	consist-of	log	f2	l	
+# ::edge	city-district	location	fence	c	f2	
+# ::edge	eat-01	ARG0	city-district	e	c	
+# ::edge	thing	ARG2-of	feed-01	t	f	
+# ::edge	eat-01	ARG1	thing	e	t	
+# ::edge	iron	ARG1-of	black-04	i	b	
+# ::edge	bowl	consist-of	iron	b2	i	
+# ::edge	eat-01	ARG2	bowl	e	b2	
+(e / eat-01
+    :ARG0 (c / city-district
+        :name (n / name
+            :op1 "Zimbabwe")
+        :location (f2 / fence
+            :consist-of (l / log
+                :consist-of (w / wood))
+            :mod (z / zoo)))
+    :ARG1 (t / thing
+        :ARG2-of (f / feed-01))
+    :ARG2 (b2 / bowl
+        :consist-of (i / iron
+            :ARG1-of (b / black-04))))

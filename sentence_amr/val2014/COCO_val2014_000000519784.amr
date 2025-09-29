@@ -1,0 +1,32 @@
+# ::tok A one way street with cars , buses , trucks and motorcycles riding on it and parked .
+# ::node	o	one-way	2-3
+# ::node	s	street	3-4
+# ::node	c	car	5-6
+# ::node	b	bus	7-8
+# ::node	t	truck	9-10
+# ::node	a	and	10-11
+# ::node	m	motorcycle	11-12
+# ::node	r	ride-01	12-13
+# ::node	p	park-01	16-17
+# ::root	s	street
+# ::edge	street	mod	one-way	s	o	
+# ::edge	and	op2	street	a	s	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op3	motorcycle	a	m	
+# ::edge	ride-01	ARG0	and	r	a	
+# ::edge	street	ARG1-of	ride-01	s	r	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	street	ARG2-of	park-01	s	p	
+# ::edge	street	rel	bus	s	b	
+# ::edge	street	rel	truck	s	t	
+(s / street
+    :ARG1-of (r / ride-01
+        :ARG0 (a / and
+            :op1 (c / car)
+            :op2 s
+            :op3 (m / motorcycle)))
+    :ARG2-of (p / park-01
+        :ARG1 a)
+    :mod (o / one-way)
+    :rel (b / bus)
+    :rel (t / truck))

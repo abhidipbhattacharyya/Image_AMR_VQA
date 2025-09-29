@@ -1,0 +1,33 @@
+# ::tok Several men in a field getting ready to fly an American flag kite .
+# ::node	s	several	0-1
+# ::node	m	man	1-2
+# ::node	f	field	4-5
+# ::node	r	ready-01	6-7
+# ::node	f3	fly-01	8-9
+# ::node	c	country	10-11
+# ::node	n	name	10-11
+# ::node	0	America	10-11
+# ::node	f2	flag	11-12
+# ::node	k	kite	12-13
+# ::root	r	ready-01
+# ::edge	man	quant	several	m	s	
+# ::edge	man	location	field	m	f	
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG2	fly-01	r	f3	
+# ::edge	fly-01	ARG0	man	f3	m	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f2	c	
+# ::edge	kite	mod	flag	k	f2	
+# ::edge	fly-01	ARG1	kite	f3	k	
+(r / ready-01
+    :ARG1 (m / man
+        :quant (s / several)
+        :location (f / field))
+    :ARG2 (f3 / fly-01
+        :ARG0 m
+        :ARG1 (k / kite
+            :mod (f2 / flag
+                :mod (c / country
+                    :name (n / name
+                        :op1 "America"))))))

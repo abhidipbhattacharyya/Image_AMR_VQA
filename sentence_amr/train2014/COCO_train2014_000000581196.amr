@@ -1,0 +1,21 @@
+# ::tok A train is parked at the station awaiting its next group .
+# ::node	t	train	1-2
+# ::node	p	park-01	3-4
+# ::node	s	station	6-7
+# ::node	a	await-01	7-8
+# ::node	n	next	9-10
+# ::node	g	group	10-11
+# ::root	p	park-01
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	station	p	s	
+# ::edge	train	ARG1-of	await-01	t	a	
+# ::edge	group	mod	next	g	n	
+# ::edge	await-01	ARG2	group	a	g	
+# ::edge	group	poss	train	g	t	
+(p / park-01
+    :ARG1 (t / train
+        :ARG1-of (a / await-01
+            :ARG2 (g / group
+                :mod (n / next)
+                :poss t)))
+    :ARG2 (s / station))

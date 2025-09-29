@@ -1,0 +1,36 @@
+# ::tok A man sits outside and eats a slice of pizza containing multiple toppings
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	o	outside	3-4
+# ::node	a	and	4-5
+# ::node	e	eat-01	5-6
+# ::node	s2	slice	7-8
+# ::node	p	pizza	9-10
+# ::node	c	contain-01	10-11
+# ::node	m2	multiple	11-12
+# ::node	c2	continent	12-13
+# ::node	t	top-01	12-13
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	outside	s	o	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	eat-01	ARG1	slice	e	s2	
+# ::edge	slice	consist-of	pizza	s2	p	
+# ::edge	pizza	ARG0-of	contain-01	p	c	
+# ::edge	continent	quant	multiple	c2	m2	
+# ::edge	contain-01	ARG1	continent	c	c2	
+# ::edge	pizza	ARG2-of	top-01	p	t	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man)
+        :ARG2 (o / outside))
+    :op2 (e / eat-01
+        :ARG0 m
+        :ARG1 (s2 / slice
+            :consist-of (p / pizza
+                :ARG0-of (c / contain-01
+                    :ARG1 (c2 / continent
+                        :quant (m2 / multiple)))
+                :ARG2-of (t / top-01)))))

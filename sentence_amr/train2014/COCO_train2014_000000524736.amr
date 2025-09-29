@@ -1,0 +1,26 @@
+# ::tok Several people standing next to or in front of their surfboards .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	o	or	5-6
+# ::node	i	in-front-of	7-8
+# ::node	s3	surf-01	10-11
+# ::root	s2	stand-01
+# ::edge	person	quant	several	p	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	or	op1	next-to	o	n	
+# ::edge	stand-01	ARG2	or	s2	o	
+# ::edge	or	op2	in-front-of	o	i	
+# ::edge	in-front-of	op1	surf-01	i	s3	
+# ::edge	next-to	op1	surf-01	n	s3	
+# ::edge	surf-01	ARG0	person	s3	p	
+(s2 / stand-01
+    :ARG1 (p / person
+        :quant (s / several))
+    :ARG2 (o / or
+        :op1 (n / next-to
+            :op1 (s3 / surf-01
+                :ARG0 p))
+        :op2 (i / in-front-of
+            :op1 s3)))

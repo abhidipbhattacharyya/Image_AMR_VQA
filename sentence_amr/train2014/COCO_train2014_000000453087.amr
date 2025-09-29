@@ -1,0 +1,31 @@
+# ::tok A multiple lane highway road with two directional signs above head .
+# ::node	m	multiple	1-2
+# ::node	l	lane	2-3
+# ::node	h3	highway	3-4
+# ::node	r	road	4-5
+# ::node	h	have-03	5-6
+# ::node	0	2	6-7
+# ::node	d	direct-01	7-8
+# ::node	s	sign	8-9
+# ::node	a	above	9-10
+# ::node	h2	head	10-11
+# ::root	r	road
+# ::edge	lane	quant	multiple	l	m	
+# ::edge	road	mod	highway	r	h3	
+# ::edge	road	mod	lane	r	l	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	sign	ARG0-of	direct-01	s	d	
+# ::edge	sign	quant	2	s	0	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	above	s	a	
+# ::edge	above	op1	head	a	h2	
+(r / road
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :quant 2
+            :ARG0-of (d / direct-01)
+            :location (a / above
+                :op1 (h2 / head))))
+    :mod (h3 / highway)
+    :mod (l / lane
+        :quant (m / multiple)))

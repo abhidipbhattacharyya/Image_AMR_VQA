@@ -1,0 +1,38 @@
+# ::tok Man standing in grassy field with assistant nearby ready to fly kite .
+# ::node	m	man	0-1
+# ::node	s	stand-01	1-2
+# ::node	g	grass	3-4
+# ::node	f	field	4-5
+# ::node	p	person	6-7
+# ::node	a2	assist-01	6-7
+# ::node	n	nearby	7-8
+# ::node	r	ready-02	8-9
+# ::node	f2	fly-01	10-11
+# ::node	k	kite	11-12
+# ::node	a	and	12-13
+# ::root	a	and
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	stand-01	ARG2	field	s	f	
+# ::edge	person	ARG0-of	assist-01	p	a2	
+# ::edge	assist-01	ARG1	man	a2	m	
+# ::edge	person	location	nearby	p	n	
+# ::edge	man	ARG1-of	ready-02	m	r	
+# ::edge	ready-02	ARG2	fly-01	r	f2	
+# ::edge	fly-01	ARG0	man	f2	m	
+# ::edge	fly-01	ARG2	kite	f2	k	
+# ::edge	and	op2	person	a	p	
+# ::edge	and	op1	stand-01	a	s	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (m / man
+            :ARG1-of (r / ready-02
+                :ARG2 (f2 / fly-01
+                    :ARG0 m
+                    :ARG2 (k / kite))))
+        :ARG2 (f / field
+            :consist-of (g / grass)))
+    :op2 (p / person
+        :ARG0-of (a2 / assist-01
+            :ARG1 m)
+        :location (n / nearby)))

@@ -1,0 +1,22 @@
+# ::tok Workers are building a train track during the daytime .
+# ::node	p	person	0-1
+# ::node	w	work-01	0-1
+# ::node	b	build-01	2-3
+# ::node	t2	train	4-5
+# ::node	t	track	5-6
+# ::node	d	date-entity	8-9
+# ::node	d2	daytime	8-9
+# ::root	b	build-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	build-01	ARG0	person	b	p	
+# ::edge	track	purpose	train	t	t2	
+# ::edge	build-01	ARG1	track	b	t	
+# ::edge	build-01	time	date-entity	b	d	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+(b / build-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01))
+    :ARG1 (t / track
+        :purpose (t2 / train))
+    :time (d / date-entity
+        :dayperiod (d2 / daytime)))

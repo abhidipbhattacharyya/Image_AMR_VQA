@@ -1,0 +1,30 @@
+# ::tok A fire truck being followed by another fire truck while driving past a house .
+# ::node	f	fire	1-2
+# ::node	t	truck	2-3
+# ::node	f3	follow-01	4-5
+# ::node	a	another	6-7
+# ::node	f2	fire	7-8
+# ::node	t2	truck	8-9
+# ::node	d	drive-01	10-11
+# ::node	p	past	11-12
+# ::node	h	house	13-14
+# ::root	f3	follow-01
+# ::edge	truck	mod	fire	t	f	
+# ::edge	follow-01	ARG2	truck	f3	t	
+# ::edge	truck	mod	fire	t2	f2	
+# ::edge	truck	mod	another	t2	a	
+# ::edge	follow-01	ARG1	truck	f3	t2	
+# ::edge	follow-01	time	drive-01	f3	d	
+# ::edge	drive-01	ARG0	truck	d	t	
+# ::edge	drive-01	path	past	d	p	
+# ::edge	past	op1	house	p	h	
+(f3 / follow-01
+    :ARG1 (t2 / truck
+        :mod (f2 / fire)
+        :mod (a / another))
+    :ARG2 (t / truck
+        :mod (f / fire))
+    :time (d / drive-01
+        :ARG0 t
+        :path (p / past
+            :op1 (h / house))))

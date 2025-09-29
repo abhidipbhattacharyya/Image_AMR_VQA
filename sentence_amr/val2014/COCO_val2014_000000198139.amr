@@ -1,0 +1,33 @@
+# ::tok A white truck parked next to a green and yellow parking meter .
+# ::node	w	white-03	1-2
+# ::node	t	truck	2-3
+# ::node	p	park-01	3-4
+# ::node	n	next-to	4-5
+# ::node	g	green-02	7-8
+# ::node	a	and	8-9
+# ::node	y	yellow-02	9-10
+# ::node	p2	park-01	10-11
+# ::node	m	meter	11-12
+# ::node	m2	meter	11-12
+# ::root	p	park-01
+# ::edge	truck	ARG1-of	white-03	t	w	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	location	next-to	p	n	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	and	op1	meter	a	m	
+# ::edge	meter	ARG1-of	green-02	m	g	
+# ::edge	meter	mod	park-01	m2	p2	
+# ::edge	meter	ARG1-of	yellow-02	m2	y	
+# ::edge	and	op2	meter	a	m2	
+(p / park-01
+    :ARG1 (t / truck
+        :ARG1-of (w / white-03))
+    :location (n / next-to
+        :op1 (a / and
+            :op1 (m / meter
+                :purpose (p2 / park-01)
+                :ARG1-of (g / green-02))
+            :op2 (m2 / meter
+                :ARG1-of (y / yellow-02)
+                :mod p2))))

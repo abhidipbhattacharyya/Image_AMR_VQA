@@ -1,0 +1,28 @@
+# ::tok Kitchen off from living room has a sink positioned next to the oven
+# ::node	n2	nutrition	0-1
+# ::node	o	off	1-2
+# ::node	l	living	3-4
+# ::node	r	room	4-5
+# ::node	h	have-03	5-6
+# ::node	s	sink	7-8
+# ::node	p	position-01	8-9
+# ::node	n	next-to	9-10
+# ::node	o2	oven	12-13
+# ::root	h	have-03
+# ::edge	nutrition	location	off	n2	o	
+# ::edge	room	mod	living	r	l	
+# ::edge	off	op1	room	o	r	
+# ::edge	have-03	ARG0	nutrition	h	n2	
+# ::edge	have-03	ARG1	sink	h	s	
+# ::edge	sink	ARG1-of	position-01	s	p	
+# ::edge	position-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	oven	n	o2	
+(h / have-03
+    :ARG0 (n2 / nutrition
+        :location (o / off
+            :op1 (r / room
+                :mod (l / living))))
+    :ARG1 (s / sink
+        :ARG1-of (p / position-01
+            :ARG2 (n / next-to
+                :op1 (o2 / oven)))))

@@ -1,0 +1,39 @@
+# ::tok There is a stop sign and an orange sign underneath it that says " no stopping or staging " .
+# ::node	s5	stop-01	3-4
+# ::node	s3	signal-07	4-5
+# ::node	a	and	5-6
+# ::node	o2	orange	7-8
+# ::node	s2	sign	8-9
+# ::node	u	underneath	9-10
+# ::node	s	say-01	12-13
+# ::node	0	-	14-15
+# ::node	1	-	14-15
+# ::node	s6	stop-01	15-16
+# ::node	o	or	16-17
+# ::node	s4	stage-01	17-18
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s3	s5	
+# ::edge	and	op1	signal-07	a	s3	
+# ::edge	sign	mod	orange	s2	o2	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	sign	location	underneath	s2	u	
+# ::edge	underneath	op1	signal-07	u	s3	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	stop-01	polarity	-	s6	1	
+# ::edge	or	op1	stop-01	o	s6	
+# ::edge	say-01	ARG1	or	s	o	
+# ::edge	or	op2	stage-01	o	s4	
+# ::edge	stage-01	polarity	-	s4	0	
+(a / and
+    :op1 (s3 / signal-07
+        :ARG1 (s5 / stop-01))
+    :op2 (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (o / or
+                :op1 (s6 / stop-01
+                    :polarity -)
+                :op2 (s4 / stage-01
+                    :polarity -)))
+        :location (u / underneath
+            :op1 s3)
+        :mod (o2 / orange)))

@@ -1,0 +1,33 @@
+# ::tok A row of blue and white airplanes on runway next to another plane .
+# ::node	r	row	1-2
+# ::node	b2	blue	3-4
+# ::node	a2	and	4-5
+# ::node	w	white-03	5-6
+# ::node	a	airplane	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	r2	runway	8-9
+# ::node	n	next-to	9-10
+# ::node	a3	another	11-12
+# ::node	p	plane	12-13
+# ::root	b	be-located-at-91
+# ::edge	and	op1	blue	a2	b2	
+# ::edge	and	op2	white-03	a2	w	
+# ::edge	and	consist-of	airplane	a2	a	
+# ::edge	airplane	quant	blue	a	b2	
+# ::edge	be-located-at-91	ARG1	row	b	r	
+# ::edge	be-located-at-91	ARG2	runway	b	r2	
+# ::edge	runway	location-of	next-to	r2	n	
+# ::edge	plane	mod	another	p	a3	
+# ::edge	next-to	op1	plane	n	p	
+# ::edge	be-located-at-91	rel	and	b	a2	
+(b / be-located-at-91
+    :ARG1 (r / row)
+    :ARG2 (r2 / runway
+        :location-of (n / next-to
+            :op1 (p / plane
+                :mod (a3 / another))))
+    :rel (a2 / and
+        :consist-of (a / airplane
+            :quant (b2 / blue))
+        :op1 b2
+        :op2 (w / white-03)))

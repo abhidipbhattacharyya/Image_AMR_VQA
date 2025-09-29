@@ -1,0 +1,34 @@
+# ::tok A giraffe in a green field turns its head around and looks behind itself .
+# ::node	g	giraffe	1-2
+# ::node	g2	green-02	4-5
+# ::node	f	field	5-6
+# ::node	t	turn-01	6-7
+# ::node	h	head	8-9
+# ::node	a2	around	9-10
+# ::node	a	and	10-11
+# ::node	l	look-01	11-12
+# ::node	b	behind	12-13
+# ::root	a	and
+# ::edge	field	ARG1-of	green-02	f	g2	
+# ::edge	giraffe	location	field	g	f	
+# ::edge	turn-01	ARG0	giraffe	t	g	
+# ::edge	turn-01	ARG1	head	t	h	
+# ::edge	giraffe	part	head	g	h	
+# ::edge	turn-01	direction	around	t	a2	
+# ::edge	and	op1	turn-01	a	t	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	giraffe	l	g	
+# ::edge	look-01	ARG1	behind	l	b	
+# ::edge	behind	op1	giraffe	b	g	
+(a / and
+    :op1 (t / turn-01
+        :ARG0 (g / giraffe
+            :location (f / field
+                :ARG1-of (g2 / green-02))
+            :part (h / head))
+        :ARG1 h
+        :direction (a2 / around))
+    :op2 (l / look-01
+        :ARG0 g
+        :ARG1 (b / behind
+            :op1 g)))

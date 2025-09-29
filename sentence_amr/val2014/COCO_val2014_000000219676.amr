@@ -1,0 +1,45 @@
+# ::tok A concrete type building with many windows and a clock with roman numerals attached to the building wall .
+# ::node	c2	concrete	1-2
+# ::node	t	type	2-3
+# ::node	b	building	3-4
+# ::node	m	many	5-6
+# ::node	w2	window	6-7
+# ::node	a	and	7-8
+# ::node	c	clock	9-10
+# ::node	h	have-03	10-11
+# ::node	c3	country	11-12
+# ::node	n	name	11-12
+# ::node	0	Rome	11-12
+# ::node	n2	number	12-13
+# ::node	a2	attach-01	13-14
+# ::node	w	wall	17-18
+# ::root	b	building
+# ::edge	type	consist-of	concrete	t	c2	
+# ::edge	building	mod	type	b	t	
+# ::edge	window	quant	many	w2	m	
+# ::edge	and	op1	window	a	w2	
+# ::edge	building	part	and	b	a	
+# ::edge	and	op2	clock	a	c	
+# ::edge	clock	ARG0-of	have-03	c	h	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Rome	n	0	
+# ::edge	number	mod	country	n2	c3	
+# ::edge	have-03	ARG1	number	h	n2	
+# ::edge	clock	ARG1-of	attach-01	c	a2	
+# ::edge	attach-01	ARG2	wall	a2	w	
+# ::edge	building	part	wall	b	w	
+(b / building
+    :mod (t / type
+        :consist-of (c2 / concrete))
+    :part (a / and
+        :op1 (w2 / window
+            :quant (m / many))
+        :op2 (c / clock
+            :ARG0-of (h / have-03
+                :ARG1 (n2 / number
+                    :mod (c3 / country
+                        :name (n / name
+                            :op1 "Rome"))))
+            :ARG1-of (a2 / attach-01
+                :ARG2 (w / wall))))
+    :part w)

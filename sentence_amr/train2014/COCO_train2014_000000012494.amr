@@ -1,0 +1,43 @@
+# ::tok Glass store front showing a wheelchair and carts behind a Needless Alley sign .
+# ::node	g	glass	0-1
+# ::node	s3	store	1-2
+# ::node	f	front	2-3
+# ::node	s	show-01	3-4
+# ::node	w	wheelchair	5-6
+# ::node	a	and	6-7
+# ::node	c	cart	7-8
+# ::node	b	behind	8-9
+# ::node	n2	need-01	10-11
+# ::node	0	-	10-11
+# ::node	s4	street	11-12
+# ::node	n	name	11-12
+# ::node	1	Alley	11-12
+# ::node	s2	sign	12-13
+# ::root	s	show-01
+# ::edge	store	mod	glass	s3	g	
+# ::edge	front	part-of	store	f	s3	
+# ::edge	show-01	ARG0	front	s	f	
+# ::edge	and	op1	wheelchair	a	w	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	cart	a	c	
+# ::edge	and	location	behind	a	b	
+# ::edge	need-01	polarity	-	n2	0	
+# ::edge	street	ARG1-of	need-01	s4	n2	
+# ::edge	street	name	name	s4	n	
+# ::edge	name	op1	Alley	n	1	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	behind	op1	sign	b	s2	
+(s / show-01
+    :ARG0 (f / front
+        :part-of (s3 / store
+            :mod (g / glass)))
+    :ARG1 (a / and
+        :location (b / behind
+            :op1 (s2 / sign
+                :mod (s4 / street
+                    :name (n / name
+                        :op1 "Alley")
+                    :ARG1-of (n2 / need-01
+                        :polarity -))))
+        :op1 (w / wheelchair)
+        :op2 (c / cart)))

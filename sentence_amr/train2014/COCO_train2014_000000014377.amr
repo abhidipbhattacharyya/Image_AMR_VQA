@@ -1,0 +1,39 @@
+# ::tok Several zebra rumps are seen as the zebras stand on a dirt area near a feeder .
+# ::node	s2	several	0-1
+# ::node	z	zebra	1-2
+# ::node	c	condition	2-3
+# ::node	r	rumble-01	2-3
+# ::node	s	see-01	4-5
+# ::node	0	2008	7-8
+# ::node	s3	stand-01	8-9
+# ::node	d	dirt	11-12
+# ::node	a	area	12-13
+# ::node	n	near-02	13-14
+# ::node	t	thing	15-16
+# ::node	f	feed-01	15-16
+# ::root	s	see-01
+# ::edge	condition	quant	several	c	s2	
+# ::edge	condition	ARG0-of	rumble-01	c	r	
+# ::edge	rumble-01	ARG1	zebra	r	z	
+# ::edge	see-01	ARG1	condition	s	c	
+# ::edge	zebra	year	2008	z	0	
+# ::edge	see-01	time	stand-01	s	s3	
+# ::edge	stand-01	ARG1	zebra	s3	z	
+# ::edge	area	consist-of	dirt	a	d	
+# ::edge	stand-01	ARG2	area	s3	a	
+# ::edge	area	ARG1-of	near-02	a	n	
+# ::edge	near-02	ARG2	thing	n	t	
+# ::edge	thing	ARG0-of	feed-01	t	f	
+(s / see-01
+    :ARG1 (c / condition
+        :quant (s2 / several)
+        :ARG0-of (r / rumble-01
+            :ARG1 (z / zebra
+                :year 2008)))
+    :time (s3 / stand-01
+        :ARG1 z
+        :ARG2 (a / area
+            :ARG1-of (n / near-02
+                :ARG2 (t / thing
+                    :ARG0-of (f / feed-01)))
+            :consist-of (d / dirt))))

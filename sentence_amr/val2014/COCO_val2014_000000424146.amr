@@ -1,0 +1,34 @@
+# ::tok A table topped with three computer monitors next to a green plant covered wall .
+# ::node	t	table	1-2
+# ::node	t2	top-02	2-3
+# ::node	0	3	4-5
+# ::node	c	computer	5-6
+# ::node	m	monitor	6-7
+# ::node	n	next-to	7-8
+# ::node	g	green-02	10-11
+# ::node	p	plant	11-12
+# ::node	c2	cover-02	12-13
+# ::node	w	wall	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	table	ARG1-of	top-02	t	t2	
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	monitor	quant	3	m	0	
+# ::edge	top-02	ARG0	monitor	t2	m	
+# ::edge	table	location	next-to	t	n	
+# ::edge	plant	ARG1-of	green-02	p	g	
+# ::edge	cover-02	ARG2	plant	c2	p	
+# ::edge	wall	ARG1-of	cover-02	w	c2	
+# ::edge	next-to	op1	wall	n	w	
+# ::edge	event	mod	table	e	t	
+(e / event
+    :mod (t / table
+        :ARG1-of (t2 / top-02
+            :ARG0 (m / monitor
+                :quant 3
+                :mod (c / computer)))
+        :location (n / next-to
+            :op1 (w / wall
+                :ARG1-of (c2 / cover-02
+                    :ARG2 (p / plant
+                        :ARG1-of (g / green-02)))))))

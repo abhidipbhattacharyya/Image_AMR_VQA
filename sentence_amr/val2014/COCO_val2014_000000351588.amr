@@ -1,0 +1,35 @@
+# ::tok A tennis player after hitting a shot back to the other side of the court .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	a	after	3-4
+# ::node	h	hit-01	4-5
+# ::node	s	shoot-01	6-7
+# ::node	b	back	7-8
+# ::node	o	other	10-11
+# ::node	s2	side	11-12
+# ::node	c	court	14-15
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	time	after	p	a	
+# ::edge	after	op1	hit-01	a	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	shoot-01	h	s	
+# ::edge	shoot-01	ARG0	person	s	p	
+# ::edge	shoot-01	direction	back	s	b	
+# ::edge	side	mod	other	s2	o	
+# ::edge	hit-01	destination	side	h	s2	
+# ::edge	side	part-of	court	s2	c	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :time (a / after
+        :op1 (h / hit-01
+            :ARG0 p
+            :ARG1 (s / shoot-01
+                :ARG0 p
+                :direction (b / back))
+            :destination (s2 / side
+                :mod (o / other)
+                :part-of (c / court)))))

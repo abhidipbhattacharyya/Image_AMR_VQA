@@ -1,0 +1,42 @@
+# ::tok A red sign in front of a red brick building with pillars that says , " No standing anytime " .
+# ::node	r	red-02	1-2
+# ::node	s2	sign	2-3
+# ::node	i	in-front-of	4-5
+# ::node	b	brick	8-9
+# ::node	b2	building	9-10
+# ::node	h	have-03	10-11
+# ::node	p	pillar	11-12
+# ::node	s	say-01	13-14
+# ::node	y	you	16-17
+# ::node	1	imperative	16-17
+# ::node	0	-	16-17
+# ::node	s3	stand-01	17-18
+# ::node	a	anytime	18-19
+# ::root	s2	sign
+# ::edge	sign	ARG1-of	red-02	s2	r	
+# ::edge	sign	location	in-front-of	s2	i	
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	pillar	h	p	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	stand-01	polarity	-	s3	0	
+# ::edge	stand-01	mode	imperative	s3	1	
+# ::edge	stand-01	ARG1	you	s3	y	
+# ::edge	say-01	ARG1	stand-01	s	s3	
+# ::edge	stand-01	time	anytime	s3	a	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (s3 / stand-01
+            :ARG1 (y / you)
+            :mode imperative
+            :polarity -
+            :time (a / anytime)))
+    :ARG1-of (r / red-02)
+    :location (i / in-front-of
+        :op1 (b2 / building
+            :ARG0-of (h / have-03
+                :ARG1 (p / pillar))
+            :consist-of (b / brick
+                :ARG1-of r))))

@@ -1,0 +1,41 @@
+# ::tok A jet airplane on the tarmac of an airport with a person standing near the nose guiding it in or out .
+# ::node	j	jet	1-2
+# ::node	a	airplane	2-3
+# ::node	t	tarmac	5-6
+# ::node	a2	airport	8-9
+# ::node	p	person	11-12
+# ::node	s	stand-01	12-13
+# ::node	n	near-02	13-14
+# ::node	n2	nose	15-16
+# ::node	g	guide-01	16-17
+# ::node	i	in	18-19
+# ::node	o	or	19-20
+# ::node	o2	out-06	20-21
+# ::root	a	airplane
+# ::edge	airplane	mod	jet	a	j	
+# ::edge	airplane	location	tarmac	a	t	
+# ::edge	tarmac	poss	airport	t	a2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	nose	n	n2	
+# ::edge	person	ARG0-of	guide-01	p	g	
+# ::edge	guide-01	ARG1	airplane	g	a	
+# ::edge	or	op1	in	o	i	
+# ::edge	guide-01	direction	or	g	o	
+# ::edge	or	op2	out-06	o	o2	
+# ::edge	airplane	rel	stand-01	a	s	
+(a / airplane
+    :location (t / tarmac
+        :poss (a2 / airport))
+    :mod (j / jet)
+    :rel (s / stand-01
+        :ARG1 (p / person
+            :ARG0-of (g / guide-01
+                :ARG1 a
+                :direction (o / or
+                    :op1 (i / in)
+                    :op2 (o2 / out-06))))
+        :ARG2 (n / near-02
+            :ARG1 p
+            :ARG2 (n2 / nose))))

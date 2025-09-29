@@ -1,0 +1,28 @@
+# ::tok A view of a city intersection with cars , transit buses , and pedestrians
+# ::node	v	view-01	1-2
+# ::node	c2	city	4-5
+# ::node	i	intersect-01	5-6
+# ::node	c	car	7-8
+# ::node	t	transit	9-10
+# ::node	b	bus	10-11
+# ::node	a	and	12-13
+# ::node	p	person	13-14
+# ::node	w	walk-01	13-14
+# ::root	v	view-01
+# ::edge	intersect-01	ARG1	city	i	c2	
+# ::edge	view-01	ARG1	intersect-01	v	i	
+# ::edge	bus	mod	transit	b	t	
+# ::edge	and	op2	bus	a	b	
+# ::edge	and	op1	car	a	c	
+# ::edge	intersect-01	ARG0	and	i	a	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+(v / view-01
+    :ARG1 (i / intersect-01
+        :ARG0 (a / and
+            :op1 (c / car)
+            :op2 (b / bus
+                :mod (t / transit))
+            :op3 (p / person
+                :ARG0-of (w / walk-01)))
+        :ARG1 (c2 / city)))

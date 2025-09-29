@@ -1,0 +1,54 @@
+# ::tok Corner of a room with a bed with three stacked pillows , with another pillow and a brochure leaned against stack , and a bedside table lamp illuminated .
+# ::node	c	corner	0-1
+# ::node	r	room	3-4
+# ::node	h	have-03	4-5
+# ::node	b	bed	6-7
+# ::node	0	3	8-9
+# ::node	s	stack-01	9-10
+# ::node	p	pill	10-11
+# ::node	a3	another	13-14
+# ::node	p2	pillow	14-15
+# ::node	a2	and	15-16
+# ::node	b3	brochure	17-18
+# ::node	l2	lean-01	18-19
+# ::node	a	against	19-20
+# ::node	b2	bedside	24-25
+# ::node	t	table	25-26
+# ::node	l	lamp	26-27
+# ::node	i	illuminate-01	27-28
+# ::root	c	corner
+# ::edge	corner	part-of	room	c	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	have-03	ARG1	bed	h	b	
+# ::edge	pill	ARG1-of	stack-01	p	s	
+# ::edge	pill	quant	3	p	0	
+# ::edge	bed	consist-of	pill	b	p	
+# ::edge	pillow	mod	another	p2	a3	
+# ::edge	and	op1	pillow	a2	p2	
+# ::edge	bed	part	and	b	a2	
+# ::edge	and	op2	brochure	a2	b3	
+# ::edge	and	ARG1-of	lean-01	a2	l2	
+# ::edge	lean-01	ARG2	against	l2	a	
+# ::edge	against	op1	pill	a	p	
+# ::edge	table	mod	bedside	t	b2	
+# ::edge	lamp	mod	table	l	t	
+# ::edge	illuminate-01	ARG0	lamp	i	l	
+# ::edge	corner	ARG1-of	illuminate-01	c	i	
+(c / corner
+    :ARG1-of (i / illuminate-01
+        :ARG0 (l / lamp
+            :mod (t / table
+                :mod (b2 / bedside))))
+    :part-of (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (b / bed
+                :consist-of (p / pill
+                    :quant 3
+                    :ARG1-of (s / stack-01))
+                :part (a2 / and
+                    :ARG1-of (l2 / lean-01
+                        :ARG2 (a / against
+                            :op1 p))
+                    :op1 (p2 / pillow
+                        :mod (a3 / another))
+                    :op2 (b3 / brochure))))))

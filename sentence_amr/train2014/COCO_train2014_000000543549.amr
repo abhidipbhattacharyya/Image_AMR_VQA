@@ -1,0 +1,30 @@
+# ::tok A scenic railway train passes a fern covered bank as it crosses a bridge .
+# ::node	s	scenic	1-2
+# ::node	r	railway	2-3
+# ::node	t	train	3-4
+# ::node	p	pass-02	4-5
+# ::node	f	fern	6-7
+# ::node	c	cover-02	7-8
+# ::node	b	bank	8-9
+# ::node	c2	cross-02	11-12
+# ::node	b2	bridge	13-14
+# ::root	p	pass-02
+# ::edge	train	mod	railway	t	r	
+# ::edge	train	mod	scenic	t	s	
+# ::edge	pass-02	ARG0	train	p	t	
+# ::edge	cover-02	ARG2	fern	c	f	
+# ::edge	bank	ARG1-of	cover-02	b	c	
+# ::edge	pass-02	ARG1	bank	p	b	
+# ::edge	pass-02	time	cross-02	p	c2	
+# ::edge	cross-02	ARG0	train	c2	t	
+# ::edge	cross-02	ARG1	bridge	c2	b2	
+(p / pass-02
+    :ARG0 (t / train
+        :mod (r / railway)
+        :mod (s / scenic))
+    :ARG1 (b / bank
+        :ARG1-of (c / cover-02
+            :ARG2 (f / fern)))
+    :time (c2 / cross-02
+        :ARG0 t
+        :ARG1 (b2 / bridge)))

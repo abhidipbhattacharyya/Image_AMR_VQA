@@ -1,0 +1,40 @@
+# ::tok The meal consists of a soup with some meat , a fillet of fish , and water with green leaves in it .
+# ::node	m	meal	1-2
+# ::node	c	consist-01	2-3
+# ::node	s2	soup	5-6
+# ::node	h	have-03	6-7
+# ::node	s	some	7-8
+# ::node	m2	meat	8-9
+# ::node	f	fillet	11-12
+# ::node	f2	fish	13-14
+# ::node	a	and	15-16
+# ::node	w	water	16-17
+# ::node	h2	have-03	17-18
+# ::node	g	green-02	18-19
+# ::node	l	leaf	19-20
+# ::root	c	consist-01
+# ::edge	consist-01	ARG1	meal	c	m	
+# ::edge	soup	ARG0-of	have-03	s2	h	
+# ::edge	meat	mod	some	m2	s	
+# ::edge	have-03	ARG1	meat	h	m2	
+# ::edge	fillet	consist-of	fish	f	f2	
+# ::edge	and	op2	fillet	a	f	
+# ::edge	and	op1	soup	a	s2	
+# ::edge	consist-01	ARG2	and	c	a	
+# ::edge	and	op3	water	a	w	
+# ::edge	water	ARG0-of	have-03	w	h2	
+# ::edge	leaf	ARG1-of	green-02	l	g	
+# ::edge	have-03	ARG1	leaf	h2	l	
+(c / consist-01
+    :ARG1 (m / meal)
+    :ARG2 (a / and
+        :op1 (s2 / soup
+            :ARG0-of (h / have-03
+                :ARG1 (m2 / meat
+                    :mod (s / some))))
+        :op2 (f / fillet
+            :consist-of (f2 / fish))
+        :op3 (w / water
+            :ARG0-of (h2 / have-03
+                :ARG1 (l / leaf
+                    :ARG1-of (g / green-02))))))

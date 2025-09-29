@@ -1,0 +1,36 @@
+# ::tok I stop sign that has another sign below it warning that traffic does n't stop .
+# ::node	i	i	0-1
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	h	have-03	4-5
+# ::node	a	another	5-6
+# ::node	s2	sign	6-7
+# ::node	b	below	7-8
+# ::node	w	warn-01	9-10
+# ::node	t	traffic	11-12
+# ::node	0	-	13-14
+# ::node	s4	stop-01	14-15
+# ::root	h	have-03
+# ::edge	stop-01	ARG0	i	s3	i	
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	have-03	ARG0	sign	h	s	
+# ::edge	sign	mod	another	s2	a	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	below	s2	b	
+# ::edge	below	op1	sign	b	s	
+# ::edge	sign	ARG0-of	warn-01	s2	w	
+# ::edge	stop-01	polarity	-	s4	0	
+# ::edge	stop-01	ARG1	traffic	s4	t	
+# ::edge	warn-01	ARG1	stop-01	w	s4	
+(h / have-03
+    :ARG0 (s / sign
+        :purpose (s3 / stop-01
+            :ARG0 (i / i)))
+    :ARG1 (s2 / sign
+        :ARG0-of (w / warn-01
+            :ARG1 (s4 / stop-01
+                :ARG1 (t / traffic)
+                :polarity -))
+        :location (b / below
+            :op1 s)
+        :mod (a / another)))

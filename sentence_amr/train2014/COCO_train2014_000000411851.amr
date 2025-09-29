@@ -1,0 +1,36 @@
+# ::tok A flock of birds is flying over a street that has a car with its headlights on driving by .
+# ::node	f	flock	1-2
+# ::node	b	bird	3-4
+# ::node	f3	fly-01	5-6
+# ::node	o	over	6-7
+# ::node	s	street	8-9
+# ::node	h	have-03	10-11
+# ::node	c	car	12-13
+# ::node	b2	bulb	15-16
+# ::node	f2	flood-01	15-16
+# ::node	d	drive-01	17-18
+# ::node	b3	by	18-19
+# ::root	f3	fly-01
+# ::edge	flock	consist-of	bird	f	b	
+# ::edge	fly-01	ARG0	flock	f3	f	
+# ::edge	fly-01	path	over	f3	o	
+# ::edge	over	op1	street	o	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	car	h	c	
+# ::edge	car	part	bulb	c	b2	
+# ::edge	bulb	ARG0-of	flood-01	b2	f2	
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	have-03	location-of	drive-01	h	d	
+# ::edge	drive-01	direction	by	d	b3	
+(f3 / fly-01
+    :ARG0 (f / flock
+        :consist-of (b / bird))
+    :path (o / over
+        :op1 (s / street
+            :ARG0-of (h / have-03
+                :ARG1 (c / car
+                    :part (b2 / bulb
+                        :ARG0-of (f2 / flood-01)))
+                :location-of (d / drive-01
+                    :ARG0 c
+                    :direction (b3 / by))))))

@@ -1,0 +1,30 @@
+# ::tok A bus stopping at a bus stop in an English seaside town .
+# ::node	b	bus	1-2
+# ::node	s2	stop-01	2-3
+# ::node	l	location	4-5
+# ::node	s3	stop-01	6-7
+# ::node	c	country	9-10
+# ::node	n	name	9-10
+# ::node	0	England	9-10
+# ::node	s	seaside	10-11
+# ::node	t	town	11-12
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG1	bus	s2	b	
+# ::edge	stop-01	location	location	s2	l	
+# ::edge	location	location-of	stop-01	l	s3	
+# ::edge	stop-01	ARG1	bus	s3	b	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	England	n	0	
+# ::edge	town	mod	seaside	t	s	
+# ::edge	town	mod	country	t	c	
+# ::edge	location	location	town	l	t	
+(s2 / stop-01
+    :ARG1 (b / bus)
+    :location (l / location
+        :location (t / town
+            :mod (s / seaside)
+            :mod (c / country
+                :name (n / name
+                    :op1 "England")))
+        :location-of (s3 / stop-01
+            :ARG1 b)))

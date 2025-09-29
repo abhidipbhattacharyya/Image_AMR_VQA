@@ -1,0 +1,28 @@
+# ::tok Tired commuters wait at a subway station for the arrival of the next train .
+# ::node	t	tire-01	0-1
+# ::node	p	person	1-2
+# ::node	c	commute-01	1-2
+# ::node	w	wait-01	2-3
+# ::node	s2	subway	5-6
+# ::node	s	station	6-7
+# ::node	a	arrive-01	9-10
+# ::node	n	next	12-13
+# ::node	t2	train	13-14
+# ::root	w	wait-01
+# ::edge	person	ARG1-of	tire-01	p	t	
+# ::edge	person	ARG0-of	commute-01	p	c	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	station	mod	subway	s	s2	
+# ::edge	wait-01	location	station	w	s	
+# ::edge	wait-01	ARG2	arrive-01	w	a	
+# ::edge	train	mod	next	t2	n	
+# ::edge	arrive-01	ARG1	train	a	t2	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (c / commute-01)
+        :ARG1-of (t / tire-01))
+    :ARG2 (a / arrive-01
+        :ARG1 (t2 / train
+            :mod (n / next)))
+    :location (s / station
+        :mod (s2 / subway)))

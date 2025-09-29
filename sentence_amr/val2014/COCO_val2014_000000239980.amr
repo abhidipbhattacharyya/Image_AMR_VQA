@@ -1,0 +1,37 @@
+# ::tok A traffic signal on Santa Monica Boulevard near the Hollywood sign .
+# ::node	t	traffic	1-2
+# ::node	s	signal	2-3
+# ::node	n	name	4-5
+# ::node	3	Santa	4-5
+# ::node	2	Monica	5-6
+# ::node	r	road	6-7
+# ::node	0	Boulevard	6-7
+# ::node	n3	near-02	7-8
+# ::node	b	building	8-9
+# ::node	n2	name	9-10
+# ::node	1	Hollywood	9-10
+# ::node	4	sign	10-11
+# ::root	s	signal
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	name	op1	Santa	n	3	
+# ::edge	name	op2	Monica	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	signal	location	road	s	r	
+# ::edge	name	op3	Boulevard	n	0	
+# ::edge	signal	ARG1-of	near-02	s	n3	
+# ::edge	near-02	ARG2	building	n3	b	
+# ::edge	building	name	name	b	n2	
+# ::edge	name	op1	Hollywood	n2	1	
+# ::edge	name	op2	sign	n2	4	
+(s / signal
+    :ARG1-of (n3 / near-02
+        :ARG2 (b / building
+            :name (n2 / name
+                :op1 "Hollywood"
+                :op2 "sign")))
+    :location (r / road
+        :name (n / name
+            :op1 "Santa"
+            :op2 "Monica"
+            :op3 "Boulevard"))
+    :mod (t / traffic))

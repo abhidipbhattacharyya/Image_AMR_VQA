@@ -1,0 +1,33 @@
+# ::tok A produce section of an indoor grocery market , with a variety of apples and fruits for sale .
+# ::node	p	produce	1-2
+# ::node	s	section	2-3
+# ::node	i	indoor	5-6
+# ::node	g	grocery	6-7
+# ::node	m	market	7-8
+# ::node	v	variety	11-12
+# ::node	a2	apple	13-14
+# ::node	a	and	14-15
+# ::node	f	fruit	15-16
+# ::node	s2	sell-01	17-18
+# ::root	s	section
+# ::edge	section	mod	produce	s	p	
+# ::edge	market	mod	grocery	m	g	
+# ::edge	market	location	indoor	m	i	
+# ::edge	section	part-of	market	s	m	
+# ::edge	and	op1	apple	a	a2	
+# ::edge	and	mod	variety	a	v	
+# ::edge	section	part	and	s	a	
+# ::edge	and	op2	fruit	a	f	
+# ::edge	sell-01	ARG1	and	s2	a	
+# ::edge	section	purpose	sell-01	s	s2	
+(s / section
+    :purpose (s2 / sell-01
+        :ARG1 (a / and
+            :mod (v / variety)
+            :op1 (a2 / apple)
+            :op2 (f / fruit)))
+    :mod (p / produce)
+    :part a
+    :part-of (m / market
+        :location (i / indoor)
+        :mod (g / grocery)))

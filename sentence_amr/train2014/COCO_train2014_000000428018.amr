@@ -1,0 +1,36 @@
+# ::tok A person is working on a table holding a putty knife and another tool in his other hand .
+# ::node	p	person	1-2
+# ::node	w	work-01	3-4
+# ::node	t	table	6-7
+# ::node	h2	hold-01	7-8
+# ::node	p2	putty-01	9-10
+# ::node	k	knife	10-11
+# ::node	a	and	11-12
+# ::node	a2	another	12-13
+# ::node	t2	tool	13-14
+# ::node	o	other	16-17
+# ::node	h	hand	17-18
+# ::root	w	work-01
+# ::edge	work-01	ARG0	person	w	p	
+# ::edge	work-01	location	table	w	t	
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	knife	ARG1-of	putty-01	k	p2	
+# ::edge	and	op1	knife	a	k	
+# ::edge	hold-01	ARG1	and	h2	a	
+# ::edge	tool	mod	another	t2	a2	
+# ::edge	and	op2	tool	a	t2	
+# ::edge	hand	mod	other	h	o	
+# ::edge	and	location	hand	a	h	
+# ::edge	person	part	hand	p	h	
+(w / work-01
+    :ARG0 (p / person
+        :ARG0-of (h2 / hold-01
+            :ARG1 (a / and
+                :location (h / hand
+                    :mod (o / other))
+                :op1 (k / knife
+                    :ARG1-of (p2 / putty-01))
+                :op2 (t2 / tool
+                    :mod (a2 / another))))
+        :part h)
+    :location (t / table))

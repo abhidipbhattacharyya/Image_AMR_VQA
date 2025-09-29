@@ -1,0 +1,43 @@
+# ::tok A road sign that reads Main RD .
+# ::node	r2	road	1-2
+# ::node	s	sign	2-3
+# ::node	r	read-01	4-5
+# ::node	m	main	5-6
+# ::node	r3	road	6-7
+# ::node	n	name	6-7
+# ::node	0	RD	6-7
+# ::root	s	sign
+# ::edge	sign	mod	road	s	r2	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	road	mod	main	r3	m	
+# ::edge	read-01	ARG3	road	r	r3	
+# ::edge	road	name	name	r3	n	
+# ::edge	name	op1	RD	n	0	
+(s / sign
+    :ARG1-of (r / read-01
+        :ARG3 (r3 / road
+            :name (n / name
+                :op1 "RD")
+            :mod (m / main)))
+    :mod (r2 / road))
+
+
+# ::tok Its on the back of a street light .
+# ::node	i	it	0-1
+# ::node	b2	be-located-at-91	1-2
+# ::node	b	back	3-4
+# ::node	t	thing	5-6
+# ::node	s	street	6-7
+# ::node	l	light	7-8
+# ::root	b2	be-located-at-91
+# ::edge	be-located-at-91	ARG1	it	b2	i	
+# ::edge	be-located-at-91	ARG2	back	b2	b	
+# ::edge	back	part-of	thing	b	t	
+# ::edge	light	mod	street	l	s	
+# ::edge	thing	part-of	light	t	l	
+(b2 / be-located-at-91
+    :ARG1 (i / it)
+    :ARG2 (b / back
+        :part-of (t / thing
+            :part-of (l / light
+                :mod (s / street)))))

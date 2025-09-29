@@ -1,0 +1,48 @@
+# ::tok Several sheep are in a pen as some kids stand next to it while one boy has his hand on one of the sheep 's head .
+# ::node	s	several	0-1
+# ::node	s2	sheep	1-2
+# ::node	p	pen	5-6
+# ::node	s3	some	7-8
+# ::node	k	kid	8-9
+# ::node	s4	stand-01	9-10
+# ::node	n	next-to	10-11
+# ::node	c	contrast-01	13-14
+# ::node	0	1	14-15
+# ::node	b2	boy	15-16
+# ::node	h	hand	18-19
+# ::node	b	be-located-at-91	19-20
+# ::node	1	1	20-21
+# ::node	i	include-91	21-22
+# ::node	h2	head	25-26
+# ::root	c	contrast-01
+# ::edge	sheep	quant	several	s2	s	
+# ::edge	sheep	location	pen	s2	p	
+# ::edge	kid	quant	some	k	s3	
+# ::edge	stand-01	ARG1	kid	s4	k	
+# ::edge	stand-01	ARG2	next-to	s4	n	
+# ::edge	next-to	op1	pen	n	p	
+# ::edge	contrast-01	ARG1	stand-01	c	s4	
+# ::edge	boy	quant	1	b2	0	
+# ::edge	hand	part-of	boy	h	b2	
+# ::edge	be-located-at-91	ARG1	hand	b	h	
+# ::edge	contrast-01	ARG2	be-located-at-91	c	b	
+# ::edge	include-91	ARG2	sheep	i	s2	
+# ::edge	head	ARG1-of	include-91	h2	i	
+# ::edge	head	quant	1	h2	1	
+# ::edge	be-located-at-91	ARG2	head	b	h2	
+(c / contrast-01
+    :ARG1 (s4 / stand-01
+        :ARG1 (k / kid
+            :quant (s3 / some))
+        :ARG2 (n / next-to
+            :op1 (p / pen)))
+    :ARG2 (b / be-located-at-91
+        :ARG1 (h / hand
+            :part-of (b2 / boy
+                :quant 1))
+        :ARG2 (h2 / head
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (s2 / sheep
+                    :quant (s / several)
+                    :location p)))))

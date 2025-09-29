@@ -1,0 +1,25 @@
+# ::tok Bushels of ripe oranges displayed in a market .
+# ::node	m2	multiple	0-1
+# ::node	v	volume-quantity	0-1
+# ::node	b	bushel	0-1
+# ::node	0	1	0-1
+# ::node	r	ripe-02	2-3
+# ::node	o	orange	3-4
+# ::node	d	display-01	4-5
+# ::node	m	market	7-8
+# ::root	d	display-01
+# ::edge	multiple	op1	volume-quantity	m2	v	
+# ::edge	volume-quantity	unit	bushel	v	b	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	orange	ARG1-of	ripe-02	o	r	
+# ::edge	orange	quant	multiple	o	m2	
+# ::edge	display-01	ARG1	orange	d	o	
+# ::edge	display-01	ARG2	market	d	m	
+(d / display-01
+    :ARG1 (o / orange
+        :quant (m2 / multiple
+            :op1 (v / volume-quantity
+                :quant 1
+                :unit (b / bushel)))
+        :ARG1-of (r / ripe-02))
+    :ARG2 (m / market))

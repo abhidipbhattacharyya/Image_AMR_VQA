@@ -1,0 +1,54 @@
+# ::tok Two sandwiches on whole wheat bread filled with meat slices , cheddar cheese slices , alfalfa sprouts and green leafy lettuce .
+# ::node	0	2	0-1
+# ::node	s	sandwich	1-2
+# ::node	w2	whole	3-4
+# ::node	w	wheat	4-5
+# ::node	b	bread	5-6
+# ::node	f	fill-01	6-7
+# ::node	m	meat	8-9
+# ::node	s3	slice	9-10
+# ::node	c	cheddar	11-12
+# ::node	c2	cheese	12-13
+# ::node	s4	slice	13-14
+# ::node	a	alfalfa	15-16
+# ::node	s2	seed	16-17
+# ::node	a2	and	17-18
+# ::node	g	green-02	18-19
+# ::node	l	leafy	19-20
+# ::node	l2	lettuce	20-21
+# ::root	s	sandwich
+# ::edge	sandwich	quant	2	s	0	
+# ::edge	wheat	mod	whole	w	w2	
+# ::edge	bread	mod	wheat	b	w	
+# ::edge	sandwich	location	bread	s	b	
+# ::edge	sandwich	ARG1-of	fill-01	s	f	
+# ::edge	slice	mod	meat	s3	m	
+# ::edge	cheese	mod	cheddar	c2	c	
+# ::edge	slice	mod	cheese	s4	c2	
+# ::edge	seed	mod	alfalfa	s2	a	
+# ::edge	and	op4	seed	a2	s2	
+# ::edge	and	op3	slice	a2	s4	
+# ::edge	and	op2	cheese	a2	c2	
+# ::edge	and	op1	slice	a2	s3	
+# ::edge	fill-01	ARG2	and	f	a2	
+# ::edge	lettuce	mod	leafy	l2	l	
+# ::edge	lettuce	ARG1-of	green-02	l2	g	
+# ::edge	and	op5	lettuce	a2	l2	
+(s / sandwich
+    :quant 2
+    :ARG1-of (f / fill-01
+        :ARG2 (a2 / and
+            :op1 (s3 / slice
+                :mod (m / meat))
+            :op2 (c2 / cheese
+                :mod (c / cheddar))
+            :op3 (s4 / slice
+                :mod c2)
+            :op4 (s2 / seed
+                :mod (a / alfalfa))
+            :op5 (l2 / lettuce
+                :ARG1-of (g / green-02)
+                :mod (l / leafy))))
+    :location (b / bread
+        :mod (w / wheat
+            :mod (w2 / whole))))

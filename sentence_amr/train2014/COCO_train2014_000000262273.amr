@@ -1,0 +1,42 @@
+# ::tok Man dressed in dark attire , skiing , probably cross county level terrain and snow covered .
+# ::node	m	man	0-1
+# ::node	d2	dress-01	1-2
+# ::node	d	dark-02	3-4
+# ::node	a2	attire	4-5
+# ::node	s	ski-01	6-7
+# ::node	p	probable	8-9
+# ::node	c3	cross-02	9-10
+# ::node	c	county	10-11
+# ::node	l	level	11-12
+# ::node	t	terrain	12-13
+# ::node	a	and	13-14
+# ::node	s2	snow	14-15
+# ::node	c2	cover-02	15-16
+# ::root	a	and
+# ::edge	dress-01	ARG1	man	d2	m	
+# ::edge	attire	ARG1-of	dark-02	a2	d	
+# ::edge	dress-01	ARG2	attire	d2	a2	
+# ::edge	ski-01	ARG0	man	s	m	
+# ::edge	level	mod	county	l	c	
+# ::edge	cross-02	ARG1	level	c3	l	
+# ::edge	terrain	ARG0-of	cross-02	t	c3	
+# ::edge	terrain	mod	probable	t	p	
+# ::edge	and	op2	terrain	a	t	
+# ::edge	and	op1	dress-01	a	d2	
+# ::edge	cover-02	ARG2	snow	c2	s2	
+# ::edge	and	op3	cover-02	a	c2	
+# ::edge	and	rel	ski-01	a	s	
+(a / and
+    :op1 (d2 / dress-01
+        :ARG1 (m / man)
+        :ARG2 (a2 / attire
+            :ARG1-of (d / dark-02)))
+    :op2 (t / terrain
+        :ARG0-of (c3 / cross-02
+            :ARG1 (l / level
+                :mod (c / county)))
+        :mod (p / probable))
+    :op3 (c2 / cover-02
+        :ARG2 (s2 / snow))
+    :rel (s / ski-01
+        :ARG0 m))

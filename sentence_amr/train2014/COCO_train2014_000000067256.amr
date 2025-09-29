@@ -1,0 +1,36 @@
+# ::tok A blue and orange passenger train car going past a busy street .
+# ::node	b	blue	1-2
+# ::node	a	and	2-3
+# ::node	o	orange	3-4
+# ::node	p	passenger	4-5
+# ::node	t	train	5-6
+# ::node	c	car	6-7
+# ::node	c2	car	6-7
+# ::node	g	go-01	7-8
+# ::node	p2	past	8-9
+# ::node	b2	busy-02	10-11
+# ::node	s	street	11-12
+# ::root	a	and
+# ::edge	train	mod	passenger	t	p	
+# ::edge	car	mod	train	c	t	
+# ::edge	and	op1	car	a	c	
+# ::edge	car	mod	blue	c	b	
+# ::edge	car	mod	train	c2	t	
+# ::edge	car	mod	orange	c2	o	
+# ::edge	and	op2	car	a	c2	
+# ::edge	and	ARG1-of	go-01	a	g	
+# ::edge	go-01	ARG4	past	g	p2	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	past	op1	street	p2	s	
+(a / and
+    :ARG1-of (g / go-01
+        :ARG4 (p2 / past
+            :op1 (s / street
+                :ARG1-of (b2 / busy-02))))
+    :op1 (c / car
+        :mod (t / train
+            :mod (p / passenger))
+        :mod (b / blue))
+    :op2 (c2 / car
+        :mod t
+        :mod (o / orange)))

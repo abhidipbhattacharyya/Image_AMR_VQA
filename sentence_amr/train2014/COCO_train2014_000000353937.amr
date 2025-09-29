@@ -1,0 +1,27 @@
+# ::tok A couple of airplane windows with a view one of its wings .
+# ::node	c	couple	1-2
+# ::node	a	airplane	3-4
+# ::node	w	window	4-5
+# ::node	v	view-01	7-8
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	w2	wing	11-12
+# ::node	w3	wing	11-12
+# ::root	w	window
+# ::edge	window	part-of	airplane	w	a	
+# ::edge	window	quant	couple	w	c	
+# ::edge	window	ARG0-of	view-01	w	v	
+# ::edge	wing	ARG1-of	include-91	w2	i	
+# ::edge	wing	quant	1	w2	0	
+# ::edge	view-01	ARG1	wing	v	w2	
+# ::edge	include-91	ARG2	wing	i	w3	
+# ::edge	airplane	part	wing	a	w3	
+(w / window
+    :quant (c / couple)
+    :ARG0-of (v / view-01
+        :ARG1 (w2 / wing
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (w3 / wing))))
+    :part-of (a / airplane
+        :part w3))

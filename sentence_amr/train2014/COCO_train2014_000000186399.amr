@@ -1,0 +1,24 @@
+# ::tok A traffic light has a green person on it indicating to walk .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	h	have-03	3-4
+# ::node	g	green-02	5-6
+# ::node	p	person	6-7
+# ::node	i	indicate-01	9-10
+# ::node	w	walk-01	11-12
+# ::root	h	have-03
+# ::edge	light	mod	traffic	l	t	
+# ::edge	have-03	ARG0	light	h	l	
+# ::edge	person	ARG1-of	green-02	p	g	
+# ::edge	have-03	ARG1	person	h	p	
+# ::edge	person	ARG0-of	indicate-01	p	i	
+# ::edge	indicate-01	ARG1	walk-01	i	w	
+# ::edge	walk-01	ARG0	person	w	p	
+(h / have-03
+    :ARG0 (l / light
+        :mod (t / traffic))
+    :ARG1 (p / person
+        :ARG0-of (i / indicate-01
+            :ARG1 (w / walk-01
+                :ARG0 p))
+        :ARG1-of (g / green-02)))

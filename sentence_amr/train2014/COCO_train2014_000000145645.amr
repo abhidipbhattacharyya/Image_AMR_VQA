@@ -1,0 +1,36 @@
+# ::tok The Plymstock number six bus taking off on its daily schedule .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	2	Plymstock	1-2
+# ::node	1	6	3-4
+# ::node	b	bus	4-5
+# ::node	t	take-off-33	5-6
+# ::node	r	rate-entity-91	9-10
+# ::node	t2	temporal-quantity	9-10
+# ::node	d	day	9-10
+# ::node	0	1	9-10
+# ::node	s	schedule	10-11
+# ::root	t	take-off-33
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Plymstock	n	2	
+# ::edge	bus	mod	6	b	1	
+# ::edge	bus	mod	company	b	c	
+# ::edge	take-off-33	ARG0	bus	t	b	
+# ::edge	rate-entity-91	ARG3	temporal-quantity	r	t2	
+# ::edge	temporal-quantity	unit	day	t2	d	
+# ::edge	temporal-quantity	quant	1	t2	0	
+# ::edge	schedule	frequency	rate-entity-91	s	r	
+# ::edge	take-off-33	manner	schedule	t	s	
+# ::edge	schedule	poss	bus	s	b	
+(t / take-off-33
+    :ARG0 (b / bus
+        :mod 6
+        :mod (c / company
+            :name (n / name
+                :op1 "Plymstock")))
+    :manner (s / schedule
+        :frequency (r / rate-entity-91
+            :ARG3 (t2 / temporal-quantity
+                :quant 1
+                :unit (d / day)))
+        :poss b))

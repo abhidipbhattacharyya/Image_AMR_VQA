@@ -1,0 +1,31 @@
+# ::tok a red firetruck parked next to a car lined sidewalk next to a brick building .
+# ::node	r	red-02	1-2
+# ::node	f	firetruck	2-3
+# ::node	p	park-01	3-4
+# ::node	n	next-to	4-5
+# ::node	c	car	7-8
+# ::node	l	line-01	8-9
+# ::node	s	sidewalk	9-10
+# ::node	n2	next-to	10-11
+# ::node	b	brick	13-14
+# ::node	b2	building	14-15
+# ::root	p	park-01
+# ::edge	firetruck	ARG1-of	red-02	f	r	
+# ::edge	park-01	ARG1	firetruck	p	f	
+# ::edge	park-01	location	next-to	p	n	
+# ::edge	line-01	ARG2	car	l	c	
+# ::edge	sidewalk	ARG1-of	line-01	s	l	
+# ::edge	next-to	op1	sidewalk	n	s	
+# ::edge	sidewalk	location	next-to	s	n2	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	next-to	op1	building	n2	b2	
+(p / park-01
+    :ARG1 (f / firetruck
+        :ARG1-of (r / red-02))
+    :location (n / next-to
+        :op1 (s / sidewalk
+            :ARG1-of (l / line-01
+                :ARG2 (c / car))
+            :location (n2 / next-to
+                :op1 (b2 / building
+                    :consist-of (b / brick))))))

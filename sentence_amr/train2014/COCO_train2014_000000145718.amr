@@ -1,0 +1,35 @@
+# ::tok A man on a skateboard holding a camera low to the ground to record another skateboarder .
+# ::node	m	man	1-2
+# ::node	s	skate-01	4-5
+# ::node	h	hold-01	5-6
+# ::node	c	camera	7-8
+# ::node	l	low-04	8-9
+# ::node	g	ground	11-12
+# ::node	r	record-01	13-14
+# ::node	a	another	14-15
+# ::node	p	person	15-16
+# ::node	s2	skate-01	15-16
+# ::root	m	man
+# ::edge	man	ARG0-of	skate-01	m	s	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	ARG1	camera	h	c	
+# ::edge	low-04	ARG1	camera	l	c	
+# ::edge	hold-01	manner	low-04	h	l	
+# ::edge	low-04	ARG2	ground	l	g	
+# ::edge	record-01	ARG0	camera	r	c	
+# ::edge	hold-01	purpose	record-01	h	r	
+# ::edge	person	mod	another	p	a	
+# ::edge	record-01	ARG1	person	r	p	
+# ::edge	person	ARG0-of	skate-01	p	s2	
+(m / man
+    :ARG0-of (s / skate-01)
+    :ARG0-of (h / hold-01
+        :purpose (r / record-01
+            :ARG0 (c / camera)
+            :ARG1 (p / person
+                :ARG0-of (s2 / skate-01)
+                :mod (a / another)))
+        :ARG1 c
+        :manner (l / low-04
+            :ARG1 c
+            :ARG2 (g / ground))))

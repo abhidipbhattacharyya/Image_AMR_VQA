@@ -1,0 +1,28 @@
+# ::tok Traffic warning sign on display in small grassy strip next to roadway .
+# ::node	t	traffic	0-1
+# ::node	w	warn-01	1-2
+# ::node	s	sign	2-3
+# ::node	d	display-01	4-5
+# ::node	s2	small	6-7
+# ::node	g	grass	7-8
+# ::node	s3	strip	8-9
+# ::node	n	next-to	9-10
+# ::node	r	roadway	11-12
+# ::root	d	display-01
+# ::edge	warn-01	ARG1	traffic	w	t	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	display-01	ARG1	sign	d	s	
+# ::edge	strip	consist-of	grass	s3	g	
+# ::edge	strip	mod	small	s3	s2	
+# ::edge	display-01	location	strip	d	s3	
+# ::edge	strip	location	next-to	s3	n	
+# ::edge	next-to	op1	roadway	n	r	
+(d / display-01
+    :ARG1 (s / sign
+        :ARG0-of (w / warn-01
+            :ARG1 (t / traffic)))
+    :location (s3 / strip
+        :consist-of (g / grass)
+        :location (n / next-to
+            :op1 (r / roadway))
+        :mod (s2 / small)))

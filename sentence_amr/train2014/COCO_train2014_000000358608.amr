@@ -1,0 +1,28 @@
+# ::tok A small propellor plane flying over a line of other planes on the ground
+# ::node	s	small	1-2
+# ::node	p3	propellor	2-3
+# ::node	p	plane	3-4
+# ::node	f	fly-01	4-5
+# ::node	o2	over	5-6
+# ::node	l	line	7-8
+# ::node	o	other	9-10
+# ::node	p2	plane	10-11
+# ::node	g	ground	13-14
+# ::root	p	plane
+# ::edge	plane	part	propellor	p	p3	
+# ::edge	plane	mod	small	p	s	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	path	over	f	o2	
+# ::edge	over	op1	line	o2	l	
+# ::edge	plane	mod	other	p2	o	
+# ::edge	line	consist-of	plane	l	p2	
+# ::edge	plane	location	ground	p2	g	
+(p / plane
+    :ARG2-of (f / fly-01
+        :path (o2 / over
+            :op1 (l / line
+                :consist-of (p2 / plane
+                    :location (g / ground)
+                    :mod (o / other)))))
+    :mod (s / small)
+    :part (p3 / propellor))

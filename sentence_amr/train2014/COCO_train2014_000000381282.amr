@@ -1,0 +1,36 @@
+# ::tok A herd of zebras grazing in a large grassy field with a rocky out crop behind it .
+# ::node	h2	herd	1-2
+# ::node	g	giraffe	3-4
+# ::node	g3	graze-01	4-5
+# ::node	l	large	7-8
+# ::node	g2	grass	8-9
+# ::node	f	field	9-10
+# ::node	h	have-03	10-11
+# ::node	s	sand	12-13
+# ::node	o	out	13-14
+# ::node	c	crop	14-15
+# ::node	b	behind	15-16
+# ::root	g3	graze-01
+# ::edge	herd	consist-of	giraffe	h2	g	
+# ::edge	graze-01	ARG0	herd	g3	h2	
+# ::edge	field	consist-of	grass	f	g2	
+# ::edge	field	mod	large	f	l	
+# ::edge	graze-01	location	field	g3	f	
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	sand	direction	out	s	o	
+# ::edge	crop	consist-of	sand	c	s	
+# ::edge	have-03	ARG1	crop	h	c	
+# ::edge	crop	location	behind	c	b	
+# ::edge	behind	op1	field	b	f	
+(g3 / graze-01
+    :ARG0 (h2 / herd
+        :consist-of (g / giraffe))
+    :location (f / field
+        :ARG0-of (h / have-03
+            :ARG1 (c / crop
+                :consist-of (s / sand
+                    :direction (o / out))
+                :location (b / behind
+                    :op1 f)))
+        :consist-of (g2 / grass)
+        :mod (l / large)))

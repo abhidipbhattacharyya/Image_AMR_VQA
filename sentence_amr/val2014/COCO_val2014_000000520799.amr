@@ -1,0 +1,41 @@
+# ::tok Tennis star Martina Navratilova holding a racket and wearing her hat backwards
+# ::node	m	multi-sentence	0-1
+# ::node	t	telecommunication	0-1
+# ::node	s	star	1-2
+# ::node	p	person	2-3
+# ::node	n	name	2-3
+# ::node	0	Martina	2-3
+# ::node	1	Navratilova	3-4
+# ::node	h2	hold-01	4-5
+# ::node	r	racket	6-7
+# ::node	w	wear-01	8-9
+# ::node	h	hat	10-11
+# ::node	b	backwards	11-12
+# ::root	m	multi-sentence
+# ::edge	star	mod	telecommunication	s	t	
+# ::edge	multi-sentence	snt1	star	m	s	
+# ::edge	person	mod	star	p	s	
+# ::edge	multi-sentence	snt1	person	m	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Martina	n	0	
+# ::edge	name	op2	Navratilova	n	1	
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	hold-01	ARG1	racket	h2	r	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	hat	poss	person	h	p	
+# ::edge	wear-01	direction	backwards	w	b	
+(m / multi-sentence
+    :snt1 (s / star
+        :mod (t / telecommunication))
+    :snt1 (p / person
+        :name (n / name
+            :op1 "Martina"
+            :op2 "Navratilova")
+        :ARG0-of (h2 / hold-01
+            :ARG1 (r / racket))
+        :ARG0-of (w / wear-01
+            :ARG1 (h / hat
+                :poss p)
+            :direction (b / backwards))
+        :mod s))

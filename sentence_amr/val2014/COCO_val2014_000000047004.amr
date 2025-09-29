@@ -1,0 +1,28 @@
+# ::tok A person waits with an umbrella as cars drive down a rainy street .
+# ::node	p	person	1-2
+# ::node	w	wait-01	2-3
+# ::node	h	have-03	3-4
+# ::node	u	umbrella	5-6
+# ::node	c	car	7-8
+# ::node	d2	drive-01	8-9
+# ::node	d	down	9-10
+# ::node	r	rain-01	11-12
+# ::node	s	street	12-13
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	umbrella	h	u	
+# ::edge	drive-01	ARG0	car	d2	c	
+# ::edge	wait-01	time	drive-01	w	d2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	street	mod	rain-01	s	r	
+# ::edge	drive-01	ARG1	street	d2	s	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (u / umbrella)))
+    :time (d2 / drive-01
+        :ARG0 (c / car)
+        :ARG1 (s / street
+            :mod (r / rain-01))
+        :direction (d / down)))

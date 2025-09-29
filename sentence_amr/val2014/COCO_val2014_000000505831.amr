@@ -1,0 +1,24 @@
+# ::tok Buses going through several intersections with their headlights on
+# ::node	b2	bus	0-1
+# ::node	g	go-01	1-2
+# ::node	s	several	3-4
+# ::node	i	intersect-01	4-5
+# ::node	b	bulb	7-8
+# ::node	l	light-04	7-8
+# ::node	o	on-01	8-9
+# ::root	g	go-01
+# ::edge	go-01	ARG1	bus	g	b2	
+# ::edge	intersect-01	quant	several	i	s	
+# ::edge	go-01	path	intersect-01	g	i	
+# ::edge	bus	part	bulb	b2	b	
+# ::edge	bulb	ARG0-of	light-04	b	l	
+# ::edge	on-01	ARG1	bulb	o	b	
+# ::edge	go-01	manner	on-01	g	o	
+(g / go-01
+    :ARG1 (b2 / bus
+        :part (b / bulb
+            :ARG0-of (l / light-04)))
+    :manner (o / on-01
+        :ARG1 b)
+    :path (i / intersect-01
+        :quant (s / several)))

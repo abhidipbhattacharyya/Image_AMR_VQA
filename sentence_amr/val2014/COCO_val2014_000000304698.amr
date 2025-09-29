@@ -1,0 +1,26 @@
+# ::tok Suitcases laying open on a bed with items packed inside .
+# ::node	c	case	0-1
+# ::node	l	lay-01	1-2
+# ::node	o	open-01	2-3
+# ::node	b	bed	5-6
+# ::node	i2	item	7-8
+# ::node	p	pack-01	8-9
+# ::node	i	inside	9-10
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	case	l	c	
+# ::edge	lay-01	manner	open-01	l	o	
+# ::edge	open-01	ARG1	case	o	c	
+# ::edge	lay-01	ARG2	bed	l	b	
+# ::edge	case	consist-of	item	c	i2	
+# ::edge	item	ARG1-of	pack-01	i2	p	
+# ::edge	pack-01	location	inside	p	i	
+# ::edge	inside	op1	case	i	c	
+(l / lay-01
+    :ARG1 (c / case
+        :consist-of (i2 / item
+            :ARG1-of (p / pack-01
+                :location (i / inside
+                    :op1 c))))
+    :ARG2 (b / bed)
+    :manner (o / open-01
+        :ARG1 c))

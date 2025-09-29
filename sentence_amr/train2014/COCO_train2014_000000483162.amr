@@ -1,0 +1,51 @@
+# ::tok A LUXURIOUS BATHROOM COMPLETE WITH JACUZZI TUB AND STAND ALONE SHOWER
+# ::node	l	luxury	1-2
+# ::node	h	hot-05	2-3
+# ::node	c	city	2-3
+# ::node	n2	name	2-3
+# ::node	o	ocean	2-3
+# ::node	c2	complete-02	3-4
+# ::node	c3	conference	5-6
+# ::node	n	United	5-6
+# ::node	n3	name	6-7
+# ::node	c4	conference	6-7
+# ::node	n4	name	6-7
+# ::node	0	conference	6-7
+# ::node	a2	and	7-8
+# ::node	s2	stand-01	8-9
+# ::node	a	alone	9-10
+# ::node	s	shower-01	10-11
+# ::root	a2	and
+# ::edge	city	name	name	c	n2	
+# ::edge	complete-02	ARG2	ocean	c2	o	
+# ::edge	hot-05	ARG1-of	complete-02	h	c2	
+# ::edge	hot-05	ARG1	conference	h	c3	
+# ::edge	name	op1	conference	n3	c3	
+# ::edge	conference	name	name	c3	n3	
+# ::edge	name	op2	conference	n3	c4	
+# ::edge	conference	name	name	c4	n4	
+# ::edge	name	op3	conference	n3	0	
+# ::edge	and	op1	luxury	a2	l	
+# ::edge	and	op2	stand-01	a2	s2	
+# ::edge	stand-01	manner	alone	s2	a	
+# ::edge	stand-01	ARG2	shower-01	s2	s	
+# ::edge	shower-01	ARG0	hot-05	s	h	
+# ::edge	and	rel	city	a2	c	
+# ::edge	and	rel	United	a2	n	
+(a2 / and
+    :op1 (l / luxury)
+    :op2 (s2 / stand-01
+        :ARG2 (s / shower-01
+            :ARG0 (h / hot-05
+                :ARG1 (c3 / "conference"
+                    :name (n3 / name
+                        :op1 c3
+                        :op2 (c4 / "conference"
+                            :name (n4 / name))
+                        :op3 "conference"))
+                :ARG1-of (c2 / complete-02
+                    :ARG2 (o / ocean))))
+        :manner (a / alone))
+    :rel (c / city
+        :name (n2 / name))
+    :rel (n / United))

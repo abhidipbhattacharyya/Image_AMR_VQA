@@ -1,0 +1,24 @@
+# ::tok A metro train is leaving the station after picking up passengers
+# ::node	m	metro	1-2
+# ::node	t	train	2-3
+# ::node	l	leave-11	4-5
+# ::node	s	station	6-7
+# ::node	a	after	7-8
+# ::node	p2	pick-up-04	8-9
+# ::node	p	passenger	10-11
+# ::root	l	leave-11
+# ::edge	train	mod	metro	t	m	
+# ::edge	leave-11	ARG0	train	l	t	
+# ::edge	leave-11	ARG1	station	l	s	
+# ::edge	leave-11	time	after	l	a	
+# ::edge	after	op1	pick-up-04	a	p2	
+# ::edge	pick-up-04	ARG0	train	p2	t	
+# ::edge	pick-up-04	ARG1	passenger	p2	p	
+(l / leave-11
+    :ARG0 (t / train
+        :mod (m / metro))
+    :ARG1 (s / station)
+    :time (a / after
+        :op1 (p2 / pick-up-04
+            :ARG0 t
+            :ARG1 (p / passenger))))

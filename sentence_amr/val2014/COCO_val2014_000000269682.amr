@@ -1,0 +1,40 @@
+# ::tok Storm clouds over a traffic interception probably taken while someone was waiting for red light to turn green .
+# ::node	s2	storm-01	0-1
+# ::node	c	cloud	1-2
+# ::node	o	over	2-3
+# ::node	t2	traffic	4-5
+# ::node	i	intercept-01	5-6
+# ::node	p	probable	6-7
+# ::node	t	take-01	7-8
+# ::node	s	someone	9-10
+# ::node	w	wait-01	11-12
+# ::node	r	red-02	13-14
+# ::node	l	light	14-15
+# ::node	t3	turn-01	16-17
+# ::node	g	green-02	17-18
+# ::root	c	cloud
+# ::edge	cloud	mod	storm-01	c	s2	
+# ::edge	cloud	location	over	c	o	
+# ::edge	intercept-01	ARG1	traffic	i	t2	
+# ::edge	over	op1	intercept-01	o	i	
+# ::edge	take-01	mod	probable	t	p	
+# ::edge	cloud	ARG1-of	take-01	c	t	
+# ::edge	wait-01	ARG1	someone	w	s	
+# ::edge	take-01	time	wait-01	t	w	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	turn-01	ARG1	light	t3	l	
+# ::edge	wait-01	ARG2	turn-01	w	t3	
+# ::edge	turn-01	ARG2	green-02	t3	g	
+(c / cloud
+    :ARG1-of (t / take-01
+        :mod (p / probable)
+        :time (w / wait-01
+            :ARG1 (s / someone)
+            :ARG2 (t3 / turn-01
+                :ARG1 (l / light
+                    :ARG1-of (r / red-02))
+                :ARG2 (g / green-02))))
+    :location (o / over
+        :op1 (i / intercept-01
+            :ARG1 (t2 / traffic)))
+    :mod (s2 / storm-01))

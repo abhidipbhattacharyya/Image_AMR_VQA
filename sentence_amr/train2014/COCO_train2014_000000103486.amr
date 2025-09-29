@@ -1,0 +1,41 @@
+# ::tok Two men shaking hands while a third person is putting a medal on one of them
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	s	shake-01	2-3
+# ::node	h	hand	3-4
+# ::node	o	ordinal-entity	6-7
+# ::node	2	3	6-7
+# ::node	p	person	7-8
+# ::node	p3	put-01	9-10
+# ::node	m2	medal	11-12
+# ::node	p2	person	13-14
+# ::node	i	include-91	13-14
+# ::node	0	1	13-14
+# ::root	s	shake-01
+# ::edge	man	quant	2	m	1	
+# ::edge	shake-01	ARG0	man	s	m	
+# ::edge	shake-01	ARG1	hand	s	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	ordinal-entity	value	3	o	2	
+# ::edge	person	ord	ordinal-entity	p	o	
+# ::edge	put-01	ARG0	person	p3	p	
+# ::edge	shake-01	time	put-01	s	p3	
+# ::edge	put-01	ARG1	medal	p3	m2	
+# ::edge	put-01	ARG2	person	p3	p2	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	include-91	ARG3	1	i	0	
+(s / shake-01
+    :ARG0 (m / man
+        :quant 2
+        :part (h / hand))
+    :ARG1 h
+    :time (p3 / put-01
+        :ARG0 (p / person
+            :ord (o / ordinal-entity
+                :value 3))
+        :ARG1 (m2 / medal)
+        :ARG2 (p2 / person
+            :ARG1-of (i / include-91
+                :ARG2 m
+                :ARG3 1))))

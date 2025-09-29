@@ -1,0 +1,81 @@
+# ::tok All shapes , colors and styles of luggage are arranged in mobile bins and on the floor of a room with glass partitions through which it is possible to see passengers standing and moving about as they retrieve their bags .
+# ::node	a2	all	0-1
+# ::node	s2	shape-01	1-2
+# ::node	c	color	3-4
+# ::node	a3	and	4-5
+# ::node	s4	style	5-6
+# ::node	l	luggage	7-8
+# ::node	a6	arrange-01	9-10
+# ::node	m	mobile-02	11-12
+# ::node	b2	bin	12-13
+# ::node	a4	and	13-14
+# ::node	f	floor	16-17
+# ::node	r2	room	19-20
+# ::node	h	have-03	20-21
+# ::node	g	glass	21-22
+# ::node	p	partition-01	22-23
+# ::node	p3	possible-01	27-28
+# ::node	s	see-01	29-30
+# ::node	p2	passenger	30-31
+# ::node	s3	stand-01	31-32
+# ::node	a5	and	32-33
+# ::node	m2	move-01	33-34
+# ::node	a	about	34-35
+# ::node	r	retrieve-01	37-38
+# ::node	b	bag	39-40
+# ::root	a6	arrange-01
+# ::edge	and	op2	color	a3	c	
+# ::edge	and	op1	shape-01	a3	s2	
+# ::edge	and	mod	all	a3	a2	
+# ::edge	and	op3	style	a3	s4	
+# ::edge	style	mod	luggage	s4	l	
+# ::edge	color	ARG1	luggage	c	l	
+# ::edge	arrange-01	ARG1	and	a6	a3	
+# ::edge	bin	ARG1-of	mobile-02	b2	m	
+# ::edge	and	op1	bin	a4	b2	
+# ::edge	arrange-01	ARG2	and	a6	a4	
+# ::edge	and	op2	floor	a4	f	
+# ::edge	floor	part-of	room	f	r2	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	partition-01	ARG2	glass	p	g	
+# ::edge	have-03	ARG1	partition-01	h	p	
+# ::edge	see-01	ARG1-of	possible-01	s	p3	
+# ::edge	partition-01	instrument-of	see-01	p	s	
+# ::edge	stand-01	ARG0	passenger	s3	p2	
+# ::edge	and	op1	stand-01	a5	s3	
+# ::edge	see-01	ARG1	and	s	a5	
+# ::edge	and	op2	move-01	a5	m2	
+# ::edge	move-01	ARG0	passenger	m2	p2	
+# ::edge	move-01	direction	about	m2	a	
+# ::edge	and	time	retrieve-01	a5	r	
+# ::edge	retrieve-01	ARG0	passenger	r	p2	
+# ::edge	retrieve-01	ARG1	bag	r	b	
+# ::edge	bag	poss	passenger	b	p2	
+(a6 / arrange-01
+    :ARG1 (a3 / and
+        :mod (a2 / all)
+        :op1 (s2 / shape-01)
+        :op2 (c / color
+            :ARG1 (l / luggage))
+        :op3 (s4 / style
+            :mod l))
+    :ARG2 (a4 / and
+        :op1 (b2 / bin
+            :ARG1-of (m / mobile-02))
+        :op2 (f / floor
+            :part-of (r2 / room
+                :ARG0-of (h / have-03
+                    :ARG1 (p / partition-01
+                        :ARG2 (g / glass)
+                        :instrument-of (s / see-01
+                            :ARG1 (a5 / and
+                                :op1 (s3 / stand-01
+                                    :ARG0 (p2 / passenger))
+                                :op2 (m2 / move-01
+                                    :ARG0 p2
+                                    :direction (a / about))
+                                :time (r / retrieve-01
+                                    :ARG0 p2
+                                    :ARG1 (b / bag
+                                        :poss p2)))
+                            :ARG1-of (p3 / possible-01))))))))

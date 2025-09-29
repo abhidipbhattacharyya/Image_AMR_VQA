@@ -1,0 +1,32 @@
+# ::tok A baby got into a little refrigerator and is trying to drink a soda from the can .
+# ::node	b	baby	1-2
+# ::node	g	get-05	2-3
+# ::node	l	little	5-6
+# ::node	r	refrigerator	6-7
+# ::node	a	and	7-8
+# ::node	t	try-01	9-10
+# ::node	d	drink-01	11-12
+# ::node	s	soda	13-14
+# ::node	c	can	16-17
+# ::root	a	and
+# ::edge	get-05	ARG1	baby	g	b	
+# ::edge	refrigerator	mod	little	r	l	
+# ::edge	get-05	ARG2	refrigerator	g	r	
+# ::edge	and	op1	get-05	a	g	
+# ::edge	and	op2	try-01	a	t	
+# ::edge	try-01	ARG0	baby	t	b	
+# ::edge	try-01	ARG1	drink-01	t	d	
+# ::edge	drink-01	ARG0	baby	d	b	
+# ::edge	drink-01	ARG1	soda	d	s	
+# ::edge	soda	source	can	s	c	
+(a / and
+    :op1 (g / get-05
+        :ARG1 (b / baby)
+        :ARG2 (r / refrigerator
+            :mod (l / little)))
+    :op2 (t / try-01
+        :ARG0 b
+        :ARG1 (d / drink-01
+            :ARG0 b
+            :ARG1 (s / soda
+                :source (c / can)))))

@@ -1,0 +1,24 @@
+# ::tok a man sitting at a restauraint table while eating a hot dog
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	r	restaurant	5-6
+# ::node	t	table	6-7
+# ::node	e	eat-01	8-9
+# ::node	e2	eat-01	10-11
+# ::node	h	hot-dog	11-12
+# ::root	m	man
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	table	mod	restaurant	t	r	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	man	ARG0-of	eat-01	m	e	
+# ::edge	eat-01	ARG1	eat-01	e	e2	
+# ::edge	eat-01	ARG0	man	e2	m	
+# ::edge	eat-01	ARG1	hot-dog	e2	h	
+(m / man
+    :ARG0-of (e / eat-01
+        :ARG1 (e2 / eat-01
+            :ARG0 m
+            :ARG1 (h / hot-dog)))
+    :ARG1-of (s / sit-01
+        :ARG2 (t / table
+            :mod (r / restaurant))))

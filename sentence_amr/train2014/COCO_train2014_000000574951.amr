@@ -1,0 +1,28 @@
+# ::tok many people of all ages skiing on the snow clad mountains .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	a	all	3-4
+# ::node	t	temporal-quantity	4-5
+# ::node	y	year	4-5
+# ::node	s	ski-01	5-6
+# ::node	s2	snow	8-9
+# ::node	c	clothe-01	9-10
+# ::node	m2	mountain	10-11
+# ::root	s	ski-01
+# ::edge	person	quant	many	p	m	
+# ::edge	temporal-quantity	mod	all	t	a	
+# ::edge	person	age	temporal-quantity	p	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	clothe-01	ARG2	snow	c	s2	
+# ::edge	mountain	ARG1-of	clothe-01	m2	c	
+# ::edge	ski-01	ARG1	mountain	s	m2	
+(s / ski-01
+    :ARG0 (p / person
+        :quant (m / many)
+        :age (t / temporal-quantity
+            :mod (a / all)
+            :unit (y / year)))
+    :ARG1 (m2 / mountain
+        :ARG1-of (c / clothe-01
+            :ARG2 (s2 / snow))))

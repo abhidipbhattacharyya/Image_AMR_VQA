@@ -1,0 +1,51 @@
+# ::tok Several pieces of peeled banana stand behind a larger piece of peeled banana that is resting perpendicularly on the flat portion of an apple half .
+# ::node	s	several	0-1
+# ::node	p	piece	1-2
+# ::node	b	banana	4-5
+# ::node	s2	stand-01	5-6
+# ::node	b2	behind	6-7
+# ::node	h2	have-degree-91	8-9
+# ::node	l	large	8-9
+# ::node	m	more	8-9
+# ::node	p2	piece	9-10
+# ::node	s3	strip-01	11-12
+# ::node	r	rest-01	15-16
+# ::node	0	imperative	16-17
+# ::node	f	flat-06	19-20
+# ::node	p3	portion	20-21
+# ::node	a	apple	23-24
+# ::node	h	half	24-25
+# ::root	s2	stand-01
+# ::edge	piece	quant	several	p	s	
+# ::edge	piece	part-of	banana	p	b	
+# ::edge	stand-01	ARG1	piece	s2	p	
+# ::edge	stand-01	ARG2	behind	s2	b2	
+# ::edge	have-degree-91	ARG2	large	h2	l	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	piece	ARG1-of	have-degree-91	p2	h2	
+# ::edge	behind	op1	piece	b2	p2	
+# ::edge	banana	part	piece	b	p2	
+# ::edge	banana	ARG1-of	strip-01	b	s3	
+# ::edge	piece	ARG1-of	rest-01	p2	r	
+# ::edge	stand-01	mode	imperative	s2	0	
+# ::edge	portion	ARG1-of	flat-06	p3	f	
+# ::edge	rest-01	ARG2	portion	r	p3	
+# ::edge	half	part-of	apple	h	a	
+# ::edge	portion	part-of	half	p3	h	
+(s2 / stand-01
+    :ARG1 (p / piece
+        :quant (s / several)
+        :part-of (b / banana
+            :ARG1-of (s3 / strip-01)
+            :part (p2 / piece
+                :ARG1-of (h2 / have-degree-91
+                    :ARG2 (l / large)
+                    :ARG3 (m / more))
+                :ARG1-of (r / rest-01
+                    :ARG2 (p3 / portion
+                        :ARG1-of (f / flat-06)
+                        :part-of (h / half
+                            :part-of (a / apple)))))))
+    :ARG2 (b2 / behind
+        :op1 p2)
+    :mode imperative)

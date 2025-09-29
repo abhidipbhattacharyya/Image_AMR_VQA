@@ -1,0 +1,28 @@
+# ::tok One large room can provide a home away from home .
+# ::node	0	1	0-1
+# ::node	l	large	1-2
+# ::node	r2	room	2-3
+# ::node	p	possible-01	3-4
+# ::node	p2	provide-01	4-5
+# ::node	h	home	6-7
+# ::node	a	away	7-8
+# ::node	r	relative-position	8-9
+# ::node	h2	home	9-10
+# ::root	p	possible-01
+# ::edge	room	mod	large	r2	l	
+# ::edge	room	quant	1	r2	0	
+# ::edge	possible-01	ARG1	provide-01	p	p2	
+# ::edge	provide-01	ARG0	room	p2	r2	
+# ::edge	provide-01	ARG1	home	p2	h	
+# ::edge	relative-position	direction	away	r	a	
+# ::edge	home	location	relative-position	h	r	
+# ::edge	relative-position	op1	home	r	h2	
+(p / possible-01
+    :ARG1 (p2 / provide-01
+        :ARG0 (r2 / room
+            :quant 1
+            :mod (l / large))
+        :ARG1 (h / home
+            :location (r / relative-position
+                :direction (a / away)
+                :op1 (h2 / home)))))

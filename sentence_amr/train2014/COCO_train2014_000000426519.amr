@@ -1,0 +1,42 @@
+# ::tok a stop sign with a sign under neath it sits on a city street
+# ::node	s5	stop-01	1-2
+# ::node	s3	signal-07	2-3
+# ::node	h	have-03	3-4
+# ::node	l	location	4-5
+# ::node	s	sign	5-6
+# ::node	s2	sign	5-6
+# ::node	u	under	6-7
+# ::node	t	thing	7-8
+# ::node	n	name	7-8
+# ::node	0	North	7-8
+# ::node	s4	sit-01	9-10
+# ::node	c	city	12-13
+# ::node	s6	street	13-14
+# ::root	s4	sit-01
+# ::edge	signal-07	ARG1	stop-01	s3	s5	
+# ::edge	location	ARG1-of	have-03	l	h	
+# ::edge	sign	mod	location	s	l	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	under	s2	u	
+# ::edge	under	op1	thing	u	t	
+# ::edge	thing	name	name	t	n	
+# ::edge	name	op1	North	n	0	
+# ::edge	sit-01	ARG1	location	s4	l	
+# ::edge	street	mod	city	s6	c	
+# ::edge	sit-01	ARG2	street	s4	s6	
+# ::edge	sit-01	rel	signal-07	s4	s3	
+# ::edge	sit-01	rel	sign	s4	s2	
+(s4 / sit-01
+    :ARG1 (l / location
+        :ARG1-of (h / have-03
+            :ARG1 (s / sign
+                :mod l)))
+    :ARG2 (s6 / street
+        :mod (c / city))
+    :rel (s3 / signal-07
+        :ARG1 (s5 / stop-01))
+    :rel (s2 / sign
+        :location (u / under
+            :op1 (t / thing
+                :name (n / name
+                    :op1 "North")))))

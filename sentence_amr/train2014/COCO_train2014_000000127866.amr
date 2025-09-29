@@ -1,0 +1,55 @@
+# ::tok VEGETABLE AND FRUIT INCLUDE BANANAS , CARROTS , KIWI , AND SQUASH
+# ::node	p	possible-01	0-1
+# ::node	g	grow-03	0-1
+# ::node	a	and	1-2
+# ::node	t	territory	2-3
+# ::node	t2	territory	2-3
+# ::node	i	include-01	3-4
+# ::node	f	festival	4-5
+# ::node	n	name	4-5
+# ::node	m	multiple	4-5
+# ::node	2	i	4-5
+# ::node	1	Pan	4-5
+# ::node	r	rat	6-7
+# ::node	3	i	6-7
+# ::node	n2	name	8-9
+# ::node	n3	name	8-9
+# ::node	c	conference	8-9
+# ::node	0	KIWI	8-9
+# ::node	f2	freeze-01	11-12
+# ::root	i	include-01
+# ::edge	possible-01	ARG1	grow-03	p	g	
+# ::edge	and	op2	territory	a	t	
+# ::edge	territory	ARG1-of	possible-01	t	p	
+# ::edge	and	op3	territory	a	t2	
+# ::edge	include-01	ARG2	and	i	a	
+# ::edge	and	op1	festival	a	f	
+# ::edge	festival	name	name	f	n	
+# ::edge	and	quant	multiple	a	m	
+# ::edge	name	op1	i	n	2	
+# ::edge	name	op1	Pan	n	1	
+# ::edge	territory	op2	rat	t	r	
+# ::edge	name	op1	i	n2	3	
+# ::edge	territory	name	name	t2	n2	
+# ::edge	territory	name	name	t2	n3	
+# ::edge	and	op4	conference	a	c	
+# ::edge	name	op1	KIWI	n3	0	
+# ::edge	and	op5	freeze-01	a	f2	
+(i / include-01
+    :ARG2 (a / and
+        :quant (m / multiple)
+        :op1 (f / festival
+            :name (n / name
+                :op1 "i"
+                :op1 "Pan"))
+        :op2 (t / territory
+            :ARG1-of (p / possible-01
+                :ARG1 (g / grow-03))
+            :op2 (r / rat))
+        :op3 (t2 / territory
+            :name (n2 / name
+                :op1 "i")
+            :name (n3 / name
+                :op1 "KIWI"))
+        :op4 (c / conference)
+        :op5 (f2 / freeze-01)))

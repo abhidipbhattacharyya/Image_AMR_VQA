@@ -1,0 +1,35 @@
+# ::tok a person standing at a counter getting some bread ready for grilled cheese sandwiches
+# ::node	p	person	1-2
+# ::node	s3	stand-01	2-3
+# ::node	c2	counter	5-6
+# ::node	g	get-01	6-7
+# ::node	s2	some	7-8
+# ::node	b	bread	8-9
+# ::node	r	ready-01	9-10
+# ::node	b2	broil-01	11-12
+# ::node	c	cheese	12-13
+# ::node	s	sandwich	13-14
+# ::root	s3	stand-01
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	counter	s3	c2	
+# ::edge	person	purpose	get-01	p	g	
+# ::edge	get-01	ARG0	person	g	p	
+# ::edge	bread	quant	some	b	s2	
+# ::edge	get-01	ARG1	bread	g	b	
+# ::edge	bread	ARG1-of	ready-01	b	r	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	sandwich	mod	cheese	s	c	
+# ::edge	sandwich	ARG1-of	broil-01	s	b2	
+# ::edge	ready-01	ARG2	sandwich	r	s	
+(s3 / stand-01
+    :ARG1 (p / person
+        :purpose (g / get-01
+            :ARG0 p
+            :ARG1 (b / bread
+                :quant (s2 / some)
+                :ARG1-of (r / ready-01
+                    :ARG0 p
+                    :ARG2 (s / sandwich
+                        :ARG1-of (b2 / broil-01)
+                        :mod (c / cheese))))))
+    :ARG2 (c2 / counter))

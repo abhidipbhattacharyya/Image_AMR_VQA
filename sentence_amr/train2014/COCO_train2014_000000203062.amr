@@ -1,0 +1,24 @@
+# ::tok A car approaches a highway as it drives near a busy intersection
+# ::node	c	car	1-2
+# ::node	a	approach-01	2-3
+# ::node	h	highway	4-5
+# ::node	d	drive-01	7-8
+# ::node	n	near-02	8-9
+# ::node	b	busy-02	10-11
+# ::node	i	intersect-01	11-12
+# ::root	a	approach-01
+# ::edge	approach-01	ARG1	car	a	c	
+# ::edge	approach-01	ARG2	highway	a	h	
+# ::edge	approach-01	time	drive-01	a	d	
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	drive-01	ARG1-of	near-02	d	n	
+# ::edge	intersect-01	ARG1-of	busy-02	i	b	
+# ::edge	near-02	ARG2	intersect-01	n	i	
+(a / approach-01
+    :ARG1 (c / car)
+    :ARG2 (h / highway)
+    :time (d / drive-01
+        :ARG0 c
+        :ARG1-of (n / near-02
+            :ARG2 (i / intersect-01
+                :ARG1-of (b / busy-02)))))

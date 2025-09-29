@@ -1,0 +1,35 @@
+# ::tok Two men prepare to eat whilst seated at a table with two whole pizza pies .
+# ::node	0	2	0-1
+# ::node	m	man	1-2
+# ::node	p2	prepare-02	2-3
+# ::node	e	eat-01	4-5
+# ::node	s	seat-01	6-7
+# ::node	t	table	9-10
+# ::node	1	2	11-12
+# ::node	w	whole	12-13
+# ::node	p	pizza	13-14
+# ::node	s2	slice	14-15
+# ::root	p2	prepare-02
+# ::edge	man	quant	2	m	0	
+# ::edge	prepare-02	ARG0	man	p2	m	
+# ::edge	prepare-02	ARG1	eat-01	p2	e	
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	prepare-02	time	seat-01	p2	s	
+# ::edge	seat-01	ARG1	man	s	m	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	slice	mod	pizza	s2	p	
+# ::edge	slice	mod	whole	s2	w	
+# ::edge	slice	quant	2	s2	1	
+# ::edge	eat-01	accompanier	slice	e	s2	
+(p2 / prepare-02
+    :ARG0 (m / man
+        :quant 2)
+    :ARG1 (e / eat-01
+        :ARG0 m
+        :accompanier (s2 / slice
+            :quant 2
+            :mod (p / pizza)
+            :mod (w / whole)))
+    :time (s / seat-01
+        :ARG1 m
+        :ARG2 (t / table)))

@@ -1,0 +1,41 @@
+# ::tok a refrigerator stocked full and left open with light only it 's light in a dark kitchen
+# ::node	r	refrigerator	1-2
+# ::node	s	stock-01	2-3
+# ::node	f	fill-01	3-4
+# ::node	a	and	4-5
+# ::node	l	leave-12	5-6
+# ::node	o2	open-09	6-7
+# ::node	l2	light	8-9
+# ::node	o	only	9-10
+# ::node	t	thing	11-12
+# ::node	l3	light-04	12-13
+# ::node	d	dark-02	15-16
+# ::node	k	kitchen	16-17
+# ::root	a	and
+# ::edge	stock-01	ARG1	refrigerator	s	r	
+# ::edge	stock-01	ARG2	fill-01	s	f	
+# ::edge	and	op1	stock-01	a	s	
+# ::edge	and	op2	leave-12	a	l	
+# ::edge	leave-12	ARG1	refrigerator	l	r	
+# ::edge	leave-12	ARG2	open-09	l	o2	
+# ::edge	open-09	ARG1	refrigerator	o2	r	
+# ::edge	open-09	ARG3	light	o2	l2	
+# ::edge	thing	mod	only	t	o	
+# ::edge	light	domain	thing	l2	t	
+# ::edge	thing	ARG0-of	light-04	t	l3	
+# ::edge	kitchen	ARG1-of	dark-02	k	d	
+# ::edge	thing	location	kitchen	t	k	
+(a / and
+    :op1 (s / stock-01
+        :ARG1 (r / refrigerator)
+        :ARG2 (f / fill-01))
+    :op2 (l / leave-12
+        :ARG1 r
+        :ARG2 (o2 / open-09
+            :ARG1 r
+            :ARG3 (l2 / light
+                :domain (t / thing
+                    :ARG0-of (l3 / light-04)
+                    :location (k / kitchen
+                        :ARG1-of (d / dark-02))
+                    :mod (o / only))))))

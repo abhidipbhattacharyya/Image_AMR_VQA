@@ -1,0 +1,56 @@
+# ::tok A door is open to reveal a mid - sized bathroom with a dark , wood cabinet with a granite surface and a bathtub with a curtained window above it .
+# ::node	d2	door	1-2
+# ::node	o	open-01	3-4
+# ::node	r	reveal-01	5-6
+# ::node	m	mid	7-8
+# ::node	s	size-01	9-10
+# ::node	b	bathroom	10-11
+# ::node	h	have-03	11-12
+# ::node	d	dark-02	13-14
+# ::node	w2	wood	15-16
+# ::node	c	cabinet	16-17
+# ::node	g	granite	19-20
+# ::node	s2	surface	20-21
+# ::node	a2	and	21-22
+# ::node	b2	bathtub	23-24
+# ::node	c2	curtain	26-27
+# ::node	w	window	27-28
+# ::node	a	above	28-29
+# ::root	o	open-01
+# ::edge	open-01	ARG1	door	o	d2	
+# ::edge	open-01	purpose	reveal-01	o	r	
+# ::edge	reveal-01	ARG0	door	r	d2	
+# ::edge	size-01	ARG2	mid	s	m	
+# ::edge	bathroom	ARG1-of	size-01	b	s	
+# ::edge	reveal-01	ARG1	bathroom	r	b	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	cabinet	consist-of	wood	c	w2	
+# ::edge	cabinet	ARG1-of	dark-02	c	d	
+# ::edge	surface	mod	granite	s2	g	
+# ::edge	cabinet	part	surface	c	s2	
+# ::edge	and	op1	cabinet	a2	c	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	bathtub	a2	b2	
+# ::edge	window	mod	curtain	w	c2	
+# ::edge	bathtub	part	window	b2	w	
+# ::edge	window	location	above	w	a	
+# ::edge	above	op1	cabinet	a	c	
+(o / open-01
+    :purpose (r / reveal-01
+        :ARG0 (d2 / door)
+        :ARG1 (b / bathroom
+            :ARG0-of (h / have-03
+                :ARG1 (a2 / and
+                    :op1 (c / cabinet
+                        :ARG1-of (d / dark-02)
+                        :consist-of (w2 / wood)
+                        :part (s2 / surface
+                            :mod (g / granite)))
+                    :op2 (b2 / bathtub
+                        :part (w / window
+                            :location (a / above
+                                :op1 c)
+                            :mod (c2 / curtain)))))
+            :ARG1-of (s / size-01
+                :ARG2 (m / mid))))
+    :ARG1 d2)

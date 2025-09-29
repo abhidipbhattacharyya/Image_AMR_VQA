@@ -1,0 +1,28 @@
+# ::tok What can only be described as an interesting and presumably authentic dish .
+# ::node	t	thing	0-1
+# ::node	p	possible-01	1-2
+# ::node	o	only	2-3
+# ::node	d	describe-01	4-5
+# ::node	i	interest-01	7-8
+# ::node	p3	presume-01	9-10
+# ::node	p2	possible-01	9-10
+# ::node	a	authentic-02	10-11
+# ::node	d2	dish	11-12
+# ::root	t	thing
+# ::edge	describe-01	mod	only	d	o	
+# ::edge	describe-01	ARG1-of	possible-01	d	p	
+# ::edge	thing	ARG1-of	describe-01	t	d	
+# ::edge	presume-01	ARG1-of	possible-01	p3	p2	
+# ::edge	authentic-02	ARG1-of	presume-01	a	p3	
+# ::edge	dish	ARG1-of	authentic-02	d2	a	
+# ::edge	dish	ARG2-of	interest-01	d2	i	
+# ::edge	describe-01	ARG2	dish	d	d2	
+(t / thing
+    :ARG1-of (d / describe-01
+        :ARG1-of (p / possible-01)
+        :ARG2 (d2 / dish
+            :ARG1-of (a / authentic-02
+                :ARG1-of (p3 / presume-01
+                    :ARG1-of (p2 / possible-01)))
+            :ARG2-of (i / interest-01))
+        :mod (o / only)))

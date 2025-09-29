@@ -1,0 +1,27 @@
+# ::tok a herd of zebra in a field with one staring at the camera
+# ::node	h	herd	1-2
+# ::node	z	zebra	3-4
+# ::node	z2	zebra	3-4
+# ::node	f	field	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	s	stare-01	9-10
+# ::node	c	camera	12-13
+# ::root	s	stare-01
+# ::edge	herd	consist-of	zebra	h	z	
+# ::edge	herd	location	field	h	f	
+# ::edge	zebra	ARG1-of	include-91	z2	i	
+# ::edge	include-91	ARG2	zebra	i	z	
+# ::edge	zebra	quant	1	z2	0	
+# ::edge	stare-01	ARG0	zebra	s	z2	
+# ::edge	stare-01	ARG1	camera	s	c	
+# ::edge	stare-01	rel	herd	s	h	
+(s / stare-01
+    :ARG0 (z2 / zebra
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (z / zebra)))
+    :ARG1 (c / camera)
+    :rel (h / herd
+        :consist-of z
+        :location (f / field)))

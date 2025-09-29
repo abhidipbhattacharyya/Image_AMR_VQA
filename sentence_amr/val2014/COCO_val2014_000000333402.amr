@@ -1,0 +1,31 @@
+# ::tok A man standing next to a stage coach bus parked at a bus stop .
+# ::node	m	man	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	s	stage	6-7
+# ::node	c	coach-01	7-8
+# ::node	b	bus	8-9
+# ::node	p	park-01	9-10
+# ::node	f	facility	11-12
+# ::node	b2	bus	12-13
+# ::node	s3	stop-01	13-14
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	coach-01	mod	stage	c	s	
+# ::edge	bus	ARG0-of	coach-01	b	c	
+# ::edge	next-to	op1	bus	n	b	
+# ::edge	bus	ARG1-of	park-01	b	p	
+# ::edge	park-01	ARG2	facility	p	f	
+# ::edge	stop-01	ARG1	bus	s3	b2	
+# ::edge	facility	location-of	stop-01	f	s3	
+(s2 / stand-01
+    :ARG1 (m / man)
+    :ARG2 (n / next-to
+        :op1 (b / bus
+            :ARG0-of (c / coach-01
+                :mod (s / stage))
+            :ARG1-of (p / park-01
+                :ARG2 (f / facility
+                    :location-of (s3 / stop-01
+                        :ARG1 (b2 / bus)))))))

@@ -1,0 +1,30 @@
+# ::tok Various people leaving a silver train and entering train station .
+# ::node	v	various	0-1
+# ::node	p	person	1-2
+# ::node	l	leave-11	2-3
+# ::node	s	silver	4-5
+# ::node	t	train	5-6
+# ::node	e	enter-01	7-8
+# ::node	t2	train	8-9
+# ::node	s2	station	9-10
+# ::node	a	and	10-11
+# ::root	a	and
+# ::edge	person	mod	various	p	v	
+# ::edge	leave-11	ARG0	person	l	p	
+# ::edge	train	mod	silver	t	s	
+# ::edge	leave-11	ARG1	train	l	t	
+# ::edge	enter-01	ARG0	person	e	p	
+# ::edge	station	mod	train	s2	t2	
+# ::edge	enter-01	ARG1	station	e	s2	
+# ::edge	and	op2	enter-01	a	e	
+# ::edge	and	op1	leave-11	a	l	
+(a / and
+    :op1 (l / leave-11
+        :ARG0 (p / person
+            :mod (v / various))
+        :ARG1 (t / train
+            :mod (s / silver)))
+    :op2 (e / enter-01
+        :ARG0 p
+        :ARG1 (s2 / station
+            :mod (t2 / train))))

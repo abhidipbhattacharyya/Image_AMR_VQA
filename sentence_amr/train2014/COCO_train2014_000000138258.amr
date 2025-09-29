@@ -1,0 +1,31 @@
+# ::tok A red walled room completely filled with clocks and lights that hang from the ceiling
+# ::node	r	red-02	1-2
+# ::node	w	wall-off-01	2-3
+# ::node	r2	room	3-4
+# ::node	c2	complete-02	4-5
+# ::node	f	fill-01	5-6
+# ::node	w2	watch	7-8
+# ::node	a	and	8-9
+# ::node	l	light	9-10
+# ::node	h	hang-01	11-12
+# ::node	c	ceiling	14-15
+# ::root	f	fill-01
+# ::edge	wall-off-01	ARG1-of	red-02	w	r	
+# ::edge	room	ARG1-of	wall-off-01	r2	w	
+# ::edge	fill-01	ARG1-of	complete-02	f	c2	
+# ::edge	fill-01	ARG1	room	f	r2	
+# ::edge	and	op1	watch	a	w2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	ARG1-of	hang-01	a	h	
+# ::edge	hang-01	ARG2	ceiling	h	c	
+(f / fill-01
+    :ARG1 (r2 / room
+        :ARG1-of (w / wall-off-01
+            :ARG1-of (r / red-02)))
+    :ARG1-of (c2 / complete-02)
+    :ARG2 (a / and
+        :ARG1-of (h / hang-01
+            :ARG2 (c / ceiling))
+        :op1 (w2 / watch)
+        :op2 (l / light)))

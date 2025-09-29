@@ -1,0 +1,28 @@
+# ::tok Many car light streak by the busy road of a city at evening time .
+# ::node	m	many	0-1
+# ::node	c	car	1-2
+# ::node	l	light	2-3
+# ::node	s	stretch-01	3-4
+# ::node	b	busy-01	6-7
+# ::node	r	road	7-8
+# ::node	c2	city	10-11
+# ::node	d	date-entity	12-13
+# ::node	e	evening	12-13
+# ::root	s	stretch-01
+# ::edge	car	quant	many	c	m	
+# ::edge	light	mod	car	l	c	
+# ::edge	stretch-01	ARG1	light	s	l	
+# ::edge	road	ARG1-of	busy-01	r	b	
+# ::edge	stretch-01	location	road	s	r	
+# ::edge	road	part-of	city	r	c2	
+# ::edge	stretch-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+(s / stretch-01
+    :ARG1 (l / light
+        :mod (c / car
+            :quant (m / many)))
+    :location (r / road
+        :ARG1-of (b / busy-01)
+        :part-of (c2 / city))
+    :time (d / date-entity
+        :dayperiod (e / evening)))

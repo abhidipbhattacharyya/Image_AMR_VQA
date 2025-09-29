@@ -1,0 +1,48 @@
+# ::tok A fish eye lens shows a snow boarder flying down the slope with a solar flare under his arm .
+# ::node	f	fish	1-2
+# ::node	e	eye	2-3
+# ::node	l	lens	3-4
+# ::node	s	show-01	4-5
+# ::node	s3	snow	6-7
+# ::node	p	person	7-8
+# ::node	b	board-05	7-8
+# ::node	f3	fly-01	8-9
+# ::node	d	down	9-10
+# ::node	s2	slope	11-12
+# ::node	h	have-03	12-13
+# ::node	s4	sun	14-15
+# ::node	f2	flare-up-01	15-16
+# ::node	u	under	16-17
+# ::node	a	arm	18-19
+# ::root	s	show-01
+# ::edge	eye	mod	fish	e	f	
+# ::edge	lens	mod	eye	l	e	
+# ::edge	show-01	ARG0	lens	s	l	
+# ::edge	show-01	ARG1	person	s	p	
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	board-05	ARG1	snow	b	s3	
+# ::edge	person	ARG0-of	fly-01	p	f3	
+# ::edge	fly-01	direction	down	f3	d	
+# ::edge	fly-01	path	slope	f3	s2	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	flare-up-01	ARG1	sun	f2	s4	
+# ::edge	have-03	ARG1	flare-up-01	h	f2	
+# ::edge	flare-up-01	location	under	f2	u	
+# ::edge	under	op1	arm	u	a	
+# ::edge	person	part	arm	p	a	
+(s / show-01
+    :ARG0 (l / lens
+        :mod (e / eye
+            :mod (f / fish)))
+    :ARG1 (p / person
+        :ARG0-of (b / board-05
+            :ARG1 (s3 / snow))
+        :ARG0-of (f3 / fly-01
+            :direction (d / down)
+            :path (s2 / slope))
+        :ARG0-of (h / have-03
+            :ARG1 (f2 / flare-up-01
+                :ARG1 (s4 / sun)
+                :location (u / under
+                    :op1 (a / arm))))
+        :part a))

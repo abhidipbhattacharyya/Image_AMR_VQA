@@ -1,0 +1,36 @@
+# ::tok People sit around low tables eating pastries , drinking juice and coffee .
+# ::node	p2	person	0-1
+# ::node	s	sit-01	1-2
+# ::node	a2	around	2-3
+# ::node	l	low-04	3-4
+# ::node	t	table	4-5
+# ::node	e	eat-01	5-6
+# ::node	p	pastries	6-7
+# ::node	a	and	7-8
+# ::node	d	drink-01	8-9
+# ::node	j	juice	9-10
+# ::node	c	coffee	11-12
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	table	ARG1-of	low-04	t	l	
+# ::edge	around	op1	table	a2	t	
+# ::edge	eat-01	ARG0	person	e	p2	
+# ::edge	eat-01	ARG1	pastries	e	p	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	drink-01	ARG1	and	d	a	
+# ::edge	person	ARG0-of	drink-01	p2	d	
+# ::edge	and	op2	juice	a	j	
+# ::edge	and	op3	coffee	a	c	
+(s / sit-01
+    :ARG1 (p2 / person
+        :ARG0-of (d / drink-01
+            :ARG1 (a / and
+                :op1 (e / eat-01
+                    :ARG0 p2
+                    :ARG1 (p / pastries))
+                :op2 (j / juice)
+                :op3 (c / coffee))))
+    :ARG2 (a2 / around
+        :op1 (t / table
+            :ARG1-of (l / low-04))))

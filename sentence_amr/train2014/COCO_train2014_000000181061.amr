@@ -1,0 +1,31 @@
+# ::tok A stop sign is on a metal pole across the street from a tan building .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	m	metal	6-7
+# ::node	p	pole	7-8
+# ::node	a	across	8-9
+# ::node	s3	street	10-11
+# ::node	r	relative-position	11-12
+# ::node	t	tan-01	13-14
+# ::node	b2	building	14-15
+# ::root	b	be-located-at-91
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	be-located-at-91	ARG1	signal-07	b	s	
+# ::edge	pole	consist-of	metal	p	m	
+# ::edge	be-located-at-91	ARG2	pole	b	p	
+# ::edge	pole	location	across	p	a	
+# ::edge	across	op1	street	a	s3	
+# ::edge	street	location	relative-position	s3	r	
+# ::edge	building	ARG1-of	tan-01	b2	t	
+# ::edge	relative-position	op1	building	r	b2	
+(b / be-located-at-91
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG2 (p / pole
+        :consist-of (m / metal)
+        :location (a / across
+            :op1 (s3 / street
+                :location (r / relative-position
+                    :op1 (b2 / building
+                        :ARG1-of (t / tan-01)))))))

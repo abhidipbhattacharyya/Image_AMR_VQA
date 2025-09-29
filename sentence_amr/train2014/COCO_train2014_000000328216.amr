@@ -1,0 +1,25 @@
+# ::tok A group of people on a motorcyle waiting for a train to pass over a road .
+# ::node	g	group	1-2
+# ::node	p2	person	3-4
+# ::node	m	motorcycle	6-7
+# ::node	w	wait-01	7-8
+# ::node	t	train	10-11
+# ::node	p	pass-03	12-13
+# ::node	o	over	13-14
+# ::node	r	road	15-16
+# ::root	w	wait-01
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	wait-01	ARG1	motorcycle	w	m	
+# ::edge	pass-03	ARG1	train	p	t	
+# ::edge	wait-01	ARG2	pass-03	w	p	
+# ::edge	pass-03	path	over	p	o	
+# ::edge	over	op1	road	o	r	
+# ::edge	wait-01	rel	group	w	g	
+(w / wait-01
+    :ARG1 (m / motorcycle)
+    :ARG2 (p / pass-03
+        :ARG1 (t / train)
+        :path (o / over
+            :op1 (r / road)))
+    :rel (g / group
+        :consist-of (p2 / person)))

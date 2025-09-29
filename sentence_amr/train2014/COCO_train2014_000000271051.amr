@@ -1,0 +1,34 @@
+# ::tok A room with three beds and luggage on the floor and a backpack on one of the beds .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	1	3	3-4
+# ::node	b2	bed	4-5
+# ::node	a	and	5-6
+# ::node	l	luggage	6-7
+# ::node	f	floor	9-10
+# ::node	b	backpack	12-13
+# ::node	0	1	14-15
+# ::node	i	include-91	15-16
+# ::node	b3	bed	17-18
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	quant	3	b2	1	
+# ::edge	and	op1	bed	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	luggage	a	l	
+# ::edge	luggage	location	floor	l	f	
+# ::edge	and	op3	backpack	a	b	
+# ::edge	include-91	ARG2	1	i	0	
+# ::edge	bed	ARG1-of	include-91	b3	i	
+# ::edge	backpack	location	bed	b	b3	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b2 / bed
+                :quant 3)
+            :op2 (l / luggage
+                :location (f / floor))
+            :op3 (b / backpack
+                :location (b3 / bed
+                    :ARG1-of (i / include-91
+                        :ARG2 1))))))

@@ -1,0 +1,30 @@
+# ::tok A baby in a tie and a matching diaper sleeping in a blanket on the grass .
+# ::node	b	baby	1-2
+# ::node	w	wear-01	2-3
+# ::node	t	tie	4-5
+# ::node	a	and	5-6
+# ::node	m	match-01	7-8
+# ::node	d	diaper	8-9
+# ::node	s	sleep-01	9-10
+# ::node	b2	blanket	12-13
+# ::node	g	grass	15-16
+# ::root	s	sleep-01
+# ::edge	baby	ARG0-of	wear-01	b	w	
+# ::edge	and	op1	tie	a	t	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	match-01	ARG2	tie	m	t	
+# ::edge	diaper	ARG1-of	match-01	d	m	
+# ::edge	and	op2	diaper	a	d	
+# ::edge	sleep-01	ARG0	baby	s	b	
+# ::edge	sleep-01	location	blanket	s	b2	
+# ::edge	sleep-01	location	grass	s	g	
+(s / sleep-01
+    :ARG0 (b / baby
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (t / tie)
+                :op2 (d / diaper
+                    :ARG1-of (m / match-01
+                        :ARG2 t)))))
+    :location (b2 / blanket)
+    :location (g / grass))

@@ -1,0 +1,36 @@
+# ::tok Union Pacific train engine pulling railroad cars along the train tracks .
+# ::node	n	name	0-1
+# ::node	1	Union	0-1
+# ::node	c2	company	1-2
+# ::node	0	Pacific	1-2
+# ::node	t2	train	2-3
+# ::node	e	engine	3-4
+# ::node	p	pull-01	4-5
+# ::node	r	railroad	5-6
+# ::node	c	car	6-7
+# ::node	a	along	7-8
+# ::node	t	track	10-11
+# ::root	p	pull-01
+# ::edge	name	op1	Union	n	1	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op2	Pacific	n	0	
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	engine	mod	company	e	c2	
+# ::edge	pull-01	ARG0	engine	p	e	
+# ::edge	car	mod	railroad	c	r	
+# ::edge	pull-01	ARG1	car	p	c	
+# ::edge	pull-01	path	along	p	a	
+# ::edge	along	op1	track	a	t	
+# ::edge	track	mod	train	t	t2	
+(p / pull-01
+    :ARG0 (e / engine
+        :mod (c2 / company
+            :name (n / name
+                :op1 "Union"
+                :op2 "Pacific"))
+        :part-of (t2 / train))
+    :ARG1 (c / car
+        :mod (r / railroad))
+    :path (a / along
+        :op1 (t / track
+            :mod t2)))

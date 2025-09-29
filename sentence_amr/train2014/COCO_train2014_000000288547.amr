@@ -1,0 +1,46 @@
+# ::tok The back end of an SUV with a bumper sticker that reads " THE TRUTH IS OUT THERE INFOWARS . COM " .
+# ::node	b	back	1-2
+# ::node	e	end	2-3
+# ::node	v	vehicle	5-6
+# ::node	n	name	5-6
+# ::node	2	SUV	5-6
+# ::node	b3	bumper	8-9
+# ::node	s	sticker	9-10
+# ::node	r	read-01	11-12
+# ::node	t	true-01	14-15
+# ::node	b2	be-located-at-91	16-17
+# ::node	o	out-there	17-18
+# ::node	u	url-entity	20-21
+# ::node	0	-	20-21
+# ::node	1	Arabia	20-21
+# ::node	a	and	22-23
+# ::root	a	and
+# ::edge	end	mod	back	e	b	
+# ::edge	end	part-of	vehicle	e	v	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	SUV	n	2	
+# ::edge	sticker	location	bumper	s	b3	
+# ::edge	end	part	sticker	e	s	
+# ::edge	sticker	ARG0-of	read-01	s	r	
+# ::edge	be-located-at-91	ARG1	true-01	b2	t	
+# ::edge	read-01	ARG1	be-located-at-91	r	b2	
+# ::edge	be-located-at-91	ARG2	out-there	b2	o	
+# ::edge	be-located-at-91	ARG4	url-entity	b2	u	
+# ::edge	url-entity	polarity	-	u	0	
+# ::edge	url-entity	value	Arabia	u	1	
+# ::edge	and	op1	end	a	e	
+(a / and
+    :op1 (e / end
+        :mod (b / back)
+        :part (s / sticker
+            :ARG0-of (r / read-01
+                :ARG1 (b2 / be-located-at-91
+                    :ARG1 (t / true-01)
+                    :ARG2 (o / out-there)
+                    :ARG4 (u / url-entity
+                        :polarity -
+                        :value "Arabia")))
+            :location (b3 / bumper))
+        :part-of (v / vehicle
+            :name (n / name
+                :op1 "SUV"))))

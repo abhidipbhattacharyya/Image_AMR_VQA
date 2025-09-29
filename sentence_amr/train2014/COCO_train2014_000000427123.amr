@@ -1,0 +1,46 @@
+# ::tok Three people in formal military uniforms , two are wearing medals around their necks .
+# ::node	1	3	0-1
+# ::node	p	person	1-2
+# ::node	p2	person	1-2
+# ::node	f	formal	3-4
+# ::node	m2	military	4-5
+# ::node	u	uniform-01	5-6
+# ::node	u2	uniform-01	5-6
+# ::node	a	and	6-7
+# ::node	0	2	7-8
+# ::node	w	wear-01	9-10
+# ::node	m	medal	10-11
+# ::node	a2	around	11-12
+# ::node	n	neck	13-14
+# ::root	a	and
+# ::edge	person	quant	3	p	1	
+# ::edge	uniform-01	ARG2	military	u	m2	
+# ::edge	uniform-01	mod	formal	u	f	
+# ::edge	uniform-01	ARG1	person	u	p	
+# ::edge	uniform-01	ARG1	person	u2	p2	
+# ::edge	and	op1	uniform-01	a	u	
+# ::edge	and	op2	uniform-01	a	u2	
+# ::edge	person	quant	2	p2	0	
+# ::edge	and	op3	wear-01	a	w	
+# ::edge	wear-01	ARG1	person	w	p2	
+# ::edge	wear-01	ARG0	person	w	p2	
+# ::edge	uniform-01	ARG1	medal	u2	m	
+# ::edge	medal	location	around	m	a2	
+# ::edge	around	op1	neck	a2	n	
+# ::edge	person	part	neck	p	n	
+(a / and
+    :op1 (u / uniform-01
+        :ARG1 (p / person
+            :quant 3
+            :part (n / neck))
+        :ARG2 (m2 / military)
+        :mod (f / formal))
+    :op2 (u2 / uniform-01
+        :ARG1 (p2 / person
+            :quant 2)
+        :ARG1 (m / medal
+            :location (a2 / around
+                :op1 n)))
+    :op3 (w / wear-01
+        :ARG0 p2
+        :ARG1 p2))

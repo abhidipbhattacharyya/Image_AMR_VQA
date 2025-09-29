@@ -1,0 +1,47 @@
+# ::tok Lady with whole pizza in front of her with knife and fork in hand and a glass of red wine .
+# ::node	l	lady	0-1
+# ::node	w	whole	2-3
+# ::node	p	pizza	3-4
+# ::node	i	in-front-of	5-6
+# ::node	k	knife	9-10
+# ::node	a	and	10-11
+# ::node	f	fork	11-12
+# ::node	h	hand	13-14
+# ::node	a2	and	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	0	1	15-16
+# ::node	g	glass	16-17
+# ::node	r	red-02	18-19
+# ::node	w2	wine	19-20
+# ::root	l	lady
+# ::edge	pizza	quant	whole	p	w	
+# ::edge	pizza	location	in-front-of	p	i	
+# ::edge	in-front-of	op1	lady	i	l	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	and	op2	fork	a	f	
+# ::edge	and	manner	hand	a	h	
+# ::edge	lady	part	hand	l	h	
+# ::edge	and	op1	and	a2	a	
+# ::edge	lady	manner	and	l	a2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	ARG1-of	red-02	w2	r	
+# ::edge	wine	quant	volume-quantity	w2	v	
+# ::edge	and	op2	wine	a2	w2	
+# ::edge	lady	rel	knife	l	k	
+(l / lady
+    :manner (a2 / and
+        :op1 (a / and
+            :manner (h / hand)
+            :op1 (p / pizza
+                :quant (w / whole)
+                :location (i / in-front-of
+                    :op1 l))
+            :op2 (f / fork))
+        :op2 (w2 / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :ARG1-of (r / red-02)))
+    :part h
+    :rel (k / knife))

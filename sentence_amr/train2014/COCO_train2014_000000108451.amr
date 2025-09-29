@@ -1,0 +1,25 @@
+# ::tok A batter in a stadium waits for the next pitch , bat ready .
+# ::node	p	person	1-2
+# ::node	b2	batter-01	1-2
+# ::node	s	stadium	4-5
+# ::node	w	wait-01	5-6
+# ::node	n	next	8-9
+# ::node	p2	pitch	9-10
+# ::node	b	bat	11-12
+# ::node	r	ready-02	12-13
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	wait-01	location	stadium	w	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	pitch	mod	next	p2	n	
+# ::edge	wait-01	ARG2	pitch	w	p2	
+# ::edge	ready-02	ARG2	bat	r	b	
+# ::edge	person	ARG1-of	ready-02	p	r	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (b2 / batter-01)
+        :ARG1-of (r / ready-02
+            :ARG2 (b / bat)))
+    :ARG2 (p2 / pitch
+        :mod (n / next))
+    :location (s / stadium))

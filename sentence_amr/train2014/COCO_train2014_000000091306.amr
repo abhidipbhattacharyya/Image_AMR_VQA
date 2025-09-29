@@ -1,0 +1,38 @@
+# ::tok Some pipes leaking and spraying out water onto the ground with colors reflecting off the surface .
+# ::node	s	some	0-1
+# ::node	p	pipe	1-2
+# ::node	l	leak-01	2-3
+# ::node	a	and	3-4
+# ::node	s2	spray-01	4-5
+# ::node	w	water	6-7
+# ::node	g	ground	9-10
+# ::node	c	color	11-12
+# ::node	r	reflect-01	12-13
+# ::node	o	off	13-14
+# ::node	s3	surface	15-16
+# ::root	a	and
+# ::edge	pipe	quant	some	p	s	
+# ::edge	leak-01	ARG0	pipe	l	p	
+# ::edge	and	op1	leak-01	a	l	
+# ::edge	and	op2	spray-01	a	s2	
+# ::edge	spray-01	ARG0	pipe	s2	p	
+# ::edge	spray-01	ARG1	water	s2	w	
+# ::edge	leak-01	ARG1	water	l	w	
+# ::edge	spray-01	ARG2	ground	s2	g	
+# ::edge	reflect-01	ARG1	color	r	c	
+# ::edge	and	ARG2-of	reflect-01	a	r	
+# ::edge	reflect-01	direction	off	r	o	
+# ::edge	off	op1	surface	o	s3	
+(a / and
+    :ARG2-of (r / reflect-01
+        :ARG1 (c / color)
+        :direction (o / off
+            :op1 (s3 / surface)))
+    :op1 (l / leak-01
+        :ARG0 (p / pipe
+            :quant (s / some))
+        :ARG1 (w / water))
+    :op2 (s2 / spray-01
+        :ARG0 p
+        :ARG1 w
+        :ARG2 (g / ground)))

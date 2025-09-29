@@ -1,0 +1,24 @@
+# ::tok The sign reminds people to stay of the train tracks for safety .
+# ::node	s2	sign	1-2
+# ::node	r	remind-01	2-3
+# ::node	p	person	3-4
+# ::node	s3	stay-01	5-6
+# ::node	t2	train	8-9
+# ::node	t	track	9-10
+# ::node	s	safe-01	11-12
+# ::root	r	remind-01
+# ::edge	remind-01	ARG0	sign	r	s2	
+# ::edge	remind-01	ARG2	person	r	p	
+# ::edge	stay-01	ARG1	person	s3	p	
+# ::edge	remind-01	ARG1	stay-01	r	s3	
+# ::edge	track	mod	train	t	t2	
+# ::edge	stay-01	ARG3	track	s3	t	
+# ::edge	stay-01	purpose	safe-01	s3	s	
+(r / remind-01
+    :ARG0 (s2 / sign)
+    :ARG1 (s3 / stay-01
+        :purpose (s / safe-01)
+        :ARG1 (p / person)
+        :ARG3 (t / track
+            :mod (t2 / train)))
+    :ARG2 p)

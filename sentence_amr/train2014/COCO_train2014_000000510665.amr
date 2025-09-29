@@ -1,0 +1,25 @@
+# ::tok Man standing on roadway next to commuter bus in urban area .
+# ::node	m	man	0-1
+# ::node	s	stand-01	1-2
+# ::node	r	roadway	3-4
+# ::node	n	next-to	4-5
+# ::node	c	commute-01	6-7
+# ::node	b	bus	7-8
+# ::node	u	urban	9-10
+# ::node	a	area	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	roadway	s	r	
+# ::edge	roadway	location-of	next-to	r	n	
+# ::edge	bus	ARG0-of	commute-01	b	c	
+# ::edge	next-to	op1	bus	n	b	
+# ::edge	area	mod	urban	a	u	
+# ::edge	stand-01	location	area	s	a	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (r / roadway
+        :location-of (n / next-to
+            :op1 (b / bus
+                :ARG0-of (c / commute-01))))
+    :location (a / area
+        :mod (u / urban)))

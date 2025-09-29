@@ -1,0 +1,46 @@
+# ::tok Two people in a living room , one standing up while playing a video game using a remote .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	l	living	4-5
+# ::node	r2	room	5-6
+# ::node	i	include-91	7-8
+# ::node	a	1	7-8
+# ::node	s	stand-up-07	8-9
+# ::node	p2	play-01	11-12
+# ::node	v	video	13-14
+# ::node	g	game	14-15
+# ::node	u	use-01	15-16
+# ::node	r	remote	17-18
+# ::root	b	be-located-at-91
+# ::edge	person	quant	2	p	0	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	room	mod	living	r2	l	
+# ::edge	be-located-at-91	ARG2	room	b	r2	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	stand-up-07	ARG1	1	s	a	
+# ::edge	play-01	manner	stand-up-07	p2	s	
+# ::edge	1	ARG1	play-01	a	p2	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	game	mod	video	g	v	
+# ::edge	play-01	ARG1	game	p2	g	
+# ::edge	game	ARG2-of	use-01	g	u	
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	use-01	ARG1	remote	u	r	
+# ::edge	be-located-at-91	rel	1	b	a	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :quant 2
+        :ARG2-of (i / include-91))
+    :ARG2 (r2 / room
+        :mod (l / living))
+    :rel (a / 1
+        :ARG1 (p2 / play-01
+            :ARG0 p
+            :ARG1 (g / game
+                :ARG2-of (u / use-01
+                    :ARG0 p
+                    :ARG1 (r / remote))
+                :mod (v / video))
+            :manner (s / stand-up-07
+                :ARG1 a))))

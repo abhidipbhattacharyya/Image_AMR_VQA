@@ -1,0 +1,25 @@
+# ::tok A person rides a buggy pulled by a single horse in an indoor environment .
+# ::node	p	person	1-2
+# ::node	r	ride-01	2-3
+# ::node	b	buggy	4-5
+# ::node	p2	pull-01	5-6
+# ::node	s	single-02	8-9
+# ::node	h	horse	9-10
+# ::node	i	indoor	12-13
+# ::node	e	environment	13-14
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	buggy	r	b	
+# ::edge	buggy	ARG1-of	pull-01	b	p2	
+# ::edge	horse	ARG1-of	single-02	h	s	
+# ::edge	pull-01	ARG0	horse	p2	h	
+# ::edge	environment	mod	indoor	e	i	
+# ::edge	ride-01	location	environment	r	e	
+(r / ride-01
+    :ARG0 (p / person)
+    :ARG1 (b / buggy
+        :ARG1-of (p2 / pull-01
+            :ARG0 (h / horse
+                :ARG1-of (s / single-02))))
+    :location (e / environment
+        :mod (i / indoor)))

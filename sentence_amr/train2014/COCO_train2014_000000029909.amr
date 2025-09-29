@@ -1,0 +1,27 @@
+# ::tok A person prepares to apply toothpaste to four toothbrushes simultaneously .
+# ::node	p	person	1-2
+# ::node	p2	prepare-02	2-3
+# ::node	a2	apply-01	4-5
+# ::node	t3	toothpaste	5-6
+# ::node	a	4	7-8
+# ::node	t	tooth	8-9
+# ::node	t2	tooth	8-9
+# ::node	s	simultaneous	9-10
+# ::root	p2	prepare-02
+# ::edge	prepare-02	ARG0	person	p2	p	
+# ::edge	prepare-02	ARG1	apply-01	p2	a2	
+# ::edge	apply-01	ARG0	person	a2	p	
+# ::edge	apply-01	ARG1	toothpaste	a2	t3	
+# ::edge	tooth	quant	4	t	a	
+# ::edge	apply-01	ARG2	tooth	a2	t	
+# ::edge	4	part	tooth	a	t2	
+# ::edge	apply-01	mod	simultaneous	a2	s	
+(p2 / prepare-02
+    :ARG0 (p / person)
+    :ARG1 (a2 / apply-01
+        :ARG0 p
+        :ARG1 (t3 / toothpaste)
+        :ARG2 (t / tooth
+            :quant (a / 4
+                :part (t2 / tooth)))
+        :mod (s / simultaneous)))

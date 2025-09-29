@@ -1,0 +1,43 @@
+# ::tok Street signs and a stop sign are all on one post in front of a tan building with white windows .
+# ::node	s4	street	0-1
+# ::node	s	sign	1-2
+# ::node	a2	and	2-3
+# ::node	s3	stop-01	4-5
+# ::node	s2	sign	5-6
+# ::node	a	all	7-8
+# ::node	b	be-located-at-91	8-9
+# ::node	0	1	9-10
+# ::node	p	post	10-11
+# ::node	i	in-front-of	12-13
+# ::node	t	tan-01	15-16
+# ::node	b2	building	16-17
+# ::node	w	white-03	18-19
+# ::node	w2	window	19-20
+# ::root	b	be-located-at-91
+# ::edge	sign	mod	street	s	s4	
+# ::edge	and	op1	sign	a2	s	
+# ::edge	sign	topic	stop-01	s2	s3	
+# ::edge	and	op2	sign	a2	s2	
+# ::edge	and	mod	all	a2	a	
+# ::edge	be-located-at-91	ARG1	and	b	a2	
+# ::edge	post	quant	1	p	0	
+# ::edge	be-located-at-91	ARG2	post	b	p	
+# ::edge	post	location	in-front-of	p	i	
+# ::edge	building	ARG1-of	tan-01	b2	t	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	window	ARG1-of	white-03	w2	w	
+# ::edge	building	part	window	b2	w2	
+(b / be-located-at-91
+    :ARG1 (a2 / and
+        :mod (a / all)
+        :op1 (s / sign
+            :mod (s4 / street))
+        :op2 (s2 / sign
+            :topic (s3 / stop-01)))
+    :ARG2 (p / post
+        :quant 1
+        :location (i / in-front-of
+            :op1 (b2 / building
+                :ARG1-of (t / tan-01)
+                :part (w2 / window
+                    :ARG1-of (w / white-03))))))

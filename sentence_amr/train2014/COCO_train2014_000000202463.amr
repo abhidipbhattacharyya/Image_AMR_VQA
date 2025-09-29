@@ -1,0 +1,36 @@
+# ::tok This basement toilet is filthy from years of not being cleaned .
+# ::node	t2	this	0-1
+# ::node	b	basement	1-2
+# ::node	t3	toilet	2-3
+# ::node	f	filthy	4-5
+# ::node	c	cause-01	5-6
+# ::node	m	multiple	6-7
+# ::node	t	temporal-quantity	6-7
+# ::node	y	year	6-7
+# ::node	1	1	6-7
+# ::node	0	-	8-9
+# ::node	c2	clean-01	10-11
+# ::root	f	filthy
+# ::edge	toilet	location	basement	t3	b	
+# ::edge	toilet	mod	this	t3	t2	
+# ::edge	filthy	domain	toilet	f	t3	
+# ::edge	filthy	ARG1-of	cause-01	f	c	
+# ::edge	multiple	op1	temporal-quantity	m	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	temporal-quantity	quant	1	t	1	
+# ::edge	clean-01	polarity	-	c2	0	
+# ::edge	clean-01	duration	multiple	c2	m	
+# ::edge	cause-01	ARG0	clean-01	c	c2	
+# ::edge	clean-01	ARG1	toilet	c2	t3	
+(f / filthy
+    :ARG1-of (c / cause-01
+        :ARG0 (c2 / clean-01
+            :ARG1 (t3 / toilet
+                :location (b / basement)
+                :mod (t2 / this))
+            :duration (m / multiple
+                :op1 (t / temporal-quantity
+                    :quant 1
+                    :unit (y / year)))
+            :polarity -))
+    :domain t3)

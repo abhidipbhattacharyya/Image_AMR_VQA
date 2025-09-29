@@ -1,0 +1,22 @@
+# ::tok A corner sink in a public restroom is reflected in two mirrors .
+# ::node	c	corner	1-2
+# ::node	s	sink	2-3
+# ::node	p	public-02	5-6
+# ::node	r2	restroom	6-7
+# ::node	r	reflect-01	8-9
+# ::node	0	2	10-11
+# ::node	m	mirror	11-12
+# ::root	r	reflect-01
+# ::edge	sink	mod	corner	s	c	
+# ::edge	restroom	ARG1-of	public-02	r2	p	
+# ::edge	sink	location	restroom	s	r2	
+# ::edge	reflect-01	ARG1	sink	r	s	
+# ::edge	mirror	quant	2	m	0	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+(r / reflect-01
+    :ARG1 (s / sink
+        :location (r2 / restroom
+            :ARG1-of (p / public-02))
+        :mod (c / corner))
+    :ARG2 (m / mirror
+        :quant 2))

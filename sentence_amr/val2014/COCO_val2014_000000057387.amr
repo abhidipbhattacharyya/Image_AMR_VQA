@@ -1,0 +1,30 @@
+# ::tok A female tennis player waiting for the ball to come down for the serve .
+# ::node	f	female	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	w	wait-01	4-5
+# ::node	b	ball	7-8
+# ::node	c	come-01	9-10
+# ::node	d	down	10-11
+# ::node	s	serve-02	13-14
+# ::root	w	wait-01
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	come-01	ARG1	ball	c	b	
+# ::edge	wait-01	ARG2	come-01	w	c	
+# ::edge	come-01	ARG4	down	c	d	
+# ::edge	come-01	purpose	serve-02	c	s	
+# ::edge	serve-02	ARG0	person	s	p	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis))
+        :mod (f / female))
+    :ARG2 (c / come-01
+        :purpose (s / serve-02
+            :ARG0 p)
+        :ARG1 (b / ball)
+        :ARG4 (d / down)))

@@ -1,0 +1,34 @@
+# ::tok Very long train running down a rail way over a half mile long .
+# ::node	v	very	0-1
+# ::node	l	long-03	1-2
+# ::node	t	train	2-3
+# ::node	r2	run-04	3-4
+# ::node	d2	down	4-5
+# ::node	r	rail	6-7
+# ::node	o	over	8-9
+# ::node	0	1/2	10-11
+# ::node	d	distance-quantity	11-12
+# ::node	m	mile	11-12
+# ::node	l2	long-03	12-13
+# ::root	r2	run-04
+# ::edge	long-03	degree	very	l	v	
+# ::edge	train	ARG1-of	long-03	t	l	
+# ::edge	run-04	ARG1	train	r2	t	
+# ::edge	run-04	direction	down	r2	d2	
+# ::edge	run-04	path	rail	r2	r	
+# ::edge	distance-quantity	quant	1/2	d	0	
+# ::edge	over	op1	distance-quantity	o	d	
+# ::edge	distance-quantity	unit	mile	d	m	
+# ::edge	long-03	ARG2	over	l2	o	
+# ::edge	train	ARG1-of	long-03	t	l2	
+(r2 / run-04
+    :ARG1 (t / train
+        :ARG1-of (l / long-03
+            :degree (v / very))
+        :ARG1-of (l2 / long-03
+            :ARG2 (o / over
+                :op1 (d / distance-quantity
+                    :quant "1/2"
+                    :unit (m / mile)))))
+    :direction (d2 / down)
+    :path (r / rail))

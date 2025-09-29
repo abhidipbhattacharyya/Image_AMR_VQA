@@ -1,0 +1,22 @@
+# ::tok Some traffic riding through an intersection with more than four streets .
+# ::node	s	some	0-1
+# ::node	t	traffic	1-2
+# ::node	r	ride-01	2-3
+# ::node	i	intersect-01	5-6
+# ::node	m	more-than	7-8
+# ::node	0	4	9-10
+# ::node	s2	street	10-11
+# ::root	r	ride-01
+# ::edge	traffic	quant	some	t	s	
+# ::edge	ride-01	ARG0	traffic	r	t	
+# ::edge	ride-01	path	intersect-01	r	i	
+# ::edge	more-than	op1	4	m	0	
+# ::edge	street	quant	more-than	s2	m	
+# ::edge	intersect-01	ARG1	street	i	s2	
+(r / ride-01
+    :ARG0 (t / traffic
+        :quant (s / some))
+    :path (i / intersect-01
+        :ARG1 (s2 / street
+            :quant (m / more-than
+                :op1 4))))

@@ -1,0 +1,39 @@
+# ::tok Each of the trio of urinals are equally capable of holding tremendous amounts of human urine .
+# ::node	e	each	0-1
+# ::node	i	include-91	1-2
+# ::node	t2	trio	3-4
+# ::node	u	urinal	5-6
+# ::node	u2	urinal	5-6
+# ::node	e2	equal-01	7-8
+# ::node	c	capable-01	8-9
+# ::node	h	hold-01	10-11
+# ::node	t	tremendous	11-12
+# ::node	a	amount	12-13
+# ::node	h2	human	14-15
+# ::node	u3	urine	15-16
+# ::root	c	capable-01
+# ::edge	include-91	ARG2	trio	i	t2	
+# ::edge	urinal	ARG1-of	include-91	u	i	
+# ::edge	urinal	mod	each	u	e	
+# ::edge	trio	consist-of	urinal	t2	u2	
+# ::edge	capable-01	ARG1-of	equal-01	c	e2	
+# ::edge	capable-01	ARG1	urinal	c	u	
+# ::edge	capable-01	ARG2	hold-01	c	h	
+# ::edge	hold-01	ARG0	urinal	h	u	
+# ::edge	amount	mod	tremendous	a	t	
+# ::edge	urine	part-of	human	u3	h2	
+# ::edge	urine	quant	amount	u3	a	
+# ::edge	hold-01	ARG1	urine	h	u3	
+(c / capable-01
+    :ARG1 (u / urinal
+        :ARG1-of (i / include-91
+            :ARG2 (t2 / trio
+                :consist-of (u2 / urinal)))
+        :mod (e / each))
+    :ARG1-of (e2 / equal-01)
+    :ARG2 (h / hold-01
+        :ARG0 u
+        :ARG1 (u3 / urine
+            :quant (a / amount
+                :mod (t / tremendous))
+            :part-of (h2 / human))))

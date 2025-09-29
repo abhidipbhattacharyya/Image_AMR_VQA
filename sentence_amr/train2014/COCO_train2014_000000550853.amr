@@ -1,0 +1,24 @@
+# ::tok Side of a street , where there is a fire hydrant and a mirror showing the street .
+# ::node	s2	side	0-1
+# ::node	s3	street	3-4
+# ::node	f	fire	9-10
+# ::node	h	hydrant	10-11
+# ::node	a	and	11-12
+# ::node	m	mirror	13-14
+# ::node	s	show-01	14-15
+# ::root	s2	side
+# ::edge	side	part-of	street	s2	s3	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	and	op1	hydrant	a	h	
+# ::edge	side	location-of	and	s2	a	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	mirror	ARG0-of	show-01	m	s	
+# ::edge	show-01	ARG1	street	s	s3	
+(s2 / side
+    :location-of (a / and
+        :op1 (h / hydrant
+            :mod (f / fire))
+        :op2 (m / mirror
+            :ARG0-of (s / show-01
+                :ARG1 (s3 / street))))
+    :part-of s3)

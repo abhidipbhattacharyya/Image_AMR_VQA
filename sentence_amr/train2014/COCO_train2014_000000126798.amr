@@ -1,0 +1,49 @@
+# ::tok A baseball player swings for a hit on the field as several of his team mates watch him .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	s2	swing-02	3-4
+# ::node	h2	hit-01	6-7
+# ::node	f	field	9-10
+# ::node	s	several	11-12
+# ::node	i	include-91	12-13
+# ::node	t	team	14-15
+# ::node	p2	person	15-16
+# ::node	p3	person	15-16
+# ::node	h	have-rel-role-91	15-16
+# ::node	m	mate	15-16
+# ::node	w	watch-01	16-17
+# ::root	s2	swing-02
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	swing-02	ARG0	person	s2	p	
+# ::edge	swing-02	purpose	hit-01	s2	h2	
+# ::edge	hit-01	ARG0	person	h2	p	
+# ::edge	hit-01	location	field	h2	f	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	person	quant	several	p2	s	
+# ::edge	include-91	ARG2	person	i	p3	
+# ::edge	person	ARG0-of	have-rel-role-91	p3	h	
+# ::edge	have-rel-role-91	ARG1	person	h	p	
+# ::edge	have-rel-role-91	ARG2	mate	h	m	
+# ::edge	mate	mod	team	m	t	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	swing-02	time	watch-01	s2	w	
+# ::edge	watch-01	ARG1	person	w	p	
+(s2 / swing-02
+    :purpose (h2 / hit-01
+        :ARG0 (p / person
+            :ARG0-of (p4 / play-01
+                :ARG1 (b / baseball)))
+        :location (f / field))
+    :ARG0 p
+    :time (w / watch-01
+        :ARG0 (p2 / person
+            :quant (s / several)
+            :ARG1-of (i / include-91
+                :ARG2 (p3 / person
+                    :ARG0-of (h / have-rel-role-91
+                        :ARG1 p
+                        :ARG2 (m / mate
+                            :mod (t / team))))))
+        :ARG1 p))

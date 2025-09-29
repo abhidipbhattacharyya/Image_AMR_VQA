@@ -1,0 +1,33 @@
+# ::tok Banana stands with bananas hanging yellow and green and people looking around .
+# ::node	b	ban-01	0-1
+# ::node	s	stand-01	1-2
+# ::node	b2	banana	3-4
+# ::node	h	hang-01	4-5
+# ::node	y	yellow-02	5-6
+# ::node	a	and	6-7
+# ::node	g	green-02	7-8
+# ::node	p	person	9-10
+# ::node	l	look-01	10-11
+# ::node	a2	around	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	ban-01	s	b	
+# ::edge	stand-01	ARG1	banana	s	b2	
+# ::edge	banana	ARG0-of	ban-01	b2	b	
+# ::edge	banana	ARG1-of	hang-01	b2	h	
+# ::edge	and	op1	yellow-02	a	y	
+# ::edge	hang-01	ARG2	and	h	a	
+# ::edge	and	op2	green-02	a	g	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	stand-01	mod	look-01	s	l	
+# ::edge	look-01	ARG1	around	l	a2	
+(s / stand-01
+    :ARG1 (b / ban-01)
+    :ARG1 (b2 / banana
+        :ARG0-of b
+        :ARG1-of (h / hang-01
+            :ARG2 (a / and
+                :op1 (y / yellow-02)
+                :op2 (g / green-02))))
+    :mod (l / look-01
+        :ARG0 (p / person)
+        :ARG1 (a2 / around)))

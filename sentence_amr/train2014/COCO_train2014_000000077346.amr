@@ -1,0 +1,31 @@
+# ::tok A picture of a wooden hedge hog clock with a price tag of twelve dollars .
+# ::node	p	picture	1-2
+# ::node	w	wood	4-5
+# ::node	h	hedge	5-6
+# ::node	h2	hog	6-7
+# ::node	c	clock	7-8
+# ::node	p2	price-01	10-11
+# ::node	t	tag-01	11-12
+# ::node	0	12	13-14
+# ::node	m	monetary-quantity	14-15
+# ::node	d	dollar	14-15
+# ::root	p	picture
+# ::edge	hog	mod	hedge	h2	h	
+# ::edge	clock	mod	hog	c	h2	
+# ::edge	clock	mod	wood	c	w	
+# ::edge	picture	topic	clock	p	c	
+# ::edge	clock	ARG1-of	price-01	c	p2	
+# ::edge	price-01	ARG2-of	tag-01	p2	t	
+# ::edge	monetary-quantity	quant	12	m	0	
+# ::edge	tag-01	ARG1	monetary-quantity	t	m	
+# ::edge	monetary-quantity	unit	dollar	m	d	
+(p / picture
+    :topic (c / clock
+        :ARG1-of (p2 / price-01
+            :ARG2-of (t / tag-01
+                :ARG1 (m / monetary-quantity
+                    :quant 12
+                    :unit (d / dollar))))
+        :mod (h2 / hog
+            :mod (h / hedge))
+        :mod (w / wood)))

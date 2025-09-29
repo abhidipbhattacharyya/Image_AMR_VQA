@@ -1,0 +1,25 @@
+# ::tok A stop sign on a road with another stop sign in the background .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	r	road	5-6
+# ::node	h	have-03	6-7
+# ::node	a	another	7-8
+# ::node	s4	stop-01	8-9
+# ::node	s2	signal-07	9-10
+# ::node	b	background	12-13
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	signal-07	location	road	s	r	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	signal-07	mod	another	s2	a	
+# ::edge	have-03	ARG1	signal-07	h	s2	
+# ::edge	signal-07	location	background	s2	b	
+(s / signal-07
+    :ARG1 (s3 / stop-01)
+    :location (r / road
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / signal-07
+                :ARG1 (s4 / stop-01)
+                :location (b / background)
+                :mod (a / another)))))

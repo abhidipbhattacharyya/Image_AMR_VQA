@@ -1,0 +1,31 @@
+# ::tok A busy city street with a large amount of markings in one of the lanes .
+# ::node	b	busy-01	1-2
+# ::node	c	city	2-3
+# ::node	s	street	3-4
+# ::node	l3	large	6-7
+# ::node	a	amount	7-8
+# ::node	m	mark-02	9-10
+# ::node	0	1	11-12
+# ::node	i	include-91	12-13
+# ::node	l	lane	14-15
+# ::node	l2	lane	14-15
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG1-of	busy-01	s	b	
+# ::edge	amount	mod	large	a	l3	
+# ::edge	mark-02	quant	amount	m	a	
+# ::edge	street	location-of	mark-02	s	m	
+# ::edge	lane	ARG1-of	include-91	l	i	
+# ::edge	lane	quant	1	l	0	
+# ::edge	street	location	lane	s	l	
+# ::edge	include-91	ARG2	lane	i	l2	
+(s / street
+    :ARG1-of (b / busy-01)
+    :location (l / lane
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (l2 / lane)))
+    :location-of (m / mark-02
+        :quant (a / amount
+            :mod (l3 / large)))
+    :mod (c / city))

@@ -1,0 +1,33 @@
+# ::tok A bus terminal with several parked buses and lots of people walking in front of them .
+# ::node	b	bus	1-2
+# ::node	t	terminal	2-3
+# ::node	s	several	4-5
+# ::node	p	park-01	5-6
+# ::node	b2	bus	6-7
+# ::node	a	and	7-8
+# ::node	l	lot	8-9
+# ::node	p2	person	10-11
+# ::node	w	walk-01	11-12
+# ::node	i	in-front-of	13-14
+# ::root	t	terminal
+# ::edge	terminal	mod	bus	t	b	
+# ::edge	bus	ARG1-of	park-01	b2	p	
+# ::edge	bus	quant	several	b2	s	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	terminal	location-of	and	t	a	
+# ::edge	person	quant	lot	p2	l	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	walk-01	location	in-front-of	w	i	
+# ::edge	in-front-of	op1	bus	i	b2	
+(t / terminal
+    :location-of (a / and
+        :op1 (b2 / bus
+            :quant (s / several)
+            :ARG1-of (p / park-01))
+        :op2 (p2 / person
+            :quant (l / lot)
+            :ARG0-of (w / walk-01
+                :location (i / in-front-of
+                    :op1 b2))))
+    :mod (b / bus))

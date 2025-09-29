@@ -1,0 +1,46 @@
+# ::tok Things in an Asian restaurant , including a wall menu , a clock , Styrofoam cups , and plastic bowls .
+# ::node	t	thing	0-1
+# ::node	c2	continent	3-4
+# ::node	n	name	3-4
+# ::node	0	Asia	3-4
+# ::node	r	restaurant	4-5
+# ::node	i	include-91	6-7
+# ::node	w	wall	8-9
+# ::node	m	menu	9-10
+# ::node	c	clock	12-13
+# ::node	n2	name	14-15
+# ::node	1	Styrofoam	14-15
+# ::node	c3	cup	15-16
+# ::node	a	and	17-18
+# ::node	p	plastic	18-19
+# ::node	b	bowl-01	19-20
+# ::root	t	thing
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	restaurant	mod	continent	r	c2	
+# ::edge	thing	location	restaurant	t	r	
+# ::edge	thing	ARG2-of	include-91	t	i	
+# ::edge	menu	location	wall	m	w	
+# ::edge	name	op1	Styrofoam	n2	1	
+# ::edge	cup	name	name	c3	n2	
+# ::edge	and	op3	cup	a	c3	
+# ::edge	and	op2	clock	a	c	
+# ::edge	and	op1	menu	a	m	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	bowl-01	consist-of	plastic	b	p	
+# ::edge	and	op4	bowl-01	a	b	
+(t / thing
+    :ARG2-of (i / include-91
+        :ARG1 (a / and
+            :op1 (m / menu
+                :location (w / wall))
+            :op2 (c / clock)
+            :op3 (c3 / cup
+                :name (n2 / name
+                    :op1 "Styrofoam"))
+            :op4 (b / bowl-01
+                :consist-of (p / plastic))))
+    :location (r / restaurant
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Asia"))))

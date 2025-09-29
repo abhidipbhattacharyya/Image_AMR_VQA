@@ -1,0 +1,57 @@
+# ::tok A hummingbird perched with wings spread , on a sugar water nectar feeder with plastic red flowers with yellow plastic grate centers .
+# ::node	h3	hummingbird	1-2
+# ::node	p	perch-01	2-3
+# ::node	w2	wing	4-5
+# ::node	s	spread-02	5-6
+# ::node	s2	sugar	9-10
+# ::node	w	water	10-11
+# ::node	n	nectar	11-12
+# ::node	t	thing	12-13
+# ::node	f	feed-01	12-13
+# ::node	r	red-02	15-16
+# ::node	f2	flower	16-17
+# ::node	h	have-03	17-18
+# ::node	h2	have-03	17-18
+# ::node	y	yellow-02	18-19
+# ::node	p2	plastic	19-20
+# ::node	p3	plastic	19-20
+# ::node	g	grate	20-21
+# ::node	c	center	21-22
+# ::root	p	perch-01
+# ::edge	perch-01	ARG1	hummingbird	p	h3	
+# ::edge	hummingbird	part	wing	h3	w2	
+# ::edge	wing	ARG1-of	spread-02	w2	s	
+# ::edge	water	mod	sugar	w	s2	
+# ::edge	nectar	source	water	n	w	
+# ::edge	thing	mod	nectar	t	n	
+# ::edge	perch-01	ARG2	thing	p	t	
+# ::edge	thing	ARG0-of	feed-01	t	f	
+# ::edge	flower	ARG1-of	red-02	f2	r	
+# ::edge	have-03	ARG1	flower	h	f2	
+# ::edge	thing	ARG0-of	have-03	t	h	
+# ::edge	flower	ARG0-of	have-03	f2	h2	
+# ::edge	plastic	consist-of	flower	p2	f2	
+# ::edge	have-03	ARG1	plastic	h2	p2	
+# ::edge	grate	mod	plastic	g	p3	
+# ::edge	center	mod	grate	c	g	
+# ::edge	have-03	ARG1	center	h2	c	
+# ::edge	perch-01	rel	yellow-02	p	y	
+(p / perch-01
+    :ARG1 (h3 / hummingbird
+        :part (w2 / wing
+            :ARG1-of (s / spread-02)))
+    :ARG2 (t / thing
+        :ARG0-of (f / feed-01)
+        :ARG0-of (h / have-03
+            :ARG1 (f2 / flower
+                :ARG0-of (h2 / have-03
+                    :ARG1 (p2 / plastic
+                        :consist-of f2)
+                    :ARG1 (c / center
+                        :mod (g / grate
+                            :mod (p3 / plastic))))
+                :ARG1-of (r / red-02)))
+        :mod (n / nectar
+            :source (w / water
+                :mod (s2 / sugar))))
+    :rel (y / yellow-02))

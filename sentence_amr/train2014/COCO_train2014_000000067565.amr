@@ -1,0 +1,40 @@
+# ::tok A living room with chair , coffee table , dining table , desk and laptop sitting next to a kitchen .
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	c	chair	4-5
+# ::node	c2	coffee	6-7
+# ::node	t	table	7-8
+# ::node	d2	dine-01	9-10
+# ::node	t2	table	10-11
+# ::node	d	desk	12-13
+# ::node	a	and	13-14
+# ::node	l	laptop	14-15
+# ::node	s	sit-01	15-16
+# ::node	n	next-to	16-17
+# ::node	k	kitchen	19-20
+# ::root	r	room
+# ::edge	room	mod	living	r	l2	
+# ::edge	table	mod	coffee	t	c2	
+# ::edge	table	mod	dine-01	t2	d2	
+# ::edge	and	op4	desk	a	d	
+# ::edge	and	op3	table	a	t2	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	op1	chair	a	c	
+# ::edge	and	op5	laptop	a	l	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	room	location-of	sit-01	r	s	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	kitchen	n	k	
+(r / room
+    :location-of (s / sit-01
+        :ARG1 (a / and
+            :op1 (c / chair)
+            :op2 (t / table
+                :mod (c2 / coffee))
+            :op3 (t2 / table
+                :mod (d2 / dine-01))
+            :op4 (d / desk)
+            :op5 (l / laptop))
+        :ARG2 (n / next-to
+            :op1 (k / kitchen)))
+    :mod (l2 / living))

@@ -1,0 +1,31 @@
+# ::tok A close up of a traffic light indicates a green light and a protected left turn .
+# ::node	c	close-10	1-2
+# ::node	t	traffic	5-6
+# ::node	l2	light	6-7
+# ::node	i	indicate-01	7-8
+# ::node	g	green-02	9-10
+# ::node	l3	light	10-11
+# ::node	a	and	11-12
+# ::node	p	protect-01	13-14
+# ::node	l	left-20	14-15
+# ::node	t2	turn-01	15-16
+# ::root	i	indicate-01
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	close-10	ARG1	light	c	l2	
+# ::edge	indicate-01	ARG0	close-10	i	c	
+# ::edge	light	ARG1-of	green-02	l3	g	
+# ::edge	and	op1	light	a	l3	
+# ::edge	indicate-01	ARG1	and	i	a	
+# ::edge	turn-01	ARG1-of	left-20	t2	l	
+# ::edge	turn-01	ARG1-of	protect-01	t2	p	
+# ::edge	and	op2	turn-01	a	t2	
+(i / indicate-01
+    :ARG0 (c / close-10
+        :ARG1 (l2 / light
+            :mod (t / traffic)))
+    :ARG1 (a / and
+        :op1 (l3 / light
+            :ARG1-of (g / green-02))
+        :op2 (t2 / turn-01
+            :ARG1-of (l / left-20)
+            :ARG1-of (p / protect-01))))

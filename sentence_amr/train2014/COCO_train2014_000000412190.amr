@@ -1,0 +1,37 @@
+# ::tok A kitchen sink is full of black cups and a couple of bowls and an iron is sitting on a ledge .
+# ::node	k	kitchen	1-2
+# ::node	s	sink	2-3
+# ::node	f	fill-01	4-5
+# ::node	b	black-04	6-7
+# ::node	c2	cup	7-8
+# ::node	a	and	8-9
+# ::node	c	couple	10-11
+# ::node	p	pound	12-13
+# ::node	a2	and	13-14
+# ::node	i	iron	15-16
+# ::node	s2	sit-01	17-18
+# ::node	l	ledge	20-21
+# ::root	a2	and
+# ::edge	sink	mod	kitchen	s	k	
+# ::edge	fill-01	ARG1	sink	f	s	
+# ::edge	cup	ARG1-of	black-04	c2	b	
+# ::edge	and	op1	cup	a	c2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	pound	quant	couple	p	c	
+# ::edge	and	op2	pound	a	p	
+# ::edge	and	op1	fill-01	a2	f	
+# ::edge	sit-01	ARG1	iron	s2	i	
+# ::edge	and	op2	sit-01	a2	s2	
+# ::edge	sit-01	ARG2	ledge	s2	l	
+(a2 / and
+    :op1 (f / fill-01
+        :ARG1 (s / sink
+            :mod (k / kitchen))
+        :ARG2 (a / and
+            :op1 (c2 / cup
+                :ARG1-of (b / black-04))
+            :op2 (p / pound
+                :quant (c / couple))))
+    :op2 (s2 / sit-01
+        :ARG1 (i / iron)
+        :ARG2 (l / ledge)))

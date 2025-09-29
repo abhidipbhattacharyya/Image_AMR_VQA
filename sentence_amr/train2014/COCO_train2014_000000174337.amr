@@ -1,0 +1,25 @@
+# ::tok Airliner flying low altitude against brightly lit cloudy sky .
+# ::node	a	airline	0-1
+# ::node	f	fly-01	1-2
+# ::node	l2	low-04	2-3
+# ::node	a2	altitude	3-4
+# ::node	b	bright-02	5-6
+# ::node	l	light-04	6-7
+# ::node	c	cloudy-02	7-8
+# ::node	s	sky	8-9
+# ::root	f	fly-01
+# ::edge	fly-01	ARG2	airline	f	a	
+# ::edge	altitude	ARG2-of	low-04	a2	l2	
+# ::edge	fly-01	path	altitude	f	a2	
+# ::edge	light-04	ARG1-of	bright-02	l	b	
+# ::edge	sky	ARG1-of	cloudy-02	s	c	
+# ::edge	sky	ARG1-of	light-04	s	l	
+# ::edge	fly-01	prep-against	sky	f	s	
+(f / fly-01
+    :ARG2 (a / airline)
+    :path (a2 / altitude
+        :ARG2-of (l2 / low-04))
+    :prep-against (s / sky
+        :ARG1-of (c / cloudy-02)
+        :ARG1-of (l / light-04
+            :ARG1-of (b / bright-02))))

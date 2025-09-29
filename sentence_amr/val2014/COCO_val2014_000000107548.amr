@@ -1,0 +1,31 @@
+# ::tok A fleet of small boats is moored in the water near a scattering of lobster traps markers .
+# ::node	f	fleet	1-2
+# ::node	s2	small	3-4
+# ::node	b	boat	4-5
+# ::node	m2	moor-01	6-7
+# ::node	w	water	9-10
+# ::node	n	near-02	10-11
+# ::node	s	scatter-01	12-13
+# ::node	l	lobster	14-15
+# ::node	t	trap-01	15-16
+# ::node	m	mark-02	16-17
+# ::root	m2	moor-01
+# ::edge	boat	mod	small	b	s2	
+# ::edge	fleet	consist-of	boat	f	b	
+# ::edge	moor-01	ARG1	fleet	m2	f	
+# ::edge	moor-01	ARG2	water	m2	w	
+# ::edge	moor-01	ARG1-of	near-02	m2	n	
+# ::edge	trap-01	ARG1	lobster	t	l	
+# ::edge	mark-02	ARG1	trap-01	m	t	
+# ::edge	mark-02	ARG1-of	scatter-01	m	s	
+# ::edge	near-02	ARG2	mark-02	n	m	
+(m2 / moor-01
+    :ARG1 (f / fleet
+        :consist-of (b / boat
+            :mod (s2 / small)))
+    :ARG1-of (n / near-02
+        :ARG2 (m / mark-02
+            :ARG1 (t / trap-01
+                :ARG1 (l / lobster))
+            :ARG1-of (s / scatter-01)))
+    :ARG2 (w / water))

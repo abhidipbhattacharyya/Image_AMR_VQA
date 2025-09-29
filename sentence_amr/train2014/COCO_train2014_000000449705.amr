@@ -1,0 +1,27 @@
+# ::tok A baseball player hitting a baseball while a catcher waits behind him .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	h	hit-01	3-4
+# ::node	b2	baseball	5-6
+# ::node	c	catcher	8-9
+# ::node	w	wait-01	9-10
+# ::node	b3	behind	10-11
+# ::root	h	hit-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	baseball	h	b2	
+# ::edge	wait-01	ARG1	catcher	w	c	
+# ::edge	hit-01	time	wait-01	h	w	
+# ::edge	wait-01	ARG2	behind	w	b3	
+# ::edge	behind	op1	person	b3	p	
+(h / hit-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball)))
+    :ARG1 (b2 / baseball)
+    :time (w / wait-01
+        :ARG1 (c / catcher)
+        :ARG2 (b3 / behind
+            :op1 p)))

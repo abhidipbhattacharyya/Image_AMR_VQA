@@ -1,0 +1,36 @@
+# ::tok The recipe has been baked in a terracotta bowl , producing a desirable browning of the top and crust .
+# ::node	r2	recipe	1-2
+# ::node	b	bake-01	4-5
+# ::node	t	terracotta	7-8
+# ::node	b2	bowl	8-9
+# ::node	c	cause-01	9-10
+# ::node	p	produce-01	10-11
+# ::node	d	desirable-02	12-13
+# ::node	r	Brown	13-14
+# ::node	t2	top	16-17
+# ::node	a	and	17-18
+# ::node	c2	crust	18-19
+# ::root	b	bake-01
+# ::edge	bake-01	ARG1	recipe	b	r2	
+# ::edge	bowl	mod	terracotta	b2	t	
+# ::edge	bake-01	location	bowl	b	b2	
+# ::edge	bake-01	ARG0-of	cause-01	b	c	
+# ::edge	cause-01	ARG1	produce-01	c	p	
+# ::edge	produce-01	ARG0	bake-01	p	b	
+# ::edge	Brown	ARG1-of	desirable-02	r	d	
+# ::edge	produce-01	ARG1	Brown	p	r	
+# ::edge	and	op1	top	a	t2	
+# ::edge	Brown	ARG1	and	r	a	
+# ::edge	and	op2	crust	a	c2	
+(b / bake-01
+    :ARG0-of (c / cause-01
+        :ARG1 (p / produce-01
+            :ARG0 b
+            :ARG1 (r / Brown
+                :ARG1 (a / and
+                    :op1 (t2 / top)
+                    :op2 (c2 / crust))
+                :ARG1-of (d / desirable-02))))
+    :ARG1 (r2 / recipe)
+    :location (b2 / bowl
+        :mod (t / terracotta)))

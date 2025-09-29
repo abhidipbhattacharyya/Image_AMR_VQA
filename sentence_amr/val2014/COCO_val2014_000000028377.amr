@@ -1,0 +1,50 @@
+# ::tok A narrow lane has buildings on either side and one of the buildings is yellow and another is yellow and white .
+# ::node	n	narrow-02	1-2
+# ::node	l	lane	2-3
+# ::node	h	have-03	3-4
+# ::node	b	building	4-5
+# ::node	e	either	6-7
+# ::node	s	side	7-8
+# ::node	a	and	8-9
+# ::node	0	1	9-10
+# ::node	i	include-91	10-11
+# ::node	b2	building	12-13
+# ::node	b3	building	12-13
+# ::node	y	yellow-02	14-15
+# ::node	a3	another	16-17
+# ::node	a2	and	19-20
+# ::node	w	white-03	20-21
+# ::root	a	and
+# ::edge	lane	ARG1-of	narrow-02	l	n	
+# ::edge	have-03	ARG0	lane	h	l	
+# ::edge	have-03	ARG1	building	h	b	
+# ::edge	side	mod	either	s	e	
+# ::edge	building	location	side	b	s	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	include-91	ARG2	building	i	b	
+# ::edge	building	ARG1-of	include-91	b2	i	
+# ::edge	building	quant	1	b2	0	
+# ::edge	yellow-02	ARG1	building	y	b2	
+# ::edge	and	op2	yellow-02	a	y	
+# ::edge	building	mod	another	b3	a3	
+# ::edge	and	op1	building	a2	b3	
+# ::edge	and	op3	and	a	a2	
+# ::edge	and	op2	white-03	a2	w	
+# ::edge	white-03	ARG1	building	w	b3	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (l / lane
+            :ARG1-of (n / narrow-02))
+        :ARG1 (b / building
+            :location (s / side
+                :mod (e / either))))
+    :op2 (y / yellow-02
+        :ARG1 (b2 / building
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 b)))
+    :op3 (a2 / and
+        :op1 (b3 / building
+            :mod (a3 / another))
+        :op2 (w / white-03
+            :ARG1 b3)))

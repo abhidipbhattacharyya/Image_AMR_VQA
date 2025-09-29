@@ -1,0 +1,41 @@
+# ::tok Two black animals tied to each other , one standing on a tree stump while the other is standing in the grass .
+# ::node	0	2	0-1
+# ::node	b	black-04	1-2
+# ::node	a	animal	2-3
+# ::node	a2	animal	2-3
+# ::node	a3	animal	2-3
+# ::node	t	tie-01	3-4
+# ::node	i	include-91	8-9
+# ::node	s	stand-01	9-10
+# ::node	t2	tree	12-13
+# ::node	s3	stump	13-14
+# ::node	s2	stand-01	18-19
+# ::node	g	grass	21-22
+# ::root	t	tie-01
+# ::edge	animal	ARG1-of	black-04	a	b	
+# ::edge	animal	quant	2	a	0	
+# ::edge	tie-01	ARG2	animal	t	a2	
+# ::edge	tie-01	ARG1	animal	t	a	
+# ::edge	include-91	ARG1	animal	i	a	
+# ::edge	animal	ARG2-of	include-91	a	i	
+# ::edge	animal	ARG0-of	stand-01	a2	s	
+# ::edge	stump	mod	tree	s3	t2	
+# ::edge	stand-01	ARG2	stump	s	s3	
+# ::edge	animal	time	stand-01	a3	s2	
+# ::edge	stand-01	ARG1	animal	s2	a3	
+# ::edge	stand-01	ARG2	grass	s2	g	
+# ::edge	tie-01	rel	stand-01	t	s2	
+(t / tie-01
+    :ARG1 (a / animal
+        :quant 2
+        :ARG1-of (b / black-04)
+        :ARG2-of (i / include-91
+            :ARG1 a))
+    :ARG2 (a2 / animal
+        :ARG0-of (s / stand-01
+            :ARG2 (s3 / stump
+                :mod (t2 / tree))))
+    :rel (s2 / stand-01
+        :ARG1 (a3 / animal
+            :time s2)
+        :ARG2 (g / grass)))

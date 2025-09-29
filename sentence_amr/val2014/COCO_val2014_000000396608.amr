@@ -1,0 +1,49 @@
+# ::tok Apple and banana sitting on wicker table with a cup of coffee and a glass of orange juice
+# ::node	a3	apple	0-1
+# ::node	a	and	1-2
+# ::node	b	banana	2-3
+# ::node	s	sit-01	3-4
+# ::node	w	wicker	5-6
+# ::node	t	table	6-7
+# ::node	v	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	c2	cup	9-10
+# ::node	c	coffee	11-12
+# ::node	a2	and	12-13
+# ::node	v2	volume-quantity	14-15
+# ::node	g	glass	14-15
+# ::node	1	1	14-15
+# ::node	o	orange	16-17
+# ::node	j	juice	17-18
+# ::root	s	sit-01
+# ::edge	and	op1	apple	a	a3	
+# ::edge	and	op2	banana	a	b	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	table	mod	wicker	t	w	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op1	coffee	a2	c	
+# ::edge	and	accompanier	and	a	a2	
+# ::edge	volume-quantity	unit	glass	v2	g	
+# ::edge	volume-quantity	quant	1	v2	1	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v2	
+# ::edge	and	op2	juice	a2	j	
+(s / sit-01
+    :ARG1 (a / and
+        :accompanier (a2 / and
+            :op1 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup)))
+            :op2 (j / juice
+                :quant (v2 / volume-quantity
+                    :quant 1
+                    :unit (g / glass))
+                :mod (o / orange)))
+        :op1 (a3 / apple)
+        :op2 (b / banana))
+    :ARG2 (t / table
+        :mod (w / wicker)))

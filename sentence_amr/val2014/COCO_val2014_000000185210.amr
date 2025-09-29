@@ -1,0 +1,22 @@
+# ::tok A city street with traffic caught in motion at night time .
+# ::node	c2	city	1-2
+# ::node	s	street	2-3
+# ::node	t	traffic	4-5
+# ::node	c	catch-03	5-6
+# ::node	m	motion	7-8
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::root	s	street
+# ::edge	street	mod	city	s	c2	
+# ::edge	catch-03	ARG1	traffic	c	t	
+# ::edge	street	location-of	catch-03	s	c	
+# ::edge	catch-03	ARG2	motion	c	m	
+# ::edge	catch-03	time	date-entity	c	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s / street
+    :location-of (c / catch-03
+        :ARG1 (t / traffic)
+        :ARG2 (m / motion)
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :mod (c2 / city))

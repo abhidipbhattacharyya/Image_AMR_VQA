@@ -1,0 +1,34 @@
+# ::tok powder sugar covered pastries on a plate with two cups of cocoa sitting on a table
+# ::node	p2	powder	0-1
+# ::node	s2	sugar	1-2
+# ::node	c3	cover-02	2-3
+# ::node	c2	cookie	3-4
+# ::node	p	plate	6-7
+# ::node	0	2	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	c4	cup	9-10
+# ::node	c	cocoa	11-12
+# ::node	s	sit-01	12-13
+# ::node	t	table	15-16
+# ::root	c2	cookie
+# ::edge	cover-02	ARG2	sugar	c3	s2	
+# ::edge	cookie	ARG1-of	cover-02	c2	c3	
+# ::edge	cookie	mod	powder	c2	p2	
+# ::edge	cookie	location	plate	c2	p	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	cocoa	quant	volume-quantity	c	v	
+# ::edge	sit-01	ARG1	cocoa	s	c	
+# ::edge	plate	location-of	sit-01	p	s	
+# ::edge	sit-01	ARG2	table	s	t	
+(c2 / cookie
+    :ARG1-of (c3 / cover-02
+        :ARG2 (s2 / sugar))
+    :location (p / plate
+        :location-of (s / sit-01
+            :ARG1 (c / cocoa
+                :quant (v / volume-quantity
+                    :quant 2
+                    :unit (c4 / cup)))
+            :ARG2 (t / table)))
+    :mod (p2 / powder))

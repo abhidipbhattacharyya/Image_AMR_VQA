@@ -1,0 +1,35 @@
+# ::tok Sam and Stephanie are congratulated on their engagement announcement
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Sam	0-1
+# ::node	a	and	1-2
+# ::node	p2	person	2-3
+# ::node	n2	name	2-3
+# ::node	1	Stephanie	2-3
+# ::node	c	congratulate-01	4-5
+# ::node	e	engagement-02	7-8
+# ::node	a2	announce-01	8-9
+# ::root	c	congratulate-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Sam	n	0	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	name	name	p2	n2	
+# ::edge	name	op1	Stephanie	n2	1	
+# ::edge	congratulate-01	ARG1	and	c	a	
+# ::edge	engagement-02	ARG1	person	e	p2	
+# ::edge	announce-01	ARG1	engagement-02	a2	e	
+# ::edge	congratulate-01	ARG2	announce-01	c	a2	
+# ::edge	announce-01	ARG0	and	a2	a	
+(c / congratulate-01
+    :ARG1 (a / and
+        :op1 (p / person
+            :name (n / name
+                :op1 "Sam"))
+        :op2 (p2 / person
+            :name (n2 / name
+                :op1 "Stephanie")))
+    :ARG2 (a2 / announce-01
+        :ARG0 a
+        :ARG1 (e / engagement-02
+            :ARG1 p2)))

@@ -1,0 +1,31 @@
+# ::tok Spectators enjoying remotely controlled fireworks show in evening sky .
+# ::node	p	person	0-1
+# ::node	w	watch-01	0-1
+# ::node	e	enjoy-01	1-2
+# ::node	r	remote	2-3
+# ::node	c	control-01	3-4
+# ::node	f	firework	4-5
+# ::node	s	show-04	5-6
+# ::node	d	date-entity	7-8
+# ::node	e2	evening	7-8
+# ::node	s2	sky	8-9
+# ::root	e	enjoy-01
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	enjoy-01	ARG0	person	e	p	
+# ::edge	control-01	manner	remote	c	r	
+# ::edge	show-04	ARG1	firework	s	f	
+# ::edge	show-04	ARG1-of	control-01	s	c	
+# ::edge	watch-01	ARG1	show-04	w	s	
+# ::edge	date-entity	dayperiod	evening	d	e2	
+# ::edge	sky	mod	date-entity	s2	d	
+# ::edge	show-04	location	sky	s	s2	
+(e / enjoy-01
+    :ARG0 (p / person
+        :ARG0-of (w / watch-01
+            :ARG1 (s / show-04
+                :ARG1 (f / firework)
+                :ARG1-of (c / control-01
+                    :manner (r / remote))
+                :location (s2 / sky
+                    :mod (d / date-entity
+                        :dayperiod (e2 / evening)))))))

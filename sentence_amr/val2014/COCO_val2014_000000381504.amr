@@ -1,0 +1,25 @@
+# ::tok The time is nearly 11am according to the clock at the bus station .
+# ::node	t	time	1-2
+# ::node	n	nearly	3-4
+# ::node	d	date-entity	4-5
+# ::node	0	11:00	4-5
+# ::node	s	say-01	5-6
+# ::node	c	clock	8-9
+# ::node	b	bus	11-12
+# ::node	s2	station	12-13
+# ::root	s	say-01
+# ::edge	time	time	nearly	t	n	
+# ::edge	nearly	op1	date-entity	n	d	
+# ::edge	date-entity	time	11:00	d	0	
+# ::edge	say-01	ARG1	time	s	t	
+# ::edge	say-01	ARG0	clock	s	c	
+# ::edge	station	mod	bus	s2	b	
+# ::edge	say-01	location	station	s	s2	
+(s / say-01
+    :ARG0 (c / clock)
+    :ARG1 (t / time
+        :time (n / nearly
+            :op1 (d / date-entity
+                :time "11:00")))
+    :location (s2 / station
+        :mod (b / bus)))

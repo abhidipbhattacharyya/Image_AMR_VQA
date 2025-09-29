@@ -1,0 +1,33 @@
+# ::tok Three motor cycles are sitting in the street outside a coffee house as people walk by .
+# ::node	0	3	0-1
+# ::node	m	motorcycle	1-2
+# ::node	s	sit-01	4-5
+# ::node	s2	street	7-8
+# ::node	o	outside	8-9
+# ::node	c	coffee	10-11
+# ::node	h	house	11-12
+# ::node	p	person	13-14
+# ::node	w	walk-01	14-15
+# ::node	b	by	15-16
+# ::root	s	sit-01
+# ::edge	motorcycle	quant	3	m	0	
+# ::edge	sit-01	ARG1	motorcycle	s	m	
+# ::edge	sit-01	ARG2	street	s	s2	
+# ::edge	street	location	outside	s2	o	
+# ::edge	house	mod	coffee	h	c	
+# ::edge	outside	op1	house	o	h	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	sit-01	time	walk-01	s	w	
+# ::edge	walk-01	direction	by	w	b	
+# ::edge	by	op1	street	b	s2	
+(s / sit-01
+    :ARG1 (m / motorcycle
+        :quant 3)
+    :ARG2 (s2 / street
+        :location (o / outside
+            :op1 (h / house
+                :mod (c / coffee))))
+    :time (w / walk-01
+        :ARG0 (p / person)
+        :direction (b / by
+            :op1 s2)))

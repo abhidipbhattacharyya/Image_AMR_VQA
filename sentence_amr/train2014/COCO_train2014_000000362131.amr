@@ -1,0 +1,53 @@
+# ::tok A trio of toy Imperial Stormtroopers watch is their fellow trooper does a skateboard trick .
+# ::node	t3	trio	1-2
+# ::node	t	toy	3-4
+# ::node	n	name	4-5
+# ::node	0	Imperial	4-5
+# ::node	p	person	5-6
+# ::node	h	have-org-role-91	5-6
+# ::node	m	military	5-6
+# ::node	1	Stormtroopers	5-6
+# ::node	w	watch-01	6-7
+# ::node	f	fellow	9-10
+# ::node	p2	person	10-11
+# ::node	h2	have-rel-role-91	10-11
+# ::node	t4	trooper	10-11
+# ::node	d	do-02	11-12
+# ::node	s	skate-01	13-14
+# ::node	t2	trick	14-15
+# ::root	w	watch-01
+# ::edge	name	op1	Imperial	n	0	
+# ::edge	person	mod	toy	p	t	
+# ::edge	person	quant	trio	p	t3	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	military	h	m	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op2	Stormtroopers	n	1	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h2	
+# ::edge	have-rel-role-91	ARG1	fellow	h2	f	
+# ::edge	have-rel-role-91	ARG2	trooper	h2	t4	
+# ::edge	trooper	mod	fellow	t4	f	
+# ::edge	do-02	ARG0	person	d	p2	
+# ::edge	watch-01	ARG1	do-02	w	d	
+# ::edge	skate-01	ARG0	person	s	p2	
+# ::edge	trick	mod	skate-01	t2	s	
+# ::edge	do-02	ARG1	trick	d	t2	
+(w / watch-01
+    :ARG0 (p / person
+        :quant (t3 / trio)
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (m / military
+                :name (n / name
+                    :op1 "Imperial"
+                    :op2 "Stormtroopers")))
+        :mod (t / toy))
+    :ARG1 (d / do-02
+        :ARG0 (p2 / person
+            :ARG0-of (h2 / have-rel-role-91
+                :ARG1 (f / fellow)
+                :ARG2 (t4 / trooper
+                    :mod f)))
+        :ARG1 (t2 / trick
+            :mod (s / skate-01
+                :ARG0 p2))))

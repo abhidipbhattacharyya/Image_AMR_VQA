@@ -1,0 +1,37 @@
+# ::tok The bedroom is decorated in modern style with hardwood floor , and painted walls with one having a contrasting color .
+# ::node	b	bedroom	1-2
+# ::node	d	decorate-01	3-4
+# ::node	m	modern-02	5-6
+# ::node	s	style	6-7
+# ::node	h	hardwood	8-9
+# ::node	f	floor	9-10
+# ::node	a	and	11-12
+# ::node	p	paint-01	12-13
+# ::node	w	wall	13-14
+# ::node	w2	wall	13-14
+# ::node	c2	contrast-01	18-19
+# ::node	c	color	19-20
+# ::root	d	decorate-01
+# ::edge	decorate-01	ARG1	bedroom	d	b	
+# ::edge	style	ARG1-of	modern-02	s	m	
+# ::edge	decorate-01	manner	style	d	s	
+# ::edge	floor	consist-of	hardwood	f	h	
+# ::edge	and	op1	floor	a	f	
+# ::edge	decorate-01	ARG2	and	d	a	
+# ::edge	wall	ARG1-of	paint-01	w	p	
+# ::edge	and	op2	wall	a	w	
+# ::edge	paint-01	ARG3	wall	p	w2	
+# ::edge	color	ARG1-of	contrast-01	c	c2	
+# ::edge	wall	mod	color	w2	c	
+(d / decorate-01
+    :ARG1 (b / bedroom)
+    :ARG2 (a / and
+        :op1 (f / floor
+            :consist-of (h / hardwood))
+        :op2 (w / wall
+            :ARG1-of (p / paint-01
+                :ARG3 (w2 / wall
+                    :mod (c / color
+                        :ARG1-of (c2 / contrast-01))))))
+    :manner (s / style
+        :ARG1-of (m / modern-02)))

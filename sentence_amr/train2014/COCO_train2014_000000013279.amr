@@ -1,0 +1,46 @@
+# ::tok The United States Postal Service delivers mail regardless of the weather , in this case , deep snow .
+# ::node	n	name	1-2
+# ::node	3	United	1-2
+# ::node	2	States	2-3
+# ::node	0	Postal	3-4
+# ::node	g	government-organization	4-5
+# ::node	1	Service	4-5
+# ::node	d2	deliver-01	5-6
+# ::node	m	mail	6-7
+# ::node	r	regardless-91	7-8
+# ::node	w	weather	10-11
+# ::node	t	this	13-14
+# ::node	c	case-04	14-15
+# ::node	m2	mean-01	15-16
+# ::node	d	deep-02	16-17
+# ::node	s	snow	17-18
+# ::root	d2	deliver-01
+# ::edge	name	op1	United	n	3	
+# ::edge	name	op2	States	n	2	
+# ::edge	name	op3	Postal	n	0	
+# ::edge	government-organization	name	name	g	n	
+# ::edge	name	op4	Service	n	1	
+# ::edge	deliver-01	ARG0	government-organization	d2	g	
+# ::edge	deliver-01	ARG1	mail	d2	m	
+# ::edge	deliver-01	ARG1-of	regardless-91	d2	r	
+# ::edge	regardless-91	ARG2	weather	r	w	
+# ::edge	case-04	ARG1	this	c	t	
+# ::edge	weather	ARG1-of	mean-01	w	m2	
+# ::edge	snow	ARG1-of	deep-02	s	d	
+# ::edge	mean-01	ARG2	snow	m2	s	
+# ::edge	snow	prep-in	case-04	s	c	
+(d2 / deliver-01
+    :ARG0 (g / government-organization
+        :name (n / name
+            :op1 "United"
+            :op2 "States"
+            :op3 "Postal"
+            :op4 "Service"))
+    :ARG1 (m / mail)
+    :ARG1-of (r / regardless-91
+        :ARG2 (w / weather
+            :ARG1-of (m2 / mean-01
+                :ARG2 (s / snow
+                    :ARG1-of (d / deep-02)
+                    :prep-in (c / case-04
+                        :ARG1 (t / this)))))))

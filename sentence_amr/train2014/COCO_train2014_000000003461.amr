@@ -1,0 +1,32 @@
+# ::tok Two skiers stop at the top of a hill before beginning their descent .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	s2	stop-01	2-3
+# ::node	t	top	5-6
+# ::node	h	hill	8-9
+# ::node	b	before	9-10
+# ::node	b2	begin-01	10-11
+# ::node	d	descend-01	12-13
+# ::root	s2	stop-01
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	stop-01	location	top	s2	t	
+# ::edge	top	part-of	hill	t	h	
+# ::edge	stop-01	time	before	s2	b	
+# ::edge	before	op1	begin-01	b	b2	
+# ::edge	begin-01	ARG0	person	b2	p	
+# ::edge	begin-01	ARG1	descend-01	b2	d	
+# ::edge	descend-01	ARG0	person	d	p	
+(s2 / stop-01
+    :ARG0 (p / person
+        :quant 2
+        :ARG0-of (s / ski-01))
+    :location (t / top
+        :part-of (h / hill))
+    :time (b / before
+        :op1 (b2 / begin-01
+            :ARG0 p
+            :ARG1 (d / descend-01
+                :ARG0 p))))

@@ -1,0 +1,29 @@
+# ::tok a streets intersection with some street signs and street lights and cars
+# ::node	s3	street	1-2
+# ::node	i	intersect-01	2-3
+# ::node	s2	some	4-5
+# ::node	s4	street	5-6
+# ::node	s	sign	6-7
+# ::node	a	and	7-8
+# ::node	l	light	9-10
+# ::node	c	car	11-12
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	street	i	s3	
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	quant	some	s	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	intersect-01	location-of	and	i	a	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	mod	street	l	s4	
+# ::edge	and	op3	car	a	c	
+# ::edge	car	mod	street	c	s4	
+(i / intersect-01
+    :ARG1 (s3 / street)
+    :location-of (a / and
+        :op1 (s / sign
+            :quant (s2 / some)
+            :mod (s4 / street))
+        :op2 (l / light
+            :mod s4)
+        :op3 (c / car
+            :mod s4)))

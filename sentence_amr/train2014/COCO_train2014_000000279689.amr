@@ -1,0 +1,37 @@
+# ::tok Someone did laundry and hung their wet ones around the bed to dry .
+# ::node	s	someone	0-1
+# ::node	d	do-02	1-2
+# ::node	l	laundry	2-3
+# ::node	a	and	3-4
+# ::node	h	hang-01	4-5
+# ::node	w	wet-01	6-7
+# ::node	o	one	7-8
+# ::node	a2	around	8-9
+# ::node	b	bed	10-11
+# ::node	d2	dry-up-01	12-13
+# ::root	a	and
+# ::edge	do-02	ARG0	someone	d	s	
+# ::edge	do-02	ARG1	laundry	d	l	
+# ::edge	and	op1	do-02	a	d	
+# ::edge	and	op2	hang-01	a	h	
+# ::edge	hang-01	ARG0	someone	h	s	
+# ::edge	one	ARG1-of	wet-01	o	w	
+# ::edge	hang-01	ARG1	one	h	o	
+# ::edge	one	poss	someone	o	s	
+# ::edge	hang-01	ARG2	around	h	a2	
+# ::edge	around	op1	bed	a2	b	
+# ::edge	dry-up-01	ARG1	one	d2	o	
+# ::edge	hang-01	purpose	dry-up-01	h	d2	
+(a / and
+    :op1 (d / do-02
+        :ARG0 (s / someone)
+        :ARG1 (l / laundry))
+    :op2 (h / hang-01
+        :purpose (d2 / dry-up-01
+            :ARG1 (o / one
+                :ARG1-of (w / wet-01)
+                :poss s))
+        :ARG0 s
+        :ARG1 o
+        :ARG2 (a2 / around
+            :op1 (b / bed))))

@@ -1,0 +1,56 @@
+# ::tok A man is sitting next to a computer system with two monitors , keyboard , and mouse and a desk that has many figurines and dolls atop of it
+# ::node	m	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	n	next-to	4-5
+# ::node	c	computer	7-8
+# ::node	s2	system	8-9
+# ::node	0	2	10-11
+# ::node	m3	monitor	11-12
+# ::node	k	keyboard	13-14
+# ::node	a	and	15-16
+# ::node	m4	mouse	16-17
+# ::node	d	desk	19-20
+# ::node	h	have-03	21-22
+# ::node	m2	many	22-23
+# ::node	t	toy	23-24
+# ::node	a2	and	24-25
+# ::node	d2	doll	25-26
+# ::node	a3	atop	26-27
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	system	mod	computer	s2	c	
+# ::edge	next-to	op1	system	n	s2	
+# ::edge	monitor	quant	2	m3	0	
+# ::edge	and	op2	keyboard	a	k	
+# ::edge	and	op1	monitor	a	m3	
+# ::edge	system	part	and	s2	a	
+# ::edge	and	op3	mouse	a	m4	
+# ::edge	and	op4	desk	a	d	
+# ::edge	desk	ARG0-of	have-03	d	h	
+# ::edge	toy	quant	many	t	m2	
+# ::edge	and	op1	toy	a2	t	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	doll	a2	d2	
+# ::edge	doll	quant	many	d2	m2	
+# ::edge	and	location	atop	a2	a3	
+# ::edge	atop	op1	desk	a3	d	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (n / next-to
+        :op1 (s2 / system
+            :mod (c / computer)
+            :part (a / and
+                :op1 (m3 / monitor
+                    :quant 2)
+                :op2 (k / keyboard)
+                :op3 (m4 / mouse)
+                :op4 (d / desk
+                    :ARG0-of (h / have-03
+                        :ARG1 (a2 / and
+                            :location (a3 / atop
+                                :op1 d)
+                            :op1 (t / toy
+                                :quant (m2 / many))
+                            :op2 (d2 / doll
+                                :quant m2))))))))

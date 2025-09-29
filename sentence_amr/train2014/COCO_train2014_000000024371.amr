@@ -1,0 +1,43 @@
+# ::tok A plate of fried chicken pizza and other food sits on a table next to a glass of soda .
+# ::node	p2	plate	1-2
+# ::node	f2	fry-01	3-4
+# ::node	c	chicken	4-5
+# ::node	p	pizza	5-6
+# ::node	a	and	6-7
+# ::node	o	other	7-8
+# ::node	f	food	8-9
+# ::node	s	sit-01	9-10
+# ::node	t	table	12-13
+# ::node	n	next-to	13-14
+# ::node	v	volume-quantity	15-16
+# ::node	0	1	15-16
+# ::node	g	glass	16-17
+# ::node	s2	soda	18-19
+# ::root	s	sit-01
+# ::edge	pizza	mod	chicken	p	c	
+# ::edge	pizza	ARG1-of	fry-01	p	f2	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	plate	consist-of	and	p2	a	
+# ::edge	food	mod	other	f	o	
+# ::edge	and	op2	food	a	f	
+# ::edge	sit-01	ARG1	plate	s	p2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	soda	quant	volume-quantity	s2	v	
+# ::edge	next-to	op1	soda	n	s2	
+(s / sit-01
+    :ARG1 (p2 / plate
+        :consist-of (a / and
+            :op1 (p / pizza
+                :ARG1-of (f2 / fry-01)
+                :mod (c / chicken))
+            :op2 (f / food
+                :mod (o / other))))
+    :ARG2 (t / table
+        :location-of (n / next-to
+            :op1 (s2 / soda
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))))))

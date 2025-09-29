@@ -1,0 +1,34 @@
+# ::tok A pitcher in big league baseball game has just thrown a pitch to the batter .
+# ::node	p	person	1-2
+# ::node	t	throw-01	1-2
+# ::node	b3	big	3-4
+# ::node	l	league	4-5
+# ::node	b	baseball	5-6
+# ::node	g	game	6-7
+# ::node	j	just	8-9
+# ::node	t2	throw-01	9-10
+# ::node	p3	pitch	11-12
+# ::node	p2	person	14-15
+# ::node	b2	batter-01	14-15
+# ::root	t2	throw-01
+# ::edge	person	ARG0-of	throw-01	p	t	
+# ::edge	league	mod	big	l	b3	
+# ::edge	baseball	mod	league	b	l	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	throw-01	subevent-of	game	t	g	
+# ::edge	throw-01	mod	just	t2	j	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	throw-01	ARG1	pitch	t2	p3	
+# ::edge	throw-01	ARG2	person	t2	p2	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+(t2 / throw-01
+    :ARG0 (p / person
+        :ARG0-of (t / throw-01
+            :subevent-of (g / game
+                :mod (b / baseball
+                    :mod (l / league
+                        :mod (b3 / big))))))
+    :ARG1 (p3 / pitch)
+    :ARG2 (p2 / person
+        :ARG0-of (b2 / batter-01))
+    :mod (j / just))

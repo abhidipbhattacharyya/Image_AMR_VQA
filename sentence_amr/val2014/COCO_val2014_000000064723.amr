@@ -1,0 +1,39 @@
+# ::tok A picture taken by a person on a motorcycle on the road , with a race car behind it , and a rocky terrain in the background .
+# ::node	p2	picture	1-2
+# ::node	t	take-01	2-3
+# ::node	p	person	5-6
+# ::node	m	motorcycle	8-9
+# ::node	r2	road	11-12
+# ::node	r	race-02	15-16
+# ::node	c	car	16-17
+# ::node	b2	behind	17-18
+# ::node	a	and	20-21
+# ::node	r3	rocky	22-23
+# ::node	t2	terrain	23-24
+# ::node	b	background	26-27
+# ::root	p2	picture
+# ::edge	picture	ARG1-of	take-01	p2	t	
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	motorcycle	location	road	m	r2	
+# ::edge	car	ARG0-of	race-02	c	r	
+# ::edge	car	location	behind	c	b2	
+# ::edge	behind	op1	motorcycle	b2	m	
+# ::edge	and	op2	car	a	c	
+# ::edge	and	op1	motorcycle	a	m	
+# ::edge	take-01	ARG0	and	t	a	
+# ::edge	terrain	mod	rocky	t2	r3	
+# ::edge	picture	op3	terrain	p2	t2	
+# ::edge	terrain	location	background	t2	b	
+(p2 / picture
+    :ARG1-of (t / take-01
+        :ARG0 (p / person)
+        :ARG0 (a / and
+            :op1 (m / motorcycle
+                :location (r2 / road))
+            :op2 (c / car
+                :ARG0-of (r / race-02)
+                :location (b2 / behind
+                    :op1 m))))
+    :op3 (t2 / terrain
+        :location (b / background)
+        :mod (r3 / rocky)))

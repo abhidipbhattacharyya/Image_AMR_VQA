@@ -1,0 +1,29 @@
+# ::tok A train is parked at the station and has many characters on the side of it .
+# ::node	t	train	1-2
+# ::node	p	park-01	3-4
+# ::node	s2	station	6-7
+# ::node	a	and	7-8
+# ::node	h	have-03	8-9
+# ::node	m	many	9-10
+# ::node	c	character	10-11
+# ::node	s	side	13-14
+# ::root	a	and
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	station	p	s2	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	train	h	t	
+# ::edge	character	quant	many	c	m	
+# ::edge	have-03	ARG1	character	h	c	
+# ::edge	character	location	side	c	s	
+# ::edge	train	part	side	t	s	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (t / train
+            :part (s / side))
+        :ARG2 (s2 / station))
+    :op2 (h / have-03
+        :ARG0 t
+        :ARG1 (c / character
+            :quant (m / many)
+            :location s)))

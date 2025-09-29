@@ -1,0 +1,29 @@
+# ::tok A white , plastic fork is broken as it is stabbed into a piece of pizza on a white plate .
+# ::node	w	white-03	1-2
+# ::node	p3	plastic	3-4
+# ::node	f	fork	4-5
+# ::node	b	break-01	6-7
+# ::node	s	stab-01	10-11
+# ::node	p	piece	13-14
+# ::node	p2	pizza	15-16
+# ::node	p4	plate	19-20
+# ::root	b	break-01
+# ::edge	fork	consist-of	plastic	f	p3	
+# ::edge	fork	ARG1-of	white-03	f	w	
+# ::edge	break-01	ARG1	fork	b	f	
+# ::edge	break-01	time	stab-01	b	s	
+# ::edge	stab-01	ARG1	fork	s	f	
+# ::edge	stab-01	ARG2	piece	s	p	
+# ::edge	piece	part-of	pizza	p	p2	
+# ::edge	piece	location	plate	p	p4	
+# ::edge	white-03	ARG1	plate	w	p4	
+(b / break-01
+    :ARG1 (f / fork
+        :ARG1-of (w / white-03
+            :ARG1 (p4 / plate))
+        :consist-of (p3 / plastic))
+    :time (s / stab-01
+        :ARG1 f
+        :ARG2 (p / piece
+            :location p4
+            :part-of (p2 / pizza))))

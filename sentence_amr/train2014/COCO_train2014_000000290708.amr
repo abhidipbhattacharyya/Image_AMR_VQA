@@ -1,0 +1,22 @@
+# ::tok A warplane flies on a clear day with no clouds in the sky .
+# ::node	w	warplane	1-2
+# ::node	f	fly-01	2-3
+# ::node	c	clear-08	5-6
+# ::node	d	day	6-7
+# ::node	0	-	8-9
+# ::node	c2	cloud	9-10
+# ::node	s	sky	12-13
+# ::root	f	fly-01
+# ::edge	fly-01	ARG2	warplane	f	w	
+# ::edge	day	ARG1-of	clear-08	d	c	
+# ::edge	fly-01	time	day	f	d	
+# ::edge	cloud	polarity	-	c2	0	
+# ::edge	day	time-of	cloud	d	c2	
+# ::edge	cloud	location	sky	c2	s	
+(f / fly-01
+    :ARG2 (w / warplane)
+    :time (d / day
+        :ARG1-of (c / clear-08)
+        :time-of (c2 / cloud
+            :location (s / sky)
+            :polarity -)))

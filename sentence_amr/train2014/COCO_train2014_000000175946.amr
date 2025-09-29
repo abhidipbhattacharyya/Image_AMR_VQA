@@ -1,0 +1,48 @@
+# ::tok A group of guys , girls and young kids standing around while some watch a a group of them milk a cow .
+# ::node	g2	group	1-2
+# ::node	g4	guy	3-4
+# ::node	g	girl	5-6
+# ::node	a	and	6-7
+# ::node	y	young	7-8
+# ::node	k	kid	8-9
+# ::node	s2	stand-01	9-10
+# ::node	a2	around	10-11
+# ::node	p	person	12-13
+# ::node	s	some	12-13
+# ::node	w	watch-01	13-14
+# ::node	g3	group	16-17
+# ::node	i	include-91	16-17
+# ::node	m	milk-02	19-20
+# ::node	c	cow	21-22
+# ::root	s2	stand-01
+# ::edge	and	op2	girl	a	g	
+# ::edge	and	op1	guy	a	g4	
+# ::edge	group	consist-of	and	g2	a	
+# ::edge	kid	mod	young	k	y	
+# ::edge	and	op3	kid	a	k	
+# ::edge	stand-01	ARG1	group	s2	g2	
+# ::edge	stand-01	ARG2	around	s2	a2	
+# ::edge	person	quant	some	p	s	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	stand-01	time	watch-01	s2	w	
+# ::edge	group	ARG1-of	include-91	g3	i	
+# ::edge	include-91	ARG2	group	i	g2	
+# ::edge	milk-02	ARG0	group	m	g3	
+# ::edge	watch-01	ARG1	milk-02	w	m	
+# ::edge	milk-02	ARG1	cow	m	c	
+(s2 / stand-01
+    :ARG1 (g2 / group
+        :consist-of (a / and
+            :op1 (g4 / guy)
+            :op2 (g / girl)
+            :op3 (k / kid
+                :mod (y / young))))
+    :ARG2 (a2 / around)
+    :time (w / watch-01
+        :ARG0 (p / person
+            :quant (s / some))
+        :ARG1 (m / milk-02
+            :ARG0 (g3 / group
+                :ARG1-of (i / include-91
+                    :ARG2 g2))
+            :ARG1 (c / cow))))

@@ -1,0 +1,39 @@
+# ::tok Desktop and laptop computers on a desk with a dry erase board nearby .
+# ::node	m	multiple	0-1
+# ::node	c	computer	0-1
+# ::node	a	and	1-2
+# ::node	l	laptop	2-3
+# ::node	c2	computer	3-4
+# ::node	c3	computer	3-4
+# ::node	d	desk	6-7
+# ::node	h	have-03	7-8
+# ::node	d2	dry-08	9-10
+# ::node	e	erase	10-11
+# ::node	b	board	11-12
+# ::node	n	nearby	12-13
+# ::root	a	and
+# ::edge	multiple	op1	computer	m	c	
+# ::edge	and	op1	computer	a	c2	
+# ::edge	computer	mod	computer	c2	c	
+# ::edge	computer	mod	laptop	c3	l	
+# ::edge	and	op2	computer	a	c3	
+# ::edge	and	location	desk	a	d	
+# ::edge	desk	ARG0-of	have-03	d	h	
+# ::edge	erase	ARG1-of	dry-08	e	d2	
+# ::edge	board	mod	erase	b	e	
+# ::edge	have-03	ARG1	board	h	b	
+# ::edge	board	location	nearby	b	n	
+# ::edge	and	rel	multiple	a	m	
+(a / and
+    :location (d / desk
+        :ARG0-of (h / have-03
+            :ARG1 (b / board
+                :location (n / nearby)
+                :mod (e / erase
+                    :ARG1-of (d2 / dry-08)))))
+    :op1 (c2 / computer
+        :mod (c / computer))
+    :op2 (c3 / computer
+        :mod (l / laptop))
+    :rel (m / multiple
+        :op1 c))

@@ -1,0 +1,37 @@
+# ::tok A person sitting at a restaurant table outside with half a pizza and two glasses of beer .
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	r	restaurant	5-6
+# ::node	t	table	6-7
+# ::node	o	outside	7-8
+# ::node	h	half	9-10
+# ::node	p2	pizza	11-12
+# ::node	a	and	12-13
+# ::node	0	2	13-14
+# ::node	v	volume-quantity	14-15
+# ::node	g	glasses	14-15
+# ::node	b	beer	16-17
+# ::root	p	person
+# ::edge	person	ARG1-of	sit-01	p	s	
+# ::edge	table	mod	restaurant	t	r	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location	outside	t	o	
+# ::edge	pizza	quant	half	p2	h	
+# ::edge	and	op1	pizza	a	p2	
+# ::edge	person	accompanier	and	p	a	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	glasses	v	g	
+# ::edge	beer	quant	volume-quantity	b	v	
+# ::edge	and	op2	beer	a	b	
+(p / person
+    :ARG1-of (s / sit-01
+        :ARG2 (t / table
+            :location (o / outside)
+            :mod (r / restaurant)))
+    :accompanier (a / and
+        :op1 (p2 / pizza
+            :quant (h / half))
+        :op2 (b / beer
+            :quant (v / volume-quantity
+                :quant 2
+                :unit (g / glasses)))))

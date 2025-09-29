@@ -1,0 +1,27 @@
+# ::tok They 'll probably tow your car if you do n't pay for parking .
+# ::node	t	they	0-1
+# ::node	p3	probable	2-3
+# ::node	t2	tow-01	3-4
+# ::node	y	you	4-5
+# ::node	c	car	5-6
+# ::node	0	-	9-10
+# ::node	p2	pay-01	10-11
+# ::node	p	park-01	12-13
+# ::root	t2	tow-01
+# ::edge	tow-01	mod	probable	t2	p3	
+# ::edge	tow-01	ARG0	they	t2	t	
+# ::edge	car	poss	you	c	y	
+# ::edge	tow-01	ARG1	car	t2	c	
+# ::edge	pay-01	polarity	-	p2	0	
+# ::edge	pay-01	ARG0	you	p2	y	
+# ::edge	tow-01	condition	pay-01	t2	p2	
+# ::edge	pay-01	ARG3	park-01	p2	p	
+(t2 / tow-01
+    :ARG0 (t / they)
+    :ARG1 (c / car
+        :poss (y / you))
+    :condition (p2 / pay-01
+        :ARG0 y
+        :ARG3 (p / park-01)
+        :polarity -)
+    :mod (p3 / probable))

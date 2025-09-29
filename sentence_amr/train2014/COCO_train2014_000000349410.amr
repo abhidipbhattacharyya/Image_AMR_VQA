@@ -1,0 +1,56 @@
+# ::tok A doubledecker bus on a city street has passed knot of pedestrians and is passing buildings and cars and headed towards a crosswalk and streetlight .
+# ::node	d	double-01	1-2
+# ::node	b2	bus	2-3
+# ::node	c2	city	5-6
+# ::node	s	street	6-7
+# ::node	p	pass-02	8-9
+# ::node	k	knot	9-10
+# ::node	p3	person	11-12
+# ::node	w	walk-01	11-12
+# ::node	p2	pass-03	14-15
+# ::node	b	building	15-16
+# ::node	a	and	16-17
+# ::node	c	car	17-18
+# ::node	a2	and	18-19
+# ::node	h	head-02	19-20
+# ::node	c3	cross-02	22-23
+# ::node	a3	and	23-24
+# ::node	s2	streetlight	24-25
+# ::root	a2	and
+# ::edge	bus	ARG1-of	double-01	b2	d	
+# ::edge	street	mod	city	s	c2	
+# ::edge	bus	location	street	b2	s	
+# ::edge	pass-02	ARG0	bus	p	b2	
+# ::edge	pass-02	ARG1	knot	p	k	
+# ::edge	knot	consist-of	person	k	p3	
+# ::edge	person	ARG0-of	walk-01	p3	w	
+# ::edge	pass-03	ARG1	bus	p2	b2	
+# ::edge	and	op1	building	a	b	
+# ::edge	pass-03	ARG2	and	p2	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	and	op2	pass-03	a2	p2	
+# ::edge	and	op1	pass-02	a2	p	
+# ::edge	and	op3	head-02	a2	h	
+# ::edge	head-02	ARG0	bus	h	b2	
+# ::edge	and	op1	cross-02	a3	c3	
+# ::edge	head-02	ARG1	and	h	a3	
+# ::edge	and	op2	streetlight	a3	s2	
+(a2 / and
+    :op1 (p / pass-02
+        :ARG0 (b2 / bus
+            :ARG1-of (d / double-01)
+            :location (s / street
+                :mod (c2 / city)))
+        :ARG1 (k / knot
+            :consist-of (p3 / person
+                :ARG0-of (w / walk-01))))
+    :op2 (p2 / pass-03
+        :ARG1 b2
+        :ARG2 (a / and
+            :op1 (b / building)
+            :op2 (c / car)))
+    :op3 (h / head-02
+        :ARG0 b2
+        :ARG1 (a3 / and
+            :op1 (c3 / cross-02)
+            :op2 (s2 / streetlight))))

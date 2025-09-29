@@ -1,0 +1,31 @@
+# ::tok A baseball teams stands by as the batter and catcher prepare for a pitch .
+# ::node	b	baseball	1-2
+# ::node	t	team	2-3
+# ::node	s	stand-by-05	3-4
+# ::node	p	person	7-8
+# ::node	b2	batter-01	7-8
+# ::node	a	and	8-9
+# ::node	p2	person	9-10
+# ::node	c	catch-03	9-10
+# ::node	p4	prepare-02	10-11
+# ::node	p3	pitch	13-14
+# ::root	s	stand-by-05
+# ::edge	team	mod	baseball	t	b	
+# ::edge	stand-by-05	ARG1	team	s	t	
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	catch-03	p2	c	
+# ::edge	prepare-02	ARG0	and	p4	a	
+# ::edge	stand-by-05	time	prepare-02	s	p4	
+# ::edge	prepare-02	ARG2	pitch	p4	p3	
+(s / stand-by-05
+    :ARG1 (t / team
+        :mod (b / baseball))
+    :time (p4 / prepare-02
+        :ARG0 (a / and
+            :op1 (p / person
+                :ARG0-of (b2 / batter-01))
+            :op2 (p2 / person
+                :ARG0-of (c / catch-03)))
+        :ARG2 (p3 / pitch)))

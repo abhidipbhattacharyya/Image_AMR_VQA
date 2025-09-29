@@ -1,0 +1,28 @@
+# ::tok A farm with a large plot of empty green grass covered land next to it .
+# ::node	f	farm	1-2
+# ::node	l2	large	4-5
+# ::node	p	plot	5-6
+# ::node	e	empty-02	7-8
+# ::node	g2	green-02	8-9
+# ::node	g	grass	9-10
+# ::node	c	cover-02	10-11
+# ::node	l	land	11-12
+# ::node	n	next-to	12-13
+# ::root	f	farm
+# ::edge	plot	mod	large	p	l2	
+# ::edge	grass	ARG1-of	green-02	g	g2	
+# ::edge	cover-02	ARG2	grass	c	g	
+# ::edge	land	ARG1-of	cover-02	l	c	
+# ::edge	land	ARG1-of	empty-02	l	e	
+# ::edge	plot	consist-of	land	p	l	
+# ::edge	next-to	op1	plot	n	p	
+# ::edge	farm	location	next-to	f	n	
+(f / farm
+    :location (n / next-to
+        :op1 (p / plot
+            :consist-of (l / land
+                :ARG1-of (c / cover-02
+                    :ARG2 (g / grass
+                        :ARG1-of (g2 / green-02)))
+                :ARG1-of (e / empty-02))
+            :mod (l2 / large))))

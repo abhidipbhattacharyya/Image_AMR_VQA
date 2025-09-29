@@ -1,0 +1,24 @@
+# ::tok Someone is taking notes or an open book test on the computer .
+# ::node	s	someone	0-1
+# ::node	n	note-01	3-4
+# ::node	o2	or	4-5
+# ::node	o	open-01	6-7
+# ::node	b	book	7-8
+# ::node	t	test-01	8-9
+# ::node	c	computer	11-12
+# ::root	o2	or
+# ::edge	note-01	ARG0	someone	n	s	
+# ::edge	or	op1	note-01	o2	n	
+# ::edge	book	ARG1-of	open-01	b	o	
+# ::edge	test-01	instrument	book	t	b	
+# ::edge	or	op2	test-01	o2	t	
+# ::edge	test-01	ARG0	someone	t	s	
+# ::edge	or	medium	computer	o2	c	
+(o2 / or
+    :medium (c / computer)
+    :op1 (n / note-01
+        :ARG0 (s / someone))
+    :op2 (t / test-01
+        :ARG0 s
+        :instrument (b / book
+            :ARG1-of (o / open-01))))

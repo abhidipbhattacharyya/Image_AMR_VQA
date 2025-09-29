@@ -1,0 +1,39 @@
+# ::tok One red and one blue double decker bus make a stop at a bus stop .
+# ::node	0	1	0-1
+# ::node	r	red-02	1-2
+# ::node	a	and	2-3
+# ::node	1	1	3-4
+# ::node	b	blue	4-5
+# ::node	d	double-decker	6-7
+# ::node	b2	bus	7-8
+# ::node	b3	bus	7-8
+# ::node	s	stop-01	10-11
+# ::node	f	facility	12-13
+# ::node	b4	bus	13-14
+# ::node	s2	stop-01	14-15
+# ::root	s	stop-01
+# ::edge	bus	mod	double-decker	b2	d	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	bus	quant	1	b2	0	
+# ::edge	bus	mod	double-decker	b3	d	
+# ::edge	bus	mod	blue	b3	b	
+# ::edge	bus	quant	1	b3	1	
+# ::edge	and	op2	bus	a	b3	
+# ::edge	stop-01	ARG1	and	s	a	
+# ::edge	stop-01	location	facility	s	f	
+# ::edge	stop-01	ARG1	bus	s2	b4	
+# ::edge	facility	location-of	stop-01	f	s2	
+(s / stop-01
+    :ARG1 (a / and
+        :op1 (b2 / bus
+            :quant 1
+            :ARG1-of (r / red-02)
+            :mod (d / double-decker))
+        :op2 (b3 / bus
+            :quant 1
+            :mod d
+            :mod (b / blue)))
+    :location (f / facility
+        :location-of (s2 / stop-01
+            :ARG1 (b4 / bus))))

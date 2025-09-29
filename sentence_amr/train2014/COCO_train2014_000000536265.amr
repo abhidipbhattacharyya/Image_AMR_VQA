@@ -1,0 +1,42 @@
+# ::tok A large group of motor cycle riders being led down a street by a cop car with it 's emergency lights on .
+# ::node	l	large	1-2
+# ::node	g	group	2-3
+# ::node	m	motorcycle	4-5
+# ::node	p	person	6-7
+# ::node	r	ride-01	6-7
+# ::node	l2	lead-01	8-9
+# ::node	d	down	9-10
+# ::node	s	street	11-12
+# ::node	c2	cop	14-15
+# ::node	c	car	15-16
+# ::node	e	emergency	19-20
+# ::node	l3	light	20-21
+# ::node	o	on-01	21-22
+# ::root	l2	lead-01
+# ::edge	group	mod	large	g	l	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	motorcycle	r	m	
+# ::edge	lead-01	ARG1	group	l2	g	
+# ::edge	lead-01	direction	down	l2	d	
+# ::edge	lead-01	path	street	l2	s	
+# ::edge	car	mod	cop	c	c2	
+# ::edge	lead-01	ARG0	car	l2	c	
+# ::edge	light	mod	emergency	l3	e	
+# ::edge	car	part	light	c	l3	
+# ::edge	on-01	ARG1	light	o	l3	
+# ::edge	car	manner	on-01	c	o	
+(l2 / lead-01
+    :ARG0 (c / car
+        :manner (o / on-01
+            :ARG1 (l3 / light
+                :mod (e / emergency)))
+        :mod (c2 / cop)
+        :part l3)
+    :ARG1 (g / group
+        :consist-of (p / person
+            :ARG0-of (r / ride-01
+                :ARG1 (m / motorcycle)))
+        :mod (l / large))
+    :direction (d / down)
+    :path (s / street))

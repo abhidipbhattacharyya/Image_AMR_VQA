@@ -1,0 +1,38 @@
+# ::tok The man is wearing a dress coat , suit and tie , but not dress pants .
+# ::node	m	man	1-2
+# ::node	w	wear-01	3-4
+# ::node	w2	wear-01	3-4
+# ::node	c	coat	6-7
+# ::node	s	suit	8-9
+# ::node	a	and	9-10
+# ::node	t	tie	10-11
+# ::node	c2	contrast-01	12-13
+# ::node	0	-	13-14
+# ::node	d	dress-01	14-15
+# ::node	p	pant	15-16
+# ::root	c2	contrast-01
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	wear-01	ARG0	man	w2	m	
+# ::edge	and	op2	suit	a	s	
+# ::edge	and	op1	coat	a	c	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op3	tie	a	t	
+# ::edge	contrast-01	ARG2	wear-01	c2	w2	
+# ::edge	contrast-01	ARG1	wear-01	c2	w	
+# ::edge	wear-01	polarity	-	w2	0	
+# ::edge	coat	mod	dress-01	c	d	
+# ::edge	pant	mod	dress-01	p	d	
+# ::edge	wear-01	ARG1	pant	w2	p	
+(c2 / contrast-01
+    :ARG1 (w / wear-01
+        :ARG0 (m / man)
+        :ARG1 (a / and
+            :op1 (c / coat
+                :mod (d / dress-01))
+            :op2 (s / suit)
+            :op3 (t / tie)))
+    :ARG2 (w2 / wear-01
+        :ARG0 m
+        :ARG1 (p / pant
+            :mod d)
+        :polarity -))

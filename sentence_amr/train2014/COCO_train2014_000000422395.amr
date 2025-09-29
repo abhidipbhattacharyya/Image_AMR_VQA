@@ -1,0 +1,25 @@
+# ::tok A restroom with two toilet roll holders both devoid of paper
+# ::node	r	restroom	1-2
+# ::node	0	2	3-4
+# ::node	t2	toilet	4-5
+# ::node	r2	roll	5-6
+# ::node	t	thing	6-7
+# ::node	h	hold-01	6-7
+# ::node	l	lack-01	8-9
+# ::node	p	paper	10-11
+# ::root	r	restroom
+# ::edge	roll	consist-of	toilet	r2	t2	
+# ::edge	thing	ARG0-of	hold-01	t	h	
+# ::edge	hold-01	ARG1	roll	h	r2	
+# ::edge	hold-01	quant	2	h	0	
+# ::edge	lack-01	ARG0	thing	l	t	
+# ::edge	restroom	location-of	lack-01	r	l	
+# ::edge	lack-01	ARG1	paper	l	p	
+(r / restroom
+    :location-of (l / lack-01
+        :ARG0 (t / thing
+            :ARG0-of (h / hold-01
+                :quant 2
+                :ARG1 (r2 / roll
+                    :consist-of (t2 / toilet))))
+        :ARG1 (p / paper)))

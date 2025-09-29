@@ -1,0 +1,31 @@
+# ::tok A man stands next to a brick building near a stop sign on a city street .
+# ::node	m	man	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	b	brick	6-7
+# ::node	b2	building	7-8
+# ::node	n	near-02	8-9
+# ::node	s3	stop-01	10-11
+# ::node	s	signal-07	11-12
+# ::node	c	city	14-15
+# ::node	s4	street	15-16
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	next-to	s2	n2	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	next-to	op1	building	n2	b2	
+# ::edge	building	ARG1-of	near-02	b2	n	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	near-02	ARG2	signal-07	n	s	
+# ::edge	street	mod	city	s4	c	
+# ::edge	signal-07	location	street	s	s4	
+(s2 / stand-01
+    :ARG1 (m / man)
+    :ARG2 (n2 / next-to
+        :op1 (b2 / building
+            :ARG1-of (n / near-02
+                :ARG2 (s / signal-07
+                    :ARG1 (s3 / stop-01)
+                    :location (s4 / street
+                        :mod (c / city))))
+            :consist-of (b / brick))))

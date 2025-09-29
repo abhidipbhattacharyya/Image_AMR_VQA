@@ -1,0 +1,34 @@
+# ::tok a person stepping into the cab of a black train next to a cart filled with cloth wrapped packages .
+# ::node	p2	person	1-2
+# ::node	s	step-01	2-3
+# ::node	c	cab	5-6
+# ::node	b	black-04	8-9
+# ::node	t	train	9-10
+# ::node	n	next-to	10-11
+# ::node	c2	cart	13-14
+# ::node	f	fill-01	14-15
+# ::node	c3	cloth	16-17
+# ::node	w	wrap-01	17-18
+# ::node	p	package	18-19
+# ::root	s	step-01
+# ::edge	step-01	ARG1	person	s	p2	
+# ::edge	step-01	ARG2	cab	s	c	
+# ::edge	train	ARG1-of	black-04	t	b	
+# ::edge	cab	part-of	train	c	t	
+# ::edge	cab	location	next-to	c	n	
+# ::edge	next-to	op1	cart	n	c2	
+# ::edge	cart	ARG1-of	fill-01	c2	f	
+# ::edge	wrap-01	ARG2	cloth	w	c3	
+# ::edge	package	ARG1-of	wrap-01	p	w	
+# ::edge	fill-01	ARG2	package	f	p	
+(s / step-01
+    :ARG1 (p2 / person)
+    :ARG2 (c / cab
+        :location (n / next-to
+            :op1 (c2 / cart
+                :ARG1-of (f / fill-01
+                    :ARG2 (p / package
+                        :ARG1-of (w / wrap-01
+                            :ARG2 (c3 / cloth))))))
+        :part-of (t / train
+            :ARG1-of (b / black-04))))

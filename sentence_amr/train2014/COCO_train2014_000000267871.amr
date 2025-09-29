@@ -1,0 +1,39 @@
+# ::tok Some people sitting on plastic chairs in a room , looking at a projected screen and a speaker
+# ::node	s3	some	0-1
+# ::node	p	person	1-2
+# ::node	s2	sit-01	2-3
+# ::node	p2	plastic	4-5
+# ::node	c	chair	5-6
+# ::node	r	room	8-9
+# ::node	a	and	9-10
+# ::node	l	look-01	10-11
+# ::node	p3	project-02	13-14
+# ::node	s	screen	14-15
+# ::node	a2	and	15-16
+# ::node	s4	speaker	17-18
+# ::root	a	and
+# ::edge	person	mod	some	p	s3	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	chair	consist-of	plastic	c	p2	
+# ::edge	sit-01	ARG2	chair	s2	c	
+# ::edge	sit-01	location	room	s2	r	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	screen	ARG1-of	project-02	s	p3	
+# ::edge	and	op1	screen	a2	s	
+# ::edge	look-01	ARG1	and	l	a2	
+# ::edge	and	op2	speaker	a2	s4	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / person
+            :mod (s3 / some))
+        :ARG2 (c / chair
+            :consist-of (p2 / plastic))
+        :location (r / room))
+    :op2 (l / look-01
+        :ARG0 p
+        :ARG1 (a2 / and
+            :op1 (s / screen
+                :ARG1-of (p3 / project-02))
+            :op2 (s4 / speaker))))

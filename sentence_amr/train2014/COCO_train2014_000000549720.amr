@@ -1,0 +1,34 @@
+# ::tok A one way sign , a two way traffic ahead sign , and a stop sign .
+# ::node	0	1	1-2
+# ::node	w	way	2-3
+# ::node	s	signal-07	3-4
+# ::node	1	2	6-7
+# ::node	w2	way	7-8
+# ::node	t	traffic	8-9
+# ::node	a	ahead	9-10
+# ::node	s2	signal-07	10-11
+# ::node	a2	and	12-13
+# ::node	s4	stop-01	14-15
+# ::node	s3	signal-07	15-16
+# ::root	a2	and
+# ::edge	way	quant	1	w	0	
+# ::edge	signal-07	ARG1	way	s	w	
+# ::edge	way	quant	2	w2	1	
+# ::edge	traffic	mod	way	t	w2	
+# ::edge	traffic	location	ahead	t	a	
+# ::edge	signal-07	ARG1	traffic	s2	t	
+# ::edge	and	op2	signal-07	a2	s2	
+# ::edge	and	op1	signal-07	a2	s	
+# ::edge	signal-07	ARG1	stop-01	s3	s4	
+# ::edge	and	op3	signal-07	a2	s3	
+(a2 / and
+    :op1 (s / signal-07
+        :ARG1 (w / way
+            :quant 1))
+    :op2 (s2 / signal-07
+        :ARG1 (t / traffic
+            :location (a / ahead)
+            :mod (w2 / way
+                :quant 2)))
+    :op3 (s3 / signal-07
+        :ARG1 (s4 / stop-01)))

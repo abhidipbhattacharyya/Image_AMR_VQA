@@ -1,0 +1,25 @@
+# ::tok a street sign warning drivers of the height of an upcoming bridge
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	w	warn-01	3-4
+# ::node	p	person	4-5
+# ::node	d	drive-01	4-5
+# ::node	h	high-02	7-8
+# ::node	u	upcoming	10-11
+# ::node	b	bridge	11-12
+# ::root	s	sign
+# ::edge	sign	location	street	s	s2	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	warn-01	ARG2	person	w	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	warn-01	ARG1	high-02	w	h	
+# ::edge	bridge	mod	upcoming	b	u	
+# ::edge	high-02	ARG1	bridge	h	b	
+(s / sign
+    :ARG0-of (w / warn-01
+        :ARG1 (h / high-02
+            :ARG1 (b / bridge
+                :mod (u / upcoming)))
+        :ARG2 (p / person
+            :ARG0-of (d / drive-01)))
+    :location (s2 / street))

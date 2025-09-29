@@ -1,0 +1,36 @@
+# ::tok A woman tennis player swinging a tennis racket with both hands , on a hard surface court .
+# ::node	w	woman	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	s2	swing-01	4-5
+# ::node	r	racket	7-8
+# ::node	b	both	9-10
+# ::node	h	hand	10-11
+# ::node	h2	hard-04	14-15
+# ::node	s	surface	15-16
+# ::node	c	court	16-17
+# ::root	p	person
+# ::edge	person	domain	woman	p	w	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	swing-01	p	s2	
+# ::edge	swing-01	ARG1	racket	s2	r	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	hand	mod	both	h	b	
+# ::edge	swing-01	instrument	hand	s2	h	
+# ::edge	surface	ARG1-of	hard-04	s	h2	
+# ::edge	court	mod	surface	c	s	
+# ::edge	swing-01	location	court	s2	c	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (s2 / swing-01
+        :ARG1 (r / racket
+            :mod t)
+        :instrument (h / hand
+            :mod (b / both))
+        :location (c / court
+            :mod (s / surface
+                :ARG1-of (h2 / hard-04))))
+    :domain (w / woman))

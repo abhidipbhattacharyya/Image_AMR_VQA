@@ -1,0 +1,30 @@
+# ::tok This intersection has more pedestrians than vehicles near it .
+# ::node	t	this	0-1
+# ::node	i	intersect-01	1-2
+# ::node	h	have-03	2-3
+# ::node	h2	have-quant-91	3-4
+# ::node	m	more	3-4
+# ::node	w	walk-01	4-5
+# ::node	v	vehicle	6-7
+# ::node	n	near-02	7-8
+# ::node	p	person	9-10
+# ::root	h	have-03
+# ::edge	intersect-01	mod	this	i	t	
+# ::edge	have-03	ARG0	intersect-01	h	i	
+# ::edge	have-quant-91	ARG3	more	h2	m	
+# ::edge	have-quant-91	ARG4	vehicle	h2	v	
+# ::edge	vehicle	ARG1-of	near-02	v	n	
+# ::edge	near-02	ARG2	intersect-01	n	i	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	person	ARG1-of	have-quant-91	p	h2	
+# ::edge	have-03	ARG1	person	h	p	
+(h / have-03
+    :ARG0 (i / intersect-01
+        :mod (t / this))
+    :ARG1 (p / person
+        :ARG0-of (w / walk-01)
+        :ARG1-of (h2 / have-quant-91
+            :ARG3 (m / more)
+            :ARG4 (v / vehicle
+                :ARG1-of (n / near-02
+                    :ARG2 i)))))

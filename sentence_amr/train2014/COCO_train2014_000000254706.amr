@@ -1,0 +1,30 @@
+# ::tok Dual digital parking meters are in place and waiting for a visitor .
+# ::node	d2	double	0-1
+# ::node	d	digit	1-2
+# ::node	p	park-01	2-3
+# ::node	m	meter	3-4
+# ::node	i	in-place	6-7
+# ::node	a	and	7-8
+# ::node	w	wait-01	8-9
+# ::node	p2	person	11-12
+# ::node	v	visit-01	11-12
+# ::root	a	and
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	mod	digit	m	d	
+# ::edge	meter	mod	double	m	d2	
+# ::edge	in-place	domain	meter	i	m	
+# ::edge	and	op1	in-place	a	i	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG1	meter	w	m	
+# ::edge	wait-01	ARG2	person	w	p2	
+# ::edge	person	ARG0-of	visit-01	p2	v	
+(a / and
+    :op1 (i / in-place
+        :domain (m / meter
+            :purpose (p / park-01)
+            :mod (d / digit)
+            :mod (d2 / double)))
+    :op2 (w / wait-01
+        :ARG1 m
+        :ARG2 (p2 / person
+            :ARG0-of (v / visit-01))))

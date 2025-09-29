@@ -1,0 +1,49 @@
+# ::tok A single line of riders ascend some uneven forest terrain full of very large trees , on a sunny day .
+# ::node	s	single-02	1-2
+# ::node	l2	line	2-3
+# ::node	p	person	4-5
+# ::node	r	ride-01	4-5
+# ::node	a	ascend-01	5-6
+# ::node	s2	some	6-7
+# ::node	0	-	6-7
+# ::node	e	even-02	7-8
+# ::node	f	forest	8-9
+# ::node	t	terrain	9-10
+# ::node	f2	full-09	10-11
+# ::node	v	very	12-13
+# ::node	l	large	13-14
+# ::node	t2	tree	14-15
+# ::node	s3	sunny	18-19
+# ::node	d	day	19-20
+# ::root	a	ascend-01
+# ::edge	line	ARG1-of	single-02	l2	s	
+# ::edge	line	consist-of	person	l2	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ascend-01	ARG0	line	a	l2	
+# ::edge	even-02	polarity	-	e	0	
+# ::edge	terrain	mod	forest	t	f	
+# ::edge	terrain	ARG1-of	even-02	t	e	
+# ::edge	terrain	mod	some	t	s2	
+# ::edge	ascend-01	ARG1	terrain	a	t	
+# ::edge	terrain	ARG1-of	full-09	t	f2	
+# ::edge	large	degree	very	l	v	
+# ::edge	tree	mod	large	t2	l	
+# ::edge	full-09	ARG2	tree	f2	t2	
+# ::edge	day	mod	sunny	d	s3	
+# ::edge	ascend-01	time	day	a	d	
+(a / ascend-01
+    :ARG0 (l2 / line
+        :ARG1-of (s / single-02)
+        :consist-of (p / person
+            :ARG0-of (r / ride-01)))
+    :ARG1 (t / terrain
+        :ARG1-of (e / even-02
+            :polarity -)
+        :ARG1-of (f2 / full-09
+            :ARG2 (t2 / tree
+                :mod (l / large
+                    :degree (v / very))))
+        :mod (f / forest)
+        :mod (s2 / some))
+    :time (d / day
+        :mod (s3 / sunny)))

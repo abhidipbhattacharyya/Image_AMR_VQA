@@ -1,0 +1,46 @@
+# ::tok Cookies , danish , banana and butter wrapper from in - flight meal on seat back fold - down tray .
+# ::node	c	cookie	0-1
+# ::node	p	product	2-3
+# ::node	n	name	2-3
+# ::node	0	DANS	2-3
+# ::node	b2	banana	4-5
+# ::node	a	and	5-6
+# ::node	b3	butter	6-7
+# ::node	w	wrap-01	7-8
+# ::node	f	fly-01	11-12
+# ::node	m	meal	12-13
+# ::node	s	seat	14-15
+# ::node	b	back	15-16
+# ::node	f2	fold-03	16-17
+# ::node	d	down-01	18-19
+# ::node	t	tray	19-20
+# ::root	a	and
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	DANS	n	0	
+# ::edge	and	op3	banana	a	b2	
+# ::edge	and	op2	product	a	p	
+# ::edge	and	op1	cookie	a	c	
+# ::edge	wrap-01	ARG1	butter	w	b3	
+# ::edge	and	op4	wrap-01	a	w	
+# ::edge	meal	location	fly-01	m	f	
+# ::edge	and	source	meal	a	m	
+# ::edge	seat	location	back	s	b	
+# ::edge	fold-03	ARG2	down-01	f2	d	
+# ::edge	tray	ARG1-of	fold-03	t	f2	
+# ::edge	tray	location-of	seat	t	s	
+# ::edge	meal	location	tray	m	t	
+(a / and
+    :op1 (c / cookie)
+    :op2 (p / product
+        :name (n / name
+            :op1 "DANS"))
+    :op3 (b2 / banana)
+    :op4 (w / wrap-01
+        :ARG1 (b3 / butter))
+    :source (m / meal
+        :location (f / fly-01)
+        :location (t / tray
+            :ARG1-of (f2 / fold-03
+                :ARG2 (d / down-01))
+            :location-of (s / seat
+                :location (b / back)))))

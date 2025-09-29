@@ -1,0 +1,33 @@
+# ::tok Bunches of bananas and stacks of watermelons offered for sale .
+# ::node	m2	multiple	0-1
+# ::node	m	monetary-quantity	0-1
+# ::node	p	pound	0-1
+# ::node	0	1	0-1
+# ::node	b	banana	2-3
+# ::node	a	and	3-4
+# ::node	s2	stack-01	4-5
+# ::node	w	watermelon	6-7
+# ::node	o	offer-01	7-8
+# ::node	s	sell-01	9-10
+# ::root	o	offer-01
+# ::edge	multiple	op1	monetary-quantity	m2	m	
+# ::edge	monetary-quantity	unit	pound	m	p	
+# ::edge	monetary-quantity	quant	1	m	0	
+# ::edge	banana	quant	multiple	b	m2	
+# ::edge	and	op1	banana	a	b	
+# ::edge	watermelon	ARG1-of	stack-01	w	s2	
+# ::edge	and	op2	watermelon	a	w	
+# ::edge	offer-01	ARG1	and	o	a	
+# ::edge	offer-01	ARG3	sell-01	o	s	
+# ::edge	sell-01	ARG1	and	s	a	
+(o / offer-01
+    :ARG1 (a / and
+        :op1 (b / banana
+            :quant (m2 / multiple
+                :op1 (m / monetary-quantity
+                    :quant 1
+                    :unit (p / pound))))
+        :op2 (w / watermelon
+            :ARG1-of (s2 / stack-01)))
+    :ARG3 (s / sell-01
+        :ARG1 a))

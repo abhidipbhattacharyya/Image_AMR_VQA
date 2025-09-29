@@ -1,0 +1,33 @@
+# ::tok A group of people with backpacks and a luggage cart walking through the concourse .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	h	have-03	4-5
+# ::node	b2	book	5-6
+# ::node	b	back-01	5-6
+# ::node	a	and	6-7
+# ::node	l	luggage	8-9
+# ::node	c	cart	9-10
+# ::node	w	walk-01	10-11
+# ::node	c2	concourse	13-14
+# ::root	w	walk-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	group	ARG0-of	have-03	g	h	
+# ::edge	book	ARG1-of	back-01	b2	b	
+# ::edge	back-01	ARG0	person	b	p	
+# ::edge	and	op1	book	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cart	purpose	luggage	c	l	
+# ::edge	and	op2	cart	a	c	
+# ::edge	walk-01	ARG0	group	w	g	
+# ::edge	walk-01	path	concourse	w	c2	
+(w / walk-01
+    :ARG0 (g / group
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b2 / book
+                    :ARG1-of (b / back-01
+                        :ARG0 (p / person)))
+                :op2 (c / cart
+                    :purpose (l / luggage))))
+        :consist-of p)
+    :path (c2 / concourse))

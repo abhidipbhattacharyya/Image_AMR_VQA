@@ -1,0 +1,40 @@
+# ::tok A slice of bacon , a scrambled egg , a fork and an English muffin on a plate sitting on a table .
+# ::node	s3	slice	1-2
+# ::node	b	bacon	3-4
+# ::node	s	scramble-01	6-7
+# ::node	e	egg	7-8
+# ::node	f	fork	10-11
+# ::node	a	and	11-12
+# ::node	c	country	13-14
+# ::node	n	name	13-14
+# ::node	0	England	13-14
+# ::node	m	muffin	14-15
+# ::node	p	plate	17-18
+# ::node	s2	sit-01	18-19
+# ::node	t	table	21-22
+# ::root	a	and
+# ::edge	slice	consist-of	bacon	s3	b	
+# ::edge	egg	ARG1-of	scramble-01	e	s	
+# ::edge	and	op3	fork	a	f	
+# ::edge	and	op2	egg	a	e	
+# ::edge	and	op1	slice	a	s3	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	England	n	0	
+# ::edge	muffin	mod	country	m	c	
+# ::edge	and	op4	muffin	a	m	
+# ::edge	and	location	plate	a	p	
+# ::edge	plate	ARG1-of	sit-01	p	s2	
+# ::edge	sit-01	ARG2	table	s2	t	
+(a / and
+    :location (p / plate
+        :ARG1-of (s2 / sit-01
+            :ARG2 (t / table)))
+    :op1 (s3 / slice
+        :consist-of (b / bacon))
+    :op2 (e / egg
+        :ARG1-of (s / scramble-01))
+    :op3 (f / fork)
+    :op4 (m / muffin
+        :mod (c / country
+            :name (n / name
+                :op1 "England"))))

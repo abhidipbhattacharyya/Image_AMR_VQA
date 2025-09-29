@@ -1,0 +1,19 @@
+# ::tok bus idling at bus stop with cityscape in the background
+# ::node	b2	bus	0-1
+# ::node	i	idle-01	1-2
+# ::node	b3	bus	3-4
+# ::node	s	stop-01	4-5
+# ::node	c	cityscape	6-7
+# ::node	b	background	9-10
+# ::root	i	idle-01
+# ::edge	idle-01	ARG1	bus	i	b2	
+# ::edge	stop-01	ARG1	bus	s	b3	
+# ::edge	idle-01	location	stop-01	i	s	
+# ::edge	idle-01	prep-with	cityscape	i	c	
+# ::edge	cityscape	location	background	c	b	
+(i / idle-01
+    :ARG1 (b2 / bus)
+    :location (s / stop-01
+        :ARG1 (b3 / bus))
+    :prep-with (c / cityscape
+        :location (b / background)))

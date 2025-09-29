@@ -1,0 +1,37 @@
+# ::tok A One Way sign at the intersection of Madison St. and 1st Avenue .
+# ::node	o	one	1-2
+# ::node	w	way	2-3
+# ::node	s	sign	3-4
+# ::node	i	intersect-01	6-7
+# ::node	n	name	8-9
+# ::node	2	Madison	8-9
+# ::node	r	road	9-10
+# ::node	r2	road	9-10
+# ::node	3	St.	9-10
+# ::node	n2	name	11-12
+# ::node	0	1st	11-12
+# ::node	1	Avenue	12-13
+# ::root	s	sign
+# ::edge	way	mod	one	w	o	
+# ::edge	sign	mod	way	s	w	
+# ::edge	sign	location	intersect-01	s	i	
+# ::edge	name	op1	Madison	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	intersect-01	ARG2	road	i	r2	
+# ::edge	name	op2	St.	n	3	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op1	1st	n2	0	
+# ::edge	name	op2	Avenue	n2	1	
+(s / sign
+    :location (i / intersect-01
+        :ARG1 (r / road
+            :name (n / name
+                :op1 "Madison"
+                :op2 "St."))
+        :ARG2 (r2 / road
+            :name (n2 / name
+                :op1 "1st"
+                :op2 "Avenue")))
+    :mod (w / way
+        :mod (o / one)))

@@ -1,0 +1,48 @@
+# ::tok People dining in a restaurant with tables of pizza , carafes of water , and glasses of wine .
+# ::node	p	person	0-1
+# ::node	d	dine-01	1-2
+# ::node	r	restaurant	4-5
+# ::node	h	have-03	5-6
+# ::node	t	table	6-7
+# ::node	p2	pizza	8-9
+# ::node	c	car	10-11
+# ::node	n	name	10-11
+# ::node	m	multiple	10-11
+# ::node	c2	carafes	10-11
+# ::node	w	water	12-13
+# ::node	a	and	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	g	glass	15-16
+# ::node	w2	wine	17-18
+# ::root	d	dine-01
+# ::edge	dine-01	ARG0	person	d	p	
+# ::edge	dine-01	location	restaurant	d	r	
+# ::edge	restaurant	ARG0-of	have-03	r	h	
+# ::edge	table	consist-of	pizza	t	p2	
+# ::edge	car	name	name	c	n	
+# ::edge	multiple	op1	carafes	m	c2	
+# ::edge	water	quant	multiple	w	m	
+# ::edge	and	op2	water	a	w	
+# ::edge	and	op1	table	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	volume-quantity	quant	multiple	v	m	
+# ::edge	multiple	op1	volume-quantity	m	v	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	volume-quantity	quant-of	wine	v	w2	
+# ::edge	dine-01	rel	car	d	c	
+(d / dine-01
+    :ARG0 (p / person)
+    :location (r / restaurant
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (t / table
+                    :consist-of (p2 / pizza))
+                :op2 (w / water
+                    :quant (m / multiple
+                        :op1 (c2 / carafes)
+                        :op1 (v / volume-quantity
+                            :quant m
+                            :quant-of (w2 / wine)
+                            :unit (g / glass)))))))
+    :rel (c / car
+        :name (n / name)))

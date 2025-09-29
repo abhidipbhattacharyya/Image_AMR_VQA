@@ -1,0 +1,30 @@
+# ::tok A white quad cab 4x4 truck in a parking lot space .
+# ::node	w	white-03	1-2
+# ::node	q	quad	2-3
+# ::node	c	cab	3-4
+# ::node	d	distance-quantity	4-5
+# ::node	0	4	4-5
+# ::node	t	truck	5-6
+# ::node	p	park-01	8-9
+# ::node	l	lot	9-10
+# ::node	s	space	10-11
+# ::root	t	truck
+# ::edge	cab	mod	quad	c	q	
+# ::edge	distance-quantity	unit	cab	d	c	
+# ::edge	distance-quantity	quant	4	d	0	
+# ::edge	truck	mod	distance-quantity	t	d	
+# ::edge	truck	mod	cab	t	c	
+# ::edge	truck	ARG1-of	white-03	t	w	
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	space	mod	lot	s	l	
+# ::edge	truck	location	space	t	s	
+(t / truck
+    :ARG1-of (w / white-03)
+    :location (s / space
+        :mod (l / lot
+            :purpose (p / park-01)))
+    :mod (d / distance-quantity
+        :quant 4
+        :unit (c / cab
+            :mod (q / quad)))
+    :mod c)

@@ -1,0 +1,34 @@
+# ::tok A bathroom area with toilet , toilet paper dispenser and trash can .
+# ::node	b	bathroom	1-2
+# ::node	a2	area	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	toilet	4-5
+# ::node	p	paper	7-8
+# ::node	t	thing	8-9
+# ::node	p2	provide-01	8-9
+# ::node	d	dispenser	8-9
+# ::node	a	and	9-10
+# ::node	t3	trash	10-11
+# ::node	c	can	11-12
+# ::root	a2	area
+# ::edge	area	location-of	bathroom	a2	b	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	thing	ARG0-of	provide-01	t	p2	
+# ::edge	provide-01	ARG1	paper	p2	p	
+# ::edge	provide-01	ARG2	dispenser	p2	d	
+# ::edge	and	op2	thing	a	t	
+# ::edge	and	op1	toilet	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	can	purpose	trash	c	t3	
+# ::edge	and	op3	can	a	c	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t2 / toilet)
+            :op2 (t / thing
+                :ARG0-of (p2 / provide-01
+                    :ARG1 (p / paper)
+                    :ARG2 (d / dispenser)))
+            :op3 (c / can
+                :purpose (t3 / trash))))
+    :location-of (b / bathroom))

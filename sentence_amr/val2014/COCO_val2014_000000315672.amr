@@ -1,0 +1,31 @@
+# ::tok Several airplanes can be seen at the airport but there is also snow on the ground here .
+# ::node	s2	several	0-1
+# ::node	a	airplane	1-2
+# ::node	p	possible-01	2-3
+# ::node	s	see-01	4-5
+# ::node	a2	airport	7-8
+# ::node	c	contrast-01	8-9
+# ::node	a3	also	11-12
+# ::node	s3	snow	12-13
+# ::node	g	ground	15-16
+# ::node	h	here	16-17
+# ::root	c	contrast-01
+# ::edge	airplane	quant	several	a	s2	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	airplane	s	a	
+# ::edge	see-01	location	airport	s	a2	
+# ::edge	contrast-01	ARG1	possible-01	c	p	
+# ::edge	snow	mod	also	s3	a3	
+# ::edge	contrast-01	ARG2	snow	c	s3	
+# ::edge	snow	location	ground	s3	g	
+# ::edge	ground	location	here	g	h	
+(c / contrast-01
+    :ARG1 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG1 (a / airplane
+                :quant (s2 / several))
+            :location (a2 / airport)))
+    :ARG2 (s3 / snow
+        :location (g / ground
+            :location (h / here))
+        :mod (a3 / also)))

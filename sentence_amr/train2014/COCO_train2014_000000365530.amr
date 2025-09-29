@@ -1,0 +1,31 @@
+# ::tok A kitchen showing an electric range with two stoves and a microwave and breadbox
+# ::node	k	kitchen	1-2
+# ::node	s	show-01	2-3
+# ::node	e	electric	4-5
+# ::node	r	range	5-6
+# ::node	h	have-03	6-7
+# ::node	0	2	7-8
+# ::node	o	oven	8-9
+# ::node	a	and	9-10
+# ::node	m	microwave	11-12
+# ::node	b	breadbox	13-14
+# ::root	s	show-01
+# ::edge	show-01	ARG0	kitchen	s	k	
+# ::edge	range	mod	electric	r	e	
+# ::edge	show-01	ARG1	range	s	r	
+# ::edge	range	ARG0-of	have-03	r	h	
+# ::edge	oven	quant	2	o	0	
+# ::edge	and	op1	oven	a	o	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	microwave	a	m	
+# ::edge	and	op3	breadbox	a	b	
+(s / show-01
+    :ARG0 (k / kitchen)
+    :ARG1 (r / range
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (o / oven
+                    :quant 2)
+                :op2 (m / microwave)
+                :op3 (b / breadbox)))
+        :mod (e / electric)))

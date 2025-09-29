@@ -1,0 +1,48 @@
+# ::tok The intersection of a city street that has cars traveling down one side of the street and fast food restaurants on the other side .
+# ::node	i	intersect-01	1-2
+# ::node	c2	city	4-5
+# ::node	s3	street	5-6
+# ::node	h	have-03	7-8
+# ::node	c	car	8-9
+# ::node	t	travel-01	9-10
+# ::node	d	down	10-11
+# ::node	s	side	12-13
+# ::node	s4	street	15-16
+# ::node	a	and	16-17
+# ::node	f	fast-02	17-18
+# ::node	f2	food	18-19
+# ::node	r	restaurant	19-20
+# ::node	o	other	22-23
+# ::node	s2	side	23-24
+# ::root	i	intersect-01
+# ::edge	street	mod	city	s3	c2	
+# ::edge	intersect-01	ARG1	street	i	s3	
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	car	ARG0-of	travel-01	c	t	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	ARG1	side	t	s	
+# ::edge	side	part-of	street	s	s4	
+# ::edge	and	op1	car	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	food	ARG1-of	fast-02	f2	f	
+# ::edge	restaurant	mod	food	r	f2	
+# ::edge	and	op2	restaurant	a	r	
+# ::edge	side	mod	other	s2	o	
+# ::edge	restaurant	location	side	r	s2	
+# ::edge	street	part	side	s4	s2	
+(i / intersect-01
+    :ARG1 (s3 / street
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c / car
+                    :ARG0-of (t / travel-01
+                        :ARG1 (s / side
+                            :part-of (s4 / street
+                                :part (s2 / side
+                                    :mod (o / other))))
+                        :direction (d / down)))
+                :op2 (r / restaurant
+                    :location s2
+                    :mod (f2 / food
+                        :ARG1-of (f / fast-02)))))
+        :mod (c2 / city)))

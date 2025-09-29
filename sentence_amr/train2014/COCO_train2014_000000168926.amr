@@ -1,0 +1,46 @@
+# ::tok Several cows stand together on a narrow street in India , partly blocking the path of an approaching cyclist .
+# ::node	s	several	0-1
+# ::node	c2	cow	1-2
+# ::node	s2	stand-01	2-3
+# ::node	t	together	3-4
+# ::node	n2	narrow-02	6-7
+# ::node	s3	street	7-8
+# ::node	c	country	9-10
+# ::node	n	name	9-10
+# ::node	0	India	9-10
+# ::node	p	part	11-12
+# ::node	b	block-01	12-13
+# ::node	p2	path	14-15
+# ::node	a	approach-01	17-18
+# ::node	p3	person	18-19
+# ::node	c3	cycle-01	18-19
+# ::root	s2	stand-01
+# ::edge	cow	quant	several	c2	s	
+# ::edge	stand-01	ARG1	cow	s2	c2	
+# ::edge	stand-01	mod	together	s2	t	
+# ::edge	street	ARG1-of	narrow-02	s3	n2	
+# ::edge	stand-01	ARG2	street	s2	s3	
+# ::edge	stand-01	location	country	s2	c	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	India	n	0	
+# ::edge	block-01	degree	part	b	p	
+# ::edge	cow	ARG0-of	block-01	c2	b	
+# ::edge	block-01	ARG1	path	b	p2	
+# ::edge	person	ARG1-of	approach-01	p3	a	
+# ::edge	path	poss	person	p2	p3	
+# ::edge	person	ARG0-of	cycle-01	p3	c3	
+(s2 / stand-01
+    :ARG1 (c2 / cow
+        :quant (s / several)
+        :ARG0-of (b / block-01
+            :ARG1 (p2 / path
+                :poss (p3 / person
+                    :ARG0-of (c3 / cycle-01)
+                    :ARG1-of (a / approach-01)))
+            :degree (p / part)))
+    :ARG2 (s3 / street
+        :ARG1-of (n2 / narrow-02))
+    :location (c / country
+        :name (n / name
+            :op1 "India"))
+    :mod (t / together))

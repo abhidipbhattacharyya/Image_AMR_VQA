@@ -1,0 +1,26 @@
+# ::tok People utilize public transportation by taking a double decker bus .
+# ::node	p	person	0-1
+# ::node	u	utilize-01	1-2
+# ::node	p2	public-02	2-3
+# ::node	t2	transport-01	3-4
+# ::node	t	take-01	5-6
+# ::node	d	double-decker	8-9
+# ::node	b	bus	9-10
+# ::root	u	utilize-01
+# ::edge	utilize-01	ARG0	person	u	p	
+# ::edge	transport-01	ARG1-of	public-02	t2	p2	
+# ::edge	utilize-01	ARG1	transport-01	u	t2	
+# ::edge	transport-01	ARG1	person	t2	p	
+# ::edge	utilize-01	manner	take-01	u	t	
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	bus	mod	double-decker	b	d	
+# ::edge	take-01	ARG1	bus	t	b	
+(u / utilize-01
+    :ARG0 (p / person)
+    :ARG1 (t2 / transport-01
+        :ARG1 p
+        :ARG1-of (p2 / public-02))
+    :manner (t / take-01
+        :ARG0 p
+        :ARG1 (b / bus
+            :mod (d / double-decker))))

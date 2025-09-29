@@ -1,0 +1,25 @@
+# ::tok A coast guard boat speeds through a body of water .
+# ::node	n	name	1-2
+# ::node	0	Coast	1-2
+# ::node	m	military	2-3
+# ::node	1	Guard	2-3
+# ::node	b	boat	3-4
+# ::node	s	speed-01	4-5
+# ::node	b2	body	7-8
+# ::node	w	water	9-10
+# ::root	s	speed-01
+# ::edge	name	op1	Coast	n	0	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op2	Guard	n	1	
+# ::edge	boat	mod	military	b	m	
+# ::edge	speed-01	ARG1	boat	s	b	
+# ::edge	speed-01	path	body	s	b2	
+# ::edge	body	consist-of	water	b2	w	
+(s / speed-01
+    :ARG1 (b / boat
+        :mod (m / military
+            :name (n / name
+                :op1 "Coast"
+                :op2 "Guard")))
+    :path (b2 / body
+        :consist-of (w / water)))

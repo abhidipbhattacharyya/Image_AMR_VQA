@@ -1,0 +1,34 @@
+# ::tok The man is on a motorcycle with three stuffed animals fastened on at the headlight and each front tire .
+# ::node	m	man	1-2
+# ::node	m2	motorcycle	5-6
+# ::node	0	3	7-8
+# ::node	s	stuff-01	8-9
+# ::node	a2	animal	9-10
+# ::node	f	fasten-01	10-11
+# ::node	h	headlight	14-15
+# ::node	a	and	15-16
+# ::node	e	each	16-17
+# ::node	f2	front	17-18
+# ::node	t	tire	18-19
+# ::root	m2	motorcycle
+# ::edge	motorcycle	domain	man	m2	m	
+# ::edge	animal	ARG1-of	stuff-01	a2	s	
+# ::edge	animal	quant	3	a2	0	
+# ::edge	fasten-01	ARG1	animal	f	a2	
+# ::edge	motorcycle	time-of	fasten-01	m2	f	
+# ::edge	and	op1	headlight	a	h	
+# ::edge	fasten-01	ARG2	and	f	a	
+# ::edge	tire	mod	front	t	f2	
+# ::edge	tire	mod	each	t	e	
+# ::edge	and	op2	tire	a	t	
+(m2 / motorcycle
+    :domain (m / man)
+    :time-of (f / fasten-01
+        :ARG1 (a2 / animal
+            :quant 3
+            :ARG1-of (s / stuff-01))
+        :ARG2 (a / and
+            :op1 (h / headlight)
+            :op2 (t / tire
+                :mod (f2 / front)
+                :mod (e / each)))))

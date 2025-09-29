@@ -1,0 +1,43 @@
+# ::tok Submarine sandwich with dollop of sauce on a plate on a table with other bowls and other kitchen items in the background .
+# ::node	s3	submarine	0-1
+# ::node	s	sandwich	1-2
+# ::node	d	dollop	3-4
+# ::node	s2	sauce	5-6
+# ::node	p	plate	8-9
+# ::node	b2	be-located-at-91	9-10
+# ::node	t	table	11-12
+# ::node	o	other	13-14
+# ::node	b3	bowl-01	14-15
+# ::node	a	and	15-16
+# ::node	o2	other	16-17
+# ::node	k	kitchen	17-18
+# ::node	i	item	18-19
+# ::node	b	background	21-22
+# ::root	b2	be-located-at-91
+# ::edge	sandwich	mod	submarine	s	s3	
+# ::edge	sauce	quant	dollop	s2	d	
+# ::edge	be-located-at-91	ARG2	plate	b2	p	
+# ::edge	be-located-at-91	ARG1	sandwich	b2	s	
+# ::edge	plate	location	table	p	t	
+# ::edge	bowl-01	mod	other	b3	o	
+# ::edge	and	op1	bowl-01	a	b3	
+# ::edge	table	location-of	and	t	a	
+# ::edge	item	mod	kitchen	i	k	
+# ::edge	item	mod	other	i	o2	
+# ::edge	and	op2	item	a	i	
+# ::edge	and	location	background	a	b	
+# ::edge	be-located-at-91	rel	sauce	b2	s2	
+(b2 / be-located-at-91
+    :ARG1 (s / sandwich
+        :mod (s3 / submarine))
+    :ARG2 (p / plate
+        :location (t / table
+            :location-of (a / and
+                :location (b / background)
+                :op1 (b3 / bowl-01
+                    :mod (o / other))
+                :op2 (i / item
+                    :mod (k / kitchen)
+                    :mod (o2 / other)))))
+    :rel (s2 / sauce
+        :quant (d / dollop)))

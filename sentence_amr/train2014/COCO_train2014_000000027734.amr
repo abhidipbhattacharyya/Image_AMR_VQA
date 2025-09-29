@@ -1,0 +1,33 @@
+# ::tok A grass and dirt field with many zebras grazing and standing together on the grass .
+# ::node	g	grass	1-2
+# ::node	d	dirt	3-4
+# ::node	f	field	4-5
+# ::node	m	many	6-7
+# ::node	e	elephant	7-8
+# ::node	g3	graze-01	8-9
+# ::node	a	and	9-10
+# ::node	s	stand-01	10-11
+# ::node	t	together	11-12
+# ::node	g2	grass	14-15
+# ::root	f	field
+# ::edge	field	mod	dirt	f	d	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	elephant	quant	many	e	m	
+# ::edge	graze-01	ARG1	elephant	g3	e	
+# ::edge	and	op1	graze-01	a	g3	
+# ::edge	field	location-of	and	f	a	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG1	elephant	s	e	
+# ::edge	stand-01	manner	together	s	t	
+# ::edge	stand-01	ARG2	grass	s	g2	
+(f / field
+    :consist-of (g / grass)
+    :location-of (a / and
+        :op1 (g3 / graze-01
+            :ARG1 (e / elephant
+                :quant (m / many)))
+        :op2 (s / stand-01
+            :ARG1 e
+            :ARG2 (g2 / grass)
+            :manner (t / together)))
+    :mod (d / dirt))

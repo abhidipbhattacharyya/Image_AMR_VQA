@@ -1,0 +1,28 @@
+# ::tok A group of people waiting for the subway at the Park Street stop .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	w	wait-01	4-5
+# ::node	s2	subway	7-8
+# ::node	f	facility	9-10
+# ::node	0	Park	10-11
+# ::node	n	name	11-12
+# ::node	1	Street	11-12
+# ::node	s	stop-01	12-13
+# ::root	w	wait-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	wait-01	ARG1	group	w	g	
+# ::edge	wait-01	ARG2	subway	w	s2	
+# ::edge	name	op1	Park	n	0	
+# ::edge	facility	name	name	f	n	
+# ::edge	name	op2	Street	n	1	
+# ::edge	stop-01	ARG1	facility	s	f	
+# ::edge	wait-01	location	stop-01	w	s	
+(w / wait-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (s2 / subway)
+    :location (s / stop-01
+        :ARG1 (f / facility
+            :name (n / name
+                :op1 "Park"
+                :op2 "Street"))))

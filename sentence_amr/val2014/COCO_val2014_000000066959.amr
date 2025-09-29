@@ -1,0 +1,35 @@
+# ::tok A train carrying military vehicles with men in orange safety vests directing the vehicles .
+# ::node	t	train	1-2
+# ::node	c	carry-01	2-3
+# ::node	m2	military	3-4
+# ::node	v	vehicle	4-5
+# ::node	m	man	6-7
+# ::node	o	orange	8-9
+# ::node	s	safe-01	9-10
+# ::node	j	jacket	10-11
+# ::node	w	wear-01	10-11
+# ::node	d	direct-01	11-12
+# ::root	d	direct-01
+# ::edge	train	ARG0-of	carry-01	t	c	
+# ::edge	vehicle	mod	military	v	m2	
+# ::edge	carry-01	ARG1	vehicle	c	v	
+# ::edge	jacket	purpose	safe-01	j	s	
+# ::edge	jacket	mod	orange	j	o	
+# ::edge	jacket	ARG0-of	wear-01	j	w	
+# ::edge	wear-01	ARG1	safe-01	w	s	
+# ::edge	direct-01	ARG0	man	d	m	
+# ::edge	direct-01	ARG1	vehicle	d	v	
+# ::edge	direct-01	rel	train	d	t	
+# ::edge	direct-01	rel	jacket	d	j	
+(d / direct-01
+    :ARG0 (m / man)
+    :ARG1 (v / vehicle
+        :mod (m2 / military))
+    :rel (t / train
+        :ARG0-of (c / carry-01
+            :ARG1 v))
+    :rel (j / jacket
+        :purpose (s / safe-01)
+        :ARG0-of (w / wear-01
+            :ARG1 s)
+        :mod (o / orange)))

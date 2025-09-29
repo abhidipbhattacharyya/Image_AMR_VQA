@@ -1,0 +1,41 @@
+# ::tok A bus destined for Cleveland Avenue is near a building and has people moving within it .
+# ::node	b2	bus	1-2
+# ::node	d	destine-01	2-3
+# ::node	n	name	4-5
+# ::node	1	Cleveland	4-5
+# ::node	r	road	5-6
+# ::node	0	Avenue	5-6
+# ::node	n2	near-02	7-8
+# ::node	b	building	9-10
+# ::node	a	and	10-11
+# ::node	h	have-03	11-12
+# ::node	p	person	12-13
+# ::node	m	move-01	13-14
+# ::root	a	and
+# ::edge	bus	ARG1-of	destine-01	b2	d	
+# ::edge	name	op1	Cleveland	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	destine-01	ARG2	road	d	r	
+# ::edge	name	op2	Avenue	n	0	
+# ::edge	near-02	ARG1	bus	n2	b2	
+# ::edge	near-02	ARG2	building	n2	b	
+# ::edge	and	op1	near-02	a	n2	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	bus	h	b2	
+# ::edge	move-01	ARG1	person	m	p	
+# ::edge	have-03	ARG1	move-01	h	m	
+# ::edge	move-01	location	building	m	b	
+(a / and
+    :op1 (n2 / near-02
+        :ARG1 (b2 / bus
+            :ARG1-of (d / destine-01
+                :ARG2 (r / road
+                    :name (n / name
+                        :op1 "Cleveland"
+                        :op2 "Avenue"))))
+        :ARG2 (b / building))
+    :op2 (h / have-03
+        :ARG0 b2
+        :ARG1 (m / move-01
+            :ARG1 (p / person)
+            :location b)))

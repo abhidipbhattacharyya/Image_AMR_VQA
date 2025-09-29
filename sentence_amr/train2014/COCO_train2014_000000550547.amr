@@ -1,0 +1,27 @@
+# ::tok A slice of berry bread on a plate with a fork next to it .
+# ::node	s	slice	1-2
+# ::node	b	berry	3-4
+# ::node	b2	bread	4-5
+# ::node	p	plate	7-8
+# ::node	f	fork	10-11
+# ::node	n	next-to	11-12
+# ::node	i	include-91	12-13
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	bread	mod	berry	b2	b	
+# ::edge	slice	consist-of	bread	s	b2	
+# ::edge	next-to	op2	fork	n	f	
+# ::edge	next-to	op1	plate	n	p	
+# ::edge	include-91	ARG2	next-to	i	n	
+# ::edge	slice	ARG1-of	include-91	s	i	
+# ::edge	event	mod	next-to	e	n	
+# ::edge	event	rel	slice	e	s	
+(e / event
+    :mod (n / next-to
+        :op1 (p / plate)
+        :op2 (f / fork))
+    :rel (s / slice
+        :ARG1-of (i / include-91
+            :ARG2 n)
+        :consist-of (b2 / bread
+            :mod (b / berry))))

@@ -1,0 +1,40 @@
+# ::tok a man standing in a living room with a fire place and a wall mounted flat screen television .
+# ::node	m	man	1-2
+# ::node	s2	stand-01	2-3
+# ::node	l	living	5-6
+# ::node	r	room	6-7
+# ::node	h	have-03	7-8
+# ::node	f	fire	9-10
+# ::node	p	place	10-11
+# ::node	a	and	11-12
+# ::node	w	wall	13-14
+# ::node	m2	mount-03	14-15
+# ::node	f2	flat-06	15-16
+# ::node	s	screen	16-17
+# ::node	t	television	17-18
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	room	mod	living	r	l	
+# ::edge	stand-01	location	room	s2	r	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	place	mod	fire	p	f	
+# ::edge	and	op1	place	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	mount-03	location	wall	m2	w	
+# ::edge	screen	ARG1-of	flat-06	s	f2	
+# ::edge	television	part	screen	t	s	
+# ::edge	television	ARG1-of	mount-03	t	m2	
+# ::edge	and	op2	television	a	t	
+(s2 / stand-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (p / place
+                    :mod (f / fire))
+                :op2 (t / television
+                    :ARG1-of (m2 / mount-03
+                        :location (w / wall))
+                    :part (s / screen
+                        :ARG1-of (f2 / flat-06))))))
+    :location (r / room
+        :mod (l / living)))

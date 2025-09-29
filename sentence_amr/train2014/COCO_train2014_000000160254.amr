@@ -1,0 +1,28 @@
+# ::tok Some people eating desert including cake and pudding at a table .
+# ::node	s	some	0-1
+# ::node	p	person	1-2
+# ::node	e	eat-01	2-3
+# ::node	d	desert	3-4
+# ::node	i	include-01	4-5
+# ::node	c	cake	5-6
+# ::node	a	and	6-7
+# ::node	p2	pudding	7-8
+# ::node	t	table	10-11
+# ::root	e	eat-01
+# ::edge	person	mod	some	p	s	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	desert	e	d	
+# ::edge	desert	ARG2-of	include-01	d	i	
+# ::edge	and	op1	cake	a	c	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	pudding	a	p2	
+# ::edge	eat-01	location	table	e	t	
+(e / eat-01
+    :ARG0 (p / person
+        :mod (s / some))
+    :ARG1 (d / desert
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (c / cake)
+                :op2 (p2 / pudding))))
+    :location (t / table))

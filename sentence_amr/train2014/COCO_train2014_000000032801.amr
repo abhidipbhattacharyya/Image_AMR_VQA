@@ -1,0 +1,37 @@
+# ::tok A worked on a donut assembly line being observed by a second worker .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	1	A	0-1
+# ::node	w	work-01	1-2
+# ::node	d	donut	4-5
+# ::node	a	assemble-01	5-6
+# ::node	l	line	6-7
+# ::node	o	observe-01	8-9
+# ::node	o2	ordinal-entity	11-12
+# ::node	0	2	11-12
+# ::node	p2	person	12-13
+# ::node	w2	work-01	12-13
+# ::root	w	work-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	A	n	1	
+# ::edge	work-01	ARG0	person	w	p	
+# ::edge	assemble-01	ARG1	donut	a	d	
+# ::edge	line	mod	assemble-01	l	a	
+# ::edge	work-01	ARG1	line	w	l	
+# ::edge	line	ARG1-of	observe-01	l	o	
+# ::edge	ordinal-entity	value	2	o2	0	
+# ::edge	person	ord	ordinal-entity	p2	o2	
+# ::edge	observe-01	ARG0	person	o	p2	
+# ::edge	person	ARG0-of	work-01	p2	w2	
+(w / work-01
+    :ARG0 (p / person
+        :name (n / name
+            :op1 "A"))
+    :ARG1 (l / line
+        :ARG1-of (o / observe-01
+            :ARG0 (p2 / person
+                :ARG0-of (w2 / work-01)
+                :ord (o2 / ordinal-entity
+                    :value 2)))
+        :mod (a / assemble-01
+            :ARG1 (d / donut))))

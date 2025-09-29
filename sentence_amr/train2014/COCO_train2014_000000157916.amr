@@ -1,0 +1,57 @@
+# ::tok Inside an enclosed area , beyond which stands trees , lies a rocky domicile and an earthen area for one lone zebra to stand on .
+# ::node	i	inside	0-1
+# ::node	c	confine-01	2-3
+# ::node	a2	area	3-4
+# ::node	b	beyond	5-6
+# ::node	s	stand-01	7-8
+# ::node	t	tree	8-9
+# ::node	l	lie-07	10-11
+# ::node	r	rocky	12-13
+# ::node	d	domicile	13-14
+# ::node	a	and	14-15
+# ::node	p	planet	16-17
+# ::node	n	name	16-17
+# ::node	1	Earth	16-17
+# ::node	a3	area	17-18
+# ::node	0	1	19-20
+# ::node	l2	lone	20-21
+# ::node	z	zebra	21-22
+# ::node	s2	stand-12	23-24
+# ::root	l	lie-07
+# ::edge	area	ARG1-of	confine-01	a2	c	
+# ::edge	inside	op1	area	i	a2	
+# ::edge	area	location	beyond	a2	b	
+# ::edge	beyond	op1	stand-01	b	s	
+# ::edge	stand-01	ARG1	tree	s	t	
+# ::edge	lie-07	ARG2	inside	l	i	
+# ::edge	domicile	mod	rocky	d	r	
+# ::edge	and	op1	domicile	a	d	
+# ::edge	lie-07	ARG1	and	l	a	
+# ::edge	planet	name	name	p	n	
+# ::edge	name	op1	Earth	n	1	
+# ::edge	area	mod	planet	a3	p	
+# ::edge	and	op2	area	a	a3	
+# ::edge	zebra	mod	lone	z	l2	
+# ::edge	zebra	quant	1	z	0	
+# ::edge	stand-12	ARG0	zebra	s2	z	
+# ::edge	area	location-of	stand-12	a3	s2	
+# ::edge	stand-12	ARG1	area	s2	a3	
+(l / lie-07
+    :ARG1 (a / and
+        :op1 (d / domicile
+            :mod (r / rocky))
+        :op2 (a3 / area
+            :location-of (s2 / stand-12
+                :ARG0 (z / zebra
+                    :quant 1
+                    :mod (l2 / lone))
+                :ARG1 a3)
+            :mod (p / planet
+                :name (n / name
+                    :op1 "Earth"))))
+    :ARG2 (i / inside
+        :op1 (a2 / area
+            :ARG1-of (c / confine-01)
+            :location (b / beyond
+                :op1 (s / stand-01
+                    :ARG1 (t / tree))))))

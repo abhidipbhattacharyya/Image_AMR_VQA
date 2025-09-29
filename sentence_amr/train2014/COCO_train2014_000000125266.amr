@@ -1,0 +1,31 @@
+# ::tok A street view with cars and buildings in the background with a truck stopped at a stop sign .
+# ::node	s4	street	1-2
+# ::node	v	view-01	2-3
+# ::node	c	car	4-5
+# ::node	a	and	5-6
+# ::node	b2	building	6-7
+# ::node	b	background	9-10
+# ::node	t	truck	12-13
+# ::node	s2	stop-01	13-14
+# ::node	s3	stop-01	16-17
+# ::node	s	signal-07	17-18
+# ::root	v	view-01
+# ::edge	view-01	ARG1	street	v	s4	
+# ::edge	and	op1	car	a	c	
+# ::edge	view-01	consist-of	and	v	a	
+# ::edge	and	op2	building	a	b2	
+# ::edge	and	location	background	a	b	
+# ::edge	and	op3	truck	a	t	
+# ::edge	truck	ARG1-of	stop-01	t	s2	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	stop-01	location	signal-07	s2	s	
+(v / view-01
+    :ARG1 (s4 / street)
+    :consist-of (a / and
+        :location (b / background)
+        :op1 (c / car)
+        :op2 (b2 / building)
+        :op3 (t / truck
+            :ARG1-of (s2 / stop-01
+                :location (s / signal-07
+                    :ARG1 (s3 / stop-01))))))

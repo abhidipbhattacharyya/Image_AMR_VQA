@@ -1,0 +1,36 @@
+# ::tok A view of a multi - tiered clock tower with an American flag on the top .
+# ::node	v	view-01	1-2
+# ::node	m	multiple	4-5
+# ::node	t	tier	6-7
+# ::node	c	clock	7-8
+# ::node	t3	tower	8-9
+# ::node	h	have-03	9-10
+# ::node	c2	country	11-12
+# ::node	n	name	11-12
+# ::node	0	America	11-12
+# ::node	f	flag	12-13
+# ::node	t2	top	15-16
+# ::root	v	view-01
+# ::edge	tier	quant	multiple	t	m	
+# ::edge	tower	mod	clock	t3	c	
+# ::edge	tower	mod	tier	t3	t	
+# ::edge	view-01	ARG1	tower	v	t3	
+# ::edge	tower	ARG0-of	have-03	t3	h	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	flag	location	top	f	t2	
+# ::edge	tower	part	top	t3	t2	
+(v / view-01
+    :ARG1 (t3 / tower
+        :ARG0-of (h / have-03
+            :ARG1 (f / flag
+                :location (t2 / top)
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "America"))))
+        :mod (c / clock)
+        :mod (t / tier
+            :quant (m / multiple))
+        :part t2))

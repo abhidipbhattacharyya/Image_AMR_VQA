@@ -1,0 +1,27 @@
+# ::tok Someone waiting for the light to change so they can walk across the street .
+# ::node	s	someone	0-1
+# ::node	w	wait-01	1-2
+# ::node	l	light	4-5
+# ::node	c	change-01	6-7
+# ::node	p	possible-01	9-10
+# ::node	w2	walk-01	10-11
+# ::node	a	across	11-12
+# ::node	s2	street	13-14
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	someone	w	s	
+# ::edge	change-01	ARG1	light	c	l	
+# ::edge	wait-01	ARG2	change-01	w	c	
+# ::edge	wait-01	purpose	possible-01	w	p	
+# ::edge	possible-01	ARG1	walk-01	p	w2	
+# ::edge	walk-01	ARG0	someone	w2	s	
+# ::edge	walk-01	ARG2	across	w2	a	
+# ::edge	across	op1	street	a	s2	
+(w / wait-01
+    :purpose (p / possible-01
+        :ARG1 (w2 / walk-01
+            :ARG0 (s / someone)
+            :ARG2 (a / across
+                :op1 (s2 / street))))
+    :ARG1 s
+    :ARG2 (c / change-01
+        :ARG1 (l / light)))

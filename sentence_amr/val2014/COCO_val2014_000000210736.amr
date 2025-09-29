@@ -1,0 +1,49 @@
+# ::tok Employees staff a booth promoting HP , Intel , and Beats products .
+# ::node	p	person	0-1
+# ::node	e	employ-01	0-1
+# ::node	s	staff-01	1-2
+# ::node	b	booth	3-4
+# ::node	p3	promote-02	4-5
+# ::node	c	company	5-6
+# ::node	n	name	5-6
+# ::node	1	HP	5-6
+# ::node	c2	company	7-8
+# ::node	n2	name	7-8
+# ::node	2	Intel	7-8
+# ::node	a	and	9-10
+# ::node	c3	company	10-11
+# ::node	n3	name	10-11
+# ::node	0	Beats	10-11
+# ::node	p2	product	11-12
+# ::root	s	staff-01
+# ::edge	person	ARG1-of	employ-01	p	e	
+# ::edge	staff-01	ARG0	person	s	p	
+# ::edge	staff-01	ARG1	booth	s	b	
+# ::edge	booth	ARG0-of	promote-02	b	p3	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	HP	n	1	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	Intel	n2	2	
+# ::edge	and	op2	company	a	c2	
+# ::edge	and	op1	company	a	c	
+# ::edge	and	op3	company	a	c3	
+# ::edge	company	name	name	c3	n3	
+# ::edge	name	op1	Beats	n3	0	
+# ::edge	product	poss	and	p2	a	
+# ::edge	promote-02	ARG1	product	p3	p2	
+(s / staff-01
+    :ARG0 (p / person
+        :ARG1-of (e / employ-01))
+    :ARG1 (b / booth
+        :ARG0-of (p3 / promote-02
+            :ARG1 (p2 / product
+                :poss (a / and
+                    :op1 (c / company
+                        :name (n / name
+                            :op1 "HP"))
+                    :op2 (c2 / company
+                        :name (n2 / name
+                            :op1 "Intel"))
+                    :op3 (c3 / company
+                        :name (n3 / name
+                            :op1 "Beats")))))))

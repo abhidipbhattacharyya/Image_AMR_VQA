@@ -1,0 +1,39 @@
+# ::tok This bathroom has a toilet and a sink with a bottle of mouthwash on the top of the toilet tank .
+# ::node	t2	this	0-1
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	t3	toilet	4-5
+# ::node	a	and	5-6
+# ::node	s	sink	7-8
+# ::node	h2	have-03	8-9
+# ::node	b2	bottle	10-11
+# ::node	c	contain-01	10-11
+# ::node	m	mouthwash	12-13
+# ::node	t4	top	15-16
+# ::node	t	tank	19-20
+# ::root	h	have-03
+# ::edge	bathroom	mod	this	b	t2	
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	and	op1	toilet	a	t3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	sink	a	s	
+# ::edge	sink	ARG0-of	have-03	s	h2	
+# ::edge	have-03	ARG1	bottle	h2	b2	
+# ::edge	bottle	ARG0-of	contain-01	b2	c	
+# ::edge	contain-01	ARG1	mouthwash	c	m	
+# ::edge	sink	location	top	s	t4	
+# ::edge	top	part-of	tank	t4	t	
+# ::edge	tank	mod	toilet	t	t3	
+(h / have-03
+    :ARG0 (b / bathroom
+        :mod (t2 / this))
+    :ARG1 (a / and
+        :op1 (t3 / toilet)
+        :op2 (s / sink
+            :ARG0-of (h2 / have-03
+                :ARG1 (b2 / bottle
+                    :ARG0-of (c / contain-01
+                        :ARG1 (m / mouthwash))))
+            :location (t4 / top
+                :part-of (t / tank
+                    :mod t3)))))

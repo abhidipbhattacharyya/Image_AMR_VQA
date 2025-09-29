@@ -1,0 +1,22 @@
+# ::tok A four lane highway with an overpass that has highway signs attached to it .
+# ::node	0	4	1-2
+# ::node	l	lane	2-3
+# ::node	h	highway	3-4
+# ::node	o	overpass	6-7
+# ::node	h2	highway	9-10
+# ::node	s	sign	10-11
+# ::node	a	attach-01	11-12
+# ::root	h	highway
+# ::edge	lane	quant	4	l	0	
+# ::edge	highway	mod	lane	h	l	
+# ::edge	highway	part	overpass	h	o	
+# ::edge	sign	mod	highway	s	h2	
+# ::edge	attach-01	ARG1	sign	a	s	
+# ::edge	overpass	ARG2-of	attach-01	o	a	
+(h / highway
+    :mod (l / lane
+        :quant 4)
+    :part (o / overpass
+        :ARG2-of (a / attach-01
+            :ARG1 (s / sign
+                :mod (h2 / highway)))))

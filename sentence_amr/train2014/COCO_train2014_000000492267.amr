@@ -1,0 +1,39 @@
+# ::tok The suv that belongs to the city fire chief in a parking lot .
+# ::node	c	car-make	1-2
+# ::node	n	name	1-2
+# ::node	n2	newspaper	1-2
+# ::node	0	suv	1-2
+# ::node	b	belong-01	3-4
+# ::node	c3	city	6-7
+# ::node	f	fire	7-8
+# ::node	p2	person	8-9
+# ::node	h	have-org-role-91	8-9
+# ::node	c2	chief	8-9
+# ::node	p	park-01	11-12
+# ::node	l	lot	12-13
+# ::root	c	car-make
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	suv	n	0	
+# ::edge	car-make	ARG0-of	belong-01	c	b	
+# ::edge	belong-01	ARG1	person	b	p2	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h	
+# ::edge	have-org-role-91	ARG1	city	h	c3	
+# ::edge	have-org-role-91	ARG2	chief	h	c2	
+# ::edge	chief	topic	fire	c2	f	
+# ::edge	park-01	ARG1	car-make	p	c	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	car-make	location	lot	c	l	
+# ::edge	car-make	rel	newspaper	c	n2	
+(c / car-make
+    :name (n / name
+        :op1 "suv")
+    :ARG0-of (b / belong-01
+        :ARG1 (p2 / person
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (c3 / city)
+                :ARG2 (c2 / chief
+                    :topic (f / fire)))))
+    :location (l / lot
+        :ARG2-of (p / park-01
+            :ARG1 c))
+    :rel (n2 / newspaper))

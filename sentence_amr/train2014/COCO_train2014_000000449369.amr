@@ -1,0 +1,22 @@
+# ::tok A soldier on the flight deck of an aircraft carrier as a jet arrives
+# ::node	s	soldier	1-2
+# ::node	f	fly-01	4-5
+# ::node	d	deck	5-6
+# ::node	a	aircraft	8-9
+# ::node	c	carrier	9-10
+# ::node	j	jet	12-13
+# ::node	a2	arrive-01	13-14
+# ::root	s	soldier
+# ::edge	deck	location-of	fly-01	d	f	
+# ::edge	soldier	location	deck	s	d	
+# ::edge	carrier	mod	aircraft	c	a	
+# ::edge	deck	part-of	carrier	d	c	
+# ::edge	arrive-01	ARG1	jet	a2	j	
+# ::edge	soldier	time	arrive-01	s	a2	
+(s / soldier
+    :location (d / deck
+        :location-of (f / fly-01)
+        :part-of (c / carrier
+            :mod (a / aircraft)))
+    :time (a2 / arrive-01
+        :ARG1 (j / jet)))

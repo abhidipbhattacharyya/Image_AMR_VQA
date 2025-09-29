@@ -1,0 +1,40 @@
+# ::tok A small pillow with a face made out of two dots and a line sits behind a couple books on a bed
+# ::node	s2	small	1-2
+# ::node	p	pillow	2-3
+# ::node	f	face	5-6
+# ::node	m	make-01	6-7
+# ::node	0	2	9-10
+# ::node	d	dot	10-11
+# ::node	a	and	11-12
+# ::node	l	line	13-14
+# ::node	s	sit-01	14-15
+# ::node	b2	behind	15-16
+# ::node	c	couple	17-18
+# ::node	b3	book	18-19
+# ::node	b	bed	21-22
+# ::root	s	sit-01
+# ::edge	pillow	mod	small	p	s2	
+# ::edge	pillow	part	face	p	f	
+# ::edge	face	ARG1-of	make-01	f	m	
+# ::edge	dot	quant	2	d	0	
+# ::edge	make-01	ARG2	dot	m	d	
+# ::edge	and	op1	pillow	a	p	
+# ::edge	and	op2	line	a	l	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	behind	s	b2	
+# ::edge	book	quant	couple	b3	c	
+# ::edge	behind	op1	book	b2	b3	
+# ::edge	book	part-of	bed	b3	b	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (p / pillow
+            :mod (s2 / small)
+            :part (f / face
+                :ARG1-of (m / make-01
+                    :ARG2 (d / dot
+                        :quant 2))))
+        :op2 (l / line))
+    :ARG2 (b2 / behind
+        :op1 (b3 / book
+            :quant (c / couple)
+            :part-of (b / bed))))

@@ -1,0 +1,39 @@
+# ::tok A railroad crossing has a red traffic light near it with cars and trucks driving by .
+# ::node	r	railroad	1-2
+# ::node	c2	cross-02	2-3
+# ::node	h	have-03	3-4
+# ::node	r2	red-02	5-6
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	n	near-02	8-9
+# ::node	c	car	11-12
+# ::node	a	and	12-13
+# ::node	t2	truck	13-14
+# ::node	d	drive-01	14-15
+# ::node	b	by	15-16
+# ::root	h	have-03
+# ::edge	cross-02	ARG1	railroad	c2	r	
+# ::edge	have-03	ARG0	cross-02	h	c2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r2	
+# ::edge	have-03	ARG1	light	h	l	
+# ::edge	light	ARG1-of	near-02	l	n	
+# ::edge	near-02	ARG2	cross-02	n	c2	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op2	truck	a	t2	
+# ::edge	drive-01	ARG0	and	d	a	
+# ::edge	cross-02	location-of	drive-01	c2	d	
+# ::edge	drive-01	direction	by	d	b	
+(h / have-03
+    :ARG0 (c2 / cross-02
+        :ARG1 (r / railroad)
+        :location-of (d / drive-01
+            :ARG0 (a / and
+                :op1 (c / car)
+                :op2 (t2 / truck))
+            :direction (b / by)))
+    :ARG1 (l / light
+        :ARG1-of (r2 / red-02)
+        :ARG1-of (n / near-02
+            :ARG2 c2)
+        :mod (t / traffic)))

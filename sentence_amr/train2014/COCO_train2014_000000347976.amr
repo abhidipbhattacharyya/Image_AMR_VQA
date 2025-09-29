@@ -1,0 +1,22 @@
+# ::tok multiple bicycles that are chained near a no parking sign .
+# ::node	m	multiple	0-1
+# ::node	b	bicycle	1-2
+# ::node	c	chain-01	4-5
+# ::node	n	near-02	5-6
+# ::node	0	-	7-8
+# ::node	p	park-01	8-9
+# ::node	s	sign	9-10
+# ::root	b	bicycle
+# ::edge	bicycle	quant	multiple	b	m	
+# ::edge	bicycle	ARG1-of	chain-01	b	c	
+# ::edge	chain-01	ARG1-of	near-02	c	n	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	sign	topic	park-01	s	p	
+# ::edge	near-02	ARG2	sign	n	s	
+(b / bicycle
+    :quant (m / multiple)
+    :ARG1-of (c / chain-01
+        :ARG1-of (n / near-02
+            :ARG2 (s / sign
+                :topic (p / park-01
+                    :polarity -)))))

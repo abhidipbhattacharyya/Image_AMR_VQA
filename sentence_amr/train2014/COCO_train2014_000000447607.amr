@@ -1,0 +1,22 @@
+# ::tok Red light is showing on a traffic light at empty intersection .
+# ::node	r	red-02	0-1
+# ::node	l	light	1-2
+# ::node	s	show-01	3-4
+# ::node	t	traffic	6-7
+# ::node	l2	light	7-8
+# ::node	e	empty-02	9-10
+# ::node	i	intersect-01	10-11
+# ::root	s	show-01
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	show-01	ARG1	light	s	l	
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	show-01	location	light	s	l2	
+# ::edge	intersect-01	ARG1-of	empty-02	i	e	
+# ::edge	show-01	location	intersect-01	s	i	
+(s / show-01
+    :ARG1 (l / light
+        :ARG1-of (r / red-02))
+    :location (l2 / light
+        :mod (t / traffic))
+    :location (i / intersect-01
+        :ARG1-of (e / empty-02)))

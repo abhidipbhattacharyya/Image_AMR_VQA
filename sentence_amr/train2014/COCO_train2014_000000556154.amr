@@ -1,0 +1,40 @@
+# ::tok A view from the side mirror of a car shows bumper to bumper traffic , as far as the eye can see .
+# ::node	v	view-01	1-2
+# ::node	s3	side	4-5
+# ::node	m	mirror	5-6
+# ::node	c	car	8-9
+# ::node	s2	show-01	9-10
+# ::node	b	bumper-to-bumper	12-13
+# ::node	t	traffic	13-14
+# ::node	h	have-degree-91	15-16
+# ::node	e	equal	15-16
+# ::node	f	far	16-17
+# ::node	e2	eye	19-20
+# ::node	p	possible-01	20-21
+# ::node	s	see-01	21-22
+# ::root	s2	show-01
+# ::edge	mirror	mod	side	m	s3	
+# ::edge	view-01	source	mirror	v	m	
+# ::edge	mirror	part-of	car	m	c	
+# ::edge	show-01	ARG0	view-01	s2	v	
+# ::edge	traffic	mod	bumper-to-bumper	t	b	
+# ::edge	show-01	ARG1	traffic	s2	t	
+# ::edge	traffic	ARG1-of	have-degree-91	t	h	
+# ::edge	have-degree-91	ARG3	equal	h	e	
+# ::edge	have-degree-91	ARG2	far	h	f	
+# ::edge	see-01	ARG1-of	possible-01	s	p	
+# ::edge	see-01	ARG0	eye	s	e2	
+# ::edge	have-degree-91	ARG4	see-01	h	s	
+(s2 / show-01
+    :ARG0 (v / view-01
+        :source (m / mirror
+            :mod (s3 / side)
+            :part-of (c / car)))
+    :ARG1 (t / traffic
+        :ARG1-of (h / have-degree-91
+            :ARG2 (f / far)
+            :ARG3 (e / equal)
+            :ARG4 (s / see-01
+                :ARG0 (e2 / eye)
+                :ARG1-of (p / possible-01)))
+        :mod (b / bumper-to-bumper)))

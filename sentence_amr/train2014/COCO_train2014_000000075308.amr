@@ -1,0 +1,28 @@
+# ::tok Dark car traveling on road near clock tower in dense fog .
+# ::node	d	dark-02	0-1
+# ::node	c	car	1-2
+# ::node	t2	travel-01	2-3
+# ::node	r	road	4-5
+# ::node	n	near-02	5-6
+# ::node	c2	clock	6-7
+# ::node	t	tower	7-8
+# ::node	d2	dense	9-10
+# ::node	f	fog	10-11
+# ::root	t2	travel-01
+# ::edge	car	ARG1-of	dark-02	c	d	
+# ::edge	travel-01	ARG0	car	t2	c	
+# ::edge	travel-01	ARG1	road	t2	r	
+# ::edge	road	ARG1-of	near-02	r	n	
+# ::edge	tower	mod	clock	t	c2	
+# ::edge	near-02	ARG2	tower	n	t	
+# ::edge	fog	mod	dense	f	d2	
+# ::edge	travel-01	condition	fog	t2	f	
+(t2 / travel-01
+    :ARG0 (c / car
+        :ARG1-of (d / dark-02))
+    :ARG1 (r / road
+        :ARG1-of (n / near-02
+            :ARG2 (t / tower
+                :mod (c2 / clock))))
+    :condition (f / fog
+        :mod (d2 / dense)))

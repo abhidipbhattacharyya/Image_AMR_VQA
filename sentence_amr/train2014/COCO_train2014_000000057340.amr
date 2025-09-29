@@ -1,0 +1,36 @@
+# ::tok a tall building that has a clock on the side of it with an american flag on top
+# ::node	t	tall	1-2
+# ::node	b	building	2-3
+# ::node	h	have-03	4-5
+# ::node	c	clock	6-7
+# ::node	s	side	9-10
+# ::node	h2	have-03	12-13
+# ::node	c2	country	14-15
+# ::node	n	name	14-15
+# ::node	0	America	14-15
+# ::node	f	flag	15-16
+# ::node	t2	top	17-18
+# ::root	b	building
+# ::edge	building	mod	tall	b	t	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	clock	h	c	
+# ::edge	clock	location	side	c	s	
+# ::edge	building	part	side	b	s	
+# ::edge	clock	ARG0-of	have-03	c	h2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	have-03	ARG1	flag	h2	f	
+# ::edge	have-03	location	top	h2	t2	
+(b / building
+    :ARG0-of (h / have-03
+        :ARG1 (c / clock
+            :ARG0-of (h2 / have-03
+                :ARG1 (f / flag
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "America")))
+                :location (t2 / top))
+            :location (s / side)))
+    :mod (t / tall)
+    :part s)

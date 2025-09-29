@@ -1,0 +1,52 @@
+# ::tok A hilly , snowy wilderness features a house in the distance , while in the foreground resides one active and one inactive skier .
+# ::node	m	mountain	1-2
+# ::node	s3	snowy-02	3-4
+# ::node	w	wilderness	4-5
+# ::node	f	feature-01	5-6
+# ::node	h	house	7-8
+# ::node	d	distance	10-11
+# ::node	c	contrast-01	12-13
+# ::node	f2	foreground	15-16
+# ::node	r	reside-01	16-17
+# ::node	a	activity-06	18-19
+# ::node	a3	and	19-20
+# ::node	0	-	20-21
+# ::node	a2	activity-06	21-22
+# ::node	p	person	22-23
+# ::node	s	ski-01	22-23
+# ::node	p2	person	22-23
+# ::node	s2	ski-01	22-23
+# ::root	c	contrast-01
+# ::edge	wilderness	ARG1-of	snowy-02	w	s3	
+# ::edge	wilderness	mod	mountain	w	m	
+# ::edge	feature-01	ARG0	wilderness	f	w	
+# ::edge	feature-01	ARG1	house	f	h	
+# ::edge	house	location	distance	h	d	
+# ::edge	contrast-01	ARG1	feature-01	c	f	
+# ::edge	reside-01	location	foreground	r	f2	
+# ::edge	contrast-01	ARG2	reside-01	c	r	
+# ::edge	reside-01	ARG0	and	r	a3	
+# ::edge	activity-06	polarity	-	a2	0	
+# ::edge	and	op1	person	a3	p	
+# ::edge	person	ARG0-of	activity-06	p	a	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	ARG0-of	activity-06	p2	a2	
+# ::edge	and	op2	person	a3	p2	
+# ::edge	person	ARG0-of	ski-01	p2	s2	
+(c / contrast-01
+    :ARG1 (f / feature-01
+        :ARG0 (w / wilderness
+            :ARG1-of (s3 / snowy-02)
+            :mod (m / mountain))
+        :ARG1 (h / house
+            :location (d / distance)))
+    :ARG2 (r / reside-01
+        :ARG0 (a3 / and
+            :op1 (p / person
+                :ARG0-of (a / activity-06)
+                :ARG0-of (s / ski-01))
+            :op2 (p2 / person
+                :ARG0-of (a2 / activity-06
+                    :polarity -)
+                :ARG0-of (s2 / ski-01)))
+        :location (f2 / foreground)))

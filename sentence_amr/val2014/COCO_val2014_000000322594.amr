@@ -1,0 +1,39 @@
+# ::tok A split - screen , showing the same bathroom with sink and toilet , with different toilet seats .
+# ::node	s6	split-01	1-2
+# ::node	s2	screen	3-4
+# ::node	s4	show-01	5-6
+# ::node	s	same-01	7-8
+# ::node	b	bathroom	8-9
+# ::node	h	have-03	9-10
+# ::node	s5	sink	10-11
+# ::node	a	and	11-12
+# ::node	t	toilet	12-13
+# ::node	h2	have-03	14-15
+# ::node	d	differ-02	15-16
+# ::node	s3	seat	17-18
+# ::root	s4	show-01
+# ::edge	screen	ARG1-of	split-01	s2	s6	
+# ::edge	show-01	ARG0	screen	s4	s2	
+# ::edge	bathroom	ARG1-of	same-01	b	s	
+# ::edge	show-01	ARG1	bathroom	s4	b	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	and	op1	sink	a	s5	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	toilet	a	t	
+# ::edge	bathroom	ARG0-of	have-03	b	h2	
+# ::edge	seat	ARG1-of	differ-02	s3	d	
+# ::edge	have-03	ARG1	seat	h2	s3	
+# ::edge	toilet	part	seat	t	s3	
+(s4 / show-01
+    :ARG0 (s2 / screen
+        :ARG1-of (s6 / split-01))
+    :ARG1 (b / bathroom
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (s5 / sink)
+                :op2 (t / toilet
+                    :part (s3 / seat
+                        :ARG1-of (d / differ-02)))))
+        :ARG0-of (h2 / have-03
+            :ARG1 s3)
+        :ARG1-of (s / same-01)))

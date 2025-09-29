@@ -1,0 +1,28 @@
+# ::tok A solar powered device on a city street next to a bus stop .
+# ::node	s3	sun	1-2
+# ::node	p	power-01	2-3
+# ::node	d	device	3-4
+# ::node	c	city	6-7
+# ::node	s2	street	7-8
+# ::node	n	next-to	8-9
+# ::node	f	facility	10-11
+# ::node	b	bus	11-12
+# ::node	s	stop-01	12-13
+# ::root	d	device
+# ::edge	power-01	ARG0	sun	p	s3	
+# ::edge	device	ARG1-of	power-01	d	p	
+# ::edge	street	mod	city	s2	c	
+# ::edge	device	location	street	d	s2	
+# ::edge	street	location-of	next-to	s2	n	
+# ::edge	next-to	op1	facility	n	f	
+# ::edge	stop-01	ARG1	bus	s	b	
+# ::edge	facility	location-of	stop-01	f	s	
+(d / device
+    :ARG1-of (p / power-01
+        :ARG0 (s3 / sun))
+    :location (s2 / street
+        :location-of (n / next-to
+            :op1 (f / facility
+                :location-of (s / stop-01
+                    :ARG1 (b / bus))))
+        :mod (c / city)))

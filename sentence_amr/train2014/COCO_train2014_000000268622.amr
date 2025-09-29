@@ -1,0 +1,38 @@
+# ::tok A soldier rides his motorcycle with side cart through an alley way as by standers eye him closely .
+# ::node	s2	soldier	1-2
+# ::node	r	ride-01	2-3
+# ::node	m	motorcycle	4-5
+# ::node	s	side	6-7
+# ::node	c	cart	7-8
+# ::node	a	alley	10-11
+# ::node	p	person	14-15
+# ::node	s3	stand-01	14-15
+# ::node	h	have-eye-on-05	15-16
+# ::node	c3	close-10	17-18
+# ::node	c2	cause-01	18-19
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	soldier	r	s2	
+# ::edge	ride-01	ARG1	motorcycle	r	m	
+# ::edge	motorcycle	poss	soldier	m	s2	
+# ::edge	cart	mod	side	c	s	
+# ::edge	ride-01	instrument	cart	r	c	
+# ::edge	ride-01	path	alley	r	a	
+# ::edge	person	ARG0-of	stand-01	p	s3	
+# ::edge	have-eye-on-05	ARG0	person	h	p	
+# ::edge	have-eye-on-05	ARG1	ride-01	h	r	
+# ::edge	have-eye-on-05	ARG1-of	close-10	h	c3	
+# ::edge	cause-01	ARG0	have-eye-on-05	c2	h	
+# ::edge	ride-01	ARG1-of	cause-01	r	c2	
+(r / ride-01
+    :ARG0 (s2 / soldier)
+    :ARG1 (m / motorcycle
+        :poss s2)
+    :ARG1-of (c2 / cause-01
+        :ARG0 (h / have-eye-on-05
+            :ARG0 (p / person
+                :ARG0-of (s3 / stand-01))
+            :ARG1 r
+            :ARG1-of (c3 / close-10)))
+    :instrument (c / cart
+        :mod (s / side))
+    :path (a / alley))

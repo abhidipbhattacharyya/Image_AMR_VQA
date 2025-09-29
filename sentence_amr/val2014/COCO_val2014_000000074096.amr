@@ -1,0 +1,40 @@
+# ::tok Green traffic signal and a do not walk sign in front of high rise buildings .
+# ::node	g	green-02	0-1
+# ::node	t	traffic	1-2
+# ::node	s2	signal	2-3
+# ::node	a	and	3-4
+# ::node	y	you	5-6
+# ::node	1	imperative	5-6
+# ::node	0	-	6-7
+# ::node	w	walk-01	7-8
+# ::node	s	sign	8-9
+# ::node	i	in-front-of	10-11
+# ::node	h	high	12-13
+# ::node	r	rise-01	13-14
+# ::node	b	building	14-15
+# ::root	a	and
+# ::edge	signal	mod	traffic	s2	t	
+# ::edge	signal	ARG1-of	green-02	s2	g	
+# ::edge	and	op1	signal	a	s2	
+# ::edge	walk-01	polarity	-	w	0	
+# ::edge	walk-01	mode	imperative	w	1	
+# ::edge	walk-01	ARG0	you	w	y	
+# ::edge	sign	topic	walk-01	s	w	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	location	in-front-of	a	i	
+# ::edge	rise-01	ARG2	high	r	h	
+# ::edge	building	ARG1-of	rise-01	b	r	
+# ::edge	in-front-of	op1	building	i	b	
+(a / and
+    :location (i / in-front-of
+        :op1 (b / building
+            :ARG1-of (r / rise-01
+                :ARG2 (h / high))))
+    :op1 (s2 / signal
+        :ARG1-of (g / green-02)
+        :mod (t / traffic))
+    :op2 (s / sign
+        :topic (w / walk-01
+            :ARG0 (y / you)
+            :mode imperative
+            :polarity -)))

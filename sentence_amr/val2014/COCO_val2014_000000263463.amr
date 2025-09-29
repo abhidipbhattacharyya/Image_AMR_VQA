@@ -1,0 +1,34 @@
+# ::tok A dog looks out of the window as the car driver goes past a historic town .
+# ::node	d	dog	1-2
+# ::node	l	look-01	2-3
+# ::node	o	out	3-4
+# ::node	w	window	6-7
+# ::node	c	car	9-10
+# ::node	p2	person	10-11
+# ::node	d2	drive-01	10-11
+# ::node	g	go-02	11-12
+# ::node	p	past	12-13
+# ::node	h	historic	14-15
+# ::node	t	town	15-16
+# ::root	l	look-01
+# ::edge	look-01	ARG0	dog	l	d	
+# ::edge	look-01	ARG1	out	l	o	
+# ::edge	out	op1	window	o	w	
+# ::edge	person	ARG0-of	drive-01	p2	d2	
+# ::edge	drive-01	ARG1	car	d2	c	
+# ::edge	go-02	ARG0	person	g	p2	
+# ::edge	look-01	time	go-02	l	g	
+# ::edge	go-02	ARG1	past	g	p	
+# ::edge	town	mod	historic	t	h	
+# ::edge	past	op1	town	p	t	
+(l / look-01
+    :ARG0 (d / dog)
+    :ARG1 (o / out
+        :op1 (w / window))
+    :time (g / go-02
+        :ARG0 (p2 / person
+            :ARG0-of (d2 / drive-01
+                :ARG1 (c / car)))
+        :ARG1 (p / past
+            :op1 (t / town
+                :mod (h / historic)))))

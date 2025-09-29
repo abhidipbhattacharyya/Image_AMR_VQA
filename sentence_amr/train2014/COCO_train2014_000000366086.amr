@@ -1,0 +1,36 @@
+# ::tok A red traffic light hanging from a wire with a faded stop sign under it .
+# ::node	r	red-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	h	hanging-07	4-5
+# ::node	w	wire	7-8
+# ::node	h2	have-03	8-9
+# ::node	f	fade-01	10-11
+# ::node	s2	stop-01	11-12
+# ::node	s	sign	12-13
+# ::node	u	under	13-14
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	light	ARG1-of	hanging-07	l	h	
+# ::edge	hanging-07	ARG2	wire	h	w	
+# ::edge	light	ARG0-of	have-03	l	h2	
+# ::edge	sign	topic	stop-01	s	s2	
+# ::edge	sign	ARG1-of	fade-01	s	f	
+# ::edge	have-03	ARG1	sign	h2	s	
+# ::edge	sign	location	under	s	u	
+# ::edge	under	op1	light	u	l	
+# ::edge	event	mod	light	e	l	
+(e / event
+    :mod (l / light
+        :ARG0-of (h2 / have-03
+            :ARG1 (s / sign
+                :ARG1-of (f / fade-01)
+                :location (u / under
+                    :op1 l)
+                :topic (s2 / stop-01)))
+        :ARG1-of (r / red-02)
+        :ARG1-of (h / hanging-07
+            :ARG2 (w / wire))
+        :mod (t / traffic)))

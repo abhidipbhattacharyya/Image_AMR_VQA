@@ -1,0 +1,42 @@
+# ::tok There are several antiques displayed here including a vintage road sign and a set of traffic lights .
+# ::node	s2	several	2-3
+# ::node	a2	auto	3-4
+# ::node	a3	auto	3-4
+# ::node	d	display-01	4-5
+# ::node	h	here	5-6
+# ::node	i	include-01	6-7
+# ::node	v	vintage	8-9
+# ::node	r	road	9-10
+# ::node	s3	sign	10-11
+# ::node	a	and	11-12
+# ::node	s	set	13-14
+# ::node	t	traffic	15-16
+# ::node	l	light	16-17
+# ::root	d	display-01
+# ::edge	auto	quant	several	a2	s2	
+# ::edge	display-01	ARG1	auto	d	a2	
+# ::edge	display-01	ARG2	here	d	h	
+# ::edge	auto	ARG2-of	include-01	a3	i	
+# ::edge	sign	mod	road	s3	r	
+# ::edge	sign	mod	vintage	s3	v	
+# ::edge	and	op1	sign	a	s3	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	auto	a	a3	
+# ::edge	and	op3	set	a	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	set	consist-of	light	s	l	
+# ::edge	display-01	rel	include-01	d	i	
+(d / display-01
+    :ARG1 (a2 / auto
+        :quant (s2 / several))
+    :ARG2 (h / here)
+    :rel (i / include-01
+        :ARG1 (a / and
+            :op1 (s3 / sign
+                :mod (r / road)
+                :mod (v / vintage))
+            :op2 (a3 / auto
+                :ARG2-of i)
+            :op3 (s / set
+                :consist-of (l / light
+                    :mod (t / traffic))))))

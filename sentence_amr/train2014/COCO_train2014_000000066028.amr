@@ -1,0 +1,47 @@
+# ::tok A kitchen counter that has a blender with a liquid in it and a persons hand holding a red towel over the lid .
+# ::node	k	kitchen	1-2
+# ::node	c	counter	2-3
+# ::node	h2	have-03	4-5
+# ::node	b	blender	6-7
+# ::node	h3	have-03	7-8
+# ::node	l2	liquid	9-10
+# ::node	a	and	12-13
+# ::node	p	person	14-15
+# ::node	h	hand	15-16
+# ::node	h4	hold-01	16-17
+# ::node	r	red-02	18-19
+# ::node	t	towel	19-20
+# ::node	o	over	20-21
+# ::node	l	lid	22-23
+# ::root	c	counter
+# ::edge	counter	location	kitchen	c	k	
+# ::edge	counter	ARG0-of	have-03	c	h2	
+# ::edge	blender	ARG0-of	have-03	b	h3	
+# ::edge	have-03	ARG1	liquid	h3	l2	
+# ::edge	liquid	location	blender	l2	b	
+# ::edge	and	op1	blender	a	b	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	hand	part-of	person	h	p	
+# ::edge	and	op2	hand	a	h	
+# ::edge	hand	ARG0-of	hold-01	h	h4	
+# ::edge	towel	ARG1-of	red-02	t	r	
+# ::edge	hold-01	ARG1	towel	h4	t	
+# ::edge	hold-01	location	over	h4	o	
+# ::edge	over	op1	lid	o	l	
+# ::edge	blender	part	lid	b	l	
+(c / counter
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (b / blender
+                :ARG0-of (h3 / have-03
+                    :ARG1 (l2 / liquid
+                        :location b))
+                :part (l / lid))
+            :op2 (h / hand
+                :ARG0-of (h4 / hold-01
+                    :ARG1 (t / towel
+                        :ARG1-of (r / red-02))
+                    :location (o / over
+                        :op1 l))
+                :part-of (p / person))))
+    :location (k / kitchen))

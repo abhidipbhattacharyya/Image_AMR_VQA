@@ -1,0 +1,34 @@
+# ::tok A black Peterbuilt truck pulling a trailer with a tarp covered load .
+# ::node	b	black-04	1-2
+# ::node	b2	build-01	2-3
+# ::node	n	name	2-3
+# ::node	0	Peterbuilt	2-3
+# ::node	t4	truck	3-4
+# ::node	p	pull-01	4-5
+# ::node	t3	trailer	6-7
+# ::node	t2	thing	8-9
+# ::node	t	tarp	9-10
+# ::node	c	cover-02	10-11
+# ::node	l	load-01	11-12
+# ::root	t4	truck
+# ::edge	name	op1	Peterbuilt	n	0	
+# ::edge	truck	ARG1-of	build-01	t4	b2	
+# ::edge	truck	ARG1-of	black-04	t4	b	
+# ::edge	truck	ARG0-of	pull-01	t4	p	
+# ::edge	pull-01	ARG1	trailer	p	t3	
+# ::edge	cover-02	ARG2	tarp	c	t	
+# ::edge	thing	ARG1-of	cover-02	t2	c	
+# ::edge	load-01	ARG2	thing	l	t2	
+# ::edge	trailer	ARG1-of	load-01	t3	l	
+# ::edge	truck	rel	name	t4	n	
+(t4 / truck
+    :ARG0-of (p / pull-01
+        :ARG1 (t3 / trailer
+            :ARG1-of (l / load-01
+                :ARG2 (t2 / thing
+                    :ARG1-of (c / cover-02
+                        :ARG2 (t / tarp))))))
+    :ARG1-of (b2 / build-01)
+    :ARG1-of (b / black-04)
+    :rel (n / name
+        :op1 "Peterbuilt"))

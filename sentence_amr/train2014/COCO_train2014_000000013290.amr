@@ -1,0 +1,30 @@
+# ::tok Two people with umbrellas cross the street in the crosswalk on a rainy night .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	u	umbrella	3-4
+# ::node	c	cross-02	4-5
+# ::node	s	street	6-7
+# ::node	c2	cross-02	9-10
+# ::node	r	rain-01	12-13
+# ::node	d	date-entity	13-14
+# ::node	n	night	13-14
+# ::root	c	cross-02
+# ::edge	person	quant	2	p	0	
+# ::edge	person	poss-of	umbrella	p	u	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	cross-02	ARG1	street	c	s	
+# ::edge	street	location	cross-02	s	c2	
+# ::edge	cross-02	ARG0	person	c2	p	
+# ::edge	date-entity	weekday	rain-01	d	r	
+# ::edge	cross-02	time	date-entity	c	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(c / cross-02
+    :ARG0 (p / person
+        :quant 2
+        :poss-of (u / umbrella))
+    :ARG1 (s / street
+        :location (c2 / cross-02
+            :ARG0 p))
+    :time (d / date-entity
+        :dayperiod (n / night)
+        :weekday (r / rain-01)))

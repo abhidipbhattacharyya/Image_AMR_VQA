@@ -1,0 +1,41 @@
+# ::tok A surfer balances on his board in the water near others holding surfboards on a wooden barrier .
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	b	balance-01	2-3
+# ::node	b3	board	5-6
+# ::node	w	water	8-9
+# ::node	n	near-02	9-10
+# ::node	p2	person	10-11
+# ::node	o	other	10-11
+# ::node	h	hold-01	11-12
+# ::node	s2	surf-01	12-13
+# ::node	w2	wood	15-16
+# ::node	b2	barrier	16-17
+# ::root	b	balance-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	balance-01	ARG1	person	b	p	
+# ::edge	balance-01	location	board	b	b3	
+# ::edge	board	poss	person	b3	p	
+# ::edge	balance-01	location	water	b	w	
+# ::edge	water	ARG1-of	near-02	w	n	
+# ::edge	near-02	ARG2	person	n	p2	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	hold-01	p2	h	
+# ::edge	hold-01	ARG1	surf-01	h	s2	
+# ::edge	surf-01	ARG0	person	s2	p2	
+# ::edge	barrier	consist-of	wood	b2	w2	
+# ::edge	hold-01	location	barrier	h	b2	
+(b / balance-01
+    :ARG1 (p / person
+        :ARG0-of (s / surf-01))
+    :location (b3 / board
+        :poss p)
+    :location (w / water
+        :ARG1-of (n / near-02
+            :ARG2 (p2 / person
+                :ARG0-of (h / hold-01
+                    :ARG1 (s2 / surf-01
+                        :ARG0 p2)
+                    :location (b2 / barrier
+                        :consist-of (w2 / wood)))
+                :mod (o / other)))))

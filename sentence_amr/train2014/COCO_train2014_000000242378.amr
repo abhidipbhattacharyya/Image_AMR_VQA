@@ -1,0 +1,24 @@
+# ::tok A person is taking a picture of their self while brushing their teeth .
+# ::node	p	person	1-2
+# ::node	t	take-01	3-4
+# ::node	p2	picture-01	5-6
+# ::node	b	brush-01	10-11
+# ::node	t2	tooth	12-13
+# ::root	t	take-01
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	take-01	ARG1	picture-01	t	p2	
+# ::edge	picture-01	ARG1	person	p2	p	
+# ::edge	picture-01	ARG0	person	p2	p	
+# ::edge	take-01	time	brush-01	t	b	
+# ::edge	brush-01	ARG0	person	b	p	
+# ::edge	brush-01	ARG1	tooth	b	t2	
+# ::edge	person	part	tooth	p	t2	
+(t / take-01
+    :ARG0 (p / person
+        :part (t2 / tooth))
+    :ARG1 (p2 / picture-01
+        :ARG0 p
+        :ARG1 p)
+    :time (b / brush-01
+        :ARG0 p
+        :ARG1 t2))

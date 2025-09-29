@@ -1,0 +1,38 @@
+# ::tok Some Cows stand around some tall grass and trees on a sunny day .
+# ::node	s	some	0-1
+# ::node	c	cow	1-2
+# ::node	s3	stand-01	2-3
+# ::node	a2	around	3-4
+# ::node	s2	some	4-5
+# ::node	t	tall	5-6
+# ::node	g	grass	6-7
+# ::node	a	and	7-8
+# ::node	t2	tree	8-9
+# ::node	s4	sunny	11-12
+# ::node	d	day	12-13
+# ::root	s3	stand-01
+# ::edge	cow	quant	some	c	s	
+# ::edge	stand-01	ARG1	cow	s3	c	
+# ::edge	stand-01	ARG2	around	s3	a2	
+# ::edge	grass	mod	tall	g	t	
+# ::edge	grass	mod	some	g	s2	
+# ::edge	and	op1	grass	a	g	
+# ::edge	around	op1	and	a2	a	
+# ::edge	and	op2	tree	a	t2	
+# ::edge	tree	mod	tall	t2	t	
+# ::edge	tree	quant	some	t2	s2	
+# ::edge	day	mod	sunny	d	s4	
+# ::edge	stand-01	time	day	s3	d	
+(s3 / stand-01
+    :ARG1 (c / cow
+        :quant (s / some))
+    :ARG2 (a2 / around
+        :op1 (a / and
+            :op1 (g / grass
+                :mod (t / tall)
+                :mod (s2 / some))
+            :op2 (t2 / tree
+                :quant s2
+                :mod t)))
+    :time (d / day
+        :mod (s4 / sunny)))

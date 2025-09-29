@@ -1,0 +1,39 @@
+# ::tok Man using a pole to help guide and steer a boat down a river .
+# ::node	m	man	0-1
+# ::node	u	use-01	1-2
+# ::node	p	pole	3-4
+# ::node	h	help-01	5-6
+# ::node	g	guide-01	6-7
+# ::node	a	and	7-8
+# ::node	s	steer-01	8-9
+# ::node	b	boat	10-11
+# ::node	d	down	11-12
+# ::node	r	river	13-14
+# ::root	u	use-01
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	use-01	ARG1	pole	u	p	
+# ::edge	use-01	ARG2	help-01	u	h	
+# ::edge	help-01	ARG0	man	h	m	
+# ::edge	guide-01	ARG0	man	g	m	
+# ::edge	and	op1	guide-01	a	g	
+# ::edge	help-01	ARG1	and	h	a	
+# ::edge	and	op2	steer-01	a	s	
+# ::edge	steer-01	ARG0	man	s	m	
+# ::edge	steer-01	ARG1	boat	s	b	
+# ::edge	guide-01	ARG1	boat	g	b	
+# ::edge	steer-01	direction	down	s	d	
+# ::edge	down	op1	river	d	r	
+(u / use-01
+    :ARG0 (m / man)
+    :ARG1 (p / pole)
+    :ARG2 (h / help-01
+        :ARG0 m
+        :ARG1 (a / and
+            :op1 (g / guide-01
+                :ARG0 m
+                :ARG1 (b / boat))
+            :op2 (s / steer-01
+                :ARG0 m
+                :ARG1 b
+                :direction (d / down
+                    :op1 (r / river))))))

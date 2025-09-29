@@ -1,0 +1,76 @@
+# ::tok View from front of airplane , tires to tale with most of wings , on pavement with small plane from side behind it , and a building , grass , trees , and blue sky with some clouds in the background .
+# ::node	v	view-01	0-1
+# ::node	f	front	2-3
+# ::node	a	airplane	4-5
+# ::node	t2	tire	6-7
+# ::node	t	tale	8-9
+# ::node	i	include-91	10-11
+# ::node	m	most	10-11
+# ::node	w	wing	12-13
+# ::node	w2	wing	12-13
+# ::node	p	pavement	15-16
+# ::node	s3	small	17-18
+# ::node	p2	plane	18-19
+# ::node	s	side	20-21
+# ::node	b2	behind	21-22
+# ::node	a2	and	24-25
+# ::node	b4	building	26-27
+# ::node	g	grass	28-29
+# ::node	t3	tree	30-31
+# ::node	b3	blue	33-34
+# ::node	s2	sky	34-35
+# ::node	s4	some	36-37
+# ::node	c	cloud	37-38
+# ::node	b	background	40-41
+# ::root	v	view-01
+# ::edge	view-01	source	front	v	f	
+# ::edge	front	part-of	airplane	f	a	
+# ::edge	include-91	ARG3	most	i	m	
+# ::edge	wing	ARG1-of	include-91	w	i	
+# ::edge	tale	part	wing	t	w	
+# ::edge	include-91	ARG2	wing	i	w2	
+# ::edge	airplane	part	wing	a	w2	
+# ::edge	plane	mod	small	p2	s3	
+# ::edge	behind	direction	side	b2	s	
+# ::edge	plane	location	behind	p2	b2	
+# ::edge	behind	op1	airplane	b2	a	
+# ::edge	and	op3	pavement	a2	p	
+# ::edge	and	op2	tire	a2	t2	
+# ::edge	and	op1	tire	a2	t2	
+# ::edge	view-01	ARG1	and	v	a2	
+# ::edge	and	op4	building	a2	b4	
+# ::edge	and	op5	grass	a2	g	
+# ::edge	and	op6	tree	a2	t3	
+# ::edge	sky	mod	blue	s2	b3	
+# ::edge	and	op7	sky	a2	s2	
+# ::edge	cloud	quant	some	c	s4	
+# ::edge	and	op8	cloud	a2	c	
+# ::edge	cloud	location	background	c	b	
+# ::edge	view-01	rel	tale	v	t	
+# ::edge	view-01	rel	plane	v	p2	
+(v / view-01
+    :ARG1 (a2 / and
+        :op1 (t2 / tire)
+        :op2 t2
+        :op3 (p / pavement)
+        :op4 (b4 / building)
+        :op5 (g / grass)
+        :op6 (t3 / tree)
+        :op7 (s2 / sky
+            :mod (b3 / blue))
+        :op8 (c / cloud
+            :quant (s4 / some)
+            :location (b / background)))
+    :rel (t / tale
+        :part (w / wing
+            :ARG1-of (i / include-91
+                :ARG2 (w2 / wing)
+                :ARG3 (m / most))))
+    :rel (p2 / plane
+        :location (b2 / behind
+            :direction (s / side)
+            :op1 (a / airplane
+                :part w2))
+        :mod (s3 / small))
+    :source (f / front
+        :part-of a))

@@ -1,0 +1,40 @@
+# ::tok the B train rides along some tracks surrounded by trees and buildings on either side
+# ::node	s3	string-entity	0-1
+# ::node	0	B	1-2
+# ::node	t2	train	2-3
+# ::node	r	ride-01	3-4
+# ::node	a	along	4-5
+# ::node	s2	some	5-6
+# ::node	t	track	6-7
+# ::node	s4	surround-01	7-8
+# ::node	t3	tree	9-10
+# ::node	a2	and	10-11
+# ::node	b	building	11-12
+# ::node	e	either	13-14
+# ::node	s	side	14-15
+# ::root	r	ride-01
+# ::edge	string-entity	value	B	s3	0	
+# ::edge	train	mod	string-entity	t2	s3	
+# ::edge	ride-01	ARG0	train	r	t2	
+# ::edge	ride-01	ARG1	along	r	a	
+# ::edge	track	quant	some	t	s2	
+# ::edge	along	op1	track	a	t	
+# ::edge	train	ARG2-of	surround-01	t2	s4	
+# ::edge	and	op1	tree	a2	t3	
+# ::edge	surround-01	ARG1	and	s4	a2	
+# ::edge	and	op2	building	a2	b	
+# ::edge	side	mod	either	s	e	
+# ::edge	and	location	side	a2	s	
+(r / ride-01
+    :ARG0 (t2 / train
+        :ARG2-of (s4 / surround-01
+            :ARG1 (a2 / and
+                :location (s / side
+                    :mod (e / either))
+                :op1 (t3 / tree)
+                :op2 (b / building)))
+        :mod (s3 / string-entity
+            :value "B"))
+    :ARG1 (a / along
+        :op1 (t / track
+            :quant (s2 / some))))

@@ -1,0 +1,42 @@
+# ::tok This fire hydrant is painted blue and is labeled Mueller 4 1/2 .
+# ::node	t	this	0-1
+# ::node	f	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	p	paint-01	4-5
+# ::node	b	blue	5-6
+# ::node	a	and	6-7
+# ::node	l	label-01	8-9
+# ::node	p2	person	9-10
+# ::node	n	name	9-10
+# ::node	2	Mueller	9-10
+# ::node	p3	product-of	11-12
+# ::node	0	4	11-12
+# ::node	1	5	11-12
+# ::root	a	and
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	mod	this	h	t	
+# ::edge	paint-01	ARG1	hydrant	p	h	
+# ::edge	paint-01	ARG2	blue	p	b	
+# ::edge	and	op1	paint-01	a	p	
+# ::edge	and	op2	label-01	a	l	
+# ::edge	label-01	ARG1	hydrant	l	h	
+# ::edge	label-01	ARG2	person	l	p2	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Mueller	n	2	
+# ::edge	label-01	mod	product-of	l	p3	
+# ::edge	product-of	op1	4	p3	0	
+# ::edge	product-of	op2	5	p3	1	
+(a / and
+    :op1 (p / paint-01
+        :ARG1 (h / hydrant
+            :mod (f / fire)
+            :mod (t / this))
+        :ARG2 (b / blue))
+    :op2 (l / label-01
+        :ARG1 h
+        :ARG2 (p2 / person
+            :name (n / name
+                :op1 "Mueller"))
+        :mod (p3 / product-of
+            :op1 4
+            :op2 5)))

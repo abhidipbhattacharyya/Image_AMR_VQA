@@ -1,0 +1,30 @@
+# ::tok Many different pairs of scissors hanging on a wall with prices on them .
+# ::node	m	many	0-1
+# ::node	d	differ-02	1-2
+# ::node	p	pair-01	2-3
+# ::node	s	scissors	4-5
+# ::node	h	hang-01	5-6
+# ::node	w	wall	8-9
+# ::node	h2	have-03	9-10
+# ::node	t	thing	10-11
+# ::node	p2	price-01	10-11
+# ::root	h	hang-01
+# ::edge	pair-01	ARG1-of	differ-02	p	d	
+# ::edge	pair-01	quant	many	p	m	
+# ::edge	scissors	ARG1-of	pair-01	s	p	
+# ::edge	hang-01	ARG1	scissors	h	s	
+# ::edge	hang-01	ARG2	wall	h	w	
+# ::edge	scissors	ARG0-of	have-03	s	h2	
+# ::edge	have-03	ARG1	thing	h2	t	
+# ::edge	thing	ARG2-of	price-01	t	p2	
+# ::edge	price-01	ARG1	scissors	p2	s	
+(h / hang-01
+    :ARG1 (s / scissors
+        :ARG0-of (h2 / have-03
+            :ARG1 (t / thing
+                :ARG2-of (p2 / price-01
+                    :ARG1 s)))
+        :ARG1-of (p / pair-01
+            :quant (m / many)
+            :ARG1-of (d / differ-02)))
+    :ARG2 (w / wall))

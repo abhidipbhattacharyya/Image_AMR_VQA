@@ -1,0 +1,33 @@
+# ::tok Passenger train riding on top of a bridge with a city view behind it .
+# ::node	p2	person	0-1
+# ::node	p	passenger	0-1
+# ::node	t2	train	1-2
+# ::node	r	ride-01	2-3
+# ::node	t	top	4-5
+# ::node	b2	bridge	7-8
+# ::node	h	have-03	8-9
+# ::node	c	city	10-11
+# ::node	v	view-01	11-12
+# ::node	b	behind	12-13
+# ::root	r	ride-01
+# ::edge	person	mod	passenger	p2	p	
+# ::edge	train	mod	person	t2	p2	
+# ::edge	ride-01	ARG0	train	r	t2	
+# ::edge	ride-01	ARG1	top	r	t	
+# ::edge	top	part-of	bridge	t	b2	
+# ::edge	bridge	ARG0-of	have-03	b2	h	
+# ::edge	view-01	ARG1	city	v	c	
+# ::edge	have-03	ARG1	view-01	h	v	
+# ::edge	view-01	location	behind	v	b	
+# ::edge	behind	op1	train	b	t2	
+(r / ride-01
+    :ARG0 (t2 / train
+        :mod (p2 / person
+            :mod (p / passenger)))
+    :ARG1 (t / top
+        :part-of (b2 / bridge
+            :ARG0-of (h / have-03
+                :ARG1 (v / view-01
+                    :ARG1 (c / city)
+                    :location (b / behind
+                        :op1 t2))))))

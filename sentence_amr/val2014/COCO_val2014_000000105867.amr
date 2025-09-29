@@ -1,0 +1,37 @@
+# ::tok Blurred image of a person outdoors at night holding a beer glass and using a mobile phone .
+# ::node	b2	blur-01	0-1
+# ::node	i	image	1-2
+# ::node	p	person	4-5
+# ::node	o	outdoors	5-6
+# ::node	d	date-entity	7-8
+# ::node	n	night	7-8
+# ::node	h	hold-01	8-9
+# ::node	b	beer	10-11
+# ::node	g	glass	11-12
+# ::node	u	use-01	13-14
+# ::node	m	mobile-02	15-16
+# ::node	p2	phone	16-17
+# ::root	i	image
+# ::edge	image	ARG1-of	blur-01	i	b2	
+# ::edge	image	topic	person	i	p	
+# ::edge	person	location	outdoors	p	o	
+# ::edge	person	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	glass	mod	beer	g	b	
+# ::edge	hold-01	ARG1	glass	h	g	
+# ::edge	person	ARG0-of	use-01	p	u	
+# ::edge	phone	ARG1-of	mobile-02	p2	m	
+# ::edge	use-01	ARG1	phone	u	p2	
+(i / image
+    :ARG1-of (b2 / blur-01)
+    :topic (p / person
+        :ARG0-of (h / hold-01
+            :ARG1 (g / glass
+                :mod (b / beer)))
+        :ARG0-of (u / use-01
+            :ARG1 (p2 / phone
+                :ARG1-of (m / mobile-02)))
+        :location (o / outdoors)
+        :time (d / date-entity
+            :dayperiod (n / night))))

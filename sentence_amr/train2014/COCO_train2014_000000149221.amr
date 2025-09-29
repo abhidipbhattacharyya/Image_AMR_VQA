@@ -1,0 +1,56 @@
+# ::tok Two glasses or wine , one red and one white , sit with two bottles of wine while people mingle in the background .
+# ::node	1	2	0-1
+# ::node	g	glasses	1-2
+# ::node	o	or	2-3
+# ::node	w2	wine	3-4
+# ::node	r	red-02	6-7
+# ::node	a	and	7-8
+# ::node	0	1	8-9
+# ::node	w	white-03	9-10
+# ::node	t	thing	10-11
+# ::node	t2	thing	10-11
+# ::node	s	sit-01	11-12
+# ::node	2	2	13-14
+# ::node	b2	bottle	14-15
+# ::node	w3	wine	16-17
+# ::node	p	person	18-19
+# ::node	m	mingle-01	19-20
+# ::node	b	background	22-23
+# ::root	s	sit-01
+# ::edge	glasses	quant	2	g	1	
+# ::edge	or	op1	glasses	o	g	
+# ::edge	or	op2	wine	o	w2	
+# ::edge	and	op1	wine	a	w2	
+# ::edge	thing	ARG1-of	and	t	a	
+# ::edge	thing	quant	and	t	a	
+# ::edge	or	op1	thing	o	t	
+# ::edge	thing	ARG1-of	white-03	t2	w	
+# ::edge	and	op2	thing	a	t2	
+# ::edge	sit-01	ARG1	or	s	o	
+# ::edge	bottle	quant	2	b2	2	
+# ::edge	wine	quant	bottle	w3	b2	
+# ::edge	sit-01	accompanier	wine	s	w3	
+# ::edge	mingle-01	ARG0	person	m	p	
+# ::edge	sit-01	time	mingle-01	s	m	
+# ::edge	mingle-01	location	background	m	b	
+# ::edge	sit-01	rel	1	s	0	
+# ::edge	sit-01	rel	red-02	s	r	
+(s / sit-01
+    :ARG1 (o / or
+        :op1 (g / glasses
+            :quant 2)
+        :op1 (t / thing
+            :quant (a / and
+                :op1 (w2 / wine)
+                :op2 (t2 / thing
+                    :ARG1-of (w / white-03)))
+            :ARG1-of a)
+        :op2 w2)
+    :accompanier (w3 / wine
+        :quant (b2 / bottle
+            :quant 2))
+    :rel 1
+    :rel (r / red-02)
+    :time (m / mingle-01
+        :ARG0 (p / person)
+        :location (b / background)))

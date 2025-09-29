@@ -1,0 +1,27 @@
+# ::tok An electric company truck in place to repair a leaning power pole
+# ::node	e	electric	1-2
+# ::node	c	company	2-3
+# ::node	t	truck	3-4
+# ::node	i	in-place	5-6
+# ::node	r	repair-01	7-8
+# ::node	l	lean-01	9-10
+# ::node	p2	power-01	10-11
+# ::node	p	pole	11-12
+# ::root	i	in-place
+# ::edge	company	mod	electric	c	e	
+# ::edge	truck	poss	company	t	c	
+# ::edge	in-place	domain	truck	i	t	
+# ::edge	in-place	purpose	repair-01	i	r	
+# ::edge	repair-01	ARG0	truck	r	t	
+# ::edge	pole	ARG0-of	power-01	p	p2	
+# ::edge	pole	ARG1-of	lean-01	p	l	
+# ::edge	repair-01	ARG1	pole	r	p	
+(i / in-place
+    :purpose (r / repair-01
+        :ARG0 (t / truck
+            :poss (c / company
+                :mod (e / electric)))
+        :ARG1 (p / pole
+            :ARG0-of (p2 / power-01)
+            :ARG1-of (l / lean-01)))
+    :domain t)

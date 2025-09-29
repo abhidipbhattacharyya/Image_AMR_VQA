@@ -1,0 +1,31 @@
+# ::tok A sign tells you what to do for the multi - space meters in this block .
+# ::node	s	sign	1-2
+# ::node	t	tell-01	2-3
+# ::node	y	you	3-4
+# ::node	t2	thing	4-5
+# ::node	d	do-02	6-7
+# ::node	m2	multiple	9-10
+# ::node	s2	space	11-12
+# ::node	m	meter	12-13
+# ::node	t3	this	14-15
+# ::node	b	block	15-16
+# ::root	t	tell-01
+# ::edge	tell-01	ARG0	sign	t	s	
+# ::edge	tell-01	ARG2	you	t	y	
+# ::edge	tell-01	ARG1	thing	t	t2	
+# ::edge	thing	ARG1-of	do-02	t2	d	
+# ::edge	space	mod	multiple	s2	m2	
+# ::edge	meter	mod	space	m	s2	
+# ::edge	do-02	ARG2	meter	d	m	
+# ::edge	block	mod	this	b	t3	
+# ::edge	meter	location	block	m	b	
+(t / tell-01
+    :ARG0 (s / sign)
+    :ARG1 (t2 / thing
+        :ARG1-of (d / do-02
+            :ARG2 (m / meter
+                :location (b / block
+                    :mod (t3 / this))
+                :mod (s2 / space
+                    :mod (m2 / multiple)))))
+    :ARG2 (y / you))

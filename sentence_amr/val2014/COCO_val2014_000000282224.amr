@@ -1,0 +1,30 @@
+# ::tok People shaking hands while they get ready to play a tennis game
+# ::node	p	person	0-1
+# ::node	s	shake-01	1-2
+# ::node	h	hand	2-3
+# ::node	r	ready-01	6-7
+# ::node	p2	play-01	8-9
+# ::node	t	tennis	10-11
+# ::node	g	game	11-12
+# ::root	s	shake-01
+# ::edge	shake-01	ARG0	person	s	p	
+# ::edge	shake-01	ARG1	hand	s	h	
+# ::edge	person	part	hand	p	h	
+# ::edge	shake-01	time	ready-01	s	r	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	play-01	r	p2	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	game	mod	tennis	g	t	
+# ::edge	play-01	ARG1	game	p2	g	
+(s / shake-01
+    :ARG0 (p / person
+        :part (h / hand))
+    :ARG1 h
+    :time (r / ready-01
+        :ARG0 p
+        :ARG1 p
+        :ARG2 (p2 / play-01
+            :ARG0 p
+            :ARG1 (g / game
+                :mod (t / tennis)))))

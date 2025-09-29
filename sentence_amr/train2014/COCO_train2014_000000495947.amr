@@ -1,0 +1,28 @@
+# ::tok Bus on a circle drive in an area lined with pedestrians and trees .
+# ::node	b	bus	0-1
+# ::node	c	circle	3-4
+# ::node	d	drive-01	4-5
+# ::node	a2	area	7-8
+# ::node	l	line-01	8-9
+# ::node	p	person	10-11
+# ::node	w	walk-01	10-11
+# ::node	a	and	11-12
+# ::node	t	tree	12-13
+# ::root	b	bus
+# ::edge	drive-01	mod	circle	d	c	
+# ::edge	bus	subevent-of	drive-01	b	d	
+# ::edge	drive-01	location	area	d	a2	
+# ::edge	area	ARG1-of	line-01	a2	l	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op1	person	a	p	
+# ::edge	line-01	ARG2	and	l	a	
+# ::edge	and	op2	tree	a	t	
+(b / bus
+    :subevent-of (d / drive-01
+        :location (a2 / area
+            :ARG1-of (l / line-01
+                :ARG2 (a / and
+                    :op1 (p / person
+                        :ARG0-of (w / walk-01))
+                    :op2 (t / tree))))
+        :mod (c / circle)))

@@ -1,0 +1,19 @@
+# ::tok A stop sign that is at an intersection instead of stop lights .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	i2	intersect-01	7-8
+# ::node	i	instead-of-91	8-9
+# ::node	s3	stop-01	10-11
+# ::node	l	light	11-12
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	signal-07	location	intersect-01	s	i2	
+# ::edge	intersect-01	ARG1-of	instead-of-91	i2	i	
+# ::edge	light	mod	stop-01	l	s3	
+# ::edge	instead-of-91	ARG2	light	i	l	
+(s / signal-07
+    :ARG1 (s2 / stop-01)
+    :location (i2 / intersect-01
+        :ARG1-of (i / instead-of-91
+            :ARG2 (l / light
+                :mod (s3 / stop-01)))))

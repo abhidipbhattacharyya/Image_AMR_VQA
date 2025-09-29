@@ -1,0 +1,40 @@
+# ::tok A computer monitor sitting on a stack of books in front of a keyboard and next to a pair of speakers .
+# ::node	c	computer	1-2
+# ::node	m	monitor	2-3
+# ::node	s	sit-01	3-4
+# ::node	s3	stack	6-7
+# ::node	b	book	8-9
+# ::node	i	in-front-of	10-11
+# ::node	k	keyboard	13-14
+# ::node	a	and	14-15
+# ::node	n	next-to	15-16
+# ::node	0	1	17-18
+# ::node	p	pair	18-19
+# ::node	t	thing	20-21
+# ::node	s2	speak-01	20-21
+# ::root	s	sit-01
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	sit-01	ARG1	monitor	s	m	
+# ::edge	sit-01	ARG2	stack	s	s3	
+# ::edge	stack	consist-of	book	s3	b	
+# ::edge	in-front-of	op1	keyboard	i	k	
+# ::edge	and	op1	in-front-of	a	i	
+# ::edge	sit-01	location	and	s	a	
+# ::edge	and	op2	next-to	a	n	
+# ::edge	pair	quant	1	p	0	
+# ::edge	thing	quant	pair	t	p	
+# ::edge	next-to	op1	thing	n	t	
+# ::edge	thing	ARG0-of	speak-01	t	s2	
+(s / sit-01
+    :ARG1 (m / monitor
+        :mod (c / computer))
+    :ARG2 (s3 / stack
+        :consist-of (b / book))
+    :location (a / and
+        :op1 (i / in-front-of
+            :op1 (k / keyboard))
+        :op2 (n / next-to
+            :op1 (t / thing
+                :quant (p / pair
+                    :quant 1)
+                :ARG0-of (s2 / speak-01)))))

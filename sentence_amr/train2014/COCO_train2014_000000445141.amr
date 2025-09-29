@@ -1,0 +1,39 @@
+# ::tok A field with grass that has two sheep standing in the field , one close and one in the background .
+# ::node	f	field	1-2
+# ::node	h	have-03	2-3
+# ::node	g	grass	3-4
+# ::node	2	2	6-7
+# ::node	s	sheep	7-8
+# ::node	s2	sheep	7-8
+# ::node	s3	stand-01	8-9
+# ::node	0	1	13-14
+# ::node	c	close-10	14-15
+# ::node	a	and	15-16
+# ::node	1	1	16-17
+# ::node	b	background	19-20
+# ::root	f	field
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	have-03	ARG1	grass	h	g	
+# ::edge	sheep	quant	2	s	2	
+# ::edge	stand-01	ARG1	sheep	s3	s	
+# ::edge	field	location-of	stand-01	f	s3	
+# ::edge	sheep	quant	1	s2	0	
+# ::edge	sheep	ARG1-of	close-10	s2	c	
+# ::edge	and	op2	sheep	a	s2	
+# ::edge	and	op1	sheep	a	s2	
+# ::edge	sheep	quant	1	s2	1	
+# ::edge	sheep	location	background	s2	b	
+# ::edge	field	rel	and	f	a	
+(f / field
+    :ARG0-of (h / have-03
+        :ARG1 (g / grass))
+    :location-of (s3 / stand-01
+        :ARG1 (s / sheep
+            :quant 2))
+    :rel (a / and
+        :op1 (s2 / sheep
+            :quant 1
+            :quant 1
+            :ARG1-of (c / close-10)
+            :location (b / background))
+        :op2 s2))

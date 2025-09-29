@@ -1,0 +1,31 @@
+# ::tok A sandwich with meat and sauce on it and a cup of soup on a table .
+# ::node	s	sandwich	1-2
+# ::node	m	meat	3-4
+# ::node	a	and	4-5
+# ::node	s2	sauce	5-6
+# ::node	a2	and	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c	cup	10-11
+# ::node	s3	soup	12-13
+# ::node	t	table	15-16
+# ::root	a2	and
+# ::edge	and	op1	meat	a	m	
+# ::edge	sandwich	consist-of	and	s	a	
+# ::edge	and	op2	sauce	a	s2	
+# ::edge	and	op1	sandwich	a2	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	soup	quant	volume-quantity	s3	v	
+# ::edge	and	op2	soup	a2	s3	
+# ::edge	and	location	table	a2	t	
+(a2 / and
+    :location (t / table)
+    :op1 (s / sandwich
+        :consist-of (a / and
+            :op1 (m / meat)
+            :op2 (s2 / sauce)))
+    :op2 (s3 / soup
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c / cup))))

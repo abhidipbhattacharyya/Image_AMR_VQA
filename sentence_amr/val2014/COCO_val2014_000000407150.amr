@@ -1,0 +1,30 @@
+# ::tok Umbrellas in the trash and on the ground on a wet sidewalk .
+# ::node	d	device	0-1
+# ::node	r	rain-01	0-1
+# ::node	b	be-located-at-91	1-2
+# ::node	t	trash	3-4
+# ::node	a	and	4-5
+# ::node	b2	be-located-at-91	5-6
+# ::node	g	ground	7-8
+# ::node	w	wet-01	10-11
+# ::node	s	sidewalk	11-12
+# ::root	a	and
+# ::edge	device	ARG0-of	rain-01	d	r	
+# ::edge	be-located-at-91	ARG1	device	b	d	
+# ::edge	be-located-at-91	ARG2	trash	b	t	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG1	device	b2	d	
+# ::edge	be-located-at-91	ARG2	ground	b2	g	
+# ::edge	sidewalk	ARG1-of	wet-01	s	w	
+# ::edge	ground	location	sidewalk	g	s	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (d / device
+            :ARG0-of (r / rain-01))
+        :ARG2 (t / trash))
+    :op2 (b2 / be-located-at-91
+        :ARG1 d
+        :ARG2 (g / ground
+            :location (s / sidewalk
+                :ARG1-of (w / wet-01)))))

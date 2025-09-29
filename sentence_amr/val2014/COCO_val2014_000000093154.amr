@@ -1,0 +1,37 @@
+# ::tok A rode that has car and bicycle lane that cars are driving on the left side of the road
+# ::node	r	ride-01	1-2
+# ::node	h	have-03	3-4
+# ::node	c	car	4-5
+# ::node	a	and	5-6
+# ::node	b	bicycle	6-7
+# ::node	l	lane	7-8
+# ::node	l2	lane	7-8
+# ::node	c2	car	9-10
+# ::node	d	drive-01	11-12
+# ::node	l3	left-20	14-15
+# ::node	s	side	15-16
+# ::node	r2	road	18-19
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0-of	have-03	r	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	lane	a	l	
+# ::edge	lane	mod	car	l	c	
+# ::edge	lane	mod	bicycle	l2	b	
+# ::edge	and	op2	lane	a	l2	
+# ::edge	drive-01	ARG0	car	d	c2	
+# ::edge	and	ARG2-of	drive-01	a	d	
+# ::edge	side	ARG1-of	left-20	s	l3	
+# ::edge	drive-01	location	side	d	s	
+# ::edge	side	part-of	road	s	r2	
+(r / ride-01
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG2-of (d / drive-01
+                :ARG0 (c2 / car)
+                :location (s / side
+                    :ARG1-of (l3 / left-20)
+                    :part-of (r2 / road)))
+            :op1 (l / lane
+                :mod (c / car))
+            :op2 (l2 / lane
+                :mod (b / bicycle)))))

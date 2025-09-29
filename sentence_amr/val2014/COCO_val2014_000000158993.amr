@@ -1,0 +1,40 @@
+# ::tok A clock on the wall shows 11:55 with the words " IST NOCH ...
+# ::node	c	clock	1-2
+# ::node	w	wall	4-5
+# ::node	s	show-01	5-6
+# ::node	d	date-entity	6-7
+# ::node	0	11:55	6-7
+# ::node	w2	word-01	9-10
+# ::node	d2	date-entity	11-12
+# ::node	1	yes	11-12
+# ::root	s	show-01
+# ::edge	clock	location	wall	c	w	
+# ::edge	show-01	ARG0	clock	s	c	
+# ::edge	show-01	ARG1	date-entity	s	d	
+# ::edge	date-entity	time	11:55	d	0	
+# ::edge	clock	ARG0-of	word-01	c	w2	
+# ::edge	word-01	ARG1	date-entity	w2	d2	
+# ::edge	date-entity	value	yes	d2	1	
+(s / show-01
+    :ARG0 (c / clock
+        :ARG0-of (w2 / word-01
+            :ARG1 (d2 / date-entity
+                :value "yes"))
+        :location (w / wall))
+    :ARG1 (d / date-entity
+        :time "11:55"))
+
+
+# ::tok ZEIT " above it .
+# ::node	0	it	0-1
+# ::node	s	string-entity	1-2
+# ::node	a	above	2-3
+# ::node	i	it	3-4
+# ::root	s	string-entity
+# ::edge	string-entity	value	it	s	0	
+# ::edge	string-entity	location	above	s	a	
+# ::edge	above	op1	it	a	i	
+(s / string-entity
+    :location (a / above
+        :op1 (i / it))
+    :value "it")

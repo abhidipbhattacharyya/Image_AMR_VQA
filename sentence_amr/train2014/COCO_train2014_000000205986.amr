@@ -1,0 +1,46 @@
+# ::tok A corner of a room shows a pretty window with faces and lace curtains as a gold framed mirror hands on the wall .
+# ::node	c	corner	1-2
+# ::node	r	room	4-5
+# ::node	s	show-01	5-6
+# ::node	p	pretty	7-8
+# ::node	w2	window	8-9
+# ::node	h2	have-03	9-10
+# ::node	f	face	10-11
+# ::node	a	and	11-12
+# ::node	l	lace	12-13
+# ::node	c2	curtain	13-14
+# ::node	g	gold	16-17
+# ::node	f2	frame-06	17-18
+# ::node	m	mirror	18-19
+# ::node	h	hand	19-20
+# ::node	w	wall	22-23
+# ::root	s	show-01
+# ::edge	corner	part-of	room	c	r	
+# ::edge	show-01	ARG0	corner	s	c	
+# ::edge	window	mod	pretty	w2	p	
+# ::edge	show-01	ARG1	window	s	w2	
+# ::edge	window	ARG0-of	have-03	w2	h2	
+# ::edge	and	op1	face	a	f	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	curtain	mod	lace	c2	l	
+# ::edge	and	op2	curtain	a	c2	
+# ::edge	frame-06	ARG3	gold	f2	g	
+# ::edge	mirror	ARG1-of	frame-06	m	f2	
+# ::edge	hand	part-of	mirror	h	m	
+# ::edge	show-01	prep-as	hand	s	h	
+# ::edge	hand	location	wall	h	w	
+(s / show-01
+    :ARG0 (c / corner
+        :part-of (r / room))
+    :ARG1 (w2 / window
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (f / face)
+                :op2 (c2 / curtain
+                    :mod (l / lace))))
+        :mod (p / pretty))
+    :prep-as (h / hand
+        :location (w / wall)
+        :part-of (m / mirror
+            :ARG1-of (f2 / frame-06
+                :ARG3 (g / gold)))))

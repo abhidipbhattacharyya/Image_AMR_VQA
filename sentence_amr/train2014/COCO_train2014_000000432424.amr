@@ -1,0 +1,42 @@
+# ::tok People are seated at a long table with dim lighting , many of the people are working on laptop computers .
+# ::node	p	person	0-1
+# ::node	s	seat-01	2-3
+# ::node	l3	long-03	5-6
+# ::node	t	table	6-7
+# ::node	d	dim	8-9
+# ::node	l2	lighting	9-10
+# ::node	a	and	10-11
+# ::node	m	many	11-12
+# ::node	i	include-91	12-13
+# ::node	p2	person	14-15
+# ::node	w	work-01	16-17
+# ::node	l	laptop	18-19
+# ::node	c	computer	19-20
+# ::root	a	and
+# ::edge	seat-01	ARG1	person	s	p	
+# ::edge	table	ARG1-of	long-03	t	l3	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	lighting	mod	dim	l2	d	
+# ::edge	table	prep-with	lighting	t	l2	
+# ::edge	and	op1	seat-01	a	s	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	person	quant	many	p2	m	
+# ::edge	work-01	ARG0	person	w	p2	
+# ::edge	and	op2	work-01	a	w	
+# ::edge	computer	mod	laptop	c	l	
+# ::edge	work-01	instrument	computer	w	c	
+(a / and
+    :op1 (s / seat-01
+        :ARG1 (p / person)
+        :ARG2 (t / table
+            :ARG1-of (l3 / long-03)
+            :prep-with (l2 / lighting
+                :mod (d / dim))))
+    :op2 (w / work-01
+        :ARG0 (p2 / person
+            :quant (m / many)
+            :ARG1-of (i / include-91
+                :ARG2 p))
+        :instrument (c / computer
+            :mod (l / laptop))))

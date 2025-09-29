@@ -1,0 +1,37 @@
+# ::tok A dish of rotini and shell pasta tossed with broccoli and parmesan cheese in a lite white sauce .
+# ::node	d	dish	1-2
+# ::node	r	rotini	3-4
+# ::node	s2	shell	5-6
+# ::node	p2	pasta	6-7
+# ::node	t	toss-01	7-8
+# ::node	b	broccoli	9-10
+# ::node	a	and	10-11
+# ::node	p	parmesan	11-12
+# ::node	c	cheese	12-13
+# ::node	l	lite	15-16
+# ::node	w	white-03	16-17
+# ::node	s	sauce	17-18
+# ::root	d	dish
+# ::edge	pasta	mod	shell	p2	s2	
+# ::edge	pasta	mod	rotini	p2	r	
+# ::edge	dish	consist-of	pasta	d	p2	
+# ::edge	pasta	ARG1-of	toss-01	p2	t	
+# ::edge	and	op1	broccoli	a	b	
+# ::edge	toss-01	ARG0	and	t	a	
+# ::edge	cheese	mod	parmesan	c	p	
+# ::edge	and	op2	cheese	a	c	
+# ::edge	sauce	ARG1-of	white-03	s	w	
+# ::edge	sauce	mod	lite	s	l	
+# ::edge	toss-01	prep-in	sauce	t	s	
+(d / dish
+    :consist-of (p2 / pasta
+        :ARG1-of (t / toss-01
+            :ARG0 (a / and
+                :op1 (b / broccoli)
+                :op2 (c / cheese
+                    :mod (p / parmesan)))
+            :prep-in (s / sauce
+                :ARG1-of (w / white-03)
+                :mod (l / lite)))
+        :mod (s2 / shell)
+        :mod (r / rotini)))

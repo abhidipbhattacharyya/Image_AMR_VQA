@@ -1,0 +1,28 @@
+# ::tok Baseball game with batter at home base waiting for the pitch .
+# ::node	b2	baseball	0-1
+# ::node	g	game	1-2
+# ::node	p	person	3-4
+# ::node	b3	batter-01	3-4
+# ::node	b4	be-located-at-91	4-5
+# ::node	h	home	5-6
+# ::node	b	base	6-7
+# ::node	w	wait-01	7-8
+# ::node	p2	pitch-04	10-11
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	be-located-at-91	ARG1	person	b4	p	
+# ::edge	base	mod	home	b	h	
+# ::edge	be-located-at-91	ARG2	base	b4	b	
+# ::edge	wait-01	ARG2	be-located-at-91	w	b4	
+# ::edge	game	ARG1-of	wait-01	g	w	
+# ::edge	wait-01	ARG1	pitch-04	w	p2	
+(g / game
+    :ARG1-of (w / wait-01
+        :ARG1 (p2 / pitch-04)
+        :ARG2 (b4 / be-located-at-91
+            :ARG1 (p / person
+                :ARG0-of (b3 / batter-01))
+            :ARG2 (b / base
+                :mod (h / home))))
+    :mod (b2 / baseball))

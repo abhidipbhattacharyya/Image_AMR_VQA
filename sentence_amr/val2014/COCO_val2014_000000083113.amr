@@ -1,0 +1,32 @@
+# ::tok Animals trying to either move or go around fallen tree branches
+# ::node	a	animal	0-1
+# ::node	t2	try-01	1-2
+# ::node	m	move-01	4-5
+# ::node	o	or	5-6
+# ::node	g	go-01	6-7
+# ::node	a2	around	7-8
+# ::node	f	fall-01	8-9
+# ::node	t	tree	9-10
+# ::node	b	branch	10-11
+# ::root	t2	try-01
+# ::edge	try-01	ARG0	animal	t2	a	
+# ::edge	move-01	ARG0	animal	m	a	
+# ::edge	or	op1	move-01	o	m	
+# ::edge	try-01	ARG1	or	t2	o	
+# ::edge	or	op2	go-01	o	g	
+# ::edge	go-01	ARG1	animal	g	a	
+# ::edge	go-01	ARG4	around	g	a2	
+# ::edge	branch	part-of	tree	b	t	
+# ::edge	branch	ARG1-of	fall-01	b	f	
+# ::edge	around	op1	branch	a2	b	
+(t2 / try-01
+    :ARG0 (a / animal)
+    :ARG1 (o / or
+        :op1 (m / move-01
+            :ARG0 a)
+        :op2 (g / go-01
+            :ARG1 a
+            :ARG4 (a2 / around
+                :op1 (b / branch
+                    :ARG1-of (f / fall-01)
+                    :part-of (t / tree))))))

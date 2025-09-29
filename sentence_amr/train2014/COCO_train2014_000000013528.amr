@@ -1,0 +1,28 @@
+# ::tok A tram is seen from the front with a sign that reads " Los Angeles " .
+# ::node	t	tram	1-2
+# ::node	s	see-01	3-4
+# ::node	f	front	6-7
+# ::node	s2	sign	9-10
+# ::node	r	read-01	11-12
+# ::node	n	name	13-14
+# ::node	1	Los	13-14
+# ::node	c	city	14-15
+# ::node	0	Angeles	14-15
+# ::root	s	see-01
+# ::edge	see-01	ARG1	tram	s	t	
+# ::edge	see-01	source	front	s	f	
+# ::edge	tram	prep-with	sign	t	s2	
+# ::edge	sign	ARG1-of	read-01	s2	r	
+# ::edge	name	op1	Los	n	1	
+# ::edge	city	name	name	c	n	
+# ::edge	read-01	ARG3	city	r	c	
+# ::edge	name	op2	Angeles	n	0	
+(s / see-01
+    :ARG1 (t / tram
+        :prep-with (s2 / sign
+            :ARG1-of (r / read-01
+                :ARG3 (c / city
+                    :name (n / name
+                        :op1 "Los"
+                        :op2 "Angeles")))))
+    :source (f / front))

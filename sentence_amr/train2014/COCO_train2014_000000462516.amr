@@ -1,0 +1,33 @@
+# ::tok A baseball player throwing a ball on a baseball field while people watch behind a fence .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	t	throw-01	3-4
+# ::node	b	ball	5-6
+# ::node	f2	field	9-10
+# ::node	p2	person	11-12
+# ::node	w	watch-01	12-13
+# ::node	b3	behind	13-14
+# ::node	f	fence	15-16
+# ::root	t	throw-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	throw-01	ARG0	person	t	p	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	throw-01	location	field	t	f2	
+# ::edge	field	mod	baseball	f2	b2	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	throw-01	time	watch-01	t	w	
+# ::edge	watch-01	location	behind	w	b3	
+# ::edge	behind	op1	fence	b3	f	
+(t / throw-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball)))
+    :ARG1 (b / ball)
+    :location (f2 / field
+        :mod b2)
+    :time (w / watch-01
+        :ARG0 (p2 / person)
+        :location (b3 / behind
+            :op1 (f / fence))))

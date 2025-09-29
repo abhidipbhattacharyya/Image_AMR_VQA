@@ -1,0 +1,32 @@
+# ::tok A group of guys standing on the beach with several of them holding their surfboards .
+# ::node	g	group	1-2
+# ::node	g2	guy	3-4
+# ::node	s2	stand-01	4-5
+# ::node	b	beach	7-8
+# ::node	p	person	9-10
+# ::node	i	include-91	9-10
+# ::node	s	several	9-10
+# ::node	h	hold-01	12-13
+# ::node	s3	surf-01	14-15
+# ::root	s2	stand-01
+# ::edge	group	consist-of	guy	g	g2	
+# ::edge	stand-01	ARG1	group	s2	g	
+# ::edge	stand-01	ARG2	beach	s2	b	
+# ::edge	person	ARG1-of	include-91	p	i	
+# ::edge	include-91	ARG2	guy	i	g2	
+# ::edge	include-91	ARG3	several	i	s	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	stand-01	accompanier	hold-01	s2	h	
+# ::edge	hold-01	ARG1	surf-01	h	s3	
+# ::edge	surf-01	ARG0	person	s3	p	
+(s2 / stand-01
+    :ARG1 (g / group
+        :consist-of (g2 / guy))
+    :ARG2 (b / beach)
+    :accompanier (h / hold-01
+        :ARG0 (p / person
+            :ARG1-of (i / include-91
+                :ARG2 g2
+                :ARG3 (s / several)))
+        :ARG1 (s3 / surf-01
+            :ARG0 p)))

@@ -1,0 +1,25 @@
+# ::tok People standing on the corner by the fire truck that 's connected to the fire hydrant
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	c2	corner	4-5
+# ::node	f	fire	7-8
+# ::node	t	truck	8-9
+# ::node	c	connect-01	11-12
+# ::node	f2	fire	14-15
+# ::node	h	hydrant	15-16
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	location	corner	s	c2	
+# ::edge	truck	mod	fire	t	f	
+# ::edge	stand-01	ARG2	truck	s	t	
+# ::edge	truck	ARG1-of	connect-01	t	c	
+# ::edge	hydrant	mod	fire	h	f2	
+# ::edge	connect-01	ARG2	hydrant	c	h	
+(s / stand-01
+    :ARG1 (p / person)
+    :ARG2 (t / truck
+        :ARG1-of (c / connect-01
+            :ARG2 (h / hydrant
+                :mod (f2 / fire)))
+        :mod (f / fire))
+    :location (c2 / corner))

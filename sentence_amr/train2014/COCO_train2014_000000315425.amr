@@ -1,0 +1,34 @@
+# ::tok London double decker bus approaching a police car on city street .
+# ::node	c2	city	0-1
+# ::node	n	name	0-1
+# ::node	1	London	0-1
+# ::node	0	2	1-2
+# ::node	d	deck	2-3
+# ::node	b	bus	3-4
+# ::node	a	approach-01	4-5
+# ::node	p	police	6-7
+# ::node	c	car	7-8
+# ::node	c3	city	9-10
+# ::node	s	street	10-11
+# ::root	a	approach-01
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	London	n	1	
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	bus	mod	city	b	c2	
+# ::edge	approach-01	ARG1	bus	a	b	
+# ::edge	car	mod	police	c	p	
+# ::edge	approach-01	ARG2	car	a	c	
+# ::edge	street	mod	city	s	c3	
+# ::edge	approach-01	location	street	a	s	
+(a / approach-01
+    :ARG1 (b / bus
+        :mod (d / deck
+            :quant 2)
+        :mod (c2 / city
+            :name (n / name
+                :op1 "London")))
+    :ARG2 (c / car
+        :mod (p / police))
+    :location (s / street
+        :mod (c3 / city)))

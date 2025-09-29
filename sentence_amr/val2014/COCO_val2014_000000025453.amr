@@ -1,0 +1,35 @@
+# ::tok An antique pickup truck restored and displayed at a fair or car show .
+# ::node	a2	antique	1-2
+# ::node	p	pickup	2-3
+# ::node	t	truck	3-4
+# ::node	r	restore-02	4-5
+# ::node	a	and	5-6
+# ::node	d	display-01	6-7
+# ::node	f	fair	9-10
+# ::node	o	or	10-11
+# ::node	c	car	11-12
+# ::node	s	show-04	12-13
+# ::root	a	and
+# ::edge	truck	mod	pickup	t	p	
+# ::edge	truck	mod	antique	t	a2	
+# ::edge	restore-02	ARG1	truck	r	t	
+# ::edge	and	op1	restore-02	a	r	
+# ::edge	and	op2	display-01	a	d	
+# ::edge	display-01	ARG1	truck	d	t	
+# ::edge	or	op1	fair	o	f	
+# ::edge	display-01	time	or	d	o	
+# ::edge	restore-02	time	or	r	o	
+# ::edge	show-04	ARG1	car	s	c	
+# ::edge	or	op2	show-04	o	s	
+(a / and
+    :op1 (r / restore-02
+        :ARG1 (t / truck
+            :mod (p / pickup)
+            :mod (a2 / antique))
+        :time (o / or
+            :op1 (f / fair)
+            :op2 (s / show-04
+                :ARG1 (c / car))))
+    :op2 (d / display-01
+        :ARG1 t
+        :time o))

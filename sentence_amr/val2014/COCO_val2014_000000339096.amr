@@ -1,0 +1,28 @@
+# ::tok A multi - topping pizza with various glasses of alcohol on a table .
+# ::node	m	multiple	1-2
+# ::node	t2	top-01	3-4
+# ::node	p	pizza	4-5
+# ::node	v	various	6-7
+# ::node	v2	volume-quantity	7-8
+# ::node	g	glasses	7-8
+# ::node	0	1	7-8
+# ::node	a	alcohol	9-10
+# ::node	t	table	12-13
+# ::root	p	pizza
+# ::edge	top-01	ARG2	multiple	t2	m	
+# ::edge	pizza	ARG1-of	top-01	p	t2	
+# ::edge	volume-quantity	mod	various	v2	v	
+# ::edge	volume-quantity	unit	glasses	v2	g	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	alcohol	quant	volume-quantity	a	v2	
+# ::edge	pizza	accompanier	alcohol	p	a	
+# ::edge	pizza	location	table	p	t	
+(p / pizza
+    :ARG1-of (t2 / top-01
+        :ARG2 (m / multiple))
+    :accompanier (a / alcohol
+        :quant (v2 / volume-quantity
+            :quant 1
+            :mod (v / various)
+            :unit (g / glasses)))
+    :location (t / table))

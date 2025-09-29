@@ -1,0 +1,22 @@
+# ::tok A street surrounded by trees with light traffic at night .
+# ::node	s	street	1-2
+# ::node	s2	surround-01	2-3
+# ::node	t2	tree	4-5
+# ::node	l	light-06	6-7
+# ::node	t	traffic	7-8
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::root	s	street
+# ::edge	street	ARG2-of	surround-01	s	s2	
+# ::edge	surround-01	ARG1	tree	s2	t2	
+# ::edge	traffic	ARG1-of	light-06	t	l	
+# ::edge	street	part	traffic	s	t	
+# ::edge	surround-01	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s / street
+    :ARG2-of (s2 / surround-01
+        :ARG1 (t2 / tree)
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :part (t / traffic
+        :ARG1-of (l / light-06)))

@@ -1,0 +1,34 @@
+# ::tok Railway tank cars in rural setting near grain silos on cloudy day .
+# ::node	r	railway	0-1
+# ::node	t	tank	1-2
+# ::node	c	car	2-3
+# ::node	r2	rural	4-5
+# ::node	s	setting	5-6
+# ::node	n	near-02	6-7
+# ::node	g	grain	7-8
+# ::node	s2	ship	8-9
+# ::node	s3	sow-01	8-9
+# ::node	c2	cloudy-02	10-11
+# ::node	d	day	11-12
+# ::root	c	car
+# ::edge	car	mod	tank	c	t	
+# ::edge	car	mod	railway	c	r	
+# ::edge	setting	mod	rural	s	r2	
+# ::edge	car	location	setting	c	s	
+# ::edge	setting	ARG1-of	near-02	s	n	
+# ::edge	ship	mod	grain	s2	g	
+# ::edge	near-02	ARG2	ship	n	s2	
+# ::edge	ship	ARG0-of	sow-01	s2	s3	
+# ::edge	day	ARG1-of	cloudy-02	d	c2	
+# ::edge	near-02	time	day	n	d	
+(c / car
+    :location (s / setting
+        :ARG1-of (n / near-02
+            :ARG2 (s2 / ship
+                :ARG0-of (s3 / sow-01)
+                :mod (g / grain))
+            :time (d / day
+                :ARG1-of (c2 / cloudy-02)))
+        :mod (r2 / rural))
+    :mod (t / tank)
+    :mod (r / railway))

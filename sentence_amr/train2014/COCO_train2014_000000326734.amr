@@ -1,0 +1,43 @@
+# ::tok Several plates of foods including strawberries and vegetables are next to a sippy cup .
+# ::node	s	several	0-1
+# ::node	p	plate	1-2
+# ::node	f2	food	3-4
+# ::node	i	include-01	4-5
+# ::node	f	flower	5-6
+# ::node	n	name	5-6
+# ::node	e	enzyme	5-6
+# ::node	0	strawberries	5-6
+# ::node	a	and	6-7
+# ::node	v	vegetable	7-8
+# ::node	b	be-located-at-91	9-10
+# ::node	n2	next-to	9-10
+# ::node	s2	sippy	12-13
+# ::node	c	cup	13-14
+# ::root	b	be-located-at-91
+# ::edge	plate	quant	several	p	s	
+# ::edge	plate	consist-of	food	p	f2	
+# ::edge	food	ARG2-of	include-01	f2	i	
+# ::edge	flower	name	name	f	n	
+# ::edge	name	op1	strawberries	n	0	
+# ::edge	and	op2	enzyme	a	e	
+# ::edge	and	op1	flower	a	f	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	enzyme	op3	vegetable	e	v	
+# ::edge	be-located-at-91	ARG1	plate	b	p	
+# ::edge	be-located-at-91	ARG2	next-to	b	n2	
+# ::edge	cup	mod	sippy	c	s2	
+# ::edge	next-to	op1	cup	n2	c	
+(b / be-located-at-91
+    :ARG1 (p / plate
+        :quant (s / several)
+        :consist-of (f2 / food
+            :ARG2-of (i / include-01
+                :ARG1 (a / and
+                    :op1 (f / flower
+                        :name (n / name
+                            :op1 "strawberries"))
+                    :op2 (e / enzyme
+                        :op3 (v / vegetable))))))
+    :ARG2 (n2 / next-to
+        :op1 (c / cup
+            :mod (s2 / sippy))))

@@ -1,0 +1,46 @@
+# ::tok a red truck stopped at a red light at Bullhead Pkwy with traffic off in the distance
+# ::node	r	red-02	1-2
+# ::node	t2	truck	2-3
+# ::node	s	stop-01	3-4
+# ::node	r2	red-02	6-7
+# ::node	l	light	7-8
+# ::node	0	Bullhead	9-10
+# ::node	r3	road	10-11
+# ::node	n	name	10-11
+# ::node	c	county	10-11
+# ::node	n2	name	10-11
+# ::node	c2	county	10-11
+# ::node	1	Pkwy	10-11
+# ::node	t	traffic	12-13
+# ::node	o	off	13-14
+# ::node	d	distance	16-17
+# ::root	s	stop-01
+# ::edge	truck	ARG1-of	red-02	t2	r	
+# ::edge	stop-01	ARG1	truck	s	t2	
+# ::edge	light	ARG1-of	red-02	l	r2	
+# ::edge	stop-01	location	light	s	l	
+# ::edge	light	location	road	l	r3	
+# ::edge	road	name	name	r3	n	
+# ::edge	name	op1	Bullhead	n	0	
+# ::edge	road	mod	county	r3	c	
+# ::edge	county	name	name	c	n2	
+# ::edge	road	mod	county	r3	c2	
+# ::edge	name	op1	Pkwy	n2	1	
+# ::edge	stop-01	prep-with	traffic	s	t	
+# ::edge	traffic	mod	off	t	o	
+# ::edge	traffic	location	distance	t	d	
+(s / stop-01
+    :ARG1 (t2 / truck
+        :ARG1-of (r / red-02))
+    :location (l / light
+        :ARG1-of (r2 / red-02)
+        :location (r3 / road
+            :name (n / name
+                :op1 "Bullhead")
+            :mod (c / county
+                :name (n2 / name
+                    :op1 "Pkwy"))
+            :mod (c2 / county)))
+    :prep-with (t / traffic
+        :location (d / distance)
+        :mod (o / off)))

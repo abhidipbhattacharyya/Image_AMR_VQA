@@ -1,0 +1,30 @@
+# ::tok A light rail system going over a bridge with a plaza below .
+# ::node	l	light	1-2
+# ::node	r	rail	2-3
+# ::node	s	system	3-4
+# ::node	g	go-01	4-5
+# ::node	o	over	5-6
+# ::node	b2	bridge	7-8
+# ::node	h	have-03	8-9
+# ::node	p	plaza	10-11
+# ::node	b	below	11-12
+# ::root	s	system
+# ::edge	rail	mod	light	r	l	
+# ::edge	system	mod	rail	s	r	
+# ::edge	system	ARG1-of	go-01	s	g	
+# ::edge	go-01	path	over	g	o	
+# ::edge	over	op1	bridge	o	b2	
+# ::edge	bridge	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	plaza	h	p	
+# ::edge	plaza	location	below	p	b	
+# ::edge	below	op1	bridge	b	b2	
+(s / system
+    :ARG1-of (g / go-01
+        :path (o / over
+            :op1 (b2 / bridge
+                :ARG0-of (h / have-03
+                    :ARG1 (p / plaza
+                        :location (b / below
+                            :op1 b2))))))
+    :mod (r / rail
+        :mod (l / light)))

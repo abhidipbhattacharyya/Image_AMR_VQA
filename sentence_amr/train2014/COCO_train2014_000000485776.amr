@@ -1,0 +1,40 @@
+# ::tok A buy sits on his couch holding the remote while he appears to consider what is on the TV in front of him .
+# ::node	p	person	1-2
+# ::node	b	buy-01	1-2
+# ::node	s	sit-01	2-3
+# ::node	c2	couch	5-6
+# ::node	h	hold-01	6-7
+# ::node	r	remote	8-9
+# ::node	a	appear-02	11-12
+# ::node	c	consider-02	13-14
+# ::node	t2	thing	14-15
+# ::node	t	television	18-19
+# ::node	i	in-front-of	20-21
+# ::root	s	sit-01
+# ::edge	person	ARG0-of	buy-01	p	b	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	couch	s	c2	
+# ::edge	couch	poss	person	c2	p	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	remote	h	r	
+# ::edge	sit-01	time	appear-02	s	a	
+# ::edge	appear-02	ARG1	consider-02	a	c	
+# ::edge	consider-02	ARG0	person	c	p	
+# ::edge	consider-02	ARG1	thing	c	t2	
+# ::edge	thing	medium	television	t2	t	
+# ::edge	thing	location	in-front-of	t2	i	
+# ::edge	in-front-of	op1	person	i	p	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (b / buy-01)
+        :ARG0-of (h / hold-01
+            :ARG1 (r / remote)))
+    :ARG2 (c2 / couch
+        :poss p)
+    :time (a / appear-02
+        :ARG1 (c / consider-02
+            :ARG0 p
+            :ARG1 (t2 / thing
+                :location (i / in-front-of
+                    :op1 p)
+                :medium (t / television)))))

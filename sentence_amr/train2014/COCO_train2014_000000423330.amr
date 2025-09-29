@@ -1,0 +1,37 @@
+# ::tok A small room with a bay window and white walls and a few clothes strewn chairs
+# ::node	s	small	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	b	bay	5-6
+# ::node	w3	window	6-7
+# ::node	a	and	7-8
+# ::node	w2	white-03	8-9
+# ::node	w	wall	9-10
+# ::node	f	few	12-13
+# ::node	c2	clothe-01	13-14
+# ::node	s2	strew-01	14-15
+# ::node	c	chair	15-16
+# ::root	r	room
+# ::edge	room	mod	small	r	s	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	window	mod	bay	w3	b	
+# ::edge	and	op1	window	a	w3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	wall	ARG1-of	white-03	w	w2	
+# ::edge	and	op2	wall	a	w	
+# ::edge	clothe-01	quant	few	c2	f	
+# ::edge	strew-01	ARG1	clothe-01	s2	c2	
+# ::edge	chair	ARG2-of	strew-01	c	s2	
+# ::edge	and	op3	chair	a	c	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (w3 / window
+                :mod (b / bay))
+            :op2 (w / wall
+                :ARG1-of (w2 / white-03))
+            :op3 (c / chair
+                :ARG2-of (s2 / strew-01
+                    :ARG1 (c2 / clothe-01
+                        :quant (f / few))))))
+    :mod (s / small))

@@ -1,0 +1,50 @@
+# ::tok A living room area with tile flooring and a man sitting int he middle of the room on a chair with a remote control in his hand , while looking at a television .
+# ::node	l	living	1-2
+# ::node	r2	room	2-3
+# ::node	a	area	3-4
+# ::node	t2	tile	5-6
+# ::node	f	floor	6-7
+# ::node	m	man	9-10
+# ::node	s	sit-01	10-11
+# ::node	m2	middle	13-14
+# ::node	c	chair	19-20
+# ::node	h2	have-03	20-21
+# ::node	r	remote	22-23
+# ::node	c2	control	23-24
+# ::node	h	hand	26-27
+# ::node	l2	look-01	29-30
+# ::node	t	television	32-33
+# ::root	a	area
+# ::edge	room	mod	living	r2	l	
+# ::edge	area	part-of	room	a	r2	
+# ::edge	floor	consist-of	tile	f	t2	
+# ::edge	area	part	floor	a	f	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	area	location-of	sit-01	a	s	
+# ::edge	sit-01	location	middle	s	m2	
+# ::edge	room	part	middle	r2	m2	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	control	mod	remote	c2	r	
+# ::edge	have-03	ARG1	control	h2	c2	
+# ::edge	control	location	hand	c2	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	man	ARG0-of	look-01	m	l2	
+# ::edge	look-01	ARG1	television	l2	t	
+(a / area
+    :location-of (s / sit-01
+        :ARG1 (m / man
+            :ARG0-of (h2 / have-03
+                :ARG1 (c2 / control
+                    :location (h / hand)
+                    :mod (r / remote)))
+            :ARG0-of (l2 / look-01
+                :ARG1 (t / television))
+            :part h)
+        :ARG2 (c / chair)
+        :location (m2 / middle))
+    :part (f / floor
+        :consist-of (t2 / tile))
+    :part-of (r2 / room
+        :mod (l / living)
+        :part m2))

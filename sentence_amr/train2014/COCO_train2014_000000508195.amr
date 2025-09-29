@@ -1,0 +1,22 @@
+# ::tok A steam powered locomotive traveling past a train station .
+# ::node	s2	steam	1-2
+# ::node	p2	power-01	2-3
+# ::node	l	locomotive	3-4
+# ::node	t2	travel-01	4-5
+# ::node	p	past	5-6
+# ::node	t	train	7-8
+# ::node	s	station	8-9
+# ::root	l	locomotive
+# ::edge	power-01	ARG0	steam	p2	s2	
+# ::edge	locomotive	ARG1-of	power-01	l	p2	
+# ::edge	locomotive	ARG0-of	travel-01	l	t2	
+# ::edge	travel-01	path	past	t2	p	
+# ::edge	station	mod	train	s	t	
+# ::edge	past	op1	station	p	s	
+(l / locomotive
+    :ARG0-of (t2 / travel-01
+        :path (p / past
+            :op1 (s / station
+                :mod (t / train))))
+    :ARG1-of (p2 / power-01
+        :ARG0 (s2 / steam)))

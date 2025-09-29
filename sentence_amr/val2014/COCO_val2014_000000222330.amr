@@ -1,0 +1,86 @@
+# ::tok Two signs in front of a red brick building that say " Tow Away No Stopping from 4pm to 6pm " and " No Parking from 2am to 6am " .
+# ::node	5	2	0-1
+# ::node	s2	sign	1-2
+# ::node	i	in-front-of	3-4
+# ::node	r	red-02	6-7
+# ::node	b	brick	7-8
+# ::node	b2	building	8-9
+# ::node	s	say-01	10-11
+# ::node	t	tow-01	12-13
+# ::node	y	you	12-13
+# ::node	7	imperative	12-13
+# ::node	w	Away	13-14
+# ::node	a	and	14-15
+# ::node	0	-	14-15
+# ::node	s3	stop-01	15-16
+# ::node	d5	date-interval	16-17
+# ::node	d	date-entity	17-18
+# ::node	2	16:00	17-18
+# ::node	d2	date-entity	19-20
+# ::node	3	18:00	19-20
+# ::node	a2	and	21-22
+# ::node	1	-	23-24
+# ::node	p	park-01	24-25
+# ::node	d6	date-interval	25-26
+# ::node	d3	date-entity	26-27
+# ::node	6	2:00	26-27
+# ::node	d4	date-entity	28-29
+# ::node	4	18:00	28-29
+# ::root	a2	and
+# ::edge	sign	quant	2	s2	5	
+# ::edge	sign	location	in-front-of	s2	i	
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	tow-01	ARG0	you	t	y	
+# ::edge	tow-01	mode	imperative	t	7	
+# ::edge	tow-01	ARG2	Away	t	w	
+# ::edge	and	op1	tow-01	a	t	
+# ::edge	say-01	ARG1	and	s	a	
+# ::edge	stop-01	polarity	-	s3	0	
+# ::edge	and	op2	stop-01	a	s3	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	stop-01	time	date-interval	s3	d5	
+# ::edge	date-interval	op1	date-entity	d5	d	
+# ::edge	date-entity	time	16:00	d	2	
+# ::edge	date-interval	op2	date-entity	d5	d2	
+# ::edge	date-entity	time	18:00	d2	3	
+# ::edge	and	op1	sign	a2	s2	
+# ::edge	park-01	polarity	-	p	1	
+# ::edge	and	op2	park-01	a	p	
+# ::edge	park-01	ARG0	you	p	y	
+# ::edge	park-01	time	date-interval	p	d6	
+# ::edge	date-interval	op1	date-entity	d6	d3	
+# ::edge	date-entity	time	2:00	d3	6	
+# ::edge	date-interval	op2	date-entity	d6	d4	
+# ::edge	date-entity	time	18:00	d4	4	
+(a2 / and
+    :op1 (s2 / sign
+        :quant 2
+        :ARG0-of (s / say-01
+            :ARG1 (a / and
+                :op1 (t / tow-01
+                    :ARG0 (y / you)
+                    :ARG2 (w / Away)
+                    :mode imperative)
+                :op2 (s3 / stop-01
+                    :ARG0 y
+                    :polarity -
+                    :time (d5 / date-interval
+                        :op1 (d / date-entity
+                            :time "16:00")
+                        :op2 (d2 / date-entity
+                            :time "18:00")))
+                :op2 (p / park-01
+                    :ARG0 y
+                    :polarity -
+                    :time (d6 / date-interval
+                        :op1 (d3 / date-entity
+                            :time "2:00")
+                        :op2 (d4 / date-entity
+                            :time "18:00")))))
+        :location (i / in-front-of
+            :op1 (b2 / building
+                :consist-of (b / brick
+                    :ARG1-of (r / red-02))))))

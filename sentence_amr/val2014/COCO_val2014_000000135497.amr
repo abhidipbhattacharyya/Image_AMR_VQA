@@ -1,0 +1,37 @@
+# ::tok A man sits at a table and he is holding two fingers up on each hand .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	a	and	6-7
+# ::node	h2	hold-01	9-10
+# ::node	0	2	10-11
+# ::node	f	finger	11-12
+# ::node	u	up-03	12-13
+# ::node	e	each	14-15
+# ::node	h	hand	15-16
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	hold-01	a	h2	
+# ::edge	hold-01	ARG0	man	h2	m	
+# ::edge	finger	quant	2	f	0	
+# ::edge	hold-01	ARG1	finger	h2	f	
+# ::edge	up-03	ARG1	finger	u	f	
+# ::edge	hold-01	direction	up-03	h2	u	
+# ::edge	hand	mod	each	h	e	
+# ::edge	finger	location	hand	f	h	
+# ::edge	man	part	hand	m	h	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man
+            :part (h / hand
+                :mod (e / each)))
+        :ARG2 (t / table))
+    :op2 (h2 / hold-01
+        :ARG0 m
+        :ARG1 (f / finger
+            :quant 2
+            :location h)
+        :direction (u / up-03
+            :ARG1 f)))

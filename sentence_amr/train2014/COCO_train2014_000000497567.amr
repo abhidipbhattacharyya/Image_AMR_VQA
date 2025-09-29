@@ -1,0 +1,42 @@
+# ::tok Kites waver in the air and include a man shaped flying object while people stand on the ground .
+# ::node	t	time	0-1
+# ::node	k	kill-01	0-1
+# ::node	w	waver-01	1-2
+# ::node	a	air	4-5
+# ::node	a2	and	5-6
+# ::node	i	include-01	6-7
+# ::node	m	man	8-9
+# ::node	s	shape-01	9-10
+# ::node	f	fly-01	10-11
+# ::node	o	object	11-12
+# ::node	p	person	13-14
+# ::node	s2	stand-01	14-15
+# ::node	g	ground	17-18
+# ::root	a2	and
+# ::edge	time	ARG0-of	kill-01	t	k	
+# ::edge	waver-01	ARG1	time	w	t	
+# ::edge	waver-01	location	air	w	a	
+# ::edge	and	op1	waver-01	a2	w	
+# ::edge	and	op2	include-01	a2	i	
+# ::edge	include-01	ARG2	time	i	t	
+# ::edge	shape-01	ARG2	man	s	m	
+# ::edge	object	ARG0-of	fly-01	o	f	
+# ::edge	object	ARG1-of	shape-01	o	s	
+# ::edge	include-01	ARG1	object	i	o	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	include-01	time	stand-01	i	s2	
+# ::edge	stand-01	ARG2	ground	s2	g	
+(a2 / and
+    :op1 (w / waver-01
+        :ARG1 (t / time
+            :ARG0-of (k / kill-01))
+        :location (a / air))
+    :op2 (i / include-01
+        :ARG1 (o / object
+            :ARG0-of (f / fly-01)
+            :ARG1-of (s / shape-01
+                :ARG2 (m / man)))
+        :ARG2 t
+        :time (s2 / stand-01
+            :ARG1 (p / person)
+            :ARG2 (g / ground))))

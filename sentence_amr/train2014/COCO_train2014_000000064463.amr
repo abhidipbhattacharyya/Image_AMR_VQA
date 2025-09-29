@@ -1,0 +1,48 @@
+# ::tok A double bed with a white bedspread and two red and white checkered pillowcases over the pillows .
+# ::node	d	double	1-2
+# ::node	b	bed	2-3
+# ::node	h	have-03	3-4
+# ::node	w	white-03	5-6
+# ::node	b2	bedspread	6-7
+# ::node	a	and	7-8
+# ::node	0	2	8-9
+# ::node	r	red-02	9-10
+# ::node	a2	and	10-11
+# ::node	w2	white-03	11-12
+# ::node	p	pattern	12-13
+# ::node	s	suitcase	13-14
+# ::node	n	nutcase	13-14
+# ::node	o	over	14-15
+# ::node	p2	pill	16-17
+# ::root	b	bed
+# ::edge	bed	mod	double	b	d	
+# ::edge	bed	ARG0-of	have-03	b	h	
+# ::edge	bedspread	ARG1-of	white-03	b2	w	
+# ::edge	and	op1	bedspread	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	quant	2	a2	0	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	mod	pattern	a2	p	
+# ::edge	and	op1	suitcase	a2	s	
+# ::edge	suitcase	ARG1-of	white-03	s	w	
+# ::edge	nutcase	ARG1-of	white-03	n	w2	
+# ::edge	and	op2	nutcase	a2	n	
+# ::edge	and	location	over	a2	o	
+# ::edge	over	op1	pill	o	p2	
+# ::edge	bed	rel	red-02	b	r	
+(b / bed
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b2 / bedspread
+                :ARG1-of (w / white-03))
+            :op2 (a2 / and
+                :quant 2
+                :location (o / over
+                    :op1 (p2 / pill))
+                :mod (p / pattern)
+                :op1 (s / suitcase
+                    :ARG1-of w)
+                :op2 (n / nutcase
+                    :ARG1-of (w2 / white-03)))))
+    :mod (d / double)
+    :rel (r / red-02))

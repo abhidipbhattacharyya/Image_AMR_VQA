@@ -1,0 +1,31 @@
+# ::tok A person seated at a cluttered desk with a laptop and a glass of wine .
+# ::node	p	person	1-2
+# ::node	s	seat-01	2-3
+# ::node	c	clutch-01	5-6
+# ::node	d	desk	6-7
+# ::node	l	laptop	9-10
+# ::node	a	and	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	w	wine	14-15
+# ::root	p	person
+# ::edge	person	ARG1-of	seat-01	p	s	
+# ::edge	desk	ARG1-of	clutch-01	d	c	
+# ::edge	seat-01	ARG2	desk	s	d	
+# ::edge	and	op1	laptop	a	l	
+# ::edge	person	accompanier	and	p	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op2	wine	a	w	
+(p / person
+    :ARG1-of (s / seat-01
+        :ARG2 (d / desk
+            :ARG1-of (c / clutch-01)))
+    :accompanier (a / and
+        :op1 (l / laptop)
+        :op2 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))))

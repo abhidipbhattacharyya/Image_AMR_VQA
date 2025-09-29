@@ -1,0 +1,28 @@
+# ::tok Vehicles driving past a stoplight and street lights with trees in the background .
+# ::node	v	vehicle	0-1
+# ::node	d	drive-01	1-2
+# ::node	p	past	2-3
+# ::node	s	stoplight	4-5
+# ::node	a	and	5-6
+# ::node	s2	street	6-7
+# ::node	l	light	7-8
+# ::node	t	tree	9-10
+# ::node	b	background	12-13
+# ::root	d	drive-01
+# ::edge	drive-01	ARG0	vehicle	d	v	
+# ::edge	drive-01	path	past	d	p	
+# ::edge	and	op1	stoplight	a	s	
+# ::edge	past	op1	and	p	a	
+# ::edge	light	mod	street	l	s2	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	location-of	tree	a	t	
+# ::edge	tree	location	background	t	b	
+(d / drive-01
+    :ARG0 (v / vehicle)
+    :path (p / past
+        :op1 (a / and
+            :location-of (t / tree
+                :location (b / background))
+            :op1 (s / stoplight)
+            :op2 (l / light
+                :mod (s2 / street)))))

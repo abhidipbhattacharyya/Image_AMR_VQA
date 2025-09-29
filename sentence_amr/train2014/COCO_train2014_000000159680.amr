@@ -1,0 +1,36 @@
+# ::tok A large tower type building with a large black and gold clock hanging from the side of the tower .
+# ::node	l	large	1-2
+# ::node	t	tower	2-3
+# ::node	t2	type	3-4
+# ::node	b2	building	4-5
+# ::node	h2	have-03	5-6
+# ::node	l2	large	7-8
+# ::node	b	black-04	8-9
+# ::node	g	gold	10-11
+# ::node	c	clock	11-12
+# ::node	h	hang-01	12-13
+# ::node	s	side	15-16
+# ::root	b2	building
+# ::edge	type	mod	tower	t2	t	
+# ::edge	building	mod	type	b2	t2	
+# ::edge	building	mod	large	b2	l	
+# ::edge	building	ARG0-of	have-03	b2	h2	
+# ::edge	clock	mod	gold	c	g	
+# ::edge	clock	ARG1-of	black-04	c	b	
+# ::edge	clock	mod	large	c	l2	
+# ::edge	have-03	ARG1	clock	h2	c	
+# ::edge	clock	ARG1-of	hang-01	c	h	
+# ::edge	hang-01	ARG2	side	h	s	
+# ::edge	tower	part	side	t	s	
+(b2 / building
+    :ARG0-of (h2 / have-03
+        :ARG1 (c / clock
+            :ARG1-of (b / black-04)
+            :ARG1-of (h / hang-01
+                :ARG2 (s / side))
+            :mod (g / gold)
+            :mod (l2 / large)))
+    :mod (t2 / type
+        :mod (t / tower
+            :part s))
+    :mod (l / large))

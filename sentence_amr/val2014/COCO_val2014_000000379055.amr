@@ -1,0 +1,30 @@
+# ::tok An apple and an artifact on wooden pieces each with tilting mirror behind each of them .
+# ::node	a2	apple	1-2
+# ::node	a	and	2-3
+# ::node	a3	artifact	4-5
+# ::node	w	wood	6-7
+# ::node	p	piece	7-8
+# ::node	h	have-03	9-10
+# ::node	t	turn-01	10-11
+# ::node	m	mirror	11-12
+# ::node	b	behind	12-13
+# ::root	a	and
+# ::edge	and	op1	apple	a	a2	
+# ::edge	and	op2	artifact	a	a3	
+# ::edge	piece	consist-of	wood	p	w	
+# ::edge	artifact	location	piece	a3	p	
+# ::edge	piece	ARG0-of	have-03	p	h	
+# ::edge	mirror	ARG0-of	turn-01	m	t	
+# ::edge	have-03	ARG1	mirror	h	m	
+# ::edge	mirror	location	behind	m	b	
+# ::edge	behind	op1	and	b	a	
+(a / and
+    :op1 (a2 / apple)
+    :op2 (a3 / artifact
+        :location (p / piece
+            :ARG0-of (h / have-03
+                :ARG1 (m / mirror
+                    :ARG0-of (t / turn-01)
+                    :location (b / behind
+                        :op1 a)))
+            :consist-of (w / wood))))

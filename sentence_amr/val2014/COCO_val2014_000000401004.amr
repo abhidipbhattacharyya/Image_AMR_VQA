@@ -1,0 +1,49 @@
+# ::tok Several people , mostly men , are sitting inside a restaurant or bar drinking , talking , and watching television .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	m2	most	3-4
+# ::node	m	man	4-5
+# ::node	s2	sit-01	7-8
+# ::node	i	inside	8-9
+# ::node	r	restaurant	10-11
+# ::node	o	or	11-12
+# ::node	b	bar	12-13
+# ::node	d	drink-01	13-14
+# ::node	t	talk-01	15-16
+# ::node	a	and	17-18
+# ::node	w	watch-01	18-19
+# ::node	t2	television	19-20
+# ::root	a	and
+# ::edge	person	quant	several	p	s	
+# ::edge	man	mod	most	m	m2	
+# ::edge	person	mod	man	p	m	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	inside	s2	i	
+# ::edge	or	op1	restaurant	o	r	
+# ::edge	inside	op1	or	i	o	
+# ::edge	or	op2	bar	o	b	
+# ::edge	drink-01	ARG0	person	d	p	
+# ::edge	talk-01	ARG0	person	t	p	
+# ::edge	and	op2	talk-01	a	t	
+# ::edge	and	op1	drink-01	a	d	
+# ::edge	and	op3	watch-01	a	w	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	ARG1	television	w	t2	
+# ::edge	and	rel	sit-01	a	s2	
+(a / and
+    :op1 (d / drink-01
+        :ARG0 (p / person
+            :quant (s / several)
+            :mod (m / man
+                :mod (m2 / most))))
+    :op2 (t / talk-01
+        :ARG0 p)
+    :op3 (w / watch-01
+        :ARG0 p
+        :ARG1 (t2 / television))
+    :rel (s2 / sit-01
+        :ARG1 p
+        :ARG2 (i / inside
+            :op1 (o / or
+                :op1 (r / restaurant)
+                :op2 (b / bar)))))

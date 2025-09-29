@@ -1,0 +1,29 @@
+# ::tok Man yawning or yelling while holding a tennis racket on a court .
+# ::node	m	man	0-1
+# ::node	m2	moan-01	1-2
+# ::node	o	or	2-3
+# ::node	y	yell-01	3-4
+# ::node	h	hold-01	5-6
+# ::node	t	tennis	7-8
+# ::node	r	racket	8-9
+# ::node	c	court	11-12
+# ::root	o	or
+# ::edge	moan-01	ARG0	man	m2	m	
+# ::edge	or	op1	moan-01	o	m2	
+# ::edge	or	op2	yell-01	o	y	
+# ::edge	yell-01	ARG0	man	y	m	
+# ::edge	or	time	hold-01	o	h	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	hold-01	ARG1	racket	h	r	
+# ::edge	hold-01	location	court	h	c	
+(o / or
+    :op1 (m2 / moan-01
+        :ARG0 (m / man))
+    :op2 (y / yell-01
+        :ARG0 m)
+    :time (h / hold-01
+        :ARG0 m
+        :ARG1 (r / racket
+            :mod (t / tennis))
+        :location (c / court)))

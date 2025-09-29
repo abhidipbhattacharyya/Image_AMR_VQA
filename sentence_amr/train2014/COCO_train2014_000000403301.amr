@@ -1,0 +1,31 @@
+# ::tok An area behind a white building has rows of brightly colored umbrellas hanging .
+# ::node	a	area	1-2
+# ::node	b	behind	2-3
+# ::node	w	white-03	4-5
+# ::node	b3	building	5-6
+# ::node	h2	have-03	6-7
+# ::node	r	row	7-8
+# ::node	b2	bright-02	9-10
+# ::node	c	color-01	10-11
+# ::node	u	umbrella	11-12
+# ::node	h	hang-01	12-13
+# ::root	h2	have-03
+# ::edge	area	location	behind	a	b	
+# ::edge	building	ARG1-of	white-03	b3	w	
+# ::edge	behind	op1	building	b	b3	
+# ::edge	have-03	ARG0	area	h2	a	
+# ::edge	color-01	ARG1-of	bright-02	c	b2	
+# ::edge	umbrella	ARG1-of	color-01	u	c	
+# ::edge	umbrella	quant	row	u	r	
+# ::edge	have-03	ARG1	umbrella	h2	u	
+# ::edge	umbrella	ARG1-of	hang-01	u	h	
+(h2 / have-03
+    :ARG0 (a / area
+        :location (b / behind
+            :op1 (b3 / building
+                :ARG1-of (w / white-03))))
+    :ARG1 (u / umbrella
+        :quant (r / row)
+        :ARG1-of (c / color-01
+            :ARG1-of (b2 / bright-02))
+        :ARG1-of (h / hang-01)))

@@ -1,0 +1,34 @@
+# ::tok Children in a cluttered living room watching TV screen or handheld game .
+# ::node	c	child	0-1
+# ::node	v	violence	3-4
+# ::node	t2	tight-05	3-4
+# ::node	l	living	4-5
+# ::node	r	room	5-6
+# ::node	w	watch-01	6-7
+# ::node	t	television	7-8
+# ::node	s	screen	8-9
+# ::node	o	or	9-10
+# ::node	h	handheld	10-11
+# ::node	g	game	11-12
+# ::root	c	child
+# ::edge	violence	ARG1-of	tight-05	v	t2	
+# ::edge	room	mod	living	r	l	
+# ::edge	room	mod	violence	r	v	
+# ::edge	child	location	room	c	r	
+# ::edge	child	ARG0-of	watch-01	c	w	
+# ::edge	screen	part-of	television	s	t	
+# ::edge	or	op1	screen	o	s	
+# ::edge	watch-01	ARG1	or	w	o	
+# ::edge	game	mod	handheld	g	h	
+# ::edge	or	op2	game	o	g	
+(c / child
+    :ARG0-of (w / watch-01
+        :ARG1 (o / or
+            :op1 (s / screen
+                :part-of (t / television))
+            :op2 (g / game
+                :mod (h / handheld))))
+    :location (r / room
+        :mod (l / living)
+        :mod (v / violence
+            :ARG1-of (t2 / tight-05))))

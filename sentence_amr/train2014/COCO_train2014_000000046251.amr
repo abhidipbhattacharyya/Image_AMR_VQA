@@ -1,0 +1,30 @@
+# ::tok A passenger plane flies in the sky above several trees and bicycles .
+# ::node	p	passenger	1-2
+# ::node	p2	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	s2	sky	6-7
+# ::node	a	above	7-8
+# ::node	s	several	8-9
+# ::node	t	tree	9-10
+# ::node	a2	and	10-11
+# ::node	b	bicycle	11-12
+# ::root	f	fly-01
+# ::edge	plane	mod	passenger	p2	p	
+# ::edge	fly-01	ARG1	plane	f	p2	
+# ::edge	fly-01	path	sky	f	s2	
+# ::edge	fly-01	location	above	f	a	
+# ::edge	tree	quant	several	t	s	
+# ::edge	and	op1	tree	a2	t	
+# ::edge	above	op1	and	a	a2	
+# ::edge	and	op2	bicycle	a2	b	
+# ::edge	bicycle	quant	several	b	s	
+(f / fly-01
+    :ARG1 (p2 / plane
+        :mod (p / passenger))
+    :location (a / above
+        :op1 (a2 / and
+            :op1 (t / tree
+                :quant (s / several))
+            :op2 (b / bicycle
+                :quant s)))
+    :path (s2 / sky))

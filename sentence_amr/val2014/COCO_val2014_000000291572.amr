@@ -1,0 +1,41 @@
+# ::tok A baseball player wears a Rangers outfit while kneeling and holding a bat .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	t	team	5-6
+# ::node	n	name	5-6
+# ::node	0	Rangers	5-6
+# ::node	o	outfit	6-7
+# ::node	k	kneel-01	8-9
+# ::node	a	and	9-10
+# ::node	h	hold-01	10-11
+# ::node	b2	bat	12-13
+# ::root	w	wear-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Rangers	n	0	
+# ::edge	outfit	mod	team	o	t	
+# ::edge	wear-01	ARG1	outfit	w	o	
+# ::edge	kneel-01	ARG0	person	k	p	
+# ::edge	and	op1	kneel-01	a	k	
+# ::edge	wear-01	time	and	w	a	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	bat	h	b2	
+(w / wear-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball)))
+    :ARG1 (o / outfit
+        :mod (t / team
+            :name (n / name
+                :op1 "Rangers")))
+    :time (a / and
+        :op1 (k / kneel-01
+            :ARG0 p)
+        :op2 (h / hold-01
+            :ARG0 p
+            :ARG1 (b2 / bat))))

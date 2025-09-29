@@ -1,0 +1,37 @@
+# ::tok A teddy bear sits on a porch with a book positioned in front of it , as if reading
+# ::node	t	teddy	1-2
+# ::node	b	bear	2-3
+# ::node	s	sit-01	3-4
+# ::node	p	porch	6-7
+# ::node	a	and	7-8
+# ::node	b2	book	9-10
+# ::node	p2	position-01	10-11
+# ::node	i	in-front-of	12-13
+# ::node	r2	resemble-01	16-17
+# ::node	r	read-01	18-19
+# ::root	a	and
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	sit-01	ARG1	bear	s	b	
+# ::edge	sit-01	ARG2	porch	s	p	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	position-01	ARG1	book	p2	b2	
+# ::edge	and	op2	position-01	a	p2	
+# ::edge	position-01	ARG2	in-front-of	p2	i	
+# ::edge	in-front-of	op1	bear	i	b	
+# ::edge	and	ARG1-of	resemble-01	a	r2	
+# ::edge	resemble-01	ARG2	read-01	r2	r	
+# ::edge	read-01	ARG1	book	r	b2	
+# ::edge	read-01	ARG0	bear	r	b	
+(a / and
+    :ARG1-of (r2 / resemble-01
+        :ARG2 (r / read-01
+            :ARG0 (b / bear
+                :mod (t / teddy))
+            :ARG1 (b2 / book)))
+    :op1 (s / sit-01
+        :ARG1 b
+        :ARG2 (p / porch))
+    :op2 (p2 / position-01
+        :ARG1 b2
+        :ARG2 (i / in-front-of
+            :op1 b)))

@@ -1,0 +1,37 @@
+# ::tok A banana frittata next to a plate of decoratively cut fruit and a cup of coffee .
+# ::node	b	banana	1-2
+# ::node	f	frittata	2-3
+# ::node	n	next-to	3-4
+# ::node	p	plate	6-7
+# ::node	d	decorate-01	8-9
+# ::node	c3	cut-01	9-10
+# ::node	f2	fruit	10-11
+# ::node	v	volume-quantity	12-13
+# ::node	0	1	12-13
+# ::node	c2	cup	13-14
+# ::node	c	coffee	15-16
+# ::node	e	event	16-17
+# ::root	e	event
+# ::edge	frittata	mod	banana	f	b	
+# ::edge	frittata	location	next-to	f	n	
+# ::edge	next-to	op1	plate	n	p	
+# ::edge	cut-01	manner	decorate-01	c3	d	
+# ::edge	fruit	ARG1-of	cut-01	f2	c3	
+# ::edge	plate	consist-of	fruit	p	f2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	next-to	op2	coffee	n	c	
+# ::edge	event	mod	frittata	e	f	
+(e / event
+    :mod (f / frittata
+        :location (n / next-to
+            :op1 (p / plate
+                :consist-of (f2 / fruit
+                    :ARG1-of (c3 / cut-01
+                        :manner (d / decorate-01))))
+            :op2 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup))))
+        :mod (b / banana)))

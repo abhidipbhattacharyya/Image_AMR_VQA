@@ -1,0 +1,31 @@
+# ::tok Pedestrians and scooters all moving in same direction in a public area .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	a2	and	1-2
+# ::node	b	bicycle	2-3
+# ::node	a	all	3-4
+# ::node	m	move-01	4-5
+# ::node	s	same-01	6-7
+# ::node	d	direction	7-8
+# ::node	p2	public-02	10-11
+# ::node	a3	area	11-12
+# ::root	m	move-01
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op1	person	a2	p	
+# ::edge	and	op2	bicycle	a2	b	
+# ::edge	and	mod	all	a2	a	
+# ::edge	move-01	ARG0	and	m	a2	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	move-01	direction	direction	m	d	
+# ::edge	area	ARG1-of	public-02	a3	p2	
+# ::edge	move-01	location	area	m	a3	
+(m / move-01
+    :ARG0 (a2 / and
+        :mod (a / all)
+        :op1 (p / person
+            :ARG0-of (w / walk-01))
+        :op2 (b / bicycle))
+    :direction (d / direction
+        :ARG1-of (s / same-01))
+    :location (a3 / area
+        :ARG1-of (p2 / public-02)))

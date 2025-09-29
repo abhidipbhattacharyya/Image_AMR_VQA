@@ -1,0 +1,35 @@
+# ::tok A player running and holding his tennis racket out prepared to return the ball .
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	r3	run-02	2-3
+# ::node	h	hold-01	4-5
+# ::node	t	tennis	6-7
+# ::node	r	racket	7-8
+# ::node	o	out	8-9
+# ::node	p3	prepare-02	9-10
+# ::node	r2	return-02	11-12
+# ::node	b	ball	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	ARG0-of	run-02	p	r3	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	hold-01	ARG1	racket	h	r	
+# ::edge	racket	poss	person	r	p	
+# ::edge	racket	direction	out	r	o	
+# ::edge	person	ARG0-of	prepare-02	p	p3	
+# ::edge	prepare-02	ARG2	return-02	p3	r2	
+# ::edge	return-02	ARG0	person	r2	p	
+# ::edge	return-02	ARG1	ball	r2	b	
+(p / person
+    :ARG0-of (p2 / play-01)
+    :ARG0-of (r3 / run-02)
+    :ARG0-of (h / hold-01
+        :ARG1 (r / racket
+            :direction (o / out)
+            :mod (t / tennis)
+            :poss p))
+    :ARG0-of (p3 / prepare-02
+        :ARG2 (r2 / return-02
+            :ARG0 p
+            :ARG1 (b / ball))))

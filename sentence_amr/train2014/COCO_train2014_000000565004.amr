@@ -1,0 +1,40 @@
+# ::tok Red wine pours in a glass ; another glass is beside it and cheese straws in the back .
+# ::node	r	red-02	0-1
+# ::node	w	wine	1-2
+# ::node	p	pour-01	2-3
+# ::node	g	glass	5-6
+# ::node	a	and	6-7
+# ::node	a2	another	7-8
+# ::node	g2	glass	8-9
+# ::node	b2	be-located-at-91	10-11
+# ::node	b3	beside	10-11
+# ::node	i	it	11-12
+# ::node	c	cheese	13-14
+# ::node	s	straw	14-15
+# ::node	b	back	17-18
+# ::root	a	and
+# ::edge	wine	ARG1-of	red-02	w	r	
+# ::edge	pour-01	ARG1	wine	p	w	
+# ::edge	pour-01	ARG2	glass	p	g	
+# ::edge	and	op1	pour-01	a	p	
+# ::edge	glass	mod	another	g2	a2	
+# ::edge	be-located-at-91	ARG1	glass	b2	g2	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	beside	b2	b3	
+# ::edge	beside	op1	it	b3	i	
+# ::edge	straw	consist-of	cheese	s	c	
+# ::edge	and	op3	straw	a	s	
+# ::edge	straw	location	back	s	b	
+(a / and
+    :op1 (p / pour-01
+        :ARG1 (w / wine
+            :ARG1-of (r / red-02))
+        :ARG2 (g / glass))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (g2 / glass
+            :mod (a2 / another))
+        :ARG2 (b3 / beside
+            :op1 (i / it)))
+    :op3 (s / straw
+        :consist-of (c / cheese)
+        :location (b / back)))

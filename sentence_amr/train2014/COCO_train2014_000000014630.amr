@@ -1,0 +1,47 @@
+# ::tok A scene with two planes , one is parked in a garage while the other is parked outside on the grass .
+# ::node	s	scene	1-2
+# ::node	1	2	3-4
+# ::node	p3	plane	4-5
+# ::node	p4	plane	4-5
+# ::node	p5	plane	4-5
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	p	park-01	8-9
+# ::node	g	garage	11-12
+# ::node	c	contrast-01	12-13
+# ::node	o	other	14-15
+# ::node	p2	park-01	16-17
+# ::node	o2	outside	17-18
+# ::node	g2	grass	20-21
+# ::root	s	scene
+# ::edge	plane	quant	2	p3	1	
+# ::edge	scene	accompanier	plane	s	p3	
+# ::edge	plane	ARG2-of	include-91	p4	i	
+# ::edge	include-91	ARG1	plane	i	p3	
+# ::edge	plane	quant	1	p4	0	
+# ::edge	park-01	ARG1	plane	p	p4	
+# ::edge	park-01	ARG2	garage	p	g	
+# ::edge	contrast-01	ARG1	park-01	c	p	
+# ::edge	plane	ARG2-of	contrast-01	p3	c	
+# ::edge	plane	mod	other	p5	o	
+# ::edge	park-01	ARG1	plane	p2	p5	
+# ::edge	plane	ARG2	park-01	p5	p2	
+# ::edge	park-01	ARG2	outside	p2	o2	
+# ::edge	outside	location-of	grass	o2	g2	
+# ::edge	scene	rel	plane	s	p5	
+(s / scene
+    :accompanier (p3 / plane
+        :quant 2
+        :ARG2-of (c / contrast-01
+            :ARG1 (p / park-01
+                :ARG1 (p4 / plane
+                    :quant 1
+                    :ARG2-of (i / include-91
+                        :ARG1 p3))
+                :ARG2 (g / garage))))
+    :rel (p5 / plane
+        :ARG2 (p2 / park-01
+            :ARG1 p5
+            :ARG2 (o2 / outside
+                :location-of (g2 / grass)))
+        :mod (o / other)))

@@ -1,0 +1,31 @@
+# ::tok The benches are there so people can sit while they 're waiting for their ride
+# ::node	b2	bench	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	t	there	3-4
+# ::node	p	person	5-6
+# ::node	p2	possible-01	6-7
+# ::node	s	sit-01	7-8
+# ::node	w	wait-01	11-12
+# ::node	r	ride-01	14-15
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	bench	b	b2	
+# ::edge	be-located-at-91	ARG2	there	b	t	
+# ::edge	be-located-at-91	purpose	possible-01	b	p2	
+# ::edge	possible-01	ARG1	sit-01	p2	s	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	bench	s	b2	
+# ::edge	sit-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	ride-01	w	r	
+# ::edge	ride-01	ARG0	person	r	p	
+(b / be-located-at-91
+    :purpose (p2 / possible-01
+        :ARG1 (s / sit-01
+            :ARG1 (p / person)
+            :ARG2 (b2 / bench)
+            :time (w / wait-01
+                :ARG1 p
+                :ARG2 (r / ride-01
+                    :ARG0 p))))
+    :ARG1 b2
+    :ARG2 (t / there))

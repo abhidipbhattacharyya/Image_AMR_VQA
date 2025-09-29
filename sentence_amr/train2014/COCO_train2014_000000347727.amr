@@ -1,0 +1,36 @@
+# ::tok Electric stove set in a country style kitchen with green countertops .
+# ::node	e	electric	0-1
+# ::node	s2	stove	1-2
+# ::node	s	set-01	2-3
+# ::node	c3	country	5-6
+# ::node	s3	style	6-7
+# ::node	k	kitchen	7-8
+# ::node	h	have-03	8-9
+# ::node	g	green-02	9-10
+# ::node	c	counter-01	10-11
+# ::node	c2	counter-01	10-11
+# ::node	t	thing	11-12
+# ::root	s	set-01
+# ::edge	stove	mod	electric	s2	e	
+# ::edge	set-01	ARG1	stove	s	s2	
+# ::edge	style	mod	country	s3	c3	
+# ::edge	kitchen	mod	style	k	s3	
+# ::edge	set-01	location	kitchen	s	k	
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	counter-01	ARG1	kitchen	c	k	
+# ::edge	kitchen	ARG2-of	counter-01	k	c2	
+# ::edge	thing	ARG2-of	counter-01	t	c	
+# ::edge	thing	ARG1-of	green-02	t	g	
+# ::edge	have-03	ARG1	thing	h	t	
+(s / set-01
+    :ARG1 (s2 / stove
+        :mod (e / electric))
+    :location (k / kitchen
+        :ARG0-of (h / have-03
+            :ARG1 (t / thing
+                :ARG1-of (g / green-02)
+                :ARG2-of (c / counter-01
+                    :ARG1 k)))
+        :ARG2-of (c2 / counter-01)
+        :mod (s3 / style
+            :mod (c3 / country))))

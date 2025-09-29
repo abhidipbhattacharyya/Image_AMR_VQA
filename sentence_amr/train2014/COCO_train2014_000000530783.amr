@@ -1,0 +1,25 @@
+# ::tok A sign post with signs pointing to dozens of distant places .
+# ::node	s	sign	1-2
+# ::node	p3	post	2-3
+# ::node	s2	sign	4-5
+# ::node	p2	point-01	5-6
+# ::node	m	multiple	7-8
+# ::node	0	12	7-8
+# ::node	d	distant-02	9-10
+# ::node	p	place	10-11
+# ::root	p3	post
+# ::edge	post	mod	sign	p3	s	
+# ::edge	post	consist-of	sign	p3	s2	
+# ::edge	sign	ARG0-of	point-01	s2	p2	
+# ::edge	multiple	op1	12	m	0	
+# ::edge	place	ARG1-of	distant-02	p	d	
+# ::edge	place	quant	multiple	p	m	
+# ::edge	point-01	ARG2	place	p2	p	
+(p3 / post
+    :consist-of (s2 / sign
+        :ARG0-of (p2 / point-01
+            :ARG2 (p / place
+                :quant (m / multiple
+                    :op1 12)
+                :ARG1-of (d / distant-02))))
+    :mod (s / sign))

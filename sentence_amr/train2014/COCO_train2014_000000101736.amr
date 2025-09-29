@@ -1,0 +1,52 @@
+# ::tok A sign on a post that says Animal Relief Area with a small picket fence and small fire hydrant on a lawn .
+# ::node	s2	sign	1-2
+# ::node	p2	post	4-5
+# ::node	s	say-01	6-7
+# ::node	0	Animal	7-8
+# ::node	2	Relief	8-9
+# ::node	a2	area	9-10
+# ::node	n	name	9-10
+# ::node	1	Area	9-10
+# ::node	h	have-03	10-11
+# ::node	s3	small	12-13
+# ::node	p	picket	13-14
+# ::node	f	fence	14-15
+# ::node	a	and	15-16
+# ::node	s4	small	16-17
+# ::node	f2	fire	17-18
+# ::node	h2	hydrant	18-19
+# ::node	l	lawn	21-22
+# ::root	s2	sign
+# ::edge	sign	location	post	s2	p2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	area	s	a2	
+# ::edge	area	name	name	a2	n	
+# ::edge	name	op2	Relief	n	2	
+# ::edge	name	op1	Animal	n	0	
+# ::edge	name	op3	Area	n	1	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	fence	mod	picket	f	p	
+# ::edge	fence	mod	small	f	s3	
+# ::edge	and	op1	fence	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	hydrant	mod	fire	h2	f2	
+# ::edge	hydrant	mod	small	h2	s4	
+# ::edge	and	op2	hydrant	a	h2	
+# ::edge	and	location	lawn	a	l	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (a2 / area
+            :name (n / name
+                :op1 "Animal"
+                :op2 "Relief"
+                :op3 "Area")
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :location (l / lawn)
+                    :op1 (f / fence
+                        :mod (p / picket)
+                        :mod (s3 / small))
+                    :op2 (h2 / hydrant
+                        :mod (f2 / fire)
+                        :mod (s4 / small))))))
+    :location (p2 / post))

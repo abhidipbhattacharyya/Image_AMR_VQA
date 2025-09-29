@@ -1,0 +1,25 @@
+# ::tok A VW Bus vehicle is sitting curbside on the street .
+# ::node	n	name	1-2
+# ::node	1	VW	1-2
+# ::node	b	bus	2-3
+# ::node	0	Bus	2-3
+# ::node	v	vehicle	3-4
+# ::node	s	sit-01	5-6
+# ::node	c	curbside	6-7
+# ::node	s2	street	9-10
+# ::root	s	sit-01
+# ::edge	name	op1	VW	n	1	
+# ::edge	bus	name	name	b	n	
+# ::edge	name	op2	Bus	n	0	
+# ::edge	vehicle	mod	bus	v	b	
+# ::edge	sit-01	ARG1	vehicle	s	v	
+# ::edge	sit-01	ARG2	curbside	s	c	
+# ::edge	curbside	location	street	c	s2	
+(s / sit-01
+    :ARG1 (v / vehicle
+        :mod (b / bus
+            :name (n / name
+                :op1 "VW"
+                :op2 "Bus")))
+    :ARG2 (c / curbside
+        :location (s2 / street)))

@@ -1,0 +1,40 @@
+# ::tok A skateboarder performing a trick in mid air off of a half - pipe - ramp inside an indoor skate park
+# ::node	p3	person	1-2
+# ::node	b	board-05	1-2
+# ::node	p2	perform-01	2-3
+# ::node	t	trick	4-5
+# ::node	m	middle	6-7
+# ::node	a	air	7-8
+# ::node	h	half	11-12
+# ::node	p4	pipe	13-14
+# ::node	r	ramp	15-16
+# ::node	i2	inside	16-17
+# ::node	i	indoor	18-19
+# ::node	s	skate-01	19-20
+# ::node	p	park	20-21
+# ::root	p2	perform-01
+# ::edge	person	ARG0-of	board-05	p3	b	
+# ::edge	perform-01	ARG0	person	p2	p3	
+# ::edge	perform-01	ARG1	trick	p2	t	
+# ::edge	air	mod	middle	a	m	
+# ::edge	perform-01	location	air	p2	a	
+# ::edge	pipe	mod	half	p4	h	
+# ::edge	ramp	mod	pipe	r	p4	
+# ::edge	perform-01	source	ramp	p2	r	
+# ::edge	ramp	location	inside	r	i2	
+# ::edge	park	mod	skate-01	p	s	
+# ::edge	park	location	indoor	p	i	
+# ::edge	inside	op1	park	i2	p	
+(p2 / perform-01
+    :ARG0 (p3 / person
+        :ARG0-of (b / board-05))
+    :ARG1 (t / trick)
+    :location (a / air
+        :mod (m / middle))
+    :source (r / ramp
+        :location (i2 / inside
+            :op1 (p / park
+                :location (i / indoor)
+                :mod (s / skate-01)))
+        :mod (p4 / pipe
+            :mod (h / half))))

@@ -1,0 +1,28 @@
+# ::tok Antique type vehicle traveling down the interstate behind several cars
+# ::node	e	essential	0-1
+# ::node	t2	type	1-2
+# ::node	v	vehicle	2-3
+# ::node	t	travel-01	3-4
+# ::node	d	down	4-5
+# ::node	i	interstate	6-7
+# ::node	b	behind	7-8
+# ::node	s	several	8-9
+# ::node	c	car	9-10
+# ::root	v	vehicle
+# ::edge	type	mod	essential	t2	e	
+# ::edge	vehicle	mod	type	v	t2	
+# ::edge	vehicle	ARG0-of	travel-01	v	t	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	ARG1	interstate	t	i	
+# ::edge	travel-01	location	behind	t	b	
+# ::edge	car	quant	several	c	s	
+# ::edge	behind	op1	car	b	c	
+(v / vehicle
+    :ARG0-of (t / travel-01
+        :ARG1 (i / interstate)
+        :direction (d / down)
+        :location (b / behind
+            :op1 (c / car
+                :quant (s / several))))
+    :mod (t2 / type
+        :mod (e / essential)))

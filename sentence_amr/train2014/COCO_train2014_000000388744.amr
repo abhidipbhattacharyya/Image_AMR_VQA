@@ -1,0 +1,28 @@
+# ::tok A stop sign is outdoors at night beside a street lamp .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	o	outdoors	4-5
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	b2	beside	7-8
+# ::node	s3	street	9-10
+# ::node	l	lamp	10-11
+# ::root	b	be-located-at-91
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	be-located-at-91	time	date-entity	b	d	
+# ::edge	be-located-at-91	ARG2	outdoors	b	o	
+# ::edge	be-located-at-91	ARG1	signal-07	b	s	
+# ::edge	signal-07	location	beside	s	b2	
+# ::edge	lamp	mod	street	l	s3	
+# ::edge	beside	op1	lamp	b2	l	
+(b / be-located-at-91
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01)
+        :location (b2 / beside
+            :op1 (l / lamp
+                :mod (s3 / street))))
+    :ARG2 (o / outdoors)
+    :time (d / date-entity
+        :dayperiod (n / night)))

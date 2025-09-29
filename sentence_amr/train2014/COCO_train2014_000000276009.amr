@@ -1,0 +1,33 @@
+# ::tok Two police motorcycles parked by the side of the road as traffic passes on the other side .
+# ::node	0	2	0-1
+# ::node	p3	police	1-2
+# ::node	m	motorcycle	2-3
+# ::node	p	park-01	3-4
+# ::node	s	side	6-7
+# ::node	r	road	9-10
+# ::node	t	traffic	11-12
+# ::node	p2	pass-03	12-13
+# ::node	o	other	15-16
+# ::node	s2	side	16-17
+# ::root	p	park-01
+# ::edge	motorcycle	mod	police	m	p3	
+# ::edge	motorcycle	quant	2	m	0	
+# ::edge	park-01	ARG1	motorcycle	p	m	
+# ::edge	park-01	location	side	p	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	pass-03	ARG1	traffic	p2	t	
+# ::edge	park-01	time	pass-03	p	p2	
+# ::edge	side	mod	other	s2	o	
+# ::edge	pass-03	location	side	p2	s2	
+# ::edge	road	part	side	r	s2	
+(p / park-01
+    :ARG1 (m / motorcycle
+        :quant 2
+        :mod (p3 / police))
+    :location (s / side
+        :part-of (r / road
+            :part (s2 / side
+                :mod (o / other))))
+    :time (p2 / pass-03
+        :ARG1 (t / traffic)
+        :location s2))

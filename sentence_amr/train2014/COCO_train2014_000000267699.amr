@@ -1,0 +1,28 @@
+# ::tok A street filled with lots of traffic and buses driving down a street .
+# ::node	s	street	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	t	traffic	6-7
+# ::node	a	and	7-8
+# ::node	b	bus	8-9
+# ::node	d2	drive-01	9-10
+# ::node	d	down	10-11
+# ::node	s2	street	12-13
+# ::root	s	street
+# ::edge	street	ARG1-of	fill-01	s	f	
+# ::edge	traffic	quant	lot	t	l	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	bus	a	b	
+# ::edge	and	ARG0-of	drive-01	a	d2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s2	
+(s / street
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :ARG0-of (d2 / drive-01
+                :ARG1 (s2 / street)
+                :direction (d / down))
+            :op1 (t / traffic
+                :quant (l / lot))
+            :op2 (b / bus))))

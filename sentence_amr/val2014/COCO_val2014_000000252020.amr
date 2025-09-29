@@ -1,0 +1,38 @@
+# ::tok Male tennis play in backhand position , fixing to hit low ball which is not shown .
+# ::node	m	male	0-1
+# ::node	t	tennis	1-2
+# ::node	p	play-01	2-3
+# ::node	b	backhand	4-5
+# ::node	p2	position	5-6
+# ::node	f	fix-02	7-8
+# ::node	h	hit-01	9-10
+# ::node	l	low-04	10-11
+# ::node	b2	ball	11-12
+# ::node	0	-	14-15
+# ::node	s	show-01	15-16
+# ::root	p	play-01
+# ::edge	play-01	ARG1	tennis	p	t	
+# ::edge	play-01	ARG0	male	p	m	
+# ::edge	position	mod	backhand	p2	b	
+# ::edge	play-01	manner	position	p	p2	
+# ::edge	play-01	manner	fix-02	p	f	
+# ::edge	fix-02	ARG0	male	f	m	
+# ::edge	fix-02	purpose	hit-01	f	h	
+# ::edge	hit-01	ARG0	male	h	m	
+# ::edge	ball	ARG1-of	low-04	b2	l	
+# ::edge	hit-01	ARG1	ball	h	b2	
+# ::edge	show-01	polarity	-	s	0	
+# ::edge	ball	ARG1-of	show-01	b2	s	
+(p / play-01
+    :ARG0 (m / male)
+    :ARG1 (t / tennis)
+    :manner (p2 / position
+        :mod (b / backhand))
+    :manner (f / fix-02
+        :purpose (h / hit-01
+            :ARG0 m
+            :ARG1 (b2 / ball
+                :ARG1-of (l / low-04)
+                :ARG1-of (s / show-01
+                    :polarity -)))
+        :ARG0 m))

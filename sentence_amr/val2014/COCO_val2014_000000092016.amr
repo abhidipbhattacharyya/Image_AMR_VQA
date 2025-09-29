@@ -1,0 +1,34 @@
+# ::tok A bathroom mirror with a chrome towel holder and faucet and a window above .
+# ::node	b	bathroom	1-2
+# ::node	m	mirror	2-3
+# ::node	h	have-03	3-4
+# ::node	c	chrome	5-6
+# ::node	t2	towel	6-7
+# ::node	t	thing	7-8
+# ::node	h2	hold-01	7-8
+# ::node	a2	and	8-9
+# ::node	f	faucet	9-10
+# ::node	w	window	12-13
+# ::node	a	above	13-14
+# ::root	m	mirror
+# ::edge	mirror	location	bathroom	m	b	
+# ::edge	mirror	ARG0-of	have-03	m	h	
+# ::edge	thing	mod	chrome	t	c	
+# ::edge	thing	ARG0-of	hold-01	t	h2	
+# ::edge	hold-01	ARG1	towel	h2	t2	
+# ::edge	and	op1	thing	a2	t	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	faucet	a2	f	
+# ::edge	and	op3	window	a2	w	
+# ::edge	window	location	above	w	a	
+(m / mirror
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (t / thing
+                :ARG0-of (h2 / hold-01
+                    :ARG1 (t2 / towel))
+                :mod (c / chrome))
+            :op2 (f / faucet)
+            :op3 (w / window
+                :location (a / above))))
+    :location (b / bathroom))

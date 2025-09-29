@@ -1,0 +1,36 @@
+# ::tok Computer monitor and laptop on desk with other electronic equipment .
+# ::node	c	computer	0-1
+# ::node	c2	computer	0-1
+# ::node	m	monitor	1-2
+# ::node	a	and	2-3
+# ::node	a2	and	2-3
+# ::node	l	laptop	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	d	desk	5-6
+# ::node	o	other	7-8
+# ::node	e	electronic	8-9
+# ::node	e2	equipment	9-10
+# ::root	a	and
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	and	op1	and	a	a2	
+# ::edge	and	op1	monitor	a2	m	
+# ::edge	and	op2	laptop	a2	l	
+# ::edge	laptop	mod	computer	l	c2	
+# ::edge	be-located-at-91	ARG1	and	b	a2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	desk	b	d	
+# ::edge	equipment	mod	electronic	e2	e	
+# ::edge	equipment	mod	other	e2	o	
+# ::edge	and	accompanier	equipment	a	e2	
+(a / and
+    :accompanier (e2 / equipment
+        :mod (e / electronic)
+        :mod (o / other))
+    :op1 (a2 / and
+        :op1 (m / monitor
+            :mod (c / computer))
+        :op2 (l / laptop
+            :mod (c2 / computer)))
+    :op2 (b / be-located-at-91
+        :ARG1 a2
+        :ARG2 (d / desk)))

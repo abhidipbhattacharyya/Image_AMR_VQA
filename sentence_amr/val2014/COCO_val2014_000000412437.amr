@@ -1,0 +1,40 @@
+# ::tok This is a busy , rainy day in London , its street with people walking , buses and motorbikes .
+# ::node	t	this	0-1
+# ::node	b2	busy-02	3-4
+# ::node	r	rain-01	5-6
+# ::node	d	day	6-7
+# ::node	c	city	8-9
+# ::node	n	name	8-9
+# ::node	0	London	8-9
+# ::node	s	street	11-12
+# ::node	p	person	13-14
+# ::node	w	walk-01	14-15
+# ::node	b	bus	16-17
+# ::node	a	and	17-18
+# ::node	m	motorcycle	18-19
+# ::root	d	day
+# ::edge	day	mod	rain-01	d	r	
+# ::edge	day	ARG1-of	busy-02	d	b2	
+# ::edge	day	mod	this	d	t	
+# ::edge	day	location	city	d	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	London	n	0	
+# ::edge	city	part	street	c	s	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op2	bus	a	b	
+# ::edge	and	op1	person	a	p	
+# ::edge	street	location-of	and	s	a	
+# ::edge	and	op3	motorcycle	a	m	
+(d / day
+    :ARG1-of (b2 / busy-02)
+    :location (c / city
+        :name (n / name
+            :op1 "London")
+        :part (s / street
+            :location-of (a / and
+                :op1 (p / person
+                    :ARG0-of (w / walk-01))
+                :op2 (b / bus)
+                :op3 (m / motorcycle))))
+    :mod (r / rain-01)
+    :mod (t / this))

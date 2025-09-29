@@ -1,0 +1,27 @@
+# ::tok Man fallen and sliding down mountain side slope .
+# ::node	m	man	0-1
+# ::node	f	fall-01	1-2
+# ::node	a	and	2-3
+# ::node	s2	slide-01	3-4
+# ::node	d	down	4-5
+# ::node	m2	mountain	5-6
+# ::node	s	side	6-7
+# ::node	s3	slope	7-8
+# ::root	a	and
+# ::edge	fall-01	ARG1	man	f	m	
+# ::edge	and	op1	fall-01	a	f	
+# ::edge	and	op2	slide-01	a	s2	
+# ::edge	slide-01	ARG1	man	s2	m	
+# ::edge	slide-01	direction	down	s2	d	
+# ::edge	side	part-of	mountain	s	m2	
+# ::edge	slope	mod	side	s3	s	
+# ::edge	down	path	slope	d	s3	
+(a / and
+    :op1 (f / fall-01
+        :ARG1 (m / man))
+    :op2 (s2 / slide-01
+        :ARG1 m
+        :direction (d / down
+            :path (s3 / slope
+                :mod (s / side
+                    :part-of (m2 / mountain))))))

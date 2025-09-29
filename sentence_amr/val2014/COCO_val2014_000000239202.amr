@@ -1,0 +1,32 @@
+# ::tok A tennis player swinging a tennis racket at night in a lighted tennis court .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	swing-02	3-4
+# ::node	r	racket	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::node	l	light-04	11-12
+# ::node	c	court	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	swing-02	p	s	
+# ::edge	swing-02	ARG1	racket	s	r	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	swing-02	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	court	ARG1-of	light-04	c	l	
+# ::edge	swing-02	location	court	s	c	
+# ::edge	court	mod	tennis	c	t	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (s / swing-02
+        :ARG1 (r / racket
+            :mod t)
+        :location (c / court
+            :ARG1-of (l / light-04)
+            :mod t)
+        :time (d / date-entity
+            :dayperiod (n / night))))

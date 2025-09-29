@@ -1,0 +1,74 @@
+# ::tok On a baseball field , a man in a helmet is holding a bat with a baseball in the air in front of him while a man in the distance is leaning forward and a man next to him is facing the ball wearing protective gear .
+# ::node	b2	baseball	2-3
+# ::node	f2	field	3-4
+# ::node	m	man	6-7
+# ::node	h2	helmet	9-10
+# ::node	h3	hold-01	11-12
+# ::node	b4	bat	13-14
+# ::node	h	have-03	14-15
+# ::node	b3	baseball	16-17
+# ::node	a	air	19-20
+# ::node	i	in-front-of	21-22
+# ::node	c	contrast-01	24-25
+# ::node	m2	man	26-27
+# ::node	d	distance	29-30
+# ::node	l	lean-01	31-32
+# ::node	f3	forward	32-33
+# ::node	a2	and	33-34
+# ::node	m3	man	35-36
+# ::node	n	next-to	36-37
+# ::node	f	face-01	40-41
+# ::node	b	ball	42-43
+# ::node	w	wear-01	43-44
+# ::node	p	protect-01	44-45
+# ::node	g	gear	45-46
+# ::root	c	contrast-01
+# ::edge	field	mod	baseball	f2	b2	
+# ::edge	man	mod	helmet	m	h2	
+# ::edge	hold-01	ARG0	man	h3	m	
+# ::edge	hold-01	ARG1	bat	h3	b4	
+# ::edge	bat	ARG0-of	have-03	b4	h	
+# ::edge	have-03	ARG1	baseball	h	b3	
+# ::edge	baseball	location	air	b3	a	
+# ::edge	baseball	location	in-front-of	b3	i	
+# ::edge	in-front-of	op1	man	i	m	
+# ::edge	contrast-01	ARG1	hold-01	c	h3	
+# ::edge	contrast-01	location	field	c	f2	
+# ::edge	man	location	distance	m2	d	
+# ::edge	lean-01	ARG1	man	l	m2	
+# ::edge	lean-01	ARG2	forward	l	f3	
+# ::edge	and	op1	lean-01	a2	l	
+# ::edge	contrast-01	ARG2	and	c	a2	
+# ::edge	man	location	next-to	m3	n	
+# ::edge	next-to	op1	man	n	m	
+# ::edge	face-01	ARG0	man	f	m3	
+# ::edge	and	op2	face-01	a2	f	
+# ::edge	face-01	ARG1	ball	f	b	
+# ::edge	man	ARG0-of	wear-01	m3	w	
+# ::edge	gear	ARG3-of	protect-01	g	p	
+# ::edge	wear-01	ARG1	gear	w	g	
+(c / contrast-01
+    :ARG1 (h3 / hold-01
+        :ARG0 (m / man
+            :mod (h2 / helmet))
+        :ARG1 (b4 / bat
+            :ARG0-of (h / have-03
+                :ARG1 (b3 / baseball
+                    :location (a / air)
+                    :location (i / in-front-of
+                        :op1 m)))))
+    :ARG2 (a2 / and
+        :op1 (l / lean-01
+            :ARG1 (m2 / man
+                :location (d / distance))
+            :ARG2 (f3 / forward))
+        :op2 (f / face-01
+            :ARG0 (m3 / man
+                :ARG0-of (w / wear-01
+                    :ARG1 (g / gear
+                        :ARG3-of (p / protect-01)))
+                :location (n / next-to
+                    :op1 m))
+            :ARG1 (b / ball)))
+    :location (f2 / field
+        :mod (b2 / baseball)))

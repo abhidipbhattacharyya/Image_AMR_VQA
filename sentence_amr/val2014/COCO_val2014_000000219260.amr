@@ -1,0 +1,33 @@
+# ::tok A man standing in between two sets of tracks and a train on one of them .
+# ::node	m	man	1-2
+# ::node	s2	stand-01	2-3
+# ::node	b	between	4-5
+# ::node	1	2	5-6
+# ::node	s	set	6-7
+# ::node	t	track	8-9
+# ::node	t2	track	8-9
+# ::node	t3	train	11-12
+# ::node	0	1	13-14
+# ::node	i	include-91	14-15
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	between	s2	b	
+# ::edge	set	quant	2	s	1	
+# ::edge	between	op1	set	b	s	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	train	location	track	t3	t2	
+# ::edge	between	op2	train	b	t3	
+# ::edge	track	quant	1	t2	0	
+# ::edge	track	ARG1-of	include-91	t2	i	
+# ::edge	include-91	ARG2	set	i	s	
+(s2 / stand-01
+    :ARG1 (m / man)
+    :ARG2 (b / between
+        :op1 (s / set
+            :quant 2
+            :consist-of (t / track))
+        :op2 (t3 / train
+            :location (t2 / track
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 s)))))

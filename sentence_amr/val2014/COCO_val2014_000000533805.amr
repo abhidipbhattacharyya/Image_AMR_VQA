@@ -1,0 +1,34 @@
+# ::tok A plane is standing on the tarmac and another is taking off in this view from the terminal windows .
+# ::node	p	plane	1-2
+# ::node	p2	plane	1-2
+# ::node	s	stand-01	3-4
+# ::node	t2	tarmac	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	t	take-off-19	10-11
+# ::node	t4	this	13-14
+# ::node	v	view-01	14-15
+# ::node	t3	terminal	17-18
+# ::node	w	window	18-19
+# ::root	a	and
+# ::edge	stand-01	ARG1	plane	s	p	
+# ::edge	stand-01	ARG2	tarmac	s	t2	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	plane	mod	another	p2	a2	
+# ::edge	and	op2	take-off-19	a	t	
+# ::edge	take-off-19	ARG1	plane	t	p2	
+# ::edge	view-01	mod	this	v	t4	
+# ::edge	and	ARG1-of	view-01	a	v	
+# ::edge	window	mod	terminal	w	t3	
+# ::edge	view-01	source	window	v	w	
+(a / and
+    :ARG1-of (v / view-01
+        :mod (t4 / this)
+        :source (w / window
+            :mod (t3 / terminal)))
+    :op1 (s / stand-01
+        :ARG1 (p / plane)
+        :ARG2 (t2 / tarmac))
+    :op2 (t / take-off-19
+        :ARG1 (p2 / plane
+            :mod (a2 / another))))

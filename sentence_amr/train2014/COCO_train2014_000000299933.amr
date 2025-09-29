@@ -1,0 +1,30 @@
+# ::tok A cat sitting on a chair in the middle of a room , There is a cat pillow behind the cat .
+# ::node	c	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	c3	chair	5-6
+# ::node	m	middle	8-9
+# ::node	r	room	11-12
+# ::node	m2	multi-sentence	12-13
+# ::node	c2	cat	16-17
+# ::node	p	pillow	17-18
+# ::node	b	behind	18-19
+# ::root	m2	multi-sentence
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	chair	s	c3	
+# ::edge	chair	location	middle	c3	m	
+# ::edge	middle	part-of	room	m	r	
+# ::edge	multi-sentence	snt1	sit-01	m2	s	
+# ::edge	pillow	mod	cat	p	c2	
+# ::edge	multi-sentence	snt2	pillow	m2	p	
+# ::edge	pillow	location	behind	p	b	
+# ::edge	behind	op1	cat	b	c	
+(m2 / multi-sentence
+    :snt1 (s / sit-01
+        :ARG1 (c / cat)
+        :ARG2 (c3 / chair
+            :location (m / middle
+                :part-of (r / room))))
+    :snt2 (p / pillow
+        :location (b / behind
+            :op1 c)
+        :mod (c2 / cat)))

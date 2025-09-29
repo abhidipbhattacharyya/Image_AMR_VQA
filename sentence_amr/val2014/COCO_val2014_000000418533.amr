@@ -1,0 +1,36 @@
+# ::tok A large train car labeled " buffet " and " first class " is parked in a train yard .
+# ::node	l2	large	1-2
+# ::node	t	train	2-3
+# ::node	c	car	3-4
+# ::node	l	label-01	4-5
+# ::node	b	buffet	6-7
+# ::node	a	and	8-9
+# ::node	o	ordinal-entity	10-11
+# ::node	0	1	10-11
+# ::node	c2	class	11-12
+# ::node	p	park-01	14-15
+# ::node	y	yard	18-19
+# ::root	p	park-01
+# ::edge	car	mod	train	c	t	
+# ::edge	car	mod	large	c	l2	
+# ::edge	car	ARG1-of	label-01	c	l	
+# ::edge	and	op1	buffet	a	b	
+# ::edge	label-01	ARG2	and	l	a	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	class	ord	ordinal-entity	c2	o	
+# ::edge	and	op2	class	a	c2	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	yard	p	y	
+# ::edge	yard	mod	train	y	t	
+(p / park-01
+    :ARG1 (c / car
+        :ARG1-of (l / label-01
+            :ARG2 (a / and
+                :op1 (b / buffet)
+                :op2 (c2 / class
+                    :ord (o / ordinal-entity
+                        :value 1))))
+        :mod (t / train)
+        :mod (l2 / large))
+    :ARG2 (y / yard
+        :mod t))

@@ -1,0 +1,37 @@
+# ::tok A union 76 gas station sign with the price of gas at $ 1.00
+# ::node	u	union	1-2
+# ::node	c	company	2-3
+# ::node	n	name	2-3
+# ::node	1	76	2-3
+# ::node	g	gas	3-4
+# ::node	s2	station	4-5
+# ::node	s	sign	5-6
+# ::node	p	price-01	8-9
+# ::node	g2	gas	10-11
+# ::node	m	monetary-quantity	12-13
+# ::node	d	dollar	12-13
+# ::node	0	1	13-14
+# ::root	s	sign
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	76	n	1	
+# ::edge	station	mod	gas	s2	g	
+# ::edge	station	mod	company	s2	c	
+# ::edge	station	mod	union	s2	u	
+# ::edge	sign	mod	station	s	s2	
+# ::edge	sign	ARG0-of	price-01	s	p	
+# ::edge	price-01	ARG1	gas	p	g2	
+# ::edge	price-01	ARG2	monetary-quantity	p	m	
+# ::edge	monetary-quantity	unit	dollar	m	d	
+# ::edge	monetary-quantity	quant	1	m	0	
+(s / sign
+    :ARG0-of (p / price-01
+        :ARG1 (g2 / gas)
+        :ARG2 (m / monetary-quantity
+            :quant 1
+            :unit (d / dollar)))
+    :mod (s2 / station
+        :mod (g / gas)
+        :mod (c / company
+            :name (n / name
+                :op1 76))
+        :mod (u / union)))

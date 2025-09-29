@@ -1,0 +1,34 @@
+# ::tok A group of zebras are running past a flock of flamingos gathered in the water .
+# ::node	g2	group	1-2
+# ::node	e	elephant	3-4
+# ::node	r	run-02	5-6
+# ::node	p	past	6-7
+# ::node	f	flock	8-9
+# ::node	b	bird	10-11
+# ::node	c	continent	10-11
+# ::node	n	name	10-11
+# ::node	0	Africa	10-11
+# ::node	g	gather-03	11-12
+# ::node	w	water	14-15
+# ::root	r	run-02
+# ::edge	group	consist-of	elephant	g2	e	
+# ::edge	run-02	ARG0	group	r	g2	
+# ::edge	run-02	path	past	r	p	
+# ::edge	past	op1	flock	p	f	
+# ::edge	flock	consist-of	bird	f	b	
+# ::edge	bird	mod	continent	b	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Africa	n	0	
+# ::edge	bird	ARG0-of	gather-03	b	g	
+# ::edge	gather-03	ARG1	water	g	w	
+(r / run-02
+    :ARG0 (g2 / group
+        :consist-of (e / elephant))
+    :path (p / past
+        :op1 (f / flock
+            :consist-of (b / bird
+                :ARG0-of (g / gather-03
+                    :ARG1 (w / water))
+                :mod (c / continent
+                    :name (n / name
+                        :op1 "Africa"))))))

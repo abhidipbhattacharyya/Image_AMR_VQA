@@ -1,0 +1,65 @@
+# ::tok Nordic skier and pedestrians making their way through a few inches of snow in front of the US Capitol .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	2	Norway	0-1
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	a	and	2-3
+# ::node	p2	person	3-4
+# ::node	w	walk-01	3-4
+# ::node	m	make-19	4-5
+# ::node	w2	way	6-7
+# ::node	f	few	9-10
+# ::node	0	1	9-10
+# ::node	d	distance-quantity	10-11
+# ::node	i2	inch	10-11
+# ::node	s2	snow	12-13
+# ::node	i	in-front-of	14-15
+# ::node	n2	name	17-18
+# ::node	3	US	17-18
+# ::node	b	building	18-19
+# ::node	1	Capitol	18-19
+# ::root	m	make-19
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Norway	n	2	
+# ::edge	person	mod	country	p	c	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	mod	country	p2	c	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	make-19	ARG0	and	m	a	
+# ::edge	make-19	ARG1	way	m	w2	
+# ::edge	way	poss	and	w2	a	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	few	op1	distance-quantity	f	d	
+# ::edge	distance-quantity	unit	inch	d	i2	
+# ::edge	snow	quant	few	s2	f	
+# ::edge	make-19	path	snow	m	s2	
+# ::edge	make-19	location	in-front-of	m	i	
+# ::edge	name	op1	US	n2	3	
+# ::edge	building	name	name	b	n2	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	name	op2	Capitol	n2	1	
+(m / make-19
+    :ARG0 (a / and
+        :op1 (p / person
+            :ARG0-of (s / ski-01)
+            :mod (c / country
+                :name (n / name
+                    :op1 "Norway")))
+        :op2 (p2 / person
+            :ARG0-of (w / walk-01)
+            :mod c))
+    :ARG1 (w2 / way
+        :poss a)
+    :location (i / in-front-of
+        :op1 (b / building
+            :name (n2 / name
+                :op1 "US"
+                :op2 "Capitol")))
+    :path (s2 / snow
+        :quant (f / few
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (i2 / inch)))))

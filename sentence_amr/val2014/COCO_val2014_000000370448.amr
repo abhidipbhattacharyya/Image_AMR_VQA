@@ -1,0 +1,33 @@
+# ::tok A city street with a sidewalk area and and a yellow fire hydrant on next to the street .
+# ::node	c	city	1-2
+# ::node	s2	street	2-3
+# ::node	h	have-03	3-4
+# ::node	s	sidewalk	5-6
+# ::node	a2	area	6-7
+# ::node	a	and	8-9
+# ::node	y	yellow-02	10-11
+# ::node	f	fire	11-12
+# ::node	h2	hydrant	12-13
+# ::node	n	next-to	14-15
+# ::root	s2	street
+# ::edge	street	mod	city	s2	c	
+# ::edge	street	ARG0-of	have-03	s2	h	
+# ::edge	area	location-of	sidewalk	a2	s	
+# ::edge	and	op1	area	a	a2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	yellow-02	h2	y	
+# ::edge	and	op2	hydrant	a	h2	
+# ::edge	hydrant	location	next-to	h2	n	
+# ::edge	next-to	op1	street	n	s2	
+(s2 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (a2 / area
+                :location-of (s / sidewalk))
+            :op2 (h2 / hydrant
+                :ARG1-of (y / yellow-02)
+                :location (n / next-to
+                    :op1 s2)
+                :mod (f / fire))))
+    :mod (c / city))

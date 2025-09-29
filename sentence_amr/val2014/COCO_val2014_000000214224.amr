@@ -1,0 +1,57 @@
+# ::tok A sign with the word pub sits on a wall and underneath it on a table is a blender and three bottles of variety of alcohol and some flavoring .
+# ::node	s	sign	1-2
+# ::node	w2	word-01	4-5
+# ::node	p	pub	5-6
+# ::node	s2	sit-01	6-7
+# ::node	w	wall	9-10
+# ::node	a2	and	10-11
+# ::node	u	underneath	11-12
+# ::node	t	table	15-16
+# ::node	b	blender	18-19
+# ::node	a3	and	19-20
+# ::node	0	3	20-21
+# ::node	v2	volume-quantity	21-22
+# ::node	b2	bottle	21-22
+# ::node	v	variety	23-24
+# ::node	a	alcohol	25-26
+# ::node	a4	and	26-27
+# ::node	s3	some	27-28
+# ::node	f	flavor-00	28-29
+# ::root	a2	and
+# ::edge	sign	ARG0-of	word-01	s	w2	
+# ::edge	word-01	ARG1	pub	w2	p	
+# ::edge	sit-01	ARG1	sign	s2	s	
+# ::edge	sit-01	ARG2	wall	s2	w	
+# ::edge	and	op1	sit-01	a2	s2	
+# ::edge	underneath	op1	sit-01	u	s2	
+# ::edge	underneath	location	table	u	t	
+# ::edge	and	op1	blender	a3	b	
+# ::edge	and	location	underneath	a3	u	
+# ::edge	and	op2	and	a2	a3	
+# ::edge	volume-quantity	quant	3	v2	0	
+# ::edge	volume-quantity	unit	bottle	v2	b2	
+# ::edge	variety	quant	volume-quantity	v	v2	
+# ::edge	alcohol	mod	variety	a	v	
+# ::edge	and	op1	alcohol	a4	a	
+# ::edge	and	op2	and	a3	a4	
+# ::edge	flavor-00	quant	some	f	s3	
+# ::edge	and	op2	flavor-00	a4	f	
+(a2 / and
+    :op1 (s2 / sit-01
+        :ARG1 (s / sign
+            :ARG0-of (w2 / word-01
+                :ARG1 (p / pub)))
+        :ARG2 (w / wall))
+    :op2 (a3 / and
+        :location (u / underneath
+            :location (t / table)
+            :op1 s2)
+        :op1 (b / blender)
+        :op2 (a4 / and
+            :op1 (a / alcohol
+                :mod (v / variety
+                    :quant (v2 / volume-quantity
+                        :quant 3
+                        :unit (b2 / bottle))))
+            :op2 (f / flavor-00
+                :quant (s3 / some)))))

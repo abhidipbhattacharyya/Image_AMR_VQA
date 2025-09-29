@@ -1,0 +1,30 @@
+# ::tok A plate of food with mixed vegetables and meat sitting on a plate .
+# ::node	p	plate	1-2
+# ::node	f	food	3-4
+# ::node	h	have-03	4-5
+# ::node	m2	mix-01	5-6
+# ::node	v	vegetable	6-7
+# ::node	a	and	7-8
+# ::node	m	meat	8-9
+# ::node	s	sit-01	9-10
+# ::node	p2	plate	12-13
+# ::root	s	sit-01
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	food	ARG0-of	have-03	f	h	
+# ::edge	vegetable	ARG1-of	mix-01	v	m2	
+# ::edge	and	op1	vegetable	a	v	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	meat	a	m	
+# ::edge	mix-01	ARG1	meat	m2	m	
+# ::edge	sit-01	ARG1	plate	s	p	
+# ::edge	sit-01	ARG2	plate	s	p2	
+(s / sit-01
+    :ARG1 (p / plate
+        :consist-of (f / food
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (v / vegetable
+                        :ARG1-of (m2 / mix-01
+                            :ARG1 (m / meat)))
+                    :op2 m))))
+    :ARG2 (p2 / plate))

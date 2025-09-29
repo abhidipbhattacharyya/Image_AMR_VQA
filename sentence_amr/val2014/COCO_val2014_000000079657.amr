@@ -1,0 +1,22 @@
+# ::tok An LED display from a clock reading 6:53 in the dark .
+# ::node	e	electronics	1-2
+# ::node	d3	display	2-3
+# ::node	c	clock	5-6
+# ::node	r	read-01	6-7
+# ::node	d2	date-entity	7-8
+# ::node	0	6:53	7-8
+# ::node	d	dark-02	10-11
+# ::root	d3	display
+# ::edge	display	mod	electronics	d3	e	
+# ::edge	display	source	clock	d3	c	
+# ::edge	clock	ARG0-of	read-01	c	r	
+# ::edge	read-01	ARG3	date-entity	r	d2	
+# ::edge	date-entity	time	6:53	d2	0	
+# ::edge	display	ARG1-of	dark-02	d3	d	
+(d3 / display
+    :ARG1-of (d / dark-02)
+    :mod (e / electronics)
+    :source (c / clock
+        :ARG0-of (r / read-01
+            :ARG3 (d2 / date-entity
+                :time "6:53"))))

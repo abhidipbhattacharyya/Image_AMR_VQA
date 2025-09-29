@@ -1,0 +1,31 @@
+# ::tok Bunches of bananas and mangoes glistening with water droplets .
+# ::node	m2	multiple	0-1
+# ::node	m	monetary-quantity	0-1
+# ::node	p	pound	0-1
+# ::node	0	1	0-1
+# ::node	b	banana	2-3
+# ::node	a	and	3-4
+# ::node	o	orange	4-5
+# ::node	g	glimmer-01	5-6
+# ::node	w	water	7-8
+# ::node	d	droplet	8-9
+# ::root	g	glimmer-01
+# ::edge	multiple	op1	monetary-quantity	m2	m	
+# ::edge	monetary-quantity	unit	pound	m	p	
+# ::edge	monetary-quantity	quant	1	m	0	
+# ::edge	and	op1	banana	a	b	
+# ::edge	and	quant	multiple	a	m2	
+# ::edge	and	op2	orange	a	o	
+# ::edge	glimmer-01	ARG1	and	g	a	
+# ::edge	droplet	mod	water	d	w	
+# ::edge	glimmer-01	ARG2	droplet	g	d	
+(g / glimmer-01
+    :ARG1 (a / and
+        :quant (m2 / multiple
+            :op1 (m / monetary-quantity
+                :quant 1
+                :unit (p / pound)))
+        :op1 (b / banana)
+        :op2 (o / orange))
+    :ARG2 (d / droplet
+        :mod (w / water)))

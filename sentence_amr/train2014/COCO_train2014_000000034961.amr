@@ -1,0 +1,30 @@
+# ::tok Small herd of sheep walking and grazing in fenced farm field .
+# ::node	s2	small	0-1
+# ::node	h	herd	1-2
+# ::node	s	sheep	3-4
+# ::node	w	walk-01	4-5
+# ::node	g	graze-01	6-7
+# ::node	c	chain-01	8-9
+# ::node	f	farm-01	9-10
+# ::node	f2	field	10-11
+# ::node	a	and	11-12
+# ::root	a	and
+# ::edge	herd	mod	small	h	s2	
+# ::edge	herd	consist-of	sheep	h	s	
+# ::edge	herd	ARG0-of	walk-01	h	w	
+# ::edge	sheep	ARG1-of	graze-01	s	g	
+# ::edge	field	mod	farm-01	f2	f	
+# ::edge	field	ARG1-of	chain-01	f2	c	
+# ::edge	graze-01	location	field	g	f2	
+# ::edge	walk-01	location	field	w	f2	
+# ::edge	and	op1	herd	a	h	
+(a / and
+    :op1 (h / herd
+        :ARG0-of (w / walk-01
+            :location (f2 / field
+                :ARG1-of (c / chain-01)
+                :mod (f / farm-01)))
+        :consist-of (s / sheep
+            :ARG1-of (g / graze-01
+                :location f2))
+        :mod (s2 / small)))

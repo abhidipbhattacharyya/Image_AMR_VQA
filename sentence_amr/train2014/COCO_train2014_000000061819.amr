@@ -1,0 +1,30 @@
+# ::tok A stealthy looking fighter jet with other vehicles and people around it .
+# ::node	s	stealthy	1-2
+# ::node	l	look-02	2-3
+# ::node	f	fight-01	3-4
+# ::node	j	jet	4-5
+# ::node	o	other	6-7
+# ::node	v	vehicle	7-8
+# ::node	a	and	8-9
+# ::node	p	person	9-10
+# ::node	a2	around	10-11
+# ::root	j	jet
+# ::edge	look-02	ARG1	stealthy	l	s	
+# ::edge	jet	ARG0-of	fight-01	j	f	
+# ::edge	jet	ARG0-of	look-02	j	l	
+# ::edge	vehicle	mod	other	v	o	
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	mod	other	p	o	
+# ::edge	around	location-of	and	a2	a	
+# ::edge	jet	location	around	j	a2	
+(j / jet
+    :ARG0-of (f / fight-01)
+    :ARG0-of (l / look-02
+        :ARG1 (s / stealthy))
+    :location (a2 / around
+        :location-of (a / and
+            :op1 (v / vehicle
+                :mod (o / other))
+            :op2 (p / person
+                :mod o))))

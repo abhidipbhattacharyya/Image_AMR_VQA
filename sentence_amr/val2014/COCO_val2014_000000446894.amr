@@ -1,0 +1,27 @@
+# ::tok You can mash food together so that no one will know what it is .
+# ::node	y	you	0-1
+# ::node	p	possible-01	1-2
+# ::node	m	mix-01	2-3
+# ::node	f	food	3-4
+# ::node	t2	together	4-5
+# ::node	n	no-one	7-8
+# ::node	k	know-01	10-11
+# ::node	t	thing	11-12
+# ::root	p	possible-01
+# ::edge	possible-01	ARG1	mix-01	p	m	
+# ::edge	mix-01	ARG0	you	m	y	
+# ::edge	mix-01	ARG1	food	m	f	
+# ::edge	mix-01	ARG3	together	m	t2	
+# ::edge	know-01	ARG0	no-one	k	n	
+# ::edge	mix-01	purpose	know-01	m	k	
+# ::edge	know-01	ARG1	thing	k	t	
+# ::edge	thing	domain	food	t	f	
+(p / possible-01
+    :ARG1 (m / mix-01
+        :purpose (k / know-01
+            :ARG0 (n / no-one)
+            :ARG1 (t / thing
+                :domain (f / food)))
+        :ARG0 (y / you)
+        :ARG1 f
+        :ARG3 (t2 / together)))

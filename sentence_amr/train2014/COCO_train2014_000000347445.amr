@@ -1,0 +1,34 @@
+# ::tok A cow has been ear tagged for identification and is walking ahead of another .
+# ::node	c	cow	1-2
+# ::node	c2	cow	1-2
+# ::node	e	ear	4-5
+# ::node	t	tag-01	5-6
+# ::node	i	identify-01	7-8
+# ::node	a2	and	8-9
+# ::node	w	walk-01	10-11
+# ::node	a	ahead	11-12
+# ::node	a3	another	13-14
+# ::root	a2	and
+# ::edge	ear	part-of	cow	e	c	
+# ::edge	tag-01	ARG2	ear	t	e	
+# ::edge	tag-01	ARG1	cow	t	c	
+# ::edge	tag-01	ARG3	identify-01	t	i	
+# ::edge	identify-01	ARG1	cow	i	c	
+# ::edge	and	op1	tag-01	a2	t	
+# ::edge	and	op2	walk-01	a2	w	
+# ::edge	walk-01	ARG0	cow	w	c	
+# ::edge	walk-01	ARG2	ahead	w	a	
+# ::edge	ahead	op1	cow	a	c2	
+# ::edge	cow	mod	another	c2	a3	
+(a2 / and
+    :op1 (t / tag-01
+        :ARG1 (c / cow)
+        :ARG2 (e / ear
+            :part-of c)
+        :ARG3 (i / identify-01
+            :ARG1 c))
+    :op2 (w / walk-01
+        :ARG0 c
+        :ARG2 (a / ahead
+            :op1 (c2 / cow
+                :mod (a3 / another)))))

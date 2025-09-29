@@ -1,0 +1,39 @@
+# ::tok A bottle of wine is on the counter , along with a silver pot and an orange with a razor blade stuck in it .
+# ::node	b3	bottle	1-2
+# ::node	w	wine	3-4
+# ::node	b	be-located-at-91	5-6
+# ::node	c	counter	7-8
+# ::node	s	silver	12-13
+# ::node	p	pot	13-14
+# ::node	a	and	14-15
+# ::node	o	orange	16-17
+# ::node	h	have-03	17-18
+# ::node	r	razor	19-20
+# ::node	b2	blade	20-21
+# ::node	s2	stick-01	21-22
+# ::root	b	be-located-at-91
+# ::edge	bottle	consist-of	wine	b3	w	
+# ::edge	be-located-at-91	ARG2	counter	b	c	
+# ::edge	pot	mod	silver	p	s	
+# ::edge	and	op2	pot	a	p	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	and	op1	bottle	a	b3	
+# ::edge	and	op3	orange	a	o	
+# ::edge	orange	ARG0-of	have-03	o	h	
+# ::edge	blade	part-of	razor	b2	r	
+# ::edge	have-03	ARG1	blade	h	b2	
+# ::edge	blade	ARG1-of	stick-01	b2	s2	
+# ::edge	stick-01	ARG2	pot	s2	p	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (b3 / bottle
+            :consist-of (w / wine))
+        :op2 (p / pot
+            :mod (s / silver))
+        :op3 (o / orange
+            :ARG0-of (h / have-03
+                :ARG1 (b2 / blade
+                    :ARG1-of (s2 / stick-01
+                        :ARG2 p)
+                    :part-of (r / razor)))))
+    :ARG2 (c / counter))

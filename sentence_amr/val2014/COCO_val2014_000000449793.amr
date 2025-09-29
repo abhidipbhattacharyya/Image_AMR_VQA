@@ -1,0 +1,39 @@
+# ::tok There are two traffic signals on a metal pole , each with three light signals on them .
+# ::node	0	2	2-3
+# ::node	t	traffic	3-4
+# ::node	s	signal-07	4-5
+# ::node	s2	signal-07	4-5
+# ::node	m	metal	7-8
+# ::node	p	pole	8-9
+# ::node	a	and	9-10
+# ::node	e	each	10-11
+# ::node	h	have-03	11-12
+# ::node	1	3	12-13
+# ::node	l	light-04	13-14
+# ::node	s3	signal-07	14-15
+# ::root	a	and
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	signal-07	quant	2	s	0	
+# ::edge	pole	consist-of	metal	p	m	
+# ::edge	signal-07	location	pole	s	p	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	signal-07	mod	each	s2	e	
+# ::edge	and	ARG0-of	have-03	a	h	
+# ::edge	signal-07	ARG0-of	light-04	s3	l	
+# ::edge	signal-07	quant	3	s3	1	
+# ::edge	have-03	ARG1	signal-07	h	s3	
+# ::edge	signal-07	location	pole	s3	p	
+(a / and
+    :ARG0-of (h / have-03
+        :ARG1 (s3 / signal-07
+            :quant 3
+            :ARG0-of (l / light-04)
+            :location (p / pole
+                :consist-of (m / metal))))
+    :op1 (s / signal-07
+        :quant 2
+        :ARG1 (t / traffic)
+        :location p)
+    :op2 (s2 / signal-07
+        :mod (e / each)))

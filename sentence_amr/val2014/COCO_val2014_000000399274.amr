@@ -1,0 +1,37 @@
+# ::tok Passenger rail train moving quickly , everything around indesicriminate blur
+# ::node	p2	person	0-1
+# ::node	p	passenger	0-1
+# ::node	r	rail	1-2
+# ::node	t	train	2-3
+# ::node	m	move-01	3-4
+# ::node	q	quick-02	4-5
+# ::node	a	and	5-6
+# ::node	e	everything	6-7
+# ::node	a2	around	7-8
+# ::node	l	law	8-9
+# ::node	0	-	8-9
+# ::node	b	blur-01	9-10
+# ::root	a	and
+# ::edge	person	mod	passenger	p2	p	
+# ::edge	train	mod	rail	t	r	
+# ::edge	train	mod	person	t	p2	
+# ::edge	move-01	ARG1	train	m	t	
+# ::edge	move-01	ARG1-of	quick-02	m	q	
+# ::edge	and	op1	move-01	a	m	
+# ::edge	everything	location	around	e	a2	
+# ::edge	law	polarity	-	l	0	
+# ::edge	blur-01	ARG1	law	b	l	
+# ::edge	and	op2	blur-01	a	b	
+# ::edge	and	rel	everything	a	e	
+(a / and
+    :op1 (m / move-01
+        :ARG1 (t / train
+            :mod (r / rail)
+            :mod (p2 / person
+                :mod (p / passenger)))
+        :ARG1-of (q / quick-02))
+    :op2 (b / blur-01
+        :ARG1 (l / law
+            :polarity -))
+    :rel (e / everything
+        :location (a2 / around)))

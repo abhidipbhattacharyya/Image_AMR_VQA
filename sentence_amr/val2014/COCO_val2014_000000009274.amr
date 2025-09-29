@@ -1,0 +1,34 @@
+# ::tok A clock stands on the sidewalk while a police car turns the intersection in front of an old looking building .
+# ::node	c2	clock	1-2
+# ::node	s2	stand-01	2-3
+# ::node	s	sidewalk	5-6
+# ::node	p	police	8-9
+# ::node	c	car	9-10
+# ::node	t	turn-01	10-11
+# ::node	i2	intersect-01	12-13
+# ::node	i	in-front-of	14-15
+# ::node	o	old	17-18
+# ::node	l	look-02	18-19
+# ::node	b	building	19-20
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	clock	s2	c2	
+# ::edge	stand-01	ARG2	sidewalk	s2	s	
+# ::edge	car	mod	police	c	p	
+# ::edge	turn-01	ARG0	car	t	c	
+# ::edge	stand-01	time	turn-01	s2	t	
+# ::edge	turn-01	ARG1	intersect-01	t	i2	
+# ::edge	turn-01	location	in-front-of	t	i	
+# ::edge	look-02	ARG1	old	l	o	
+# ::edge	building	ARG0-of	look-02	b	l	
+# ::edge	in-front-of	op1	building	i	b	
+(s2 / stand-01
+    :ARG1 (c2 / clock)
+    :ARG2 (s / sidewalk)
+    :time (t / turn-01
+        :ARG0 (c / car
+            :mod (p / police))
+        :ARG1 (i2 / intersect-01)
+        :location (i / in-front-of
+            :op1 (b / building
+                :ARG0-of (l / look-02
+                    :ARG1 (o / old))))))

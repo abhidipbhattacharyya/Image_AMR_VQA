@@ -1,0 +1,42 @@
+# ::tok Town square decorated for the Christmas season with a large lighted tree and a " Merry Christmas " banner .
+# ::node	t	town	0-1
+# ::node	s2	square	1-2
+# ::node	d	decorate-01	2-3
+# ::node	f	festival	5-6
+# ::node	n	name	5-6
+# ::node	0	Christmas	5-6
+# ::node	s	season	6-7
+# ::node	l	large	9-10
+# ::node	l2	light-04	10-11
+# ::node	t2	tree	11-12
+# ::node	a	and	12-13
+# ::node	m	merry	15-16
+# ::node	b	banner	18-19
+# ::root	d	decorate-01
+# ::edge	square	mod	town	s2	t	
+# ::edge	decorate-01	ARG1	square	d	s2	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	0	
+# ::edge	season	mod	festival	s	f	
+# ::edge	decorate-01	time	season	d	s	
+# ::edge	tree	ARG1-of	light-04	t2	l2	
+# ::edge	tree	mod	large	t2	l	
+# ::edge	and	op1	tree	a	t2	
+# ::edge	decorate-01	ARG2	and	d	a	
+# ::edge	banner	mod	merry	b	m	
+# ::edge	and	op2	banner	a	b	
+# ::edge	banner	mod	festival	b	f	
+(d / decorate-01
+    :ARG1 (s2 / square
+        :mod (t / town))
+    :ARG2 (a / and
+        :op1 (t2 / tree
+            :ARG1-of (l2 / light-04)
+            :mod (l / large))
+        :op2 (b / banner
+            :mod (m / merry)
+            :mod (f / festival
+                :name (n / name
+                    :op1 "Christmas"))))
+    :time (s / season
+        :mod f))

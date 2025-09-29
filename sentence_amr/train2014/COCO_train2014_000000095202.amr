@@ -1,0 +1,37 @@
+# ::tok A city street at twilight showing a bus crossing the intersection and people standing on the corner .
+# ::node	c	city	1-2
+# ::node	s3	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	t	twilight	4-5
+# ::node	s	show-01	5-6
+# ::node	b	bus	7-8
+# ::node	c3	cross-02	8-9
+# ::node	i	intersect-01	10-11
+# ::node	a	and	11-12
+# ::node	p	person	12-13
+# ::node	s2	stand-01	13-14
+# ::node	c2	corner	16-17
+# ::root	s	show-01
+# ::edge	street	mod	city	s3	c	
+# ::edge	date-entity	dayperiod	twilight	d	t	
+# ::edge	show-01	time	date-entity	s	d	
+# ::edge	show-01	ARG0	street	s	s3	
+# ::edge	cross-02	ARG0	bus	c3	b	
+# ::edge	cross-02	ARG1	intersect-01	c3	i	
+# ::edge	and	op1	cross-02	a	c3	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG0	person	s2	p	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG2	corner	s2	c2	
+(s / show-01
+    :ARG0 (s3 / street
+        :mod (c / city))
+    :ARG1 (a / and
+        :op1 (c3 / cross-02
+            :ARG0 (b / bus)
+            :ARG1 (i / intersect-01))
+        :op2 (s2 / stand-01
+            :ARG0 (p / person)
+            :ARG2 (c2 / corner)))
+    :time (d / date-entity
+        :dayperiod (t / twilight)))

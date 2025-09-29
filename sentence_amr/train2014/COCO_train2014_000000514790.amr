@@ -1,0 +1,33 @@
+# ::tok Two sets of train tracks with a train on each track and people on both sides of the tracks .
+# ::node	0	2	0-1
+# ::node	s	set	1-2
+# ::node	t2	train	3-4
+# ::node	t	track	4-5
+# ::node	t3	train	7-8
+# ::node	e	each	9-10
+# ::node	a	and	11-12
+# ::node	p	person	12-13
+# ::node	b	both	14-15
+# ::node	s2	side	15-16
+# ::root	t	track
+# ::edge	set	quant	2	s	0	
+# ::edge	track	mod	train	t	t2	
+# ::edge	track	consist-of	set	t	s	
+# ::edge	train	mod	each	t3	e	
+# ::edge	and	op1	train	a	t3	
+# ::edge	track	location-of	and	t	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	side	mod	both	s2	b	
+# ::edge	person	location	side	p	s2	
+# ::edge	track	part	side	t	s2	
+(t / track
+    :consist-of (s / set
+        :quant 2)
+    :location-of (a / and
+        :op1 (t3 / train
+            :mod (e / each))
+        :op2 (p / person
+            :location (s2 / side
+                :mod (b / both))))
+    :mod (t2 / train)
+    :part s2)

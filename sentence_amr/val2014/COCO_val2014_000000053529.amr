@@ -1,0 +1,35 @@
+# ::tok A dog with a green hat in a truck and a green shamrock posted to the truck 's side mirror .
+# ::node	d	dog	1-2
+# ::node	h2	have-03	2-3
+# ::node	g	green-02	4-5
+# ::node	h	hat	5-6
+# ::node	t	truck	8-9
+# ::node	a	and	9-10
+# ::node	s	shamrock	12-13
+# ::node	p	post-01	13-14
+# ::node	s2	side	18-19
+# ::node	m	mirror	19-20
+# ::root	p	post-01
+# ::edge	dog	ARG0-of	have-03	d	h2	
+# ::edge	hat	ARG1-of	green-02	h	g	
+# ::edge	hat	location	truck	h	t	
+# ::edge	and	op1	hat	a	h	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op2	shamrock	a	s	
+# ::edge	green-02	ARG1	shamrock	g	s	
+# ::edge	post-01	ARG1	dog	p	d	
+# ::edge	mirror	mod	side	m	s2	
+# ::edge	post-01	ARG2	mirror	p	m	
+# ::edge	truck	part	mirror	t	m	
+(p / post-01
+    :ARG1 (d / dog
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (h / hat
+                    :ARG1-of (g / green-02
+                        :ARG1 (s / shamrock))
+                    :location (t / truck
+                        :part (m / mirror
+                            :mod (s2 / side))))
+                :op2 s)))
+    :ARG2 m)

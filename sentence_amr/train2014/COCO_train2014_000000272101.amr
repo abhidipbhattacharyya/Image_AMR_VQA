@@ -1,0 +1,92 @@
+# ::tok The view shows evergreen - covered mountains in the far distance , dots of people in the mid - ground , and in the foreground an adult skier gesturing with one hand that holds a ski - pole in the direction of a child skier holding both hands up .
+# ::node	v	view	1-2
+# ::node	s	show-01	2-3
+# ::node	e	evergreen	3-4
+# ::node	c2	cover-02	5-6
+# ::node	m2	mountain	6-7
+# ::node	f	far	9-10
+# ::node	d	distance	10-11
+# ::node	d2	dot-01	12-13
+# ::node	p	person	14-15
+# ::node	m	mid	17-18
+# ::node	g	ground	19-20
+# ::node	a2	and	21-22
+# ::node	f2	foreground	24-25
+# ::node	a	adult	26-27
+# ::node	p2	person	27-28
+# ::node	s2	ski-01	27-28
+# ::node	w	wave-01	28-29
+# ::node	0	1	30-31
+# ::node	h	hand	31-32
+# ::node	h3	hold-01	33-34
+# ::node	s3	ski-01	35-36
+# ::node	p4	pole	37-38
+# ::node	c	child	43-44
+# ::node	p3	person	44-45
+# ::node	s4	ski-01	44-45
+# ::node	h4	hold-01	45-46
+# ::node	b	both	46-47
+# ::node	h2	hand	47-48
+# ::node	u	up-03	48-49
+# ::root	s	show-01
+# ::edge	show-01	ARG0	view	s	v	
+# ::edge	cover-02	ARG2	evergreen	c2	e	
+# ::edge	mountain	ARG1-of	cover-02	m2	c2	
+# ::edge	distance	mod	far	d	f	
+# ::edge	mountain	location	distance	m2	d	
+# ::edge	dot-01	ARG1	person	d2	p	
+# ::edge	ground	mod	mid	g	m	
+# ::edge	dot-01	location	ground	d2	g	
+# ::edge	and	op2	dot-01	a2	d2	
+# ::edge	and	op1	mountain	a2	m2	
+# ::edge	show-01	ARG1	and	s	a2	
+# ::edge	person	mod	adult	p2	a	
+# ::edge	person	ARG0-of	ski-01	p2	s2	
+# ::edge	wave-01	ARG0	person	w	p2	
+# ::edge	wave-01	location	foreground	w	f2	
+# ::edge	and	op3	wave-01	a2	w	
+# ::edge	hand	quant	1	h	0	
+# ::edge	wave-01	manner	hand	w	h	
+# ::edge	person	ARG0-of	hold-01	p2	h3	
+# ::edge	pole	mod	ski-01	p4	s3	
+# ::edge	hold-01	ARG1	pole	h3	p4	
+# ::edge	person	mod	child	p3	c	
+# ::edge	hold-01	direction	person	h3	p3	
+# ::edge	person	ARG0-of	ski-01	p3	s4	
+# ::edge	person	ARG0-of	hold-01	p3	h4	
+# ::edge	hand	mod	both	h2	b	
+# ::edge	hold-01	ARG1	hand	h4	h2	
+# ::edge	person	part	hand	p3	h2	
+# ::edge	up-03	ARG1	hand	u	h2	
+# ::edge	hold-01	direction	up-03	h4	u	
+(s / show-01
+    :ARG0 (v / view)
+    :ARG1 (a2 / and
+        :op1 (m2 / mountain
+            :ARG1-of (c2 / cover-02
+                :ARG2 (e / evergreen))
+            :location (d / distance
+                :mod (f / far)))
+        :op2 (d2 / dot-01
+            :ARG1 (p / person)
+            :location (g / ground
+                :mod (m / mid)))
+        :op3 (w / wave-01
+            :ARG0 (p2 / person
+                :ARG0-of (s2 / ski-01)
+                :ARG0-of (h3 / hold-01
+                    :ARG1 (p4 / pole
+                        :mod (s3 / ski-01))
+                    :direction (p3 / person
+                        :ARG0-of (s4 / ski-01)
+                        :ARG0-of (h4 / hold-01
+                            :ARG1 (h2 / hand
+                                :mod (b / both))
+                            :direction (u / up-03
+                                :ARG1 h2))
+                        :mod (c / child)
+                        :part h2))
+                :mod (a / adult))
+            :location (f2 / foreground)
+            :manner (h / hand
+                :quant 1))))

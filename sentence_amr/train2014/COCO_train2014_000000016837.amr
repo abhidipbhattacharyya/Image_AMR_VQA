@@ -1,0 +1,36 @@
+# ::tok A train station with a green chain on the tracks and children waiting for it to go by .
+# ::node	t2	train	1-2
+# ::node	s	station	2-3
+# ::node	h	have-03	3-4
+# ::node	g2	green-02	5-6
+# ::node	c	chain	6-7
+# ::node	t	track	9-10
+# ::node	a	and	10-11
+# ::node	c2	child	11-12
+# ::node	w	wait-01	12-13
+# ::node	g	go-01	16-17
+# ::node	b	by	17-18
+# ::root	a	and
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	chain	ARG1-of	green-02	c	g2	
+# ::edge	have-03	ARG1	chain	h	c	
+# ::edge	chain	location	track	c	t	
+# ::edge	and	op1	station	a	s	
+# ::edge	and	op2	child	a	c2	
+# ::edge	child	ARG1-of	wait-01	c2	w	
+# ::edge	wait-01	ARG2	go-01	w	g	
+# ::edge	go-01	ARG1	train	g	t2	
+# ::edge	go-01	ARG4	by	g	b	
+(a / and
+    :op1 (s / station
+        :ARG0-of (h / have-03
+            :ARG1 (c / chain
+                :ARG1-of (g2 / green-02)
+                :location (t / track)))
+        :mod (t2 / train))
+    :op2 (c2 / child
+        :ARG1-of (w / wait-01
+            :ARG2 (g / go-01
+                :ARG1 t2
+                :ARG4 (b / by)))))

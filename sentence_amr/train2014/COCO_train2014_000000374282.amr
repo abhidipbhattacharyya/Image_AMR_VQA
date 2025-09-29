@@ -1,0 +1,43 @@
+# ::tok A man in the middle of a busy city street displays nearly the same colors as an approaching Volkswagon bus .
+# ::node	m	man	1-2
+# ::node	m2	middle	4-5
+# ::node	b2	busy-02	7-8
+# ::node	c	city	8-9
+# ::node	s2	street	9-10
+# ::node	d	display-01	10-11
+# ::node	n2	near	11-12
+# ::node	s	same-01	13-14
+# ::node	c2	color	14-15
+# ::node	c3	color	14-15
+# ::node	a	approach-01	17-18
+# ::node	n	name	18-19
+# ::node	0	Volkswagon	18-19
+# ::node	b	bus	19-20
+# ::root	d	display-01
+# ::edge	man	location	middle	m	m2	
+# ::edge	street	mod	city	s2	c	
+# ::edge	street	ARG1-of	busy-02	s2	b2	
+# ::edge	middle	op1	street	m2	s2	
+# ::edge	display-01	ARG0	man	d	m	
+# ::edge	same-01	degree	near	s	n2	
+# ::edge	color	ARG1-of	same-01	c2	s	
+# ::edge	display-01	ARG1	color	d	c2	
+# ::edge	same-01	ARG2	color	s	c3	
+# ::edge	name	op1	Volkswagon	n	0	
+# ::edge	bus	name	name	b	n	
+# ::edge	bus	ARG1-of	approach-01	b	a	
+# ::edge	color	mod	bus	c3	b	
+(d / display-01
+    :ARG0 (m / man
+        :location (m2 / middle
+            :op1 (s2 / street
+                :ARG1-of (b2 / busy-02)
+                :mod (c / city))))
+    :ARG1 (c2 / color
+        :ARG1-of (s / same-01
+            :ARG2 (c3 / color
+                :mod (b / bus
+                    :name (n / name
+                        :op1 "Volkswagon")
+                    :ARG1-of (a / approach-01)))
+            :degree (n2 / near))))

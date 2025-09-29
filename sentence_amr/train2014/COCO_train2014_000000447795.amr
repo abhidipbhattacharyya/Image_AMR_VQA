@@ -1,0 +1,38 @@
+# ::tok A dumpster truck driving in a metropolitan area it is driving past a statue of a horse being rode by someone .
+# ::node	d3	dumpster	1-2
+# ::node	t	truck	2-3
+# ::node	m	metropolis	6-7
+# ::node	a	area	7-8
+# ::node	d	drive-01	10-11
+# ::node	d2	drive-01	10-11
+# ::node	p	past	11-12
+# ::node	s2	statue	13-14
+# ::node	h	horse	16-17
+# ::node	r	ride-01	18-19
+# ::node	s	someone	20-21
+# ::root	d	drive-01
+# ::edge	truck	mod	dumpster	t	d3	
+# ::edge	area	mod	metropolis	a	m	
+# ::edge	drive-01	ARG1	truck	d	t	
+# ::edge	drive-01	ARG0	truck	d	t	
+# ::edge	drive-01	location	truck	d2	t	
+# ::edge	truck	ARG0-of	drive-01	t	d2	
+# ::edge	drive-01	path	past	d	p	
+# ::edge	past	op1	statue	p	s2	
+# ::edge	statue	topic	horse	s2	h	
+# ::edge	horse	ARG1-of	ride-01	h	r	
+# ::edge	ride-01	ARG0	someone	r	s	
+# ::edge	drive-01	rel	area	d	a	
+(d / drive-01
+    :ARG0 (t / truck
+        :ARG0-of (d2 / drive-01
+            :location t)
+        :mod (d3 / dumpster))
+    :ARG1 t
+    :path (p / past
+        :op1 (s2 / statue
+            :topic (h / horse
+                :ARG1-of (r / ride-01
+                    :ARG0 (s / someone)))))
+    :rel (a / area
+        :mod (m / metropolis)))

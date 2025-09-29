@@ -1,0 +1,37 @@
+# ::tok A small bathroom with white towels hung around the shower stall and a white towel on the floor .
+# ::node	s2	small	1-2
+# ::node	b	bathroom	2-3
+# ::node	w	white-03	4-5
+# ::node	p	please	5-6
+# ::node	h	hang-01	6-7
+# ::node	a2	around	7-8
+# ::node	s	shower	9-10
+# ::node	s3	stall	10-11
+# ::node	a	and	11-12
+# ::node	w2	white-03	13-14
+# ::node	t	towel	14-15
+# ::node	f	floor	17-18
+# ::root	b	bathroom
+# ::edge	bathroom	mod	small	b	s2	
+# ::edge	please	ARG1-of	white-03	p	w	
+# ::edge	please	ARG1-of	hang-01	p	h	
+# ::edge	hang-01	ARG2	around	h	a2	
+# ::edge	stall	mod	shower	s3	s	
+# ::edge	around	op1	stall	a2	s3	
+# ::edge	and	op1	please	a	p	
+# ::edge	bathroom	location-of	and	b	a	
+# ::edge	towel	ARG1-of	white-03	t	w2	
+# ::edge	and	op2	towel	a	t	
+# ::edge	towel	location	floor	t	f	
+(b / bathroom
+    :location-of (a / and
+        :op1 (p / please
+            :ARG1-of (w / white-03)
+            :ARG1-of (h / hang-01
+                :ARG2 (a2 / around
+                    :op1 (s3 / stall
+                        :mod (s / shower)))))
+        :op2 (t / towel
+            :ARG1-of (w2 / white-03)
+            :location (f / floor)))
+    :mod (s2 / small))

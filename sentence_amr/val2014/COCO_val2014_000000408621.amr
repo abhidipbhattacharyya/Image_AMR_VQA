@@ -1,0 +1,58 @@
+# ::tok Metro bus driving past the Green Lake Branch of Seattle , WA library .
+# ::node	c2	company	0-1
+# ::node	n	name	0-1
+# ::node	3	Metro	0-1
+# ::node	b2	bus	1-2
+# ::node	d	drive-01	2-3
+# ::node	p	past	3-4
+# ::node	1	Green	5-6
+# ::node	2	Lake	6-7
+# ::node	b	branch	7-8
+# ::node	0	Branch	7-8
+# ::node	n2	name	9-10
+# ::node	c	city	9-10
+# ::node	n3	name	9-10
+# ::node	4	Seattle	9-10
+# ::node	s	state	11-12
+# ::node	n4	name	11-12
+# ::node	6	Washington	11-12
+# ::node	5	WA	11-12
+# ::node	l	library	12-13
+# ::root	d	drive-01
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Metro	n	3	
+# ::edge	bus	mod	company	b2	c2	
+# ::edge	drive-01	ARG1	bus	d	b2	
+# ::edge	drive-01	path	past	d	p	
+# ::edge	past	op1	branch	p	b	
+# ::edge	name	op3	Branch	n2	0	
+# ::edge	branch	name	name	b	n2	
+# ::edge	name	op2	Lake	n2	2	
+# ::edge	name	op1	Green	n2	1	
+# ::edge	city	name	name	c	n3	
+# ::edge	name	op1	Seattle	n3	4	
+# ::edge	city	location	state	c	s	
+# ::edge	state	name	name	s	n4	
+# ::edge	name	op1	Washington	n4	6	
+# ::edge	name	op2	WA	n4	5	
+# ::edge	library	location	city	l	c	
+# ::edge	branch	part-of	library	b	l	
+(d / drive-01
+    :ARG1 (b2 / bus
+        :mod (c2 / company
+            :name (n / name
+                :op1 "Metro")))
+    :path (p / past
+        :op1 (b / branch
+            :name (n2 / name
+                :op1 "Green"
+                :op2 "Lake"
+                :op3 "Branch")
+            :part-of (l / library
+                :location (c / city
+                    :name (n3 / name
+                        :op1 "Seattle")
+                    :location (s / state
+                        :name (n4 / name
+                            :op1 "Washington"
+                            :op2 "WA")))))))

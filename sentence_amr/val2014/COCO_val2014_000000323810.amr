@@ -1,0 +1,40 @@
+# ::tok It is a bird with long legs , a very long beak and very bright orange feathers .
+# ::node	i	it	0-1
+# ::node	b2	bird	3-4
+# ::node	h	have-03	4-5
+# ::node	l2	long-03	5-6
+# ::node	l	leg	6-7
+# ::node	v	very	9-10
+# ::node	l3	long-03	10-11
+# ::node	b	beak	11-12
+# ::node	a	and	12-13
+# ::node	v2	very	13-14
+# ::node	b3	bright-02	14-15
+# ::node	o	orange	15-16
+# ::node	f	feather	16-17
+# ::root	b2	bird
+# ::edge	bird	domain	it	b2	i	
+# ::edge	bird	ARG0-of	have-03	b2	h	
+# ::edge	leg	ARG1-of	long-03	l	l2	
+# ::edge	long-03	degree	very	l3	v	
+# ::edge	beak	ARG1-of	long-03	b	l3	
+# ::edge	and	op2	beak	a	b	
+# ::edge	and	op1	leg	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	bright-02	degree	very	b3	v2	
+# ::edge	feather	mod	orange	f	o	
+# ::edge	feather	ARG1-of	bright-02	f	b3	
+# ::edge	and	op3	feather	a	f	
+(b2 / bird
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / leg
+                :ARG1-of (l2 / long-03))
+            :op2 (b / beak
+                :ARG1-of (l3 / long-03
+                    :degree (v / very)))
+            :op3 (f / feather
+                :ARG1-of (b3 / bright-02
+                    :degree (v2 / very))
+                :mod (o / orange))))
+    :domain (i / it))

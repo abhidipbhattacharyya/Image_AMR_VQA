@@ -1,0 +1,30 @@
+# ::tok Guy lunges forward to hit the tennis ball back to the other side
+# ::node	g	guy	0-1
+# ::node	l	leap-03	1-2
+# ::node	f	forward	2-3
+# ::node	h	hit-01	4-5
+# ::node	t	tennis	6-7
+# ::node	b2	ball	7-8
+# ::node	b	back	8-9
+# ::node	o	other	11-12
+# ::node	s	side	12-13
+# ::root	l	leap-03
+# ::edge	leap-03	ARG0	guy	l	g	
+# ::edge	leap-03	direction	forward	l	f	
+# ::edge	leap-03	purpose	hit-01	l	h	
+# ::edge	hit-01	ARG0	guy	h	g	
+# ::edge	ball	mod	tennis	b2	t	
+# ::edge	hit-01	ARG1	ball	h	b2	
+# ::edge	hit-01	direction	back	h	b	
+# ::edge	side	mod	other	s	o	
+# ::edge	hit-01	destination	side	h	s	
+(l / leap-03
+    :purpose (h / hit-01
+        :ARG0 (g / guy)
+        :ARG1 (b2 / ball
+            :mod (t / tennis))
+        :destination (s / side
+            :mod (o / other))
+        :direction (b / back))
+    :ARG0 g
+    :direction (f / forward))

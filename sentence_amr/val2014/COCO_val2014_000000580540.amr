@@ -1,0 +1,34 @@
+# ::tok The dog is watching a televised scene in which another dog , poised on a bank is witnessing an emergency on the water .
+# ::node	d	dog	1-2
+# ::node	w	watch-01	3-4
+# ::node	t	televise-01	5-6
+# ::node	s	scene	6-7
+# ::node	a	another	9-10
+# ::node	d2	dog	10-11
+# ::node	p	poise-01	12-13
+# ::node	b	bank	15-16
+# ::node	w3	witness-01	17-18
+# ::node	e	emergency	19-20
+# ::node	w2	water	22-23
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	dog	w	d	
+# ::edge	scene	ARG1-of	televise-01	s	t	
+# ::edge	watch-01	ARG1	scene	w	s	
+# ::edge	dog	mod	another	d2	a	
+# ::edge	dog	ARG1-of	poise-01	d2	p	
+# ::edge	poise-01	ARG2	bank	p	b	
+# ::edge	witness-01	ARG0	dog	w3	d2	
+# ::edge	scene	time-of	witness-01	s	w3	
+# ::edge	witness-01	ARG1	emergency	w3	e	
+# ::edge	emergency	location	water	e	w2	
+(w / watch-01
+    :ARG0 (d / dog)
+    :ARG1 (s / scene
+        :ARG1-of (t / televise-01)
+        :time-of (w3 / witness-01
+            :ARG0 (d2 / dog
+                :ARG1-of (p / poise-01
+                    :ARG2 (b / bank))
+                :mod (a / another))
+            :ARG1 (e / emergency
+                :location (w2 / water)))))

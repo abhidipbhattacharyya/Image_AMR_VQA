@@ -1,0 +1,33 @@
+# ::tok Many bunches of bananas sit atop this grocery store display case .
+# ::node	m	many	0-1
+# ::node	l	load	1-2
+# ::node	b	banana	3-4
+# ::node	s	sit-01	4-5
+# ::node	a	atop	5-6
+# ::node	t	this	6-7
+# ::node	g	grocery	7-8
+# ::node	s2	store	8-9
+# ::node	d	display-01	9-10
+# ::node	c	case	10-11
+# ::root	s	sit-01
+# ::edge	load	quant	many	l	m	
+# ::edge	banana	quant	load	b	l	
+# ::edge	sit-01	ARG1	load	s	l	
+# ::edge	sit-01	ARG2	atop	s	a	
+# ::edge	store	mod	grocery	s2	g	
+# ::edge	display-01	location	store	d	s2	
+# ::edge	case	ARG2-of	display-01	c	d	
+# ::edge	case	mod	this	c	t	
+# ::edge	atop	op1	case	a	c	
+# ::edge	sit-01	rel	banana	s	b	
+(s / sit-01
+    :ARG1 (l / load
+        :quant (m / many))
+    :ARG2 (a / atop
+        :op1 (c / case
+            :ARG2-of (d / display-01
+                :location (s2 / store
+                    :mod (g / grocery)))
+            :mod (t / this)))
+    :rel (b / banana
+        :quant l))

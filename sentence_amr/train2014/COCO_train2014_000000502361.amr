@@ -1,0 +1,41 @@
+# ::tok A man stands against a blue building , near a fire hydrant , using his cell phone
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	a	against	3-4
+# ::node	b	blue	5-6
+# ::node	b2	building	6-7
+# ::node	a2	and	7-8
+# ::node	n	near-02	8-9
+# ::node	f	fire	10-11
+# ::node	h	hydrant	11-12
+# ::node	u	use-01	13-14
+# ::node	c	cell	15-16
+# ::node	p	phone	16-17
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	building	mod	blue	b2	b	
+# ::edge	against	op1	building	a	b2	
+# ::edge	and	op1	against	a2	a	
+# ::edge	stand-01	ARG2	and	s	a2	
+# ::edge	and	op2	near-02	a2	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	near-02	ARG2	hydrant	n	h	
+# ::edge	man	ARG0-of	use-01	m	u	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	use-01	ARG1	phone	u	p	
+# ::edge	phone	poss	man	p	m	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (u / use-01
+            :ARG1 (p / phone
+                :mod (c / cell)
+                :poss m)))
+    :ARG2 (a2 / and
+        :op1 (a / against
+            :op1 (b2 / building
+                :mod (b / blue)))
+        :op2 (n / near-02
+            :ARG1 m
+            :ARG2 (h / hydrant
+                :mod (f / fire)))))

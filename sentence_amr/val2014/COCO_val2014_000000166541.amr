@@ -1,0 +1,22 @@
+# ::tok a train resting on a train track with other tracks around it
+# ::node	t3	train	1-2
+# ::node	r	rest-01	2-3
+# ::node	t4	train	5-6
+# ::node	t	track	6-7
+# ::node	o	other	8-9
+# ::node	t2	track	9-10
+# ::node	a	around	10-11
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	train	r	t3	
+# ::edge	track	mod	train	t	t4	
+# ::edge	rest-01	location	track	r	t	
+# ::edge	track	mod	other	t2	o	
+# ::edge	around	location-of	track	a	t2	
+# ::edge	track	location-of	around	t	a	
+(r / rest-01
+    :ARG1 (t3 / train)
+    :location (t / track
+        :location-of (a / around
+            :location-of (t2 / track
+                :mod (o / other)))
+        :mod (t4 / train)))

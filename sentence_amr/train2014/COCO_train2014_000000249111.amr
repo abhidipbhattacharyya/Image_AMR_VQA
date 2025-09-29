@@ -1,0 +1,24 @@
+# ::tok A laptop is docked on a stand while another keyboard is positioned for use .
+# ::node	l	laptop	1-2
+# ::node	d	dock-01	3-4
+# ::node	s	stand	6-7
+# ::node	a	another	8-9
+# ::node	k	keyboard	9-10
+# ::node	p	position-01	11-12
+# ::node	u	use-01	13-14
+# ::root	d	dock-01
+# ::edge	dock-01	ARG1	laptop	d	l	
+# ::edge	dock-01	ARG2	stand	d	s	
+# ::edge	keyboard	mod	another	k	a	
+# ::edge	position-01	ARG1	keyboard	p	k	
+# ::edge	dock-01	time	position-01	d	p	
+# ::edge	position-01	ARG2	use-01	p	u	
+# ::edge	use-01	ARG1	keyboard	u	k	
+(d / dock-01
+    :ARG1 (l / laptop)
+    :ARG2 (s / stand)
+    :time (p / position-01
+        :ARG1 (k / keyboard
+            :mod (a / another))
+        :ARG2 (u / use-01
+            :ARG1 k)))

@@ -1,0 +1,24 @@
+# ::tok A stop sign vandalized to display an anti - war message .
+# ::node	s2	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	v	vandalize-01	3-4
+# ::node	d	display-01	5-6
+# ::node	o	oppose-01	7-8
+# ::node	w	war	9-10
+# ::node	m	message-01	10-11
+# ::root	v	vandalize-01
+# ::edge	sign	purpose	stop-01	s	s2	
+# ::edge	vandalize-01	ARG1	sign	v	s	
+# ::edge	vandalize-01	purpose	display-01	v	d	
+# ::edge	display-01	ARG0	sign	d	s	
+# ::edge	oppose-01	ARG1	war	o	w	
+# ::edge	message-01	ARG1	oppose-01	m	o	
+# ::edge	display-01	ARG1	message-01	d	m	
+(v / vandalize-01
+    :purpose (d / display-01
+        :ARG0 (s / sign
+            :purpose (s2 / stop-01))
+        :ARG1 (m / message-01
+            :ARG1 (o / oppose-01
+                :ARG1 (w / war))))
+    :ARG1 s)

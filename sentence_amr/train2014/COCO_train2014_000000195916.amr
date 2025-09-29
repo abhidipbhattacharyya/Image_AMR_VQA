@@ -1,0 +1,31 @@
+# ::tok A city street with a store signs hanging from the buildings and other buildings in the distance .
+# ::node	c	city	1-2
+# ::node	s3	street	2-3
+# ::node	s2	store	5-6
+# ::node	s	sign	6-7
+# ::node	h	hang-01	7-8
+# ::node	b	building	10-11
+# ::node	a	and	11-12
+# ::node	o	other	12-13
+# ::node	b2	building	13-14
+# ::node	d	distance	16-17
+# ::root	s3	street
+# ::edge	street	mod	city	s3	c	
+# ::edge	sign	mod	store	s	s2	
+# ::edge	hang-01	ARG1	sign	h	s	
+# ::edge	street	location-of	hang-01	s3	h	
+# ::edge	and	op1	building	a	b	
+# ::edge	hang-01	ARG2	and	h	a	
+# ::edge	building	mod	other	b2	o	
+# ::edge	and	op2	building	a	b2	
+# ::edge	building	location	distance	b2	d	
+(s3 / street
+    :location-of (h / hang-01
+        :ARG1 (s / sign
+            :mod (s2 / store))
+        :ARG2 (a / and
+            :op1 (b / building)
+            :op2 (b2 / building
+                :location (d / distance)
+                :mod (o / other))))
+    :mod (c / city))

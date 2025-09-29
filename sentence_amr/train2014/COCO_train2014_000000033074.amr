@@ -1,0 +1,25 @@
+# ::tok A public restroom with a large mirror and multiple sinks .
+# ::node	p	public-02	1-2
+# ::node	r	restroom	2-3
+# ::node	h	have-03	3-4
+# ::node	l	large	5-6
+# ::node	m	mirror	6-7
+# ::node	a	and	7-8
+# ::node	m2	multiple	8-9
+# ::node	s	sink-01	9-10
+# ::root	r	restroom
+# ::edge	restroom	ARG1-of	public-02	r	p	
+# ::edge	restroom	ARG0-of	have-03	r	h	
+# ::edge	mirror	mod	large	m	l	
+# ::edge	and	op1	mirror	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sink-01	quant	multiple	s	m2	
+# ::edge	and	op2	sink-01	a	s	
+(r / restroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (m / mirror
+                :mod (l / large))
+            :op2 (s / sink-01
+                :quant (m2 / multiple))))
+    :ARG1-of (p / public-02))

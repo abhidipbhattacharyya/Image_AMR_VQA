@@ -1,0 +1,34 @@
+# ::tok A Polar jet sits on the tarmac on a sunny day surrounded by support vehicles .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Polar	1-2
+# ::node	j	jet	2-3
+# ::node	s	sit-01	3-4
+# ::node	t	tarmac	6-7
+# ::node	s2	sunny	9-10
+# ::node	d	day	10-11
+# ::node	s4	surround-01	11-12
+# ::node	s3	support-01	13-14
+# ::node	v	vehicle	14-15
+# ::root	s	sit-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Polar	n	0	
+# ::edge	jet	mod	country	j	c	
+# ::edge	sit-01	ARG1	jet	s	j	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	day	mod	sunny	d	s2	
+# ::edge	sit-01	time	day	s	d	
+# ::edge	jet	ARG2-of	surround-01	j	s4	
+# ::edge	vehicle	ARG0-of	support-01	v	s3	
+# ::edge	surround-01	ARG1	vehicle	s4	v	
+(s / sit-01
+    :ARG1 (j / jet
+        :ARG2-of (s4 / surround-01
+            :ARG1 (v / vehicle
+                :ARG0-of (s3 / support-01)))
+        :mod (c / country
+            :name (n / name
+                :op1 "Polar")))
+    :ARG2 (t / tarmac)
+    :time (d / day
+        :mod (s2 / sunny)))

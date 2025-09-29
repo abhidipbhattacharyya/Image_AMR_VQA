@@ -1,0 +1,34 @@
+# ::tok The car at the end of the Norfolk Southern train is the caboose , and this one
+# ::node	c2	car	1-2
+# ::node	c3	car	1-2
+# ::node	e	end	4-5
+# ::node	n	name	7-8
+# ::node	0	Norfolk	7-8
+# ::node	c4	company	8-9
+# ::node	1	Southern	8-9
+# ::node	t2	train	9-10
+# ::node	c	caboose	12-13
+# ::node	a	and	14-15
+# ::node	t	this	15-16
+# ::root	a	and
+# ::edge	car	location	end	c2	e	
+# ::edge	name	op1	Norfolk	n	0	
+# ::edge	company	name	name	c4	n	
+# ::edge	name	op2	Southern	n	1	
+# ::edge	train	mod	company	t2	c4	
+# ::edge	end	part-of	train	e	t2	
+# ::edge	car	domain	caboose	c2	c	
+# ::edge	and	op2	car	a	c3	
+# ::edge	and	op1	car	a	c2	
+# ::edge	car	mod	this	c3	t	
+(a / and
+    :op1 (c2 / car
+        :domain (c / caboose)
+        :location (e / end
+            :part-of (t2 / train
+                :mod (c4 / company
+                    :name (n / name
+                        :op1 "Norfolk"
+                        :op2 "Southern")))))
+    :op2 (c3 / car
+        :mod (t / this)))

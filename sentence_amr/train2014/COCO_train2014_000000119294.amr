@@ -1,0 +1,32 @@
+# ::tok A set of train tracks with a train engine and passenger cars parked on the track .
+# ::node	s	set	1-2
+# ::node	t2	train	3-4
+# ::node	t	track	4-5
+# ::node	h	have-03	5-6
+# ::node	e	engine	8-9
+# ::node	a	and	9-10
+# ::node	p2	passenger	10-11
+# ::node	c	car	11-12
+# ::node	p	park-01	12-13
+# ::root	s	set
+# ::edge	track	mod	train	t	t2	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	track	ARG0-of	have-03	t	h	
+# ::edge	engine	mod	train	e	t2	
+# ::edge	and	op1	engine	a	e	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	car	mod	passenger	c	p2	
+# ::edge	and	op2	car	a	c	
+# ::edge	and	ARG1-of	park-01	a	p	
+# ::edge	park-01	ARG2	track	p	t	
+(s / set
+    :consist-of (t / track
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :ARG1-of (p / park-01
+                    :ARG2 t)
+                :op1 (e / engine
+                    :mod (t2 / train))
+                :op2 (c / car
+                    :mod (p2 / passenger))))
+        :mod t2))

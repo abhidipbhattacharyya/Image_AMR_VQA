@@ -1,0 +1,24 @@
+# ::tok a plane waiting at the tarmac as a bunch of cars are parked in front of it
+# ::node	p2	plane	1-2
+# ::node	w	wait-01	2-3
+# ::node	t	tarmac	5-6
+# ::node	b	bunch	8-9
+# ::node	c	car	10-11
+# ::node	p	park-01	12-13
+# ::node	i	in-front-of	14-15
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	plane	w	p2	
+# ::edge	wait-01	location	tarmac	w	t	
+# ::edge	car	quant	bunch	c	b	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	wait-01	time	park-01	w	p	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	in-front-of	op1	plane	i	p2	
+(w / wait-01
+    :ARG1 (p2 / plane)
+    :location (t / tarmac)
+    :time (p / park-01
+        :ARG1 (c / car
+            :quant (b / bunch))
+        :ARG2 (i / in-front-of
+            :op1 p2)))

@@ -1,0 +1,80 @@
+# ::tok Two - tiered white fondant cake on pedestal with tiers separated by two rows of white and green roses covered with a dark wire wide - mesh birdcage top with a bird perched atop for a handle .
+# ::node	0	2	0-1
+# ::node	t	tier	2-3
+# ::node	w	white-03	3-4
+# ::node	f	fondant	4-5
+# ::node	c	cake	5-6
+# ::node	p	pedestal	7-8
+# ::node	t2	tier	9-10
+# ::node	s	separate-01	10-11
+# ::node	1	2	12-13
+# ::node	r3	row	13-14
+# ::node	a	and	16-17
+# ::node	g	green-02	17-18
+# ::node	r	rose	18-19
+# ::node	r2	rose	18-19
+# ::node	c2	cover-02	19-20
+# ::node	d	dark-02	22-23
+# ::node	w3	wire	23-24
+# ::node	w2	wide-02	24-25
+# ::node	m	mesh	26-27
+# ::node	b2	birdcage	27-28
+# ::node	t3	top	28-29
+# ::node	b	bird	31-32
+# ::node	p2	perch-01	32-33
+# ::node	a2	atop	33-34
+# ::node	h	handle	36-37
+# ::root	c	cake
+# ::edge	tier	quant	2	t	0	
+# ::edge	cake	mod	fondant	c	f	
+# ::edge	cake	ARG1-of	white-03	c	w	
+# ::edge	cake	consist-of	tier	c	t	
+# ::edge	cake	location	pedestal	c	p	
+# ::edge	cake	consist-of	tier	c	t2	
+# ::edge	tier	ARG1-of	separate-01	t2	s	
+# ::edge	row	quant	2	r3	1	
+# ::edge	separate-01	ARG0	row	s	r3	
+# ::edge	row	consist-of	and	r3	a	
+# ::edge	and	op1	rose	a	r	
+# ::edge	rose	ARG1-of	white-03	r	w	
+# ::edge	rose	ARG1-of	green-02	r2	g	
+# ::edge	and	op2	rose	a	r2	
+# ::edge	and	ARG1-of	cover-02	a	c2	
+# ::edge	wire	ARG1-of	dark-02	w3	d	
+# ::edge	mesh	ARG1-of	wide-02	m	w2	
+# ::edge	mesh	consist-of	wire	m	w3	
+# ::edge	top	mod	birdcage	t3	b2	
+# ::edge	top	consist-of	mesh	t3	m	
+# ::edge	cover-02	ARG2	top	c2	t3	
+# ::edge	perch-01	ARG1	bird	p2	b	
+# ::edge	top	ARG2-of	perch-01	t3	p2	
+# ::edge	perch-01	location	atop	p2	a2	
+# ::edge	atop	op1	birdcage	a2	b2	
+# ::edge	perch-01	purpose	handle	p2	h	
+(c / cake
+    :ARG1-of (w / white-03)
+    :consist-of (t / tier
+        :quant 2)
+    :consist-of (t2 / tier
+        :ARG1-of (s / separate-01
+            :ARG0 (r3 / row
+                :quant 2
+                :consist-of (a / and
+                    :ARG1-of (c2 / cover-02
+                        :ARG2 (t3 / top
+                            :ARG2-of (p2 / perch-01
+                                :purpose (h / handle)
+                                :ARG1 (b / bird)
+                                :location (a2 / atop
+                                    :op1 (b2 / birdcage)))
+                            :consist-of (m / mesh
+                                :ARG1-of (w2 / wide-02)
+                                :consist-of (w3 / wire
+                                    :ARG1-of (d / dark-02)))
+                            :mod b2))
+                    :op1 (r / rose
+                        :ARG1-of w)
+                    :op2 (r2 / rose
+                        :ARG1-of (g / green-02))))))
+    :location (p / pedestal)
+    :mod (f / fondant))

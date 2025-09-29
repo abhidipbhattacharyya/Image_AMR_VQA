@@ -1,0 +1,89 @@
+# ::tok A very confined corner of a white - walled room shows a very low , or miniature bed , including the headboard , and next to it a small shrink - wrapped plastic appliance , maybe a toy , and a plastic plate with a probably fake desert .
+# ::node	v	very	1-2
+# ::node	c	confine-01	2-3
+# ::node	c2	corner	3-4
+# ::node	w2	white-03	6-7
+# ::node	w	wall-off-01	8-9
+# ::node	r	room	9-10
+# ::node	s	show-01	10-11
+# ::node	v2	very	12-13
+# ::node	l	low-04	13-14
+# ::node	o	or	15-16
+# ::node	m	miniature	16-17
+# ::node	b	bed	17-18
+# ::node	i	include-01	19-20
+# ::node	h2	headboard	21-22
+# ::node	n	next-to	24-25
+# ::node	s3	small	28-29
+# ::node	s2	shrink	29-30
+# ::node	w3	wrap-01	31-32
+# ::node	p	plastic	32-33
+# ::node	a	appliance	33-34
+# ::node	p4	possible-01	35-36
+# ::node	t	toy	37-38
+# ::node	p2	plastic	41-42
+# ::node	p3	plate	42-43
+# ::node	h	have-03	43-44
+# ::node	p5	probable	45-46
+# ::node	f	fake-02	46-47
+# ::node	d	desert	47-48
+# ::root	s	show-01
+# ::edge	confine-01	degree	very	c	v	
+# ::edge	corner	ARG1-of	confine-01	c2	c	
+# ::edge	wall-off-01	ARG1-of	white-03	w	w2	
+# ::edge	room	ARG1-of	wall-off-01	r	w	
+# ::edge	corner	part-of	room	c2	r	
+# ::edge	show-01	ARG0	corner	s	c2	
+# ::edge	low-04	degree	very	l	v2	
+# ::edge	show-01	ARG1	or	s	o	
+# ::edge	miniature	degree	very	m	v2	
+# ::edge	bed	mod	miniature	b	m	
+# ::edge	or	op1	bed	o	b	
+# ::edge	bed	ARG1-of	low-04	b	l	
+# ::edge	bed	ARG2-of	include-01	b	i	
+# ::edge	include-01	ARG1	headboard	i	h2	
+# ::edge	next-to	op1	bed	n	b	
+# ::edge	wrap-01	ARG2	shrink	w3	s2	
+# ::edge	appliance	consist-of	plastic	a	p	
+# ::edge	appliance	ARG1-of	wrap-01	a	w3	
+# ::edge	appliance	mod	small	a	s3	
+# ::edge	or	op2	appliance	o	a	
+# ::edge	toy	ARG1-of	possible-01	t	p4	
+# ::edge	appliance	mod	toy	a	t	
+# ::edge	plate	consist-of	plastic	p3	p2	
+# ::edge	or	op3	plate	o	p3	
+# ::edge	plate	ARG0-of	have-03	p3	h	
+# ::edge	fake-02	mod	probable	f	p5	
+# ::edge	desert	ARG1-of	fake-02	d	f	
+# ::edge	have-03	ARG1	desert	h	d	
+# ::edge	show-01	rel	next-to	s	n	
+(s / show-01
+    :ARG0 (c2 / corner
+        :ARG1-of (c / confine-01
+            :degree (v / very))
+        :part-of (r / room
+            :ARG1-of (w / wall-off-01
+                :ARG1-of (w2 / white-03))))
+    :ARG1 (o / or
+        :op1 (b / bed
+            :ARG1-of (l / low-04
+                :degree (v2 / very))
+            :ARG2-of (i / include-01
+                :ARG1 (h2 / headboard))
+            :mod (m / miniature
+                :degree v2))
+        :op2 (a / appliance
+            :ARG1-of (w3 / wrap-01
+                :ARG2 (s2 / shrink))
+            :consist-of (p / plastic)
+            :mod (s3 / small)
+            :mod (t / toy
+                :ARG1-of (p4 / possible-01)))
+        :op3 (p3 / plate
+            :ARG0-of (h / have-03
+                :ARG1 (d / desert
+                    :ARG1-of (f / fake-02
+                        :mod (p5 / probable))))
+            :consist-of (p2 / plastic)))
+    :rel (n / next-to
+        :op1 b))

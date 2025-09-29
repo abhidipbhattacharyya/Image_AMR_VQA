@@ -1,0 +1,27 @@
+# ::tok an image of taxi cabs parked and stationed thru out the city
+# ::node	i	image	1-2
+# ::node	t	taxi	3-4
+# ::node	t2	taxi	4-5
+# ::node	p	park-01	5-6
+# ::node	s	station-01	7-8
+# ::node	a	and	8-9
+# ::node	a2	around	9-10
+# ::node	c	city	11-12
+# ::root	i	image
+# ::edge	taxi	mod	taxi	t2	t	
+# ::edge	taxi	ARG1-of	park-01	t2	p	
+# ::edge	taxi	ARG1-of	station-01	t2	s	
+# ::edge	and	op2	station-01	a	s	
+# ::edge	and	op1	taxi	a	t2	
+# ::edge	image	topic	and	i	a	
+# ::edge	station-01	ARG2	around	s	a2	
+# ::edge	around	op1	city	a2	c	
+(i / image
+    :topic (a / and
+        :op1 (t2 / taxi
+            :ARG1-of (p / park-01)
+            :ARG1-of (s / station-01
+                :ARG2 (a2 / around
+                    :op1 (c / city)))
+            :mod (t / taxi))
+        :op2 s))

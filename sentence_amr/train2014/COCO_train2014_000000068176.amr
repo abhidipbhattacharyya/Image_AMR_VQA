@@ -1,0 +1,34 @@
+# ::tok a male bicycle rider in a black shirt some cars and buildings
+# ::node	m	male	1-2
+# ::node	b	bicycle	2-3
+# ::node	p	person	3-4
+# ::node	r	ride-01	3-4
+# ::node	w	wear-01	4-5
+# ::node	b2	black-04	6-7
+# ::node	s	shirt	7-8
+# ::node	s2	some	8-9
+# ::node	c	car	9-10
+# ::node	a	and	10-11
+# ::node	b3	building	11-12
+# ::root	p	person
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	bicycle	r	b	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	shirt	ARG1-of	black-04	s	b2	
+# ::edge	wear-01	ARG1	shirt	w	s	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	quant	some	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	building	a	b3	
+(p / person
+    :ARG0-of (r / ride-01
+        :ARG1 (b / bicycle))
+    :ARG0-of (w / wear-01
+        :ARG1 (s / shirt
+            :ARG1-of (b2 / black-04))
+        :ARG1 (a / and
+            :quant (s2 / some)
+            :op1 (c / car)
+            :op2 (b3 / building)))
+    :mod (m / male))

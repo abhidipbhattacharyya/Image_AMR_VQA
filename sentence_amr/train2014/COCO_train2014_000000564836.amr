@@ -1,0 +1,36 @@
+# ::tok A pizza made with mozzarella and cheddar cheeses , broccoli and other veggies .
+# ::node	p	pizza	1-2
+# ::node	m	make-01	2-3
+# ::node	m2	mozzarella	4-5
+# ::node	a	and	5-6
+# ::node	0	cheddar	6-7
+# ::node	c	country-region	7-8
+# ::node	n	name	7-8
+# ::node	v	variable	7-8
+# ::node	b	broccoli	9-10
+# ::node	o	other	11-12
+# ::node	v2	vegetable	12-13
+# ::root	p	pizza
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	and	op1	mozzarella	a	m2	
+# ::edge	make-01	ARG2	and	m	a	
+# ::edge	mozzarella	mod	country-region	m2	c	
+# ::edge	country-region	name	name	c	n	
+# ::edge	name	op1	cheddar	n	0	
+# ::edge	variable	mod	cheddar	v	0	
+# ::edge	and	op2	variable	a	v	
+# ::edge	and	op3	broccoli	a	b	
+# ::edge	vegetable	mod	other	v2	o	
+# ::edge	and	op4	vegetable	a	v2	
+(p / pizza
+    :ARG1-of (m / make-01
+        :ARG2 (a / and
+            :op1 (m2 / mozzarella
+                :mod (c / country-region
+                    :name (n / name
+                        :op1 "cheddar")))
+            :op2 (v / variable
+                :mod "cheddar")
+            :op3 (b / broccoli)
+            :op4 (v2 / vegetable
+                :mod (o / other)))))

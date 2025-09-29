@@ -1,0 +1,26 @@
+# ::tok A boy using a game controller to play an interactive game .
+# ::node	b	boy	1-2
+# ::node	u	use-01	2-3
+# ::node	t	thing	5-6
+# ::node	c	control-01	5-6
+# ::node	p	play-01	7-8
+# ::node	i	interactive	9-10
+# ::node	g	game	10-11
+# ::root	u	use-01
+# ::edge	use-01	ARG0	boy	u	b	
+# ::edge	use-01	ARG1	thing	u	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	use-01	ARG2	play-01	u	p	
+# ::edge	play-01	ARG0	boy	p	b	
+# ::edge	game	mod	interactive	g	i	
+# ::edge	play-01	ARG1	game	p	g	
+# ::edge	control-01	ARG1	game	c	g	
+(u / use-01
+    :ARG0 (b / boy)
+    :ARG1 (t / thing
+        :ARG0-of (c / control-01
+            :ARG1 (g / game
+                :mod (i / interactive))))
+    :ARG2 (p / play-01
+        :ARG0 b
+        :ARG1 g))

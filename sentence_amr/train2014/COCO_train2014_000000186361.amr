@@ -1,0 +1,29 @@
+# ::tok a man with a foot in the air while he hits a tennis ball
+# ::node	m	man	1-2
+# ::node	f	foot	4-5
+# ::node	b2	be-located-at-91	5-6
+# ::node	a	air	7-8
+# ::node	c	cause-01	8-9
+# ::node	h	hit-01	10-11
+# ::node	t	tennis	12-13
+# ::node	b	ball	13-14
+# ::root	m	man
+# ::edge	man	part	foot	m	f	
+# ::edge	be-located-at-91	ARG1	foot	b2	f	
+# ::edge	be-located-at-91	ARG2	air	b2	a	
+# ::edge	cause-01	ARG1	be-located-at-91	c	b2	
+# ::edge	man	ARG0-of	cause-01	m	c	
+# ::edge	be-located-at-91	time	hit-01	b2	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	hit-01	ARG1	ball	h	b	
+(m / man
+    :ARG0-of (c / cause-01
+        :ARG1 (b2 / be-located-at-91
+            :ARG1 (f / foot)
+            :ARG2 (a / air)
+            :time (h / hit-01
+                :ARG0 m
+                :ARG1 (b / ball
+                    :mod (t / tennis)))))
+    :part f)

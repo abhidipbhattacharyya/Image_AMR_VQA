@@ -1,0 +1,24 @@
+# ::tok there is a stop sign that looks different from other stop signs
+# ::node	s3	stop-01	3-4
+# ::node	s2	signal-07	4-5
+# ::node	l	look-02	6-7
+# ::node	d	differ-02	7-8
+# ::node	o	other	9-10
+# ::node	s4	stop-01	10-11
+# ::node	s	sign	11-12
+# ::root	l	look-02
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	look-02	ARG0	signal-07	l	s2	
+# ::edge	look-02	ARG1	differ-02	l	d	
+# ::edge	differ-02	ARG1	signal-07	d	s2	
+# ::edge	sign	purpose	stop-01	s	s4	
+# ::edge	sign	mod	other	s	o	
+# ::edge	differ-02	ARG2	sign	d	s	
+(l / look-02
+    :ARG0 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG1 (d / differ-02
+        :ARG1 s2
+        :ARG2 (s / sign
+            :purpose (s4 / stop-01)
+            :mod (o / other))))

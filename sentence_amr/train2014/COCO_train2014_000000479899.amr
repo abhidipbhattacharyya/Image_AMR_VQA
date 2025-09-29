@@ -1,0 +1,30 @@
+# ::tok a small crop duster plane sits parked near another plane
+# ::node	s2	small	1-2
+# ::node	c	crop	2-3
+# ::node	d	dust-01	3-4
+# ::node	p2	plane	4-5
+# ::node	s	sit-01	5-6
+# ::node	p	park-01	6-7
+# ::node	n	near-02	7-8
+# ::node	a	another	8-9
+# ::node	p3	plane	9-10
+# ::root	s	sit-01
+# ::edge	dust-01	ARG1	crop	d	c	
+# ::edge	plane	ARG0-of	dust-01	p2	d	
+# ::edge	plane	mod	small	p2	s2	
+# ::edge	sit-01	ARG1	plane	s	p2	
+# ::edge	sit-01	ARG2	park-01	s	p	
+# ::edge	park-01	ARG1	plane	p	p2	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	plane	mod	another	p3	a	
+# ::edge	near-02	ARG2	plane	n	p3	
+(s / sit-01
+    :ARG1 (p2 / plane
+        :ARG0-of (d / dust-01
+            :ARG1 (c / crop))
+        :mod (s2 / small))
+    :ARG2 (p / park-01
+        :ARG1 p2
+        :ARG1-of (n / near-02
+            :ARG2 (p3 / plane
+                :mod (a / another)))))

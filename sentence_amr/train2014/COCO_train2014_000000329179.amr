@@ -1,0 +1,36 @@
+# ::tok Several teddy bears of all sizes , some stacked on a tiered display .
+# ::node	s	several	0-1
+# ::node	t	teddy	1-2
+# ::node	b	bear	2-3
+# ::node	b2	bear	2-3
+# ::node	a	all	4-5
+# ::node	s2	size	5-6
+# ::node	i	include-91	7-8
+# ::node	s3	some	7-8
+# ::node	s4	stack-01	8-9
+# ::node	t2	tier	11-12
+# ::node	d	display	12-13
+# ::root	b	bear
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	bear	quant	several	b	s	
+# ::edge	bear	mod	teddy	b2	t	
+# ::edge	size	mod	all	s2	a	
+# ::edge	bear	mod	size	b	s2	
+# ::edge	include-91	ARG1	bear	i	b2	
+# ::edge	bear	ARG2-of	include-91	b	i	
+# ::edge	bear	quant	some	b2	s3	
+# ::edge	bear	ARG1-of	stack-01	b2	s4	
+# ::edge	display	mod	tier	d	t2	
+# ::edge	stack-01	ARG2	display	s4	d	
+(b / bear
+    :quant (s / several)
+    :ARG2-of (i / include-91
+        :ARG1 (b2 / bear
+            :quant (s3 / some)
+            :ARG1-of (s4 / stack-01
+                :ARG2 (d / display
+                    :mod (t2 / tier)))
+            :mod (t / teddy)))
+    :mod t
+    :mod (s2 / size
+        :mod (a / all)))

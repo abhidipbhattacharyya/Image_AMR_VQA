@@ -1,0 +1,30 @@
+# ::tok Orange fire hydrant on red bricked sidewalk next to road .
+# ::node	r	Orange	0-1
+# ::node	f	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	r2	red-02	4-5
+# ::node	r3	refuse-01	5-6
+# ::node	s	sidewalk	6-7
+# ::node	n	next-to	7-8
+# ::node	r4	road	9-10
+# ::root	b	be-located-at-91
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	mod	Orange	h	r	
+# ::edge	be-located-at-91	ARG1	hydrant	b	h	
+# ::edge	refuse-01	ARG1	hydrant	r3	h	
+# ::edge	sidewalk	ARG0-of	refuse-01	s	r3	
+# ::edge	sidewalk	ARG1-of	red-02	s	r2	
+# ::edge	be-located-at-91	ARG2	sidewalk	b	s	
+# ::edge	sidewalk	location	next-to	s	n	
+# ::edge	next-to	op1	road	n	r4	
+(b / be-located-at-91
+    :ARG1 (h / hydrant
+        :mod (f / fire)
+        :mod (r / Orange))
+    :ARG2 (s / sidewalk
+        :ARG0-of (r3 / refuse-01
+            :ARG1 h)
+        :ARG1-of (r2 / red-02)
+        :location (n / next-to
+            :op1 (r4 / road))))

@@ -1,0 +1,37 @@
+# ::tok Some sort of a fried meat sandwich rests on a plate with some french fries .
+# ::node	s2	some	0-1
+# ::node	s4	sort	1-2
+# ::node	f	fry-01	4-5
+# ::node	m	meat	5-6
+# ::node	s	sandwich	6-7
+# ::node	r	rest-02	7-8
+# ::node	p	plate	10-11
+# ::node	s3	some	12-13
+# ::node	c	country	13-14
+# ::node	n	name	13-14
+# ::node	0	France	13-14
+# ::node	f2	fry-01	14-15
+# ::root	r	rest-02
+# ::edge	sort	mod	some	s4	s2	
+# ::edge	meat	ARG1-of	fry-01	m	f	
+# ::edge	sandwich	mod	meat	s	m	
+# ::edge	sandwich	mod	sort	s	s4	
+# ::edge	rest-02	ARG1	sandwich	r	s	
+# ::edge	rest-02	ARG2	plate	r	p	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f2	c	
+# ::edge	fry-01	quant	some	f2	s3	
+# ::edge	plate	accompanier	fry-01	p	f2	
+(r / rest-02
+    :ARG1 (s / sandwich
+        :mod (m / meat
+            :ARG1-of (f / fry-01))
+        :mod (s4 / sort
+            :mod (s2 / some)))
+    :ARG2 (p / plate
+        :accompanier (f2 / fry-01
+            :quant (s3 / some)
+            :mod (c / country
+                :name (n / name
+                    :op1 "France")))))

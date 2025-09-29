@@ -1,0 +1,27 @@
+# ::tok Baked pastry items getting a glaze coating from commercial machinery .
+# ::node	b	bake-01	0-1
+# ::node	p	pastry	1-2
+# ::node	i	item	2-3
+# ::node	g	get-01	3-4
+# ::node	g2	glaze	5-6
+# ::node	c	coat-01	6-7
+# ::node	c2	commerce	8-9
+# ::node	m	machinery	9-10
+# ::root	g	get-01
+# ::edge	item	mod	pastry	i	p	
+# ::edge	item	ARG1-of	bake-01	i	b	
+# ::edge	get-01	ARG0	item	g	i	
+# ::edge	coat-01	ARG2	glaze	c	g2	
+# ::edge	get-01	ARG1	coat-01	g	c	
+# ::edge	coat-01	ARG1	item	c	i	
+# ::edge	machinery	mod	commerce	m	c2	
+# ::edge	coat-01	ARG0	machinery	c	m	
+(g / get-01
+    :ARG0 (i / item
+        :ARG1-of (b / bake-01)
+        :mod (p / pastry))
+    :ARG1 (c / coat-01
+        :ARG0 (m / machinery
+            :mod (c2 / commerce))
+        :ARG1 i
+        :ARG2 (g2 / glaze)))

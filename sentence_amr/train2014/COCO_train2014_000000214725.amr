@@ -1,0 +1,61 @@
+# ::tok An electrical device with buttons on a round table in front of room with people sitting at tables and counters , with plants in baskets and long windows with rectangular panes .
+# ::node	e	electricity	1-2
+# ::node	d	device	2-3
+# ::node	h	have-03	3-4
+# ::node	b2	button	4-5
+# ::node	r3	round-06	7-8
+# ::node	t	table	8-9
+# ::node	i	in-front-of	10-11
+# ::node	r2	room	12-13
+# ::node	p	person	14-15
+# ::node	s	sit-01	15-16
+# ::node	t2	table	17-18
+# ::node	a2	and	18-19
+# ::node	c	counter-01	19-20
+# ::node	p2	plant	22-23
+# ::node	b	basket	24-25
+# ::node	a3	and	25-26
+# ::node	l	long-03	26-27
+# ::node	w	window	27-28
+# ::node	r	rectangular	29-30
+# ::node	a	Pan	30-31
+# ::root	d	device
+# ::edge	device	mod	electricity	d	e	
+# ::edge	device	ARG0-of	have-03	d	h	
+# ::edge	have-03	ARG1	button	h	b2	
+# ::edge	table	ARG1-of	round-06	t	r3	
+# ::edge	button	location	table	b2	t	
+# ::edge	table	location	in-front-of	t	i	
+# ::edge	in-front-of	op1	room	i	r2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	table	location-of	sit-01	t	s	
+# ::edge	and	op1	table	a2	t2	
+# ::edge	sit-01	ARG2	and	s	a2	
+# ::edge	and	op2	counter-01	a2	c	
+# ::edge	plant	location	basket	p2	b	
+# ::edge	and	op1	plant	a3	p2	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	window	ARG1-of	long-03	w	l	
+# ::edge	and	op2	window	a3	w	
+# ::edge	Pan	mod	rectangular	a	r	
+# ::edge	window	part	Pan	w	a	
+(d / device
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / button
+            :location (t / table
+                :ARG1-of (r3 / round-06)
+                :location (i / in-front-of
+                    :op1 (r2 / room))
+                :location-of (s / sit-01
+                    :ARG1 (p / person)
+                    :ARG2 (a2 / and
+                        :op1 (t2 / table)
+                        :op2 (c / counter-01)))))
+        :ARG1 (a3 / and
+            :op1 (p2 / plant
+                :location (b / basket))
+            :op2 (w / window
+                :ARG1-of (l / long-03)
+                :part (a / Pan
+                    :mod (r / rectangular)))))
+    :mod (e / electricity))

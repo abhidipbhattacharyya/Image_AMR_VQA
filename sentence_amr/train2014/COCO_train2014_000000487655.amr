@@ -1,0 +1,34 @@
+# ::tok A food truck for the Lucky Taco is parked near a sign in a parking lot .
+# ::node	f	food	1-2
+# ::node	t	truck	2-3
+# ::node	n	name	2-3
+# ::node	0	Lucky	5-6
+# ::node	c	company	6-7
+# ::node	1	Taco	6-7
+# ::node	p	park-01	8-9
+# ::node	n2	near-02	9-10
+# ::node	s	sign	11-12
+# ::node	p2	park-01	14-15
+# ::node	l	lot	15-16
+# ::root	p	park-01
+# ::edge	truck	mod	food	t	f	
+# ::edge	name	op1	Lucky	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	truck	beneficiary	company	t	c	
+# ::edge	name	op2	Taco	n	1	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG1-of	near-02	p	n2	
+# ::edge	near-02	ARG2	sign	n2	s	
+# ::edge	lot	purpose	park-01	l	p2	
+# ::edge	sign	location	lot	s	l	
+(p / park-01
+    :ARG1 (t / truck
+        :beneficiary (c / company
+            :name (n / name
+                :op1 "Lucky"
+                :op2 "Taco"))
+        :mod (f / food))
+    :ARG1-of (n2 / near-02
+        :ARG2 (s / sign
+            :location (l / lot
+                :purpose (p2 / park-01)))))

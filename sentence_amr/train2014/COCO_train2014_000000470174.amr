@@ -1,0 +1,34 @@
+# ::tok A living room with two large couches , a coffee table , a television and an animal crate .
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	0	2	4-5
+# ::node	l	large	5-6
+# ::node	c2	couch	6-7
+# ::node	c	coffee	9-10
+# ::node	t	table	10-11
+# ::node	t2	television	13-14
+# ::node	a	and	14-15
+# ::node	a2	animal	16-17
+# ::node	c3	crate	17-18
+# ::root	r	room
+# ::edge	room	mod	living	r	l2	
+# ::edge	couch	mod	large	c2	l	
+# ::edge	couch	quant	2	c2	0	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	and	op3	television	a	t2	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	op1	couch	a	c2	
+# ::edge	room	consist-of	and	r	a	
+# ::edge	crate	mod	animal	c3	a2	
+# ::edge	and	op4	crate	a	c3	
+(r / room
+    :consist-of (a / and
+        :op1 (c2 / couch
+            :quant 2
+            :mod (l / large))
+        :op2 (t / table
+            :mod (c / coffee))
+        :op3 (t2 / television)
+        :op4 (c3 / crate
+            :mod (a2 / animal)))
+    :mod (l2 / living))

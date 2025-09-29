@@ -1,0 +1,39 @@
+# ::tok A group of people standing in a plaza near a building and some traffic lights holding a sign .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s3	stand-01	4-5
+# ::node	p2	plaza	7-8
+# ::node	n	near-02	8-9
+# ::node	b	building	10-11
+# ::node	a	and	11-12
+# ::node	s2	some	12-13
+# ::node	t	traffic	13-14
+# ::node	l	light	14-15
+# ::node	h	hold-01	15-16
+# ::node	s	sign	17-18
+# ::root	a	and
+# ::edge	group	consist-of	person	g	p	
+# ::edge	stand-01	ARG1	group	s3	g	
+# ::edge	stand-01	ARG2	plaza	s3	p2	
+# ::edge	plaza	ARG1-of	near-02	p2	n	
+# ::edge	near-02	ARG2	building	n	b	
+# ::edge	and	op1	stand-01	a	s3	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	some	l	s2	
+# ::edge	hold-01	ARG1	light	h	l	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	group	h	g	
+# ::edge	hold-01	ARG0	sign	h	s	
+(a / and
+    :op1 (s3 / stand-01
+        :ARG1 (g / group
+            :consist-of (p / person))
+        :ARG2 (p2 / plaza
+            :ARG1-of (n / near-02
+                :ARG2 (b / building))))
+    :op2 (h / hold-01
+        :ARG0 g
+        :ARG0 (s / sign)
+        :ARG1 (l / light
+            :quant (s2 / some)
+            :mod (t / traffic))))

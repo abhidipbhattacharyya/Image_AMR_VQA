@@ -1,0 +1,25 @@
+# ::tok A bike on the platform of a public transportation stop at night .
+# ::node	b	bike	1-2
+# ::node	p	platform	4-5
+# ::node	f	facility	6-7
+# ::node	p2	public-02	7-8
+# ::node	t	transport-01	8-9
+# ::node	s	stop-01	9-10
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	b	bike
+# ::edge	bike	location	platform	b	p	
+# ::edge	platform	poss	facility	p	f	
+# ::edge	transport-01	ARG1-of	public-02	t	p2	
+# ::edge	stop-01	ARG1	transport-01	s	t	
+# ::edge	facility	location-of	stop-01	f	s	
+# ::edge	bike	time	date-entity	b	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(b / bike
+    :location (p / platform
+        :poss (f / facility
+            :location-of (s / stop-01
+                :ARG1 (t / transport-01
+                    :ARG1-of (p2 / public-02)))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,40 @@
+# ::tok A city street scene showing taxi cabs , a road with a turn arrow , and various businesses .
+# ::node	c	city	1-2
+# ::node	s3	street	2-3
+# ::node	s	scene	3-4
+# ::node	s2	show-01	4-5
+# ::node	t	taxi	5-6
+# ::node	t2	taxi	6-7
+# ::node	a	and	7-8
+# ::node	r	road	9-10
+# ::node	h	have-03	10-11
+# ::node	t3	turn-01	12-13
+# ::node	a2	arrow	13-14
+# ::node	v	various	16-17
+# ::node	b	business	17-18
+# ::root	s	scene
+# ::edge	street	mod	city	s3	c	
+# ::edge	scene	location	street	s	s3	
+# ::edge	scene	ARG0-of	show-01	s	s2	
+# ::edge	taxi	mod	taxi	t2	t	
+# ::edge	and	op1	taxi	a	t2	
+# ::edge	show-01	ARG1	and	s2	a	
+# ::edge	and	op2	road	a	r	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	arrow	mod	turn-01	a2	t3	
+# ::edge	have-03	ARG1	arrow	h	a2	
+# ::edge	business	mod	various	b	v	
+# ::edge	and	op3	business	a	b	
+(s / scene
+    :ARG0-of (s2 / show-01
+        :ARG1 (a / and
+            :op1 (t2 / taxi
+                :mod (t / taxi))
+            :op2 (r / road
+                :ARG0-of (h / have-03
+                    :ARG1 (a2 / arrow
+                        :mod (t3 / turn-01))))
+            :op3 (b / business
+                :mod (v / various))))
+    :location (s3 / street
+        :mod (c / city)))

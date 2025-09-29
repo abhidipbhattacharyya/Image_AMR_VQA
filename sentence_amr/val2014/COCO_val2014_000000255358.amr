@@ -1,0 +1,26 @@
+# ::tok Luggage on a carousel at the airport with people gathered around to pick it up .
+# ::node	b	baggage	0-1
+# ::node	c	carousel	3-4
+# ::node	a	airport	6-7
+# ::node	p	person	8-9
+# ::node	g	gather-03	9-10
+# ::node	a2	around	10-11
+# ::node	p2	pick-up-04	12-13
+# ::root	b	baggage
+# ::edge	baggage	location	carousel	b	c	
+# ::edge	carousel	location	airport	c	a	
+# ::edge	person	ARG0-of	gather-03	p	g	
+# ::edge	gather-03	mod	around	g	a2	
+# ::edge	gather-03	purpose	pick-up-04	g	p2	
+# ::edge	pick-up-04	ARG0	person	p2	p	
+# ::edge	pick-up-04	ARG1	baggage	p2	b	
+# ::edge	baggage	rel	gather-03	b	g	
+(b / baggage
+    :location (c / carousel
+        :location (a / airport))
+    :rel (g / gather-03
+        :purpose (p2 / pick-up-04
+            :ARG0 (p / person
+                :ARG0-of g)
+            :ARG1 b)
+        :mod (a2 / around)))

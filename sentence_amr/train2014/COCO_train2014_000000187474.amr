@@ -1,0 +1,23 @@
+# ::tok Two people are testing out a balloon for its flight readiness .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	t	test-01	3-4
+# ::node	b	balloon	6-7
+# ::node	f	fly-01	9-10
+# ::node	r	ready-02	10-11
+# ::root	t	test-01
+# ::edge	person	quant	2	p	0	
+# ::edge	test-01	ARG0	person	t	p	
+# ::edge	test-01	ARG1	balloon	t	b	
+# ::edge	fly-01	ARG1	balloon	f	b	
+# ::edge	ready-02	ARG2	fly-01	r	f	
+# ::edge	ready-02	ARG1	balloon	r	b	
+# ::edge	test-01	purpose	ready-02	t	r	
+(t / test-01
+    :purpose (r / ready-02
+        :ARG1 (b / balloon)
+        :ARG2 (f / fly-01
+            :ARG1 b))
+    :ARG0 (p / person
+        :quant 2)
+    :ARG1 b)

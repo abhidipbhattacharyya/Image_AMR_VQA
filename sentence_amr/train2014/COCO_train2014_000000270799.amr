@@ -1,0 +1,27 @@
+# ::tok A truck backed up to a building in a parking lot with men standing behind .
+# ::node	t	truck	1-2
+# ::node	b	back-02	2-3
+# ::node	b3	building	6-7
+# ::node	p	park-01	9-10
+# ::node	l	lot	10-11
+# ::node	m	man	12-13
+# ::node	s	stand-01	13-14
+# ::node	b2	behind	14-15
+# ::root	b	back-02
+# ::edge	back-02	ARG1	truck	b	t	
+# ::edge	back-02	destination	building	b	b3	
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	building	location	lot	b3	l	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	truck	ARG2-of	stand-01	t	s	
+# ::edge	stand-01	location	behind	s	b2	
+# ::edge	behind	op1	building	b2	b3	
+(b / back-02
+    :ARG1 (t / truck
+        :ARG2-of (s / stand-01
+            :ARG1 (m / man)
+            :location (b2 / behind
+                :op1 (b3 / building
+                    :location (l / lot
+                        :purpose (p / park-01))))))
+    :destination b3)

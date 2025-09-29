@@ -1,0 +1,31 @@
+# ::tok zebras in a field of green grass with trees in the background
+# ::node	c	country-region	0-1
+# ::node	n	name	0-1
+# ::node	m	magazine	0-1
+# ::node	0	zebras	0-1
+# ::node	b2	be-located-at-91	1-2
+# ::node	f	field	3-4
+# ::node	g2	green-02	5-6
+# ::node	g	grass	6-7
+# ::node	t	tree	8-9
+# ::node	b	background	11-12
+# ::root	b2	be-located-at-91
+# ::edge	country-region	name	name	c	n	
+# ::edge	name	op1	zebras	n	0	
+# ::edge	be-located-at-91	ARG2	magazine	b2	m	
+# ::edge	be-located-at-91	ARG1	country-region	b2	c	
+# ::edge	magazine	location	field	m	f	
+# ::edge	grass	ARG1-of	green-02	g	g2	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	magazine	consist-of	tree	m	t	
+# ::edge	magazine	location	background	m	b	
+(b2 / be-located-at-91
+    :ARG1 (c / country-region
+        :name (n / name
+            :op1 "zebras"))
+    :ARG2 (m / magazine
+        :consist-of (t / tree)
+        :location (f / field
+            :consist-of (g / grass
+                :ARG1-of (g2 / green-02)))
+        :location (b / background)))

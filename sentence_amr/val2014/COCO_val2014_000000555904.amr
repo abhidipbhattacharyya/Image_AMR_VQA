@@ -1,0 +1,33 @@
+# ::tok People sitting a a take near several bottles of wine on shelves .
+# ::node	p	person	0-1
+# ::node	s3	sit-01	1-2
+# ::node	t	take-01	4-5
+# ::node	n	near-02	5-6
+# ::node	s	several	6-7
+# ::node	0	1	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	b	bottle	7-8
+# ::node	w	wine	9-10
+# ::node	s2	shelf	11-12
+# ::root	s3	sit-01
+# ::edge	sit-01	ARG1	person	s3	p	
+# ::edge	sit-01	ARG2	take-01	s3	t	
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	take-01	ARG1-of	near-02	t	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	several	op1	volume-quantity	s	v	
+# ::edge	volume-quantity	unit	bottle	v	b	
+# ::edge	wine	quant	several	w	s	
+# ::edge	near-02	ARG2	wine	n	w	
+# ::edge	several	location	shelf	s	s2	
+(s3 / sit-01
+    :ARG1 (p / person)
+    :ARG2 (t / take-01
+        :ARG0 p
+        :ARG1-of (n / near-02
+            :ARG2 (w / wine
+                :quant (s / several
+                    :location (s2 / shelf)
+                    :op1 (v / volume-quantity
+                        :quant 1
+                        :unit (b / bottle)))))))

@@ -1,0 +1,37 @@
+# ::tok A large Apple iPod billboard fronts a building under renovation in a city
+# ::node	l	large	1-2
+# ::node	c2	company	2-3
+# ::node	0	Apple	2-3
+# ::node	n	name	3-4
+# ::node	p	product	3-4
+# ::node	n2	name	3-4
+# ::node	1	iPod	3-4
+# ::node	b	billboard	4-5
+# ::node	i	in-front-of	5-6
+# ::node	b2	building	7-8
+# ::node	r	renovate-01	9-10
+# ::node	c	city	12-13
+# ::root	i	in-front-of
+# ::edge	name	op1	Apple	n	0	
+# ::edge	company	name	name	c2	n	
+# ::edge	product	mod	company	p	c2	
+# ::edge	product	name	name	p	n2	
+# ::edge	name	op1	iPod	n2	1	
+# ::edge	billboard	mod	product	b	p	
+# ::edge	billboard	mod	large	b	l	
+# ::edge	in-front-of	domain	billboard	i	b	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	building	ARG1-of	renovate-01	b2	r	
+# ::edge	building	location	city	b2	c	
+(i / in-front-of
+    :domain (b / billboard
+        :mod (p / product
+            :name (n2 / name
+                :op1 "iPod")
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "Apple")))
+        :mod (l / large))
+    :op1 (b2 / building
+        :ARG1-of (r / renovate-01)
+        :location (c / city)))

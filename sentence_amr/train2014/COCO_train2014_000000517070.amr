@@ -1,0 +1,24 @@
+# ::tok A floor drain is set in concrete with an advisory not to step on it .
+# ::node	f	floor	1-2
+# ::node	d	drain	2-3
+# ::node	s	set-01	4-5
+# ::node	c	concrete	6-7
+# ::node	a	advise-01	9-10
+# ::node	0	-	10-11
+# ::node	s2	step-01	12-13
+# ::root	s	set-01
+# ::edge	drain	mod	floor	d	f	
+# ::edge	set-01	ARG1	drain	s	d	
+# ::edge	set-01	ARG2	concrete	s	c	
+# ::edge	set-01	accompanier	advise-01	s	a	
+# ::edge	step-01	polarity	-	s2	0	
+# ::edge	advise-01	ARG2	step-01	a	s2	
+# ::edge	step-01	ARG2	drain	s2	d	
+(s / set-01
+    :ARG1 (d / drain
+        :mod (f / floor))
+    :ARG2 (c / concrete)
+    :accompanier (a / advise-01
+        :ARG2 (s2 / step-01
+            :ARG2 d
+            :polarity -)))

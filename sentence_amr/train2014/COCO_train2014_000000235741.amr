@@ -1,0 +1,42 @@
+# ::tok Small train station with old black iron engine car parked beside it on the railroad tracks .
+# ::node	s	small	0-1
+# ::node	t3	train	1-2
+# ::node	s2	station	2-3
+# ::node	o	old	4-5
+# ::node	b2	black-04	5-6
+# ::node	i	iron	6-7
+# ::node	e	engine	7-8
+# ::node	c	car	8-9
+# ::node	p	park-01	9-10
+# ::node	t	thing	10-11
+# ::node	b	beside	10-11
+# ::node	r	railroad	14-15
+# ::node	t2	track	15-16
+# ::root	s2	station
+# ::edge	station	mod	train	s2	t3	
+# ::edge	station	mod	small	s2	s	
+# ::edge	iron	ARG1-of	black-04	i	b2	
+# ::edge	car	mod	engine	c	e	
+# ::edge	car	consist-of	iron	c	i	
+# ::edge	car	mod	old	c	o	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	thing	ARG2-of	park-01	t	p	
+# ::edge	station	location-of	thing	s2	t	
+# ::edge	park-01	location	beside	p	b	
+# ::edge	beside	op1	station	b	s2	
+# ::edge	track	mod	railroad	t2	r	
+# ::edge	beside	location	track	b	t2	
+(s2 / station
+    :location-of (t / thing
+        :ARG2-of (p / park-01
+            :ARG1 (c / car
+                :consist-of (i / iron
+                    :ARG1-of (b2 / black-04))
+                :mod (e / engine)
+                :mod (o / old))
+            :location (b / beside
+                :location (t2 / track
+                    :mod (r / railroad))
+                :op1 s2)))
+    :mod (t3 / train)
+    :mod (s / small))

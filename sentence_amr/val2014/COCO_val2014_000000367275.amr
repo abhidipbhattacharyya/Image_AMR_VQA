@@ -1,0 +1,33 @@
+# ::tok A large crowd of people gather in a square with Capitol Hill in the distance .
+# ::node	l	large	1-2
+# ::node	c	crowd	2-3
+# ::node	p	person	4-5
+# ::node	g	gather-03	5-6
+# ::node	s	square	8-9
+# ::node	g2	government-organization	10-11
+# ::node	n	name	10-11
+# ::node	0	Capitol	10-11
+# ::node	1	Hill	11-12
+# ::node	d	distant-02	14-15
+# ::root	g	gather-03
+# ::edge	crowd	mod	large	c	l	
+# ::edge	crowd	consist-of	person	c	p	
+# ::edge	gather-03	ARG0	crowd	g	c	
+# ::edge	gather-03	location	square	g	s	
+# ::edge	government-organization	name	name	g2	n	
+# ::edge	name	op1	Capitol	n	0	
+# ::edge	name	op2	Hill	n	1	
+# ::edge	distant-02	ARG2	government-organization	d	g2	
+# ::edge	square	location	distant-02	s	d	
+# ::edge	distant-02	ARG1	crowd	d	c	
+(g / gather-03
+    :ARG0 (c / crowd
+        :consist-of (p / person)
+        :mod (l / large))
+    :location (s / square
+        :location (d / distant-02
+            :ARG1 c
+            :ARG2 (g2 / government-organization
+                :name (n / name
+                    :op1 "Capitol"
+                    :op2 "Hill")))))

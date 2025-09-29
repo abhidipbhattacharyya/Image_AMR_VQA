@@ -1,0 +1,32 @@
+# ::tok A toothbrush with toothpaste on it and a sink with water flowing out of it is behind it .
+# ::node	t	toothbrush	1-2
+# ::node	t2	toothpaste	3-4
+# ::node	a	and	6-7
+# ::node	s	sink	8-9
+# ::node	h	have-03	9-10
+# ::node	w	water	10-11
+# ::node	f	flow-01	11-12
+# ::node	b	be-located-at-91	16-17
+# ::node	b2	behind	16-17
+# ::root	b	be-located-at-91
+# ::edge	toothbrush	part	toothpaste	t	t2	
+# ::edge	and	op1	toothbrush	a	t	
+# ::edge	and	op2	sink	a	s	
+# ::edge	sink	ARG0-of	have-03	s	h	
+# ::edge	flow-01	ARG1	water	f	w	
+# ::edge	have-03	ARG1	flow-01	h	f	
+# ::edge	flow-01	source	sink	f	s	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	toothbrush	b2	t	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (t / toothbrush
+            :part (t2 / toothpaste))
+        :op2 (s / sink
+            :ARG0-of (h / have-03
+                :ARG1 (f / flow-01
+                    :ARG1 (w / water)
+                    :source s))))
+    :ARG2 (b2 / behind
+        :op1 t))

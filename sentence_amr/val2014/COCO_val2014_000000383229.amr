@@ -1,0 +1,41 @@
+# ::tok Several horses racing by with jockeys pushing them to go faster
+# ::node	s	several	0-1
+# ::node	h2	horse	1-2
+# ::node	r	race-02	2-3
+# ::node	b	by	3-4
+# ::node	p	person	5-6
+# ::node	r2	ride-01	5-6
+# ::node	h3	horse	5-6
+# ::node	p2	push-01	6-7
+# ::node	g	go-01	9-10
+# ::node	h	have-degree-91	10-11
+# ::node	f	fast-02	10-11
+# ::node	m	more	10-11
+# ::root	r	race-02
+# ::edge	horse	quant	several	h2	s	
+# ::edge	race-02	ARG0	horse	r	h2	
+# ::edge	race-02	path	by	r	b	
+# ::edge	person	ARG0-of	ride-01	p	r2	
+# ::edge	ride-01	ARG1	horse	r2	h3	
+# ::edge	push-01	ARG0	person	p2	p	
+# ::edge	race-02	ARG1-of	push-01	r	p2	
+# ::edge	push-01	ARG2	go-01	p2	g	
+# ::edge	go-01	ARG1	horse	g	h2	
+# ::edge	go-01	ARG1-of	have-degree-91	g	h	
+# ::edge	have-degree-91	ARG2	fast-02	h	f	
+# ::edge	fast-02	ARG1	go-01	f	g	
+# ::edge	have-degree-91	ARG3	more	h	m	
+(r / race-02
+    :ARG0 (h2 / horse
+        :quant (s / several))
+    :ARG1-of (p2 / push-01
+        :ARG0 (p / person
+            :ARG0-of (r2 / ride-01
+                :ARG1 (h3 / horse)))
+        :ARG2 (g / go-01
+            :ARG1 h2
+            :ARG1-of (h / have-degree-91
+                :ARG2 (f / fast-02
+                    :ARG1 g)
+                :ARG3 (m / more))))
+    :path (b / by))

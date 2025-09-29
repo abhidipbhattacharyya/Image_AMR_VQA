@@ -1,0 +1,24 @@
+# ::tok Someone has crawled under the plane to check that everything is operational .
+# ::node	s	someone	0-1
+# ::node	c2	crawl-01	2-3
+# ::node	u	under	3-4
+# ::node	p	plane	5-6
+# ::node	c	check-01	7-8
+# ::node	e	everything	9-10
+# ::node	o	operate-01	11-12
+# ::root	c2	crawl-01
+# ::edge	crawl-01	ARG0	someone	c2	s	
+# ::edge	crawl-01	ARG1	under	c2	u	
+# ::edge	under	op1	plane	u	p	
+# ::edge	crawl-01	purpose	check-01	c2	c	
+# ::edge	check-01	ARG0	someone	c	s	
+# ::edge	operate-01	ARG1	everything	o	e	
+# ::edge	check-01	ARG1	operate-01	c	o	
+(c2 / crawl-01
+    :purpose (c / check-01
+        :ARG0 (s / someone)
+        :ARG1 (o / operate-01
+            :ARG1 (e / everything)))
+    :ARG0 s
+    :ARG1 (u / under
+        :op1 (p / plane)))

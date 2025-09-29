@@ -1,0 +1,34 @@
+# ::tok A square , black clock that uses roman numerals is hanging on a brick wall .
+# ::node	s	square	1-2
+# ::node	b	black-04	3-4
+# ::node	c	clock	4-5
+# ::node	u	use-01	6-7
+# ::node	c2	country	7-8
+# ::node	n	name	7-8
+# ::node	0	Rome	7-8
+# ::node	n2	number	8-9
+# ::node	h	hang-01	10-11
+# ::node	b2	brick	13-14
+# ::node	w	wall	14-15
+# ::root	h	hang-01
+# ::edge	clock	ARG1-of	black-04	c	b	
+# ::edge	clock	mod	square	c	s	
+# ::edge	clock	ARG0-of	use-01	c	u	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Rome	n	0	
+# ::edge	number	mod	country	n2	c2	
+# ::edge	use-01	ARG1	number	u	n2	
+# ::edge	hang-01	ARG1	clock	h	c	
+# ::edge	wall	consist-of	brick	w	b2	
+# ::edge	hang-01	ARG2	wall	h	w	
+(h / hang-01
+    :ARG1 (c / clock
+        :ARG0-of (u / use-01
+            :ARG1 (n2 / number
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "Rome"))))
+        :ARG1-of (b / black-04)
+        :mod (s / square))
+    :ARG2 (w / wall
+        :consist-of (b2 / brick)))

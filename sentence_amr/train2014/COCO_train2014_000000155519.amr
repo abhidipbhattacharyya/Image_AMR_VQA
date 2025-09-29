@@ -1,0 +1,45 @@
+# ::tok A little girl is sticking her tongue out while a little boy is putting his hand near his mouth in a bathroom mirror .
+# ::node	l	little	1-2
+# ::node	g	girl	2-3
+# ::node	s	stick-out-02	4-5
+# ::node	t	tongue	6-7
+# ::node	l2	little	10-11
+# ::node	b2	boy	11-12
+# ::node	p	put-01	13-14
+# ::node	h	hand	15-16
+# ::node	n	near-02	16-17
+# ::node	m2	mouth	18-19
+# ::node	b	bathroom	21-22
+# ::node	m	mirror	22-23
+# ::root	s	stick-out-02
+# ::edge	girl	mod	little	g	l	
+# ::edge	stick-out-02	ARG0	girl	s	g	
+# ::edge	stick-out-02	ARG1	tongue	s	t	
+# ::edge	girl	part	tongue	g	t	
+# ::edge	boy	mod	little	b2	l2	
+# ::edge	put-01	ARG0	boy	p	b2	
+# ::edge	stick-out-02	time	put-01	s	p	
+# ::edge	put-01	ARG1	hand	p	h	
+# ::edge	boy	part	hand	b2	h	
+# ::edge	near-02	ARG1	hand	n	h	
+# ::edge	put-01	ARG2	near-02	p	n	
+# ::edge	near-02	ARG2	mouth	n	m2	
+# ::edge	boy	part	mouth	b2	m2	
+# ::edge	mirror	location	bathroom	m	b	
+# ::edge	put-01	location	mirror	p	m	
+(s / stick-out-02
+    :ARG0 (g / girl
+        :mod (l / little)
+        :part (t / tongue))
+    :ARG1 t
+    :time (p / put-01
+        :ARG0 (b2 / boy
+            :mod (l2 / little)
+            :part (h / hand)
+            :part (m2 / mouth))
+        :ARG1 h
+        :ARG2 (n / near-02
+            :ARG1 h
+            :ARG2 m2)
+        :location (m / mirror
+            :location (b / bathroom))))

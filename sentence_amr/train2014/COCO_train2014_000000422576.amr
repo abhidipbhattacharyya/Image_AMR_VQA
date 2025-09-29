@@ -1,0 +1,31 @@
+# ::tok A stop light and a no crossing signal both shine red on the city street .
+# ::node	s3	stop-01	1-2
+# ::node	l	light	2-3
+# ::node	a	and	3-4
+# ::node	0	-	5-6
+# ::node	c2	cross-02	6-7
+# ::node	s2	signal-07	7-8
+# ::node	s	shine-01	9-10
+# ::node	r	red-02	10-11
+# ::node	c	city	13-14
+# ::node	s4	street	14-15
+# ::root	s	shine-01
+# ::edge	light	purpose	stop-01	l	s3	
+# ::edge	and	op1	light	a	l	
+# ::edge	cross-02	polarity	-	c2	0	
+# ::edge	signal-07	ARG1	cross-02	s2	c2	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	shine-01	ARG1	and	s	a	
+# ::edge	shine-01	ARG2	red-02	s	r	
+# ::edge	street	mod	city	s4	c	
+# ::edge	shine-01	location	street	s	s4	
+(s / shine-01
+    :ARG1 (a / and
+        :op1 (l / light
+            :purpose (s3 / stop-01))
+        :op2 (s2 / signal-07
+            :ARG1 (c2 / cross-02
+                :polarity -)))
+    :ARG2 (r / red-02)
+    :location (s4 / street
+        :mod (c / city)))

@@ -1,0 +1,37 @@
+# ::tok A kitchen at a restaurant with two people by the register and one cooking food .
+# ::node	k	kitchen	1-2
+# ::node	r2	restaurant	4-5
+# ::node	1	2	6-7
+# ::node	p	person	7-8
+# ::node	b	be-located-at-91	8-9
+# ::node	b2	by	8-9
+# ::node	r	register	10-11
+# ::node	a	and	11-12
+# ::node	p2	person	12-13
+# ::node	0	1	12-13
+# ::node	c	cook-01	13-14
+# ::node	f	food	14-15
+# ::root	k	kitchen
+# ::edge	kitchen	location	restaurant	k	r2	
+# ::edge	person	quant	2	p	1	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	by	b	b2	
+# ::edge	by	op1	register	b2	r	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	kitchen	location-of	and	k	a	
+# ::edge	person	quant	1	p2	0	
+# ::edge	cook-01	ARG0	person	c	p2	
+# ::edge	and	op2	cook-01	a	c	
+# ::edge	cook-01	ARG1	food	c	f	
+(k / kitchen
+    :location (r2 / restaurant)
+    :location-of (a / and
+        :op1 (b / be-located-at-91
+            :ARG1 (p / person
+                :quant 2)
+            :ARG2 (b2 / by
+                :op1 (r / register)))
+        :op2 (c / cook-01
+            :ARG0 (p2 / person
+                :quant 1)
+            :ARG1 (f / food))))

@@ -1,0 +1,31 @@
+# ::tok Restaurant tables with plates of food and glasses of beer and other beverages .
+# ::node	r	restaurant	0-1
+# ::node	t	table	1-2
+# ::node	p	plate	3-4
+# ::node	f	food	5-6
+# ::node	g	glasses	7-8
+# ::node	b	beer	9-10
+# ::node	a	and	10-11
+# ::node	a2	and	10-11
+# ::node	o	other	11-12
+# ::node	b2	beverage	12-13
+# ::root	t	table
+# ::edge	table	mod	restaurant	t	r	
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	and	op2	glasses	a	g	
+# ::edge	and	op1	plate	a	p	
+# ::edge	table	accompanier	and	t	a	
+# ::edge	and	op1	beer	a2	b	
+# ::edge	glasses	consist-of	and	g	a2	
+# ::edge	beverage	mod	other	b2	o	
+# ::edge	and	op2	beverage	a2	b2	
+(t / table
+    :accompanier (a / and
+        :op1 (p / plate
+            :consist-of (f / food))
+        :op2 (g / glasses
+            :consist-of (a2 / and
+                :op1 (b / beer)
+                :op2 (b2 / beverage
+                    :mod (o / other)))))
+    :mod (r / restaurant))

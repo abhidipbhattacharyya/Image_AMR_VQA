@@ -1,0 +1,28 @@
+# ::tok a giraffe standing next to a tree with more trees in the back ground
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	t	tree	6-7
+# ::node	t2	tree	6-7
+# ::node	h	have-03	7-8
+# ::node	m	more	8-9
+# ::node	b	back	12-13
+# ::node	g2	ground	13-14
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	tree	n	t	
+# ::edge	have-03	ARG1	tree	h	t2	
+# ::edge	tree	ARG0-of	have-03	t	h	
+# ::edge	tree	quant	more	t2	m	
+# ::edge	ground	mod	back	g2	b	
+# ::edge	tree	location	ground	t2	g2	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (n / next-to
+        :op1 (t / tree
+            :ARG0-of (h / have-03
+                :ARG1 (t2 / tree
+                    :quant (m / more)
+                    :location (g2 / ground
+                        :mod (b / back)))))))

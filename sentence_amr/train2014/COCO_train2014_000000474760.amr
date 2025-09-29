@@ -1,0 +1,40 @@
+# ::tok This bathroom contains a toilet , a walk in shower with glass doors , a sink , and oval mirror .
+# ::node	t	this	0-1
+# ::node	b	bathroom	1-2
+# ::node	c	contain-01	2-3
+# ::node	t2	toilet	4-5
+# ::node	w	walk-01	7-8
+# ::node	s	shower	9-10
+# ::node	h	have-03	10-11
+# ::node	g	glass	11-12
+# ::node	d	door	12-13
+# ::node	s2	sink	15-16
+# ::node	a	and	17-18
+# ::node	o	oval	18-19
+# ::node	m	mirror	19-20
+# ::root	c	contain-01
+# ::edge	bathroom	mod	this	b	t	
+# ::edge	contain-01	ARG0	bathroom	c	b	
+# ::edge	shower	mod	walk-01	s	w	
+# ::edge	shower	ARG0-of	have-03	s	h	
+# ::edge	door	mod	glass	d	g	
+# ::edge	have-03	ARG1	door	h	d	
+# ::edge	and	op3	sink	a	s2	
+# ::edge	and	op2	shower	a	s	
+# ::edge	and	op1	toilet	a	t2	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	mirror	mod	oval	m	o	
+# ::edge	and	op4	mirror	a	m	
+(c / contain-01
+    :ARG0 (b / bathroom
+        :mod (t / this))
+    :ARG1 (a / and
+        :op1 (t2 / toilet)
+        :op2 (s / shower
+            :ARG0-of (h / have-03
+                :ARG1 (d / door
+                    :mod (g / glass)))
+            :mod (w / walk-01))
+        :op3 (s2 / sink)
+        :op4 (m / mirror
+            :mod (o / oval))))

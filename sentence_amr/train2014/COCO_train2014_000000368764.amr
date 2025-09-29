@@ -1,0 +1,28 @@
+# ::tok A fork with an electrical wire clamped to the tines is stuck in a hot dog
+# ::node	f	fork	1-2
+# ::node	e3	electricity	4-5
+# ::node	w	wire	5-6
+# ::node	c	clamp-01	6-7
+# ::node	b	base	9-10
+# ::node	e	eat-01	9-10
+# ::node	s	stick-01	11-12
+# ::node	e2	eat-01	14-15
+# ::node	h	hot-dog	15-16
+# ::root	s	stick-01
+# ::edge	wire	mod	electricity	w	e3	
+# ::edge	clamp-01	ARG1	wire	c	w	
+# ::edge	fork	instrument	clamp-01	f	c	
+# ::edge	clamp-01	ARG2	base	c	b	
+# ::edge	base	ARG0-of	eat-01	b	e	
+# ::edge	stick-01	ARG1	fork	s	f	
+# ::edge	hot-dog	ARG1-of	eat-01	h	e2	
+# ::edge	stick-01	ARG2	hot-dog	s	h	
+(s / stick-01
+    :ARG1 (f / fork
+        :instrument (c / clamp-01
+            :ARG1 (w / wire
+                :mod (e3 / electricity))
+            :ARG2 (b / base
+                :ARG0-of (e / eat-01))))
+    :ARG2 (h / hot-dog
+        :ARG1-of (e2 / eat-01)))

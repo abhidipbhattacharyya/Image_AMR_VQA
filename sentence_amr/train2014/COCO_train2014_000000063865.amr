@@ -1,0 +1,36 @@
+# ::tok A pizza covered with mozzarella cheese sliced tomatoes , olives and hard boiled eggs .
+# ::node	p	pizza	1-2
+# ::node	c2	cover-02	2-3
+# ::node	m	mozzarella	4-5
+# ::node	c	cheese	5-6
+# ::node	s	slice-01	6-7
+# ::node	t	tomato	7-8
+# ::node	a	and	8-9
+# ::node	l	Olive	9-10
+# ::node	h	hard-04	11-12
+# ::node	b	boil-01	12-13
+# ::node	e	egg	13-14
+# ::root	p	pizza
+# ::edge	pizza	ARG1-of	cover-02	p	c2	
+# ::edge	cheese	mod	mozzarella	c	m	
+# ::edge	tomato	ARG1-of	slice-01	t	s	
+# ::edge	tomato	mod	cheese	t	c	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	cover-02	ARG2	and	c2	a	
+# ::edge	and	op3	Olive	a	l	
+# ::edge	boil-01	ARG1-of	hard-04	b	h	
+# ::edge	egg	ARG1-of	boil-01	e	b	
+# ::edge	and	op4	egg	a	e	
+(p / pizza
+    :ARG1-of (c2 / cover-02
+        :ARG2 (a / and
+            :op1 (c / cheese
+                :mod (m / mozzarella))
+            :op2 (t / tomato
+                :ARG1-of (s / slice-01)
+                :mod c)
+            :op3 (l / Olive)
+            :op4 (e / egg
+                :ARG1-of (b / boil-01
+                    :ARG1-of (h / hard-04))))))

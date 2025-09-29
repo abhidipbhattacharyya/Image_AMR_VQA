@@ -1,0 +1,55 @@
+# ::tok A very large bathroom has a two toilets and two sinks and a very large glass bath tub sitting next to a glass shower .
+# ::node	v	very	1-2
+# ::node	l	large	2-3
+# ::node	b2	bathroom	3-4
+# ::node	h	have-03	4-5
+# ::node	0	2	6-7
+# ::node	t	toilet	7-8
+# ::node	a	and	8-9
+# ::node	1	2	9-10
+# ::node	s2	sink-01	10-11
+# ::node	v2	very	13-14
+# ::node	l2	large	14-15
+# ::node	g	glass	15-16
+# ::node	b	bath	16-17
+# ::node	t2	tub	17-18
+# ::node	s3	sit-01	18-19
+# ::node	n	next-to	19-20
+# ::node	g2	glass	22-23
+# ::node	s	shower	23-24
+# ::root	h	have-03
+# ::edge	large	degree	very	l	v	
+# ::edge	bathroom	mod	large	b2	l	
+# ::edge	have-03	ARG0	bathroom	h	b2	
+# ::edge	toilet	quant	2	t	0	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sink-01	quant	2	s2	1	
+# ::edge	and	op2	sink-01	a	s2	
+# ::edge	large	degree	very	l2	v2	
+# ::edge	tub	mod	bath	t2	b	
+# ::edge	tub	consist-of	glass	t2	g	
+# ::edge	tub	mod	large	t2	l2	
+# ::edge	and	op3	tub	a	t2	
+# ::edge	tub	ARG1-of	sit-01	t2	s3	
+# ::edge	sit-01	ARG2	next-to	s3	n	
+# ::edge	shower	mod	glass	s	g2	
+# ::edge	next-to	op1	shower	n	s	
+(h / have-03
+    :ARG0 (b2 / bathroom
+        :mod (l / large
+            :degree (v / very)))
+    :ARG1 (a / and
+        :op1 (t / toilet
+            :quant 2)
+        :op2 (s2 / sink-01
+            :quant 2)
+        :op3 (t2 / tub
+            :ARG1-of (s3 / sit-01
+                :ARG2 (n / next-to
+                    :op1 (s / shower
+                        :mod (g2 / glass))))
+            :consist-of (g / glass)
+            :mod (b / bath)
+            :mod (l2 / large
+                :degree (v2 / very)))))

@@ -1,0 +1,34 @@
+# ::tok A brick building with a zebra in one window and a giraffe in another window .
+# ::node	b2	brick	1-2
+# ::node	b3	building	2-3
+# ::node	h	have-03	3-4
+# ::node	z	zebra	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	o	one	7-8
+# ::node	w	window	8-9
+# ::node	a	and	9-10
+# ::node	g	giraffe	11-12
+# ::node	a2	another	13-14
+# ::node	w2	window	14-15
+# ::root	b3	building
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	building	ARG0-of	have-03	b3	h	
+# ::edge	be-located-at-91	ARG1	zebra	b	z	
+# ::edge	window	mod	one	w	o	
+# ::edge	be-located-at-91	ARG2	window	b	w	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	giraffe	a	g	
+# ::edge	window	mod	another	w2	a2	
+# ::edge	giraffe	location	window	g	w2	
+(b3 / building
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / be-located-at-91
+                :ARG1 (z / zebra)
+                :ARG2 (w / window
+                    :mod (o / one)))
+            :op2 (g / giraffe
+                :location (w2 / window
+                    :mod (a2 / another)))))
+    :consist-of (b2 / brick))

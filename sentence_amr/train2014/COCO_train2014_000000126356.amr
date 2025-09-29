@@ -1,0 +1,27 @@
+# ::tok Several cameramen and spectators in a city with police walking by .
+# ::node	s	several	0-1
+# ::node	c	camera	1-2
+# ::node	a	and	2-3
+# ::node	s2	spectator	3-4
+# ::node	c2	city	6-7
+# ::node	p	police	8-9
+# ::node	w	walk-01	9-10
+# ::node	b	by	10-11
+# ::root	a	and
+# ::edge	camera	quant	several	c	s	
+# ::edge	and	op1	camera	a	c	
+# ::edge	and	op2	spectator	a	s2	
+# ::edge	spectator	quant	several	s2	s	
+# ::edge	and	location	city	a	c2	
+# ::edge	walk-01	ARG0	police	w	p	
+# ::edge	city	location-of	walk-01	c2	w	
+# ::edge	walk-01	ARG2	by	w	b	
+(a / and
+    :location (c2 / city
+        :location-of (w / walk-01
+            :ARG0 (p / police)
+            :ARG2 (b / by)))
+    :op1 (c / camera
+        :quant (s / several))
+    :op2 (s2 / spectator
+        :quant s))

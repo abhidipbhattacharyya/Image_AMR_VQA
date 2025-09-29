@@ -1,0 +1,35 @@
+# ::tok A fire hydrant next to two boxes on the side walk with advertisements on them .
+# ::node	f	fire	1-2
+# ::node	h2	hydrant	2-3
+# ::node	n	next-to	3-4
+# ::node	0	2	5-6
+# ::node	b	box	6-7
+# ::node	s	side	9-10
+# ::node	w	walk-01	10-11
+# ::node	h	have-03	11-12
+# ::node	a	advertise-01	12-13
+# ::node	a2	and	15-16
+# ::root	a2	and
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	location	next-to	h2	n	
+# ::edge	box	quant	2	b	0	
+# ::edge	next-to	op1	box	n	b	
+# ::edge	walk-01	ARG2	side	w	s	
+# ::edge	box	location	walk-01	b	w	
+# ::edge	box	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	advertise-01	h	a	
+# ::edge	advertise-01	location	hydrant	a	h2	
+# ::edge	and	op2	hydrant	a2	h2	
+# ::edge	and	op1	hydrant	a2	h2	
+(a2 / and
+    :op1 (h2 / hydrant
+        :location (n / next-to
+            :op1 (b / box
+                :quant 2
+                :ARG0-of (h / have-03
+                    :ARG1 (a / advertise-01
+                        :location h2))
+                :location (w / walk-01
+                    :ARG2 (s / side))))
+        :mod (f / fire))
+    :op2 h2)

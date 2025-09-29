@@ -1,0 +1,28 @@
+# ::tok A stop sign suspended outside a home with a blue garage door .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	s3	suspend-02	3-4
+# ::node	o	outside	4-5
+# ::node	h2	home	6-7
+# ::node	h	have-03	7-8
+# ::node	b	blue	9-10
+# ::node	g	garage	10-11
+# ::node	d	door	11-12
+# ::root	s3	suspend-02
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	suspend-02	ARG1	signal-07	s3	s	
+# ::edge	suspend-02	ARG2	outside	s3	o	
+# ::edge	outside	op1	home	o	h2	
+# ::edge	home	ARG0-of	have-03	h2	h	
+# ::edge	door	part-of	garage	d	g	
+# ::edge	door	mod	blue	d	b	
+# ::edge	have-03	ARG1	door	h	d	
+(s3 / suspend-02
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG2 (o / outside
+        :op1 (h2 / home
+            :ARG0-of (h / have-03
+                :ARG1 (d / door
+                    :mod (b / blue)
+                    :part-of (g / garage))))))

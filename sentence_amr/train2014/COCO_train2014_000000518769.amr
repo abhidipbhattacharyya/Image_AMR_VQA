@@ -1,0 +1,35 @@
+# ::tok A man is holding his bat to swing as thousands of people are watching in the background of a stadium .
+# ::node	m	man	1-2
+# ::node	h	hold-01	3-4
+# ::node	b2	bat	5-6
+# ::node	s2	swing-02	7-8
+# ::node	m2	multiple	9-10
+# ::node	0	1000	9-10
+# ::node	p	person	11-12
+# ::node	w	watch-01	13-14
+# ::node	b	background	16-17
+# ::node	s	stadium	19-20
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	hold-01	ARG1	bat	h	b2	
+# ::edge	bat	poss	man	b2	m	
+# ::edge	hold-01	purpose	swing-02	h	s2	
+# ::edge	swing-02	ARG0	man	s2	m	
+# ::edge	multiple	op1	1000	m2	0	
+# ::edge	person	quant	multiple	p	m2	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	hold-01	time	watch-01	h	w	
+# ::edge	watch-01	location	background	w	b	
+# ::edge	background	mod	stadium	b	s	
+(h / hold-01
+    :purpose (s2 / swing-02
+        :ARG0 (m / man))
+    :ARG0 m
+    :ARG1 (b2 / bat
+        :poss m)
+    :time (w / watch-01
+        :ARG0 (p / person
+            :quant (m2 / multiple
+                :op1 1000))
+        :location (b / background
+            :mod (s / stadium))))

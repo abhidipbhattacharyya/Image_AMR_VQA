@@ -1,0 +1,40 @@
+# ::tok A remote control has all black and white buttons except for a yellow " Light " button .
+# ::node	r	remote	1-2
+# ::node	c	control	2-3
+# ::node	h	have-03	3-4
+# ::node	a	all	4-5
+# ::node	b	black-04	5-6
+# ::node	a2	and	6-7
+# ::node	w	white-03	7-8
+# ::node	b2	button	8-9
+# ::node	b3	button	8-9
+# ::node	e	except-01	9-10
+# ::node	y	yellow-02	12-13
+# ::node	l	light-06	14-15
+# ::node	b4	button	16-17
+# ::root	h	have-03
+# ::edge	control	mod	remote	c	r	
+# ::edge	have-03	ARG0	control	h	c	
+# ::edge	and	mod	all	a2	a	
+# ::edge	and	op1	button	a2	b2	
+# ::edge	button	ARG1-of	black-04	b2	b	
+# ::edge	button	ARG1-of	white-03	b3	w	
+# ::edge	and	op2	button	a2	b3	
+# ::edge	and	ARG2-of	except-01	a2	e	
+# ::edge	button	ARG1-of	light-06	b4	l	
+# ::edge	button	ARG1-of	yellow-02	b4	y	
+# ::edge	except-01	ARG1	button	e	b4	
+# ::edge	have-03	rel	and	h	a2	
+(h / have-03
+    :ARG0 (c / control
+        :mod (r / remote))
+    :rel (a2 / and
+        :ARG2-of (e / except-01
+            :ARG1 (b4 / button
+                :ARG1-of (l / light-06)
+                :ARG1-of (y / yellow-02)))
+        :mod (a / all)
+        :op1 (b2 / button
+            :ARG1-of (b / black-04))
+        :op2 (b3 / button
+            :ARG1-of (w / white-03))))

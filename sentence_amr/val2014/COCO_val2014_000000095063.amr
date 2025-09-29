@@ -1,0 +1,32 @@
+# ::tok The traffic light has turned yellow ; proceed with caution .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	t2	turn-02	4-5
+# ::node	y	yellow-02	5-6
+# ::node	c	cause-01	6-7
+# ::node	p	proceed-01	7-8
+# ::node	y2	you	7-8
+# ::node	0	imperative	7-8
+# ::node	c2	cautious-02	9-10
+# ::root	c	cause-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	turn-02	ARG1	light	t2	l	
+# ::edge	turn-02	ARG2	yellow-02	t2	y	
+# ::edge	yellow-02	ARG1	light	y	l	
+# ::edge	cause-01	ARG0	turn-02	c	t2	
+# ::edge	cause-01	ARG1	proceed-01	c	p	
+# ::edge	proceed-01	ARG0	you	p	y2	
+# ::edge	proceed-01	mode	imperative	p	0	
+# ::edge	you	ARG1-of	cautious-02	y2	c2	
+# ::edge	cautious-02	ARG0	you	c2	y2	
+(c / cause-01
+    :ARG0 (t2 / turn-02
+        :ARG1 (l / light
+            :mod (t / traffic))
+        :ARG2 (y / yellow-02
+            :ARG1 l))
+    :ARG1 (p / proceed-01
+        :ARG0 (y2 / you
+            :ARG1-of (c2 / cautious-02
+                :ARG0 y2))
+        :mode imperative))

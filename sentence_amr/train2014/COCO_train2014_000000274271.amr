@@ -1,0 +1,39 @@
+# ::tok A plate containing grilled meat topped with onions and a serving of french fries .
+# ::node	p	plate	1-2
+# ::node	c	contain-01	2-3
+# ::node	b	broil-01	3-4
+# ::node	m	meat	4-5
+# ::node	t	top-01	5-6
+# ::node	p2	potato	7-8
+# ::node	a	and	8-9
+# ::node	s	serve-02	10-11
+# ::node	c2	country	12-13
+# ::node	n	name	12-13
+# ::node	0	France	12-13
+# ::node	f	fry-01	13-14
+# ::root	p	plate
+# ::edge	plate	ARG0-of	contain-01	p	c	
+# ::edge	meat	ARG1-of	broil-01	m	b	
+# ::edge	meat	ARG2-of	top-01	m	t	
+# ::edge	and	op2	potato	a	p2	
+# ::edge	top-01	ARG1	and	t	a	
+# ::edge	and	op1	meat	a	m	
+# ::edge	and	op3	serve-02	a	s	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG0	country	f	c2	
+# ::edge	serve-02	ARG1	fry-01	s	f	
+# ::edge	plate	rel	top-01	p	t	
+(p / plate
+    :ARG0-of (c / contain-01)
+    :rel (t / top-01
+        :ARG1 (a / and
+            :op1 (m / meat
+                :ARG1-of (b / broil-01)
+                :ARG2-of t)
+            :op2 (p2 / potato)
+            :op3 (s / serve-02
+                :ARG1 (f / fry-01
+                    :ARG0 (c2 / country
+                        :name (n / name
+                            :op1 "France")))))))

@@ -1,0 +1,31 @@
+# ::tok A commuter train moves along tracks above a river with green banks .
+# ::node	c	commute-01	1-2
+# ::node	t2	train	2-3
+# ::node	m	move-01	3-4
+# ::node	a2	along	4-5
+# ::node	t	track	5-6
+# ::node	a	above	6-7
+# ::node	r	river	8-9
+# ::node	h	have-03	9-10
+# ::node	g	green-02	10-11
+# ::node	b	bank	11-12
+# ::root	m	move-01
+# ::edge	train	ARG0-of	commute-01	t2	c	
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	move-01	path	along	m	a2	
+# ::edge	along	op1	track	a2	t	
+# ::edge	track	location	above	t	a	
+# ::edge	above	op1	river	a	r	
+# ::edge	river	ARG0-of	have-03	r	h	
+# ::edge	bank	ARG1-of	green-02	b	g	
+# ::edge	have-03	ARG1	bank	h	b	
+(m / move-01
+    :ARG1 (t2 / train
+        :ARG0-of (c / commute-01))
+    :path (a2 / along
+        :op1 (t / track
+            :location (a / above
+                :op1 (r / river
+                    :ARG0-of (h / have-03
+                        :ARG1 (b / bank
+                            :ARG1-of (g / green-02))))))))

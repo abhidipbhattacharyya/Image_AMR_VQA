@@ -1,0 +1,24 @@
+# ::tok People wait to cross at a busy crosswalk in a large town
+# ::node	p	person	0-1
+# ::node	w	wait-01	1-2
+# ::node	c	cross-02	3-4
+# ::node	b	busy-02	6-7
+# ::node	c2	cross-02	7-8
+# ::node	l	large	10-11
+# ::node	t	town	11-12
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	cross-02	w	c	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	cross-02	ARG1-of	busy-02	c2	b	
+# ::edge	cross-02	location	cross-02	c	c2	
+# ::edge	town	mod	large	t	l	
+# ::edge	cross-02	location	town	c2	t	
+(w / wait-01
+    :ARG1 (p / person)
+    :ARG2 (c / cross-02
+        :ARG0 p
+        :location (c2 / cross-02
+            :ARG1-of (b / busy-02)
+            :location (t / town
+                :mod (l / large)))))

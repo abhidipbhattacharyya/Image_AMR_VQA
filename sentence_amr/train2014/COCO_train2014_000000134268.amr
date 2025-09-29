@@ -1,0 +1,49 @@
+# ::tok A clock has been placed on the face of a statue of a man on top of a roof , with a much bigger building in the background , somewhere in a city .
+# ::node	c2	clock	1-2
+# ::node	p	place-01	4-5
+# ::node	f	face	7-8
+# ::node	s2	statue	10-11
+# ::node	m	man	13-14
+# ::node	t	top	15-16
+# ::node	r	roof	18-19
+# ::node	h	have-03	20-21
+# ::node	m3	much	22-23
+# ::node	h2	have-degree-91	23-24
+# ::node	b2	big	23-24
+# ::node	m2	more	23-24
+# ::node	b3	building	24-25
+# ::node	b	background	27-28
+# ::node	s	somewhere	29-30
+# ::node	c	city	32-33
+# ::root	p	place-01
+# ::edge	place-01	ARG1	clock	p	c2	
+# ::edge	place-01	ARG2	face	p	f	
+# ::edge	face	part-of	statue	f	s2	
+# ::edge	statue	consist-of	man	s2	m	
+# ::edge	statue	location	top	s2	t	
+# ::edge	top	part-of	roof	t	r	
+# ::edge	statue	ARG0-of	have-03	s2	h	
+# ::edge	have-degree-91	ARG2	big	h2	b2	
+# ::edge	have-degree-91	ARG3	more	h2	m2	
+# ::edge	more	quant	much	m2	m3	
+# ::edge	building	ARG1-of	have-degree-91	b3	h2	
+# ::edge	have-03	ARG1	building	h	b3	
+# ::edge	building	location	background	b3	b	
+# ::edge	building	location	somewhere	b3	s	
+# ::edge	somewhere	part-of	city	s	c	
+(p / place-01
+    :ARG1 (c2 / clock)
+    :ARG2 (f / face
+        :part-of (s2 / statue
+            :ARG0-of (h / have-03
+                :ARG1 (b3 / building
+                    :ARG1-of (h2 / have-degree-91
+                        :ARG2 (b2 / big)
+                        :ARG3 (m2 / more
+                            :quant (m3 / much)))
+                    :location (b / background)
+                    :location (s / somewhere
+                        :part-of (c / city))))
+            :consist-of (m / man)
+            :location (t / top
+                :part-of (r / roof)))))

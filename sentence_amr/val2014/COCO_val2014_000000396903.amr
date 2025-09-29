@@ -1,0 +1,51 @@
+# ::tok A bright red , very small plane waits on the runway with a red BAE SYSTEMS flag hanging behind it on a building .
+# ::node	b2	bright-02	1-2
+# ::node	r	red-02	2-3
+# ::node	v	very	4-5
+# ::node	s	small	5-6
+# ::node	p	plane	6-7
+# ::node	w	wait-01	7-8
+# ::node	r3	runway	10-11
+# ::node	h2	have-03	11-12
+# ::node	r2	red-02	13-14
+# ::node	n	name	14-15
+# ::node	0	BAE	14-15
+# ::node	1	system	15-16
+# ::node	f	flag	16-17
+# ::node	h	hang-01	17-18
+# ::node	b	behind	18-19
+# ::node	b3	building	22-23
+# ::root	w	wait-01
+# ::edge	red-02	ARG1-of	bright-02	r	b2	
+# ::edge	small	degree	very	s	v	
+# ::edge	plane	mod	small	p	s	
+# ::edge	plane	ARG1-of	red-02	p	r	
+# ::edge	wait-01	ARG1	plane	w	p	
+# ::edge	wait-01	location	runway	w	r3	
+# ::edge	plane	ARG0-of	have-03	p	h2	
+# ::edge	name	op1	BAE	n	0	
+# ::edge	name	op2	system	n	1	
+# ::edge	flag	name	name	f	n	
+# ::edge	flag	ARG1-of	red-02	f	r2	
+# ::edge	have-03	ARG1	flag	h2	f	
+# ::edge	flag	ARG1-of	hang-01	f	h	
+# ::edge	hang-01	ARG2	behind	h	b	
+# ::edge	behind	op1	plane	b	p	
+# ::edge	behind	location	building	b	b3	
+(w / wait-01
+    :ARG1 (p / plane
+        :ARG0-of (h2 / have-03
+            :ARG1 (f / flag
+                :name (n / name
+                    :op1 "BAE"
+                    :op2 "system")
+                :ARG1-of (r2 / red-02)
+                :ARG1-of (h / hang-01
+                    :ARG2 (b / behind
+                        :location (b3 / building)
+                        :op1 p))))
+        :ARG1-of (r / red-02
+            :ARG1-of (b2 / bright-02))
+        :mod (s / small
+            :degree (v / very)))
+    :location (r3 / runway))

@@ -1,0 +1,32 @@
+# ::tok A man on a tennis court holding a tennis racket jumping in the air to hit a tennis ball .
+# ::node	m	man	1-2
+# ::node	c	court	5-6
+# ::node	h2	hold-01	6-7
+# ::node	r	racket	9-10
+# ::node	j	jump-03	10-11
+# ::node	a	air	13-14
+# ::node	h	hit-01	15-16
+# ::node	t	tennis	17-18
+# ::node	b	ball	18-19
+# ::root	m	man
+# ::edge	man	location	court	m	c	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	racket	h2	r	
+# ::edge	man	ARG0-of	jump-03	m	j	
+# ::edge	jump-03	direction	air	j	a	
+# ::edge	jump-03	purpose	hit-01	j	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	hit-01	ARG1	ball	h	b	
+(m / man
+    :ARG0-of (h2 / hold-01
+        :ARG1 (r / racket
+            :mod (t / tennis)))
+    :ARG0-of (j / jump-03
+        :purpose (h / hit-01
+            :ARG0 m
+            :ARG1 (b / ball
+                :mod t))
+        :direction (a / air))
+    :location (c / court))

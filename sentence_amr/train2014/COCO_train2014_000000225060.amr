@@ -1,0 +1,45 @@
+# ::tok An Asian man is sitting in a cubicle with a near a computer near other people working in cubicles .
+# ::node	c2	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	m	man	2-3
+# ::node	s	sit-01	4-5
+# ::node	c3	cubicle	7-8
+# ::node	a	and	8-9
+# ::node	n2	near-02	10-11
+# ::node	c	computer	12-13
+# ::node	n3	near-02	13-14
+# ::node	o	other	14-15
+# ::node	p	person	15-16
+# ::node	w	work-01	16-17
+# ::node	u	Cuba	18-19
+# ::root	a	and
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	man	mod	continent	m	c2	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	cubicle	s	c3	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	near-02	a	n2	
+# ::edge	near-02	ARG1	man	n2	m	
+# ::edge	near-02	ARG2	computer	n2	c	
+# ::edge	computer	ARG1-of	near-02	c	n3	
+# ::edge	person	mod	other	p	o	
+# ::edge	near-02	ARG2	person	n3	p	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	location	Cuba	w	u	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man
+            :mod (c2 / continent
+                :name (n / name
+                    :op1 "Asia")))
+        :ARG2 (c3 / cubicle))
+    :op2 (n2 / near-02
+        :ARG1 m
+        :ARG2 (c / computer
+            :ARG1-of (n3 / near-02
+                :ARG2 (p / person
+                    :ARG0-of (w / work-01
+                        :location (u / Cuba))
+                    :mod (o / other))))))

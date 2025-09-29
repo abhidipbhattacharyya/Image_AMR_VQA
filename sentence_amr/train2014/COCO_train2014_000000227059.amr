@@ -1,0 +1,43 @@
+# ::tok Man with black necktie with a white and red cross flag pin .
+# ::node	m	man	0-1
+# ::node	h	have-03	1-2
+# ::node	b	black-04	2-3
+# ::node	n	necktie	3-4
+# ::node	w	white-03	6-7
+# ::node	a	and	7-8
+# ::node	r	red-02	8-9
+# ::node	c	cross	9-10
+# ::node	f	flag	10-11
+# ::node	f2	flag	10-11
+# ::node	p	pin	11-12
+# ::node	p2	pin	11-12
+# ::root	m	man
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	necktie	ARG1-of	black-04	n	b	
+# ::edge	and	op1	necktie	a	n	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	flag	mod	cross	f	c	
+# ::edge	flag	ARG1-of	and	f	a	
+# ::edge	flag	mod	cross	f2	c	
+# ::edge	pin	mod	flag	p	f2	
+# ::edge	and	op2	pin	a	p	
+# ::edge	pin	mod	flag	p2	f2	
+# ::edge	and	op3	pin	a	p2	
+# ::edge	man	rel	flag	m	f	
+# ::edge	man	rel	red-02	m	r	
+# ::edge	man	rel	white-03	m	w	
+(m / man
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (n / necktie
+                :ARG1-of (b / black-04))
+            :op2 (p / pin
+                :mod (f2 / flag
+                    :mod (c / cross)))
+            :op3 (p2 / pin
+                :mod f2)))
+    :rel (f / flag
+        :ARG1-of a
+        :mod c)
+    :rel (r / red-02)
+    :rel (w / white-03))

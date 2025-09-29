@@ -1,0 +1,25 @@
+# ::tok Manufacturing setting with worker at a machine producing glazed donuts .
+# ::node	m2	manufacture-01	0-1
+# ::node	s	setting	1-2
+# ::node	p	person	3-4
+# ::node	w	work-01	3-4
+# ::node	m	machine	6-7
+# ::node	p2	produce-01	7-8
+# ::node	g	glazed	8-9
+# ::node	d	donut	9-10
+# ::root	s	setting
+# ::edge	setting	location-of	manufacture-01	s	m2	
+# ::edge	setting	location-of	person	s	p	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	location	machine	w	m	
+# ::edge	machine	ARG0-of	produce-01	m	p2	
+# ::edge	donut	mod	glazed	d	g	
+# ::edge	produce-01	ARG1	donut	p2	d	
+(s / setting
+    :location-of (m2 / manufacture-01)
+    :location-of (p / person
+        :ARG0-of (w / work-01
+            :location (m / machine
+                :ARG0-of (p2 / produce-01
+                    :ARG1 (d / donut
+                        :mod (g / glazed)))))))

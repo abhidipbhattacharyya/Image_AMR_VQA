@@ -1,0 +1,34 @@
+# ::tok Traffic light with red and green light with sign overtop
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	a	and	2-3
+# ::node	r	red-02	3-4
+# ::node	a2	and	4-5
+# ::node	g	green-02	5-6
+# ::node	l2	light	6-7
+# ::node	l3	light	6-7
+# ::node	h	have-03	7-8
+# ::node	s	sign	8-9
+# ::node	o	overtop	9-10
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	light	a2	l2	
+# ::edge	light	ARG1-of	red-02	l2	r	
+# ::edge	light	ARG1-of	green-02	l3	g	
+# ::edge	and	op2	light	a2	l3	
+# ::edge	and	ARG0-of	have-03	a2	h	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	mod	overtop	s	o	
+(a / and
+    :op1 (l / light
+        :mod (t / traffic))
+    :op2 (a2 / and
+        :ARG0-of (h / have-03
+            :ARG1 (s / sign
+                :mod (o / overtop)))
+        :op1 (l2 / light
+            :ARG1-of (r / red-02))
+        :op2 (l3 / light
+            :ARG1-of (g / green-02))))

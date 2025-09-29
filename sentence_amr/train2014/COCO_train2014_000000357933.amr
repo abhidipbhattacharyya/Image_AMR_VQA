@@ -1,0 +1,42 @@
+# ::tok A living room scene where two people are seated and one has their foot on the coffee table .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	s	scene	3-4
+# ::node	1	2	5-6
+# ::node	p	person	6-7
+# ::node	p2	person	6-7
+# ::node	s2	seat-01	8-9
+# ::node	a	and	9-10
+# ::node	0	1	10-11
+# ::node	f	foot	13-14
+# ::node	b	be-located-at-91	14-15
+# ::node	c	coffee	16-17
+# ::node	t	table	17-18
+# ::root	s	scene
+# ::edge	room	mod	living	r	l	
+# ::edge	scene	location	room	s	r	
+# ::edge	person	quant	2	p	1	
+# ::edge	seat-01	ARG1	person	s2	p	
+# ::edge	and	op1	seat-01	a	s2	
+# ::edge	scene	location-of	and	s	a	
+# ::edge	person	quant	1	p2	0	
+# ::edge	person	part	foot	p2	f	
+# ::edge	be-located-at-91	ARG1	foot	b	f	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+# ::edge	scene	rel	person	s	p2	
+(s / scene
+    :location (r / room
+        :mod (l / living))
+    :location-of (a / and
+        :op1 (s2 / seat-01
+            :ARG1 (p / person
+                :quant 2))
+        :op2 (b / be-located-at-91
+            :ARG1 (f / foot)
+            :ARG2 (t / table
+                :mod (c / coffee))))
+    :rel (p2 / person
+        :quant 1
+        :part f))

@@ -1,0 +1,33 @@
+# ::tok A person reads on their iPad in a bed with white sheets and pillows .
+# ::node	p	person	1-2
+# ::node	r	read-01	2-3
+# ::node	p3	product	5-6
+# ::node	n	name	5-6
+# ::node	0	iPad	5-6
+# ::node	b	bed	8-9
+# ::node	w	white-03	10-11
+# ::node	s	sheet	11-12
+# ::node	a	and	12-13
+# ::node	p2	pill	13-14
+# ::root	r	read-01
+# ::edge	read-01	ARG0	person	r	p	
+# ::edge	read-01	medium	product	r	p3	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	iPad	n	0	
+# ::edge	read-01	location	bed	r	b	
+# ::edge	sheet	ARG1-of	white-03	s	w	
+# ::edge	and	op1	sheet	a	s	
+# ::edge	bed	consist-of	and	b	a	
+# ::edge	and	op2	pill	a	p2	
+# ::edge	white-03	ARG1	pill	w	p2	
+(r / read-01
+    :ARG0 (p / person)
+    :location (b / bed
+        :consist-of (a / and
+            :op1 (s / sheet
+                :ARG1-of (w / white-03
+                    :ARG1 (p2 / pill)))
+            :op2 p2))
+    :medium (p3 / product
+        :name (n / name
+            :op1 "iPad")))

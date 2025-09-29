@@ -1,0 +1,43 @@
+# ::tok Plate encircled with different old west branding monograms with three pieces of food in the middle
+# ::node	p2	plate	0-1
+# ::node	e	encircle-01	1-2
+# ::node	d	differ-02	3-4
+# ::node	1	Old	4-5
+# ::node	c	country-region	5-6
+# ::node	n	name	5-6
+# ::node	2	West	5-6
+# ::node	b	brand-01	6-7
+# ::node	m2	monolith	7-8
+# ::node	h	have-03	8-9
+# ::node	0	3	9-10
+# ::node	p	piece	10-11
+# ::node	f	food	12-13
+# ::node	m	middle	15-16
+# ::root	p2	plate
+# ::edge	plate	ARG1-of	encircle-01	p2	e	
+# ::edge	country-region	name	name	c	n	
+# ::edge	name	op1	Old	n	1	
+# ::edge	name	op2	West	n	2	
+# ::edge	monolith	ARG2-of	brand-01	m2	b	
+# ::edge	monolith	mod	country-region	m2	c	
+# ::edge	monolith	ARG1-of	differ-02	m2	d	
+# ::edge	encircle-01	ARG2	monolith	e	m2	
+# ::edge	plate	ARG0-of	have-03	p2	h	
+# ::edge	piece	quant	3	p	0	
+# ::edge	food	quant	piece	f	p	
+# ::edge	have-03	ARG1	food	h	f	
+# ::edge	food	location	middle	f	m	
+(p2 / plate
+    :ARG0-of (h / have-03
+        :ARG1 (f / food
+            :quant (p / piece
+                :quant 3)
+            :location (m / middle)))
+    :ARG1-of (e / encircle-01
+        :ARG2 (m2 / monolith
+            :ARG1-of (d / differ-02)
+            :ARG2-of (b / brand-01)
+            :mod (c / country-region
+                :name (n / name
+                    :op1 "Old"
+                    :op2 "West")))))

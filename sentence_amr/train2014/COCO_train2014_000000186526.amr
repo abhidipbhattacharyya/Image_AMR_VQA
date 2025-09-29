@@ -1,0 +1,30 @@
+# ::tok Someone is holding a sandwich and it looks like they 're going to start eating it .
+# ::node	s2	someone	0-1
+# ::node	h	hold-01	2-3
+# ::node	s	sandwich	4-5
+# ::node	a	and	5-6
+# ::node	l	look-02	7-8
+# ::node	s3	start-01	13-14
+# ::node	e	eat-01	14-15
+# ::root	a	and
+# ::edge	hold-01	ARG0	someone	h	s2	
+# ::edge	hold-01	ARG1	sandwich	h	s	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	and	op2	look-02	a	l	
+# ::edge	look-02	ARG0	sandwich	l	s	
+# ::edge	look-02	ARG1	start-01	l	s3	
+# ::edge	start-01	ARG0	someone	s3	s2	
+# ::edge	start-01	ARG1	eat-01	s3	e	
+# ::edge	eat-01	ARG1	sandwich	e	s	
+# ::edge	eat-01	ARG0	someone	e	s2	
+(a / and
+    :op1 (h / hold-01
+        :ARG0 (s2 / someone)
+        :ARG1 (s / sandwich))
+    :op2 (l / look-02
+        :ARG0 s
+        :ARG1 (s3 / start-01
+            :ARG0 s2
+            :ARG1 (e / eat-01
+                :ARG0 s2
+                :ARG1 s))))

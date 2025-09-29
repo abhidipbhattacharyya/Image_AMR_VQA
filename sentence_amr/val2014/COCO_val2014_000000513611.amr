@@ -1,0 +1,77 @@
+# ::tok A pastoral area has trees , overgrown vegetation , and a line of barrels in its furthest part , while beyond the barrel line , in the foreground , sits an area of short grass that is being grazed by several knots of cows .
+# ::node	p2	pastoral	1-2
+# ::node	a2	area	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	tree	4-5
+# ::node	o	overgrow-01	6-7
+# ::node	v	vegetation	7-8
+# ::node	a	and	9-10
+# ::node	l	line	11-12
+# ::node	b	barrel	13-14
+# ::node	h2	have-degree-91	16-17
+# ::node	f	far	16-17
+# ::node	m	most	16-17
+# ::node	p	part	17-18
+# ::node	c	contrast-01	19-20
+# ::node	b2	beyond	20-21
+# ::node	f2	foreground	27-28
+# ::node	s3	sit-01	29-30
+# ::node	a3	area	31-32
+# ::node	s2	short-07	33-34
+# ::node	g	grass	34-35
+# ::node	g2	graze-01	38-39
+# ::node	s	several	40-41
+# ::node	t	thread	41-42
+# ::node	c2	cow	43-44
+# ::root	c	contrast-01
+# ::edge	area	mod	pastoral	a2	p2	
+# ::edge	have-03	ARG0	area	h	a2	
+# ::edge	vegetation	ARG1-of	overgrow-01	v	o	
+# ::edge	and	op2	vegetation	a	v	
+# ::edge	and	op1	tree	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	line	a	l	
+# ::edge	line	consist-of	barrel	l	b	
+# ::edge	have-degree-91	ARG2	far	h2	f	
+# ::edge	have-degree-91	ARG3	most	h2	m	
+# ::edge	part	ARG1-of	have-degree-91	p	h2	
+# ::edge	line	location	part	l	p	
+# ::edge	area	part	part	a2	p	
+# ::edge	contrast-01	ARG1	have-03	c	h	
+# ::edge	beyond	op1	line	b2	l	
+# ::edge	line	location	foreground	l	f2	
+# ::edge	sit-01	ARG2	beyond	s3	b2	
+# ::edge	contrast-01	ARG2	sit-01	c	s3	
+# ::edge	sit-01	ARG1	area	s3	a3	
+# ::edge	grass	ARG1-of	short-07	g	s2	
+# ::edge	area	consist-of	grass	a3	g	
+# ::edge	grass	ARG1-of	graze-01	g	g2	
+# ::edge	thread	quant	several	t	s	
+# ::edge	graze-01	ARG0	thread	g2	t	
+# ::edge	thread	consist-of	cow	t	c2	
+(c / contrast-01
+    :ARG1 (h / have-03
+        :ARG0 (a2 / area
+            :mod (p2 / pastoral)
+            :part (p / part
+                :ARG1-of (h2 / have-degree-91
+                    :ARG2 (f / far)
+                    :ARG3 (m / most))))
+        :ARG1 (a / and
+            :op1 (t2 / tree)
+            :op2 (v / vegetation
+                :ARG1-of (o / overgrow-01))
+            :op3 (l / line
+                :consist-of (b / barrel)
+                :location p
+                :location (f2 / foreground))))
+    :ARG2 (s3 / sit-01
+        :ARG1 (a3 / area
+            :consist-of (g / grass
+                :ARG1-of (s2 / short-07)
+                :ARG1-of (g2 / graze-01
+                    :ARG0 (t / thread
+                        :quant (s / several)
+                        :consist-of (c2 / cow)))))
+        :ARG2 (b2 / beyond
+            :op1 l)))

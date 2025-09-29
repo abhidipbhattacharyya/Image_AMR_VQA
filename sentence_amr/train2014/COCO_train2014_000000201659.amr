@@ -1,0 +1,39 @@
+# ::tok A man sits at a table with a red table cloth as plates hold fruits and condiments sit in the center of the table .
+# ::node	m	man	1-2
+# ::node	s2	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	r	red-02	8-9
+# ::node	c2	cloth	10-11
+# ::node	p	plate	12-13
+# ::node	h	hold-01	13-14
+# ::node	f	fruit	14-15
+# ::node	a	and	15-16
+# ::node	s	sandwich	16-17
+# ::node	s3	sit-01	17-18
+# ::node	c	center	20-21
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	table	s2	t	
+# ::edge	cloth	ARG1-of	red-02	c2	r	
+# ::edge	table	prep-with	cloth	t	c2	
+# ::edge	hold-01	ARG0	plate	h	p	
+# ::edge	hold-01	ARG1	fruit	h	f	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	sit-01	time	and	s2	a	
+# ::edge	sit-01	ARG1	sandwich	s3	s	
+# ::edge	and	op2	sit-01	a	s3	
+# ::edge	sit-01	ARG2	center	s3	c	
+# ::edge	table	part	center	t	c	
+(s2 / sit-01
+    :ARG1 (m / man)
+    :ARG2 (t / table
+        :part (c / center)
+        :prep-with (c2 / cloth
+            :ARG1-of (r / red-02)))
+    :time (a / and
+        :op1 (h / hold-01
+            :ARG0 (p / plate)
+            :ARG1 (f / fruit))
+        :op2 (s3 / sit-01
+            :ARG1 (s / sandwich)
+            :ARG2 c)))

@@ -1,0 +1,24 @@
+# ::tok A bridge gates open to allow two boats to pass through .
+# ::node	b2	bridge	1-2
+# ::node	g	gate	2-3
+# ::node	o	open-01	3-4
+# ::node	a	allow-01	5-6
+# ::node	0	2	6-7
+# ::node	b	boat	7-8
+# ::node	p	pass-03	9-10
+# ::root	o	open-01
+# ::edge	gate	mod	bridge	g	b2	
+# ::edge	open-01	ARG1	gate	o	g	
+# ::edge	open-01	purpose	allow-01	o	a	
+# ::edge	allow-01	ARG0	gate	a	g	
+# ::edge	boat	quant	2	b	0	
+# ::edge	pass-03	ARG1	boat	p	b	
+# ::edge	allow-01	ARG1	pass-03	a	p	
+(o / open-01
+    :purpose (a / allow-01
+        :ARG0 (g / gate
+            :mod (b2 / bridge))
+        :ARG1 (p / pass-03
+            :ARG1 (b / boat
+                :quant 2)))
+    :ARG1 g)

@@ -1,0 +1,25 @@
+# ::tok Two train workers are standing on platform next to a train .
+# ::node	0	2	0-1
+# ::node	t	train	1-2
+# ::node	p	person	2-3
+# ::node	w	work-01	2-3
+# ::node	s	stand-01	4-5
+# ::node	p2	platform	6-7
+# ::node	n	next-to	7-8
+# ::node	t2	train	10-11
+# ::root	s	stand-01
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	train	w	t	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	platform	location-of	next-to	p2	n	
+# ::edge	next-to	op1	train	n	t2	
+(s / stand-01
+    :ARG1 (p / person
+        :quant 2
+        :ARG0-of (w / work-01
+            :ARG1 (t / train)))
+    :ARG2 (p2 / platform
+        :location-of (n / next-to
+            :op1 (t2 / train))))

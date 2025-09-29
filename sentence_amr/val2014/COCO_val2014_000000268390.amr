@@ -1,0 +1,36 @@
+# ::tok A food processor that is unplugged and set on a table with various attachments in front of it .
+# ::node	f	food	1-2
+# ::node	p	process-01	2-3
+# ::node	t2	thing	3-4
+# ::node	s	secure-02	5-6
+# ::node	0	-	5-6
+# ::node	s2	set-01	7-8
+# ::node	t	table	10-11
+# ::node	v	various	12-13
+# ::node	a	attach-01	13-14
+# ::node	t3	thing	14-15
+# ::node	i	in-front-of	15-16
+# ::root	t2	thing
+# ::edge	process-01	ARG1	food	p	f	
+# ::edge	thing	ARG0-of	process-01	t2	p	
+# ::edge	thing	ARG1-of	secure-02	t2	s	
+# ::edge	secure-02	polarity	-	s	0	
+# ::edge	thing	ARG1-of	set-01	t2	s2	
+# ::edge	set-01	ARG2	table	s2	t	
+# ::edge	thing	ARG2-of	attach-01	t3	a	
+# ::edge	thing	mod	various	t3	v	
+# ::edge	thing	prep-with	thing	t2	t3	
+# ::edge	thing	location	in-front-of	t3	i	
+# ::edge	in-front-of	op1	thing	i	t2	
+(t2 / thing
+    :ARG0-of (p / process-01
+        :ARG1 (f / food))
+    :ARG1-of (s / secure-02
+        :polarity -)
+    :ARG1-of (s2 / set-01
+        :ARG2 (t / table))
+    :prep-with (t3 / thing
+        :ARG2-of (a / attach-01)
+        :location (i / in-front-of
+            :op1 t2)
+        :mod (v / various)))

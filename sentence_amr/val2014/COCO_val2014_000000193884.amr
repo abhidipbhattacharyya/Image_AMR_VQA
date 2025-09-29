@@ -1,0 +1,22 @@
+# ::tok Lone stop sign at small intersection in a cemetery of castes .
+# ::node	s2	simple	0-1
+# ::node	s4	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	s3	small	4-5
+# ::node	i	intersect-01	5-6
+# ::node	c2	cemetery	8-9
+# ::node	c	caste	10-11
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s4	
+# ::edge	signal-07	mod	simple	s	s2	
+# ::edge	intersect-01	mod	small	i	s3	
+# ::edge	signal-07	location	intersect-01	s	i	
+# ::edge	intersect-01	location	cemetery	i	c2	
+# ::edge	cemetery	consist-of	caste	c2	c	
+(s / signal-07
+    :ARG1 (s4 / stop-01)
+    :location (i / intersect-01
+        :location (c2 / cemetery
+            :consist-of (c / caste))
+        :mod (s3 / small))
+    :mod (s2 / simple))

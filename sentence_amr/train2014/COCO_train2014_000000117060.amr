@@ -1,0 +1,34 @@
+# ::tok a white fire hydrant sitting on a curb as cars drive by a bit blurry like
+# ::node	w	white-03	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	s	sit-01	4-5
+# ::node	c2	curb	7-8
+# ::node	c	car	9-10
+# ::node	d	drive-01	10-11
+# ::node	b3	by	11-12
+# ::node	b	bit	13-14
+# ::node	b2	blur-01	14-15
+# ::node	r	resemble-01	15-16
+# ::root	r	resemble-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	white-03	h	w	
+# ::edge	hydrant	ARG1-of	sit-01	h	s	
+# ::edge	sit-01	ARG2	curb	s	c2	
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	sit-01	time	drive-01	s	d	
+# ::edge	drive-01	path	by	d	b3	
+# ::edge	blur-01	degree	bit	b2	b	
+# ::edge	hydrant	ARG1-of	blur-01	h	b2	
+# ::edge	resemble-01	ARG1	hydrant	r	h	
+(r / resemble-01
+    :ARG1 (h / hydrant
+        :ARG1-of (w / white-03)
+        :ARG1-of (s / sit-01
+            :ARG2 (c2 / curb)
+            :time (d / drive-01
+                :ARG0 (c / car)
+                :path (b3 / by)))
+        :ARG1-of (b2 / blur-01
+            :degree (b / bit))
+        :mod (f / fire)))

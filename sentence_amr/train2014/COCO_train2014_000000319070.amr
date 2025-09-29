@@ -1,0 +1,25 @@
+# ::tok A train can be seen in the foreground and a shipping dock in the background .
+# ::node	t	train	1-2
+# ::node	p	possible-01	2-3
+# ::node	s	see-01	4-5
+# ::node	f	foreground	7-8
+# ::node	a	and	8-9
+# ::node	s2	ship-01	10-11
+# ::node	d	dock	11-12
+# ::node	b	background	14-15
+# ::root	p	possible-01
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	and	op1	train	a	t	
+# ::edge	dock	mod	ship-01	d	s2	
+# ::edge	and	op2	dock	a	d	
+# ::edge	dock	location	background	d	b	
+# ::edge	possible-01	rel	foreground	p	f	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (a / and
+            :op1 (t / train)
+            :op2 (d / dock
+                :location (b / background)
+                :mod (s2 / ship-01))))
+    :rel (f / foreground))

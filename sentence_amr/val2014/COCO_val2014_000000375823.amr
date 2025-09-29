@@ -1,0 +1,34 @@
+# ::tok Motorcyclists and pedestrians walking down a street with seated people looking on .
+# ::node	p	person	0-1
+# ::node	m	motorcycle	0-1
+# ::node	a	and	1-2
+# ::node	p2	person	2-3
+# ::node	w	walk-01	2-3
+# ::node	w2	walk-01	3-4
+# ::node	d	down	4-5
+# ::node	s2	street	6-7
+# ::node	s	seat-01	8-9
+# ::node	p3	person	9-10
+# ::node	l	look-01	10-11
+# ::root	w2	walk-01
+# ::edge	person	mod	motorcycle	p	m	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	walk-01	ARG0	and	w2	a	
+# ::edge	walk-01	direction	down	w2	d	
+# ::edge	walk-01	ARG2	street	w2	s2	
+# ::edge	person	ARG1-of	seat-01	p3	s	
+# ::edge	look-01	ARG0	person	l	p3	
+# ::edge	and	ARG1-of	look-01	a	l	
+(w2 / walk-01
+    :ARG0 (a / and
+        :ARG1-of (l / look-01
+            :ARG0 (p3 / person
+                :ARG1-of (s / seat-01)))
+        :op1 (p / person
+            :mod (m / motorcycle))
+        :op2 (p2 / person
+            :ARG0-of (w / walk-01)))
+    :ARG2 (s2 / street)
+    :direction (d / down))

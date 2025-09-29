@@ -1,0 +1,28 @@
+# ::tok A dog is sitting in the space where the dishwasher might go in a kitchen .
+# ::node	d2	dog	1-2
+# ::node	s	sit-01	3-4
+# ::node	s2	space	6-7
+# ::node	p	person	9-10
+# ::node	w	wash-01	9-10
+# ::node	d	dish	9-10
+# ::node	p2	possible-01	10-11
+# ::node	g	go-01	11-12
+# ::node	k	kitchen	14-15
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	dog	s	d2	
+# ::edge	sit-01	ARG2	space	s	s2	
+# ::edge	person	ARG0-of	wash-01	p	w	
+# ::edge	wash-01	ARG1	dish	w	d	
+# ::edge	space	location-of	possible-01	s2	p2	
+# ::edge	possible-01	ARG1	go-01	p2	g	
+# ::edge	go-01	ARG1	person	g	p	
+# ::edge	go-01	ARG4	kitchen	g	k	
+(s / sit-01
+    :ARG1 (d2 / dog)
+    :ARG2 (s2 / space
+        :location-of (p2 / possible-01
+            :ARG1 (g / go-01
+                :ARG1 (p / person
+                    :ARG0-of (w / wash-01
+                        :ARG1 (d / dish)))
+                :ARG4 (k / kitchen)))))

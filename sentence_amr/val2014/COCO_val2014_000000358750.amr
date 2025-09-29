@@ -1,0 +1,43 @@
+# ::tok This Leyland branded double decker bus belongs to Transdev Lancashire United .
+# ::node	t	this	0-1
+# ::node	c	company	1-2
+# ::node	1	Leyland	1-2
+# ::node	b2	brand-01	2-3
+# ::node	d2	double	3-4
+# ::node	d	decker	4-5
+# ::node	b3	bus	5-6
+# ::node	n	name	5-6
+# ::node	b	belong-01	6-7
+# ::node	c2	company	8-9
+# ::node	n2	name	8-9
+# ::node	2	Transdev	8-9
+# ::node	0	Lancashire	9-10
+# ::node	3	United	10-11
+# ::root	b	belong-01
+# ::edge	brand-01	ARG2	company	b2	c	
+# ::edge	decker	mod	double	d	d2	
+# ::edge	bus	mod	decker	b3	d	
+# ::edge	bus	ARG1-of	brand-01	b3	b2	
+# ::edge	bus	mod	this	b3	t	
+# ::edge	name	op1	Leyland	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	belong-01	ARG0	bus	b	b3	
+# ::edge	belong-01	ARG1	company	b	c2	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	Transdev	n2	2	
+# ::edge	name	op2	Lancashire	n2	0	
+# ::edge	name	op3	United	n2	3	
+(b / belong-01
+    :ARG0 (b3 / bus
+        :ARG1-of (b2 / brand-01
+            :ARG2 (c / company
+                :name (n / name
+                    :op1 "Leyland")))
+        :mod (d / decker
+            :mod (d2 / double))
+        :mod (t / this))
+    :ARG1 (c2 / company
+        :name (n2 / name
+            :op1 "Transdev"
+            :op2 "Lancashire"
+            :op3 "United")))

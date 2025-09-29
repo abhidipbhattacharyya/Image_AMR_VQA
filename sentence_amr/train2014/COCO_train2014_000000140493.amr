@@ -1,0 +1,42 @@
+# ::tok A New York Yankee baseball player at home plate beginning his swing at the pitch .
+# ::node	0	New	1-2
+# ::node	2	York	2-3
+# ::node	t	team	3-4
+# ::node	n	name	3-4
+# ::node	1	Yankee	3-4
+# ::node	b	baseball	4-5
+# ::node	p	person	5-6
+# ::node	p4	play-01	5-6
+# ::node	h	home	7-8
+# ::node	p3	plate	8-9
+# ::node	b2	begin-01	9-10
+# ::node	s	swing-02	11-12
+# ::node	p2	pitch-04	14-15
+# ::root	p	person
+# ::edge	team	name	name	t	n	
+# ::edge	name	op2	York	n	2	
+# ::edge	name	op1	New	n	0	
+# ::edge	name	op3	Yankee	n	1	
+# ::edge	person	mod	team	p	t	
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	plate	mod	home	p3	h	
+# ::edge	person	location	plate	p	p3	
+# ::edge	person	ARG0-of	begin-01	p	b2	
+# ::edge	begin-01	ARG1	swing-02	b2	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	direction	pitch-04	s	p2	
+(p / person
+    :ARG0-of (p4 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (b2 / begin-01
+        :ARG1 (s / swing-02
+            :ARG0 p
+            :direction (p2 / pitch-04)))
+    :location (p3 / plate
+        :mod (h / home))
+    :mod (t / team
+        :name (n / name
+            :op1 "New"
+            :op2 "York"
+            :op3 "Yankee")))

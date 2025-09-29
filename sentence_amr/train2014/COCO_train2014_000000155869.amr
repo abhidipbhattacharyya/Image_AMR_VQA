@@ -1,0 +1,27 @@
+# ::tok Country furnishings include wood floors and walls in the bedroom .
+# ::node	c	country	0-1
+# ::node	f2	furnish-01	1-2
+# ::node	i	include-01	2-3
+# ::node	w2	wood	3-4
+# ::node	f	floor	4-5
+# ::node	a	and	5-6
+# ::node	w	wall	6-7
+# ::node	b	bedroom	9-10
+# ::root	i	include-01
+# ::edge	furnish-01	mod	country	f2	c	
+# ::edge	include-01	ARG2	furnish-01	i	f2	
+# ::edge	floor	consist-of	wood	f	w2	
+# ::edge	and	op1	floor	a	f	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	wall	a	w	
+# ::edge	wall	part	wood	w	w2	
+# ::edge	and	location	bedroom	a	b	
+(i / include-01
+    :ARG1 (a / and
+        :location (b / bedroom)
+        :op1 (f / floor
+            :consist-of (w2 / wood))
+        :op2 (w / wall
+            :part w2))
+    :ARG2 (f2 / furnish-01
+        :mod (c / country)))

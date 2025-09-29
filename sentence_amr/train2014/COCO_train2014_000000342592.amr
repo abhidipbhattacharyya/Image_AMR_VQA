@@ -1,0 +1,28 @@
+# ::tok A passenger jet that is owned by the United States government .
+# ::node	p	passenger	1-2
+# ::node	j	jet	2-3
+# ::node	o	own-01	5-6
+# ::node	n	name	8-9
+# ::node	1	United	8-9
+# ::node	c	country	9-10
+# ::node	0	States	9-10
+# ::node	g2	government-organization	10-11
+# ::node	g	govern-01	10-11
+# ::root	j	jet
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	ARG1-of	own-01	j	o	
+# ::edge	name	op1	United	n	1	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op2	States	n	0	
+# ::edge	own-01	ARG0	government-organization	o	g2	
+# ::edge	government-organization	ARG0-of	govern-01	g2	g	
+# ::edge	govern-01	ARG1	country	g	c	
+(j / jet
+    :ARG1-of (o / own-01
+        :ARG0 (g2 / government-organization
+            :ARG0-of (g / govern-01
+                :ARG1 (c / country
+                    :name (n / name
+                        :op1 "United"
+                        :op2 "States")))))
+    :mod (p / passenger))

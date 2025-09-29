@@ -1,0 +1,29 @@
+# ::tok Someone is using a sail and the wind to water ski in a body of water .
+# ::node	s3	someone	0-1
+# ::node	u	use-01	2-3
+# ::node	s	sail	4-5
+# ::node	a	and	5-6
+# ::node	w2	wind	7-8
+# ::node	w	water	9-10
+# ::node	s2	ski-01	10-11
+# ::node	b	body	13-14
+# ::root	u	use-01
+# ::edge	use-01	ARG0	someone	u	s3	
+# ::edge	and	op1	sail	a	s	
+# ::edge	use-01	ARG1	and	u	a	
+# ::edge	and	op2	wind	a	w2	
+# ::edge	ski-01	ARG1	water	s2	w	
+# ::edge	use-01	ARG2	ski-01	u	s2	
+# ::edge	ski-01	ARG0	someone	s2	s3	
+# ::edge	ski-01	location	body	s2	b	
+# ::edge	water	consist	body	w	b	
+(u / use-01
+    :ARG0 (s3 / someone)
+    :ARG1 (a / and
+        :op1 (s / sail)
+        :op2 (w2 / wind))
+    :ARG2 (s2 / ski-01
+        :ARG0 s3
+        :ARG1 (w / water
+            :consist (b / body))
+        :location b))

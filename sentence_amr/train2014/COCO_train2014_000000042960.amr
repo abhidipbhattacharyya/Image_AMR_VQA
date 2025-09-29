@@ -1,0 +1,37 @@
+# ::tok a sign for Dale Hardware with statues of men doing construction and landscaping work
+# ::node	s	sign	1-2
+# ::node	n	name	1-2
+# ::node	0	Dale	3-4
+# ::node	c	company	4-5
+# ::node	1	Hardware	4-5
+# ::node	s2	statue	6-7
+# ::node	m	man	8-9
+# ::node	d	do-02	9-10
+# ::node	c2	construct-01	10-11
+# ::node	a	and	11-12
+# ::node	l	landscape-01	12-13
+# ::node	w	work-01	13-14
+# ::root	s	sign
+# ::edge	name	op1	Dale	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	sign	beneficiary	company	s	c	
+# ::edge	name	op2	Hardware	n	1	
+# ::edge	sign	consist-of	statue	s	s2	
+# ::edge	statue	consist-of	man	s2	m	
+# ::edge	man	ARG0-of	do-02	m	d	
+# ::edge	and	op1	construct-01	a	c2	
+# ::edge	do-02	ARG1	and	d	a	
+# ::edge	and	op2	landscape-01	a	l	
+# ::edge	and	ARG1-of	work-01	a	w	
+(s / sign
+    :beneficiary (c / company
+        :name (n / name
+            :op1 "Dale"
+            :op2 "Hardware"))
+    :consist-of (s2 / statue
+        :consist-of (m / man
+            :ARG0-of (d / do-02
+                :ARG1 (a / and
+                    :ARG1-of (w / work-01)
+                    :op1 (c2 / construct-01)
+                    :op2 (l / landscape-01))))))

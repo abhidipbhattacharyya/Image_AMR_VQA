@@ -1,0 +1,32 @@
+# ::tok This strange clock is signalling all passing trains to keep moving
+# ::node	t	this	0-1
+# ::node	s2	strange	1-2
+# ::node	c	clock	2-3
+# ::node	s	signal-07	4-5
+# ::node	a	all	5-6
+# ::node	p	pass-03	6-7
+# ::node	t2	train	7-8
+# ::node	k	keep-02	9-10
+# ::node	m	move-01	10-11
+# ::root	s	signal-07
+# ::edge	clock	mod	strange	c	s2	
+# ::edge	clock	mod	this	c	t	
+# ::edge	signal-07	ARG0	clock	s	c	
+# ::edge	train	ARG1-of	pass-03	t2	p	
+# ::edge	train	mod	all	t2	a	
+# ::edge	signal-07	ARG2	train	s	t2	
+# ::edge	keep-02	ARG0	train	k	t2	
+# ::edge	signal-07	ARG1	keep-02	s	k	
+# ::edge	keep-02	ARG1	move-01	k	m	
+# ::edge	move-01	ARG1	train	m	t2	
+(s / signal-07
+    :ARG0 (c / clock
+        :mod (s2 / strange)
+        :mod (t / this))
+    :ARG1 (k / keep-02
+        :ARG0 (t2 / train
+            :ARG1-of (p / pass-03)
+            :mod (a / all))
+        :ARG1 (m / move-01
+            :ARG1 t2))
+    :ARG2 t2)

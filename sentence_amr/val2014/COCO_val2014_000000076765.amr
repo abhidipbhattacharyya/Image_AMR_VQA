@@ -1,0 +1,30 @@
+# ::tok Someone is walking , possibly towards a vehicle or line , moving their travel bag
+# ::node	s	someone	0-1
+# ::node	w	walk-01	2-3
+# ::node	p	possible-01	4-5
+# ::node	v	vehicle	7-8
+# ::node	o	or	8-9
+# ::node	l	line	9-10
+# ::node	m	move-01	11-12
+# ::node	t	travel-01	13-14
+# ::node	b	bag	14-15
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	someone	w	s	
+# ::edge	or	op1	vehicle	o	v	
+# ::edge	or	ARG1-of	possible-01	o	p	
+# ::edge	walk-01	ARG2	or	w	o	
+# ::edge	or	op2	line	o	l	
+# ::edge	walk-01	ARG0-of	move-01	w	m	
+# ::edge	bag	purpose	travel-01	b	t	
+# ::edge	move-01	ARG1	bag	m	b	
+# ::edge	bag	poss	someone	b	s	
+(w / walk-01
+    :ARG0 (s / someone)
+    :ARG0-of (m / move-01
+        :ARG1 (b / bag
+            :purpose (t / travel-01)
+            :poss s))
+    :ARG2 (o / or
+        :ARG1-of (p / possible-01)
+        :op1 (v / vehicle)
+        :op2 (l / line)))

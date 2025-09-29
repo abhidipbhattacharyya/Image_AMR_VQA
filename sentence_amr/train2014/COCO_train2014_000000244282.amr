@@ -1,0 +1,35 @@
+# ::tok Snowboarder wearing all green in the motion of jumping off a snow ramp .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	w	wear-01	1-2
+# ::node	a	all	2-3
+# ::node	g	green-02	3-4
+# ::node	m	move-01	6-7
+# ::node	j	jump-03	8-9
+# ::node	o	off	9-10
+# ::node	s2	snow	11-12
+# ::node	r	ramp	12-13
+# ::root	w	wear-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	green-02	mod	all	g	a	
+# ::edge	wear-01	ARG1	green-02	w	g	
+# ::edge	green-02	ARG1	person	g	p	
+# ::edge	wear-01	manner	move-01	w	m	
+# ::edge	move-01	ARG1	jump-03	m	j	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	jump-03	direction	off	j	o	
+# ::edge	ramp	mod	snow	r	s2	
+# ::edge	jump-03	source	ramp	j	r	
+(w / wear-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01))
+    :ARG1 (g / green-02
+        :ARG1 p
+        :mod (a / all))
+    :manner (m / move-01
+        :ARG1 (j / jump-03
+            :ARG0 p
+            :direction (o / off)
+            :source (r / ramp
+                :mod (s2 / snow)))))

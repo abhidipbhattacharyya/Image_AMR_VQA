@@ -1,0 +1,30 @@
+# ::tok Man using video game control in living area with decorated wall .
+# ::node	m	man	0-1
+# ::node	u	use-01	1-2
+# ::node	v	video	2-3
+# ::node	g	game	3-4
+# ::node	c	control-01	4-5
+# ::node	l	living	6-7
+# ::node	a	area	7-8
+# ::node	d	decorate-01	9-10
+# ::node	w	wall	10-11
+# ::root	u	use-01
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	game	mod	video	g	v	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	use-01	ARG1	control-01	u	c	
+# ::edge	control-01	ARG0	man	c	m	
+# ::edge	area	mod	living	a	l	
+# ::edge	use-01	location	area	u	a	
+# ::edge	wall	ARG1-of	decorate-01	w	d	
+# ::edge	area	prep-with	wall	a	w	
+(u / use-01
+    :ARG0 (m / man)
+    :ARG1 (c / control-01
+        :ARG0 m
+        :ARG1 (g / game
+            :mod (v / video)))
+    :location (a / area
+        :mod (l / living)
+        :prep-with (w / wall
+            :ARG1-of (d / decorate-01))))

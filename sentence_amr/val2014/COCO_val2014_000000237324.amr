@@ -1,0 +1,28 @@
+# ::tok Large line of Taxi cabs in a very busy well lit town .
+# ::node	l	large	0-1
+# ::node	l3	line	1-2
+# ::node	t	taxi	3-4
+# ::node	t2	taxi	4-5
+# ::node	v	very	7-8
+# ::node	b	busy-01	8-9
+# ::node	w	well-09	9-10
+# ::node	l2	light-04	10-11
+# ::node	t3	town	11-12
+# ::root	l3	line
+# ::edge	line	mod	large	l3	l	
+# ::edge	taxi	mod	taxi	t2	t	
+# ::edge	line	consist-of	taxi	l3	t2	
+# ::edge	busy-01	degree	very	b	v	
+# ::edge	light-04	ARG1-of	well-09	l2	w	
+# ::edge	town	ARG1-of	light-04	t3	l2	
+# ::edge	town	ARG1-of	busy-01	t3	b	
+# ::edge	line	location	town	l3	t3	
+(l3 / line
+    :consist-of (t2 / taxi
+        :mod (t / taxi))
+    :location (t3 / town
+        :ARG1-of (l2 / light-04
+            :ARG1-of (w / well-09))
+        :ARG1-of (b / busy-01
+            :degree (v / very)))
+    :mod (l / large))

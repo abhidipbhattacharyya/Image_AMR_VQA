@@ -1,0 +1,28 @@
+# ::tok A bus with a Presto advertisement sits at a bus stop
+# ::node	b	bus	1-2
+# ::node	c	company	4-5
+# ::node	n	name	4-5
+# ::node	0	Presto	4-5
+# ::node	a	advertise-01	5-6
+# ::node	s	sit-01	6-7
+# ::node	f	facility	8-9
+# ::node	b2	bus	9-10
+# ::node	s2	stop-01	10-11
+# ::root	s	sit-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Presto	n	0	
+# ::edge	advertise-01	ARG0	company	a	c	
+# ::edge	bus	ARG1-of	advertise-01	b	a	
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	sit-01	ARG2	facility	s	f	
+# ::edge	stop-01	ARG1	bus	s2	b2	
+# ::edge	facility	location-of	stop-01	f	s2	
+(s / sit-01
+    :ARG1 (b / bus
+        :ARG1-of (a / advertise-01
+            :ARG0 (c / company
+                :name (n / name
+                    :op1 "Presto"))))
+    :ARG2 (f / facility
+        :location-of (s2 / stop-01
+            :ARG1 (b2 / bus))))

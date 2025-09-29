@@ -1,0 +1,31 @@
+# ::tok A yellow taxi cab that is parked illegaly parked in front of a fire hydrant .
+# ::node	y	yellow-02	1-2
+# ::node	t	taxi	2-3
+# ::node	c	cab	3-4
+# ::node	p	park-01	6-7
+# ::node	l	legal-02	7-8
+# ::node	0	-	7-8
+# ::node	p2	park-01	8-9
+# ::node	i	in-front-of	10-11
+# ::node	f	fire	13-14
+# ::node	h	hydrant	14-15
+# ::root	p	park-01
+# ::edge	cab	mod	taxi	c	t	
+# ::edge	cab	ARG1-of	yellow-02	c	y	
+# ::edge	park-01	ARG1	cab	p	c	
+# ::edge	park-01	ARG1-of	legal-02	p	l	
+# ::edge	legal-02	polarity	-	l	0	
+# ::edge	cab	ARG1-of	park-01	c	p2	
+# ::edge	park-01	ARG2	in-front-of	p2	i	
+# ::edge	hydrant	purpose	fire	h	f	
+# ::edge	in-front-of	op1	hydrant	i	h	
+(p / park-01
+    :ARG1 (c / cab
+        :ARG1-of (y / yellow-02)
+        :ARG1-of (p2 / park-01
+            :ARG2 (i / in-front-of
+                :op1 (h / hydrant
+                    :purpose (f / fire))))
+        :mod (t / taxi))
+    :ARG1-of (l / legal-02
+        :polarity -))

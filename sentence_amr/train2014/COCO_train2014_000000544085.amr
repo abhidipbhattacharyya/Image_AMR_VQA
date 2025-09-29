@@ -1,0 +1,29 @@
+# ::tok some black and white checkered walls in a home kitchen
+# ::node	s	some	0-1
+# ::node	b	black-04	1-2
+# ::node	w3	white-03	3-4
+# ::node	p	pattern	4-5
+# ::node	w	wall	5-6
+# ::node	w2	wall	5-6
+# ::node	h	home	8-9
+# ::node	k	kitchen	9-10
+# ::root	w	wall
+# ::edge	wall	mod	pattern	w	p	
+# ::edge	wall	ARG1-of	white-03	w	w3	
+# ::edge	wall	ARG1-of	black-04	w	b	
+# ::edge	wall	quant	some	w	s	
+# ::edge	wall	mod	pattern	w2	p	
+# ::edge	wall	ARG1-of	white-03	w2	w3	
+# ::edge	some	op2	wall	s	w2	
+# ::edge	kitchen	mod	home	k	h	
+# ::edge	wall	location	kitchen	w2	k	
+(w / wall
+    :quant (s / some
+        :op2 (w2 / wall
+            :ARG1-of (w3 / white-03)
+            :location (k / kitchen
+                :mod (h / home))
+            :mod (p / pattern)))
+    :ARG1-of w3
+    :ARG1-of (b / black-04)
+    :mod p)

@@ -1,0 +1,27 @@
+# ::tok A street sign with a directional arrow above another street sign .
+# ::node	s	sign	2-3
+# ::node	h	have-03	3-4
+# ::node	d	direct-01	5-6
+# ::node	a3	arrow	6-7
+# ::node	a	above	7-8
+# ::node	a2	another	8-9
+# ::node	s3	street	9-10
+# ::node	s2	sign	10-11
+# ::root	s	sign
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	arrow	ARG0-of	direct-01	a3	d	
+# ::edge	have-03	ARG1	arrow	h	a3	
+# ::edge	sign	location	above	s	a	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	mod	another	s2	a2	
+# ::edge	above	op1	sign	a	s2	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (a3 / arrow
+            :ARG0-of (d / direct-01)))
+    :location (a / above
+        :op1 (s2 / sign
+            :mod (s3 / street)
+            :mod (a2 / another)))
+    :mod s3)

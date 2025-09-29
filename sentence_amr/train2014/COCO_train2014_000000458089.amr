@@ -1,0 +1,29 @@
+# ::tok A man on a tennis court gets ready to hit an unseen ball .
+# ::node	m	man	1-2
+# ::node	t	tennis	4-5
+# ::node	c	court	5-6
+# ::node	r	ready-01	7-8
+# ::node	h	hit-01	9-10
+# ::node	s	see-01	11-12
+# ::node	0	-	11-12
+# ::node	b	ball	12-13
+# ::root	r	ready-01
+# ::edge	court	mod	tennis	c	t	
+# ::edge	man	location	court	m	c	
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	see-01	polarity	-	s	0	
+# ::edge	ball	ARG1-of	see-01	b	s	
+# ::edge	hit-01	ARG1	ball	h	b	
+(r / ready-01
+    :ARG0 (m / man
+        :location (c / court
+            :mod (t / tennis)))
+    :ARG1 m
+    :ARG2 (h / hit-01
+        :ARG0 m
+        :ARG1 (b / ball
+            :ARG1-of (s / see-01
+                :polarity -))))

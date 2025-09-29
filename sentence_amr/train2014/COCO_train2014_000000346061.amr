@@ -1,0 +1,26 @@
+# ::tok a street sign with a sticker on it to make it look like someone on a cross
+# ::node	s4	street	1-2
+# ::node	s	sign	2-3
+# ::node	s3	sticker	5-6
+# ::node	m	make-02	9-10
+# ::node	l	look-02	11-12
+# ::node	s2	someone	13-14
+# ::node	c	cross-02	16-17
+# ::root	s	sign
+# ::edge	sign	purpose	street	s	s4	
+# ::edge	sign	part	sticker	s	s3	
+# ::edge	make-02	ARG0	sticker	m	s3	
+# ::edge	sign	purpose	make-02	s	m	
+# ::edge	make-02	ARG1	look-02	m	l	
+# ::edge	look-02	ARG0	sign	l	s	
+# ::edge	look-02	ARG1	someone	l	s2	
+# ::edge	someone	ARG0-of	cross-02	s2	c	
+(s / sign
+    :purpose (s4 / street)
+    :purpose (m / make-02
+        :ARG0 (s3 / sticker)
+        :ARG1 (l / look-02
+            :ARG0 s
+            :ARG1 (s2 / someone
+                :ARG0-of (c / cross-02))))
+    :part s3)

@@ -1,0 +1,25 @@
+# ::tok A yellow traffic light with over cast skies in the background .
+# ::node	y	yellow-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	h	have-03	4-5
+# ::node	o	over	5-6
+# ::node	c	cast-01	6-7
+# ::node	s	sky	7-8
+# ::node	b	background	10-11
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	yellow-02	l	y	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	cast-01	ARG2	over	c	o	
+# ::edge	sky	ARG1-of	cast-01	s	c	
+# ::edge	have-03	ARG1	sky	h	s	
+# ::edge	sky	location	background	s	b	
+(l / light
+    :ARG0-of (h / have-03
+        :ARG1 (s / sky
+            :ARG1-of (c / cast-01
+                :ARG2 (o / over))
+            :location (b / background)))
+    :ARG1-of (y / yellow-02)
+    :mod (t / traffic))

@@ -1,0 +1,27 @@
+# ::tok A train traveling down the track , with power lines in the back .
+# ::node	t2	train	1-2
+# ::node	t3	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	t	track	5-6
+# ::node	h	have-03	7-8
+# ::node	p	power	8-9
+# ::node	l	line	9-10
+# ::node	b	back	12-13
+# ::root	t2	train
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	travel-01	direction	down	t3	d	
+# ::edge	down	path	track	d	t	
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	line	mod	power	l	p	
+# ::edge	have-03	ARG1	line	h	l	
+# ::edge	line	location	back	l	b	
+# ::edge	train	part	back	t2	b	
+(t2 / train
+    :ARG0-of (t3 / travel-01
+        :direction (d / down
+            :path (t / track)))
+    :ARG0-of (h / have-03
+        :ARG1 (l / line
+            :location (b / back)
+            :mod (p / power)))
+    :part b)

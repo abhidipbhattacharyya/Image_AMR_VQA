@@ -1,0 +1,50 @@
+# ::tok Behind a flexible mesh fence , a baseball player has just hit the ball while the catcher is still poised to catch it .
+# ::node	b3	behind	0-1
+# ::node	f2	flexible-03	2-3
+# ::node	m	mesh	3-4
+# ::node	f	fence	4-5
+# ::node	b2	baseball	7-8
+# ::node	p	person	8-9
+# ::node	p3	play-01	8-9
+# ::node	j	just	10-11
+# ::node	h	hit-01	11-12
+# ::node	b	ball	13-14
+# ::node	p2	person	16-17
+# ::node	c	catch-01	16-17
+# ::node	s	still	18-19
+# ::node	p4	poise-01	19-20
+# ::node	c2	catch-01	21-22
+# ::root	h	hit-01
+# ::edge	fence	mod	mesh	f	m	
+# ::edge	fence	ARG1-of	flexible-03	f	f2	
+# ::edge	behind	op1	fence	b3	f	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	hit-01	mod	just	h	j	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	location	behind	h	b3	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	poise-01	mod	still	p4	s	
+# ::edge	poise-01	ARG1	person	p4	p2	
+# ::edge	hit-01	time	poise-01	h	p4	
+# ::edge	poise-01	ARG2	catch-01	p4	c2	
+# ::edge	catch-01	ARG0	person	c2	p2	
+# ::edge	catch-01	ARG1	ball	c2	b	
+(h / hit-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball)))
+    :ARG1 (b / ball)
+    :location (b3 / behind
+        :op1 (f / fence
+            :ARG1-of (f2 / flexible-03)
+            :mod (m / mesh)))
+    :mod (j / just)
+    :time (p4 / poise-01
+        :ARG1 (p2 / person
+            :ARG0-of (c / catch-01))
+        :ARG2 (c2 / catch-01
+            :ARG0 p2
+            :ARG1 b)
+        :mod (s / still)))

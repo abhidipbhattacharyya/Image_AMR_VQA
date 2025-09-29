@@ -1,0 +1,30 @@
+# ::tok Baseball player at bat just finishing his swing at a pitched ball .
+# ::node	b2	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	b3	bat-01	3-4
+# ::node	j	just	4-5
+# ::node	f	finish-01	5-6
+# ::node	s	swing-02	7-8
+# ::node	p2	pitch-04	10-11
+# ::node	b	ball	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	person	ARG0-of	bat-01	p	b3	
+# ::edge	finish-01	mod	just	f	j	
+# ::edge	person	ARG0-of	finish-01	p	f	
+# ::edge	finish-01	ARG1	swing-02	f	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	ball	ARG1-of	pitch-04	b	p2	
+# ::edge	swing-02	ARG2	ball	s	b	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG0-of (b3 / bat-01)
+    :ARG0-of (f / finish-01
+        :ARG1 (s / swing-02
+            :ARG0 p
+            :ARG2 (b / ball
+                :ARG1-of (p2 / pitch-04)))
+        :mod (j / just)))

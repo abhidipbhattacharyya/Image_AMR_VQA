@@ -1,0 +1,37 @@
+# ::tok A strange looking hot dog , perhaps made from confectioner 's sugar , sits on top of what looks like a cupcake .
+# ::node	s2	strange	1-2
+# ::node	l	look-02	2-3
+# ::node	h	hot-dog	4-5
+# ::node	p	possible-01	6-7
+# ::node	m	make-01	7-8
+# ::node	c	confectioner	9-10
+# ::node	s3	sugar	11-12
+# ::node	s	sit-01	13-14
+# ::node	t2	top	15-16
+# ::node	t	thing	17-18
+# ::node	l2	look-02	18-19
+# ::node	c2	cupcake	21-22
+# ::root	s	sit-01
+# ::edge	look-02	ARG1	strange	l	s2	
+# ::edge	hot-dog	ARG0-of	look-02	h	l	
+# ::edge	make-01	ARG1-of	possible-01	m	p	
+# ::edge	hot-dog	ARG1-of	make-01	h	m	
+# ::edge	sugar	source	confectioner	s3	c	
+# ::edge	make-01	ARG2	sugar	m	s3	
+# ::edge	sit-01	ARG1	hot-dog	s	h	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	top	op1	thing	t2	t	
+# ::edge	thing	ARG0-of	look-02	t	l2	
+# ::edge	look-02	ARG1	cupcake	l2	c2	
+(s / sit-01
+    :ARG1 (h / hot-dog
+        :ARG0-of (l / look-02
+            :ARG1 (s2 / strange))
+        :ARG1-of (m / make-01
+            :ARG1-of (p / possible-01)
+            :ARG2 (s3 / sugar
+                :source (c / confectioner))))
+    :ARG2 (t2 / top
+        :op1 (t / thing
+            :ARG0-of (l2 / look-02
+                :ARG1 (c2 / cupcake)))))

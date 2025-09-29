@@ -1,0 +1,43 @@
+# ::tok The sign for Spring St. and 6th Ave . is in front of a brick building .
+# ::node	s	sign	1-2
+# ::node	n	name	3-4
+# ::node	2	Spring	3-4
+# ::node	r	road	4-5
+# ::node	3	St.	4-5
+# ::node	a	and	5-6
+# ::node	n2	name	6-7
+# ::node	0	6th	6-7
+# ::node	r2	road	7-8
+# ::node	1	Ave	7-8
+# ::node	b	be-located-at-91	10-11
+# ::node	i	in-front-of	11-12
+# ::node	b2	brick	14-15
+# ::node	b3	building	15-16
+# ::root	b	be-located-at-91
+# ::edge	name	op1	Spring	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	St.	n	3	
+# ::edge	and	op1	road	a	r	
+# ::edge	sign	destination	and	s	a	
+# ::edge	name	op1	6th	n2	0	
+# ::edge	road	name	name	r2	n2	
+# ::edge	and	op2	road	a	r2	
+# ::edge	name	op2	Ave	n2	1	
+# ::edge	be-located-at-91	ARG1	sign	b	s	
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	in-front-of	op1	building	i	b3	
+(b / be-located-at-91
+    :ARG1 (s / sign
+        :destination (a / and
+            :op1 (r / road
+                :name (n / name
+                    :op1 "Spring"
+                    :op2 "St."))
+            :op2 (r2 / road
+                :name (n2 / name
+                    :op1 "6th"
+                    :op2 "Ave"))))
+    :ARG2 (i / in-front-of
+        :op1 (b3 / building
+            :consist-of (b2 / brick))))

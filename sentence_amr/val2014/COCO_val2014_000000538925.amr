@@ -1,0 +1,43 @@
+# ::tok This bedroom has nothing but a mattress with a single white sheet and two blankets folded at the bottom
+# ::node	t	this	0-1
+# ::node	b	bedroom	1-2
+# ::node	h	have-03	2-3
+# ::node	n	nothing-but	3-4
+# ::node	m	mattress	6-7
+# ::node	h2	have-03	7-8
+# ::node	s2	single-02	9-10
+# ::node	w	white-03	10-11
+# ::node	s	sheet	11-12
+# ::node	a	and	12-13
+# ::node	0	2	13-14
+# ::node	b2	blanket	14-15
+# ::node	f	fold-03	15-16
+# ::node	b3	bottom	18-19
+# ::root	h	have-03
+# ::edge	bedroom	mod	this	b	t	
+# ::edge	have-03	ARG0	bedroom	h	b	
+# ::edge	mattress	mod	nothing-but	m	n	
+# ::edge	have-03	ARG1	mattress	h	m	
+# ::edge	mattress	ARG0-of	have-03	m	h2	
+# ::edge	sheet	ARG1-of	white-03	s	w	
+# ::edge	sheet	ARG1-of	single-02	s	s2	
+# ::edge	and	op1	sheet	a	s	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	blanket	quant	2	b2	0	
+# ::edge	and	op2	blanket	a	b2	
+# ::edge	blanket	ARG1-of	fold-03	b2	f	
+# ::edge	fold-03	location	bottom	f	b3	
+(h / have-03
+    :ARG0 (b / bedroom
+        :mod (t / this))
+    :ARG1 (m / mattress
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (s / sheet
+                    :ARG1-of (w / white-03)
+                    :ARG1-of (s2 / single-02))
+                :op2 (b2 / blanket
+                    :quant 2
+                    :ARG1-of (f / fold-03
+                        :location (b3 / bottom)))))
+        :mod (n / nothing-but)))

@@ -1,0 +1,28 @@
+# ::tok A classic train is sitting in the middle of a concrete ground in the middle of the afternoon .
+# ::node	c	classic	1-2
+# ::node	t	train	2-3
+# ::node	s	sit-01	4-5
+# ::node	m	middle	7-8
+# ::node	c2	concrete-02	10-11
+# ::node	g	ground	11-12
+# ::node	m2	middle	14-15
+# ::node	d	date-entity	17-18
+# ::node	a	afternoon	17-18
+# ::root	s	sit-01
+# ::edge	train	mod	classic	t	c	
+# ::edge	sit-01	ARG1	train	s	t	
+# ::edge	sit-01	ARG2	middle	s	m	
+# ::edge	ground	ARG1-of	concrete-02	g	c2	
+# ::edge	middle	part-of	ground	m	g	
+# ::edge	sit-01	time	middle	s	m2	
+# ::edge	middle	part-of	date-entity	m2	d	
+# ::edge	date-entity	dayperiod	afternoon	d	a	
+(s / sit-01
+    :ARG1 (t / train
+        :mod (c / classic))
+    :ARG2 (m / middle
+        :part-of (g / ground
+            :ARG1-of (c2 / concrete-02)))
+    :time (m2 / middle
+        :part-of (d / date-entity
+            :dayperiod (a / afternoon))))

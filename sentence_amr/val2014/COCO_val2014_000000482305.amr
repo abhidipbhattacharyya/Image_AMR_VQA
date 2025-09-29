@@ -1,0 +1,34 @@
+# ::tok The double decker bus is painted with a sign Fox 's Ginger Biscuits .
+# ::node	d	double-decker	2-3
+# ::node	b2	bus	3-4
+# ::node	p	paint-01	5-6
+# ::node	s	sign	8-9
+# ::node	b	broadcast-program	9-10
+# ::node	n	name	9-10
+# ::node	1	Fox	9-10
+# ::node	2	Ginger	11-12
+# ::node	p2	product	12-13
+# ::node	n2	name	12-13
+# ::node	0	Biscuits	12-13
+# ::root	p	paint-01
+# ::edge	bus	mod	double-decker	b2	d	
+# ::edge	paint-01	ARG1	bus	p	b2	
+# ::edge	paint-01	ARG2	sign	p	s	
+# ::edge	broadcast-program	name	name	b	n	
+# ::edge	name	op1	Fox	n	1	
+# ::edge	product	source	broadcast-program	p2	b	
+# ::edge	sign	mod	product	s	p2	
+# ::edge	product	name	name	p2	n2	
+# ::edge	name	op1	Ginger	n2	2	
+# ::edge	name	op2	Biscuits	n2	0	
+(p / paint-01
+    :ARG1 (b2 / bus
+        :mod (d / double-decker))
+    :ARG2 (s / sign
+        :mod (p2 / product
+            :name (n2 / name
+                :op1 "Ginger"
+                :op2 "Biscuits")
+            :source (b / broadcast-program
+                :name (n / name
+                    :op1 "Fox")))))

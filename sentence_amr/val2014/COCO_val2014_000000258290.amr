@@ -1,0 +1,46 @@
+# ::tok A marble tabletop that has a coffee cup and saucer one one side and two plates of food on the other sides .
+# ::node	m	marble	1-2
+# ::node	t	tabletop	2-3
+# ::node	h	have-03	4-5
+# ::node	c	coffee	6-7
+# ::node	c2	cup	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	s	saucer	9-10
+# ::node	0	1	11-12
+# ::node	s2	side	12-13
+# ::node	s3	side	12-13
+# ::node	1	2	14-15
+# ::node	p	plate	15-16
+# ::node	f	food	17-18
+# ::node	o	other	20-21
+# ::root	t	tabletop
+# ::edge	tabletop	consist-of	marble	t	m	
+# ::edge	tabletop	ARG0-of	have-03	t	h	
+# ::edge	cup	mod	coffee	c2	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	and	a	a2	
+# ::edge	and	op1	cup	a2	c2	
+# ::edge	and	op2	saucer	a2	s	
+# ::edge	side	quant	1	s2	0	
+# ::edge	and	location	side	a2	s2	
+# ::edge	plate	quant	2	p	1	
+# ::edge	plate	location	side	p	s3	
+# ::edge	and	op2	plate	a	p	
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	side	mod	other	s3	o	
+(t / tabletop
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (a2 / and
+                :location (s2 / side
+                    :quant 1)
+                :op1 (c2 / cup
+                    :mod (c / coffee))
+                :op2 (s / saucer))
+            :op2 (p / plate
+                :quant 2
+                :consist-of (f / food)
+                :location (s3 / side
+                    :mod (o / other)))))
+    :consist-of (m / marble))

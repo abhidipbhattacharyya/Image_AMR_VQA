@@ -1,0 +1,34 @@
+# ::tok A mini refrigerator stocked with bottles and cans of alcohol and soft drinks .
+# ::node	m	mini	1-2
+# ::node	r	refrigerator	2-3
+# ::node	s2	stock-01	3-4
+# ::node	b	bottle	5-6
+# ::node	a2	and	6-7
+# ::node	c	can-01	7-8
+# ::node	a	alcohol	9-10
+# ::node	a3	and	10-11
+# ::node	s	soft	11-12
+# ::node	t	thing	12-13
+# ::node	d	drink-01	12-13
+# ::root	s2	stock-01
+# ::edge	refrigerator	mod	mini	r	m	
+# ::edge	stock-01	ARG1	refrigerator	s2	r	
+# ::edge	and	op1	bottle	a2	b	
+# ::edge	stock-01	ARG2	and	s2	a2	
+# ::edge	and	op2	can-01	a2	c	
+# ::edge	and	op1	alcohol	a3	a	
+# ::edge	can-01	ARG1	and	c	a3	
+# ::edge	thing	mod	soft	t	s	
+# ::edge	and	op2	thing	a3	t	
+# ::edge	thing	ARG1-of	drink-01	t	d	
+(s2 / stock-01
+    :ARG1 (r / refrigerator
+        :mod (m / mini))
+    :ARG2 (a2 / and
+        :op1 (b / bottle)
+        :op2 (c / can-01
+            :ARG1 (a3 / and
+                :op1 (a / alcohol)
+                :op2 (t / thing
+                    :ARG1-of (d / drink-01)
+                    :mod (s / soft))))))

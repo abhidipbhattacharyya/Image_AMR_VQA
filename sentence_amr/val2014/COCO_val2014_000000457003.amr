@@ -1,0 +1,30 @@
+# ::tok A female Tennis player appears to be observing her shoulder / arm .
+# ::node	f	female	1-2
+# ::node	g	golf-01	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	a	appear-02	4-5
+# ::node	o	observe-01	7-8
+# ::node	s	shoulder	9-10
+# ::node	s2	slash	10-11
+# ::node	a2	arm	11-12
+# ::root	a	appear-02
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	golf-01	p2	g	
+# ::edge	appear-02	ARG1	observe-01	a	o	
+# ::edge	observe-01	ARG0	person	o	p	
+# ::edge	slash	op1	shoulder	s2	s	
+# ::edge	observe-01	ARG1	slash	o	s2	
+# ::edge	person	part	slash	p	s2	
+# ::edge	slash	op2	arm	s2	a2	
+(a / appear-02
+    :ARG1 (o / observe-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (g / golf-01))
+            :mod (f / female)
+            :part (s2 / slash
+                :op1 (s / shoulder)
+                :op2 (a2 / arm)))
+        :ARG1 s2))

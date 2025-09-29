@@ -1,0 +1,37 @@
+# ::tok The speed limit on the tree filled road is 20 miles per hour .
+# ::node	s	speed-01	1-2
+# ::node	l	limit-01	2-3
+# ::node	t2	tree	5-6
+# ::node	f	fill-01	6-7
+# ::node	r2	road	7-8
+# ::node	1	20	9-10
+# ::node	d	distance-quantity	10-11
+# ::node	m	mile	10-11
+# ::node	r	rate-entity-91	11-12
+# ::node	0	1	11-12
+# ::node	t	temporal-quantity	12-13
+# ::node	h	hour	12-13
+# ::root	l	limit-01
+# ::edge	limit-01	ARG1	speed-01	l	s	
+# ::edge	fill-01	ARG2	tree	f	t2	
+# ::edge	road	ARG1-of	fill-01	r2	f	
+# ::edge	speed-01	location	road	s	r2	
+# ::edge	distance-quantity	quant	20	d	1	
+# ::edge	distance-quantity	unit	mile	d	m	
+# ::edge	rate-entity-91	ARG1	distance-quantity	r	d	
+# ::edge	limit-01	ARG2	rate-entity-91	l	r	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	rate-entity-91	ARG2	temporal-quantity	r	t	
+# ::edge	temporal-quantity	unit	hour	t	h	
+(l / limit-01
+    :ARG1 (s / speed-01
+        :location (r2 / road
+            :ARG1-of (f / fill-01
+                :ARG2 (t2 / tree))))
+    :ARG2 (r / rate-entity-91
+        :ARG1 (d / distance-quantity
+            :quant 20
+            :unit (m / mile))
+        :ARG2 (t / temporal-quantity
+            :quant 1
+            :unit (h / hour))))

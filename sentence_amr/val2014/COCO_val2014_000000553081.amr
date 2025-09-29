@@ -1,0 +1,33 @@
+# ::tok a small group of giraffes standing around a tree and eating some leaves
+# ::node	s	small	1-2
+# ::node	g2	group	2-3
+# ::node	g	giraffe	4-5
+# ::node	s3	stand-01	5-6
+# ::node	a2	around	6-7
+# ::node	t	tree	8-9
+# ::node	a	and	9-10
+# ::node	e	eat-01	10-11
+# ::node	s2	some	11-12
+# ::node	l	leaf	12-13
+# ::root	a	and
+# ::edge	group	mod	small	g2	s	
+# ::edge	group	consist-of	giraffe	g2	g	
+# ::edge	stand-01	ARG1	group	s3	g2	
+# ::edge	stand-01	ARG2	around	s3	a2	
+# ::edge	around	op1	tree	a2	t	
+# ::edge	and	op1	stand-01	a	s3	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG0	group	e	g2	
+# ::edge	leaf	quant	some	l	s2	
+# ::edge	eat-01	ARG1	leaf	e	l	
+(a / and
+    :op1 (s3 / stand-01
+        :ARG1 (g2 / group
+            :consist-of (g / giraffe)
+            :mod (s / small))
+        :ARG2 (a2 / around
+            :op1 (t / tree)))
+    :op2 (e / eat-01
+        :ARG0 g2
+        :ARG1 (l / leaf
+            :quant (s2 / some))))

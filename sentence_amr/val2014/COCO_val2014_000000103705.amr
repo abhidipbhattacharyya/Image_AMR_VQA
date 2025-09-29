@@ -1,0 +1,41 @@
+# ::tok A room with a man laying in a bed and another bed across from him with a window in the middle of the room .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	m	man	4-5
+# ::node	l	lay-01	5-6
+# ::node	b	bed	8-9
+# ::node	a2	and	9-10
+# ::node	a3	another	10-11
+# ::node	b2	bed	11-12
+# ::node	a	across	12-13
+# ::node	h2	have-03	15-16
+# ::node	w	window	17-18
+# ::node	m2	middle	20-21
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	lay-01	ARG1	man	l	m	
+# ::edge	lay-01	ARG2	bed	l	b	
+# ::edge	and	op1	lay-01	a2	l	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	bed	mod	another	b2	a3	
+# ::edge	and	op2	bed	a2	b2	
+# ::edge	bed	location	across	b2	a	
+# ::edge	across	op1	man	a	m	
+# ::edge	bed	ARG0-of	have-03	b2	h2	
+# ::edge	have-03	ARG1	window	h2	w	
+# ::edge	window	location	middle	w	m2	
+# ::edge	room	part	middle	r	m2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (l / lay-01
+                :ARG1 (m / man)
+                :ARG2 (b / bed))
+            :op2 (b2 / bed
+                :ARG0-of (h2 / have-03
+                    :ARG1 (w / window
+                        :location (m2 / middle)))
+                :location (a / across
+                    :op1 m)
+                :mod (a3 / another))))
+    :part m2)

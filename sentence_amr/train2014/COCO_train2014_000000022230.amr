@@ -1,0 +1,37 @@
+# ::tok A large clock next to other smaller clocks set to different time zones .
+# ::node	l	large	1-2
+# ::node	c	clock	2-3
+# ::node	n	next-to	3-4
+# ::node	o	other	5-6
+# ::node	h	have-degree-91	6-7
+# ::node	s2	small	6-7
+# ::node	m	more	6-7
+# ::node	w	watch	7-8
+# ::node	s	set-01	8-9
+# ::node	d	differ-02	10-11
+# ::node	t	time	11-12
+# ::node	z	zone	12-13
+# ::root	s	set-01
+# ::edge	clock	mod	large	c	l	
+# ::edge	clock	location	next-to	c	n	
+# ::edge	have-degree-91	ARG2	small	h	s2	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	watch	ARG1-of	have-degree-91	w	h	
+# ::edge	watch	mod	other	w	o	
+# ::edge	next-to	op1	watch	n	w	
+# ::edge	set-01	ARG1	clock	s	c	
+# ::edge	zone	mod	time	z	t	
+# ::edge	zone	ARG1-of	differ-02	z	d	
+# ::edge	set-01	ARG2	zone	s	z	
+(s / set-01
+    :ARG1 (c / clock
+        :location (n / next-to
+            :op1 (w / watch
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (s2 / small)
+                    :ARG3 (m / more))
+                :mod (o / other)))
+        :mod (l / large))
+    :ARG2 (z / zone
+        :ARG1-of (d / differ-02)
+        :mod (t / time)))

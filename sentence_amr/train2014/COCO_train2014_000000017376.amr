@@ -1,0 +1,41 @@
+# ::tok A group of people standing by a traffic signal waiting for the pedistrian signal to change to walk .
+# ::node	g	group	1-2
+# ::node	p2	person	3-4
+# ::node	s3	stand-01	4-5
+# ::node	b	by	5-6
+# ::node	t	traffic	7-8
+# ::node	s2	signal-07	8-9
+# ::node	s	signal	8-9
+# ::node	w	wait-01	9-10
+# ::node	a	and	10-11
+# ::node	p	pedistrian	12-13
+# ::node	c	change-01	15-16
+# ::node	w2	walk-01	17-18
+# ::root	s3	stand-01
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	stand-01	ARG1	group	s3	g	
+# ::edge	stand-01	ARG2	by	s3	b	
+# ::edge	traffic	op1	signal-07	t	s2	
+# ::edge	signal-07	ARG1	signal	s2	s	
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	group	ARG1-of	wait-01	g	w	
+# ::edge	wait-01	ARG2	and	w	a	
+# ::edge	signal	mod	pedistrian	s	p	
+# ::edge	and	op1	change-01	a	c	
+# ::edge	change-01	ARG1	signal	c	s	
+# ::edge	change-01	ARG2	walk-01	c	w2	
+# ::edge	walk-01	ARG0	group	w2	g	
+(s3 / stand-01
+    :ARG1 (g / group
+        :ARG1-of (w / wait-01
+            :ARG2 (a / and
+                :op1 (c / change-01
+                    :ARG1 (s / signal
+                        :mod (t / traffic
+                            :op1 (s2 / signal-07
+                                :ARG1 s))
+                        :mod (p / pedistrian))
+                    :ARG2 (w2 / walk-01
+                        :ARG0 g))))
+        :consist-of (p2 / person))
+    :ARG2 (b / by))

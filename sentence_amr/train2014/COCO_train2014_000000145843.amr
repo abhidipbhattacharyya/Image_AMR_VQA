@@ -1,0 +1,43 @@
+# ::tok An egg and pancakes sit on a plate next to a glass of orange juice on a wooden table .
+# ::node	e	egg	1-2
+# ::node	a	and	2-3
+# ::node	e2	enzyme	3-4
+# ::node	c	cook-01	3-4
+# ::node	s	sit-01	4-5
+# ::node	p	plate	7-8
+# ::node	n	next-to	8-9
+# ::node	v	volume-quantity	10-11
+# ::node	0	1	10-11
+# ::node	g	glass	11-12
+# ::node	o	orange	13-14
+# ::node	j	juice	14-15
+# ::node	w	wood	17-18
+# ::node	t	table	18-19
+# ::root	s	sit-01
+# ::edge	and	op1	egg	a	e	
+# ::edge	and	op2	enzyme	a	e2	
+# ::edge	enzyme	ARG0-of	cook-01	e2	c	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	plate	s	p	
+# ::edge	plate	location-of	next-to	p	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	next-to	op1	juice	n	j	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	next-to	location	table	n	t	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (e / egg)
+        :op2 (e2 / enzyme
+            :ARG0-of (c / cook-01)))
+    :ARG2 (p / plate
+        :location-of (n / next-to
+            :location (t / table
+                :consist-of (w / wood))
+            :op1 (j / juice
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))
+                :mod (o / orange)))))

@@ -1,0 +1,32 @@
+# ::tok skateboarders standing by the side of a wall waiting to do their tricks
+# ::node	p	person	0-1
+# ::node	b	board-05	0-1
+# ::node	s2	stand-01	1-2
+# ::node	b2	by	2-3
+# ::node	s	side	4-5
+# ::node	w2	wall	7-8
+# ::node	w	wait-01	8-9
+# ::node	d	do-02	10-11
+# ::node	t	trick-01	12-13
+# ::root	s2	stand-01
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	by	s2	b2	
+# ::edge	by	op1	side	b2	s	
+# ::edge	side	part-of	wall	s	w2	
+# ::edge	stand-01	ARG1-of	wait-01	s2	w	
+# ::edge	wait-01	ARG2	do-02	w	d	
+# ::edge	do-02	ARG0	person	d	p	
+# ::edge	do-02	ARG1	trick-01	d	t	
+# ::edge	trick-01	ARG0	person	t	p	
+(s2 / stand-01
+    :ARG1 (p / person
+        :ARG0-of (b / board-05))
+    :ARG1-of (w / wait-01
+        :ARG2 (d / do-02
+            :ARG0 p
+            :ARG1 (t / trick-01
+                :ARG0 p)))
+    :ARG2 (b2 / by
+        :op1 (s / side
+            :part-of (w2 / wall))))

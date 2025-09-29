@@ -1,0 +1,39 @@
+# ::tok A bright clock tower is visible with several bigger buildings behind it .
+# ::node	b4	bright-02	1-2
+# ::node	c	clock	2-3
+# ::node	t	tower	3-4
+# ::node	p	possible-01	5-6
+# ::node	s	see-01	5-6
+# ::node	s2	several	7-8
+# ::node	h	have-degree-91	8-9
+# ::node	b3	big	8-9
+# ::node	m	more	8-9
+# ::node	b5	building	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	b2	behind	10-11
+# ::root	p	possible-01
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	ARG1-of	bright-02	t	b4	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	tower	s	t	
+# ::edge	have-degree-91	ARG2	big	h	b3	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	building	ARG1-of	have-degree-91	b5	h	
+# ::edge	building	quant	several	b5	s2	
+# ::edge	be-located-at-91	ARG1	building	b	b5	
+# ::edge	tower	ARG2-of	be-located-at-91	t	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	tower	b2	t	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (t / tower
+            :ARG1-of (b4 / bright-02)
+            :ARG2-of (b / be-located-at-91
+                :ARG1 (b5 / building
+                    :quant (s2 / several)
+                    :ARG1-of (h / have-degree-91
+                        :ARG2 (b3 / big)
+                        :ARG3 (m / more)))
+                :ARG2 (b2 / behind
+                    :op1 t))
+            :mod (c / clock))))

@@ -1,0 +1,22 @@
+# ::tok the semi makes a turn onto the road avoiding a red fire - hydrant .
+# ::node	s	semi	1-2
+# ::node	t	turn-01	4-5
+# ::node	r2	road	7-8
+# ::node	a	avoid-01	8-9
+# ::node	r	red-02	10-11
+# ::node	f	fire	11-12
+# ::node	h	hydrant	13-14
+# ::root	t	turn-01
+# ::edge	turn-01	ARG1	semi	t	s	
+# ::edge	turn-01	destination	road	t	r2	
+# ::edge	turn-01	ARG0-of	avoid-01	t	a	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	avoid-01	ARG1	hydrant	a	h	
+(t / turn-01
+    :ARG0-of (a / avoid-01
+        :ARG1 (h / hydrant
+            :ARG1-of (r / red-02)
+            :mod (f / fire)))
+    :ARG1 (s / semi)
+    :destination (r2 / road))

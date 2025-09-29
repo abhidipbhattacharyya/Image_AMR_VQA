@@ -1,0 +1,51 @@
+# ::tok An L shaped desk with a lamp , an open laptop computer , a computer monitor and keyboard , a printer , scanner , and several books .
+# ::node	s4	string-entity	1-2
+# ::node	0	L	1-2
+# ::node	s3	shape-01	2-3
+# ::node	d	desk	3-4
+# ::node	l	lamp	6-7
+# ::node	o	open-07	9-10
+# ::node	l2	laptop	10-11
+# ::node	c	computer	11-12
+# ::node	c2	computer	14-15
+# ::node	m	monitor	15-16
+# ::node	a	and	16-17
+# ::node	k	keyboard	17-18
+# ::node	p	printer	20-21
+# ::node	s	scanner	22-23
+# ::node	s2	several	25-26
+# ::node	b	book	26-27
+# ::root	d	desk
+# ::edge	string-entity	value	L	s4	0	
+# ::edge	shape-01	ARG2	string-entity	s3	s4	
+# ::edge	desk	ARG1-of	shape-01	d	s3	
+# ::edge	computer	mod	laptop	c	l2	
+# ::edge	computer	ARG1-of	open-07	c	o	
+# ::edge	monitor	mod	computer	m	c2	
+# ::edge	and	op2	monitor	a	m	
+# ::edge	and	op1	lamp	a	l	
+# ::edge	desk	part	and	d	a	
+# ::edge	and	op3	keyboard	a	k	
+# ::edge	keyboard	mod	computer	k	c2	
+# ::edge	and	op4	printer	a	p	
+# ::edge	and	op5	scanner	a	s	
+# ::edge	book	quant	several	b	s2	
+# ::edge	and	op6	book	a	b	
+# ::edge	desk	rel	computer	d	c	
+(d / desk
+    :ARG1-of (s3 / shape-01
+        :ARG2 (s4 / string-entity
+            :value "L"))
+    :part (a / and
+        :op1 (l / lamp)
+        :op2 (m / monitor
+            :mod (c2 / computer))
+        :op3 (k / keyboard
+            :mod c2)
+        :op4 (p / printer)
+        :op5 (s / scanner)
+        :op6 (b / book
+            :quant (s2 / several)))
+    :rel (c / computer
+        :ARG1-of (o / open-07)
+        :mod (l2 / laptop)))

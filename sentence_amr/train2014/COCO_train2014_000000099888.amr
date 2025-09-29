@@ -1,0 +1,25 @@
+# ::tok A street .
+# ::node	s	street	1-2
+# ::root	s	street
+(s / street)
+
+
+# ::tok mostly empty , with high rise buildings in the background .
+# ::node	m	most	0-1
+# ::node	e	empty-02	1-2
+# ::node	h	high	4-5
+# ::node	r	rise-01	5-6
+# ::node	b2	building	6-7
+# ::node	b	background	9-10
+# ::root	e	empty-02
+# ::edge	empty-02	extent	most	e	m	
+# ::edge	rise-01	ARG2	high	r	h	
+# ::edge	building	ARG1-of	rise-01	b2	r	
+# ::edge	empty-02	prep-with	building	e	b2	
+# ::edge	building	location	background	b2	b	
+(e / empty-02
+    :extent (m / most)
+    :prep-with (b2 / building
+        :ARG1-of (r / rise-01
+            :ARG2 (h / high))
+        :location (b / background)))

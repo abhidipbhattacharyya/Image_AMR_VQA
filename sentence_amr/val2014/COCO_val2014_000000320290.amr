@@ -1,0 +1,34 @@
+# ::tok A row of classic American cars parked on a street next to a fire hydrant .
+# ::node	r	row	1-2
+# ::node	c2	classic	3-4
+# ::node	c3	country	4-5
+# ::node	n	name	4-5
+# ::node	0	America	4-5
+# ::node	c	car	5-6
+# ::node	p	park-01	6-7
+# ::node	s	street	9-10
+# ::node	n2	next-to	10-11
+# ::node	f	fire	13-14
+# ::node	h	hydrant	14-15
+# ::root	r	row
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	car	mod	country	c	c3	
+# ::edge	car	mod	classic	c	c2	
+# ::edge	row	consist-of	car	r	c	
+# ::edge	row	ARG1-of	park-01	r	p	
+# ::edge	park-01	ARG2	street	p	s	
+# ::edge	street	location-of	next-to	s	n2	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	next-to	op1	hydrant	n2	h	
+(r / row
+    :ARG1-of (p / park-01
+        :ARG2 (s / street
+            :location-of (n2 / next-to
+                :op1 (h / hydrant
+                    :mod (f / fire)))))
+    :consist-of (c / car
+        :mod (c3 / country
+            :name (n / name
+                :op1 "America"))
+        :mod (c2 / classic)))

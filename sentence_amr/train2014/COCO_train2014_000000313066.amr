@@ -1,0 +1,28 @@
+# ::tok People in a serving line hold plates of hot dogs and hamburgers .
+# ::node	p	person	0-1
+# ::node	s	serve-02	3-4
+# ::node	l	line	4-5
+# ::node	h	hold-01	5-6
+# ::node	p2	plate	6-7
+# ::node	h2	hot-05	8-9
+# ::node	d	dog	9-10
+# ::node	a	and	10-11
+# ::node	b	burger	11-12
+# ::root	h	hold-01
+# ::edge	line	ARG0-of	serve-02	l	s	
+# ::edge	person	location	line	p	l	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	plate	h	p2	
+# ::edge	dog	ARG1-of	hot-05	d	h2	
+# ::edge	and	op1	dog	a	d	
+# ::edge	plate	consist-of	and	p2	a	
+# ::edge	and	op2	burger	a	b	
+(h / hold-01
+    :ARG0 (p / person
+        :location (l / line
+            :ARG0-of (s / serve-02)))
+    :ARG1 (p2 / plate
+        :consist-of (a / and
+            :op1 (d / dog
+                :ARG1-of (h2 / hot-05))
+            :op2 (b / burger))))

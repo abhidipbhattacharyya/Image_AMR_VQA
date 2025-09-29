@@ -1,0 +1,30 @@
+# ::tok Several vehicles with pieces of luggage on them with planes off to the side .
+# ::node	s	several	0-1
+# ::node	v	vehicle	1-2
+# ::node	p	piece	3-4
+# ::node	l	luggage	5-6
+# ::node	a	and	8-9
+# ::node	h	have-03	8-9
+# ::node	p2	plane	9-10
+# ::node	o	off	10-11
+# ::node	s2	side	13-14
+# ::root	a	and
+# ::edge	vehicle	quant	several	v	s	
+# ::edge	piece	part-of	luggage	p	l	
+# ::edge	and	op1	piece	a	p	
+# ::edge	piece	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	piece	h	p	
+# ::edge	and	op2	plane	a	p2	
+# ::edge	plane	location	off	p2	o	
+# ::edge	off	op1	side	o	s2	
+# ::edge	and	rel	vehicle	a	v	
+(a / and
+    :op1 (p / piece
+        :ARG0-of (h / have-03
+            :ARG1 p)
+        :part-of (l / luggage))
+    :op2 (p2 / plane
+        :location (o / off
+            :op1 (s2 / side)))
+    :rel (v / vehicle
+        :quant (s / several)))

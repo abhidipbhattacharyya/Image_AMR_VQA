@@ -1,0 +1,31 @@
+# ::tok A person with a shade of purple hair and wearing a dark dress shirt and necktie .
+# ::node	p	person	1-2
+# ::node	s	shade	4-5
+# ::node	p2	purple-02	6-7
+# ::node	h	hair	7-8
+# ::node	w	wear-01	9-10
+# ::node	d	dark-02	11-12
+# ::node	d2	dress-01	12-13
+# ::node	s2	shirt	13-14
+# ::node	a	and	14-15
+# ::node	n	necktie	15-16
+# ::root	p	person
+# ::edge	shade	mod	purple-02	s	p2	
+# ::edge	hair	mod	shade	h	s	
+# ::edge	person	part	hair	p	h	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	shirt	mod	dress-01	s2	d2	
+# ::edge	shirt	ARG1-of	dark-02	s2	d	
+# ::edge	and	op1	shirt	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	necktie	a	n	
+(p / person
+    :ARG0-of (w / wear-01
+        :ARG1 (a / and
+            :op1 (s2 / shirt
+                :ARG1-of (d / dark-02)
+                :mod (d2 / dress-01))
+            :op2 (n / necktie)))
+    :part (h / hair
+        :mod (s / shade
+            :mod (p2 / purple-02))))

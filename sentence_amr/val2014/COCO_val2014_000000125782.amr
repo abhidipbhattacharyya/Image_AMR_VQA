@@ -1,0 +1,28 @@
+# ::tok freshly baked donuts priced to sell at 60cents each
+# ::node	f	fresh-04	0-1
+# ::node	b	bake-01	1-2
+# ::node	d2	donut	2-3
+# ::node	p	price-01	3-4
+# ::node	m	monetary-quantity	3-4
+# ::node	s	sell-01	5-6
+# ::node	d	dollar	7-8
+# ::node	0	60	7-8
+# ::node	e	each	8-9
+# ::root	p	price-01
+# ::edge	bake-01	ARG1-of	fresh-04	b	f	
+# ::edge	donut	ARG1-of	bake-01	d2	b	
+# ::edge	price-01	ARG1	donut	p	d2	
+# ::edge	price-01	ARG2	monetary-quantity	p	m	
+# ::edge	monetary-quantity	ARG1-of	sell-01	m	s	
+# ::edge	monetary-quantity	unit	dollar	m	d	
+# ::edge	monetary-quantity	quant	60	m	0	
+# ::edge	sell-01	mod	each	s	e	
+(p / price-01
+    :ARG1 (d2 / donut
+        :ARG1-of (b / bake-01
+            :ARG1-of (f / fresh-04)))
+    :ARG2 (m / monetary-quantity
+        :quant 60
+        :ARG1-of (s / sell-01
+            :mod (e / each))
+        :unit (d / dollar)))

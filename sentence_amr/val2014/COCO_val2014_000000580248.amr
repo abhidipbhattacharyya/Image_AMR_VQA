@@ -1,0 +1,49 @@
+# ::tok An Obama look like with another man holding a surf board .
+# ::node	p	person	1-2
+# ::node	n	name	1-2
+# ::node	0	Obama	1-2
+# ::node	r	resemble-01	3-4
+# ::node	a	another	5-6
+# ::node	m	man	6-7
+# ::node	h	hold-01	7-8
+# ::node	s	surf-01	9-10
+# ::node	b	board	10-11
+# ::root	r	resemble-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Obama	n	0	
+# ::edge	resemble-01	ARG1	person	r	p	
+# ::edge	man	mod	another	m	a	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	resemble-01	ARG2	hold-01	r	h	
+# ::edge	board	purpose	surf-01	b	s	
+# ::edge	hold-01	ARG1	board	h	b	
+(r / resemble-01
+    :ARG1 (p / person
+        :name (n / name
+            :op1 "Obama"))
+    :ARG2 (h / hold-01
+        :ARG0 (m / man
+            :mod (a / another))
+        :ARG1 (b / board
+            :purpose (s / surf-01))))
+
+
+# ::tok Comment : " This is where our tax dollars go ! "
+# ::node	c	comment-01	0-1
+# ::node	t2	this	3-4
+# ::node	w	we	6-7
+# ::node	t	tax-01	7-8
+# ::node	d	dollar	8-9
+# ::node	g	go-01	9-10
+# ::root	c	comment-01
+# ::edge	tax-01	ARG2	we	t	w	
+# ::edge	dollar	ARG1-of	tax-01	d	t	
+# ::edge	go-01	ARG1	dollar	g	d	
+# ::edge	go-01	ARG4	this	g	t2	
+# ::edge	comment-01	ARG1	go-01	c	g	
+(c / comment-01
+    :ARG1 (g / go-01
+        :ARG1 (d / dollar
+            :ARG1-of (t / tax-01
+                :ARG2 (w / we)))
+        :ARG4 (t2 / this)))

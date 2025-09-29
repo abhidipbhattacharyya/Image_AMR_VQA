@@ -1,0 +1,34 @@
+# ::tok A silver and blue train pulling a line of train cars down the track .
+# ::node	s	silver	1-2
+# ::node	a	and	2-3
+# ::node	b	blue	3-4
+# ::node	t2	train	4-5
+# ::node	t3	train	4-5
+# ::node	p	pull-01	5-6
+# ::node	l	line	7-8
+# ::node	t4	train	9-10
+# ::node	c	car	10-11
+# ::node	d	down	11-12
+# ::node	t	track	13-14
+# ::root	p	pull-01
+# ::edge	and	op1	train	a	t2	
+# ::edge	train	mod	silver	t2	s	
+# ::edge	train	mod	blue	t3	b	
+# ::edge	and	op2	train	a	t3	
+# ::edge	pull-01	ARG0	and	p	a	
+# ::edge	pull-01	ARG1	line	p	l	
+# ::edge	car	mod	train	c	t4	
+# ::edge	line	consist-of	car	l	c	
+# ::edge	pull-01	direction	down	p	d	
+# ::edge	down	op1	track	d	t	
+(p / pull-01
+    :ARG0 (a / and
+        :op1 (t2 / train
+            :mod (s / silver))
+        :op2 (t3 / train
+            :mod (b / blue)))
+    :ARG1 (l / line
+        :consist-of (c / car
+            :mod (t4 / train)))
+    :direction (d / down
+        :op1 (t / track)))

@@ -1,0 +1,38 @@
+# ::tok Several people with blue and white scarfs and / or ties on outside of a building .
+# ::node	s2	several	0-1
+# ::node	p	person	1-2
+# ::node	h	have-03	2-3
+# ::node	b	blue	3-4
+# ::node	a	and	4-5
+# ::node	w	white-03	5-6
+# ::node	s	scarf	6-7
+# ::node	a2	and-or	9-10
+# ::node	t	tie	10-11
+# ::node	o	outside	12-13
+# ::node	b2	building	15-16
+# ::root	p	person
+# ::edge	person	quant	several	p	s2	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	scarf	a	s	
+# ::edge	scarf	mod	blue	s	b	
+# ::edge	and-or	op1	scarf	a2	s	
+# ::edge	and	op2	and-or	a	a2	
+# ::edge	and-or	op2	tie	a2	t	
+# ::edge	white-03	ARG1	tie	w	t	
+# ::edge	person	location	outside	p	o	
+# ::edge	outside	op1	building	o	b2	
+# ::edge	person	rel	white-03	p	w	
+(p / person
+    :quant (s2 / several)
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / scarf
+                :mod (b / blue))
+            :op2 (a2 / and-or
+                :op1 s
+                :op2 (t / tie))))
+    :location (o / outside
+        :op1 (b2 / building))
+    :rel (w / white-03
+        :ARG1 t))

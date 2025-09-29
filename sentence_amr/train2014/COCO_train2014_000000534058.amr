@@ -1,0 +1,33 @@
+# ::tok A small plane flying through a cloudy sky with smoke pouring out it 's back .
+# ::node	s2	small	1-2
+# ::node	p	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	c	cloudy-02	6-7
+# ::node	s	sky	7-8
+# ::node	h	have-03	8-9
+# ::node	s3	smoke	9-10
+# ::node	p2	pour-01	10-11
+# ::node	o	out	11-12
+# ::node	b	back	14-15
+# ::root	p	plane
+# ::edge	plane	mod	small	p	s2	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	sky	ARG1-of	cloudy-02	s	c	
+# ::edge	fly-01	path	sky	f	s	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	smoke	h	s3	
+# ::edge	smoke	ARG1-of	pour-01	s3	p2	
+# ::edge	pour-01	direction	out	p2	o	
+# ::edge	pour-01	ARG2	back	p2	b	
+# ::edge	plane	part	back	p	b	
+(p / plane
+    :ARG0-of (h / have-03
+        :ARG1 (s3 / smoke
+            :ARG1-of (p2 / pour-01
+                :ARG2 (b / back)
+                :direction (o / out))))
+    :ARG2-of (f / fly-01
+        :path (s / sky
+            :ARG1-of (c / cloudy-02)))
+    :mod (s2 / small)
+    :part b)

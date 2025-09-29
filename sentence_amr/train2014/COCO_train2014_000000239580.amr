@@ -1,0 +1,35 @@
+# ::tok A teen skateboarder flying in the air on his skateboard after jumping two steps .
+# ::node	t	teen	1-2
+# ::node	p	person	2-3
+# ::node	s	skate-01	2-3
+# ::node	f	fly-01	3-4
+# ::node	a2	air	6-7
+# ::node	a	after	10-11
+# ::node	j	jump-03	11-12
+# ::node	0	2	12-13
+# ::node	d	distance-quantity	13-14
+# ::node	s2	step-01	13-14
+# ::root	p	person
+# ::edge	person	mod	teen	p	t	
+# ::edge	person	ARG0-of	skate-01	p	s	
+# ::edge	person	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	destination	air	f	a2	
+# ::edge	fly-01	time	after	f	a	
+# ::edge	after	op1	jump-03	a	j	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	distance-quantity	quant	2	d	0	
+# ::edge	jump-03	extent	distance-quantity	j	d	
+# ::edge	distance-quantity	unit	step-01	d	s2	
+# ::edge	step-01	ARG0	person	s2	p	
+(p / person
+    :ARG0-of (s / skate-01)
+    :ARG2-of (f / fly-01
+        :destination (a2 / air)
+        :time (a / after
+            :op1 (j / jump-03
+                :ARG0 p
+                :extent (d / distance-quantity
+                    :quant 2
+                    :unit (s2 / step-01
+                        :ARG0 p)))))
+    :mod (t / teen))

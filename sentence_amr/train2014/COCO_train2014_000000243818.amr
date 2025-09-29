@@ -1,0 +1,30 @@
+# ::tok A small giraffe with a larger giraffe behind it in the distance .
+# ::node	s	small	1-2
+# ::node	g	giraffe	2-3
+# ::node	h	have-degree-91	5-6
+# ::node	l	large	5-6
+# ::node	m	more	5-6
+# ::node	g2	giraffe	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	b2	behind	7-8
+# ::node	d	distant-02	11-12
+# ::root	b	be-located-at-91
+# ::edge	giraffe	mod	small	g	s	
+# ::edge	have-degree-91	ARG2	large	h	l	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	giraffe	ARG1-of	have-degree-91	g2	h	
+# ::edge	be-located-at-91	ARG1	giraffe	b	g2	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	giraffe	b2	g	
+# ::edge	behind	location	distant-02	b2	d	
+# ::edge	distant-02	ARG2	giraffe	d	g	
+(b / be-located-at-91
+    :ARG1 (g2 / giraffe
+        :ARG1-of (h / have-degree-91
+            :ARG2 (l / large)
+            :ARG3 (m / more)))
+    :ARG2 (b2 / behind
+        :location (d / distant-02
+            :ARG2 (g / giraffe
+                :mod (s / small)))
+        :op1 g))

@@ -1,0 +1,29 @@
+# ::tok The small area in the apartment is clean and ready for us to use .
+# ::node	s	small	1-2
+# ::node	a3	area	2-3
+# ::node	a2	apartment	5-6
+# ::node	c	clean-01	7-8
+# ::node	a	and	8-9
+# ::node	r	ready-02	9-10
+# ::node	w	we	11-12
+# ::node	u	use-01	13-14
+# ::root	a	and
+# ::edge	area	mod	small	a3	s	
+# ::edge	area	location	apartment	a3	a2	
+# ::edge	clean-01	ARG1	area	c	a3	
+# ::edge	and	op1	clean-01	a	c	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	area	r	a3	
+# ::edge	use-01	ARG0	we	u	w	
+# ::edge	ready-02	ARG2	use-01	r	u	
+# ::edge	use-01	ARG1	area	u	a3	
+(a / and
+    :op1 (c / clean-01
+        :ARG1 (a3 / area
+            :location (a2 / apartment)
+            :mod (s / small)))
+    :op2 (r / ready-02
+        :ARG1 a3
+        :ARG2 (u / use-01
+            :ARG0 (w / we)
+            :ARG1 a3)))

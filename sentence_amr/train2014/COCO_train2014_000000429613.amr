@@ -1,0 +1,28 @@
+# ::tok The front of a helicopter is hovering above the ground while the tail end just makes contact .
+# ::node	f	front	1-2
+# ::node	h	helicopter	4-5
+# ::node	h2	hover-01	6-7
+# ::node	a	above	7-8
+# ::node	g	ground	9-10
+# ::node	t	tail	12-13
+# ::node	e	end	13-14
+# ::node	j	just	14-15
+# ::node	c	contact-01	16-17
+# ::root	h2	hover-01
+# ::edge	front	part-of	helicopter	f	h	
+# ::edge	hover-01	ARG1	front	h2	f	
+# ::edge	hover-01	ARG2	above	h2	a	
+# ::edge	above	op1	ground	a	g	
+# ::edge	end	part-of	tail	e	t	
+# ::edge	contact-01	mod	just	c	j	
+# ::edge	contact-01	ARG0	end	c	e	
+# ::edge	hover-01	time	contact-01	h2	c	
+(h2 / hover-01
+    :ARG1 (f / front
+        :part-of (h / helicopter))
+    :ARG2 (a / above
+        :op1 (g / ground))
+    :time (c / contact-01
+        :ARG0 (e / end
+            :part-of (t / tail))
+        :mod (j / just)))

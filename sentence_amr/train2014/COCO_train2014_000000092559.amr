@@ -1,0 +1,26 @@
+# ::tok a person standing next to a counter while making something to eat
+# ::node	p	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	c	counter	6-7
+# ::node	m	make-01	8-9
+# ::node	s	something	9-10
+# ::node	e	eat-01	11-12
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	counter	n	c	
+# ::edge	stand-01	purpose	make-01	s2	m	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	make-01	ARG1	something	m	s	
+# ::edge	something	ARG1-of	eat-01	s	e	
+# ::edge	eat-01	ARG0	person	e	p	
+(s2 / stand-01
+    :purpose (m / make-01
+        :ARG0 (p / person)
+        :ARG1 (s / something
+            :ARG1-of (e / eat-01
+                :ARG0 p)))
+    :ARG1 p
+    :ARG2 (n / next-to
+        :op1 (c / counter)))

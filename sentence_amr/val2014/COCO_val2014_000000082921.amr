@@ -1,0 +1,43 @@
+# ::tok A one way , left turn only , straight only , no right turn , street sign and traffic light .
+# ::node	o	one-way	2-3
+# ::node	a	and	3-4
+# ::node	l	left-20	4-5
+# ::node	t2	turn-01	5-6
+# ::node	o2	only	6-7
+# ::node	s2	straight-04	8-9
+# ::node	o3	only	9-10
+# ::node	0	-	11-12
+# ::node	r	right-04	12-13
+# ::node	t3	turn-01	13-14
+# ::node	s3	street	15-16
+# ::node	s	sign	16-17
+# ::node	t	traffic	18-19
+# ::node	l2	light	19-20
+# ::root	a	and
+# ::edge	and	manner	one-way	a	o	
+# ::edge	turn-01	ARG1-of	left-20	t2	l	
+# ::edge	and	op1	turn-01	a	t2	
+# ::edge	turn-01	mod	only	t2	o2	
+# ::edge	and	op2	straight-04	a	s2	
+# ::edge	straight-04	mod	only	s2	o3	
+# ::edge	turn-01	ARG1-of	right-04	t3	r	
+# ::edge	turn-01	polarity	-	t3	0	
+# ::edge	and	op3	turn-01	a	t3	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	and	op4	sign	a	s	
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	and	op5	light	a	l2	
+(a / and
+    :manner (o / one-way)
+    :op1 (t2 / turn-01
+        :ARG1-of (l / left-20)
+        :mod (o2 / only))
+    :op2 (s2 / straight-04
+        :mod (o3 / only))
+    :op3 (t3 / turn-01
+        :ARG1-of (r / right-04)
+        :polarity -)
+    :op4 (s / sign
+        :mod (s3 / street))
+    :op5 (l2 / light
+        :mod (t / traffic)))

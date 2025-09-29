@@ -1,0 +1,49 @@
+# ::tok Asian stirfry meal of chicken or pork with broccoli in brown sauce and side of rice and salad .
+# ::node	c2	continent	0-1
+# ::node	n	name	0-1
+# ::node	0	Asia	0-1
+# ::node	s4	stirfry	1-2
+# ::node	m	meal	2-3
+# ::node	c	chicken	4-5
+# ::node	o	or	5-6
+# ::node	p	pork	6-7
+# ::node	b	broccoli	8-9
+# ::node	b2	brown	10-11
+# ::node	s2	sauce	11-12
+# ::node	a	and	12-13
+# ::node	s3	side	13-14
+# ::node	r	rice	15-16
+# ::node	a2	and	16-17
+# ::node	s	salad	17-18
+# ::root	m	meal
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	meal	mod	stirfry	m	s4	
+# ::edge	meal	mod	continent	m	c2	
+# ::edge	or	op1	chicken	o	c	
+# ::edge	or	op2	pork	o	p	
+# ::edge	sauce	mod	brown	s2	b2	
+# ::edge	sauce	consist-of	broccoli	s2	b	
+# ::edge	and	op2	sauce	a	s2	
+# ::edge	and	op1	or	a	o	
+# ::edge	meal	consist-of	and	m	a	
+# ::edge	and	op3	side	a	s3	
+# ::edge	and	op1	rice	a2	r	
+# ::edge	side	consist-of	and	s3	a2	
+# ::edge	and	op2	salad	a2	s	
+(m / meal
+    :consist-of (a / and
+        :op1 (o / or
+            :op1 (c / chicken)
+            :op2 (p / pork))
+        :op2 (s2 / sauce
+            :consist-of (b / broccoli)
+            :mod (b2 / brown))
+        :op3 (s3 / side
+            :consist-of (a2 / and
+                :op1 (r / rice)
+                :op2 (s / salad))))
+    :mod (s4 / stirfry)
+    :mod (c2 / continent
+        :name (n / name
+            :op1 "Asia")))

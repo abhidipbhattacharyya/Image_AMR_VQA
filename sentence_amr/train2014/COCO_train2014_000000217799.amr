@@ -1,0 +1,37 @@
+# ::tok One elephant is squirting water out of its mouth and the other is putting water into its mouth .
+# ::node	o	one	0-1
+# ::node	e	elephant	1-2
+# ::node	e2	elephant	1-2
+# ::node	s	squirt-01	3-4
+# ::node	w	water	4-5
+# ::node	o3	out-06	5-6
+# ::node	m	mouth	8-9
+# ::node	a	and	9-10
+# ::node	o2	other	11-12
+# ::node	p	put-01	13-14
+# ::root	a	and
+# ::edge	elephant	mod	one	e	o	
+# ::edge	squirt-01	ARG0	elephant	s	e	
+# ::edge	squirt-01	ARG1	water	s	w	
+# ::edge	out-06	ARG1	water	o3	w	
+# ::edge	squirt-01	ARG2	out-06	s	o3	
+# ::edge	out-06	ARG2	mouth	o3	m	
+# ::edge	elephant	part	mouth	e	m	
+# ::edge	and	op1	squirt-01	a	s	
+# ::edge	elephant	mod	other	e2	o2	
+# ::edge	and	op2	put-01	a	p	
+# ::edge	put-01	ARG1	water	p	w	
+# ::edge	put-01	ARG0	elephant	p	e2	
+(a / and
+    :op1 (s / squirt-01
+        :ARG0 (e / elephant
+            :mod (o / one)
+            :part (m / mouth))
+        :ARG1 (w / water)
+        :ARG2 (o3 / out-06
+            :ARG1 w
+            :ARG2 m))
+    :op2 (p / put-01
+        :ARG0 (e2 / elephant
+            :mod (o2 / other))
+        :ARG1 w))

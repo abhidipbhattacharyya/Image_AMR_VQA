@@ -1,0 +1,49 @@
+# ::tok Two baseball players , one with trying to hit a ball while the other trying to catch the ball
+# ::node	1	2	0-1
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	i	include-91	4-5
+# ::node	i2	include-91	4-5
+# ::node	a	1	4-5
+# ::node	0	1	4-5
+# ::node	t	try-01	6-7
+# ::node	h	hit-01	8-9
+# ::node	b	ball	10-11
+# ::node	w	while	11-12
+# ::node	o	other	13-14
+# ::node	t2	try-01	14-15
+# ::node	c	catch-01	16-17
+# ::node	b2	ball	18-19
+# ::root	p	person
+# ::edge	person	quant	2	p	1	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b3	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	ARG2-of	include-91	p	i2	
+# ::edge	try-01	ARG1	hit-01	t	h	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	while	op1	try-01	w	t	
+# ::edge	1	ARG1	while	a	w	
+# ::edge	other	quant	1	o	0	
+# ::edge	include-91	ARG1	other	i2	o	
+# ::edge	while	op2	try-01	w	t2	
+# ::edge	try-01	ARG1	catch-01	t2	c	
+# ::edge	catch-01	ARG1	ball	c	b2	
+# ::edge	person	rel	1	p	a	
+(p / person
+    :quant 2
+    :ARG0-of (p2 / play-01
+        :ARG1 (b3 / baseball))
+    :ARG2-of (i / include-91)
+    :ARG2-of (i2 / include-91
+        :ARG1 (o / other
+            :quant 1))
+    :rel (a / 1
+        :ARG1 (w / while
+            :op1 (t / try-01
+                :ARG1 (h / hit-01
+                    :ARG1 (b / ball)))
+            :op2 (t2 / try-01
+                :ARG1 (c / catch-01
+                    :ARG1 (b2 / ball))))))

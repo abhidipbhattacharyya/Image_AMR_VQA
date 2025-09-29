@@ -1,0 +1,40 @@
+# ::tok Street signs at the intersection of Bridge Street and Fulton Mall , with stores in the background .
+# ::node	s3	street	0-1
+# ::node	s	sign	1-2
+# ::node	i	intersect-01	4-5
+# ::node	n	name	6-7
+# ::node	0	Bridge	6-7
+# ::node	r	road	7-8
+# ::node	s4	street	7-8
+# ::node	3	Street	7-8
+# ::node	n2	name	9-10
+# ::node	1	Fulton	9-10
+# ::node	2	Mall	10-11
+# ::node	s2	store	13-14
+# ::node	b	background	16-17
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	location	intersect-01	s	i	
+# ::edge	name	op1	Bridge	n	0	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	intersect-01	ARG1	street	i	s4	
+# ::edge	name	op2	Street	n	3	
+# ::edge	street	name	name	s4	n2	
+# ::edge	name	op1	Fulton	n2	1	
+# ::edge	name	op2	Mall	n2	2	
+# ::edge	sign	location-of	store	s	s2	
+# ::edge	store	location	background	s2	b	
+(s / sign
+    :location (i / intersect-01
+        :ARG1 (r / road
+            :name (n / name
+                :op1 "Bridge"
+                :op2 "Street"))
+        :ARG1 (s4 / street
+            :name (n2 / name
+                :op1 "Fulton"
+                :op2 "Mall")))
+    :location-of (s2 / store
+        :location (b / background))
+    :mod (s3 / street))

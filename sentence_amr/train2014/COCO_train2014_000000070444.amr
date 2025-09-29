@@ -1,0 +1,28 @@
+# ::tok A traffic light is green on an urban street in the United States .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	g	green-02	4-5
+# ::node	u	urban	7-8
+# ::node	s	street	8-9
+# ::node	n	name	11-12
+# ::node	1	United	11-12
+# ::node	c	country	12-13
+# ::node	0	States	12-13
+# ::root	g	green-02
+# ::edge	light	mod	traffic	l	t	
+# ::edge	green-02	ARG1	light	g	l	
+# ::edge	street	mod	urban	s	u	
+# ::edge	green-02	location	street	g	s	
+# ::edge	name	op1	United	n	1	
+# ::edge	country	name	name	c	n	
+# ::edge	street	location	country	s	c	
+# ::edge	name	op2	States	n	0	
+(g / green-02
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :location (s / street
+        :location (c / country
+            :name (n / name
+                :op1 "United"
+                :op2 "States"))
+        :mod (u / urban)))

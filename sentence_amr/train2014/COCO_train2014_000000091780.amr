@@ -1,0 +1,25 @@
+# ::tok some stuff blended up in a blender for some serious gainz
+# ::node	s2	some	0-1
+# ::node	s4	stuff	1-2
+# ::node	b	blend-01	2-3
+# ::node	t	thing	6-7
+# ::node	p	process-01	6-7
+# ::node	s3	some	8-9
+# ::node	s	serious-02	9-10
+# ::node	g	gain-02	10-11
+# ::root	b	blend-01
+# ::edge	stuff	quant	some	s4	s2	
+# ::edge	blend-01	ARG1	stuff	b	s4	
+# ::edge	blend-01	ARG2	thing	b	t	
+# ::edge	thing	ARG0-of	process-01	t	p	
+# ::edge	gain-02	ARG1-of	serious-02	g	s	
+# ::edge	gain-02	quant	some	g	s3	
+# ::edge	blend-01	purpose	gain-02	b	g	
+(b / blend-01
+    :purpose (g / gain-02
+        :quant (s3 / some)
+        :ARG1-of (s / serious-02))
+    :ARG1 (s4 / stuff
+        :quant (s2 / some))
+    :ARG2 (t / thing
+        :ARG0-of (p / process-01)))

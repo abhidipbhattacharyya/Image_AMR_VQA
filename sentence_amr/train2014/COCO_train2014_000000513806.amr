@@ -1,0 +1,31 @@
+# ::tok A sandwich on a plate next to two bottles of drinks on a table outdoors .
+# ::node	s	sandwich	1-2
+# ::node	p	plate	4-5
+# ::node	n	next-to	5-6
+# ::node	0	2	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	b	bottle	8-9
+# ::node	t2	thing	10-11
+# ::node	d	drink-01	10-11
+# ::node	t	table	13-14
+# ::node	o	outdoors	14-15
+# ::root	t	table
+# ::edge	sandwich	location	plate	s	p	
+# ::edge	sandwich	location	next-to	s	n	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	bottle	v	b	
+# ::edge	thing	quant	volume-quantity	t2	v	
+# ::edge	next-to	op1	thing	n	t2	
+# ::edge	thing	ARG1-of	drink-01	t2	d	
+# ::edge	table	domain	sandwich	t	s	
+# ::edge	table	location	outdoors	t	o	
+(t / table
+    :domain (s / sandwich
+        :location (p / plate)
+        :location (n / next-to
+            :op1 (t2 / thing
+                :quant (v / volume-quantity
+                    :quant 2
+                    :unit (b / bottle))
+                :ARG1-of (d / drink-01))))
+    :location (o / outdoors))

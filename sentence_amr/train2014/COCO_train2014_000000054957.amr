@@ -1,0 +1,39 @@
+# ::tok Two men sitting on a couch holding pool sticks , one between his legs .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	couch	5-6
+# ::node	h	hold-01	6-7
+# ::node	p	pool	7-8
+# ::node	s2	stick	8-9
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	b	between	11-12
+# ::node	l	leg	13-14
+# ::root	s	sit-01
+# ::edge	man	quant	2	m	1	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	couch	s	c	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	stick	mod	pool	s2	p	
+# ::edge	hold-01	ARG1	stick	h	s2	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	location	between	m2	b	
+# ::edge	between	op1	leg	b	l	
+# ::edge	man	part	leg	m	l	
+(s / sit-01
+    :ARG1 (m / man
+        :quant 2
+        :ARG0-of (h / hold-01
+            :ARG1 (s2 / stick
+                :mod (p / pool)))
+        :ARG2-of (i / include-91
+            :ARG1 (m2 / man
+                :quant 1
+                :location (b / between
+                    :op1 (l / leg))))
+        :part l)
+    :ARG2 (c / couch))

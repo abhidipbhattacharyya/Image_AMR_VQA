@@ -1,0 +1,40 @@
+# ::tok A floral dinner plate with a pulled pork sandwich and chips and a glass of milk on the side .
+# ::node	f	floral	1-2
+# ::node	d	dinner	2-3
+# ::node	p	plate	3-4
+# ::node	p3	pull-01	6-7
+# ::node	p2	pork	7-8
+# ::node	s	sandwich	8-9
+# ::node	a	and	9-10
+# ::node	c	chip	10-11
+# ::node	v	volume-quantity	12-13
+# ::node	0	1	12-13
+# ::node	g	glass	13-14
+# ::node	m	milk	15-16
+# ::node	s2	side	18-19
+# ::root	p	plate
+# ::edge	plate	mod	dinner	p	d	
+# ::edge	plate	mod	floral	p	f	
+# ::edge	pork	ARG1-of	pull-01	p2	p3	
+# ::edge	sandwich	consist-of	pork	s	p2	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	plate	accompanier	and	p	a	
+# ::edge	and	op2	chip	a	c	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	milk	quant	volume-quantity	m	v	
+# ::edge	and	op3	milk	a	m	
+# ::edge	milk	location	side	m	s2	
+(p / plate
+    :accompanier (a / and
+        :op1 (s / sandwich
+            :consist-of (p2 / pork
+                :ARG1-of (p3 / pull-01)))
+        :op2 (c / chip)
+        :op3 (m / milk
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :location (s2 / side)))
+    :mod (d / dinner)
+    :mod (f / floral))

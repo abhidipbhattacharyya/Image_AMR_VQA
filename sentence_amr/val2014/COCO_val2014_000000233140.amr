@@ -1,0 +1,37 @@
+# ::tok A double - bed with two matching pillows in a room with a white door and white wall .
+# ::node	d2	double	1-2
+# ::node	b	bed	3-4
+# ::node	0	2	5-6
+# ::node	m	match-01	6-7
+# ::node	p	pill	7-8
+# ::node	r	room	10-11
+# ::node	h	have-03	11-12
+# ::node	w2	white-03	13-14
+# ::node	d	door	14-15
+# ::node	a	and	15-16
+# ::node	w3	white-03	16-17
+# ::node	w	wall	17-18
+# ::root	b	bed
+# ::edge	bed	mod	double	b	d2	
+# ::edge	pill	ARG1-of	match-01	p	m	
+# ::edge	pill	quant	2	p	0	
+# ::edge	bed	part	pill	b	p	
+# ::edge	bed	location	room	b	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	door	ARG1-of	white-03	d	w2	
+# ::edge	and	op1	door	a	d	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	wall	ARG1-of	white-03	w	w3	
+# ::edge	and	op2	wall	a	w	
+(b / bed
+    :location (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (d / door
+                    :ARG1-of (w2 / white-03))
+                :op2 (w / wall
+                    :ARG1-of (w3 / white-03)))))
+    :mod (d2 / double)
+    :part (p / pill
+        :quant 2
+        :ARG1-of (m / match-01)))

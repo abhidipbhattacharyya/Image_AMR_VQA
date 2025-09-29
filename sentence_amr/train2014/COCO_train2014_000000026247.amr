@@ -1,0 +1,30 @@
+# ::tok A body of water with a bridge running across it running by a clock tower .
+# ::node	b	body	1-2
+# ::node	w	water	3-4
+# ::node	h	have-03	4-5
+# ::node	b2	bridge	6-7
+# ::node	r	run-04	7-8
+# ::node	a	across	8-9
+# ::node	r2	run-04	10-11
+# ::node	c	clock	13-14
+# ::node	t	tower	14-15
+# ::root	b	body
+# ::edge	body	consist-of	water	b	w	
+# ::edge	body	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	bridge	h	b2	
+# ::edge	bridge	ARG1-of	run-04	b2	r	
+# ::edge	run-04	ARG2	across	r	a	
+# ::edge	across	op1	body	a	b	
+# ::edge	bridge	ARG1-of	run-04	b2	r2	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	run-04	path	tower	r2	t	
+(b / body
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / bridge
+            :ARG1-of (r / run-04
+                :ARG2 (a / across
+                    :op1 b))
+            :ARG1-of (r2 / run-04
+                :path (t / tower
+                    :mod (c / clock)))))
+    :consist-of (w / water))

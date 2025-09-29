@@ -1,0 +1,28 @@
+# ::tok a wooden bench sitting in front of a metal fence during the night hours
+# ::node	w	wooden	1-2
+# ::node	b	bench	2-3
+# ::node	s	sit-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	m	metal	8-9
+# ::node	f	fence	9-10
+# ::node	d	date-entity	12-13
+# ::node	n	night	12-13
+# ::node	h	hour	13-14
+# ::root	s	sit-01
+# ::edge	bench	mod	wooden	b	w	
+# ::edge	sit-01	ARG1	bench	s	b	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	fence	mod	metal	f	m	
+# ::edge	in-front-of	op1	fence	i	f	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	hour	mod	date-entity	h	d	
+# ::edge	sit-01	time	hour	s	h	
+(s / sit-01
+    :ARG1 (b / bench
+        :mod (w / wooden))
+    :ARG2 (i / in-front-of
+        :op1 (f / fence
+            :mod (m / metal)))
+    :time (h / hour
+        :mod (d / date-entity
+            :dayperiod (n / night))))

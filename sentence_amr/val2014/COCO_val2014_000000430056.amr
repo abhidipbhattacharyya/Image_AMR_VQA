@@ -1,0 +1,28 @@
+# ::tok A sandwich on a plate with three slices of bread , tomatoes and chips on the side .
+# ::node	s	sandwich	1-2
+# ::node	p	plate	4-5
+# ::node	0	3	6-7
+# ::node	s3	slice	7-8
+# ::node	b	bread	9-10
+# ::node	t	tomato	11-12
+# ::node	a	and	12-13
+# ::node	c	chip	13-14
+# ::node	s2	side	16-17
+# ::root	s	sandwich
+# ::edge	sandwich	location	plate	s	p	
+# ::edge	slice	quant	3	s3	0	
+# ::edge	slice	consist-of	bread	s3	b	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	and	op1	slice	a	s3	
+# ::edge	sandwich	accompanier	and	s	a	
+# ::edge	and	op3	chip	a	c	
+# ::edge	and	location	side	a	s2	
+(s / sandwich
+    :accompanier (a / and
+        :location (s2 / side)
+        :op1 (s3 / slice
+            :quant 3
+            :consist-of (b / bread))
+        :op2 (t / tomato)
+        :op3 (c / chip))
+    :location (p / plate))

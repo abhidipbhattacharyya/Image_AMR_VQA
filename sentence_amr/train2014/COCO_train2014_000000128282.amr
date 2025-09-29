@@ -1,0 +1,44 @@
+# ::tok A player in a doubles tennis match crouching low as his partner slams the ball behind him .
+# ::node	p2	person	1-2
+# ::node	p4	play-01	1-2
+# ::node	d	doubles	4-5
+# ::node	t	tennis	5-6
+# ::node	m	match-03	6-7
+# ::node	c	crouch-01	7-8
+# ::node	l	low-04	8-9
+# ::node	p3	person	11-12
+# ::node	h	have-rel-role-91	11-12
+# ::node	p	partner	11-12
+# ::node	s	slam-02	12-13
+# ::node	b	ball	14-15
+# ::node	b2	behind	15-16
+# ::root	p2	person
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	tennis	mod	doubles	t	d	
+# ::edge	match-03	ARG1	tennis	m	t	
+# ::edge	person	ARG0-of	match-03	p2	m	
+# ::edge	person	ARG0-of	crouch-01	p2	c	
+# ::edge	crouch-01	ARG1-of	low-04	c	l	
+# ::edge	person	ARG0-of	have-rel-role-91	p3	h	
+# ::edge	have-rel-role-91	ARG1	person	h	p2	
+# ::edge	have-rel-role-91	ARG2	partner	h	p	
+# ::edge	slam-02	ARG0	person	s	p3	
+# ::edge	crouch-01	time	slam-02	c	s	
+# ::edge	slam-02	ARG1	ball	s	b	
+# ::edge	slam-02	location	behind	s	b2	
+# ::edge	behind	op1	person	b2	p2	
+(p2 / person
+    :ARG0-of (p4 / play-01)
+    :ARG0-of (m / match-03
+        :ARG1 (t / tennis
+            :mod (d / doubles)))
+    :ARG0-of (c / crouch-01
+        :ARG1-of (l / low-04)
+        :time (s / slam-02
+            :ARG0 (p3 / person
+                :ARG0-of (h / have-rel-role-91
+                    :ARG1 p2
+                    :ARG2 (p / partner)))
+            :ARG1 (b / ball)
+            :location (b2 / behind
+                :op1 p2))))

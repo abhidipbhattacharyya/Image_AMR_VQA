@@ -1,0 +1,37 @@
+# ::tok A batter has just attempted to hit the ball being pitched to him while waiting at home plate .
+# ::node	p	person	1-2
+# ::node	b2	batter-01	1-2
+# ::node	j	just	3-4
+# ::node	a	attempt-01	4-5
+# ::node	h	hit-01	6-7
+# ::node	b	ball	8-9
+# ::node	p2	pitch-04	10-11
+# ::node	w	wait-01	14-15
+# ::node	h2	home	16-17
+# ::node	p3	plate	17-18
+# ::root	a	attempt-01
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	attempt-01	mod	just	a	j	
+# ::edge	attempt-01	ARG0	person	a	p	
+# ::edge	attempt-01	ARG1	hit-01	a	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	ball	ARG1-of	pitch-04	b	p2	
+# ::edge	pitch-04	ARG2	person	p2	p	
+# ::edge	attempt-01	time	wait-01	a	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	plate	mod	home	p3	h2	
+# ::edge	wait-01	location	plate	w	p3	
+(a / attempt-01
+    :ARG0 (p / person
+        :ARG0-of (b2 / batter-01))
+    :ARG1 (h / hit-01
+        :ARG0 p
+        :ARG1 (b / ball
+            :ARG1-of (p2 / pitch-04
+                :ARG2 p)))
+    :mod (j / just)
+    :time (w / wait-01
+        :ARG1 p
+        :location (p3 / plate
+            :mod (h2 / home))))

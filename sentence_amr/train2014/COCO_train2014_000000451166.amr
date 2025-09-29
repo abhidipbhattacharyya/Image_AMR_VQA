@@ -1,0 +1,38 @@
+# ::tok A man prepares to hit the tennis ball while a judge stands behind him watching the play .
+# ::node	m	man	1-2
+# ::node	p3	prepare-02	2-3
+# ::node	h	hit-01	4-5
+# ::node	t	tennis	6-7
+# ::node	b	ball	7-8
+# ::node	p	person	10-11
+# ::node	j	judge-01	10-11
+# ::node	s	stand-01	11-12
+# ::node	b2	behind	12-13
+# ::node	w	watch-01	14-15
+# ::node	p2	play-01	16-17
+# ::root	p3	prepare-02
+# ::edge	prepare-02	ARG0	man	p3	m	
+# ::edge	prepare-02	ARG1	hit-01	p3	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	person	ARG0-of	judge-01	p	j	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	prepare-02	time	stand-01	p3	s	
+# ::edge	stand-01	ARG2	behind	s	b2	
+# ::edge	behind	op1	man	b2	m	
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG1	play-01	w	p2	
+(p3 / prepare-02
+    :ARG0 (m / man)
+    :ARG1 (h / hit-01
+        :ARG0 m
+        :ARG1 (b / ball
+            :mod (t / tennis)))
+    :time (s / stand-01
+        :ARG1 (p / person
+            :ARG0-of (j / judge-01)
+            :ARG0-of (w / watch-01
+                :ARG1 (p2 / play-01)))
+        :ARG2 (b2 / behind
+            :op1 m)))

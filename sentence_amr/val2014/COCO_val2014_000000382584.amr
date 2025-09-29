@@ -1,0 +1,36 @@
+# ::tok A bus driving into parking garage , with a do not enter sign in front of it .
+# ::node	b	bus	1-2
+# ::node	d	drive-01	2-3
+# ::node	p	park-01	4-5
+# ::node	g	garage	5-6
+# ::node	h	have-03	7-8
+# ::node	y	you	9-10
+# ::node	1	imperative	9-10
+# ::node	0	-	10-11
+# ::node	e	enter-01	11-12
+# ::node	s	sign	12-13
+# ::node	i	in-front-of	14-15
+# ::root	b	bus
+# ::edge	bus	ARG0-of	drive-01	b	d	
+# ::edge	garage	ARG2-of	park-01	g	p	
+# ::edge	drive-01	location	garage	d	g	
+# ::edge	bus	ARG0-of	have-03	b	h	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	mode	imperative	e	1	
+# ::edge	enter-01	ARG0	you	e	y	
+# ::edge	sign	topic	enter-01	s	e	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	bus	i	b	
+(b / bus
+    :ARG0-of (d / drive-01
+        :location (g / garage
+            :ARG2-of (p / park-01)))
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :location (i / in-front-of
+                :op1 b)
+            :topic (e / enter-01
+                :ARG0 (y / you)
+                :mode imperative
+                :polarity -))))

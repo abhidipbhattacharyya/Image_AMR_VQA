@@ -1,0 +1,27 @@
+# ::tok A group of people gather to get on a bus at the bus stop .
+# ::node	g3	group	1-2
+# ::node	p	person	3-4
+# ::node	g	gather-03	4-5
+# ::node	g2	get-05	6-7
+# ::node	b	bus	9-10
+# ::node	f	facility	11-12
+# ::node	b2	bus	12-13
+# ::node	s	stop-01	13-14
+# ::root	g	gather-03
+# ::edge	group	consist-of	person	g3	p	
+# ::edge	gather-03	ARG0	group	g	g3	
+# ::edge	gather-03	purpose	get-05	g	g2	
+# ::edge	get-05	ARG1	group	g2	g3	
+# ::edge	get-05	ARG2	bus	g2	b	
+# ::edge	get-05	location	facility	g2	f	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	facility	location-of	stop-01	f	s	
+(g / gather-03
+    :purpose (g2 / get-05
+        :ARG1 (g3 / group
+            :consist-of (p / person))
+        :ARG2 (b / bus)
+        :location (f / facility
+            :location-of (s / stop-01
+                :ARG1 (b2 / bus))))
+    :ARG0 g3)

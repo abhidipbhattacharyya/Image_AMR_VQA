@@ -1,0 +1,52 @@
+# ::tok A sitting area shows four sitting people , handling dough , while in front of them lies a table with wax paper , covered with shapes made from dough .
+# ::node	s3	sit-01	1-2
+# ::node	a	area	2-3
+# ::node	s2	show-01	3-4
+# ::node	0	4	4-5
+# ::node	p2	person	6-7
+# ::node	h	handle-01	8-9
+# ::node	d	dough	9-10
+# ::node	i	in-front-of	13-14
+# ::node	l	lie-07	16-17
+# ::node	t	table	18-19
+# ::node	w	wax	20-21
+# ::node	p	paper	21-22
+# ::node	c	cover-02	23-24
+# ::node	s	shape-01	25-26
+# ::node	m	make-01	26-27
+# ::root	s2	show-01
+# ::edge	area	ARG1-of	sit-01	a	s3	
+# ::edge	show-01	ARG0	area	s2	a	
+# ::edge	person	quant	4	p2	0	
+# ::edge	handle-01	ARG0	person	h	p2	
+# ::edge	show-01	ARG1	handle-01	s2	h	
+# ::edge	handle-01	ARG1	dough	h	d	
+# ::edge	in-front-of	op1	person	i	p2	
+# ::edge	lie-07	ARG2	in-front-of	l	i	
+# ::edge	show-01	time	lie-07	s2	l	
+# ::edge	lie-07	ARG1	table	l	t	
+# ::edge	paper	consist-of	wax	p	w	
+# ::edge	table	consist-of	paper	t	p	
+# ::edge	table	ARG1-of	cover-02	t	c	
+# ::edge	cover-02	ARG2	shape-01	c	s	
+# ::edge	shape-01	ARG1	dough	s	d	
+# ::edge	shape-01	ARG1-of	make-01	s	m	
+# ::edge	make-01	ARG2	dough	m	d	
+(s2 / show-01
+    :ARG0 (a / area
+        :ARG1-of (s3 / sit-01))
+    :ARG1 (h / handle-01
+        :ARG0 (p2 / person
+            :quant 4)
+        :ARG1 (d / dough))
+    :time (l / lie-07
+        :ARG1 (t / table
+            :ARG1-of (c / cover-02
+                :ARG2 (s / shape-01
+                    :ARG1 d
+                    :ARG1-of (m / make-01
+                        :ARG2 d)))
+            :consist-of (p / paper
+                :consist-of (w / wax)))
+        :ARG2 (i / in-front-of
+            :op1 p2)))

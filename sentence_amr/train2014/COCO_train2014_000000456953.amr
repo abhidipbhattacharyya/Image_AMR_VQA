@@ -1,0 +1,28 @@
+# ::tok Surfer crouched down in the pipeline created by a rolling breaking wave .
+# ::node	p	person	0-1
+# ::node	s	surf-01	0-1
+# ::node	c2	crouch-01	1-2
+# ::node	d	down	2-3
+# ::node	p2	pipeline	5-6
+# ::node	c	create-01	6-7
+# ::node	r	roll-01	9-10
+# ::node	b	break-01	10-11
+# ::node	w	wave	11-12
+# ::root	c2	crouch-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	crouch-01	ARG0	person	c2	p	
+# ::edge	crouch-01	direction	down	c2	d	
+# ::edge	crouch-01	location	pipeline	c2	p2	
+# ::edge	pipeline	ARG1-of	create-01	p2	c	
+# ::edge	wave	ARG1-of	break-01	w	b	
+# ::edge	wave	ARG1-of	roll-01	w	r	
+# ::edge	create-01	ARG0	wave	c	w	
+(c2 / crouch-01
+    :ARG0 (p / person
+        :ARG0-of (s / surf-01))
+    :direction (d / down)
+    :location (p2 / pipeline
+        :ARG1-of (c / create-01
+            :ARG0 (w / wave
+                :ARG1-of (b / break-01)
+                :ARG1-of (r / roll-01)))))

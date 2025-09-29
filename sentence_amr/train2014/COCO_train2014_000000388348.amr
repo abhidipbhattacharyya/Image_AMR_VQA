@@ -1,0 +1,37 @@
+# ::tok View over a persons shoulder or from their view as they lay in bed with cats on and around them .
+# ::node	v	view-01	0-1
+# ::node	o2	over	1-2
+# ::node	p	person	3-4
+# ::node	s	shoulder	4-5
+# ::node	o	or	5-6
+# ::node	v2	view-01	8-9
+# ::node	l	lay-01	11-12
+# ::node	b	bed	13-14
+# ::node	c	cat	15-16
+# ::node	a	around	18-19
+# ::root	v	view-01
+# ::edge	shoulder	part-of	person	s	p	
+# ::edge	over	op1	shoulder	o2	s	
+# ::edge	or	op1	over	o	o2	
+# ::edge	view-01	ARG1	or	v	o	
+# ::edge	or	op2	view-01	o	v2	
+# ::edge	view-01	ARG0	person	v2	p	
+# ::edge	lay-01	ARG1	person	l	p	
+# ::edge	view-01	time	lay-01	v	l	
+# ::edge	lay-01	ARG2	bed	l	b	
+# ::edge	lay-01	accompanier	cat	l	c	
+# ::edge	cat	location	around	c	a	
+# ::edge	around	op1	person	a	p	
+(v / view-01
+    :ARG1 (o / or
+        :op1 (o2 / over
+            :op1 (s / shoulder
+                :part-of (p / person)))
+        :op2 (v2 / view-01
+            :ARG0 p))
+    :time (l / lay-01
+        :ARG1 p
+        :ARG2 (b / bed)
+        :accompanier (c / cat
+            :location (a / around
+                :op1 p))))

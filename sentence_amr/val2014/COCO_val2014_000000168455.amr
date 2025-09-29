@@ -1,0 +1,22 @@
+# ::tok The lights of an electronic traffic signal are glowing at night .
+# ::node	l	light	1-2
+# ::node	e	electronic	4-5
+# ::node	t	traffic	5-6
+# ::node	s	signal	6-7
+# ::node	g	glow-01	8-9
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::root	g	glow-01
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	signal	mod	electronic	s	e	
+# ::edge	light	poss	signal	l	s	
+# ::edge	glow-01	ARG1	light	g	l	
+# ::edge	glow-01	time	date-entity	g	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(g / glow-01
+    :ARG1 (l / light
+        :poss (s / signal
+            :mod (t / traffic)
+            :mod (e / electronic)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

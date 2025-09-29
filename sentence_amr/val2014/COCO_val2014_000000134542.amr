@@ -1,0 +1,30 @@
+# ::tok Halloween trick - o - treat goodies laid out on newspaper after sorting .
+# ::node	d	date-entity	0-1
+# ::node	a	Halloween	0-1
+# ::node	t	trick-01	5-6
+# ::node	f	food	6-7
+# ::node	l	lay-01	7-8
+# ::node	o	out	8-9
+# ::node	n	newspaper	10-11
+# ::node	a2	after	11-12
+# ::node	s	sort-01	12-13
+# ::root	f	food
+# ::edge	date-entity	weekday	Halloween	d	a	
+# ::edge	trick-01	time	date-entity	t	d	
+# ::edge	food	ARG2-of	trick-01	f	t	
+# ::edge	food	ARG1-of	lay-01	f	l	
+# ::edge	lay-01	ARG2	out	l	o	
+# ::edge	lay-01	location	newspaper	l	n	
+# ::edge	lay-01	time	after	l	a2	
+# ::edge	after	op1	sort-01	a2	s	
+# ::edge	sort-01	ARG1	food	s	f	
+(f / food
+    :ARG1-of (l / lay-01
+        :ARG2 (o / out)
+        :location (n / newspaper)
+        :time (a2 / after
+            :op1 (s / sort-01
+                :ARG1 f)))
+    :ARG2-of (t / trick-01
+        :time (d / date-entity
+            :weekday (a / Halloween))))

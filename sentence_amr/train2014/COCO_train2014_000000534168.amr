@@ -1,0 +1,44 @@
+# ::tok Three large and one small glass of wine sit on a table , with a view in the background .
+# ::node	1	3	0-1
+# ::node	l	large	1-2
+# ::node	a	and	2-3
+# ::node	0	1	3-4
+# ::node	s2	small	4-5
+# ::node	g	glass	5-6
+# ::node	g2	glass	5-6
+# ::node	w	wine	7-8
+# ::node	s	sit-01	8-9
+# ::node	t	table	11-12
+# ::node	h	have-03	13-14
+# ::node	v	view	15-16
+# ::node	b	background	18-19
+# ::root	s	sit-01
+# ::edge	and	quant	3	a	1	
+# ::edge	large	op1	glass	l	g	
+# ::edge	glass	mod	large	g	l	
+# ::edge	glass	quant	3	g	1	
+# ::edge	glass	mod	small	g2	s2	
+# ::edge	glass	quant	1	g2	0	
+# ::edge	and	op2	glass	a	g2	
+# ::edge	wine	quant	and	w	a	
+# ::edge	sit-01	ARG1	wine	s	w	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	view	h	v	
+# ::edge	view	location	background	v	b	
+# ::edge	sit-01	rel	glass	s	g	
+(s / sit-01
+    :ARG1 (w / wine
+        :quant (a / and
+            :quant 3
+            :ARG0-of (h / have-03
+                :ARG1 (v / view
+                    :location (b / background)))
+            :op2 (g2 / glass
+                :quant 1
+                :mod (s2 / small))))
+    :ARG2 (t / table)
+    :rel (g / glass
+        :quant 3
+        :mod (l / large
+            :op1 g)))

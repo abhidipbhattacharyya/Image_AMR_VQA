@@ -1,0 +1,28 @@
+# ::tok A motor vehicle moving down a paved roadway beneath overcast skies .
+# ::node	m	motor	1-2
+# ::node	v	vehicle	2-3
+# ::node	m2	move-01	3-4
+# ::node	d	down	4-5
+# ::node	p	pave-01	6-7
+# ::node	r	roadway	7-8
+# ::node	b	beneath	8-9
+# ::node	o	overcast	9-10
+# ::node	s	sky	10-11
+# ::root	m2	move-01
+# ::edge	vehicle	mod	motor	v	m	
+# ::edge	move-01	ARG1	vehicle	m2	v	
+# ::edge	move-01	direction	down	m2	d	
+# ::edge	roadway	ARG1-of	pave-01	r	p	
+# ::edge	move-01	path	roadway	m2	r	
+# ::edge	move-01	location	beneath	m2	b	
+# ::edge	sky	mod	overcast	s	o	
+# ::edge	beneath	op1	sky	b	s	
+(m2 / move-01
+    :ARG1 (v / vehicle
+        :mod (m / motor))
+    :direction (d / down)
+    :location (b / beneath
+        :op1 (s / sky
+            :mod (o / overcast)))
+    :path (r / roadway
+        :ARG1-of (p / pave-01)))

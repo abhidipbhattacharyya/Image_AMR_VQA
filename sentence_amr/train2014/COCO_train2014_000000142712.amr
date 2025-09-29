@@ -1,0 +1,30 @@
+# ::tok A jetliner flying over snow covered mountains in the blue sky .
+# ::node	j	jetliner	1-2
+# ::node	f	fly-01	2-3
+# ::node	o	over	3-4
+# ::node	s2	snow	4-5
+# ::node	c	cover-02	5-6
+# ::node	m	mountain	6-7
+# ::node	b	blue	9-10
+# ::node	s	sky	10-11
+# ::node	a	and	11-12
+# ::root	a	and
+# ::edge	jetliner	ARG2-of	fly-01	j	f	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	cover-02	ARG2	snow	c	s2	
+# ::edge	mountain	ARG1-of	cover-02	m	c	
+# ::edge	over	op1	mountain	o	m	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	mountain	location	sky	m	s	
+# ::edge	and	op1	cover-02	a	c	
+# ::edge	and	rel	jetliner	a	j	
+(a / and
+    :op1 (c / cover-02
+        :ARG2 (s2 / snow))
+    :rel (j / jetliner
+        :ARG2-of (f / fly-01
+            :path (o / over
+                :op1 (m / mountain
+                    :ARG1-of c
+                    :location (s / sky
+                        :mod (b / blue)))))))

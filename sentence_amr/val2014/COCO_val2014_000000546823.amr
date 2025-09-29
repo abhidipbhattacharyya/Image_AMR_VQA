@@ -1,0 +1,45 @@
+# ::tok A dog is next to a tree and a bunch of people are walking up to colored umbrellas and some have rested under a tree .
+# ::node	d	dog	1-2
+# ::node	n	next-to	3-4
+# ::node	t	tree	6-7
+# ::node	b	bunch	9-10
+# ::node	p	person	11-12
+# ::node	w	walk-01	13-14
+# ::node	u3	up	14-15
+# ::node	c	color-01	16-17
+# ::node	u	umbrella	17-18
+# ::node	a	and	18-19
+# ::node	p2	person	19-20
+# ::node	s	some	19-20
+# ::node	r	rest-01	21-22
+# ::node	u2	under	22-23
+# ::root	a	and
+# ::edge	next-to	location-of	dog	n	d	
+# ::edge	next-to	op1	tree	n	t	
+# ::edge	person	quant	bunch	p	b	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	up	w	u3	
+# ::edge	umbrella	ARG1-of	color-01	u	c	
+# ::edge	walk-01	ARG2	umbrella	w	u	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	and	op1	next-to	a	n	
+# ::edge	person	quant	some	p2	s	
+# ::edge	rest-01	ARG0	person	r	p2	
+# ::edge	and	op3	rest-01	a	r	
+# ::edge	rest-01	ARG2	under	r	u2	
+# ::edge	under	op1	tree	u2	t	
+(a / and
+    :op1 (n / next-to
+        :location-of (d / dog)
+        :op1 (t / tree))
+    :op2 (w / walk-01
+        :ARG0 (p / person
+            :quant (b / bunch))
+        :ARG2 (u / umbrella
+            :ARG1-of (c / color-01))
+        :direction (u3 / up))
+    :op3 (r / rest-01
+        :ARG0 (p2 / person
+            :quant (s / some))
+        :ARG2 (u2 / under
+            :op1 t)))

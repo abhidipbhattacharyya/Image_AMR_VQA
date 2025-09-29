@@ -1,0 +1,33 @@
+# ::tok A large brick building stretches into the blue sky and has multiple clocks .
+# ::node	l	large	1-2
+# ::node	b2	brick	2-3
+# ::node	b3	building	3-4
+# ::node	s2	stretch-01	4-5
+# ::node	b	blue	7-8
+# ::node	s	sky	8-9
+# ::node	a	and	9-10
+# ::node	h	have-03	10-11
+# ::node	m	multiple	11-12
+# ::node	w	watch	12-13
+# ::root	a	and
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	building	mod	large	b3	l	
+# ::edge	stretch-01	ARG1	building	s2	b3	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	stretch-01	ARG4	sky	s2	s	
+# ::edge	and	op1	stretch-01	a	s2	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	building	h	b3	
+# ::edge	watch	quant	multiple	w	m	
+# ::edge	have-03	ARG1	watch	h	w	
+(a / and
+    :op1 (s2 / stretch-01
+        :ARG1 (b3 / building
+            :consist-of (b2 / brick)
+            :mod (l / large))
+        :ARG4 (s / sky
+            :mod (b / blue)))
+    :op2 (h / have-03
+        :ARG0 b3
+        :ARG1 (w / watch
+            :quant (m / multiple))))

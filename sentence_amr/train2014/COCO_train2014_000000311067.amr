@@ -1,0 +1,31 @@
+# ::tok A jumbo jet American Airlines plane sitting in a waiting area .
+# ::node	j2	jumbo	1-2
+# ::node	j	jet	2-3
+# ::node	n	name	3-4
+# ::node	1	American	3-4
+# ::node	c	company	4-5
+# ::node	0	Airlines	4-5
+# ::node	p	plane	5-6
+# ::node	s	sit-01	6-7
+# ::node	w	wait-01	9-10
+# ::node	a	area	10-11
+# ::root	s	sit-01
+# ::edge	jet	mod	jumbo	j	j2	
+# ::edge	name	op1	American	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airlines	n	0	
+# ::edge	plane	mod	company	p	c	
+# ::edge	plane	mod	jet	p	j	
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	area	purpose	wait-01	a	w	
+# ::edge	sit-01	ARG2	area	s	a	
+(s / sit-01
+    :ARG1 (p / plane
+        :mod (c / company
+            :name (n / name
+                :op1 "American"
+                :op2 "Airlines"))
+        :mod (j / jet
+            :mod (j2 / jumbo)))
+    :ARG2 (a / area
+        :purpose (w / wait-01)))

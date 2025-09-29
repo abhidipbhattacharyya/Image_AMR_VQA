@@ -1,0 +1,28 @@
+# ::tok The clock reads 2:35 at the train station with two trains present .
+# ::node	c	clock	1-2
+# ::node	r	read-01	2-3
+# ::node	d	date-entity	3-4
+# ::node	1	2:35	3-4
+# ::node	t	train	6-7
+# ::node	s	station	7-8
+# ::node	0	2	9-10
+# ::node	t2	train	10-11
+# ::node	p	present-02	11-12
+# ::root	r	read-01
+# ::edge	read-01	ARG1	clock	r	c	
+# ::edge	read-01	ARG3	date-entity	r	d	
+# ::edge	date-entity	time	2:35	d	1	
+# ::edge	station	mod	train	s	t	
+# ::edge	read-01	location	station	r	s	
+# ::edge	train	quant	2	t2	0	
+# ::edge	present-02	ARG1	train	p	t2	
+# ::edge	station	ARG2-of	present-02	s	p	
+(r / read-01
+    :ARG1 (c / clock)
+    :ARG3 (d / date-entity
+        :time "2:35")
+    :location (s / station
+        :ARG2-of (p / present-02
+            :ARG1 (t2 / train
+                :quant 2))
+        :mod (t / train)))

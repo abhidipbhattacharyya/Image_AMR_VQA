@@ -1,0 +1,30 @@
+# ::tok Several dogs enjoy playing with Frisbees in the snow .
+# ::node	s	several	0-1
+# ::node	d2	dog	1-2
+# ::node	e	enjoy-01	2-3
+# ::node	p	play-01	3-4
+# ::node	d	disc	5-6
+# ::node	s3	store	5-6
+# ::node	n	name	5-6
+# ::node	0	Frisbees	5-6
+# ::node	s2	snow	8-9
+# ::root	e	enjoy-01
+# ::edge	dog	quant	several	d2	s	
+# ::edge	enjoy-01	ARG0	dog	e	d2	
+# ::edge	enjoy-01	ARG1	play-01	e	p	
+# ::edge	play-01	ARG0	dog	p	d2	
+# ::edge	play-01	ARG2	disc	p	d	
+# ::edge	disc	mod	store	d	s3	
+# ::edge	store	name	name	s3	n	
+# ::edge	name	op1	Frisbees	n	0	
+# ::edge	play-01	location	snow	p	s2	
+(e / enjoy-01
+    :ARG0 (d2 / dog
+        :quant (s / several))
+    :ARG1 (p / play-01
+        :ARG0 d2
+        :ARG2 (d / disc
+            :mod (s3 / store
+                :name (n / name
+                    :op1 "Frisbees")))
+        :location (s2 / snow)))

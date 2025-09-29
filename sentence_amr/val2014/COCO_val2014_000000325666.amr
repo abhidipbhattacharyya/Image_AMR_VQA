@@ -1,0 +1,33 @@
+# ::tok Train moving along snow covered tracks as cars move on street next to them
+# ::node	t2	train	0-1
+# ::node	m	move-01	1-2
+# ::node	a	along	2-3
+# ::node	s	snow	3-4
+# ::node	c2	cover-02	4-5
+# ::node	t	track	5-6
+# ::node	c	car	7-8
+# ::node	m2	move-01	8-9
+# ::node	s2	street	10-11
+# ::node	n	next-to	11-12
+# ::root	m	move-01
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	move-01	path	along	m	a	
+# ::edge	cover-02	ARG2	snow	c2	s	
+# ::edge	track	ARG1-of	cover-02	t	c2	
+# ::edge	along	op1	track	a	t	
+# ::edge	move-01	ARG0	car	m2	c	
+# ::edge	move-01	time	move-01	m	m2	
+# ::edge	move-01	ARG2	street	m2	s2	
+# ::edge	street	location	next-to	s2	n	
+# ::edge	next-to	op1	track	n	t	
+(m / move-01
+    :ARG1 (t2 / train)
+    :path (a / along
+        :op1 (t / track
+            :ARG1-of (c2 / cover-02
+                :ARG2 (s / snow))))
+    :time (m2 / move-01
+        :ARG0 (c / car)
+        :ARG2 (s2 / street
+            :location (n / next-to
+                :op1 t))))

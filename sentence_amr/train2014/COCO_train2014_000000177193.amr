@@ -1,0 +1,31 @@
+# ::tok The dinner setup includes a glass of wine and a small pizza .
+# ::node	d	dinner	1-2
+# ::node	s	setup	2-3
+# ::node	i	include-01	3-4
+# ::node	v	volume-quantity	4-5
+# ::node	0	1	4-5
+# ::node	g	glass	5-6
+# ::node	w	wine	7-8
+# ::node	a	and	8-9
+# ::node	s2	small	10-11
+# ::node	p	pizza	11-12
+# ::root	i	include-01
+# ::edge	setup	mod	dinner	s	d	
+# ::edge	include-01	ARG2	setup	i	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op1	wine	a	w	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	pizza	mod	small	p	s2	
+# ::edge	and	op2	pizza	a	p	
+(i / include-01
+    :ARG1 (a / and
+        :op1 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))
+        :op2 (p / pizza
+            :mod (s2 / small)))
+    :ARG2 (s / setup
+        :mod (d / dinner)))

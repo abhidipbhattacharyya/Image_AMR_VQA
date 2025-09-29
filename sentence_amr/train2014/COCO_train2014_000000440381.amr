@@ -1,0 +1,39 @@
+# ::tok a counter top with two bowls of fruits and a banana in a glass of liquid .
+# ::node	c	counter	1-2
+# ::node	t	top	2-3
+# ::node	h	have-03	3-4
+# ::node	1	2	4-5
+# ::node	p	pound	5-6
+# ::node	f	fruit	7-8
+# ::node	a	and	8-9
+# ::node	b	banana	10-11
+# ::node	v	volume-quantity	12-13
+# ::node	0	1	12-13
+# ::node	g	glass	13-14
+# ::node	l	liquid	15-16
+# ::root	t	top
+# ::edge	top	location	counter	t	c	
+# ::edge	top	ARG0-of	have-03	t	h	
+# ::edge	and	op1	fruit	a	f	
+# ::edge	and	quant	pound	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	banana	a	b	
+# ::edge	volume-quantity	unit	pound	v	p	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	liquid	quant	volume-quantity	l	v	
+# ::edge	and	location	liquid	a	l	
+# ::edge	top	rel	2	t	1	
+(t / top
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :quant (p / pound)
+            :location (l / liquid
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit p
+                    :unit (g / glass)))
+            :op1 (f / fruit)
+            :op2 (b / banana)))
+    :location (c / counter)
+    :rel 2)

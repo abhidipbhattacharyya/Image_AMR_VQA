@@ -1,0 +1,33 @@
+# ::tok Two elevators are next to each other near a clock and trash can .
+# ::node	0	2	0-1
+# ::node	e	elevate-01	1-2
+# ::node	t	thing	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	n2	next-to	3-4
+# ::node	n	near-02	7-8
+# ::node	c2	clock	9-10
+# ::node	a	and	10-11
+# ::node	t2	trash	11-12
+# ::node	c	can	12-13
+# ::root	b	be-located-at-91
+# ::edge	thing	ARG0-of	elevate-01	t	e	
+# ::edge	thing	quant	2	t	0	
+# ::edge	be-located-at-91	ARG1	thing	b	t	
+# ::edge	be-located-at-91	ARG2	next-to	b	n2	
+# ::edge	next-to	op1	thing	n2	t	
+# ::edge	thing	ARG1-of	near-02	t	n	
+# ::edge	and	op1	clock	a	c2	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	can	purpose	trash	c	t2	
+# ::edge	and	op2	can	a	c	
+(b / be-located-at-91
+    :ARG1 (t / thing
+        :quant 2
+        :ARG0-of (e / elevate-01)
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (c2 / clock)
+                :op2 (c / can
+                    :purpose (t2 / trash)))))
+    :ARG2 (n2 / next-to
+        :op1 t))

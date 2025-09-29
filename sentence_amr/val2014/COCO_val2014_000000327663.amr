@@ -1,0 +1,38 @@
+# ::tok Police on foot , horseback , and bicycle engage in crowd control on city street .
+# ::node	p	police	0-1
+# ::node	p2	police	0-1
+# ::node	f	foot	2-3
+# ::node	h	horseback	4-5
+# ::node	a	and	6-7
+# ::node	b	bicycle	7-8
+# ::node	e	engage-01	8-9
+# ::node	c3	crowd	10-11
+# ::node	c2	control-01	11-12
+# ::node	c	city	13-14
+# ::node	s	street	14-15
+# ::root	e	engage-01
+# ::edge	police	part	foot	p	f	
+# ::edge	police	part	horseback	p2	h	
+# ::edge	and	op2	horseback	a	h	
+# ::edge	and	op1	foot	a	f	
+# ::edge	and	op3	bicycle	a	b	
+# ::edge	bicycle	mod	police	b	p2	
+# ::edge	engage-01	ARG0	and	e	a	
+# ::edge	control-01	ARG1	crowd	c2	c3	
+# ::edge	engage-01	ARG2	control-01	e	c2	
+# ::edge	control-01	ARG0	police	c2	p	
+# ::edge	street	mod	city	s	c	
+# ::edge	control-01	location	street	c2	s	
+(e / engage-01
+    :ARG0 (a / and
+        :op1 (f / foot)
+        :op2 (h / horseback)
+        :op3 (b / bicycle
+            :mod (p2 / police
+                :part h)))
+    :ARG2 (c2 / control-01
+        :ARG0 (p / police
+            :part f)
+        :ARG1 (c3 / crowd)
+        :location (s / street
+            :mod (c / city))))

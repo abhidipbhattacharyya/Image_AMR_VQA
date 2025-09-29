@@ -1,0 +1,36 @@
+# ::tok A professional baseball game with a batter looking up at a fly ball he just hit .
+# ::node	p2	professional	1-2
+# ::node	b2	baseball	2-3
+# ::node	g	game	3-4
+# ::node	p	person	6-7
+# ::node	b3	batter-01	6-7
+# ::node	l	look-01	7-8
+# ::node	u	up	8-9
+# ::node	f	fly-01	11-12
+# ::node	b	ball	12-13
+# ::node	j	just	14-15
+# ::node	h	hit-01	15-16
+# ::root	g	game
+# ::edge	baseball	mod	professional	b2	p2	
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	game	subevent	look-01	g	l	
+# ::edge	look-01	direction	up	l	u	
+# ::edge	ball	ARG1-of	fly-01	b	f	
+# ::edge	look-01	ARG1	ball	l	b	
+# ::edge	hit-01	mod	just	h	j	
+# ::edge	ball	ARG1-of	hit-01	b	h	
+# ::edge	hit-01	ARG0	person	h	p	
+(g / game
+    :mod (b2 / baseball
+        :mod (p2 / professional))
+    :subevent (l / look-01
+        :ARG0 (p / person
+            :ARG0-of (b3 / batter-01))
+        :ARG1 (b / ball
+            :ARG1-of (f / fly-01)
+            :ARG1-of (h / hit-01
+                :ARG0 p
+                :mod (j / just)))
+        :direction (u / up)))

@@ -1,0 +1,43 @@
+# ::tok A tray with two sandwich halves , a salad , a cup of coffee and a fork and spoon .
+# ::node	t	tray	1-2
+# ::node	h2	have-03	2-3
+# ::node	1	2	3-4
+# ::node	s2	sandwich	4-5
+# ::node	h	half	5-6
+# ::node	s	salad	8-9
+# ::node	v	volume-quantity	10-11
+# ::node	0	1	10-11
+# ::node	c2	cup	11-12
+# ::node	c	coffee	13-14
+# ::node	a	and	14-15
+# ::node	f	fork	16-17
+# ::node	a2	and	17-18
+# ::node	s3	spoon	18-19
+# ::root	h2	have-03
+# ::edge	have-03	ARG0	tray	h2	t	
+# ::edge	half	mod	sandwich	h	s2	
+# ::edge	half	quant	2	h	1	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op3	coffee	a	c	
+# ::edge	and	op2	salad	a	s	
+# ::edge	and	op1	half	a	h	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op1	fork	a2	f	
+# ::edge	and	op4	and	a	a2	
+# ::edge	and	op2	spoon	a2	s3	
+(h2 / have-03
+    :ARG0 (t / tray)
+    :ARG1 (a / and
+        :op1 (h / half
+            :quant 2
+            :mod (s2 / sandwich))
+        :op2 (s / salad)
+        :op3 (c / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c2 / cup)))
+        :op4 (a2 / and
+            :op1 (f / fork)
+            :op2 (s3 / spoon))))

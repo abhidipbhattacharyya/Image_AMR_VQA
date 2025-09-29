@@ -1,0 +1,36 @@
+# ::tok Two parking meters on the curb , one with some time remaining .
+# ::node	1	2	0-1
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	m2	meter	2-3
+# ::node	c	curb	5-6
+# ::node	a	and	6-7
+# ::node	0	1	7-8
+# ::node	h	have-03	8-9
+# ::node	s	some	9-10
+# ::node	t	time	10-11
+# ::node	r	remain-01	11-12
+# ::root	a	and
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	quant	2	m	1	
+# ::edge	meter	location	curb	m	c	
+# ::edge	and	op2	meter	a	m2	
+# ::edge	and	op1	meter	a	m	
+# ::edge	meter	quant	1	m2	0	
+# ::edge	meter	ARG0-of	have-03	m2	h	
+# ::edge	have-03	ARG1	meter	h	m2	
+# ::edge	time	quant	some	t	s	
+# ::edge	remain-01	ARG1	time	r	t	
+# ::edge	meter	ARG1-of	remain-01	m2	r	
+(a / and
+    :op1 (m / meter
+        :purpose (p / park-01)
+        :quant 2
+        :location (c / curb))
+    :op2 (m2 / meter
+        :quant 1
+        :ARG0-of (h / have-03
+            :ARG1 m2)
+        :ARG1-of (r / remain-01
+            :ARG1 (t / time
+                :quant (s / some)))))

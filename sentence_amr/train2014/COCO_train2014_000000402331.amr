@@ -1,0 +1,34 @@
+# ::tok Some pretty sinks in a very dimly lit rest room with a bright window .
+# ::node	s2	some	0-1
+# ::node	p	pretty	1-2
+# ::node	s	sink-01	2-3
+# ::node	v	very	5-6
+# ::node	d	dim	6-7
+# ::node	l	light-04	7-8
+# ::node	r	rest	8-9
+# ::node	r2	room	9-10
+# ::node	h	have-03	10-11
+# ::node	b	bright-02	12-13
+# ::node	w	window	13-14
+# ::root	s	sink-01
+# ::edge	sink-01	mod	pretty	s	p	
+# ::edge	sink-01	quant	some	s	s2	
+# ::edge	dim	degree	very	d	v	
+# ::edge	light-04	mod	dim	l	d	
+# ::edge	room	mod	rest	r2	r	
+# ::edge	room	ARG1-of	light-04	r2	l	
+# ::edge	sink-01	location	room	s	r2	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	window	ARG1-of	bright-02	w	b	
+# ::edge	have-03	ARG1	window	h	w	
+(s / sink-01
+    :quant (s2 / some)
+    :location (r2 / room
+        :ARG0-of (h / have-03
+            :ARG1 (w / window
+                :ARG1-of (b / bright-02)))
+        :ARG1-of (l / light-04
+            :mod (d / dim
+                :degree (v / very)))
+        :mod (r / rest))
+    :mod (p / pretty))

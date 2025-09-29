@@ -1,0 +1,39 @@
+# ::tok Jeep driving down the street with no traffic around it towards the green light
+# ::node	p	person	0-1
+# ::node	v	vehicle	0-1
+# ::node	n	name	0-1
+# ::node	1	Jeep	0-1
+# ::node	d2	drive-01	1-2
+# ::node	d	down	2-3
+# ::node	s	street	4-5
+# ::node	0	-	6-7
+# ::node	t	traffic	7-8
+# ::node	a	around	8-9
+# ::node	g	green-02	12-13
+# ::node	l	light	13-14
+# ::root	d2	drive-01
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	Jeep	n	1	
+# ::edge	drive-01	ARG1	vehicle	d2	v	
+# ::edge	drive-01	ARG0	person	d2	p	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	op1	street	d2	s	
+# ::edge	traffic	polarity	-	t	0	
+# ::edge	drive-01	prep-with	traffic	d2	t	
+# ::edge	traffic	location	around	t	a	
+# ::edge	around	op1	vehicle	a	v	
+# ::edge	light	ARG1-of	green-02	l	g	
+# ::edge	drive-01	direction	light	d2	l	
+(d2 / drive-01
+    :ARG0 (p / person)
+    :ARG1 (v / vehicle
+        :name (n / name
+            :op1 "Jeep"))
+    :direction (d / down)
+    :direction (l / light
+        :ARG1-of (g / green-02))
+    :op1 (s / street)
+    :prep-with (t / traffic
+        :location (a / around
+            :op1 v)
+        :polarity -))

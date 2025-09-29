@@ -1,0 +1,32 @@
+# ::tok A skier bending down to gain momentum as she goes down the slope .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	b	bend-01	2-3
+# ::node	d	down	3-4
+# ::node	g	gain-02	5-6
+# ::node	m	momentum	6-7
+# ::node	g2	go-02	9-10
+# ::node	d2	down-03	10-11
+# ::node	s2	slope	12-13
+# ::root	b	bend-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	bend-01	ARG0	person	b	p	
+# ::edge	bend-01	direction	down	b	d	
+# ::edge	bend-01	purpose	gain-02	b	g	
+# ::edge	gain-02	ARG0	person	g	p	
+# ::edge	gain-02	ARG1	momentum	g	m	
+# ::edge	bend-01	time	go-02	b	g2	
+# ::edge	go-02	ARG0	person	g2	p	
+# ::edge	go-02	direction	down-03	g2	d2	
+# ::edge	go-02	ARG3	slope	g2	s2	
+(b / bend-01
+    :purpose (g / gain-02
+        :ARG0 (p / person
+            :ARG0-of (s / ski-01))
+        :ARG1 (m / momentum))
+    :ARG0 p
+    :direction (d / down)
+    :time (g2 / go-02
+        :ARG0 p
+        :ARG3 (s2 / slope)
+        :direction (d2 / down-03)))

@@ -1,0 +1,40 @@
+# ::tok Two plates of a meal at a restaurant one plate contains a pizza the other a stir fry
+# ::node	1	2	0-1
+# ::node	p2	plate	1-2
+# ::node	m	meal	4-5
+# ::node	r	restaurant	7-8
+# ::node	0	1	8-9
+# ::node	p3	plate	9-10
+# ::node	p4	plate	9-10
+# ::node	c	contain-01	10-11
+# ::node	c2	contain-01	10-11
+# ::node	p	pizza	12-13
+# ::node	o	other	14-15
+# ::node	s	stir-01	16-17
+# ::node	f	fry-01	17-18
+# ::root	c2	contain-01
+# ::edge	plate	quant	2	p2	1	
+# ::edge	plate	part-of	meal	p2	m	
+# ::edge	plate	location	restaurant	p2	r	
+# ::edge	plate	quant	1	p3	0	
+# ::edge	contain-01	ARG0	plate	c	p3	
+# ::edge	contain-01	ARG0	plate	c2	p4	
+# ::edge	contain-01	ARG1	pizza	c	p	
+# ::edge	plate	mod	other	p4	o	
+# ::edge	fry-01	manner	stir-01	f	s	
+# ::edge	plate	ARG1	fry-01	p4	f	
+# ::edge	contain-01	rel	plate	c2	p2	
+# ::edge	contain-01	rel	contain-01	c2	c	
+(c2 / contain-01
+    :ARG0 (p4 / plate
+        :ARG1 (f / fry-01
+            :manner (s / stir-01))
+        :mod (o / other))
+    :rel (p2 / plate
+        :quant 2
+        :location (r / restaurant)
+        :part-of (m / meal))
+    :rel (c / contain-01
+        :ARG0 (p3 / plate
+            :quant 1)
+        :ARG1 (p / pizza)))

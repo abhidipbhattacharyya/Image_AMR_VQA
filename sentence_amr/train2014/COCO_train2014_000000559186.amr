@@ -1,0 +1,31 @@
+# ::tok A road sign displaying Dixie Hwy at the next signal .
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	d	display-01	3-4
+# ::node	n	name	4-5
+# ::node	0	Dixie	4-5
+# ::node	r2	road	5-6
+# ::node	r3	road	5-6
+# ::node	1	Hwy	5-6
+# ::node	n2	next	8-9
+# ::node	s2	signal-07	9-10
+# ::root	s	sign
+# ::edge	sign	mod	road	s	r	
+# ::edge	sign	ARG0-of	display-01	s	d	
+# ::edge	name	op1	Dixie	n	0	
+# ::edge	road	name	name	r2	n	
+# ::edge	display-01	ARG1	road	d	r2	
+# ::edge	name	op2	Hwy	n	1	
+# ::edge	signal-07	mod	next	s2	n2	
+# ::edge	signal-07	ARG1	road	s2	r3	
+# ::edge	display-01	location	signal-07	d	s2	
+(s / sign
+    :ARG0-of (d / display-01
+        :ARG1 (r2 / road
+            :name (n / name
+                :op1 "Dixie"
+                :op2 "Hwy"))
+        :location (s2 / signal-07
+            :ARG1 (r3 / road)
+            :mod (n2 / next)))
+    :mod (r / road))

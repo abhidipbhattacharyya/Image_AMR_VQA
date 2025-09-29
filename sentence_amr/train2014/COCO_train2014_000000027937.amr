@@ -1,0 +1,64 @@
+# ::tok Dog moving in brown colored water , holding dark yellow Frisbee , with Coca Cola red canopy and people on water bank .
+# ::node	d3	dog	0-1
+# ::node	m	move-01	1-2
+# ::node	c2	color-01	3-4
+# ::node	b2	brown	3-4
+# ::node	c3	color-01	4-5
+# ::node	w	water	5-6
+# ::node	h	hold-01	7-8
+# ::node	d	dark-02	8-9
+# ::node	y	yellow-02	9-10
+# ::node	d2	disc	10-11
+# ::node	n	name	10-11
+# ::node	2	Frisbee	10-11
+# ::node	c4	company	13-14
+# ::node	0	Coca	13-14
+# ::node	1	Cola	14-15
+# ::node	r	red-02	15-16
+# ::node	c	canopy	16-17
+# ::node	a	and	17-18
+# ::node	p	person	18-19
+# ::node	w2	water	20-21
+# ::node	b	bank	21-22
+# ::root	m	move-01
+# ::edge	move-01	ARG0	dog	m	d3	
+# ::edge	color-01	ARG2	brown	c2	b2	
+# ::edge	water	ARG1-of	color-01	w	c3	
+# ::edge	water	ARG1-of	color-01	w	c2	
+# ::edge	move-01	ARG2	water	m	w	
+# ::edge	dog	ARG0-of	hold-01	d3	h	
+# ::edge	disc	ARG1-of	yellow-02	d2	y	
+# ::edge	disc	ARG1-of	dark-02	d2	d	
+# ::edge	hold-01	ARG1	disc	h	d2	
+# ::edge	name	op1	Frisbee	n	2	
+# ::edge	company	name	name	c4	n	
+# ::edge	name	op1	Coca	n	0	
+# ::edge	name	op2	Cola	n	1	
+# ::edge	canopy	ARG1-of	red-02	c	r	
+# ::edge	canopy	mod	company	c	c4	
+# ::edge	and	op1	canopy	a	c	
+# ::edge	hold-01	accompanier	and	h	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	bank	mod	water	b	w2	
+# ::edge	person	location	bank	p	b	
+(m / move-01
+    :ARG0 (d3 / dog
+        :ARG0-of (h / hold-01
+            :ARG1 (d2 / disc
+                :ARG1-of (y / yellow-02)
+                :ARG1-of (d / dark-02))
+            :accompanier (a / and
+                :op1 (c / canopy
+                    :ARG1-of (r / red-02)
+                    :mod (c4 / company
+                        :name (n / name
+                            :op1 "Frisbee"
+                            :op1 "Coca"
+                            :op2 "Cola")))
+                :op2 (p / person
+                    :location (b / bank
+                        :mod (w2 / water))))))
+    :ARG2 (w / water
+        :ARG1-of (c3 / color-01)
+        :ARG1-of (c2 / color-01
+            :ARG2 (b2 / brown))))

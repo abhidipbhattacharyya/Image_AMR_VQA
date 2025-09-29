@@ -1,0 +1,51 @@
+# ::tok A 1950 's photo showing a two young men , one in military uniform , flanking a young woman on a bench
+# ::node	d	date-entity	1-2
+# ::node	1	1950	1-2
+# ::node	p2	photo	3-4
+# ::node	s	show-01	4-5
+# ::node	2	2	6-7
+# ::node	y	young	7-8
+# ::node	m	man	8-9
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	m2	military	12-13
+# ::node	u	uniform-01	13-14
+# ::node	p	person	14-15
+# ::node	b	bad-07	15-16
+# ::node	y2	young	17-18
+# ::node	w	woman	18-19
+# ::node	b2	bench	21-22
+# ::root	s	show-01
+# ::edge	date-entity	year	1950	d	1	
+# ::edge	photo	time	date-entity	p2	d	
+# ::edge	show-01	ARG0	photo	s	p2	
+# ::edge	man	mod	young	m	y	
+# ::edge	man	quant	2	m	2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	uniform-01	ARG2	military	u	m2	
+# ::edge	person	ARG1-of	uniform-01	p	u	
+# ::edge	person	quant	1	p	0	
+# ::edge	include-91	ARG1	person	i	p	
+# ::edge	bad-07	ARG1	man	b	m	
+# ::edge	man	ARG0-of	bad-07	m	b	
+# ::edge	woman	mod	young	w	y2	
+# ::edge	include-91	ARG2	woman	i	w	
+# ::edge	woman	location	bench	w	b2	
+# ::edge	show-01	rel	man	s	m	
+(s / show-01
+    :ARG0 (p2 / photo
+        :time (d / date-entity
+            :year 1950))
+    :rel (m / man
+        :quant 2
+        :ARG0-of (b / bad-07
+            :ARG1 m)
+        :ARG2-of (i / include-91
+            :ARG1 (p / person
+                :quant 1
+                :ARG1-of (u / uniform-01
+                    :ARG2 (m2 / military)))
+            :ARG2 (w / woman
+                :location (b2 / bench)
+                :mod (y2 / young)))
+        :mod (y / young)))

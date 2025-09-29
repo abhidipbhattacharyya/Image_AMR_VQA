@@ -1,0 +1,43 @@
+# ::tok A person holds a freshly cooked donut over a boiling pot filled with more donuts as another person looks on .
+# ::node	p	person	1-2
+# ::node	h	hold-01	2-3
+# ::node	f2	fresh-04	4-5
+# ::node	c	cook-01	5-6
+# ::node	d	donut	6-7
+# ::node	o	over	7-8
+# ::node	b	boil-01	9-10
+# ::node	p3	pot	10-11
+# ::node	f	fill-01	11-12
+# ::node	m	more	13-14
+# ::node	d2	donut	14-15
+# ::node	a	another	16-17
+# ::node	p2	person	17-18
+# ::node	l	look-01	18-19
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	cook-01	ARG1-of	fresh-04	c	f2	
+# ::edge	donut	ARG1-of	cook-01	d	c	
+# ::edge	hold-01	ARG1	donut	h	d	
+# ::edge	hold-01	location	over	h	o	
+# ::edge	pot	ARG1-of	boil-01	p3	b	
+# ::edge	over	op1	pot	o	p3	
+# ::edge	pot	ARG1-of	fill-01	p3	f	
+# ::edge	donut	quant	more	d2	m	
+# ::edge	fill-01	ARG2	donut	f	d2	
+# ::edge	person	mod	another	p2	a	
+# ::edge	look-01	ARG0	person	l	p2	
+# ::edge	hold-01	ARG1-of	look-01	h	l	
+(h / hold-01
+    :ARG0 (p / person)
+    :ARG1 (d / donut
+        :ARG1-of (c / cook-01
+            :ARG1-of (f2 / fresh-04)))
+    :ARG1-of (l / look-01
+        :ARG0 (p2 / person
+            :mod (a / another)))
+    :location (o / over
+        :op1 (p3 / pot
+            :ARG1-of (b / boil-01)
+            :ARG1-of (f / fill-01
+                :ARG2 (d2 / donut
+                    :quant (m / more))))))

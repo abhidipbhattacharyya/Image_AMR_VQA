@@ -1,0 +1,30 @@
+# ::tok A large bus with Coco Cola advertisements painted all over it .
+# ::node	l	large	1-2
+# ::node	b	bus	2-3
+# ::node	n	name	4-5
+# ::node	0	Coco	4-5
+# ::node	c	company	5-6
+# ::node	1	Cola	5-6
+# ::node	a	advertise-01	6-7
+# ::node	p	paint-01	7-8
+# ::node	a2	all-over	9-10
+# ::root	b	bus
+# ::edge	bus	mod	large	b	l	
+# ::edge	name	op1	Coco	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Cola	n	1	
+# ::edge	advertise-01	ARG0	company	a	c	
+# ::edge	bus	location-of	advertise-01	b	a	
+# ::edge	bus	ARG1-of	paint-01	b	p	
+# ::edge	paint-01	ARG2	all-over	p	a2	
+# ::edge	all-over	op1	bus	a2	b	
+(b / bus
+    :ARG1-of (p / paint-01
+        :ARG2 (a2 / all-over
+            :op1 b))
+    :location-of (a / advertise-01
+        :ARG0 (c / company
+            :name (n / name
+                :op1 "Coco"
+                :op2 "Cola")))
+    :mod (l / large))

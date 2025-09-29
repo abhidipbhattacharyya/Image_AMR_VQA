@@ -1,0 +1,27 @@
+# ::tok A man throws a ball to another man in the foreground who is ready to bat .
+# ::node	m	man	1-2
+# ::node	t	throw-01	2-3
+# ::node	b	ball	4-5
+# ::node	a	another	6-7
+# ::node	m2	man	7-8
+# ::node	f	foreground	10-11
+# ::node	r	ready-02	13-14
+# ::node	b2	bat-01	15-16
+# ::root	t	throw-01
+# ::edge	throw-01	ARG0	man	t	m	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	man	mod	another	m2	a	
+# ::edge	throw-01	ARG2	man	t	m2	
+# ::edge	man	location	foreground	m2	f	
+# ::edge	man	ARG1-of	ready-02	m2	r	
+# ::edge	ready-02	ARG2	bat-01	r	b2	
+# ::edge	bat-01	ARG0	man	b2	m2	
+(t / throw-01
+    :ARG0 (m / man)
+    :ARG1 (b / ball)
+    :ARG2 (m2 / man
+        :ARG1-of (r / ready-02
+            :ARG2 (b2 / bat-01
+                :ARG0 m2))
+        :location (f / foreground)
+        :mod (a / another)))

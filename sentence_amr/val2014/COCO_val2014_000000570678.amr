@@ -1,0 +1,25 @@
+# ::tok A person in cold weather gear riding on a snowboard down a slope .
+# ::node	p	person	1-2
+# ::node	c	cold-01	3-4
+# ::node	w	weather	4-5
+# ::node	g	gear	5-6
+# ::node	r	ride-01	6-7
+# ::node	s2	snowboard	9-10
+# ::node	d	down-03	10-11
+# ::node	s	slope	12-13
+# ::root	r	ride-01
+# ::edge	weather	ARG1-of	cold-01	w	c	
+# ::edge	gear	mod	weather	g	w	
+# ::edge	ride-01	ARG1	gear	r	g	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	snowboard	r	s2	
+# ::edge	snowboard	direction	down-03	s2	d	
+# ::edge	down-03	ARG3	slope	d	s	
+(r / ride-01
+    :ARG0 (p / person)
+    :ARG1 (g / gear
+        :mod (w / weather
+            :ARG1-of (c / cold-01)))
+    :ARG1 (s2 / snowboard
+        :direction (d / down-03
+            :ARG3 (s / slope))))

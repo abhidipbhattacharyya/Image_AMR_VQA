@@ -1,0 +1,40 @@
+# ::tok A large sub made of kielbasa , green peppers .
+# ::node	l	large	1-2
+# ::node	s	sub	2-3
+# ::node	m	make-01	3-4
+# ::node	k	kielbasa	5-6
+# ::node	m2	mean-01	6-7
+# ::node	g	green-02	7-8
+# ::node	p	pepper-spray	8-9
+# ::root	s	sub
+# ::edge	sub	mod	large	s	l	
+# ::edge	sub	ARG1-of	make-01	s	m	
+# ::edge	make-01	ARG2	kielbasa	m	k	
+# ::edge	kielbasa	ARG1-of	mean-01	k	m2	
+# ::edge	pepper-spray	ARG1-of	green-02	p	g	
+# ::edge	mean-01	ARG2	pepper-spray	m2	p	
+(s / sub
+    :ARG1-of (m / make-01
+        :ARG2 (k / kielbasa
+            :ARG1-of (m2 / mean-01
+                :ARG2 (p / pepper-spray
+                    :ARG1-of (g / green-02)))))
+    :mod (l / large))
+
+
+# ::tok tomatoes , and a sauce in a plastic box .
+# ::node	t	tomatoes	0-1
+# ::node	a	and	2-3
+# ::node	s	sauce	4-5
+# ::node	p	plastic	7-8
+# ::node	b	box	8-9
+# ::root	a	and
+# ::edge	and	op1	tomatoes	a	t	
+# ::edge	and	op2	sauce	a	s	
+# ::edge	box	consist-of	plastic	b	p	
+# ::edge	and	location	box	a	b	
+(a / and
+    :location (b / box
+        :consist-of (p / plastic))
+    :op1 (t / tomatoes)
+    :op2 (s / sauce))

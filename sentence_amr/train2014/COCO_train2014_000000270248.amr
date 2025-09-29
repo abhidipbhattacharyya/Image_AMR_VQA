@@ -1,0 +1,53 @@
+# ::tok A batter stands ready to bunt with the catcher and first baseman also pictured .
+# ::node	p	person	1-2
+# ::node	b	batter-01	1-2
+# ::node	s	stand-01	2-3
+# ::node	r	ready-02	3-4
+# ::node	a	B	5-6
+# ::node	2	catcher	8-9
+# ::node	a3	and	9-10
+# ::node	o	ordinal-entity	10-11
+# ::node	0	1	10-11
+# ::node	p2	person	11-12
+# ::node	h	have-org-role-91	11-12
+# ::node	t	team	11-12
+# ::node	n	name	11-12
+# ::node	1	First	11-12
+# ::node	a2	also	12-13
+# ::node	p3	picture-01	13-14
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	batter-01	p	b	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG1-of	ready-02	s	r	
+# ::edge	ready-02	ARG2	B	r	a	
+# ::edge	B	ARG0	person	a	p	
+# ::edge	and	op1	person	a3	p	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	and	op2	person	a3	p2	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h	
+# ::edge	have-org-role-91	ARG1	team	h	t	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	catcher	n	2	
+# ::edge	name	op2	First	n	1	
+# ::edge	picture-01	mod	also	p3	a2	
+# ::edge	picture-01	ARG1	and	p3	a3	
+# ::edge	stand-01	accompanier	picture-01	s	p3	
+# ::edge	stand-01	rel	ordinal-entity	s	o	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (b / batter-01))
+    :ARG1-of (r / ready-02
+        :ARG2 (a / B
+            :ARG0 p))
+    :accompanier (p3 / picture-01
+        :ARG1 (a3 / and
+            :op1 p
+            :op2 (p2 / person
+                :ARG0-of (h / have-org-role-91
+                    :ARG1 (t / team
+                        :name (n / name
+                            :op1 "catcher"
+                            :op2 "First")))))
+        :mod (a2 / also))
+    :rel (o / ordinal-entity
+        :value 1))

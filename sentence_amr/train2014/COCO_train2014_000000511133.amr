@@ -1,0 +1,24 @@
+# ::tok Some bananas are peeled and broken up inside a bowl .
+# ::node	s	some	0-1
+# ::node	b	banana	1-2
+# ::node	p	peel-off-02	3-4
+# ::node	a	and	4-5
+# ::node	b3	break-up-08	5-6
+# ::node	i	inside	7-8
+# ::node	b2	bowl	9-10
+# ::root	a	and
+# ::edge	banana	quant	some	b	s	
+# ::edge	peel-off-02	ARG1	banana	p	b	
+# ::edge	and	op1	peel-off-02	a	p	
+# ::edge	and	op2	break-up-08	a	b3	
+# ::edge	break-up-08	ARG1	banana	b3	b	
+# ::edge	and	location	inside	a	i	
+# ::edge	inside	op1	bowl	i	b2	
+(a / and
+    :location (i / inside
+        :op1 (b2 / bowl))
+    :op1 (p / peel-off-02
+        :ARG1 (b / banana
+            :quant (s / some)))
+    :op2 (b3 / break-up-08
+        :ARG1 b))

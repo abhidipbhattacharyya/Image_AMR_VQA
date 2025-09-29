@@ -1,0 +1,27 @@
+# ::tok a person standing next to a truck with its hood open in a parking lot
+# ::node	p2	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	t	truck	6-7
+# ::node	h	hood	9-10
+# ::node	o	open-01	10-11
+# ::node	p	park-01	13-14
+# ::node	l	lot	14-15
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p2	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	truck	n	t	
+# ::edge	truck	part	hood	t	h	
+# ::edge	open-01	ARG1	hood	o	h	
+# ::edge	truck	ARG0-of	open-01	t	o	
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	stand-01	location	lot	s	l	
+(s / stand-01
+    :ARG1 (p2 / person)
+    :ARG2 (n / next-to
+        :op1 (t / truck
+            :ARG0-of (o / open-01
+                :ARG1 (h / hood))
+            :part h))
+    :location (l / lot
+        :purpose (p / park-01)))

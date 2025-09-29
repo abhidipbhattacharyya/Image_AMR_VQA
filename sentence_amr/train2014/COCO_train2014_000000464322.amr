@@ -1,0 +1,28 @@
+# ::tok a stop sign made out of a block of wood and card board box
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	m	make-01	3-4
+# ::node	b	block	7-8
+# ::node	w	wood	9-10
+# ::node	a	and	10-11
+# ::node	c	card	11-12
+# ::node	b2	board	12-13
+# ::node	b3	box	13-14
+# ::root	m	make-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	make-01	ARG1	signal-07	m	s	
+# ::edge	block	consist-of	wood	b	w	
+# ::edge	and	op1	block	a	b	
+# ::edge	board	mod	card	b2	c	
+# ::edge	box	mod	board	b3	b2	
+# ::edge	and	op2	box	a	b3	
+# ::edge	make-01	rel	and	m	a	
+(m / make-01
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :rel (a / and
+        :op1 (b / block
+            :consist-of (w / wood))
+        :op2 (b3 / box
+            :mod (b2 / board
+                :mod (c / card)))))

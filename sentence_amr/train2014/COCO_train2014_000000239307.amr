@@ -1,0 +1,35 @@
+# ::tok A man has a cellphone in his hand and is pressing buttons while another man comes up from behind him .
+# ::node	m	man	1-2
+# ::node	c	cellphone	4-5
+# ::node	i	in-ones-hands-04	7-8
+# ::node	a	and	8-9
+# ::node	p	press-01	10-11
+# ::node	b2	button	11-12
+# ::node	a2	another	13-14
+# ::node	m2	man	14-15
+# ::node	c2	come-01	15-16
+# ::node	b	behind	18-19
+# ::root	a	and
+# ::edge	in-ones-hands-04	ARG1	cellphone	i	c	
+# ::edge	in-ones-hands-04	ARG0	man	i	m	
+# ::edge	and	op1	in-ones-hands-04	a	i	
+# ::edge	and	op2	press-01	a	p	
+# ::edge	press-01	ARG0	man	p	m	
+# ::edge	press-01	ARG1	button	p	b2	
+# ::edge	man	mod	another	m2	a2	
+# ::edge	come-01	ARG1	man	c2	m2	
+# ::edge	and	time	come-01	a	c2	
+# ::edge	come-01	ARG3	behind	c2	b	
+# ::edge	behind	op1	man	b	m	
+(a / and
+    :op1 (i / in-ones-hands-04
+        :ARG0 (m / man)
+        :ARG1 (c / cellphone))
+    :op2 (p / press-01
+        :ARG0 m
+        :ARG1 (b2 / button))
+    :time (c2 / come-01
+        :ARG1 (m2 / man
+            :mod (a2 / another))
+        :ARG3 (b / behind
+            :op1 m)))

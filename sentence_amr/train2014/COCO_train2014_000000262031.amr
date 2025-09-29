@@ -1,0 +1,25 @@
+# ::tok Jelly filled donuts are stacked beside a puffy side dish .
+# ::node	m	medicine	0-1
+# ::node	f	fill-01	1-2
+# ::node	d2	donut	2-3
+# ::node	s2	stack-01	4-5
+# ::node	b	beside	5-6
+# ::node	p	puffy	7-8
+# ::node	s	side	8-9
+# ::node	d	dish	9-10
+# ::root	s2	stack-01
+# ::edge	fill-01	ARG2	medicine	f	m	
+# ::edge	donut	ARG1-of	fill-01	d2	f	
+# ::edge	stack-01	ARG1	donut	s2	d2	
+# ::edge	stack-01	ARG4	beside	s2	b	
+# ::edge	dish	mod	side	d	s	
+# ::edge	dish	mod	puffy	d	p	
+# ::edge	beside	op1	dish	b	d	
+(s2 / stack-01
+    :ARG1 (d2 / donut
+        :ARG1-of (f / fill-01
+            :ARG2 (m / medicine)))
+    :ARG4 (b / beside
+        :op1 (d / dish
+            :mod (s / side)
+            :mod (p / puffy))))

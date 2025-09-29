@@ -1,0 +1,67 @@
+# ::tok A plastic restaurant tray holds a cup of McDonald 's coffee , a cold drink and two fast food breakfast entrees with sausage , egg and muffin ingredients .
+# ::node	p	plastic	1-2
+# ::node	r	restaurant	2-3
+# ::node	t	tray	3-4
+# ::node	h	hold-01	4-5
+# ::node	c4	cup	6-7
+# ::node	c3	company	8-9
+# ::node	n	name	8-9
+# ::node	1	McDonald's	8-9
+# ::node	c	coffee	10-11
+# ::node	c2	cold-01	13-14
+# ::node	d	drink	14-15
+# ::node	a	and	15-16
+# ::node	0	2	16-17
+# ::node	f	fast-02	17-18
+# ::node	f2	food	18-19
+# ::node	b	breakfast-01	19-20
+# ::node	m	meal	20-21
+# ::node	s	sausage	22-23
+# ::node	e	egg	24-25
+# ::node	a2	and	25-26
+# ::node	m2	muffin	26-27
+# ::node	i	ingredient	27-28
+# ::root	h	hold-01
+# ::edge	tray	mod	restaurant	t	r	
+# ::edge	tray	consist-of	plastic	t	p	
+# ::edge	hold-01	ARG0	tray	h	t	
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op1	McDonald's	n	1	
+# ::edge	coffee	mod	company	c	c3	
+# ::edge	coffee	quant	cup	c	c4	
+# ::edge	drink	ARG1-of	cold-01	d	c2	
+# ::edge	and	op2	drink	a	d	
+# ::edge	and	op1	coffee	a	c	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	food	ARG1-of	fast-02	f2	f	
+# ::edge	meal	ARG1-of	breakfast-01	m	b	
+# ::edge	meal	mod	food	m	f2	
+# ::edge	meal	quant	2	m	0	
+# ::edge	and	op3	meal	a	m	
+# ::edge	and	op2	egg	a2	e	
+# ::edge	and	op1	sausage	a2	s	
+# ::edge	and	op3	muffin	a2	m2	
+# ::edge	ingredient	consist-of	and	i	a2	
+# ::edge	meal	consist-of	ingredient	m	i	
+(h / hold-01
+    :ARG0 (t / tray
+        :consist-of (p / plastic)
+        :mod (r / restaurant))
+    :ARG1 (a / and
+        :op1 (c / coffee
+            :quant (c4 / cup)
+            :mod (c3 / company
+                :name (n / name
+                    :op1 "McDonald's")))
+        :op2 (d / drink
+            :ARG1-of (c2 / cold-01))
+        :op3 (m / meal
+            :quant 2
+            :ARG1-of (b / breakfast-01)
+            :consist-of (i / ingredient
+                :consist-of (a2 / and
+                    :op1 (s / sausage)
+                    :op2 (e / egg)
+                    :op3 (m2 / muffin)))
+            :mod (f2 / food
+                :ARG1-of (f / fast-02)))))

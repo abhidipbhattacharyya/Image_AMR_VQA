@@ -1,0 +1,31 @@
+# ::tok A purple plastic container filled with smaller containers filled with food .
+# ::node	p2	purple-02	1-2
+# ::node	p	plastic	2-3
+# ::node	c	container	3-4
+# ::node	f	fill-01	4-5
+# ::node	h	have-degree-91	6-7
+# ::node	s	small	6-7
+# ::node	m	more	6-7
+# ::node	c2	container	7-8
+# ::node	f2	fill-01	8-9
+# ::node	f3	food	10-11
+# ::root	c	container
+# ::edge	container	consist-of	plastic	c	p	
+# ::edge	container	ARG1-of	purple-02	c	p2	
+# ::edge	container	ARG1-of	fill-01	c	f	
+# ::edge	have-degree-91	ARG2	small	h	s	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	container	ARG1-of	have-degree-91	c2	h	
+# ::edge	fill-01	ARG2	container	f	c2	
+# ::edge	container	ARG1-of	fill-01	c2	f2	
+# ::edge	fill-01	ARG2	food	f2	f3	
+(c / container
+    :ARG1-of (p2 / purple-02)
+    :ARG1-of (f / fill-01
+        :ARG2 (c2 / container
+            :ARG1-of (h / have-degree-91
+                :ARG2 (s / small)
+                :ARG3 (m / more))
+            :ARG1-of (f2 / fill-01
+                :ARG2 (f3 / food))))
+    :consist-of (p / plastic))

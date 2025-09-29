@@ -1,0 +1,30 @@
+# ::tok Small ferry boat crossing waterway leaving a wake trail .
+# ::node	s	small	0-1
+# ::node	f	ferry-01	1-2
+# ::node	b	boat	2-3
+# ::node	c	cross-02	3-4
+# ::node	w2	waterway	4-5
+# ::node	l	leave-13	5-6
+# ::node	w	wake	7-8
+# ::node	t	trail	8-9
+# ::node	a	and	9-10
+# ::root	a	and
+# ::edge	boat	ARG0-of	ferry-01	b	f	
+# ::edge	boat	mod	small	b	s	
+# ::edge	cross-02	ARG0	boat	c	b	
+# ::edge	cross-02	ARG1	waterway	c	w2	
+# ::edge	leave-13	ARG0	boat	l	b	
+# ::edge	trail	mod	wake	t	w	
+# ::edge	leave-13	ARG1	trail	l	t	
+# ::edge	and	op2	leave-13	a	l	
+# ::edge	and	op1	cross-02	a	c	
+(a / and
+    :op1 (c / cross-02
+        :ARG0 (b / boat
+            :ARG0-of (f / ferry-01)
+            :mod (s / small))
+        :ARG1 (w2 / waterway))
+    :op2 (l / leave-13
+        :ARG0 b
+        :ARG1 (t / trail
+            :mod (w / wake))))

@@ -1,0 +1,34 @@
+# ::tok A small white two door car that is parked next to produce boxes and filled with bananas .
+# ::node	s	small	1-2
+# ::node	w	white-03	2-3
+# ::node	0	2	3-4
+# ::node	d	door	4-5
+# ::node	c	car	5-6
+# ::node	p	park-01	8-9
+# ::node	n	next-to	9-10
+# ::node	p2	produce-01	11-12
+# ::node	b2	box	12-13
+# ::node	f	fill-01	14-15
+# ::node	b	banana	16-17
+# ::root	c	car
+# ::edge	door	quant	2	d	0	
+# ::edge	car	mod	door	c	d	
+# ::edge	car	ARG1-of	white-03	c	w	
+# ::edge	car	mod	small	c	s	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	location	next-to	p	n	
+# ::edge	box	ARG0-of	produce-01	b2	p2	
+# ::edge	next-to	op1	box	n	b2	
+# ::edge	car	ARG1-of	fill-01	c	f	
+# ::edge	fill-01	ARG2	banana	f	b	
+(c / car
+    :ARG1-of (w / white-03)
+    :ARG1-of (p / park-01
+        :location (n / next-to
+            :op1 (b2 / box
+                :ARG0-of (p2 / produce-01))))
+    :ARG1-of (f / fill-01
+        :ARG2 (b / banana))
+    :mod (d / door
+        :quant 2)
+    :mod (s / small))

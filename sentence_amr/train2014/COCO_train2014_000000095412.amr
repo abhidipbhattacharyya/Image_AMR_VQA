@@ -1,0 +1,27 @@
+# ::tok A train going down the train tracks with many wires above it .
+# ::node	t2	train	1-2
+# ::node	g	go-01	2-3
+# ::node	d	down	3-4
+# ::node	t3	train	5-6
+# ::node	t	track	6-7
+# ::node	m	many	8-9
+# ::node	w	wire	9-10
+# ::node	a	above	10-11
+# ::root	t2	train
+# ::edge	train	ARG1-of	go-01	t2	g	
+# ::edge	go-01	direction	down	g	d	
+# ::edge	track	mod	train	t	t3	
+# ::edge	go-01	path	track	g	t	
+# ::edge	wire	quant	many	w	m	
+# ::edge	train	prep-with	wire	t2	w	
+# ::edge	wire	location	above	w	a	
+# ::edge	above	op1	train	a	t2	
+(t2 / train
+    :ARG1-of (g / go-01
+        :direction (d / down)
+        :path (t / track
+            :mod (t3 / train)))
+    :prep-with (w / wire
+        :quant (m / many)
+        :location (a / above
+            :op1 t2)))

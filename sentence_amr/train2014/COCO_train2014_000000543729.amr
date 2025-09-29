@@ -1,0 +1,78 @@
+# ::tok The floor level view of an entertainment cubby shows a great many , mostly bundled , wires up against a wall behind the shelf , and on the shelf itself , a CD and a host of electronic devices and accessories .
+# ::node	f	floor	1-2
+# ::node	l	level	2-3
+# ::node	v	view-01	3-4
+# ::node	e2	entertain-01	6-7
+# ::node	c	cubby	7-8
+# ::node	s2	show-01	8-9
+# ::node	g	great	10-11
+# ::node	m	many	11-12
+# ::node	m2	most	13-14
+# ::node	b2	bundle-01	14-15
+# ::node	w2	wire-02	16-17
+# ::node	u	up	17-18
+# ::node	a2	against	18-19
+# ::node	w	wall	20-21
+# ::node	b	behind	21-22
+# ::node	s	shelf	23-24
+# ::node	a3	and	25-26
+# ::node	a4	and	30-31
+# ::node	d3	disc	32-33
+# ::node	d2	digital	32-33
+# ::node	h	host-01	35-36
+# ::node	e	electronic	37-38
+# ::node	d	device	38-39
+# ::node	a5	and	39-40
+# ::node	a	accessory	40-41
+# ::root	s2	show-01
+# ::edge	level	mod	floor	l	f	
+# ::edge	view-01	mod	level	v	l	
+# ::edge	cubby	ARG0-of	entertain-01	c	e2	
+# ::edge	view-01	ARG1	cubby	v	c	
+# ::edge	show-01	ARG0	view-01	s2	v	
+# ::edge	many	mod	great	m	g	
+# ::edge	bundle-01	mod	most	b2	m2	
+# ::edge	wire-02	direction	up	w2	u	
+# ::edge	wire-02	ARG2	against	w2	a2	
+# ::edge	against	op1	wall	a2	w	
+# ::edge	wall	location	behind	w	b	
+# ::edge	behind	op1	shelf	b	s	
+# ::edge	and	op1	wire-02	a3	w2	
+# ::edge	show-01	ARG1	and	s2	a3	
+# ::edge	and	op2	and	a3	a4	
+# ::edge	and	op1	disc	a4	d3	
+# ::edge	disc	ARG1-of	bundle-01	d3	b2	
+# ::edge	disc	quant	many	d3	m	
+# ::edge	disc	mod	digital	d3	d2	
+# ::edge	and	op2	host-01	a4	h	
+# ::edge	device	mod	electronic	d	e	
+# ::edge	and	op1	device	a5	d	
+# ::edge	host-01	ARG1	and	h	a5	
+# ::edge	and	op2	accessory	a5	a	
+# ::edge	accessory	mod	electronic	a	e	
+(s2 / show-01
+    :ARG0 (v / view-01
+        :ARG1 (c / cubby
+            :ARG0-of (e2 / entertain-01))
+        :mod (l / level
+            :mod (f / floor)))
+    :ARG1 (a3 / and
+        :op1 (w2 / wire-02
+            :ARG2 (a2 / against
+                :op1 (w / wall
+                    :location (b / behind
+                        :op1 (s / shelf))))
+            :direction (u / up))
+        :op2 (a4 / and
+            :op1 (d3 / disc
+                :quant (m / many
+                    :mod (g / great))
+                :ARG1-of (b2 / bundle-01
+                    :mod (m2 / most))
+                :mod (d2 / digital))
+            :op2 (h / host-01
+                :ARG1 (a5 / and
+                    :op1 (d / device
+                        :mod (e / electronic))
+                    :op2 (a / accessory
+                        :mod e))))))

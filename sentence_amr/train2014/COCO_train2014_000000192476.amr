@@ -1,0 +1,40 @@
+# ::tok A variety of three donuts on a small serving tray and a large cup of black coffee .
+# ::node	v	variety	1-2
+# ::node	1	3	3-4
+# ::node	d	donut	4-5
+# ::node	s2	small	7-8
+# ::node	s	serve-02	8-9
+# ::node	t	tray	9-10
+# ::node	a	and	10-11
+# ::node	l	large	12-13
+# ::node	v2	volume-quantity	13-14
+# ::node	c2	cup	13-14
+# ::node	0	1	13-14
+# ::node	b	black-04	15-16
+# ::node	c	coffee	16-17
+# ::root	v	variety
+# ::edge	donut	quant	3	d	1	
+# ::edge	tray	location-of	serve-02	t	s	
+# ::edge	tray	mod	small	t	s2	
+# ::edge	donut	location	tray	d	t	
+# ::edge	and	op1	donut	a	d	
+# ::edge	variety	domain	and	v	a	
+# ::edge	volume-quantity	mod	large	v2	l	
+# ::edge	volume-quantity	unit	cup	v2	c2	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	coffee	ARG1-of	black-04	c	b	
+# ::edge	coffee	quant	volume-quantity	c	v2	
+# ::edge	and	op2	coffee	a	c	
+(v / variety
+    :domain (a / and
+        :op1 (d / donut
+            :quant 3
+            :location (t / tray
+                :location-of (s / serve-02)
+                :mod (s2 / small)))
+        :op2 (c / coffee
+            :quant (v2 / volume-quantity
+                :quant 1
+                :mod (l / large)
+                :unit (c2 / cup))
+            :ARG1-of (b / black-04))))

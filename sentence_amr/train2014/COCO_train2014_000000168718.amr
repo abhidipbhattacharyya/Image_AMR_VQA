@@ -1,0 +1,54 @@
+# ::tok Street sign showing the name of the street in English and then in Asian characters below
+# ::node	s4	street	0-1
+# ::node	s3	sign	1-2
+# ::node	s	show-01	2-3
+# ::node	s2	show-01	2-3
+# ::node	t2	thing	4-5
+# ::node	n3	name-01	4-5
+# ::node	s5	street	7-8
+# ::node	l	language	9-10
+# ::node	n	name	9-10
+# ::node	1	English	9-10
+# ::node	a	and	10-11
+# ::node	t	then	11-12
+# ::node	c2	continent	13-14
+# ::node	n2	name	13-14
+# ::node	0	Asia	13-14
+# ::node	c	character	14-15
+# ::node	b	below	15-16
+# ::root	a	and
+# ::edge	sign	mod	street	s3	s4	
+# ::edge	show-01	ARG0	sign	s	s3	
+# ::edge	show-01	ARG0	sign	s2	s3	
+# ::edge	show-01	ARG1	thing	s	t2	
+# ::edge	thing	ARG2-of	name-01	t2	n3	
+# ::edge	name-01	ARG1	street	n3	s5	
+# ::edge	language	name	name	l	n	
+# ::edge	name	op1	English	n	1	
+# ::edge	and	op2	show-01	a	s2	
+# ::edge	and	op1	show-01	a	s	
+# ::edge	show-01	time	then	s2	t	
+# ::edge	continent	name	name	c2	n2	
+# ::edge	name	op1	Asia	n2	0	
+# ::edge	character	mod	continent	c	c2	
+# ::edge	show-01	ARG1	character	s2	c	
+# ::edge	character	location	below	c	b	
+# ::edge	and	rel	language	a	l	
+(a / and
+    :op1 (s / show-01
+        :ARG0 (s3 / sign
+            :mod (s4 / street))
+        :ARG1 (t2 / thing
+            :ARG2-of (n3 / name-01
+                :ARG1 (s5 / street))))
+    :op2 (s2 / show-01
+        :ARG0 s3
+        :ARG1 (c / character
+            :location (b / below)
+            :mod (c2 / continent
+                :name (n2 / name
+                    :op1 "Asia")))
+        :time (t / then))
+    :rel (l / language
+        :name (n / name
+            :op1 "English")))

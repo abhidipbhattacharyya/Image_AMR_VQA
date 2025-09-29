@@ -1,0 +1,39 @@
+# ::tok A " Do n't Stop Drinking " sign is hung on the wall of a college dorm room .
+# ::node	s	say-01	1-2
+# ::node	y	you	2-3
+# ::node	1	imperative	2-3
+# ::node	0	-	3-4
+# ::node	s3	stop-01	4-5
+# ::node	d2	drink-01	5-6
+# ::node	s2	sign	7-8
+# ::node	h	hang-01	9-10
+# ::node	w	wall	12-13
+# ::node	c	college	15-16
+# ::node	d	dorm	16-17
+# ::node	r	room	17-18
+# ::root	h	hang-01
+# ::edge	stop-01	polarity	-	s3	0	
+# ::edge	stop-01	mode	imperative	s3	1	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	say-01	ARG1	stop-01	s	s3	
+# ::edge	stop-01	ARG1	drink-01	s3	d2	
+# ::edge	drink-01	ARG0	you	d2	y	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	hang-01	ARG1	sign	h	s2	
+# ::edge	hang-01	ARG2	wall	h	w	
+# ::edge	dorm	mod	college	d	c	
+# ::edge	room	part	dorm	r	d	
+# ::edge	wall	part-of	room	w	r	
+(h / hang-01
+    :ARG1 (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (s3 / stop-01
+                :ARG0 (y / you)
+                :ARG1 (d2 / drink-01
+                    :ARG0 y)
+                :mode imperative
+                :polarity -)))
+    :ARG2 (w / wall
+        :part-of (r / room
+            :part (d / dorm
+                :mod (c / college)))))

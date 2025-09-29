@@ -1,0 +1,26 @@
+# ::tok An airplane on the runway either just landed or ready to take off .
+# ::node	a	airplane	1-2
+# ::node	r2	runway	4-5
+# ::node	j	just	6-7
+# ::node	l	land-01	7-8
+# ::node	o	or	8-9
+# ::node	r	ready-02	9-10
+# ::node	t	take-off-19	11-12
+# ::root	o	or
+# ::edge	airplane	location	runway	a	r2	
+# ::edge	land-01	mod	just	l	j	
+# ::edge	land-01	ARG1	airplane	l	a	
+# ::edge	or	op1	land-01	o	l	
+# ::edge	or	op2	ready-02	o	r	
+# ::edge	ready-02	ARG1	airplane	r	a	
+# ::edge	ready-02	ARG2	take-off-19	r	t	
+# ::edge	take-off-19	ARG1	airplane	t	a	
+(o / or
+    :op1 (l / land-01
+        :ARG1 (a / airplane
+            :location (r2 / runway))
+        :mod (j / just))
+    :op2 (r / ready-02
+        :ARG1 a
+        :ARG2 (t / take-off-19
+            :ARG1 a)))

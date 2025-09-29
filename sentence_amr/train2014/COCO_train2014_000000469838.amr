@@ -1,0 +1,33 @@
+# ::tok The traffic control is holding the signal for cars to stop or to proceed through the construction area .
+# ::node	t	traffic	1-2
+# ::node	c3	control-01	2-3
+# ::node	h	hold-01	4-5
+# ::node	s	signal-07	6-7
+# ::node	c	car	8-9
+# ::node	s2	stop-01	10-11
+# ::node	o	or	11-12
+# ::node	p	proceed-01	13-14
+# ::node	c2	construct-01	16-17
+# ::node	a	area	17-18
+# ::root	h	hold-01
+# ::edge	control-01	ARG1	traffic	c3	t	
+# ::edge	hold-01	ARG0	control-01	h	c3	
+# ::edge	hold-01	ARG1	signal-07	h	s	
+# ::edge	stop-01	ARG1	car	s2	c	
+# ::edge	or	op1	stop-01	o	s2	
+# ::edge	signal-07	ARG1	or	s	o	
+# ::edge	or	op2	proceed-01	o	p	
+# ::edge	proceed-01	ARG0	car	p	c	
+# ::edge	area	location-of	construct-01	a	c2	
+# ::edge	proceed-01	path	area	p	a	
+(h / hold-01
+    :ARG0 (c3 / control-01
+        :ARG1 (t / traffic))
+    :ARG1 (s / signal-07
+        :ARG1 (o / or
+            :op1 (s2 / stop-01
+                :ARG1 (c / car))
+            :op2 (p / proceed-01
+                :ARG0 c
+                :path (a / area
+                    :location-of (c2 / construct-01))))))

@@ -1,0 +1,50 @@
+# ::tok The couple is posing in the snow with a surfboard , dressed in their bathing suits with Santa hats and weather boots .
+# ::node	c	couple	1-2
+# ::node	p2	pose-01	3-4
+# ::node	s	snow	6-7
+# ::node	s3	surfboard	9-10
+# ::node	a	and	10-11
+# ::node	d	dress-01	11-12
+# ::node	b	bathe-01	14-15
+# ::node	s2	suit	15-16
+# ::node	p	person	17-18
+# ::node	n	name	17-18
+# ::node	0	Santa	17-18
+# ::node	h	hat	18-19
+# ::node	a2	and	19-20
+# ::node	w	weather	20-21
+# ::node	b2	boot	21-22
+# ::root	a	and
+# ::edge	pose-01	ARG0	couple	p2	c	
+# ::edge	pose-01	location	snow	p2	s	
+# ::edge	pose-01	instrument	surfboard	p2	s3	
+# ::edge	and	op1	pose-01	a	p2	
+# ::edge	and	op2	dress-01	a	d	
+# ::edge	dress-01	ARG1	couple	d	c	
+# ::edge	bathe-01	ARG0	couple	b	c	
+# ::edge	suit	ARG2-of	bathe-01	s2	b	
+# ::edge	dress-01	ARG2	suit	d	s2	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Santa	n	0	
+# ::edge	hat	mod	person	h	p	
+# ::edge	and	op1	hat	a2	h	
+# ::edge	dress-01	accompanier	and	d	a2	
+# ::edge	boot	mod	weather	b2	w	
+# ::edge	and	op2	boot	a2	b2	
+(a / and
+    :op1 (p2 / pose-01
+        :ARG0 (c / couple)
+        :instrument (s3 / surfboard)
+        :location (s / snow))
+    :op2 (d / dress-01
+        :ARG1 c
+        :ARG2 (s2 / suit
+            :ARG2-of (b / bathe-01
+                :ARG0 c))
+        :accompanier (a2 / and
+            :op1 (h / hat
+                :mod (p / person
+                    :name (n / name
+                        :op1 "Santa")))
+            :op2 (b2 / boot
+                :mod (w / weather)))))

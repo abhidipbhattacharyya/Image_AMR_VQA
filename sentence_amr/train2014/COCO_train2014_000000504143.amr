@@ -1,0 +1,27 @@
+# ::tok Boats along the river are ready whenever someone wants to row .
+# ::node	b	boat	0-1
+# ::node	a	along	1-2
+# ::node	r2	river	3-4
+# ::node	r	ready-02	5-6
+# ::node	a2	any	6-7
+# ::node	s	someone	7-8
+# ::node	w	want-01	8-9
+# ::node	b2	boat-01	10-11
+# ::root	r	ready-02
+# ::edge	boat	location	along	b	a	
+# ::edge	along	op1	river	a	r2	
+# ::edge	ready-02	ARG1	boat	r	b	
+# ::edge	want-01	ARG0	someone	w	s	
+# ::edge	want-01	mod	any	w	a2	
+# ::edge	ready-02	time	want-01	r	w	
+# ::edge	want-01	ARG1	boat-01	w	b2	
+# ::edge	boat-01	ARG0	someone	b2	s	
+(r / ready-02
+    :ARG1 (b / boat
+        :location (a / along
+            :op1 (r2 / river)))
+    :time (w / want-01
+        :ARG0 (s / someone)
+        :ARG1 (b2 / boat-01
+            :ARG0 s)
+        :mod (a2 / any)))

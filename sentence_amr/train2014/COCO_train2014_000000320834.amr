@@ -1,0 +1,36 @@
+# ::tok Three wine glasses with one filled with wine and the other two are empty .
+# ::node	1	3	0-1
+# ::node	w	wine	1-2
+# ::node	g	glass	2-3
+# ::node	g2	glass	2-3
+# ::node	o	one	4-5
+# ::node	f	fill-01	5-6
+# ::node	w2	wine	7-8
+# ::node	a	and	8-9
+# ::node	o2	other	10-11
+# ::node	0	2	11-12
+# ::node	e	empty-02	13-14
+# ::root	e	empty-02
+# ::edge	glass	mod	wine	g	w	
+# ::edge	glass	quant	3	g	1	
+# ::edge	glass	part	one	g2	o	
+# ::edge	fill-01	ARG1	one	f	o	
+# ::edge	fill-01	ARG2	wine	f	w2	
+# ::edge	and	op1	fill-01	a	f	
+# ::edge	glass	mod	other	g2	o2	
+# ::edge	glass	quant	2	g2	0	
+# ::edge	empty-02	ARG1	and	e	a	
+# ::edge	empty-02	rel	glass	e	g	
+# ::edge	empty-02	rel	glass	e	g2	
+(e / empty-02
+    :ARG1 (a / and
+        :op1 (f / fill-01
+            :ARG1 (o / one)
+            :ARG2 (w2 / wine)))
+    :rel (g / glass
+        :quant 3
+        :mod (w / wine))
+    :rel (g2 / glass
+        :quant 2
+        :mod (o2 / other)
+        :part o))

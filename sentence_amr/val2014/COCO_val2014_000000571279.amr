@@ -1,0 +1,63 @@
+# ::tok A delicious fruit plate in a silver bowl .
+# ::node	d	delicious	1-2
+# ::node	f	fruit	2-3
+# ::node	p	plate	3-4
+# ::node	s	silver	6-7
+# ::node	b	bowl	7-8
+# ::root	p	plate
+# ::edge	plate	consist-of	fruit	p	f	
+# ::edge	plate	mod	delicious	p	d	
+# ::edge	bowl	consist-of	silver	b	s	
+# ::edge	plate	location	bowl	p	b	
+(p / plate
+    :consist-of (f / fruit)
+    :location (b / bowl
+        :consist-of (s / silver))
+    :mod (d / delicious))
+
+
+# ::tok The fruit includes an apple , two apricots , red and green grapes , a banana , and a peach .
+# ::node	f	fruit	1-2
+# ::node	i	include-01	2-3
+# ::node	a3	apple	4-5
+# ::node	a	and	5-6
+# ::node	0	2	6-7
+# ::node	a4	apple	7-8
+# ::node	r	red-02	9-10
+# ::node	a2	and	10-11
+# ::node	g	green-02	11-12
+# ::node	a5	apple	12-13
+# ::node	a6	apple	12-13
+# ::node	a7	apple	12-13
+# ::node	b	banana	15-16
+# ::node	p	peach	19-20
+# ::root	i	include-01
+# ::edge	include-01	ARG2	fruit	i	f	
+# ::edge	and	op1	apple	a	a3	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	apple	quant	2	a4	0	
+# ::edge	and	op2	apple	a	a4	
+# ::edge	and	op3	and	a	a2	
+# ::edge	and	op1	apple	a2	a5	
+# ::edge	apple	ARG1-of	red-02	a5	r	
+# ::edge	and	op2	apple	a2	a6	
+# ::edge	apple	ARG1-of	red-02	a6	r	
+# ::edge	apple	ARG1-of	green-02	a7	g	
+# ::edge	and	op3	apple	a2	a7	
+# ::edge	and	op4	banana	a	b	
+# ::edge	and	op5	peach	a	p	
+(i / include-01
+    :ARG1 (a / and
+        :op1 (a3 / apple)
+        :op2 (a4 / apple
+            :quant 2)
+        :op3 (a2 / and
+            :op1 (a5 / apple
+                :ARG1-of (r / red-02))
+            :op2 (a6 / apple
+                :ARG1-of r)
+            :op3 (a7 / apple
+                :ARG1-of (g / green-02)))
+        :op4 (b / banana)
+        :op5 (p / peach))
+    :ARG2 (f / fruit))

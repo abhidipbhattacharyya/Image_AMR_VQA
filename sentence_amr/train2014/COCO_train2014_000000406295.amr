@@ -1,0 +1,37 @@
+# ::tok A vase with flowers , greeting cards and two bottles of wine sitting on a table .
+# ::node	v	vase	1-2
+# ::node	h	have-03	2-3
+# ::node	f	flower	3-4
+# ::node	g	greet-01	5-6
+# ::node	c	card	6-7
+# ::node	a	and	7-8
+# ::node	0	2	8-9
+# ::node	v2	volume-quantity	9-10
+# ::node	b	bottle	9-10
+# ::node	w	wine	11-12
+# ::node	s	sit-01	12-13
+# ::node	t	table	15-16
+# ::root	s	sit-01
+# ::edge	vase	ARG0-of	have-03	v	h	
+# ::edge	card	instrument-of	greet-01	c	g	
+# ::edge	and	op2	card	a	c	
+# ::edge	and	op1	flower	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	volume-quantity	quant	2	v2	0	
+# ::edge	volume-quantity	unit	bottle	v2	b	
+# ::edge	wine	quant	volume-quantity	w	v2	
+# ::edge	and	op3	wine	a	w	
+# ::edge	sit-01	ARG1	vase	s	v	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (v / vase
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (f / flower)
+                :op2 (c / card
+                    :instrument-of (g / greet-01))
+                :op3 (w / wine
+                    :quant (v2 / volume-quantity
+                        :quant 2
+                        :unit (b / bottle))))))
+    :ARG2 (t / table))

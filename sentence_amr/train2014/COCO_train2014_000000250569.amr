@@ -1,0 +1,60 @@
+# ::tok One news anchor looks angry while the other looks concerned about the large cat story they 're talking about .
+# ::node	o	one	0-1
+# ::node	n	news	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	a	anchor	2-3
+# ::node	h2	have-org-role-91	2-3
+# ::node	a2	anchor	2-3
+# ::node	l2	look-02	3-4
+# ::node	a3	anger-01	4-5
+# ::node	c3	contrast-01	5-6
+# ::node	o2	other	7-8
+# ::node	l3	look-02	8-9
+# ::node	c2	concern-01	9-10
+# ::node	l	large	12-13
+# ::node	c	cat	13-14
+# ::node	s	story	14-15
+# ::node	t	talk-01	17-18
+# ::root	c3	contrast-01
+# ::edge	person	mod	one	p	o	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	news	h	n	
+# ::edge	have-org-role-91	ARG2	anchor	h	a	
+# ::edge	have-org-role-91	ARG1	news	h2	n	
+# ::edge	have-org-role-91	ARG2	anchor	h2	a2	
+# ::edge	look-02	ARG0	person	l2	p	
+# ::edge	look-02	ARG1	anger-01	l2	a3	
+# ::edge	anger-01	ARG1	person	a3	p	
+# ::edge	contrast-01	ARG1	look-02	c3	l2	
+# ::edge	other	ARG0-of	have-org-role-91	o2	h2	
+# ::edge	look-02	ARG0	other	l3	o2	
+# ::edge	contrast-01	ARG2	look-02	c3	l3	
+# ::edge	look-02	ARG1	concern-01	l3	c2	
+# ::edge	concern-01	ARG1	other	c2	o2	
+# ::edge	cat	mod	large	c	l	
+# ::edge	story	topic	cat	s	c	
+# ::edge	concern-01	ARG0	story	c2	s	
+# ::edge	story	ARG1-of	talk-01	s	t	
+# ::edge	talk-01	ARG0	other	t	o2	
+(c3 / contrast-01
+    :ARG1 (l2 / look-02
+        :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (n / news)
+                :ARG2 (a / anchor))
+            :mod (o / one))
+        :ARG1 (a3 / anger-01
+            :ARG1 p))
+    :ARG2 (l3 / look-02
+        :ARG0 (o2 / other
+            :ARG0-of (h2 / have-org-role-91
+                :ARG1 n
+                :ARG2 (a2 / anchor)))
+        :ARG1 (c2 / concern-01
+            :ARG0 (s / story
+                :ARG1-of (t / talk-01
+                    :ARG0 o2)
+                :topic (c / cat
+                    :mod (l / large)))
+            :ARG1 o2)))

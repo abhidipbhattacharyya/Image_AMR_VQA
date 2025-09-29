@@ -1,0 +1,30 @@
+# ::tok Chef working in kitchen making pastries on trays next to scale .
+# ::node	p	person	0-1
+# ::node	c2	cook-01	0-1
+# ::node	w	work-01	1-2
+# ::node	k	kitchen	3-4
+# ::node	m	make-01	4-5
+# ::node	c	cake	5-6
+# ::node	r	Trayvon	7-8
+# ::node	n	next-to	8-9
+# ::node	s	scale	10-11
+# ::root	w	work-01
+# ::edge	person	ARG0-of	cook-01	p	c2	
+# ::edge	work-01	ARG0	person	w	p	
+# ::edge	work-01	location	kitchen	w	k	
+# ::edge	work-01	ARG1	make-01	w	m	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	make-01	ARG1	cake	m	c	
+# ::edge	make-01	location	Trayvon	m	r	
+# ::edge	Trayvon	location	next-to	r	n	
+# ::edge	next-to	op1	scale	n	s	
+(w / work-01
+    :ARG0 (p / person
+        :ARG0-of (c2 / cook-01))
+    :ARG1 (m / make-01
+        :ARG0 p
+        :ARG1 (c / cake)
+        :location (r / Trayvon
+            :location (n / next-to
+                :op1 (s / scale))))
+    :location (k / kitchen))

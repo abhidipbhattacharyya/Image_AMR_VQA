@@ -1,0 +1,40 @@
+# ::tok A man running to first base and a person standing on it trying to get him out
+# ::node	m	man	1-2
+# ::node	r	run-02	2-3
+# ::node	o	ordinal-entity	4-5
+# ::node	0	1	4-5
+# ::node	b	base	5-6
+# ::node	a	and	6-7
+# ::node	p	person	8-9
+# ::node	s	stand-01	9-10
+# ::node	t	try-01	12-13
+# ::node	g	get-05	14-15
+# ::node	o2	out	16-17
+# ::root	a	and
+# ::edge	run-02	ARG0	man	r	m	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b	o	
+# ::edge	run-02	direction	base	r	b	
+# ::edge	and	op1	run-02	a	r	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG2	base	s	b	
+# ::edge	person	ARG0-of	try-01	p	t	
+# ::edge	try-01	ARG1	get-05	t	g	
+# ::edge	get-05	ARG0	person	g	p	
+# ::edge	get-05	ARG1	man	g	m	
+# ::edge	get-05	ARG2	out	g	o2	
+(a / and
+    :op1 (r / run-02
+        :ARG0 (m / man)
+        :direction (b / base
+            :ord (o / ordinal-entity
+                :value 1)))
+    :op2 (s / stand-01
+        :ARG1 (p / person
+            :ARG0-of (t / try-01
+                :ARG1 (g / get-05
+                    :ARG0 p
+                    :ARG1 m
+                    :ARG2 (o2 / out))))
+        :ARG2 b))

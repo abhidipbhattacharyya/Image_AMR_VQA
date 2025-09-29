@@ -1,0 +1,31 @@
+# ::tok The king size bed looks inviting and ready to be used .
+# ::node	k	king	1-2
+# ::node	s	size	2-3
+# ::node	b	bed	3-4
+# ::node	l	look-02	4-5
+# ::node	i	invite-01	5-6
+# ::node	a	and	6-7
+# ::node	r	ready-02	7-8
+# ::node	u	use-01	10-11
+# ::root	l	look-02
+# ::edge	size	mod	king	s	k	
+# ::edge	bed	mod	size	b	s	
+# ::edge	look-02	ARG0	bed	l	b	
+# ::edge	invite-01	ARG0	bed	i	b	
+# ::edge	and	op1	invite-01	a	i	
+# ::edge	look-02	ARG1	and	l	a	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	bed	r	b	
+# ::edge	ready-02	ARG2	use-01	r	u	
+# ::edge	use-01	ARG1	bed	u	b	
+(l / look-02
+    :ARG0 (b / bed
+        :mod (s / size
+            :mod (k / king)))
+    :ARG1 (a / and
+        :op1 (i / invite-01
+            :ARG0 b)
+        :op2 (r / ready-02
+            :ARG1 b
+            :ARG2 (u / use-01
+                :ARG1 b))))

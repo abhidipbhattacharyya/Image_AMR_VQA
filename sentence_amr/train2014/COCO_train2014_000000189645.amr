@@ -1,0 +1,44 @@
+# ::tok A moped with a crate tied to the back parked next to a display of cabbages at a market .
+# ::node	m2	moped	1-2
+# ::node	c	crate	4-5
+# ::node	t2	tie-01	5-6
+# ::node	b	back	8-9
+# ::node	p	park-01	9-10
+# ::node	n2	next-to	10-11
+# ::node	t	thing	12-13
+# ::node	d	display-01	13-14
+# ::node	b2	bomb	15-16
+# ::node	n	name	15-16
+# ::node	b3	bomb	15-16
+# ::node	v	vegetable	15-16
+# ::node	m	market	18-19
+# ::root	p	park-01
+# ::edge	crate	ARG1-of	tie-01	c	t2	
+# ::edge	tie-01	ARG2	back	t2	b	
+# ::edge	moped	part	back	m2	b	
+# ::edge	park-01	ARG1	moped	p	m2	
+# ::edge	park-01	ARG0	moped	p	m2	
+# ::edge	park-01	location	next-to	p	n2	
+# ::edge	next-to	op1	thing	n2	t	
+# ::edge	thing	ARG2-of	display-01	t	d	
+# ::edge	display-01	ARG1	bomb	d	b2	
+# ::edge	bomb	name	name	b2	n	
+# ::edge	name	op1	bomb	n	b3	
+# ::edge	bomb	mod	vegetable	b3	v	
+# ::edge	thing	location	market	t	m	
+# ::edge	park-01	rel	crate	p	c	
+(p / park-01
+    :ARG0 (m2 / moped
+        :part (b / back))
+    :ARG1 m2
+    :location (n2 / next-to
+        :op1 (t / thing
+            :ARG2-of (d / display-01
+                :ARG1 (b2 / bomb
+                    :name (n / name
+                        :op1 (b3 / "bomb"
+                            :mod (v / vegetable)))))
+            :location (m / market)))
+    :rel (c / crate
+        :ARG1-of (t2 / tie-01
+            :ARG2 b)))

@@ -1,0 +1,39 @@
+# ::tok Air Force jet with something in tow , flying at altitude along a shore .
+# ::node	0	Air	0-1
+# ::node	m	military	1-2
+# ::node	n	name	1-2
+# ::node	1	Force	1-2
+# ::node	j	jet	2-3
+# ::node	s2	something	4-5
+# ::node	t	tow-01	6-7
+# ::node	a3	and	7-8
+# ::node	f	fly-01	8-9
+# ::node	a2	altitude	10-11
+# ::node	a	along	11-12
+# ::node	s	shore	13-14
+# ::root	a3	and
+# ::edge	military	name	name	m	n	
+# ::edge	name	op1	Air	n	0	
+# ::edge	name	op2	Force	n	1	
+# ::edge	jet	poss	military	j	m	
+# ::edge	tow-01	ARG1	something	t	s2	
+# ::edge	jet	ARG0-of	tow-01	j	t	
+# ::edge	and	op1	jet	a3	j	
+# ::edge	and	op2	fly-01	a3	f	
+# ::edge	fly-01	ARG2	jet	f	j	
+# ::edge	fly-01	location	altitude	f	a2	
+# ::edge	altitude	location	along	a2	a	
+# ::edge	along	op1	shore	a	s	
+(a3 / and
+    :op1 (j / jet
+        :ARG0-of (t / tow-01
+            :ARG1 (s2 / something))
+        :poss (m / military
+            :name (n / name
+                :op1 "Air"
+                :op2 "Force")))
+    :op2 (f / fly-01
+        :ARG2 j
+        :location (a2 / altitude
+            :location (a / along
+                :op1 (s / shore)))))

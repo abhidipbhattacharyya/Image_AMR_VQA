@@ -1,0 +1,22 @@
+# ::tok Train on the tracks at nighttime with the indoor lights on .
+# ::node	t2	train	0-1
+# ::node	t	track	3-4
+# ::node	d	date-entity	5-6
+# ::node	n	nighttime	5-6
+# ::node	i	indoor	8-9
+# ::node	l	light	9-10
+# ::node	o	on-01	10-11
+# ::root	t2	train
+# ::edge	train	location	track	t2	t	
+# ::edge	train	time	date-entity	t2	d	
+# ::edge	date-entity	dayperiod	nighttime	d	n	
+# ::edge	light	mod	indoor	l	i	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	train	manner	on-01	t2	o	
+(t2 / train
+    :location (t / track)
+    :manner (o / on-01
+        :ARG1 (l / light
+            :mod (i / indoor)))
+    :time (d / date-entity
+        :dayperiod (n / nighttime)))

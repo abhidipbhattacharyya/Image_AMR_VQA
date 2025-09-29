@@ -1,0 +1,24 @@
+# ::tok The train passes by another train as it moves through a rail yard .
+# ::node	t	train	1-2
+# ::node	p	pass-by-17	2-3
+# ::node	a	another	4-5
+# ::node	t2	train	5-6
+# ::node	m	move-01	8-9
+# ::node	r	rail	11-12
+# ::node	y	yard	12-13
+# ::root	p	pass-by-17
+# ::edge	pass-by-17	ARG0	train	p	t	
+# ::edge	train	mod	another	t2	a	
+# ::edge	pass-by-17	ARG1	train	p	t2	
+# ::edge	move-01	ARG0	train	m	t2	
+# ::edge	pass-by-17	time	move-01	p	m	
+# ::edge	yard	mod	rail	y	r	
+# ::edge	move-01	path	yard	m	y	
+(p / pass-by-17
+    :ARG0 (t / train)
+    :ARG1 (t2 / train
+        :mod (a / another))
+    :time (m / move-01
+        :ARG0 t2
+        :path (y / yard
+            :mod (r / rail))))

@@ -1,0 +1,27 @@
+# ::tok A train is sitting on a track with several empty tracks in front of it .
+# ::node	t3	train	1-2
+# ::node	s2	sit-01	3-4
+# ::node	t	track	6-7
+# ::node	h	have-03	7-8
+# ::node	s	several	8-9
+# ::node	e	empty-02	9-10
+# ::node	t2	track	10-11
+# ::node	i	in-front-of	12-13
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	train	s2	t3	
+# ::edge	sit-01	ARG2	track	s2	t	
+# ::edge	track	ARG0-of	have-03	t	h	
+# ::edge	track	ARG1-of	empty-02	t2	e	
+# ::edge	track	quant	several	t2	s	
+# ::edge	have-03	ARG1	track	h	t2	
+# ::edge	have-03	location	in-front-of	h	i	
+# ::edge	in-front-of	op1	train	i	t3	
+(s2 / sit-01
+    :ARG1 (t3 / train)
+    :ARG2 (t / track
+        :ARG0-of (h / have-03
+            :ARG1 (t2 / track
+                :quant (s / several)
+                :ARG1-of (e / empty-02))
+            :location (i / in-front-of
+                :op1 t3))))

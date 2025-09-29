@@ -1,0 +1,54 @@
+# ::tok Several friends are in a room together while one is holding interactive video game controllers .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	h	have-rel-role-91	1-2
+# ::node	f	friend	1-2
+# ::node	h2	have-rel-role-91	1-2
+# ::node	f2	friend	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	r	room	5-6
+# ::node	t2	together	6-7
+# ::node	p2	person	8-9
+# ::node	0	1	8-9
+# ::node	h3	hold-01	10-11
+# ::node	i	interactive	11-12
+# ::node	v	video	12-13
+# ::node	g	game	13-14
+# ::node	t	thing	14-15
+# ::node	c	control-01	14-15
+# ::root	b	be-located-at-91
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	have-rel-role-91	p	h	
+# ::edge	have-rel-role-91	ARG2	friend	h	f	
+# ::edge	have-rel-role-91	ARG1	person	h2	p	
+# ::edge	have-rel-role-91	ARG2	friend	h2	f2	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	room	b	r	
+# ::edge	be-located-at-91	mod	together	b	t2	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h2	
+# ::edge	person	quant	1	p2	0	
+# ::edge	hold-01	ARG0	person	h3	p2	
+# ::edge	be-located-at-91	time	hold-01	b	h3	
+# ::edge	game	mod	video	g	v	
+# ::edge	thing	mod	interactive	t	i	
+# ::edge	hold-01	ARG1	thing	h3	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	control-01	ARG1	game	c	g	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :quant (s / several)
+        :ARG0-of (h / have-rel-role-91
+            :ARG2 (f / friend)))
+    :ARG2 (r / room)
+    :mod (t2 / together)
+    :time (h3 / hold-01
+        :ARG0 (p2 / person
+            :quant 1
+            :ARG0-of (h2 / have-rel-role-91
+                :ARG1 p
+                :ARG2 (f2 / friend)))
+        :ARG1 (t / thing
+            :ARG0-of (c / control-01
+                :ARG1 (g / game
+                    :mod (v / video)))
+            :mod (i / interactive))))

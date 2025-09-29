@@ -1,0 +1,37 @@
+# ::tok A man using ski poles to climb the side of a mountain with his skies strapped to his back .
+# ::node	m	man	1-2
+# ::node	u	use-01	2-3
+# ::node	s2	ski-01	3-4
+# ::node	p	pole	4-5
+# ::node	c	climb-01	6-7
+# ::node	s	side	8-9
+# ::node	m2	mountain	11-12
+# ::node	s3	sky	14-15
+# ::node	s4	strap-01	15-16
+# ::node	b	back	18-19
+# ::root	m	man
+# ::edge	man	ARG0-of	use-01	m	u	
+# ::edge	pole	mod	ski-01	p	s2	
+# ::edge	use-01	ARG1	pole	u	p	
+# ::edge	use-01	ARG2	climb-01	u	c	
+# ::edge	climb-01	ARG0	man	c	m	
+# ::edge	climb-01	ARG1	side	c	s	
+# ::edge	side	part-of	mountain	s	m2	
+# ::edge	sky	poss	man	s3	m	
+# ::edge	strap-01	ARG1	sky	s4	s3	
+# ::edge	climb-01	manner	strap-01	c	s4	
+# ::edge	strap-01	ARG2	back	s4	b	
+# ::edge	man	part	back	m	b	
+(m / man
+    :ARG0-of (u / use-01
+        :ARG1 (p / pole
+            :mod (s2 / ski-01))
+        :ARG2 (c / climb-01
+            :ARG0 m
+            :ARG1 (s / side
+                :part-of (m2 / mountain))
+            :manner (s4 / strap-01
+                :ARG1 (s3 / sky
+                    :poss m)
+                :ARG2 (b / back))))
+    :part b)

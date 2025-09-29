@@ -1,0 +1,30 @@
+# ::tok A sheep is putting his head through a wire fence near other sheep .
+# ::node	s	sheep	1-2
+# ::node	p	put-01	3-4
+# ::node	h	head	5-6
+# ::node	t	through	6-7
+# ::node	w	wire	8-9
+# ::node	f	fence	9-10
+# ::node	n	near-02	10-11
+# ::node	o	other	11-12
+# ::node	s2	sheep	12-13
+# ::root	p	put-01
+# ::edge	put-01	ARG0	sheep	p	s	
+# ::edge	put-01	ARG1	head	p	h	
+# ::edge	sheep	part	head	s	h	
+# ::edge	put-01	ARG2	through	p	t	
+# ::edge	fence	mod	wire	f	w	
+# ::edge	through	op1	fence	t	f	
+# ::edge	sheep	ARG1-of	near-02	s	n	
+# ::edge	sheep	mod	other	s2	o	
+# ::edge	near-02	ARG2	sheep	n	s2	
+(p / put-01
+    :ARG0 (s / sheep
+        :ARG1-of (n / near-02
+            :ARG2 (s2 / sheep
+                :mod (o / other)))
+        :part (h / head))
+    :ARG1 h
+    :ARG2 (t / through
+        :op1 (f / fence
+            :mod (w / wire))))

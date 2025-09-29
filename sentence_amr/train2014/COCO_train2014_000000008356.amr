@@ -1,0 +1,27 @@
+# ::tok A refrigerator with a unattached door and a freezer with the top open .
+# ::node	r	refrigerator	1-2
+# ::node	a2	attach-01	4-5
+# ::node	0	-	4-5
+# ::node	d	door	5-6
+# ::node	a	and	6-7
+# ::node	f	freezer	8-9
+# ::node	t	top	11-12
+# ::node	o	open-01	12-13
+# ::root	a	and
+# ::edge	attach-01	polarity	-	a2	0	
+# ::edge	door	ARG1-of	attach-01	d	a2	
+# ::edge	refrigerator	part	door	r	d	
+# ::edge	and	op1	refrigerator	a	r	
+# ::edge	and	op2	freezer	a	f	
+# ::edge	freezer	part	top	f	t	
+# ::edge	open-01	ARG1	top	o	t	
+# ::edge	freezer	ARG0-of	open-01	f	o	
+(a / and
+    :op1 (r / refrigerator
+        :part (d / door
+            :ARG1-of (a2 / attach-01
+                :polarity -)))
+    :op2 (f / freezer
+        :ARG0-of (o / open-01
+            :ARG1 (t / top))
+        :part t))

@@ -1,0 +1,37 @@
+# ::tok Bananas on display in a grocery store for $ 11.98 / kilogram ..
+# ::node	b	banana	0-1
+# ::node	d	display-01	2-3
+# ::node	g	grocery	5-6
+# ::node	s	store	6-7
+# ::node	c	cost-01	7-8
+# ::node	m2	monetary-quantity	8-9
+# ::node	d2	dollar	8-9
+# ::node	1	11.98	9-10
+# ::node	r	rate-entity-91	10-11
+# ::node	0	1	10-11
+# ::node	m	mass-quantity	11-12
+# ::node	k	kilogram	11-12
+# ::root	d	display-01
+# ::edge	display-01	ARG1	banana	d	b	
+# ::edge	store	mod	grocery	s	g	
+# ::edge	display-01	location	store	d	s	
+# ::edge	banana	ARG1-of	cost-01	b	c	
+# ::edge	monetary-quantity	unit	dollar	m2	d2	
+# ::edge	monetary-quantity	quant	11.98	m2	1	
+# ::edge	rate-entity-91	ARG1	monetary-quantity	r	m2	
+# ::edge	cost-01	ARG2	rate-entity-91	c	r	
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	rate-entity-91	ARG2	mass-quantity	r	m	
+# ::edge	mass-quantity	unit	kilogram	m	k	
+(d / display-01
+    :ARG1 (b / banana
+        :ARG1-of (c / cost-01
+            :ARG2 (r / rate-entity-91
+                :ARG1 (m2 / monetary-quantity
+                    :quant 11.98
+                    :unit (d2 / dollar))
+                :ARG2 (m / mass-quantity
+                    :quant 1
+                    :unit (k / kilogram)))))
+    :location (s / store
+        :mod (g / grocery)))

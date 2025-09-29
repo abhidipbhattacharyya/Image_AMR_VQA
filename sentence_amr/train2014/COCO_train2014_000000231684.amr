@@ -1,0 +1,25 @@
+# ::tok INSIDE THE RESTROOM ON A AIRPLANE AND THE TOILET LID IS DOWN
+# ::node	i	inside	0-1
+# ::node	t	temperature-quantity	2-3
+# ::node	r	rescue-01	2-3
+# ::node	a	airplane	5-6
+# ::node	a2	and	6-7
+# ::node	f	floor	8-9
+# ::node	g	guard	9-10
+# ::node	d	down-01	11-12
+# ::root	a2	and
+# ::edge	inside	op1	temperature-quantity	i	t	
+# ::edge	temperature-quantity	ARG0-of	rescue-01	t	r	
+# ::edge	rescue-01	location	airplane	r	a	
+# ::edge	and	op1	inside	a2	i	
+# ::edge	guard	mod	floor	g	f	
+# ::edge	down-01	ARG1	guard	d	g	
+# ::edge	and	op2	down-01	a2	d	
+(a2 / and
+    :op1 (i / inside
+        :op1 (t / temperature-quantity
+            :ARG0-of (r / rescue-01
+                :location (a / airplane))))
+    :op2 (d / down-01
+        :ARG1 (g / guard
+            :mod (f / floor))))

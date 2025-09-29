@@ -1,0 +1,32 @@
+# ::tok A man sitting near a wall with different size scissors hanging on the wall .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	n	near-02	3-4
+# ::node	w	wall	5-6
+# ::node	h2	have-03	6-7
+# ::node	d	differ-02	7-8
+# ::node	s2	size	8-9
+# ::node	n2	needle	9-10
+# ::node	h	hang-01	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	near-02	ARG2	wall	n	w	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	size	ARG1-of	differ-02	s2	d	
+# ::edge	needle	mod	size	n2	s2	
+# ::edge	have-03	ARG1	needle	h2	n2	
+# ::edge	needle	ARG1-of	hang-01	n2	h	
+# ::edge	hang-01	ARG2	wall	h	w	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h2 / have-03
+            :ARG1 (n2 / needle
+                :ARG1-of (h / hang-01
+                    :ARG2 (w / wall))
+                :mod (s2 / size
+                    :ARG1-of (d / differ-02)))))
+    :ARG2 (n / near-02
+        :ARG1 m
+        :ARG2 w))

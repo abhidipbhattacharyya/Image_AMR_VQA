@@ -1,0 +1,27 @@
+# ::tok Several clocks in boxes with a sign selling them that is placed in front .
+# ::node	s2	several	0-1
+# ::node	w	watch	1-2
+# ::node	b	box	3-4
+# ::node	h	have-03	4-5
+# ::node	s3	sign	6-7
+# ::node	s	sell-01	7-8
+# ::node	p	place-01	11-12
+# ::node	f	front	13-14
+# ::root	w	watch
+# ::edge	watch	quant	several	w	s2	
+# ::edge	watch	location	box	w	b	
+# ::edge	watch	ARG0-of	have-03	w	h	
+# ::edge	have-03	ARG1	sign	h	s3	
+# ::edge	sign	ARG0-of	sell-01	s3	s	
+# ::edge	sell-01	ARG1	watch	s	w	
+# ::edge	sign	ARG1-of	place-01	s3	p	
+# ::edge	place-01	ARG2	front	p	f	
+(w / watch
+    :quant (s2 / several)
+    :ARG0-of (h / have-03
+        :ARG1 (s3 / sign
+            :ARG0-of (s / sell-01
+                :ARG1 w)
+            :ARG1-of (p / place-01
+                :ARG2 (f / front))))
+    :location (b / box))

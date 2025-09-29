@@ -1,0 +1,51 @@
+# ::tok Asian woman reading while holding a microphone and man with a video camera with a military man signing a book .
+# ::node	c2	continent	0-1
+# ::node	n	name	0-1
+# ::node	0	Asia	0-1
+# ::node	w	woman	1-2
+# ::node	r	read-01	2-3
+# ::node	h	hold-01	4-5
+# ::node	m3	microphone	6-7
+# ::node	a	and	7-8
+# ::node	m	man	8-9
+# ::node	v	video	11-12
+# ::node	c	camera	12-13
+# ::node	m4	military	15-16
+# ::node	m2	man	16-17
+# ::node	s	sign-01	17-18
+# ::node	s2	sign-01	17-18
+# ::node	b	book	19-20
+# ::root	a	and
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	woman	mod	continent	w	c2	
+# ::edge	read-01	ARG0	woman	r	w	
+# ::edge	read-01	manner	hold-01	r	h	
+# ::edge	hold-01	ARG0	woman	h	w	
+# ::edge	hold-01	ARG1	microphone	h	m3	
+# ::edge	and	op1	read-01	a	r	
+# ::edge	and	op2	man	a	m	
+# ::edge	camera	mod	video	c	v	
+# ::edge	man	mod	military	m2	m4	
+# ::edge	sign-01	ARG2	man	s	m2	
+# ::edge	man	ARG0-of	sign-01	m	s	
+# ::edge	man	ARG0-of	sign-01	m2	s2	
+# ::edge	sign-01	ARG1	book	s2	b	
+# ::edge	and	rel	camera	a	c	
+(a / and
+    :op1 (r / read-01
+        :ARG0 (w / woman
+            :mod (c2 / continent
+                :name (n / name
+                    :op1 "Asia")))
+        :manner (h / hold-01
+            :ARG0 w
+            :ARG1 (m3 / microphone)))
+    :op2 (m / man
+        :ARG0-of (s / sign-01
+            :ARG2 (m2 / man
+                :ARG0-of (s2 / sign-01
+                    :ARG1 (b / book))
+                :mod (m4 / military))))
+    :rel (c / camera
+        :mod (v / video)))

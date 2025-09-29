@@ -1,0 +1,30 @@
+# ::tok Oranges , bananas , squash and other fruits and vegetables in an open container
+# ::node	o2	or	0-1
+# ::node	a	and	1-2
+# ::node	b	banana	2-3
+# ::node	s	squash	4-5
+# ::node	o3	other	6-7
+# ::node	f	fruit	7-8
+# ::node	v	vegetable	9-10
+# ::node	o	open-01	12-13
+# ::node	c	container	13-14
+# ::root	a	and
+# ::edge	and	op1	or	a	o2	
+# ::edge	and	op2	banana	a	b	
+# ::edge	and	op3	squash	a	s	
+# ::edge	fruit	mod	other	f	o3	
+# ::edge	and	op4	fruit	a	f	
+# ::edge	vegetable	mod	other	v	o3	
+# ::edge	and	op5	vegetable	a	v	
+# ::edge	container	ARG1-of	open-01	c	o	
+# ::edge	and	location	container	a	c	
+(a / and
+    :location (c / container
+        :ARG1-of (o / open-01))
+    :op1 (o2 / or)
+    :op2 (b / banana)
+    :op3 (s / squash)
+    :op4 (f / fruit
+        :mod (o3 / other))
+    :op5 (v / vegetable
+        :mod o3))

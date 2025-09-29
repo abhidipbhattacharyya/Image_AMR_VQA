@@ -1,0 +1,34 @@
+# ::tok A baseball player pauses to adjust his gloves before stepping up to the plate .
+# ::node	b	baseball	1-2
+# ::node	p2	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	p	pause-01	3-4
+# ::node	a	adjust-01	5-6
+# ::node	g	glove	7-8
+# ::node	b2	before	8-9
+# ::node	s	step-01	9-10
+# ::node	p3	plate	13-14
+# ::root	p	pause-01
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	pause-01	ARG0	person	p	p2	
+# ::edge	pause-01	purpose	adjust-01	p	a	
+# ::edge	adjust-01	ARG0	person	a	p2	
+# ::edge	adjust-01	ARG1	glove	a	g	
+# ::edge	glove	poss	person	g	p2	
+# ::edge	pause-01	time	before	p	b2	
+# ::edge	before	op1	step-01	b2	s	
+# ::edge	step-01	ARG0	person	s	p2	
+# ::edge	step-01	ARG2	plate	s	p3	
+(p / pause-01
+    :purpose (a / adjust-01
+        :ARG0 (p2 / person
+            :ARG0-of (p4 / play-01
+                :ARG1 (b / baseball)))
+        :ARG1 (g / glove
+            :poss p2))
+    :ARG0 p2
+    :time (b2 / before
+        :op1 (s / step-01
+            :ARG0 p2
+            :ARG2 (p3 / plate))))

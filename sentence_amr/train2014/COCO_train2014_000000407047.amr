@@ -1,0 +1,61 @@
+# ::tok A woman from side , from knees up , bending at waist , wearing visor , and holding a tennis racket in front with both hands , on dirt .
+# ::node	w3	woman	1-2
+# ::node	s	side	3-4
+# ::node	k	knee	6-7
+# ::node	u	up	7-8
+# ::node	b	bend-01	9-10
+# ::node	w	waist	11-12
+# ::node	w2	wear-01	13-14
+# ::node	v	visor	14-15
+# ::node	a	and	16-17
+# ::node	h2	hold-01	17-18
+# ::node	t	tennis	19-20
+# ::node	r	racket	20-21
+# ::node	i	in-front-of	22-23
+# ::node	b2	both	24-25
+# ::node	h	hand	25-26
+# ::node	d	dirt	28-29
+# ::root	w3	woman
+# ::edge	woman	part	knee	w3	k	
+# ::edge	up	op1	knee	u	k	
+# ::edge	bend-01	ARG1	woman	b	w3	
+# ::edge	bend-01	location	waist	b	w	
+# ::edge	wear-01	ARG0	woman	w2	w3	
+# ::edge	wear-01	ARG1	visor	w2	v	
+# ::edge	and	op3	wear-01	a	w2	
+# ::edge	and	op2	bend-01	a	b	
+# ::edge	and	op1	side	a	s	
+# ::edge	woman	manner	and	w3	a	
+# ::edge	and	op4	hold-01	a	h2	
+# ::edge	hold-01	ARG0	woman	h2	w3	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	hold-01	ARG1	racket	h2	r	
+# ::edge	racket	location	in-front-of	r	i	
+# ::edge	hand	mod	both	h	b2	
+# ::edge	hold-01	instrument	hand	h2	h	
+# ::edge	woman	part	hand	w3	h	
+# ::edge	and	location	dirt	a	d	
+# ::edge	woman	rel	up	w3	u	
+# ::edge	woman	rel	wear-01	w3	w2	
+(w3 / woman
+    :manner (a / and
+        :location (d / dirt)
+        :op1 (s / side)
+        :op2 (b / bend-01
+            :ARG1 w3
+            :location (w / waist))
+        :op3 (w2 / wear-01
+            :ARG0 w3
+            :ARG1 (v / visor))
+        :op4 (h2 / hold-01
+            :ARG0 w3
+            :ARG1 (r / racket
+                :location (i / in-front-of)
+                :mod (t / tennis))
+            :instrument (h / hand
+                :mod (b2 / both))))
+    :part (k / knee)
+    :part h
+    :rel (u / up
+        :op1 k)
+    :rel w2)

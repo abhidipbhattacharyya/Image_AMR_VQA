@@ -1,0 +1,46 @@
+# ::tok Dining table with two pizzas including one with two types of ham , cheese and black olives .
+# ::node	d	dine-01	0-1
+# ::node	t	table	1-2
+# ::node	1	2	3-4
+# ::node	p	pizzeria	4-5
+# ::node	f	food-dish	4-5
+# ::node	i	include-01	5-6
+# ::node	0	1	6-7
+# ::node	h2	have-03	7-8
+# ::node	2	2	8-9
+# ::node	t2	type	9-10
+# ::node	h	ham	11-12
+# ::node	a	and	12-13
+# ::node	c	cheese	13-14
+# ::node	b	black-04	15-16
+# ::node	l	Olive	16-17
+# ::root	t	table
+# ::edge	table	location-of	dine-01	t	d	
+# ::edge	pizzeria	quant	2	p	1	
+# ::edge	table	accompanier	pizzeria	t	p	
+# ::edge	include-01	ARG1	food-dish	i	f	
+# ::edge	pizzeria	ARG2-of	include-01	p	i	
+# ::edge	food-dish	quant	1	f	0	
+# ::edge	food-dish	ARG0-of	have-03	f	h2	
+# ::edge	type	quant	2	t2	2	
+# ::edge	and	op1	ham	a	h	
+# ::edge	and	mod	type	a	t2	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op2	cheese	a	c	
+# ::edge	Olive	ARG1-of	black-04	l	b	
+# ::edge	and	op3	Olive	a	l	
+(t / table
+    :accompanier (p / pizzeria
+        :quant 2
+        :ARG2-of (i / include-01
+            :ARG1 (f / food-dish
+                :quant 1
+                :ARG0-of (h2 / have-03
+                    :ARG1 (a / and
+                        :mod (t2 / type
+                            :quant 2)
+                        :op1 (h / ham)
+                        :op2 (c / cheese)
+                        :op3 (l / Olive
+                            :ARG1-of (b / black-04)))))))
+    :location-of (d / dine-01))

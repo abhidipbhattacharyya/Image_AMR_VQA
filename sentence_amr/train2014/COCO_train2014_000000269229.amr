@@ -1,0 +1,51 @@
+# ::tok A first baseman stretches to catch a ball while the base runner slides to the bag .
+# ::node	o	ordinal-entity	1-2
+# ::node	0	1	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	t	team	2-3
+# ::node	n	name	2-3
+# ::node	1	First	2-3
+# ::node	s2	soldier	2-3
+# ::node	s3	stretch-01	3-4
+# ::node	c	catch-01	5-6
+# ::node	b2	ball	7-8
+# ::node	b3	base	10-11
+# ::node	p2	person	11-12
+# ::node	r	run-02	11-12
+# ::node	s	slide-01	12-13
+# ::node	b	bag	15-16
+# ::root	s3	stretch-01
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	team	h	t	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	First	n	1	
+# ::edge	name	op2	soldier	n	s2	
+# ::edge	soldier	ord	ordinal-entity	s2	o	
+# ::edge	stretch-01	ARG1	person	s3	p	
+# ::edge	stretch-01	purpose	catch-01	s3	c	
+# ::edge	catch-01	ARG0	person	c	p	
+# ::edge	catch-01	ARG1	ball	c	b2	
+# ::edge	person	ARG0-of	run-02	p2	r	
+# ::edge	run-02	mod	base	r	b3	
+# ::edge	slide-01	ARG1	person	s	p2	
+# ::edge	stretch-01	time	slide-01	s3	s	
+# ::edge	slide-01	destination	bag	s	b	
+(s3 / stretch-01
+    :purpose (c / catch-01
+        :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (t / team
+                    :name (n / name
+                        :op1 "First"
+                        :op2 (s2 / "soldier"
+                            :ord (o / ordinal-entity
+                                :value 1))))))
+        :ARG1 (b2 / ball))
+    :ARG1 p
+    :time (s / slide-01
+        :ARG1 (p2 / person
+            :ARG0-of (r / run-02
+                :mod (b3 / base)))
+        :destination (b / bag)))

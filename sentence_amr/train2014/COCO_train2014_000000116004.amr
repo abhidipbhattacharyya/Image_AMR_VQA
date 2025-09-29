@@ -1,0 +1,31 @@
+# ::tok a big crowd of people a firetruck traffic lights and railroad crossing lights
+# ::node	b	big	1-2
+# ::node	c2	crowd	2-3
+# ::node	p	person	4-5
+# ::node	f	firetruck	6-7
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	a	and	9-10
+# ::node	r	railroad	10-11
+# ::node	c	cross-02	11-12
+# ::node	l2	light	12-13
+# ::root	a	and
+# ::edge	crowd	mod	big	c2	b	
+# ::edge	crowd	consist-of	person	c2	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	mod	firetruck	l	f	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	op1	crowd	a	c2	
+# ::edge	cross-02	ARG1	railroad	c	r	
+# ::edge	light	ARG0-of	cross-02	l2	c	
+# ::edge	and	op3	light	a	l2	
+(a / and
+    :op1 (c2 / crowd
+        :consist-of (p / person)
+        :mod (b / big))
+    :op2 (l / light
+        :mod (t / traffic)
+        :mod (f / firetruck))
+    :op3 (l2 / light
+        :ARG0-of (c / cross-02
+            :ARG1 (r / railroad))))

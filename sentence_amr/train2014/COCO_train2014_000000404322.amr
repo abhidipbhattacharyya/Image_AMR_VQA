@@ -1,0 +1,61 @@
+# ::tok A man wearing a backpack , standing on a skateboard near bottom of incline at crosswalk area of intersection on residential streets , near a do not enter sign .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	b	backpack	4-5
+# ::node	s3	stand-01	6-7
+# ::node	s2	skateboard	9-10
+# ::node	n	near-02	10-11
+# ::node	b2	bottom	11-12
+# ::node	i	incline-01	13-14
+# ::node	c	cross-02	15-16
+# ::node	a	area	16-17
+# ::node	i2	intersect-01	18-19
+# ::node	t	thing	19-20
+# ::node	r	residential	20-21
+# ::node	s4	street	21-22
+# ::node	n2	near-02	23-24
+# ::node	y	you	25-26
+# ::node	1	imperative	25-26
+# ::node	0	-	26-27
+# ::node	e	enter-01	27-28
+# ::node	s	sign	28-29
+# ::root	s3	stand-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	wear-01	ARG1	backpack	w	b	
+# ::edge	stand-01	ARG1	man	s3	m	
+# ::edge	stand-01	ARG2	skateboard	s3	s2	
+# ::edge	skateboard	ARG1-of	near-02	s2	n	
+# ::edge	near-02	ARG2	bottom	n	b2	
+# ::edge	bottom	part-of	incline-01	b2	i	
+# ::edge	area	location-of	cross-02	a	c	
+# ::edge	stand-01	location	area	s3	a	
+# ::edge	thing	ARG0-of	intersect-01	t	i2	
+# ::edge	bottom	part-of	thing	b2	t	
+# ::edge	street	mod	residential	s4	r	
+# ::edge	intersect-01	ARG1	street	i2	s4	
+# ::edge	area	ARG1-of	near-02	a	n2	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	mode	imperative	e	1	
+# ::edge	enter-01	ARG0	you	e	y	
+# ::edge	sign	topic	enter-01	s	e	
+# ::edge	near-02	ARG2	sign	n2	s	
+(s3 / stand-01
+    :ARG1 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (b / backpack)))
+    :ARG2 (s2 / skateboard
+        :ARG1-of (n / near-02
+            :ARG2 (b2 / bottom
+                :part-of (i / incline-01)
+                :part-of (t / thing
+                    :ARG0-of (i2 / intersect-01
+                        :ARG1 (s4 / street
+                            :mod (r / residential)))))))
+    :location (a / area
+        :ARG1-of (n2 / near-02
+            :ARG2 (s / sign
+                :topic (e / enter-01
+                    :ARG0 (y / you)
+                    :mode imperative
+                    :polarity -)))
+        :location-of (c / cross-02)))

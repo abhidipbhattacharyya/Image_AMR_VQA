@@ -1,0 +1,34 @@
+# ::tok A plate with a roast beef sandwich with coleslaw and a side plate of potato salad .
+# ::node	p	plate	1-2
+# ::node	h	have-03	2-3
+# ::node	r	roast-01	4-5
+# ::node	b	beef	5-6
+# ::node	s2	sandwich	6-7
+# ::node	c	coleslaw	8-9
+# ::node	a	and	9-10
+# ::node	s3	side	11-12
+# ::node	p2	plate	12-13
+# ::node	p3	potato	14-15
+# ::node	s	salad	15-16
+# ::root	h	have-03
+# ::edge	have-03	ARG0	plate	h	p	
+# ::edge	beef	ARG1-of	roast-01	b	r	
+# ::edge	sandwich	mod	beef	s2	b	
+# ::edge	sandwich	accompanier	coleslaw	s2	c	
+# ::edge	and	op1	sandwich	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	plate	mod	side	p2	s3	
+# ::edge	and	op2	plate	a	p2	
+# ::edge	salad	consist-of	potato	s	p3	
+# ::edge	plate	consist-of	salad	p2	s	
+(h / have-03
+    :ARG0 (p / plate)
+    :ARG1 (a / and
+        :op1 (s2 / sandwich
+            :accompanier (c / coleslaw)
+            :mod (b / beef
+                :ARG1-of (r / roast-01)))
+        :op2 (p2 / plate
+            :consist-of (s / salad
+                :consist-of (p3 / potato))
+            :mod (s3 / side))))

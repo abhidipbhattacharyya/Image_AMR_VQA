@@ -1,0 +1,34 @@
+# ::tok The display has many towers of stacked cookies next to trays full of cookies .
+# ::node	d	display	1-2
+# ::node	h	have-03	2-3
+# ::node	m	many	3-4
+# ::node	t	tower	4-5
+# ::node	s	stack-01	6-7
+# ::node	c	cookie	7-8
+# ::node	n	next-to	8-9
+# ::node	b	bag	10-11
+# ::node	t2	transit-01	10-11
+# ::node	f	full-09	11-12
+# ::node	c2	cookie	13-14
+# ::root	h	have-03
+# ::edge	have-03	ARG0	display	h	d	
+# ::edge	tower	quant	many	t	m	
+# ::edge	cookie	ARG1-of	stack-01	c	s	
+# ::edge	tower	consist-of	cookie	t	c	
+# ::edge	next-to	op1	tower	n	t	
+# ::edge	have-03	ARG1	next-to	h	n	
+# ::edge	next-to	op1	bag	n	b	
+# ::edge	bag	ARG2-of	transit-01	b	t2	
+# ::edge	bag	ARG1-of	full-09	b	f	
+# ::edge	full-09	ARG2	cookie	f	c2	
+(h / have-03
+    :ARG0 (d / display)
+    :ARG1 (n / next-to
+        :op1 (t / tower
+            :quant (m / many)
+            :consist-of (c / cookie
+                :ARG1-of (s / stack-01)))
+        :op1 (b / bag
+            :ARG1-of (f / full-09
+                :ARG2 (c2 / cookie))
+            :ARG2-of (t2 / transit-01))))

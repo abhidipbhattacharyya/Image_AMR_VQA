@@ -1,0 +1,41 @@
+# ::tok This sign tells drivers they are driving through a school zone and to go slow .
+# ::node	t2	this	0-1
+# ::node	s2	sign	1-2
+# ::node	t	tell-01	2-3
+# ::node	p	person	3-4
+# ::node	d	drive-01	3-4
+# ::node	d2	drive-01	6-7
+# ::node	t3	through	7-8
+# ::node	s	school	9-10
+# ::node	z	zone	10-11
+# ::node	a	and	11-12
+# ::node	g	go-06	13-14
+# ::node	s3	slow-05	14-15
+# ::root	t	tell-01
+# ::edge	sign	mod	this	s2	t2	
+# ::edge	tell-01	ARG0	sign	t	s2	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	drive-01	ARG0	person	d2	p	
+# ::edge	drive-01	ARG1	through	d2	t3	
+# ::edge	zone	mod	school	z	s	
+# ::edge	through	op1	zone	t3	z	
+# ::edge	and	op1	drive-01	a	d2	
+# ::edge	tell-01	ARG1	and	t	a	
+# ::edge	and	op2	go-06	a	g	
+# ::edge	go-06	ARG0	person	g	p	
+# ::edge	go-06	ARG1-of	slow-05	g	s3	
+(t / tell-01
+    :ARG0 (s2 / sign
+        :mod (t2 / this))
+    :ARG1 (a / and
+        :op1 (d2 / drive-01
+            :ARG0 (p / person
+                :ARG0-of (d / drive-01))
+            :ARG1 (t3 / through
+                :op1 (z / zone
+                    :mod (s / school))))
+        :op2 (g / go-06
+            :ARG0 p
+            :ARG1-of (s3 / slow-05)))
+    :ARG2 p)

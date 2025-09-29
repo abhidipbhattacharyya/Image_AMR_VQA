@@ -1,0 +1,33 @@
+# ::tok An orioles pitcher is having arm trouble so he calls for a meeting on the mound
+# ::node	e	ethnic-group	1-2
+# ::node	n	name	1-2
+# ::node	0	Orient	1-2
+# ::node	p	pitcher	2-3
+# ::node	a	arm	5-6
+# ::node	i	in-trouble-03	6-7
+# ::node	c2	cause-01	7-8
+# ::node	c	call-02	9-10
+# ::node	m	meet-03	12-13
+# ::node	m2	mound	15-16
+# ::root	i	in-trouble-03
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Orient	n	0	
+# ::edge	pitcher	mod	ethnic-group	p	e	
+# ::edge	pitcher	part	arm	p	a	
+# ::edge	in-trouble-03	ARG1	arm	i	a	
+# ::edge	in-trouble-03	ARG0-of	cause-01	i	c2	
+# ::edge	cause-01	ARG1	call-02	c2	c	
+# ::edge	call-02	ARG0	pitcher	c	p	
+# ::edge	call-02	ARG1	meet-03	c	m	
+# ::edge	meet-03	location	mound	m	m2	
+(i / in-trouble-03
+    :ARG0-of (c2 / cause-01
+        :ARG1 (c / call-02
+            :ARG0 (p / pitcher
+                :mod (e / ethnic-group
+                    :name (n / name
+                        :op1 "Orient"))
+                :part (a / arm))
+            :ARG1 (m / meet-03
+                :location (m2 / mound))))
+    :ARG1 a)

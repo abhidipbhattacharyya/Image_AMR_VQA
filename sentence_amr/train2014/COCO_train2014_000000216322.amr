@@ -1,0 +1,31 @@
+# ::tok A white push button toilet with two rolls of toilet paper sitting on the tank .
+# ::node	w	white-03	1-2
+# ::node	p2	push-01	2-3
+# ::node	b	button	3-4
+# ::node	t2	toilet	4-5
+# ::node	0	2	6-7
+# ::node	r	roll	7-8
+# ::node	t3	toilet	9-10
+# ::node	p	paper	10-11
+# ::node	s	sit-01	11-12
+# ::node	t	tank	14-15
+# ::root	s	sit-01
+# ::edge	button	ARG1-of	push-01	b	p2	
+# ::edge	toilet	part	button	t2	b	
+# ::edge	toilet	ARG1-of	white-03	t2	w	
+# ::edge	roll	quant	2	r	0	
+# ::edge	paper	mod	toilet	p	t3	
+# ::edge	paper	consist-of	roll	p	r	
+# ::edge	sit-01	ARG1	paper	s	p	
+# ::edge	sit-01	ARG2	tank	s	t	
+# ::edge	sit-01	rel	toilet	s	t2	
+(s / sit-01
+    :ARG1 (p / paper
+        :consist-of (r / roll
+            :quant 2)
+        :mod (t3 / toilet))
+    :ARG2 (t / tank)
+    :rel (t2 / toilet
+        :ARG1-of (w / white-03)
+        :part (b / button
+            :ARG1-of (p2 / push-01))))

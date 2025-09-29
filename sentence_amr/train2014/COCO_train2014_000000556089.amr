@@ -1,0 +1,28 @@
+# ::tok Several workers are doing roadwork while a man holds a stop sign .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	work-01	1-2
+# ::node	w2	work-01	4-5
+# ::node	r	road	4-5
+# ::node	m	man	7-8
+# ::node	h	hold-01	8-9
+# ::node	s3	stop-01	10-11
+# ::node	s2	signal-07	11-12
+# ::root	w2	work-01
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG0	person	w2	p	
+# ::edge	work-01	ARG1	road	w2	r	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	work-01	time	hold-01	w2	h	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	hold-01	ARG1	signal-07	h	s2	
+(w2 / work-01
+    :ARG0 (p / person
+        :quant (s / several)
+        :ARG0-of (w / work-01))
+    :ARG1 (r / road)
+    :time (h / hold-01
+        :ARG0 (m / man)
+        :ARG1 (s2 / signal-07
+            :ARG1 (s3 / stop-01))))

@@ -1,0 +1,34 @@
+# ::tok Stop sign plastered with stickers and street signs with house in background
+# ::node	s4	stop-01	0-1
+# ::node	s	sign	1-2
+# ::node	p	plaster-01	2-3
+# ::node	t	thing	4-5
+# ::node	s3	stick-01	4-5
+# ::node	a	and	5-6
+# ::node	s5	street	6-7
+# ::node	s2	sign	7-8
+# ::node	h	have-03	8-9
+# ::node	h2	house	9-10
+# ::node	b	background	11-12
+# ::root	p	plaster-01
+# ::edge	sign	purpose	stop-01	s	s4	
+# ::edge	plaster-01	ARG1	sign	p	s	
+# ::edge	thing	ARG1-of	stick-01	t	s3	
+# ::edge	and	op1	thing	a	t	
+# ::edge	plaster-01	ARG2	and	p	a	
+# ::edge	sign	mod	street	s2	s5	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	sign	ARG0-of	have-03	s2	h	
+# ::edge	have-03	ARG1	house	h	h2	
+# ::edge	house	location	background	h2	b	
+(p / plaster-01
+    :ARG1 (s / sign
+        :purpose (s4 / stop-01))
+    :ARG2 (a / and
+        :op1 (t / thing
+            :ARG1-of (s3 / stick-01))
+        :op2 (s2 / sign
+            :ARG0-of (h / have-03
+                :ARG1 (h2 / house
+                    :location (b / background)))
+            :mod (s5 / street))))

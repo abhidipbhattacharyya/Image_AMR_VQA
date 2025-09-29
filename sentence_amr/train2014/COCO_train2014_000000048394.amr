@@ -1,0 +1,33 @@
+# ::tok Two stop signs at dusk with a car stopping before going through the intersection .
+# ::node	0	2	0-1
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	d	date-entity	4-5
+# ::node	d2	dusk	4-5
+# ::node	c	car	7-8
+# ::node	s3	stop-01	8-9
+# ::node	b	before	9-10
+# ::node	g	go-01	10-11
+# ::node	i	intersect-01	13-14
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	signal-07	quant	2	s	0	
+# ::edge	signal-07	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	dusk	d	d2	
+# ::edge	stop-01	ARG0	car	s3	c	
+# ::edge	signal-07	consist-of	stop-01	s	s3	
+# ::edge	stop-01	time	before	s3	b	
+# ::edge	before	op1	go-01	b	g	
+# ::edge	go-01	ARG1	car	g	c	
+# ::edge	go-01	ARG4	intersect-01	g	i	
+(s / signal-07
+    :quant 2
+    :ARG1 (s2 / stop-01)
+    :consist-of (s3 / stop-01
+        :ARG0 (c / car)
+        :time (b / before
+            :op1 (g / go-01
+                :ARG1 c
+                :ARG4 (i / intersect-01))))
+    :time (d / date-entity
+        :dayperiod (d2 / dusk)))

@@ -1,0 +1,40 @@
+# ::tok A pitcher throwing a baseball towards home plate as the batter , catcher , and empire wait
+# ::node	p	person	1-2
+# ::node	t	throw-01	1-2
+# ::node	t2	throw-01	2-3
+# ::node	b	baseball	4-5
+# ::node	h	home	6-7
+# ::node	p4	plate	7-8
+# ::node	b2	batter-01	10-11
+# ::node	p2	person	12-13
+# ::node	p3	person	12-13
+# ::node	c	catch-01	12-13
+# ::node	a	and	14-15
+# ::node	e	empire	15-16
+# ::node	w	wait-01	16-17
+# ::root	t2	throw-01
+# ::edge	person	ARG0-of	throw-01	p	t	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	throw-01	ARG1	baseball	t2	b	
+# ::edge	plate	mod	home	p4	h	
+# ::edge	throw-01	direction	plate	t2	p4	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+# ::edge	and	op2	person	a	p3	
+# ::edge	and	op1	person	a	p2	
+# ::edge	and	op3	empire	a	e	
+# ::edge	wait-01	ARG1	and	w	a	
+# ::edge	throw-01	time	wait-01	t2	w	
+(t2 / throw-01
+    :ARG0 (p / person
+        :ARG0-of (t / throw-01))
+    :ARG1 (b / baseball)
+    :direction (p4 / plate
+        :mod (h / home))
+    :time (w / wait-01
+        :ARG1 (a / and
+            :op1 (p2 / person
+                :ARG0-of (b2 / batter-01))
+            :op2 (p3 / person
+                :ARG0-of (c / catch-01))
+            :op3 (e / empire))))

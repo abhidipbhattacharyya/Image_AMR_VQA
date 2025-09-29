@@ -1,0 +1,22 @@
+# ::tok A radio hooked up to a cell phone hooked up to something else
+# ::node	r	radio	1-2
+# ::node	h	hook-up-02	2-3
+# ::node	c	cell	6-7
+# ::node	p	phone	7-8
+# ::node	h2	hook-up-02	8-9
+# ::node	s	something	11-12
+# ::node	e	else	12-13
+# ::root	h	hook-up-02
+# ::edge	hook-up-02	ARG1	radio	h	r	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	hook-up-02	ARG2	phone	h	p	
+# ::edge	phone	ARG1-of	hook-up-02	p	h2	
+# ::edge	hook-up-02	ARG2	something	h2	s	
+# ::edge	something	mod	else	s	e	
+(h / hook-up-02
+    :ARG1 (r / radio)
+    :ARG2 (p / phone
+        :ARG1-of (h2 / hook-up-02
+            :ARG2 (s / something
+                :mod (e / else)))
+        :mod (c / cell)))

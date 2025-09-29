@@ -1,0 +1,56 @@
+# ::tok A tiny college dorm room with a single bed , computer desk , bookshelves , a microwave , and Japanese artwork .
+# ::node	t	tiny	1-2
+# ::node	c	college	2-3
+# ::node	d2	dorm	3-4
+# ::node	r	room	4-5
+# ::node	h	have-03	5-6
+# ::node	s	single-02	7-8
+# ::node	b	bed	8-9
+# ::node	c2	computer	10-11
+# ::node	d	desk	11-12
+# ::node	b2	book	13-14
+# ::node	b3	book	13-14
+# ::node	m	microwave	16-17
+# ::node	a	and	18-19
+# ::node	c3	country	19-20
+# ::node	n	name	19-20
+# ::node	0	Japan	19-20
+# ::node	a2	artwork	20-21
+# ::root	r	room
+# ::edge	room	mod	dorm	r	d2	
+# ::edge	room	mod	college	r	c	
+# ::edge	room	mod	tiny	r	t	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	ARG1-of	single-02	b	s	
+# ::edge	desk	mod	computer	d	c2	
+# ::edge	book	part-of	room	b2	r	
+# ::edge	room	part	book	r	b3	
+# ::edge	room	part	microwave	r	m	
+# ::edge	and	op4	microwave	a	m	
+# ::edge	and	op3	book	a	b2	
+# ::edge	and	op2	desk	a	d	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Japan	n	0	
+# ::edge	artwork	mod	country	a2	c3	
+# ::edge	and	op5	artwork	a	a2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bed
+                :ARG1-of (s / single-02))
+            :op2 (d / desk
+                :mod (c2 / computer))
+            :op3 (b2 / book
+                :part-of r)
+            :op4 (m / microwave)
+            :op5 (a2 / artwork
+                :mod (c3 / country
+                    :name (n / name
+                        :op1 "Japan")))))
+    :mod (d2 / dorm)
+    :mod (c / college)
+    :mod (t / tiny)
+    :part (b3 / book)
+    :part m)

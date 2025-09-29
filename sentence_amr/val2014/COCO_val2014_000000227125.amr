@@ -1,0 +1,63 @@
+# ::tok Close up of a traffic light with three lights , the top illuminated red with a person image , the second down not illuminated , and the bottom on hanging down .
+# ::node	c	close-10	0-1
+# ::node	t2	traffic	4-5
+# ::node	l	light	5-6
+# ::node	2	3	7-8
+# ::node	l2	light	8-9
+# ::node	a	and	9-10
+# ::node	t	top	11-12
+# ::node	i	illuminate-01	12-13
+# ::node	r	red-02	13-14
+# ::node	p	person	16-17
+# ::node	i3	image	17-18
+# ::node	o	ordinal-entity	20-21
+# ::node	1	2	20-21
+# ::node	0	-	22-23
+# ::node	i2	illuminate-01	23-24
+# ::node	a2	and	25-26
+# ::node	b	bottom	27-28
+# ::node	h	hang-01	29-30
+# ::node	d	down	30-31
+# ::node	d2	down	30-31
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	close-10	ARG1	light	c	l	
+# ::edge	light	quant	3	l2	2	
+# ::edge	light	consist-of	light	l	l2	
+# ::edge	and	op1	close-10	a	c	
+# ::edge	illuminate-01	ARG0	top	i	t	
+# ::edge	and	op2	illuminate-01	a	i	
+# ::edge	illuminate-01	ARG1-of	red-02	i	r	
+# ::edge	image	mod	person	i3	p	
+# ::edge	illuminate-01	instrument	image	i	i3	
+# ::edge	ordinal-entity	value	2	o	1	
+# ::edge	illuminate-01	polarity	-	i2	0	
+# ::edge	and	op2	illuminate-01	a2	i2	
+# ::edge	and	op1	illuminate-01	a2	i	
+# ::edge	and	op3	and	a	a2	
+# ::edge	hang-01	ARG1	bottom	h	b	
+# ::edge	and	op4	hang-01	a2	h	
+# ::edge	hang-01	direction	down	h	d	
+# ::edge	hang-01	direction	down	h	d2	
+# ::edge	and	rel	ordinal-entity	a	o	
+(a / and
+    :op1 (c / close-10
+        :ARG1 (l / light
+            :consist-of (l2 / light
+                :quant 3)
+            :mod (t2 / traffic)))
+    :op2 (i / illuminate-01
+        :ARG0 (t / top)
+        :ARG1-of (r / red-02)
+        :instrument (i3 / image
+            :mod (p / person)))
+    :op3 (a2 / and
+        :op1 i
+        :op2 (i2 / illuminate-01
+            :polarity -)
+        :op4 (h / hang-01
+            :ARG1 (b / bottom)
+            :direction (d / down)
+            :direction (d2 / down)))
+    :rel (o / ordinal-entity
+        :value 2))

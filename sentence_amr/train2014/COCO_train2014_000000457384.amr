@@ -1,0 +1,40 @@
+# ::tok A black and white cat sits near a pile of clothes and has one eye closed .
+# ::node	b	black-04	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	c	cat	4-5
+# ::node	s	sit-01	5-6
+# ::node	n	near-02	6-7
+# ::node	p	pile-01	8-9
+# ::node	c3	clothes	10-11
+# ::node	0	1	13-14
+# ::node	e	eye	14-15
+# ::node	c2	close-01	15-16
+# ::root	a	and
+# ::edge	cat	ARG1-of	white-03	c	w	
+# ::edge	cat	ARG1-of	black-04	c	b	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	cat	n	c	
+# ::edge	near-02	ARG2	pile-01	n	p	
+# ::edge	pile-01	ARG1	clothes	p	c3	
+# ::edge	eye	quant	1	e	0	
+# ::edge	cat	part	eye	c	e	
+# ::edge	close-01	ARG1	eye	c2	e	
+# ::edge	and	op2	close-01	a	c2	
+# ::edge	close-01	ARG0	cat	c2	c	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 a
+        :ARG2 (n / near-02
+            :ARG1 (c / cat
+                :ARG1-of (w / white-03)
+                :ARG1-of (b / black-04)
+                :part (e / eye
+                    :quant 1))
+            :ARG2 (p / pile-01
+                :ARG1 (c3 / clothes))))
+    :op2 (c2 / close-01
+        :ARG0 c
+        :ARG1 e))

@@ -1,0 +1,24 @@
+# ::tok A train is parked as a man at the top of the stairs waits along side it .
+# ::node	t2	train	1-2
+# ::node	p	park-01	3-4
+# ::node	m	man	6-7
+# ::node	t	top	9-10
+# ::node	s2	stair	12-13
+# ::node	w	wait-01	13-14
+# ::node	s	side	15-16
+# ::root	p	park-01
+# ::edge	park-01	ARG1	train	p	t2	
+# ::edge	man	location	top	m	t	
+# ::edge	top	part-of	stair	t	s2	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	park-01	time	wait-01	p	w	
+# ::edge	wait-01	location	side	w	s	
+# ::edge	side	op1	train	s	t2	
+(p / park-01
+    :ARG1 (t2 / train)
+    :time (w / wait-01
+        :ARG1 (m / man
+            :location (t / top
+                :part-of (s2 / stair)))
+        :location (s / side
+            :op1 t2)))

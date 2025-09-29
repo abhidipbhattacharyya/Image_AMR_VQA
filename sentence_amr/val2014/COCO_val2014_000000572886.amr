@@ -1,0 +1,28 @@
+# ::tok Zebras inside a fenced enclosure eating grass and walking around .
+# ::node	a2	animal	0-1
+# ::node	i	inside	1-2
+# ::node	f	fence	3-4
+# ::node	e2	enclosure	4-5
+# ::node	e	eat-01	5-6
+# ::node	g	grass	6-7
+# ::node	w	walk-01	8-9
+# ::node	a3	around	9-10
+# ::node	a	and	10-11
+# ::root	a	and
+# ::edge	animal	location	inside	a2	i	
+# ::edge	inside	op1	fence	i	f	
+# ::edge	fence	domain	enclosure	f	e2	
+# ::edge	animal	ARG0-of	eat-01	a2	e	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	animal	ARG0-of	walk-01	a2	w	
+# ::edge	walk-01	direction	around	w	a3	
+# ::edge	and	op1	animal	a	a2	
+(a / and
+    :op1 (a2 / animal
+        :ARG0-of (e / eat-01
+            :ARG1 (g / grass))
+        :ARG0-of (w / walk-01
+            :direction (a3 / around))
+        :location (i / inside
+            :op1 (f / fence
+                :domain (e2 / enclosure)))))

@@ -1,0 +1,27 @@
+# ::tok Donuts traveling down an assembly line in a factory while people work behind it .
+# ::node	d	donut	0-1
+# ::node	t	travel-01	1-2
+# ::node	d2	down	2-3
+# ::node	a	assemble-01	4-5
+# ::node	l	line	5-6
+# ::node	f	factory	8-9
+# ::node	p	person	10-11
+# ::node	w	work-01	11-12
+# ::root	t	travel-01
+# ::edge	travel-01	ARG0	donut	t	d	
+# ::edge	travel-01	direction	down	t	d2	
+# ::edge	line	ARG0-of	assemble-01	l	a	
+# ::edge	travel-01	path	line	t	l	
+# ::edge	line	location	factory	l	f	
+# ::edge	work-01	ARG0	person	w	p	
+# ::edge	work-01	location	line	w	l	
+# ::edge	travel-01	time	work-01	t	w	
+(t / travel-01
+    :ARG0 (d / donut)
+    :direction (d2 / down)
+    :path (l / line
+        :ARG0-of (a / assemble-01)
+        :location (f / factory))
+    :time (w / work-01
+        :ARG0 (p / person)
+        :location l))

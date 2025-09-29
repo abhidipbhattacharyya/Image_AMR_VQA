@@ -1,0 +1,33 @@
+# ::tok A boy is getting ready to hit a ball with a catcher waiting to catch it .
+# ::node	b2	boy	1-2
+# ::node	r	ready-01	4-5
+# ::node	h	hit-01	6-7
+# ::node	b	ball	8-9
+# ::node	p	person	11-12
+# ::node	c	catch-01	11-12
+# ::node	w	wait-01	12-13
+# ::node	c2	catch-01	14-15
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	boy	r	b2	
+# ::edge	ready-01	ARG0	boy	r	b2	
+# ::edge	ready-01	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG0	boy	h	b2	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	hit-01	accompanier	person	h	p	
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	catch-01	w	c2	
+# ::edge	catch-01	ARG0	person	c2	p	
+# ::edge	catch-01	ARG1	ball	c2	b	
+(r / ready-01
+    :ARG0 (b2 / boy)
+    :ARG1 b2
+    :ARG2 (h / hit-01
+        :ARG0 b2
+        :ARG1 (b / ball)
+        :accompanier (p / person
+            :ARG0-of (c / catch-01)
+            :ARG1-of (w / wait-01
+                :ARG2 (c2 / catch-01
+                    :ARG0 p
+                    :ARG1 b)))))

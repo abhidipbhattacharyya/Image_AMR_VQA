@@ -1,0 +1,28 @@
+# ::tok Beams of light radiate from the front of a train zipping along at dusk .
+# ::node	b	beam	0-1
+# ::node	l	light	2-3
+# ::node	r	radiate-01	3-4
+# ::node	f	front	6-7
+# ::node	t	train	9-10
+# ::node	z	zip-01	10-11
+# ::node	a	along	11-12
+# ::node	d	date-entity	13-14
+# ::node	d2	dusk	13-14
+# ::root	r	radiate-01
+# ::edge	beam	consist-of	light	b	l	
+# ::edge	radiate-01	ARG0	beam	r	b	
+# ::edge	radiate-01	source	front	r	f	
+# ::edge	front	part-of	train	f	t	
+# ::edge	train	ARG0-of	zip-01	t	z	
+# ::edge	zip-01	ARG1	along	z	a	
+# ::edge	zip-01	time	date-entity	z	d	
+# ::edge	date-entity	dayperiod	dusk	d	d2	
+(r / radiate-01
+    :ARG0 (b / beam
+        :consist-of (l / light))
+    :source (f / front
+        :part-of (t / train
+            :ARG0-of (z / zip-01
+                :ARG1 (a / along)
+                :time (d / date-entity
+                    :dayperiod (d2 / dusk))))))

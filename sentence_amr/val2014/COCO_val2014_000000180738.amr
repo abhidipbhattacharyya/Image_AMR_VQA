@@ -1,0 +1,34 @@
+# ::tok One cat is sitting in the windowsill and another cat sitting below the other one .
+# ::node	0	1	0-1
+# ::node	c	cat	1-2
+# ::node	s	sit-01	3-4
+# ::node	w2	windowsill	6-7
+# ::node	w	window	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	c2	cat	9-10
+# ::node	s2	sit-01	10-11
+# ::node	b	below	11-12
+# ::node	o	other	13-14
+# ::root	a	and
+# ::edge	cat	quant	1	c	0	
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	windowsill	s	w2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	cat	mod	another	c2	a2	
+# ::edge	sit-01	ARG1	cat	s2	c2	
+# ::edge	and	op2	sit-01	a	s2	
+# ::edge	sit-01	ARG2	below	s2	b	
+# ::edge	below	op1	window	b	w	
+# ::edge	window	mod	other	w	o	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (c / cat
+            :quant 1)
+        :ARG2 (w2 / windowsill))
+    :op2 (s2 / sit-01
+        :ARG1 (c2 / cat
+            :mod (a2 / another))
+        :ARG2 (b / below
+            :op1 (w / window
+                :mod (o / other)))))

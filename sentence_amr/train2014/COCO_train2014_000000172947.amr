@@ -1,0 +1,43 @@
+# ::tok A vintage style sign for The Two Brewers next to a Paddington Station clock .
+# ::node	v	vintage	1-2
+# ::node	s3	style	2-3
+# ::node	s	sign	3-4
+# ::node	3	The	5-6
+# ::node	4	Two	6-7
+# ::node	c2	company	7-8
+# ::node	n	name	7-8
+# ::node	0	Brewers	7-8
+# ::node	n3	next-to	8-9
+# ::node	n2	name	11-12
+# ::node	1	Paddington	11-12
+# ::node	s2	station	12-13
+# ::node	2	Station	12-13
+# ::node	c	clock	13-14
+# ::root	s	sign
+# ::edge	style	mod	vintage	s3	v	
+# ::edge	sign	mod	style	s	s3	
+# ::edge	sign	beneficiary	company	s	c2	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op2	Two	n	4	
+# ::edge	name	op1	The	n	3	
+# ::edge	name	op3	Brewers	n	0	
+# ::edge	sign	location	next-to	s	n3	
+# ::edge	name	op1	Paddington	n2	1	
+# ::edge	station	name	name	s2	n2	
+# ::edge	name	op2	Station	n2	2	
+# ::edge	clock	mod	station	c	s2	
+# ::edge	next-to	op1	clock	n3	c	
+(s / sign
+    :beneficiary (c2 / company
+        :name (n / name
+            :op1 "The"
+            :op2 "Two"
+            :op3 "Brewers"))
+    :location (n3 / next-to
+        :op1 (c / clock
+            :mod (s2 / station
+                :name (n2 / name
+                    :op1 "Paddington"
+                    :op2 "Station"))))
+    :mod (s3 / style
+        :mod (v / vintage)))

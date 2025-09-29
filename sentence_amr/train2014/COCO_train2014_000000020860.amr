@@ -1,0 +1,22 @@
+# ::tok A set of keys with a large doll attached to them unlocking a door .
+# ::node	s	set	1-2
+# ::node	k	key	3-4
+# ::node	l	large	6-7
+# ::node	d	doll	7-8
+# ::node	a	attach-01	8-9
+# ::node	u	unlock-01	11-12
+# ::node	d2	door	13-14
+# ::root	u	unlock-01
+# ::edge	set	consist-of	key	s	k	
+# ::edge	doll	mod	large	d	l	
+# ::edge	attach-01	ARG2	doll	a	d	
+# ::edge	key	ARG1-of	attach-01	k	a	
+# ::edge	unlock-01	ARG0	set	u	s	
+# ::edge	unlock-01	ARG1	door	u	d2	
+(u / unlock-01
+    :ARG0 (s / set
+        :consist-of (k / key
+            :ARG1-of (a / attach-01
+                :ARG2 (d / doll
+                    :mod (l / large)))))
+    :ARG1 (d2 / door))

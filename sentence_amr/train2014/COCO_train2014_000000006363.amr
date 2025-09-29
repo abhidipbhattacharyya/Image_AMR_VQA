@@ -1,0 +1,24 @@
+# ::tok An oven with the inside light on and a pizza baking in the oven .
+# ::node	o2	oven	1-2
+# ::node	i	inside	4-5
+# ::node	l	light	5-6
+# ::node	o	on-01	6-7
+# ::node	a	and	7-8
+# ::node	p	pizza	9-10
+# ::node	b	bake-01	10-11
+# ::root	o2	oven
+# ::edge	light	mod	inside	l	i	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	and	op1	on-01	a	o	
+# ::edge	oven	condition	and	o2	a	
+# ::edge	bake-01	ARG1	pizza	b	p	
+# ::edge	and	op2	bake-01	a	b	
+# ::edge	bake-01	location	oven	b	o2	
+(o2 / oven
+    :condition (a / and
+        :op1 (o / on-01
+            :ARG1 (l / light
+                :mod (i / inside)))
+        :op2 (b / bake-01
+            :ARG1 (p / pizza)
+            :location o2)))

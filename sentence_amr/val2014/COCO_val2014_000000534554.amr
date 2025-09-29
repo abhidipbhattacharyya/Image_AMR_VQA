@@ -1,0 +1,28 @@
+# ::tok An Italian meal with marinara sauce served on a long tray .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Italy	1-2
+# ::node	m2	meal	2-3
+# ::node	m	marinara	4-5
+# ::node	s	sauce	5-6
+# ::node	s2	serve-02	6-7
+# ::node	l	long-03	9-10
+# ::node	t	tray	10-11
+# ::root	m2	meal
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Italy	n	0	
+# ::edge	meal	mod	country	m2	c	
+# ::edge	sauce	mod	marinara	s	m	
+# ::edge	meal	accompanier	sauce	m2	s	
+# ::edge	meal	ARG1-of	serve-02	m2	s2	
+# ::edge	tray	ARG1-of	long-03	t	l	
+# ::edge	serve-02	location	tray	s2	t	
+(m2 / meal
+    :ARG1-of (s2 / serve-02
+        :location (t / tray
+            :ARG1-of (l / long-03)))
+    :accompanier (s / sauce
+        :mod (m / marinara))
+    :mod (c / country
+        :name (n / name
+            :op1 "Italy")))

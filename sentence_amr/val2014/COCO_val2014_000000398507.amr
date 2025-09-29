@@ -1,0 +1,31 @@
+# ::tok A fleet of green army trucks parked on a grass covered field .
+# ::node	f2	fleet	1-2
+# ::node	g2	green-02	3-4
+# ::node	m	military	4-5
+# ::node	n	name	4-5
+# ::node	0	Army	4-5
+# ::node	t	truck	5-6
+# ::node	p	park-01	6-7
+# ::node	g	grass	9-10
+# ::node	c	cover-02	10-11
+# ::node	f	field	11-12
+# ::root	p	park-01
+# ::edge	military	name	name	m	n	
+# ::edge	name	op1	Army	n	0	
+# ::edge	truck	mod	military	t	m	
+# ::edge	truck	ARG1-of	green-02	t	g2	
+# ::edge	fleet	consist-of	truck	f2	t	
+# ::edge	park-01	ARG1	fleet	p	f2	
+# ::edge	cover-02	ARG2	grass	c	g	
+# ::edge	field	ARG1-of	cover-02	f	c	
+# ::edge	park-01	ARG2	field	p	f	
+(p / park-01
+    :ARG1 (f2 / fleet
+        :consist-of (t / truck
+            :ARG1-of (g2 / green-02)
+            :mod (m / military
+                :name (n / name
+                    :op1 "Army"))))
+    :ARG2 (f / field
+        :ARG1-of (c / cover-02
+            :ARG2 (g / grass))))

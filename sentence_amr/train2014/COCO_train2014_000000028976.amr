@@ -1,0 +1,27 @@
+# ::tok The giraffe stands next to another giraffe as it eats from a feeder .
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	a	another	5-6
+# ::node	g2	giraffe	6-7
+# ::node	e	eat-01	9-10
+# ::node	t	thing	11-12
+# ::node	f	feed-01	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	giraffe	mod	another	g2	a	
+# ::edge	next-to	op1	giraffe	n	g2	
+# ::edge	eat-01	ARG0	giraffe	e	g2	
+# ::edge	stand-01	time	eat-01	s	e	
+# ::edge	eat-01	source	thing	e	t	
+# ::edge	thing	ARG0-of	feed-01	t	f	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (n / next-to
+        :op1 (g2 / giraffe
+            :mod (a / another)))
+    :time (e / eat-01
+        :ARG0 g2
+        :source (t / thing
+            :ARG0-of (f / feed-01))))

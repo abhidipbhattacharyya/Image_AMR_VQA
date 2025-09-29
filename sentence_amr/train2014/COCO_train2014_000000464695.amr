@@ -1,0 +1,25 @@
+# ::tok Each of the passengers departing the metro train is carrying a luggage bag .
+# ::node	e	each	0-1
+# ::node	p	passenger	3-4
+# ::node	d	depart-01	4-5
+# ::node	m	metro	6-7
+# ::node	t	train	7-8
+# ::node	c	carry-01	9-10
+# ::node	l	luggage	11-12
+# ::node	b	bag	12-13
+# ::root	c	carry-01
+# ::edge	passenger	mod	each	p	e	
+# ::edge	passenger	ARG0-of	depart-01	p	d	
+# ::edge	train	mod	metro	t	m	
+# ::edge	depart-01	ARG1	train	d	t	
+# ::edge	carry-01	ARG0	passenger	c	p	
+# ::edge	bag	mod	luggage	b	l	
+# ::edge	carry-01	ARG1	bag	c	b	
+(c / carry-01
+    :ARG0 (p / passenger
+        :ARG0-of (d / depart-01
+            :ARG1 (t / train
+                :mod (m / metro)))
+        :mod (e / each))
+    :ARG1 (b / bag
+        :mod (l / luggage)))

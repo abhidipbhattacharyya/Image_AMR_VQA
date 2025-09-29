@@ -1,0 +1,31 @@
+# ::tok A stack of 8 track cassets sitting next to a very old style TV .
+# ::node	s2	stack	1-2
+# ::node	0	8	3-4
+# ::node	t2	track	4-5
+# ::node	c	celsius	5-6
+# ::node	s	sit-01	6-7
+# ::node	n	next-to	7-8
+# ::node	v	very	10-11
+# ::node	o	old	11-12
+# ::node	s3	style	12-13
+# ::node	t	television	13-14
+# ::root	s	sit-01
+# ::edge	track	quant	8	t2	0	
+# ::edge	celsius	mod	track	c	t2	
+# ::edge	stack	consist-of	celsius	s2	c	
+# ::edge	sit-01	ARG1	stack	s	s2	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	old	degree	very	o	v	
+# ::edge	style	mod	old	s3	o	
+# ::edge	television	mod	style	t	s3	
+# ::edge	next-to	op1	television	n	t	
+(s / sit-01
+    :ARG1 (s2 / stack
+        :consist-of (c / celsius
+            :mod (t2 / track
+                :quant 8)))
+    :ARG2 (n / next-to
+        :op1 (t / television
+            :mod (s3 / style
+                :mod (o / old
+                    :degree (v / very))))))

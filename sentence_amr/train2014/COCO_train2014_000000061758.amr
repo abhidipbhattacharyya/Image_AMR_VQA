@@ -1,0 +1,34 @@
+# ::tok A fishing boat with fishermen on it going through the water at dusk or dawn
+# ::node	f	fish-01	1-2
+# ::node	b	boat	2-3
+# ::node	p	person	4-5
+# ::node	f2	fish-01	4-5
+# ::node	g	go-01	7-8
+# ::node	w	water	10-11
+# ::node	d	date-entity	12-13
+# ::node	d4	dusk	12-13
+# ::node	o	or	13-14
+# ::node	d2	date-entity	14-15
+# ::node	d3	dawn	14-15
+# ::root	g	go-01
+# ::edge	boat	purpose	fish-01	b	f	
+# ::edge	boat	ARG0	person	b	p	
+# ::edge	person	ARG0-of	fish-01	p	f2	
+# ::edge	go-01	ARG1	boat	g	b	
+# ::edge	go-01	ARG4	water	g	w	
+# ::edge	date-entity	dayperiod	dusk	d	d4	
+# ::edge	or	op1	date-entity	o	d	
+# ::edge	go-01	time	or	g	o	
+# ::edge	or	op2	date-entity	o	d2	
+# ::edge	date-entity	dayperiod	dawn	d2	d3	
+(g / go-01
+    :ARG1 (b / boat
+        :purpose (f / fish-01)
+        :ARG0 (p / person
+            :ARG0-of (f2 / fish-01)))
+    :ARG4 (w / water)
+    :time (o / or
+        :op1 (d / date-entity
+            :dayperiod (d4 / dusk))
+        :op2 (d2 / date-entity
+            :dayperiod (d3 / dawn))))

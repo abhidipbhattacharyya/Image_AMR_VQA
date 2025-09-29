@@ -1,0 +1,32 @@
+# ::tok A bathroom sink and mirror with someone personal belongings on it .
+# ::node	b	bathroom	1-2
+# ::node	s	sink	2-3
+# ::node	a	and	3-4
+# ::node	m	mirror	4-5
+# ::node	s2	someone	6-7
+# ::node	p	personal-02	7-8
+# ::node	t	thing	8-9
+# ::node	b3	belong-01	8-9
+# ::node	b2	be-located-at-91	9-10
+# ::root	a	and
+# ::edge	sink	location	bathroom	s	b	
+# ::edge	and	op1	sink	a	s	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	mirror	location	bathroom	m	b	
+# ::edge	personal-02	ARG2	someone	p	s2	
+# ::edge	thing	ARG1-of	personal-02	t	p	
+# ::edge	thing	ARG0-of	belong-01	t	b3	
+# ::edge	belong-01	ARG1	someone	b3	s2	
+# ::edge	be-located-at-91	ARG1	thing	b2	t	
+# ::edge	and	ARG2-of	be-located-at-91	a	b2	
+(a / and
+    :ARG2-of (b2 / be-located-at-91
+        :ARG1 (t / thing
+            :ARG0-of (b3 / belong-01
+                :ARG1 (s2 / someone))
+            :ARG1-of (p / personal-02
+                :ARG2 s2)))
+    :op1 (s / sink
+        :location (b / bathroom))
+    :op2 (m / mirror
+        :location b))

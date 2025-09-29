@@ -1,0 +1,58 @@
+# ::tok A cluttered two - tiered work station includes a computer screen with memos , books .
+# ::node	c	clutch-01	1-2
+# ::node	0	2	2-3
+# ::node	t	tier	4-5
+# ::node	w	work-01	5-6
+# ::node	s2	station	6-7
+# ::node	i	include-01	7-8
+# ::node	c2	computer	9-10
+# ::node	s	screen	10-11
+# ::node	h	have-03	11-12
+# ::node	m	memo	12-13
+# ::node	a	and	13-14
+# ::node	b	book	14-15
+# ::root	i	include-01
+# ::edge	tier	quant	2	t	0	
+# ::edge	station	purpose	work-01	s2	w	
+# ::edge	station	mod	tier	s2	t	
+# ::edge	station	ARG1-of	clutch-01	s2	c	
+# ::edge	include-01	ARG2	station	i	s2	
+# ::edge	screen	part-of	computer	s	c2	
+# ::edge	include-01	ARG1	screen	i	s	
+# ::edge	screen	ARG0-of	have-03	s	h	
+# ::edge	and	op1	memo	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	book	a	b	
+(i / include-01
+    :ARG1 (s / screen
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (m / memo)
+                :op2 (b / book)))
+        :part-of (c2 / computer))
+    :ARG2 (s2 / station
+        :purpose (w / work-01)
+        :ARG1-of (c / clutch-01)
+        :mod (t / tier
+            :quant 2)))
+
+
+# ::tok notebooks , papers and writing and electronic paraphanalia .
+# ::node	n	note-01	0-1
+# ::node	p	paper	2-3
+# ::node	a	and	3-4
+# ::node	w	write-01	4-5
+# ::node	e	electronic	6-7
+# ::node	p2	paraphanalia	7-8
+# ::root	a	and
+# ::edge	and	op2	paper	a	p	
+# ::edge	and	op1	note-01	a	n	
+# ::edge	and	op3	write-01	a	w	
+# ::edge	paraphanalia	mod	electronic	p2	e	
+# ::edge	and	op4	paraphanalia	a	p2	
+(a / and
+    :op1 (n / note-01)
+    :op2 (p / paper)
+    :op3 (w / write-01)
+    :op4 (p2 / paraphanalia
+        :mod (e / electronic)))

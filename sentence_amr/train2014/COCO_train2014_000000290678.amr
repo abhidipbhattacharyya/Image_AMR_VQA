@@ -1,0 +1,33 @@
+# ::tok A cat sitting on top of a slab of cement next to a black and whtie dog .
+# ::node	c	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	t2	top	4-5
+# ::node	s2	slab	7-8
+# ::node	c2	cement	9-10
+# ::node	n	next-to	10-11
+# ::node	b	black-04	13-14
+# ::node	t	tie-01	15-16
+# ::node	d	dog	16-17
+# ::node	d2	dog	16-17
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	top	part-of	slab	t2	s2	
+# ::edge	slab	consist-of	cement	s2	c2	
+# ::edge	sit-01	location	next-to	s	n	
+# ::edge	dog	ARG1-of	tie-01	d	t	
+# ::edge	dog	ARG1-of	black-04	d	b	
+# ::edge	next-to	op1	dog	n	d	
+# ::edge	tie-01	ARG2	dog	t	d2	
+# ::edge	dog	ARG1-of	tie-01	d2	t	
+(s / sit-01
+    :ARG1 (c / cat)
+    :ARG2 (t2 / top
+        :part-of (s2 / slab
+            :consist-of (c2 / cement)))
+    :location (n / next-to
+        :op1 (d / dog
+            :ARG1-of (t / tie-01
+                :ARG2 (d2 / dog
+                    :ARG1-of t))
+            :ARG1-of (b / black-04))))

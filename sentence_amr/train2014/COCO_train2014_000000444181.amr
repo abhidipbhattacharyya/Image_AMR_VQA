@@ -1,0 +1,25 @@
+# ::tok Both the plastic clock and the wooden clock both show the same time .
+# ::node	p	plastic	2-3
+# ::node	c	clock	3-4
+# ::node	a	and	4-5
+# ::node	w	wood	6-7
+# ::node	c2	clock	7-8
+# ::node	s2	show-01	9-10
+# ::node	s	same-01	11-12
+# ::node	t	time	12-13
+# ::root	s2	show-01
+# ::edge	clock	mod	plastic	c	p	
+# ::edge	and	op1	clock	a	c	
+# ::edge	clock	mod	wood	c2	w	
+# ::edge	and	op2	clock	a	c2	
+# ::edge	show-01	ARG0	and	s2	a	
+# ::edge	time	ARG1-of	same-01	t	s	
+# ::edge	show-01	ARG1	time	s2	t	
+(s2 / show-01
+    :ARG0 (a / and
+        :op1 (c / clock
+            :mod (p / plastic))
+        :op2 (c2 / clock
+            :mod (w / wood)))
+    :ARG1 (t / time
+        :ARG1-of (s / same-01)))

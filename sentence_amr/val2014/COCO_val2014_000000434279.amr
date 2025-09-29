@@ -1,0 +1,35 @@
+# ::tok The last rail car sitting on the train tracks and attached to the car in front of it
+# ::node	l	last	1-2
+# ::node	r	rail	2-3
+# ::node	c	car	3-4
+# ::node	s	sit-01	4-5
+# ::node	t2	train	7-8
+# ::node	t	track	8-9
+# ::node	a	and	9-10
+# ::node	a2	attach-01	10-11
+# ::node	c2	car	13-14
+# ::node	i	in-front-of	15-16
+# ::root	a	and
+# ::edge	car	mod	rail	c	r	
+# ::edge	car	mod	last	c	l	
+# ::edge	car	ARG1-of	sit-01	c	s	
+# ::edge	track	mod	train	t	t2	
+# ::edge	sit-01	ARG2	track	s	t	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op2	attach-01	a	a2	
+# ::edge	attach-01	ARG1	car	a2	c	
+# ::edge	attach-01	ARG2	car	a2	c2	
+# ::edge	car	location	in-front-of	c2	i	
+# ::edge	in-front-of	op1	car	i	c	
+(a / and
+    :op1 (c / car
+        :ARG1-of (s / sit-01
+            :ARG2 (t / track
+                :mod (t2 / train)))
+        :mod (r / rail)
+        :mod (l / last))
+    :op2 (a2 / attach-01
+        :ARG1 c
+        :ARG2 (c2 / car
+            :location (i / in-front-of
+                :op1 c))))

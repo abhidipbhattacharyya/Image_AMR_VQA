@@ -1,0 +1,34 @@
+# ::tok a man in a blue shirt and red hat and a crate of yellow apples
+# ::node	m	man	1-2
+# ::node	b	blue	4-5
+# ::node	s	shirt	5-6
+# ::node	a	and	6-7
+# ::node	r	red-02	7-8
+# ::node	h	hat	8-9
+# ::node	a2	and	9-10
+# ::node	c2	crate	11-12
+# ::node	c	contain-01	11-12
+# ::node	y	yellow-02	13-14
+# ::node	a3	apple	14-15
+# ::root	m	man
+# ::edge	shirt	mod	blue	s	b	
+# ::edge	and	op1	shirt	a	s	
+# ::edge	hat	ARG1-of	red-02	h	r	
+# ::edge	and	op2	hat	a	h	
+# ::edge	and	op1	and	a2	a	
+# ::edge	man	domain	and	m	a2	
+# ::edge	and	op2	crate	a2	c2	
+# ::edge	crate	ARG0-of	contain-01	c2	c	
+# ::edge	apple	ARG1-of	yellow-02	a3	y	
+# ::edge	contain-01	ARG1	apple	c	a3	
+(m / man
+    :domain (a2 / and
+        :op1 (a / and
+            :op1 (s / shirt
+                :mod (b / blue))
+            :op2 (h / hat
+                :ARG1-of (r / red-02)))
+        :op2 (c2 / crate
+            :ARG0-of (c / contain-01
+                :ARG1 (a3 / apple
+                    :ARG1-of (y / yellow-02))))))

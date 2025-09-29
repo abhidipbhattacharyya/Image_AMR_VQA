@@ -1,0 +1,42 @@
+# ::tok A man in light colored clothing walks beside a bike as a red train is on the train tracks near him .
+# ::node	m	man	1-2
+# ::node	l	light-07	3-4
+# ::node	c2	color-01	4-5
+# ::node	c	clothe-01	5-6
+# ::node	w	walk-01	6-7
+# ::node	b2	beside	7-8
+# ::node	b3	bike	9-10
+# ::node	r	red-02	12-13
+# ::node	t2	train	13-14
+# ::node	b	be-located-at-91	15-16
+# ::node	t3	train	17-18
+# ::node	t	track	18-19
+# ::node	n	near-02	19-20
+# ::root	w	walk-01
+# ::edge	color-01	ARG1-of	light-07	c2	l	
+# ::edge	clothe-01	ARG1-of	color-01	c	c2	
+# ::edge	man	ARG1-of	clothe-01	m	c	
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	ARG2	beside	w	b2	
+# ::edge	beside	op1	bike	b2	b3	
+# ::edge	train	ARG1-of	red-02	t2	r	
+# ::edge	be-located-at-91	ARG1	train	b	t2	
+# ::edge	walk-01	time	be-located-at-91	w	b	
+# ::edge	track	mod	train	t	t3	
+# ::edge	be-located-at-91	ARG2	track	b	t	
+# ::edge	track	ARG1-of	near-02	t	n	
+# ::edge	near-02	ARG2	man	n	m	
+(w / walk-01
+    :ARG0 (m / man
+        :ARG1-of (c / clothe-01
+            :ARG1-of (c2 / color-01
+                :ARG1-of (l / light-07))))
+    :ARG2 (b2 / beside
+        :op1 (b3 / bike))
+    :time (b / be-located-at-91
+        :ARG1 (t2 / train
+            :ARG1-of (r / red-02))
+        :ARG2 (t / track
+            :ARG1-of (n / near-02
+                :ARG2 m)
+            :mod (t3 / train))))

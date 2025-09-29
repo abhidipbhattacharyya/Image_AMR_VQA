@@ -1,0 +1,36 @@
+# ::tok There is a lot of people in a boat on the water most are holding umbrella 's .
+# ::node	l	lot	3-4
+# ::node	p	person	5-6
+# ::node	p2	person	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	b2	boat	8-9
+# ::node	a	and	9-10
+# ::node	w	water	11-12
+# ::node	i	include-91	12-13
+# ::node	m	most	12-13
+# ::node	h	hold-01	14-15
+# ::node	u	umbrella	15-16
+# ::root	a	and
+# ::edge	person	quant	lot	p	l	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	boat	b	b2	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	boat	location	water	b2	w	
+# ::edge	include-91	ARG1	person	i	p2	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	include-91	mod	most	i	m	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (p / person
+            :quant (l / lot)
+            :ARG2-of (i / include-91
+                :ARG1 (p2 / person)
+                :mod (m / most)))
+        :ARG2 (b2 / boat
+            :location (w / water)))
+    :op2 (h / hold-01
+        :ARG0 p2
+        :ARG1 (u / umbrella)))

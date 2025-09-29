@@ -1,0 +1,31 @@
+# ::tok A wrecked Staples van parked in the parking lot with a cracked windshield
+# ::node	w2	wreck-01	1-2
+# ::node	c	company	2-3
+# ::node	n	name	2-3
+# ::node	0	Staples	2-3
+# ::node	v	van	3-4
+# ::node	p	park-01	4-5
+# ::node	p2	park-01	7-8
+# ::node	l	lot	8-9
+# ::node	c2	crack-02	11-12
+# ::node	w	windshield	12-13
+# ::root	v	van
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Staples	n	0	
+# ::edge	van	mod	company	v	c	
+# ::edge	van	ARG1-of	wreck-01	v	w2	
+# ::edge	van	ARG1-of	park-01	v	p	
+# ::edge	lot	ARG2-of	park-01	l	p2	
+# ::edge	park-01	ARG2	lot	p	l	
+# ::edge	windshield	ARG1-of	crack-02	w	c2	
+# ::edge	van	part	windshield	v	w	
+(v / van
+    :ARG1-of (w2 / wreck-01)
+    :ARG1-of (p / park-01
+        :ARG2 (l / lot
+            :ARG2-of (p2 / park-01)))
+    :mod (c / company
+        :name (n / name
+            :op1 "Staples"))
+    :part (w / windshield
+        :ARG1-of (c2 / crack-02)))

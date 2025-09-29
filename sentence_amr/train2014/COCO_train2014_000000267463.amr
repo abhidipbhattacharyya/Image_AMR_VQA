@@ -1,0 +1,37 @@
+# ::tok Several cars and a street car head in the same direction at a busy urban street corner .
+# ::node	s2	several	0-1
+# ::node	c	car	1-2
+# ::node	a	and	2-3
+# ::node	s3	street	4-5
+# ::node	c2	car	5-6
+# ::node	h	head-02	6-7
+# ::node	s	same-01	9-10
+# ::node	d	direction	10-11
+# ::node	b	busy-02	13-14
+# ::node	u	urban	14-15
+# ::node	s4	street	15-16
+# ::node	c3	corner	16-17
+# ::root	h	head-02
+# ::edge	car	quant	several	c	s2	
+# ::edge	and	op1	car	a	c	
+# ::edge	car	mod	street	c2	s3	
+# ::edge	and	op2	car	a	c2	
+# ::edge	head-02	ARG0	and	h	a	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	head-02	ARG1	direction	h	d	
+# ::edge	street	mod	urban	s4	u	
+# ::edge	street	ARG1-of	busy-02	s4	b	
+# ::edge	corner	op1	street	c3	s4	
+# ::edge	head-02	location	corner	h	c3	
+(h / head-02
+    :ARG0 (a / and
+        :op1 (c / car
+            :quant (s2 / several))
+        :op2 (c2 / car
+            :mod (s3 / street)))
+    :ARG1 (d / direction
+        :ARG1-of (s / same-01))
+    :location (c3 / corner
+        :op1 (s4 / street
+            :ARG1-of (b / busy-02)
+            :mod (u / urban))))

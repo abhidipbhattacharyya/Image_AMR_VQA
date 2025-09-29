@@ -1,0 +1,36 @@
+# ::tok A plate of food including , grilled meat , baked potato , carrots and lima beans .
+# ::node	p	plate	1-2
+# ::node	f	food	3-4
+# ::node	i	include-01	4-5
+# ::node	b3	broil-01	6-7
+# ::node	m	meat	7-8
+# ::node	b	bake-01	9-10
+# ::node	p2	potato	10-11
+# ::node	c	carrot	12-13
+# ::node	a	and	13-14
+# ::node	l	lima	14-15
+# ::node	b2	bean	15-16
+# ::root	i	include-01
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	include-01	ARG2	plate	i	p	
+# ::edge	meat	ARG1-of	broil-01	m	b3	
+# ::edge	potato	ARG1-of	bake-01	p2	b	
+# ::edge	and	op4	carrot	a	c	
+# ::edge	and	op3	potato	a	p2	
+# ::edge	and	op2	potato	a	p2	
+# ::edge	and	op1	meat	a	m	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	bean	mod	lima	b2	l	
+# ::edge	and	op5	bean	a	b2	
+(i / include-01
+    :ARG1 (a / and
+        :op1 (m / meat
+            :ARG1-of (b3 / broil-01))
+        :op2 (p2 / potato
+            :ARG1-of (b / bake-01))
+        :op3 p2
+        :op4 (c / carrot)
+        :op5 (b2 / bean
+            :mod (l / lima)))
+    :ARG2 (p / plate
+        :consist-of (f / food)))

@@ -1,0 +1,52 @@
+# ::tok People walk down a hall with stores on either side and a big red umbrella hands near one of the shops .
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	d	down	2-3
+# ::node	h	hall	4-5
+# ::node	h2	have-03	5-6
+# ::node	s4	store	6-7
+# ::node	e	either	8-9
+# ::node	s3	side	9-10
+# ::node	b	big	12-13
+# ::node	r	red-02	13-14
+# ::node	u	umbrella	14-15
+# ::node	i	in-ones-hands-04	15-16
+# ::node	n	near-02	16-17
+# ::node	0	1	17-18
+# ::node	i2	include-91	18-19
+# ::node	s	shop	20-21
+# ::node	s2	shop	20-21
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	down	w	d	
+# ::edge	walk-01	path	hall	w	h	
+# ::edge	hall	ARG0-of	have-03	h	h2	
+# ::edge	have-03	ARG1	store	h2	s4	
+# ::edge	side	mod	either	s3	e	
+# ::edge	store	location	side	s4	s3	
+# ::edge	umbrella	ARG1-of	red-02	u	r	
+# ::edge	umbrella	mod	big	u	b	
+# ::edge	in-ones-hands-04	ARG1	umbrella	i	u	
+# ::edge	hall	ARG0-of	in-ones-hands-04	h	i	
+# ::edge	umbrella	ARG1-of	near-02	u	n	
+# ::edge	shop	ARG1-of	include-91	s	i2	
+# ::edge	shop	quant	1	s	0	
+# ::edge	near-02	ARG2	shop	n	s	
+# ::edge	include-91	ARG2	shop	i2	s2	
+(w / walk-01
+    :ARG0 (p / person)
+    :direction (d / down)
+    :path (h / hall
+        :ARG0-of (h2 / have-03
+            :ARG1 (s4 / store
+                :location (s3 / side
+                    :mod (e / either))))
+        :ARG0-of (i / in-ones-hands-04
+            :ARG1 (u / umbrella
+                :ARG1-of (r / red-02)
+                :ARG1-of (n / near-02
+                    :ARG2 (s / shop
+                        :quant 1
+                        :ARG1-of (i2 / include-91
+                            :ARG2 (s2 / shop))))
+                :mod (b / big)))))

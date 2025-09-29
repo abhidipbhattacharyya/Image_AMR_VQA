@@ -1,0 +1,34 @@
+# ::tok a road sign that shows no animal , a motor bike or a car should pass
+# ::node	r2	road	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	4-5
+# ::node	0	-	5-6
+# ::node	a	animal	6-7
+# ::node	m	motor	9-10
+# ::node	b	bike	10-11
+# ::node	o	or	11-12
+# ::node	c	car	13-14
+# ::node	r	recommend-01	14-15
+# ::node	p	pass-03	15-16
+# ::root	r	recommend-01
+# ::edge	sign	mod	road	s2	r2	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	bike	mod	motor	b	m	
+# ::edge	or	op2	bike	o	b	
+# ::edge	or	op1	animal	o	a	
+# ::edge	or	polarity	-	o	0	
+# ::edge	show-01	ARG1	or	s	o	
+# ::edge	or	op3	car	o	c	
+# ::edge	recommend-01	ARG1	pass-03	r	p	
+# ::edge	pass-03	ARG1	sign	p	s2	
+(r / recommend-01
+    :ARG1 (p / pass-03
+        :ARG1 (s2 / sign
+            :ARG0-of (s / show-01
+                :ARG1 (o / or
+                    :op1 (a / animal)
+                    :op2 (b / bike
+                        :mod (m / motor))
+                    :op3 (c / car)
+                    :polarity -))
+            :mod (r2 / road))))

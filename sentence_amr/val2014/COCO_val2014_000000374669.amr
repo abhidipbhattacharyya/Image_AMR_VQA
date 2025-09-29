@@ -1,0 +1,34 @@
+# ::tok there is a red and white sign that says stop no vehicles past post
+# ::node	r	red-02	3-4
+# ::node	a	and	4-5
+# ::node	w	white-03	5-6
+# ::node	s2	sign	6-7
+# ::node	s	say-01	8-9
+# ::node	s3	stop-01	9-10
+# ::node	y	you	9-10
+# ::node	0	-	10-11
+# ::node	v	vehicle	11-12
+# ::node	p	past	12-13
+# ::node	p2	post	13-14
+# ::root	s2	sign
+# ::edge	and	op1	red-02	a	r	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	sign	consist-of	and	s2	a	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	stop-01	s	s3	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	vehicle	polarity	-	v	0	
+# ::edge	stop-01	ARG1	vehicle	s3	v	
+# ::edge	stop-01	location	past	s3	p	
+# ::edge	past	op1	post	p	p2	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (s3 / stop-01
+            :ARG0 (y / you)
+            :ARG1 (v / vehicle
+                :polarity -)
+            :location (p / past
+                :op1 (p2 / post))))
+    :consist-of (a / and
+        :op1 (r / red-02)
+        :op2 (w / white-03)))

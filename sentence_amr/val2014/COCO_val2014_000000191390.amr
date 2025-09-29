@@ -1,0 +1,49 @@
+# ::tok Four giraffes all walking and looking same direction and all same height in rocky field lined by short trees behind .
+# ::node	0	4	0-1
+# ::node	g	giraffe	1-2
+# ::node	w	walk-01	3-4
+# ::node	l2	look-01	5-6
+# ::node	s	same-01	6-7
+# ::node	d	direction	7-8
+# ::node	a	and	8-9
+# ::node	h	high-02	11-12
+# ::node	m	mountain	13-14
+# ::node	f	field	14-15
+# ::node	l	line-01	15-16
+# ::node	s2	short-07	17-18
+# ::node	t	tree	18-19
+# ::node	b	behind	19-20
+# ::root	a	and
+# ::edge	giraffe	quant	4	g	0	
+# ::edge	walk-01	ARG0	giraffe	w	g	
+# ::edge	look-01	ARG0	giraffe	l2	g	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	look-01	ARG1	direction	l2	d	
+# ::edge	and	op2	look-01	a	l2	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	same-01	ARG1	high-02	s	h	
+# ::edge	high-02	ARG1	giraffe	h	g	
+# ::edge	field	mod	mountain	f	m	
+# ::edge	high-02	location	field	h	f	
+# ::edge	field	ARG1-of	line-01	f	l	
+# ::edge	tree	ARG1-of	short-07	t	s2	
+# ::edge	line-01	ARG0	tree	l	t	
+# ::edge	tree	location	behind	t	b	
+# ::edge	behind	op1	field	b	f	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (g / giraffe
+            :quant 4))
+    :op2 (l2 / look-01
+        :ARG0 g
+        :ARG1 (d / direction
+            :ARG1-of (s / same-01
+                :ARG1 (h / high-02
+                    :ARG1 g
+                    :location (f / field
+                        :ARG1-of (l / line-01
+                            :ARG0 (t / tree
+                                :ARG1-of (s2 / short-07)
+                                :location (b / behind
+                                    :op1 f)))
+                        :mod (m / mountain)))))))

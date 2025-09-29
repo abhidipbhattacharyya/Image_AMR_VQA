@@ -1,0 +1,28 @@
+# ::tok A parked plane sits beneath a sunburst in otherwise cloudy skies .
+# ::node	p	park-01	1-2
+# ::node	p2	plane	2-3
+# ::node	s	sit-01	3-4
+# ::node	b	beneath	4-5
+# ::node	s3	sun	6-7
+# ::node	s4	sun	6-7
+# ::node	e	except-01	8-9
+# ::node	c	cloudy-02	9-10
+# ::node	s2	sky	10-11
+# ::root	s	sit-01
+# ::edge	plane	ARG1-of	park-01	p2	p	
+# ::edge	sit-01	ARG1	plane	s	p2	
+# ::edge	sit-01	ARG2	beneath	s	b	
+# ::edge	beneath	op1	sun	b	s3	
+# ::edge	except-01	ARG1	sun	e	s4	
+# ::edge	cloudy-02	ARG2-of	except-01	c	e	
+# ::edge	sky	ARG1-of	cloudy-02	s2	c	
+# ::edge	beneath	location	sky	b	s2	
+(s / sit-01
+    :ARG1 (p2 / plane
+        :ARG1-of (p / park-01))
+    :ARG2 (b / beneath
+        :location (s2 / sky
+            :ARG1-of (c / cloudy-02
+                :ARG2-of (e / except-01
+                    :ARG1 (s4 / sun))))
+        :op1 (s3 / sun)))

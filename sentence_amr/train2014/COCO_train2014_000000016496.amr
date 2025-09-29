@@ -1,0 +1,22 @@
+# ::tok Many rows of colorful motorbikes are parked along a roadway .
+# ::node	m	many	0-1
+# ::node	r2	row	1-2
+# ::node	c	colorful	3-4
+# ::node	m2	motorcycle	4-5
+# ::node	p	park-01	6-7
+# ::node	a	along	7-8
+# ::node	r	roadway	9-10
+# ::root	p	park-01
+# ::edge	row	quant	many	r2	m	
+# ::edge	motorcycle	mod	colorful	m2	c	
+# ::edge	motorcycle	quant	row	m2	r2	
+# ::edge	park-01	ARG1	motorcycle	p	m2	
+# ::edge	park-01	location	along	p	a	
+# ::edge	along	op1	roadway	a	r	
+(p / park-01
+    :ARG1 (m2 / motorcycle
+        :quant (r2 / row
+            :quant (m / many))
+        :mod (c / colorful))
+    :location (a / along
+        :op1 (r / roadway)))

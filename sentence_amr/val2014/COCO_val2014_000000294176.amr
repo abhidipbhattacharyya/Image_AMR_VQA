@@ -1,0 +1,31 @@
+# ::tok many clocks on a stair way with many people walking up and down them
+# ::node	m	many	0-1
+# ::node	w2	watch	1-2
+# ::node	s	stairwell	4-5
+# ::node	p	person	8-9
+# ::node	w	walk-01	9-10
+# ::node	u	up-03	10-11
+# ::node	a	and	11-12
+# ::node	d	down-03	12-13
+# ::root	w2	watch
+# ::edge	watch	quant	many	w2	m	
+# ::edge	watch	location	stairwell	w2	s	
+# ::edge	person	quant	many	p	m	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	watch	location-of	walk-01	w2	w	
+# ::edge	up-03	ARG1	stairwell	u	s	
+# ::edge	and	op1	up-03	a	u	
+# ::edge	walk-01	path	and	w	a	
+# ::edge	and	op2	down-03	a	d	
+# ::edge	down-03	ARG1	person	d	p	
+(w2 / watch
+    :quant (m / many)
+    :location (s / stairwell)
+    :location-of (w / walk-01
+        :ARG0 (p / person
+            :quant m)
+        :path (a / and
+            :op1 (u / up-03
+                :ARG1 s)
+            :op2 (d / down-03
+                :ARG1 p))))

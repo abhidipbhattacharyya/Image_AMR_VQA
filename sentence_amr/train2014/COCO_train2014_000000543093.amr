@@ -1,0 +1,30 @@
+# ::tok Just unpacked electronic equipment with its packing material on a messy bed .
+# ::node	i	i	0-1
+# ::node	j	just	0-1
+# ::node	p	pack-01	1-2
+# ::node	e	electronic	2-3
+# ::node	e2	equipment	3-4
+# ::node	p2	pack-01	6-7
+# ::node	m	material	7-8
+# ::node	m2	mess-up-02	10-11
+# ::node	b	bed	11-12
+# ::root	p	pack-01
+# ::edge	pack-01	mod	just	p	j	
+# ::edge	pack-01	ARG0	i	p	i	
+# ::edge	equipment	mod	electronic	e2	e	
+# ::edge	pack-01	ARG1	equipment	p	e2	
+# ::edge	pack-01	ARG1	equipment	p2	e2	
+# ::edge	material	ARG2-of	pack-01	m	p2	
+# ::edge	equipment	part	material	e2	m	
+# ::edge	bed	ARG1-of	mess-up-02	b	m2	
+# ::edge	pack-01	location	bed	p	b	
+(p / pack-01
+    :ARG0 (i / i)
+    :ARG1 (e2 / equipment
+        :mod (e / electronic)
+        :part (m / material
+            :ARG2-of (p2 / pack-01
+                :ARG1 e2)))
+    :location (b / bed
+        :ARG1-of (m2 / mess-up-02))
+    :mod (j / just))

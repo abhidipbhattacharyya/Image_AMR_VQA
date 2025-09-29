@@ -1,0 +1,28 @@
+# ::tok A traffic light hanging above a street that runs between some buildings .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	h	hang-01	3-4
+# ::node	a	above	4-5
+# ::node	s2	street	6-7
+# ::node	r	run-04	8-9
+# ::node	b	between	9-10
+# ::node	s	some	10-11
+# ::node	b2	building	11-12
+# ::root	h	hang-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	hang-01	ARG1	light	h	l	
+# ::edge	hang-01	location	above	h	a	
+# ::edge	above	op1	street	a	s2	
+# ::edge	street	ARG1-of	run-04	s2	r	
+# ::edge	run-04	ARG2	between	r	b	
+# ::edge	building	quant	some	b2	s	
+# ::edge	between	op1	building	b	b2	
+(h / hang-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :location (a / above
+        :op1 (s2 / street
+            :ARG1-of (r / run-04
+                :ARG2 (b / between
+                    :op1 (b2 / building
+                        :quant (s / some)))))))

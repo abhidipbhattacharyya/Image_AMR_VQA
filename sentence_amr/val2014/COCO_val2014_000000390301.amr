@@ -1,0 +1,38 @@
+# ::tok A white and green rusted fire hydrant spewing out frozen water .
+# ::node	w2	white-03	1-2
+# ::node	a	and	2-3
+# ::node	g	green-02	3-4
+# ::node	r	rust-01	4-5
+# ::node	f	fire	5-6
+# ::node	h	hydrant	6-7
+# ::node	h2	hydrant	6-7
+# ::node	s	spew-01	7-8
+# ::node	o	out	8-9
+# ::node	f2	freeze-01	9-10
+# ::node	w	water	10-11
+# ::root	s	spew-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	rust-01	h	r	
+# ::edge	and	op1	hydrant	a	h	
+# ::edge	hydrant	ARG1-of	white-03	h	w2	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	rust-01	h2	r	
+# ::edge	and	op2	hydrant	a	h2	
+# ::edge	spew-01	ARG0	and	s	a	
+# ::edge	spew-01	direction	out	s	o	
+# ::edge	water	ARG1-of	freeze-01	w	f2	
+# ::edge	spew-01	ARG1	water	s	w	
+# ::edge	spew-01	rel	green-02	s	g	
+(s / spew-01
+    :ARG0 (a / and
+        :op1 (h / hydrant
+            :ARG1-of (r / rust-01)
+            :ARG1-of (w2 / white-03)
+            :mod (f / fire))
+        :op2 (h2 / hydrant
+            :ARG1-of r
+            :mod f))
+    :ARG1 (w / water
+        :ARG1-of (f2 / freeze-01))
+    :direction (o / out)
+    :rel (g / green-02))

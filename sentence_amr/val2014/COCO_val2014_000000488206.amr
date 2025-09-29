@@ -1,0 +1,25 @@
+# ::tok A cat sitting on a park bench with a man sitting on a bench in the background
+# ::node	c	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	p	park	5-6
+# ::node	b2	bench	6-7
+# ::node	m	man	9-10
+# ::node	s2	sit-01	10-11
+# ::node	b3	bench	13-14
+# ::node	b	background	16-17
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	bench	location	park	b2	p	
+# ::edge	sit-01	ARG2	bench	s	b2	
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	bench	ARG2-of	sit-01	b3	s2	
+# ::edge	bench	location	bench	b2	b3	
+# ::edge	bench	location	background	b3	b	
+(s / sit-01
+    :ARG1 (c / cat)
+    :ARG2 (b2 / bench
+        :location (p / park)
+        :location (b3 / bench
+            :ARG2-of (s2 / sit-01
+                :ARG1 (m / man))
+            :location (b / background))))

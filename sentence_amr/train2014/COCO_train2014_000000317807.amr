@@ -1,0 +1,32 @@
+# ::tok Jet airliner preparing to land while flying over urban riverside area .
+# ::node	j	jet	0-1
+# ::node	a	airliner	1-2
+# ::node	p	prepare-02	2-3
+# ::node	l	land-01	4-5
+# ::node	f	fly-01	6-7
+# ::node	o	over	7-8
+# ::node	u	urban	8-9
+# ::node	r	riverside	9-10
+# ::node	a2	area	10-11
+# ::root	p	prepare-02
+# ::edge	airliner	mod	jet	a	j	
+# ::edge	prepare-02	ARG1	airliner	p	a	
+# ::edge	prepare-02	ARG2	land-01	p	l	
+# ::edge	land-01	ARG1	airliner	l	a	
+# ::edge	prepare-02	time	fly-01	p	f	
+# ::edge	fly-01	ARG2	airliner	f	a	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	area	mod	riverside	a2	r	
+# ::edge	area	mod	urban	a2	u	
+# ::edge	over	op1	area	o	a2	
+(p / prepare-02
+    :ARG1 (a / airliner
+        :mod (j / jet))
+    :ARG2 (l / land-01
+        :ARG1 a)
+    :time (f / fly-01
+        :ARG2 a
+        :path (o / over
+            :op1 (a2 / area
+                :mod (r / riverside)
+                :mod (u / urban)))))

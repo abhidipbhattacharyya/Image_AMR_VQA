@@ -1,0 +1,25 @@
+# ::tok A horse is outfitted with all the gear as a modern taxi sits alongside .
+# ::node	h	horse	1-2
+# ::node	e	equip-01	3-4
+# ::node	a	all	5-6
+# ::node	g	gear	7-8
+# ::node	m	modern-02	10-11
+# ::node	t	taxi	11-12
+# ::node	s	sit-01	12-13
+# ::node	a2	alongside	13-14
+# ::root	e	equip-01
+# ::edge	equip-01	ARG1	horse	e	h	
+# ::edge	gear	mod	all	g	a	
+# ::edge	equip-01	ARG2	gear	e	g	
+# ::edge	taxi	ARG1-of	modern-02	t	m	
+# ::edge	sit-01	ARG1	taxi	s	t	
+# ::edge	equip-01	time	sit-01	e	s	
+# ::edge	sit-01	ARG2	alongside	s	a2	
+(e / equip-01
+    :ARG1 (h / horse)
+    :ARG2 (g / gear
+        :mod (a / all))
+    :time (s / sit-01
+        :ARG1 (t / taxi
+            :ARG1-of (m / modern-02))
+        :ARG2 (a2 / alongside)))

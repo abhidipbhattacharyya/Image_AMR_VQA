@@ -1,0 +1,25 @@
+# ::tok a person driving at night with headlights glaring on the windshield
+# ::node	p	person	1-2
+# ::node	d2	drive-01	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	b	bulb	6-7
+# ::node	l	light-04	6-7
+# ::node	s	stare-01	7-8
+# ::node	w	windshield	10-11
+# ::root	p	person
+# ::edge	person	ARG0-of	drive-01	p	d2	
+# ::edge	drive-01	time	date-entity	d2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	person	part	bulb	p	b	
+# ::edge	bulb	ARG0-of	light-04	b	l	
+# ::edge	bulb	ARG0-of	stare-01	b	s	
+# ::edge	stare-01	location	windshield	s	w	
+(p / person
+    :ARG0-of (d2 / drive-01
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :part (b / bulb
+        :ARG0-of (l / light-04)
+        :ARG0-of (s / stare-01
+            :location (w / windshield))))

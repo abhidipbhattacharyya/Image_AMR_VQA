@@ -1,0 +1,30 @@
+# ::tok Zebras walking and grazing while they are fenced in .
+# ::node	a2	animal	0-1
+# ::node	n	name	0-1
+# ::node	m2	multiple	0-1
+# ::node	l	lamb	0-1
+# ::node	w	walk-01	1-2
+# ::node	a	and	2-3
+# ::node	g	graze-01	3-4
+# ::node	m	market	7-8
+# ::node	f	fence	7-8
+# ::root	a	and
+# ::edge	animal	name	name	a2	n	
+# ::edge	animal	op1	multiple	a2	m2	
+# ::edge	multiple	op1	lamb	m2	l	
+# ::edge	walk-01	ARG0	animal	w	a2	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	graze-01	a	g	
+# ::edge	graze-01	ARG0	animal	g	a2	
+# ::edge	and	time	market	a	m	
+# ::edge	market	location	fence	m	f	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (a2 / animal
+            :name (n / name)
+            :op1 (m2 / multiple
+                :op1 (l / lamb))))
+    :op2 (g / graze-01
+        :ARG0 a2)
+    :time (m / market
+        :location (f / fence)))

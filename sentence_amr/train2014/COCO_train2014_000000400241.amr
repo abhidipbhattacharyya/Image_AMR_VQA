@@ -1,0 +1,42 @@
+# ::tok A man is staring straight ahead as he sits in front of two monitors , a laptop with an open screen and a computer monitor .
+# ::node	m	man	1-2
+# ::node	s3	stare-01	3-4
+# ::node	s4	straight-04	4-5
+# ::node	a2	ahead	5-6
+# ::node	s2	sit-01	8-9
+# ::node	i	in-front-of	10-11
+# ::node	a	2	12-13
+# ::node	m2	monitor	13-14
+# ::node	l	laptop	16-17
+# ::node	o	open-09	19-20
+# ::node	s	screen	20-21
+# ::node	c	computer	23-24
+# ::node	m3	monitor	24-25
+# ::root	s3	stare-01
+# ::edge	stare-01	ARG0	man	s3	m	
+# ::edge	ahead	ARG1-of	straight-04	a2	s4	
+# ::edge	stare-01	ARG1	ahead	s3	a2	
+# ::edge	stare-01	time	sit-01	s3	s2	
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	in-front-of	s2	i	
+# ::edge	monitor	quant	2	m2	a	
+# ::edge	in-front-of	op1	monitor	i	m2	
+# ::edge	2	op2	laptop	a	l	
+# ::edge	screen	ARG1-of	open-09	s	o	
+# ::edge	laptop	part	screen	l	s	
+# ::edge	monitor	mod	computer	m3	c	
+# ::edge	monitor	op3	monitor	m2	m3	
+(s3 / stare-01
+    :ARG0 (m / man)
+    :ARG1 (a2 / ahead
+        :ARG1-of (s4 / straight-04))
+    :time (s2 / sit-01
+        :ARG1 m
+        :ARG2 (i / in-front-of
+            :op1 (m2 / monitor
+                :quant (a / 2
+                    :op2 (l / laptop
+                        :part (s / screen
+                            :ARG1-of (o / open-09))))
+                :op3 (m3 / monitor
+                    :mod (c / computer))))))

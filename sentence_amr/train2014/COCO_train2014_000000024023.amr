@@ -1,0 +1,33 @@
+# ::tok a rack between two refrigerators with three microwaves on it and one on a fridge
+# ::node	r	rack	1-2
+# ::node	b	between	2-3
+# ::node	1	2	3-4
+# ::node	r2	refrigerator	4-5
+# ::node	2	3	6-7
+# ::node	m	microwave	7-8
+# ::node	m2	microwave	7-8
+# ::node	a	and	10-11
+# ::node	0	1	11-12
+# ::node	f	fridge	14-15
+# ::root	r	rack
+# ::edge	rack	location	between	r	b	
+# ::edge	refrigerator	quant	2	r2	1	
+# ::edge	between	op1	refrigerator	b	r2	
+# ::edge	microwave	quant	3	m	2	
+# ::edge	rack	prep-with	microwave	r	m	
+# ::edge	and	op2	microwave	a	m2	
+# ::edge	and	op1	microwave	a	m	
+# ::edge	rack	consist-of	and	r	a	
+# ::edge	microwave	quant	1	m2	0	
+# ::edge	microwave	location	fridge	m2	f	
+(r / rack
+    :consist-of (a / and
+        :op1 (m / microwave
+            :quant 3)
+        :op2 (m2 / microwave
+            :quant 1
+            :location (f / fridge)))
+    :location (b / between
+        :op1 (r2 / refrigerator
+            :quant 2))
+    :prep-with m)

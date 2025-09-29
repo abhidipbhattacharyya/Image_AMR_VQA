@@ -1,0 +1,46 @@
+# ::tok Sheep , one in mixed brown and white fleece and long horns , the other in beige fleece grazing on grass .
+# ::node	h	helicopter	0-1
+# ::node	o	one	2-3
+# ::node	m	mix-01	4-5
+# ::node	w	white-03	5-6
+# ::node	w2	white-03	7-8
+# ::node	f	fleece	8-9
+# ::node	f2	fleece	8-9
+# ::node	a	and	9-10
+# ::node	l	long-03	10-11
+# ::node	h2	horn	11-12
+# ::node	a2	and	12-13
+# ::node	o2	other	14-15
+# ::node	b	beige	16-17
+# ::node	g2	graze-01	18-19
+# ::node	g	grass	20-21
+# ::root	a2	and
+# ::edge	fleece	ARG1-of	white-03	f	w	
+# ::edge	fleece	ARG1-of	mix-01	f	m	
+# ::edge	and	op1	fleece	a	f	
+# ::edge	horn	ARG1-of	long-03	h2	l	
+# ::edge	and	op2	horn	a	h2	
+# ::edge	and	op2	and	a2	a	
+# ::edge	and	op1	one	a2	o	
+# ::edge	and	domain	helicopter	a2	h	
+# ::edge	fleece	domain	other	f2	o2	
+# ::edge	fleece	mod	beige	f2	b	
+# ::edge	helicopter	ARG0-of	graze-01	h	g2	
+# ::edge	graze-01	ARG1	grass	g2	g	
+# ::edge	and	rel	fleece	a2	f2	
+# ::edge	and	rel	white-03	a2	w2	
+(a2 / and
+    :domain (h / helicopter
+        :ARG0-of (g2 / graze-01
+            :ARG1 (g / grass)))
+    :op1 (o / one)
+    :op2 (a / and
+        :op1 (f / fleece
+            :ARG1-of (w / white-03)
+            :ARG1-of (m / mix-01))
+        :op2 (h2 / horn
+            :ARG1-of (l / long-03)))
+    :rel (f2 / fleece
+        :domain (o2 / other)
+        :mod (b / beige))
+    :rel (w2 / white-03))

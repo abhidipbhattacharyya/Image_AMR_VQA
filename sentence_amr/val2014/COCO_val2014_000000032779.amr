@@ -1,0 +1,37 @@
+# ::tok A very upscale looking hotel room with large bed and a bathroom in the next room .
+# ::node	v	very	1-2
+# ::node	u	upscale	2-3
+# ::node	l2	look-02	3-4
+# ::node	h2	hotel	4-5
+# ::node	r	room	5-6
+# ::node	h	have-03	6-7
+# ::node	l	large	7-8
+# ::node	b2	bed	8-9
+# ::node	a	and	9-10
+# ::node	b	bathroom	11-12
+# ::node	n	next	14-15
+# ::node	r2	room	15-16
+# ::root	r	room
+# ::edge	upscale	degree	very	u	v	
+# ::edge	look-02	ARG1	upscale	l2	u	
+# ::edge	room	location	hotel	r	h2	
+# ::edge	room	ARG0-of	look-02	r	l2	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	mod	large	b2	l	
+# ::edge	and	op1	bed	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	bathroom	a	b	
+# ::edge	room	mod	next	r2	n	
+# ::edge	and	location	room	a	r2	
+(r / room
+    :ARG0-of (l2 / look-02
+        :ARG1 (u / upscale
+            :degree (v / very)))
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (r2 / room
+                :mod (n / next))
+            :op1 (b2 / bed
+                :mod (l / large))
+            :op2 (b / bathroom)))
+    :location (h2 / hotel))

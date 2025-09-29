@@ -1,0 +1,42 @@
+# ::tok A group of young men preparing to play tennis , one wearing an animal suit .
+# ::node	g	group	1-2
+# ::node	y	young	3-4
+# ::node	m	man	4-5
+# ::node	p3	prepare-02	5-6
+# ::node	p2	play-01	7-8
+# ::node	t	tennis	8-9
+# ::node	m2	multi-sentence	9-10
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	w	wear-01	11-12
+# ::node	a	animal	13-14
+# ::node	s	suit	14-15
+# ::node	p	person	15-16
+# ::root	m2	multi-sentence
+# ::edge	man	mod	young	m	y	
+# ::edge	group	consist-of	man	g	m	
+# ::edge	group	ARG1-of	prepare-02	g	p3	
+# ::edge	prepare-02	ARG2	play-01	p3	p2	
+# ::edge	play-01	ARG0	group	p2	g	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	multi-sentence	snt1	group	m2	g	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	suit	mod	animal	s	a	
+# ::edge	wear-01	ARG1	suit	w	s	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	person	quant	1	p	0	
+# ::edge	include-91	ARG1	person	i	p	
+(m2 / multi-sentence
+    :snt1 (g / group
+        :ARG1-of (p3 / prepare-02
+            :ARG2 (p2 / play-01
+                :ARG0 g
+                :ARG1 (t / tennis)))
+        :consist-of (m / man
+            :ARG2-of (i / include-91
+                :ARG1 (p / person
+                    :quant 1
+                    :ARG0-of (w / wear-01
+                        :ARG1 (s / suit
+                            :mod (a / animal)))))
+            :mod (y / young))))

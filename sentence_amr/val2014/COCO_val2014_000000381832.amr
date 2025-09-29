@@ -1,0 +1,34 @@
+# ::tok a street light hanging fron one of many wires connected to a power pole
+# ::node	s	street	1-2
+# ::node	l	light	2-3
+# ::node	h	hanging-07	3-4
+# ::node	0	1	5-6
+# ::node	i	include-91	6-7
+# ::node	m	many	7-8
+# ::node	w	wire	8-9
+# ::node	w2	wire	8-9
+# ::node	c	connect-01	9-10
+# ::node	p2	power	12-13
+# ::node	p	pole	13-14
+# ::root	h	hanging-07
+# ::edge	light	mod	street	l	s	
+# ::edge	hanging-07	ARG1	light	h	l	
+# ::edge	wire	ARG1-of	include-91	w	i	
+# ::edge	wire	quant	1	w	0	
+# ::edge	hanging-07	ARG2	wire	h	w	
+# ::edge	wire	quant	many	w2	m	
+# ::edge	include-91	ARG2	wire	i	w2	
+# ::edge	wire	ARG1-of	connect-01	w2	c	
+# ::edge	pole	mod	power	p	p2	
+# ::edge	connect-01	ARG2	pole	c	p	
+(h / hanging-07
+    :ARG1 (l / light
+        :mod (s / street))
+    :ARG2 (w / wire
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (w2 / wire
+                :quant (m / many)
+                :ARG1-of (c / connect-01
+                    :ARG2 (p / pole
+                        :mod (p2 / power)))))))

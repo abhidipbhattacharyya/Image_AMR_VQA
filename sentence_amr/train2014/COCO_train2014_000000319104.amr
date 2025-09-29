@@ -1,0 +1,27 @@
+# ::tok a person waking up and hitting the alarm button on a white clock
+# ::node	p	person	1-2
+# ::node	w	wake-up-02	2-3
+# ::node	a2	and	4-5
+# ::node	h	hit-01	5-6
+# ::node	a	alarm-01	7-8
+# ::node	b	button	8-9
+# ::node	w2	white-03	11-12
+# ::node	c	clock	12-13
+# ::root	a2	and
+# ::edge	wake-up-02	ARG1	person	w	p	
+# ::edge	and	op1	wake-up-02	a2	w	
+# ::edge	and	op2	hit-01	a2	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	button	purpose	alarm-01	b	a	
+# ::edge	hit-01	ARG1	button	h	b	
+# ::edge	clock	ARG1-of	white-03	c	w2	
+# ::edge	button	location	clock	b	c	
+(a2 / and
+    :op1 (w / wake-up-02
+        :ARG1 (p / person))
+    :op2 (h / hit-01
+        :ARG0 p
+        :ARG1 (b / button
+            :purpose (a / alarm-01)
+            :location (c / clock
+                :ARG1-of (w2 / white-03)))))

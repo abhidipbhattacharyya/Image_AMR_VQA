@@ -1,0 +1,30 @@
+# ::tok Baseball player preparing for swing with the catcher in the ready position .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	p5	prepare-02	2-3
+# ::node	s	swing-02	4-5
+# ::node	p2	person	7-8
+# ::node	c	catcher	7-8
+# ::node	r	ready-02	10-11
+# ::node	p4	position	11-12
+# ::root	p5	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	prepare-02	ARG1	person	p5	p	
+# ::edge	prepare-02	ARG2	swing-02	p5	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	position	ARG1-of	ready-02	p4	r	
+# ::edge	position	location-of	catcher	p4	c	
+# ::edge	swing-02	accompanier	position	s	p4	
+# ::edge	prepare-02	rel	person	p5	p2	
+(p5 / prepare-02
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (s / swing-02
+        :ARG0 p
+        :accompanier (p4 / position
+            :ARG1-of (r / ready-02)
+            :location-of (c / catcher)))
+    :rel (p2 / person))

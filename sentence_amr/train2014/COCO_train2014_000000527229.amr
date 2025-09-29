@@ -1,0 +1,43 @@
+# ::tok A man walking through a living room with a bike parked next to the couch and a vacuum in the middle of the floor .
+# ::node	m	man	1-2
+# ::node	w	walk-01	2-3
+# ::node	t	through	3-4
+# ::node	l	living	5-6
+# ::node	r	room	6-7
+# ::node	h	have-03	7-8
+# ::node	b	bike	9-10
+# ::node	p	park-01	10-11
+# ::node	n	next-to	11-12
+# ::node	c	couch	14-15
+# ::node	a	and	15-16
+# ::node	v	vacuum	17-18
+# ::node	m2	middle	20-21
+# ::node	f	floor	23-24
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	ARG2	through	w	t	
+# ::edge	room	mod	living	r	l	
+# ::edge	through	op1	room	t	r	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	park-01	ARG1	bike	p	b	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	couch	n	c	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	vacuum	a	v	
+# ::edge	vacuum	location	middle	v	m2	
+# ::edge	middle	part-of	floor	m2	f	
+(w / walk-01
+    :ARG0 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (p / park-01
+                    :ARG1 (b / bike)
+                    :ARG2 (n / next-to
+                        :op1 (c / couch)))
+                :op2 (v / vacuum
+                    :location (m2 / middle
+                        :part-of (f / floor))))))
+    :ARG2 (t / through
+        :op1 (r / room
+            :mod (l / living))))

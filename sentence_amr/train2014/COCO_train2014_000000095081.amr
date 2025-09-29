@@ -1,0 +1,31 @@
+# ::tok a construction worker stands at an intersection with cars clogging up one street
+# ::node	c3	construct-01	1-2
+# ::node	p	person	2-3
+# ::node	w	work-01	2-3
+# ::node	s	stand-01	3-4
+# ::node	i	intersect-01	6-7
+# ::node	c	car	8-9
+# ::node	c2	clog-02	9-10
+# ::node	u	up	10-11
+# ::node	0	1	11-12
+# ::node	s2	street	12-13
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	construct-01	w	c3	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	intersect-01	s	i	
+# ::edge	clog-02	ARG0	car	c2	c	
+# ::edge	intersect-01	location-of	clog-02	i	c2	
+# ::edge	clog-02	direction	up	c2	u	
+# ::edge	street	quant	1	s2	0	
+# ::edge	clog-02	ARG1	street	c2	s2	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (w / work-01
+            :ARG1 (c3 / construct-01)))
+    :ARG2 (i / intersect-01
+        :location-of (c2 / clog-02
+            :ARG0 (c / car)
+            :ARG1 (s2 / street
+                :quant 1)
+            :direction (u / up))))

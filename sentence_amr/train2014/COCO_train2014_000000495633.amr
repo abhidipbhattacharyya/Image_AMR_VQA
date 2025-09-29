@@ -1,0 +1,34 @@
+# ::tok Motor cycles parked next to a bike trailer advertising " Adventure Life "
+# ::node	m	motor	0-1
+# ::node	m2	motorcycle	1-2
+# ::node	p	park-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	b	bike	6-7
+# ::node	t	trailer	7-8
+# ::node	a	advertise-01	8-9
+# ::node	e	event	10-11
+# ::node	n	name	10-11
+# ::node	0	Adventure	10-11
+# ::node	1	Life	11-12
+# ::root	p	park-01
+# ::edge	motorcycle	mod	motor	m2	m	
+# ::edge	park-01	ARG1	motorcycle	p	m2	
+# ::edge	park-01	ARG2	next-to	p	n2	
+# ::edge	trailer	mod	bike	t	b	
+# ::edge	next-to	op1	trailer	n2	t	
+# ::edge	trailer	ARG0-of	advertise-01	t	a	
+# ::edge	advertise-01	ARG1	event	a	e	
+# ::edge	event	name	name	e	n	
+# ::edge	name	op1	Adventure	n	0	
+# ::edge	name	op2	Life	n	1	
+(p / park-01
+    :ARG1 (m2 / motorcycle
+        :mod (m / motor))
+    :ARG2 (n2 / next-to
+        :op1 (t / trailer
+            :ARG0-of (a / advertise-01
+                :ARG1 (e / event
+                    :name (n / name
+                        :op1 "Adventure"
+                        :op2 "Life")))
+            :mod (b / bike))))

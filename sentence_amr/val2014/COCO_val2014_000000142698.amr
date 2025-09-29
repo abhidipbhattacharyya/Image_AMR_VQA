@@ -1,0 +1,42 @@
+# ::tok A man with earrings , a nose ring , a beard and a grey tank top with a bunch of bananas in his hand .
+# ::node	m	man	1-2
+# ::node	h2	have-03	2-3
+# ::node	e	earring	3-4
+# ::node	n	nose	6-7
+# ::node	r	ring	7-8
+# ::node	b2	beard	10-11
+# ::node	a	and	11-12
+# ::node	g	gray-02	13-14
+# ::node	t	tank	14-15
+# ::node	t2	top	15-16
+# ::node	b3	bunch	18-19
+# ::node	b	banana	20-21
+# ::node	h	hand	23-24
+# ::root	m	man
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	ring	mod	nose	r	n	
+# ::edge	and	op3	beard	a	b2	
+# ::edge	and	op2	ring	a	r	
+# ::edge	and	op1	earring	a	e	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	top	mod	tank	t2	t	
+# ::edge	top	ARG1-of	gray-02	t2	g	
+# ::edge	and	op4	top	a	t2	
+# ::edge	banana	quant	bunch	b	b3	
+# ::edge	hand	location	banana	h	b	
+# ::edge	and	op5	hand	a	h	
+# ::edge	man	part	hand	m	h	
+(m / man
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (e / earring)
+            :op2 (r / ring
+                :mod (n / nose))
+            :op3 (b2 / beard)
+            :op4 (t2 / top
+                :ARG1-of (g / gray-02)
+                :mod (t / tank))
+            :op5 (h / hand
+                :location (b / banana
+                    :quant (b3 / bunch)))))
+    :part h)

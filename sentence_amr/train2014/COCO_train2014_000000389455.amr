@@ -1,0 +1,39 @@
+# ::tok A bathroom with a toilet with a wood finished seat , tiled floors , two rugs on the floor and a door .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	t2	toilet	4-5
+# ::node	w	wood	7-8
+# ::node	f	finish-01	8-9
+# ::node	s	seat	9-10
+# ::node	t	tile-01	11-12
+# ::node	f2	floor	12-13
+# ::node	0	2	14-15
+# ::node	f3	floor	15-16
+# ::node	a	and	19-20
+# ::node	d	door	21-22
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	finish-01	ARG2	wood	f	w	
+# ::edge	seat	ARG1-of	finish-01	s	f	
+# ::edge	toilet	part	seat	t2	s	
+# ::edge	floor	ARG1-of	tile-01	f2	t	
+# ::edge	floor	quant	2	f3	0	
+# ::edge	floor	location	floor	f3	f2	
+# ::edge	and	op3	floor	a	f3	
+# ::edge	and	op2	floor	a	f2	
+# ::edge	and	op1	toilet	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op4	door	a	d	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :ARG1 (a / and
+        :op1 (t2 / toilet
+            :part (s / seat
+                :ARG1-of (f / finish-01
+                    :ARG2 (w / wood))))
+        :op2 (f2 / floor
+            :ARG1-of (t / tile-01))
+        :op3 (f3 / floor
+            :quant 2
+            :location f2)
+        :op4 (d / door)))

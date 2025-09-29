@@ -1,0 +1,30 @@
+# ::tok Lights are lit up around a mirror and above two sinks in a bathroom .
+# ::node	l	light	0-1
+# ::node	l2	light-up-08	2-3
+# ::node	a3	around	4-5
+# ::node	m	mirror	6-7
+# ::node	a2	and	7-8
+# ::node	a	above	8-9
+# ::node	0	2	9-10
+# ::node	s	sink-01	10-11
+# ::node	b	bathroom	13-14
+# ::root	l2	light-up-08
+# ::edge	light-up-08	ARG1	light	l2	l	
+# ::edge	around	op1	mirror	a3	m	
+# ::edge	and	op1	around	a2	a3	
+# ::edge	light-up-08	location	and	l2	a2	
+# ::edge	and	op2	above	a2	a	
+# ::edge	sink-01	quant	2	s	0	
+# ::edge	above	op1	sink-01	a	s	
+# ::edge	sink-01	location	bathroom	s	b	
+# ::edge	mirror	location	bathroom	m	b	
+(l2 / light-up-08
+    :ARG1 (l / light)
+    :location (a2 / and
+        :op1 (a3 / around
+            :op1 (m / mirror
+                :location (b / bathroom)))
+        :op2 (a / above
+            :op1 (s / sink-01
+                :quant 2
+                :location b))))

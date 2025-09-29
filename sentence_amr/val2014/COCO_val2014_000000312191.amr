@@ -1,0 +1,39 @@
+# ::tok The ocean shoreline that has the tide pushing up towards the sand and seagulls flying low over the water .
+# ::node	o	ocean	1-2
+# ::node	s3	shoreline	2-3
+# ::node	t	thing	4-5
+# ::node	t2	tide	6-7
+# ::node	p	push-01	7-8
+# ::node	u	up-03	8-9
+# ::node	s	sand	11-12
+# ::node	a	and	12-13
+# ::node	s2	seabasing	13-14
+# ::node	f	fly-01	14-15
+# ::node	l	low-04	15-16
+# ::node	o2	over	16-17
+# ::root	s3	shoreline
+# ::edge	shoreline	part-of	ocean	s3	o	
+# ::edge	shoreline	part-of	thing	s3	t	
+# ::edge	push-01	ARG0	tide	p	t2	
+# ::edge	push-01	ARG2	up-03	p	u	
+# ::edge	push-01	direction	sand	p	s	
+# ::edge	and	op1	push-01	a	p	
+# ::edge	thing	location-of	and	t	a	
+# ::edge	fly-01	ARG2	seabasing	f	s2	
+# ::edge	and	op2	fly-01	a	f	
+# ::edge	fly-01	ARG1-of	low-04	f	l	
+# ::edge	fly-01	path	over	f	o2	
+# ::edge	over	op1	tide	o2	t2	
+(s3 / shoreline
+    :part-of (o / ocean)
+    :part-of (t / thing
+        :location-of (a / and
+            :op1 (p / push-01
+                :ARG0 (t2 / tide)
+                :ARG2 (u / up-03)
+                :direction (s / sand))
+            :op2 (f / fly-01
+                :ARG1-of (l / low-04)
+                :ARG2 (s2 / seabasing)
+                :path (o2 / over
+                    :op1 t2)))))

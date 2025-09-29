@@ -1,0 +1,33 @@
+# ::tok A motorcyclist trying to cut around traffic encounters an unexpected herd of cows .
+# ::node	p	person	1-2
+# ::node	m	motorcycle	1-2
+# ::node	t2	try-01	2-3
+# ::node	c2	cut-01	4-5
+# ::node	a	around	5-6
+# ::node	t	traffic	6-7
+# ::node	e	encounter-01	7-8
+# ::node	e2	expect-01	9-10
+# ::node	h	herd	10-11
+# ::node	c	cow	12-13
+# ::root	e	encounter-01
+# ::edge	person	mod	motorcycle	p	m	
+# ::edge	person	ARG0-of	try-01	p	t2	
+# ::edge	try-01	ARG1	cut-01	t2	c2	
+# ::edge	cut-01	ARG0	person	c2	p	
+# ::edge	cut-01	direction	around	c2	a	
+# ::edge	around	op1	traffic	a	t	
+# ::edge	encounter-01	ARG0	person	e	p	
+# ::edge	herd	ARG1-of	expect-01	h	e2	
+# ::edge	encounter-01	ARG1	herd	e	h	
+# ::edge	herd	consist-of	cow	h	c	
+(e / encounter-01
+    :ARG0 (p / person
+        :ARG0-of (t2 / try-01
+            :ARG1 (c2 / cut-01
+                :ARG0 p
+                :direction (a / around
+                    :op1 (t / traffic))))
+        :mod (m / motorcycle))
+    :ARG1 (h / herd
+        :ARG1-of (e2 / expect-01)
+        :consist-of (c / cow)))

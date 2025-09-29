@@ -1,0 +1,62 @@
+# ::tok A living space with tile floor , yellow walls , two red chairs with matching ottomans , a coffee table and a pole lamp .
+# ::node	l2	live-01	1-2
+# ::node	s	space	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	tile	4-5
+# ::node	f	floor	5-6
+# ::node	y	yellow-02	7-8
+# ::node	w	wall	8-9
+# ::node	0	2	10-11
+# ::node	r	red-02	11-12
+# ::node	c	chair	12-13
+# ::node	m2	match-01	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	f2	foot	15-16
+# ::node	m	mass-quantity	15-16
+# ::node	c2	coffee	18-19
+# ::node	t	table	19-20
+# ::node	a	and	20-21
+# ::node	p	pole	22-23
+# ::node	l	lamp	23-24
+# ::root	s	space
+# ::edge	space	mod	live-01	s	l2	
+# ::edge	space	ARG0-of	have-03	s	h	
+# ::edge	floor	mod	tile	f	t2	
+# ::edge	wall	ARG1-of	yellow-02	w	y	
+# ::edge	chair	ARG1-of	red-02	c	r	
+# ::edge	chair	quant	2	c	0	
+# ::edge	volume-quantity	ARG1-of	chair	v	c	
+# ::edge	chair	mod	volume-quantity	c	v	
+# ::edge	volume-quantity	unit	foot	v	f2	
+# ::edge	match-01	ARG2	mass-quantity	m2	m	
+# ::edge	mass-quantity	ARG1-of	red-02	m	r	
+# ::edge	table	mod	coffee	t	c2	
+# ::edge	and	op3	table	a	t	
+# ::edge	and	op2	chair	a	c	
+# ::edge	and	op1	floor	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	lamp	mod	pole	l	p	
+# ::edge	and	op4	lamp	a	l	
+# ::edge	space	rel	wall	s	w	
+# ::edge	space	rel	match-01	s	m2	
+(s / space
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (f / floor
+                :mod (t2 / tile))
+            :op2 (c / chair
+                :quant 2
+                :ARG1-of (r / red-02)
+                :mod (v / volume-quantity
+                    :ARG1-of c
+                    :unit (f2 / foot)))
+            :op3 (t / table
+                :mod (c2 / coffee))
+            :op4 (l / lamp
+                :mod (p / pole))))
+    :mod (l2 / live-01)
+    :rel (w / wall
+        :ARG1-of (y / yellow-02))
+    :rel (m2 / match-01
+        :ARG2 (m / mass-quantity
+            :ARG1-of r)))

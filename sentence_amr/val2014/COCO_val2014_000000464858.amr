@@ -1,0 +1,49 @@
+# ::tok Kite flying , Washington DC with Smithsonian and Washington Monument in background .
+# ::node	y	you	0-1
+# ::node	s	submarine	0-1
+# ::node	f	fly-01	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	n	name	3-4
+# ::node	3	Washington	3-4
+# ::node	0	DC	4-5
+# ::node	r	research-institute	6-7
+# ::node	n2	name	6-7
+# ::node	2	Smithsonian	6-7
+# ::node	a	and	7-8
+# ::node	n3	name	8-9
+# ::node	4	Washington	8-9
+# ::node	b3	building	9-10
+# ::node	1	Monument	9-10
+# ::node	b	background	11-12
+# ::root	b2	be-located-at-91
+# ::edge	fly-01	ARG2	submarine	f	s	
+# ::edge	be-located-at-91	ARG1	fly-01	b2	f	
+# ::edge	name	op1	Washington	n	3	
+# ::edge	name	op2	DC	n	0	
+# ::edge	research-institute	name	name	r	n2	
+# ::edge	name	op1	Smithsonian	n2	2	
+# ::edge	and	op1	research-institute	a	r	
+# ::edge	be-located-at-91	ARG2	and	b2	a	
+# ::edge	name	op1	Washington	n3	4	
+# ::edge	building	name	name	b3	n3	
+# ::edge	and	op2	building	a	b3	
+# ::edge	name	op2	Monument	n3	1	
+# ::edge	be-located-at-91	location	background	b2	b	
+# ::edge	be-located-at-91	rel	name	b2	n	
+# ::edge	be-located-at-91	rel	you	b2	y	
+(b2 / be-located-at-91
+    :ARG1 (f / fly-01
+        :ARG2 (s / submarine))
+    :ARG2 (a / and
+        :op1 (r / research-institute
+            :name (n2 / name
+                :op1 "Smithsonian"))
+        :op2 (b3 / building
+            :name (n3 / name
+                :op1 "Washington"
+                :op2 "Monument")))
+    :location (b / background)
+    :rel (n / name
+        :op1 "Washington"
+        :op2 "DC")
+    :rel (y / you))

@@ -1,0 +1,33 @@
+# ::tok A restaurant with two people at the bar and one woman waiting for a seat .
+# ::node	r	restaurant	1-2
+# ::node	1	2	3-4
+# ::node	p	person	4-5
+# ::node	b2	be-located-at-91	5-6
+# ::node	b	bar	7-8
+# ::node	a	and	8-9
+# ::node	0	1	9-10
+# ::node	w2	woman	10-11
+# ::node	w	wait-01	11-12
+# ::node	s	sit-01	14-15
+# ::root	r	restaurant
+# ::edge	person	quant	2	p	1	
+# ::edge	be-located-at-91	ARG1	person	b2	p	
+# ::edge	be-located-at-91	ARG2	bar	b2	b	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	restaurant	location-of	and	r	a	
+# ::edge	woman	quant	1	w2	0	
+# ::edge	wait-01	ARG1	woman	w	w2	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG2	sit-01	w	s	
+# ::edge	sit-01	ARG1	woman	s	w2	
+(r / restaurant
+    :location-of (a / and
+        :op1 (b2 / be-located-at-91
+            :ARG1 (p / person
+                :quant 2)
+            :ARG2 (b / bar))
+        :op2 (w / wait-01
+            :ARG1 (w2 / woman
+                :quant 1)
+            :ARG2 (s / sit-01
+                :ARG1 w2))))

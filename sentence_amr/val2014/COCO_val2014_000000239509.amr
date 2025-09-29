@@ -1,0 +1,25 @@
+# ::tok A sign that is telling no pedestrian traffic with a sign pointing to the other side .
+# ::node	s2	sign	1-2
+# ::node	t	tell-01	4-5
+# ::node	0	-	5-6
+# ::node	p	pedestrian	6-7
+# ::node	t2	traffic	7-8
+# ::node	p2	point-01	11-12
+# ::node	o	other	14-15
+# ::node	s	side	15-16
+# ::root	s2	sign
+# ::edge	sign	ARG0-of	tell-01	s2	t	
+# ::edge	tell-01	polarity	-	t	0	
+# ::edge	traffic	mod	pedestrian	t2	p	
+# ::edge	tell-01	ARG2	traffic	t	t2	
+# ::edge	sign	ARG0-of	point-01	s2	p2	
+# ::edge	side	mod	other	s	o	
+# ::edge	point-01	ARG2	side	p2	s	
+(s2 / sign
+    :ARG0-of (t / tell-01
+        :ARG2 (t2 / traffic
+            :mod (p / pedestrian))
+        :polarity -)
+    :ARG0-of (p2 / point-01
+        :ARG2 (s / side
+            :mod (o / other))))

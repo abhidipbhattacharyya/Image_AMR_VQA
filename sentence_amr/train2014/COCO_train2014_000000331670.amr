@@ -1,0 +1,26 @@
+# ::tok A group of people standing in line to load on to a train car .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	stand-01	4-5
+# ::node	l	line-up-02	6-7
+# ::node	l2	load-01	8-9
+# ::node	t	train	12-13
+# ::node	c	car	13-14
+# ::root	s	stand-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	stand-01	ARG2	line-up-02	s	l	
+# ::edge	line-up-02	ARG1	group	l	g	
+# ::edge	line-up-02	purpose	load-01	l	l2	
+# ::edge	load-01	ARG1	group	l2	g	
+# ::edge	car	mod	train	c	t	
+# ::edge	load-01	ARG2	car	l2	c	
+(s / stand-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (l / line-up-02
+        :purpose (l2 / load-01
+            :ARG1 g
+            :ARG2 (c / car
+                :mod (t / train)))
+        :ARG1 g))

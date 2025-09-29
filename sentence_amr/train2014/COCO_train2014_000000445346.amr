@@ -1,0 +1,33 @@
+# ::tok Large extra cheesy pizza with assorted toppings waiting to be eaten .
+# ::node	l	large	0-1
+# ::node	e2	extra	1-2
+# ::node	c	cheesy	2-3
+# ::node	p	pizza	3-4
+# ::node	h	have-03	4-5
+# ::node	a	assorted	5-6
+# ::node	c2	continent	6-7
+# ::node	t	top-01	6-7
+# ::node	w	wait-01	7-8
+# ::node	e	eat-01	10-11
+# ::root	w	wait-01
+# ::edge	cheesy	degree	extra	c	e2	
+# ::edge	pizza	mod	cheesy	p	c	
+# ::edge	pizza	mod	large	p	l	
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	continent	mod	assorted	c2	a	
+# ::edge	have-03	ARG1	continent	h	c2	
+# ::edge	continent	ARG2-of	top-01	c2	t	
+# ::edge	wait-01	ARG1	pizza	w	p	
+# ::edge	wait-01	ARG2	eat-01	w	e	
+# ::edge	eat-01	ARG1	pizza	e	p	
+(w / wait-01
+    :ARG1 (p / pizza
+        :ARG0-of (h / have-03
+            :ARG1 (c2 / continent
+                :ARG2-of (t / top-01)
+                :mod (a / assorted)))
+        :mod (c / cheesy
+            :degree (e2 / extra))
+        :mod (l / large))
+    :ARG2 (e / eat-01
+        :ARG1 p))

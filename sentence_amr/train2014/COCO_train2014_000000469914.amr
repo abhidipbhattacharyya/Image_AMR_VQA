@@ -1,0 +1,48 @@
+# ::tok A man poses for a camera in a living room and dining room area with two small teddy bears strapped to his chest .
+# ::node	m	man	1-2
+# ::node	p	pose-01	2-3
+# ::node	c	camera	5-6
+# ::node	l	living	8-9
+# ::node	r	room	9-10
+# ::node	a	and	10-11
+# ::node	d	dine-01	11-12
+# ::node	r2	room	12-13
+# ::node	a2	area	13-14
+# ::node	0	2	15-16
+# ::node	s	small	16-17
+# ::node	t	teddy	17-18
+# ::node	b	bear	18-19
+# ::node	s2	strap-01	19-20
+# ::node	c2	chest	22-23
+# ::root	p	pose-01
+# ::edge	pose-01	ARG0	man	p	m	
+# ::edge	pose-01	ARG2	camera	p	c	
+# ::edge	room	mod	living	r	l	
+# ::edge	and	op1	room	a	r	
+# ::edge	pose-01	location	and	p	a	
+# ::edge	room	mod	dine-01	r2	d	
+# ::edge	area	location	room	a2	r2	
+# ::edge	and	op2	area	a	a2	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	bear	mod	small	b	s	
+# ::edge	bear	quant	2	b	0	
+# ::edge	strap-01	ARG1	bear	s2	b	
+# ::edge	pose-01	manner	strap-01	p	s2	
+# ::edge	strap-01	ARG2	chest	s2	c2	
+# ::edge	man	part	chest	m	c2	
+(p / pose-01
+    :ARG0 (m / man
+        :part (c2 / chest))
+    :ARG2 (c / camera)
+    :location (a / and
+        :op1 (r / room
+            :mod (l / living))
+        :op2 (a2 / area
+            :location (r2 / room
+                :mod (d / dine-01))))
+    :manner (s2 / strap-01
+        :ARG1 (b / bear
+            :quant 2
+            :mod (t / teddy)
+            :mod (s / small))
+        :ARG2 c2))

@@ -1,0 +1,30 @@
+# ::tok A stoplight hangs on a metal arm with lines visible behind it .
+# ::node	s2	stoplight	1-2
+# ::node	h	hang-01	2-3
+# ::node	m	metal	5-6
+# ::node	a	arm	6-7
+# ::node	h2	have-03	7-8
+# ::node	l	line	8-9
+# ::node	s	see-01	9-10
+# ::node	p	possible-01	9-10
+# ::node	b	behind	10-11
+# ::root	h	hang-01
+# ::edge	hang-01	ARG1	stoplight	h	s2	
+# ::edge	arm	consist-of	metal	a	m	
+# ::edge	hang-01	ARG2	arm	h	a	
+# ::edge	arm	ARG0-of	have-03	a	h2	
+# ::edge	have-03	ARG1	line	h2	l	
+# ::edge	line	ARG1-of	see-01	l	s	
+# ::edge	see-01	ARG1-of	possible-01	s	p	
+# ::edge	see-01	location	behind	s	b	
+# ::edge	behind	op1	stoplight	b	s2	
+(h / hang-01
+    :ARG1 (s2 / stoplight)
+    :ARG2 (a / arm
+        :ARG0-of (h2 / have-03
+            :ARG1 (l / line
+                :ARG1-of (s / see-01
+                    :ARG1-of (p / possible-01)
+                    :location (b / behind
+                        :op1 s2))))
+        :consist-of (m / metal)))

@@ -1,0 +1,28 @@
+# ::tok A sandwich is plated with bbq beef and crinkle cut .
+# ::node	s	sandwich	1-2
+# ::node	p	plate-01	3-4
+# ::node	t	territory	5-6
+# ::node	n	name	5-6
+# ::node	0	BP	5-6
+# ::node	b	beef	6-7
+# ::node	a	and	7-8
+# ::node	c	crinkle	8-9
+# ::node	c2	cut	9-10
+# ::root	p	plate-01
+# ::edge	plate-01	ARG1	sandwich	p	s	
+# ::edge	territory	name	name	t	n	
+# ::edge	name	op1	BP	n	0	
+# ::edge	beef	mod	territory	b	t	
+# ::edge	and	op1	beef	a	b	
+# ::edge	plate-01	ARG2	and	p	a	
+# ::edge	cut	mod	crinkle	c2	c	
+# ::edge	and	op2	cut	a	c2	
+(p / plate-01
+    :ARG1 (s / sandwich)
+    :ARG2 (a / and
+        :op1 (b / beef
+            :mod (t / territory
+                :name (n / name
+                    :op1 "BP")))
+        :op2 (c2 / cut
+            :mod (c / crinkle))))

@@ -1,0 +1,48 @@
+# ::tok A man extends his arm with a Frisbee in hand as another reaches to grab it while teammates watch .
+# ::node	m	man	1-2
+# ::node	e	extend-01	2-3
+# ::node	a2	arm	4-5
+# ::node	r	Frisbee	7-8
+# ::node	h	hand	9-10
+# ::node	p	person	11-12
+# ::node	a	another	11-12
+# ::node	r2	reach-03	12-13
+# ::node	g	grab-01	14-15
+# ::node	p2	person	17-18
+# ::node	h2	have-rel-role-91	17-18
+# ::node	t	teammate	17-18
+# ::node	w	watch-01	18-19
+# ::root	e	extend-01
+# ::edge	extend-01	ARG0	man	e	m	
+# ::edge	extend-01	ARG1	arm	e	a2	
+# ::edge	man	part	arm	m	a2	
+# ::edge	Frisbee	location	hand	r	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	person	mod	another	p	a	
+# ::edge	reach-03	ARG0	person	r2	p	
+# ::edge	extend-01	time	reach-03	e	r2	
+# ::edge	reach-03	ARG2	grab-01	r2	g	
+# ::edge	grab-01	ARG0	person	g	p	
+# ::edge	grab-01	ARG1	Frisbee	g	r	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h2	
+# ::edge	have-rel-role-91	ARG1	man	h2	m	
+# ::edge	have-rel-role-91	ARG2	teammate	h2	t	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	extend-01	time	watch-01	e	w	
+(e / extend-01
+    :ARG0 (m / man
+        :part (a2 / arm)
+        :part (h / hand))
+    :ARG1 a2
+    :time (r2 / reach-03
+        :ARG0 (p / person
+            :mod (a / another))
+        :ARG2 (g / grab-01
+            :ARG0 p
+            :ARG1 (r / Frisbee
+                :location h)))
+    :time (w / watch-01
+        :ARG0 (p2 / person
+            :ARG0-of (h2 / have-rel-role-91
+                :ARG1 m
+                :ARG2 (t / teammate)))))

@@ -1,0 +1,36 @@
+# ::tok small black dog wearing Santa hat with owner in background
+# ::node	s	small	0-1
+# ::node	b2	black-04	1-2
+# ::node	d	dog	2-3
+# ::node	w	wear-01	3-4
+# ::node	p	person	4-5
+# ::node	n	name	4-5
+# ::node	0	Santa	4-5
+# ::node	h	hat	5-6
+# ::node	p2	person	7-8
+# ::node	o	own-01	7-8
+# ::node	b	background	9-10
+# ::root	d	dog
+# ::edge	dog	ARG1-of	black-04	d	b2	
+# ::edge	dog	mod	small	d	s	
+# ::edge	dog	ARG0-of	wear-01	d	w	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Santa	n	0	
+# ::edge	hat	mod	person	h	p	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	person	ARG0-of	own-01	p2	o	
+# ::edge	own-01	ARG1	dog	o	d	
+# ::edge	background	mod	person	b	p2	
+# ::edge	dog	location	background	d	b	
+(d / dog
+    :ARG0-of (w / wear-01
+        :ARG1 (h / hat
+            :mod (p / person
+                :name (n / name
+                    :op1 "Santa"))))
+    :ARG1-of (b2 / black-04)
+    :location (b / background
+        :mod (p2 / person
+            :ARG0-of (o / own-01
+                :ARG1 d)))
+    :mod (s / small))

@@ -1,0 +1,27 @@
+# ::tok A bus is empty because all of the passengers just got off board .
+# ::node	b	bus	1-2
+# ::node	e	empty-02	3-4
+# ::node	c	cause-01	4-5
+# ::node	a	all	5-6
+# ::node	p	passenger	8-9
+# ::node	j	just	9-10
+# ::node	g	get-05	10-11
+# ::node	o	off	11-12
+# ::root	e	empty-02
+# ::edge	empty-02	ARG1	bus	e	b	
+# ::edge	empty-02	ARG1-of	cause-01	e	c	
+# ::edge	passenger	mod	all	p	a	
+# ::edge	get-05	mod	just	g	j	
+# ::edge	get-05	ARG1	passenger	g	p	
+# ::edge	cause-01	ARG0	get-05	c	g	
+# ::edge	get-05	ARG4	bus	g	b	
+# ::edge	get-05	direction	off	g	o	
+(e / empty-02
+    :ARG1 (b / bus)
+    :ARG1-of (c / cause-01
+        :ARG0 (g / get-05
+            :ARG1 (p / passenger
+                :mod (a / all))
+            :ARG4 b
+            :direction (o / off)
+            :mod (j / just))))

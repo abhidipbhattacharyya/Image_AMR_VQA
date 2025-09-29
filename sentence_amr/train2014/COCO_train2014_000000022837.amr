@@ -1,0 +1,33 @@
+# ::tok A pizza with various types of meat and toppings sitting next to a knife .
+# ::node	p	pizza	1-2
+# ::node	h	have-03	2-3
+# ::node	v	various	3-4
+# ::node	t	type	4-5
+# ::node	m	meat	6-7
+# ::node	a	and	7-8
+# ::node	p2	portion	8-9
+# ::node	s	sit-01	9-10
+# ::node	n	next-to	10-11
+# ::node	k	knife	13-14
+# ::root	s	sit-01
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	type	mod	various	t	v	
+# ::edge	meat	mod	type	m	t	
+# ::edge	and	op1	meat	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	portion	a	p2	
+# ::edge	portion	mod	type	p2	t	
+# ::edge	sit-01	ARG1	pizza	s	p	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	knife	n	k	
+(s / sit-01
+    :ARG1 (p / pizza
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (m / meat
+                    :mod (t / type
+                        :mod (v / various)))
+                :op2 (p2 / portion
+                    :mod t))))
+    :ARG2 (n / next-to
+        :op1 (k / knife)))

@@ -1,0 +1,33 @@
+# ::tok A female tennis player is stopped for a picture as the crowd watches down court .
+# ::node	f	female	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	s	stop-01	5-6
+# ::node	p2	picture-01	8-9
+# ::node	c2	crowd	11-12
+# ::node	w	watch-01	12-13
+# ::node	d	down	13-14
+# ::node	c	court	14-15
+# ::root	s	stop-01
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	stop-01	ARG1	person	s	p	
+# ::edge	stop-01	purpose	picture-01	s	p2	
+# ::edge	picture-01	ARG1	person	p2	p	
+# ::edge	watch-01	ARG0	crowd	w	c2	
+# ::edge	stop-01	time	watch-01	s	w	
+# ::edge	court	direction	down	c	d	
+# ::edge	watch-01	ARG1	court	w	c	
+(s / stop-01
+    :purpose (p2 / picture-01
+        :ARG1 (p / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (t / tennis))
+            :mod (f / female)))
+    :ARG1 p
+    :time (w / watch-01
+        :ARG0 (c2 / crowd)
+        :ARG1 (c / court
+            :direction (d / down))))

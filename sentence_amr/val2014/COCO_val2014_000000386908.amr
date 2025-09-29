@@ -1,0 +1,27 @@
+# ::tok several motor cycles parked in a row and an antique car behind them
+# ::node	s	several	0-1
+# ::node	m	motorcycle	1-2
+# ::node	p	park-01	3-4
+# ::node	r	row	6-7
+# ::node	a	and	7-8
+# ::node	a2	antique	9-10
+# ::node	c	car	10-11
+# ::node	b	behind	11-12
+# ::root	a	and
+# ::edge	motorcycle	quant	several	m	s	
+# ::edge	park-01	ARG1	motorcycle	p	m	
+# ::edge	park-01	ARG2	row	p	r	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	car	mod	antique	c	a2	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	location	behind	c	b	
+# ::edge	behind	op1	motorcycle	b	m	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (m / motorcycle
+            :quant (s / several))
+        :ARG2 (r / row))
+    :op2 (c / car
+        :location (b / behind
+            :op1 m)
+        :mod (a2 / antique)))

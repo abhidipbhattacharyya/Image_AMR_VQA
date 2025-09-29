@@ -1,0 +1,28 @@
+# ::tok Scavengers feeding on a dead animal in the sea and a boat nearby
+# ::node	p	person	0-1
+# ::node	s	scavenge-01	0-1
+# ::node	f	feed-01	1-2
+# ::node	d	die-01	4-5
+# ::node	a2	animal	5-6
+# ::node	s2	sea	8-9
+# ::node	a	and	9-10
+# ::node	b	boat	11-12
+# ::node	n	nearby	12-13
+# ::root	f	feed-01
+# ::edge	person	ARG0-of	scavenge-01	p	s	
+# ::edge	feed-01	ARG0	person	f	p	
+# ::edge	animal	ARG1-of	die-01	a2	d	
+# ::edge	animal	location	sea	a2	s2	
+# ::edge	and	op1	animal	a	a2	
+# ::edge	feed-01	ARG2	and	f	a	
+# ::edge	and	op2	boat	a	b	
+# ::edge	boat	location	nearby	b	n	
+(f / feed-01
+    :ARG0 (p / person
+        :ARG0-of (s / scavenge-01))
+    :ARG2 (a / and
+        :op1 (a2 / animal
+            :ARG1-of (d / die-01)
+            :location (s2 / sea))
+        :op2 (b / boat
+            :location (n / nearby))))

@@ -1,0 +1,25 @@
+# ::tok A firetruck is near an intersection near a shop and other cars .
+# ::node	f	firetruck	1-2
+# ::node	n	near-02	3-4
+# ::node	i	intersect-01	5-6
+# ::node	n2	near-02	6-7
+# ::node	s	shop	8-9
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	c	car	11-12
+# ::root	n	near-02
+# ::edge	near-02	ARG1	firetruck	n	f	
+# ::edge	near-02	ARG2	intersect-01	n	i	
+# ::edge	intersect-01	ARG1-of	near-02	i	n2	
+# ::edge	and	op1	shop	a	s	
+# ::edge	near-02	ARG2	and	n2	a	
+# ::edge	car	mod	other	c	o	
+# ::edge	and	op2	car	a	c	
+(n / near-02
+    :ARG1 (f / firetruck)
+    :ARG2 (i / intersect-01
+        :ARG1-of (n2 / near-02
+            :ARG2 (a / and
+                :op1 (s / shop)
+                :op2 (c / car
+                    :mod (o / other))))))

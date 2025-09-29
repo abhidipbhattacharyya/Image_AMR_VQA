@@ -1,0 +1,37 @@
+# ::tok Orange paisley bed spread on top of a partially unmade bed .
+# ::node	o	orange	0-1
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	p3	pound	1-2
+# ::node	p	paisley	1-2
+# ::node	b	bed	2-3
+# ::node	s	spread-01	3-4
+# ::node	t	top	5-6
+# ::node	p2	part	8-9
+# ::node	0	-	8-9
+# ::node	m	make-01	9-10
+# ::node	b2	bed	10-11
+# ::root	s	spread-01
+# ::edge	country	name	name	c	n	
+# ::edge	country	unit	pound	c	p3	
+# ::edge	bed	mod	paisley	b	p	
+# ::edge	bed	mod	country	b	c	
+# ::edge	spread-01	ARG1	bed	s	b	
+# ::edge	spread-01	ARG2	top	s	t	
+# ::edge	make-01	polarity	-	m	0	
+# ::edge	make-01	degree	part	m	p2	
+# ::edge	bed	ARG1-of	make-01	b2	m	
+# ::edge	top	part-of	bed	t	b2	
+# ::edge	spread-01	rel	orange	s	o	
+(s / spread-01
+    :ARG1 (b / bed
+        :mod (p / paisley)
+        :mod (c / country
+            :name (n / name)
+            :unit (p3 / pound)))
+    :ARG2 (t / top
+        :part-of (b2 / bed
+            :ARG1-of (m / make-01
+                :degree (p2 / part)
+                :polarity -)))
+    :rel (o / orange))

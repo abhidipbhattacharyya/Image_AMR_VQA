@@ -1,0 +1,36 @@
+# ::tok A room in a home that has antique style wooden furniture and a throw rug on a wooden floor .
+# ::node	r	room	1-2
+# ::node	h2	home	4-5
+# ::node	h	have-03	6-7
+# ::node	a2	antique	7-8
+# ::node	s	style	8-9
+# ::node	w	wood	9-10
+# ::node	f2	furniture	10-11
+# ::node	a	and	11-12
+# ::node	t	throw	13-14
+# ::node	r2	rug	14-15
+# ::node	f	floor	18-19
+# ::root	r	room
+# ::edge	room	location	home	r	h2	
+# ::edge	home	ARG0-of	have-03	h2	h	
+# ::edge	style	mod	antique	s	a2	
+# ::edge	furniture	consist-of	wood	f2	w	
+# ::edge	furniture	mod	style	f2	s	
+# ::edge	and	op1	furniture	a	f2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	rug	mod	throw	r2	t	
+# ::edge	and	op2	rug	a	r2	
+# ::edge	rug	location	floor	r2	f	
+# ::edge	floor	part	wood	f	w	
+(r / room
+    :location (h2 / home
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (f2 / furniture
+                    :consist-of (w / wood)
+                    :mod (s / style
+                        :mod (a2 / antique)))
+                :op2 (r2 / rug
+                    :location (f / floor
+                        :part w)
+                    :mod (t / throw))))))

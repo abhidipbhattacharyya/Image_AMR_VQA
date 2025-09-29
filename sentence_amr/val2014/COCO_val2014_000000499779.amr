@@ -1,0 +1,28 @@
+# ::tok A muffin pan full of unfrosted chocolate cupcakes or muffins .
+# ::node	m	muffin	1-2
+# ::node	p	pan	2-3
+# ::node	f2	full-09	3-4
+# ::node	f	freeze-01	5-6
+# ::node	0	-	5-6
+# ::node	c	chocolate	6-7
+# ::node	c3	cup	7-8
+# ::node	o	or	8-9
+# ::node	c2	cookie	9-10
+# ::root	p	pan
+# ::edge	pan	mod	muffin	p	m	
+# ::edge	pan	ARG1-of	full-09	p	f2	
+# ::edge	freeze-01	polarity	-	f	0	
+# ::edge	cup	mod	chocolate	c3	c	
+# ::edge	cup	ARG1-of	freeze-01	c3	f	
+# ::edge	or	op1	cup	o	c3	
+# ::edge	full-09	ARG2	or	f2	o	
+# ::edge	or	op2	cookie	o	c2	
+(p / pan
+    :ARG1-of (f2 / full-09
+        :ARG2 (o / or
+            :op1 (c3 / cup
+                :ARG1-of (f / freeze-01
+                    :polarity -)
+                :mod (c / chocolate))
+            :op2 (c2 / cookie)))
+    :mod (m / muffin))

@@ -1,0 +1,28 @@
+# ::tok A double decked bus diagonal in a street with buildings and pedestrians .
+# ::node	0	2	1-2
+# ::node	d	deck	2-3
+# ::node	b2	bus	3-4
+# ::node	d2	diagonal	4-5
+# ::node	s	street	7-8
+# ::node	b	building	9-10
+# ::node	a	and	10-11
+# ::node	p	person	11-12
+# ::node	w	walk-01	11-12
+# ::root	d2	diagonal
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b2	d	
+# ::edge	diagonal	domain	bus	d2	b2	
+# ::edge	bus	location	street	b2	s	
+# ::edge	and	op1	building	a	b	
+# ::edge	street	consist-of	and	s	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+(d2 / diagonal
+    :domain (b2 / bus
+        :location (s / street
+            :consist-of (a / and
+                :op1 (b / building)
+                :op2 (p / person
+                    :ARG0-of (w / walk-01))))
+        :mod (d / deck
+            :quant 2)))

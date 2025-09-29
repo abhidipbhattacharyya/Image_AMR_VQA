@@ -1,0 +1,31 @@
+# ::tok A man playing tennis preparing to return a ball coming down at him .
+# ::node	m	man	1-2
+# ::node	p	play-01	2-3
+# ::node	t	tennis	3-4
+# ::node	p2	prepare-02	4-5
+# ::node	r	return-02	6-7
+# ::node	b	ball	8-9
+# ::node	c	come-01	9-10
+# ::node	d	down	10-11
+# ::root	m	man
+# ::edge	man	ARG0-of	play-01	m	p	
+# ::edge	play-01	ARG1	tennis	p	t	
+# ::edge	man	purpose	prepare-02	m	p2	
+# ::edge	prepare-02	ARG0	man	p2	m	
+# ::edge	prepare-02	ARG2	return-02	p2	r	
+# ::edge	return-02	ARG0	man	r	m	
+# ::edge	return-02	ARG1	ball	r	b	
+# ::edge	ball	ARG1-of	come-01	b	c	
+# ::edge	come-01	direction	man	c	m	
+# ::edge	come-01	direction	down	c	d	
+(m / man
+    :purpose (p2 / prepare-02
+        :ARG0 m
+        :ARG2 (r / return-02
+            :ARG0 m
+            :ARG1 (b / ball
+                :ARG1-of (c / come-01
+                    :direction m
+                    :direction (d / down)))))
+    :ARG0-of (p / play-01
+        :ARG1 (t / tennis)))

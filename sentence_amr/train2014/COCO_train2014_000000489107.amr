@@ -1,0 +1,28 @@
+# ::tok A person is riding a bike down the street , while a crossing guard is watching .
+# ::node	p	person	1-2
+# ::node	r	ride-01	3-4
+# ::node	b	bike	5-6
+# ::node	d	down	6-7
+# ::node	s	street	8-9
+# ::node	c	cross-02	12-13
+# ::node	p2	person	13-14
+# ::node	g	guard-01	13-14
+# ::node	w	watch-01	15-16
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	bike	r	b	
+# ::edge	ride-01	direction	down	r	d	
+# ::edge	ride-01	path	street	r	s	
+# ::edge	person	ARG0-of	guard-01	p2	g	
+# ::edge	guard-01	ARG1	cross-02	g	c	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	ride-01	ARG1-of	watch-01	r	w	
+(r / ride-01
+    :ARG0 (p / person)
+    :ARG1 (b / bike)
+    :ARG1-of (w / watch-01
+        :ARG0 (p2 / person
+            :ARG0-of (g / guard-01
+                :ARG1 (c / cross-02))))
+    :direction (d / down)
+    :path (s / street))

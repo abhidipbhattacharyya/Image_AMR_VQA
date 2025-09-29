@@ -1,0 +1,25 @@
+# ::tok A traffic light shows red in front of a large brick building .
+# ::node	t	traffic	1-2
+# ::node	l2	light	2-3
+# ::node	s	show-01	3-4
+# ::node	r	red-02	4-5
+# ::node	i	in-front-of	6-7
+# ::node	l	large	9-10
+# ::node	b	brick	10-11
+# ::node	b2	building	11-12
+# ::root	s	show-01
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	show-01	ARG0	light	s	l2	
+# ::edge	show-01	ARG1	red-02	s	r	
+# ::edge	show-01	location	in-front-of	s	i	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	building	mod	large	b2	l	
+# ::edge	in-front-of	op1	building	i	b2	
+(s / show-01
+    :ARG0 (l2 / light
+        :mod (t / traffic))
+    :ARG1 (r / red-02)
+    :location (i / in-front-of
+        :op1 (b2 / building
+            :consist-of (b / brick)
+            :mod (l / large))))

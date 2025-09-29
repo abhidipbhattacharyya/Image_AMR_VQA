@@ -1,0 +1,33 @@
+# ::tok The runner tries to reach a plate before the baseman catches the ball .
+# ::node	p	person	1-2
+# ::node	r2	run-02	1-2
+# ::node	t	try-01	2-3
+# ::node	r	reach-01	4-5
+# ::node	p3	plate	6-7
+# ::node	b3	before	7-8
+# ::node	p2	person	9-10
+# ::node	b2	base-01	9-10
+# ::node	c	catch-01	10-11
+# ::node	b	ball	12-13
+# ::root	t	try-01
+# ::edge	person	ARG0-of	run-02	p	r2	
+# ::edge	try-01	ARG0	person	t	p	
+# ::edge	try-01	ARG1	reach-01	t	r	
+# ::edge	reach-01	ARG0	person	r	p	
+# ::edge	reach-01	ARG1	plate	r	p3	
+# ::edge	reach-01	time	before	r	b3	
+# ::edge	person	ARG0-of	base-01	p2	b2	
+# ::edge	catch-01	ARG0	person	c	p2	
+# ::edge	before	op1	catch-01	b3	c	
+# ::edge	catch-01	ARG1	ball	c	b	
+(t / try-01
+    :ARG0 (p / person
+        :ARG0-of (r2 / run-02))
+    :ARG1 (r / reach-01
+        :ARG0 p
+        :ARG1 (p3 / plate)
+        :time (b3 / before
+            :op1 (c / catch-01
+                :ARG0 (p2 / person
+                    :ARG0-of (b2 / base-01))
+                :ARG1 (b / ball)))))

@@ -1,0 +1,37 @@
+# ::tok A Canadian luggage cart and handler unloading the cargo hold of an airplane .
+# ::node	c3	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Canada	1-2
+# ::node	l	luggage	2-3
+# ::node	c2	cart	3-4
+# ::node	a2	and	4-5
+# ::node	p	person	5-6
+# ::node	h	handle-01	5-6
+# ::node	u	unload-02	6-7
+# ::node	c	cargo	8-9
+# ::node	h2	hold	9-10
+# ::node	a	airplane	12-13
+# ::root	u	unload-02
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Canada	n	0	
+# ::edge	cart	purpose	luggage	c2	l	
+# ::edge	cart	mod	country	c2	c3	
+# ::edge	and	op1	cart	a2	c2	
+# ::edge	and	op2	person	a2	p	
+# ::edge	person	ARG0-of	handle-01	p	h	
+# ::edge	unload-02	ARG0	and	u	a2	
+# ::edge	hold	mod	cargo	h2	c	
+# ::edge	unload-02	ARG2	hold	u	h2	
+# ::edge	hold	part-of	airplane	h2	a	
+(u / unload-02
+    :ARG0 (a2 / and
+        :op1 (c2 / cart
+            :purpose (l / luggage)
+            :mod (c3 / country
+                :name (n / name
+                    :op1 "Canada")))
+        :op2 (p / person
+            :ARG0-of (h / handle-01)))
+    :ARG2 (h2 / hold
+        :mod (c / cargo)
+        :part-of (a / airplane)))

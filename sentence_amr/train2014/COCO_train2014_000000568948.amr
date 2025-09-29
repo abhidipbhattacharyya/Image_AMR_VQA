@@ -1,0 +1,31 @@
+# ::tok a female standing next to a large black object which is next to a card board box
+# ::node	f	female	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	l	large	6-7
+# ::node	b	black-04	7-8
+# ::node	o	object	8-9
+# ::node	n2	next-to	11-12
+# ::node	c	card	14-15
+# ::node	b2	board	15-16
+# ::node	b3	box	16-17
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	female	s	f	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	object	ARG1-of	black-04	o	b	
+# ::edge	object	mod	large	o	l	
+# ::edge	next-to	op1	object	n	o	
+# ::edge	object	location	next-to	o	n2	
+# ::edge	board	mod	card	b2	c	
+# ::edge	box	mod	board	b3	b2	
+# ::edge	next-to	op1	box	n2	b3	
+(s / stand-01
+    :ARG1 (f / female)
+    :ARG2 (n / next-to
+        :op1 (o / object
+            :ARG1-of (b / black-04)
+            :location (n2 / next-to
+                :op1 (b3 / box
+                    :mod (b2 / board
+                        :mod (c / card))))
+            :mod (l / large))))

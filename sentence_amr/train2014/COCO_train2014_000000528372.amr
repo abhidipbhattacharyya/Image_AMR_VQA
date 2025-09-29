@@ -1,0 +1,25 @@
+# ::tok Yellow traffic lights attached to a pole face in opposite directions .
+# ::node	y	yellow-02	0-1
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	a	attach-01	3-4
+# ::node	p	pole	6-7
+# ::node	f	face	7-8
+# ::node	o	opposite-01	9-10
+# ::node	d	direction	10-11
+# ::root	f	face
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	yellow-02	l	y	
+# ::edge	light	ARG1-of	attach-01	l	a	
+# ::edge	attach-01	ARG2	pole	a	p	
+# ::edge	face	domain	light	f	l	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	face	direction	direction	f	d	
+(f / face
+    :direction (d / direction
+        :ARG1-of (o / opposite-01))
+    :domain (l / light
+        :ARG1-of (y / yellow-02)
+        :ARG1-of (a / attach-01
+            :ARG2 (p / pole))
+        :mod (t / traffic)))

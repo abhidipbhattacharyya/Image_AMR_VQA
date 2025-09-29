@@ -1,0 +1,29 @@
+# ::tok The cat is sitting on the concrete waiting for her owner to come back
+# ::node	c	cat	1-2
+# ::node	s	sit-01	3-4
+# ::node	c3	concrete	6-7
+# ::node	w	wait-01	7-8
+# ::node	p	person	10-11
+# ::node	o	own-01	10-11
+# ::node	c2	come-01	12-13
+# ::node	b	back	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	concrete	s	c3	
+# ::edge	sit-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	cat	w	c	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	cat	o	c	
+# ::edge	come-01	ARG1	person	c2	p	
+# ::edge	wait-01	ARG2	come-01	w	c2	
+# ::edge	come-01	direction	back	c2	b	
+(s / sit-01
+    :purpose (w / wait-01
+        :ARG1 (c / cat)
+        :ARG2 (c2 / come-01
+            :ARG1 (p / person
+                :ARG0-of (o / own-01
+                    :ARG1 c))
+            :direction (b / back)))
+    :ARG1 c
+    :ARG2 (c3 / concrete))

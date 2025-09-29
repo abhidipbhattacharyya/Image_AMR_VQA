@@ -1,0 +1,33 @@
+# ::tok A little vehicle with open doors on each side and a ladder on the back .
+# ::node	l2	little	1-2
+# ::node	v	vehicle	2-3
+# ::node	h	have-03	3-4
+# ::node	o	open-09	4-5
+# ::node	d	door	5-6
+# ::node	e	each	7-8
+# ::node	s	side	8-9
+# ::node	a	and	9-10
+# ::node	l	ladder	11-12
+# ::node	b	back	14-15
+# ::root	v	vehicle
+# ::edge	vehicle	mod	little	v	l2	
+# ::edge	vehicle	ARG0-of	have-03	v	h	
+# ::edge	door	ARG1-of	open-09	d	o	
+# ::edge	side	mod	each	s	e	
+# ::edge	door	location	side	d	s	
+# ::edge	and	op1	door	a	d	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	ladder	a	l	
+# ::edge	ladder	location	back	l	b	
+# ::edge	vehicle	part	back	v	b	
+(v / vehicle
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (d / door
+                :ARG1-of (o / open-09)
+                :location (s / side
+                    :mod (e / each)))
+            :op2 (l / ladder
+                :location (b / back))))
+    :mod (l2 / little)
+    :part b)

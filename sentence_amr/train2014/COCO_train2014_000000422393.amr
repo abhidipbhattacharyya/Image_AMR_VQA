@@ -1,0 +1,29 @@
+# ::tok Two electronic traffic signals have a street sign between them .
+# ::node	0	2	0-1
+# ::node	e	electronic	1-2
+# ::node	t	traffic	2-3
+# ::node	s2	signal-07	3-4
+# ::node	h	have-03	4-5
+# ::node	s3	street	6-7
+# ::node	s	sign	7-8
+# ::node	b	between	8-9
+# ::root	h	have-03
+# ::edge	signal-07	ARG1	traffic	s2	t	
+# ::edge	signal-07	mod	electronic	s2	e	
+# ::edge	signal-07	quant	2	s2	0	
+# ::edge	have-03	ARG0	signal-07	h	s2	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	between	s	b	
+# ::edge	between	op2	signal-07	b	s2	
+# ::edge	between	op1	signal-07	b	s2	
+(h / have-03
+    :ARG0 (s2 / signal-07
+        :quant 2
+        :ARG1 (t / traffic)
+        :mod (e / electronic))
+    :ARG1 (s / sign
+        :location (b / between
+            :op1 s2
+            :op2 s2)
+        :mod (s3 / street)))

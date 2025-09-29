@@ -1,0 +1,43 @@
+# ::tok A man wearing plaid ski pants getting ready to ski down a mountain slope .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	p2	political-party	3-4
+# ::node	n	name	3-4
+# ::node	0	Plaid	3-4
+# ::node	s	ski-01	4-5
+# ::node	p	pants	5-6
+# ::node	r	ready-01	7-8
+# ::node	s2	ski-01	9-10
+# ::node	d	down	10-11
+# ::node	m2	mountain	12-13
+# ::node	s3	slope	13-14
+# ::root	r	ready-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	political-party	name	name	p2	n	
+# ::edge	name	op1	Plaid	n	0	
+# ::edge	ski-01	ARG0	man	s	m	
+# ::edge	pants	mod	ski-01	p	s	
+# ::edge	pants	mod	political-party	p	p2	
+# ::edge	wear-01	ARG1	pants	w	p	
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	ski-01	r	s2	
+# ::edge	ski-01	ARG0	man	s2	m	
+# ::edge	ski-01	direction	down	s2	d	
+# ::edge	slope	mod	mountain	s3	m2	
+# ::edge	ski-01	path	slope	s2	s3	
+(r / ready-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (p / pants
+                :mod (s / ski-01
+                    :ARG0 m)
+                :mod (p2 / political-party
+                    :name (n / name
+                        :op1 "Plaid")))))
+    :ARG1 m
+    :ARG2 (s2 / ski-01
+        :ARG0 m
+        :direction (d / down)
+        :path (s3 / slope
+            :mod (m2 / mountain))))

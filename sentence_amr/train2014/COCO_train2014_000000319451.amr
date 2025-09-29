@@ -1,0 +1,68 @@
+# ::tok Two people sitting on a ski lift over snow and trees , one wearing skis and one wearing a snowboard on feet .
+# ::node	2	2	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	s2	ski-01	5-6
+# ::node	l	lift	6-7
+# ::node	o	over	7-8
+# ::node	s4	snow	8-9
+# ::node	a	and	9-10
+# ::node	t	tree	10-11
+# ::node	0	1	12-13
+# ::node	w	wear-01	13-14
+# ::node	s3	ski-01	14-15
+# ::node	a2	and	15-16
+# ::node	i	include-91	16-17
+# ::node	i2	include-91	16-17
+# ::node	1	1	16-17
+# ::node	w2	wear-01	17-18
+# ::node	p2	person	18-19
+# ::node	p3	person	18-19
+# ::node	s5	snowboard	19-20
+# ::node	f	foot	21-22
+# ::root	s	sit-01
+# ::edge	person	quant	2	p	2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	lift	mod	ski-01	l	s2	
+# ::edge	sit-01	ARG2	lift	s	l	
+# ::edge	lift	path	over	l	o	
+# ::edge	and	op1	snow	a	s4	
+# ::edge	over	op1	and	o	a	
+# ::edge	and	op2	tree	a	t	
+# ::edge	wear-01	ARG1	ski-01	w	s3	
+# ::edge	and	op1	wear-01	a2	w	
+# ::edge	include-91	ARG1	and	i	a2	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	include-91	ARG2	person	i2	p	
+# ::edge	person	ARG0-of	wear-01	p2	w2	
+# ::edge	person	quant	1	p2	1	
+# ::edge	and	op2	person	a2	p2	
+# ::edge	person	quant	1	p3	1	
+# ::edge	include-91	ARG1	person	i2	p3	
+# ::edge	wear-01	ARG1	snowboard	w2	s5	
+# ::edge	wear-01	manner	foot	w2	f	
+# ::edge	sit-01	rel	include-91	s	i2	
+# ::edge	sit-01	rel	1	s	0	
+(s / sit-01
+    :ARG1 (p / person
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (a2 / and
+                :op1 (w / wear-01
+                    :ARG1 (s3 / ski-01))
+                :op2 (p2 / person
+                    :quant 1
+                    :ARG0-of (w2 / wear-01
+                        :ARG1 (s5 / snowboard)
+                        :manner (f / foot))))))
+    :ARG2 (l / lift
+        :mod (s2 / ski-01)
+        :path (o / over
+            :op1 (a / and
+                :op1 (s4 / snow)
+                :op2 (t / tree))))
+    :rel (i2 / include-91
+        :ARG1 (p3 / person
+            :quant 1)
+        :ARG2 p)
+    :rel 1)

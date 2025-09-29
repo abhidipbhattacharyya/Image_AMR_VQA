@@ -1,0 +1,32 @@
+# ::tok Two large jetliners sitting on airport runways passing each other by .
+# ::node	0	2	0-1
+# ::node	l	large	1-2
+# ::node	a	airliner	2-3
+# ::node	s	sit-01	3-4
+# ::node	a2	airport	5-6
+# ::node	a3	airport	6-7
+# ::node	p	pass-03	7-8
+# ::node	e	each	8-9
+# ::node	o	other	9-10
+# ::root	o	other
+# ::edge	airliner	mod	large	a	l	
+# ::edge	airliner	quant	2	a	0	
+# ::edge	sit-01	ARG1	airliner	s	a	
+# ::edge	airport	poss	airport	a3	a2	
+# ::edge	sit-01	ARG2	airport	s	a3	
+# ::edge	pass-03	ARG1	airliner	p	a	
+# ::edge	pass-03	mod	each	p	e	
+# ::edge	other	mod	pass-03	o	p	
+# ::edge	other	ARG0-of	pass-03	o	p	
+# ::edge	other	rel	sit-01	o	s	
+(o / other
+    :ARG0-of (p / pass-03
+        :ARG1 (a / airliner
+            :quant 2
+            :mod (l / large))
+        :mod (e / each))
+    :mod p
+    :rel (s / sit-01
+        :ARG1 a
+        :ARG2 (a3 / airport
+            :poss (a2 / airport))))

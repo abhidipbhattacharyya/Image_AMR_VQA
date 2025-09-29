@@ -1,0 +1,35 @@
+# ::tok Two bikes are sitting near a building with one being blue , and the other is orange .
+# ::node	0	2	0-1
+# ::node	b	bike-01	1-2
+# ::node	b2	bike-01	1-2
+# ::node	s	sit-01	3-4
+# ::node	n	near-02	4-5
+# ::node	b4	building	6-7
+# ::node	b3	blue	10-11
+# ::node	a	and	12-13
+# ::node	o2	other	14-15
+# ::node	o	orange	16-17
+# ::root	s	sit-01
+# ::edge	bike-01	quant	2	b	0	
+# ::edge	sit-01	ARG1	bike-01	s	b	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	bike-01	n	b	
+# ::edge	near-02	ARG2	building	n	b4	
+# ::edge	blue	domain	bike-01	b3	b2	
+# ::edge	and	op1	blue	a	b3	
+# ::edge	bike-01	ARG1	and	b	a	
+# ::edge	bike-01	mod	other	b2	o2	
+# ::edge	bike-01	op2	orange	b2	o	
+# ::edge	orange	domain	bike-01	o	b2	
+(s / sit-01
+    :ARG1 (b / bike-01
+        :quant 2
+        :ARG1 (a / and
+            :op1 (b3 / blue
+                :domain (b2 / bike-01
+                    :mod (o2 / other)
+                    :op2 (o / orange
+                        :domain b2)))))
+    :ARG2 (n / near-02
+        :ARG1 b
+        :ARG2 (b4 / building)))

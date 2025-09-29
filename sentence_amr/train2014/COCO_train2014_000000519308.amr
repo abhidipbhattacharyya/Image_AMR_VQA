@@ -1,0 +1,23 @@
+# ::tok A plane sitting on the tarmac with people waiting to load it
+# ::node	p2	plane	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	tarmac	5-6
+# ::node	p	person	7-8
+# ::node	w	wait-01	8-9
+# ::node	l	load-01	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	plane	s	p2	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	load-01	w	l	
+# ::edge	load-01	ARG0	person	l	p	
+# ::edge	load-01	ARG1	plane	l	p2	
+# ::edge	sit-01	rel	wait-01	s	w	
+(s / sit-01
+    :ARG1 (p2 / plane)
+    :ARG2 (t / tarmac)
+    :rel (w / wait-01
+        :ARG2 (l / load-01
+            :ARG0 (p / person
+                :ARG1-of w)
+            :ARG1 p2)))

@@ -1,0 +1,27 @@
+# ::tok Many people wait on both sides of a train platform as a train approaches .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	w	wait-01	2-3
+# ::node	b	both	4-5
+# ::node	s	side	5-6
+# ::node	p2	platform	9-10
+# ::node	t	train	12-13
+# ::node	a	approach-01	13-14
+# ::root	w	wait-01
+# ::edge	person	quant	many	p	m	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	side	mod	both	s	b	
+# ::edge	wait-01	location	side	w	s	
+# ::edge	side	part-of	platform	s	p2	
+# ::edge	platform	mod	train	p2	t	
+# ::edge	approach-01	ARG1	train	a	t	
+# ::edge	wait-01	time	approach-01	w	a	
+(w / wait-01
+    :ARG1 (p / person
+        :quant (m / many))
+    :location (s / side
+        :mod (b / both)
+        :part-of (p2 / platform
+            :mod (t / train)))
+    :time (a / approach-01
+        :ARG1 t))

@@ -1,0 +1,22 @@
+# ::tok A traffic light that is hanging from a power line that has turned red .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	h	hanging-07	5-6
+# ::node	p	power	8-9
+# ::node	l2	line	9-10
+# ::node	t2	turn-02	12-13
+# ::node	r	red-02	13-14
+# ::root	h	hanging-07
+# ::edge	light	mod	traffic	l	t	
+# ::edge	hanging-07	ARG1	light	h	l	
+# ::edge	line	mod	power	l2	p	
+# ::edge	hanging-07	ARG2	line	h	l2	
+# ::edge	line	ARG1-of	turn-02	l2	t2	
+# ::edge	turn-02	ARG2	red-02	t2	r	
+(h / hanging-07
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :ARG2 (l2 / line
+        :ARG1-of (t2 / turn-02
+            :ARG2 (r / red-02))
+        :mod (p / power)))

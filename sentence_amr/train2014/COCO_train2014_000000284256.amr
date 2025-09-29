@@ -1,0 +1,24 @@
+# ::tok A train platform at a train stop with brick style flooring .
+# ::node	t	train	1-2
+# ::node	p	platform	2-3
+# ::node	f	facility	4-5
+# ::node	s	stop-01	6-7
+# ::node	b	brick	8-9
+# ::node	s2	style	9-10
+# ::node	f2	floor	10-11
+# ::root	p	platform
+# ::edge	platform	purpose	train	p	t	
+# ::edge	platform	location	facility	p	f	
+# ::edge	facility	location-of	stop-01	f	s	
+# ::edge	stop-01	ARG1	train	s	t	
+# ::edge	style	mod	brick	s2	b	
+# ::edge	floor	mod	style	f2	s2	
+# ::edge	platform	part	floor	p	f2	
+(p / platform
+    :purpose (t / train)
+    :location (f / facility
+        :location-of (s / stop-01
+            :ARG1 t))
+    :part (f2 / floor
+        :mod (s2 / style
+            :mod (b / brick))))

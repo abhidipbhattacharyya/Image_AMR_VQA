@@ -1,0 +1,36 @@
+# ::tok A man and woman standing next to each other near a pile of barrels of wine .
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	w2	woman	3-4
+# ::node	s	stand-01	4-5
+# ::node	n2	next-to	5-6
+# ::node	n	near-02	9-10
+# ::node	p	pile-01	11-12
+# ::node	v	volume-quantity	13-14
+# ::node	b	barrel	13-14
+# ::node	0	1	13-14
+# ::node	w	wine	15-16
+# ::root	s	stand-01
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	and	n2	a	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	near-02	ARG2	pile-01	n	p	
+# ::edge	volume-quantity	unit	barrel	v	b	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	pile-01	ARG1	wine	p	w	
+(s / stand-01
+    :ARG1 (a / and
+        :ARG1-of (n / near-02
+            :ARG2 (p / pile-01
+                :ARG1 (w / wine
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (b / barrel)))))
+        :op1 (m / man)
+        :op2 (w2 / woman))
+    :ARG2 (n2 / next-to
+        :op1 a))

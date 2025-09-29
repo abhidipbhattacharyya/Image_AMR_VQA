@@ -1,0 +1,36 @@
+# ::tok A stop sign at a city street intersection with young people ridding skateboards and bicycles .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	c	city	5-6
+# ::node	s4	street	6-7
+# ::node	i	intersect-01	7-8
+# ::node	y	young	9-10
+# ::node	p	person	10-11
+# ::node	s5	sweep-01	11-12
+# ::node	s2	skate-01	12-13
+# ::node	a	and	13-14
+# ::node	b	bicycle	14-15
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	street	mod	city	s4	c	
+# ::edge	intersect-01	ARG1	street	i	s4	
+# ::edge	signal-07	location	intersect-01	s	i	
+# ::edge	person	mod	young	p	y	
+# ::edge	sweep-01	ARG0	person	s5	p	
+# ::edge	signal-07	time-of	sweep-01	s	s5	
+# ::edge	skate-01	ARG0	person	s2	p	
+# ::edge	and	op1	skate-01	a	s2	
+# ::edge	sweep-01	ARG1	and	s5	a	
+# ::edge	and	op2	bicycle	a	b	
+(s / signal-07
+    :ARG1 (s3 / stop-01)
+    :location (i / intersect-01
+        :ARG1 (s4 / street
+            :mod (c / city)))
+    :time-of (s5 / sweep-01
+        :ARG0 (p / person
+            :mod (y / young))
+        :ARG1 (a / and
+            :op1 (s2 / skate-01
+                :ARG0 p)
+            :op2 (b / bicycle))))

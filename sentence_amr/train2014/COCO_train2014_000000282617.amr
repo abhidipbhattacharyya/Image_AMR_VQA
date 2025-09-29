@@ -1,0 +1,75 @@
+# ::tok One little girl , who is wearing green socks , is crouching and holding a blue umbrella while another little girl in a green shirt is looking up outside the umbrella and has a big smile .
+# ::node	0	1	0-1
+# ::node	l	little	1-2
+# ::node	g	girl	2-3
+# ::node	w	wear-01	6-7
+# ::node	g3	green-02	7-8
+# ::node	s3	sock	8-9
+# ::node	c2	crouch-01	11-12
+# ::node	a	and	12-13
+# ::node	h	hold-01	13-14
+# ::node	b2	blue	15-16
+# ::node	u	umbrella	16-17
+# ::node	c	contrast-01	17-18
+# ::node	a3	another	18-19
+# ::node	l2	little	19-20
+# ::node	g2	girl	20-21
+# ::node	s	shirt	24-25
+# ::node	l3	look-01	26-27
+# ::node	u2	up	27-28
+# ::node	o	outside	28-29
+# ::node	a2	and	31-32
+# ::node	b	big	34-35
+# ::node	s2	smile-01	35-36
+# ::root	c	contrast-01
+# ::edge	girl	mod	little	g	l	
+# ::edge	girl	quant	1	g	0	
+# ::edge	girl	ARG0-of	wear-01	g	w	
+# ::edge	sock	ARG1-of	green-02	s3	g3	
+# ::edge	wear-01	ARG1	sock	w	s3	
+# ::edge	crouch-01	ARG0	girl	c2	g	
+# ::edge	and	op1	crouch-01	a	c2	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	girl	h	g	
+# ::edge	umbrella	mod	blue	u	b2	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	contrast-01	ARG1	and	c	a	
+# ::edge	girl	mod	little	g2	l2	
+# ::edge	girl	mod	another	g2	a3	
+# ::edge	girl	mod	shirt	g2	s	
+# ::edge	green-02	ARG1	shirt	g3	s	
+# ::edge	look-01	ARG0	girl	l3	g2	
+# ::edge	look-01	direction	up	l3	u2	
+# ::edge	look-01	ARG1	outside	l3	o	
+# ::edge	outside	op1	umbrella	o	u	
+# ::edge	and	op1	look-01	a2	l3	
+# ::edge	contrast-01	ARG2	and	c	a2	
+# ::edge	smile-01	mod	big	s2	b	
+# ::edge	and	op2	smile-01	a2	s2	
+# ::edge	smile-01	ARG0	girl	s2	g2	
+(c / contrast-01
+    :ARG1 (a / and
+        :op1 (c2 / crouch-01
+            :ARG0 (g / girl
+                :quant 1
+                :ARG0-of (w / wear-01
+                    :ARG1 (s3 / sock
+                        :ARG1-of (g3 / green-02
+                            :ARG1 (s / shirt))))
+                :mod (l / little)))
+        :op2 (h / hold-01
+            :ARG0 g
+            :ARG1 (u / umbrella
+                :mod (b2 / blue))))
+    :ARG2 (a2 / and
+        :op1 (l3 / look-01
+            :ARG0 (g2 / girl
+                :mod (l2 / little)
+                :mod (a3 / another)
+                :mod s)
+            :ARG1 (o / outside
+                :op1 u)
+            :direction (u2 / up))
+        :op2 (s2 / smile-01
+            :ARG0 g2
+            :mod (b / big))))

@@ -1,0 +1,40 @@
+# ::tok White truck with " SDOT " on side door , possibly Washington State license plate .
+# ::node	w	white-02	0-1
+# ::node	t	truck	1-2
+# ::node	s3	string-entity	4-5
+# ::node	0	SDOT	4-5
+# ::node	s	side	7-8
+# ::node	d	door	8-9
+# ::node	a	and	9-10
+# ::node	p2	possible-01	10-11
+# ::node	n	name	11-12
+# ::node	1	Washington	11-12
+# ::node	s2	state	12-13
+# ::node	l	license-01	13-14
+# ::node	p	plate	14-15
+# ::root	a	and
+# ::edge	truck	ARG1-of	white-02	t	w	
+# ::edge	string-entity	value	SDOT	s3	0	
+# ::edge	door	mod	side	d	s	
+# ::edge	truck	location	door	t	d	
+# ::edge	and	op1	truck	a	t	
+# ::edge	name	op1	Washington	n	1	
+# ::edge	state	name	name	s2	n	
+# ::edge	plate	mod	license-01	p	l	
+# ::edge	plate	mod	state	p	s2	
+# ::edge	plate	ARG1-of	possible-01	p	p2	
+# ::edge	and	op2	plate	a	p	
+# ::edge	and	rel	string-entity	a	s3	
+(a / and
+    :op1 (t / truck
+        :ARG1-of (w / white-02)
+        :location (d / door
+            :mod (s / side)))
+    :op2 (p / plate
+        :ARG1-of (p2 / possible-01)
+        :mod (l / license-01)
+        :mod (s2 / state
+            :name (n / name
+                :op1 "Washington")))
+    :rel (s3 / string-entity
+        :value "SDOT"))

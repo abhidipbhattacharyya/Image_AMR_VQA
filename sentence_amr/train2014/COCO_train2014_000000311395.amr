@@ -1,0 +1,42 @@
+# ::tok A Dell desktop computer and monitor displaying a home screen with a video game as the wallpaper
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Dell	1-2
+# ::node	d	desktop	2-3
+# ::node	c2	computer	3-4
+# ::node	a	and	4-5
+# ::node	m	monitor	5-6
+# ::node	d2	display-01	6-7
+# ::node	h	home	8-9
+# ::node	s	screen	9-10
+# ::node	v	video	12-13
+# ::node	g	game	13-14
+# ::node	w	wallpaper	16-17
+# ::root	a	and
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Dell	n	0	
+# ::edge	computer	mod	desktop	c2	d	
+# ::edge	computer	mod	company	c2	c	
+# ::edge	and	op1	computer	a	c2	
+# ::edge	and	op2	monitor	a	m	
+# ::edge	monitor	mod	company	m	c	
+# ::edge	monitor	ARG0-of	display-01	m	d2	
+# ::edge	screen	mod	home	s	h	
+# ::edge	display-01	ARG1	screen	d2	s	
+# ::edge	game	mod	video	g	v	
+# ::edge	wallpaper	domain	game	w	g	
+# ::edge	display-01	accompanier	wallpaper	d2	w	
+(a / and
+    :op1 (c2 / computer
+        :mod (d / desktop)
+        :mod (c / company
+            :name (n / name
+                :op1 "Dell")))
+    :op2 (m / monitor
+        :ARG0-of (d2 / display-01
+            :ARG1 (s / screen
+                :mod (h / home))
+            :accompanier (w / wallpaper
+                :domain (g / game
+                    :mod (v / video))))
+        :mod c))

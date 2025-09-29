@@ -1,0 +1,60 @@
+# ::tok A bench seats a few people as bikes are parked nearby and one man sits on a brick walkway as another boy in blue stands near them .
+# ::node	b	bench	1-2
+# ::node	s	seat-01	2-3
+# ::node	f	few	4-5
+# ::node	p2	person	5-6
+# ::node	b2	bike-01	7-8
+# ::node	p	park-01	9-10
+# ::node	n2	nearby	10-11
+# ::node	a	and	11-12
+# ::node	a2	and	11-12
+# ::node	0	1	12-13
+# ::node	m	man	13-14
+# ::node	s2	sit-01	14-15
+# ::node	b5	brick	17-18
+# ::node	w	walkway	18-19
+# ::node	a3	another	20-21
+# ::node	b4	boy	21-22
+# ::node	b3	blue	23-24
+# ::node	s3	stand-01	24-25
+# ::node	n	near-02	25-26
+# ::root	a	and
+# ::edge	seat-01	ARG2	bench	s	b	
+# ::edge	person	quant	few	p2	f	
+# ::edge	seat-01	ARG1	person	s	p2	
+# ::edge	park-01	ARG1	bike-01	p	b2	
+# ::edge	park-01	ARG2	nearby	p	n2	
+# ::edge	and	op1	seat-01	a	s	
+# ::edge	and	op1	park-01	a2	p	
+# ::edge	seat-01	time	and	s	a2	
+# ::edge	man	quant	1	m	0	
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	and	op2	sit-01	a2	s2	
+# ::edge	walkway	consist-of	brick	w	b5	
+# ::edge	sit-01	ARG2	walkway	s2	w	
+# ::edge	boy	mod	another	b4	a3	
+# ::edge	boy	mod	blue	b4	b3	
+# ::edge	stand-01	ARG1	boy	s3	b4	
+# ::edge	and	op3	stand-01	a	s3	
+# ::edge	stand-01	ARG1-of	near-02	s3	n	
+# ::edge	near-02	ARG2	bench	n	b	
+(a / and
+    :op1 (s / seat-01
+        :ARG1 (p2 / person
+            :quant (f / few))
+        :ARG2 (b / bench)
+        :time (a2 / and
+            :op1 (p / park-01
+                :ARG1 (b2 / bike-01)
+                :ARG2 (n2 / nearby))
+            :op2 (s2 / sit-01
+                :ARG1 (m / man
+                    :quant 1)
+                :ARG2 (w / walkway
+                    :consist-of (b5 / brick)))))
+    :op3 (s3 / stand-01
+        :ARG1 (b4 / boy
+            :mod (a3 / another)
+            :mod (b3 / blue))
+        :ARG1-of (n / near-02
+            :ARG2 b)))

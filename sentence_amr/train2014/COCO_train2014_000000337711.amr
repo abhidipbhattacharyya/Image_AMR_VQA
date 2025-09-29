@@ -1,0 +1,36 @@
+# ::tok Cars driving down a road or shown with buildings on both sides of the street .
+# ::node	c	car	0-1
+# ::node	d2	drive-01	1-2
+# ::node	d	down	2-3
+# ::node	r	road	4-5
+# ::node	o	or	5-6
+# ::node	s	show-01	6-7
+# ::node	h	have-03	7-8
+# ::node	b2	building	8-9
+# ::node	b	both	10-11
+# ::node	s2	side	11-12
+# ::node	s3	street	14-15
+# ::root	o	or
+# ::edge	drive-01	ARG0	car	d2	c	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	op1	road	d2	r	
+# ::edge	or	op1	drive-01	o	d2	
+# ::edge	or	op2	show-01	o	s	
+# ::edge	show-01	ARG1	have-03	s	h	
+# ::edge	have-03	ARG0	car	h	c	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	side	mod	both	s2	b	
+# ::edge	building	location	side	b2	s2	
+# ::edge	side	part-of	street	s2	s3	
+(o / or
+    :op1 (d2 / drive-01
+        :ARG0 (c / car)
+        :direction (d / down)
+        :op1 (r / road))
+    :op2 (s / show-01
+        :ARG1 (h / have-03
+            :ARG0 c
+            :ARG1 (b2 / building
+                :location (s2 / side
+                    :mod (b / both)
+                    :part-of (s3 / street))))))

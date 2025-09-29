@@ -1,0 +1,51 @@
+# ::tok A sign marks the directions to " New Street Station " surrounded by several multi - story buildings and a single multi - story house .
+# ::node	s2	sign	1-2
+# ::node	m	mark-01	2-3
+# ::node	d	direction	4-5
+# ::node	n	name	7-8
+# ::node	0	New	7-8
+# ::node	2	Street	8-9
+# ::node	s4	station	9-10
+# ::node	1	Station	9-10
+# ::node	s6	surround-01	11-12
+# ::node	s	several	13-14
+# ::node	m2	multiple	14-15
+# ::node	s5	story	16-17
+# ::node	b	building	17-18
+# ::node	a	and	18-19
+# ::node	s3	single-02	20-21
+# ::node	h	house	24-25
+# ::root	m	mark-01
+# ::edge	mark-01	ARG0	sign	m	s2	
+# ::edge	mark-01	ARG1	direction	m	d	
+# ::edge	name	op1	New	n	0	
+# ::edge	name	op2	Street	n	2	
+# ::edge	station	name	name	s4	n	
+# ::edge	direction	destination	station	d	s4	
+# ::edge	name	op3	Station	n	1	
+# ::edge	station	ARG2-of	surround-01	s4	s6	
+# ::edge	story	quant	multiple	s5	m2	
+# ::edge	building	mod	story	b	s5	
+# ::edge	building	quant	several	b	s	
+# ::edge	and	op1	building	a	b	
+# ::edge	surround-01	ARG1	and	s6	a	
+# ::edge	house	ARG1-of	single-02	h	s3	
+# ::edge	and	op2	house	a	h	
+# ::edge	house	mod	story	h	s5	
+(m / mark-01
+    :ARG0 (s2 / sign)
+    :ARG1 (d / direction
+        :destination (s4 / station
+            :name (n / name
+                :op1 "New"
+                :op2 "Street"
+                :op3 "Station")
+            :ARG2-of (s6 / surround-01
+                :ARG1 (a / and
+                    :op1 (b / building
+                        :quant (s / several)
+                        :mod (s5 / story
+                            :quant (m2 / multiple)))
+                    :op2 (h / house
+                        :ARG1-of (s3 / single-02)
+                        :mod s5))))))

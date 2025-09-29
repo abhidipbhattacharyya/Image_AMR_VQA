@@ -1,0 +1,37 @@
+# ::tok The train has special Pullman sleeper cars that can travel a long range route .
+# ::node	t	train	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	special-02	3-4
+# ::node	n	name	4-5
+# ::node	0	Pullman	4-5
+# ::node	s	sleep-01	5-6
+# ::node	c	car	6-7
+# ::node	p	possible-01	8-9
+# ::node	t2	travel-01	9-10
+# ::node	l	long-03	11-12
+# ::node	r	range-01	12-13
+# ::node	r2	route	13-14
+# ::root	h	have-03
+# ::edge	have-03	ARG0	train	h	t	
+# ::edge	name	op1	Pullman	n	0	
+# ::edge	car	ARG0-of	sleep-01	c	s	
+# ::edge	car	name	name	c	n	
+# ::edge	car	ARG1-of	special-02	c	s2	
+# ::edge	have-03	ARG1	car	h	c	
+# ::edge	travel-01	ARG1-of	possible-01	t2	p	
+# ::edge	car	ARG0-of	travel-01	c	t2	
+# ::edge	range-01	ARG2	long-03	r	l	
+# ::edge	route	ARG1-of	range-01	r2	r	
+# ::edge	travel-01	ARG1	route	t2	r2	
+(h / have-03
+    :ARG0 (t / train)
+    :ARG1 (c / car
+        :name (n / name
+            :op1 "Pullman")
+        :ARG0-of (s / sleep-01)
+        :ARG0-of (t2 / travel-01
+            :ARG1 (r2 / route
+                :ARG1-of (r / range-01
+                    :ARG2 (l / long-03)))
+            :ARG1-of (p / possible-01))
+        :ARG1-of (s2 / special-02)))

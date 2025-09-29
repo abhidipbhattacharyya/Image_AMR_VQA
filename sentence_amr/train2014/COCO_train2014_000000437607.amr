@@ -1,0 +1,24 @@
+# ::tok A set of train tracks with a train yard vehicle on the far tracks .
+# ::node	s	set	1-2
+# ::node	t2	train	3-4
+# ::node	t	track	4-5
+# ::node	h	have-03	5-6
+# ::node	y	yard	8-9
+# ::node	v	vehicle	9-10
+# ::node	f	far	12-13
+# ::root	s	set
+# ::edge	track	purpose	train	t	t2	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	set	ARG0-of	have-03	s	h	
+# ::edge	yard	mod	train	y	t2	
+# ::edge	vehicle	mod	yard	v	y	
+# ::edge	have-03	ARG1	vehicle	h	v	
+# ::edge	track	location	far	t	f	
+(s / set
+    :ARG0-of (h / have-03
+        :ARG1 (v / vehicle
+            :mod (y / yard
+                :mod (t2 / train))))
+    :consist-of (t / track
+        :purpose t2
+        :location (f / far)))

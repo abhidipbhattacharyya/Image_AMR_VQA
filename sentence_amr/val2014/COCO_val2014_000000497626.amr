@@ -1,0 +1,59 @@
+# ::tok A room view shows a double bed with white linen and pillows , blue underskirt , a standing light on a tiny nightstand , and a picture over the bed .
+# ::node	r	room	1-2
+# ::node	v	view-01	2-3
+# ::node	s	show-01	3-4
+# ::node	d	double	5-6
+# ::node	b	bed	6-7
+# ::node	h	have-03	7-8
+# ::node	w	white-03	8-9
+# ::node	l2	linen	9-10
+# ::node	a	and	10-11
+# ::node	p2	pill	11-12
+# ::node	b2	blue	13-14
+# ::node	u	underskirt	14-15
+# ::node	s2	stand-01	17-18
+# ::node	l	light	18-19
+# ::node	t	tiny	21-22
+# ::node	n	nightstand	22-23
+# ::node	p	picture	26-27
+# ::node	o	over	27-28
+# ::root	s	show-01
+# ::edge	view-01	ARG1	room	v	r	
+# ::edge	show-01	ARG0	view-01	s	v	
+# ::edge	bed	mod	double	b	d	
+# ::edge	show-01	ARG1	bed	s	b	
+# ::edge	bed	ARG0-of	have-03	b	h	
+# ::edge	linen	ARG1-of	white-03	l2	w	
+# ::edge	and	op1	linen	a	l2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	pill	a	p2	
+# ::edge	white-03	ARG1	pill	w	p2	
+# ::edge	underskirt	mod	blue	u	b2	
+# ::edge	and	op3	underskirt	a	u	
+# ::edge	light	purpose	stand-01	l	s2	
+# ::edge	and	op4	light	a	l	
+# ::edge	nightstand	mod	tiny	n	t	
+# ::edge	light	location	nightstand	l	n	
+# ::edge	and	op5	picture	a	p	
+# ::edge	picture	location	over	p	o	
+# ::edge	over	op1	bed	o	b	
+(s / show-01
+    :ARG0 (v / view-01
+        :ARG1 (r / room))
+    :ARG1 (b / bed
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (l2 / linen
+                    :ARG1-of (w / white-03
+                        :ARG1 (p2 / pill)))
+                :op2 p2
+                :op3 (u / underskirt
+                    :mod (b2 / blue))
+                :op4 (l / light
+                    :purpose (s2 / stand-01)
+                    :location (n / nightstand
+                        :mod (t / tiny)))
+                :op5 (p / picture
+                    :location (o / over
+                        :op1 b))))
+        :mod (d / double)))

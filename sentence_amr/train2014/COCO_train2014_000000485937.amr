@@ -1,0 +1,37 @@
+# ::tok A WWII era Fighter plane sitting in a hanger with some other planes in the background .
+# ::node	w	war	1-2
+# ::node	n	name	1-2
+# ::node	0	WWII	1-2
+# ::node	e	era	2-3
+# ::node	f	fight-01	3-4
+# ::node	p	plane	4-5
+# ::node	s	sit-01	5-6
+# ::node	h	hanger	8-9
+# ::node	s2	some	10-11
+# ::node	o	other	11-12
+# ::node	p2	plane	12-13
+# ::node	b	background	15-16
+# ::root	s	sit-01
+# ::edge	war	name	name	w	n	
+# ::edge	name	op1	WWII	n	0	
+# ::edge	era	mod	war	e	w	
+# ::edge	plane	ARG0-of	fight-01	p	f	
+# ::edge	plane	time	era	p	e	
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	hanger	s	h	
+# ::edge	plane	mod	other	p2	o	
+# ::edge	plane	quant	some	p2	s2	
+# ::edge	plane	accompanier	plane	p	p2	
+# ::edge	plane	location	background	p2	b	
+(s / sit-01
+    :ARG1 (p / plane
+        :ARG0-of (f / fight-01)
+        :accompanier (p2 / plane
+            :quant (s2 / some)
+            :location (b / background)
+            :mod (o / other))
+        :time (e / era
+            :mod (w / war
+                :name (n / name
+                    :op1 "WWII"))))
+    :ARG2 (h / hanger))

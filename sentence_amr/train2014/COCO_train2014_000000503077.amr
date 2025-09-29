@@ -1,0 +1,36 @@
+# ::tok Two elephants stand next to each other while one sprays itself with its trunk .
+# ::node	1	2	0-1
+# ::node	e	elephant	1-2
+# ::node	e2	elephant	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	s	spray-01	9-10
+# ::node	t	trunk	13-14
+# ::root	s2	stand-01
+# ::edge	elephant	quant	2	e	1	
+# ::edge	stand-01	ARG1	elephant	s2	e	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	elephant	n	e	
+# ::edge	elephant	ARG1-of	include-91	e2	i	
+# ::edge	include-91	ARG2	elephant	i	e	
+# ::edge	elephant	quant	1	e2	0	
+# ::edge	spray-01	ARG1	elephant	s	e2	
+# ::edge	elephant	ARG0-of	spray-01	e2	s	
+# ::edge	spray-01	instrument	trunk	s	t	
+# ::edge	elephant	part	trunk	e2	t	
+# ::edge	stand-01	rel	elephant	s2	e2	
+(s2 / stand-01
+    :ARG1 (e / elephant
+        :quant 2)
+    :ARG2 (n / next-to
+        :op1 e)
+    :rel (e2 / elephant
+        :quant 1
+        :ARG0-of (s / spray-01
+            :ARG1 e2
+            :instrument (t / trunk))
+        :ARG1-of (i / include-91
+            :ARG2 e)
+        :part t))

@@ -1,0 +1,76 @@
+# ::tok A picture with an orange glow shows a suggestion of wine glasses and a table , while front and center sits a plate with a half eaten cupcake , or slice of cake , with a candle burning in it and a spoon .
+# ::node	p	picture	1-2
+# ::node	o2	orange	4-5
+# ::node	g2	glow-01	5-6
+# ::node	s	show-01	6-7
+# ::node	s5	suggest-01	8-9
+# ::node	w	wine	10-11
+# ::node	g	glass	11-12
+# ::node	a	and	12-13
+# ::node	t	table	14-15
+# ::node	c4	contrast-01	16-17
+# ::node	f	front	17-18
+# ::node	a2	and	18-19
+# ::node	c3	center	19-20
+# ::node	s2	sit-01	20-21
+# ::node	p2	plate	22-23
+# ::node	h2	have-03	23-24
+# ::node	h	half	25-26
+# ::node	e	eat-01	26-27
+# ::node	c5	cupcake	27-28
+# ::node	o	or	29-30
+# ::node	s3	slice	30-31
+# ::node	c	cake	32-33
+# ::node	c2	candle	36-37
+# ::node	b	burn-01	37-38
+# ::node	s4	spoon	42-43
+# ::root	c4	contrast-01
+# ::edge	glow-01	ARG0	orange	g2	o2	
+# ::edge	picture	ARG1-of	glow-01	p	g2	
+# ::edge	show-01	ARG0	picture	s	p	
+# ::edge	show-01	ARG1	suggest-01	s	s5	
+# ::edge	glass	mod	wine	g	w	
+# ::edge	and	op1	glass	a	g	
+# ::edge	suggest-01	ARG1	and	s5	a	
+# ::edge	and	op2	table	a	t	
+# ::edge	contrast-01	ARG1	show-01	c4	s	
+# ::edge	and	op1	front	a2	f	
+# ::edge	and	op2	center	a2	c3	
+# ::edge	sit-01	ARG2	and	s2	a2	
+# ::edge	contrast-01	ARG2	sit-01	c4	s2	
+# ::edge	sit-01	ARG1	plate	s2	p2	
+# ::edge	plate	ARG0-of	have-03	p2	h2	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	cupcake	ARG1-of	eat-01	c5	e	
+# ::edge	or	op1	cupcake	o	c5	
+# ::edge	have-03	ARG1	or	h2	o	
+# ::edge	or	op2	slice	o	s3	
+# ::edge	slice	mod	cake	s3	c	
+# ::edge	burn-01	ARG1	candle	b	c2	
+# ::edge	or	location-of	burn-01	o	b	
+# ::edge	or	op3	spoon	o	s4	
+(c4 / contrast-01
+    :ARG1 (s / show-01
+        :ARG0 (p / picture
+            :ARG1-of (g2 / glow-01
+                :ARG0 (o2 / orange)))
+        :ARG1 (s5 / suggest-01
+            :ARG1 (a / and
+                :op1 (g / glass
+                    :mod (w / wine))
+                :op2 (t / table))))
+    :ARG2 (s2 / sit-01
+        :ARG1 (p2 / plate
+            :ARG0-of (h2 / have-03
+                :ARG1 (o / or
+                    :location-of (b / burn-01
+                        :ARG1 (c2 / candle))
+                    :op1 (c5 / cupcake
+                        :ARG1-of (e / eat-01
+                            :degree (h / half)))
+                    :op2 (s3 / slice
+                        :mod (c / cake))
+                    :op3 (s4 / spoon))))
+        :ARG2 (a2 / and
+            :op1 (f / front)
+            :op2 (c3 / center))))

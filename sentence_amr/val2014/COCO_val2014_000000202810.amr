@@ -1,0 +1,49 @@
+# ::tok A city street that has parked cars on the side of the street and other cars at a traffic light in front of various stores .
+# ::node	c3	city	1-2
+# ::node	s3	street	2-3
+# ::node	p	park-01	5-6
+# ::node	p2	park-01	5-6
+# ::node	c	car	6-7
+# ::node	s	side	9-10
+# ::node	a	and	13-14
+# ::node	o	other	14-15
+# ::node	c2	car	15-16
+# ::node	t	traffic	18-19
+# ::node	l	light	19-20
+# ::node	i	in-front-of	21-22
+# ::node	v	various	23-24
+# ::node	s2	store	24-25
+# ::root	s3	street
+# ::edge	street	mod	city	s3	c3	
+# ::edge	park-01	location	street	p	s3	
+# ::edge	park-01	location	street	p2	s3	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	car	location	side	c	s	
+# ::edge	street	part	side	s3	s	
+# ::edge	and	op2	park-01	a	p2	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	street	location-of	and	s3	a	
+# ::edge	car	mod	other	c2	o	
+# ::edge	park-01	ARG1	car	p2	c2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	park-01	location	light	p2	l	
+# ::edge	light	location	in-front-of	l	i	
+# ::edge	store	mod	various	s2	v	
+# ::edge	in-front-of	op1	store	i	s2	
+(s3 / street
+    :location-of (a / and
+        :op1 (p / park-01
+            :ARG1 (c / car
+                :location (s / side))
+            :location s3)
+        :op2 (p2 / park-01
+            :ARG1 (c2 / car
+                :mod (o / other))
+            :location s3
+            :location (l / light
+                :location (i / in-front-of
+                    :op1 (s2 / store
+                        :mod (v / various)))
+                :mod (t / traffic))))
+    :mod (c3 / city)
+    :part s)

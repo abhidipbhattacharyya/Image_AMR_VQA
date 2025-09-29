@@ -1,0 +1,27 @@
+# ::tok The small dog waits in the kitchen for food to be dropped by its owner .
+# ::node	s	small	1-2
+# ::node	d	dog	2-3
+# ::node	w	wait-01	3-4
+# ::node	k	kitchen	6-7
+# ::node	f	food	8-9
+# ::node	d2	drop-01	11-12
+# ::node	p	person	14-15
+# ::node	o	own-01	14-15
+# ::root	w	wait-01
+# ::edge	dog	mod	small	d	s	
+# ::edge	wait-01	ARG1	dog	w	d	
+# ::edge	wait-01	location	kitchen	w	k	
+# ::edge	drop-01	ARG1	food	d2	f	
+# ::edge	wait-01	ARG2	drop-01	w	d2	
+# ::edge	drop-01	ARG0	person	d2	p	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	dog	o	d	
+(w / wait-01
+    :ARG1 (d / dog
+        :mod (s / small))
+    :ARG2 (d2 / drop-01
+        :ARG0 (p / person
+            :ARG0-of (o / own-01
+                :ARG1 d))
+        :ARG1 (f / food))
+    :location (k / kitchen))

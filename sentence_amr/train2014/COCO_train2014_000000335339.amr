@@ -1,0 +1,28 @@
+# ::tok A motorcycle cop taking down the license of a pick up truck while another cruiser approaches .
+# ::node	m	motorcycle	1-2
+# ::node	c	cop	2-3
+# ::node	t	take-down-22	3-4
+# ::node	l	license-01	6-7
+# ::node	p	pick-up-04	9-10
+# ::node	t2	truck	11-12
+# ::node	a	another	13-14
+# ::node	c2	cruise-01	14-15
+# ::node	a2	approach-01	15-16
+# ::root	t	take-down-22
+# ::edge	cop	mod	motorcycle	c	m	
+# ::edge	take-down-22	ARG0	cop	t	c	
+# ::edge	take-down-22	ARG1	license-01	t	l	
+# ::edge	truck	ARG1-of	pick-up-04	t2	p	
+# ::edge	license-01	ARG1	truck	l	t2	
+# ::edge	cruise-01	mod	another	c2	a	
+# ::edge	approach-01	ARG1	cruise-01	a2	c2	
+# ::edge	take-down-22	time	approach-01	t	a2	
+(t / take-down-22
+    :ARG0 (c / cop
+        :mod (m / motorcycle))
+    :ARG1 (l / license-01
+        :ARG1 (t2 / truck
+            :ARG1-of (p / pick-up-04)))
+    :time (a2 / approach-01
+        :ARG1 (c2 / cruise-01
+            :mod (a / another))))

@@ -1,0 +1,28 @@
+# ::tok A person sitting and working on a laptop while other people stand around .
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	w	work-01	4-5
+# ::node	l	laptop	7-8
+# ::node	o	other	9-10
+# ::node	p2	person	10-11
+# ::node	s2	stand-01	11-12
+# ::node	a	around	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	person	ARG1-of	sit-01	p	s	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	laptop	w	l	
+# ::edge	person	mod	other	p2	o	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	person	time	stand-01	p	s2	
+# ::edge	stand-01	ARG2	around	s2	a	
+# ::edge	event	mod	person	e	p	
+(e / event
+    :mod (p / person
+        :ARG0-of (w / work-01
+            :ARG1 (l / laptop))
+        :ARG1-of (s / sit-01)
+        :time (s2 / stand-01
+            :ARG1 (p2 / person
+                :mod (o / other))
+            :ARG2 (a / around))))

@@ -1,0 +1,31 @@
+# ::tok A an walking along the subway platform waiting to get on the subway train .
+# ::node	i	i	0-1
+# ::node	w2	walk-01	2-3
+# ::node	a	along	3-4
+# ::node	p	platform	6-7
+# ::node	w	wait-01	7-8
+# ::node	g	get-05	9-10
+# ::node	s	subway	12-13
+# ::node	t	train	13-14
+# ::root	w2	walk-01
+# ::edge	walk-01	ARG0	i	w2	i	
+# ::edge	walk-01	ARG2	along	w2	a	
+# ::edge	along	op1	platform	a	p	
+# ::edge	walk-01	purpose	wait-01	w2	w	
+# ::edge	wait-01	ARG1	i	w	i	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG1	i	g	i	
+# ::edge	platform	mod	subway	p	s	
+# ::edge	train	mod	subway	t	s	
+# ::edge	get-05	ARG2	train	g	t	
+(w2 / walk-01
+    :purpose (w / wait-01
+        :ARG1 (i / i)
+        :ARG2 (g / get-05
+            :ARG1 i
+            :ARG2 (t / train
+                :mod (s / subway))))
+    :ARG0 i
+    :ARG2 (a / along
+        :op1 (p / platform
+            :mod s)))

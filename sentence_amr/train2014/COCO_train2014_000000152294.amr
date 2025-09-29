@@ -1,0 +1,43 @@
+# ::tok A tennis player holding a tennis racket and ball getting ready to serve while people watch behind him .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	h	hold-01	3-4
+# ::node	r	racket	6-7
+# ::node	a	and	7-8
+# ::node	b	ball	8-9
+# ::node	r2	ready-01	10-11
+# ::node	s	serve-02	12-13
+# ::node	p2	person	14-15
+# ::node	w	watch-01	15-16
+# ::node	b2	behind	16-17
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	and	op1	racket	a	r	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	and	op2	ball	a	b	
+# ::edge	person	ARG0-of	ready-01	p	r2	
+# ::edge	ready-01	ARG2	serve-02	r2	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	person	ARG1-of	watch-01	p	w	
+# ::edge	watch-01	location	behind	w	b2	
+# ::edge	behind	op1	person	b2	p	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (h / hold-01
+        :ARG1 (a / and
+            :op1 (r / racket
+                :mod t)
+            :op2 (b / ball)))
+    :ARG0-of (r2 / ready-01
+        :ARG2 (s / serve-02
+            :ARG0 p))
+    :ARG1-of (w / watch-01
+        :ARG0 (p2 / person)
+        :location (b2 / behind
+            :op1 p)))

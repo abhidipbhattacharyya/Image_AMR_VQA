@@ -1,0 +1,25 @@
+# ::tok A sailboat moored just off a rocky shore in nice weather .
+# ::node	s	sail-01	1-2
+# ::node	m	moor-01	2-3
+# ::node	j	just	3-4
+# ::node	o	off	4-5
+# ::node	s2	sand	6-7
+# ::node	s3	shore	7-8
+# ::node	n	nice-01	9-10
+# ::node	w	weather	10-11
+# ::root	m	moor-01
+# ::edge	off	mod	just	o	j	
+# ::edge	shore	consist-of	sand	s3	s2	
+# ::edge	shore	location	off	s3	o	
+# ::edge	moor-01	ARG2	shore	m	s3	
+# ::edge	weather	ARG1-of	nice-01	w	n	
+# ::edge	moor-01	condition	weather	m	w	
+# ::edge	moor-01	rel	sail-01	m	s	
+(m / moor-01
+    :ARG2 (s3 / shore
+        :consist-of (s2 / sand)
+        :location (o / off
+            :mod (j / just)))
+    :condition (w / weather
+        :ARG1-of (n / nice-01))
+    :rel (s / sail-01))

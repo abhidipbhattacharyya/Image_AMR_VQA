@@ -1,0 +1,31 @@
+# ::tok Refrigerator contents , including beverages containers , and row of sample bottles .
+# ::node	r	refrigerator	0-1
+# ::node	t	thing	1-2
+# ::node	c	contain-01	1-2
+# ::node	i	include-01	3-4
+# ::node	b	beverage	4-5
+# ::node	c2	container	5-6
+# ::node	a	and	7-8
+# ::node	r2	row	8-9
+# ::node	s	sample-01	10-11
+# ::node	b2	bottle	11-12
+# ::root	t	thing
+# ::edge	thing	ARG1-of	contain-01	t	c	
+# ::edge	contain-01	ARG0	refrigerator	c	r	
+# ::edge	thing	ARG2-of	include-01	t	i	
+# ::edge	container	consist-of	beverage	c2	b	
+# ::edge	and	op1	container	a	c2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	row	a	r2	
+# ::edge	bottle	ARG1-of	sample-01	b2	s	
+# ::edge	row	consist-of	bottle	r2	b2	
+(t / thing
+    :ARG1-of (c / contain-01
+        :ARG0 (r / refrigerator))
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (c2 / container
+                :consist-of (b / beverage))
+            :op2 (r2 / row
+                :consist-of (b2 / bottle
+                    :ARG1-of (s / sample-01))))))

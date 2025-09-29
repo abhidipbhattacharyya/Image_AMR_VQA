@@ -1,0 +1,40 @@
+# ::tok An on ramp to a multiple lane road and a red pick - up truck proceeding to a stop sign at the merging point .
+# ::node	a2	away	2-3
+# ::node	m2	multiple	5-6
+# ::node	l	lane	6-7
+# ::node	r2	road	7-8
+# ::node	a	and	8-9
+# ::node	r	red-02	10-11
+# ::node	p	pick-up-04	11-12
+# ::node	t	truck	14-15
+# ::node	p3	proceed-01	15-16
+# ::node	s2	stop-01	18-19
+# ::node	s	signal-07	19-20
+# ::node	m	merge-01	22-23
+# ::node	p2	point	23-24
+# ::root	a	and
+# ::edge	lane	quant	multiple	l	m2	
+# ::edge	road	mod	lane	r2	l	
+# ::edge	away	destination	road	a2	r2	
+# ::edge	and	op1	away	a	a2	
+# ::edge	truck	ARG0-of	pick-up-04	t	p	
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	proceed-01	ARG0	truck	p3	t	
+# ::edge	and	op2	proceed-01	a	p3	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	proceed-01	ARG4	signal-07	p3	s	
+# ::edge	point	location-of	merge-01	p2	m	
+# ::edge	proceed-01	location	point	p3	p2	
+(a / and
+    :op1 (a2 / away
+        :destination (r2 / road
+            :mod (l / lane
+                :quant (m2 / multiple))))
+    :op2 (p3 / proceed-01
+        :ARG0 (t / truck
+            :ARG0-of (p / pick-up-04)
+            :ARG1-of (r / red-02))
+        :ARG4 (s / signal-07
+            :ARG1 (s2 / stop-01))
+        :location (p2 / point
+            :location-of (m / merge-01))))

@@ -1,0 +1,34 @@
+# ::tok Urban scene of pedestrians walking down a city sidewalk under an overhead sign .
+# ::node	u2	urban	0-1
+# ::node	s	scene	1-2
+# ::node	p	person	3-4
+# ::node	w	walk-01	3-4
+# ::node	w2	walk-01	4-5
+# ::node	d	down	5-6
+# ::node	c	city	7-8
+# ::node	s2	sidewalk	8-9
+# ::node	u	under	9-10
+# ::node	o	overhead	11-12
+# ::node	s3	sign	12-13
+# ::root	s	scene
+# ::edge	scene	mod	urban	s	u2	
+# ::edge	scene	mod	person	s	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	person	ARG0-of	walk-01	p	w2	
+# ::edge	walk-01	direction	down	w2	d	
+# ::edge	sidewalk	mod	city	s2	c	
+# ::edge	walk-01	ARG2	sidewalk	w2	s2	
+# ::edge	walk-01	location	under	w2	u	
+# ::edge	sign	location	overhead	s3	o	
+# ::edge	under	op1	sign	u	s3	
+(s / scene
+    :mod (u2 / urban)
+    :mod (p / person
+        :ARG0-of (w / walk-01)
+        :ARG0-of (w2 / walk-01
+            :ARG2 (s2 / sidewalk
+                :mod (c / city))
+            :direction (d / down)
+            :location (u / under
+                :op1 (s3 / sign
+                    :location (o / overhead))))))

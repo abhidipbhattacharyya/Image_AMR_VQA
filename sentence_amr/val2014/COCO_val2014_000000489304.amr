@@ -1,0 +1,24 @@
+# ::tok Luggage waiting to be loaded on to the train by the worker in the foreground .
+# ::node	b	baggage	0-1
+# ::node	w	wait-01	1-2
+# ::node	l	load-01	4-5
+# ::node	t	train	8-9
+# ::node	p	person	11-12
+# ::node	w2	work-01	11-12
+# ::node	f	foreground	14-15
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	baggage	w	b	
+# ::edge	wait-01	ARG2	load-01	w	l	
+# ::edge	load-01	ARG1	baggage	l	b	
+# ::edge	load-01	ARG2	train	l	t	
+# ::edge	load-01	ARG0	person	l	p	
+# ::edge	person	ARG0-of	work-01	p	w2	
+# ::edge	person	location	foreground	p	f	
+(w / wait-01
+    :ARG1 (b / baggage)
+    :ARG2 (l / load-01
+        :ARG0 (p / person
+            :ARG0-of (w2 / work-01)
+            :location (f / foreground))
+        :ARG1 b
+        :ARG2 (t / train)))

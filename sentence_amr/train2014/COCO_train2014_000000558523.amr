@@ -1,0 +1,25 @@
+# ::tok Skiers skiing on a snow covered ski slope next to poles .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	s2	ski-01	1-2
+# ::node	s4	snow	4-5
+# ::node	c	cover-02	5-6
+# ::node	s3	slope	7-8
+# ::node	n	next-to	8-9
+# ::node	p2	pole	10-11
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	cover-02	ARG2	snow	c	s4	
+# ::edge	slope	ARG1-of	cover-02	s3	c	
+# ::edge	ski-01	location	slope	s2	s3	
+# ::edge	slope	location	next-to	s3	n	
+# ::edge	next-to	op1	pole	n	p2	
+(p / person
+    :ARG0-of (s / ski-01)
+    :ARG0-of (s2 / ski-01
+        :location (s3 / slope
+            :ARG1-of (c / cover-02
+                :ARG2 (s4 / snow))
+            :location (n / next-to
+                :op1 (p2 / pole)))))

@@ -1,0 +1,28 @@
+# ::tok An action photo scene with the same person doing multiple things in the kitchen .
+# ::node	a	action	1-2
+# ::node	p2	photograph-01	2-3
+# ::node	s2	scene	3-4
+# ::node	s	same-01	6-7
+# ::node	p	person	7-8
+# ::node	d	do-02	8-9
+# ::node	m	multiple	9-10
+# ::node	t	thing	10-11
+# ::node	k	kitchen	13-14
+# ::root	s2	scene
+# ::edge	photograph-01	ARG1	action	p2	a	
+# ::edge	scene	mod	photograph-01	s2	p2	
+# ::edge	person	ARG1-of	same-01	p	s	
+# ::edge	do-02	ARG0	person	d	p	
+# ::edge	scene	consist-of	do-02	s2	d	
+# ::edge	thing	quant	multiple	t	m	
+# ::edge	do-02	ARG1	thing	d	t	
+# ::edge	do-02	location	kitchen	d	k	
+(s2 / scene
+    :consist-of (d / do-02
+        :ARG0 (p / person
+            :ARG1-of (s / same-01))
+        :ARG1 (t / thing
+            :quant (m / multiple))
+        :location (k / kitchen))
+    :mod (p2 / photograph-01
+        :ARG1 (a / action)))

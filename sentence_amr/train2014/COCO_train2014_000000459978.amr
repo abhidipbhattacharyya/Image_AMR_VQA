@@ -1,0 +1,41 @@
+# ::tok A view of the mountain range from above can be seen from the airplane , and part of the wing of the plane close up as well .
+# ::node	v	view-01	1-2
+# ::node	m	mountain	4-5
+# ::node	r	range-01	5-6
+# ::node	a	above	7-8
+# ::node	p2	possible-01	8-9
+# ::node	s	see-01	10-11
+# ::node	a2	airplane	13-14
+# ::node	a3	and	15-16
+# ::node	p	part	16-17
+# ::node	w	wing	19-20
+# ::node	c	close-10	23-24
+# ::node	a4	as-well	26-27
+# ::root	p2	possible-01
+# ::edge	range-01	ARG1	mountain	r	m	
+# ::edge	view-01	ARG1	range-01	v	r	
+# ::edge	view-01	source	above	v	a	
+# ::edge	see-01	ARG1	view-01	s	v	
+# ::edge	see-01	source	airplane	s	a2	
+# ::edge	and	op1	see-01	a3	s	
+# ::edge	possible-01	ARG1	and	p2	a3	
+# ::edge	part	part-of	wing	p	w	
+# ::edge	airplane	part	wing	a2	w	
+# ::edge	close-10	ARG1	part	c	p	
+# ::edge	and	op2	close-10	a3	c	
+# ::edge	close-10	ARG2	airplane	c	a2	
+# ::edge	close-10	mod	as-well	c	a4	
+(p2 / possible-01
+    :ARG1 (a3 / and
+        :op1 (s / see-01
+            :ARG1 (v / view-01
+                :ARG1 (r / range-01
+                    :ARG1 (m / mountain))
+                :source (a / above))
+            :source (a2 / airplane
+                :part (w / wing)))
+        :op2 (c / close-10
+            :ARG1 (p / part
+                :part-of w)
+            :ARG2 a2
+            :mod (a4 / as-well))))

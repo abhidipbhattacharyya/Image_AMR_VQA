@@ -1,0 +1,41 @@
+# ::tok A person is in the air preparing to throw a Frisbee , while another person is running toward him .
+# ::node	p	person	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	a	air	5-6
+# ::node	p3	prepare-02	6-7
+# ::node	t	throw-01	8-9
+# ::node	d	disc	10-11
+# ::node	n	name	10-11
+# ::node	0	Frisbee	10-11
+# ::node	a2	another	13-14
+# ::node	p2	person	14-15
+# ::node	r	run-02	16-17
+# ::node	t2	toward	17-18
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	air	b	a	
+# ::edge	person	ARG0-of	prepare-02	p	p3	
+# ::edge	prepare-02	ARG1	throw-01	p3	t	
+# ::edge	throw-01	ARG0	person	t	p	
+# ::edge	throw-01	ARG1	disc	t	d	
+# ::edge	disc	name	name	d	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	run-02	ARG0	person	r	p2	
+# ::edge	be-located-at-91	time	run-02	b	r	
+# ::edge	run-02	direction	toward	r	t2	
+# ::edge	toward	op1	person	t2	p	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :ARG0-of (p3 / prepare-02
+            :ARG1 (t / throw-01
+                :ARG0 p
+                :ARG1 (d / disc
+                    :name (n / name
+                        :op1 "Frisbee")))))
+    :ARG2 (a / air)
+    :time (r / run-02
+        :ARG0 (p2 / person
+            :mod (a2 / another))
+        :direction (t2 / toward
+            :op1 p)))

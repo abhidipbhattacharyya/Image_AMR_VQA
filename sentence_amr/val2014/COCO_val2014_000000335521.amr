@@ -1,0 +1,40 @@
+# ::tok A street sign with a one way and do not enter sign under a traffic light .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	h	have-03	3-4
+# ::node	o	one-way	6-7
+# ::node	a	and	7-8
+# ::node	y	you	8-9
+# ::node	1	imperative	8-9
+# ::node	0	-	9-10
+# ::node	e	enter-01	10-11
+# ::node	s2	sign	11-12
+# ::node	u	under	12-13
+# ::node	t	traffic	14-15
+# ::node	l	light	15-16
+# ::root	a	and
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	one-way	h	o	
+# ::edge	and	op1	sign	a	s	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	mode	imperative	e	1	
+# ::edge	enter-01	ARG0	you	e	y	
+# ::edge	and	op2	enter-01	a	e	
+# ::edge	enter-01	ARG1	sign	e	s2	
+# ::edge	sign	location	under	s2	u	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	under	op1	light	u	l	
+(a / and
+    :op1 (s / sign
+        :ARG0-of (h / have-03
+            :ARG1 (o / one-way))
+        :mod (s3 / street))
+    :op2 (e / enter-01
+        :ARG0 (y / you)
+        :ARG1 (s2 / sign
+            :location (u / under
+                :op1 (l / light
+                    :mod (t / traffic))))
+        :mode imperative
+        :polarity -))

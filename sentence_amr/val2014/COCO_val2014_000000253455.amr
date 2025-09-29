@@ -1,0 +1,25 @@
+# ::tok Group of people waiting in line in front of a luggage conveyor belt .
+# ::node	g	group	0-1
+# ::node	p	person	2-3
+# ::node	w	wait-01	3-4
+# ::node	l	line-up-02	5-6
+# ::node	i	in-front-of	7-8
+# ::node	l2	luggage	10-11
+# ::node	c	conveyor	11-12
+# ::node	b	belt	12-13
+# ::root	w	wait-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	wait-01	ARG1	group	w	g	
+# ::edge	wait-01	ARG1-of	line-up-02	w	l	
+# ::edge	wait-01	location	in-front-of	w	i	
+# ::edge	belt	mod	conveyor	b	c	
+# ::edge	belt	mod	luggage	b	l2	
+# ::edge	in-front-of	op1	belt	i	b	
+(w / wait-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG1-of (l / line-up-02)
+    :location (i / in-front-of
+        :op1 (b / belt
+            :mod (c / conveyor)
+            :mod (l2 / luggage))))

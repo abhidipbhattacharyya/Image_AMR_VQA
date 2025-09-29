@@ -1,0 +1,31 @@
+# ::tok a passenger jet plane sits on a field with a bunch of other planes and a helicopter
+# ::node	p	passenger	1-2
+# ::node	j	jet	2-3
+# ::node	p2	plane	3-4
+# ::node	s	sit-01	4-5
+# ::node	f	field	7-8
+# ::node	b	bunch	10-11
+# ::node	o	other	12-13
+# ::node	p3	plane	13-14
+# ::node	a	and	14-15
+# ::node	h	helicopter	16-17
+# ::root	s	sit-01
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	sit-01	ARG1	plane	s	p2	
+# ::edge	sit-01	ARG2	field	s	f	
+# ::edge	plane	mod	other	p3	o	
+# ::edge	plane	quant	bunch	p3	b	
+# ::edge	and	op1	plane	a	p3	
+# ::edge	field	accompanier	and	f	a	
+# ::edge	and	op2	helicopter	a	h	
+(s / sit-01
+    :ARG1 (p2 / plane
+        :mod (j / jet
+            :mod (p / passenger)))
+    :ARG2 (f / field
+        :accompanier (a / and
+            :op1 (p3 / plane
+                :quant (b / bunch)
+                :mod (o / other))
+            :op2 (h / helicopter))))

@@ -1,0 +1,25 @@
+# ::tok Some green bananas and yellow bananas bunched together .
+# ::node	s	some	0-1
+# ::node	g	green-02	1-2
+# ::node	b	banana	2-3
+# ::node	a	and	3-4
+# ::node	y	yellow-02	4-5
+# ::node	b2	banana	5-6
+# ::node	a2	atomic	6-7
+# ::node	t	together	7-8
+# ::root	t	together
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	banana	quant	some	b	s	
+# ::edge	and	op1	banana	a	b	
+# ::edge	banana	ARG1-of	yellow-02	b2	y	
+# ::edge	and	op2	banana	a	b2	
+# ::edge	together	mod	atomic	t	a2	
+# ::edge	together	domain	and	t	a	
+(t / together
+    :domain (a / and
+        :op1 (b / banana
+            :quant (s / some)
+            :ARG1-of (g / green-02))
+        :op2 (b2 / banana
+            :ARG1-of (y / yellow-02)))
+    :mod (a2 / atomic))

@@ -1,0 +1,46 @@
+# ::tok A woman is seen in a rear view mirror with a camera while behind her a white headed dog pokes his head out the window .
+# ::node	w3	woman	1-2
+# ::node	s	see-01	3-4
+# ::node	r	rearview	7-8
+# ::node	m	mirror	8-9
+# ::node	c	camera	11-12
+# ::node	b	behind	13-14
+# ::node	w	white-03	16-17
+# ::node	h	head	17-18
+# ::node	d	dog	18-19
+# ::node	p	poke-01	19-20
+# ::node	h2	head	21-22
+# ::node	o	out	22-23
+# ::node	w2	window	24-25
+# ::root	s	see-01
+# ::edge	see-01	ARG1	woman	s	w3	
+# ::edge	mirror	mod	rearview	m	r	
+# ::edge	see-01	location	mirror	s	m	
+# ::edge	woman	poss-of	camera	w3	c	
+# ::edge	behind	op1	woman	b	w3	
+# ::edge	head	ARG1-of	white-03	h	w	
+# ::edge	dog	part	head	d	h	
+# ::edge	dog	location	behind	d	b	
+# ::edge	poke-01	ARG0	dog	p	d	
+# ::edge	poke-01	location	behind	p	b	
+# ::edge	see-01	time	poke-01	s	p	
+# ::edge	poke-01	ARG1	head	p	h2	
+# ::edge	dog	part	head	d	h2	
+# ::edge	poke-01	ARG2	out	p	o	
+# ::edge	out	op1	window	o	w2	
+(s / see-01
+    :ARG1 (w3 / woman
+        :poss-of (c / camera))
+    :location (m / mirror
+        :mod (r / rearview))
+    :time (p / poke-01
+        :ARG0 (d / dog
+            :location (b / behind
+                :op1 w3)
+            :part (h / head
+                :ARG1-of (w / white-03))
+            :part (h2 / head))
+        :ARG1 h2
+        :ARG2 (o / out
+            :op1 (w2 / window))
+        :location b))

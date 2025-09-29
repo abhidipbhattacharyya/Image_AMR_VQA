@@ -1,0 +1,31 @@
+# ::tok A parked bus with a " Vote Today " promotion on it 's electronic display sign .
+# ::node	p	park-01	1-2
+# ::node	b	bus	2-3
+# ::node	s	say-01	5-6
+# ::node	v	vote-01	6-7
+# ::node	y	you	6-7
+# ::node	t	today	7-8
+# ::node	p2	promote-02	9-10
+# ::node	e	electronic	13-14
+# ::node	d	display-01	14-15
+# ::node	s2	sign	15-16
+# ::root	b	bus
+# ::edge	bus	ARG1-of	park-01	b	p	
+# ::edge	say-01	ARG1	vote-01	s	v	
+# ::edge	vote-01	ARG0	you	v	y	
+# ::edge	vote-01	time	today	v	t	
+# ::edge	promote-02	ARG0-of	say-01	p2	s	
+# ::edge	bus	ARG1-of	promote-02	b	p2	
+# ::edge	display-01	mod	electronic	d	e	
+# ::edge	sign	ARG1-of	display-01	s2	d	
+# ::edge	bus	location	sign	b	s2	
+(b / bus
+    :ARG1-of (p / park-01)
+    :ARG1-of (p2 / promote-02
+        :ARG0-of (s / say-01
+            :ARG1 (v / vote-01
+                :ARG0 (y / you)
+                :time (t / today))))
+    :location (s2 / sign
+        :ARG1-of (d / display-01
+            :mod (e / electronic))))

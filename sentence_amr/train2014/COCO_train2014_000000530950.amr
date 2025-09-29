@@ -1,0 +1,42 @@
+# ::tok A thumb and finger can be seen holding food while two men eat and drink in the background .
+# ::node	t	thumb	1-2
+# ::node	a	and	2-3
+# ::node	f	finger	3-4
+# ::node	p	possible-01	4-5
+# ::node	s	see-01	6-7
+# ::node	h	hold-01	7-8
+# ::node	f2	food	8-9
+# ::node	0	2	10-11
+# ::node	m	man	11-12
+# ::node	e	eat-01	12-13
+# ::node	a2	and	13-14
+# ::node	d	drink-01	14-15
+# ::node	b	background	17-18
+# ::root	p	possible-01
+# ::edge	and	op1	thumb	a	t	
+# ::edge	and	op2	finger	a	f	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	hold-01	s	h	
+# ::edge	hold-01	ARG0	and	h	a	
+# ::edge	hold-01	ARG1	food	h	f2	
+# ::edge	man	quant	2	m	0	
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	and	op1	eat-01	a2	e	
+# ::edge	see-01	time	and	s	a2	
+# ::edge	and	op2	drink-01	a2	d	
+# ::edge	drink-01	ARG0	man	d	m	
+# ::edge	and	location	background	a2	b	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (h / hold-01
+            :ARG0 (a / and
+                :op1 (t / thumb)
+                :op2 (f / finger))
+            :ARG1 (f2 / food))
+        :time (a2 / and
+            :location (b / background)
+            :op1 (e / eat-01
+                :ARG0 (m / man
+                    :quant 2))
+            :op2 (d / drink-01
+                :ARG0 m))))

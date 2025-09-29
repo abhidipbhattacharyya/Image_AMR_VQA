@@ -1,0 +1,37 @@
+# ::tok dozens of signs with Chinese characters hung over the streets of a city
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	s	sign	2-3
+# ::node	h2	have-03	3-4
+# ::node	c3	country	4-5
+# ::node	n	name	4-5
+# ::node	1	China	4-5
+# ::node	c	character	5-6
+# ::node	h	hang-01	6-7
+# ::node	o	over	7-8
+# ::node	s2	street	9-10
+# ::node	c2	city	12-13
+# ::root	h	hang-01
+# ::edge	multiple	op1	12	m	0	
+# ::edge	sign	quant	multiple	s	m	
+# ::edge	sign	ARG0-of	have-03	s	h2	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	China	n	1	
+# ::edge	character	mod	country	c	c3	
+# ::edge	have-03	ARG1	character	h2	c	
+# ::edge	hang-01	ARG1	sign	h	s	
+# ::edge	hang-01	ARG2	over	h	o	
+# ::edge	over	op1	street	o	s2	
+# ::edge	street	part-of	city	s2	c2	
+(h / hang-01
+    :ARG1 (s / sign
+        :quant (m / multiple
+            :op1 12)
+        :ARG0-of (h2 / have-03
+            :ARG1 (c / character
+                :mod (c3 / country
+                    :name (n / name
+                        :op1 "China")))))
+    :ARG2 (o / over
+        :op1 (s2 / street
+            :part-of (c2 / city))))

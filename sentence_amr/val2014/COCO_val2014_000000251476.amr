@@ -1,0 +1,30 @@
+# ::tok many zebras grazing in a grassy area with small trees and bushes .
+# ::node	m	many	0-1
+# ::node	e	elephant	1-2
+# ::node	g2	graze-01	2-3
+# ::node	g	grass	5-6
+# ::node	a2	area	6-7
+# ::node	s	small	8-9
+# ::node	t	tree	9-10
+# ::node	a	and	10-11
+# ::node	b	bush	11-12
+# ::root	g2	graze-01
+# ::edge	elephant	quant	many	e	m	
+# ::edge	graze-01	ARG1	elephant	g2	e	
+# ::edge	area	consist-of	grass	a2	g	
+# ::edge	graze-01	location	area	g2	a2	
+# ::edge	tree	mod	small	t	s	
+# ::edge	and	op1	tree	a	t	
+# ::edge	area	consist-of	and	a2	a	
+# ::edge	and	op2	bush	a	b	
+# ::edge	bush	mod	small	b	s	
+(g2 / graze-01
+    :ARG1 (e / elephant
+        :quant (m / many))
+    :location (a2 / area
+        :consist-of (g / grass)
+        :consist-of (a / and
+            :op1 (t / tree
+                :mod (s / small))
+            :op2 (b / bush
+                :mod s))))

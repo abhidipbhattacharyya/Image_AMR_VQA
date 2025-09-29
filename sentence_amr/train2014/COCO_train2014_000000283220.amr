@@ -1,0 +1,46 @@
+# ::tok Traffic signal and street sign at the corner of Floyd Ave and N Linden .
+# ::node	t	traffic	0-1
+# ::node	s	signal-07	1-2
+# ::node	a	and	2-3
+# ::node	s3	street	3-4
+# ::node	s2	signal-07	4-5
+# ::node	c	corner	7-8
+# ::node	n	name	9-10
+# ::node	1	Floyd	9-10
+# ::node	r	road	10-11
+# ::node	0	Ave	10-11
+# ::node	a2	and	11-12
+# ::node	r2	road	12-13
+# ::node	n2	name	12-13
+# ::node	o	North	12-13
+# ::node	2	Linden	13-14
+# ::root	a	and
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	signal-07	ARG1	street	s2	s3	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	and	location	corner	a	c	
+# ::edge	name	op1	Floyd	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	Ave	n	0	
+# ::edge	and	op1	road	a2	r	
+# ::edge	corner	part-of	and	c	a2	
+# ::edge	and	op2	road	a2	r2	
+# ::edge	road	name	name	r2	n2	
+# ::edge	road	direction	North	r2	o	
+# ::edge	name	op1	Linden	n2	2	
+(a / and
+    :location (c / corner
+        :part-of (a2 / and
+            :op1 (r / road
+                :name (n / name
+                    :op1 "Floyd"
+                    :op2 "Ave"))
+            :op2 (r2 / road
+                :name (n2 / name
+                    :op1 "Linden")
+                :direction (o / North))))
+    :op1 (s / signal-07
+        :ARG1 (t / traffic))
+    :op2 (s2 / signal-07
+        :ARG1 (s3 / street)))

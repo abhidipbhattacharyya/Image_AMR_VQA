@@ -1,0 +1,45 @@
+# ::tok Employees wait on customers waiting to order Baltimore 's Best Crab Cakes .
+# ::node	p	person	0-1
+# ::node	e	employ-01	0-1
+# ::node	w	wait-01	1-2
+# ::node	c3	customer	3-4
+# ::node	w2	wait-01	4-5
+# ::node	o	order-02	6-7
+# ::node	n	name	7-8
+# ::node	c	city	7-8
+# ::node	n2	name	7-8
+# ::node	0	Baltimore	7-8
+# ::node	c2	company	9-10
+# ::node	1	Best	9-10
+# ::node	3	Crab	10-11
+# ::node	2	Cakes	11-12
+# ::root	w	wait-01
+# ::edge	person	ARG1-of	employ-01	p	e	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG1	customer	w2	c3	
+# ::edge	wait-01	ARG2	wait-01	w	w2	
+# ::edge	wait-01	ARG2	order-02	w2	o	
+# ::edge	order-02	ARG0	customer	o	c3	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	Baltimore	n2	0	
+# ::edge	company	location	city	c2	c	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Best	n	1	
+# ::edge	name	op2	Crab	n	3	
+# ::edge	name	op3	Cakes	n	2	
+# ::edge	wait-01	rel	company	w	c2	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG1-of (e / employ-01))
+    :ARG2 (w2 / wait-01
+        :ARG1 (c3 / customer)
+        :ARG2 (o / order-02
+            :ARG0 c3))
+    :rel (c2 / company
+        :name (n / name
+            :op1 "Best"
+            :op2 "Crab"
+            :op3 "Cakes")
+        :location (c / city
+            :name (n2 / name
+                :op1 "Baltimore"))))

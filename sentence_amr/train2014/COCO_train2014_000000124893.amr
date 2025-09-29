@@ -1,0 +1,39 @@
+# ::tok Light reflects off the water of the swimming pool and reflects into the living room through the sliding glass doors .
+# ::node	l	light	0-1
+# ::node	r	reflect-01	1-2
+# ::node	w	water	4-5
+# ::node	s2	swim-01	7-8
+# ::node	p	pool	8-9
+# ::node	a	and	9-10
+# ::node	r2	reflect-01	10-11
+# ::node	l2	living	13-14
+# ::node	r3	room	14-15
+# ::node	s	slide-01	17-18
+# ::node	g	glass	18-19
+# ::node	d	door	19-20
+# ::root	a	and
+# ::edge	reflect-01	ARG1	light	r	l	
+# ::edge	reflect-01	ARG2	water	r	w	
+# ::edge	pool	mod	swim-01	p	s2	
+# ::edge	water	poss	pool	w	p	
+# ::edge	and	op1	reflect-01	a	r	
+# ::edge	and	op2	reflect-01	a	r2	
+# ::edge	reflect-01	ARG1	light	r2	l	
+# ::edge	room	mod	living	r3	l2	
+# ::edge	reflect-01	ARG2	room	r2	r3	
+# ::edge	glass	ARG1-of	slide-01	g	s	
+# ::edge	door	part	glass	d	g	
+# ::edge	reflect-01	path	door	r2	d	
+(a / and
+    :op1 (r / reflect-01
+        :ARG1 (l / light)
+        :ARG2 (w / water
+            :poss (p / pool
+                :mod (s2 / swim-01))))
+    :op2 (r2 / reflect-01
+        :ARG1 l
+        :ARG2 (r3 / room
+            :mod (l2 / living))
+        :path (d / door
+            :part (g / glass
+                :ARG1-of (s / slide-01)))))

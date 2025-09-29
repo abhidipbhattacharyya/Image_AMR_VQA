@@ -1,0 +1,28 @@
+# ::tok A group of people sitting on a flat bed trailer pulled by a camouflage rig .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	f	flat-06	7-8
+# ::node	b	bed	8-9
+# ::node	t	trailer	9-10
+# ::node	p2	pull-01	10-11
+# ::node	c	camouflage	13-14
+# ::node	r	rig	14-15
+# ::root	s	sit-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	bed	ARG1-of	flat-06	b	f	
+# ::edge	trailer	mod	bed	t	b	
+# ::edge	sit-01	ARG2	trailer	s	t	
+# ::edge	trailer	ARG1-of	pull-01	t	p2	
+# ::edge	rig	mod	camouflage	r	c	
+# ::edge	pull-01	ARG0	rig	p2	r	
+(s / sit-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (t / trailer
+        :ARG1-of (p2 / pull-01
+            :ARG0 (r / rig
+                :mod (c / camouflage)))
+        :mod (b / bed
+            :ARG1-of (f / flat-06))))

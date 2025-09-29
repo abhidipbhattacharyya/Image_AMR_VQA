@@ -1,0 +1,39 @@
+# ::tok A batter swings at a ball while the catcher closes his glove in an attempt to catch the ball .
+# ::node	p	person	1-2
+# ::node	b2	batter-01	1-2
+# ::node	s	swing-02	2-3
+# ::node	b	ball	5-6
+# ::node	p2	person	8-9
+# ::node	c	catch-01	8-9
+# ::node	c3	close-01	9-10
+# ::node	g	glove	11-12
+# ::node	a	attempt-01	14-15
+# ::node	c2	catch-01	16-17
+# ::root	s	swing-02
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	ball	s	b	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	close-01	ARG0	person	c3	p2	
+# ::edge	swing-02	time	close-01	s	c3	
+# ::edge	close-01	ARG1	glove	c3	g	
+# ::edge	person	part	glove	p2	g	
+# ::edge	close-01	purpose	attempt-01	c3	a	
+# ::edge	attempt-01	ARG0	person	a	p2	
+# ::edge	attempt-01	ARG1	catch-01	a	c2	
+# ::edge	catch-01	ARG0	person	c2	p2	
+# ::edge	catch-01	ARG1	ball	c2	b	
+(s / swing-02
+    :ARG0 (p / person
+        :ARG0-of (b2 / batter-01))
+    :ARG1 (b / ball)
+    :time (c3 / close-01
+        :purpose (a / attempt-01
+            :ARG0 (p2 / person
+                :ARG0-of (c / catch-01)
+                :part (g / glove))
+            :ARG1 (c2 / catch-01
+                :ARG0 p2
+                :ARG1 b))
+        :ARG0 p2
+        :ARG1 g))

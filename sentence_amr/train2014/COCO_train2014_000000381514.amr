@@ -1,0 +1,29 @@
+# ::tok Two cars collide at a snowed , iced - over intersection .
+# ::node	0	2	0-1
+# ::node	c	car	1-2
+# ::node	c3	collide-01	2-3
+# ::node	s	snow-01	5-6
+# ::node	i	ice	7-8
+# ::node	c2	cause-01	9-10
+# ::node	o	over	9-10
+# ::node	i2	intersect-01	10-11
+# ::root	c3	collide-01
+# ::edge	car	quant	2	c	0	
+# ::edge	collide-01	ARG0	car	c3	c	
+# ::edge	snow-01	ARG1-of	cause-01	s	c2	
+# ::edge	intersect-01	mod	over	i2	o	
+# ::edge	cause-01	ARG0	intersect-01	c2	i2	
+# ::edge	intersect-01	mod	snow-01	i2	s	
+# ::edge	intersect-01	ARG1	snow-01	i2	s	
+# ::edge	collide-01	rel	cause-01	c3	c2	
+# ::edge	collide-01	rel	ice	c3	i	
+(c3 / collide-01
+    :ARG0 (c / car
+        :quant 2)
+    :rel (c2 / cause-01
+        :ARG0 (i2 / intersect-01
+            :ARG1 (s / snow-01
+                :ARG1-of c2)
+            :mod (o / over)
+            :mod s))
+    :rel (i / ice))

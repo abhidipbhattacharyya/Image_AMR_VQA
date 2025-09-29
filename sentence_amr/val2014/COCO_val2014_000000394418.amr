@@ -1,0 +1,32 @@
+# ::tok How high does he have to reach to hit that tennis ball ?
+# ::node	a	amr-unknown	0-1
+# ::node	h2	high	1-2
+# ::node	h	he	3-4
+# ::node	o	obligate-01	4-5
+# ::node	r	reach-01	6-7
+# ::node	h3	hit-01	8-9
+# ::node	t2	that	9-10
+# ::node	t	tennis	10-11
+# ::node	b	ball	11-12
+# ::root	o	obligate-01
+# ::edge	high	extent	amr-unknown	h2	a	
+# ::edge	obligate-01	ARG1	he	o	h	
+# ::edge	obligate-01	ARG2	reach-01	o	r	
+# ::edge	reach-01	ARG0	he	r	h	
+# ::edge	reach-01	extent	high	r	h2	
+# ::edge	reach-01	purpose	hit-01	r	h3	
+# ::edge	hit-01	ARG0	he	h3	h	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	ball	mod	that	b	t2	
+# ::edge	hit-01	ARG1	ball	h3	b	
+(o / obligate-01
+    :ARG1 (h / he)
+    :ARG2 (r / reach-01
+        :purpose (h3 / hit-01
+            :ARG0 h
+            :ARG1 (b / ball
+                :mod (t / tennis)
+                :mod (t2 / that)))
+        :ARG0 h
+        :extent (h2 / high
+            :extent (a / amr-unknown))))

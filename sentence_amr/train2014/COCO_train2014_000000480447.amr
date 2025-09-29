@@ -1,0 +1,33 @@
+# ::tok A large jetliner with a space shuttle on it 's back next to a fighter jet .
+# ::node	l	large	1-2
+# ::node	j2	jetliner	2-3
+# ::node	h	have-03	3-4
+# ::node	s2	space	5-6
+# ::node	s	shuttle	6-7
+# ::node	b	back	10-11
+# ::node	n	next-to	11-12
+# ::node	f	fight-01	14-15
+# ::node	j	jet	15-16
+# ::node	e	event	16-17
+# ::root	e	event
+# ::edge	jetliner	mod	large	j2	l	
+# ::edge	jetliner	ARG0-of	have-03	j2	h	
+# ::edge	shuttle	mod	space	s	s2	
+# ::edge	have-03	ARG1	shuttle	h	s	
+# ::edge	jetliner	location	back	j2	b	
+# ::edge	jetliner	part	back	j2	b	
+# ::edge	jetliner	location	next-to	j2	n	
+# ::edge	jet	ARG0-of	fight-01	j	f	
+# ::edge	next-to	op1	jet	n	j	
+# ::edge	event	mod	jetliner	e	j2	
+(e / event
+    :mod (j2 / jetliner
+        :ARG0-of (h / have-03
+            :ARG1 (s / shuttle
+                :mod (s2 / space)))
+        :location (b / back)
+        :location (n / next-to
+            :op1 (j / jet
+                :ARG0-of (f / fight-01)))
+        :mod (l / large)
+        :part b))

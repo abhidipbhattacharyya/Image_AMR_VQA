@@ -1,0 +1,49 @@
+# ::tok An array of images shows the steps to making a cheesecake , from recipe , all the way to a finished fruit - topped cake with a wedge missing .
+# ::node	a2	array	1-2
+# ::node	i	image	3-4
+# ::node	s	show-01	4-5
+# ::node	s2	step-01	6-7
+# ::node	s3	step-01	6-7
+# ::node	m	make-01	8-9
+# ::node	c2	cheesecake	10-11
+# ::node	r	recipe	13-14
+# ::node	a	all-the-way	17-18
+# ::node	f	finish-01	20-21
+# ::node	f2	fruit	21-22
+# ::node	t	top-01	23-24
+# ::node	c	cake	24-25
+# ::node	h	have-03	25-26
+# ::node	w	wedge	27-28
+# ::node	m2	miss-01	28-29
+# ::root	s	show-01
+# ::edge	array	consist-of	image	a2	i	
+# ::edge	show-01	ARG0	array	s	a2	
+# ::edge	step-01	ARG2	make-01	s2	m	
+# ::edge	make-01	ARG1	cheesecake	m	c2	
+# ::edge	step-01	ARG3	recipe	s2	r	
+# ::edge	all-the-way	ARG2-of	step-01	a	s3	
+# ::edge	all-the-way	op1	step-01	a	s2	
+# ::edge	show-01	ARG1	all-the-way	s	a	
+# ::edge	top-01	ARG2	fruit	t	f2	
+# ::edge	cake	ARG1-of	top-01	c	t	
+# ::edge	cake	ARG1-of	finish-01	c	f	
+# ::edge	step-01	ARG4	cake	s3	c	
+# ::edge	cake	ARG0-of	have-03	c	h	
+# ::edge	miss-01	ARG1	wedge	m2	w	
+# ::edge	have-03	ARG1	miss-01	h	m2	
+(s / show-01
+    :ARG0 (a2 / array
+        :consist-of (i / image))
+    :ARG1 (a / all-the-way
+        :ARG2-of (s3 / step-01
+            :ARG4 (c / cake
+                :ARG0-of (h / have-03
+                    :ARG1 (m2 / miss-01
+                        :ARG1 (w / wedge)))
+                :ARG1-of (t / top-01
+                    :ARG2 (f2 / fruit))
+                :ARG1-of (f / finish-01)))
+        :op1 (s2 / step-01
+            :ARG2 (m / make-01
+                :ARG1 (c2 / cheesecake))
+            :ARG3 (r / recipe))))

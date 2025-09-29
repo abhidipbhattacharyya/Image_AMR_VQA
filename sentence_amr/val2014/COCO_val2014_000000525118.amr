@@ -1,0 +1,31 @@
+# ::tok A dining room table with a large stack of unpeeled bananas set on a newspaper .
+# ::node	d	dine-01	1-2
+# ::node	r	room	2-3
+# ::node	t	table	3-4
+# ::node	l	large	6-7
+# ::node	s2	stack	7-8
+# ::node	c	cut-01	9-10
+# ::node	0	-	9-10
+# ::node	b	banana	10-11
+# ::node	s	set-01	11-12
+# ::node	n	newspaper	14-15
+# ::root	t	table
+# ::edge	room	location-of	dine-01	r	d	
+# ::edge	table	location	room	t	r	
+# ::edge	stack	mod	large	s2	l	
+# ::edge	table	part	stack	t	s2	
+# ::edge	cut-01	polarity	-	c	0	
+# ::edge	banana	ARG1-of	cut-01	b	c	
+# ::edge	stack	consist-of	banana	s2	b	
+# ::edge	stack	ARG1-of	set-01	s2	s	
+# ::edge	set-01	ARG2	newspaper	s	n	
+(t / table
+    :location (r / room
+        :location-of (d / dine-01))
+    :part (s2 / stack
+        :ARG1-of (s / set-01
+            :ARG2 (n / newspaper))
+        :consist-of (b / banana
+            :ARG1-of (c / cut-01
+                :polarity -))
+        :mod (l / large)))

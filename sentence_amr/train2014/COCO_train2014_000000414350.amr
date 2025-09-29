@@ -1,0 +1,49 @@
+# ::tok The signs are in English as well as Chinese to help tourists find their way .
+# ::node	s	sign	1-2
+# ::node	s2	signal-07	1-2
+# ::node	l	language	4-5
+# ::node	n	name	4-5
+# ::node	l2	language	4-5
+# ::node	n2	name	4-5
+# ::node	1	English	4-5
+# ::node	a	and	5-6
+# ::node	0	China	8-9
+# ::node	h	help-01	10-11
+# ::node	p	person	11-12
+# ::node	t	tour-01	11-12
+# ::node	f	find-01	12-13
+# ::node	w	way	14-15
+# ::root	a	and
+# ::edge	sign	medium	language	s	l	
+# ::edge	language	name	name	l	n	
+# ::edge	signal-07	medium	language	s2	l2	
+# ::edge	language	name	name	l2	n2	
+# ::edge	name	op1	English	n	1	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	name	op1	China	n2	0	
+# ::edge	and	purpose	help-01	a	h	
+# ::edge	help-01	ARG0	sign	h	s	
+# ::edge	help-01	ARG2	person	h	p	
+# ::edge	person	ARG0-of	tour-01	p	t	
+# ::edge	find-01	ARG0	person	f	p	
+# ::edge	help-01	ARG1	find-01	h	f	
+# ::edge	find-01	ARG1	way	f	w	
+# ::edge	way	poss	person	w	p	
+(a / and
+    :purpose (h / help-01
+        :ARG0 (s / sign
+            :medium (l / language
+                :name (n / name
+                    :op1 "English")))
+        :ARG1 (f / find-01
+            :ARG0 (p / person
+                :ARG0-of (t / tour-01))
+            :ARG1 (w / way
+                :poss p))
+        :ARG2 p)
+    :op1 s
+    :op2 (s2 / signal-07
+        :medium (l2 / language
+            :name (n2 / name
+                :op1 "China"))))

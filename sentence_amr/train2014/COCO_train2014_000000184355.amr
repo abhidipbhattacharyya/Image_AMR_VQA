@@ -1,0 +1,32 @@
+# ::tok Yellow train car just pulling into or out of platform .
+# ::node	y	yellow-02	0-1
+# ::node	t	train	1-2
+# ::node	c	car	2-3
+# ::node	j	just	3-4
+# ::node	p2	pull-01	4-5
+# ::node	p3	pull-01	4-5
+# ::node	o	or	6-7
+# ::node	o2	out-06	7-8
+# ::node	p	platform	9-10
+# ::root	o	or
+# ::edge	car	mod	train	c	t	
+# ::edge	car	ARG1-of	yellow-02	c	y	
+# ::edge	pull-01	mod	just	p2	j	
+# ::edge	pull-01	ARG1	car	p2	c	
+# ::edge	pull-01	ARG1	car	p3	c	
+# ::edge	or	op2	pull-01	o	p3	
+# ::edge	or	op1	pull-01	o	p2	
+# ::edge	pull-01	direction	out-06	p3	o2	
+# ::edge	out-06	ARG2	platform	o2	p	
+# ::edge	pull-01	ARG2	platform	p2	p	
+(o / or
+    :op1 (p2 / pull-01
+        :ARG1 (c / car
+            :ARG1-of (y / yellow-02)
+            :mod (t / train))
+        :ARG2 (p / platform)
+        :mod (j / just))
+    :op2 (p3 / pull-01
+        :ARG1 c
+        :direction (o2 / out-06
+            :ARG2 p)))

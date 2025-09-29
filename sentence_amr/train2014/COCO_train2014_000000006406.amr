@@ -1,0 +1,43 @@
+# ::tok A old pair of scissors , two thimbles , and a putty knife are in front of some glass vases .
+# ::node	o	old	1-2
+# ::node	p	pair	2-3
+# ::node	s	scissors	4-5
+# ::node	0	2	6-7
+# ::node	n	needle	7-8
+# ::node	a	and	9-10
+# ::node	p2	put-01	11-12
+# ::node	p3	putty	11-12
+# ::node	k	knife	12-13
+# ::node	b	be-located-at-91	14-15
+# ::node	i	in-front-of	15-16
+# ::node	s2	some	17-18
+# ::node	g	glass	18-19
+# ::node	f	flower	19-20
+# ::root	b	be-located-at-91
+# ::edge	pair	mod	old	p	o	
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	needle	quant	2	n	0	
+# ::edge	and	op2	needle	a	n	
+# ::edge	and	op1	scissors	a	s	
+# ::edge	put-01	ARG2	putty	p2	p3	
+# ::edge	knife	ARG1-of	put-01	k	p2	
+# ::edge	and	op3	knife	a	k	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	flower	mod	glass	f	g	
+# ::edge	flower	quant	some	f	s2	
+# ::edge	in-front-of	op1	flower	i	f	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (s / scissors
+            :quant (p / pair
+                :mod (o / old)))
+        :op2 (n / needle
+            :quant 2)
+        :op3 (k / knife
+            :ARG1-of (p2 / put-01
+                :ARG2 (p3 / putty))))
+    :ARG2 (i / in-front-of
+        :op1 (f / flower
+            :quant (s2 / some)
+            :mod (g / glass))))

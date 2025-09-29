@@ -1,0 +1,39 @@
+# ::tok A view of a very bad and rustic area .
+# ::node	v2	view-01	1-2
+# ::node	v	very	4-5
+# ::node	b	bad-07	5-6
+# ::node	r	rustic	7-8
+# ::node	a	area	8-9
+# ::root	v2	view-01
+# ::edge	bad-07	degree	very	b	v	
+# ::edge	rustic	degree	very	r	v	
+# ::edge	area	mod	rustic	a	r	
+# ::edge	area	ARG1-of	bad-07	a	b	
+# ::edge	view-01	ARG1	area	v2	a	
+(v2 / view-01
+    :ARG1 (a / area
+        :ARG1-of (b / bad-07
+            :degree (v / very))
+        :mod (r / rustic
+            :degree v)))
+
+
+# ::tok Cars are rusted and building have fallen over .
+# ::node	c	car	0-1
+# ::node	r	rust-01	2-3
+# ::node	a	and	3-4
+# ::node	b	building	4-5
+# ::node	f	fall-01	6-7
+# ::node	o	over	7-8
+# ::root	a	and
+# ::edge	rust-01	ARG1	car	r	c	
+# ::edge	and	op1	rust-01	a	r	
+# ::edge	fall-01	ARG1	building	f	b	
+# ::edge	and	op2	fall-01	a	f	
+# ::edge	fall-01	ARG4	over	f	o	
+(a / and
+    :op1 (r / rust-01
+        :ARG1 (c / car))
+    :op2 (f / fall-01
+        :ARG1 (b / building)
+        :ARG4 (o / over)))

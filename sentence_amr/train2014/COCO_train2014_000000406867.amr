@@ -1,0 +1,33 @@
+# ::tok A foot wearing a sandal and sock is ready to step into a reflective puddle of water
+# ::node	f	foot	1-2
+# ::node	w2	wear-01	2-3
+# ::node	s	sandal	4-5
+# ::node	a	and	5-6
+# ::node	s2	sock	6-7
+# ::node	r	ready-02	8-9
+# ::node	s3	step-01	10-11
+# ::node	r2	reflect-01	13-14
+# ::node	p	puddle	14-15
+# ::node	w	water	16-17
+# ::root	r	ready-02
+# ::edge	foot	ARG0-of	wear-01	f	w2	
+# ::edge	and	op1	sandal	a	s	
+# ::edge	wear-01	ARG1	and	w2	a	
+# ::edge	and	op2	sock	a	s2	
+# ::edge	ready-02	ARG1	foot	r	f	
+# ::edge	ready-02	ARG2	step-01	r	s3	
+# ::edge	step-01	ARG1	foot	s3	f	
+# ::edge	puddle	ARG1-of	reflect-01	p	r2	
+# ::edge	step-01	ARG2	puddle	s3	p	
+# ::edge	puddle	consist-of	water	p	w	
+(r / ready-02
+    :ARG1 (f / foot
+        :ARG0-of (w2 / wear-01
+            :ARG1 (a / and
+                :op1 (s / sandal)
+                :op2 (s2 / sock))))
+    :ARG2 (s3 / step-01
+        :ARG1 f
+        :ARG2 (p / puddle
+            :ARG1-of (r2 / reflect-01)
+            :consist-of (w / water))))

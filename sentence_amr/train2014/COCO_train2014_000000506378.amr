@@ -1,0 +1,39 @@
+# ::tok Groups of different types of vegetables including , but not limited to ; tomatoes , carrots and corn .
+# ::node	g	group	0-1
+# ::node	d	differ-02	2-3
+# ::node	t2	type	3-4
+# ::node	v	vegetable	5-6
+# ::node	i	include-01	6-7
+# ::node	c2	contrast-01	8-9
+# ::node	0	-	9-10
+# ::node	l	limit-01	10-11
+# ::node	t	tomato	13-14
+# ::node	c	carrot	15-16
+# ::node	a	and	16-17
+# ::node	c3	corn	17-18
+# ::root	g	group
+# ::edge	type	ARG1-of	differ-02	t2	d	
+# ::edge	vegetable	mod	type	v	t2	
+# ::edge	group	consist-of	vegetable	g	v	
+# ::edge	vegetable	ARG2-of	include-01	v	i	
+# ::edge	include-01	ARG1-of	contrast-01	i	c2	
+# ::edge	limit-01	polarity	-	l	0	
+# ::edge	contrast-01	ARG2	limit-01	c2	l	
+# ::edge	and	op2	carrot	a	c	
+# ::edge	and	op1	tomato	a	t	
+# ::edge	limit-01	ARG1	and	l	a	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op3	corn	a	c3	
+(g / group
+    :consist-of (v / vegetable
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (t / tomato)
+                :op2 (c / carrot)
+                :op3 (c3 / corn))
+            :ARG1-of (c2 / contrast-01
+                :ARG2 (l / limit-01
+                    :ARG1 a
+                    :polarity -)))
+        :mod (t2 / type
+            :ARG1-of (d / differ-02))))

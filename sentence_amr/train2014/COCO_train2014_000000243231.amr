@@ -1,0 +1,40 @@
+# ::tok A toy fish lays on a pillow on a bed that is made and has white sheets and a light colored blanket .
+# ::node	t	toy	1-2
+# ::node	f	fish	2-3
+# ::node	l	lay-01	3-4
+# ::node	p	pillow	6-7
+# ::node	b	bed	9-10
+# ::node	m	make-01	12-13
+# ::node	h	have-03	14-15
+# ::node	w	white-03	15-16
+# ::node	s	sheet	16-17
+# ::node	a	and	17-18
+# ::node	l2	light-07	19-20
+# ::node	c	color-01	20-21
+# ::node	b2	blanket	21-22
+# ::root	l	lay-01
+# ::edge	fish	mod	toy	f	t	
+# ::edge	lay-01	ARG1	fish	l	f	
+# ::edge	lay-01	ARG2	pillow	l	p	
+# ::edge	pillow	location	bed	p	b	
+# ::edge	bed	ARG1-of	make-01	b	m	
+# ::edge	bed	ARG0-of	have-03	b	h	
+# ::edge	sheet	ARG1-of	white-03	s	w	
+# ::edge	and	op1	sheet	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	color-01	ARG2	light-07	c	l2	
+# ::edge	blanket	ARG1-of	color-01	b2	c	
+# ::edge	and	op2	blanket	a	b2	
+(l / lay-01
+    :ARG1 (f / fish
+        :mod (t / toy))
+    :ARG2 (p / pillow
+        :location (b / bed
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (s / sheet
+                        :ARG1-of (w / white-03))
+                    :op2 (b2 / blanket
+                        :ARG1-of (c / color-01
+                            :ARG2 (l2 / light-07)))))
+            :ARG1-of (m / make-01))))

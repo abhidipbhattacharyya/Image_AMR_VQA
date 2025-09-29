@@ -1,0 +1,33 @@
+# ::tok A man on the beach flying some type of kite or wind surfing sail
+# ::node	m	man	1-2
+# ::node	b	beach	4-5
+# ::node	f	fly-01	5-6
+# ::node	s2	some	6-7
+# ::node	t	type	7-8
+# ::node	k	kite	9-10
+# ::node	o	or	10-11
+# ::node	w	wind	11-12
+# ::node	s3	surf-01	12-13
+# ::node	s	sail-01	13-14
+# ::root	m	man
+# ::edge	man	location	beach	m	b	
+# ::edge	man	ARG0-of	fly-01	m	f	
+# ::edge	type	mod	some	t	s2	
+# ::edge	kite	mod	type	k	t	
+# ::edge	or	op1	kite	o	k	
+# ::edge	fly-01	ARG2	or	f	o	
+# ::edge	surf-01	ARG2	wind	s3	w	
+# ::edge	surf-01	ARG0	man	s3	m	
+# ::edge	sail-01	manner	surf-01	s	s3	
+# ::edge	or	op2	sail-01	o	s	
+(m / man
+    :ARG0-of (f / fly-01
+        :ARG2 (o / or
+            :op1 (k / kite
+                :mod (t / type
+                    :mod (s2 / some)))
+            :op2 (s / sail-01
+                :manner (s3 / surf-01
+                    :ARG0 m
+                    :ARG2 (w / wind)))))
+    :location (b / beach))

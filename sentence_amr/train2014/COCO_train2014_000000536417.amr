@@ -1,0 +1,46 @@
+# ::tok A man with a toothbrush in his mouth and uncombed hair takes a picture of himself at his computer desk .
+# ::node	m	man	1-2
+# ::node	t2	toothbrush	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	m2	mouth	7-8
+# ::node	a	and	8-9
+# ::node	w	wear-01	9-10
+# ::node	c	compromise-01	9-10
+# ::node	0	-	9-10
+# ::node	h	hair	10-11
+# ::node	t	take-01	11-12
+# ::node	p	picture-01	13-14
+# ::node	c2	computer	18-19
+# ::node	d	desk	19-20
+# ::root	t	take-01
+# ::edge	be-located-at-91	ARG1	toothbrush	b	t2	
+# ::edge	be-located-at-91	ARG2	mouth	b	m2	
+# ::edge	man	part	mouth	m	m2	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	compromise-01	polarity	-	c	0	
+# ::edge	hair	ARG1-of	compromise-01	h	c	
+# ::edge	and	op2	hair	a	h	
+# ::edge	take-01	ARG0	man	t	m	
+# ::edge	take-01	ARG1	picture-01	t	p	
+# ::edge	picture-01	ARG1	man	p	m	
+# ::edge	desk	mod	computer	d	c2	
+# ::edge	take-01	location	desk	t	d	
+# ::edge	desk	poss	man	d	m	
+(t / take-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (b / be-located-at-91
+                    :ARG1 (t2 / toothbrush)
+                    :ARG2 (m2 / mouth))
+                :op2 (h / hair
+                    :ARG1-of (c / compromise-01
+                        :polarity -))))
+        :part m2)
+    :ARG1 (p / picture-01
+        :ARG1 m)
+    :location (d / desk
+        :mod (c2 / computer)
+        :poss m))

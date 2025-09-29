@@ -1,0 +1,32 @@
+# ::tok A book titled " Mother Teresa " with a photo of her on the cover .
+# ::node	b	book	1-2
+# ::node	t	title-01	2-3
+# ::node	0	Mother	4-5
+# ::node	p	person	5-6
+# ::node	1	Teresa	5-6
+# ::node	h	have-03	7-8
+# ::node	p2	photograph-01	9-10
+# ::node	n	name	11-12
+# ::node	c	cover	14-15
+# ::root	b	book
+# ::edge	book	ARG1-of	title-01	b	t	
+# ::edge	title-01	ARG2	person	t	p	
+# ::edge	book	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	photograph-01	h	p2	
+# ::edge	photograph-01	ARG1	person	p2	p	
+# ::edge	name	op2	Teresa	n	1	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Mother	n	0	
+# ::edge	book	location	cover	b	c	
+# ::edge	book	part	cover	b	c	
+(b / book
+    :ARG0-of (h / have-03
+        :ARG1 (p2 / photograph-01
+            :ARG1 (p / person
+                :name (n / name
+                    :op1 "Mother"
+                    :op2 "Teresa"))))
+    :ARG1-of (t / title-01
+        :ARG2 p)
+    :location (c / cover)
+    :part c)

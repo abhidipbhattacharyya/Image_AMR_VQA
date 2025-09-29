@@ -1,0 +1,34 @@
+# ::tok A street sign reading ' Alameda Street ' is shown , with a skyscraper in the background .
+# ::node	s4	street	1-2
+# ::node	s2	sign	2-3
+# ::node	r	read-01	3-4
+# ::node	n	name	5-6
+# ::node	0	Alameda	5-6
+# ::node	s5	street	6-7
+# ::node	1	Street	6-7
+# ::node	s	show-01	9-10
+# ::node	h	have-03	11-12
+# ::node	s3	skyscraper	13-14
+# ::node	b	background	16-17
+# ::root	s	show-01
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	sign	ARG0-of	read-01	s2	r	
+# ::edge	name	op1	Alameda	n	0	
+# ::edge	street	name	name	s5	n	
+# ::edge	read-01	ARG1	street	r	s5	
+# ::edge	name	op2	Street	n	1	
+# ::edge	show-01	ARG1	sign	s	s2	
+# ::edge	sign	ARG0-of	have-03	s2	h	
+# ::edge	have-03	ARG1	skyscraper	h	s3	
+# ::edge	skyscraper	location	background	s3	b	
+(s / show-01
+    :ARG1 (s2 / sign
+        :ARG0-of (r / read-01
+            :ARG1 (s5 / street
+                :name (n / name
+                    :op1 "Alameda"
+                    :op2 "Street")))
+        :ARG0-of (h / have-03
+            :ARG1 (s3 / skyscraper
+                :location (b / background)))
+        :mod (s4 / street)))

@@ -1,0 +1,47 @@
+# ::tok A girl eats a donut without her hands , standing in front of a door and a filing cabinet with a stuffed cat on top of it .
+# ::node	g	girl	1-2
+# ::node	e	eat-01	2-3
+# ::node	d	donut	4-5
+# ::node	h	hand	7-8
+# ::node	s	stand-01	9-10
+# ::node	i	in-front-of	11-12
+# ::node	d2	door	14-15
+# ::node	a	and	15-16
+# ::node	f	file-01	17-18
+# ::node	c	cabinet	18-19
+# ::node	h2	have-03	19-20
+# ::node	s2	stuff-01	21-22
+# ::node	c2	cat	22-23
+# ::node	t	top	24-25
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	girl	e	g	
+# ::edge	eat-01	ARG1	donut	e	d	
+# ::edge	eat-01	manner	hand	e	h	
+# ::edge	girl	part	hand	g	h	
+# ::edge	girl	ARG1-of	stand-01	g	s	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	and	op1	door	a	d2	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	cabinet	ARG0-of	file-01	c	f	
+# ::edge	and	op2	cabinet	a	c	
+# ::edge	cabinet	ARG0-of	have-03	c	h2	
+# ::edge	cat	ARG1-of	stuff-01	c2	s2	
+# ::edge	have-03	ARG1	cat	h2	c2	
+# ::edge	have-03	location	top	h2	t	
+# ::edge	top	location	cabinet	t	c	
+(e / eat-01
+    :ARG0 (g / girl
+        :ARG1-of (s / stand-01
+            :ARG2 (i / in-front-of
+                :op1 (a / and
+                    :op1 (d2 / door)
+                    :op2 (c / cabinet
+                        :ARG0-of (f / file-01)
+                        :ARG0-of (h2 / have-03
+                            :ARG1 (c2 / cat
+                                :ARG1-of (s2 / stuff-01))
+                            :location (t / top
+                                :location c))))))
+        :part (h / hand))
+    :ARG1 (d / donut)
+    :manner h)

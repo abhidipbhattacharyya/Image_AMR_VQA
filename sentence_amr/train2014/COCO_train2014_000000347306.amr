@@ -1,0 +1,33 @@
+# ::tok A runner is touching base while another player is waiting to catch the ball .
+# ::node	p	person	1-2
+# ::node	r	run-02	1-2
+# ::node	t	touch-01	3-4
+# ::node	b2	base	4-5
+# ::node	a	another	6-7
+# ::node	p2	person	7-8
+# ::node	p3	play-01	7-8
+# ::node	w	wait-01	9-10
+# ::node	c	catch-01	11-12
+# ::node	b	ball	13-14
+# ::root	t	touch-01
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	touch-01	ARG0	person	t	p	
+# ::edge	touch-01	ARG1	base	t	b2	
+# ::edge	person	mod	another	p2	a	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	touch-01	time	wait-01	t	w	
+# ::edge	wait-01	ARG2	catch-01	w	c	
+# ::edge	catch-01	ARG0	person	c	p2	
+# ::edge	catch-01	ARG1	ball	c	b	
+(t / touch-01
+    :ARG0 (p / person
+        :ARG0-of (r / run-02))
+    :ARG1 (b2 / base)
+    :time (w / wait-01
+        :ARG1 (p2 / person
+            :ARG0-of (p3 / play-01)
+            :mod (a / another))
+        :ARG2 (c / catch-01
+            :ARG0 p2
+            :ARG1 (b / ball))))

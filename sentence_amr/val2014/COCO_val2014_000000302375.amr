@@ -1,0 +1,31 @@
+# ::tok some clocks buildings and many bicycle riders at night
+# ::node	s	some	0-1
+# ::node	c	clock-01	1-2
+# ::node	b2	building	2-3
+# ::node	a	and	3-4
+# ::node	m	many	4-5
+# ::node	b	bicycle	5-6
+# ::node	p	person	6-7
+# ::node	r	ride-01	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::root	a	and
+# ::edge	clock-01	ARG0	some	c	s	
+# ::edge	and	op2	building	a	b2	
+# ::edge	and	op1	clock-01	a	c	
+# ::edge	person	quant	many	p	m	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	bicycle	r	b	
+# ::edge	and	time	date-entity	a	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(a / and
+    :op1 (c / clock-01
+        :ARG0 (s / some))
+    :op2 (b2 / building)
+    :op3 (p / person
+        :quant (m / many)
+        :ARG0-of (r / ride-01
+            :ARG1 (b / bicycle)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

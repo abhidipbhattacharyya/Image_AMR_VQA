@@ -1,0 +1,25 @@
+# ::tok A small bathroom with two containers catching plumbing drips .
+# ::node	s	small	1-2
+# ::node	b	bathroom	2-3
+# ::node	0	2	4-5
+# ::node	c2	container	5-6
+# ::node	c	catch-01	6-7
+# ::node	t	thing	7-8
+# ::node	p	plumb-04	7-8
+# ::node	d	drip-01	8-9
+# ::root	b	bathroom
+# ::edge	bathroom	mod	small	b	s	
+# ::edge	container	quant	2	c2	0	
+# ::edge	catch-01	ARG0	container	c	c2	
+# ::edge	bathroom	location-of	catch-01	b	c	
+# ::edge	thing	ARG1-of	plumb-04	t	p	
+# ::edge	drip-01	ARG1	thing	d	t	
+# ::edge	catch-01	ARG1	drip-01	c	d	
+(b / bathroom
+    :location-of (c / catch-01
+        :ARG0 (c2 / container
+            :quant 2)
+        :ARG1 (d / drip-01
+            :ARG1 (t / thing
+                :ARG1-of (p / plumb-04))))
+    :mod (s / small))

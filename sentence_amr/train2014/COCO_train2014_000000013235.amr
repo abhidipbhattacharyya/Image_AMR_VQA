@@ -1,0 +1,33 @@
+# ::tok Cows on a big field eating grass with one cow close to the camera .
+# ::node	c3	cow	0-1
+# ::node	b	big	3-4
+# ::node	f	field	4-5
+# ::node	e	eat-01	5-6
+# ::node	g	grass	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	c4	cow	9-10
+# ::node	c2	close-10	10-11
+# ::node	c	camera	13-14
+# ::root	e	eat-01
+# ::edge	field	mod	big	f	b	
+# ::edge	cow	location	field	c3	f	
+# ::edge	eat-01	ARG0	cow	e	c3	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	include-91	ARG2	cow	i	c3	
+# ::edge	cow	quant	1	c4	0	
+# ::edge	cow	ARG1-of	include-91	c4	i	
+# ::edge	close-10	ARG1	cow	c2	c4	
+# ::edge	eat-01	manner	close-10	e	c2	
+# ::edge	close-10	ARG2	camera	c2	c	
+(e / eat-01
+    :ARG0 (c3 / cow
+        :location (f / field
+            :mod (b / big)))
+    :ARG1 (g / grass)
+    :manner (c2 / close-10
+        :ARG1 (c4 / cow
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 c3))
+        :ARG2 (c / camera)))

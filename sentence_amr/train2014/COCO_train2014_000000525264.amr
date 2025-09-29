@@ -1,0 +1,39 @@
+# ::tok A double image of a tennis player retrieving a ball and spectators watching intently .
+# ::node	d	double	1-2
+# ::node	i	image	2-3
+# ::node	t	tennis	5-6
+# ::node	p	person	6-7
+# ::node	p2	play-01	6-7
+# ::node	r	retrieve-01	7-8
+# ::node	b	ball	9-10
+# ::node	a	and	10-11
+# ::node	a2	and	10-11
+# ::node	s	spectator	11-12
+# ::node	w	watch-01	12-13
+# ::node	i2	intend-01	13-14
+# ::root	a	and
+# ::edge	image	mod	double	i	d	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	retrieve-01	ARG0	person	r	p	
+# ::edge	retrieve-01	ARG1	ball	r	b	
+# ::edge	and	op1	retrieve-01	a	r	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	retrieve-01	a2	r	
+# ::edge	and	op2	spectator	a2	s	
+# ::edge	spectator	ARG0-of	watch-01	s	w	
+# ::edge	watch-01	ARG0-of	intend-01	w	i2	
+# ::edge	and	rel	image	a	i	
+(a / and
+    :op1 (r / retrieve-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis)))
+        :ARG1 (b / ball))
+    :op2 (a2 / and
+        :op1 r
+        :op2 (s / spectator
+            :ARG0-of (w / watch-01
+                :ARG0-of (i2 / intend-01))))
+    :rel (i / image
+        :mod (d / double)))

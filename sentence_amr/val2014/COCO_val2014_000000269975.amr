@@ -1,0 +1,28 @@
+# ::tok Several double decker buses along with other cars are traveling down a street .
+# ::node	s	several	0-1
+# ::node	d	double-decker	2-3
+# ::node	b	bus	3-4
+# ::node	a	and	5-6
+# ::node	o	other	6-7
+# ::node	c	car	7-8
+# ::node	t	travel-01	9-10
+# ::node	d2	down	10-11
+# ::node	s2	street	12-13
+# ::root	t	travel-01
+# ::edge	bus	mod	double-decker	b	d	
+# ::edge	bus	quant	several	b	s	
+# ::edge	and	op1	bus	a	b	
+# ::edge	car	mod	other	c	o	
+# ::edge	and	op2	car	a	c	
+# ::edge	travel-01	ARG0	and	t	a	
+# ::edge	travel-01	direction	down	t	d2	
+# ::edge	travel-01	ARG1	street	t	s2	
+(t / travel-01
+    :ARG0 (a / and
+        :op1 (b / bus
+            :quant (s / several)
+            :mod (d / double-decker))
+        :op2 (c / car
+            :mod (o / other)))
+    :ARG1 (s2 / street)
+    :direction (d2 / down))

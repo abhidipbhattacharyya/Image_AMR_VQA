@@ -1,0 +1,30 @@
+# ::tok A bus and tank truck pass dangerously close on a narrow road .
+# ::node	b	bus	1-2
+# ::node	a	and	2-3
+# ::node	t	tank	3-4
+# ::node	t2	truck	4-5
+# ::node	p	pass-02	5-6
+# ::node	e	endanger-01	6-7
+# ::node	c	close-10	7-8
+# ::node	n	narrow-02	10-11
+# ::node	r	road	11-12
+# ::root	p	pass-02
+# ::edge	and	op1	bus	a	b	
+# ::edge	truck	mod	tank	t2	t	
+# ::edge	and	op2	truck	a	t2	
+# ::edge	pass-02	ARG0	and	p	a	
+# ::edge	close-10	ARG0-of	endanger-01	c	e	
+# ::edge	pass-02	ARG1	close-10	p	c	
+# ::edge	close-10	ARG1	and	c	a	
+# ::edge	road	ARG1-of	narrow-02	r	n	
+# ::edge	close-10	location	road	c	r	
+(p / pass-02
+    :ARG0 (a / and
+        :op1 (b / bus)
+        :op2 (t2 / truck
+            :mod (t / tank)))
+    :ARG1 (c / close-10
+        :ARG0-of (e / endanger-01)
+        :ARG1 a
+        :location (r / road
+            :ARG1-of (n / narrow-02))))

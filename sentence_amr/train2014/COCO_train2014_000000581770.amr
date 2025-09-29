@@ -1,0 +1,34 @@
+# ::tok A fed ex plan is getting ready to take off and deliver packages .
+# ::node	1	federal	1-2
+# ::node	n	name	2-3
+# ::node	0	ex	2-3
+# ::node	p2	plan	3-4
+# ::node	r	ready-01	6-7
+# ::node	t	take-off-33	8-9
+# ::node	a	and	10-11
+# ::node	d	deliver-01	11-12
+# ::node	p	package	12-13
+# ::root	r	ready-01
+# ::edge	name	op1	federal	n	1	
+# ::edge	name	op2	ex	n	0	
+# ::edge	plan	name	name	p2	n	
+# ::edge	plan	mod	federal	p2	1	
+# ::edge	ready-01	ARG1	plan	r	p2	
+# ::edge	take-off-33	ARG0	plan	t	p2	
+# ::edge	and	op1	take-off-33	a	t	
+# ::edge	ready-01	ARG2	and	r	a	
+# ::edge	and	op2	deliver-01	a	d	
+# ::edge	deliver-01	ARG0	plan	d	p2	
+# ::edge	deliver-01	ARG1	package	d	p	
+(r / ready-01
+    :ARG1 (p2 / plan
+        :name (n / name
+            :op1 "federal"
+            :op2 "ex")
+        :mod "federal")
+    :ARG2 (a / and
+        :op1 (t / take-off-33
+            :ARG0 p2)
+        :op2 (d / deliver-01
+            :ARG0 p2
+            :ARG1 (p / package))))

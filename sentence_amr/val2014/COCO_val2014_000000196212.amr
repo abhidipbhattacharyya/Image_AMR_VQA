@@ -1,0 +1,38 @@
+# ::tok A person in winter clothing , a helmet and skis , doing a trick i the air with jos skis crossed .
+# ::node	p	person	1-2
+# ::node	d	date-entity	3-4
+# ::node	w	winter	3-4
+# ::node	c	clothe-01	4-5
+# ::node	h	helmet	7-8
+# ::node	a2	and	8-9
+# ::node	s	ski-01	9-10
+# ::node	t	trick-01	13-14
+# ::node	a	air	16-17
+# ::node	p2	person	18-19
+# ::node	c2	cross-02	20-21
+# ::root	p	person
+# ::edge	date-entity	season	winter	d	w	
+# ::edge	clothe-01	time	date-entity	c	d	
+# ::edge	person	ARG1-of	clothe-01	p	c	
+# ::edge	and	op1	helmet	a2	h	
+# ::edge	clothe-01	ARG2	and	c	a2	
+# ::edge	person	ARG0-of	trick-01	p	t	
+# ::edge	trick-01	path	air	t	a	
+# ::edge	person	ARG0-of	ski-01	p2	s	
+# ::edge	and	op3	person	a2	p2	
+# ::edge	person	mod	clothe-01	p2	c	
+# ::edge	cross-02	ARG0	person	c2	p2	
+# ::edge	trick-01	manner	cross-02	t	c2	
+(p / person
+    :ARG0-of (t / trick-01
+        :manner (c2 / cross-02
+            :ARG0 (p2 / person
+                :ARG0-of (s / ski-01)
+                :mod (c / clothe-01
+                    :ARG2 (a2 / and
+                        :op1 (h / helmet)
+                        :op3 p2)
+                    :time (d / date-entity
+                        :season (w / winter)))))
+        :path (a / air))
+    :ARG1-of c)

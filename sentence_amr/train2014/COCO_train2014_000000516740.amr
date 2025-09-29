@@ -1,0 +1,27 @@
+# ::tok a grass area with a lake and train traveling on tracks above the lake
+# ::node	g	grass	1-2
+# ::node	a3	area	2-3
+# ::node	l	lake	5-6
+# ::node	a2	and	6-7
+# ::node	t2	train	7-8
+# ::node	t3	travel-01	8-9
+# ::node	t	track	10-11
+# ::node	a	above	11-12
+# ::root	a3	area
+# ::edge	area	consist-of	grass	a3	g	
+# ::edge	and	op1	lake	a2	l	
+# ::edge	area	location-of	and	a3	a2	
+# ::edge	and	op2	train	a2	t2	
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	travel-01	ARG1	track	t3	t	
+# ::edge	track	location	above	t	a	
+# ::edge	above	op1	lake	a	l	
+(a3 / area
+    :consist-of (g / grass)
+    :location-of (a2 / and
+        :op1 (l / lake)
+        :op2 (t2 / train
+            :ARG0-of (t3 / travel-01
+                :ARG1 (t / track
+                    :location (a / above
+                        :op1 l))))))

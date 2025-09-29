@@ -1,0 +1,45 @@
+# ::tok a table full of restaurant food that includes gourmet hamburgers with sweet potato fries , onion rings , and dips .
+# ::node	t	table	1-2
+# ::node	f3	full-09	2-3
+# ::node	r	restaurant	4-5
+# ::node	f	food	5-6
+# ::node	i	include-01	7-8
+# ::node	g	gourmet	8-9
+# ::node	b	burger	9-10
+# ::node	s	sweet-04	11-12
+# ::node	p	potato	12-13
+# ::node	f2	fry-01	13-14
+# ::node	o	onion	15-16
+# ::node	r2	ring	16-17
+# ::node	a	and	18-19
+# ::node	d	dip-02	19-20
+# ::root	t	table
+# ::edge	table	ARG1-of	full-09	t	f3	
+# ::edge	food	mod	restaurant	f	r	
+# ::edge	full-09	ARG2	food	f3	f	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	burger	mod	gourmet	b	g	
+# ::edge	include-01	ARG1	burger	i	b	
+# ::edge	potato	ARG1-of	sweet-04	p	s	
+# ::edge	fry-01	ARG2	potato	f2	p	
+# ::edge	ring	consist-of	onion	r2	o	
+# ::edge	and	op3	ring	a	r2	
+# ::edge	and	op2	fry-01	a	f2	
+# ::edge	and	op1	burger	a	b	
+# ::edge	burger	accompanier	and	b	a	
+# ::edge	and	op4	dip-02	a	d	
+(t / table
+    :ARG1-of (f3 / full-09
+        :ARG2 (f / food
+            :ARG2-of (i / include-01
+                :ARG1 (b / burger
+                    :accompanier (a / and
+                        :op1 b
+                        :op2 (f2 / fry-01
+                            :ARG2 (p / potato
+                                :ARG1-of (s / sweet-04)))
+                        :op3 (r2 / ring
+                            :consist-of (o / onion))
+                        :op4 (d / dip-02))
+                    :mod (g / gourmet)))
+            :mod (r / restaurant))))

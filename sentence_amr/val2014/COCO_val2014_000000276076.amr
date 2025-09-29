@@ -1,0 +1,39 @@
+# ::tok A herd of sheep travel down one side of the road and cars coming down the other side .
+# ::node	h	herd	1-2
+# ::node	s	sheep	3-4
+# ::node	t	travel-01	4-5
+# ::node	d	down	5-6
+# ::node	s2	side	7-8
+# ::node	r	road	10-11
+# ::node	a	and	11-12
+# ::node	c	car	12-13
+# ::node	c2	come-01	13-14
+# ::node	d2	down	14-15
+# ::node	o	other	16-17
+# ::node	s3	side	17-18
+# ::root	a	and
+# ::edge	herd	consist-of	sheep	h	s	
+# ::edge	travel-01	ARG0	herd	t	h	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	ARG1	side	t	s2	
+# ::edge	side	part-of	road	s2	r	
+# ::edge	and	op1	travel-01	a	t	
+# ::edge	come-01	ARG1	car	c2	c	
+# ::edge	and	op2	come-01	a	c2	
+# ::edge	come-01	direction	down	c2	d2	
+# ::edge	side	mod	other	s3	o	
+# ::edge	come-01	ARG4	side	c2	s3	
+# ::edge	road	part	side	r	s3	
+(a / and
+    :op1 (t / travel-01
+        :ARG0 (h / herd
+            :consist-of (s / sheep))
+        :ARG1 (s2 / side
+            :part-of (r / road
+                :part (s3 / side
+                    :mod (o / other))))
+        :direction (d / down))
+    :op2 (c2 / come-01
+        :ARG1 (c / car)
+        :ARG4 s3
+        :direction (d2 / down)))

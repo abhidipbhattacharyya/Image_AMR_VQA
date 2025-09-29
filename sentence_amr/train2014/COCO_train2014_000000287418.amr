@@ -1,0 +1,43 @@
+# ::tok Detroit baseball player dropping bat and preparing to run to base
+# ::node	c	city	0-1
+# ::node	n	name	0-1
+# ::node	0	Detroit	0-1
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	d	drop-01	3-4
+# ::node	b3	bat	4-5
+# ::node	a	and	5-6
+# ::node	p3	prepare-02	6-7
+# ::node	r	run-02	8-9
+# ::node	b	base	10-11
+# ::root	a	and
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Detroit	n	0	
+# ::edge	person	mod	city	p	c	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	drop-01	ARG0	person	d	p	
+# ::edge	drop-01	ARG1	bat	d	b3	
+# ::edge	and	op1	drop-01	a	d	
+# ::edge	and	op2	prepare-02	a	p3	
+# ::edge	prepare-02	ARG1	person	p3	p	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG2	run-02	p3	r	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	run-02	destination	base	r	b	
+(a / and
+    :op1 (d / drop-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b2 / baseball))
+            :mod (c / city
+                :name (n / name
+                    :op1 "Detroit")))
+        :ARG1 (b3 / bat))
+    :op2 (p3 / prepare-02
+        :ARG0 p
+        :ARG1 p
+        :ARG2 (r / run-02
+            :ARG0 p
+            :destination (b / base))))

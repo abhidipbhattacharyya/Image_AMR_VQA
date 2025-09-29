@@ -1,0 +1,28 @@
+# ::tok A prop plane with is movable wings folded up parked on a runway .
+# ::node	p4	prop	1-2
+# ::node	p2	plane	2-3
+# ::node	m	move-01	5-6
+# ::node	p3	possible-01	5-6
+# ::node	w	wing	6-7
+# ::node	f	fold-03	7-8
+# ::node	u	up	8-9
+# ::node	p	park-01	9-10
+# ::node	r	runway	12-13
+# ::root	p2	plane
+# ::edge	plane	mod	prop	p2	p4	
+# ::edge	move-01	ARG1-of	possible-01	m	p3	
+# ::edge	wing	ARG1-of	move-01	w	m	
+# ::edge	plane	part	wing	p2	w	
+# ::edge	wing	ARG1-of	fold-03	w	f	
+# ::edge	fold-03	mod	up	f	u	
+# ::edge	plane	ARG1-of	park-01	p2	p	
+# ::edge	park-01	ARG2	runway	p	r	
+(p2 / plane
+    :ARG1-of (p / park-01
+        :ARG2 (r / runway))
+    :mod (p4 / prop)
+    :part (w / wing
+        :ARG1-of (m / move-01
+            :ARG1-of (p3 / possible-01))
+        :ARG1-of (f / fold-03
+            :mod (u / up))))

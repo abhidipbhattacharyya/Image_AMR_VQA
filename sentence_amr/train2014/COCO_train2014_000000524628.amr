@@ -1,0 +1,32 @@
+# ::tok 2 dogs are leashed are relaxing on a big bench , leashed together .
+# ::node	0	2	0-1
+# ::node	d	dog	1-2
+# ::node	r	relax-01	5-6
+# ::node	b2	big	8-9
+# ::node	b	bench	9-10
+# ::node	a	and	10-11
+# ::node	l	leash-01	11-12
+# ::node	t	together	12-13
+# ::node	c	cause-01	13-14
+# ::root	a	and
+# ::edge	dog	quant	2	d	0	
+# ::edge	relax-01	ARG1	dog	r	d	
+# ::edge	bench	mod	big	b	b2	
+# ::edge	relax-01	location	bench	r	b	
+# ::edge	and	op2	relax-01	a	r	
+# ::edge	and	op1	dog	a	d	
+# ::edge	leash-01	ARG1	dog	l	d	
+# ::edge	leash-01	manner	together	l	t	
+# ::edge	cause-01	ARG1	leash-01	c	l	
+# ::edge	and	ARG0-of	cause-01	a	c	
+(a / and
+    :ARG0-of (c / cause-01
+        :ARG1 (l / leash-01
+            :ARG1 (d / dog
+                :quant 2)
+            :manner (t / together)))
+    :op1 d
+    :op2 (r / relax-01
+        :ARG1 d
+        :location (b / bench
+            :mod (b2 / big))))

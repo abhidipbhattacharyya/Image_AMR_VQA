@@ -1,0 +1,55 @@
+# ::tok A mission style bed is dressed with bright white sheets and a striped folded quilt sitting in between two matching nightstands and lamps .
+# ::node	m2	mission	1-2
+# ::node	s4	style	2-3
+# ::node	b	bed	3-4
+# ::node	d	dress-01	5-6
+# ::node	b3	bright-02	7-8
+# ::node	w	white-03	8-9
+# ::node	s	sheet	9-10
+# ::node	a	and	10-11
+# ::node	s3	stripe	12-13
+# ::node	f	fold-03	13-14
+# ::node	q	quilt	14-15
+# ::node	s2	sit-01	15-16
+# ::node	b2	between	17-18
+# ::node	0	2	18-19
+# ::node	m	match-01	19-20
+# ::node	n	night	20-21
+# ::node	a2	and	21-22
+# ::node	b4	bulb	22-23
+# ::root	d	dress-01
+# ::edge	style	mod	mission	s4	m2	
+# ::edge	bed	mod	style	b	s4	
+# ::edge	dress-01	ARG1	bed	d	b	
+# ::edge	sheet	ARG1-of	white-03	s	w	
+# ::edge	sheet	ARG1-of	bright-02	s	b3	
+# ::edge	and	op1	sheet	a	s	
+# ::edge	dress-01	ARG2	and	d	a	
+# ::edge	quilt	ARG1-of	fold-03	q	f	
+# ::edge	quilt	mod	stripe	q	s3	
+# ::edge	and	op2	quilt	a	q	
+# ::edge	quilt	ARG1-of	sit-01	q	s2	
+# ::edge	sit-01	ARG2	between	s2	b2	
+# ::edge	night	ARG1-of	match-01	n	m	
+# ::edge	night	quant	2	n	0	
+# ::edge	and	op1	night	a2	n	
+# ::edge	between	op1	and	b2	a2	
+# ::edge	and	op2	bulb	a2	b4	
+(d / dress-01
+    :ARG1 (b / bed
+        :mod (s4 / style
+            :mod (m2 / mission)))
+    :ARG2 (a / and
+        :op1 (s / sheet
+            :ARG1-of (w / white-03)
+            :ARG1-of (b3 / bright-02))
+        :op2 (q / quilt
+            :ARG1-of (f / fold-03)
+            :ARG1-of (s2 / sit-01
+                :ARG2 (b2 / between
+                    :op1 (a2 / and
+                        :op1 (n / night
+                            :quant 2
+                            :ARG1-of (m / match-01))
+                        :op2 (b4 / bulb))))
+            :mod (s3 / stripe))))

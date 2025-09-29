@@ -1,0 +1,27 @@
+# ::tok A street sign that indicates that you should n't turn left .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	i	indicate-01	4-5
+# ::node	y	you	6-7
+# ::node	r	recommend-01	7-8
+# ::node	0	-	8-9
+# ::node	t	turn-01	9-10
+# ::node	l	left-20	10-11
+# ::root	s	sign
+# ::edge	sign	location	street	s	s2	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	recommend-01	ARG2	you	r	y	
+# ::edge	indicate-01	ARG1	recommend-01	i	r	
+# ::edge	recommend-01	polarity	-	r	0	
+# ::edge	recommend-01	ARG1	turn-01	r	t	
+# ::edge	turn-01	ARG0	you	t	y	
+# ::edge	turn-01	direction	left-20	t	l	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (r / recommend-01
+            :ARG1 (t / turn-01
+                :ARG0 (y / you)
+                :direction (l / left-20))
+            :ARG2 y
+            :polarity -))
+    :location (s2 / street))

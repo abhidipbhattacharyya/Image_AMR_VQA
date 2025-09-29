@@ -1,0 +1,36 @@
+# ::tok Person on a tiled floor eating something with back of legs of someone else visible behind them .
+# ::node	p	person	0-1
+# ::node	t	tile-01	3-4
+# ::node	f	floor	4-5
+# ::node	e	eat-01	5-6
+# ::node	s3	something	6-7
+# ::node	b	back	8-9
+# ::node	l	leg	10-11
+# ::node	s2	someone	12-13
+# ::node	e2	else	13-14
+# ::node	s	see-01	14-15
+# ::node	b2	behind	15-16
+# ::root	e	eat-01
+# ::edge	floor	ARG1-of	tile-01	f	t	
+# ::edge	person	location	floor	p	f	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	something	e	s3	
+# ::edge	leg	part	back	l	b	
+# ::edge	eat-01	manner	leg	e	l	
+# ::edge	leg	part-of	someone	l	s2	
+# ::edge	someone	mod	else	s2	e2	
+# ::edge	someone	ARG1-of	see-01	s2	s	
+# ::edge	see-01	location	behind	s	b2	
+# ::edge	behind	op1	person	b2	p	
+(e / eat-01
+    :ARG0 (p / person
+        :location (f / floor
+            :ARG1-of (t / tile-01)))
+    :ARG1 (s3 / something)
+    :manner (l / leg
+        :part (b / back)
+        :part-of (s2 / someone
+            :ARG1-of (s / see-01
+                :location (b2 / behind
+                    :op1 p))
+            :mod (e2 / else))))

@@ -1,0 +1,26 @@
+# ::tok Several players leaping to catch a Frisbee during a competition .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	l	leap-03	2-3
+# ::node	c	catch-01	4-5
+# ::node	r	Frisbee	6-7
+# ::node	c2	compete-01	9-10
+# ::root	l	leap-03
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	leap-03	ARG0	person	l	p	
+# ::edge	leap-03	purpose	catch-01	l	c	
+# ::edge	catch-01	ARG0	person	c	p	
+# ::edge	catch-01	ARG1	Frisbee	c	r	
+# ::edge	leap-03	time	compete-01	l	c2	
+# ::edge	compete-01	ARG0	person	c2	p	
+(l / leap-03
+    :purpose (c / catch-01
+        :ARG0 (p / person
+            :quant (s / several)
+            :ARG0-of (p2 / play-01))
+        :ARG1 (r / Frisbee))
+    :ARG0 p
+    :time (c2 / compete-01
+        :ARG0 p))

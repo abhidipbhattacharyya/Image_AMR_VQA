@@ -1,0 +1,39 @@
+# ::tok Ignoring the " No Photography Please " sign we see a man playing a video game
+# ::node	i	ignore-01	0-1
+# ::node	s3	string-entity	2-3
+# ::node	1	-	3-4
+# ::node	p	photograph-01	4-5
+# ::node	0	+	5-6
+# ::node	s2	sign	7-8
+# ::node	w	we	8-9
+# ::node	s	see-01	9-10
+# ::node	m	man	11-12
+# ::node	p2	play-01	12-13
+# ::node	v	video	14-15
+# ::node	g	game	15-16
+# ::root	s	see-01
+# ::edge	photograph-01	polarity	-	p	1	
+# ::edge	string-entity	value	photograph-01	s3	p	
+# ::edge	string-entity	value	+	s3	0	
+# ::edge	sign	mod	string-entity	s2	s3	
+# ::edge	ignore-01	ARG1	sign	i	s2	
+# ::edge	ignore-01	ARG0	we	i	w	
+# ::edge	see-01	ARG0	we	s	w	
+# ::edge	see-01	condition	ignore-01	s	i	
+# ::edge	see-01	ARG1	man	s	m	
+# ::edge	man	ARG0-of	play-01	m	p2	
+# ::edge	game	mod	video	g	v	
+# ::edge	play-01	ARG1	game	p2	g	
+(s / see-01
+    :ARG0 (w / we)
+    :ARG1 (m / man
+        :ARG0-of (p2 / play-01
+            :ARG1 (g / game
+                :mod (v / video))))
+    :condition (i / ignore-01
+        :ARG0 w
+        :ARG1 (s2 / sign
+            :mod (s3 / string-entity
+                :value (p / photograph-01
+                    :polarity -)
+                :value +))))

@@ -1,0 +1,37 @@
+# ::tok A group of people some with designed clothing , some with plain clothing on .
+# ::node	g	group-01	1-2
+# ::node	p	person	3-4
+# ::node	s	some	4-5
+# ::node	d	design-01	6-7
+# ::node	c	clothe-01	7-8
+# ::node	a	and	8-9
+# ::node	i	include-91	9-10
+# ::node	i2	include-91	9-10
+# ::node	s2	some	9-10
+# ::node	p2	person	10-11
+# ::node	p3	plain	11-12
+# ::node	c2	clothe-01	12-13
+# ::root	g	group-01
+# ::edge	group-01	ARG1	person	g	p	
+# ::edge	clothe-01	ARG1-of	design-01	c	d	
+# ::edge	and	op1	clothe-01	a	c	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	mod	some	p2	s2	
+# ::edge	person	ARG1-of	include-91	p2	i2	
+# ::edge	and	op2	person	a	p2	
+# ::edge	clothe-01	ARG2	plain	c2	p3	
+# ::edge	include-91	op2	clothe-01	i2	c2	
+# ::edge	group-01	rel	some	g	s	
+(g / group-01
+    :ARG1 (p / person
+        :ARG2-of (i / include-91
+            :ARG1 (a / and
+                :op1 (c / clothe-01
+                    :ARG1-of (d / design-01))
+                :op2 (p2 / person
+                    :ARG1-of (i2 / include-91
+                        :op2 (c2 / clothe-01
+                            :ARG2 (p3 / plain)))
+                    :mod (s2 / some)))))
+    :rel (s / some))

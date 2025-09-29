@@ -1,0 +1,31 @@
+# ::tok A tall tower can be seen in the background and a banner of signs can be seen in the foreground .
+# ::node	t	tall	1-2
+# ::node	t2	tower	2-3
+# ::node	p	possible-01	3-4
+# ::node	s	see-01	5-6
+# ::node	b	background	8-9
+# ::node	a	and	9-10
+# ::node	b2	banner	11-12
+# ::node	s3	sign	13-14
+# ::node	s2	see-01	16-17
+# ::node	f	foreground	19-20
+# ::root	p	possible-01
+# ::edge	tower	mod	tall	t2	t	
+# ::edge	see-01	ARG1	tower	s	t2	
+# ::edge	see-01	location	background	s	b	
+# ::edge	and	op1	see-01	a	s	
+# ::edge	possible-01	ARG1	and	p	a	
+# ::edge	banner	consist-of	sign	b2	s3	
+# ::edge	see-01	ARG1	banner	s2	b2	
+# ::edge	and	op2	see-01	a	s2	
+# ::edge	see-01	location	foreground	s2	f	
+(p / possible-01
+    :ARG1 (a / and
+        :op1 (s / see-01
+            :ARG1 (t2 / tower
+                :mod (t / tall))
+            :location (b / background))
+        :op2 (s2 / see-01
+            :ARG1 (b2 / banner
+                :consist-of (s3 / sign))
+            :location (f / foreground))))

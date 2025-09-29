@@ -1,0 +1,39 @@
+# ::tok Three pictures of whole oranges , an orange cut in half and a glass of orange juice .
+# ::node	1	3	0-1
+# ::node	p	picture	1-2
+# ::node	w	whole	3-4
+# ::node	o	orange	4-5
+# ::node	o2	orange	7-8
+# ::node	c	cut-01	8-9
+# ::node	h	half	10-11
+# ::node	a	and	11-12
+# ::node	v	volume-quantity	12-13
+# ::node	0	1	12-13
+# ::node	g	glass	13-14
+# ::node	j	juice	16-17
+# ::root	p	picture
+# ::edge	picture	quant	3	p	1	
+# ::edge	orange	mod	whole	o	w	
+# ::edge	cut-01	ARG1	orange	c	o2	
+# ::edge	cut-01	manner	half	c	h	
+# ::edge	and	op2	cut-01	a	c	
+# ::edge	and	op1	orange	a	o	
+# ::edge	picture	topic	and	p	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	and	op3	juice	a	j	
+# ::edge	juice	mod	orange	j	o2	
+(p / picture
+    :quant 3
+    :topic (a / and
+        :op1 (o / orange
+            :mod (w / whole))
+        :op2 (c / cut-01
+            :ARG1 (o2 / orange)
+            :manner (h / half))
+        :op3 (j / juice
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :mod o2)))

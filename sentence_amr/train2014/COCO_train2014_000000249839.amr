@@ -1,0 +1,30 @@
+# ::tok Kitchen worker giving approval while standing next to food items on tray .
+# ::node	h	hunger-01	0-1
+# ::node	p	person	1-2
+# ::node	w	work-01	1-2
+# ::node	a	approve-01	3-4
+# ::node	s	stand-01	5-6
+# ::node	n	next-to	6-7
+# ::node	f	food	8-9
+# ::node	i	item	9-10
+# ::node	t	tray	11-12
+# ::root	a	approve-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	hunger-01	w	h	
+# ::edge	approve-01	ARG0	person	a	p	
+# ::edge	approve-01	time	stand-01	a	s	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	item	mod	food	i	f	
+# ::edge	next-to	op1	item	n	i	
+# ::edge	item	location	tray	i	t	
+(a / approve-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01
+            :ARG1 (h / hunger-01)))
+    :time (s / stand-01
+        :ARG1 p
+        :ARG2 (n / next-to
+            :op1 (i / item
+                :location (t / tray)
+                :mod (f / food)))))

@@ -1,0 +1,33 @@
+# ::tok A refrigerator mostly empty with only a few bottles of water inside .
+# ::node	r	refrigerator	1-2
+# ::node	m	most	2-3
+# ::node	e	empty-02	3-4
+# ::node	o	only	5-6
+# ::node	f	few	7-8
+# ::node	0	1	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	b	bottle	8-9
+# ::node	w	water	10-11
+# ::node	i	inside	11-12
+# ::root	e	empty-02
+# ::edge	empty-02	mod	most	e	m	
+# ::edge	empty-02	ARG1	refrigerator	e	r	
+# ::edge	few	mod	only	f	o	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	few	op1	volume-quantity	f	v	
+# ::edge	volume-quantity	unit	bottle	v	b	
+# ::edge	water	quant	few	w	f	
+# ::edge	refrigerator	part	water	r	w	
+# ::edge	water	location	inside	w	i	
+# ::edge	inside	op1	refrigerator	i	r	
+(e / empty-02
+    :ARG1 (r / refrigerator
+        :part (w / water
+            :quant (f / few
+                :mod (o / only)
+                :op1 (v / volume-quantity
+                    :quant 1
+                    :unit (b / bottle)))
+            :location (i / inside
+                :op1 r)))
+    :mod (m / most))

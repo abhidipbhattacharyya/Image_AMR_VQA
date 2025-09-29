@@ -1,0 +1,39 @@
+# ::tok A block bike is propped up on the fence railing as a red 40 - wheel drive truck is parked behind it .
+# ::node	b3	block	1-2
+# ::node	b2	bike	2-3
+# ::node	p2	prop-up-01	4-5
+# ::node	f	fence	8-9
+# ::node	r	railing	9-10
+# ::node	r2	red-02	12-13
+# ::node	0	40	13-14
+# ::node	w	wheel	15-16
+# ::node	d	drive-01	16-17
+# ::node	t	truck	17-18
+# ::node	p	park-01	19-20
+# ::node	b	behind	20-21
+# ::root	p2	prop-up-01
+# ::edge	bike	mod	block	b2	b3	
+# ::edge	prop-up-01	ARG1	bike	p2	b2	
+# ::edge	railing	part-of	fence	r	f	
+# ::edge	prop-up-01	ARG2	railing	p2	r	
+# ::edge	wheel	quant	40	w	0	
+# ::edge	truck	ARG0-of	drive-01	t	d	
+# ::edge	truck	mod	wheel	t	w	
+# ::edge	truck	ARG1-of	red-02	t	r2	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	prop-up-01	time	park-01	p2	p	
+# ::edge	park-01	location	behind	p	b	
+# ::edge	behind	op1	bike	b	b2	
+(p2 / prop-up-01
+    :ARG1 (b2 / bike
+        :mod (b3 / block))
+    :ARG2 (r / railing
+        :part-of (f / fence))
+    :time (p / park-01
+        :ARG1 (t / truck
+            :ARG0-of (d / drive-01)
+            :ARG1-of (r2 / red-02)
+            :mod (w / wheel
+                :quant 40))
+        :location (b / behind
+            :op1 b2)))

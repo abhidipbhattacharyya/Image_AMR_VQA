@@ -1,0 +1,37 @@
+# ::tok A man in a black cap is purchasing a bottle of Aquafina water at a grocery store .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	b	black-04	4-5
+# ::node	c	cap	5-6
+# ::node	p2	purchase-01	7-8
+# ::node	b2	bottle	9-10
+# ::node	c2	contain-01	9-10
+# ::node	n	name	9-10
+# ::node	p	product	11-12
+# ::node	0	Aquafina	11-12
+# ::node	g	grocery	15-16
+# ::node	s	store	16-17
+# ::root	p2	purchase-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	cap	ARG1-of	black-04	c	b	
+# ::edge	wear-01	ARG1	cap	w	c	
+# ::edge	purchase-01	ARG0	man	p2	m	
+# ::edge	purchase-01	ARG1	bottle	p2	b2	
+# ::edge	bottle	ARG0-of	contain-01	b2	c2	
+# ::edge	product	name	name	p	n	
+# ::edge	contain-01	ARG1	product	c2	p	
+# ::edge	name	op1	Aquafina	n	0	
+# ::edge	store	mod	grocery	s	g	
+# ::edge	purchase-01	location	store	p2	s	
+(p2 / purchase-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (c / cap
+                :ARG1-of (b / black-04))))
+    :ARG1 (b2 / bottle
+        :ARG0-of (c2 / contain-01
+            :ARG1 (p / product
+                :name (n / name
+                    :op1 "Aquafina"))))
+    :location (s / store
+        :mod (g / grocery)))

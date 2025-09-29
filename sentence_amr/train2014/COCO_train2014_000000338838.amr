@@ -1,0 +1,44 @@
+# ::tok A young skier in a purple and green snow suit moving down the mountain .
+# ::node	y	young	1-2
+# ::node	p	person	2-3
+# ::node	s	ski-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	p2	purple-02	5-6
+# ::node	a	and	6-7
+# ::node	g	green-02	7-8
+# ::node	s2	snow	8-9
+# ::node	s3	suit	9-10
+# ::node	s4	suit	9-10
+# ::node	m2	move-01	10-11
+# ::node	d	down-03	11-12
+# ::node	m	mountain	13-14
+# ::root	m2	move-01
+# ::edge	person	mod	young	p	y	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	suit	mod	snow	s3	s2	
+# ::edge	and	op1	suit	a	s3	
+# ::edge	suit	ARG1-of	purple-02	s3	p2	
+# ::edge	suit	mod	snow	s4	s2	
+# ::edge	suit	ARG1-of	green-02	s4	g	
+# ::edge	and	op2	suit	a	s4	
+# ::edge	move-01	ARG0	person	m2	p	
+# ::edge	move-01	ARG2	down-03	m2	d	
+# ::edge	down-03	ARG1	person	d	p	
+# ::edge	down-03	path	mountain	d	m	
+(m2 / move-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01)
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s3 / suit
+                    :ARG1-of (p2 / purple-02)
+                    :mod (s2 / snow))
+                :op2 (s4 / suit
+                    :ARG1-of (g / green-02)
+                    :mod s2)))
+        :mod (y / young))
+    :ARG2 (d / down-03
+        :ARG1 p
+        :path (m / mountain)))

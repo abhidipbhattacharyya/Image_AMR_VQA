@@ -1,0 +1,25 @@
+# ::tok a red fire truck with multiple hoses hooked up to the fire hydrant
+# ::node	r	red-02	1-2
+# ::node	f	fire	2-3
+# ::node	t	truck	3-4
+# ::node	m	multiple	5-6
+# ::node	h2	hose-01	6-7
+# ::node	h	hook-up-02	7-8
+# ::node	f2	fire	11-12
+# ::node	h3	hydrant	12-13
+# ::root	t	truck
+# ::edge	truck	mod	fire	t	f	
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	hose-01	quant	multiple	h2	m	
+# ::edge	truck	ARG2-of	hose-01	t	h2	
+# ::edge	truck	ARG1-of	hook-up-02	t	h	
+# ::edge	hydrant	mod	fire	h3	f2	
+# ::edge	hook-up-02	ARG2	hydrant	h	h3	
+(t / truck
+    :ARG1-of (r / red-02)
+    :ARG1-of (h / hook-up-02
+        :ARG2 (h3 / hydrant
+            :mod (f2 / fire)))
+    :ARG2-of (h2 / hose-01
+        :quant (m / multiple))
+    :mod (f / fire))

@@ -1,0 +1,37 @@
+# ::tok Desk setup with an all - in - one Apple computer and a secondary monitor connected .
+# ::node	t	total	0-1
+# ::node	c	cabinet	0-1
+# ::node	s2	set-up-03	1-2
+# ::node	a	all-in-all	6-7
+# ::node	c2	company	9-10
+# ::node	n	name	9-10
+# ::node	0	Apple	9-10
+# ::node	c3	computer	10-11
+# ::node	a2	and	11-12
+# ::node	s	secondary	13-14
+# ::node	m	monitor	14-15
+# ::node	c4	connect-01	15-16
+# ::root	s2	set-up-03
+# ::edge	set-up-03	ARG1	cabinet	s2	c	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Apple	n	0	
+# ::edge	computer	mod	company	c3	c2	
+# ::edge	computer	mod	all-in-all	c3	a	
+# ::edge	and	op1	computer	a2	c3	
+# ::edge	monitor	mod	secondary	m	s	
+# ::edge	and	op2	monitor	a2	m	
+# ::edge	connect-01	ARG1	and	c4	a2	
+# ::edge	set-up-03	manner	connect-01	s2	c4	
+# ::edge	set-up-03	rel	total	s2	t	
+(s2 / set-up-03
+    :ARG1 (c / cabinet)
+    :manner (c4 / connect-01
+        :ARG1 (a2 / and
+            :op1 (c3 / computer
+                :mod (c2 / company
+                    :name (n / name
+                        :op1 "Apple"))
+                :mod (a / all-in-all))
+            :op2 (m / monitor
+                :mod (s / secondary))))
+    :rel (t / total))

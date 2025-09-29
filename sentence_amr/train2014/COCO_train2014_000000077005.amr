@@ -1,0 +1,25 @@
+# ::tok Many people , with one lady looking at the camera , are at the table eating .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	0	1	4-5
+# ::node	l	lady	5-6
+# ::node	l2	look-01	6-7
+# ::node	c	camera	9-10
+# ::node	t	table	14-15
+# ::node	e	eat-01	15-16
+# ::root	e	eat-01
+# ::edge	person	quant	many	p	m	
+# ::edge	lady	quant	1	l	0	
+# ::edge	look-01	ARG0	lady	l2	l	
+# ::edge	person	accompanier	look-01	p	l2	
+# ::edge	look-01	ARG1	camera	l2	c	
+# ::edge	eat-01	location	table	e	t	
+# ::edge	eat-01	ARG0	person	e	p	
+(e / eat-01
+    :ARG0 (p / person
+        :quant (m / many)
+        :accompanier (l2 / look-01
+            :ARG0 (l / lady
+                :quant 1)
+            :ARG1 (c / camera)))
+    :location (t / table))

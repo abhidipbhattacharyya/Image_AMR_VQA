@@ -1,0 +1,40 @@
+# ::tok Plate of dinner roll , pot roast and boiled vegetables that has partially spilled onto a wooden dining table .
+# ::node	p2	plate	0-1
+# ::node	d2	dinner	2-3
+# ::node	r2	roll	3-4
+# ::node	p3	pot	5-6
+# ::node	r	roast-01	6-7
+# ::node	a	and	7-8
+# ::node	b	boil-01	8-9
+# ::node	v	vegetable	9-10
+# ::node	p	part	12-13
+# ::node	s	spill-01	13-14
+# ::node	w	wood	16-17
+# ::node	d	dine-01	17-18
+# ::node	t	table	18-19
+# ::root	p2	plate
+# ::edge	roll	mod	dinner	r2	d2	
+# ::edge	roast-01	ARG1	pot	r	p3	
+# ::edge	and	op2	roast-01	a	r	
+# ::edge	and	op1	roll	a	r2	
+# ::edge	plate	consist-of	and	p2	a	
+# ::edge	vegetable	ARG1-of	boil-01	v	b	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	spill-01	degree	part	s	p	
+# ::edge	plate	ARG1-of	spill-01	p2	s	
+# ::edge	table	purpose	dine-01	t	d	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	spill-01	ARG2	table	s	t	
+(p2 / plate
+    :ARG1-of (s / spill-01
+        :ARG2 (t / table
+            :purpose (d / dine-01)
+            :consist-of (w / wood))
+        :degree (p / part))
+    :consist-of (a / and
+        :op1 (r2 / roll
+            :mod (d2 / dinner))
+        :op2 (r / roast-01
+            :ARG1 (p3 / pot))
+        :op3 (v / vegetable
+            :ARG1-of (b / boil-01))))

@@ -1,0 +1,21 @@
+# ::tok Traffic light signaling people that it 's time to walk
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	s	signal-07	2-3
+# ::node	p	person	3-4
+# ::node	n	now	6-7
+# ::node	w	walk-01	9-10
+# ::root	s	signal-07
+# ::edge	light	mod	traffic	l	t	
+# ::edge	signal-07	ARG0	light	s	l	
+# ::edge	signal-07	ARG2	person	s	p	
+# ::edge	signal-07	ARG1	now	s	n	
+# ::edge	now	time-of	walk-01	n	w	
+# ::edge	walk-01	ARG0	person	w	p	
+(s / signal-07
+    :ARG0 (l / light
+        :mod (t / traffic))
+    :ARG1 (n / now
+        :time-of (w / walk-01
+            :ARG0 (p / person)))
+    :ARG2 p)

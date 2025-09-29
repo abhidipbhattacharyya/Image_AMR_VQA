@@ -1,0 +1,36 @@
+# ::tok A Chicago style hotdog with the works sitting on a table .
+# ::node	c	city	1-2
+# ::node	n	name	1-2
+# ::node	0	Chicago	1-2
+# ::node	s2	style	2-3
+# ::node	h2	hotdog	3-4
+# ::node	h	have-03	4-5
+# ::node	w	work-01	5-6
+# ::node	w2	work-01	6-7
+# ::node	s	sit-01	7-8
+# ::node	t2	thing	8-9
+# ::node	t	table	10-11
+# ::root	h2	hotdog
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Chicago	n	0	
+# ::edge	style	mod	city	s2	c	
+# ::edge	hotdog	mod	style	h2	s2	
+# ::edge	hotdog	ARG0-of	have-03	h2	h	
+# ::edge	have-03	ARG1	sit-01	h	s	
+# ::edge	sit-01	ARG1	thing	s	t2	
+# ::edge	thing	ARG0-of	work-01	t2	w	
+# ::edge	thing	mod	work-01	t2	w	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	hotdog	rel	work-01	h2	w2	
+(h2 / hotdog
+    :ARG0-of (h / have-03
+        :ARG1 (s / sit-01
+            :ARG1 (t2 / thing
+                :ARG0-of (w / work-01)
+                :mod w)
+            :ARG2 (t / table)))
+    :mod (s2 / style
+        :mod (c / city
+            :name (n / name
+                :op1 "Chicago")))
+    :rel (w2 / work-01))

@@ -1,0 +1,33 @@
+# ::tok A room that has three sofa chairs , one of which has a painting on it .
+# ::node	r	room	1-2
+# ::node	h	have-03	3-4
+# ::node	1	3	4-5
+# ::node	s	sofa	5-6
+# ::node	c	chair	6-7
+# ::node	c2	chair	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	h2	have-03	11-12
+# ::node	p	paint-02	13-14
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	chair	mod	sofa	c	s	
+# ::edge	chair	quant	3	c	1	
+# ::edge	have-03	ARG1	chair	h	c	
+# ::edge	include-91	ARG1	chair	i	c2	
+# ::edge	chair	ARG2-of	include-91	c	i	
+# ::edge	chair	quant	1	c2	0	
+# ::edge	chair	ARG0-of	have-03	c2	h2	
+# ::edge	have-03	ARG1	paint-02	h2	p	
+# ::edge	paint-02	location	chair	p	c2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (c / chair
+            :quant 3
+            :ARG2-of (i / include-91
+                :ARG1 (c2 / chair
+                    :quant 1
+                    :ARG0-of (h2 / have-03
+                        :ARG1 (p / paint-02
+                            :location c2))))
+            :mod (s / sofa))))

@@ -1,0 +1,27 @@
+# ::tok A train engine merging onto a track and passing under a bridge
+# ::node	t2	train	1-2
+# ::node	e	engine	2-3
+# ::node	m	merge-01	3-4
+# ::node	t	track	6-7
+# ::node	a	and	7-8
+# ::node	p	pass-03	8-9
+# ::node	u	under	9-10
+# ::node	b	bridge	11-12
+# ::root	a	and
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	merge-01	ARG1	engine	m	e	
+# ::edge	merge-01	location	track	m	t	
+# ::edge	and	op1	merge-01	a	m	
+# ::edge	and	op2	pass-03	a	p	
+# ::edge	pass-03	ARG1	engine	p	e	
+# ::edge	pass-03	path	under	p	u	
+# ::edge	under	op1	bridge	u	b	
+(a / and
+    :op1 (m / merge-01
+        :ARG1 (e / engine
+            :part-of (t2 / train))
+        :location (t / track))
+    :op2 (p / pass-03
+        :ARG1 e
+        :path (u / under
+            :op1 (b / bridge))))

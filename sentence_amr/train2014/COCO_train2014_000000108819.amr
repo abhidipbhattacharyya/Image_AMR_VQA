@@ -1,0 +1,25 @@
+# ::tok High speed train leaving a platform in a large , covered station .
+# ::node	h	high-02	0-1
+# ::node	s	speed	1-2
+# ::node	t	train	2-3
+# ::node	l2	leave-11	3-4
+# ::node	p	platform	5-6
+# ::node	l	large	8-9
+# ::node	c	cover-02	10-11
+# ::node	s2	station	11-12
+# ::root	l2	leave-11
+# ::edge	speed	ARG1-of	high-02	s	h	
+# ::edge	train	mod	speed	t	s	
+# ::edge	leave-11	ARG0	train	l2	t	
+# ::edge	leave-11	ARG1	platform	l2	p	
+# ::edge	station	ARG1-of	cover-02	s2	c	
+# ::edge	station	mod	large	s2	l	
+# ::edge	leave-11	location	station	l2	s2	
+(l2 / leave-11
+    :ARG0 (t / train
+        :mod (s / speed
+            :ARG1-of (h / high-02)))
+    :ARG1 (p / platform)
+    :location (s2 / station
+        :ARG1-of (c / cover-02)
+        :mod (l / large)))

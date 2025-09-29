@@ -1,0 +1,34 @@
+# ::tok An overripe banana and a piece of bread or biscuit sit on top of a plastic bag .
+# ::node	o2	overripe	1-2
+# ::node	b2	banana	2-3
+# ::node	a	and	3-4
+# ::node	p	piece	5-6
+# ::node	b4	bread	7-8
+# ::node	o	or	8-9
+# ::node	b3	biscuit	9-10
+# ::node	s	sit-01	10-11
+# ::node	t	top	12-13
+# ::node	p2	plastic	15-16
+# ::node	b	bag	16-17
+# ::root	s	sit-01
+# ::edge	banana	mod	overripe	b2	o2	
+# ::edge	and	op1	banana	a	b2	
+# ::edge	and	op2	piece	a	p	
+# ::edge	or	op1	bread	o	b4	
+# ::edge	piece	mod	or	p	o	
+# ::edge	or	op2	biscuit	o	b3	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	top	s	t	
+# ::edge	bag	consist-of	plastic	b	p2	
+# ::edge	top	part-of	bag	t	b	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (b2 / banana
+            :mod (o2 / overripe))
+        :op2 (p / piece
+            :mod (o / or
+                :op1 (b4 / bread)
+                :op2 (b3 / biscuit))))
+    :ARG2 (t / top
+        :part-of (b / bag
+            :consist-of (p2 / plastic))))

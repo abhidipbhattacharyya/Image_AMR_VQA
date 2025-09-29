@@ -1,0 +1,43 @@
+# ::tok A big sign telling people to stop eating animals next to a building with cars parked outside
+# ::node	b	big	1-2
+# ::node	s	sign	2-3
+# ::node	t	tell-01	3-4
+# ::node	p2	person	4-5
+# ::node	s2	stop-01	6-7
+# ::node	e	eat-01	7-8
+# ::node	a	animal	8-9
+# ::node	n	next-to	9-10
+# ::node	b2	building	12-13
+# ::node	c	car	14-15
+# ::node	p	park-01	15-16
+# ::node	o	outside	16-17
+# ::root	s	sign
+# ::edge	sign	mod	big	s	b	
+# ::edge	sign	ARG0-of	tell-01	s	t	
+# ::edge	tell-01	ARG2	person	t	p2	
+# ::edge	stop-01	ARG0	person	s2	p2	
+# ::edge	tell-01	ARG1	stop-01	t	s2	
+# ::edge	stop-01	ARG1	eat-01	s2	e	
+# ::edge	eat-01	ARG0	person	e	p2	
+# ::edge	eat-01	ARG1	animal	e	a	
+# ::edge	sign	location	next-to	s	n	
+# ::edge	next-to	op1	building	n	b2	
+# ::edge	building	part	car	b2	c	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	location	outside	p	o	
+# ::edge	outside	op1	building	o	b2	
+(s / sign
+    :ARG0-of (t / tell-01
+        :ARG1 (s2 / stop-01
+            :ARG0 (p2 / person)
+            :ARG1 (e / eat-01
+                :ARG0 p2
+                :ARG1 (a / animal)))
+        :ARG2 p2)
+    :location (n / next-to
+        :op1 (b2 / building
+            :part (c / car
+                :ARG1-of (p / park-01
+                    :location (o / outside
+                        :op1 b2)))))
+    :mod (b / big))

@@ -1,0 +1,30 @@
+# ::tok A man in a room getting clothes on to get ready to go on an outing .
+# ::node	m	man	1-2
+# ::node	r2	room	4-5
+# ::node	g	get-04	5-6
+# ::node	c	clothes	6-7
+# ::node	r	ready-01	10-11
+# ::node	g2	go-02	12-13
+# ::node	o	out-01	15-16
+# ::root	m	man
+# ::edge	man	location	room	m	r2	
+# ::edge	man	ARG0-of	get-04	m	g	
+# ::edge	ready-01	ARG1	get-04	r	g	
+# ::edge	get-04	ARG1	ready-01	g	r	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	go-02	r	g2	
+# ::edge	go-02	ARG0	man	g2	m	
+# ::edge	go-02	ARG1	out-01	g2	o	
+# ::edge	out-01	ARG0	man	o	m	
+# ::edge	man	rel	clothes	m	c	
+(m / man
+    :ARG0-of (g / get-04
+        :ARG1 (r / ready-01
+            :ARG0 m
+            :ARG1 g
+            :ARG2 (g2 / go-02
+                :ARG0 m
+                :ARG1 (o / out-01
+                    :ARG0 m))))
+    :location (r2 / room)
+    :rel (c / clothes))

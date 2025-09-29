@@ -1,0 +1,25 @@
+# ::tok Explosives professional encountering suspicious package on city roadway intersection .
+# ::node	e2	explosive	0-1
+# ::node	p2	professional	1-2
+# ::node	e	encounter-01	2-3
+# ::node	s	suspicious-03	3-4
+# ::node	p	package	4-5
+# ::node	c	city	6-7
+# ::node	r	roadway	7-8
+# ::node	i	intersect-01	8-9
+# ::root	e	encounter-01
+# ::edge	professional	mod	explosive	p2	e2	
+# ::edge	encounter-01	ARG0	professional	e	p2	
+# ::edge	package	ARG1-of	suspicious-03	p	s	
+# ::edge	encounter-01	ARG1	package	e	p	
+# ::edge	roadway	mod	city	r	c	
+# ::edge	intersect-01	ARG1	roadway	i	r	
+# ::edge	encounter-01	location	intersect-01	e	i	
+(e / encounter-01
+    :ARG0 (p2 / professional
+        :mod (e2 / explosive))
+    :ARG1 (p / package
+        :ARG1-of (s / suspicious-03))
+    :location (i / intersect-01
+        :ARG1 (r / roadway
+            :mod (c / city))))

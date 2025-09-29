@@ -1,0 +1,29 @@
+# ::tok A red traffic light with a red stop sign posted underneath it .
+# ::node	r	red-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	h	have-03	4-5
+# ::node	s2	stop-01	7-8
+# ::node	s	sign	8-9
+# ::node	p	post-01	9-10
+# ::node	u	underneath	10-11
+# ::root	p	post-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	sign	topic	stop-01	s	s2	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	red-02	ARG1	sign	r	s	
+# ::edge	post-01	ARG1	light	p	l	
+# ::edge	post-01	ARG2	underneath	p	u	
+# ::edge	underneath	op1	light	u	l	
+(p / post-01
+    :ARG1 (l / light
+        :ARG0-of (h / have-03
+            :ARG1 (s / sign
+                :topic (s2 / stop-01)))
+        :ARG1-of (r / red-02
+            :ARG1 s)
+        :mod (t / traffic))
+    :ARG2 (u / underneath
+        :op1 l))

@@ -1,0 +1,40 @@
+# ::tok A bag of candy , 3 bottles of otc medicine , and various electronics are laying on a purple blanket .
+# ::node	b	bag	1-2
+# ::node	c	candy	3-4
+# ::node	0	3	5-6
+# ::node	b3	bottle	6-7
+# ::node	t	thing	8-9
+# ::node	o	other	8-9
+# ::node	m	medicine	9-10
+# ::node	a	and	11-12
+# ::node	v	various	12-13
+# ::node	e	electronic	13-14
+# ::node	l	lay-01	15-16
+# ::node	p	purple-02	18-19
+# ::node	b2	blanket	19-20
+# ::root	l	lay-01
+# ::edge	bag	consist-of	candy	b	c	
+# ::edge	bottle	quant	3	b3	0	
+# ::edge	bottle	mod	thing	b3	t	
+# ::edge	thing	mod	other	t	o	
+# ::edge	medicine	consist-of	bottle	m	b3	
+# ::edge	and	op2	medicine	a	m	
+# ::edge	and	op1	bag	a	b	
+# ::edge	electronic	mod	various	e	v	
+# ::edge	and	op3	electronic	a	e	
+# ::edge	lay-01	ARG1	and	l	a	
+# ::edge	blanket	ARG1-of	purple-02	b2	p	
+# ::edge	lay-01	ARG2	blanket	l	b2	
+(l / lay-01
+    :ARG1 (a / and
+        :op1 (b / bag
+            :consist-of (c / candy))
+        :op2 (m / medicine
+            :consist-of (b3 / bottle
+                :quant 3
+                :mod (t / thing
+                    :mod (o / other))))
+        :op3 (e / electronic
+            :mod (v / various)))
+    :ARG2 (b2 / blanket
+        :ARG1-of (p / purple-02)))

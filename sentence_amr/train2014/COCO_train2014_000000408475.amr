@@ -1,0 +1,31 @@
+# ::tok Road intersection with three red lights and a sign showing 40 .
+# ::node	r2	road	0-1
+# ::node	i	intersect-01	1-2
+# ::node	0	3	3-4
+# ::node	r	red-02	4-5
+# ::node	l	light	5-6
+# ::node	a	and	6-7
+# ::node	s2	sign	8-9
+# ::node	s	show-01	9-10
+# ::node	n	numerical-quantity	10-11
+# ::node	1	40	10-11
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	road	i	r2	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	light	quant	3	l	0	
+# ::edge	and	op1	light	a	l	
+# ::edge	intersect-01	location-of	and	i	a	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	show-01	ARG1	numerical-quantity	s	n	
+# ::edge	numerical-quantity	quant	40	n	1	
+(i / intersect-01
+    :ARG1 (r2 / road)
+    :location-of (a / and
+        :op1 (l / light
+            :quant 3
+            :ARG1-of (r / red-02))
+        :op2 (s2 / sign
+            :ARG0-of (s / show-01
+                :ARG1 (n / numerical-quantity
+                    :quant 40)))))

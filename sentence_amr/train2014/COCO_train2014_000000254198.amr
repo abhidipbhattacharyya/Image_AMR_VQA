@@ -1,0 +1,34 @@
+# ::tok An old fashion pickup truck with one yellow and one white sign attached to it .
+# ::node	o	old	1-2
+# ::node	f	fashion	2-3
+# ::node	p	pickup	3-4
+# ::node	t	truck	4-5
+# ::node	y	yellow-02	7-8
+# ::node	a	and	8-9
+# ::node	0	1	9-10
+# ::node	w	white-03	10-11
+# ::node	s	sign	11-12
+# ::node	s2	sign	11-12
+# ::node	a2	attach-01	12-13
+# ::root	t	truck
+# ::edge	fashion	mod	old	f	o	
+# ::edge	truck	mod	pickup	t	p	
+# ::edge	truck	mod	fashion	t	f	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	ARG1-of	yellow-02	s	y	
+# ::edge	sign	ARG1-of	white-03	s2	w	
+# ::edge	sign	quant	1	s2	0	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	attach-01	ARG1	and	a2	a	
+# ::edge	truck	ARG2-of	attach-01	t	a2	
+(t / truck
+    :ARG2-of (a2 / attach-01
+        :ARG1 (a / and
+            :op1 (s / sign
+                :ARG1-of (y / yellow-02))
+            :op2 (s2 / sign
+                :quant 1
+                :ARG1-of (w / white-03))))
+    :mod (p / pickup)
+    :mod (f / fashion
+        :mod (o / old)))

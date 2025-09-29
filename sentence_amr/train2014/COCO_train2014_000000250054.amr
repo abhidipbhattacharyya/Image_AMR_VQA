@@ -1,0 +1,37 @@
+# ::tok A bicycle parked on the side walk while a double decker bus passes by near Big Ben .
+# ::node	b	bicycle	1-2
+# ::node	p	park-01	2-3
+# ::node	s	side	5-6
+# ::node	w	walk-01	6-7
+# ::node	d	double-decker	10-11
+# ::node	b3	bus	11-12
+# ::node	p2	pass-by-17	12-13
+# ::node	n2	near-02	14-15
+# ::node	n	name	15-16
+# ::node	1	Big	15-16
+# ::node	b2	building	16-17
+# ::node	0	Ben	16-17
+# ::root	p	park-01
+# ::edge	park-01	ARG1	bicycle	p	b	
+# ::edge	walk-01	mod	side	w	s	
+# ::edge	park-01	ARG2	walk-01	p	w	
+# ::edge	bus	mod	double-decker	b3	d	
+# ::edge	pass-by-17	ARG0	bus	p2	b3	
+# ::edge	park-01	time	pass-by-17	p	p2	
+# ::edge	pass-by-17	ARG1-of	near-02	p2	n2	
+# ::edge	name	op1	Big	n	1	
+# ::edge	building	name	name	b2	n	
+# ::edge	near-02	ARG2	building	n2	b2	
+# ::edge	name	op2	Ben	n	0	
+(p / park-01
+    :ARG1 (b / bicycle)
+    :ARG2 (w / walk-01
+        :mod (s / side))
+    :time (p2 / pass-by-17
+        :ARG0 (b3 / bus
+            :mod (d / double-decker))
+        :ARG1-of (n2 / near-02
+            :ARG2 (b2 / building
+                :name (n / name
+                    :op1 "Big"
+                    :op2 "Ben")))))

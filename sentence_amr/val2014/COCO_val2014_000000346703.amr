@@ -1,0 +1,44 @@
+# ::tok A series of images showing a man holding a spoon over a lit candle , then serving a cake with it .
+# ::node	s	series	1-2
+# ::node	i	image	3-4
+# ::node	s3	show-01	4-5
+# ::node	m	man	6-7
+# ::node	h	hold-01	7-8
+# ::node	s4	spoon	9-10
+# ::node	o	over	10-11
+# ::node	l	light-04	12-13
+# ::node	c2	candle	13-14
+# ::node	a	and	14-15
+# ::node	t	then	15-16
+# ::node	s2	serve-02	16-17
+# ::node	c	cake	18-19
+# ::root	s3	show-01
+# ::edge	series	consist-of	image	s	i	
+# ::edge	show-01	ARG0	series	s3	s	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	hold-01	ARG1	spoon	h	s4	
+# ::edge	hold-01	location	over	h	o	
+# ::edge	candle	ARG1-of	light-04	c2	l	
+# ::edge	over	op1	candle	o	c2	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	show-01	ARG1	and	s3	a	
+# ::edge	serve-02	time	then	s2	t	
+# ::edge	and	op2	serve-02	a	s2	
+# ::edge	serve-02	ARG2	spoon	s2	s4	
+# ::edge	serve-02	ARG0	man	s2	m	
+# ::edge	serve-02	ARG1	cake	s2	c	
+(s3 / show-01
+    :ARG0 (s / series
+        :consist-of (i / image))
+    :ARG1 (a / and
+        :op1 (h / hold-01
+            :ARG0 (m / man)
+            :ARG1 (s4 / spoon)
+            :location (o / over
+                :op1 (c2 / candle
+                    :ARG1-of (l / light-04))))
+        :op2 (s2 / serve-02
+            :ARG0 m
+            :ARG1 (c / cake)
+            :ARG2 s4
+            :time (t / then))))

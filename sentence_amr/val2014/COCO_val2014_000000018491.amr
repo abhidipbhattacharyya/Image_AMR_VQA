@@ -1,0 +1,35 @@
+# ::tok A boy baseball player running to steal a base while another boy stops him .
+# ::node	b3	boy	1-2
+# ::node	b2	baseball	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	r	run-02	4-5
+# ::node	s	steal-01	6-7
+# ::node	b	base	8-9
+# ::node	a	another	10-11
+# ::node	b4	boy	11-12
+# ::node	s2	stop-01	12-13
+# ::root	p	person
+# ::edge	person	mod	boy	p	b3	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	run-02	purpose	steal-01	r	s	
+# ::edge	steal-01	ARG0	person	s	p	
+# ::edge	steal-01	ARG1	base	s	b	
+# ::edge	boy	mod	another	b4	a	
+# ::edge	stop-01	ARG0	boy	s2	b4	
+# ::edge	run-02	time	stop-01	r	s2	
+# ::edge	stop-01	ARG1	person	s2	p	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG0-of (r / run-02
+        :purpose (s / steal-01
+            :ARG0 p
+            :ARG1 (b / base))
+        :time (s2 / stop-01
+            :ARG0 (b4 / boy
+                :mod (a / another))
+            :ARG1 p))
+    :mod (b3 / boy))

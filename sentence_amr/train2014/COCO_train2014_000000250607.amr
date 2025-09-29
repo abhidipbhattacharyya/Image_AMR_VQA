@@ -1,0 +1,33 @@
+# ::tok A toilet is shown next to various pipes running up and down the wall .
+# ::node	t	toilet	1-2
+# ::node	s	show-01	3-4
+# ::node	n	next-to	4-5
+# ::node	v	various	6-7
+# ::node	p	pipe	7-8
+# ::node	r	run-04	8-9
+# ::node	u	up-03	9-10
+# ::node	a	and	10-11
+# ::node	d	down-03	11-12
+# ::node	w	wall	13-14
+# ::root	s	show-01
+# ::edge	show-01	ARG1	toilet	s	t	
+# ::edge	toilet	location	next-to	t	n	
+# ::edge	pipe	mod	various	p	v	
+# ::edge	next-to	op1	pipe	n	p	
+# ::edge	pipe	ARG1-of	run-04	p	r	
+# ::edge	and	op1	up-03	a	u	
+# ::edge	run-04	ARG2	and	r	a	
+# ::edge	and	op2	down-03	a	d	
+# ::edge	down-03	path	wall	d	w	
+# ::edge	up-03	ARG2	wall	u	w	
+(s / show-01
+    :ARG1 (t / toilet
+        :location (n / next-to
+            :op1 (p / pipe
+                :ARG1-of (r / run-04
+                    :ARG2 (a / and
+                        :op1 (u / up-03
+                            :ARG2 (w / wall))
+                        :op2 (d / down-03
+                            :path w)))
+                :mod (v / various)))))

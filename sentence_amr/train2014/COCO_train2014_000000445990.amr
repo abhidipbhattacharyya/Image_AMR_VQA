@@ -1,0 +1,42 @@
+# ::tok Each of the three teens are hauling a different snow toy for an afternoon of fun on the slopes .
+# ::node	e	each	0-1
+# ::node	i	include-91	1-2
+# ::node	0	3	3-4
+# ::node	t	teen	4-5
+# ::node	t2	teen	4-5
+# ::node	h	haul-01	6-7
+# ::node	d2	differ-02	8-9
+# ::node	s2	snow	9-10
+# ::node	t3	toy	10-11
+# ::node	d	date-entity	13-14
+# ::node	a	afternoon	13-14
+# ::node	f	fun-01	15-16
+# ::node	s	slope	18-19
+# ::root	h	haul-01
+# ::edge	teen	ARG1-of	include-91	t	i	
+# ::edge	teen	mod	each	t	e	
+# ::edge	teen	quant	3	t2	0	
+# ::edge	include-91	ARG2	teen	i	t2	
+# ::edge	haul-01	ARG0	teen	h	t	
+# ::edge	toy	mod	snow	t3	s2	
+# ::edge	toy	ARG1-of	differ-02	t3	d2	
+# ::edge	haul-01	ARG1	toy	h	t3	
+# ::edge	haul-01	purpose	date-entity	h	d	
+# ::edge	date-entity	dayperiod	afternoon	d	a	
+# ::edge	date-entity	time-of	fun-01	d	f	
+# ::edge	fun-01	ARG0	teen	f	t	
+# ::edge	fun-01	ARG1	slope	f	s	
+(h / haul-01
+    :purpose (d / date-entity
+        :dayperiod (a / afternoon)
+        :time-of (f / fun-01
+            :ARG0 (t / teen
+                :ARG1-of (i / include-91
+                    :ARG2 (t2 / teen
+                        :quant 3))
+                :mod (e / each))
+            :ARG1 (s / slope)))
+    :ARG0 t
+    :ARG1 (t3 / toy
+        :ARG1-of (d2 / differ-02)
+        :mod (s2 / snow)))

@@ -1,0 +1,42 @@
+# ::tok Two cats in a vehicle with one laying in the dashboard and one perched looking out the side window .
+# ::node	1	2	0-1
+# ::node	c	cat	1-2
+# ::node	c2	cat	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	v	vehicle	4-5
+# ::node	l	lay-01	7-8
+# ::node	d	dashboard	10-11
+# ::node	i	include-91	12-13
+# ::node	0	1	12-13
+# ::node	p	perch-01	13-14
+# ::node	l2	look-01	14-15
+# ::node	s	side	17-18
+# ::node	w	window	18-19
+# ::root	b	be-located-at-91
+# ::edge	cat	quant	2	c	1	
+# ::edge	be-located-at-91	ARG1	cat	b	c	
+# ::edge	be-located-at-91	ARG2	vehicle	b	v	
+# ::edge	cat	ARG1-of	lay-01	c2	l	
+# ::edge	lay-01	ARG2	dashboard	l	d	
+# ::edge	cat	ARG1-of	include-91	c2	i	
+# ::edge	include-91	ARG2	cat	i	c	
+# ::edge	cat	quant	1	c2	0	
+# ::edge	cat	ARG1-of	perch-01	c2	p	
+# ::edge	cat	ARG0-of	look-01	c2	l2	
+# ::edge	window	mod	side	w	s	
+# ::edge	look-01	ARG1	window	l2	w	
+# ::edge	be-located-at-91	rel	cat	b	c2	
+(b / be-located-at-91
+    :ARG1 (c / cat
+        :quant 2)
+    :ARG2 (v / vehicle)
+    :rel (c2 / cat
+        :quant 1
+        :ARG0-of (l2 / look-01
+            :ARG1 (w / window
+                :mod (s / side)))
+        :ARG1-of (l / lay-01
+            :ARG2 (d / dashboard))
+        :ARG1-of (i / include-91
+            :ARG2 c)
+        :ARG1-of (p / perch-01)))

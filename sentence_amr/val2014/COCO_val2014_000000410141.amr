@@ -1,0 +1,22 @@
+# ::tok A high speed train pulls into a platform while people watch .
+# ::node	h	high-02	1-2
+# ::node	s	speed	2-3
+# ::node	t	train	3-4
+# ::node	p3	pull-01	4-5
+# ::node	p2	platform	7-8
+# ::node	p	person	9-10
+# ::node	w	watch-01	10-11
+# ::root	p3	pull-01
+# ::edge	speed	ARG1-of	high-02	s	h	
+# ::edge	train	mod	speed	t	s	
+# ::edge	pull-01	ARG1	train	p3	t	
+# ::edge	pull-01	ARG2	platform	p3	p2	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	pull-01	ARG1-of	watch-01	p3	w	
+(p3 / pull-01
+    :ARG1 (t / train
+        :mod (s / speed
+            :ARG1-of (h / high-02)))
+    :ARG1-of (w / watch-01
+        :ARG0 (p / person))
+    :ARG2 (p2 / platform))

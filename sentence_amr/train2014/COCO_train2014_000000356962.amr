@@ -1,0 +1,27 @@
+# ::tok This traffic signs is telling the pedestrians to yield to traffic .
+# ::node	t2	this	0-1
+# ::node	t3	traffic	1-2
+# ::node	s	sign	2-3
+# ::node	t	tell-01	4-5
+# ::node	w	walk-01	6-7
+# ::node	p	person	7-8
+# ::node	y	yield-02	8-9
+# ::node	t4	traffic	10-11
+# ::root	t	tell-01
+# ::edge	sign	mod	traffic	s	t3	
+# ::edge	sign	mod	this	s	t2	
+# ::edge	tell-01	ARG0	sign	t	s	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	yield-02	ARG0	person	y	p	
+# ::edge	tell-01	ARG1	yield-02	t	y	
+# ::edge	yield-02	ARG2	traffic	y	t4	
+(t / tell-01
+    :ARG0 (s / sign
+        :mod (t3 / traffic)
+        :mod (t2 / this))
+    :ARG1 (y / yield-02
+        :ARG0 (p / person
+            :ARG0-of (w / walk-01))
+        :ARG2 (t4 / traffic))
+    :ARG2 p)

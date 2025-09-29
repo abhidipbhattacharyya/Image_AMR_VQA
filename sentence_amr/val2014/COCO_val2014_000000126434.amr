@@ -1,0 +1,30 @@
+# ::tok A little leage player avoiding being hit by a ball at home plate .
+# ::node	l2	little	1-2
+# ::node	l	leage	2-3
+# ::node	p	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	a	avoid-01	4-5
+# ::node	h	hit-01	6-7
+# ::node	b	ball	9-10
+# ::node	h2	home	11-12
+# ::node	p2	plate	12-13
+# ::root	a	avoid-01
+# ::edge	person	mod	leage	p	l	
+# ::edge	person	mod	little	p	l2	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	avoid-01	ARG0	person	a	p	
+# ::edge	avoid-01	ARG1	hit-01	a	h	
+# ::edge	hit-01	ARG1	person	h	p	
+# ::edge	hit-01	ARG2	ball	h	b	
+# ::edge	plate	mod	home	p2	h2	
+# ::edge	hit-01	location	plate	h	p2	
+(a / avoid-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01)
+        :mod (l / leage)
+        :mod (l2 / little))
+    :ARG1 (h / hit-01
+        :ARG1 p
+        :ARG2 (b / ball)
+        :location (p2 / plate
+            :mod (h2 / home))))

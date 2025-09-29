@@ -1,0 +1,73 @@
+# ::tok A minimally cluttered bathroom view shows a white sink and toilet , mirror , towel ring , a blue wall and a shower space with a patterned but not colorful shower curtain .
+# ::node	m	minimal-02	1-2
+# ::node	h2	hoard-01	2-3
+# ::node	b	bathroom	3-4
+# ::node	v	view-01	4-5
+# ::node	s	show-01	5-6
+# ::node	w2	white-03	7-8
+# ::node	s3	sink	8-9
+# ::node	a	and	9-10
+# ::node	t	toilet	10-11
+# ::node	m2	mirror	12-13
+# ::node	t2	towel	14-15
+# ::node	r	ring	15-16
+# ::node	b2	blue	18-19
+# ::node	w	wall	19-20
+# ::node	s2	shower	22-23
+# ::node	s4	space	23-24
+# ::node	h	have-03	24-25
+# ::node	p	pattern	26-27
+# ::node	c2	contrast-01	27-28
+# ::node	0	-	28-29
+# ::node	c	colorful	29-30
+# ::node	c3	curtain	31-32
+# ::root	s	show-01
+# ::edge	hoard-01	ARG1-of	minimal-02	h2	m	
+# ::edge	view-01	ARG1	bathroom	v	b	
+# ::edge	view-01	ARG1-of	hoard-01	v	h2	
+# ::edge	show-01	ARG0	view-01	s	v	
+# ::edge	sink	ARG1-of	white-03	s3	w2	
+# ::edge	and	op1	sink	a	s3	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	toilet	a	t	
+# ::edge	white-03	ARG1	toilet	w2	t	
+# ::edge	and	op3	mirror	a	m2	
+# ::edge	ring	mod	towel	r	t2	
+# ::edge	and	op4	ring	a	r	
+# ::edge	wall	mod	blue	w	b2	
+# ::edge	and	op5	wall	a	w	
+# ::edge	space	mod	shower	s4	s2	
+# ::edge	and	op6	space	a	s4	
+# ::edge	space	ARG0-of	have-03	s4	h	
+# ::edge	contrast-01	ARG1	pattern	c2	p	
+# ::edge	colorful	polarity	-	c	0	
+# ::edge	contrast-01	ARG2	colorful	c2	c	
+# ::edge	curtain	mod	colorful	c3	c	
+# ::edge	have-03	ARG1	curtain	h	c3	
+# ::edge	curtain	mod	shower	c3	s2	
+# ::edge	show-01	rel	contrast-01	s	c2	
+(s / show-01
+    :ARG0 (v / view-01
+        :ARG1 (b / bathroom)
+        :ARG1-of (h2 / hoard-01
+            :ARG1-of (m / minimal-02)))
+    :ARG1 (a / and
+        :op1 (s3 / sink
+            :ARG1-of (w2 / white-03
+                :ARG1 (t / toilet)))
+        :op2 t
+        :op3 (m2 / mirror)
+        :op4 (r / ring
+            :mod (t2 / towel))
+        :op5 (w / wall
+            :mod (b2 / blue))
+        :op6 (s4 / space
+            :ARG0-of (h / have-03
+                :ARG1 (c3 / curtain
+                    :mod (c / colorful
+                        :polarity -)
+                    :mod (s2 / shower)))
+            :mod s2))
+    :rel (c2 / contrast-01
+        :ARG1 (p / pattern)
+        :ARG2 c))

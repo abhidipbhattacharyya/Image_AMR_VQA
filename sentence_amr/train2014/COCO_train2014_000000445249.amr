@@ -1,0 +1,29 @@
+# ::tok Tennis player getting ready to serve the ball at a tennis match .
+# ::node	m2	multi-sentence	0-1
+# ::node	c	computer	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	r	ready-01	3-4
+# ::node	s	serve-02	5-6
+# ::node	b	ball	7-8
+# ::node	m	match-03	11-12
+# ::root	m2	multi-sentence
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	computer	p2	c	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	multi-sentence	snt1	ready-01	m2	r	
+# ::edge	ready-01	ARG2	serve-02	r	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	serve-02	time	match-03	s	m	
+# ::edge	match-03	mod	computer	m	c	
+(m2 / multi-sentence
+    :snt1 (r / ready-01
+        :ARG1 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (c / computer)))
+        :ARG2 (s / serve-02
+            :ARG0 p
+            :ARG1 (b / ball)
+            :time (m / match-03
+                :mod c))))

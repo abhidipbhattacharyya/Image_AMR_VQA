@@ -1,0 +1,52 @@
+# ::tok There are two plates showing .
+# ::node	0	2	2-3
+# ::node	p	plate	3-4
+# ::node	s	show-01	4-5
+# ::root	s	show-01
+# ::edge	plate	quant	2	p	0	
+# ::edge	show-01	ARG1	plate	s	p	
+(s / show-01
+    :ARG1 (p / plate
+        :quant 2))
+
+
+# ::tok One has two hot dogs with all the trimmings and one has a potato wrapped in foil .
+# ::node	o	one	0-1
+# ::node	h	have-03	1-2
+# ::node	0	2	2-3
+# ::node	h3	hot-05	3-4
+# ::node	h4	hot-dog	4-5
+# ::node	a	all	6-7
+# ::node	t	truffle	8-9
+# ::node	a2	and	9-10
+# ::node	o2	one	10-11
+# ::node	h2	have-03	11-12
+# ::node	p	potato	13-14
+# ::node	w	wrap-01	14-15
+# ::node	f	foil	16-17
+# ::root	a2	and
+# ::edge	have-03	ARG0	one	h	o	
+# ::edge	hot-dog	ARG1-of	hot-05	h4	h3	
+# ::edge	hot-dog	quant	2	h4	0	
+# ::edge	have-03	ARG1	hot-dog	h	h4	
+# ::edge	truffle	mod	all	t	a	
+# ::edge	hot-dog	accompanier	truffle	h4	t	
+# ::edge	and	op1	have-03	a2	h	
+# ::edge	have-03	ARG0	one	h2	o2	
+# ::edge	and	op2	have-03	a2	h2	
+# ::edge	have-03	ARG1	potato	h2	p	
+# ::edge	potato	ARG1-of	wrap-01	p	w	
+# ::edge	wrap-01	ARG2	foil	w	f	
+(a2 / and
+    :op1 (h / have-03
+        :ARG0 (o / one)
+        :ARG1 (h4 / hot-dog
+            :quant 2
+            :ARG1-of (h3 / hot-05)
+            :accompanier (t / truffle
+                :mod (a / all))))
+    :op2 (h2 / have-03
+        :ARG0 (o2 / one)
+        :ARG1 (p / potato
+            :ARG1-of (w / wrap-01
+                :ARG2 (f / foil)))))

@@ -1,0 +1,33 @@
+# ::tok The person stands at the white counter to eat the tomato and cheese pizza .
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	w	white-03	5-6
+# ::node	c2	counter	6-7
+# ::node	e	eat-01	8-9
+# ::node	t	tomato	10-11
+# ::node	a	and	11-12
+# ::node	c	cheese	12-13
+# ::node	p2	pizza	13-14
+# ::node	p3	pizza	13-14
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	counter	ARG1-of	white-03	c2	w	
+# ::edge	stand-01	ARG2	counter	s	c2	
+# ::edge	stand-01	purpose	eat-01	s	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	and	op1	pizza	a	p2	
+# ::edge	pizza	mod	tomato	p2	t	
+# ::edge	pizza	mod	cheese	p3	c	
+# ::edge	and	op2	pizza	a	p3	
+(s / stand-01
+    :purpose (e / eat-01
+        :ARG0 (p / person)
+        :ARG1 (a / and
+            :op1 (p2 / pizza
+                :mod (t / tomato))
+            :op2 (p3 / pizza
+                :mod (c / cheese))))
+    :ARG1 p
+    :ARG2 (c2 / counter
+        :ARG1-of (w / white-03)))

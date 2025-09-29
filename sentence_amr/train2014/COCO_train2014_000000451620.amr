@@ -1,0 +1,36 @@
+# ::tok A male skateboarder with jeans and a tank top at a skate board park .
+# ::node	m	male	1-2
+# ::node	p2	person	2-3
+# ::node	s	skate-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	j	jeans	4-5
+# ::node	a	and	5-6
+# ::node	t	tank	7-8
+# ::node	t2	top	8-9
+# ::node	s2	skate-01	12-13
+# ::node	p	park	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	person	mod	male	p2	m	
+# ::edge	person	ARG0-of	skate-01	p2	s	
+# ::edge	person	ARG0-of	wear-01	p2	w	
+# ::edge	and	op1	jeans	a	j	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	top	mod	tank	t2	t	
+# ::edge	and	op2	top	a	t2	
+# ::edge	skate-01	ARG1	skate-01	s	s2	
+# ::edge	park	mod	skate-01	p	s2	
+# ::edge	person	location	park	p2	p	
+# ::edge	event	mod	person	e	p2	
+(e / event
+    :mod (p2 / person
+        :ARG0-of (s / skate-01
+            :ARG1 (s2 / skate-01))
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (j / jeans)
+                :op2 (t2 / top
+                    :mod (t / tank))))
+        :location (p / park
+            :mod s2)
+        :mod (m / male)))

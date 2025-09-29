@@ -1,0 +1,34 @@
+# ::tok This diner wants to take a picture of the lofty sandwich , a masterpiece , before he eats it .
+# ::node	t	this	0-1
+# ::node	d	diner	1-2
+# ::node	w	want-01	2-3
+# ::node	p	picture-01	6-7
+# ::node	l	lofty	9-10
+# ::node	s	sandwich	10-11
+# ::node	m	masterpiece	13-14
+# ::node	b	before	15-16
+# ::node	e	eat-01	17-18
+# ::root	w	want-01
+# ::edge	diner	mod	this	d	t	
+# ::edge	want-01	ARG0	diner	w	d	
+# ::edge	want-01	ARG1	picture-01	w	p	
+# ::edge	picture-01	ARG0	diner	p	d	
+# ::edge	sandwich	mod	lofty	s	l	
+# ::edge	picture-01	ARG1	sandwich	p	s	
+# ::edge	sandwich	mod	masterpiece	s	m	
+# ::edge	want-01	time	before	w	b	
+# ::edge	before	op1	eat-01	b	e	
+# ::edge	eat-01	ARG1	sandwich	e	s	
+# ::edge	eat-01	ARG0	diner	e	d	
+(w / want-01
+    :ARG0 (d / diner
+        :mod (t / this))
+    :ARG1 (p / picture-01
+        :ARG0 d
+        :ARG1 (s / sandwich
+            :mod (l / lofty)
+            :mod (m / masterpiece)))
+    :time (b / before
+        :op1 (e / eat-01
+            :ARG0 d
+            :ARG1 s)))

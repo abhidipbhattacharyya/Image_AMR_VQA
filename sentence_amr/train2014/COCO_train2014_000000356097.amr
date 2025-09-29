@@ -1,0 +1,35 @@
+# ::tok Four planes flying right next to each other , leaving vapor trails .
+# ::node	0	4	0-1
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	r	right	3-4
+# ::node	n	next-to	4-5
+# ::node	e	each	6-7
+# ::node	l	leave-13	9-10
+# ::node	v	vapor	10-11
+# ::node	t	trail-01	11-12
+# ::node	a	and	12-13
+# ::root	a	and
+# ::edge	plane	quant	4	p	0	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	next-to	mod	right	n	r	
+# ::edge	fly-01	location	next-to	f	n	
+# ::edge	next-to	op1	each	n	e	
+# ::edge	leave-13	ARG0	plane	l	p	
+# ::edge	trail-01	ARG2	vapor	t	v	
+# ::edge	leave-13	ARG1	trail-01	l	t	
+# ::edge	trail-01	ARG0	plane	t	p	
+# ::edge	and	op2	leave-13	a	l	
+# ::edge	and	op1	fly-01	a	f	
+(a / and
+    :op1 (f / fly-01
+        :ARG2 (p / plane
+            :quant 4)
+        :location (n / next-to
+            :mod (r / right)
+            :op1 (e / each)))
+    :op2 (l / leave-13
+        :ARG0 p
+        :ARG1 (t / trail-01
+            :ARG0 p
+            :ARG2 (v / vapor))))

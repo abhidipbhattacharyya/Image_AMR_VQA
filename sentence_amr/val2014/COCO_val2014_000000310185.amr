@@ -1,0 +1,29 @@
+# ::tok A man getting ready to bat while a catcher squats down behind him .
+# ::node	m	man	1-2
+# ::node	r	ready-01	3-4
+# ::node	b	bat-01	5-6
+# ::node	p	person	8-9
+# ::node	c	catch-01	8-9
+# ::node	s	squat-02	9-10
+# ::node	d	down-01	10-11
+# ::node	b2	behind	11-12
+# ::root	r	ready-01
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG1	bat-01	r	b	
+# ::edge	bat-01	ARG0	man	b	m	
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	squat-02	ARG0	person	s	p	
+# ::edge	ready-01	time	squat-02	r	s	
+# ::edge	squat-02	ARG1-of	down-01	s	d	
+# ::edge	squat-02	location	behind	s	b2	
+# ::edge	behind	op1	man	b2	m	
+(r / ready-01
+    :ARG0 (m / man)
+    :ARG1 (b / bat-01
+        :ARG0 m)
+    :time (s / squat-02
+        :ARG0 (p / person
+            :ARG0-of (c / catch-01))
+        :ARG1-of (d / down-01)
+        :location (b2 / behind
+            :op1 m)))

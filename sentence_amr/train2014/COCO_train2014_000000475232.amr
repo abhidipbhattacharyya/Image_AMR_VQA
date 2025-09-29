@@ -1,0 +1,25 @@
+# ::tok Buses line a street of only buses with towers in the background
+# ::node	b2	bus	0-1
+# ::node	l	line-01	1-2
+# ::node	s	street	3-4
+# ::node	o	only	5-6
+# ::node	b3	bus	6-7
+# ::node	h	have-03	7-8
+# ::node	t	tower	8-9
+# ::node	b	background	11-12
+# ::root	l	line-01
+# ::edge	line-01	ARG0	bus	l	b2	
+# ::edge	line-01	ARG1	street	l	s	
+# ::edge	bus	mod	only	b3	o	
+# ::edge	street	consist-of	bus	s	b3	
+# ::edge	bus	ARG0-of	have-03	b3	h	
+# ::edge	have-03	ARG1	tower	h	t	
+# ::edge	tower	location	background	t	b	
+(l / line-01
+    :ARG0 (b2 / bus)
+    :ARG1 (s / street
+        :consist-of (b3 / bus
+            :ARG0-of (h / have-03
+                :ARG1 (t / tower
+                    :location (b / background)))
+            :mod (o / only))))

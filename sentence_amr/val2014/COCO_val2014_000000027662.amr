@@ -1,0 +1,31 @@
+# ::tok Small boat moving along water with orange objects hanging off end
+# ::node	s	small	0-1
+# ::node	b	boat	1-2
+# ::node	m	move-01	2-3
+# ::node	a	along	3-4
+# ::node	w	water	4-5
+# ::node	o3	orange	6-7
+# ::node	o	object	7-8
+# ::node	h	hang-01	8-9
+# ::node	o2	off	9-10
+# ::node	e	end	10-11
+# ::root	m	move-01
+# ::edge	boat	mod	small	b	s	
+# ::edge	move-01	ARG1	boat	m	b	
+# ::edge	move-01	path	along	m	a	
+# ::edge	along	op1	water	a	w	
+# ::edge	object	mod	orange	o	o3	
+# ::edge	hang-01	ARG1	object	h	o	
+# ::edge	boat	ARG0-of	hang-01	b	h	
+# ::edge	end	mod	off	e	o2	
+# ::edge	hang-01	ARG2	end	h	e	
+(m / move-01
+    :ARG1 (b / boat
+        :ARG0-of (h / hang-01
+            :ARG1 (o / object
+                :mod (o3 / orange))
+            :ARG2 (e / end
+                :mod (o2 / off)))
+        :mod (s / small))
+    :path (a / along
+        :op1 (w / water)))

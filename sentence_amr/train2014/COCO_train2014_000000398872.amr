@@ -1,0 +1,25 @@
+# ::tok Man bundled up waiting for transportation while talking on phone .
+# ::node	m	man	0-1
+# ::node	b	bundle-up-03	1-2
+# ::node	w	wait-01	3-4
+# ::node	t2	transport-01	5-6
+# ::node	t	talk-01	7-8
+# ::node	p	phone	9-10
+# ::root	b	bundle-up-03
+# ::edge	bundle-up-03	ARG1	man	b	m	
+# ::edge	bundle-up-03	time	wait-01	b	w	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	wait-01	ARG2	transport-01	w	t2	
+# ::edge	transport-01	ARG1	man	t2	m	
+# ::edge	bundle-up-03	time	talk-01	b	t	
+# ::edge	talk-01	ARG0	man	t	m	
+# ::edge	talk-01	instrument	phone	t	p	
+(b / bundle-up-03
+    :ARG1 (m / man)
+    :time (w / wait-01
+        :ARG1 m
+        :ARG2 (t2 / transport-01
+            :ARG1 m))
+    :time (t / talk-01
+        :ARG0 m
+        :instrument (p / phone)))

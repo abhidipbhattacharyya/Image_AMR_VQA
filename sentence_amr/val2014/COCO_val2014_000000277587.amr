@@ -1,0 +1,36 @@
+# ::tok a motel room bed with a night stand towel rack and bathroom sink
+# ::node	m	motel	1-2
+# ::node	r2	room	2-3
+# ::node	b2	bed	3-4
+# ::node	h	have-03	4-5
+# ::node	n	night	6-7
+# ::node	s2	stand	7-8
+# ::node	t	towel	8-9
+# ::node	r	rack	9-10
+# ::node	a	and	10-11
+# ::node	b	bathroom	11-12
+# ::node	s	sink	12-13
+# ::root	b2	bed
+# ::edge	room	part-of	motel	r2	m	
+# ::edge	bed	location	room	b2	r2	
+# ::edge	bed	ARG0-of	have-03	b2	h	
+# ::edge	stand	mod	night	s2	n	
+# ::edge	rack	mod	towel	r	t	
+# ::edge	rack	mod	stand	r	s2	
+# ::edge	and	op2	rack	a	r	
+# ::edge	and	op1	bed	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sink	location	bathroom	s	b	
+# ::edge	and	op3	sink	a	s	
+(b2 / bed
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 b2
+            :op2 (r / rack
+                :mod (t / towel)
+                :mod (s2 / stand
+                    :mod (n / night)))
+            :op3 (s / sink
+                :location (b / bathroom))))
+    :location (r2 / room
+        :part-of (m / motel)))

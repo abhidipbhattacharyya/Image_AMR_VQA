@@ -1,0 +1,27 @@
+# ::tok A group of pedestrians waiting to cross the street at a traffic light .
+# ::node	g	group-01	1-2
+# ::node	w2	walk-01	3-4
+# ::node	w	wait-01	4-5
+# ::node	c	cross-02	6-7
+# ::node	p	person	7-8
+# ::node	s	street	8-9
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	w	wait-01
+# ::edge	wait-01	ARG2	cross-02	w	c	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	person	ARG0-of	walk-01	p	w2	
+# ::edge	person	ARG1-of	group-01	p	g	
+# ::edge	cross-02	ARG1	street	c	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	cross-02	location	light	c	l	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (w2 / walk-01)
+        :ARG1-of (g / group-01))
+    :ARG2 (c / cross-02
+        :ARG0 p
+        :ARG1 (s / street)
+        :location (l / light
+            :mod (t / traffic))))

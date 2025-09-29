@@ -1,0 +1,47 @@
+# ::tok One jet on the runway waiting to take off while another jet is in final approach of landing on the next runway
+# ::node	0	1	0-1
+# ::node	j	jet	1-2
+# ::node	r	runway	4-5
+# ::node	w	wait-01	5-6
+# ::node	t	take-off-19	7-8
+# ::node	c	contrast-01	9-10
+# ::node	a	another	10-11
+# ::node	j2	jet	11-12
+# ::node	f	final	14-15
+# ::node	a2	approach-01	15-16
+# ::node	l	land-01	17-18
+# ::node	a3	approach-01	17-18
+# ::node	n	next	20-21
+# ::node	r2	runway	21-22
+# ::root	c	contrast-01
+# ::edge	jet	quant	1	j	0	
+# ::edge	jet	location	runway	j	r	
+# ::edge	wait-01	ARG1	jet	w	j	
+# ::edge	wait-01	ARG2	take-off-19	w	t	
+# ::edge	take-off-19	ARG1	jet	t	j	
+# ::edge	contrast-01	ARG1	wait-01	c	w	
+# ::edge	jet	mod	another	j2	a	
+# ::edge	approach-01	mod	final	a2	f	
+# ::edge	approach-01	ARG1	jet	a2	j2	
+# ::edge	contrast-01	ARG2	approach-01	c	a2	
+# ::edge	approach-01	mod	approach-01	a2	a3	
+# ::edge	approach-01	ARG1	jet	a3	j2	
+# ::edge	runway	mod	next	r2	n	
+# ::edge	approach-01	location	runway	a3	r2	
+# ::edge	contrast-01	rel	land-01	c	l	
+(c / contrast-01
+    :ARG1 (w / wait-01
+        :ARG1 (j / jet
+            :quant 1
+            :location (r / runway))
+        :ARG2 (t / take-off-19
+            :ARG1 j))
+    :ARG2 (a2 / approach-01
+        :ARG1 (j2 / jet
+            :mod (a / another))
+        :mod (f / final)
+        :mod (a3 / approach-01
+            :ARG1 j2
+            :location (r2 / runway
+                :mod (n / next))))
+    :rel (l / land-01))

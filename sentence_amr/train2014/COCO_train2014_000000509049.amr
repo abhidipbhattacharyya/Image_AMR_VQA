@@ -1,0 +1,31 @@
+# ::tok Pulling a kite behind a bike may make it possible to fly on a calm day .
+# ::node	p3	pull-01	0-1
+# ::node	k	kite	2-3
+# ::node	b	behind	3-4
+# ::node	b2	bike	5-6
+# ::node	p	possible-01	6-7
+# ::node	m	make-02	7-8
+# ::node	p2	possible-01	9-10
+# ::node	f	fly-01	11-12
+# ::node	c	calm-03	14-15
+# ::node	d	day	15-16
+# ::root	p	possible-01
+# ::edge	pull-01	ARG1	kite	p3	k	
+# ::edge	pull-01	ARG2	behind	p3	b	
+# ::edge	behind	op1	bike	b	b2	
+# ::edge	possible-01	ARG1	make-02	p	m	
+# ::edge	make-02	ARG0	pull-01	m	p3	
+# ::edge	make-02	ARG1	possible-01	m	p2	
+# ::edge	possible-01	ARG1	fly-01	p2	f	
+# ::edge	day	ARG1-of	calm-03	d	c	
+# ::edge	fly-01	time	day	f	d	
+(p / possible-01
+    :ARG1 (m / make-02
+        :ARG0 (p3 / pull-01
+            :ARG1 (k / kite)
+            :ARG2 (b / behind
+                :op1 (b2 / bike)))
+        :ARG1 (p2 / possible-01
+            :ARG1 (f / fly-01
+                :time (d / day
+                    :ARG1-of (c / calm-03))))))

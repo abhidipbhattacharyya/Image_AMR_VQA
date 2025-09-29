@@ -1,0 +1,36 @@
+# ::tok A white big rig with a German Sheppard in the driver 's seat .
+# ::node	w	white-03	1-2
+# ::node	b	big	2-3
+# ::node	r	rig	3-4
+# ::node	c	country	6-7
+# ::node	n	name	6-7
+# ::node	0	Germany	6-7
+# ::node	p	person	7-8
+# ::node	n2	name	7-8
+# ::node	1	Sheppard	7-8
+# ::node	d	drive-01	10-11
+# ::node	s	seat	12-13
+# ::root	r	rig
+# ::edge	rig	mod	big	r	b	
+# ::edge	rig	ARG1-of	white-03	r	w	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Germany	n	0	
+# ::edge	person	mod	country	p	c	
+# ::edge	person	name	name	p	n2	
+# ::edge	name	op1	Sheppard	n2	1	
+# ::edge	drive-01	ARG0	rig	d	r	
+# ::edge	seat	location-of	drive-01	s	d	
+# ::edge	person	location	seat	p	s	
+# ::edge	rig	rel	person	r	p	
+(r / rig
+    :ARG1-of (w / white-03)
+    :mod (b / big)
+    :rel (p / person
+        :name (n2 / name
+            :op1 "Sheppard")
+        :location (s / seat
+            :location-of (d / drive-01
+                :ARG0 r))
+        :mod (c / country
+            :name (n / name
+                :op1 "Germany"))))

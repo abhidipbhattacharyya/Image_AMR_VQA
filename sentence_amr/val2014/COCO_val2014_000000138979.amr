@@ -1,0 +1,28 @@
+# ::tok An SUV is driving past a city bus that is letting passengers on .
+# ::node	v	vehicle	1-2
+# ::node	n	name	1-2
+# ::node	0	SUV	1-2
+# ::node	d	drive-01	3-4
+# ::node	p2	past	4-5
+# ::node	c	city	6-7
+# ::node	b	bus	7-8
+# ::node	l	let-01	10-11
+# ::node	p	passenger	11-12
+# ::root	d	drive-01
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	SUV	n	0	
+# ::edge	drive-01	ARG0	vehicle	d	v	
+# ::edge	drive-01	path	past	d	p2	
+# ::edge	bus	mod	city	b	c	
+# ::edge	past	op1	bus	p2	b	
+# ::edge	bus	ARG0-of	let-01	b	l	
+# ::edge	let-01	ARG1	passenger	l	p	
+(d / drive-01
+    :ARG0 (v / vehicle
+        :name (n / name
+            :op1 "SUV"))
+    :path (p2 / past
+        :op1 (b / bus
+            :ARG0-of (l / let-01
+                :ARG1 (p / passenger))
+            :mod (c / city))))

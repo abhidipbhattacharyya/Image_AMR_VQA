@@ -1,0 +1,43 @@
+# ::tok A Bento Box type lunch with colorful vegetables and rice is shown on a table cloth .
+# ::node	n	name	1-2
+# ::node	0	Bento	1-2
+# ::node	c3	company	2-3
+# ::node	1	Box	2-3
+# ::node	t2	type	3-4
+# ::node	l	lunch	4-5
+# ::node	h	have-03	5-6
+# ::node	c2	colorful	6-7
+# ::node	v	vegetable	7-8
+# ::node	a	and	8-9
+# ::node	r	rice	9-10
+# ::node	s	show-01	11-12
+# ::node	t	table	14-15
+# ::node	c	cloth	15-16
+# ::root	s	show-01
+# ::edge	name	op1	Bento	n	0	
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op2	Box	n	1	
+# ::edge	type	mod	company	t2	c3	
+# ::edge	lunch	mod	type	l	t2	
+# ::edge	lunch	ARG0-of	have-03	l	h	
+# ::edge	vegetable	mod	colorful	v	c2	
+# ::edge	and	op1	vegetable	a	v	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	rice	a	r	
+# ::edge	show-01	ARG1	lunch	s	l	
+# ::edge	cloth	consist-of	table	c	t	
+# ::edge	show-01	location	cloth	s	c	
+(s / show-01
+    :ARG1 (l / lunch
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (v / vegetable
+                    :mod (c2 / colorful))
+                :op2 (r / rice)))
+        :mod (t2 / type
+            :mod (c3 / company
+                :name (n / name
+                    :op1 "Bento"
+                    :op2 "Box"))))
+    :location (c / cloth
+        :consist-of (t / table)))

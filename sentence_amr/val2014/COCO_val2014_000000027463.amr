@@ -1,0 +1,27 @@
+# ::tok A cat is sitting in the driver 's seat while staring at the pedals .
+# ::node	c	cat	1-2
+# ::node	s3	sit-01	3-4
+# ::node	d	drive-01	6-7
+# ::node	s	seat	8-9
+# ::node	s2	seat	8-9
+# ::node	a	and	9-10
+# ::node	s4	stare-01	10-11
+# ::node	h	heel	13-14
+# ::root	a	and
+# ::edge	sit-01	ARG1	cat	s3	c	
+# ::edge	drive-01	location	seat	d	s	
+# ::edge	seat	mod	drive-01	s2	d	
+# ::edge	sit-01	ARG2	seat	s3	s2	
+# ::edge	and	op1	sit-01	a	s3	
+# ::edge	and	op2	stare-01	a	s4	
+# ::edge	stare-01	ARG0	cat	s4	c	
+# ::edge	stare-01	ARG1	heel	s4	h	
+(a / and
+    :op1 (s3 / sit-01
+        :ARG1 (c / cat)
+        :ARG2 (s2 / seat
+            :mod (d / drive-01
+                :location (s / seat))))
+    :op2 (s4 / stare-01
+        :ARG0 c
+        :ARG1 (h / heel)))

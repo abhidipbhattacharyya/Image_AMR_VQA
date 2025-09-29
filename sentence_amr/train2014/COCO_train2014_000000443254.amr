@@ -1,0 +1,37 @@
+# ::tok A mini fridge containing cans of Mountain Dew and bottles of water
+# ::node	m	mini	1-2
+# ::node	f	fridge	2-3
+# ::node	c3	contain-01	3-4
+# ::node	c	can-01	4-5
+# ::node	c2	company	6-7
+# ::node	n	name	6-7
+# ::node	1	Mountain	6-7
+# ::node	0	Dew	7-8
+# ::node	a	and	8-9
+# ::node	c4	contain-01	9-10
+# ::node	b	bottle	9-10
+# ::node	w	water	11-12
+# ::root	f	fridge
+# ::edge	fridge	mod	mini	f	m	
+# ::edge	fridge	ARG0-of	contain-01	f	c3	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Mountain	n	1	
+# ::edge	name	op2	Dew	n	0	
+# ::edge	and	op1	can-01	a	c	
+# ::edge	contain-01	ARG1	and	c3	a	
+# ::edge	and	ARG0-of	contain-01	a	c4	
+# ::edge	contain-01	ARG1	bottle	c4	b	
+# ::edge	bottle	quant-of	water	b	w	
+# ::edge	fridge	rel	company	f	c2	
+(f / fridge
+    :ARG0-of (c3 / contain-01
+        :ARG1 (a / and
+            :ARG0-of (c4 / contain-01
+                :ARG1 (b / bottle
+                    :quant-of (w / water)))
+            :op1 (c / can-01)))
+    :mod (m / mini)
+    :rel (c2 / company
+        :name (n / name
+            :op1 "Mountain"
+            :op2 "Dew")))

@@ -1,0 +1,52 @@
+# ::tok Two street signs reading " Nice Ave " and " Sapphire St " sit on top of a stop sign .
+# ::node	0	2	0-1
+# ::node	s5	street	1-2
+# ::node	s	sign	2-3
+# ::node	r	read-01	3-4
+# ::node	2	Nice	5-6
+# ::node	r2	road	6-7
+# ::node	n	name	6-7
+# ::node	1	Ave	6-7
+# ::node	a	and	8-9
+# ::node	n2	name	10-11
+# ::node	3	Sapphire	10-11
+# ::node	r3	road	11-12
+# ::node	4	St	11-12
+# ::node	s3	sit-01	13-14
+# ::node	t	top	15-16
+# ::node	s4	stop-01	18-19
+# ::node	s2	signal-07	19-20
+# ::root	s3	sit-01
+# ::edge	sign	mod	street	s	s5	
+# ::edge	sign	quant	2	s	0	
+# ::edge	sign	ARG0-of	read-01	s	r	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op1	Nice	n	2	
+# ::edge	name	op2	Ave	n	1	
+# ::edge	and	op1	road	a	r2	
+# ::edge	read-01	ARG1	and	r	a	
+# ::edge	name	op1	Sapphire	n2	3	
+# ::edge	road	name	name	r3	n2	
+# ::edge	and	op2	road	a	r3	
+# ::edge	name	op2	St	n2	4	
+# ::edge	sit-01	ARG1	sign	s3	s	
+# ::edge	sit-01	ARG2	top	s3	t	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	top	op1	signal-07	t	s2	
+(s3 / sit-01
+    :ARG1 (s / sign
+        :quant 2
+        :ARG0-of (r / read-01
+            :ARG1 (a / and
+                :op1 (r2 / road
+                    :name (n / name
+                        :op1 "Nice"
+                        :op2 "Ave"))
+                :op2 (r3 / road
+                    :name (n2 / name
+                        :op1 "Sapphire"
+                        :op2 "St"))))
+        :mod (s5 / street))
+    :ARG2 (t / top
+        :op1 (s2 / signal-07
+            :ARG1 (s4 / stop-01))))

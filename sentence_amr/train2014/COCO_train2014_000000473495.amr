@@ -1,0 +1,25 @@
+# ::tok Several street signs are beside a street at night .
+# ::node	s	several	0-1
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	b2	beside	4-5
+# ::node	s4	street	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::root	b	be-located-at-91
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	quant	several	s2	s	
+# ::edge	be-located-at-91	ARG1	sign	b	s2	
+# ::edge	be-located-at-91	ARG2	beside	b	b2	
+# ::edge	beside	op1	street	b2	s4	
+# ::edge	be-located-at-91	time	date-entity	b	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(b / be-located-at-91
+    :ARG1 (s2 / sign
+        :quant (s / several)
+        :mod (s3 / street))
+    :ARG2 (b2 / beside
+        :op1 (s4 / street))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,40 @@
+# ::tok A person shows " I Love You " in sign language in front of a box of doughnuts .
+# ::node	p	person	1-2
+# ::node	s	show-01	2-3
+# ::node	0	I	4-5
+# ::node	1	Love	5-6
+# ::node	2	You	6-7
+# ::node	b2	broadcast-program	7-8
+# ::node	s2	sign	9-10
+# ::node	l	language	10-11
+# ::node	i	in-front-of	12-13
+# ::node	b	box	15-16
+# ::node	c	contain-01	15-16
+# ::node	n	name	17-18
+# ::node	c2	cookie	17-18
+# ::root	s	show-01
+# ::edge	show-01	ARG0	person	s	p	
+# ::edge	show-01	ARG1	broadcast-program	s	b2	
+# ::edge	language	mod	sign	l	s2	
+# ::edge	show-01	medium	language	s	l	
+# ::edge	show-01	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	box	i	b	
+# ::edge	box	ARG0-of	contain-01	b	c	
+# ::edge	broadcast-program	name	name	b2	n	
+# ::edge	name	op3	You	n	2	
+# ::edge	name	op2	Love	n	1	
+# ::edge	name	op1	I	n	0	
+# ::edge	contain-01	ARG1	cookie	c	c2	
+(s / show-01
+    :ARG0 (p / person)
+    :ARG1 (b2 / broadcast-program
+        :name (n / name
+            :op1 "I"
+            :op2 "Love"
+            :op3 "You"))
+    :location (i / in-front-of
+        :op1 (b / box
+            :ARG0-of (c / contain-01
+                :ARG1 (c2 / cookie))))
+    :medium (l / language
+        :mod (s2 / sign)))

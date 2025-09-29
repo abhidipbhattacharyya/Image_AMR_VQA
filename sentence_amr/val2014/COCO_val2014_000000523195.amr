@@ -1,0 +1,25 @@
+# ::tok a large red bus with two levels is going past buildings
+# ::node	l	large	1-2
+# ::node	r	red-02	2-3
+# ::node	b2	bus	3-4
+# ::node	0	2	5-6
+# ::node	l2	level	6-7
+# ::node	g	go-01	8-9
+# ::node	p	past	9-10
+# ::node	b	building	10-11
+# ::root	g	go-01
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	bus	mod	large	b2	l	
+# ::edge	level	quant	2	l2	0	
+# ::edge	bus	part	level	b2	l2	
+# ::edge	go-01	ARG1	bus	g	b2	
+# ::edge	go-01	path	past	g	p	
+# ::edge	past	op1	building	p	b	
+(g / go-01
+    :ARG1 (b2 / bus
+        :ARG1-of (r / red-02)
+        :mod (l / large)
+        :part (l2 / level
+            :quant 2))
+    :path (p / past
+        :op1 (b / building)))

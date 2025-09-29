@@ -1,0 +1,36 @@
+# ::tok Several cows stand in a barren field while one cow tries to eat frozen grass .
+# ::node	s	several	0-1
+# ::node	c	cow	1-2
+# ::node	s2	stand-01	2-3
+# ::node	b	barren	5-6
+# ::node	f	field	6-7
+# ::node	0	1	8-9
+# ::node	c2	cow	9-10
+# ::node	t	try-01	10-11
+# ::node	e	eat-01	12-13
+# ::node	f2	freeze-01	13-14
+# ::node	g	grass	14-15
+# ::root	s2	stand-01
+# ::edge	cow	quant	several	c	s	
+# ::edge	stand-01	ARG1	cow	s2	c	
+# ::edge	field	mod	barren	f	b	
+# ::edge	stand-01	ARG2	field	s2	f	
+# ::edge	cow	quant	1	c2	0	
+# ::edge	try-01	ARG0	cow	t	c2	
+# ::edge	stand-01	time	try-01	s2	t	
+# ::edge	try-01	ARG1	eat-01	t	e	
+# ::edge	eat-01	ARG0	cow	e	c2	
+# ::edge	grass	ARG1-of	freeze-01	g	f2	
+# ::edge	eat-01	ARG1	grass	e	g	
+(s2 / stand-01
+    :ARG1 (c / cow
+        :quant (s / several))
+    :ARG2 (f / field
+        :mod (b / barren))
+    :time (t / try-01
+        :ARG0 (c2 / cow
+            :quant 1)
+        :ARG1 (e / eat-01
+            :ARG0 c2
+            :ARG1 (g / grass
+                :ARG1-of (f2 / freeze-01)))))

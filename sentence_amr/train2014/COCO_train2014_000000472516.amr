@@ -1,0 +1,31 @@
+# ::tok Bathmat fills space on floor between toilet , sink and tub
+# ::node	p	product	0-1
+# ::node	n	name	0-1
+# ::node	0	Bathmat	0-1
+# ::node	f	fill-01	1-2
+# ::node	s2	space	2-3
+# ::node	f2	floor	4-5
+# ::node	b	between	5-6
+# ::node	t	toilet	6-7
+# ::node	s	sink	8-9
+# ::node	t2	tub	10-11
+# ::root	f	fill-01
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Bathmat	n	0	
+# ::edge	fill-01	ARG0	product	f	p	
+# ::edge	fill-01	ARG1	space	f	s2	
+# ::edge	fill-01	location	floor	f	f2	
+# ::edge	floor	location	between	f2	b	
+# ::edge	between	op1	toilet	b	t	
+# ::edge	between	op2	sink	b	s	
+# ::edge	between	op3	tub	b	t2	
+(f / fill-01
+    :ARG0 (p / product
+        :name (n / name
+            :op1 "Bathmat"))
+    :ARG1 (s2 / space)
+    :location (f2 / floor
+        :location (b / between
+            :op1 (t / toilet)
+            :op2 (s / sink)
+            :op3 (t2 / tub))))

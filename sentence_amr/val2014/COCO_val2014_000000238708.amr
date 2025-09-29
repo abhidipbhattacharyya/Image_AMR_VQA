@@ -1,0 +1,45 @@
+# ::tok A glass bowl of raw broccoli , a ceramic bowl of raw green chili peppers , and steel bowl of raw daikon .
+# ::node	g	glass	1-2
+# ::node	b	bowl	2-3
+# ::node	r	raw	4-5
+# ::node	b4	broccoli	5-6
+# ::node	c	ceramic	8-9
+# ::node	b2	bowl	9-10
+# ::node	g2	green-02	12-13
+# ::node	c2	chili	13-14
+# ::node	p	pepper-spray	14-15
+# ::node	a	and	16-17
+# ::node	s	steel	17-18
+# ::node	b3	bowl	18-19
+# ::node	r2	raw	20-21
+# ::node	d	daikon	21-22
+# ::root	a	and
+# ::edge	bowl	consist-of	glass	b	g	
+# ::edge	broccoli	mod	raw	b4	r	
+# ::edge	bowl	consist-of	broccoli	b	b4	
+# ::edge	bowl	mod	ceramic	b2	c	
+# ::edge	pepper-spray	mod	chili	p	c2	
+# ::edge	pepper-spray	ARG1-of	green-02	p	g2	
+# ::edge	bowl	consist-of	pepper-spray	b2	p	
+# ::edge	pepper-spray	mod	raw	p	r	
+# ::edge	and	op2	bowl	a	b2	
+# ::edge	and	op1	bowl	a	b	
+# ::edge	bowl	consist-of	steel	b3	s	
+# ::edge	and	op3	bowl	a	b3	
+# ::edge	daikon	mod	raw	d	r2	
+# ::edge	bowl	consist-of	daikon	b3	d	
+(a / and
+    :op1 (b / bowl
+        :consist-of (g / glass)
+        :consist-of (b4 / broccoli
+            :mod (r / raw)))
+    :op2 (b2 / bowl
+        :consist-of (p / pepper-spray
+            :ARG1-of (g2 / green-02)
+            :mod (c2 / chili)
+            :mod r)
+        :mod (c / ceramic))
+    :op3 (b3 / bowl
+        :consist-of (s / steel)
+        :consist-of (d / daikon
+            :mod (r2 / raw))))

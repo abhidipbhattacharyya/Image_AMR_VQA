@@ -1,0 +1,50 @@
+# ::tok Army vehicles , including a U.S. Army jeep and aircraft in a hangar or on display
+# ::node	m	military	0-1
+# ::node	n	name	0-1
+# ::node	0	Army	0-1
+# ::node	v	vehicle	1-2
+# ::node	i	include-91	3-4
+# ::node	n2	name	5-6
+# ::node	2	U.S.	5-6
+# ::node	m2	military	6-7
+# ::node	1	Army	6-7
+# ::node	j	jeep	7-8
+# ::node	a2	and	8-9
+# ::node	a	aircraft	9-10
+# ::node	h	hangar	12-13
+# ::node	o	or	13-14
+# ::node	d	display-01	15-16
+# ::root	o	or
+# ::edge	military	name	name	m	n	
+# ::edge	name	op1	Army	n	0	
+# ::edge	vehicle	poss	military	v	m	
+# ::edge	vehicle	ARG2-of	include-91	v	i	
+# ::edge	name	op1	U.S.	n2	2	
+# ::edge	military	name	name	m2	n2	
+# ::edge	name	op2	Army	n2	1	
+# ::edge	jeep	poss	military	j	m2	
+# ::edge	and	op1	jeep	a2	j	
+# ::edge	include-91	ARG1	and	i	a2	
+# ::edge	and	op2	aircraft	a2	a	
+# ::edge	aircraft	poss	military	a	m2	
+# ::edge	or	op1	hangar	o	h	
+# ::edge	vehicle	location	or	v	o	
+# ::edge	or	op2	display-01	o	d	
+# ::edge	or	rel	vehicle	o	v	
+(o / or
+    :op1 (h / hangar)
+    :op2 (d / display-01)
+    :rel (v / vehicle
+        :ARG2-of (i / include-91
+            :ARG1 (a2 / and
+                :op1 (j / jeep
+                    :poss (m2 / military
+                        :name (n2 / name
+                            :op1 "U.S."
+                            :op2 "Army")))
+                :op2 (a / aircraft
+                    :poss m2)))
+        :location o
+        :poss (m / military
+            :name (n / name
+                :op1 "Army"))))

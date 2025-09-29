@@ -1,0 +1,27 @@
+# ::tok Multiple people waiting on a boarding dock to get on the train .
+# ::node	m	multiple	0-1
+# ::node	0	1	0-1
+# ::node	p	person	1-2
+# ::node	w	wait-01	2-3
+# ::node	b	board-01	5-6
+# ::node	d	dock	6-7
+# ::node	g	get-05	8-9
+# ::node	t	train	11-12
+# ::root	w	wait-01
+# ::edge	multiple	op1	1	m	0	
+# ::edge	person	quant	multiple	p	m	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	dock	location-of	board-01	d	b	
+# ::edge	wait-01	location	dock	w	d	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG2	train	g	t	
+(w / wait-01
+    :ARG1 (p / person
+        :quant (m / multiple
+            :op1 1))
+    :ARG2 (g / get-05
+        :ARG1 p
+        :ARG2 (t / train))
+    :location (d / dock
+        :location-of (b / board-01)))

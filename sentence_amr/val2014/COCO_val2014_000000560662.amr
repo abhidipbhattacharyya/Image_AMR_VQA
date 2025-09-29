@@ -1,0 +1,28 @@
+# ::tok An action shot of a basketball game with one player leaping in the air
+# ::node	a	action	1-2
+# ::node	s	shoot-03	2-3
+# ::node	b	basketball	5-6
+# ::node	g	game	6-7
+# ::node	0	1	8-9
+# ::node	p	person	9-10
+# ::node	p2	play-01	9-10
+# ::node	j	jump-03	10-11
+# ::node	a2	air	13-14
+# ::root	s	shoot-03
+# ::edge	shoot-03	mod	action	s	a	
+# ::edge	game	mod	basketball	g	b	
+# ::edge	shoot-03	ARG1	game	s	g	
+# ::edge	person	quant	1	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	shoot-03	ARG2	jump-03	s	j	
+# ::edge	jump-03	destination	air	j	a2	
+(s / shoot-03
+    :ARG1 (g / game
+        :mod (b / basketball))
+    :ARG2 (j / jump-03
+        :ARG0 (p / person
+            :quant 1
+            :ARG0-of (p2 / play-01))
+        :destination (a2 / air))
+    :mod (a / action))

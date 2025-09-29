@@ -1,0 +1,46 @@
+# ::tok A soldier cutting a cake celebrating 238 years of the Army 's Corps of Engineers .
+# ::node	s	soldier	1-2
+# ::node	c3	cut-01	2-3
+# ::node	c	cake	4-5
+# ::node	c2	celebrate-01	5-6
+# ::node	0	238	6-7
+# ::node	t	temporal-quantity	7-8
+# ::node	y	year	7-8
+# ::node	n	name	10-11
+# ::node	m	military	10-11
+# ::node	n2	name	10-11
+# ::node	1	Army	10-11
+# ::node	g	government-organization	12-13
+# ::node	2	Corps	12-13
+# ::node	4	of	13-14
+# ::node	3	Engineers	14-15
+# ::root	c3	cut-01
+# ::edge	cut-01	ARG0	soldier	c3	s	
+# ::edge	cut-01	ARG1	cake	c3	c	
+# ::edge	cake	ARG0-of	celebrate-01	c	c2	
+# ::edge	temporal-quantity	quant	238	t	0	
+# ::edge	celebrate-01	ARG1	temporal-quantity	c2	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	military	name	name	m	n2	
+# ::edge	name	op1	Army	n2	1	
+# ::edge	government-organization	mod	military	g	m	
+# ::edge	government-organization	name	name	g	n	
+# ::edge	temporal-quantity	duration-of	government-organization	t	g	
+# ::edge	name	op1	Corps	n	2	
+# ::edge	name	op2	of	n	4	
+# ::edge	name	op3	Engineers	n	3	
+(c3 / cut-01
+    :ARG0 (s / soldier)
+    :ARG1 (c / cake
+        :ARG0-of (c2 / celebrate-01
+            :ARG1 (t / temporal-quantity
+                :quant 238
+                :duration-of (g / government-organization
+                    :name (n / name
+                        :op1 "Corps"
+                        :op2 "of"
+                        :op3 "Engineers")
+                    :mod (m / military
+                        :name (n2 / name
+                            :op1 "Army")))
+                :unit (y / year)))))

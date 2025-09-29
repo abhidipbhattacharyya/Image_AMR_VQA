@@ -1,0 +1,22 @@
+# ::tok A single engine , tail dragger airplane taxiing on a runway .
+# ::node	s	single-02	1-2
+# ::node	e	engine	2-3
+# ::node	t	tail	4-5
+# ::node	d	drag-01	5-6
+# ::node	a	airplane	6-7
+# ::node	t2	tax-01	7-8
+# ::node	r	runway	10-11
+# ::root	a	airplane
+# ::edge	engine	ARG1-of	single-02	e	s	
+# ::edge	drag-01	ARG1	tail	d	t	
+# ::edge	airplane	ARG0-of	drag-01	a	d	
+# ::edge	airplane	mod	engine	a	e	
+# ::edge	airplane	ARG1-of	tax-01	a	t2	
+# ::edge	tax-01	location	runway	t2	r	
+(a / airplane
+    :ARG0-of (d / drag-01
+        :ARG1 (t / tail))
+    :ARG1-of (t2 / tax-01
+        :location (r / runway))
+    :mod (e / engine
+        :ARG1-of (s / single-02)))

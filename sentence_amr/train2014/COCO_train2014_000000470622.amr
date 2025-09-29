@@ -1,0 +1,33 @@
+# ::tok A cow is sitting down in some sand and two other cows are standing behind her .
+# ::node	c	cow	1-2
+# ::node	s2	sit-down-02	3-4
+# ::node	s3	some	6-7
+# ::node	s	sand	7-8
+# ::node	a	and	8-9
+# ::node	0	2	9-10
+# ::node	o	other	10-11
+# ::node	c2	cow	11-12
+# ::node	s4	stand-01	13-14
+# ::node	b	behind	14-15
+# ::root	a	and
+# ::edge	sit-down-02	ARG1	cow	s2	c	
+# ::edge	sand	mod	some	s	s3	
+# ::edge	sit-down-02	ARG2	sand	s2	s	
+# ::edge	and	op1	sit-down-02	a	s2	
+# ::edge	cow	mod	other	c2	o	
+# ::edge	cow	quant	2	c2	0	
+# ::edge	stand-01	ARG1	cow	s4	c2	
+# ::edge	and	op2	stand-01	a	s4	
+# ::edge	stand-01	ARG2	behind	s4	b	
+# ::edge	behind	op1	cow	b	c	
+(a / and
+    :op1 (s2 / sit-down-02
+        :ARG1 (c / cow)
+        :ARG2 (s / sand
+            :mod (s3 / some)))
+    :op2 (s4 / stand-01
+        :ARG1 (c2 / cow
+            :quant 2
+            :mod (o / other))
+        :ARG2 (b / behind
+            :op1 c)))

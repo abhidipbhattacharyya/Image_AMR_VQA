@@ -1,0 +1,47 @@
+# ::tok A skier coming over the crest of a hill while holding ski poles and wearing a helmet and goggles
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	c	come-01	2-3
+# ::node	o	over	3-4
+# ::node	c2	crest	5-6
+# ::node	h2	hill	8-9
+# ::node	h3	hold-01	10-11
+# ::node	s2	ski-01	11-12
+# ::node	p2	pole	12-13
+# ::node	w	wear-01	14-15
+# ::node	h	helmet	16-17
+# ::node	a	and	17-18
+# ::node	a2	and	17-18
+# ::node	g	goggles	18-19
+# ::root	c	come-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	come-01	ARG1	person	c	p	
+# ::edge	come-01	path	over	c	o	
+# ::edge	over	op1	crest	o	c2	
+# ::edge	crest	part-of	hill	c2	h2	
+# ::edge	hold-01	ARG0	person	h3	p	
+# ::edge	pole	mod	ski-01	p2	s2	
+# ::edge	hold-01	ARG1	pole	h3	p2	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	and	op2	wear-01	a	w	
+# ::edge	and	op1	hold-01	a	h3	
+# ::edge	come-01	manner	and	c	a	
+# ::edge	and	op1	helmet	a2	h	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	and	op2	goggles	a2	g	
+(c / come-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01))
+    :manner (a / and
+        :op1 (h3 / hold-01
+            :ARG0 p
+            :ARG1 (p2 / pole
+                :mod (s2 / ski-01)))
+        :op2 (w / wear-01
+            :ARG0 p
+            :ARG1 (a2 / and
+                :op1 (h / helmet)
+                :op2 (g / goggles))))
+    :path (o / over
+        :op1 (c2 / crest
+            :part-of (h2 / hill))))

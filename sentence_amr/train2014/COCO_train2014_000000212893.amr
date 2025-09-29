@@ -1,0 +1,38 @@
+# ::tok A man touches a small dog 's head while the dog wears a sweater and chews a frisbee on the couch .
+# ::node	m	man	1-2
+# ::node	t	touch-01	2-3
+# ::node	s	small	4-5
+# ::node	d	dog	5-6
+# ::node	h	head	7-8
+# ::node	w	wear-01	11-12
+# ::node	s2	sweater	13-14
+# ::node	a	and	14-15
+# ::node	c	chew-01	15-16
+# ::node	f	frisbee	17-18
+# ::node	c2	couch	20-21
+# ::root	t	touch-01
+# ::edge	touch-01	ARG0	man	t	m	
+# ::edge	dog	mod	small	d	s	
+# ::edge	head	part-of	dog	h	d	
+# ::edge	touch-01	ARG1	head	t	h	
+# ::edge	wear-01	ARG0	dog	w	d	
+# ::edge	wear-01	ARG1	sweater	w	s2	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	touch-01	time	and	t	a	
+# ::edge	and	op2	chew-01	a	c	
+# ::edge	chew-01	ARG0	dog	c	d	
+# ::edge	chew-01	ARG1	frisbee	c	f	
+# ::edge	chew-01	location	couch	c	c2	
+(t / touch-01
+    :ARG0 (m / man)
+    :ARG1 (h / head
+        :part-of (d / dog
+            :mod (s / small)))
+    :time (a / and
+        :op1 (w / wear-01
+            :ARG0 d
+            :ARG1 (s2 / sweater))
+        :op2 (c / chew-01
+            :ARG0 d
+            :ARG1 (f / frisbee)
+            :location (c2 / couch))))

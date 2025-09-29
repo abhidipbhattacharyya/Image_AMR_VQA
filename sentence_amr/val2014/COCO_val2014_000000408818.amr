@@ -1,0 +1,38 @@
+# ::tok A red train at a station with people inside and a conductor standing on the front .
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	s2	station	5-6
+# ::node	p	person	7-8
+# ::node	i	inside	8-9
+# ::node	a	and	9-10
+# ::node	p2	person	11-12
+# ::node	h	have-org-role-91	11-12
+# ::node	c	conductor	11-12
+# ::node	s	stand-01	12-13
+# ::node	f	front	15-16
+# ::root	t	train
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	train	location	station	t	s2	
+# ::edge	person	location	inside	p	i	
+# ::edge	and	op1	person	a	p	
+# ::edge	train	location-of	and	t	a	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h	
+# ::edge	have-org-role-91	ARG1	train	h	t	
+# ::edge	have-org-role-91	ARG2	conductor	h	c	
+# ::edge	stand-01	ARG0	person	s	p2	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG2	front	s	f	
+# ::edge	train	part	front	t	f	
+(t / train
+    :ARG1-of (r / red-02)
+    :location (s2 / station)
+    :location-of (a / and
+        :op1 (p / person
+            :location (i / inside))
+        :op2 (s / stand-01
+            :ARG0 (p2 / person
+                :ARG0-of (h / have-org-role-91
+                    :ARG1 t
+                    :ARG2 (c / conductor)))
+            :ARG2 (f / front)))
+    :part f)

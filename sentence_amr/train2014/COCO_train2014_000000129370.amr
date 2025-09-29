@@ -1,0 +1,27 @@
+# ::tok A professional baseball game , where the player is waiting to hit the bat .
+# ::node	p3	professional	1-2
+# ::node	b	baseball	2-3
+# ::node	g	game	3-4
+# ::node	p	person	7-8
+# ::node	p2	play-01	7-8
+# ::node	w	wait-01	9-10
+# ::node	h	hit-01	11-12
+# ::node	b2	bat	13-14
+# ::root	g	game
+# ::edge	baseball	mod	professional	b	p3	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	game	location-of	wait-01	g	w	
+# ::edge	wait-01	ARG2	hit-01	w	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	bat	h	b2	
+(g / game
+    :location-of (w / wait-01
+        :ARG1 (p / person
+            :ARG0-of (p2 / play-01))
+        :ARG2 (h / hit-01
+            :ARG0 p
+            :ARG1 (b2 / bat)))
+    :mod (b / baseball
+        :mod (p3 / professional)))

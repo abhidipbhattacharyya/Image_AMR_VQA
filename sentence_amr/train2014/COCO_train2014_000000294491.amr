@@ -1,0 +1,28 @@
+# ::tok Traffic lights hung over an intersection of streets with very little traffic .
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	h	hang-01	2-3
+# ::node	o	over	3-4
+# ::node	i	intersect-01	5-6
+# ::node	s	street	7-8
+# ::node	v	very	9-10
+# ::node	l2	little	10-11
+# ::node	t2	traffic	11-12
+# ::root	h	hang-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	hang-01	ARG1	light	h	l	
+# ::edge	hang-01	location	over	h	o	
+# ::edge	over	op1	intersect-01	o	i	
+# ::edge	intersect-01	ARG1	street	i	s	
+# ::edge	little	degree	very	l2	v	
+# ::edge	traffic	quant	little	t2	l2	
+# ::edge	intersect-01	ARG1	traffic	i	t2	
+(h / hang-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :location (o / over
+        :op1 (i / intersect-01
+            :ARG1 (s / street)
+            :ARG1 (t2 / traffic
+                :quant (l2 / little
+                    :degree (v / very))))))

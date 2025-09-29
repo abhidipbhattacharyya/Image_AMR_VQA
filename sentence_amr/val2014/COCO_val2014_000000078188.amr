@@ -1,0 +1,44 @@
+# ::tok refreshed and unable to see image , have had this problem before
+# ::node	p	person	0-1
+# ::node	r	refresh-01	0-1
+# ::node	a	and	1-2
+# ::node	p2	possible-01	2-3
+# ::node	0	-	3-4
+# ::node	s	see-01	4-5
+# ::node	i2	image	5-6
+# ::node	m	multi-sentence	6-7
+# ::node	i	i	7-8
+# ::node	h	have-03	8-9
+# ::node	t	this	9-10
+# ::node	p3	problem	10-11
+# ::node	b	before	11-12
+# ::root	m	multi-sentence
+# ::edge	person	ARG1-of	refresh-01	p	r	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	possible-01	a	p2	
+# ::edge	possible-01	polarity	-	p2	0	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	person	s	p	
+# ::edge	see-01	ARG1	image	s	i2	
+# ::edge	multi-sentence	snt1	and	m	a	
+# ::edge	see-01	ARG0	i	s	i	
+# ::edge	have-03	ARG0	i	h	i	
+# ::edge	multi-sentence	snt2	have-03	m	h	
+# ::edge	problem	mod	this	p3	t	
+# ::edge	have-03	ARG1	problem	h	p3	
+# ::edge	have-03	time	before	h	b	
+(m / multi-sentence
+    :snt1 (a / and
+        :op1 (p / person
+            :ARG1-of (r / refresh-01))
+        :op2 (p2 / possible-01
+            :ARG1 (s / see-01
+                :ARG0 p
+                :ARG0 (i / i)
+                :ARG1 (i2 / image))
+            :polarity -))
+    :snt2 (h / have-03
+        :ARG0 i
+        :ARG1 (p3 / problem
+            :mod (t / this))
+        :time (b / before)))

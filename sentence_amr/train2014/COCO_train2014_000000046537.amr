@@ -1,0 +1,50 @@
+# ::tok A two tier red tour bus driving down a street with people in the top waving to people as they drive by .
+# ::node	0	2	1-2
+# ::node	t2	tier	2-3
+# ::node	r	red-02	3-4
+# ::node	t4	tour-01	4-5
+# ::node	b	bus	5-6
+# ::node	d2	drive-01	6-7
+# ::node	d	down	7-8
+# ::node	s	street	9-10
+# ::node	p	person	11-12
+# ::node	t3	top	14-15
+# ::node	w	wave-01	15-16
+# ::node	p2	person	17-18
+# ::node	t	they	19-20
+# ::node	d3	drive-01	20-21
+# ::node	b2	by	21-22
+# ::root	b	bus
+# ::edge	tier	quant	2	t2	0	
+# ::edge	bus	ARG0-of	tour-01	b	t4	
+# ::edge	bus	ARG1-of	red-02	b	r	
+# ::edge	bus	mod	tier	b	t2	
+# ::edge	bus	ARG0-of	drive-01	b	d2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s	
+# ::edge	person	location	top	p	t3	
+# ::edge	bus	part	top	b	t3	
+# ::edge	wave-01	ARG0	person	w	p	
+# ::edge	bus	location-of	wave-01	b	w	
+# ::edge	wave-01	ARG2	person	w	p2	
+# ::edge	drive-01	ARG0	they	d3	t	
+# ::edge	wave-01	time	drive-01	w	d3	
+# ::edge	drive-01	direction	by	d3	b2	
+# ::edge	by	op1	street	b2	s	
+(b / bus
+    :ARG0-of (t4 / tour-01)
+    :ARG0-of (d2 / drive-01
+        :ARG1 (s / street)
+        :direction (d / down))
+    :ARG1-of (r / red-02)
+    :location-of (w / wave-01
+        :ARG0 (p / person
+            :location (t3 / top))
+        :ARG2 (p2 / person)
+        :time (d3 / drive-01
+            :ARG0 (t / they)
+            :direction (b2 / by
+                :op1 s)))
+    :mod (t2 / tier
+        :quant 2)
+    :part t3)

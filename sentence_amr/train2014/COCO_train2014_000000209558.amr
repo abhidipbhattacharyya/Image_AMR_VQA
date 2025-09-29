@@ -1,0 +1,32 @@
+# ::tok A television set is on while it sits on a stand with a cat sleeping next to it .
+# ::node	t	television	1-2
+# ::node	s	set	2-3
+# ::node	o	on-01	4-5
+# ::node	s2	sit-01	7-8
+# ::node	s4	stand	10-11
+# ::node	a	and	11-12
+# ::node	c	cat	13-14
+# ::node	s3	sleep-01	14-15
+# ::node	n	next-to	15-16
+# ::root	o	on-01
+# ::edge	set	mod	television	s	t	
+# ::edge	on-01	ARG1	set	o	s	
+# ::edge	sit-01	ARG1	set	s2	s	
+# ::edge	sit-01	ARG2	stand	s2	s4	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	on-01	time	and	o	a	
+# ::edge	sleep-01	ARG0	cat	s3	c	
+# ::edge	and	op2	sleep-01	a	s3	
+# ::edge	sleep-01	location	next-to	s3	n	
+# ::edge	next-to	op1	set	n	s	
+(o / on-01
+    :ARG1 (s / set
+        :mod (t / television))
+    :time (a / and
+        :op1 (s2 / sit-01
+            :ARG1 s
+            :ARG2 (s4 / stand))
+        :op2 (s3 / sleep-01
+            :ARG0 (c / cat)
+            :location (n / next-to
+                :op1 s))))

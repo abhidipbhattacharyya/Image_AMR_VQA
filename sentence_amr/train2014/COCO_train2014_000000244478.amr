@@ -1,0 +1,40 @@
+# ::tok A street post that has a yellow colored traffic light and a walking sign that has a lighted red hand on it .
+# ::node	s2	street	1-2
+# ::node	p	post	2-3
+# ::node	h2	have-03	4-5
+# ::node	y	yellow-02	6-7
+# ::node	c	color-01	7-8
+# ::node	t	traffic	8-9
+# ::node	l	light	9-10
+# ::node	a	and	10-11
+# ::node	w	walk-01	12-13
+# ::node	s	sign	13-14
+# ::node	l2	light-04	17-18
+# ::node	r	red-02	18-19
+# ::node	h	hand	19-20
+# ::root	p	post
+# ::edge	post	location	street	p	s2	
+# ::edge	post	ARG0-of	have-03	p	h2	
+# ::edge	color-01	ARG2	yellow-02	c	y	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	color-01	l	c	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	sign	purpose	walk-01	s	w	
+# ::edge	and	op2	sign	a	s	
+# ::edge	hand	ARG1-of	red-02	h	r	
+# ::edge	hand	ARG1-of	light-04	h	l2	
+# ::edge	sign	part	hand	s	h	
+(p / post
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (l / light
+                :ARG1-of (c / color-01
+                    :ARG2 (y / yellow-02))
+                :mod (t / traffic))
+            :op2 (s / sign
+                :purpose (w / walk-01)
+                :part (h / hand
+                    :ARG1-of (r / red-02)
+                    :ARG1-of (l2 / light-04)))))
+    :location (s2 / street))

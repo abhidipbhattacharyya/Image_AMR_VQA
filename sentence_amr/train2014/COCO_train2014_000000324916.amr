@@ -1,0 +1,43 @@
+# ::tok An unusual men 's restroom with artistic tiled walls and a window made of colorful glass bottles .
+# ::node	u	usual	1-2
+# ::node	m2	man	2-3
+# ::node	r	restroom	4-5
+# ::node	h	have-03	5-6
+# ::node	a2	artistic	6-7
+# ::node	t	tile-01	7-8
+# ::node	w	wall	8-9
+# ::node	a	and	9-10
+# ::node	w2	window	11-12
+# ::node	m	make-01	12-13
+# ::node	c	colorful	14-15
+# ::node	g	glass	15-16
+# ::node	b	bottle	16-17
+# ::node	0	-	17-18
+# ::root	r	restroom
+# ::edge	restroom	beneficiary	man	r	m2	
+# ::edge	restroom	mod	usual	r	u	
+# ::edge	restroom	ARG0-of	have-03	r	h	
+# ::edge	tile-01	mod	artistic	t	a2	
+# ::edge	wall	ARG1-of	tile-01	w	t	
+# ::edge	and	op1	wall	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	window	a	w2	
+# ::edge	window	ARG1-of	make-01	w2	m	
+# ::edge	bottle	consist-of	glass	b	g	
+# ::edge	bottle	mod	colorful	b	c	
+# ::edge	make-01	ARG2	bottle	m	b	
+# ::edge	usual	polarity	-	u	0	
+(r / restroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (w / wall
+                :ARG1-of (t / tile-01
+                    :mod (a2 / artistic)))
+            :op2 (w2 / window
+                :ARG1-of (m / make-01
+                    :ARG2 (b / bottle
+                        :consist-of (g / glass)
+                        :mod (c / colorful))))))
+    :beneficiary (m2 / man)
+    :mod (u / usual
+        :polarity -))

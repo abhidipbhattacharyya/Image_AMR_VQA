@@ -1,0 +1,24 @@
+# ::tok A traffic light with a street sigh hanging from it 's sides .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s3	street	5-6
+# ::node	s2	sigh-02	6-7
+# ::node	h	hang-01	7-8
+# ::node	c	cause-01	8-9
+# ::node	s	side	11-12
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	sigh-02	ARG0	street	s2	s3	
+# ::edge	hang-01	ARG1	sigh-02	h	s2	
+# ::edge	cause-01	ARG1	hang-01	c	h	
+# ::edge	light	ARG0-of	cause-01	l	c	
+# ::edge	hang-01	ARG2	side	h	s	
+# ::edge	light	part	side	l	s	
+(l / light
+    :ARG0-of (c / cause-01
+        :ARG1 (h / hang-01
+            :ARG1 (s2 / sigh-02
+                :ARG0 (s3 / street))
+            :ARG2 (s / side)))
+    :mod (t / traffic)
+    :part s)

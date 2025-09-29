@@ -1,0 +1,31 @@
+# ::tok Signpost at night with stop sign and sign warning of a drop into water .
+# ::node	s	signal-07	0-1
+# ::node	d	date-entity	2-3
+# ::node	n	night	2-3
+# ::node	s4	stop-01	4-5
+# ::node	s2	signal-07	5-6
+# ::node	a	and	6-7
+# ::node	s3	signal-07	7-8
+# ::node	w	warn-01	8-9
+# ::node	d2	drop-01	11-12
+# ::node	w2	water	13-14
+# ::root	s	signal-07
+# ::edge	signal-07	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	signal-07	ARG1	and	s	a	
+# ::edge	and	op2	signal-07	a	s3	
+# ::edge	signal-07	ARG0-of	warn-01	s3	w	
+# ::edge	warn-01	ARG1	drop-01	w	d2	
+# ::edge	drop-01	ARG4	water	d2	w2	
+(s / signal-07
+    :ARG1 (a / and
+        :op1 (s2 / signal-07
+            :ARG1 (s4 / stop-01))
+        :op2 (s3 / signal-07
+            :ARG0-of (w / warn-01
+                :ARG1 (d2 / drop-01
+                    :ARG4 (w2 / water)))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

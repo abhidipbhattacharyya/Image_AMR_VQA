@@ -1,0 +1,27 @@
+# ::tok A group of rowers in a boat is waiting for instruction from the lead .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	b2	boat-01	3-4
+# ::node	b	boat	6-7
+# ::node	w	wait-01	8-9
+# ::node	i	instruct-01	10-11
+# ::node	p2	person	13-14
+# ::node	l	lead-02	13-14
+# ::root	w	wait-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	boat-01	p	b2	
+# ::edge	group	location	boat	g	b	
+# ::edge	wait-01	ARG1	group	w	g	
+# ::edge	wait-01	ARG2	instruct-01	w	i	
+# ::edge	instruct-01	ARG1	group	i	g	
+# ::edge	instruct-01	ARG0	person	i	p2	
+# ::edge	person	ARG0-of	lead-02	p2	l	
+(w / wait-01
+    :ARG1 (g / group
+        :consist-of (p / person
+            :ARG0-of (b2 / boat-01))
+        :location (b / boat))
+    :ARG2 (i / instruct-01
+        :ARG0 (p2 / person
+            :ARG0-of (l / lead-02))
+        :ARG1 g))

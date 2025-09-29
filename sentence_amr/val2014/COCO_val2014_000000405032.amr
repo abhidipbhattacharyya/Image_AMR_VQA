@@ -1,0 +1,34 @@
+# ::tok A panda bear sits in a tree with no branches near a cluster of rocks and a building .
+# ::node	p	panda	1-2
+# ::node	b	bear	2-3
+# ::node	s	sit-01	3-4
+# ::node	t	tree	6-7
+# ::node	0	-	8-9
+# ::node	b2	branch	9-10
+# ::node	n	near-02	10-11
+# ::node	c	cluster-01	12-13
+# ::node	r	rock	14-15
+# ::node	a	and	15-16
+# ::node	b3	building	17-18
+# ::root	s	sit-01
+# ::edge	bear	mod	panda	b	p	
+# ::edge	sit-01	ARG1	bear	s	b	
+# ::edge	sit-01	ARG2	tree	s	t	
+# ::edge	branch	polarity	-	b2	0	
+# ::edge	tree	part	branch	t	b2	
+# ::edge	branch	ARG1-of	near-02	b2	n	
+# ::edge	near-02	ARG2	cluster-01	n	c	
+# ::edge	and	op1	rock	a	r	
+# ::edge	cluster-01	ARG1	and	c	a	
+# ::edge	and	op2	building	a	b3	
+(s / sit-01
+    :ARG1 (b / bear
+        :mod (p / panda))
+    :ARG2 (t / tree
+        :part (b2 / branch
+            :ARG1-of (n / near-02
+                :ARG2 (c / cluster-01
+                    :ARG1 (a / and
+                        :op1 (r / rock)
+                        :op2 (b3 / building))))
+            :polarity -)))

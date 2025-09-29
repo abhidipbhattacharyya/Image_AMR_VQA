@@ -1,0 +1,55 @@
+# ::tok Banana or plantains on grey floor next to wooden supports as if in street vendor stand in third world country .
+# ::node	b	banana	0-1
+# ::node	o	or	1-2
+# ::node	p3	plant-01	2-3
+# ::node	p2	plant	2-3
+# ::node	g	gray-02	4-5
+# ::node	f	floor	5-6
+# ::node	n	next-to	6-7
+# ::node	w	wood	8-9
+# ::node	s3	support-01	9-10
+# ::node	r	resemble-01	10-11
+# ::node	s2	street	13-14
+# ::node	p	person	14-15
+# ::node	v	vend-01	14-15
+# ::node	s	stand	15-16
+# ::node	o2	ordinal-entity	17-18
+# ::node	0	3	17-18
+# ::node	w2	world	18-19
+# ::node	c	country	19-20
+# ::root	o	or
+# ::edge	or	op1	banana	o	b	
+# ::edge	plant-01	ARG2	plant	p3	p2	
+# ::edge	floor	ARG1-of	gray-02	f	g	
+# ::edge	or	location	floor	o	f	
+# ::edge	floor	location	next-to	f	n	
+# ::edge	support-01	instrument	wood	s3	w	
+# ::edge	next-to	op1	support-01	n	s3	
+# ::edge	or	ARG1-of	resemble-01	o	r	
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	vend-01	location	street	v	s2	
+# ::edge	stand	mod	person	s	p	
+# ::edge	resemble-01	ARG2	stand	r	s	
+# ::edge	ordinal-entity	value	3	o2	0	
+# ::edge	world	ord	ordinal-entity	w2	o2	
+# ::edge	country	mod	world	c	w2	
+# ::edge	stand	location	country	s	c	
+# ::edge	or	rel	plant-01	o	p3	
+(o / or
+    :ARG1-of (r / resemble-01
+        :ARG2 (s / stand
+            :location (c / country
+                :mod (w2 / world
+                    :ord (o2 / ordinal-entity
+                        :value 3)))
+            :mod (p / person
+                :ARG0-of (v / vend-01
+                    :location (s2 / street)))))
+    :location (f / floor
+        :ARG1-of (g / gray-02)
+        :location (n / next-to
+            :op1 (s3 / support-01
+                :instrument (w / wood))))
+    :op1 (b / banana)
+    :rel (p3 / plant-01
+        :ARG2 (p2 / plant)))

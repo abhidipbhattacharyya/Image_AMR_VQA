@@ -1,0 +1,28 @@
+# ::tok The high speed transit train is elevated above the city at this point
+# ::node	h	high-02	1-2
+# ::node	s	speed	2-3
+# ::node	t3	transit-01	3-4
+# ::node	t2	train	4-5
+# ::node	e	elevate-01	6-7
+# ::node	a	above	7-8
+# ::node	c	city	9-10
+# ::node	t	this	11-12
+# ::node	p	point	12-13
+# ::root	e	elevate-01
+# ::edge	speed	ARG1-of	high-02	s	h	
+# ::edge	train	ARG2-of	transit-01	t2	t3	
+# ::edge	train	mod	speed	t2	s	
+# ::edge	elevate-01	ARG1	train	e	t2	
+# ::edge	elevate-01	ARG2	above	e	a	
+# ::edge	above	op1	city	a	c	
+# ::edge	point	mod	this	p	t	
+# ::edge	elevate-01	time	point	e	p	
+(e / elevate-01
+    :ARG1 (t2 / train
+        :ARG2-of (t3 / transit-01)
+        :mod (s / speed
+            :ARG1-of (h / high-02)))
+    :ARG2 (a / above
+        :op1 (c / city))
+    :time (p / point
+        :mod (t / this)))

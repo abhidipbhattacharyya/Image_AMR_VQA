@@ -1,0 +1,27 @@
+# ::tok A sheep reaching over some rocks to get something in the grass
+# ::node	s	sheep	1-2
+# ::node	r	reach-03	2-3
+# ::node	o	over	3-4
+# ::node	s2	some	4-5
+# ::node	r2	rock	5-6
+# ::node	g	get-01	7-8
+# ::node	s3	something	8-9
+# ::node	g2	grass	11-12
+# ::root	r	reach-03
+# ::edge	reach-03	ARG0	sheep	r	s	
+# ::edge	reach-03	path	over	r	o	
+# ::edge	rock	mod	some	r2	s2	
+# ::edge	over	op1	rock	o	r2	
+# ::edge	reach-03	purpose	get-01	r	g	
+# ::edge	get-01	ARG0	sheep	g	s	
+# ::edge	get-01	ARG1	something	g	s3	
+# ::edge	something	location	grass	s3	g2	
+(r / reach-03
+    :purpose (g / get-01
+        :ARG0 (s / sheep)
+        :ARG1 (s3 / something
+            :location (g2 / grass)))
+    :ARG0 s
+    :path (o / over
+        :op1 (r2 / rock
+            :mod (s2 / some))))

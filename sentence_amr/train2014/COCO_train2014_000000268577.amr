@@ -1,0 +1,25 @@
+# ::tok The roads are plowed on the city street where parking places are readily available .
+# ::node	r2	road	1-2
+# ::node	p3	plow-01	3-4
+# ::node	c	city	6-7
+# ::node	s	street	7-8
+# ::node	p	park-01	9-10
+# ::node	p2	place	10-11
+# ::node	r	ready	12-13
+# ::node	a	available-02	13-14
+# ::root	p3	plow-01
+# ::edge	plow-01	ARG1	road	p3	r2	
+# ::edge	street	mod	city	s	c	
+# ::edge	plow-01	location	street	p3	s	
+# ::edge	place	ARG2-of	park-01	p2	p	
+# ::edge	street	location-of	place	s	p2	
+# ::edge	available-02	manner	ready	a	r	
+# ::edge	place	ARG2-of	available-02	p2	a	
+(p3 / plow-01
+    :ARG1 (r2 / road)
+    :location (s / street
+        :location-of (p2 / place
+            :ARG2-of (p / park-01)
+            :ARG2-of (a / available-02
+                :manner (r / ready)))
+        :mod (c / city)))

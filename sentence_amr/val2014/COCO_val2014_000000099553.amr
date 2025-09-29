@@ -1,0 +1,25 @@
+# ::tok A large truck stops on an infrequently traveled wooded road .
+# ::node	l	large	1-2
+# ::node	t2	truck	2-3
+# ::node	s	stop-01	3-4
+# ::node	f	frequent-02	6-7
+# ::node	0	-	6-7
+# ::node	t	travel-01	7-8
+# ::node	w	wood	8-9
+# ::node	r	road	9-10
+# ::root	s	stop-01
+# ::edge	stop-01	ARG1	truck	s	t2	
+# ::edge	stop-01	mod	large	s	l	
+# ::edge	frequent-02	polarity	-	f	0	
+# ::edge	travel-01	ARG1-of	frequent-02	t	f	
+# ::edge	road	mod	wood	r	w	
+# ::edge	road	ARG1-of	travel-01	r	t	
+# ::edge	stop-01	location	road	s	r	
+(s / stop-01
+    :ARG1 (t2 / truck)
+    :location (r / road
+        :ARG1-of (t / travel-01
+            :ARG1-of (f / frequent-02
+                :polarity -))
+        :mod (w / wood))
+    :mod (l / large))

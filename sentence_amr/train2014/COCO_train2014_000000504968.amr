@@ -1,0 +1,33 @@
+# ::tok An old photograph of a baseball team , possibly from the 1950 's or earlier .
+# ::node	o	old	1-2
+# ::node	p	photograph	2-3
+# ::node	b	baseball	5-6
+# ::node	t	team	6-7
+# ::node	p2	possible-01	8-9
+# ::node	b2	be-temporally-at-91	9-10
+# ::node	d	date-entity	11-12
+# ::node	0	1950	11-12
+# ::node	o2	or	13-14
+# ::node	b3	before	14-15
+# ::root	p	photograph
+# ::edge	photograph	mod	old	p	o	
+# ::edge	team	mod	baseball	t	b	
+# ::edge	photograph	topic	team	p	t	
+# ::edge	be-temporally-at-91	ARG1-of	possible-01	b2	p2	
+# ::edge	photograph	ARG1-of	be-temporally-at-91	p	b2	
+# ::edge	date-entity	year	1950	d	0	
+# ::edge	or	op1	date-entity	o2	d	
+# ::edge	be-temporally-at-91	ARG2	or	b2	o2	
+# ::edge	or	op2	before	o2	b3	
+# ::edge	before	op1	date-entity	b3	d	
+(p / photograph
+    :ARG1-of (b2 / be-temporally-at-91
+        :ARG1-of (p2 / possible-01)
+        :ARG2 (o2 / or
+            :op1 (d / date-entity
+                :year 1950)
+            :op2 (b3 / before
+                :op1 d)))
+    :mod (o / old)
+    :topic (t / team
+        :mod (b / baseball)))

@@ -1,0 +1,30 @@
+# ::tok Several train tracks with an electric train on one of them .
+# ::node	s	several	0-1
+# ::node	t3	train	1-2
+# ::node	t	track	2-3
+# ::node	t2	track	2-3
+# ::node	h	have-03	3-4
+# ::node	e	electric	5-6
+# ::node	t4	train	6-7
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::root	t	track
+# ::edge	track	purpose	train	t	t3	
+# ::edge	track	quant	several	t	s	
+# ::edge	track	location-of	have-03	t2	h	
+# ::edge	train	mod	electric	t4	e	
+# ::edge	have-03	ARG1	train	h	t4	
+# ::edge	track	quant	1	t2	0	
+# ::edge	track	ARG1-of	include-91	t2	i	
+# ::edge	include-91	ARG2	track	i	t2	
+# ::edge	track	rel	include-91	t	i	
+(t / track
+    :purpose (t3 / train)
+    :quant (s / several)
+    :rel (i / include-91
+        :ARG2 (t2 / track
+            :quant 1
+            :ARG1-of i
+            :location-of (h / have-03
+                :ARG1 (t4 / train
+                    :mod (e / electric))))))

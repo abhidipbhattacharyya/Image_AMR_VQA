@@ -1,0 +1,27 @@
+# ::tok a pedestrian traffic light with street name and pedestrian crossing signs
+# ::node	p	pedestrian	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	s2	street	5-6
+# ::node	n	name	6-7
+# ::node	a	and	7-8
+# ::node	c	cross-02	9-10
+# ::node	s	sign	10-11
+# ::root	a	and
+# ::edge	traffic	mod	pedestrian	t	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	name	mod	street	n	s2	
+# ::edge	and	op1	light	a	l	
+# ::edge	cross-02	ARG1	pedestrian	c	p	
+# ::edge	sign	ARG0-of	cross-02	s	c	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	rel	name	a	n	
+(a / and
+    :op1 (l / light
+        :mod (t / traffic
+            :mod (p / pedestrian)))
+    :op2 (s / sign
+        :ARG0-of (c / cross-02
+            :ARG1 p))
+    :rel (n / name
+        :mod (s2 / street)))

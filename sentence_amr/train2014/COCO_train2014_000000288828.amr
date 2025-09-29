@@ -1,0 +1,25 @@
+# ::tok A traffic cop is talking to a group of people who are standing at a parking meter .
+# ::node	t2	traffic	1-2
+# ::node	c	cop	2-3
+# ::node	t	talk-01	4-5
+# ::node	g	group	7-8
+# ::node	p2	person	9-10
+# ::node	s	stand-01	12-13
+# ::node	p	park-01	15-16
+# ::node	m	meter	16-17
+# ::root	t	talk-01
+# ::edge	cop	mod	traffic	c	t2	
+# ::edge	talk-01	ARG0	cop	t	c	
+# ::edge	talk-01	ARG2	group	t	g	
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	group	ARG0-of	stand-01	g	s	
+# ::edge	meter	mod	park-01	m	p	
+# ::edge	stand-01	ARG2	meter	s	m	
+(t / talk-01
+    :ARG0 (c / cop
+        :mod (t2 / traffic))
+    :ARG2 (g / group
+        :ARG0-of (s / stand-01
+            :ARG2 (m / meter
+                :mod (p / park-01)))
+        :consist-of (p2 / person)))

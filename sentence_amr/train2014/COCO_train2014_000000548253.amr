@@ -1,0 +1,58 @@
+# ::tok Several cars and a double - decker bus stopped at a bus stop in front of a Barclays building are in country where vehicles drive on the left side of the road .
+# ::node	s	several	0-1
+# ::node	c	car	1-2
+# ::node	a	and	2-3
+# ::node	d	double-decker	6-7
+# ::node	b2	bus	7-8
+# ::node	s3	stop-01	8-9
+# ::node	b3	bus	11-12
+# ::node	s4	stop-01	12-13
+# ::node	i	in-front-of	14-15
+# ::node	c2	company	17-18
+# ::node	n	name	17-18
+# ::node	0	Barclays	17-18
+# ::node	b	building	18-19
+# ::node	c3	country	21-22
+# ::node	v	vehicle	23-24
+# ::node	d2	drive-01	24-25
+# ::node	l	left-20	27-28
+# ::node	s2	side	28-29
+# ::node	r	road	31-32
+# ::root	s3	stop-01
+# ::edge	car	quant	several	c	s	
+# ::edge	and	op1	car	a	c	
+# ::edge	bus	mod	double-decker	b2	d	
+# ::edge	and	op2	bus	a	b2	
+# ::edge	stop-01	ARG1	and	s3	a	
+# ::edge	stop-01	ARG1	bus	s4	b3	
+# ::edge	stop-01	ARG2	stop-01	s3	s4	
+# ::edge	stop-01	location	in-front-of	s4	i	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Barclays	n	0	
+# ::edge	building	mod	company	b	c2	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	stop-01	location	country	s3	c3	
+# ::edge	drive-01	ARG0	vehicle	d2	v	
+# ::edge	country	location-of	drive-01	c3	d2	
+# ::edge	side	ARG1-of	left-20	s2	l	
+# ::edge	drive-01	ARG1	side	d2	s2	
+# ::edge	side	part-of	road	s2	r	
+(s3 / stop-01
+    :ARG1 (a / and
+        :op1 (c / car
+            :quant (s / several))
+        :op2 (b2 / bus
+            :mod (d / double-decker)))
+    :ARG2 (s4 / stop-01
+        :ARG1 (b3 / bus)
+        :location (i / in-front-of
+            :op1 (b / building
+                :mod (c2 / company
+                    :name (n / name
+                        :op1 "Barclays")))))
+    :location (c3 / country
+        :location-of (d2 / drive-01
+            :ARG0 (v / vehicle)
+            :ARG1 (s2 / side
+                :ARG1-of (l / left-20)
+                :part-of (r / road)))))

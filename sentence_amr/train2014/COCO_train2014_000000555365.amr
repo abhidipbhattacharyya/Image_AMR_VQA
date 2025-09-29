@@ -1,0 +1,27 @@
+# ::tok The electronic cross walk signal is going red at night .
+# ::node	e	electronic	1-2
+# ::node	c	cross-02	2-3
+# ::node	w	walk-01	3-4
+# ::node	s	signal	4-5
+# ::node	g	go-08	6-7
+# ::node	r	red-02	7-8
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::root	g	go-08
+# ::edge	cross-02	ARG1	walk-01	c	w	
+# ::edge	signal	ARG0-of	cross-02	s	c	
+# ::edge	signal	mod	electronic	s	e	
+# ::edge	go-08	ARG1	signal	g	s	
+# ::edge	go-08	ARG2	red-02	g	r	
+# ::edge	red-02	ARG1	signal	r	s	
+# ::edge	go-08	time	date-entity	g	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(g / go-08
+    :ARG1 (s / signal
+        :ARG0-of (c / cross-02
+            :ARG1 (w / walk-01))
+        :mod (e / electronic))
+    :ARG2 (r / red-02
+        :ARG1 s)
+    :time (d / date-entity
+        :dayperiod (n / night)))

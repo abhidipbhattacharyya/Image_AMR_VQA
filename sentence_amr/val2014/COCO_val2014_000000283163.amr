@@ -1,0 +1,30 @@
+# ::tok An airplane is only a short ways off the ground after take off .
+# ::node	a2	airplane	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	o2	only	3-4
+# ::node	s	short-07	5-6
+# ::node	w	way	6-7
+# ::node	o	off	7-8
+# ::node	g	ground	9-10
+# ::node	a	after	10-11
+# ::node	t	take-off-19	11-12
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	airplane	b	a2	
+# ::edge	short-07	mod	only	s	o2	
+# ::edge	way	ARG1-of	short-07	w	s	
+# ::edge	off	quant	way	o	w	
+# ::edge	be-located-at-91	ARG2	off	b	o	
+# ::edge	off	op1	ground	o	g	
+# ::edge	be-located-at-91	time	after	b	a	
+# ::edge	after	op1	take-off-19	a	t	
+# ::edge	take-off-19	ARG1	airplane	t	a2	
+(b / be-located-at-91
+    :ARG1 (a2 / airplane)
+    :ARG2 (o / off
+        :quant (w / way
+            :ARG1-of (s / short-07
+                :mod (o2 / only)))
+        :op1 (g / ground))
+    :time (a / after
+        :op1 (t / take-off-19
+            :ARG1 a2)))

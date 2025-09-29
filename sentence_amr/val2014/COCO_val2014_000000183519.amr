@@ -1,0 +1,30 @@
+# ::tok A busy subway train filled to capacity with people standing near the door
+# ::node	b	busy-01	1-2
+# ::node	s2	subway	2-3
+# ::node	t	train	3-4
+# ::node	f	fill-01	4-5
+# ::node	c	capacity	6-7
+# ::node	p	person	8-9
+# ::node	s	stand-01	9-10
+# ::node	n	near-02	10-11
+# ::node	d	door	12-13
+# ::root	f	fill-01
+# ::edge	train	mod	subway	t	s2	
+# ::edge	train	ARG1-of	busy-01	t	b	
+# ::edge	fill-01	ARG1	train	f	t	
+# ::edge	fill-01	degree	capacity	f	c	
+# ::edge	fill-01	ARG2	person	f	p	
+# ::edge	person	ARG1-of	stand-01	p	s	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	door	n	d	
+(f / fill-01
+    :ARG1 (t / train
+        :ARG1-of (b / busy-01)
+        :mod (s2 / subway))
+    :ARG2 (p / person
+        :ARG1-of (s / stand-01
+            :ARG2 (n / near-02
+                :ARG1 p
+                :ARG2 (d / door))))
+    :degree (c / capacity))

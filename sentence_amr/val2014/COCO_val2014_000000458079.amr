@@ -1,0 +1,26 @@
+# ::tok Train platform with people on it waiting for their train under a clock
+# ::node	t	train	0-1
+# ::node	p2	platform	1-2
+# ::node	p	person	3-4
+# ::node	w	wait-01	6-7
+# ::node	t2	train	9-10
+# ::node	o	operate-01	11-12
+# ::node	c	clock	12-13
+# ::root	p2	platform
+# ::edge	platform	mod	train	p2	t	
+# ::edge	person	location	platform	p	p2	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	train	w	t2	
+# ::edge	train	poss	person	t2	p	
+# ::edge	wait-01	time	operate-01	w	o	
+# ::edge	operate-01	ARG1	clock	o	c	
+# ::edge	platform	rel	wait-01	p2	w	
+(p2 / platform
+    :mod (t / train)
+    :rel (w / wait-01
+        :ARG2 (t2 / train
+            :poss (p / person
+                :ARG1-of w
+                :location p2))
+        :time (o / operate-01
+            :ARG1 (c / clock))))

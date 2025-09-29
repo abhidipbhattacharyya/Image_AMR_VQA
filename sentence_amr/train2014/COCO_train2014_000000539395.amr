@@ -1,0 +1,52 @@
+# ::tok Two train tracks , one of which with a front diagonal view of a train with cars or " gondolas " attached , outside with trees .
+# ::node	1	2	0-1
+# ::node	t3	train	1-2
+# ::node	t	track	2-3
+# ::node	t2	track	2-3
+# ::node	0	1	4-5
+# ::node	i	include-91	5-6
+# ::node	h	have-03	7-8
+# ::node	f	front	9-10
+# ::node	d	diagonal	10-11
+# ::node	v	view-01	11-12
+# ::node	t4	train	14-15
+# ::node	c	car	16-17
+# ::node	o	or	17-18
+# ::node	g	gry	19-20
+# ::node	a	attach-01	21-22
+# ::node	o2	outside	23-24
+# ::node	t5	tree	25-26
+# ::root	t	track
+# ::edge	track	purpose	train	t	t3	
+# ::edge	track	quant	2	t	1	
+# ::edge	track	example	track	t	t2	
+# ::edge	track	quant	1	t2	0	
+# ::edge	track	ARG1-of	include-91	t2	i	
+# ::edge	track	ARG0-of	have-03	t2	h	
+# ::edge	diagonal	mod	front	d	f	
+# ::edge	view-01	mod	diagonal	v	d	
+# ::edge	have-03	ARG1	view-01	h	v	
+# ::edge	view-01	ARG1	train	v	t4	
+# ::edge	or	op1	car	o	c	
+# ::edge	train	part	or	t4	o	
+# ::edge	or	op2	gry	o	g	
+# ::edge	or	ARG1-of	attach-01	o	a	
+# ::edge	track	location	outside	t	o2	
+# ::edge	outside	location-of	tree	o2	t5	
+(t / track
+    :purpose (t3 / train)
+    :quant 2
+    :example (t2 / track
+        :quant 1
+        :ARG0-of (h / have-03
+            :ARG1 (v / view-01
+                :ARG1 (t4 / train
+                    :part (o / or
+                        :ARG1-of (a / attach-01)
+                        :op1 (c / car)
+                        :op2 (g / gry)))
+                :mod (d / diagonal
+                    :mod (f / front))))
+        :ARG1-of (i / include-91))
+    :location (o2 / outside
+        :location-of (t5 / tree)))

@@ -1,0 +1,28 @@
+# ::tok A city street filled with lots of traffic driving under traffic lights .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	f	fill-01	3-4
+# ::node	l2	lot	5-6
+# ::node	t	traffic	7-8
+# ::node	d	drive-01	8-9
+# ::node	u	under	9-10
+# ::node	t2	traffic	10-11
+# ::node	l	light	11-12
+# ::root	f	fill-01
+# ::edge	street	mod	city	s	c	
+# ::edge	fill-01	ARG1	street	f	s	
+# ::edge	traffic	quant	lot	t	l2	
+# ::edge	fill-01	ARG2	traffic	f	t	
+# ::edge	traffic	ARG0-of	drive-01	t	d	
+# ::edge	drive-01	location	under	d	u	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	under	op1	light	u	l	
+(f / fill-01
+    :ARG1 (s / street
+        :mod (c / city))
+    :ARG2 (t / traffic
+        :quant (l2 / lot)
+        :ARG0-of (d / drive-01
+            :location (u / under
+                :op1 (l / light
+                    :mod (t2 / traffic))))))

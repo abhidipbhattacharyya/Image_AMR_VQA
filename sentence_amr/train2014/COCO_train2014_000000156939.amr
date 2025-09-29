@@ -1,0 +1,36 @@
+# ::tok A woman is sitting on a chair while resting one of her feet on a different chair .
+# ::node	w	woman	1-2
+# ::node	s	sit-01	3-4
+# ::node	c	chair	6-7
+# ::node	c3	contrast-01	7-8
+# ::node	r	rest-01	8-9
+# ::node	i	include-91	9-10
+# ::node	0	1	9-10
+# ::node	f	foot	12-13
+# ::node	f2	foot	12-13
+# ::node	d	differ-02	15-16
+# ::node	c2	chair	16-17
+# ::root	c3	contrast-01
+# ::edge	sit-01	ARG1	woman	s	w	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	contrast-01	ARG1	sit-01	c3	s	
+# ::edge	contrast-01	ARG2	rest-01	c3	r	
+# ::edge	foot	quant	1	f	0	
+# ::edge	foot	ARG1-of	include-91	f	i	
+# ::edge	rest-01	ARG1	foot	r	f	
+# ::edge	include-91	ARG2	foot	i	f2	
+# ::edge	woman	part	foot	w	f2	
+# ::edge	chair	ARG1-of	differ-02	c2	d	
+# ::edge	rest-01	ARG2	chair	r	c2	
+(c3 / contrast-01
+    :ARG1 (s / sit-01
+        :ARG1 (w / woman
+            :part (f2 / foot))
+        :ARG2 (c / chair))
+    :ARG2 (r / rest-01
+        :ARG1 (f / foot
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 f2))
+        :ARG2 (c2 / chair
+            :ARG1-of (d / differ-02))))

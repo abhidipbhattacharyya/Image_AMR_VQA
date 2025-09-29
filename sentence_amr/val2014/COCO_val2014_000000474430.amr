@@ -1,0 +1,44 @@
+# ::tok The bathroom is small but clean and neat looking , with an immaculate black and white tub / shower .
+# ::node	b	bathroom	1-2
+# ::node	s3	small	3-4
+# ::node	c	clean-04	5-6
+# ::node	a	and	6-7
+# ::node	a2	and	6-7
+# ::node	n	neat	7-8
+# ::node	l	look-02	8-9
+# ::node	h	have-03	10-11
+# ::node	i	immaculate	12-13
+# ::node	b2	black-and-white	13-14
+# ::node	t	tub	16-17
+# ::node	s2	slash	17-18
+# ::node	s	shower	18-19
+# ::root	a	and
+# ::edge	small	domain	bathroom	s3	b	
+# ::edge	clean-04	ARG1	bathroom	c	b	
+# ::edge	and	op1	small	a	s3	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	clean-04	a2	c	
+# ::edge	look-02	ARG1	neat	l	n	
+# ::edge	and	op2	look-02	a2	l	
+# ::edge	look-02	ARG0	bathroom	l	b	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	slash	op1	tub	s2	t	
+# ::edge	slash	mod	black-and-white	s2	b2	
+# ::edge	slash	mod	immaculate	s2	i	
+# ::edge	have-03	ARG1	slash	h	s2	
+# ::edge	slash	op2	shower	s2	s	
+(a / and
+    :op1 (s3 / small
+        :domain (b / bathroom
+            :ARG0-of (h / have-03
+                :ARG1 (s2 / slash
+                    :mod (b2 / black-and-white)
+                    :mod (i / immaculate)
+                    :op1 (t / tub)
+                    :op2 (s / shower)))))
+    :op2 (a2 / and
+        :op1 (c / clean-04
+            :ARG1 b)
+        :op2 (l / look-02
+            :ARG0 b
+            :ARG1 (n / neat))))

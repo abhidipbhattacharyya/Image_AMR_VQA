@@ -1,0 +1,41 @@
+# ::tok A man with a pan in his hand walks by pizzas in a oven and on counter tops waiting to be baked .
+# ::node	m	man	1-2
+# ::node	p	pan	4-5
+# ::node	h	hand	7-8
+# ::node	w2	walk-01	8-9
+# ::node	b2	by	9-10
+# ::node	p2	pizzeria	10-11
+# ::node	o	oven	13-14
+# ::node	a	and	14-15
+# ::node	c	counter	16-17
+# ::node	t	top	17-18
+# ::node	w	wait-01	18-19
+# ::node	b	bake-01	21-22
+# ::root	w2	walk-01
+# ::edge	pan	location	hand	p	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	walk-01	ARG0	man	w2	m	
+# ::edge	walk-01	ARG2	by	w2	b2	
+# ::edge	by	op1	pizzeria	b2	p2	
+# ::edge	and	op1	oven	a	o	
+# ::edge	pizzeria	location	and	p2	a	
+# ::edge	top	mod	counter	t	c	
+# ::edge	and	op2	top	a	t	
+# ::edge	man	ARG1-of	wait-01	m	w	
+# ::edge	wait-01	ARG2	bake-01	w	b	
+# ::edge	bake-01	ARG1	pizzeria	b	p2	
+# ::edge	walk-01	rel	pan	w2	p	
+(w2 / walk-01
+    :ARG0 (m / man
+        :ARG1-of (w / wait-01
+            :ARG2 (b / bake-01
+                :ARG1 (p2 / pizzeria
+                    :location (a / and
+                        :op1 (o / oven)
+                        :op2 (t / top
+                            :mod (c / counter))))))
+        :part (h / hand))
+    :ARG2 (b2 / by
+        :op1 p2)
+    :rel (p / pan
+        :location h))

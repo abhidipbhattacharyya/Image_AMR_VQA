@@ -1,0 +1,50 @@
+# ::tok The charro , or Mexican cowboy , is skilled in many techniques for control of animal behavior , including using roping
+# ::node	c	charro	1-2
+# ::node	m2	mean-01	2-3
+# ::node	c3	country	4-5
+# ::node	n	name	4-5
+# ::node	0	Mexico	4-5
+# ::node	c4	cowboy	5-6
+# ::node	s	skill	8-9
+# ::node	m	many	10-11
+# ::node	t	technique	11-12
+# ::node	c2	control-01	13-14
+# ::node	a	animal	15-16
+# ::node	b	behave-01	16-17
+# ::node	i	include-01	18-19
+# ::node	u	use-01	19-20
+# ::node	r	roost-01	20-21
+# ::root	s	skill
+# ::edge	charro	ARG1-of	mean-01	c	m2	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Mexico	n	0	
+# ::edge	cowboy	mod	country	c4	c3	
+# ::edge	mean-01	ARG2	cowboy	m2	c4	
+# ::edge	skill	domain	charro	s	c	
+# ::edge	technique	quant	many	t	m	
+# ::edge	skill	topic	technique	s	t	
+# ::edge	technique	instrument-of	control-01	t	c2	
+# ::edge	control-01	ARG0	charro	c2	c	
+# ::edge	behave-01	ARG0	animal	b	a	
+# ::edge	control-01	ARG1	behave-01	c2	b	
+# ::edge	technique	ARG2-of	include-01	t	i	
+# ::edge	include-01	ARG1	use-01	i	u	
+# ::edge	use-01	ARG0	charro	u	c	
+# ::edge	use-01	ARG1	roost-01	u	r	
+(s / skill
+    :domain (c / charro
+        :ARG1-of (m2 / mean-01
+            :ARG2 (c4 / cowboy
+                :mod (c3 / country
+                    :name (n / name
+                        :op1 "Mexico")))))
+    :topic (t / technique
+        :quant (m / many)
+        :ARG2-of (i / include-01
+            :ARG1 (u / use-01
+                :ARG0 c
+                :ARG1 (r / roost-01)))
+        :instrument-of (c2 / control-01
+            :ARG0 c
+            :ARG1 (b / behave-01
+                :ARG0 (a / animal)))))

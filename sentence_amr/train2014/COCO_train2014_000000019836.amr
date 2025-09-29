@@ -1,0 +1,52 @@
+# ::tok A close to the floor shot shows part of a fence grid and a variegated floor on which rests a rotting banana and a small packaged item .
+# ::node	c	close-10	1-2
+# ::node	f2	floor	4-5
+# ::node	s	shot	5-6
+# ::node	s2	show-01	6-7
+# ::node	p2	part	7-8
+# ::node	f	fence	10-11
+# ::node	g	grid	11-12
+# ::node	a	and	12-13
+# ::node	v	vary-01	14-15
+# ::node	f3	floor	15-16
+# ::node	r	rest-01	18-19
+# ::node	r2	rot-01	20-21
+# ::node	b	banana	21-22
+# ::node	a2	and	22-23
+# ::node	s3	small	24-25
+# ::node	p	package-01	25-26
+# ::node	i	item	26-27
+# ::root	s2	show-01
+# ::edge	close-10	ARG2	floor	c	f2	
+# ::edge	shot	ARG1-of	close-10	s	c	
+# ::edge	show-01	ARG0	shot	s2	s	
+# ::edge	grid	mod	fence	g	f	
+# ::edge	part	part-of	grid	p2	g	
+# ::edge	and	op1	part	a	p2	
+# ::edge	show-01	ARG1	and	s2	a	
+# ::edge	floor	ARG1-of	vary-01	f3	v	
+# ::edge	and	op2	floor	a	f3	
+# ::edge	floor	ARG2-of	rest-01	f3	r	
+# ::edge	banana	ARG1-of	rot-01	b	r2	
+# ::edge	and	op1	banana	a2	b	
+# ::edge	rest-01	ARG1	and	r	a2	
+# ::edge	item	ARG1-of	package-01	i	p	
+# ::edge	item	mod	small	i	s3	
+# ::edge	and	op2	item	a2	i	
+(s2 / show-01
+    :ARG0 (s / shot
+        :ARG1-of (c / close-10
+            :ARG2 (f2 / floor)))
+    :ARG1 (a / and
+        :op1 (p2 / part
+            :part-of (g / grid
+                :mod (f / fence)))
+        :op2 (f3 / floor
+            :ARG1-of (v / vary-01)
+            :ARG2-of (r / rest-01
+                :ARG1 (a2 / and
+                    :op1 (b / banana
+                        :ARG1-of (r2 / rot-01))
+                    :op2 (i / item
+                        :ARG1-of (p / package-01)
+                        :mod (s3 / small)))))))

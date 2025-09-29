@@ -1,0 +1,48 @@
+# ::tok A fenced in field with four sheep running together and a black and white dog laying in the grass behind them .
+# ::node	c	chain-01	1-2
+# ::node	f	field	3-4
+# ::node	h	have-03	4-5
+# ::node	0	4	5-6
+# ::node	s	sheep	6-7
+# ::node	r	run-02	7-8
+# ::node	t	together	8-9
+# ::node	a	and	9-10
+# ::node	b2	black-04	11-12
+# ::node	a2	and	12-13
+# ::node	w	white-03	13-14
+# ::node	d	dog	14-15
+# ::node	l	lay-01	15-16
+# ::node	g	grass	18-19
+# ::node	b	behind	19-20
+# ::root	h	have-03
+# ::edge	field	ARG1-of	chain-01	f	c	
+# ::edge	have-03	ARG0	field	h	f	
+# ::edge	sheep	quant	4	s	0	
+# ::edge	run-02	ARG0	sheep	r	s	
+# ::edge	run-02	mod	together	r	t	
+# ::edge	and	op1	run-02	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	black-04	a2	b2	
+# ::edge	and	op2	white-03	a2	w	
+# ::edge	dog	quant	and	d	a2	
+# ::edge	lay-01	ARG1	dog	l	d	
+# ::edge	and	op2	lay-01	a	l	
+# ::edge	lay-01	ARG2	grass	l	g	
+# ::edge	grass	location	behind	g	b	
+# ::edge	behind	op1	sheep	b	s	
+(h / have-03
+    :ARG0 (f / field
+        :ARG1-of (c / chain-01))
+    :ARG1 (a / and
+        :op1 (r / run-02
+            :ARG0 (s / sheep
+                :quant 4)
+            :mod (t / together))
+        :op2 (l / lay-01
+            :ARG1 (d / dog
+                :quant (a2 / and
+                    :op1 (b2 / black-04)
+                    :op2 (w / white-03)))
+            :ARG2 (g / grass
+                :location (b / behind
+                    :op1 s)))))

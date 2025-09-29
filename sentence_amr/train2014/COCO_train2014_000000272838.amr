@@ -1,0 +1,25 @@
+# ::tok A passenger train with one headlight out departing the train station .
+# ::node	p	passenger	1-2
+# ::node	t	train	2-3
+# ::node	0	1	4-5
+# ::node	h	headlight	5-6
+# ::node	o	out-06	6-7
+# ::node	d	depart-01	7-8
+# ::node	t2	train	9-10
+# ::node	s	station	10-11
+# ::root	d	depart-01
+# ::edge	train	mod	passenger	t	p	
+# ::edge	headlight	quant	1	h	0	
+# ::edge	out-06	ARG1	headlight	o	h	
+# ::edge	depart-01	manner	out-06	d	o	
+# ::edge	depart-01	ARG0	train	d	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	depart-01	ARG1	station	d	s	
+(d / depart-01
+    :ARG0 (t / train
+        :mod (p / passenger))
+    :ARG1 (s / station
+        :mod (t2 / train))
+    :manner (o / out-06
+        :ARG1 (h / headlight
+            :quant 1)))

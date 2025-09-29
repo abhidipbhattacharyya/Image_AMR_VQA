@@ -1,0 +1,53 @@
+# ::tok An over with the door open and two pizzas inside , one on a pizza stone and one on a wire rack .
+# ::node	o2	over	1-2
+# ::node	d	door	4-5
+# ::node	o	open-01	5-6
+# ::node	a	and	6-7
+# ::node	2	2	7-8
+# ::node	p2	pizzeria	8-9
+# ::node	s2	submarine	8-9
+# ::node	i	inside	9-10
+# ::node	0	1	11-12
+# ::node	h	have-03	12-13
+# ::node	h2	have-03	12-13
+# ::node	p	pizza	14-15
+# ::node	s	stone	15-16
+# ::node	1	1	17-18
+# ::node	w	wire	20-21
+# ::node	r	rack	21-22
+# ::root	o2	over
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	over	manner	and	o2	a	
+# ::edge	pizzeria	quant	2	p2	2	
+# ::edge	and	op2	pizzeria	a	p2	
+# ::edge	submarine	location	inside	s2	i	
+# ::edge	have-03	ARG1	pizzeria	h	p2	
+# ::edge	pizzeria	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	submarine	h2	s2	
+# ::edge	pizzeria	ARG0-of	have-03	p2	h2	
+# ::edge	pizzeria	mod	pizza	p2	p	
+# ::edge	stone	mod	pizza	s	p	
+# ::edge	have-03	location	stone	h2	s	
+# ::edge	submarine	quant	1	s2	1	
+# ::edge	rack	consist-of	wire	r	w	
+# ::edge	have-03	location	rack	h2	r	
+# ::edge	over	rel	1	o2	0	
+(o2 / over
+    :manner (a / and
+        :op1 (o / open-01
+            :ARG1 (d / door))
+        :op2 (p2 / pizzeria
+            :quant 2
+            :ARG0-of (h / have-03
+                :ARG1 p2)
+            :ARG0-of (h2 / have-03
+                :ARG1 (s2 / submarine
+                    :quant 1
+                    :location (i / inside))
+                :location (s / stone
+                    :mod (p / pizza))
+                :location (r / rack
+                    :consist-of (w / wire)))
+            :mod p))
+    :rel 1)

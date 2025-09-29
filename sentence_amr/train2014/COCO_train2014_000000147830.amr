@@ -1,0 +1,31 @@
+# ::tok A red , double decker bus driving past a sign reading , " pedestrians extreme danger ! " .
+# ::node	r2	red-02	1-2
+# ::node	d2	deck	4-5
+# ::node	b	bus	5-6
+# ::node	d3	drive-01	6-7
+# ::node	p	past	7-8
+# ::node	s	sign	9-10
+# ::node	r	read-01	10-11
+# ::node	w	walk-01	13-14
+# ::node	e	extreme	14-15
+# ::node	d	danger	15-16
+# ::root	d3	drive-01
+# ::edge	bus	mod	deck	b	d2	
+# ::edge	bus	ARG1-of	red-02	b	r2	
+# ::edge	drive-01	ARG0	bus	d3	b	
+# ::edge	drive-01	path	past	d3	p	
+# ::edge	past	op1	sign	p	s	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	danger	degree	extreme	d	e	
+# ::edge	danger	condition	walk-01	d	w	
+# ::edge	read-01	ARG3	danger	r	d	
+(d3 / drive-01
+    :ARG0 (b / bus
+        :ARG1-of (r2 / red-02)
+        :mod (d2 / deck))
+    :path (p / past
+        :op1 (s / sign
+            :ARG1-of (r / read-01
+                :ARG3 (d / danger
+                    :condition (w / walk-01)
+                    :degree (e / extreme))))))

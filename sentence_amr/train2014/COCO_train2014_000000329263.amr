@@ -1,0 +1,25 @@
+# ::tok A group of four stunt planes flying closely together in formation .
+# ::node	g	group	1-2
+# ::node	0	4	3-4
+# ::node	s	stunt	4-5
+# ::node	p	plane	5-6
+# ::node	f	fly-01	6-7
+# ::node	c	close-10	7-8
+# ::node	t	together	8-9
+# ::node	f2	form-01	10-11
+# ::root	g	group
+# ::edge	plane	mod	stunt	p	s	
+# ::edge	plane	quant	4	p	0	
+# ::edge	group	consist-of	plane	g	p	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	together	ARG1-of	close-10	t	c	
+# ::edge	fly-01	manner	together	f	t	
+# ::edge	fly-01	ARG1-of	form-01	f	f2	
+(g / group
+    :consist-of (p / plane
+        :quant 4
+        :ARG2-of (f / fly-01
+            :ARG1-of (f2 / form-01)
+            :manner (t / together
+                :ARG1-of (c / close-10)))
+        :mod (s / stunt)))

@@ -1,0 +1,40 @@
+# ::tok A bicycle with a basket in which two dogs are sitting and a handbag is hanging . other bicycles are also standing .
+# ::node	b2	bicycle	1-2
+# ::node	b	basket	4-5
+# ::node	0	2	7-8
+# ::node	d	dog	8-9
+# ::node	s	sit-01	10-11
+# ::node	a2	and	11-12
+# ::node	h	handbag	13-14
+# ::node	h2	hang-01	15-16
+# ::node	m	multi-sentence	16-17
+# ::node	o	other	17-18
+# ::node	b3	bicycle	18-19
+# ::node	a	also	20-21
+# ::node	s2	stand-01	21-22
+# ::root	m	multi-sentence
+# ::edge	bicycle	part	basket	b2	b	
+# ::edge	dog	quant	2	d	0	
+# ::edge	sit-01	ARG1	dog	s	d	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	basket	location-of	and	b	a2	
+# ::edge	hang-01	ARG1	handbag	h2	h	
+# ::edge	and	op2	hang-01	a2	h2	
+# ::edge	multi-sentence	snt1	bicycle	m	b2	
+# ::edge	bicycle	mod	other	b3	o	
+# ::edge	stand-01	mod	also	s2	a	
+# ::edge	stand-01	ARG1	bicycle	s2	b3	
+# ::edge	multi-sentence	snt2	stand-01	m	s2	
+(m / multi-sentence
+    :snt1 (b2 / bicycle
+        :part (b / basket
+            :location-of (a2 / and
+                :op1 (s / sit-01
+                    :ARG1 (d / dog
+                        :quant 2))
+                :op2 (h2 / hang-01
+                    :ARG1 (h / handbag)))))
+    :snt2 (s2 / stand-01
+        :ARG1 (b3 / bicycle
+            :mod (o / other))
+        :mod (a / also)))

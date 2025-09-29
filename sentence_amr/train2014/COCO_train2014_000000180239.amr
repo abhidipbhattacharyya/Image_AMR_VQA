@@ -1,0 +1,46 @@
+# ::tok A kitchen bar with stools in a tiled room with exposed wooden rafters and a wood and glass rail .
+# ::node	k	kitchen	1-2
+# ::node	b	bar	2-3
+# ::node	c2	chair	4-5
+# ::node	t	tile-01	7-8
+# ::node	r3	room	8-9
+# ::node	h	have-03	9-10
+# ::node	e	expose-01	10-11
+# ::node	w	wood	11-12
+# ::node	c	ceiling	12-13
+# ::node	a	and	13-14
+# ::node	w2	wood	15-16
+# ::node	a2	and	16-17
+# ::node	g	glass	17-18
+# ::node	r	rail	18-19
+# ::node	r2	rail	18-19
+# ::root	b	bar
+# ::edge	bar	mod	kitchen	b	k	
+# ::edge	bar	part	chair	b	c2	
+# ::edge	room	ARG1-of	tile-01	r3	t	
+# ::edge	bar	location	room	b	r3	
+# ::edge	room	ARG0-of	have-03	r3	h	
+# ::edge	ceiling	consist-of	wood	c	w	
+# ::edge	ceiling	ARG1-of	expose-01	c	e	
+# ::edge	and	op1	ceiling	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	rail	a2	r	
+# ::edge	rail	mod	wood	r	w2	
+# ::edge	rail	mod	glass	r2	g	
+# ::edge	and	op2	rail	a2	r2	
+(b / bar
+    :location (r3 / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c / ceiling
+                    :ARG1-of (e / expose-01)
+                    :consist-of (w / wood))
+                :op2 (a2 / and
+                    :op1 (r / rail
+                        :mod (w2 / wood))
+                    :op2 (r2 / rail
+                        :mod (g / glass)))))
+        :ARG1-of (t / tile-01))
+    :mod (k / kitchen)
+    :part (c2 / chair))

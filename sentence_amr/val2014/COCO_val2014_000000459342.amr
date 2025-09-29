@@ -1,0 +1,28 @@
+# ::tok A digital parking sign instructs traffic on parking options on a downtown street .
+# ::node	d	digit	1-2
+# ::node	p	park-01	2-3
+# ::node	s	sign	3-4
+# ::node	i	instruct-01	4-5
+# ::node	t	traffic	5-6
+# ::node	p2	park-01	7-8
+# ::node	o	option	8-9
+# ::node	d2	downtown	11-12
+# ::node	s2	street	12-13
+# ::root	i	instruct-01
+# ::edge	sign	purpose	park-01	s	p	
+# ::edge	sign	mod	digit	s	d	
+# ::edge	instruct-01	ARG0	sign	i	s	
+# ::edge	instruct-01	ARG1	traffic	i	t	
+# ::edge	option	mod	park-01	o	p2	
+# ::edge	instruct-01	ARG2	option	i	o	
+# ::edge	street	mod	downtown	s2	d2	
+# ::edge	option	location	street	o	s2	
+(i / instruct-01
+    :ARG0 (s / sign
+        :purpose (p / park-01)
+        :mod (d / digit))
+    :ARG1 (t / traffic)
+    :ARG2 (o / option
+        :location (s2 / street
+            :mod (d2 / downtown))
+        :mod (p2 / park-01)))

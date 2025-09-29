@@ -1,0 +1,25 @@
+# ::tok The Semi Truck is driving through a freshly snow covered mountain pass .
+# ::node	s	semi	1-2
+# ::node	t	truck	2-3
+# ::node	d	drive-01	4-5
+# ::node	f	fresh-04	7-8
+# ::node	s2	snow	8-9
+# ::node	c	cover-02	9-10
+# ::node	m	mountain	10-11
+# ::node	p	pass	11-12
+# ::root	d	drive-01
+# ::edge	truck	mod	semi	t	s	
+# ::edge	drive-01	ARG0	truck	d	t	
+# ::edge	snow	ARG1-of	fresh-04	s2	f	
+# ::edge	cover-02	ARG2	snow	c	s2	
+# ::edge	pass	mod	mountain	p	m	
+# ::edge	pass	ARG1-of	cover-02	p	c	
+# ::edge	drive-01	path	pass	d	p	
+(d / drive-01
+    :ARG0 (t / truck
+        :mod (s / semi))
+    :path (p / pass
+        :ARG1-of (c / cover-02
+            :ARG2 (s2 / snow
+                :ARG1-of (f / fresh-04)))
+        :mod (m / mountain)))

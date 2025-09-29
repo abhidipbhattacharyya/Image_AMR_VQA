@@ -1,0 +1,37 @@
+# ::tok a giraffe takes food from a feeding bin high up on a tree next to a zebra grazing on the grass
+# ::node	g	giraffe	1-2
+# ::node	t	take-01	2-3
+# ::node	f2	food	3-4
+# ::node	f	feed-01	6-7
+# ::node	b	bin	7-8
+# ::node	h	high-02	8-9
+# ::node	u	up-03	9-10
+# ::node	t2	tree	12-13
+# ::node	n	next-to	13-14
+# ::node	z	zebra	16-17
+# ::node	g3	graze-01	17-18
+# ::node	g2	grass	20-21
+# ::root	t	take-01
+# ::edge	take-01	ARG0	giraffe	t	g	
+# ::edge	take-01	ARG1	food	t	f2	
+# ::edge	bin	ARG2-of	feed-01	b	f	
+# ::edge	take-01	ARG2	bin	t	b	
+# ::edge	up-03	ARG1-of	high-02	u	h	
+# ::edge	bin	ARG1-of	up-03	b	u	
+# ::edge	up-03	ARG2	tree	u	t2	
+# ::edge	bin	location	next-to	b	n	
+# ::edge	next-to	op1	zebra	n	z	
+# ::edge	zebra	ARG0-of	graze-01	z	g3	
+# ::edge	graze-01	ARG1	grass	g3	g2	
+(t / take-01
+    :ARG0 (g / giraffe)
+    :ARG1 (f2 / food)
+    :ARG2 (b / bin
+        :ARG1-of (u / up-03
+            :ARG1-of (h / high-02)
+            :ARG2 (t2 / tree))
+        :ARG2-of (f / feed-01)
+        :location (n / next-to
+            :op1 (z / zebra
+                :ARG0-of (g3 / graze-01
+                    :ARG1 (g2 / grass))))))

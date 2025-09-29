@@ -1,0 +1,36 @@
+# ::tok A bedding set with red snowflakes and a glass of water on the bed side table
+# ::node	b	bedding	1-2
+# ::node	s	set	2-3
+# ::node	r	red-02	4-5
+# ::node	s3	snow	5-6
+# ::node	a	and	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	w	water	10-11
+# ::node	s2	side	14-15
+# ::node	t	table	15-16
+# ::root	s	set
+# ::edge	set	consist-of	bedding	s	b	
+# ::edge	snow	ARG1-of	red-02	s3	r	
+# ::edge	and	op1	snow	a	s3	
+# ::edge	set	consist-of	and	s	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	water	quant	volume-quantity	w	v	
+# ::edge	and	op2	water	a	w	
+# ::edge	table	mod	side	t	s2	
+# ::edge	set	location	table	s	t	
+# ::edge	bedding	part	table	b	t	
+(s / set
+    :consist-of (b / bedding
+        :part (t / table
+            :mod (s2 / side)))
+    :consist-of (a / and
+        :op1 (s3 / snow
+            :ARG1-of (r / red-02))
+        :op2 (w / water
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))))
+    :location t)

@@ -1,0 +1,37 @@
+# ::tok A toilet with a blue seat cover with a note that reads " Please Do n't Use Sorry " .
+# ::node	t	toilet	1-2
+# ::node	b	blue	4-5
+# ::node	s	seat	5-6
+# ::node	c	cover-02	6-7
+# ::node	n	note-01	9-10
+# ::node	r	read-01	11-12
+# ::node	y	you	13-14
+# ::node	2	imperative	13-14
+# ::node	0	+	13-14
+# ::node	1	-	15-16
+# ::node	u	use-01	16-17
+# ::node	s2	sorry-01	17-18
+# ::root	t	toilet
+# ::edge	cover-02	ARG1	seat	c	s	
+# ::edge	cover-02	mod	blue	c	b	
+# ::edge	toilet	ARG2-of	cover-02	t	c	
+# ::edge	toilet	ARG1-of	note-01	t	n	
+# ::edge	note-01	ARG1-of	read-01	n	r	
+# ::edge	use-01	polarity	-	u	1	
+# ::edge	use-01	polite	+	u	0	
+# ::edge	use-01	mode	imperative	u	2	
+# ::edge	use-01	ARG0	you	u	y	
+# ::edge	read-01	ARG3	use-01	r	u	
+# ::edge	use-01	ARG1	sorry-01	u	s2	
+(t / toilet
+    :ARG1-of (n / note-01
+        :ARG1-of (r / read-01
+            :ARG3 (u / use-01
+                :ARG0 (y / you)
+                :ARG1 (s2 / sorry-01)
+                :mode imperative
+                :polarity -
+                :polite +)))
+    :ARG2-of (c / cover-02
+        :ARG1 (s / seat)
+        :mod (b / blue)))

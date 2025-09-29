@@ -1,0 +1,28 @@
+# ::tok A sink is installed in a wooden counter with stainless steel cabinets that is missing a door .
+# ::node	s	sink	1-2
+# ::node	i	install-01	3-4
+# ::node	w	wood	6-7
+# ::node	c2	counter	7-8
+# ::node	s2	stainless	9-10
+# ::node	s3	steel	10-11
+# ::node	c	cabinet	11-12
+# ::node	m	miss-01	14-15
+# ::node	d	door	16-17
+# ::root	i	install-01
+# ::edge	install-01	ARG1	sink	i	s	
+# ::edge	counter	mod	wood	c2	w	
+# ::edge	install-01	ARG2	counter	i	c2	
+# ::edge	steel	mod	stainless	s3	s2	
+# ::edge	cabinet	mod	steel	c	s3	
+# ::edge	counter	part	cabinet	c2	c	
+# ::edge	cabinet	ARG0-of	miss-01	c	m	
+# ::edge	miss-01	ARG1	door	m	d	
+(i / install-01
+    :ARG1 (s / sink)
+    :ARG2 (c2 / counter
+        :mod (w / wood)
+        :part (c / cabinet
+            :ARG0-of (m / miss-01
+                :ARG1 (d / door))
+            :mod (s3 / steel
+                :mod (s2 / stainless)))))

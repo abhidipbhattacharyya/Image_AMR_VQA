@@ -1,0 +1,39 @@
+# ::tok buses sitting on a parking lot , with one having asian writing in the window
+# ::node	b	bus	0-1
+# ::node	s	sit-01	1-2
+# ::node	p	park-01	4-5
+# ::node	l	lot	5-6
+# ::node	a	and	6-7
+# ::node	h	have-03	9-10
+# ::node	p2	person	10-11
+# ::node	c	continent	10-11
+# ::node	n	name	10-11
+# ::node	0	Asia	10-11
+# ::node	w2	write-01	11-12
+# ::node	w	window	14-15
+# ::root	a	and
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	sit-01	ARG2	lot	s	l	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	bus	h	b	
+# ::edge	person	mod	continent	p2	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	write-01	ARG0	person	w2	p2	
+# ::edge	have-03	ARG1	write-01	h	w2	
+# ::edge	write-01	location	window	w2	w	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (b / bus)
+        :ARG2 (l / lot
+            :ARG2-of (p / park-01)))
+    :op2 (h / have-03
+        :ARG0 b
+        :ARG1 (w2 / write-01
+            :ARG0 (p2 / person
+                :mod (c / continent
+                    :name (n / name
+                        :op1 "Asia")))
+            :location (w / window))))

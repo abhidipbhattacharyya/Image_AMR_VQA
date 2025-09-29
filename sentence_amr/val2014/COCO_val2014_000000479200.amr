@@ -1,0 +1,27 @@
+# ::tok An elephant is holding the tail of another elephant as it is exiting the water pool .
+# ::node	e	elephant	1-2
+# ::node	h	hold-01	3-4
+# ::node	t	tail	5-6
+# ::node	a	another	7-8
+# ::node	e2	elephant	8-9
+# ::node	e3	exit-01	12-13
+# ::node	w	water	14-15
+# ::node	p	pool	15-16
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	elephant	h	e	
+# ::edge	hold-01	ARG1	tail	h	t	
+# ::edge	elephant	mod	another	e2	a	
+# ::edge	tail	part-of	elephant	t	e2	
+# ::edge	exit-01	ARG0	elephant	e3	e2	
+# ::edge	hold-01	time	exit-01	h	e3	
+# ::edge	pool	mod	water	p	w	
+# ::edge	exit-01	ARG1	pool	e3	p	
+(h / hold-01
+    :ARG0 (e / elephant)
+    :ARG1 (t / tail
+        :part-of (e2 / elephant
+            :mod (a / another)))
+    :time (e3 / exit-01
+        :ARG0 e2
+        :ARG1 (p / pool
+            :mod (w / water))))

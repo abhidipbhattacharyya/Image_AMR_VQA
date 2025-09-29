@@ -1,0 +1,55 @@
+# ::tok Three trays of food , one with carrots , the other with sliced sandwiches , and the third one containing orange slices .
+# ::node	0	3	0-1
+# ::node	r	Trayvon	1-2
+# ::node	f	food	3-4
+# ::node	o	one	5-6
+# ::node	h	have-03	6-7
+# ::node	c	carrot	7-8
+# ::node	o5	other	10-11
+# ::node	h2	have-03	11-12
+# ::node	s3	slice-01	12-13
+# ::node	s	sandwich	13-14
+# ::node	a	and	15-16
+# ::node	o4	ordinal-entity	17-18
+# ::node	1	3	17-18
+# ::node	o2	one	18-19
+# ::node	c2	contain-01	19-20
+# ::node	o3	orange	20-21
+# ::node	s2	slice	21-22
+# ::node	m	multi-sentence	22-23
+# ::root	m	multi-sentence
+# ::edge	Trayvon	quant	3	r	0	
+# ::edge	Trayvon	consist-of	food	r	f	
+# ::edge	one	ARG0-of	have-03	o	h	
+# ::edge	have-03	ARG1	carrot	h	c	
+# ::edge	other	ARG0-of	have-03	o5	h2	
+# ::edge	sandwich	ARG1-of	slice-01	s	s3	
+# ::edge	have-03	ARG1	sandwich	h2	s	
+# ::edge	and	op2	other	a	o5	
+# ::edge	and	op1	one	a	o	
+# ::edge	ordinal-entity	value	3	o4	1	
+# ::edge	one	ord	ordinal-entity	o2	o4	
+# ::edge	and	op3	one	a	o2	
+# ::edge	one	ARG0-of	contain-01	o2	c2	
+# ::edge	slice	mod	orange	s2	o3	
+# ::edge	contain-01	ARG1	slice	c2	s2	
+# ::edge	multi-sentence	snt2	and	m	a	
+# ::edge	multi-sentence	snt1	Trayvon	m	r	
+(m / multi-sentence
+    :snt1 (r / Trayvon
+        :quant 3
+        :consist-of (f / food))
+    :snt2 (a / and
+        :op1 (o / one
+            :ARG0-of (h / have-03
+                :ARG1 (c / carrot)))
+        :op2 (o5 / other
+            :ARG0-of (h2 / have-03
+                :ARG1 (s / sandwich
+                    :ARG1-of (s3 / slice-01))))
+        :op3 (o2 / one
+            :ARG0-of (c2 / contain-01
+                :ARG1 (s2 / slice
+                    :mod (o3 / orange)))
+            :ord (o4 / ordinal-entity
+                :value 3))))

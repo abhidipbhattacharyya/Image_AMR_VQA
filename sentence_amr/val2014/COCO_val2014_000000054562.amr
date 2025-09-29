@@ -1,0 +1,24 @@
+# ::tok A secluded train station with a cart stall next to the train .
+# ::node	s	seclude-01	1-2
+# ::node	t	train	2-3
+# ::node	s3	station	3-4
+# ::node	h	have-03	4-5
+# ::node	c	cart	6-7
+# ::node	s2	stall	7-8
+# ::node	n	next-to	8-9
+# ::root	s3	station
+# ::edge	station	mod	train	s3	t	
+# ::edge	station	ARG1-of	seclude-01	s3	s	
+# ::edge	station	ARG0-of	have-03	s3	h	
+# ::edge	stall	purpose	cart	s2	c	
+# ::edge	have-03	ARG1	stall	h	s2	
+# ::edge	stall	location	next-to	s2	n	
+# ::edge	next-to	op1	train	n	t	
+(s3 / station
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / stall
+            :purpose (c / cart)
+            :location (n / next-to
+                :op1 (t / train))))
+    :ARG1-of (s / seclude-01)
+    :mod t)

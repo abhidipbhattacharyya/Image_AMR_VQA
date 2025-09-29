@@ -1,0 +1,41 @@
+# ::tok A row of airplane seats hold people as one man lifts up a book and is reading .
+# ::node	r2	row	1-2
+# ::node	a	airplane	3-4
+# ::node	s	seat	4-5
+# ::node	h	hold-01	5-6
+# ::node	p	person	6-7
+# ::node	0	1	8-9
+# ::node	m	man	9-10
+# ::node	l	lift-01	10-11
+# ::node	u	up	11-12
+# ::node	b	book	13-14
+# ::node	a2	and	14-15
+# ::node	r	read-01	16-17
+# ::root	h	hold-01
+# ::edge	seat	location	airplane	s	a	
+# ::edge	row	consist-of	seat	r2	s	
+# ::edge	hold-01	ARG0	row	h	r2	
+# ::edge	hold-01	ARG1	person	h	p	
+# ::edge	man	quant	1	m	0	
+# ::edge	lift-01	ARG0	man	l	m	
+# ::edge	lift-01	ARG2	up	l	u	
+# ::edge	lift-01	ARG1	book	l	b	
+# ::edge	and	op1	lift-01	a2	l	
+# ::edge	hold-01	time	and	h	a2	
+# ::edge	and	op2	read-01	a2	r	
+# ::edge	read-01	ARG1	book	r	b	
+# ::edge	read-01	ARG0	man	r	m	
+(h / hold-01
+    :ARG0 (r2 / row
+        :consist-of (s / seat
+            :location (a / airplane)))
+    :ARG1 (p / person)
+    :time (a2 / and
+        :op1 (l / lift-01
+            :ARG0 (m / man
+                :quant 1)
+            :ARG1 (b / book)
+            :ARG2 (u / up))
+        :op2 (r / read-01
+            :ARG0 m
+            :ARG1 b)))

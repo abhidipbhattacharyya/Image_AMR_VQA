@@ -1,0 +1,34 @@
+# ::tok Tennis player throws ball above his head and in the motion of swinging at the ball .
+# ::node	c	court	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	t	throw-01	2-3
+# ::node	b	ball	3-4
+# ::node	a	above	4-5
+# ::node	h	head	6-7
+# ::node	m	move-01	10-11
+# ::node	s	swing-02	12-13
+# ::root	t	throw-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	court	p2	c	
+# ::edge	throw-01	ARG0	person	t	p	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	throw-01	ARG2	above	t	a	
+# ::edge	above	op1	head	a	h	
+# ::edge	person	part	head	p	h	
+# ::edge	throw-01	manner	move-01	t	m	
+# ::edge	move-01	ARG2	swing-02	m	s	
+# ::edge	swing-02	direction	ball	s	b	
+# ::edge	swing-02	ARG0	person	s	p	
+(t / throw-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (c / court))
+        :part (h / head))
+    :ARG1 (b / ball)
+    :ARG2 (a / above
+        :op1 h)
+    :manner (m / move-01
+        :ARG2 (s / swing-02
+            :ARG0 p
+            :direction b)))

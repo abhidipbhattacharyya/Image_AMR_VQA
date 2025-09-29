@@ -1,0 +1,25 @@
+# ::tok Large direction signs above a highway in front of office buildings .
+# ::node	l	large	0-1
+# ::node	d	direction	1-2
+# ::node	s	sign	2-3
+# ::node	a	above	3-4
+# ::node	h	highway	5-6
+# ::node	i	in-front-of	7-8
+# ::node	o	office	9-10
+# ::node	b	building	10-11
+# ::root	s	sign
+# ::edge	sign	purpose	direction	s	d	
+# ::edge	sign	mod	large	s	l	
+# ::edge	sign	location	above	s	a	
+# ::edge	above	op1	highway	a	h	
+# ::edge	highway	location	in-front-of	h	i	
+# ::edge	building	mod	office	b	o	
+# ::edge	in-front-of	op1	building	i	b	
+(s / sign
+    :purpose (d / direction)
+    :location (a / above
+        :op1 (h / highway
+            :location (i / in-front-of
+                :op1 (b / building
+                    :mod (o / office)))))
+    :mod (l / large))

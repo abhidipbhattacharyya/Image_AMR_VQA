@@ -1,0 +1,28 @@
+# ::tok Cows walk down an unpaved road next to a housing development .
+# ::node	c	cow	0-1
+# ::node	w	walk-01	1-2
+# ::node	d2	down	2-3
+# ::node	0	-	3-4
+# ::node	p	pave-01	4-5
+# ::node	r	road	5-6
+# ::node	n	next-to	6-7
+# ::node	h	house-01	9-10
+# ::node	d	develop-01	10-11
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	cow	w	c	
+# ::edge	walk-01	direction	down	w	d2	
+# ::edge	pave-01	polarity	-	p	0	
+# ::edge	road	ARG1-of	pave-01	r	p	
+# ::edge	walk-01	ARG2	road	w	r	
+# ::edge	road	location	next-to	r	n	
+# ::edge	develop-01	ARG2	house-01	d	h	
+# ::edge	next-to	op1	develop-01	n	d	
+(w / walk-01
+    :ARG0 (c / cow)
+    :ARG2 (r / road
+        :ARG1-of (p / pave-01
+            :polarity -)
+        :location (n / next-to
+            :op1 (d / develop-01
+                :ARG2 (h / house-01))))
+    :direction (d2 / down))

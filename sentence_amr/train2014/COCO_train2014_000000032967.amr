@@ -1,0 +1,27 @@
+# ::tok Extremely overloaded motorcycle carrier cardboard boxes flattened for recycling .
+# ::node	e	extreme	0-1
+# ::node	o	overload-01	1-2
+# ::node	m	motorcycle	2-3
+# ::node	c2	carry-01	3-4
+# ::node	c	cardboard	4-5
+# ::node	b	box	5-6
+# ::node	f	flatten-01	6-7
+# ::node	r	recycle-01	8-9
+# ::root	f	flatten-01
+# ::edge	overload-01	degree	extreme	o	e	
+# ::edge	carry-01	ARG1	motorcycle	c2	m	
+# ::edge	box	consist-of	cardboard	b	c	
+# ::edge	box	ARG0-of	carry-01	b	c2	
+# ::edge	box	ARG1-of	overload-01	b	o	
+# ::edge	flatten-01	ARG1	box	f	b	
+# ::edge	flatten-01	purpose	recycle-01	f	r	
+# ::edge	recycle-01	ARG1	box	r	b	
+(f / flatten-01
+    :purpose (r / recycle-01
+        :ARG1 (b / box
+            :ARG0-of (c2 / carry-01
+                :ARG1 (m / motorcycle))
+            :ARG1-of (o / overload-01
+                :degree (e / extreme))
+            :consist-of (c / cardboard)))
+    :ARG1 b)

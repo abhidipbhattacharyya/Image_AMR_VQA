@@ -1,0 +1,38 @@
+# ::tok two men standing in front of each other with one placing a ring on the others finger
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	m3	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	i2	include-91	9-10
+# ::node	0	1	9-10
+# ::node	p	place-01	10-11
+# ::node	r	ring	12-13
+# ::node	f	finger	16-17
+# ::root	s	stand-01
+# ::edge	man	quant	2	m	1	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	man	i	m	
+# ::edge	include-91	ARG2	man	i2	m2	
+# ::edge	man	ARG1-of	include-91	m	i2	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	ARG0-of	place-01	m2	p	
+# ::edge	place-01	ARG1	ring	p	r	
+# ::edge	place-01	ARG2	finger	p	f	
+# ::edge	man	part	finger	m3	f	
+# ::edge	stand-01	rel	man	s	m3	
+(s / stand-01
+    :ARG1 (m / man
+        :quant 2
+        :ARG1-of (i2 / include-91
+            :ARG2 (m2 / man
+                :quant 1
+                :ARG0-of (p / place-01
+                    :ARG1 (r / ring)
+                    :ARG2 (f / finger)))))
+    :ARG2 (i / in-front-of
+        :op1 m)
+    :rel (m3 / man
+        :part f))

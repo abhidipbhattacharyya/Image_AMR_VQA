@@ -1,0 +1,42 @@
+# ::tok You should not park here anytime between 6:30 am and 4 pm except on the weekends .
+# ::node	y	you	0-1
+# ::node	r	recommend-01	1-2
+# ::node	0	-	2-3
+# ::node	p	park-01	3-4
+# ::node	h	here	4-5
+# ::node	a	anytime	5-6
+# ::node	b	between	6-7
+# ::node	d	date-entity	7-8
+# ::node	2	6:30	7-8
+# ::node	d2	date-entity	10-11
+# ::node	1	16:00	10-11
+# ::node	e	except-01	12-13
+# ::node	w	weekend	15-16
+# ::root	r	recommend-01
+# ::edge	recommend-01	ARG2	you	r	y	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	recommend-01	ARG1	park-01	r	p	
+# ::edge	park-01	ARG0	you	p	y	
+# ::edge	park-01	ARG2	here	p	h	
+# ::edge	park-01	time	anytime	p	a	
+# ::edge	anytime	mod	between	a	b	
+# ::edge	between	op1	date-entity	b	d	
+# ::edge	date-entity	time	6:30	d	2	
+# ::edge	between	op2	date-entity	b	d2	
+# ::edge	date-entity	time	16:00	d2	1	
+# ::edge	park-01	ARG2-of	except-01	p	e	
+# ::edge	except-01	ARG1	weekend	e	w	
+(r / recommend-01
+    :ARG1 (p / park-01
+        :ARG0 (y / you)
+        :ARG2 (h / here)
+        :ARG2-of (e / except-01
+            :ARG1 (w / weekend))
+        :polarity -
+        :time (a / anytime
+            :mod (b / between
+                :op1 (d / date-entity
+                    :time "6:30")
+                :op2 (d2 / date-entity
+                    :time "16:00"))))
+    :ARG2 y)

@@ -1,0 +1,23 @@
+# ::tok The locomotive is slowing down as it passes through a crossing with its lights on .
+# ::node	l2	locomotive	1-2
+# ::node	s	slow-down-03	3-4
+# ::node	p	pass-03	7-8
+# ::node	c	cross-02	10-11
+# ::node	l	light	13-14
+# ::node	o	on-01	14-15
+# ::root	s	slow-down-03
+# ::edge	slow-down-03	ARG1	locomotive	s	l2	
+# ::edge	slow-down-03	time	pass-03	s	p	
+# ::edge	pass-03	ARG1	locomotive	p	l2	
+# ::edge	pass-03	path	cross-02	p	c	
+# ::edge	light	poss	locomotive	l	l2	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	pass-03	manner	on-01	p	o	
+(s / slow-down-03
+    :ARG1 (l2 / locomotive)
+    :time (p / pass-03
+        :ARG1 l2
+        :manner (o / on-01
+            :ARG1 (l / light
+                :poss l2))
+        :path (c / cross-02)))

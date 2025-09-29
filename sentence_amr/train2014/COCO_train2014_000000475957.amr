@@ -1,0 +1,30 @@
+# ::tok The man is eating a slice of pizza while standing in front of a dry erase board .
+# ::node	m	man	1-2
+# ::node	e	eat-01	3-4
+# ::node	s	slice	5-6
+# ::node	p	pizza	7-8
+# ::node	s2	stand-01	9-10
+# ::node	i	in-front-of	11-12
+# ::node	d	dry-08	14-15
+# ::node	e2	erase-01	15-16
+# ::node	b	board	16-17
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	eat-01	ARG1	slice	e	s	
+# ::edge	slice	consist-of	pizza	s	p	
+# ::edge	eat-01	time	stand-01	e	s2	
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	in-front-of	s2	i	
+# ::edge	erase-01	ARG1-of	dry-08	e2	d	
+# ::edge	board	ARG0-of	erase-01	b	e2	
+# ::edge	in-front-of	op1	board	i	b	
+(e / eat-01
+    :ARG0 (m / man)
+    :ARG1 (s / slice
+        :consist-of (p / pizza))
+    :time (s2 / stand-01
+        :ARG1 m
+        :ARG2 (i / in-front-of
+            :op1 (b / board
+                :ARG0-of (e2 / erase-01
+                    :ARG1-of (d / dry-08))))))

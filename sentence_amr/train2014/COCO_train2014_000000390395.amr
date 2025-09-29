@@ -1,0 +1,91 @@
+# ::tok A steep incline of snow , a strip of sky and what looks like a large red strut sticking out of the snow make a setting for a helmeted skier in otherwise regular clothes in a twisted posture the points of his or her skis ascending the slope .
+# ::node	s9	steep	1-2
+# ::node	i	incline-01	2-3
+# ::node	s7	snow	4-5
+# ::node	s11	strip	7-8
+# ::node	s5	sky	9-10
+# ::node	a	and	10-11
+# ::node	t	thing	11-12
+# ::node	l2	look-02	12-13
+# ::node	l	large	15-16
+# ::node	r	red-02	16-17
+# ::node	s12	strut	17-18
+# ::node	s10	stick-out-02	18-19
+# ::node	s8	snow	22-23
+# ::node	m	make-01	23-24
+# ::node	s	set-01	25-26
+# ::node	s2	ski-01	28-29
+# ::node	p	person	29-30
+# ::node	s3	ski-01	29-30
+# ::node	e	except-01	31-32
+# ::node	r2	regular-03	32-33
+# ::node	c2	clothe-01	33-34
+# ::node	t2	twist-01	36-37
+# ::node	p3	posture-01	37-38
+# ::node	p2	point	39-40
+# ::node	o	or	42-43
+# ::node	s4	ski-01	44-45
+# ::node	c	climb-01	45-46
+# ::node	s6	slope	47-48
+# ::root	m	make-01
+# ::edge	incline-01	mod	steep	i	s9	
+# ::edge	incline-01	ARG1	snow	i	s7	
+# ::edge	strip	consist-of	sky	s11	s5	
+# ::edge	and	op2	strip	a	s11	
+# ::edge	and	op1	incline-01	a	i	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG0-of	look-02	t	l2	
+# ::edge	strut	ARG1-of	red-02	s12	r	
+# ::edge	strut	mod	large	s12	l	
+# ::edge	look-02	ARG1	strut	l2	s12	
+# ::edge	strut	ARG1-of	stick-out-02	s12	s10	
+# ::edge	stick-out-02	ARG2	snow	s10	s8	
+# ::edge	make-01	ARG0	and	m	a	
+# ::edge	make-01	ARG1	set-01	m	s	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	set-01	ARG1	person	s	p	
+# ::edge	person	ARG0-of	ski-01	p	s3	
+# ::edge	except-01	ARG2	ski-01	e	s2	
+# ::edge	regular-03	ARG1-of	except-01	r2	e	
+# ::edge	clothe-01	ARG1-of	regular-03	c2	r2	
+# ::edge	person	ARG1-of	clothe-01	p	c2	
+# ::edge	posture-01	ARG1-of	twist-01	p3	t2	
+# ::edge	person	ARG0-of	posture-01	p	p3	
+# ::edge	point	poss	person	p2	p	
+# ::edge	or	op2	point	o	p2	
+# ::edge	or	op1	person	o	p	
+# ::edge	point	ARG0-of	ski-01	p2	s4	
+# ::edge	climb-01	ARG0	or	c	o	
+# ::edge	set-01	ARG1	climb-01	s	c	
+# ::edge	climb-01	ARG1	slope	c	s6	
+(m / make-01
+    :ARG0 (a / and
+        :op1 (i / incline-01
+            :ARG1 (s7 / snow)
+            :mod (s9 / steep))
+        :op2 (s11 / strip
+            :consist-of (s5 / sky))
+        :op3 (t / thing
+            :ARG0-of (l2 / look-02
+                :ARG1 (s12 / strut
+                    :ARG1-of (r / red-02)
+                    :ARG1-of (s10 / stick-out-02
+                        :ARG2 (s8 / snow))
+                    :mod (l / large)))))
+    :ARG1 (s / set-01
+        :ARG1 (p / person
+            :ARG0-of (s2 / ski-01)
+            :ARG0-of (s3 / ski-01)
+            :ARG0-of (p3 / posture-01
+                :ARG1-of (t2 / twist-01))
+            :ARG1-of (c2 / clothe-01
+                :ARG1-of (r2 / regular-03
+                    :ARG1-of (e / except-01
+                        :ARG2 s2))))
+        :ARG1 (c / climb-01
+            :ARG0 (o / or
+                :op1 p
+                :op2 (p2 / point
+                    :ARG0-of (s4 / ski-01)
+                    :poss p))
+            :ARG1 (s6 / slope))))

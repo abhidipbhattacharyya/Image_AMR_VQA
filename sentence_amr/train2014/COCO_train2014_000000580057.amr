@@ -1,0 +1,38 @@
+# ::tok People in a Chinese restaurant looking up at the photographer taking the photo from a distance .
+# ::node	p	person	0-1
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	China	3-4
+# ::node	r	restaurant	4-5
+# ::node	l	look-01	5-6
+# ::node	u	up	6-7
+# ::node	p2	person	9-10
+# ::node	p4	photograph-01	9-10
+# ::node	p3	photo	12-13
+# ::node	d	distance-01	15-16
+# ::root	l	look-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	restaurant	mod	country	r	c	
+# ::edge	person	location	restaurant	p	r	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	look-01	direction	up	l	u	
+# ::edge	look-01	ARG1	person	l	p2	
+# ::edge	person	ARG0-of	photograph-01	p2	p4	
+# ::edge	photograph-01	ARG1	photo	p4	p3	
+# ::edge	distance-01	ARG2	photo	d	p3	
+# ::edge	distance-01	ARG1	person	d	p2	
+# ::edge	look-01	manner	distance-01	l	d	
+(l / look-01
+    :ARG0 (p / person
+        :location (r / restaurant
+            :mod (c / country
+                :name (n / name
+                    :op1 "China"))))
+    :ARG1 (p2 / person
+        :ARG0-of (p4 / photograph-01
+            :ARG1 (p3 / photo)))
+    :direction (u / up)
+    :manner (d / distance-01
+        :ARG1 p2
+        :ARG2 p3))

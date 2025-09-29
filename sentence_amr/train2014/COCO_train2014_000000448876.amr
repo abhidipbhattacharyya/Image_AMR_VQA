@@ -1,0 +1,21 @@
+# ::tok A batch of donuts is passing through a machine waiting to be glazed .
+# ::node	b	batch	1-2
+# ::node	d	donut	3-4
+# ::node	p	pass-03	5-6
+# ::node	m	machine	8-9
+# ::node	w	wait-01	9-10
+# ::node	g	glaze-01	12-13
+# ::root	p	pass-03
+# ::edge	batch	consist-of	donut	b	d	
+# ::edge	pass-03	ARG1	batch	p	b	
+# ::edge	pass-03	path	machine	p	m	
+# ::edge	pass-03	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	glaze-01	w	g	
+# ::edge	glaze-01	ARG1	donut	g	d	
+(p / pass-03
+    :ARG1 (b / batch
+        :consist-of (d / donut))
+    :ARG1-of (w / wait-01
+        :ARG2 (g / glaze-01
+            :ARG1 d))
+    :path (m / machine))

@@ -1,0 +1,31 @@
+# ::tok Pick up truck with ATV in the back travelling down the road .
+# ::node	p	pick-up-04	0-1
+# ::node	t2	truck	2-3
+# ::node	v	vehicle	4-5
+# ::node	n	name	4-5
+# ::node	0	ATV	4-5
+# ::node	b2	be-located-at-91	5-6
+# ::node	b	back	7-8
+# ::node	t	travel-01	8-9
+# ::node	d	down	9-10
+# ::node	r	road	11-12
+# ::root	t2	truck
+# ::edge	truck	ARG1-of	pick-up-04	t2	p	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	ATV	n	0	
+# ::edge	be-located-at-91	ARG1	vehicle	b2	v	
+# ::edge	truck	ARG2-of	be-located-at-91	t2	b2	
+# ::edge	be-located-at-91	location	back	b2	b	
+# ::edge	truck	ARG0-of	travel-01	t2	t	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	ARG1	road	t	r	
+(t2 / truck
+    :ARG0-of (t / travel-01
+        :ARG1 (r / road)
+        :direction (d / down))
+    :ARG1-of (p / pick-up-04)
+    :ARG2-of (b2 / be-located-at-91
+        :ARG1 (v / vehicle
+            :name (n / name
+                :op1 "ATV"))
+        :location (b / back)))

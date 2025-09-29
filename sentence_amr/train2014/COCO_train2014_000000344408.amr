@@ -1,0 +1,36 @@
+# ::tok The burners are lit and glowing red on a stainless steel stove and oven .
+# ::node	t	thing	1-2
+# ::node	b	burn-01	1-2
+# ::node	l	light-04	3-4
+# ::node	a	and	4-5
+# ::node	g	glow-01	5-6
+# ::node	r	red-02	6-7
+# ::node	s	stainless	9-10
+# ::node	s2	steel	10-11
+# ::node	s3	stove	11-12
+# ::node	a2	and	12-13
+# ::node	o	oven	13-14
+# ::root	a	and
+# ::edge	thing	ARG0-of	burn-01	t	b	
+# ::edge	light-04	ARG1	thing	l	t	
+# ::edge	and	op1	light-04	a	l	
+# ::edge	and	op2	glow-01	a	g	
+# ::edge	glow-01	ARG1	thing	g	t	
+# ::edge	glow-01	ARG1-of	red-02	g	r	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	and	op1	stove	a2	s3	
+# ::edge	and	consist-of	steel	a2	s2	
+# ::edge	and	location	and	a	a2	
+# ::edge	and	op2	oven	a2	o	
+(a / and
+    :location (a2 / and
+        :consist-of (s2 / steel
+            :mod (s / stainless))
+        :op1 (s3 / stove)
+        :op2 (o / oven))
+    :op1 (l / light-04
+        :ARG1 (t / thing
+            :ARG0-of (b / burn-01)))
+    :op2 (g / glow-01
+        :ARG1 t
+        :ARG1-of (r / red-02)))

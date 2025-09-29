@@ -1,0 +1,31 @@
+# ::tok Cars parked on the side of the street in front of shops with some people walking on the sidewalk
+# ::node	c	car	0-1
+# ::node	p	park-01	1-2
+# ::node	s2	side	4-5
+# ::node	s5	street	7-8
+# ::node	i	in-front-of	9-10
+# ::node	s	shop	11-12
+# ::node	s4	some	13-14
+# ::node	p2	person	14-15
+# ::node	w	walk-01	15-16
+# ::node	s3	sidewalk	18-19
+# ::root	p	park-01
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	location	side	p	s2	
+# ::edge	side	part-of	street	s2	s5	
+# ::edge	street	location	in-front-of	s5	i	
+# ::edge	in-front-of	op1	shop	i	s	
+# ::edge	person	quant	some	p2	s4	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	car	location-of	walk-01	c	w	
+# ::edge	walk-01	ARG2	sidewalk	w	s3	
+(p / park-01
+    :ARG1 (c / car
+        :location-of (w / walk-01
+            :ARG0 (p2 / person
+                :quant (s4 / some))
+            :ARG2 (s3 / sidewalk)))
+    :location (s2 / side
+        :part-of (s5 / street
+            :location (i / in-front-of
+                :op1 (s / shop)))))

@@ -1,0 +1,25 @@
+# ::tok A city intersection with pedestrians , a crosswalk and vehicular traffic .
+# ::node	c	city	1-2
+# ::node	i	intersect-01	2-3
+# ::node	p	person	4-5
+# ::node	w	walk-01	4-5
+# ::node	w2	walk-01	7-8
+# ::node	a	and	8-9
+# ::node	v	vehicle	9-10
+# ::node	t	traffic	10-11
+# ::root	i	intersect-01
+# ::edge	intersect-01	mod	city	i	c	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op2	walk-01	a	w2	
+# ::edge	and	op1	person	a	p	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	traffic	mod	vehicle	t	v	
+# ::edge	and	op3	traffic	a	t	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (p / person
+            :ARG0-of (w / walk-01))
+        :op2 (w2 / walk-01)
+        :op3 (t / traffic
+            :mod (v / vehicle)))
+    :mod (c / city))

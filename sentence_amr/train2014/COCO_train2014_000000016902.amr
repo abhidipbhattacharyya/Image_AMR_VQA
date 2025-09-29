@@ -1,0 +1,36 @@
+# ::tok People walk along an airport tarmac to see a FedEx jet aircraft .
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	a3	along	2-3
+# ::node	a2	airport	4-5
+# ::node	t	tarmac	5-6
+# ::node	s	see-01	7-8
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	0	FedEx	9-10
+# ::node	j	jet	10-11
+# ::node	a	aircraft	11-12
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	ARG2	along	w	a3	
+# ::edge	tarmac	poss	airport	t	a2	
+# ::edge	along	op1	tarmac	a3	t	
+# ::edge	walk-01	purpose	see-01	w	s	
+# ::edge	see-01	ARG0	person	s	p	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	FedEx	n	0	
+# ::edge	aircraft	mod	jet	a	j	
+# ::edge	aircraft	poss	company	a	c	
+# ::edge	see-01	ARG1	aircraft	s	a	
+(w / walk-01
+    :purpose (s / see-01
+        :ARG0 (p / person)
+        :ARG1 (a / aircraft
+            :mod (j / jet)
+            :poss (c / company
+                :name (n / name
+                    :op1 "FedEx"))))
+    :ARG0 p
+    :ARG2 (a3 / along
+        :op1 (t / tarmac
+            :poss (a2 / airport))))

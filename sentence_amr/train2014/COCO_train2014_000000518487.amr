@@ -1,0 +1,25 @@
+# ::tok A blender containing non - blended liquids and solid ingredients .
+# ::node	b2	blender	1-2
+# ::node	c	contain-01	2-3
+# ::node	0	-	3-4
+# ::node	b	blend-01	5-6
+# ::node	f	fluid	6-7
+# ::node	a	and	7-8
+# ::node	s	solid-02	8-9
+# ::node	i	ingredient	9-10
+# ::root	b2	blender
+# ::edge	blender	ARG0-of	contain-01	b2	c	
+# ::edge	blend-01	polarity	-	b	0	
+# ::edge	fluid	ARG1-of	blend-01	f	b	
+# ::edge	and	op1	fluid	a	f	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	ingredient	ARG1-of	solid-02	i	s	
+# ::edge	and	op2	ingredient	a	i	
+(b2 / blender
+    :ARG0-of (c / contain-01
+        :ARG1 (a / and
+            :op1 (f / fluid
+                :ARG1-of (b / blend-01
+                    :polarity -))
+            :op2 (i / ingredient
+                :ARG1-of (s / solid-02)))))

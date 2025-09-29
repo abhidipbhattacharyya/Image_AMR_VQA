@@ -1,0 +1,25 @@
+# ::tok Pedestrians on narrow alleyway with archway between buildings .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	n	narrow-02	2-3
+# ::node	a	alleyway	3-4
+# ::node	h	have-03	4-5
+# ::node	a2	archway	5-6
+# ::node	b	between	6-7
+# ::node	b2	building	7-8
+# ::root	p	person
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	alleyway	ARG1-of	narrow-02	a	n	
+# ::edge	person	location	alleyway	p	a	
+# ::edge	alleyway	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	archway	h	a2	
+# ::edge	archway	location	between	a2	b	
+# ::edge	between	op1	building	b	b2	
+(p / person
+    :ARG0-of (w / walk-01)
+    :location (a / alleyway
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / archway
+                :location (b / between
+                    :op1 (b2 / building))))
+        :ARG1-of (n / narrow-02)))

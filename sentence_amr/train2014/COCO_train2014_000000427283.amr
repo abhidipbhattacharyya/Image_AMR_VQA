@@ -1,0 +1,29 @@
+# ::tok Train stopped at train stop where people board and unboard .
+# ::node	t	train	0-1
+# ::node	s	stop-01	1-2
+# ::node	s2	stop-01	4-5
+# ::node	p	person	6-7
+# ::node	b	board-01	7-8
+# ::node	a	and	8-9
+# ::node	b2	board-01	9-10
+# ::node	0	-	9-10
+# ::root	s	stop-01
+# ::edge	stop-01	ARG1	train	s	t	
+# ::edge	stop-01	location	stop-01	s	s2	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	and	op1	board-01	a	b	
+# ::edge	stop-01	location-of	and	s2	a	
+# ::edge	and	op2	board-01	a	b2	
+# ::edge	board-01	ARG0	person	b2	p	
+# ::edge	board-01	polarity	-	b2	0	
+(s / stop-01
+    :ARG1 (t / train)
+    :location (s2 / stop-01
+        :ARG1 t
+        :location-of (a / and
+            :op1 (b / board-01
+                :ARG0 (p / person))
+            :op2 (b2 / board-01
+                :ARG0 p
+                :polarity -))))

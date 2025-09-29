@@ -1,0 +1,25 @@
+# ::tok A beef sandwich with onions and lettuce on a toast bun .
+# ::node	b	beef	1-2
+# ::node	s	sandwich	2-3
+# ::node	g	grenade	4-5
+# ::node	e	eat-01	4-5
+# ::node	a	and	5-6
+# ::node	l	lettuce	6-7
+# ::node	t	toast	9-10
+# ::node	b2	bun	10-11
+# ::root	s	sandwich
+# ::edge	sandwich	consist-of	beef	s	b	
+# ::edge	grenade	ARG1-of	eat-01	g	e	
+# ::edge	and	op1	grenade	a	g	
+# ::edge	sandwich	accompanier	and	s	a	
+# ::edge	and	op2	lettuce	a	l	
+# ::edge	bun	consist-of	toast	b2	t	
+# ::edge	sandwich	prep-on	bun	s	b2	
+(s / sandwich
+    :accompanier (a / and
+        :op1 (g / grenade
+            :ARG1-of (e / eat-01))
+        :op2 (l / lettuce))
+    :consist-of (b / beef)
+    :prep-on (b2 / bun
+        :consist-of (t / toast)))

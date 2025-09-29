@@ -1,0 +1,33 @@
+# ::tok A clock that is attached to a building , outdoors , with roman numerals on the clock face .
+# ::node	c	clock	1-2
+# ::node	a	attach-01	4-5
+# ::node	b	building	7-8
+# ::node	o	outdoors	9-10
+# ::node	h	have-03	11-12
+# ::node	c2	country	12-13
+# ::node	n	name	12-13
+# ::node	0	Rome	12-13
+# ::node	n2	number	13-14
+# ::node	f	face	17-18
+# ::root	c	clock
+# ::edge	clock	ARG1-of	attach-01	c	a	
+# ::edge	attach-01	ARG2	building	a	b	
+# ::edge	building	location	outdoors	b	o	
+# ::edge	clock	ARG0-of	have-03	c	h	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Rome	n	0	
+# ::edge	number	mod	country	n2	c2	
+# ::edge	have-03	ARG1	number	h	n2	
+# ::edge	number	part	face	n2	f	
+# ::edge	clock	location	face	c	f	
+(c / clock
+    :ARG0-of (h / have-03
+        :ARG1 (n2 / number
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "Rome"))
+            :part (f / face)))
+    :ARG1-of (a / attach-01
+        :ARG2 (b / building
+            :location (o / outdoors)))
+    :location f)

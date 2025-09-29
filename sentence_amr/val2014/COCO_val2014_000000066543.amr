@@ -1,0 +1,25 @@
+# ::tok A sign in front of a brick wall that says accident prone zone
+# ::node	s2	sign	1-2
+# ::node	i	in-front-of	3-4
+# ::node	b	brick	6-7
+# ::node	w	wall	7-8
+# ::node	s	say-01	9-10
+# ::node	a	accident	10-11
+# ::node	p	prone-01	11-12
+# ::node	z	zone	12-13
+# ::root	s2	sign
+# ::edge	sign	location	in-front-of	s2	i	
+# ::edge	wall	consist-of	brick	w	b	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	prone-01	ARG2	accident	p	a	
+# ::edge	zone	ARG1-of	prone-01	z	p	
+# ::edge	say-01	ARG1	zone	s	z	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (z / zone
+            :ARG1-of (p / prone-01
+                :ARG2 (a / accident))))
+    :location (i / in-front-of
+        :op1 (w / wall
+            :consist-of (b / brick))))

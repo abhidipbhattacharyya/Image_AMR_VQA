@@ -1,0 +1,43 @@
+# ::tok A sandwich made of thick bread and heavily laden with tomatoes sits on a plate next to a glass of water .
+# ::node	s	sandwich	1-2
+# ::node	m	make-01	2-3
+# ::node	t	thick-03	4-5
+# ::node	b	bread	5-6
+# ::node	h	heavy	7-8
+# ::node	l	load-01	8-9
+# ::node	t2	tomato	10-11
+# ::node	s2	sit-01	11-12
+# ::node	p	plate	14-15
+# ::node	n	next-to	15-16
+# ::node	v	volume-quantity	17-18
+# ::node	0	1	17-18
+# ::node	g	glass	18-19
+# ::node	w	water	20-21
+# ::root	s2	sit-01
+# ::edge	sandwich	ARG1-of	make-01	s	m	
+# ::edge	bread	ARG1-of	thick-03	b	t	
+# ::edge	make-01	ARG2	bread	m	b	
+# ::edge	load-01	manner	heavy	l	h	
+# ::edge	sandwich	ARG1-of	load-01	s	l	
+# ::edge	load-01	ARG2	tomato	l	t2	
+# ::edge	sit-01	ARG1	sandwich	s2	s	
+# ::edge	sit-01	ARG2	plate	s2	p	
+# ::edge	plate	location-of	next-to	p	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	water	quant	volume-quantity	w	v	
+# ::edge	next-to	op1	water	n	w	
+(s2 / sit-01
+    :ARG1 (s / sandwich
+        :ARG1-of (m / make-01
+            :ARG2 (b / bread
+                :ARG1-of (t / thick-03)))
+        :ARG1-of (l / load-01
+            :ARG2 (t2 / tomato)
+            :manner (h / heavy)))
+    :ARG2 (p / plate
+        :location-of (n / next-to
+            :op1 (w / water
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))))))

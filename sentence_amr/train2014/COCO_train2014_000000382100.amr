@@ -1,0 +1,39 @@
+# ::tok A child is running the bases as the bas coach is pointing and another is trying to catch the ball .
+# ::node	c2	child	1-2
+# ::node	r	run-01	3-4
+# ::node	b2	base	5-6
+# ::node	b3	base	8-9
+# ::node	p	person	9-10
+# ::node	c3	coach-01	9-10
+# ::node	p2	point-01	11-12
+# ::node	a	and	12-13
+# ::node	a2	another	13-14
+# ::node	t	try-01	15-16
+# ::node	c	catch-01	17-18
+# ::node	b	ball	19-20
+# ::root	r	run-01
+# ::edge	run-01	ARG0	child	r	c2	
+# ::edge	run-01	ARG1	base	r	b2	
+# ::edge	person	ARG0-of	coach-01	p	c3	
+# ::edge	coach-01	ARG2	base	c3	b3	
+# ::edge	point-01	ARG0	person	p2	p	
+# ::edge	and	op1	point-01	a	p2	
+# ::edge	run-01	time	and	r	a	
+# ::edge	try-01	ARG0	another	t	a2	
+# ::edge	and	op2	try-01	a	t	
+# ::edge	try-01	ARG1	catch-01	t	c	
+# ::edge	catch-01	ARG0	another	c	a2	
+# ::edge	catch-01	ARG1	ball	c	b	
+(r / run-01
+    :ARG0 (c2 / child)
+    :ARG1 (b2 / base)
+    :time (a / and
+        :op1 (p2 / point-01
+            :ARG0 (p / person
+                :ARG0-of (c3 / coach-01
+                    :ARG2 (b3 / base))))
+        :op2 (t / try-01
+            :ARG0 (a2 / another)
+            :ARG1 (c / catch-01
+                :ARG0 a2
+                :ARG1 (b / ball)))))

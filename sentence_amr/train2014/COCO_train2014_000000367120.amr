@@ -1,0 +1,38 @@
+# ::tok One dog is laying on a bench while another sits and licks its lips .
+# ::node	0	1	0-1
+# ::node	d	dog	1-2
+# ::node	d2	dog	1-2
+# ::node	l	lay-01	3-4
+# ::node	b	bench	6-7
+# ::node	c	contrast-01	7-8
+# ::node	a2	another	8-9
+# ::node	s	sit-01	9-10
+# ::node	a	and	10-11
+# ::node	l2	lick-01	11-12
+# ::node	l3	lip	13-14
+# ::root	c	contrast-01
+# ::edge	dog	quant	1	d	0	
+# ::edge	lay-01	ARG1	dog	l	d	
+# ::edge	lay-01	ARG2	bench	l	b	
+# ::edge	contrast-01	ARG1	lay-01	c	l	
+# ::edge	dog	mod	another	d2	a2	
+# ::edge	sit-01	ARG1	dog	s	d2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	contrast-01	ARG2	and	c	a	
+# ::edge	and	op2	lick-01	a	l2	
+# ::edge	lick-01	ARG0	dog	l2	d2	
+# ::edge	lick-01	ARG1	lip	l2	l3	
+# ::edge	dog	part	lip	d2	l3	
+(c / contrast-01
+    :ARG1 (l / lay-01
+        :ARG1 (d / dog
+            :quant 1)
+        :ARG2 (b / bench))
+    :ARG2 (a / and
+        :op1 (s / sit-01
+            :ARG1 (d2 / dog
+                :mod (a2 / another)
+                :part (l3 / lip)))
+        :op2 (l2 / lick-01
+            :ARG0 d2
+            :ARG1 l3)))

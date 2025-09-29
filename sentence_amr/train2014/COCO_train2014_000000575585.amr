@@ -1,0 +1,32 @@
+# ::tok A room contains a sink , mirror , and a door , but is otherwise empty .
+# ::node	r	room	1-2
+# ::node	c	contain-01	2-3
+# ::node	s	sink	4-5
+# ::node	a	and	5-6
+# ::node	m	mirror	6-7
+# ::node	d	door	10-11
+# ::node	c2	contrast-01	12-13
+# ::node	e2	except-01	14-15
+# ::node	e	empty-02	15-16
+# ::root	c2	contrast-01
+# ::edge	contain-01	ARG0	room	c	r	
+# ::edge	and	op1	sink	a	s	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	and	op3	door	a	d	
+# ::edge	contrast-01	ARG1	contain-01	c2	c	
+# ::edge	except-01	ARG2	contain-01	e2	c	
+# ::edge	empty-02	ARG1-of	except-01	e	e2	
+# ::edge	contrast-01	ARG2	empty-02	c2	e	
+# ::edge	empty-02	ARG1	room	e	r	
+(c2 / contrast-01
+    :ARG1 (c / contain-01
+        :ARG0 (r / room)
+        :ARG1 (a / and
+            :op1 (s / sink)
+            :op2 (m / mirror)
+            :op3 (d / door)))
+    :ARG2 (e / empty-02
+        :ARG1 r
+        :ARG1-of (e2 / except-01
+            :ARG2 c)))

@@ -1,0 +1,43 @@
+# ::tok The high speed subway train is stopped at Times Square , New York City .
+# ::node	h	high-02	1-2
+# ::node	s	speed	2-3
+# ::node	s3	subway	3-4
+# ::node	t	train	4-5
+# ::node	s2	stop-01	6-7
+# ::node	n	name	8-9
+# ::node	3	Times	8-9
+# ::node	m	market-sector	9-10
+# ::node	2	Square	9-10
+# ::node	n2	name	11-12
+# ::node	1	New	11-12
+# ::node	4	York	12-13
+# ::node	c	city	13-14
+# ::node	0	City	13-14
+# ::root	s2	stop-01
+# ::edge	speed	ARG1-of	high-02	s	h	
+# ::edge	train	mod	subway	t	s3	
+# ::edge	train	mod	speed	t	s	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	name	op1	Times	n	3	
+# ::edge	market-sector	name	name	m	n	
+# ::edge	stop-01	location	market-sector	s2	m	
+# ::edge	name	op2	Square	n	2	
+# ::edge	name	op1	New	n2	1	
+# ::edge	name	op2	York	n2	4	
+# ::edge	city	name	name	c	n2	
+# ::edge	market-sector	location	city	m	c	
+# ::edge	name	op3	City	n2	0	
+(s2 / stop-01
+    :ARG1 (t / train
+        :mod (s3 / subway)
+        :mod (s / speed
+            :ARG1-of (h / high-02)))
+    :location (m / market-sector
+        :name (n / name
+            :op1 "Times"
+            :op2 "Square")
+        :location (c / city
+            :name (n2 / name
+                :op1 "New"
+                :op2 "York"
+                :op3 "City"))))

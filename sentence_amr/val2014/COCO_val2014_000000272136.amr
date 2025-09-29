@@ -1,0 +1,30 @@
+# ::tok Some type of vehicle with a number on its side is pared inside a garage .
+# ::node	s2	some	0-1
+# ::node	t	type	1-2
+# ::node	v	vehicle	3-4
+# ::node	h	have-03	4-5
+# ::node	n	number	6-7
+# ::node	s	side	9-10
+# ::node	p	pare-down-04	11-12
+# ::node	i	inside	12-13
+# ::node	g	garage	14-15
+# ::root	p	pare-down-04
+# ::edge	type	mod	some	t	s2	
+# ::edge	vehicle	mod	type	v	t	
+# ::edge	vehicle	ARG0-of	have-03	v	h	
+# ::edge	have-03	ARG1	number	h	n	
+# ::edge	number	location	side	n	s	
+# ::edge	vehicle	part	side	v	s	
+# ::edge	pare-down-04	ARG1	vehicle	p	v	
+# ::edge	pare-down-04	location	inside	p	i	
+# ::edge	inside	op1	garage	i	g	
+(p / pare-down-04
+    :ARG1 (v / vehicle
+        :ARG0-of (h / have-03
+            :ARG1 (n / number
+                :location (s / side)))
+        :mod (t / type
+            :mod (s2 / some))
+        :part s)
+    :location (i / inside
+        :op1 (g / garage)))

@@ -1,0 +1,52 @@
+# ::tok Two cartoon like birds sitting in a tree .
+# ::node	0	2	0-1
+# ::node	c	cartoon	1-2
+# ::node	r	resemble-01	2-3
+# ::node	b	bird	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	tree	7-8
+# ::root	r	resemble-01
+# ::edge	cartoon	quant	2	c	0	
+# ::edge	resemble-01	ARG1	cartoon	r	c	
+# ::edge	resemble-01	ARG2	bird	r	b	
+# ::edge	bird	ARG1-of	sit-01	b	s	
+# ::edge	sit-01	ARG2	tree	s	t	
+(r / resemble-01
+    :ARG1 (c / cartoon
+        :quant 2)
+    :ARG2 (b / bird
+        :ARG1-of (s / sit-01
+            :ARG2 (t / tree))))
+
+
+# ::tok One is a gray with a long tail and the other has an orange beak
+# ::node	o	one	0-1
+# ::node	g	gray-02	3-4
+# ::node	h	have-03	4-5
+# ::node	l	long-03	6-7
+# ::node	t	tail	7-8
+# ::node	a	and	8-9
+# ::node	o3	other	10-11
+# ::node	h2	have-03	11-12
+# ::node	o2	orange	13-14
+# ::node	b	beak	14-15
+# ::root	a	and
+# ::edge	one	ARG1-of	gray-02	o	g	
+# ::edge	one	ARG0-of	have-03	o	h	
+# ::edge	tail	ARG1-of	long-03	t	l	
+# ::edge	have-03	ARG1	tail	h	t	
+# ::edge	and	op1	one	a	o	
+# ::edge	and	op2	other	a	o3	
+# ::edge	other	ARG0-of	have-03	o3	h2	
+# ::edge	beak	mod	orange	b	o2	
+# ::edge	have-03	ARG1	beak	h2	b	
+(a / and
+    :op1 (o / one
+        :ARG0-of (h / have-03
+            :ARG1 (t / tail
+                :ARG1-of (l / long-03)))
+        :ARG1-of (g / gray-02))
+    :op2 (o3 / other
+        :ARG0-of (h2 / have-03
+            :ARG1 (b / beak
+                :mod (o2 / orange)))))

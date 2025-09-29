@@ -1,0 +1,18 @@
+# ::tok A bus prepares to make a right turn onto a bridge
+# ::node	b2	bus	1-2
+# ::node	p	prepare-02	2-3
+# ::node	r	right-04	6-7
+# ::node	t	turn-01	7-8
+# ::node	b	bridge	10-11
+# ::root	p	prepare-02
+# ::edge	prepare-02	ARG1	bus	p	b2	
+# ::edge	turn-01	ARG1-of	right-04	t	r	
+# ::edge	prepare-02	ARG2	turn-01	p	t	
+# ::edge	turn-01	ARG0	bus	t	b2	
+# ::edge	turn-01	destination	bridge	t	b	
+(p / prepare-02
+    :ARG1 (b2 / bus)
+    :ARG2 (t / turn-01
+        :ARG0 b2
+        :ARG1-of (r / right-04)
+        :destination (b / bridge)))

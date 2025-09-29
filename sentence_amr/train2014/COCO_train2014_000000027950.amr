@@ -1,0 +1,41 @@
+# ::tok two ultimate frisbeers try to catch the same frisbee
+# ::node	0	2	0-1
+# ::node	u	ultimate	1-2
+# ::node	p	person	2-3
+# ::node	c2	country	2-3
+# ::node	n	name	2-3
+# ::node	u2	university	2-3
+# ::node	n2	name	2-3
+# ::node	1	France	2-3
+# ::node	t	try-01	3-4
+# ::node	c	catch-03	5-6
+# ::node	s	same-01	7-8
+# ::node	f	frisbee	8-9
+# ::root	t	try-01
+# ::edge	person	mod	ultimate	p	u	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	mod	country	p	c2	
+# ::edge	country	name	name	c2	n	
+# ::edge	person	mod	university	p	u2	
+# ::edge	university	name	name	u2	n2	
+# ::edge	name	op1	France	n	1	
+# ::edge	try-01	ARG0	person	t	p	
+# ::edge	try-01	ARG1	catch-03	t	c	
+# ::edge	catch-03	ARG0	person	c	p	
+# ::edge	frisbee	ARG1-of	same-01	f	s	
+# ::edge	catch-03	ARG1	frisbee	c	f	
+# ::edge	frisbee	mod	university	f	u2	
+(t / try-01
+    :ARG0 (p / person
+        :quant 2
+        :mod (u / ultimate)
+        :mod (c2 / country
+            :name (n / name
+                :op1 "France"))
+        :mod (u2 / university
+            :name (n2 / name)))
+    :ARG1 (c / catch-03
+        :ARG0 p
+        :ARG1 (f / frisbee
+            :ARG1-of (s / same-01)
+            :mod u2)))

@@ -1,0 +1,34 @@
+# ::tok A street pole with a stop sign , the cross streets , and a no parking sign .
+# ::node	s4	street	1-2
+# ::node	p2	pole	2-3
+# ::node	h	have-03	3-4
+# ::node	s3	stop-01	5-6
+# ::node	s	signal-07	6-7
+# ::node	c	cross-02	9-10
+# ::node	s5	street	10-11
+# ::node	a	and	12-13
+# ::node	0	-	14-15
+# ::node	p	park-01	15-16
+# ::node	s2	signal-07	16-17
+# ::root	a	and
+# ::edge	pole	mod	street	p2	s4	
+# ::edge	pole	ARG0-of	have-03	p2	h	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	street	ARG0-of	cross-02	s5	c	
+# ::edge	and	op2	street	a	s5	
+# ::edge	and	op1	pole	a	p2	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	signal-07	ARG1	park-01	s2	p	
+# ::edge	and	op3	signal-07	a	s2	
+# ::edge	and	rel	signal-07	a	s	
+(a / and
+    :op1 (p2 / pole
+        :ARG0-of (h / have-03)
+        :mod (s4 / street))
+    :op2 (s5 / street
+        :ARG0-of (c / cross-02))
+    :op3 (s2 / signal-07
+        :ARG1 (p / park-01
+            :polarity -))
+    :rel (s / signal-07
+        :ARG1 (s3 / stop-01)))

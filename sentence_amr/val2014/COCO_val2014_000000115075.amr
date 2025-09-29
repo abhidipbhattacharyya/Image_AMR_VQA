@@ -1,0 +1,42 @@
+# ::tok A person wearing Ugg 's is holding a multicolored umbrella while walking on the sidewalk by a brick building .
+# ::node	p	person	1-2
+# ::node	w2	wear-01	2-3
+# ::node	p2	product	3-4
+# ::node	n	name	3-4
+# ::node	0	Ugg	3-4
+# ::node	h	hold-01	6-7
+# ::node	m	multiple	8-9
+# ::node	u	umbrella	9-10
+# ::node	w	walk-01	11-12
+# ::node	s	sidewalk	14-15
+# ::node	b3	by	15-16
+# ::node	b	brick	17-18
+# ::node	b2	building	18-19
+# ::root	h	hold-01
+# ::edge	person	ARG0-of	wear-01	p	w2	
+# ::edge	wear-01	ARG1	product	w2	p2	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Ugg	n	0	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	umbrella	mod	multiple	u	m	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	hold-01	time	walk-01	h	w	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	ARG2	sidewalk	w	s	
+# ::edge	sidewalk	location	by	s	b3	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	by	op1	building	b3	b2	
+(h / hold-01
+    :ARG0 (p / person
+        :ARG0-of (w2 / wear-01
+            :ARG1 (p2 / product
+                :name (n / name
+                    :op1 "Ugg"))))
+    :ARG1 (u / umbrella
+        :mod (m / multiple))
+    :time (w / walk-01
+        :ARG0 p
+        :ARG2 (s / sidewalk
+            :location (b3 / by
+                :op1 (b2 / building
+                    :consist-of (b / brick))))))

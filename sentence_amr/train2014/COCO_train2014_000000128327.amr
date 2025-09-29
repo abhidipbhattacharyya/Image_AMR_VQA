@@ -1,0 +1,25 @@
+# ::tok A chair with a remote controller sitting on it facing several televisions .
+# ::node	c	chair	1-2
+# ::node	r	remote	4-5
+# ::node	t2	thing	5-6
+# ::node	c2	control-01	5-6
+# ::node	s2	sit-01	6-7
+# ::node	f	face-01	9-10
+# ::node	s	several	10-11
+# ::node	t	television	11-12
+# ::root	c	chair
+# ::edge	thing	mod	remote	t2	r	
+# ::edge	thing	ARG0-of	control-01	t2	c2	
+# ::edge	sit-01	ARG1	thing	s2	t2	
+# ::edge	chair	ARG2-of	sit-01	c	s2	
+# ::edge	chair	ARG0-of	face-01	c	f	
+# ::edge	television	quant	several	t	s	
+# ::edge	face-01	ARG1	television	f	t	
+(c / chair
+    :ARG0-of (f / face-01
+        :ARG1 (t / television
+            :quant (s / several)))
+    :ARG2-of (s2 / sit-01
+        :ARG1 (t2 / thing
+            :ARG0-of (c2 / control-01)
+            :mod (r / remote))))

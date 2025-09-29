@@ -1,0 +1,30 @@
+# ::tok A bus is on the side of the road with another behind it
+# ::node	b4	bus	1-2
+# ::node	b5	bus	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	s	side	5-6
+# ::node	r	road	8-9
+# ::node	a	and	9-10
+# ::node	a2	another	10-11
+# ::node	b2	be-located-at-91	11-12
+# ::node	b3	behind	11-12
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	bus	b	b4	
+# ::edge	be-located-at-91	ARG2	side	b	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	bus	mod	another	b5	a2	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG1	bus	b2	b5	
+# ::edge	be-located-at-91	ARG2	behind	b2	b3	
+# ::edge	behind	op1	side	b3	s	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (b4 / bus)
+        :ARG2 (s / side
+            :part-of (r / road)))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (b5 / bus
+            :mod (a2 / another))
+        :ARG2 (b3 / behind
+            :op1 s)))

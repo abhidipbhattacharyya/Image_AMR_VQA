@@ -1,0 +1,84 @@
+# ::tok Indirect lighting in a darkened room plays across a table covered with the remains of a meal , thereby giving everything , including the table , a basket , plates with uneaten food , utensils and glasses with liquid , a reddish patina .
+# ::node	d2	direct-02	0-1
+# ::node	l	light-04	1-2
+# ::node	d	darken-01	4-5
+# ::node	r3	room	5-6
+# ::node	p3	play-11	6-7
+# ::node	a	across	7-8
+# ::node	t	table	9-10
+# ::node	c2	cover-02	10-11
+# ::node	t2	thing	12-13
+# ::node	r2	remain-01	13-14
+# ::node	m	meal	16-17
+# ::node	c	cause-01	18-19
+# ::node	g	give-01	19-20
+# ::node	e3	everything	20-21
+# ::node	i	include-01	22-23
+# ::node	a2	and	25-26
+# ::node	b	basket	27-28
+# ::node	p2	plate	29-30
+# ::node	e	eat-01	31-32
+# ::node	0	-	31-32
+# ::node	f	food	32-33
+# ::node	e2	enzyme	34-35
+# ::node	d3	drink-01	34-35
+# ::node	g2	glass	36-37
+# ::node	l2	liquid	38-39
+# ::node	r	reddish	41-42
+# ::node	p	patina	42-43
+# ::root	c	cause-01
+# ::edge	light-04	ARG1-of	direct-02	l	d2	
+# ::edge	room	ARG1-of	darken-01	r3	d	
+# ::edge	light-04	location	room	l	r3	
+# ::edge	play-11	ARG0	light-04	p3	l	
+# ::edge	play-11	path	across	p3	a	
+# ::edge	across	op1	table	a	t	
+# ::edge	table	ARG1-of	cover-02	t	c2	
+# ::edge	cover-02	ARG2	thing	c2	t2	
+# ::edge	thing	ARG1-of	remain-01	t2	r2	
+# ::edge	thing	part-of	meal	t2	m	
+# ::edge	cause-01	ARG0	play-11	c	p3	
+# ::edge	cause-01	ARG1	give-01	c	g	
+# ::edge	give-01	ARG1	everything	g	e3	
+# ::edge	everything	ARG2-of	include-01	e3	i	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op1	table	a2	t	
+# ::edge	and	op2	basket	a2	b	
+# ::edge	and	op3	plate	a2	p2	
+# ::edge	eat-01	polarity	-	e	0	
+# ::edge	food	ARG1-of	eat-01	f	e	
+# ::edge	plate	part	food	p2	f	
+# ::edge	and	op4	enzyme	a2	e2	
+# ::edge	enzyme	ARG1-of	drink-01	e2	d3	
+# ::edge	and	op5	glass	a2	g2	
+# ::edge	glass	location-of	liquid	g2	l2	
+# ::edge	patina	mod	reddish	p	r	
+# ::edge	and	op6	patina	a2	p	
+(c / cause-01
+    :ARG0 (p3 / play-11
+        :ARG0 (l / light-04
+            :ARG1-of (d2 / direct-02)
+            :location (r3 / room
+                :ARG1-of (d / darken-01)))
+        :path (a / across
+            :op1 (t / table
+                :ARG1-of (c2 / cover-02
+                    :ARG2 (t2 / thing
+                        :ARG1-of (r2 / remain-01)
+                        :part-of (m / meal))))))
+    :ARG1 (g / give-01
+        :ARG1 (e3 / everything
+            :ARG2-of (i / include-01
+                :ARG1 (a2 / and
+                    :op1 t
+                    :op2 (b / basket)
+                    :op3 (p2 / plate
+                        :part (f / food
+                            :ARG1-of (e / eat-01
+                                :polarity -)))
+                    :op4 (e2 / enzyme
+                        :ARG1-of (d3 / drink-01))
+                    :op5 (g2 / glass
+                        :location-of (l2 / liquid))
+                    :op6 (p / patina
+                        :mod (r / reddish)))))))

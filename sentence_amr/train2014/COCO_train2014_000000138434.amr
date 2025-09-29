@@ -1,0 +1,28 @@
+# ::tok A car sits in traffic near a traffic light , underneath a cloudy sky .
+# ::node	c	car	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	traffic	4-5
+# ::node	n	near-02	5-6
+# ::node	t2	traffic	7-8
+# ::node	l	light	8-9
+# ::node	u	underneath	10-11
+# ::node	c2	cloudy-02	12-13
+# ::node	s2	sky	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	car	s	c	
+# ::edge	sit-01	ARG2	traffic	s	t	
+# ::edge	traffic	ARG1-of	near-02	t	n	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	near-02	ARG2	light	n	l	
+# ::edge	sit-01	location	underneath	s	u	
+# ::edge	sky	ARG1-of	cloudy-02	s2	c2	
+# ::edge	underneath	op1	sky	u	s2	
+(s / sit-01
+    :ARG1 (c / car)
+    :ARG2 (t / traffic
+        :ARG1-of (n / near-02
+            :ARG2 (l / light
+                :mod (t2 / traffic))))
+    :location (u / underneath
+        :op1 (s2 / sky
+            :ARG1-of (c2 / cloudy-02))))

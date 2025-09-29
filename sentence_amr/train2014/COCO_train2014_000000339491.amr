@@ -1,0 +1,33 @@
+# ::tok cooks prepare potatoes by cutting them before putting them in bin
+# ::node	p	person	0-1
+# ::node	c	cook-01	0-1
+# ::node	p3	prepare-01	1-2
+# ::node	p2	potato	2-3
+# ::node	c2	cut-01	4-5
+# ::node	b	before	6-7
+# ::node	p4	put-01	7-8
+# ::node	b2	bin	10-11
+# ::root	p3	prepare-01
+# ::edge	person	ARG0-of	cook-01	p	c	
+# ::edge	prepare-01	ARG0	person	p3	p	
+# ::edge	prepare-01	ARG1	potato	p3	p2	
+# ::edge	cut-01	ARG1	potato	c2	p2	
+# ::edge	prepare-01	manner	cut-01	p3	c2	
+# ::edge	cut-01	ARG0	person	c2	p	
+# ::edge	cut-01	time	before	c2	b	
+# ::edge	before	op1	put-01	b	p4	
+# ::edge	put-01	ARG1	potato	p4	p2	
+# ::edge	put-01	ARG0	person	p4	p	
+# ::edge	put-01	ARG2	bin	p4	b2	
+(p3 / prepare-01
+    :ARG0 (p / person
+        :ARG0-of (c / cook-01))
+    :ARG1 (p2 / potato)
+    :manner (c2 / cut-01
+        :ARG0 p
+        :ARG1 p2
+        :time (b / before
+            :op1 (p4 / put-01
+                :ARG0 p
+                :ARG1 p2
+                :ARG2 (b2 / bin)))))

@@ -1,0 +1,45 @@
+# ::tok A living room with an chair and large couch sits in front large bookshelves with computers on top .
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	c	chair	5-6
+# ::node	a	and	6-7
+# ::node	l	large	7-8
+# ::node	c3	couch	8-9
+# ::node	s	sit-01	9-10
+# ::node	f	front	11-12
+# ::node	b	book	13-14
+# ::node	l3	load-01	13-14
+# ::node	h2	have-03	14-15
+# ::node	c2	computer	15-16
+# ::node	t	top	17-18
+# ::root	s	sit-01
+# ::edge	room	mod	living	r	l2	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	and	op1	chair	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	couch	mod	large	c3	l	
+# ::edge	and	op2	couch	a	c3	
+# ::edge	sit-01	ARG1	room	s	r	
+# ::edge	sit-01	ARG2	front	s	f	
+# ::edge	book	mod	front	b	f	
+# ::edge	front	op1	book	f	b	
+# ::edge	book	ARG2-of	load-01	b	l3	
+# ::edge	book	ARG0-of	have-03	b	h2	
+# ::edge	have-03	ARG1	computer	h2	c2	
+# ::edge	computer	location	top	c2	t	
+(s / sit-01
+    :ARG1 (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c / chair)
+                :op2 (c3 / couch
+                    :mod (l / large))))
+        :mod (l2 / living))
+    :ARG2 (f / front
+        :op1 (b / book
+            :ARG0-of (h2 / have-03
+                :ARG1 (c2 / computer
+                    :location (t / top)))
+            :ARG2-of (l3 / load-01)
+            :mod f)))

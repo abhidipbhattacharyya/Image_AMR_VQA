@@ -1,0 +1,36 @@
+# ::tok A Cesna or small plane is set to take flight after it stops raining
+# ::node	n	name	1-2
+# ::node	0	Cesna	1-2
+# ::node	o	or	2-3
+# ::node	s2	small	3-4
+# ::node	p	plane	4-5
+# ::node	p2	plane	4-5
+# ::node	s	set-08	6-7
+# ::node	f	fly-01	9-10
+# ::node	a	after	10-11
+# ::node	s3	stop-01	12-13
+# ::node	r	rain-01	13-14
+# ::root	s	set-08
+# ::edge	name	op1	Cesna	n	0	
+# ::edge	or	op1	plane	o	p	
+# ::edge	plane	name	name	p	n	
+# ::edge	plane	mod	small	p2	s2	
+# ::edge	or	op2	plane	o	p2	
+# ::edge	set-08	ARG1	or	s	o	
+# ::edge	set-08	ARG2	fly-01	s	f	
+# ::edge	fly-01	ARG1	or	f	o	
+# ::edge	set-08	time	after	s	a	
+# ::edge	after	op1	stop-01	a	s3	
+# ::edge	stop-01	ARG1	rain-01	s3	r	
+(s / set-08
+    :ARG1 (o / or
+        :op1 (p / plane
+            :name (n / name
+                :op1 "Cesna"))
+        :op2 (p2 / plane
+            :mod (s2 / small)))
+    :ARG2 (f / fly-01
+        :ARG1 o)
+    :time (a / after
+        :op1 (s3 / stop-01
+            :ARG1 (r / rain-01))))

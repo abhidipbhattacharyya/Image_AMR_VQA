@@ -1,0 +1,50 @@
+# ::tok Tow tennis players playing double and one is watching the other with his back hand ready to hit the ball .
+# ::node	t	tank	0-1
+# ::node	t2	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	p3	play-01	3-4
+# ::node	d	double	4-5
+# ::node	a	and	5-6
+# ::node	o	one	6-7
+# ::node	w	watch-01	8-9
+# ::node	o2	other	10-11
+# ::node	b	back	13-14
+# ::node	h	hand	14-15
+# ::node	r	ready-02	15-16
+# ::node	h2	hit-01	17-18
+# ::node	b2	ball	19-20
+# ::root	a	and
+# ::edge	tennis	mod	tank	t2	t	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t2	
+# ::edge	play-01	ARG0	person	p3	p	
+# ::edge	play-01	mod	double	p3	d	
+# ::edge	and	op1	play-01	a	p3	
+# ::edge	watch-01	ARG0	one	w	o	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	ARG1	other	w	o2	
+# ::edge	hand	mod	back	h	b	
+# ::edge	other	part	hand	o2	h	
+# ::edge	watch-01	manner	hand	w	h	
+# ::edge	other	ARG1-of	ready-02	o2	r	
+# ::edge	ready-02	ARG2	hit-01	r	h2	
+# ::edge	hit-01	ARG0	other	h2	o2	
+# ::edge	hit-01	ARG1	ball	h2	b2	
+(a / and
+    :op1 (p3 / play-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t2 / tennis
+                    :mod (t / tank))))
+        :mod (d / double))
+    :op2 (w / watch-01
+        :ARG0 (o / one)
+        :ARG1 (o2 / other
+            :ARG1-of (r / ready-02
+                :ARG2 (h2 / hit-01
+                    :ARG0 o2
+                    :ARG1 (b2 / ball)))
+            :part (h / hand
+                :mod (b / back)))
+        :manner h))

@@ -1,0 +1,33 @@
+# ::tok A man wearing a lime green suit and tie peers out a window .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	l	lime	4-5
+# ::node	g	green-02	5-6
+# ::node	s	suit	6-7
+# ::node	a	and	7-8
+# ::node	t	tie	8-9
+# ::node	p	peer-01	9-10
+# ::node	o	out	10-11
+# ::node	w2	window	12-13
+# ::root	p	peer-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	green-02	mod	lime	g	l	
+# ::edge	suit	ARG1-of	green-02	s	g	
+# ::edge	and	op1	suit	a	s	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	tie	a	t	
+# ::edge	green-02	ARG1	tie	g	t	
+# ::edge	peer-01	ARG0	man	p	m	
+# ::edge	peer-01	direction	out	p	o	
+# ::edge	out	op1	window	o	w2	
+(p / peer-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s / suit
+                    :ARG1-of (g / green-02
+                        :ARG1 (t / tie)
+                        :mod (l / lime)))
+                :op2 t)))
+    :direction (o / out
+        :op1 (w2 / window)))

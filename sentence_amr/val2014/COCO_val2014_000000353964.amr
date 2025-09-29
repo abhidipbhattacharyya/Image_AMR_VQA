@@ -1,0 +1,68 @@
+# ::tok Two airplanes flying in the sky without much distance between them , one being a Virgin Airlines plane and the other is an American Airlines plane behind it .
+# ::node	1	2	0-1
+# ::node	a	airplane	1-2
+# ::node	f	fly-01	2-3
+# ::node	s	sky	5-6
+# ::node	0	-	6-7
+# ::node	m	much	7-8
+# ::node	d	distance	8-9
+# ::node	b2	between	9-10
+# ::node	i	include-91	12-13
+# ::node	i2	include-91	12-13
+# ::node	n	name	15-16
+# ::node	5	Virgin	15-16
+# ::node	c	company	16-17
+# ::node	2	Airlines	16-17
+# ::node	p	plane	17-18
+# ::node	n2	name	23-24
+# ::node	4	American	23-24
+# ::node	c2	company	24-25
+# ::node	3	Airlines	24-25
+# ::node	p2	plane	25-26
+# ::node	b	behind	26-27
+# ::root	f	fly-01
+# ::edge	airplane	quant	2	a	1	
+# ::edge	fly-01	ARG2	airplane	f	a	
+# ::edge	fly-01	location	sky	f	s	
+# ::edge	distance	quant	much	d	m	
+# ::edge	distance	polarity	-	d	0	
+# ::edge	fly-01	manner	distance	f	d	
+# ::edge	distance	location	between	d	b2	
+# ::edge	between	op1	airplane	b2	a	
+# ::edge	airplane	ARG2-of	include-91	a	i	
+# ::edge	airplane	ARG2-of	include-91	a	i2	
+# ::edge	name	op1	Virgin	n	5	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airlines	n	2	
+# ::edge	plane	poss	company	p	c	
+# ::edge	include-91	ARG1	plane	i	p	
+# ::edge	name	op1	American	n2	4	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op2	Airlines	n2	3	
+# ::edge	plane	poss	company	p2	c2	
+# ::edge	include-91	ARG1	plane	i2	p2	
+# ::edge	plane	location	behind	p2	b	
+# ::edge	behind	op1	plane	b	p	
+(f / fly-01
+    :ARG2 (a / airplane
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (p / plane
+                :poss (c / company
+                    :name (n / name
+                        :op1 "Virgin"
+                        :op2 "Airlines"))))
+        :ARG2-of (i2 / include-91
+            :ARG1 (p2 / plane
+                :location (b / behind
+                    :op1 p)
+                :poss (c2 / company
+                    :name (n2 / name
+                        :op1 "American"
+                        :op2 "Airlines")))))
+    :location (s / sky)
+    :manner (d / distance
+        :quant (m / much)
+        :location (b2 / between
+            :op1 a)
+        :polarity -))

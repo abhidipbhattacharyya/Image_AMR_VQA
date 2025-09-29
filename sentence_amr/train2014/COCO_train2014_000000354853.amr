@@ -1,0 +1,28 @@
+# ::tok A street with a brick wall boarding it with a 55 mph sign .
+# ::node	s3	street	1-2
+# ::node	h	have-03	2-3
+# ::node	b2	brick	4-5
+# ::node	w	wall	5-6
+# ::node	b	board-01	6-7
+# ::node	0	55	10-11
+# ::node	s2	speed-quantity	11-12
+# ::node	m	mile-per-hour	11-12
+# ::node	s	sign	12-13
+# ::root	s3	street
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	wall	consist-of	brick	w	b2	
+# ::edge	have-03	ARG1	wall	h	w	
+# ::edge	street	ARG0-of	board-01	s3	b	
+# ::edge	speed-quantity	quant	55	s2	0	
+# ::edge	speed-quantity	unit	mile-per-hour	s2	m	
+# ::edge	sign	mod	speed-quantity	s	s2	
+# ::edge	board-01	instrument	sign	b	s	
+(s3 / street
+    :ARG0-of (h / have-03
+        :ARG1 (w / wall
+            :consist-of (b2 / brick)))
+    :ARG0-of (b / board-01
+        :instrument (s / sign
+            :mod (s2 / speed-quantity
+                :quant 55
+                :unit (m / mile-per-hour)))))

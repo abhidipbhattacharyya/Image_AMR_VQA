@@ -1,0 +1,23 @@
+# ::tok People are lined up at the airport waiting to check their luggage .
+# ::node	p	person	0-1
+# ::node	l	line-up-02	2-3
+# ::node	a	airport	6-7
+# ::node	w	wait-01	7-8
+# ::node	c	check-01	9-10
+# ::node	l2	luggage	11-12
+# ::root	l	line-up-02
+# ::edge	line-up-02	ARG1	person	l	p	
+# ::edge	line-up-02	location	airport	l	a	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	check-01	w	c	
+# ::edge	check-01	ARG0	person	c	p	
+# ::edge	check-01	ARG1	luggage	c	l2	
+# ::edge	luggage	poss	person	l2	p	
+(l / line-up-02
+    :ARG1 (p / person
+        :ARG1-of (w / wait-01
+            :ARG2 (c / check-01
+                :ARG0 p
+                :ARG1 (l2 / luggage
+                    :poss p))))
+    :location (a / airport))

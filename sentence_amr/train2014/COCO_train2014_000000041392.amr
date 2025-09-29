@@ -1,0 +1,36 @@
+# ::tok one cat sleeping on the bed and another with glowing eyes standing next to it
+# ::node	o	one	0-1
+# ::node	c	cat	1-2
+# ::node	c2	cat	1-2
+# ::node	s	sleep-01	2-3
+# ::node	b	bed	5-6
+# ::node	a	and	6-7
+# ::node	a2	another	7-8
+# ::node	g	glow-01	9-10
+# ::node	e	eye	10-11
+# ::node	s2	stand-01	11-12
+# ::node	n	next-to	12-13
+# ::root	a	and
+# ::edge	cat	quant	one	c	o	
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	sleep-01	location	bed	s	b	
+# ::edge	and	op1	sleep-01	a	s	
+# ::edge	cat	mod	another	c2	a2	
+# ::edge	eye	ARG0-of	glow-01	e	g	
+# ::edge	cat	part	eye	c2	e	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	cat	s2	c2	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	bed	n	b	
+(a / and
+    :op1 (s / sleep-01
+        :ARG0 (c / cat
+            :quant (o / one))
+        :location (b / bed))
+    :op2 (s2 / stand-01
+        :ARG1 (c2 / cat
+            :mod (a2 / another)
+            :part (e / eye
+                :ARG0-of (g / glow-01)))
+        :ARG2 (n / next-to
+            :op1 b)))

@@ -1,0 +1,45 @@
+# ::tok A street corner that has two sign posts with an upside down one way sign on one of the posts .
+# ::node	s3	street	1-2
+# ::node	c	corner	2-3
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	s	sign	6-7
+# ::node	p	post	7-8
+# ::node	h2	have-03	8-9
+# ::node	u	upside	10-11
+# ::node	d	down-03	11-12
+# ::node	o2	one-way	13-14
+# ::node	s2	sign	14-15
+# ::node	o	one	16-17
+# ::node	i	include-91	17-18
+# ::node	p2	post	19-20
+# ::root	c	corner
+# ::edge	corner	op1	street	c	s3	
+# ::edge	corner	ARG0-of	have-03	c	h	
+# ::edge	post	mod	sign	p	s	
+# ::edge	post	quant	2	p	0	
+# ::edge	have-03	ARG1	post	h	p	
+# ::edge	post	ARG0-of	have-03	p	h2	
+# ::edge	upside	op1	down-03	u	d	
+# ::edge	sign	mod	one-way	s2	o2	
+# ::edge	sign	mod	upside	s2	u	
+# ::edge	have-03	ARG1	sign	h2	s2	
+# ::edge	include-91	ARG2	post	i	p	
+# ::edge	post	ARG1-of	include-91	p2	i	
+# ::edge	one	location	post	o	p2	
+# ::edge	corner	rel	one	c	o	
+(c / corner
+    :ARG0-of (h / have-03
+        :ARG1 (p / post
+            :quant 2
+            :ARG0-of (h2 / have-03
+                :ARG1 (s2 / sign
+                    :mod (o2 / one-way)
+                    :mod (u / upside
+                        :op1 (d / down-03))))
+            :mod (s / sign)))
+    :op1 (s3 / street)
+    :rel (o / one
+        :location (p2 / post
+            :ARG1-of (i / include-91
+                :ARG2 p))))

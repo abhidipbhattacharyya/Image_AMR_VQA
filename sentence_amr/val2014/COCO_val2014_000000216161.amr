@@ -1,0 +1,46 @@
+# ::tok A dog with red eyes attempting to climb a couch to eat a pizza being dangled in front of the dog by a human hand .
+# ::node	d	dog	1-2
+# ::node	h2	have-03	2-3
+# ::node	r	red-02	3-4
+# ::node	e2	eye	4-5
+# ::node	a2	attempt-01	5-6
+# ::node	c	climb-01	7-8
+# ::node	c2	couch	9-10
+# ::node	e	eat-01	11-12
+# ::node	p	pizza	13-14
+# ::node	a	D	15-16
+# ::node	i	in-front-of	17-18
+# ::node	h3	human	23-24
+# ::node	h	hand	24-25
+# ::root	a2	attempt-01
+# ::edge	dog	ARG0-of	have-03	d	h2	
+# ::edge	eye	ARG1-of	red-02	e2	r	
+# ::edge	have-03	ARG1	eye	h2	e2	
+# ::edge	attempt-01	ARG0	dog	a2	d	
+# ::edge	attempt-01	ARG1	climb-01	a2	c	
+# ::edge	climb-01	ARG0	dog	c	d	
+# ::edge	climb-01	ARG1	couch	c	c2	
+# ::edge	climb-01	purpose	eat-01	c	e	
+# ::edge	eat-01	ARG0	dog	e	d	
+# ::edge	eat-01	ARG1	pizza	e	p	
+# ::edge	pizza	ARG1-of	D	p	a	
+# ::edge	D	location	in-front-of	a	i	
+# ::edge	in-front-of	op1	dog	i	d	
+# ::edge	hand	part-of	human	h	h3	
+# ::edge	D	ARG0	hand	a	h	
+(a2 / attempt-01
+    :ARG0 (d / dog
+        :ARG0-of (h2 / have-03
+            :ARG1 (e2 / eye
+                :ARG1-of (r / red-02))))
+    :ARG1 (c / climb-01
+        :purpose (e / eat-01
+            :ARG0 d
+            :ARG1 (p / pizza
+                :ARG1-of (a / D
+                    :ARG0 (h / hand
+                        :part-of (h3 / human))
+                    :location (i / in-front-of
+                        :op1 d))))
+        :ARG0 d
+        :ARG1 (c2 / couch)))

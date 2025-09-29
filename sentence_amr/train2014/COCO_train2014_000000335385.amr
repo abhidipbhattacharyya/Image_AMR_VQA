@@ -1,0 +1,34 @@
+# ::tok The bathroom has a wall - to - wall double sink with wood vanity and a shower stall .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	w	wall-to-wall	8-9
+# ::node	d	double	9-10
+# ::node	s2	sink	10-11
+# ::node	h2	have-03	11-12
+# ::node	w2	wood	12-13
+# ::node	v	vanity	13-14
+# ::node	a	and	14-15
+# ::node	s	shower	16-17
+# ::node	s3	stall	17-18
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	sink	mod	double	s2	d	
+# ::edge	sink	extent	wall-to-wall	s2	w	
+# ::edge	have-03	ARG1	sink	h	s2	
+# ::edge	sink	ARG0-of	have-03	s2	h2	
+# ::edge	vanity	consist-of	wood	v	w2	
+# ::edge	and	op1	vanity	a	v	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	stall	mod	shower	s3	s	
+# ::edge	and	op2	stall	a	s3	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :ARG1 (s2 / sink
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (v / vanity
+                    :consist-of (w2 / wood))
+                :op2 (s3 / stall
+                    :mod (s / shower))))
+        :extent (w / wall-to-wall)
+        :mod (d / double)))

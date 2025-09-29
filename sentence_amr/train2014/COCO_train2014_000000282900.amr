@@ -1,0 +1,36 @@
+# ::tok Scissors are positioned as if to cut a UK 10 pound note .
+# ::node	n2	newspaper	0-1
+# ::node	p	position-01	2-3
+# ::node	c2	cut-01	6-7
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	2	United	8-9
+# ::node	1	Kingdom	8-9
+# ::node	0	10	9-10
+# ::node	m	monetary-quantity	10-11
+# ::node	p2	pound	10-11
+# ::node	n3	note	11-12
+# ::root	p	position-01
+# ::edge	position-01	ARG1	newspaper	p	n2	
+# ::edge	position-01	ARG2	cut-01	p	c2	
+# ::edge	cut-01	ARG0	newspaper	c2	n2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	United	n	2	
+# ::edge	name	op2	Kingdom	n	1	
+# ::edge	monetary-quantity	quant	10	m	0	
+# ::edge	monetary-quantity	unit	pound	m	p2	
+# ::edge	note	mod	monetary-quantity	n3	m	
+# ::edge	note	mod	country	n3	c	
+# ::edge	cut-01	ARG1	note	c2	n3	
+(p / position-01
+    :ARG1 (n2 / newspaper)
+    :ARG2 (c2 / cut-01
+        :ARG0 n2
+        :ARG1 (n3 / note
+            :mod (m / monetary-quantity
+                :quant 10
+                :unit (p2 / pound))
+            :mod (c / country
+                :name (n / name
+                    :op1 "United"
+                    :op2 "Kingdom")))))

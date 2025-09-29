@@ -1,0 +1,28 @@
+# ::tok A train with two cars is on a railroad track that splits into several directions .
+# ::node	t2	train	1-2
+# ::node	0	2	3-4
+# ::node	c	car	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	r	railroad	8-9
+# ::node	t	track	9-10
+# ::node	s2	split-01	11-12
+# ::node	s	several	13-14
+# ::node	d	direction	14-15
+# ::root	b	be-located-at-91
+# ::edge	car	quant	2	c	0	
+# ::edge	train	part	car	t2	c	
+# ::edge	be-located-at-91	ARG1	train	b	t2	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	be-located-at-91	ARG2	track	b	t	
+# ::edge	track	ARG1-of	split-01	t	s2	
+# ::edge	direction	quant	several	d	s	
+# ::edge	split-01	ARG2	direction	s2	d	
+(b / be-located-at-91
+    :ARG1 (t2 / train
+        :part (c / car
+            :quant 2))
+    :ARG2 (t / track
+        :ARG1-of (s2 / split-01
+            :ARG2 (d / direction
+                :quant (s / several)))
+        :mod (r / railroad)))

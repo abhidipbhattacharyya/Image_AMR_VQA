@@ -1,0 +1,34 @@
+# ::tok A carriage being led by two horses and three men in red coats and top hats .
+# ::node	c	carriage	1-2
+# ::node	l	lead-01	3-4
+# ::node	0	2	5-6
+# ::node	h2	horse	6-7
+# ::node	a	and	7-8
+# ::node	1	3	8-9
+# ::node	m	man	9-10
+# ::node	r	red-02	11-12
+# ::node	c2	coat-01	12-13
+# ::node	t	top	14-15
+# ::node	h	hat	15-16
+# ::root	c	carriage
+# ::edge	carriage	ARG1-of	lead-01	c	l	
+# ::edge	horse	quant	2	h2	0	
+# ::edge	and	op1	horse	a	h2	
+# ::edge	lead-01	ARG0	and	l	a	
+# ::edge	man	quant	3	m	1	
+# ::edge	and	op2	man	a	m	
+# ::edge	coat-01	ARG1-of	red-02	c2	r	
+# ::edge	man	ARG1-of	coat-01	m	c2	
+# ::edge	hat	mod	top	h	t	
+# ::edge	man	mod	hat	m	h	
+(c / carriage
+    :ARG1-of (l / lead-01
+        :ARG0 (a / and
+            :op1 (h2 / horse
+                :quant 2)
+            :op2 (m / man
+                :quant 3
+                :ARG1-of (c2 / coat-01
+                    :ARG1-of (r / red-02))
+                :mod (h / hat
+                    :mod (t / top))))))

@@ -1,0 +1,42 @@
+# ::tok a plate of meat salad some carrots a bread stick and a glass of beer and some water
+# ::node	p	plate	1-2
+# ::node	m	meat	3-4
+# ::node	s	salad	4-5
+# ::node	s2	some	5-6
+# ::node	c	carrot	6-7
+# ::node	b2	bread	8-9
+# ::node	s3	stick	9-10
+# ::node	a	and	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	b	beer	14-15
+# ::node	w	water	17-18
+# ::root	a	and
+# ::edge	salad	mod	meat	s	m	
+# ::edge	plate	consist-of	salad	p	s	
+# ::edge	carrot	quant	some	c	s2	
+# ::edge	stick	consist-of	bread	s3	b2	
+# ::edge	and	op2	stick	a	s3	
+# ::edge	and	op1	salad	a	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	beer	quant	volume-quantity	b	v	
+# ::edge	and	op3	beer	a	b	
+# ::edge	and	op4	water	a	w	
+# ::edge	and	rel	plate	a	p	
+# ::edge	and	rel	carrot	a	c	
+(a / and
+    :op1 (s / salad
+        :mod (m / meat))
+    :op2 (s3 / stick
+        :consist-of (b2 / bread))
+    :op3 (b / beer
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass)))
+    :op4 (w / water)
+    :rel (p / plate
+        :consist-of s)
+    :rel (c / carrot
+        :quant (s2 / some)))

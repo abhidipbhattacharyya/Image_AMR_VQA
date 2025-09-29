@@ -1,0 +1,34 @@
+# ::tok A burger and fries with a glass of wine and a knife sticking out of the burger .
+# ::node	b	burger	1-2
+# ::node	a	and	2-3
+# ::node	f	fry-01	3-4
+# ::node	v	volume-quantity	5-6
+# ::node	0	1	5-6
+# ::node	g	glass	6-7
+# ::node	w	wine	8-9
+# ::node	a2	and	9-10
+# ::node	k	knife	11-12
+# ::node	s	stick-out-02	12-13
+# ::node	b2	burger	16-17
+# ::root	a	and
+# ::edge	and	op1	burger	a	b	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op1	wine	a2	w	
+# ::edge	and	accompanier	and	a	a2	
+# ::edge	and	op2	knife	a2	k	
+# ::edge	knife	ARG1-of	stick-out-02	k	s	
+# ::edge	stick-out-02	ARG2	burger	s	b2	
+(a / and
+    :accompanier (a2 / and
+        :op1 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))
+        :op2 (k / knife
+            :ARG1-of (s / stick-out-02
+                :ARG2 (b2 / burger))))
+    :op1 (b / burger)
+    :op2 (f / fry-01))

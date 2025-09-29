@@ -1,0 +1,32 @@
+# ::tok A car with a trailor attached to it in front of a car with its doors and hood open .
+# ::node	c	car	1-2
+# ::node	t	trailor	4-5
+# ::node	a2	attach-01	5-6
+# ::node	i	in-front-of	9-10
+# ::node	c2	car	12-13
+# ::node	d	door	15-16
+# ::node	a	and	16-17
+# ::node	h	hood	17-18
+# ::node	o	open-09	18-19
+# ::root	c	car
+# ::edge	attach-01	ARG2	trailor	a2	t	
+# ::edge	car	ARG1-of	attach-01	c	a2	
+# ::edge	car	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	car	i	c2	
+# ::edge	car	part	door	c2	d	
+# ::edge	and	op1	door	a	d	
+# ::edge	and	op2	hood	a	h	
+# ::edge	car	part	hood	c2	h	
+# ::edge	open-09	ARG1	and	o	a	
+# ::edge	car	manner	open-09	c2	o	
+(c / car
+    :ARG1-of (a2 / attach-01
+        :ARG2 (t / trailor))
+    :location (i / in-front-of
+        :op1 (c2 / car
+            :manner (o / open-09
+                :ARG1 (a / and
+                    :op1 (d / door)
+                    :op2 (h / hood)))
+            :part d
+            :part h)))

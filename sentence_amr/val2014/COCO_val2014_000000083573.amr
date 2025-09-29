@@ -1,0 +1,31 @@
+# ::tok Several people around signs on a snowy hill , some skiing , some walking
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	a	around	2-3
+# ::node	s2	sign	3-4
+# ::node	s4	snowy-02	6-7
+# ::node	h	hill	7-8
+# ::node	s3	ski-01	10-11
+# ::node	i	include-91	12-13
+# ::node	s5	some	12-13
+# ::node	w	walk-01	13-14
+# ::root	p	person
+# ::edge	person	quant	several	p	s	
+# ::edge	person	location	around	p	a	
+# ::edge	around	op1	sign	a	s2	
+# ::edge	hill	ARG1-of	snowy-02	h	s4	
+# ::edge	sign	location	hill	s2	h	
+# ::edge	person	ARG0-of	ski-01	p	s3	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	include-91	ARG1	some	i	s5	
+# ::edge	person	ARG0-of	walk-01	p	w	
+(p / person
+    :quant (s / several)
+    :ARG0-of (s3 / ski-01)
+    :ARG0-of (w / walk-01)
+    :ARG2-of (i / include-91
+        :ARG1 (s5 / some))
+    :location (a / around
+        :op1 (s2 / sign
+            :location (h / hill
+                :ARG1-of (s4 / snowy-02)))))

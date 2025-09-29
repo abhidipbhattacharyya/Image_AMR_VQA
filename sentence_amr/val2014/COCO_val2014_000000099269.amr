@@ -1,0 +1,37 @@
+# ::tok Miniature fruit and chocolate chip cookies are ready for the doll house occupants .
+# ::node	m	miniature	0-1
+# ::node	f	fruit	1-2
+# ::node	a	and	2-3
+# ::node	c2	chocolate	3-4
+# ::node	c	chip	4-5
+# ::node	c3	cookie	5-6
+# ::node	c4	cookie	5-6
+# ::node	r	ready-02	7-8
+# ::node	d	doll	10-11
+# ::node	h	house	11-12
+# ::node	p	person	12-13
+# ::node	o	occupy-01	12-13
+# ::root	r	ready-02
+# ::edge	fruit	mod	miniature	f	m	
+# ::edge	chip	mod	chocolate	c	c2	
+# ::edge	and	op1	cookie	a	c3	
+# ::edge	cookie	mod	fruit	c3	f	
+# ::edge	cookie	mod	chip	c4	c	
+# ::edge	and	op2	cookie	a	c4	
+# ::edge	ready-02	ARG1	and	r	a	
+# ::edge	house	mod	doll	h	d	
+# ::edge	ready-02	ARG2	person	r	p	
+# ::edge	person	ARG0-of	occupy-01	p	o	
+# ::edge	occupy-01	ARG1	house	o	h	
+(r / ready-02
+    :ARG1 (a / and
+        :op1 (c3 / cookie
+            :mod (f / fruit
+                :mod (m / miniature)))
+        :op2 (c4 / cookie
+            :mod (c / chip
+                :mod (c2 / chocolate))))
+    :ARG2 (p / person
+        :ARG0-of (o / occupy-01
+            :ARG1 (h / house
+                :mod (d / doll)))))

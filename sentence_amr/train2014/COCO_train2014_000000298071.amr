@@ -1,0 +1,50 @@
+# ::tok A woman is on her cell phone while two other women and a man stare at her as they all sit on a bench .
+# ::node	w	woman	1-2
+# ::node	u	use-01	3-4
+# ::node	c	cell	5-6
+# ::node	p	phone	6-7
+# ::node	0	2	8-9
+# ::node	o	other	9-10
+# ::node	w2	woman	10-11
+# ::node	a2	and	11-12
+# ::node	m	man	13-14
+# ::node	s2	stare-01	14-15
+# ::node	t	they	18-19
+# ::node	a	all	19-20
+# ::node	s	sit-01	20-21
+# ::node	b	bench	23-24
+# ::node	a3	and	24-25
+# ::root	a3	and
+# ::edge	use-01	ARG0	woman	u	w	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	use-01	ARG1	phone	u	p	
+# ::edge	phone	poss	woman	p	w	
+# ::edge	woman	mod	other	w2	o	
+# ::edge	woman	quant	2	w2	0	
+# ::edge	and	op1	woman	a2	w2	
+# ::edge	and	op2	man	a2	m	
+# ::edge	stare-01	ARG0	and	s2	a2	
+# ::edge	stare-01	ARG1	woman	s2	w	
+# ::edge	they	mod	all	t	a	
+# ::edge	sit-01	ARG1	they	s	t	
+# ::edge	stare-01	time	sit-01	s2	s	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	and	op2	stare-01	a3	s2	
+# ::edge	and	op1	use-01	a3	u	
+(a3 / and
+    :op1 (u / use-01
+        :ARG0 (w / woman)
+        :ARG1 (p / phone
+            :mod (c / cell)
+            :poss w))
+    :op2 (s2 / stare-01
+        :ARG0 (a2 / and
+            :op1 (w2 / woman
+                :quant 2
+                :mod (o / other))
+            :op2 (m / man))
+        :ARG1 w
+        :time (s / sit-01
+            :ARG1 (t / they
+                :mod (a / all))
+            :ARG2 (b / bench))))

@@ -1,0 +1,33 @@
+# ::tok A airplane being guided down an airstrip , away from a building by an airport vehicle that is driving in front of it .
+# ::node	a	airplane	1-2
+# ::node	g	guide-01	3-4
+# ::node	d	down	4-5
+# ::node	a3	airstrip	6-7
+# ::node	a4	away	8-9
+# ::node	b	building	11-12
+# ::node	a2	airport	14-15
+# ::node	v	vehicle	15-16
+# ::node	d2	drive-01	18-19
+# ::node	i	in-front-of	20-21
+# ::root	g	guide-01
+# ::edge	guide-01	ARG1	airplane	g	a	
+# ::edge	airstrip	direction	down	a3	d	
+# ::edge	guide-01	path	airstrip	g	a3	
+# ::edge	guide-01	direction	away	g	a4	
+# ::edge	away	source	building	a4	b	
+# ::edge	vehicle	mod	airport	v	a2	
+# ::edge	guide-01	ARG0	vehicle	g	v	
+# ::edge	vehicle	ARG0-of	drive-01	v	d2	
+# ::edge	drive-01	location	in-front-of	d2	i	
+# ::edge	in-front-of	op1	airplane	i	a	
+(g / guide-01
+    :ARG0 (v / vehicle
+        :ARG0-of (d2 / drive-01
+            :location (i / in-front-of
+                :op1 (a / airplane)))
+        :mod (a2 / airport))
+    :ARG1 a
+    :direction (a4 / away
+        :source (b / building))
+    :path (a3 / airstrip
+        :direction (d / down)))

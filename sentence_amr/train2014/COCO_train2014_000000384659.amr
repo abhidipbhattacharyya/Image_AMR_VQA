@@ -1,0 +1,26 @@
+# ::tok Several cars are going through or stopped at an intersection .
+# ::node	s	several	0-1
+# ::node	c	car	1-2
+# ::node	g	go-02	3-4
+# ::node	t	through	4-5
+# ::node	o	or	5-6
+# ::node	s2	stop-01	6-7
+# ::node	i	intersect-01	9-10
+# ::root	o	or
+# ::edge	car	quant	several	c	s	
+# ::edge	go-02	ARG0	car	g	c	
+# ::edge	go-02	path	through	g	t	
+# ::edge	or	op1	go-02	o	g	
+# ::edge	or	op2	stop-01	o	s2	
+# ::edge	stop-01	ARG1	car	s2	c	
+# ::edge	or	location	intersect-01	o	i	
+# ::edge	go-02	location	intersect-01	g	i	
+(o / or
+    :location (i / intersect-01)
+    :op1 (g / go-02
+        :ARG0 (c / car
+            :quant (s / several))
+        :location i
+        :path (t / through))
+    :op2 (s2 / stop-01
+        :ARG1 c))

@@ -1,0 +1,22 @@
+# ::tok A street clock with multiple faces photographed in cloudy conitions
+# ::node	s	street	1-2
+# ::node	c	clock	2-3
+# ::node	m	multiple	4-5
+# ::node	f	face	5-6
+# ::node	p	photograph-01	6-7
+# ::node	c2	cloudy-02	8-9
+# ::node	c3	condition	9-10
+# ::root	c	clock
+# ::edge	clock	mod	street	c	s	
+# ::edge	face	quant	multiple	f	m	
+# ::edge	clock	consist-of	face	c	f	
+# ::edge	face	ARG1-of	photograph-01	f	p	
+# ::edge	condition	ARG1-of	cloudy-02	c3	c2	
+# ::edge	photograph-01	condition	condition	p	c3	
+(c / clock
+    :consist-of (f / face
+        :quant (m / multiple)
+        :ARG1-of (p / photograph-01
+            :condition (c3 / condition
+                :ARG1-of (c2 / cloudy-02))))
+    :mod (s / street))

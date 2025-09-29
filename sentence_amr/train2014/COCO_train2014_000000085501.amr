@@ -1,0 +1,24 @@
+# ::tok A metro station with travelers waiting to board a train .
+# ::node	m	metro	1-2
+# ::node	s	station	2-3
+# ::node	p	person	4-5
+# ::node	t2	travel-01	4-5
+# ::node	w	wait-01	5-6
+# ::node	b	board-01	7-8
+# ::node	t	train	9-10
+# ::root	s	station
+# ::edge	station	mod	metro	s	m	
+# ::edge	person	ARG0-of	travel-01	p	t2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	station	location-of	wait-01	s	w	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	board-01	ARG1	train	b	t	
+(s / station
+    :location-of (w / wait-01
+        :ARG1 (p / person
+            :ARG0-of (t2 / travel-01))
+        :ARG2 (b / board-01
+            :ARG0 p
+            :ARG1 (t / train)))
+    :mod (m / metro))

@@ -1,0 +1,30 @@
+# ::tok A perfectly bare and empty bathroom features two sinks and a bathtub .
+# ::node	p	perfect-02	1-2
+# ::node	b	bare-02	2-3
+# ::node	e	empty-02	4-5
+# ::node	b2	bathroom	5-6
+# ::node	f	feature-01	6-7
+# ::node	0	2	7-8
+# ::node	s	sink-01	8-9
+# ::node	a	and	9-10
+# ::node	b3	bathtub	11-12
+# ::root	f	feature-01
+# ::edge	bare-02	ARG1-of	perfect-02	b	p	
+# ::edge	perfect-02	ARG1	empty-02	p	e	
+# ::edge	empty-02	ARG1	bathroom	e	b2	
+# ::edge	bathroom	ARG1-of	bare-02	b2	b	
+# ::edge	feature-01	ARG0	bathroom	f	b2	
+# ::edge	sink-01	quant	2	s	0	
+# ::edge	and	op1	sink-01	a	s	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	and	op2	bathtub	a	b3	
+(f / feature-01
+    :ARG0 (b2 / bathroom
+        :ARG1-of (b / bare-02
+            :ARG1-of (p / perfect-02
+                :ARG1 (e / empty-02
+                    :ARG1 b2))))
+    :ARG1 (a / and
+        :op1 (s / sink-01
+            :quant 2)
+        :op2 (b3 / bathtub)))

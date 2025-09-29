@@ -1,0 +1,28 @@
+# ::tok Traffic and pedestrians busy by at the corner of a commercial square .
+# ::node	t	traffic	0-1
+# ::node	a	and	1-2
+# ::node	p	person	2-3
+# ::node	w	walk-01	2-3
+# ::node	b	busy-01	3-4
+# ::node	b2	by	4-5
+# ::node	c2	corner	7-8
+# ::node	c	commerce	10-11
+# ::node	s	square	11-12
+# ::root	b	busy-01
+# ::edge	and	op1	traffic	a	t	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	busy-01	ARG1	and	b	a	
+# ::edge	busy-01	direction	by	b	b2	
+# ::edge	busy-01	location	corner	b	c2	
+# ::edge	square	mod	commerce	s	c	
+# ::edge	corner	part-of	square	c2	s	
+(b / busy-01
+    :ARG1 (a / and
+        :op1 (t / traffic)
+        :op2 (p / person
+            :ARG0-of (w / walk-01)))
+    :direction (b2 / by)
+    :location (c2 / corner
+        :part-of (s / square
+            :mod (c / commerce))))

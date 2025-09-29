@@ -1,0 +1,33 @@
+# ::tok A bathroom remodel in process with a new large tub and flooring , the toilet still in the tub .
+# ::node	b	bathroom	1-2
+# ::node	r	remodel-01	2-3
+# ::node	p	process-02	4-5
+# ::node	n	new-01	7-8
+# ::node	l	large	8-9
+# ::node	t2	tub	9-10
+# ::node	a	and	10-11
+# ::node	f	flooring	11-12
+# ::node	t	toilet	14-15
+# ::node	s	still	15-16
+# ::root	p	process-02
+# ::edge	remodel-01	ARG1	bathroom	r	b	
+# ::edge	process-02	ARG1	remodel-01	p	r	
+# ::edge	tub	mod	large	t2	l	
+# ::edge	tub	ARG1-of	new-01	t2	n	
+# ::edge	and	op1	tub	a	t2	
+# ::edge	remodel-01	accompanier	and	r	a	
+# ::edge	and	op2	flooring	a	f	
+# ::edge	and	op3	toilet	a	t	
+# ::edge	toilet	location	tub	t	t2	
+# ::edge	toilet	mod	still	t	s	
+(p / process-02
+    :ARG1 (r / remodel-01
+        :ARG1 (b / bathroom)
+        :accompanier (a / and
+            :op1 (t2 / tub
+                :ARG1-of (n / new-01)
+                :mod (l / large))
+            :op2 (f / flooring)
+            :op3 (t / toilet
+                :location t2
+                :mod (s / still)))))

@@ -1,0 +1,34 @@
+# ::tok A train station with a gold and white clock next to glass wall .
+# ::node	t	train	1-2
+# ::node	s	station	2-3
+# ::node	h	have-03	3-4
+# ::node	g2	gold	5-6
+# ::node	a	and	6-7
+# ::node	w2	white-03	7-8
+# ::node	c	clock	8-9
+# ::node	c2	clock	8-9
+# ::node	n	next-to	9-10
+# ::node	g	glass	11-12
+# ::node	w	wall	12-13
+# ::root	s	station
+# ::edge	station	mod	train	s	t	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	clock	a	c	
+# ::edge	clock	mod	gold	c	g2	
+# ::edge	clock	ARG1-of	white-03	c2	w2	
+# ::edge	and	op2	clock	a	c2	
+# ::edge	and	location	next-to	a	n	
+# ::edge	wall	consist-of	glass	w	g	
+# ::edge	next-to	op1	wall	n	w	
+(s / station
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (n / next-to
+                :op1 (w / wall
+                    :consist-of (g / glass)))
+            :op1 (c / clock
+                :mod (g2 / gold))
+            :op2 (c2 / clock
+                :ARG1-of (w2 / white-03))))
+    :mod (t / train))

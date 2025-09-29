@@ -1,0 +1,25 @@
+# ::tok A large bus is sitting in traffic near many parked cars .
+# ::node	l	large	1-2
+# ::node	b	bus	2-3
+# ::node	s	sit-01	4-5
+# ::node	t	traffic	6-7
+# ::node	n	near-02	7-8
+# ::node	m	many	8-9
+# ::node	p	park-01	9-10
+# ::node	c	car	10-11
+# ::root	s	sit-01
+# ::edge	bus	mod	large	b	l	
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	sit-01	ARG2	traffic	s	t	
+# ::edge	bus	ARG1-of	near-02	b	n	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	car	quant	many	c	m	
+# ::edge	near-02	ARG2	car	n	c	
+(s / sit-01
+    :ARG1 (b / bus
+        :ARG1-of (n / near-02
+            :ARG2 (c / car
+                :quant (m / many)
+                :ARG1-of (p / park-01)))
+        :mod (l / large))
+    :ARG2 (t / traffic))

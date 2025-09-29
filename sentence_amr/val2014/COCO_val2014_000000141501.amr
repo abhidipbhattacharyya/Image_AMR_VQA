@@ -1,0 +1,42 @@
+# ::tok A fenced off property covered in signs warning people to stop for inspection before entering .
+# ::node	c	chain-01	1-2
+# ::node	o	off	2-3
+# ::node	p2	property	3-4
+# ::node	c2	cover-02	4-5
+# ::node	s	sign	6-7
+# ::node	w	warn-01	7-8
+# ::node	p	person	8-9
+# ::node	s2	stop-01	10-11
+# ::node	i	inspect-01	12-13
+# ::node	b	before	13-14
+# ::node	e	enter-01	14-15
+# ::root	p2	property
+# ::edge	chain-01	direction	off	c	o	
+# ::edge	property	ARG1-of	chain-01	p2	c	
+# ::edge	property	ARG1-of	cover-02	p2	c2	
+# ::edge	cover-02	ARG2	sign	c2	s	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	warn-01	ARG2	person	w	p	
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	warn-01	ARG1	stop-01	w	s2	
+# ::edge	stop-01	purpose	inspect-01	s2	i	
+# ::edge	inspect-01	ARG0	person	i	p	
+# ::edge	stop-01	time	before	s2	b	
+# ::edge	before	op1	enter-01	b	e	
+# ::edge	enter-01	ARG0	person	e	p	
+# ::edge	enter-01	ARG1	property	e	p2	
+(p2 / property
+    :ARG1-of (c / chain-01
+        :direction (o / off))
+    :ARG1-of (c2 / cover-02
+        :ARG2 (s / sign
+            :ARG0-of (w / warn-01
+                :ARG1 (s2 / stop-01
+                    :purpose (i / inspect-01
+                        :ARG0 (p / person))
+                    :ARG0 p
+                    :time (b / before
+                        :op1 (e / enter-01
+                            :ARG0 p
+                            :ARG1 p2)))
+                :ARG2 p))))

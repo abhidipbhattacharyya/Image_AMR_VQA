@@ -1,0 +1,34 @@
+# ::tok Cars parked at side of road in front of a building at dusk or night .
+# ::node	c	car	0-1
+# ::node	p	park-01	1-2
+# ::node	s	side	3-4
+# ::node	r	road	5-6
+# ::node	i	in-front-of	7-8
+# ::node	b	building	10-11
+# ::node	d	date-entity	12-13
+# ::node	d3	dusk	12-13
+# ::node	o	or	13-14
+# ::node	d2	date-entity	14-15
+# ::node	n	night	14-15
+# ::root	p	park-01
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	side	part-of	road	s	r	
+# ::edge	side	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	date-entity	dayperiod	dusk	d	d3	
+# ::edge	or	op1	date-entity	o	d	
+# ::edge	park-01	time	or	p	o	
+# ::edge	or	op2	date-entity	o	d2	
+# ::edge	date-entity	dayperiod	night	d2	n	
+# ::edge	park-01	rel	side	p	s	
+(p / park-01
+    :ARG1 (c / car)
+    :rel (s / side
+        :location (i / in-front-of
+            :op1 (b / building))
+        :part-of (r / road))
+    :time (o / or
+        :op1 (d / date-entity
+            :dayperiod (d3 / dusk))
+        :op2 (d2 / date-entity
+            :dayperiod (n / night))))

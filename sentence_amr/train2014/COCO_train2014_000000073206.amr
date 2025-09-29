@@ -1,0 +1,31 @@
+# ::tok A man in a striped jacket is skiing backwards down a snow covered flight of stairs .
+# ::node	m	man	1-2
+# ::node	s4	stripe	4-5
+# ::node	j	jacket	5-6
+# ::node	s	ski-01	7-8
+# ::node	b	backwards	8-9
+# ::node	d	down	9-10
+# ::node	s2	snow	11-12
+# ::node	c	cover-02	12-13
+# ::node	f	fly-01	13-14
+# ::node	s3	stair	15-16
+# ::root	s	ski-01
+# ::edge	jacket	consist-of	stripe	j	s4	
+# ::edge	man	domain	jacket	m	j	
+# ::edge	ski-01	ARG0	man	s	m	
+# ::edge	ski-01	direction	backwards	s	b	
+# ::edge	ski-01	direction	down	s	d	
+# ::edge	cover-02	ARG2	snow	c	s2	
+# ::edge	fly-01	ARG1-of	cover-02	f	c	
+# ::edge	down	path	fly-01	d	f	
+# ::edge	fly-01	consist-of	stair	f	s3	
+(s / ski-01
+    :ARG0 (m / man
+        :domain (j / jacket
+            :consist-of (s4 / stripe)))
+    :direction (b / backwards)
+    :direction (d / down
+        :path (f / fly-01
+            :ARG1-of (c / cover-02
+                :ARG2 (s2 / snow))
+            :consist-of (s3 / stair))))

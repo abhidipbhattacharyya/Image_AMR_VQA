@@ -1,0 +1,34 @@
+# ::tok There is a pole with two traffic lights and a Manhattan Av sign .
+# ::node	p	pole	3-4
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	a	and	8-9
+# ::node	c	city-district	10-11
+# ::node	n	name	10-11
+# ::node	1	Manhattan	10-11
+# ::node	v	Avenue	11-12
+# ::node	s	sign	12-13
+# ::root	p	pole
+# ::edge	pole	ARG0-of	have-03	p	h	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	2	l	0	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	city-district	name	name	c	n	
+# ::edge	name	op1	Manhattan	n	1	
+# ::edge	Avenue	mod	city-district	v	c	
+# ::edge	sign	mod	Avenue	s	v	
+# ::edge	and	op2	sign	a	s	
+(p / pole
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / light
+                :quant 2
+                :mod (t / traffic))
+            :op2 (s / sign
+                :mod (v / Avenue
+                    :mod (c / city-district
+                        :name (n / name
+                            :op1 "Manhattan")))))))

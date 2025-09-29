@@ -1,0 +1,32 @@
+# ::tok a man on a tennis court holding a tennis racket preparing to hit an oncoming ball
+# ::node	m	man	1-2
+# ::node	t	tennis	4-5
+# ::node	c2	court	5-6
+# ::node	h2	hold-01	6-7
+# ::node	r	racket	9-10
+# ::node	p	prepare-02	10-11
+# ::node	h	hit-01	12-13
+# ::node	c	come-01	14-15
+# ::node	b	ball	15-16
+# ::root	m	man
+# ::edge	court	mod	tennis	c2	t	
+# ::edge	man	location	court	m	c2	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	racket	h2	r	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	man	ARG0-of	prepare-02	m	p	
+# ::edge	prepare-02	ARG1	hit-01	p	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	ball	ARG1-of	come-01	b	c	
+# ::edge	hit-01	ARG1	ball	h	b	
+(m / man
+    :ARG0-of (h2 / hold-01
+        :ARG1 (r / racket
+            :mod (t / tennis)))
+    :ARG0-of (p / prepare-02
+        :ARG1 (h / hit-01
+            :ARG0 m
+            :ARG1 (b / ball
+                :ARG1-of (c / come-01))))
+    :location (c2 / court
+        :mod t))

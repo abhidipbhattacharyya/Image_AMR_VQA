@@ -1,0 +1,25 @@
+# ::tok A cargo train crossing under an overpass and switching tracks .
+# ::node	c	cargo	1-2
+# ::node	t2	train	2-3
+# ::node	c2	cross-02	3-4
+# ::node	u	under	4-5
+# ::node	o	overpass	6-7
+# ::node	s	switch-01	8-9
+# ::node	t	track	9-10
+# ::node	a	and	10-11
+# ::root	a	and
+# ::edge	train	mod	cargo	t2	c	
+# ::edge	cross-02	ARG0	train	c2	t2	
+# ::edge	cross-02	location	under	c2	u	
+# ::edge	under	op1	overpass	u	o	
+# ::edge	track	ARG2-of	switch-01	t	s	
+# ::edge	and	op2	track	a	t	
+# ::edge	and	op1	cross-02	a	c2	
+(a / and
+    :op1 (c2 / cross-02
+        :ARG0 (t2 / train
+            :mod (c / cargo))
+        :location (u / under
+            :op1 (o / overpass)))
+    :op2 (t / track
+        :ARG2-of (s / switch-01)))

@@ -1,0 +1,35 @@
+# ::tok They 've gotten off the bus to stretch their legs for a few minutes .
+# ::node	t2	they	0-1
+# ::node	g	get-05	2-3
+# ::node	o	off	3-4
+# ::node	b	bus	5-6
+# ::node	s	stretch-01	7-8
+# ::node	l	leg	9-10
+# ::node	f	few	12-13
+# ::node	0	1	12-13
+# ::node	t	temporal-quantity	13-14
+# ::node	m	minute	13-14
+# ::root	g	get-05
+# ::edge	get-05	ARG1	they	g	t2	
+# ::edge	get-05	ARG2	off	g	o	
+# ::edge	off	op1	bus	o	b	
+# ::edge	get-05	purpose	stretch-01	g	s	
+# ::edge	stretch-01	ARG0	they	s	t2	
+# ::edge	stretch-01	ARG1	leg	s	l	
+# ::edge	they	part	leg	t2	l	
+# ::edge	stretch-01	duration	few	s	f	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	few	op1	temporal-quantity	f	t	
+# ::edge	temporal-quantity	unit	minute	t	m	
+(g / get-05
+    :purpose (s / stretch-01
+        :ARG0 (t2 / they
+            :part (l / leg))
+        :ARG1 l
+        :duration (f / few
+            :op1 (t / temporal-quantity
+                :quant 1
+                :unit (m / minute))))
+    :ARG1 t2
+    :ARG2 (o / off
+        :op1 (b / bus)))

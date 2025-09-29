@@ -1,0 +1,28 @@
+# ::tok many cows in a field with dry grass with trees in the back ground
+# ::node	m	many	0-1
+# ::node	c	cow	1-2
+# ::node	f	field	4-5
+# ::node	h	have-03	5-6
+# ::node	d	dry-08	6-7
+# ::node	g	grass	7-8
+# ::node	t	tree	9-10
+# ::node	b	back	12-13
+# ::node	g2	ground	13-14
+# ::root	c	cow
+# ::edge	cow	quant	many	c	m	
+# ::edge	cow	location	field	c	f	
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	grass	ARG1-of	dry-08	g	d	
+# ::edge	have-03	ARG1	grass	h	g	
+# ::edge	have-03	consist-of	tree	h	t	
+# ::edge	ground	mod	back	g2	b	
+# ::edge	tree	location	ground	t	g2	
+(c / cow
+    :quant (m / many)
+    :location (f / field
+        :ARG0-of (h / have-03
+            :ARG1 (g / grass
+                :ARG1-of (d / dry-08))
+            :consist-of (t / tree
+                :location (g2 / ground
+                    :mod (b / back))))))

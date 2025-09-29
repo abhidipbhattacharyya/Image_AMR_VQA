@@ -1,0 +1,36 @@
+# ::tok The kitchen is clean and neat with its metal fridge and flat screen tv on the wall .
+# ::node	k	kitchen	1-2
+# ::node	c	clean-04	3-4
+# ::node	a	and	4-5
+# ::node	n	neat	5-6
+# ::node	m	metal	8-9
+# ::node	f2	fridge	9-10
+# ::node	a2	and	10-11
+# ::node	f	flat	11-12
+# ::node	s	screen	12-13
+# ::node	t	television	13-14
+# ::node	w	wall	16-17
+# ::root	a	and
+# ::edge	clean-04	ARG1	kitchen	c	k	
+# ::edge	and	op1	clean-04	a	c	
+# ::edge	and	op2	neat	a	n	
+# ::edge	neat	domain	kitchen	n	k	
+# ::edge	fridge	mod	metal	f2	m	
+# ::edge	and	op1	fridge	a2	f2	
+# ::edge	kitchen	part	and	k	a2	
+# ::edge	screen	mod	flat	s	f	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op2	television	a2	t	
+# ::edge	and	location	wall	a2	w	
+(a / and
+    :op1 (c / clean-04
+        :ARG1 (k / kitchen
+            :part (a2 / and
+                :location (w / wall)
+                :op1 (f2 / fridge
+                    :mod (m / metal))
+                :op2 (t / television
+                    :mod (s / screen
+                        :mod (f / flat))))))
+    :op2 (n / neat
+        :domain k))

@@ -1,0 +1,49 @@
+# ::tok A cow sleeps near the intersection of a busy street in India , not far from people , cars and buildings .
+# ::node	c3	cow	1-2
+# ::node	s	sleep-01	2-3
+# ::node	n2	near-02	3-4
+# ::node	i	intersect-01	5-6
+# ::node	b2	busy-02	8-9
+# ::node	s2	street	9-10
+# ::node	c2	country	11-12
+# ::node	n	name	11-12
+# ::node	1	India	11-12
+# ::node	0	-	13-14
+# ::node	f	far	14-15
+# ::node	r	relative-position	15-16
+# ::node	p	person	16-17
+# ::node	c	car	18-19
+# ::node	a	and	19-20
+# ::node	b	building	20-21
+# ::root	s	sleep-01
+# ::edge	sleep-01	ARG0	cow	s	c3	
+# ::edge	sleep-01	ARG1-of	near-02	s	n2	
+# ::edge	near-02	ARG2	intersect-01	n2	i	
+# ::edge	street	ARG1-of	busy-02	s2	b2	
+# ::edge	intersect-01	ARG1	street	i	s2	
+# ::edge	street	location	country	s2	c2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	India	n	1	
+# ::edge	far	polarity	-	f	0	
+# ::edge	relative-position	quant	far	r	f	
+# ::edge	sleep-01	location	relative-position	s	r	
+# ::edge	and	op2	car	a	c	
+# ::edge	and	op1	person	a	p	
+# ::edge	relative-position	op1	and	r	a	
+# ::edge	and	op3	building	a	b	
+(s / sleep-01
+    :ARG0 (c3 / cow)
+    :ARG1-of (n2 / near-02
+        :ARG2 (i / intersect-01
+            :ARG1 (s2 / street
+                :ARG1-of (b2 / busy-02)
+                :location (c2 / country
+                    :name (n / name
+                        :op1 "India")))))
+    :location (r / relative-position
+        :quant (f / far
+            :polarity -)
+        :op1 (a / and
+            :op1 (p / person)
+            :op2 (c / car)
+            :op3 (b / building))))

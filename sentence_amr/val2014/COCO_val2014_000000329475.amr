@@ -1,0 +1,40 @@
+# ::tok Rows of doughnuts are on a counter as several are on wax paper .
+# ::node	m	multiple	0-1
+# ::node	d2	distance-quantity	0-1
+# ::node	d	day	0-1
+# ::node	0	1	0-1
+# ::node	d3	donut	2-3
+# ::node	d4	donut	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	c	counter	6-7
+# ::node	r	resemble-01	7-8
+# ::node	s	several	8-9
+# ::node	b2	be-located-at-91	10-11
+# ::node	w	wax	11-12
+# ::node	p	paper	12-13
+# ::root	r	resemble-01
+# ::edge	multiple	op1	distance-quantity	m	d2	
+# ::edge	distance-quantity	unit	day	d2	d	
+# ::edge	distance-quantity	quant	1	d2	0	
+# ::edge	donut	quant	multiple	d3	m	
+# ::edge	be-located-at-91	ARG1	donut	b	d3	
+# ::edge	be-located-at-91	ARG2	counter	b	c	
+# ::edge	resemble-01	ARG1	be-located-at-91	r	b	
+# ::edge	donut	quant	several	d4	s	
+# ::edge	resemble-01	ARG2	be-located-at-91	r	b2	
+# ::edge	be-located-at-91	ARG1	donut	b2	d4	
+# ::edge	paper	consist-of	wax	p	w	
+# ::edge	be-located-at-91	ARG2	paper	b2	p	
+(r / resemble-01
+    :ARG1 (b / be-located-at-91
+        :ARG1 (d3 / donut
+            :quant (m / multiple
+                :op1 (d2 / distance-quantity
+                    :quant 1
+                    :unit (d / day))))
+        :ARG2 (c / counter))
+    :ARG2 (b2 / be-located-at-91
+        :ARG1 (d4 / donut
+            :quant (s / several))
+        :ARG2 (p / paper
+            :consist-of (w / wax))))

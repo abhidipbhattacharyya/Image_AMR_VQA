@@ -1,0 +1,28 @@
+# ::tok A person is near a row of luggage carts as one man pushes a cart .
+# ::node	p	person	1-2
+# ::node	n	near-02	3-4
+# ::node	r	row	5-6
+# ::node	l	luggage	7-8
+# ::node	c	cart	8-9
+# ::node	0	1	10-11
+# ::node	m	man	11-12
+# ::node	p2	push-01	12-13
+# ::node	c2	cart	14-15
+# ::root	n	near-02
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	row	n	r	
+# ::edge	cart	purpose	luggage	c	l	
+# ::edge	row	consist-of	cart	r	c	
+# ::edge	man	quant	1	m	0	
+# ::edge	push-01	ARG0	man	p2	m	
+# ::edge	near-02	time	push-01	n	p2	
+# ::edge	push-01	ARG1	cart	p2	c2	
+(n / near-02
+    :ARG1 (p / person)
+    :ARG2 (r / row
+        :consist-of (c / cart
+            :purpose (l / luggage)))
+    :time (p2 / push-01
+        :ARG0 (m / man
+            :quant 1)
+        :ARG1 (c2 / cart)))

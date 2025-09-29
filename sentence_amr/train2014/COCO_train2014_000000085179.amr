@@ -1,0 +1,21 @@
+# ::tok A group of people waiting to board the underground subway
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	w	wait-01	4-5
+# ::node	b	board-01	6-7
+# ::node	u	underground	8-9
+# ::node	s	subway	9-10
+# ::root	w	wait-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	wait-01	ARG1	group	w	g	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG0	group	b	g	
+# ::edge	subway	mod	underground	s	u	
+# ::edge	board-01	ARG1	subway	b	s	
+(w / wait-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (b / board-01
+        :ARG0 g
+        :ARG1 (s / subway
+            :mod (u / underground))))

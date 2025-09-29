@@ -1,0 +1,37 @@
+# ::tok A 1950 s Ford pick up standing in front of the building waiting on a parking pad
+# ::node	d	date-entity	1-2
+# ::node	0	1950	1-2
+# ::node	c	car-make	3-4
+# ::node	n	name	3-4
+# ::node	1	Ford	3-4
+# ::node	p3	pick-up-04	4-5
+# ::node	s	stand-01	6-7
+# ::node	i	in-front-of	8-9
+# ::node	b	building	11-12
+# ::node	w	wait-01	12-13
+# ::node	p2	park-01	15-16
+# ::node	p	pad	16-17
+# ::root	s	stand-01
+# ::edge	date-entity	decade	1950	d	0	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	Ford	n	1	
+# ::edge	pick-up-04	ARG0	car-make	p3	c	
+# ::edge	pick-up-04	time	date-entity	p3	d	
+# ::edge	stand-01	ARG1	pick-up-04	s	p3	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	car-make	ARG1-of	wait-01	c	w	
+# ::edge	pad	purpose	park-01	p	p2	
+# ::edge	wait-01	ARG2	pad	w	p	
+(s / stand-01
+    :ARG1 (p3 / pick-up-04
+        :ARG0 (c / car-make
+            :name (n / name
+                :op1 "Ford")
+            :ARG1-of (w / wait-01
+                :ARG2 (p / pad
+                    :purpose (p2 / park-01))))
+        :time (d / date-entity
+            :decade 1950))
+    :ARG2 (i / in-front-of
+        :op1 (b / building)))

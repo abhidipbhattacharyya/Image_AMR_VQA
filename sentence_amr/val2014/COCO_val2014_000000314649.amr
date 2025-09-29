@@ -1,0 +1,30 @@
+# ::tok A bridge overpass that has a large passenger boat traveling under the bridge in the water .
+# ::node	b2	bridge	1-2
+# ::node	o	overpass	2-3
+# ::node	h	have-03	4-5
+# ::node	l	large	6-7
+# ::node	p	passenger	7-8
+# ::node	b	boat	8-9
+# ::node	t	travel-01	9-10
+# ::node	u	under	10-11
+# ::node	w	water	15-16
+# ::root	o	overpass
+# ::edge	overpass	mod	bridge	o	b2	
+# ::edge	overpass	ARG0-of	have-03	o	h	
+# ::edge	boat	mod	passenger	b	p	
+# ::edge	boat	mod	large	b	l	
+# ::edge	have-03	ARG1	boat	h	b	
+# ::edge	boat	ARG0-of	travel-01	b	t	
+# ::edge	travel-01	ARG4	under	t	u	
+# ::edge	under	op1	bridge	u	b2	
+# ::edge	under	location	water	u	w	
+(o / overpass
+    :ARG0-of (h / have-03
+        :ARG1 (b / boat
+            :ARG0-of (t / travel-01
+                :ARG4 (u / under
+                    :location (w / water)
+                    :op1 (b2 / bridge)))
+            :mod (p / passenger)
+            :mod (l / large)))
+    :mod b2)

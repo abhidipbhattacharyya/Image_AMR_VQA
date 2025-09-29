@@ -1,0 +1,30 @@
+# ::tok There is a red roofed train station shown with a body of water next to it .
+# ::node	r	red-02	3-4
+# ::node	r2	roof-01	4-5
+# ::node	t	train	5-6
+# ::node	s2	station	6-7
+# ::node	s	show-01	7-8
+# ::node	h	have-03	8-9
+# ::node	b	body	10-11
+# ::node	w	water	12-13
+# ::node	n	next-to	13-14
+# ::root	s	show-01
+# ::edge	roof-01	ARG1-of	red-02	r2	r	
+# ::edge	station	mod	train	s2	t	
+# ::edge	station	ARG1-of	roof-01	s2	r2	
+# ::edge	show-01	ARG1	station	s	s2	
+# ::edge	station	ARG0-of	have-03	s2	h	
+# ::edge	have-03	ARG1	body	h	b	
+# ::edge	body	consist-of	water	b	w	
+# ::edge	body	location	next-to	b	n	
+# ::edge	next-to	op1	station	n	s2	
+(s / show-01
+    :ARG1 (s2 / station
+        :ARG0-of (h / have-03
+            :ARG1 (b / body
+                :consist-of (w / water)
+                :location (n / next-to
+                    :op1 s2)))
+        :ARG1-of (r2 / roof-01
+            :ARG1-of (r / red-02))
+        :mod (t / train)))

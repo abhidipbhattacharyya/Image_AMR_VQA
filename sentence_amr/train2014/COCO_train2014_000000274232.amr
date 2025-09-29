@@ -1,0 +1,31 @@
+# ::tok A baseball player throwing a baseball bat and taking off in a run .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	t2	throw-01	3-4
+# ::node	b2	bat	6-7
+# ::node	t	take-off-33	8-9
+# ::node	r	run-02	12-13
+# ::node	a	and	13-14
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	throw-01	ARG1	bat	t2	b2	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	take-off-33	ARG0	person	t	p	
+# ::edge	take-off-33	manner	run-02	t	r	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	and	op2	take-off-33	a	t	
+# ::edge	and	op1	throw-01	a	t2	
+(a / and
+    :op1 (t2 / throw-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b / baseball)))
+        :ARG1 (b2 / bat
+            :mod b))
+    :op2 (t / take-off-33
+        :ARG0 p
+        :manner (r / run-02
+            :ARG0 p)))

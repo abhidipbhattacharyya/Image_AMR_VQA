@@ -1,0 +1,29 @@
+# ::tok A dog is walking with a frisbee and another dog is jumping to catch a frisbee .
+# ::node	d	dog	1-2
+# ::node	w	walk-01	3-4
+# ::node	f	frisbee	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	d2	dog	9-10
+# ::node	j	jump-03	11-12
+# ::node	c	catch-01	13-14
+# ::root	a	and
+# ::edge	walk-01	ARG0	dog	w	d	
+# ::edge	walk-01	instrument	frisbee	w	f	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	dog	mod	another	d2	a2	
+# ::edge	jump-03	ARG0	dog	j	d2	
+# ::edge	and	op2	jump-03	a	j	
+# ::edge	jump-03	purpose	catch-01	j	c	
+# ::edge	catch-01	ARG0	dog	c	d2	
+# ::edge	catch-01	ARG1	frisbee	c	f	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (d / dog)
+        :instrument (f / frisbee))
+    :op2 (j / jump-03
+        :purpose (c / catch-01
+            :ARG0 (d2 / dog
+                :mod (a2 / another))
+            :ARG1 f)
+        :ARG0 d2))

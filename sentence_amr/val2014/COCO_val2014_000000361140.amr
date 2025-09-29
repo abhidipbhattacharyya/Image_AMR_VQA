@@ -1,0 +1,39 @@
+# ::tok A man sitting in a chair with a paper in a room with couches , a fire place and a bookcase .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	chair	5-6
+# ::node	h	have-03	6-7
+# ::node	p	paper	8-9
+# ::node	r	room	11-12
+# ::node	h2	have-03	12-13
+# ::node	c2	couch	13-14
+# ::node	f	fire	16-17
+# ::node	p2	place	17-18
+# ::node	a	and	18-19
+# ::node	b	bookcase	20-21
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	have-03	ARG1	chair	h	c	
+# ::edge	sit-01	ARG2	have-03	s	h	
+# ::edge	have-03	ARG0	man	h	m	
+# ::edge	have-03	instrument	paper	h	p	
+# ::edge	sit-01	location	room	s	r	
+# ::edge	room	ARG0-of	have-03	r	h2	
+# ::edge	place	mod	fire	p2	f	
+# ::edge	and	op2	place	a	p2	
+# ::edge	and	op1	couch	a	c2	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op3	bookcase	a	b	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (h / have-03
+        :ARG0 m
+        :ARG1 (c / chair)
+        :instrument (p / paper))
+    :location (r / room
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (c2 / couch)
+                :op2 (p2 / place
+                    :mod (f / fire))
+                :op3 (b / bookcase)))))

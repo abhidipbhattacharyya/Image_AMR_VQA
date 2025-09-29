@@ -1,0 +1,40 @@
+# ::tok This kitchen is cluttered , cabinet and drawers are not shut all the way , and there is paper taped to the floor .
+# ::node	t2	this	0-1
+# ::node	k	kitchen	1-2
+# ::node	h	hoard-01	3-4
+# ::node	c	cabinet	5-6
+# ::node	a2	and	6-7
+# ::node	c2	cabinet	7-8
+# ::node	0	-	9-10
+# ::node	s	shut-01	10-11
+# ::node	a	all-the-way	13-14
+# ::node	a3	and	15-16
+# ::node	p	paper	18-19
+# ::node	t	tape-02	19-20
+# ::node	f	floor	22-23
+# ::root	a3	and
+# ::edge	kitchen	mod	this	k	t2	
+# ::edge	hoard-01	ARG1	kitchen	h	k	
+# ::edge	and	op1	cabinet	a2	c	
+# ::edge	and	op2	cabinet	a2	c2	
+# ::edge	shut-01	polarity	-	s	0	
+# ::edge	shut-01	ARG1	and	s	a2	
+# ::edge	shut-01	extent	all-the-way	s	a	
+# ::edge	and	op2	shut-01	a3	s	
+# ::edge	and	op1	hoard-01	a3	h	
+# ::edge	and	op3	paper	a3	p	
+# ::edge	paper	ARG1-of	tape-02	p	t	
+# ::edge	tape-02	ARG2	floor	t	f	
+(a3 / and
+    :op1 (h / hoard-01
+        :ARG1 (k / kitchen
+            :mod (t2 / this)))
+    :op2 (s / shut-01
+        :ARG1 (a2 / and
+            :op1 (c / cabinet)
+            :op2 (c2 / cabinet))
+        :extent (a / all-the-way)
+        :polarity -)
+    :op3 (p / paper
+        :ARG1-of (t / tape-02
+            :ARG2 (f / floor))))

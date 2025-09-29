@@ -1,0 +1,49 @@
+# ::tok A large flat screen TV is wall mounted over a counter with a coffee machine and cups and four stainless steel dishwashers .
+# ::node	l	large	1-2
+# ::node	f	flat	2-3
+# ::node	s	screen	3-4
+# ::node	t	television	4-5
+# ::node	w	wall	6-7
+# ::node	m2	mount-03	7-8
+# ::node	o	over	8-9
+# ::node	c2	counter	10-11
+# ::node	c	coffee	13-14
+# ::node	m	machine	14-15
+# ::node	a	and	15-16
+# ::node	c3	cup	16-17
+# ::node	0	4	18-19
+# ::node	s2	stainless	19-20
+# ::node	s3	steel	20-21
+# ::node	d	dishwasher	21-22
+# ::root	m2	mount-03
+# ::edge	screen	mod	flat	s	f	
+# ::edge	television	mod	screen	t	s	
+# ::edge	television	mod	large	t	l	
+# ::edge	mount-03	location	wall	m2	w	
+# ::edge	mount-03	ARG1	television	m2	t	
+# ::edge	mount-03	location	over	m2	o	
+# ::edge	over	op1	counter	o	c2	
+# ::edge	machine	mod	coffee	m	c	
+# ::edge	and	op1	machine	a	m	
+# ::edge	mount-03	accompanier	and	m2	a	
+# ::edge	and	op2	cup	a	c3	
+# ::edge	steel	mod	stainless	s3	s2	
+# ::edge	dishwasher	consist-of	steel	d	s3	
+# ::edge	dishwasher	quant	4	d	0	
+# ::edge	and	op3	dishwasher	a	d	
+(m2 / mount-03
+    :ARG1 (t / television
+        :mod (s / screen
+            :mod (f / flat))
+        :mod (l / large))
+    :accompanier (a / and
+        :op1 (m / machine
+            :mod (c / coffee))
+        :op2 (c3 / cup)
+        :op3 (d / dishwasher
+            :quant 4
+            :consist-of (s3 / steel
+                :mod (s2 / stainless))))
+    :location (w / wall)
+    :location (o / over
+        :op1 (c2 / counter)))

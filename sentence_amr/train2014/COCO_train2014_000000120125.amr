@@ -1,0 +1,31 @@
+# ::tok A Pizza with many toppings is on a plate which is on a table with a purple tablecloth ..
+# ::node	p	pizzeria	1-2
+# ::node	m	many	3-4
+# ::node	c	continent	4-5
+# ::node	n	name	4-5
+# ::node	l	law	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	p2	plate	8-9
+# ::node	t	table	13-14
+# ::node	p3	purple-02	16-17
+# ::node	t2	tablecloth	17-18
+# ::root	b	be-located-at-91
+# ::edge	pizzeria	mod	continent	p	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	be-located-at-91	ARG1	pizzeria	b	p	
+# ::edge	be-located-at-91	ARG2	plate	b	p2	
+# ::edge	plate	mod	law	p2	l	
+# ::edge	plate	location	table	p2	t	
+# ::edge	tablecloth	ARG1-of	purple-02	t2	p3	
+# ::edge	table	prep-with	tablecloth	t	t2	
+# ::edge	be-located-at-91	rel	many	b	m	
+(b / be-located-at-91
+    :ARG1 (p / pizzeria
+        :mod (c / continent
+            :name (n / name)))
+    :ARG2 (p2 / plate
+        :location (t / table
+            :prep-with (t2 / tablecloth
+                :ARG1-of (p3 / purple-02)))
+        :mod (l / law))
+    :rel (m / many))

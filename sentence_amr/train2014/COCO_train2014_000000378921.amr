@@ -1,0 +1,32 @@
+# ::tok A baseball player sliding into a base while the other attempts to tag him out .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	slide-01	3-4
+# ::node	b	base	6-7
+# ::node	o	other	9-10
+# ::node	a	attempt-01	10-11
+# ::node	t	tag-01	12-13
+# ::node	o2	out	14-15
+# ::root	s	slide-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	slide-01	ARG1	person	s	p	
+# ::edge	slide-01	destination	base	s	b	
+# ::edge	attempt-01	ARG0	other	a	o	
+# ::edge	slide-01	time	attempt-01	s	a	
+# ::edge	attempt-01	ARG1	tag-01	a	t	
+# ::edge	tag-01	ARG0	other	t	o	
+# ::edge	tag-01	ARG1	person	t	p	
+# ::edge	tag-01	mod	out	t	o2	
+(s / slide-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b2 / baseball)))
+    :destination (b / base)
+    :time (a / attempt-01
+        :ARG0 (o / other)
+        :ARG1 (t / tag-01
+            :ARG0 o
+            :ARG1 p
+            :mod (o2 / out))))

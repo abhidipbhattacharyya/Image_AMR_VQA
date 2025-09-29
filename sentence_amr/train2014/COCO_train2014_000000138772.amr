@@ -1,0 +1,47 @@
+# ::tok A woman wearing a Happy New Year hat while holding different kind of cell phones in her hand .
+# ::node	w2	woman	1-2
+# ::node	w	wear-01	2-3
+# ::node	h2	happy-01	4-5
+# ::node	0	New	5-6
+# ::node	f	festival	6-7
+# ::node	n	name	6-7
+# ::node	1	Year	6-7
+# ::node	h3	hat	7-8
+# ::node	h4	hold-01	9-10
+# ::node	d	differ-02	10-11
+# ::node	k	kind	11-12
+# ::node	c	cell	13-14
+# ::node	p	phone	14-15
+# ::node	h	hand	17-18
+# ::root	w2	woman
+# ::edge	woman	ARG0-of	wear-01	w2	w	
+# ::edge	festival	ARG1-of	happy-01	f	h2	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	New	n	0	
+# ::edge	name	op2	Year	n	1	
+# ::edge	hat	mod	festival	h3	f	
+# ::edge	wear-01	ARG1	hat	w	h3	
+# ::edge	wear-01	time	hold-01	w	h4	
+# ::edge	hold-01	ARG0	woman	h4	w2	
+# ::edge	kind	ARG1-of	differ-02	k	d	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	phone	mod	kind	p	k	
+# ::edge	hold-01	ARG1	phone	h4	p	
+# ::edge	phone	location	hand	p	h	
+# ::edge	woman	part	hand	w2	h	
+(w2 / woman
+    :ARG0-of (w / wear-01
+        :ARG1 (h3 / hat
+            :mod (f / festival
+                :name (n / name
+                    :op1 "New"
+                    :op2 "Year")
+                :ARG1-of (h2 / happy-01)))
+        :time (h4 / hold-01
+            :ARG0 w2
+            :ARG1 (p / phone
+                :location (h / hand)
+                :mod (c / cell)
+                :mod (k / kind
+                    :ARG1-of (d / differ-02)))))
+    :part h)

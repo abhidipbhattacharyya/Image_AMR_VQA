@@ -1,0 +1,30 @@
+# ::tok A snow hiker traversing deep snow with poles and snow shoes .
+# ::node	s2	snow	1-2
+# ::node	p	person	2-3
+# ::node	h	hike-01	2-3
+# ::node	c	cross-02	3-4
+# ::node	d	deep-02	4-5
+# ::node	s3	snow	5-6
+# ::node	p2	pole	7-8
+# ::node	a	and	8-9
+# ::node	s	shoe	10-11
+# ::root	p	person
+# ::edge	person	ARG0-of	hike-01	p	h	
+# ::edge	hike-01	ARG1	snow	h	s2	
+# ::edge	person	ARG0-of	cross-02	p	c	
+# ::edge	snow	ARG1-of	deep-02	s3	d	
+# ::edge	cross-02	ARG1	snow	c	s3	
+# ::edge	and	op1	pole	a	p2	
+# ::edge	cross-02	instrument	and	c	a	
+# ::edge	and	op2	shoe	a	s	
+# ::edge	shoe	mod	snow	s	s2	
+(p / person
+    :ARG0-of (h / hike-01
+        :ARG1 (s2 / snow))
+    :ARG0-of (c / cross-02
+        :ARG1 (s3 / snow
+            :ARG1-of (d / deep-02))
+        :instrument (a / and
+            :op1 (p2 / pole)
+            :op2 (s / shoe
+                :mod s2))))

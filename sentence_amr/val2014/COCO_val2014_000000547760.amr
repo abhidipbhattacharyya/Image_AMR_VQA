@@ -1,0 +1,49 @@
+# ::tok Two street signs , one with the street name in two languages and the other with a cartoon police officer .
+# ::node	1	2	0-1
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	s2	sign	2-3
+# ::node	0	1	4-5
+# ::node	n	name-01	8-9
+# ::node	2	2	10-11
+# ::node	l	language	11-12
+# ::node	a	and	12-13
+# ::node	o2	other	14-15
+# ::node	h	have-03	15-16
+# ::node	c	cartoon	17-18
+# ::node	p2	police	18-19
+# ::node	p	person	19-20
+# ::node	h2	have-org-role-91	19-20
+# ::node	o	officer	19-20
+# ::root	a	and
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	quant	2	s	1	
+# ::edge	sign	quant	1	s2	0	
+# ::edge	sign	ARG2-of	name-01	s	n	
+# ::edge	language	quant	2	l	2	
+# ::edge	name-01	medium	language	n	l	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	mod	other	s2	o2	
+# ::edge	sign	ARG0-of	have-03	s2	h	
+# ::edge	person	mod	cartoon	p	c	
+# ::edge	have-03	ARG1	person	h	p	
+# ::edge	person	ARG0-of	have-org-role-91	p	h2	
+# ::edge	have-org-role-91	ARG1	police	h2	p2	
+# ::edge	have-org-role-91	ARG2	officer	h2	o	
+(a / and
+    :op1 (s / sign
+        :quant 2
+        :ARG2-of (n / name-01
+            :medium (l / language
+                :quant 2))
+        :mod (s3 / street))
+    :op2 (s2 / sign
+        :quant 1
+        :ARG0-of (h / have-03
+            :ARG1 (p / person
+                :ARG0-of (h2 / have-org-role-91
+                    :ARG1 (p2 / police)
+                    :ARG2 (o / officer))
+                :mod (c / cartoon)))
+        :mod (o2 / other)))

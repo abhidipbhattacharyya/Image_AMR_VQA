@@ -1,0 +1,39 @@
+# ::tok People standing outside of a hut with several bunches of bananas and other fruit outside of it .
+# ::node	p	person	0-1
+# ::node	s2	stand-01	1-2
+# ::node	o2	outside	2-3
+# ::node	h2	hut	5-6
+# ::node	h	have-03	6-7
+# ::node	s	several	7-8
+# ::node	l	load	8-9
+# ::node	b	banana	10-11
+# ::node	a	and	11-12
+# ::node	o	other	12-13
+# ::node	f	fruit	13-14
+# ::node	o3	outside	14-15
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	outside	s2	o2	
+# ::edge	outside	op1	hut	o2	h2	
+# ::edge	hut	ARG0-of	have-03	h2	h	
+# ::edge	load	quant	several	l	s	
+# ::edge	banana	quant	load	b	l	
+# ::edge	and	op1	banana	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	fruit	mod	other	f	o	
+# ::edge	and	op2	fruit	a	f	
+# ::edge	have-03	location	outside	h	o3	
+# ::edge	outside	op1	hut	o3	h2	
+(s2 / stand-01
+    :ARG1 (p / person)
+    :ARG2 (o2 / outside
+        :op1 (h2 / hut
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (b / banana
+                        :quant (l / load
+                            :quant (s / several)))
+                    :op2 (f / fruit
+                        :mod (o / other)))
+                :location (o3 / outside
+                    :op1 h2)))))

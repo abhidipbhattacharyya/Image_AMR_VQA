@@ -1,0 +1,36 @@
+# ::tok Vancouver police officers are looking at something by their car .
+# ::node	c2	city	0-1
+# ::node	n	name	0-1
+# ::node	0	Vancouver	0-1
+# ::node	p2	police	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	o	officer	2-3
+# ::node	l	look-01	4-5
+# ::node	s	something	6-7
+# ::node	b	by	7-8
+# ::node	c	car	9-10
+# ::root	l	look-01
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Vancouver	n	0	
+# ::edge	police	mod	city	p2	c2	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	police	h	p2	
+# ::edge	have-org-role-91	ARG2	officer	h	o	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	look-01	ARG1	something	l	s	
+# ::edge	something	location	by	s	b	
+# ::edge	by	op1	car	b	c	
+# ::edge	car	poss	person	c	p	
+(l / look-01
+    :ARG0 (p / person
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (p2 / police
+                :mod (c2 / city
+                    :name (n / name
+                        :op1 "Vancouver")))
+            :ARG2 (o / officer)))
+    :ARG1 (s / something
+        :location (b / by
+            :op1 (c / car
+                :poss p))))

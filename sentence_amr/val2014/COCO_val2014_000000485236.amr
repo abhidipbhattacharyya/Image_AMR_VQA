@@ -1,0 +1,28 @@
+# ::tok Several small rectangular slices of pizza with cheese and mushrooms .
+# ::node	s	several	0-1
+# ::node	s3	small	1-2
+# ::node	r	rectangular	2-3
+# ::node	s2	slice	3-4
+# ::node	p	pizza	5-6
+# ::node	i	include-01	6-7
+# ::node	c	cheese	7-8
+# ::node	a	and	8-9
+# ::node	m	mushroom	9-10
+# ::root	s2	slice
+# ::edge	slice	mod	rectangular	s2	r	
+# ::edge	slice	mod	small	s2	s3	
+# ::edge	slice	quant	several	s2	s	
+# ::edge	slice	consist-of	pizza	s2	p	
+# ::edge	slice	ARG2-of	include-01	s2	i	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	mushroom	a	m	
+(s2 / slice
+    :quant (s / several)
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (c / cheese)
+            :op2 (m / mushroom)))
+    :consist-of (p / pizza)
+    :mod (r / rectangular)
+    :mod (s3 / small))

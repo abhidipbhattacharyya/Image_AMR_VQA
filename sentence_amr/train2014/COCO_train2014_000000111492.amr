@@ -1,0 +1,43 @@
+# ::tok Two trucks , one pulling a boat on a trailer , and an ATV are parked on a road .
+# ::node	1	2	0-1
+# ::node	t2	truck	1-2
+# ::node	t3	truck	1-2
+# ::node	i	include-91	3-4
+# ::node	0	1	3-4
+# ::node	p2	pull-01	4-5
+# ::node	b	boat	6-7
+# ::node	t	trailer	9-10
+# ::node	a	and	11-12
+# ::node	v	vehicle	13-14
+# ::node	n	name	13-14
+# ::node	2	ATV	13-14
+# ::node	p	park-01	15-16
+# ::node	r	road	18-19
+# ::root	p	park-01
+# ::edge	truck	quant	2	t2	1	
+# ::edge	truck	ARG2-of	include-91	t3	i	
+# ::edge	truck	quant	1	t3	0	
+# ::edge	truck	ARG0-of	pull-01	t3	p2	
+# ::edge	pull-01	ARG1	boat	p2	b	
+# ::edge	pull-01	ARG2	trailer	p2	t	
+# ::edge	and	op2	truck	a	t3	
+# ::edge	and	op1	truck	a	t2	
+# ::edge	and	op3	vehicle	a	v	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	ATV	n	2	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	park-01	ARG2	road	p	r	
+(p / park-01
+    :ARG1 (a / and
+        :op1 (t2 / truck
+            :quant 2)
+        :op2 (t3 / truck
+            :quant 1
+            :ARG0-of (p2 / pull-01
+                :ARG1 (b / boat)
+                :ARG2 (t / trailer))
+            :ARG2-of (i / include-91))
+        :op3 (v / vehicle
+            :name (n / name
+                :op1 "ATV")))
+    :ARG2 (r / road))

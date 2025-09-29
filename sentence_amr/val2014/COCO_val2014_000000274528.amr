@@ -1,0 +1,30 @@
+# ::tok A cycling event with cycles being transported in cars , atop cars , in vans .
+# ::node	c2	cycle-01	1-2
+# ::node	e	event	2-3
+# ::node	c3	cycle-02	4-5
+# ::node	t	thing	5-6
+# ::node	t2	transport-01	6-7
+# ::node	c	car	8-9
+# ::node	a	and	9-10
+# ::node	a2	atop	10-11
+# ::node	v	van	14-15
+# ::root	e	event
+# ::edge	event	topic	cycle-01	e	c2	
+# ::edge	thing	ARG1-of	cycle-02	t	c3	
+# ::edge	transport-01	ARG1	thing	t2	t	
+# ::edge	event	accompanier	transport-01	e	t2	
+# ::edge	and	op1	car	a	c	
+# ::edge	transport-01	ARG4	and	t2	a	
+# ::edge	and	op2	atop	a	a2	
+# ::edge	atop	op1	car	a2	c	
+# ::edge	and	op3	van	a	v	
+(e / event
+    :accompanier (t2 / transport-01
+        :ARG1 (t / thing
+            :ARG1-of (c3 / cycle-02))
+        :ARG4 (a / and
+            :op1 (c / car)
+            :op2 (a2 / atop
+                :op1 c)
+            :op3 (v / van)))
+    :topic (c2 / cycle-01))

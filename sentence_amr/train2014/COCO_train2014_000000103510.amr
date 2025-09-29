@@ -1,0 +1,58 @@
+# ::tok A bowl contains a vegetable platter with carrots , cauliflower , broccoli , celery , cucumbers , and green peppers going in clockwise - order encircling a container of dip with a spoon in it
+# ::node	b	bowl	1-2
+# ::node	c5	contain-01	2-3
+# ::node	v	vegetable	4-5
+# ::node	p2	platter	5-6
+# ::node	c	carrot	7-8
+# ::node	c2	cauliflower	9-10
+# ::node	b2	broccoli	11-12
+# ::node	c3	celery	13-14
+# ::node	v2	vegetable	15-16
+# ::node	a	and	17-18
+# ::node	g2	green-02	18-19
+# ::node	p	pepper-spray	19-20
+# ::node	g	go-01	20-21
+# ::node	c4	clockwise	22-23
+# ::node	o	order-03	24-25
+# ::node	e	encircle-01	25-26
+# ::node	c6	container	27-28
+# ::node	d	dip	29-30
+# ::node	s	spoon	32-33
+# ::root	c5	contain-01
+# ::edge	contain-01	ARG0	bowl	c5	b	
+# ::edge	platter	mod	vegetable	p2	v	
+# ::edge	contain-01	ARG1	platter	c5	p2	
+# ::edge	and	op4	celery	a	c3	
+# ::edge	and	op3	broccoli	a	b2	
+# ::edge	and	op2	cauliflower	a	c2	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	platter	consist-of	and	p2	a	
+# ::edge	pepper-spray	ARG1-of	green-02	p	g2	
+# ::edge	and	op5	pepper-spray	a	p	
+# ::edge	platter	ARG1-of	go-01	p2	g	
+# ::edge	go-01	direction	clockwise	g	c4	
+# ::edge	go-01	ARG2-of	order-03	g	o	
+# ::edge	and	ARG1-of	encircle-01	a	e	
+# ::edge	encircle-01	ARG2	container	e	c6	
+# ::edge	container	location-of	dip	c6	d	
+# ::edge	container	instrument	spoon	c6	s	
+# ::edge	contain-01	rel	vegetable	c5	v2	
+(c5 / contain-01
+    :ARG0 (b / bowl)
+    :ARG1 (p2 / platter
+        :ARG1-of (g / go-01
+            :ARG2-of (o / order-03)
+            :direction (c4 / clockwise))
+        :consist-of (a / and
+            :ARG1-of (e / encircle-01
+                :ARG2 (c6 / container
+                    :instrument (s / spoon)
+                    :location-of (d / dip)))
+            :op1 (c / carrot)
+            :op2 (c2 / cauliflower)
+            :op3 (b2 / broccoli)
+            :op4 (c3 / celery)
+            :op5 (p / pepper-spray
+                :ARG1-of (g2 / green-02)))
+        :mod (v / vegetable))
+    :rel (v2 / vegetable))

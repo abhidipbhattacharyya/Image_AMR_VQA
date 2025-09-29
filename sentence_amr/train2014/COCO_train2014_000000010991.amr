@@ -1,0 +1,33 @@
+# ::tok The bathroom sink counter has an electronic toothbrush and a soap dispenser on it .
+# ::node	b	bathroom	1-2
+# ::node	s	sink	2-3
+# ::node	c	counter	3-4
+# ::node	h	have-03	4-5
+# ::node	e	electronics	6-7
+# ::node	t2	toothbrush	7-8
+# ::node	a2	and	8-9
+# ::node	s2	soap	10-11
+# ::node	t	thing	11-12
+# ::node	a	administer-01	11-12
+# ::root	h	have-03
+# ::edge	sink	part-of	bathroom	s	b	
+# ::edge	counter	location	sink	c	s	
+# ::edge	have-03	ARG0	counter	h	c	
+# ::edge	toothbrush	mod	electronics	t2	e	
+# ::edge	and	op1	toothbrush	a2	t2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	location	counter	a2	c	
+# ::edge	and	op2	thing	a2	t	
+# ::edge	thing	ARG0-of	administer-01	t	a	
+# ::edge	administer-01	ARG1	soap	a	s2	
+(h / have-03
+    :ARG0 (c / counter
+        :location (s / sink
+            :part-of (b / bathroom)))
+    :ARG1 (a2 / and
+        :location c
+        :op1 (t2 / toothbrush
+            :mod (e / electronics))
+        :op2 (t / thing
+            :ARG0-of (a / administer-01
+                :ARG1 (s2 / soap)))))

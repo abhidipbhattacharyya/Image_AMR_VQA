@@ -1,0 +1,36 @@
+# ::tok A tennis player extends his arm to hit a tennis ball to his opponent .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	e	extend-01	3-4
+# ::node	a	arm	5-6
+# ::node	h	hit-01	7-8
+# ::node	b	ball	10-11
+# ::node	p2	person	13-14
+# ::node	o	oppose-01	13-14
+# ::root	e	extend-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	extend-01	ARG0	person	e	p	
+# ::edge	extend-01	ARG1	arm	e	a	
+# ::edge	person	part	arm	p	a	
+# ::edge	extend-01	purpose	hit-01	e	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	hit-01	ARG4	person	h	p2	
+# ::edge	person	ARG0-of	oppose-01	p2	o	
+# ::edge	oppose-01	ARG1	person	o	p	
+(e / extend-01
+    :purpose (h / hit-01
+        :ARG0 (p / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (t / tennis))
+            :part (a / arm))
+        :ARG1 (b / ball
+            :mod t)
+        :ARG4 (p2 / person
+            :ARG0-of (o / oppose-01
+                :ARG1 p)))
+    :ARG0 p
+    :ARG1 a)

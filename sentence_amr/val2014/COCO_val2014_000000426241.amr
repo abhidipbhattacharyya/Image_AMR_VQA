@@ -1,0 +1,35 @@
+# ::tok Many electronic devises and a tangle of wires are on and around the desk .
+# ::node	m	many	0-1
+# ::node	e	electronic	1-2
+# ::node	d2	device	2-3
+# ::node	a	and	3-4
+# ::node	t	tangle-01	5-6
+# ::node	w	wire	7-8
+# ::node	b	be-located-at-91	9-10
+# ::node	a2	and	10-11
+# ::node	a3	around	11-12
+# ::node	d	desk	13-14
+# ::root	a2	and
+# ::edge	device	mod	electronic	d2	e	
+# ::edge	device	quant	many	d2	m	
+# ::edge	and	op1	device	a	d2	
+# ::edge	and	op2	tangle-01	a	t	
+# ::edge	tangle-01	ARG1	wire	t	w	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	and	op2	around	a2	a3	
+# ::edge	around	domain	and	a3	a	
+# ::edge	around	op1	desk	a3	d	
+# ::edge	be-located-at-91	ARG2	desk	b	d	
+(a2 / and
+    :op1 (b / be-located-at-91
+        :ARG1 (a / and
+            :op1 (d2 / device
+                :quant (m / many)
+                :mod (e / electronic))
+            :op2 (t / tangle-01
+                :ARG1 (w / wire)))
+        :ARG2 (d / desk))
+    :op2 (a3 / around
+        :domain a
+        :op1 d))

@@ -1,0 +1,44 @@
+# ::tok An indoor skate park area with several skateboarders riding he ramps as people watch from the terrace above .
+# ::node	i	indoor	1-2
+# ::node	s2	skate-01	2-3
+# ::node	p	park	3-4
+# ::node	a2	area	4-5
+# ::node	s	several	6-7
+# ::node	p2	person	7-8
+# ::node	b	board-05	7-8
+# ::node	r2	ride-01	8-9
+# ::node	r	ramp-up-01	10-11
+# ::node	p3	person	12-13
+# ::node	w	watch-01	13-14
+# ::node	t	terrace	16-17
+# ::node	a	above	17-18
+# ::root	a2	area
+# ::edge	park	mod	skate-01	p	s2	
+# ::edge	area	location-of	park	a2	p	
+# ::edge	area	location	indoor	a2	i	
+# ::edge	person	quant	several	p2	s	
+# ::edge	person	ARG0-of	board-05	p2	b	
+# ::edge	board-05	ARG1	skate-01	b	s2	
+# ::edge	ride-01	ARG0	person	r2	p2	
+# ::edge	area	location-of	ride-01	a2	r2	
+# ::edge	ride-01	ARG1	ramp-up-01	r2	r	
+# ::edge	ramp-up-01	ARG0	person	r	p2	
+# ::edge	watch-01	ARG0	person	w	p3	
+# ::edge	area	ARG1-of	watch-01	a2	w	
+# ::edge	watch-01	source	terrace	w	t	
+# ::edge	terrace	location	above	t	a	
+(a2 / area
+    :ARG1-of (w / watch-01
+        :ARG0 (p3 / person)
+        :source (t / terrace
+            :location (a / above)))
+    :location (i / indoor)
+    :location-of (p / park
+        :mod (s2 / skate-01))
+    :location-of (r2 / ride-01
+        :ARG0 (p2 / person
+            :quant (s / several)
+            :ARG0-of (b / board-05
+                :ARG1 s2))
+        :ARG1 (r / ramp-up-01
+            :ARG0 p2)))

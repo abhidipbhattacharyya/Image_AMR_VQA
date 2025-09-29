@@ -1,0 +1,43 @@
+# ::tok A black and white image of three gentleman , one holding a trash can , posing for the camera .
+# ::node	b	black-04	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	i	image	4-5
+# ::node	1	3	6-7
+# ::node	g	gentleman	7-8
+# ::node	i2	include-91	9-10
+# ::node	0	1	9-10
+# ::node	p	person	10-11
+# ::node	h	hold-01	10-11
+# ::node	t	trash	12-13
+# ::node	c2	can	13-14
+# ::node	p2	pose-01	15-16
+# ::node	c	camera	18-19
+# ::root	i	image
+# ::edge	and	op1	black-04	a	b	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	image	mod	and	i	a	
+# ::edge	gentleman	quant	3	g	1	
+# ::edge	image	mod	gentleman	i	g	
+# ::edge	gentleman	ARG2-of	include-91	g	i2	
+# ::edge	person	quant	1	p	0	
+# ::edge	include-91	ARG1	person	i2	p	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	can	mod	trash	c2	t	
+# ::edge	hold-01	ARG1	can	h	c2	
+# ::edge	gentleman	ARG0-of	pose-01	g	p2	
+# ::edge	pose-01	ARG2	camera	p2	c	
+(i / image
+    :mod (a / and
+        :op1 (b / black-04)
+        :op2 (w / white-03))
+    :mod (g / gentleman
+        :quant 3
+        :ARG0-of (p2 / pose-01
+            :ARG2 (c / camera))
+        :ARG2-of (i2 / include-91
+            :ARG1 (p / person
+                :quant 1
+                :ARG0-of (h / hold-01
+                    :ARG1 (c2 / can
+                        :mod (t / trash)))))))

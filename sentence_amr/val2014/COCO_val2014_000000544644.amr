@@ -1,0 +1,52 @@
+# ::tok A red fire hydrant is very eye catching when surrounded by snow ; the sidewalk beside it has been shoveled out to allow walking .
+# ::node	r	red-02	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	v	very	5-6
+# ::node	e	eye	6-7
+# ::node	c	catch-01	7-8
+# ::node	s4	surround-01	9-10
+# ::node	s3	snow	11-12
+# ::node	a2	and	12-13
+# ::node	s2	sidewalk	14-15
+# ::node	b	beside	15-16
+# ::node	s	shovel-01	19-20
+# ::node	o	out	20-21
+# ::node	a	allow-01	22-23
+# ::node	w	walk-01	23-24
+# ::root	a2	and
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	catch-01	ARG1	eye	c	e	
+# ::edge	catch-01	degree	very	c	v	
+# ::edge	catch-01	ARG0	hydrant	c	h	
+# ::edge	catch-01	condition	surround-01	c	s4	
+# ::edge	surround-01	ARG2	hydrant	s4	h	
+# ::edge	surround-01	ARG1	snow	s4	s3	
+# ::edge	and	op1	catch-01	a2	c	
+# ::edge	sidewalk	location	beside	s2	b	
+# ::edge	beside	op1	hydrant	b	h	
+# ::edge	shovel-01	ARG1	sidewalk	s	s2	
+# ::edge	and	op2	shovel-01	a2	s	
+# ::edge	shovel-01	direction	out	s	o	
+# ::edge	shovel-01	purpose	allow-01	s	a	
+# ::edge	allow-01	ARG0	sidewalk	a	s2	
+# ::edge	allow-01	ARG1	walk-01	a	w	
+(a2 / and
+    :op1 (c / catch-01
+        :ARG0 (h / hydrant
+            :ARG1-of (r / red-02)
+            :mod (f / fire))
+        :ARG1 (e / eye)
+        :condition (s4 / surround-01
+            :ARG1 (s3 / snow)
+            :ARG2 h)
+        :degree (v / very))
+    :op2 (s / shovel-01
+        :purpose (a / allow-01
+            :ARG0 (s2 / sidewalk
+                :location (b / beside
+                    :op1 h))
+            :ARG1 (w / walk-01))
+        :ARG1 s2
+        :direction (o / out)))

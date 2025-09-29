@@ -1,0 +1,31 @@
+# ::tok A railroad stop with traffic signs that say no bicycles and there are stairs .
+# ::node	r	railroad	1-2
+# ::node	s4	stop-01	2-3
+# ::node	h	have-03	3-4
+# ::node	t	traffic	4-5
+# ::node	s2	sign	5-6
+# ::node	s	say-01	7-8
+# ::node	0	-	8-9
+# ::node	b	bicycle	9-10
+# ::node	a	and	10-11
+# ::node	s3	stair	13-14
+# ::root	s4	stop-01
+# ::edge	stop-01	ARG1	railroad	s4	r	
+# ::edge	stop-01	ARG0-of	have-03	s4	h	
+# ::edge	sign	mod	traffic	s2	t	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	bicycle	polarity	-	b	0	
+# ::edge	and	op1	bicycle	a	b	
+# ::edge	say-01	ARG1	and	s	a	
+# ::edge	and	op2	stair	a	s3	
+(s4 / stop-01
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :ARG0-of (s / say-01
+                :ARG1 (a / and
+                    :op1 (b / bicycle
+                        :polarity -)
+                    :op2 (s3 / stair)))
+            :mod (t / traffic)))
+    :ARG1 (r / railroad))

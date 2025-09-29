@@ -1,0 +1,22 @@
+# ::tok two trains going different directions on close tracks
+# ::node	0	2	0-1
+# ::node	t2	train	1-2
+# ::node	g	go-01	2-3
+# ::node	d	differ-02	3-4
+# ::node	d2	direction	4-5
+# ::node	c	close-10	6-7
+# ::node	t	track	7-8
+# ::root	g	go-01
+# ::edge	train	quant	2	t2	0	
+# ::edge	go-01	ARG1	train	g	t2	
+# ::edge	direction	ARG1-of	differ-02	d2	d	
+# ::edge	go-01	direction	direction	g	d2	
+# ::edge	track	ARG1-of	close-10	t	c	
+# ::edge	go-01	ARG4	track	g	t	
+(g / go-01
+    :ARG1 (t2 / train
+        :quant 2)
+    :ARG4 (t / track
+        :ARG1-of (c / close-10))
+    :direction (d2 / direction
+        :ARG1-of (d / differ-02)))

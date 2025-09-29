@@ -1,0 +1,42 @@
+# ::tok A street sign for Davis St. and Third Ave . with a skyscraper behind .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	n	name	4-5
+# ::node	1	Davis	4-5
+# ::node	r	road	5-6
+# ::node	2	St.	5-6
+# ::node	a	and	6-7
+# ::node	n2	name	7-8
+# ::node	3	Third	7-8
+# ::node	r2	road	8-9
+# ::node	0	Ave	8-9
+# ::node	s2	skyscraper	12-13
+# ::node	b	behind	13-14
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s3	
+# ::edge	name	op1	Davis	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	St.	n	2	
+# ::edge	and	op1	road	a	r	
+# ::edge	sign	beneficiary	and	s	a	
+# ::edge	name	op1	Third	n2	3	
+# ::edge	road	name	name	r2	n2	
+# ::edge	and	op2	road	a	r2	
+# ::edge	name	op2	Ave	n2	0	
+# ::edge	sign	prep-with	skyscraper	s	s2	
+# ::edge	skyscraper	location	behind	s2	b	
+# ::edge	behind	op1	and	b	a	
+(s / sign
+    :beneficiary (a / and
+        :op1 (r / road
+            :name (n / name
+                :op1 "Davis"
+                :op2 "St."))
+        :op2 (r2 / road
+            :name (n2 / name
+                :op1 "Third"
+                :op2 "Ave")))
+    :mod (s3 / street)
+    :prep-with (s2 / skyscraper
+        :location (b / behind
+            :op1 a)))

@@ -1,0 +1,22 @@
+# ::tok People standing in the middle of the road while a bus drives down the road
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	m	middle	4-5
+# ::node	r	road	7-8
+# ::node	b	bus	10-11
+# ::node	d2	drive-01	11-12
+# ::node	d	down	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	middle	s	m	
+# ::edge	middle	part-of	road	m	r	
+# ::edge	drive-01	ARG0	bus	d2	b	
+# ::edge	stand-01	time	drive-01	s	d2	
+# ::edge	drive-01	direction	down	d2	d	
+(s / stand-01
+    :ARG1 (p / person)
+    :ARG2 (m / middle
+        :part-of (r / road))
+    :time (d2 / drive-01
+        :ARG0 (b / bus)
+        :direction (d / down)))

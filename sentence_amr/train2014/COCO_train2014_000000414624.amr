@@ -1,0 +1,35 @@
+# ::tok Three people entering or leaving a car that is on the side of the road next to a bus .
+# ::node	0	3	0-1
+# ::node	p	person	1-2
+# ::node	e	enter-01	2-3
+# ::node	o	or	3-4
+# ::node	l	leave-11	4-5
+# ::node	c	car	6-7
+# ::node	s	side	11-12
+# ::node	r	road	14-15
+# ::node	n	next-to	15-16
+# ::node	b	bus	18-19
+# ::root	o	or
+# ::edge	person	quant	3	p	0	
+# ::edge	enter-01	ARG0	person	e	p	
+# ::edge	or	op1	enter-01	o	e	
+# ::edge	or	op2	leave-11	o	l	
+# ::edge	leave-11	ARG0	person	l	p	
+# ::edge	leave-11	ARG1	car	l	c	
+# ::edge	enter-01	ARG1	car	e	c	
+# ::edge	car	location	side	c	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	side	location-of	next-to	s	n	
+# ::edge	next-to	op1	bus	n	b	
+(o / or
+    :op1 (e / enter-01
+        :ARG0 (p / person
+            :quant 3)
+        :ARG1 (c / car
+            :location (s / side
+                :location-of (n / next-to
+                    :op1 (b / bus))
+                :part-of (r / road))))
+    :op2 (l / leave-11
+        :ARG0 p
+        :ARG1 c))

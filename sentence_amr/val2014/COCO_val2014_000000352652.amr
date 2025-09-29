@@ -1,0 +1,28 @@
+# ::tok Cars parked by parking meters buried in snow on a street near buildings .
+# ::node	c	car	0-1
+# ::node	p	park-01	1-2
+# ::node	p2	park-01	3-4
+# ::node	m	meter	4-5
+# ::node	b2	bury-01	5-6
+# ::node	s	snow	7-8
+# ::node	s2	street	10-11
+# ::node	n	near-02	11-12
+# ::node	b	building	12-13
+# ::root	c	car
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	meter	ARG2-of	park-01	m	p2	
+# ::edge	park-01	instrument	meter	p	m	
+# ::edge	car	ARG1-of	bury-01	c	b2	
+# ::edge	bury-01	ARG2	snow	b2	s	
+# ::edge	park-01	location	street	p	s2	
+# ::edge	street	ARG1-of	near-02	s2	n	
+# ::edge	near-02	ARG2	building	n	b	
+(c / car
+    :ARG1-of (p / park-01
+        :instrument (m / meter
+            :ARG2-of (p2 / park-01))
+        :location (s2 / street
+            :ARG1-of (n / near-02
+                :ARG2 (b / building))))
+    :ARG1-of (b2 / bury-01
+        :ARG2 (s / snow)))

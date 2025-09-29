@@ -1,0 +1,41 @@
+# ::tok The zebras eating drinking from same place in on a plain with a horned small animal behind .
+# ::node	e2	elephant	1-2
+# ::node	e	eat-01	2-3
+# ::node	d	drink-01	3-4
+# ::node	s	same-01	5-6
+# ::node	p	place	6-7
+# ::node	p2	plain	10-11
+# ::node	a	and	11-12
+# ::node	h	horn	13-14
+# ::node	s2	small	14-15
+# ::node	a2	animal	15-16
+# ::node	b	be-located-at-91	16-17
+# ::node	b2	behind	16-17
+# ::root	a	and
+# ::edge	eat-01	ARG0	elephant	e	e2	
+# ::edge	drink-01	ARG0	elephant	d	e2	
+# ::edge	place	ARG1-of	same-01	p	s	
+# ::edge	drink-01	source	place	d	p	
+# ::edge	elephant	location	plain	e2	p2	
+# ::edge	and	op2	drink-01	a	d	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	animal	mod	small	a2	s2	
+# ::edge	animal	part	horn	a2	h	
+# ::edge	be-located-at-91	ARG1	animal	b	a2	
+# ::edge	and	ARG2-of	be-located-at-91	a	b	
+# ::edge	be-located-at-91	location	behind	b	b2	
+# ::edge	behind	op1	plain	b2	p2	
+(a / and
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (a2 / animal
+            :mod (s2 / small)
+            :part (h / horn))
+        :location (b2 / behind
+            :op1 (p2 / plain)))
+    :op1 (e / eat-01
+        :ARG0 (e2 / elephant
+            :location p2))
+    :op2 (d / drink-01
+        :ARG0 e2
+        :source (p / place
+            :ARG1-of (s / same-01))))

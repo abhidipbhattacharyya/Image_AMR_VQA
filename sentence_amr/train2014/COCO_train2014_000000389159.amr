@@ -1,0 +1,30 @@
+# ::tok People riding in a subway train that have plant growth growing inside of it .
+# ::node	p	person	0-1
+# ::node	r	ride-01	1-2
+# ::node	s	subway	4-5
+# ::node	t	train	5-6
+# ::node	h	have-03	7-8
+# ::node	p2	plant	8-9
+# ::node	g	grow-01	9-10
+# ::node	g2	grow-03	10-11
+# ::node	i	inside	11-12
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	train	mod	subway	t	s	
+# ::edge	ride-01	ARG1	train	r	t	
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	grow-01	ARG1	plant	g	p2	
+# ::edge	grow-03	ARG1	grow-01	g2	g	
+# ::edge	have-03	ARG1	grow-03	h	g2	
+# ::edge	grow-03	location	inside	g2	i	
+# ::edge	inside	op1	train	i	t	
+(r / ride-01
+    :ARG0 (p / person)
+    :ARG1 (t / train
+        :ARG0-of (h / have-03
+            :ARG1 (g2 / grow-03
+                :ARG1 (g / grow-01
+                    :ARG1 (p2 / plant))
+                :location (i / inside
+                    :op1 t)))
+        :mod (s / subway)))

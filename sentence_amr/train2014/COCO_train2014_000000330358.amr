@@ -1,0 +1,29 @@
+# ::tok A propeller plane sitting on a runway with a man standing on the runway .
+# ::node	p2	propeller	1-2
+# ::node	p	plane	2-3
+# ::node	s	sit-01	3-4
+# ::node	r	runway	6-7
+# ::node	m	man	9-10
+# ::node	s2	stand-01	10-11
+# ::node	c	cause-01	11-12
+# ::node	a	and	14-15
+# ::root	a	and
+# ::edge	plane	mod	propeller	p	p2	
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	runway	s	r	
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	runway	s2	r	
+# ::edge	cause-01	ARG1	stand-01	c	s2	
+# ::edge	sit-01	ARG0-of	cause-01	s	c	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	and	op1	sit-01	a	s	
+(a / and
+    :op1 (s / sit-01
+        :ARG0-of (c / cause-01
+            :ARG1 (s2 / stand-01
+                :ARG1 (m / man)
+                :ARG2 (r / runway)))
+        :ARG1 (p / plane
+            :mod (p2 / propeller))
+        :ARG2 r)
+    :op2 s2)

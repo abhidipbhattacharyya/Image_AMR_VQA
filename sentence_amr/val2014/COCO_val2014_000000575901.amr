@@ -1,0 +1,34 @@
+# ::tok A group of baseball players with the pitcher throwing the ball to first base .
+# ::node	g	group-01	1-2
+# ::node	b3	baseball	3-4
+# ::node	p	person	4-5
+# ::node	p3	play-01	4-5
+# ::node	p2	person	7-8
+# ::node	s	strike-01	7-8
+# ::node	t	throw-01	8-9
+# ::node	b	ball	10-11
+# ::node	o	ordinal-entity	12-13
+# ::node	0	1	12-13
+# ::node	b2	base	13-14
+# ::root	g	group-01
+# ::edge	group-01	ARG1	person	g	p	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b3	
+# ::edge	person	ARG0-of	strike-01	p2	s	
+# ::edge	throw-01	ARG0	person	t	p2	
+# ::edge	group-01	accompanier	throw-01	g	t	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	throw-01	ARG2	base	t	b2	
+(g / group-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b3 / baseball)))
+    :accompanier (t / throw-01
+        :ARG0 (p2 / person
+            :ARG0-of (s / strike-01))
+        :ARG1 (b / ball)
+        :ARG2 (b2 / base
+            :ord (o / ordinal-entity
+                :value 1))))

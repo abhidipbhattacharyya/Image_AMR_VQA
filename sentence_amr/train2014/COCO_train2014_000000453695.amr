@@ -1,0 +1,43 @@
+# ::tok A red stop sign says STOP and then in small lettering is the word " Hating " and power lines are in the background .
+# ::node	r	red-02	1-2
+# ::node	s4	stop-01	2-3
+# ::node	s2	signal-07	3-4
+# ::node	s	say-01	4-5
+# ::node	s5	stop-01	5-6
+# ::node	a	and	6-7
+# ::node	t	then	7-8
+# ::node	s3	small	9-10
+# ::node	l	letter	10-11
+# ::node	w	word	13-14
+# ::node	0	hate-01	15-16
+# ::node	p	power	18-19
+# ::node	l2	line	19-20
+# ::node	b	background	23-24
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	signal-07	ARG1-of	red-02	s2	r	
+# ::edge	say-01	ARG0	signal-07	s	s2	
+# ::edge	say-01	ARG1	stop-01	s	s5	
+# ::edge	and	op1	say-01	a	s	
+# ::edge	letter	mod	small	l	s3	
+# ::edge	word	medium	letter	w	l	
+# ::edge	word	time	then	w	t	
+# ::edge	and	op2	word	a	w	
+# ::edge	word	value	hate-01	w	0	
+# ::edge	line	mod	power	l2	p	
+# ::edge	and	op3	line	a	l2	
+# ::edge	line	location	background	l2	b	
+(a / and
+    :op1 (s / say-01
+        :ARG0 (s2 / signal-07
+            :ARG1 (s4 / stop-01)
+            :ARG1-of (r / red-02))
+        :ARG1 (s5 / stop-01))
+    :op2 (w / word
+        :medium (l / letter
+            :mod (s3 / small))
+        :time (t / then)
+        :value "hate-01")
+    :op3 (l2 / line
+        :location (b / background)
+        :mod (p / power)))

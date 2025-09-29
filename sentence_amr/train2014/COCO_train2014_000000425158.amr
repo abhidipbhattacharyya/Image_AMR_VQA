@@ -1,0 +1,25 @@
+# ::tok A stop sign under a street lamp is shining at night .
+# ::node	s3	stop-01	1-2
+# ::node	s2	sign	2-3
+# ::node	u	under	3-4
+# ::node	s4	street	5-6
+# ::node	l	lamp	6-7
+# ::node	s	shine-01	8-9
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::root	s	shine-01
+# ::edge	sign	purpose	stop-01	s2	s3	
+# ::edge	sign	location	under	s2	u	
+# ::edge	lamp	mod	street	l	s4	
+# ::edge	under	op1	lamp	u	l	
+# ::edge	shine-01	ARG1	sign	s	s2	
+# ::edge	shine-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s / shine-01
+    :ARG1 (s2 / sign
+        :purpose (s3 / stop-01)
+        :location (u / under
+            :op1 (l / lamp
+                :mod (s4 / street))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

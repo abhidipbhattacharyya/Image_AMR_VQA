@@ -1,0 +1,27 @@
+# ::tok A bicycle parked in front of a brick wall with a wall - mounted hydrant .
+# ::node	b	bicycle	1-2
+# ::node	p	park-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	b2	brick	7-8
+# ::node	w	wall	8-9
+# ::node	h	have-03	9-10
+# ::node	m	mount-03	13-14
+# ::node	h2	hydrant	14-15
+# ::root	b	bicycle
+# ::edge	bicycle	ARG1-of	park-01	b	p	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	wall	consist-of	brick	w	b2	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	mount-03	ARG0	wall	m	w	
+# ::edge	hydrant	ARG1-of	mount-03	h2	m	
+# ::edge	have-03	ARG1	hydrant	h	h2	
+(b / bicycle
+    :ARG1-of (p / park-01
+        :ARG2 (i / in-front-of
+            :op1 (w / wall
+                :ARG0-of (h / have-03
+                    :ARG1 (h2 / hydrant
+                        :ARG1-of (m / mount-03
+                            :ARG0 w)))
+                :consist-of (b2 / brick)))))

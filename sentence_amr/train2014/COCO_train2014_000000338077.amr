@@ -1,0 +1,33 @@
+# ::tok The Asian man enjoys biting in to a delicious mustard slathered hot dog .
+# ::node	c2	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	m	man	2-3
+# ::node	e	enjoy-01	3-4
+# ::node	b	bite-01	4-5
+# ::node	d	delicious	8-9
+# ::node	m2	mustard	9-10
+# ::node	c	coat-01	10-11
+# ::node	h	hot-dog	12-13
+# ::root	e	enjoy-01
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	man	mod	continent	m	c2	
+# ::edge	enjoy-01	ARG0	man	e	m	
+# ::edge	enjoy-01	ARG1	bite-01	e	b	
+# ::edge	bite-01	ARG0	man	b	m	
+# ::edge	coat-01	ARG2	mustard	c	m2	
+# ::edge	hot-dog	ARG1-of	coat-01	h	c	
+# ::edge	hot-dog	mod	delicious	h	d	
+# ::edge	bite-01	ARG1	hot-dog	b	h	
+(e / enjoy-01
+    :ARG0 (m / man
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG1 (b / bite-01
+        :ARG0 m
+        :ARG1 (h / hot-dog
+            :ARG1-of (c / coat-01
+                :ARG2 (m2 / mustard))
+            :mod (d / delicious))))

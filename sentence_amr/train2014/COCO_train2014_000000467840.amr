@@ -1,0 +1,43 @@
+# ::tok Tourists in a square include a woman dressed in Mexican gear with a multi - colored umbrella .
+# ::node	p	person	0-1
+# ::node	t	tour-01	0-1
+# ::node	s	square	3-4
+# ::node	i	include-01	4-5
+# ::node	w	woman	6-7
+# ::node	d	dress-01	7-8
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	Mexico	9-10
+# ::node	g	gear	10-11
+# ::node	h	have-03	11-12
+# ::node	m	multiple	13-14
+# ::node	c	color-01	15-16
+# ::node	u	umbrella	16-17
+# ::root	i	include-01
+# ::edge	person	ARG0-of	tour-01	p	t	
+# ::edge	person	location	square	p	s	
+# ::edge	include-01	ARG2	person	i	p	
+# ::edge	include-01	ARG1	woman	i	w	
+# ::edge	woman	ARG1-of	dress-01	w	d	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Mexico	n	0	
+# ::edge	gear	mod	country	g	c2	
+# ::edge	dress-01	ARG2	gear	d	g	
+# ::edge	woman	ARG0-of	have-03	w	h	
+# ::edge	color-01	quant	multiple	c	m	
+# ::edge	umbrella	ARG1-of	color-01	u	c	
+# ::edge	have-03	ARG1	umbrella	h	u	
+(i / include-01
+    :ARG1 (w / woman
+        :ARG0-of (h / have-03
+            :ARG1 (u / umbrella
+                :ARG1-of (c / color-01
+                    :quant (m / multiple))))
+        :ARG1-of (d / dress-01
+            :ARG2 (g / gear
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "Mexico")))))
+    :ARG2 (p / person
+        :ARG0-of (t / tour-01)
+        :location (s / square)))

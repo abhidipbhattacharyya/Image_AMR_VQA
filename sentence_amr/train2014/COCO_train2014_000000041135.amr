@@ -1,0 +1,28 @@
+# ::tok A tennis player is sprinting toward the ball to return it with her racket .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	r3	run-02	4-5
+# ::node	b	ball	7-8
+# ::node	r2	return-02	9-10
+# ::node	r	racket	13-14
+# ::root	r3	run-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	run-02	ARG0	person	r3	p	
+# ::edge	run-02	direction	ball	r3	b	
+# ::edge	return-02	ARG1	ball	r2	b	
+# ::edge	run-02	purpose	return-02	r3	r2	
+# ::edge	return-02	ARG0	person	r2	p	
+# ::edge	return-02	instrument	racket	r2	r	
+# ::edge	racket	poss	person	r	p	
+(r3 / run-02
+    :purpose (r2 / return-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis)))
+        :ARG1 (b / ball)
+        :instrument (r / racket
+            :poss p))
+    :ARG0 p
+    :direction b)

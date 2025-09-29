@@ -1,0 +1,36 @@
+# ::tok A red and yellow double decker bus parked in front of a brick building .
+# ::node	r	red-02	1-2
+# ::node	a	and	2-3
+# ::node	y	yellow-02	3-4
+# ::node	d2	double	4-5
+# ::node	d	deck	5-6
+# ::node	b3	bus	6-7
+# ::node	b4	bus	6-7
+# ::node	p	park-01	7-8
+# ::node	i	in-front-of	9-10
+# ::node	b	brick	12-13
+# ::node	b2	building	13-14
+# ::root	p	park-01
+# ::edge	deck	mod	double	d	d2	
+# ::edge	bus	mod	deck	b3	d	
+# ::edge	and	op1	bus	a	b3	
+# ::edge	bus	ARG1-of	red-02	b3	r	
+# ::edge	bus	mod	deck	b4	d	
+# ::edge	bus	ARG1-of	yellow-02	b4	y	
+# ::edge	and	op2	bus	a	b4	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	in-front-of	op1	building	i	b2	
+(p / park-01
+    :ARG1 (a / and
+        :op1 (b3 / bus
+            :ARG1-of (r / red-02)
+            :mod (d / deck
+                :mod (d2 / double)))
+        :op2 (b4 / bus
+            :ARG1-of (y / yellow-02)
+            :mod d))
+    :ARG2 (i / in-front-of
+        :op1 (b2 / building
+            :consist-of (b / brick))))

@@ -1,0 +1,25 @@
+# ::tok Various vegetables being sold by a vendor at an outside food market .
+# ::node	v	various	0-1
+# ::node	v2	vegetable	1-2
+# ::node	s	sell-01	3-4
+# ::node	p	person	6-7
+# ::node	v3	vend-01	6-7
+# ::node	o	outside	9-10
+# ::node	f	food	10-11
+# ::node	m	market	11-12
+# ::root	s	sell-01
+# ::edge	vegetable	mod	various	v2	v	
+# ::edge	sell-01	ARG1	vegetable	s	v2	
+# ::edge	sell-01	ARG0	person	s	p	
+# ::edge	person	ARG0-of	vend-01	p	v3	
+# ::edge	market	mod	food	m	f	
+# ::edge	market	location	outside	m	o	
+# ::edge	sell-01	location	market	s	m	
+(s / sell-01
+    :ARG0 (p / person
+        :ARG0-of (v3 / vend-01))
+    :ARG1 (v2 / vegetable
+        :mod (v / various))
+    :location (m / market
+        :location (o / outside)
+        :mod (f / food)))

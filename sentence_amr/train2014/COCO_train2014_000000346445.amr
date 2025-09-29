@@ -1,0 +1,22 @@
+# ::tok A car passing through an intersection with a non - functioning traffic light .
+# ::node	c	car	1-2
+# ::node	p	pass-03	2-3
+# ::node	i	intersect-01	5-6
+# ::node	0	-	8-9
+# ::node	f	function-01	10-11
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	c	car
+# ::edge	car	ARG1-of	pass-03	c	p	
+# ::edge	pass-03	path	intersect-01	p	i	
+# ::edge	function-01	polarity	-	f	0	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG0-of	function-01	l	f	
+# ::edge	intersect-01	ARG1	light	i	l	
+(c / car
+    :ARG1-of (p / pass-03
+        :path (i / intersect-01
+            :ARG1 (l / light
+                :ARG0-of (f / function-01
+                    :polarity -)
+                :mod (t / traffic)))))

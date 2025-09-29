@@ -1,0 +1,30 @@
+# ::tok A baseball player at a professional game is bending down to catch the ball .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	p3	professional	5-6
+# ::node	g	game	6-7
+# ::node	b3	bend-01	8-9
+# ::node	d	down	9-10
+# ::node	c	catch-01	11-12
+# ::node	b	ball	13-14
+# ::root	b3	bend-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	game	mod	professional	g	p3	
+# ::edge	person	location	game	p	g	
+# ::edge	bend-01	ARG1	person	b3	p	
+# ::edge	bend-01	direction	down	b3	d	
+# ::edge	bend-01	purpose	catch-01	b3	c	
+# ::edge	catch-01	ARG0	person	c	p	
+# ::edge	catch-01	ARG1	ball	c	b	
+(b3 / bend-01
+    :purpose (c / catch-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b2 / baseball))
+            :location (g / game
+                :mod (p3 / professional)))
+        :ARG1 (b / ball))
+    :ARG1 p
+    :direction (d / down))

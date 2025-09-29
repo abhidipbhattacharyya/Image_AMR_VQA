@@ -1,0 +1,28 @@
+# ::tok A train travelling next to a rural highway with water on the other side .
+# ::node	t	train	1-2
+# ::node	t2	travel-01	2-3
+# ::node	n	next-to	3-4
+# ::node	r	rural	6-7
+# ::node	h2	highway	7-8
+# ::node	h	have-03	8-9
+# ::node	w	water	9-10
+# ::node	o	other	12-13
+# ::node	s	side	13-14
+# ::root	t	train
+# ::edge	train	ARG0-of	travel-01	t	t2	
+# ::edge	travel-01	location	next-to	t2	n	
+# ::edge	highway	mod	rural	h2	r	
+# ::edge	next-to	op1	highway	n	h2	
+# ::edge	highway	ARG0-of	have-03	h2	h	
+# ::edge	have-03	ARG1	water	h	w	
+# ::edge	side	mod	other	s	o	
+# ::edge	water	location	side	w	s	
+(t / train
+    :ARG0-of (t2 / travel-01
+        :location (n / next-to
+            :op1 (h2 / highway
+                :ARG0-of (h / have-03
+                    :ARG1 (w / water
+                        :location (s / side
+                            :mod (o / other))))
+                :mod (r / rural)))))

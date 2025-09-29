@@ -1,0 +1,45 @@
+# ::tok this kitchen has all white walls and ceilings and a brown and white island
+# ::node	t	this	0-1
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	a	all	3-4
+# ::node	w2	white-03	4-5
+# ::node	w	wall	5-6
+# ::node	a2	and	6-7
+# ::node	a3	and	6-7
+# ::node	c	ceiling	7-8
+# ::node	w3	white-03	10-11
+# ::node	a4	and	11-12
+# ::node	w4	white-03	12-13
+# ::node	i	island	13-14
+# ::node	i2	island	13-14
+# ::root	h	have-03
+# ::edge	kitchen	mod	this	k	t	
+# ::edge	have-03	ARG0	kitchen	h	k	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op1	and	a2	a3	
+# ::edge	and	op1	wall	a3	w	
+# ::edge	and	ARG1-of	white-03	a3	w2	
+# ::edge	and	mod	all	a3	a	
+# ::edge	and	op2	ceiling	a3	c	
+# ::edge	white-03	op2	and	w3	a4	
+# ::edge	and	op1	island	a4	i	
+# ::edge	island	ARG1-of	white-03	i	w3	
+# ::edge	island	ARG1-of	white-03	i2	w4	
+# ::edge	and	op2	island	a4	i2	
+# ::edge	have-03	rel	and	h	a4	
+(h / have-03
+    :ARG0 (k / kitchen
+        :mod (t / this))
+    :ARG1 (a2 / and
+        :op1 (a3 / and
+            :ARG1-of (w2 / white-03)
+            :mod (a / all)
+            :op1 (w / wall)
+            :op2 (c / ceiling)))
+    :rel (a4 / and
+        :op1 (i / island
+            :ARG1-of (w3 / white-03
+                :op2 a4))
+        :op2 (i2 / island
+            :ARG1-of (w4 / white-03))))

@@ -1,0 +1,32 @@
+# ::tok Several cows standing and laying in a grassy field backed by trees .
+# ::node	s	several	0-1
+# ::node	c	cow	1-2
+# ::node	s2	stand-01	2-3
+# ::node	a	and	3-4
+# ::node	l	lay-01	4-5
+# ::node	g	grass	7-8
+# ::node	f	field	8-9
+# ::node	b	back-01	9-10
+# ::node	t	tree	11-12
+# ::root	a	and
+# ::edge	cow	quant	several	c	s	
+# ::edge	stand-01	ARG1	cow	s2	c	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	and	op2	lay-01	a	l	
+# ::edge	lay-01	ARG1	cow	l	c	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	lay-01	ARG2	field	l	f	
+# ::edge	stand-01	ARG2	field	s2	f	
+# ::edge	field	ARG1-of	back-01	f	b	
+# ::edge	back-01	ARG0	tree	b	t	
+(a / and
+    :op1 (s2 / stand-01
+        :ARG1 (c / cow
+            :quant (s / several))
+        :ARG2 (f / field
+            :ARG1-of (b / back-01
+                :ARG0 (t / tree))
+            :consist-of (g / grass)))
+    :op2 (l / lay-01
+        :ARG1 c
+        :ARG2 f))

@@ -1,0 +1,62 @@
+# ::tok Blue and yellow Nerf bat and two balls , one small and one bigger .
+# ::node	l	Blue	0-1
+# ::node	a	and	1-2
+# ::node	y	yellow-02	2-3
+# ::node	p	product	3-4
+# ::node	n	name	3-4
+# ::node	3	Nerf	3-4
+# ::node	b3	bat	4-5
+# ::node	b4	bat	4-5
+# ::node	2	2	6-7
+# ::node	b	ball	7-8
+# ::node	b2	ball	7-8
+# ::node	i	include-91	9-10
+# ::node	i2	include-91	9-10
+# ::node	0	1	9-10
+# ::node	1	1	9-10
+# ::node	s	small	10-11
+# ::node	h	have-degree-91	13-14
+# ::node	b5	big	13-14
+# ::node	m	more	13-14
+# ::root	a	and
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Nerf	n	3	
+# ::edge	bat	mod	product	b3	p	
+# ::edge	and	op1	bat	a	b3	
+# ::edge	bat	mod	Blue	b3	l	
+# ::edge	bat	mod	product	b4	p	
+# ::edge	bat	ARG1-of	yellow-02	b4	y	
+# ::edge	and	op2	bat	a	b4	
+# ::edge	ball	quant	2	b	2	
+# ::edge	and	op3	ball	a	b	
+# ::edge	ball	ARG2-of	include-91	b	i	
+# ::edge	include-91	ARG1	ball	i	b	
+# ::edge	include-91	ARG1	ball	i2	b2	
+# ::edge	ball	ARG2-of	include-91	b	i2	
+# ::edge	ball	quant	1	b2	0	
+# ::edge	ball	quant	1	b2	1	
+# ::edge	ball	mod	small	b2	s	
+# ::edge	ball	ARG1-of	have-degree-91	b2	h	
+# ::edge	have-degree-91	ARG2	big	h	b5	
+# ::edge	have-degree-91	ARG3	more	h	m	
+(a / and
+    :op1 (b3 / bat
+        :mod (p / product
+            :name (n / name
+                :op1 "Nerf"))
+        :mod (l / Blue))
+    :op2 (b4 / bat
+        :ARG1-of (y / yellow-02)
+        :mod p)
+    :op3 (b / ball
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 b)
+        :ARG2-of (i2 / include-91
+            :ARG1 (b2 / ball
+                :quant 1
+                :quant 1
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (b5 / big)
+                    :ARG3 (m / more))
+                :mod (s / small)))))

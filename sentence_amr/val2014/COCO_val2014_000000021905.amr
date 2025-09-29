@@ -1,0 +1,32 @@
+# ::tok A snowboarder is flying through the air , trailing snow behind them .
+# ::node	p	person	1-2
+# ::node	b2	board-05	1-2
+# ::node	s	snow	1-2
+# ::node	f	fly-01	3-4
+# ::node	a	air	6-7
+# ::node	a2	and	7-8
+# ::node	f2	follow-01	8-9
+# ::node	s2	snow	9-10
+# ::node	b	behind	10-11
+# ::root	a2	and
+# ::edge	person	ARG0-of	board-05	p	b2	
+# ::edge	board-05	ARG1	snow	b2	s	
+# ::edge	fly-01	ARG1	person	f	p	
+# ::edge	fly-01	path	air	f	a	
+# ::edge	and	op1	fly-01	a2	f	
+# ::edge	and	op2	follow-01	a2	f2	
+# ::edge	follow-01	ARG2	person	f2	p	
+# ::edge	follow-01	ARG1	snow	f2	s2	
+# ::edge	follow-01	location	behind	f2	b	
+# ::edge	behind	op1	person	b	p	
+(a2 / and
+    :op1 (f / fly-01
+        :ARG1 (p / person
+            :ARG0-of (b2 / board-05
+                :ARG1 (s / snow)))
+        :path (a / air))
+    :op2 (f2 / follow-01
+        :ARG1 (s2 / snow)
+        :ARG2 p
+        :location (b / behind
+            :op1 p)))

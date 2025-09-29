@@ -1,0 +1,28 @@
+# ::tok a man in motorcycle gear standing next to a motorcycle parked near a tent
+# ::node	m	man	1-2
+# ::node	m2	motorcycle	3-4
+# ::node	g	gear	4-5
+# ::node	s	stand-01	5-6
+# ::node	n2	next-to	6-7
+# ::node	m3	motorcycle	9-10
+# ::node	p	park-01	10-11
+# ::node	n	near-02	11-12
+# ::node	t	tent	13-14
+# ::root	s	stand-01
+# ::edge	gear	mod	motorcycle	g	m2	
+# ::edge	man	mod	gear	m	g	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	motorcycle	n2	m3	
+# ::edge	motorcycle	ARG1-of	park-01	m3	p	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	near-02	ARG2	tent	n	t	
+(s / stand-01
+    :ARG1 (m / man
+        :mod (g / gear
+            :mod (m2 / motorcycle)))
+    :ARG2 (n2 / next-to
+        :op1 (m3 / motorcycle
+            :ARG1-of (p / park-01
+                :ARG1-of (n / near-02
+                    :ARG2 (t / tent))))))

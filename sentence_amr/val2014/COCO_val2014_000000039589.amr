@@ -1,0 +1,31 @@
+# ::tok The cat is inside the house , poised next to the box of chocolate doughnuts .
+# ::node	c	cat	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	i	inside	3-4
+# ::node	h	house	5-6
+# ::node	p	poise-01	7-8
+# ::node	n	next-to	8-9
+# ::node	b2	box	11-12
+# ::node	c3	contain-01	11-12
+# ::node	c2	chocolate	13-14
+# ::node	c4	cookie	14-15
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	cat	b	c	
+# ::edge	be-located-at-91	ARG2	inside	b	i	
+# ::edge	inside	op1	house	i	h	
+# ::edge	cat	ARG1-of	poise-01	c	p	
+# ::edge	poise-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	box	n	b2	
+# ::edge	box	ARG0-of	contain-01	b2	c3	
+# ::edge	cookie	mod	chocolate	c4	c2	
+# ::edge	contain-01	ARG1	cookie	c3	c4	
+(b / be-located-at-91
+    :ARG1 (c / cat
+        :ARG1-of (p / poise-01
+            :ARG2 (n / next-to
+                :op1 (b2 / box
+                    :ARG0-of (c3 / contain-01
+                        :ARG1 (c4 / cookie
+                            :mod (c2 / chocolate)))))))
+    :ARG2 (i / inside
+        :op1 (h / house)))

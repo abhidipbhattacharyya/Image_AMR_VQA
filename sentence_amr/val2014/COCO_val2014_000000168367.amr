@@ -1,0 +1,30 @@
+# ::tok Someone holding a wii remote control with the strap around his wrist
+# ::node	s	someone	0-1
+# ::node	h	hold-01	1-2
+# ::node	n	name	3-4
+# ::node	0	W	3-4
+# ::node	r	remote	4-5
+# ::node	c	control	5-6
+# ::node	s2	strap	8-9
+# ::node	a	around	9-10
+# ::node	w	wrist	11-12
+# ::root	s	someone
+# ::edge	someone	ARG0-of	hold-01	s	h	
+# ::edge	name	op1	W	n	0	
+# ::edge	control	mod	remote	c	r	
+# ::edge	control	name	name	c	n	
+# ::edge	hold-01	ARG1	control	h	c	
+# ::edge	around	domain	strap	a	s2	
+# ::edge	hold-01	manner	around	h	a	
+# ::edge	around	op1	wrist	a	w	
+# ::edge	someone	part	wrist	s	w	
+(s / someone
+    :ARG0-of (h / hold-01
+        :ARG1 (c / control
+            :name (n / name
+                :op1 "W")
+            :mod (r / remote))
+        :manner (a / around
+            :domain (s2 / strap)
+            :op1 (w / wrist)))
+    :part w)

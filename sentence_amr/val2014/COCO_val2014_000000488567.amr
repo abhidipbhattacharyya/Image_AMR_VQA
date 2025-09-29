@@ -1,0 +1,43 @@
+# ::tok The interstate is void of traffic by the exit , where a row of big green signs extends overhead across all the lanes .
+# ::node	i	interstate	1-2
+# ::node	v	void-03	3-4
+# ::node	t	traffic	5-6
+# ::node	c	cause-01	6-7
+# ::node	e	exit	8-9
+# ::node	r	row	12-13
+# ::node	b	big	14-15
+# ::node	g	green-02	15-16
+# ::node	s	sign	16-17
+# ::node	e2	extend-01	17-18
+# ::node	o	overhead	18-19
+# ::node	a	across	19-20
+# ::node	a2	all	20-21
+# ::node	l	lane	22-23
+# ::root	v	void-03
+# ::edge	void-03	ARG1	interstate	v	i	
+# ::edge	void-03	ARG2	traffic	v	t	
+# ::edge	void-03	ARG1-of	cause-01	v	c	
+# ::edge	void-03	location	exit	v	e	
+# ::edge	sign	ARG1-of	green-02	s	g	
+# ::edge	sign	mod	big	s	b	
+# ::edge	row	consist-of	sign	r	s	
+# ::edge	extend-01	ARG1	row	e2	r	
+# ::edge	exit	location-of	extend-01	e	e2	
+# ::edge	extend-01	ARG4	overhead	e2	o	
+# ::edge	extend-01	ARG2	across	e2	a	
+# ::edge	lane	mod	all	l	a2	
+# ::edge	across	op1	lane	a	l	
+(v / void-03
+    :ARG1 (i / interstate)
+    :ARG1-of (c / cause-01)
+    :ARG2 (t / traffic)
+    :location (e / exit
+        :location-of (e2 / extend-01
+            :ARG1 (r / row
+                :consist-of (s / sign
+                    :ARG1-of (g / green-02)
+                    :mod (b / big)))
+            :ARG2 (a / across
+                :op1 (l / lane
+                    :mod (a2 / all)))
+            :ARG4 (o / overhead))))

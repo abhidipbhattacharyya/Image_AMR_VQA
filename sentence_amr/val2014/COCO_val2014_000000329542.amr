@@ -1,0 +1,28 @@
+# ::tok A camera is shown viewing 3 cupcakes , one of which is being touched .
+# ::node	c	camera	1-2
+# ::node	s	show-01	3-4
+# ::node	v	view-01	4-5
+# ::node	1	3	5-6
+# ::node	c2	cup	6-7
+# ::node	c3	cup	6-7
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	t	touch-01	13-14
+# ::root	s	show-01
+# ::edge	show-01	ARG1	camera	s	c	
+# ::edge	camera	ARG0-of	view-01	c	v	
+# ::edge	cup	quant	3	c2	1	
+# ::edge	view-01	ARG1	cup	v	c2	
+# ::edge	cup	quant	1	c3	0	
+# ::edge	include-91	ARG1	cup	i	c3	
+# ::edge	cup	ARG2-of	include-91	c2	i	
+# ::edge	cup	ARG1-of	touch-01	c3	t	
+(s / show-01
+    :ARG1 (c / camera
+        :ARG0-of (v / view-01
+            :ARG1 (c2 / cup
+                :quant 3
+                :ARG2-of (i / include-91
+                    :ARG1 (c3 / cup
+                        :quant 1
+                        :ARG1-of (t / touch-01)))))))

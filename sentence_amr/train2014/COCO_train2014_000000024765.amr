@@ -1,0 +1,27 @@
+# ::tok A clock on an air vent covering with some rust running down it .
+# ::node	c	clock	1-2
+# ::node	a	air	4-5
+# ::node	v	vent	5-6
+# ::node	c2	cover-02	6-7
+# ::node	s	some	8-9
+# ::node	r2	rust-01	9-10
+# ::node	r	run-02	10-11
+# ::node	d	down	11-12
+# ::root	c	clock
+# ::edge	vent	mod	air	v	a	
+# ::edge	clock	location	vent	c	v	
+# ::edge	vent	ARG1-of	cover-02	v	c2	
+# ::edge	rust-01	quant	some	r2	s	
+# ::edge	run-02	ARG0	rust-01	r	r2	
+# ::edge	cover-02	ARG2	run-02	c2	r	
+# ::edge	run-02	direction	down	r	d	
+# ::edge	down	op1	vent	d	v	
+(c / clock
+    :location (v / vent
+        :ARG1-of (c2 / cover-02
+            :ARG2 (r / run-02
+                :ARG0 (r2 / rust-01
+                    :quant (s / some))
+                :direction (d / down
+                    :op1 v)))
+        :mod (a / air)))

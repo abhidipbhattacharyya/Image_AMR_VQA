@@ -1,0 +1,28 @@
+# ::tok Meat over rice with vegetables and sesame seeds in a serving dish .
+# ::node	m	meat	0-1
+# ::node	o	over	1-2
+# ::node	r	rice	2-3
+# ::node	v	vegetable	4-5
+# ::node	a	and	5-6
+# ::node	s3	sesame	6-7
+# ::node	s	seed	7-8
+# ::node	s2	serve-02	10-11
+# ::node	d	dish	11-12
+# ::root	d	dish
+# ::edge	meat	location	over	m	o	
+# ::edge	over	op1	rice	o	r	
+# ::edge	and	op1	vegetable	a	v	
+# ::edge	meat	accompanier	and	m	a	
+# ::edge	seed	mod	sesame	s	s3	
+# ::edge	and	op2	seed	a	s	
+# ::edge	dish	ARG2-of	serve-02	d	s2	
+# ::edge	dish	consist-of	meat	d	m	
+(d / dish
+    :ARG2-of (s2 / serve-02)
+    :consist-of (m / meat
+        :accompanier (a / and
+            :op1 (v / vegetable)
+            :op2 (s / seed
+                :mod (s3 / sesame)))
+        :location (o / over
+            :op1 (r / rice))))

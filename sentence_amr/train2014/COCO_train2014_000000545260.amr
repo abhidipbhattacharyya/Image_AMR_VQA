@@ -1,0 +1,38 @@
+# ::tok One man kneeling to pray while another sits at a desk and study .
+# ::node	0	1	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	k	kneel-01	2-3
+# ::node	p	pray-01	4-5
+# ::node	c	contrast-01	5-6
+# ::node	a2	another	6-7
+# ::node	s	sit-01	7-8
+# ::node	d	desk	10-11
+# ::node	a	and	11-12
+# ::node	s2	study-01	12-13
+# ::root	c	contrast-01
+# ::edge	man	quant	1	m	0	
+# ::edge	kneel-01	ARG0	man	k	m	
+# ::edge	kneel-01	purpose	pray-01	k	p	
+# ::edge	pray-01	ARG0	man	p	m	
+# ::edge	contrast-01	ARG1	kneel-01	c	k	
+# ::edge	man	mod	another	m2	a2	
+# ::edge	sit-01	ARG1	man	s	m2	
+# ::edge	sit-01	ARG2	desk	s	d	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	contrast-01	ARG2	and	c	a	
+# ::edge	and	op2	study-01	a	s2	
+# ::edge	study-01	ARG0	man	s2	m2	
+(c / contrast-01
+    :ARG1 (k / kneel-01
+        :purpose (p / pray-01
+            :ARG0 (m / man
+                :quant 1))
+        :ARG0 m)
+    :ARG2 (a / and
+        :op1 (s / sit-01
+            :ARG1 (m2 / man
+                :mod (a2 / another))
+            :ARG2 (d / desk))
+        :op2 (s2 / study-01
+            :ARG0 m2)))

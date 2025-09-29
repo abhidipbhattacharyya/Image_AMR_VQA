@@ -1,0 +1,30 @@
+# ::tok A locomotive train on a set of railroad tracks , with tanker cars attached behind it .
+# ::node	l	locomotive	1-2
+# ::node	t3	train	2-3
+# ::node	s	set	5-6
+# ::node	r	railroad	7-8
+# ::node	t2	track	8-9
+# ::node	t	tanker	11-12
+# ::node	c	car	12-13
+# ::node	a	attach-01	13-14
+# ::node	b	behind	14-15
+# ::root	t3	train
+# ::edge	train	mod	locomotive	t3	l	
+# ::edge	train	location	set	t3	s	
+# ::edge	track	mod	railroad	t2	r	
+# ::edge	set	consist-of	track	s	t2	
+# ::edge	car	mod	tanker	c	t	
+# ::edge	attach-01	ARG1	car	a	c	
+# ::edge	train	ARG2-of	attach-01	t3	a	
+# ::edge	attach-01	location	behind	a	b	
+# ::edge	behind	op1	train	b	t3	
+(t3 / train
+    :ARG2-of (a / attach-01
+        :ARG1 (c / car
+            :mod (t / tanker))
+        :location (b / behind
+            :op1 t3))
+    :location (s / set
+        :consist-of (t2 / track
+            :mod (r / railroad)))
+    :mod (l / locomotive))

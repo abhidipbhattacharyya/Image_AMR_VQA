@@ -1,0 +1,37 @@
+# ::tok A blue and yellow train next to a yellow and black caboose .
+# ::node	b2	blue	1-2
+# ::node	y	yellow-02	3-4
+# ::node	t	train	4-5
+# ::node	t2	train	4-5
+# ::node	n	next-to	5-6
+# ::node	h	have-purpose-91	6-7
+# ::node	a	and	9-10
+# ::node	b	black-04	10-11
+# ::node	c	caboose	11-12
+# ::node	c2	caboose	11-12
+# ::root	h	have-purpose-91
+# ::edge	train	ARG1-of	yellow-02	t	y	
+# ::edge	yellow-02	ARG1	train	y	t2	
+# ::edge	have-purpose-91	ARG2	next-to	h	n	
+# ::edge	have-purpose-91	ARG1	train	h	t	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	train	a	t2	
+# ::edge	and	op1	train	a	t	
+# ::edge	caboose	ARG1-of	black-04	c	b	
+# ::edge	and	op2	caboose	a	c	
+# ::edge	caboose	ARG1-of	black-04	c2	b	
+# ::edge	and	op3	caboose	a	c2	
+# ::edge	have-purpose-91	rel	blue	h	b2	
+(h / have-purpose-91
+    :ARG1 (t / train
+        :ARG1-of (y / yellow-02
+            :ARG1 (t2 / train)))
+    :ARG2 (n / next-to
+        :op1 (a / and
+            :op1 t
+            :op2 t2
+            :op2 (c / caboose
+                :ARG1-of (b / black-04))
+            :op3 (c2 / caboose
+                :ARG1-of b)))
+    :rel (b2 / blue))

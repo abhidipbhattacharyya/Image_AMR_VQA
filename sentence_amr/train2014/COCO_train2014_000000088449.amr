@@ -1,0 +1,34 @@
+# ::tok A red train and a blue / yellow train , stopped , next to each other .
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	a	and	3-4
+# ::node	b	blue	5-6
+# ::node	s	slash	6-7
+# ::node	y	yellow-02	7-8
+# ::node	t2	train	8-9
+# ::node	s2	stop-01	10-11
+# ::node	n	next-to	12-13
+# ::node	e	each	14-15
+# ::node	o	other	15-16
+# ::root	s2	stop-01
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	and	op1	train	a	t	
+# ::edge	slash	op1	blue	s	b	
+# ::edge	slash	op2	yellow-02	s	y	
+# ::edge	train	mod	slash	t2	s	
+# ::edge	and	op2	train	a	t2	
+# ::edge	stop-01	ARG1	and	s2	a	
+# ::edge	stop-01	location	next-to	s2	n	
+# ::edge	other	mod	each	o	e	
+# ::edge	next-to	op1	other	n	o	
+(s2 / stop-01
+    :ARG1 (a / and
+        :op1 (t / train
+            :ARG1-of (r / red-02))
+        :op2 (t2 / train
+            :mod (s / slash
+                :op1 (b / blue)
+                :op2 (y / yellow-02))))
+    :location (n / next-to
+        :op1 (o / other
+            :mod (e / each))))

@@ -1,0 +1,28 @@
+# ::tok a train engine going down a track next to a bare patch of ground
+# ::node	t2	train	1-2
+# ::node	e	engine	2-3
+# ::node	g	go-01	3-4
+# ::node	d	down	4-5
+# ::node	t	track	6-7
+# ::node	n	next-to	7-8
+# ::node	b	bare-02	10-11
+# ::node	p	patch	11-12
+# ::node	g2	ground	13-14
+# ::root	g	go-01
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	go-01	ARG1	engine	g	e	
+# ::edge	go-01	direction	down	g	d	
+# ::edge	go-01	path	track	g	t	
+# ::edge	go-01	location	next-to	g	n	
+# ::edge	patch	ARG1-of	bare-02	p	b	
+# ::edge	next-to	op1	patch	n	p	
+# ::edge	patch	part-of	ground	p	g2	
+(g / go-01
+    :ARG1 (e / engine
+        :part-of (t2 / train))
+    :direction (d / down)
+    :location (n / next-to
+        :op1 (p / patch
+            :ARG1-of (b / bare-02)
+            :part-of (g2 / ground)))
+    :path (t / track))

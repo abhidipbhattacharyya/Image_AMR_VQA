@@ -1,0 +1,34 @@
+# ::tok A truckload of metal parts is parked by a building as people walk by and point at it .
+# ::node	t	truckload	1-2
+# ::node	m	metal	3-4
+# ::node	p2	part	4-5
+# ::node	p	park-01	6-7
+# ::node	b	building	9-10
+# ::node	p3	person	11-12
+# ::node	w	walk-01	12-13
+# ::node	a	and	14-15
+# ::node	p4	point-01	15-16
+# ::root	p	park-01
+# ::edge	part	consist-of	metal	p2	m	
+# ::edge	truckload	consist-of	part	t	p2	
+# ::edge	park-01	ARG1	truckload	p	t	
+# ::edge	park-01	ARG0	building	p	b	
+# ::edge	walk-01	ARG0	person	w	p3	
+# ::edge	walk-01	ARG2	building	w	b	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	park-01	time	and	p	a	
+# ::edge	and	op2	point-01	a	p4	
+# ::edge	point-01	ARG0	person	p4	p3	
+# ::edge	point-01	ARG1	truckload	p4	t	
+(p / park-01
+    :ARG0 (b / building)
+    :ARG1 (t / truckload
+        :consist-of (p2 / part
+            :consist-of (m / metal)))
+    :time (a / and
+        :op1 (w / walk-01
+            :ARG0 (p3 / person)
+            :ARG2 b)
+        :op2 (p4 / point-01
+            :ARG0 p3
+            :ARG1 t)))

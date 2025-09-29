@@ -1,0 +1,22 @@
+# ::tok A fan is on the floor next to the nightstand beside a bed .
+# ::node	f	fan	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	f2	floor	5-6
+# ::node	n	next-to	6-7
+# ::node	n3	nightstand	9-10
+# ::node	n2	next-to	10-11
+# ::node	b2	bed	12-13
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	fan	b	f	
+# ::edge	be-located-at-91	ARG2	floor	b	f2	
+# ::edge	floor	location-of	next-to	f2	n	
+# ::edge	next-to	op1	nightstand	n	n3	
+# ::edge	nightstand	location	next-to	n3	n2	
+# ::edge	next-to	op1	bed	n2	b2	
+(b / be-located-at-91
+    :ARG1 (f / fan)
+    :ARG2 (f2 / floor
+        :location-of (n / next-to
+            :op1 (n3 / nightstand
+                :location (n2 / next-to
+                    :op1 (b2 / bed))))))

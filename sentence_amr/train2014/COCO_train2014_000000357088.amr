@@ -1,0 +1,32 @@
+# ::tok A man bouncing a tennis ball on a tennis court getting ready to play .
+# ::node	m	man	1-2
+# ::node	b2	bounce-01	2-3
+# ::node	t	tennis	4-5
+# ::node	b	ball	5-6
+# ::node	c	court	9-10
+# ::node	r	ready-01	11-12
+# ::node	p	play-01	13-14
+# ::root	m	man
+# ::edge	man	ARG1-of	bounce-01	m	b2	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	bounce-01	ARG1	ball	b2	b	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	bounce-01	location	court	b2	c	
+# ::edge	bounce-01	purpose	ready-01	b2	r	
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	play-01	r	p	
+# ::edge	play-01	ARG2	ball	p	b	
+# ::edge	play-01	ARG0	man	p	m	
+(m / man
+    :ARG1-of (b2 / bounce-01
+        :purpose (r / ready-01
+            :ARG0 m
+            :ARG1 m
+            :ARG2 (p / play-01
+                :ARG0 m
+                :ARG2 (b / ball
+                    :mod (t / tennis))))
+        :ARG1 b
+        :location (c / court
+            :mod t)))

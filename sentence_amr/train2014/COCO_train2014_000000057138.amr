@@ -1,0 +1,34 @@
+# ::tok Bunches of fruit growing on native trees shown on cloudy day .
+# ::node	m2	multiple	0-1
+# ::node	m	monetary-quantity	0-1
+# ::node	p	pound	0-1
+# ::node	0	1	0-1
+# ::node	f	fruit	2-3
+# ::node	g	grow-03	3-4
+# ::node	n	native	5-6
+# ::node	t	tree	6-7
+# ::node	s	show-01	7-8
+# ::node	c	cloudy-02	9-10
+# ::node	d	day	10-11
+# ::root	g	grow-03
+# ::edge	multiple	op1	monetary-quantity	m2	m	
+# ::edge	monetary-quantity	unit	pound	m	p	
+# ::edge	monetary-quantity	quant	1	m	0	
+# ::edge	fruit	quant	multiple	f	m2	
+# ::edge	grow-03	ARG1	fruit	g	f	
+# ::edge	tree	mod	native	t	n	
+# ::edge	grow-03	ARG2	tree	g	t	
+# ::edge	tree	ARG1-of	show-01	t	s	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	show-01	time	day	s	d	
+(g / grow-03
+    :ARG1 (f / fruit
+        :quant (m2 / multiple
+            :op1 (m / monetary-quantity
+                :quant 1
+                :unit (p / pound))))
+    :ARG2 (t / tree
+        :ARG1-of (s / show-01
+            :time (d / day
+                :ARG1-of (c / cloudy-02)))
+        :mod (n / native)))

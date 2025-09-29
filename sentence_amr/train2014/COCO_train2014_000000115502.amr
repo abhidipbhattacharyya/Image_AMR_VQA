@@ -1,0 +1,42 @@
+# ::tok A two level bus on a city street with a billboard on the side of two men in polo shirts .
+# ::node	0	2	1-2
+# ::node	l	level	2-3
+# ::node	b2	bus	3-4
+# ::node	c	city	6-7
+# ::node	s3	street	7-8
+# ::node	h	have-03	8-9
+# ::node	b	billboard	10-11
+# ::node	s2	side	13-14
+# ::node	1	2	15-16
+# ::node	m	man	16-17
+# ::node	p	polo	18-19
+# ::node	s	shirt	19-20
+# ::node	w	wear-01	19-20
+# ::root	b2	bus
+# ::edge	level	quant	2	l	0	
+# ::edge	bus	mod	level	b2	l	
+# ::edge	street	mod	city	s3	c	
+# ::edge	bus	location	street	b2	s3	
+# ::edge	bus	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	billboard	h	b	
+# ::edge	billboard	location	side	b	s2	
+# ::edge	man	quant	2	m	1	
+# ::edge	side	part-of	man	s2	m	
+# ::edge	shirt	mod	polo	s	p	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	wear-01	ARG1	polo	w	p	
+# ::edge	bus	rel	shirt	b2	s	
+(b2 / bus
+    :ARG0-of (h / have-03
+        :ARG1 (b / billboard
+            :location (s2 / side
+                :part-of (m / man
+                    :quant 2
+                    :ARG0-of (w / wear-01
+                        :ARG1 (p / polo))))))
+    :location (s3 / street
+        :mod (c / city))
+    :mod (l / level
+        :quant 2)
+    :rel (s / shirt
+        :mod p))

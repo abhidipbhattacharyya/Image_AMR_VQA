@@ -1,0 +1,31 @@
+# ::tok A " Greenwave " bus stopped at a bus stop next to brick buildings .
+# ::node	n	name	2-3
+# ::node	0	Greenwave	2-3
+# ::node	b3	bus	4-5
+# ::node	s	stop-01	5-6
+# ::node	l	location	7-8
+# ::node	b4	bus	8-9
+# ::node	s2	stop-01	9-10
+# ::node	n2	next-to	10-11
+# ::node	b	brick	12-13
+# ::node	b2	building	13-14
+# ::root	s	stop-01
+# ::edge	name	op1	Greenwave	n	0	
+# ::edge	bus	name	name	b3	n	
+# ::edge	stop-01	ARG1	bus	s	b3	
+# ::edge	stop-01	location	location	s	l	
+# ::edge	stop-01	ARG1	bus	s2	b4	
+# ::edge	location	location-of	stop-01	l	s2	
+# ::edge	stop-01	location	next-to	s2	n2	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	next-to	op1	building	n2	b2	
+(s / stop-01
+    :ARG1 (b3 / bus
+        :name (n / name
+            :op1 "Greenwave"))
+    :location (l / location
+        :location-of (s2 / stop-01
+            :ARG1 (b4 / bus)
+            :location (n2 / next-to
+                :op1 (b2 / building
+                    :consist-of (b / brick))))))

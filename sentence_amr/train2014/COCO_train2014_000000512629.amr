@@ -1,0 +1,27 @@
+# ::tok Several vegetables in a blender getting ready to be made into juice .
+# ::node	s	several	0-1
+# ::node	v	vegetable	1-2
+# ::node	t	thing	2-3
+# ::node	p	process-01	4-5
+# ::node	b	blender	4-5
+# ::node	r	ready-01	6-7
+# ::node	m	make-01	9-10
+# ::node	j	juice	11-12
+# ::root	r	ready-01
+# ::edge	vegetable	quant	several	v	s	
+# ::edge	vegetable	location	thing	v	t	
+# ::edge	thing	ARG0-of	process-01	t	p	
+# ::edge	process-01	ARG1	blender	p	b	
+# ::edge	ready-01	ARG1	vegetable	r	v	
+# ::edge	ready-01	ARG2	make-01	r	m	
+# ::edge	make-01	ARG1	vegetable	m	v	
+# ::edge	make-01	ARG2	juice	m	j	
+(r / ready-01
+    :ARG1 (v / vegetable
+        :quant (s / several)
+        :location (t / thing
+            :ARG0-of (p / process-01
+                :ARG1 (b / blender))))
+    :ARG2 (m / make-01
+        :ARG1 v
+        :ARG2 (j / juice)))

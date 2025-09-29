@@ -1,0 +1,39 @@
+# ::tok Yellow train cars are attached on either side of a blue one on the tracks near a city .
+# ::node	y	yellow-02	0-1
+# ::node	t2	train	1-2
+# ::node	t3	train	1-2
+# ::node	c	car	2-3
+# ::node	c2	car	2-3
+# ::node	a	attach-01	4-5
+# ::node	e	either	6-7
+# ::node	s	side	7-8
+# ::node	b	blue	10-11
+# ::node	t	track	14-15
+# ::node	n	near-02	15-16
+# ::node	c3	city	17-18
+# ::root	a	attach-01
+# ::edge	train	ARG1-of	yellow-02	t2	y	
+# ::edge	car	mod	train	c	t2	
+# ::edge	car	mod	train	c2	t3	
+# ::edge	attach-01	ARG1	car	a	c	
+# ::edge	side	mod	either	s	e	
+# ::edge	attach-01	location	side	a	s	
+# ::edge	side	part-of	train	s	t3	
+# ::edge	train	mod	blue	t3	b	
+# ::edge	car	location	track	c2	t	
+# ::edge	track	ARG1-of	near-02	t	n	
+# ::edge	near-02	ARG2	city	n	c3	
+# ::edge	attach-01	rel	car	a	c2	
+(a / attach-01
+    :ARG1 (c / car
+        :mod (t2 / train
+            :ARG1-of (y / yellow-02)))
+    :location (s / side
+        :mod (e / either)
+        :part-of (t3 / train
+            :mod (b / blue)))
+    :rel (c2 / car
+        :location (t / track
+            :ARG1-of (n / near-02
+                :ARG2 (c3 / city)))
+        :mod t3))

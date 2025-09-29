@@ -1,0 +1,30 @@
+# ::tok people talking about which wine is the best with the person selling
+# ::node	p	person	0-1
+# ::node	t	talk-01	1-2
+# ::node	a	amr-unknown	3-4
+# ::node	w	wine	4-5
+# ::node	h	have-degree-91	7-8
+# ::node	g	good-02	7-8
+# ::node	m	most	7-8
+# ::node	p2	person	10-11
+# ::node	s	sell-01	11-12
+# ::root	t	talk-01
+# ::edge	talk-01	ARG0	person	t	p	
+# ::edge	wine	mod	amr-unknown	w	a	
+# ::edge	talk-01	ARG1	wine	t	w	
+# ::edge	wine	ARG1-of	have-degree-91	w	h	
+# ::edge	have-degree-91	ARG2	good-02	h	g	
+# ::edge	good-02	ARG1	wine	g	w	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	talk-01	ARG0	person	t	p2	
+# ::edge	person	ARG0-of	sell-01	p2	s	
+(t / talk-01
+    :ARG0 (p / person)
+    :ARG0 (p2 / person
+        :ARG0-of (s / sell-01))
+    :ARG1 (w / wine
+        :ARG1-of (h / have-degree-91
+            :ARG2 (g / good-02
+                :ARG1 w)
+            :ARG3 (m / most))
+        :mod (a / amr-unknown)))

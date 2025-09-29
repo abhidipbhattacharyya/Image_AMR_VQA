@@ -1,0 +1,30 @@
+# ::tok Buses , cars and people walking and driving along a busy steet .
+# ::node	b	bus	0-1
+# ::node	c	car	2-3
+# ::node	a2	and	3-4
+# ::node	p	person	4-5
+# ::node	w	walk-01	5-6
+# ::node	d	drive-01	7-8
+# ::node	a	along	8-9
+# ::node	b2	busy-02	10-11
+# ::node	s	steet	11-12
+# ::root	a2	and
+# ::edge	and	op2	car	a2	c	
+# ::edge	and	op1	bus	a2	b	
+# ::edge	and	op3	person	a2	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	ARG0-of	drive-01	a2	d	
+# ::edge	drive-01	ARG1	along	d	a	
+# ::edge	walk-01	ARG1	along	w	a	
+# ::edge	steet	ARG1-of	busy-02	s	b2	
+# ::edge	along	op1	steet	a	s	
+(a2 / and
+    :ARG0-of (d / drive-01
+        :ARG1 (a / along
+            :op1 (s / steet
+                :ARG1-of (b2 / busy-02))))
+    :op1 (b / bus)
+    :op2 (c / car)
+    :op3 (p / person
+        :ARG0-of (w / walk-01
+            :ARG1 a)))

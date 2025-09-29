@@ -1,0 +1,27 @@
+# ::tok A toilet in a tile room has a strange square opening in the middle .
+# ::node	t2	toilet	1-2
+# ::node	t	tile	4-5
+# ::node	r	room	5-6
+# ::node	h	have-03	6-7
+# ::node	s2	strange	8-9
+# ::node	s	square	9-10
+# ::node	o	open-01	10-11
+# ::node	m	middle	13-14
+# ::root	h	have-03
+# ::edge	room	consist-of	tile	r	t	
+# ::edge	toilet	location	room	t2	r	
+# ::edge	have-03	ARG0	toilet	h	t2	
+# ::edge	open-01	ARG1	square	o	s	
+# ::edge	open-01	mod	strange	o	s2	
+# ::edge	have-03	ARG1	open-01	h	o	
+# ::edge	open-01	location	middle	o	m	
+# ::edge	middle	op1	room	m	r	
+(h / have-03
+    :ARG0 (t2 / toilet
+        :location (r / room
+            :consist-of (t / tile)))
+    :ARG1 (o / open-01
+        :ARG1 (s / square)
+        :location (m / middle
+            :op1 r)
+        :mod (s2 / strange)))

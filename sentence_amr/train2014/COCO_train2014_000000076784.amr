@@ -1,0 +1,41 @@
+# ::tok A monument stands in the background while a skateboarder flips his skateboard as he is suspended in the air above a brick courtyard .
+# ::node	m	monument	1-2
+# ::node	s2	stand-01	2-3
+# ::node	b	background	5-6
+# ::node	p	person	8-9
+# ::node	b2	board-05	8-9
+# ::node	f	flip-01	9-10
+# ::node	s	skateboard	11-12
+# ::node	s3	suspend-01	15-16
+# ::node	a2	air	18-19
+# ::node	a	above	19-20
+# ::node	b3	brick	21-22
+# ::node	c	courtyard	22-23
+# ::root	f	flip-01
+# ::edge	stand-01	ARG1	monument	s2	m	
+# ::edge	stand-01	ARG2	background	s2	b	
+# ::edge	person	ARG0-of	board-05	p	b2	
+# ::edge	flip-01	ARG0	person	f	p	
+# ::edge	flip-01	time	stand-01	f	s2	
+# ::edge	flip-01	ARG1	skateboard	f	s	
+# ::edge	skateboard	poss	person	s	p	
+# ::edge	flip-01	time	suspend-01	f	s3	
+# ::edge	suspend-01	ARG1	person	s3	p	
+# ::edge	suspend-01	ARG2	air	s3	a2	
+# ::edge	suspend-01	location	above	s3	a	
+# ::edge	courtyard	consist-of	brick	c	b3	
+# ::edge	above	op1	courtyard	a	c	
+(f / flip-01
+    :ARG0 (p / person
+        :ARG0-of (b2 / board-05))
+    :ARG1 (s / skateboard
+        :poss p)
+    :time (s2 / stand-01
+        :ARG1 (m / monument)
+        :ARG2 (b / background))
+    :time (s3 / suspend-01
+        :ARG1 p
+        :ARG2 (a2 / air)
+        :location (a / above
+            :op1 (c / courtyard
+                :consist-of (b3 / brick)))))

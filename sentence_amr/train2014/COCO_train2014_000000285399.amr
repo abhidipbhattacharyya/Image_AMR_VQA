@@ -1,0 +1,43 @@
+# ::tok The hood a street motorcycle , that has the Italian color , the number 7 and ALITala on it
+# ::node	h	hood	1-2
+# ::node	s	street	3-4
+# ::node	m	motorcycle	4-5
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	2	Italy	9-10
+# ::node	c	color-01	10-11
+# ::node	s2	string-entity	12-13
+# ::node	n3	number	13-14
+# ::node	0	7	14-15
+# ::node	a	and	15-16
+# ::node	n2	name	16-17
+# ::node	1	ALITala	16-17
+# ::node	t	thing	17-18
+# ::root	m	motorcycle
+# ::edge	motorcycle	mod	street	m	s	
+# ::edge	motorcycle	part-of	hood	m	h	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Italy	n	2	
+# ::edge	color-01	mod	country	c	c2	
+# ::edge	motorcycle	ARG1-of	color-01	m	c	
+# ::edge	number	mod	string-entity	n3	s2	
+# ::edge	string-entity	value	7	s2	0	
+# ::edge	and	op1	number	a	n3	
+# ::edge	color-01	ARG2	and	c	a	
+# ::edge	name	op1	ALITala	n2	1	
+# ::edge	thing	name	name	t	n2	
+# ::edge	and	op2	thing	a	t	
+(m / motorcycle
+    :ARG1-of (c / color-01
+        :ARG2 (a / and
+            :op1 (n3 / number
+                :mod (s2 / string-entity
+                    :value 7))
+            :op2 (t / thing
+                :name (n2 / name
+                    :op1 "ALITala")))
+        :mod (c2 / country
+            :name (n / name
+                :op1 "Italy")))
+    :mod (s / street)
+    :part-of (h / hood))

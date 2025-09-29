@@ -1,0 +1,37 @@
+# ::tok A living room with yellow walls , a beige couch , and a flat screen TV near a window .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	y	yellow-02	4-5
+# ::node	w	wall	5-6
+# ::node	b	beige	8-9
+# ::node	c	couch	9-10
+# ::node	a	and	11-12
+# ::node	f	flat-06	13-14
+# ::node	s	screen	14-15
+# ::node	t	television	15-16
+# ::node	n	near-02	16-17
+# ::node	w2	window	18-19
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	wall	ARG1-of	yellow-02	w	y	
+# ::edge	couch	mod	beige	c	b	
+# ::edge	and	op2	couch	a	c	
+# ::edge	and	op1	wall	a	w	
+# ::edge	room	part	and	r	a	
+# ::edge	screen	ARG1-of	flat-06	s	f	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op3	television	a	t	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	near-02	ARG2	window	n	w2	
+(r / room
+    :mod (l / living)
+    :part (a / and
+        :ARG1-of (n / near-02
+            :ARG2 (w2 / window))
+        :op1 (w / wall
+            :ARG1-of (y / yellow-02))
+        :op2 (c / couch
+            :mod (b / beige))
+        :op3 (t / television
+            :mod (s / screen
+                :ARG1-of (f / flat-06)))))

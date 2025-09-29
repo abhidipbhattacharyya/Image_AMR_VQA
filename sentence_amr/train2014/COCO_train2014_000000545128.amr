@@ -1,0 +1,31 @@
+# ::tok Road signs and a message board displaying a message along a roadside .
+# ::node	r	road	0-1
+# ::node	s	sign	1-2
+# ::node	a2	and	2-3
+# ::node	m	message-01	4-5
+# ::node	b	board	5-6
+# ::node	d	display-01	6-7
+# ::node	t	thing	8-9
+# ::node	m2	message-01	8-9
+# ::node	a	along	9-10
+# ::node	r2	roadside	11-12
+# ::root	a2	and
+# ::edge	sign	mod	road	s	r	
+# ::edge	and	op1	sign	a2	s	
+# ::edge	board	purpose	message-01	b	m	
+# ::edge	and	op2	board	a2	b	
+# ::edge	board	ARG0-of	display-01	b	d	
+# ::edge	display-01	ARG1	thing	d	t	
+# ::edge	thing	ARG1-of	message-01	t	m2	
+# ::edge	display-01	location	along	d	a	
+# ::edge	along	op1	roadside	a	r2	
+(a2 / and
+    :op1 (s / sign
+        :mod (r / road))
+    :op2 (b / board
+        :purpose (m / message-01)
+        :ARG0-of (d / display-01
+            :ARG1 (t / thing
+                :ARG1-of (m2 / message-01))
+            :location (a / along
+                :op1 (r2 / roadside)))))

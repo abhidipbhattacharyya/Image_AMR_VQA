@@ -1,0 +1,74 @@
+# ::tok A bending driveway show grass alongside it and a bench with a Styrofoam cup , with something , possibly a sandwich on top of it , and a book , before it recedes past a gate to an area of many trees .
+# ::node	b3	bend-01	1-2
+# ::node	d	driveway	2-3
+# ::node	s2	show-01	3-4
+# ::node	g2	grass	4-5
+# ::node	a	alongside	5-6
+# ::node	a2	and	7-8
+# ::node	b2	bench	9-10
+# ::node	h	have-03	10-11
+# ::node	n	name	12-13
+# ::node	0	Styrofoam	12-13
+# ::node	c	cup	13-14
+# ::node	s3	something	16-17
+# ::node	p2	possible-01	18-19
+# ::node	s	sandwich	20-21
+# ::node	t	top	22-23
+# ::node	b4	book	28-29
+# ::node	b	before	30-31
+# ::node	r	recede-01	32-33
+# ::node	p	past	33-34
+# ::node	g	gate	35-36
+# ::node	a3	area	38-39
+# ::node	m	many	40-41
+# ::node	t2	tree	41-42
+# ::root	s2	show-01
+# ::edge	driveway	ARG1-of	bend-01	d	b3	
+# ::edge	show-01	ARG0	driveway	s2	d	
+# ::edge	grass	location	alongside	g2	a	
+# ::edge	alongside	op1	driveway	a	d	
+# ::edge	and	op1	grass	a2	g2	
+# ::edge	show-01	ARG1	and	s2	a2	
+# ::edge	and	op2	bench	a2	b2	
+# ::edge	bench	ARG0-of	have-03	b2	h	
+# ::edge	name	op1	Styrofoam	n	0	
+# ::edge	cup	name	name	c	n	
+# ::edge	have-03	ARG1	cup	h	c	
+# ::edge	sandwich	ARG1-of	possible-01	s	p2	
+# ::edge	top	location-of	sandwich	t	s	
+# ::edge	top	location-of	something	t	s3	
+# ::edge	bench	op1-of	top	b2	t	
+# ::edge	and	op3	book	a2	b4	
+# ::edge	show-01	time	before	s2	b	
+# ::edge	before	op1	recede-01	b	r	
+# ::edge	recede-01	ARG0	driveway	r	d	
+# ::edge	recede-01	path	past	r	p	
+# ::edge	past	op1	gate	p	g	
+# ::edge	recede-01	destination	area	r	a3	
+# ::edge	tree	quant	many	t2	m	
+# ::edge	area	consist-of	tree	a3	t2	
+(s2 / show-01
+    :ARG0 (d / driveway
+        :ARG1-of (b3 / bend-01))
+    :ARG1 (a2 / and
+        :op1 (g2 / grass
+            :location (a / alongside
+                :op1 d))
+        :op2 (b2 / bench
+            :ARG0-of (h / have-03
+                :ARG1 (c / cup
+                    :name (n / name
+                        :op1 "Styrofoam")))
+            :op1-of (t / top
+                :location-of (s / sandwich
+                    :ARG1-of (p2 / possible-01))
+                :location-of (s3 / something)))
+        :op3 (b4 / book))
+    :time (b / before
+        :op1 (r / recede-01
+            :ARG0 d
+            :destination (a3 / area
+                :consist-of (t2 / tree
+                    :quant (m / many)))
+            :path (p / past
+                :op1 (g / gate)))))

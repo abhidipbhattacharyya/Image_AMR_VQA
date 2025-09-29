@@ -1,0 +1,37 @@
+# ::tok A row of clear glass vases , tree branch art work and wooden blocks on a shelf .
+# ::node	r	row	1-2
+# ::node	c	clear-01	3-4
+# ::node	g	glass	4-5
+# ::node	f	flower	5-6
+# ::node	t	tree	7-8
+# ::node	b2	branch	8-9
+# ::node	a2	art	9-10
+# ::node	w2	work-01	10-11
+# ::node	a	and	11-12
+# ::node	w	wood	12-13
+# ::node	b	block	13-14
+# ::node	s	shelf	16-17
+# ::root	r	row
+# ::edge	glass	ARG1-of	clear-01	g	c	
+# ::edge	flower	mod	glass	f	g	
+# ::edge	branch	part-of	tree	b2	t	
+# ::edge	work-01	ARG1	art	w2	a2	
+# ::edge	work-01	ARG2	branch	w2	b2	
+# ::edge	and	op2	work-01	a	w2	
+# ::edge	and	op1	flower	a	f	
+# ::edge	row	consist-of	and	r	a	
+# ::edge	block	consist-of	wood	b	w	
+# ::edge	and	op3	block	a	b	
+# ::edge	row	location	shelf	r	s	
+(r / row
+    :consist-of (a / and
+        :op1 (f / flower
+            :mod (g / glass
+                :ARG1-of (c / clear-01)))
+        :op2 (w2 / work-01
+            :ARG1 (a2 / art)
+            :ARG2 (b2 / branch
+                :part-of (t / tree)))
+        :op3 (b / block
+            :consist-of (w / wood)))
+    :location (s / shelf))

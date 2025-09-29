@@ -1,0 +1,24 @@
+# ::tok a white truck with a snow plow attached to its front bumper .
+# ::node	w	white-03	1-2
+# ::node	t	truck	2-3
+# ::node	s	snow	5-6
+# ::node	p	plow-01	6-7
+# ::node	a	attach-01	7-8
+# ::node	f	front	10-11
+# ::node	b	bumper	11-12
+# ::root	t	truck
+# ::edge	truck	ARG1-of	white-03	t	w	
+# ::edge	plow-01	ARG2	snow	p	s	
+# ::edge	attach-01	ARG1	plow-01	a	p	
+# ::edge	truck	ARG1-of	attach-01	t	a	
+# ::edge	bumper	mod	front	b	f	
+# ::edge	attach-01	ARG2	bumper	a	b	
+# ::edge	truck	part	bumper	t	b	
+(t / truck
+    :ARG1-of (w / white-03)
+    :ARG1-of (a / attach-01
+        :ARG1 (p / plow-01
+            :ARG2 (s / snow))
+        :ARG2 (b / bumper
+            :mod (f / front)))
+    :part b)

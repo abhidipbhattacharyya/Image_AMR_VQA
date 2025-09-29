@@ -1,0 +1,32 @@
+# ::tok Male skateboarder displaying leaping ability over steps with handrails .
+# ::node	m	male	0-1
+# ::node	p	person	1-2
+# ::node	s	skate-01	1-2
+# ::node	d	display-01	2-3
+# ::node	l	leap-03	3-4
+# ::node	c	capable-01	4-5
+# ::node	o	over	5-6
+# ::node	s2	step-01	6-7
+# ::node	c2	ceiling	8-9
+# ::root	d	display-01
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	skate-01	p	s	
+# ::edge	display-01	ARG0	person	d	p	
+# ::edge	leap-03	ARG0	person	l	p	
+# ::edge	capable-01	ARG2	leap-03	c	l	
+# ::edge	display-01	ARG1	capable-01	d	c	
+# ::edge	capable-01	ARG1	person	c	p	
+# ::edge	leap-03	path	over	l	o	
+# ::edge	over	op1	step-01	o	s2	
+# ::edge	step-01	instrument	ceiling	s2	c2	
+(d / display-01
+    :ARG0 (p / person
+        :ARG0-of (s / skate-01)
+        :mod (m / male))
+    :ARG1 (c / capable-01
+        :ARG1 p
+        :ARG2 (l / leap-03
+            :ARG0 p
+            :path (o / over
+                :op1 (s2 / step-01
+                    :instrument (c2 / ceiling))))))

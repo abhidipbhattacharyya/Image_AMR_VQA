@@ -1,0 +1,38 @@
+# ::tok Guy lunging forward to hit the tennis ball that just passed his teammate
+# ::node	g	guy	0-1
+# ::node	c	charge-02	1-2
+# ::node	f	forward	2-3
+# ::node	h2	hit-01	4-5
+# ::node	t2	tennis	6-7
+# ::node	b	ball	7-8
+# ::node	j	just	9-10
+# ::node	p	pass-03	10-11
+# ::node	p2	person	12-13
+# ::node	h	have-rel-role-91	12-13
+# ::node	t	teammate	12-13
+# ::root	c	charge-02
+# ::edge	charge-02	ARG0	guy	c	g	
+# ::edge	charge-02	direction	forward	c	f	
+# ::edge	charge-02	purpose	hit-01	c	h2	
+# ::edge	hit-01	ARG0	guy	h2	g	
+# ::edge	ball	mod	tennis	b	t2	
+# ::edge	hit-01	ARG1	ball	h2	b	
+# ::edge	pass-03	mod	just	p	j	
+# ::edge	ball	ARG1-of	pass-03	b	p	
+# ::edge	pass-03	ARG2	person	p	p2	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h	
+# ::edge	have-rel-role-91	ARG1	guy	h	g	
+# ::edge	have-rel-role-91	ARG2	teammate	h	t	
+(c / charge-02
+    :purpose (h2 / hit-01
+        :ARG0 (g / guy)
+        :ARG1 (b / ball
+            :ARG1-of (p / pass-03
+                :ARG2 (p2 / person
+                    :ARG0-of (h / have-rel-role-91
+                        :ARG1 g
+                        :ARG2 (t / teammate)))
+                :mod (j / just))
+            :mod (t2 / tennis)))
+    :ARG0 g
+    :direction (f / forward))

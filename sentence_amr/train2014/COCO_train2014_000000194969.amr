@@ -1,0 +1,34 @@
+# ::tok A vehicle that has the front window cracked slightly and a dog sitting in the drivers seat .
+# ::node	v	vehicle	1-2
+# ::node	f	front	5-6
+# ::node	w	window	6-7
+# ::node	c	crack-02	7-8
+# ::node	s3	slight	8-9
+# ::node	a	and	9-10
+# ::node	d	dog	11-12
+# ::node	s2	sit-01	12-13
+# ::node	p	person	15-16
+# ::node	d2	drive-01	15-16
+# ::node	s	seat	16-17
+# ::root	v	vehicle
+# ::edge	window	mod	front	w	f	
+# ::edge	crack-02	ARG1	window	c	w	
+# ::edge	crack-02	degree	slight	c	s3	
+# ::edge	and	op1	crack-02	a	c	
+# ::edge	vehicle	part	and	v	a	
+# ::edge	sit-01	ARG1	dog	s2	d	
+# ::edge	and	op2	sit-01	a	s2	
+# ::edge	person	ARG0-of	drive-01	p	d2	
+# ::edge	seat	mod	person	s	p	
+# ::edge	sit-01	ARG2	seat	s2	s	
+(v / vehicle
+    :part (a / and
+        :op1 (c / crack-02
+            :ARG1 (w / window
+                :mod (f / front))
+            :degree (s3 / slight))
+        :op2 (s2 / sit-01
+            :ARG1 (d / dog)
+            :ARG2 (s / seat
+                :mod (p / person
+                    :ARG0-of (d2 / drive-01))))))

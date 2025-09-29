@@ -1,0 +1,45 @@
+# ::tok A Kuwait Airlanes jumbo jet docked at an airport terminal with other planes behind it on the runway .
+# ::node	n	name	1-2
+# ::node	1	Kuwait	1-2
+# ::node	c	company	2-3
+# ::node	0	Airlanes	2-3
+# ::node	j2	jumbo	3-4
+# ::node	j	jet	4-5
+# ::node	d	dock-01	5-6
+# ::node	a	airport	8-9
+# ::node	t	terminal	9-10
+# ::node	o	other	11-12
+# ::node	p	plane	12-13
+# ::node	b	be-located-at-91	13-14
+# ::node	b2	behind	13-14
+# ::node	r	runway	17-18
+# ::root	d	dock-01
+# ::edge	name	op1	Kuwait	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airlanes	n	0	
+# ::edge	jet	mod	jumbo	j	j2	
+# ::edge	jet	poss	company	j	c	
+# ::edge	dock-01	ARG1	jet	d	j	
+# ::edge	terminal	mod	airport	t	a	
+# ::edge	dock-01	ARG2	terminal	d	t	
+# ::edge	plane	mod	other	p	o	
+# ::edge	be-located-at-91	ARG1	plane	b	p	
+# ::edge	jet	ARG2-of	be-located-at-91	j	b	
+# ::edge	plane	location	behind	p	b2	
+# ::edge	behind	op1	jet	b2	j	
+# ::edge	plane	location	runway	p	r	
+(d / dock-01
+    :ARG1 (j / jet
+        :ARG2-of (b / be-located-at-91
+            :ARG1 (p / plane
+                :location (b2 / behind
+                    :op1 j)
+                :location (r / runway)
+                :mod (o / other)))
+        :mod (j2 / jumbo)
+        :poss (c / company
+            :name (n / name
+                :op1 "Kuwait"
+                :op2 "Airlanes")))
+    :ARG2 (t / terminal
+        :mod (a / airport)))

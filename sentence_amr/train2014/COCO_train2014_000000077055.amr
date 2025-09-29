@@ -1,0 +1,31 @@
+# ::tok Several buses travelling in one direction and a cab travelling in the opposite direction .
+# ::node	s	several	0-1
+# ::node	b	bus	1-2
+# ::node	t	travel-01	2-3
+# ::node	o	one	4-5
+# ::node	d	direction	5-6
+# ::node	a	and	6-7
+# ::node	c	cab	8-9
+# ::node	t2	travel-01	9-10
+# ::node	o2	opposite-01	12-13
+# ::node	d2	direction	13-14
+# ::root	a	and
+# ::edge	bus	quant	several	b	s	
+# ::edge	bus	ARG0-of	travel-01	b	t	
+# ::edge	direction	mod	one	d	o	
+# ::edge	travel-01	direction	direction	t	d	
+# ::edge	and	op1	bus	a	b	
+# ::edge	and	op2	cab	a	c	
+# ::edge	cab	ARG0-of	travel-01	c	t2	
+# ::edge	direction	ARG1-of	opposite-01	d2	o2	
+# ::edge	travel-01	ARG1	direction	t2	d2	
+(a / and
+    :op1 (b / bus
+        :quant (s / several)
+        :ARG0-of (t / travel-01
+            :direction (d / direction
+                :mod (o / one))))
+    :op2 (c / cab
+        :ARG0-of (t2 / travel-01
+            :ARG1 (d2 / direction
+                :ARG1-of (o2 / opposite-01)))))

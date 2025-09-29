@@ -1,0 +1,26 @@
+# ::tok A person standing under an umbrella with a portion of their face covered by the umbrella .
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	u2	under	3-4
+# ::node	p2	portion	8-9
+# ::node	f	face	11-12
+# ::node	c	cover-02	12-13
+# ::node	u	umbrella	15-16
+# ::root	p	person
+# ::edge	person	ARG1-of	stand-01	p	s	
+# ::edge	stand-01	ARG2	under	s	u2	
+# ::edge	portion	part-of	face	p2	f	
+# ::edge	person	part	face	p	f	
+# ::edge	cover-02	ARG1	portion	c	p2	
+# ::edge	person	ARG2-of	cover-02	p	c	
+# ::edge	cover-02	ARG2	umbrella	c	u	
+# ::edge	under	op1	umbrella	u2	u	
+(p / person
+    :ARG1-of (s / stand-01
+        :ARG2 (u2 / under
+            :op1 (u / umbrella)))
+    :ARG2-of (c / cover-02
+        :ARG1 (p2 / portion
+            :part-of (f / face))
+        :ARG2 u)
+    :part f)

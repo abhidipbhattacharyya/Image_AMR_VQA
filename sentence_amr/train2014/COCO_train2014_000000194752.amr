@@ -1,0 +1,28 @@
+# ::tok Cars and buses driving on a street with groups of pedestrians crossing .
+# ::node	c	car	0-1
+# ::node	a	and	1-2
+# ::node	b	bus	2-3
+# ::node	d	drive-01	3-4
+# ::node	s	street	6-7
+# ::node	g	group	8-9
+# ::node	w	walk-01	10-11
+# ::node	c2	citizen	10-11
+# ::node	c3	cross-02	11-12
+# ::root	d	drive-01
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op2	bus	a	b	
+# ::edge	drive-01	ARG0	and	d	a	
+# ::edge	drive-01	ARG1	street	d	s	
+# ::edge	group	ARG0-of	walk-01	g	w	
+# ::edge	group	consist-of	citizen	g	c2	
+# ::edge	cross-02	ARG0	group	c3	g	
+# ::edge	street	ARG1-of	cross-02	s	c3	
+(d / drive-01
+    :ARG0 (a / and
+        :op1 (c / car)
+        :op2 (b / bus))
+    :ARG1 (s / street
+        :ARG1-of (c3 / cross-02
+            :ARG0 (g / group
+                :ARG0-of (w / walk-01)
+                :consist-of (c2 / citizen)))))

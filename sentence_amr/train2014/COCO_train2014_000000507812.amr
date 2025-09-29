@@ -1,0 +1,40 @@
+# ::tok A home kitchen with maple cabinets , stainless steel appliances , and a stove with a fake wood oven door .
+# ::node	h	home	1-2
+# ::node	k	kitchen	2-3
+# ::node	m	maple	4-5
+# ::node	c	cabinet	5-6
+# ::node	s	stainless	7-8
+# ::node	s2	steel	8-9
+# ::node	a2	appliance	9-10
+# ::node	a	and	11-12
+# ::node	s3	stove	13-14
+# ::node	f	fake-02	16-17
+# ::node	w	wood	17-18
+# ::node	o	oven	18-19
+# ::node	d	door	19-20
+# ::root	k	kitchen
+# ::edge	kitchen	mod	home	k	h	
+# ::edge	cabinet	mod	maple	c	m	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	appliance	mod	steel	a2	s2	
+# ::edge	and	op2	appliance	a	a2	
+# ::edge	and	op1	cabinet	a	c	
+# ::edge	kitchen	part	and	k	a	
+# ::edge	and	op3	stove	a	s3	
+# ::edge	oven	mod	wood	o	w	
+# ::edge	door	part-of	oven	d	o	
+# ::edge	door	ARG1-of	fake-02	d	f	
+# ::edge	stove	part	door	s3	d	
+(k / kitchen
+    :mod (h / home)
+    :part (a / and
+        :op1 (c / cabinet
+            :mod (m / maple))
+        :op2 (a2 / appliance
+            :mod (s2 / steel
+                :mod (s / stainless)))
+        :op3 (s3 / stove
+            :part (d / door
+                :ARG1-of (f / fake-02)
+                :part-of (o / oven
+                    :mod (w / wood))))))

@@ -1,0 +1,25 @@
+# ::tok Stop sign on a shady city corner with buildings behind
+# ::node	s3	stop-01	0-1
+# ::node	s2	signal-07	1-2
+# ::node	s	shady	4-5
+# ::node	c	city	5-6
+# ::node	c2	corner	6-7
+# ::node	h	have-03	7-8
+# ::node	b2	building	8-9
+# ::node	b	behind	9-10
+# ::root	s2	signal-07
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	corner	mod	city	c2	c	
+# ::edge	corner	mod	shady	c2	s	
+# ::edge	signal-07	location	corner	s2	c2	
+# ::edge	corner	ARG0-of	have-03	c2	h	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	behind	b2	b	
+(s2 / signal-07
+    :ARG1 (s3 / stop-01)
+    :location (c2 / corner
+        :ARG0-of (h / have-03
+            :ARG1 (b2 / building
+                :location (b / behind)))
+        :mod (c / city)
+        :mod (s / shady)))

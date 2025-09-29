@@ -1,0 +1,47 @@
+# ::tok A persons hand holding a Wii video game system remote control and pressing a button with their thumb .
+# ::node	p	person	1-2
+# ::node	h	hand	2-3
+# ::node	h2	hold-01	3-4
+# ::node	n	name	5-6
+# ::node	0	Wii	5-6
+# ::node	v	video	6-7
+# ::node	g	game	7-8
+# ::node	s	system	8-9
+# ::node	r	remote	9-10
+# ::node	c	control	10-11
+# ::node	a	and	11-12
+# ::node	p2	press-01	12-13
+# ::node	b	button	14-15
+# ::node	t	thumb	17-18
+# ::root	a	and
+# ::edge	hand	part-of	person	h	p	
+# ::edge	hold-01	ARG0	hand	h2	h	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	game	mod	video	g	v	
+# ::edge	system	mod	game	s	g	
+# ::edge	system	name	name	s	n	
+# ::edge	hold-01	ARG1	system	h2	s	
+# ::edge	control	mod	remote	c	r	
+# ::edge	system	instrument-of	control	s	c	
+# ::edge	and	op1	hold-01	a	h2	
+# ::edge	and	op2	press-01	a	p2	
+# ::edge	press-01	ARG0	person	p2	p	
+# ::edge	press-01	ARG1	button	p2	b	
+# ::edge	press-01	instrument	thumb	p2	t	
+# ::edge	person	part	thumb	p	t	
+(a / and
+    :op1 (h2 / hold-01
+        :ARG0 (h / hand
+            :part-of (p / person
+                :part (t / thumb)))
+        :ARG1 (s / system
+            :name (n / name
+                :op1 "Wii")
+            :instrument-of (c / control
+                :mod (r / remote))
+            :mod (g / game
+                :mod (v / video))))
+    :op2 (p2 / press-01
+        :ARG0 p
+        :ARG1 (b / button)
+        :instrument t))

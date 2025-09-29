@@ -1,0 +1,34 @@
+# ::tok A refrigeration unit with half - empty gallons of milk and orange juice .
+# ::node	c	cool-01	1-2
+# ::node	u	unit	2-3
+# ::node	h	half	4-5
+# ::node	e	empty-02	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	g	gallon	7-8
+# ::node	0	1	7-8
+# ::node	m	milk	9-10
+# ::node	a	and	10-11
+# ::node	o	orange	11-12
+# ::node	j	juice	12-13
+# ::root	u	unit
+# ::edge	unit	ARG0-of	cool-01	u	c	
+# ::edge	empty-02	degree	half	e	h	
+# ::edge	volume-quantity	unit	gallon	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	and	op1	milk	a	m	
+# ::edge	and	quant	volume-quantity	a	v	
+# ::edge	and	ARG1-of	empty-02	a	e	
+# ::edge	unit	part	and	u	a	
+# ::edge	juice	source	orange	j	o	
+# ::edge	and	op2	juice	a	j	
+(u / unit
+    :ARG0-of (c / cool-01)
+    :part (a / and
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / gallon))
+        :ARG1-of (e / empty-02
+            :degree (h / half))
+        :op1 (m / milk)
+        :op2 (j / juice
+            :source (o / orange))))

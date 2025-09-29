@@ -1,0 +1,30 @@
+# ::tok A door to a shower opened to a room with bathroom sinks and mirrors .
+# ::node	d	door	1-2
+# ::node	s	shower-01	4-5
+# ::node	o	open-01	5-6
+# ::node	r	room	8-9
+# ::node	h	have-03	9-10
+# ::node	b	bathroom	10-11
+# ::node	s2	sink-01	11-12
+# ::node	a	and	12-13
+# ::node	m	mirror	13-14
+# ::root	o	open-01
+# ::edge	door	part-of	shower-01	d	s	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	open-01	location	room	o	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	sink-01	location	bathroom	s2	b	
+# ::edge	and	op1	sink-01	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	mirror	mod	bathroom	m	b	
+(o / open-01
+    :ARG1 (d / door
+        :part-of (s / shower-01))
+    :location (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (s2 / sink-01
+                    :location (b / bathroom))
+                :op2 (m / mirror
+                    :mod b)))))

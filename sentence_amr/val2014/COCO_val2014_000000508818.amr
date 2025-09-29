@@ -1,0 +1,33 @@
+# ::tok A rural intersection with a stop sign that reads , ' do n't STOP believing " .
+# ::node	r2	rural	1-2
+# ::node	i	intersect-01	2-3
+# ::node	s2	stop-01	5-6
+# ::node	s	signal-07	6-7
+# ::node	r	read-01	8-9
+# ::node	y	you	11-12
+# ::node	1	imperative	11-12
+# ::node	0	-	12-13
+# ::node	s3	stop-01	13-14
+# ::node	b	believe-01	14-15
+# ::root	i	intersect-01
+# ::edge	intersect-01	mod	rural	i	r2	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	intersect-01	ARG1	signal-07	i	s	
+# ::edge	signal-07	ARG1-of	read-01	s	r	
+# ::edge	stop-01	polarity	-	s3	0	
+# ::edge	stop-01	mode	imperative	s3	1	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	read-01	ARG3	stop-01	r	s3	
+# ::edge	stop-01	ARG1	believe-01	s3	b	
+# ::edge	believe-01	ARG0	you	b	y	
+(i / intersect-01
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01)
+        :ARG1-of (r / read-01
+            :ARG3 (s3 / stop-01
+                :ARG0 (y / you)
+                :ARG1 (b / believe-01
+                    :ARG0 y)
+                :mode imperative
+                :polarity -)))
+    :mod (r2 / rural))

@@ -1,0 +1,39 @@
+# ::tok Several trucks going up and down an very narrow winding mountain road .
+# ::node	s	several	0-1
+# ::node	t	truck	1-2
+# ::node	g	go-01	2-3
+# ::node	g2	go-01	2-3
+# ::node	u	up-03	3-4
+# ::node	a	and	4-5
+# ::node	d	down	5-6
+# ::node	v	very	7-8
+# ::node	n	narrow-02	8-9
+# ::node	w	wind-01	9-10
+# ::node	m	mountain	10-11
+# ::node	r	road	11-12
+# ::root	a	and
+# ::edge	truck	quant	several	t	s	
+# ::edge	go-01	ARG1	truck	g	t	
+# ::edge	go-01	ARG1	truck	g2	t	
+# ::edge	go-01	direction	up-03	g	u	
+# ::edge	and	op2	go-01	a	g2	
+# ::edge	and	op1	go-01	a	g	
+# ::edge	go-01	direction	down	g2	d	
+# ::edge	narrow-02	degree	very	n	v	
+# ::edge	road	mod	mountain	r	m	
+# ::edge	road	ARG2-of	wind-01	r	w	
+# ::edge	road	ARG1-of	narrow-02	r	n	
+# ::edge	go-01	path	road	g2	r	
+(a / and
+    :op1 (g / go-01
+        :ARG1 (t / truck
+            :quant (s / several))
+        :direction (u / up-03))
+    :op2 (g2 / go-01
+        :ARG1 t
+        :direction (d / down)
+        :path (r / road
+            :ARG1-of (n / narrow-02
+                :degree (v / very))
+            :ARG2-of (w / wind-01)
+            :mod (m / mountain))))

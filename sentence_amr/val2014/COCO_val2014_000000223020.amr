@@ -1,0 +1,34 @@
+# ::tok A baseball player getting ready to swing a bat at a baseball park as an audience watches .
+# ::node	b	baseball	1-2
+# ::node	p2	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	r	ready-01	4-5
+# ::node	s	swing-02	6-7
+# ::node	b2	bat	8-9
+# ::node	p	park	12-13
+# ::node	a	audience	15-16
+# ::node	w	watch-01	16-17
+# ::root	r	ready-01
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	ready-01	ARG1	person	r	p2	
+# ::edge	ready-01	ARG0	person	r	p2	
+# ::edge	ready-01	ARG2	swing-02	r	s	
+# ::edge	swing-02	ARG0	person	s	p2	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	swing-02	location	park	s	p	
+# ::edge	park	mod	baseball	p	b	
+# ::edge	watch-01	ARG0	audience	w	a	
+# ::edge	ready-01	ARG1-of	watch-01	r	w	
+(r / ready-01
+    :ARG0 (p2 / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG1 p2
+    :ARG1-of (w / watch-01
+        :ARG0 (a / audience))
+    :ARG2 (s / swing-02
+        :ARG0 p2
+        :ARG1 (b2 / bat)
+        :location (p / park
+            :mod b)))

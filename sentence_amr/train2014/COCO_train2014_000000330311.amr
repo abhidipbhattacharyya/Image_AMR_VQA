@@ -1,0 +1,36 @@
+# ::tok These pieces of luggage , boxes , towels , and other items are stacked neatly .
+# ::node	t	this	0-1
+# ::node	p	piece	1-2
+# ::node	l	luggage	3-4
+# ::node	b	box	5-6
+# ::node	i	island	7-8
+# ::node	s	shower-01	7-8
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	i2	item	11-12
+# ::node	s2	stack-01	13-14
+# ::node	n	neat	14-15
+# ::root	s2	stack-01
+# ::edge	piece	mod	this	p	t	
+# ::edge	piece	mod	luggage	p	l	
+# ::edge	piece	mod	box	p	b	
+# ::edge	piece	mod	island	p	i	
+# ::edge	island	ARG2-of	shower-01	i	s	
+# ::edge	and	op2	piece	a	p	
+# ::edge	and	op1	piece	a	p	
+# ::edge	item	mod	other	i2	o	
+# ::edge	and	op3	item	a	i2	
+# ::edge	stack-01	ARG1	and	s2	a	
+# ::edge	stack-01	manner	neat	s2	n	
+(s2 / stack-01
+    :ARG1 (a / and
+        :op1 (p / piece
+            :mod (t / this)
+            :mod (l / luggage)
+            :mod (b / box)
+            :mod (i / island
+                :ARG2-of (s / shower-01)))
+        :op2 p
+        :op3 (i2 / item
+            :mod (o / other)))
+    :manner (n / neat))

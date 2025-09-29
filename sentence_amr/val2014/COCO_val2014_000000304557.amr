@@ -1,0 +1,40 @@
+# ::tok A busy city street in an oriental town with many men and women walking .
+# ::node	b	busy-02	1-2
+# ::node	c	city	2-3
+# ::node	s	street	3-4
+# ::node	e	ethnic-group	6-7
+# ::node	n	name	6-7
+# ::node	0	Orient	6-7
+# ::node	t	town	7-8
+# ::node	m2	many	9-10
+# ::node	m3	many	9-10
+# ::node	m	man	10-11
+# ::node	a	and	11-12
+# ::node	w2	woman	12-13
+# ::node	w	walk-01	13-14
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG1-of	busy-02	s	b	
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Orient	n	0	
+# ::edge	town	mod	ethnic-group	t	e	
+# ::edge	street	location	town	s	t	
+# ::edge	man	quant	many	m	m2	
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	woman	quant	many	w2	m3	
+# ::edge	walk-01	ARG0	and	w	a	
+# ::edge	street	location-of	walk-01	s	w	
+(s / street
+    :ARG1-of (b / busy-02)
+    :location (t / town
+        :mod (e / ethnic-group
+            :name (n / name
+                :op1 "Orient")))
+    :location-of (w / walk-01
+        :ARG0 (a / and
+            :op1 (m / man
+                :quant (m2 / many))
+            :op2 (w2 / woman
+                :quant (m3 / many))))
+    :mod (c / city))

@@ -1,0 +1,25 @@
+# ::tok Sandwich cut into four sections surrounding macaroni on a plate on a table .
+# ::node	s	sandwich	0-1
+# ::node	c	cut-01	1-2
+# ::node	0	4	3-4
+# ::node	s2	section	4-5
+# ::node	s3	surround-01	5-6
+# ::node	m	macaroni	6-7
+# ::node	p	plate	9-10
+# ::node	t	table	12-13
+# ::root	c	cut-01
+# ::edge	cut-01	ARG1	sandwich	c	s	
+# ::edge	section	quant	4	s2	0	
+# ::edge	cut-01	ARG2	section	c	s2	
+# ::edge	section	ARG1-of	surround-01	s2	s3	
+# ::edge	surround-01	ARG2	macaroni	s3	m	
+# ::edge	macaroni	location	plate	m	p	
+# ::edge	plate	location	table	p	t	
+(c / cut-01
+    :ARG1 (s / sandwich)
+    :ARG2 (s2 / section
+        :quant 4
+        :ARG1-of (s3 / surround-01
+            :ARG2 (m / macaroni
+                :location (p / plate
+                    :location (t / table))))))

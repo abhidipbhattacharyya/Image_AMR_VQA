@@ -1,0 +1,31 @@
+# ::tok Piece of cooked meat with mushrooms with a side of mashed potatoes and broccoli .
+# ::node	p	piece	0-1
+# ::node	c	cook-01	2-3
+# ::node	m	meat	3-4
+# ::node	a	accompany-01	4-5
+# ::node	m2	mushroom	5-6
+# ::node	s	side	8-9
+# ::node	p2	potato	10-11
+# ::node	p3	potato	11-12
+# ::node	a2	and	12-13
+# ::node	b	broccoli	13-14
+# ::root	a	accompany-01
+# ::edge	meat	ARG1-of	cook-01	m	c	
+# ::edge	piece	consist-of	meat	p	m	
+# ::edge	accompany-01	ARG1	piece	a	p	
+# ::edge	accompany-01	accompanier	mushroom	a	m2	
+# ::edge	potato	consist-of	potato	p3	p2	
+# ::edge	and	op2	potato	a2	p3	
+# ::edge	and	mod	side	a2	s	
+# ::edge	accompany-01	ARG0	and	a	a2	
+# ::edge	and	op1	broccoli	a2	b	
+(a / accompany-01
+    :ARG0 (a2 / and
+        :mod (s / side)
+        :op1 (b / broccoli)
+        :op2 (p3 / potato
+            :consist-of (p2 / potato)))
+    :ARG1 (p / piece
+        :consist-of (m / meat
+            :ARG1-of (c / cook-01)))
+    :accompanier (m2 / mushroom))

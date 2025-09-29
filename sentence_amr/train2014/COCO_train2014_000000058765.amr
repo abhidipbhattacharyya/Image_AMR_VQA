@@ -1,0 +1,42 @@
+# ::tok On this plate there is a slice of pizza with no cheese , and a roll with cheese and a tomato slice .
+# ::node	t	this	1-2
+# ::node	p2	plate	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	s	slice	6-7
+# ::node	p	pizza	8-9
+# ::node	h	have-03	9-10
+# ::node	0	-	10-11
+# ::node	c	cheese	11-12
+# ::node	a	and	13-14
+# ::node	r	roll	15-16
+# ::node	h2	have-03	16-17
+# ::node	t2	tomato	20-21
+# ::node	s2	slice	21-22
+# ::root	b	be-located-at-91
+# ::edge	plate	mod	this	p2	t	
+# ::edge	be-located-at-91	ARG2	plate	b	p2	
+# ::edge	slice	consist-of	pizza	s	p	
+# ::edge	slice	ARG0-of	have-03	s	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	cheese	h	c	
+# ::edge	and	op1	slice	a	s	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	and	op2	roll	a	r	
+# ::edge	roll	ARG0-of	have-03	r	h2	
+# ::edge	have-03	ARG1	cheese	h2	c	
+# ::edge	slice	mod	tomato	s2	t2	
+# ::edge	and	op3	slice	a	s2	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (s / slice
+            :ARG0-of (h / have-03
+                :ARG1 (c / cheese)
+                :polarity -)
+            :consist-of (p / pizza))
+        :op2 (r / roll
+            :ARG0-of (h2 / have-03
+                :ARG1 c))
+        :op3 (s2 / slice
+            :mod (t2 / tomato)))
+    :ARG2 (p2 / plate
+        :mod (t / this)))

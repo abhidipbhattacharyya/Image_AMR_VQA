@@ -1,0 +1,37 @@
+# ::tok A group of people are walking and carrying containers on their head and in their hand in a village .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	w	walk-01	5-6
+# ::node	a	and	6-7
+# ::node	c	carry-01	7-8
+# ::node	c2	container	8-9
+# ::node	h2	head	11-12
+# ::node	a2	and	12-13
+# ::node	h	hand	15-16
+# ::node	v	village	18-19
+# ::root	a	and
+# ::edge	group	consist-of	person	g	p	
+# ::edge	walk-01	ARG0	group	w	g	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	carry-01	a	c	
+# ::edge	carry-01	ARG0	group	c	g	
+# ::edge	carry-01	ARG1	container	c	c2	
+# ::edge	person	part	head	p	h2	
+# ::edge	and	op1	head	a2	h2	
+# ::edge	carry-01	location	and	c	a2	
+# ::edge	and	op2	hand	a2	h	
+# ::edge	person	part	hand	p	h	
+# ::edge	and	location	village	a	v	
+(a / and
+    :location (v / village)
+    :op1 (w / walk-01
+        :ARG0 (g / group
+            :consist-of (p / person
+                :part (h2 / head)
+                :part (h / hand))))
+    :op2 (c / carry-01
+        :ARG0 g
+        :ARG1 (c2 / container)
+        :location (a2 / and
+            :op1 h2
+            :op2 h)))

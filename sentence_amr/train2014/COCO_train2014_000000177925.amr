@@ -1,0 +1,30 @@
+# ::tok a small child holding plates with food itmes on each one
+# ::node	s	small	1-2
+# ::node	c	child	2-3
+# ::node	h2	hold-01	3-4
+# ::node	p	plate	4-5
+# ::node	h	have-03	5-6
+# ::node	f	food	6-7
+# ::node	m	mass-quantity	7-8
+# ::node	d	die-01	7-8
+# ::node	e	each	9-10
+# ::root	c	child
+# ::edge	child	mod	small	c	s	
+# ::edge	child	ARG0-of	hold-01	c	h2	
+# ::edge	hold-01	ARG1	plate	h2	p	
+# ::edge	plate	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	food	h	f	
+# ::edge	food	mod	mass-quantity	f	m	
+# ::edge	mass-quantity	ARG2-of	die-01	m	d	
+# ::edge	die-01	ARG1	child	d	c	
+# ::edge	mass-quantity	mod	each	m	e	
+(c / child
+    :ARG0-of (h2 / hold-01
+        :ARG1 (p / plate
+            :ARG0-of (h / have-03
+                :ARG1 (f / food
+                    :mod (m / mass-quantity
+                        :ARG2-of (d / die-01
+                            :ARG1 c)
+                        :mod (e / each))))))
+    :mod (s / small))

@@ -1,0 +1,68 @@
+# ::tok A orange building with a sign with a dragon and Chinese or Japanese on a sign and bikes parked in the parking lot next to the building .
+# ::node	o2	orange	1-2
+# ::node	b2	building	2-3
+# ::node	h	have-03	3-4
+# ::node	s	sign	5-6
+# ::node	h2	have-03	6-7
+# ::node	d	dragon	8-9
+# ::node	n	name	10-11
+# ::node	0	China	10-11
+# ::node	o	or	11-12
+# ::node	p3	person	12-13
+# ::node	c	country	12-13
+# ::node	p4	person	12-13
+# ::node	c2	country	12-13
+# ::node	n2	name	12-13
+# ::node	1	Japan	12-13
+# ::node	a	and	16-17
+# ::node	b	bike-01	17-18
+# ::node	p	park-01	18-19
+# ::node	p2	park-01	21-22
+# ::node	l	lot	22-23
+# ::node	n3	next-to	23-24
+# ::root	b2	building
+# ::edge	building	mod	orange	b2	o2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	ARG0-of	have-03	s	h2	
+# ::edge	name	op1	China	n	0	
+# ::edge	or	op1	dragon	o	d	
+# ::edge	or	op2	person	o	p3	
+# ::edge	person	mod	country	p3	c	
+# ::edge	country	name	name	c	n	
+# ::edge	or	op3	person	o	p4	
+# ::edge	person	mod	country	p4	c2	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	Japan	n2	1	
+# ::edge	and	op1	or	a	o	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	location	sign	a	s	
+# ::edge	and	op2	bike-01	a	b	
+# ::edge	bike-01	ARG1-of	park-01	b	p	
+# ::edge	lot	ARG2-of	park-01	l	p2	
+# ::edge	park-01	ARG2	lot	p	l	
+# ::edge	lot	location	next-to	l	n3	
+# ::edge	next-to	op1	building	n3	b2	
+(b2 / building
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :ARG0-of (h2 / have-03
+                :ARG1 (a / and
+                    :location s
+                    :op1 (o / or
+                        :op1 (d / dragon)
+                        :op2 (p3 / person
+                            :mod (c / country
+                                :name (n / name
+                                    :op1 "China")))
+                        :op3 (p4 / person
+                            :mod (c2 / country
+                                :name (n2 / name
+                                    :op1 "Japan"))))
+                    :op2 (b / bike-01
+                        :ARG1-of (p / park-01
+                            :ARG2 (l / lot
+                                :ARG2-of (p2 / park-01)
+                                :location (n3 / next-to
+                                    :op1 b2))))))))
+    :mod (o2 / orange))

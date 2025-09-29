@@ -1,0 +1,29 @@
+# ::tok The door is opened slightly and is able to see the room inside .
+# ::node	d	door	1-2
+# ::node	o	open-01	3-4
+# ::node	s2	slight	4-5
+# ::node	a	and	5-6
+# ::node	p	possible-01	7-8
+# ::node	s	see-01	9-10
+# ::node	r	room	11-12
+# ::node	i	inside	12-13
+# ::root	a	and
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	open-01	degree	slight	o	s2	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	and	op2	possible-01	a	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	door	s	d	
+# ::edge	see-01	ARG1	room	s	r	
+# ::edge	room	location	inside	r	i	
+# ::edge	inside	op1	door	i	d	
+(a / and
+    :op1 (o / open-01
+        :ARG1 (d / door)
+        :degree (s2 / slight))
+    :op2 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG0 d
+            :ARG1 (r / room
+                :location (i / inside
+                    :op1 d)))))

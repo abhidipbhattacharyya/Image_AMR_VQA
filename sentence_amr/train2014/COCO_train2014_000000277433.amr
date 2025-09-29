@@ -1,0 +1,36 @@
+# ::tok A large wall mounted clock on a brick building with two sculptures on either of it 's sides .
+# ::node	l	large	1-2
+# ::node	w	wall	2-3
+# ::node	m	mount-03	3-4
+# ::node	c	clock	4-5
+# ::node	b	brick	7-8
+# ::node	b2	building	8-9
+# ::node	h	have-03	9-10
+# ::node	0	2	10-11
+# ::node	s2	statue	11-12
+# ::node	e	either	13-14
+# ::node	s	side	17-18
+# ::root	c	clock
+# ::edge	mount-03	location	wall	m	w	
+# ::edge	clock	ARG1-of	mount-03	c	m	
+# ::edge	clock	mod	large	c	l	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	clock	location	building	c	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	statue	quant	2	s2	0	
+# ::edge	have-03	ARG1	statue	h	s2	
+# ::edge	side	mod	either	s	e	
+# ::edge	statue	location	side	s2	s	
+# ::edge	building	part	side	b2	s	
+(c / clock
+    :ARG1-of (m / mount-03
+        :location (w / wall))
+    :location (b2 / building
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / statue
+                :quant 2
+                :location (s / side
+                    :mod (e / either))))
+        :consist-of (b / brick)
+        :part s)
+    :mod (l / large))

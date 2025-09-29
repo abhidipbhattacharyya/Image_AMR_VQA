@@ -1,0 +1,38 @@
+# ::tok An apple with one half cut into four pieces and the other half lying on top .
+# ::node	a2	apple	1-2
+# ::node	o	one	3-4
+# ::node	h	half	4-5
+# ::node	c	cut-01	5-6
+# ::node	0	4	7-8
+# ::node	p	piece	8-9
+# ::node	o2	other	11-12
+# ::node	h2	half	12-13
+# ::node	l	lie-07	13-14
+# ::node	t	top	15-16
+# ::node	a	and	16-17
+# ::root	a2	apple
+# ::edge	half	mod	one	h	o	
+# ::edge	apple	part	half	a2	h	
+# ::edge	half	ARG1-of	cut-01	h	c	
+# ::edge	piece	quant	4	p	0	
+# ::edge	cut-01	ARG2	piece	c	p	
+# ::edge	half	mod	other	h2	o2	
+# ::edge	apple	part	half	a2	h2	
+# ::edge	lie-07	ARG1	half	l	h2	
+# ::edge	lie-07	ARG2	top	l	t	
+# ::edge	and	op2	lie-07	a	l	
+# ::edge	and	op1	cut-01	a	c	
+# ::edge	apple	part	and	a2	a	
+(a2 / apple
+    :part (h / half
+        :ARG1-of (c / cut-01
+            :ARG2 (p / piece
+                :quant 4))
+        :mod (o / one))
+    :part (h2 / half
+        :mod (o2 / other))
+    :part (a / and
+        :op1 c
+        :op2 (l / lie-07
+            :ARG1 h2
+            :ARG2 (t / top))))

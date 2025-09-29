@@ -1,0 +1,27 @@
+# ::tok A jumbo jet taking off into the sky with its landing gear still extended .
+# ::node	j2	jumbo	1-2
+# ::node	j	jet	2-3
+# ::node	t	take-off-19	3-4
+# ::node	s	sky	7-8
+# ::node	l	land-01	10-11
+# ::node	g	gear	11-12
+# ::node	s2	still	12-13
+# ::node	e	extend-01	13-14
+# ::root	t	take-off-19
+# ::edge	jet	mod	jumbo	j	j2	
+# ::edge	take-off-19	ARG1	jet	t	j	
+# ::edge	take-off-19	destination	sky	t	s	
+# ::edge	gear	part-of	land-01	g	l	
+# ::edge	jet	part	gear	j	g	
+# ::edge	extend-01	mod	still	e	s2	
+# ::edge	extend-01	ARG1	gear	e	g	
+# ::edge	take-off-19	manner	extend-01	t	e	
+(t / take-off-19
+    :ARG1 (j / jet
+        :mod (j2 / jumbo)
+        :part (g / gear
+            :part-of (l / land-01)))
+    :destination (s / sky)
+    :manner (e / extend-01
+        :ARG1 g
+        :mod (s2 / still)))

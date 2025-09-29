@@ -1,0 +1,24 @@
+# ::tok Trains arriving at a train station with passengers waiting on the side walk .
+# ::node	t	train	0-1
+# ::node	a	arrive-01	1-2
+# ::node	s2	station	5-6
+# ::node	p	passenger	7-8
+# ::node	w	wait-01	8-9
+# ::node	s	side	11-12
+# ::node	w2	walk-01	12-13
+# ::root	a	arrive-01
+# ::edge	arrive-01	ARG1	train	a	t	
+# ::edge	arrive-01	ARG4	station	a	s2	
+# ::edge	station	mod	train	s2	t	
+# ::edge	train	location-of	passenger	t	p	
+# ::edge	passenger	ARG1-of	wait-01	p	w	
+# ::edge	walk-01	location	side	w2	s	
+# ::edge	wait-01	location	walk-01	w	w2	
+(a / arrive-01
+    :ARG1 (t / train
+        :location-of (p / passenger
+            :ARG1-of (w / wait-01
+                :location (w2 / walk-01
+                    :location (s / side)))))
+    :ARG4 (s2 / station
+        :mod t))

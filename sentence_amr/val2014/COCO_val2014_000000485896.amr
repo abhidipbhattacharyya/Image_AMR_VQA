@@ -1,0 +1,37 @@
+# ::tok A group of men riding horses and carrying the American Flag and another flag .
+# ::node	g	group	1-2
+# ::node	m	man	3-4
+# ::node	r	ride-01	4-5
+# ::node	h	horse	5-6
+# ::node	c	carry-01	7-8
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	America	9-10
+# ::node	f	flag	10-11
+# ::node	a	and	11-12
+# ::node	a2	another	12-13
+# ::node	f2	flag	13-14
+# ::root	g	group
+# ::edge	group	consist-of	man	g	m	
+# ::edge	group	ARG0-of	ride-01	g	r	
+# ::edge	ride-01	ARG1	horse	r	h	
+# ::edge	group	ARG0-of	carry-01	g	c	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	and	op1	flag	a	f	
+# ::edge	carry-01	ARG1	and	c	a	
+# ::edge	flag	mod	another	f2	a2	
+# ::edge	and	op2	flag	a	f2	
+(g / group
+    :ARG0-of (r / ride-01
+        :ARG1 (h / horse))
+    :ARG0-of (c / carry-01
+        :ARG1 (a / and
+            :op1 (f / flag
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "America")))
+            :op2 (f2 / flag
+                :mod (a2 / another))))
+    :consist-of (m / man))

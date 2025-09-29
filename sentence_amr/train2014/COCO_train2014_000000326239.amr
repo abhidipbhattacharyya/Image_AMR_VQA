@@ -1,0 +1,25 @@
+# ::tok A produce market with shelves of bananas and bins of oranges for sale .
+# ::node	p	produce	1-2
+# ::node	m	market	2-3
+# ::node	s2	shelf	4-5
+# ::node	b	banana	6-7
+# ::node	a	and	7-8
+# ::node	b2	bin	8-9
+# ::node	o	orange	10-11
+# ::node	s	sell-01	12-13
+# ::root	m	market
+# ::edge	market	mod	produce	m	p	
+# ::edge	shelf	consist-of	banana	s2	b	
+# ::edge	and	op1	shelf	a	s2	
+# ::edge	market	location-of	and	m	a	
+# ::edge	and	op2	bin	a	b2	
+# ::edge	bin	consist-of	orange	b2	o	
+# ::edge	and	ARG1-of	sell-01	a	s	
+(m / market
+    :location-of (a / and
+        :ARG1-of (s / sell-01)
+        :op1 (s2 / shelf
+            :consist-of (b / banana))
+        :op2 (b2 / bin
+            :consist-of (o / orange)))
+    :mod (p / produce))

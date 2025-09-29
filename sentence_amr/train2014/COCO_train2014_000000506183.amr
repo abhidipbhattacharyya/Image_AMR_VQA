@@ -1,0 +1,31 @@
+# ::tok A gray colored military jet on a landing strip armed with missles and a bomb .
+# ::node	g	gray-02	1-2
+# ::node	c	color-01	2-3
+# ::node	m	military	3-4
+# ::node	j	jet	4-5
+# ::node	l	land-01	7-8
+# ::node	s	strip	8-9
+# ::node	a2	arm-01	9-10
+# ::node	m2	missile	11-12
+# ::node	a	and	12-13
+# ::node	b	bomb	14-15
+# ::root	j	jet
+# ::edge	color-01	ARG2	gray-02	c	g	
+# ::edge	jet	mod	military	j	m	
+# ::edge	jet	ARG1-of	color-01	j	c	
+# ::edge	strip	location-of	land-01	s	l	
+# ::edge	jet	location	strip	j	s	
+# ::edge	jet	ARG1-of	arm-01	j	a2	
+# ::edge	and	op1	missile	a	m2	
+# ::edge	arm-01	ARG2	and	a2	a	
+# ::edge	and	op2	bomb	a	b	
+(j / jet
+    :ARG1-of (c / color-01
+        :ARG2 (g / gray-02))
+    :ARG1-of (a2 / arm-01
+        :ARG2 (a / and
+            :op1 (m2 / missile)
+            :op2 (b / bomb)))
+    :location (s / strip
+        :location-of (l / land-01))
+    :mod (m / military))

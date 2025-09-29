@@ -1,0 +1,39 @@
+# ::tok Many bunches of bananas in baskets and hanging up in a room with some other fruit in the background .
+# ::node	m	many	0-1
+# ::node	l	load	1-2
+# ::node	b2	banana	3-4
+# ::node	b3	basket	5-6
+# ::node	a	and	6-7
+# ::node	h	hang-01	7-8
+# ::node	r	room	11-12
+# ::node	h2	have-03	12-13
+# ::node	s	some	13-14
+# ::node	o	other	14-15
+# ::node	f	fruit	15-16
+# ::node	b	background	18-19
+# ::root	a	and
+# ::edge	load	quant	many	l	m	
+# ::edge	load	consist-of	banana	l	b2	
+# ::edge	load	location	basket	l	b3	
+# ::edge	and	op1	load	a	l	
+# ::edge	and	op2	hang-01	a	h	
+# ::edge	hang-01	ARG1	load	h	l	
+# ::edge	hang-01	location	room	h	r	
+# ::edge	room	ARG0-of	have-03	r	h2	
+# ::edge	fruit	mod	other	f	o	
+# ::edge	fruit	mod	some	f	s	
+# ::edge	have-03	ARG1	fruit	h2	f	
+# ::edge	have-03	location	background	h2	b	
+(a / and
+    :op1 (l / load
+        :quant (m / many)
+        :consist-of (b2 / banana)
+        :location (b3 / basket))
+    :op2 (h / hang-01
+        :ARG1 l
+        :location (r / room
+            :ARG0-of (h2 / have-03
+                :ARG1 (f / fruit
+                    :mod (o / other)
+                    :mod (s / some))
+                :location (b / background)))))

@@ -1,0 +1,45 @@
+# ::tok An illusion where four shapes are on the floor , but a mirror set up to reflect them shows three shapes and a banana .
+# ::node	i	illusion	1-2
+# ::node	1	4	3-4
+# ::node	s2	shape-01	4-5
+# ::node	b2	be-located-at-91	6-7
+# ::node	f	floor	8-9
+# ::node	c	contrast-01	10-11
+# ::node	m	mirror	12-13
+# ::node	s	set-up-03	13-14
+# ::node	r	reflect-01	16-17
+# ::node	s4	show-01	18-19
+# ::node	0	3	19-20
+# ::node	s3	shape-01	20-21
+# ::node	a	and	21-22
+# ::node	b	banana	23-24
+# ::root	i	illusion
+# ::edge	be-located-at-91	ARG2	floor	b2	f	
+# ::edge	contrast-01	ARG1	be-located-at-91	c	b2	
+# ::edge	illusion	location-of	contrast-01	i	c	
+# ::edge	mirror	ARG1-of	set-up-03	m	s	
+# ::edge	set-up-03	ARG2	reflect-01	s	r	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	reflect-01	ARG1	shape-01	r	s2	
+# ::edge	show-01	ARG0	mirror	s4	m	
+# ::edge	contrast-01	ARG2	show-01	c	s4	
+# ::edge	shape-01	quant	3	s3	0	
+# ::edge	and	op1	shape-01	a	s3	
+# ::edge	show-01	ARG1	and	s4	a	
+# ::edge	and	op2	banana	a	b	
+# ::edge	illusion	rel	4	i	1	
+(i / illusion
+    :location-of (c / contrast-01
+        :ARG1 (b2 / be-located-at-91
+            :ARG2 (f / floor))
+        :ARG2 (s4 / show-01
+            :ARG0 (m / mirror
+                :ARG1-of (s / set-up-03
+                    :ARG2 (r / reflect-01
+                        :ARG1 (s2 / shape-01)
+                        :ARG2 m)))
+            :ARG1 (a / and
+                :op1 (s3 / shape-01
+                    :quant 3)
+                :op2 (b / banana))))
+    :rel 4)

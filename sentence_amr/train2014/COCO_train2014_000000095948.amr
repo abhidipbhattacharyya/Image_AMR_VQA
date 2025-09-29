@@ -1,0 +1,27 @@
+# ::tok A train is at the subway station and people are walking around .
+# ::node	t	train	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	s2	subway	5-6
+# ::node	s	station	6-7
+# ::node	a	and	7-8
+# ::node	p	person	8-9
+# ::node	w	walk-01	10-11
+# ::node	a2	around	11-12
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	train	b	t	
+# ::edge	station	mod	subway	s	s2	
+# ::edge	be-located-at-91	ARG2	station	b	s	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG2	around	w	a2	
+# ::edge	around	op1	station	a2	s	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (t / train)
+        :ARG2 (s / station
+            :mod (s2 / subway)))
+    :op2 (w / walk-01
+        :ARG0 (p / person)
+        :ARG2 (a2 / around
+            :op1 s)))

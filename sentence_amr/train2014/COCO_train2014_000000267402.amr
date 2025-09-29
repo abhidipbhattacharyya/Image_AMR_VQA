@@ -1,0 +1,38 @@
+# ::tok A bed and other furniture pieces sat on the road waiting to be bought at the flea market .
+# ::node	b	bed	1-2
+# ::node	a	and	2-3
+# ::node	o	other	3-4
+# ::node	f2	furniture	4-5
+# ::node	p	piece	5-6
+# ::node	s	sit-01	6-7
+# ::node	r	road	9-10
+# ::node	w	wait-01	10-11
+# ::node	b2	buy-01	13-14
+# ::node	f	flea	16-17
+# ::node	m	market	17-18
+# ::root	s	sit-01
+# ::edge	and	op1	bed	a	b	
+# ::edge	piece	mod	furniture	p	f2	
+# ::edge	piece	mod	other	p	o	
+# ::edge	and	op2	piece	a	p	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	road	s	r	
+# ::edge	sit-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	and	w	a	
+# ::edge	wait-01	ARG2	buy-01	w	b2	
+# ::edge	buy-01	ARG1	and	b2	a	
+# ::edge	market	mod	flea	m	f	
+# ::edge	buy-01	ARG0	market	b2	m	
+(s / sit-01
+    :purpose (w / wait-01
+        :ARG1 (a / and
+            :op1 (b / bed)
+            :op2 (p / piece
+                :mod (f2 / furniture)
+                :mod (o / other)))
+        :ARG2 (b2 / buy-01
+            :ARG0 (m / market
+                :mod (f / flea))
+            :ARG1 a))
+    :ARG1 a
+    :ARG2 (r / road))

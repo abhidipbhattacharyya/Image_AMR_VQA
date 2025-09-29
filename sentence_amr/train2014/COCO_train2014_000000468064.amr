@@ -1,0 +1,35 @@
+# ::tok This is a window of some kind that needs washed because it has rain spots .
+# ::node	t	this	0-1
+# ::node	w2	window	3-4
+# ::node	s	some	5-6
+# ::node	k	kind	6-7
+# ::node	n	need-01	8-9
+# ::node	w	wash-01	9-10
+# ::node	c	cause-01	10-11
+# ::node	h	have-03	12-13
+# ::node	r	rain-01	13-14
+# ::node	s2	spot	14-15
+# ::root	w2	window
+# ::edge	window	domain	this	w2	t	
+# ::edge	kind	mod	some	k	s	
+# ::edge	window	mod	kind	w2	k	
+# ::edge	window	ARG0-of	need-01	w2	n	
+# ::edge	need-01	ARG1	wash-01	n	w	
+# ::edge	wash-01	ARG1	window	w	w2	
+# ::edge	need-01	ARG1-of	cause-01	n	c	
+# ::edge	cause-01	ARG0	have-03	c	h	
+# ::edge	have-03	ARG0	window	h	w2	
+# ::edge	spot	mod	rain-01	s2	r	
+# ::edge	have-03	ARG1	spot	h	s2	
+(w2 / window
+    :ARG0-of (n / need-01
+        :ARG1 (w / wash-01
+            :ARG1 w2)
+        :ARG1-of (c / cause-01
+            :ARG0 (h / have-03
+                :ARG0 w2
+                :ARG1 (s2 / spot
+                    :mod (r / rain-01)))))
+    :domain (t / this)
+    :mod (k / kind
+        :mod (s / some)))

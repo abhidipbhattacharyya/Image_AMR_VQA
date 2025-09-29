@@ -1,0 +1,37 @@
+# ::tok A toothbrush holder with one toothbrush in it and two holes for holding other toothbrushes .
+# ::node	t4	toothbrush	1-2
+# ::node	t	thing	2-3
+# ::node	h	hold-01	2-3
+# ::node	0	1	4-5
+# ::node	t5	toothbrush	5-6
+# ::node	a	and	8-9
+# ::node	1	2	9-10
+# ::node	h3	hole	10-11
+# ::node	h2	hold-01	12-13
+# ::node	o	other	13-14
+# ::node	t2	tooth	14-15
+# ::node	t3	tooth	14-15
+# ::root	t	thing
+# ::edge	thing	ARG0-of	hold-01	t	h	
+# ::edge	hold-01	ARG1	toothbrush	h	t4	
+# ::edge	toothbrush	quant	1	t5	0	
+# ::edge	and	op1	toothbrush	a	t5	
+# ::edge	thing	part	and	t	a	
+# ::edge	hole	quant	2	h3	1	
+# ::edge	and	op2	hole	a	h3	
+# ::edge	hole	ARG0-of	hold-01	h3	h2	
+# ::edge	tooth	mod	other	t2	o	
+# ::edge	hold-01	ARG1	tooth	h2	t2	
+# ::edge	other	part	tooth	o	t3	
+(t / thing
+    :ARG0-of (h / hold-01
+        :ARG1 (t4 / toothbrush))
+    :part (a / and
+        :op1 (t5 / toothbrush
+            :quant 1)
+        :op2 (h3 / hole
+            :quant 2
+            :ARG0-of (h2 / hold-01
+                :ARG1 (t2 / tooth
+                    :mod (o / other
+                        :part (t3 / tooth)))))))

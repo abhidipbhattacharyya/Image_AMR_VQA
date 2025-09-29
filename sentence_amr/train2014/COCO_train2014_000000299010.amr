@@ -1,0 +1,45 @@
+# ::tok This street pole has two street signs ; one with a name and the other showing a direction .
+# ::node	t2	this	0-1
+# ::node	s3	street	1-2
+# ::node	p	pole	2-3
+# ::node	h	have-03	3-4
+# ::node	1	2	4-5
+# ::node	s2	sign	6-7
+# ::node	i	include-91	8-9
+# ::node	i2	include-91	8-9
+# ::node	0	1	8-9
+# ::node	t	thing	10-11
+# ::node	n	name-01	11-12
+# ::node	o	other	14-15
+# ::node	s	show-01	15-16
+# ::node	d	direction	17-18
+# ::root	h	have-03
+# ::edge	pole	mod	street	p	s3	
+# ::edge	pole	mod	this	p	t2	
+# ::edge	have-03	ARG0	pole	h	p	
+# ::edge	sign	quant	2	s2	1	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	ARG2-of	include-91	s2	i	
+# ::edge	sign	ARG2-of	include-91	s2	i2	
+# ::edge	thing	quant	1	t	0	
+# ::edge	include-91	ARG1	thing	i	t	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	include-91	ARG1	other	i2	o	
+# ::edge	other	ARG0-of	show-01	o	s	
+# ::edge	show-01	ARG1	direction	s	d	
+(h / have-03
+    :ARG0 (p / pole
+        :mod (s3 / street)
+        :mod (t2 / this))
+    :ARG1 (s2 / sign
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (t / thing
+                :quant 1
+                :ARG2-of (n / name-01)))
+        :ARG2-of (i2 / include-91
+            :ARG1 (o / other
+                :ARG0-of (s / show-01
+                    :ARG1 (d / direction))))
+        :mod s3))

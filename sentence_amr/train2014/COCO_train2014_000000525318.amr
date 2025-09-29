@@ -1,0 +1,44 @@
+# ::tok Someones finger on their cell phone with a bottle and mp3 player on the cell phone screen
+# ::node	s2	someone	0-1
+# ::node	f	finger	1-2
+# ::node	c	cell	4-5
+# ::node	p	phone	5-6
+# ::node	b	bottle	8-9
+# ::node	a2	and	9-10
+# ::node	a	accompany-01	9-10
+# ::node	p3	product	10-11
+# ::node	n	name	10-11
+# ::node	0	mp3	10-11
+# ::node	t	thing	11-12
+# ::node	p2	play-11	11-12
+# ::node	s	screen	16-17
+# ::root	a2	and
+# ::edge	finger	part-of	someone	f	s2	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	finger	location	phone	f	p	
+# ::edge	phone	poss	someone	p	s2	
+# ::edge	and	op1	finger	a2	f	
+# ::edge	and	op2	accompany-01	a2	a	
+# ::edge	accompany-01	ARG1	bottle	a	b	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	mp3	n	0	
+# ::edge	and	op2	thing	a2	t	
+# ::edge	thing	ARG2-of	play-11	t	p2	
+# ::edge	play-11	ARG3	product	p2	p3	
+# ::edge	thing	location	screen	t	s	
+# ::edge	phone	part	screen	p	s	
+(a2 / and
+    :op1 (f / finger
+        :location (p / phone
+            :mod (c / cell)
+            :part (s / screen)
+            :poss (s2 / someone))
+        :part-of s2)
+    :op2 (a / accompany-01
+        :ARG1 (b / bottle))
+    :op2 (t / thing
+        :ARG2-of (p2 / play-11
+            :ARG3 (p3 / product
+                :name (n / name
+                    :op1 "mp3")))
+        :location s))

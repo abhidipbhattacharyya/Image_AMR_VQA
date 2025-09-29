@@ -1,0 +1,37 @@
+# ::tok a tennis player who has just jumped up to hit a tennis ball at the back of a tennis court
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	j2	just	5-6
+# ::node	j	jump-03	6-7
+# ::node	u	up	7-8
+# ::node	h	hit-01	9-10
+# ::node	b2	ball	12-13
+# ::node	b	back	15-16
+# ::node	c	court	19-20
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	jump-03	mod	just	j	j2	
+# ::edge	person	ARG0-of	jump-03	p	j	
+# ::edge	jump-03	direction	up	j	u	
+# ::edge	jump-03	purpose	hit-01	j	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b2	
+# ::edge	ball	mod	tennis	b2	t	
+# ::edge	hit-01	location	back	h	b	
+# ::edge	back	part-of	court	b	c	
+# ::edge	court	mod	tennis	c	t	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (j / jump-03
+        :purpose (h / hit-01
+            :ARG0 p
+            :ARG1 (b2 / ball
+                :mod t)
+            :location (b / back
+                :part-of (c / court
+                    :mod t)))
+        :direction (u / up)
+        :mod (j2 / just)))

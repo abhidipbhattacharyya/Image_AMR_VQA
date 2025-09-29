@@ -1,0 +1,37 @@
+# ::tok A sign in a city street that says , " Smile between the hours of 5pm and 9am " .
+# ::node	s2	sign	1-2
+# ::node	c	city	4-5
+# ::node	s4	street	5-6
+# ::node	s	say-01	7-8
+# ::node	s3	smile-01	10-11
+# ::node	y	you	10-11
+# ::node	2	imperative	10-11
+# ::node	b	between	11-12
+# ::node	d	date-entity	15-16
+# ::node	0	17:00	15-16
+# ::node	d2	date-entity	17-18
+# ::node	1	9:00	17-18
+# ::root	s2	sign
+# ::edge	street	mod	city	s4	c	
+# ::edge	sign	location	street	s2	s4	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	smile-01	s	s3	
+# ::edge	smile-01	ARG0	you	s3	y	
+# ::edge	smile-01	mode	imperative	s3	2	
+# ::edge	smile-01	time	between	s3	b	
+# ::edge	between	op1	date-entity	b	d	
+# ::edge	date-entity	time	17:00	d	0	
+# ::edge	between	op2	date-entity	b	d2	
+# ::edge	date-entity	time	9:00	d2	1	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (s3 / smile-01
+            :ARG0 (y / you)
+            :mode imperative
+            :time (b / between
+                :op1 (d / date-entity
+                    :time "17:00")
+                :op2 (d2 / date-entity
+                    :time "9:00"))))
+    :location (s4 / street
+        :mod (c / city)))

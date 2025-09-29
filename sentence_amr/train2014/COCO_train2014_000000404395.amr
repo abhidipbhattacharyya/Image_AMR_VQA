@@ -1,0 +1,31 @@
+# ::tok Adult man standing in room using remote control with game on video screen .
+# ::node	a	adult	0-1
+# ::node	m	man	1-2
+# ::node	s2	stand-01	2-3
+# ::node	r2	room	4-5
+# ::node	u	use-01	5-6
+# ::node	r	remote	6-7
+# ::node	c	control	7-8
+# ::node	g	game	9-10
+# ::node	v	video	11-12
+# ::node	s	screen	12-13
+# ::root	s2	stand-01
+# ::edge	man	mod	adult	m	a	
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	location	room	s2	r2	
+# ::edge	man	ARG0-of	use-01	m	u	
+# ::edge	control	mod	remote	c	r	
+# ::edge	use-01	ARG1	control	u	c	
+# ::edge	control	prep-with	game	c	g	
+# ::edge	screen	mod	video	s	v	
+# ::edge	game	location	screen	g	s	
+(s2 / stand-01
+    :ARG1 (m / man
+        :ARG0-of (u / use-01
+            :ARG1 (c / control
+                :mod (r / remote)
+                :prep-with (g / game
+                    :location (s / screen
+                        :mod (v / video)))))
+        :mod (a / adult))
+    :location (r2 / room))

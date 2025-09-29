@@ -1,0 +1,38 @@
+# ::tok Bottles of booze sit in the background behind a sandwich and a bit of beets .
+# ::node	b7	bottle	0-1
+# ::node	b6	booze	2-3
+# ::node	s2	sit-01	3-4
+# ::node	b	background	6-7
+# ::node	b4	behind	7-8
+# ::node	s	sandwich	9-10
+# ::node	a	and	10-11
+# ::node	b5	bit	12-13
+# ::node	b2	be-located-at-91	14-15
+# ::node	d	date-entity	14-15
+# ::node	b3	behead-01	14-15
+# ::root	s2	sit-01
+# ::edge	bottle	consist-of	booze	b7	b6	
+# ::edge	sit-01	ARG1	bottle	s2	b7	
+# ::edge	sit-01	ARG2	background	s2	b	
+# ::edge	sit-01	ARG2	behind	s2	b4	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	behind	op1	and	b4	a	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG1	bottle	b2	b7	
+# ::edge	be-located-at-91	ARG2	date-entity	b2	d	
+# ::edge	date-entity	quant	bit	d	b5	
+# ::edge	behead-01	quant	bit	b3	b5	
+# ::edge	and	op2	behead-01	a	b3	
+(s2 / sit-01
+    :ARG1 (b7 / bottle
+        :consist-of (b6 / booze))
+    :ARG2 (b / background)
+    :ARG2 (b4 / behind
+        :op1 (a / and
+            :op1 (s / sandwich)
+            :op2 (b2 / be-located-at-91
+                :ARG1 b7
+                :ARG2 (d / date-entity
+                    :quant (b5 / bit)))
+            :op2 (b3 / behead-01
+                :quant b5))))

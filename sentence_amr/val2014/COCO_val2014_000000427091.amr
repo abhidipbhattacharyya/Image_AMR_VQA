@@ -1,0 +1,30 @@
+# ::tok City traffic and pedestrians are headed in multiple directions on the street .
+# ::node	c	city	0-1
+# ::node	t	traffic	1-2
+# ::node	a	and	2-3
+# ::node	p	person	3-4
+# ::node	w	walk-01	3-4
+# ::node	h	head-02	5-6
+# ::node	m	multiple	7-8
+# ::node	d	direction	8-9
+# ::node	s	street	11-12
+# ::root	h	head-02
+# ::edge	traffic	mod	city	t	c	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	mod	city	p	c	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	head-02	ARG0	and	h	a	
+# ::edge	direction	quant	multiple	d	m	
+# ::edge	head-02	ARG1	direction	h	d	
+# ::edge	head-02	location	street	h	s	
+(h / head-02
+    :ARG0 (a / and
+        :op1 (t / traffic
+            :mod (c / city))
+        :op2 (p / person
+            :ARG0-of (w / walk-01)
+            :mod c))
+    :ARG1 (d / direction
+        :quant (m / multiple))
+    :location (s / street))

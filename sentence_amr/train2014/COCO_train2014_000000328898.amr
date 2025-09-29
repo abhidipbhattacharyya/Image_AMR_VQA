@@ -1,0 +1,31 @@
+# ::tok A yellow train near the passenger platform with a red light currently on .
+# ::node	y	yellow-02	1-2
+# ::node	t	train	2-3
+# ::node	n	near-02	3-4
+# ::node	p	passenger	5-6
+# ::node	p2	platform	6-7
+# ::node	h	have-03	7-8
+# ::node	r	red-02	9-10
+# ::node	l	light	10-11
+# ::node	c	current	11-12
+# ::node	o	on-01	12-13
+# ::root	n	near-02
+# ::edge	train	ARG1-of	yellow-02	t	y	
+# ::edge	near-02	ARG1	train	n	t	
+# ::edge	platform	mod	passenger	p2	p	
+# ::edge	near-02	ARG2	platform	n	p2	
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	have-03	ARG1	light	h	l	
+# ::edge	on-01	time	current	o	c	
+# ::edge	light	ARG1-of	on-01	l	o	
+(n / near-02
+    :ARG1 (t / train
+        :ARG0-of (h / have-03
+            :ARG1 (l / light
+                :ARG1-of (r / red-02)
+                :ARG1-of (o / on-01
+                    :time (c / current))))
+        :ARG1-of (y / yellow-02))
+    :ARG2 (p2 / platform
+        :mod (p / passenger)))

@@ -1,0 +1,52 @@
+# ::tok A group of buddhist monks taking pictures and wearing red and orange robes mixed in with a child and man .
+# ::node	g	group-01	1-2
+# ::node	r2	religious-group	3-4
+# ::node	n	name	3-4
+# ::node	0	Buddhism	3-4
+# ::node	m3	monk	4-5
+# ::node	t	take-01	5-6
+# ::node	p	picture	6-7
+# ::node	w	wear-01	8-9
+# ::node	r	red-02	9-10
+# ::node	a	and	10-11
+# ::node	o	orange	11-12
+# ::node	r3	robe	12-13
+# ::node	r4	robe	12-13
+# ::node	m2	mix-01	13-14
+# ::node	c	child	17-18
+# ::node	a2	and	18-19
+# ::node	m	man	19-20
+# ::root	g	group-01
+# ::edge	religious-group	name	name	r2	n	
+# ::edge	name	op1	Buddhism	n	0	
+# ::edge	monk	mod	religious-group	m3	r2	
+# ::edge	group-01	ARG1	monk	g	m3	
+# ::edge	group-01	ARG0-of	take-01	g	t	
+# ::edge	take-01	ARG1	picture	t	p	
+# ::edge	monk	ARG0-of	wear-01	m3	w	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op1	robe	a	r3	
+# ::edge	robe	ARG1-of	red-02	r3	r	
+# ::edge	robe	mod	orange	r4	o	
+# ::edge	and	op2	robe	a	r4	
+# ::edge	and	ARG1-of	mix-01	a	m2	
+# ::edge	and	op1	child	a2	c	
+# ::edge	mix-01	ARG2	and	m2	a2	
+# ::edge	and	op2	man	a2	m	
+(g / group-01
+    :ARG0-of (t / take-01
+        :ARG1 (p / picture))
+    :ARG1 (m3 / monk
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :ARG1-of (m2 / mix-01
+                    :ARG2 (a2 / and
+                        :op1 (c / child)
+                        :op2 (m / man)))
+                :op1 (r3 / robe
+                    :ARG1-of (r / red-02))
+                :op2 (r4 / robe
+                    :mod (o / orange))))
+        :mod (r2 / religious-group
+            :name (n / name
+                :op1 "Buddhism"))))

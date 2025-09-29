@@ -1,0 +1,44 @@
+# ::tok Baseball player looking to his left while other players stand and sit around talking .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	l2	look-01	2-3
+# ::node	l	left-20	5-6
+# ::node	o	other	7-8
+# ::node	p2	person	8-9
+# ::node	p4	play-01	8-9
+# ::node	s2	stand-01	9-10
+# ::node	a	and	10-11
+# ::node	s	sit-01	11-12
+# ::node	a2	around	12-13
+# ::node	t	talk-01	13-14
+# ::root	l2	look-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	look-01	ARG0	person	l2	p	
+# ::edge	look-01	direction	left-20	l2	l	
+# ::edge	left-20	ARG2	person	l	p	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	look-01	time	and	l2	a	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	sit-01	manner	around	s	a2	
+# ::edge	and	ARG0-of	talk-01	a	t	
+(l2 / look-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :direction (l / left-20
+        :ARG2 p)
+    :time (a / and
+        :ARG0-of (t / talk-01)
+        :op1 (s2 / stand-01
+            :ARG1 (p2 / person
+                :ARG0-of (p4 / play-01)
+                :mod (o / other)))
+        :op2 (s / sit-01
+            :ARG1 p2
+            :manner (a2 / around))))

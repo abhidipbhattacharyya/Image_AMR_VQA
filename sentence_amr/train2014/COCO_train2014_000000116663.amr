@@ -1,0 +1,57 @@
+# ::tok Three white dogs sit in a car and one is in the driver 's seat another in the passenger and one has the back seat all to itself .
+# ::node	0	3	0-1
+# ::node	w	white-03	1-2
+# ::node	d	dog	2-3
+# ::node	d2	dog	2-3
+# ::node	d3	dog	2-3
+# ::node	s4	sit-01	3-4
+# ::node	c	car	6-7
+# ::node	a2	and	7-8
+# ::node	b2	be-located-at-91	10-11
+# ::node	d4	drive-01	12-13
+# ::node	s	seat	14-15
+# ::node	s2	seat	14-15
+# ::node	a3	another	15-16
+# ::node	p	passenger	18-19
+# ::node	h	have-03	21-22
+# ::node	b	back	23-24
+# ::node	s3	seat	24-25
+# ::node	a	all	26-27
+# ::root	a2	and
+# ::edge	dog	ARG1-of	white-03	d	w	
+# ::edge	dog	quant	3	d	0	
+# ::edge	sit-01	ARG1	dog	s4	d	
+# ::edge	sit-01	ARG2	car	s4	c	
+# ::edge	and	op1	sit-01	a2	s4	
+# ::edge	and	op2	be-located-at-91	a2	b2	
+# ::edge	be-located-at-91	ARG1	dog	b2	d2	
+# ::edge	drive-01	ARG0	dog	d4	d2	
+# ::edge	seat	ARG2-of	drive-01	s	d4	
+# ::edge	be-located-at-91	ARG2	seat	b2	s	
+# ::edge	dog	location	seat	d3	s2	
+# ::edge	seat	mod	another	s2	a3	
+# ::edge	seat	location	passenger	s2	p	
+# ::edge	and	op3	have-03	a2	h	
+# ::edge	have-03	ARG0	dog	h	d3	
+# ::edge	seat	mod	back	s3	b	
+# ::edge	have-03	ARG1	seat	h	s3	
+# ::edge	have-03	mod	all	h	a	
+(a2 / and
+    :op1 (s4 / sit-01
+        :ARG1 (d / dog
+            :quant 3
+            :ARG1-of (w / white-03))
+        :ARG2 (c / car))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (d2 / dog)
+        :ARG2 (s / seat
+            :ARG2-of (d4 / drive-01
+                :ARG0 d2)))
+    :op3 (h / have-03
+        :ARG0 (d3 / dog
+            :location (s2 / seat
+                :location (p / passenger)
+                :mod (a3 / another)))
+        :ARG1 (s3 / seat
+            :mod (b / back))
+        :mod (a / all)))

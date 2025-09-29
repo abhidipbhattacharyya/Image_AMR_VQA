@@ -1,0 +1,25 @@
+# ::tok A city street at night with an illuminated bridge nearby .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	n2	night	4-5
+# ::node	h	have-03	5-6
+# ::node	i	illuminate-01	7-8
+# ::node	b	bridge	8-9
+# ::node	n	nearby	9-10
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	bridge	ARG1-of	illuminate-01	b	i	
+# ::edge	have-03	ARG1	bridge	h	b	
+# ::edge	bridge	location	nearby	b	n	
+(s / street
+    :ARG0-of (h / have-03
+        :ARG1 (b / bridge
+            :ARG1-of (i / illuminate-01)
+            :location (n / nearby)))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

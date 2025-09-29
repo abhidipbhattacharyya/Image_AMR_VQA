@@ -1,0 +1,35 @@
+# ::tok One bird waling on the shore with one flying above it .
+# ::node	0	1	0-1
+# ::node	b	bird	1-2
+# ::node	b2	bird	1-2
+# ::node	w	wade-01	2-3
+# ::node	s	shore	5-6
+# ::node	a2	and	6-7
+# ::node	i	include-91	7-8
+# ::node	1	1	7-8
+# ::node	f	fly-01	8-9
+# ::node	a	above	9-10
+# ::root	a2	and
+# ::edge	bird	quant	1	b	0	
+# ::edge	wade-01	ARG0	bird	w	b	
+# ::edge	wade-01	location	shore	w	s	
+# ::edge	and	op1	wade-01	a2	w	
+# ::edge	bird	ARG1-of	include-91	b2	i	
+# ::edge	include-91	ARG2	bird	i	b	
+# ::edge	bird	quant	1	b2	1	
+# ::edge	and	op2	fly-01	a2	f	
+# ::edge	fly-01	ARG2	bird	f	b2	
+# ::edge	fly-01	path	above	f	a	
+# ::edge	above	op1	bird	a	b	
+(a2 / and
+    :op1 (w / wade-01
+        :ARG0 (b / bird
+            :quant 1)
+        :location (s / shore))
+    :op2 (f / fly-01
+        :ARG2 (b2 / bird
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 b))
+        :path (a / above
+            :op1 b)))

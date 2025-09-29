@@ -1,0 +1,28 @@
+# ::tok Slices of bacon on a sub sandwich bread with a label and time .
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	b	bacon	2-3
+# ::node	s2	sub	5-6
+# ::node	s	sandwich	6-7
+# ::node	b2	bread	7-8
+# ::node	l	label	10-11
+# ::node	a	and	11-12
+# ::node	t	time	12-13
+# ::root	m	multiple
+# ::edge	multiple	op1	12	m	0	
+# ::edge	multiple	op1	bacon	m	b	
+# ::edge	sandwich	mod	sub	s	s2	
+# ::edge	bread	mod	sandwich	b2	s	
+# ::edge	multiple	location	bread	m	b2	
+# ::edge	and	op1	label	a	l	
+# ::edge	multiple	accompanier	and	m	a	
+# ::edge	and	op2	time	a	t	
+(m / multiple
+    :accompanier (a / and
+        :op1 (l / label)
+        :op2 (t / time))
+    :location (b2 / bread
+        :mod (s / sandwich
+            :mod (s2 / sub)))
+    :op1 12
+    :op1 (b / bacon))

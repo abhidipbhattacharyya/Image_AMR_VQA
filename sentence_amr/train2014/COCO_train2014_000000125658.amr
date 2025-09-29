@@ -1,0 +1,37 @@
+# ::tok one regular bus and three double decked buses two of them are backed in
+# ::node	0	1	0-1
+# ::node	r	regular-03	1-2
+# ::node	b2	bus	2-3
+# ::node	a	and	3-4
+# ::node	2	3	4-5
+# ::node	d2	double-01	5-6
+# ::node	d	deck	6-7
+# ::node	b3	bus	7-8
+# ::node	b4	bus	7-8
+# ::node	1	2	8-9
+# ::node	i	include-91	9-10
+# ::node	b	back-02	12-13
+# ::root	b	back-02
+# ::edge	bus	ARG1-of	regular-03	b2	r	
+# ::edge	bus	quant	1	b2	0	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	deck	ARG1-of	double-01	d	d2	
+# ::edge	bus	mod	deck	b3	d	
+# ::edge	bus	quant	3	b3	2	
+# ::edge	and	op2	bus	a	b3	
+# ::edge	bus	quant	2	b4	1	
+# ::edge	include-91	ARG1	bus	i	b4	
+# ::edge	bus	ARG2-of	include-91	b3	i	
+# ::edge	back-02	ARG1	and	b	a	
+(b / back-02
+    :ARG1 (a / and
+        :op1 (b2 / bus
+            :quant 1
+            :ARG1-of (r / regular-03))
+        :op2 (b3 / bus
+            :quant 3
+            :ARG2-of (i / include-91
+                :ARG1 (b4 / bus
+                    :quant 2))
+            :mod (d / deck
+                :ARG1-of (d2 / double-01)))))

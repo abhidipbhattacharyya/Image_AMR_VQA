@@ -1,0 +1,31 @@
+# ::tok A street sign filled with lots of different signs next to a tall building .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	f	fill-01	3-4
+# ::node	l	lot	5-6
+# ::node	d	differ-02	7-8
+# ::node	s2	sign	8-9
+# ::node	n	next-to	9-10
+# ::node	t	tall	12-13
+# ::node	b	building	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	sign	location	street	s	s3	
+# ::edge	sign	ARG1-of	fill-01	s	f	
+# ::edge	sign	ARG1-of	differ-02	s2	d	
+# ::edge	sign	quant	lot	s2	l	
+# ::edge	fill-01	ARG2	sign	f	s2	
+# ::edge	sign	location	next-to	s	n	
+# ::edge	building	mod	tall	b	t	
+# ::edge	next-to	op1	building	n	b	
+# ::edge	event	mod	sign	e	s	
+(e / event
+    :mod (s / sign
+        :ARG1-of (f / fill-01
+            :ARG2 (s2 / sign
+                :quant (l / lot)
+                :ARG1-of (d / differ-02)))
+        :location (s3 / street)
+        :location (n / next-to
+            :op1 (b / building
+                :mod (t / tall)))))

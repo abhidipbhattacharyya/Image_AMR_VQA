@@ -1,0 +1,40 @@
+# ::tok A street sign with the name of two streets and a stop sign , and parked cars and buildings in the distance .
+# ::node	s4	street	1-2
+# ::node	s	sign	2-3
+# ::node	n	name-01	5-6
+# ::node	0	2	7-8
+# ::node	s5	street	8-9
+# ::node	s3	stop-01	11-12
+# ::node	s2	sign	12-13
+# ::node	a	and	14-15
+# ::node	p	park-01	15-16
+# ::node	c	car	16-17
+# ::node	a2	and	17-18
+# ::node	b	building	18-19
+# ::node	d	distance	21-22
+# ::root	a	and
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	ARG1-of	name-01	s	n	
+# ::edge	street	quant	2	s5	0	
+# ::edge	name-01	ARG2	street	n	s5	
+# ::edge	sign	purpose	stop-01	s2	s3	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	and	op1	car	a2	c	
+# ::edge	and	op3	and	a	a2	
+# ::edge	and	op2	building	a2	b	
+# ::edge	and	location	distance	a2	d	
+(a / and
+    :op1 (s / sign
+        :ARG1-of (n / name-01
+            :ARG2 (s5 / street
+                :quant 2))
+        :mod (s4 / street))
+    :op2 (s2 / sign
+        :purpose (s3 / stop-01))
+    :op3 (a2 / and
+        :location (d / distance)
+        :op1 (c / car
+            :ARG1-of (p / park-01))
+        :op2 (b / building)))

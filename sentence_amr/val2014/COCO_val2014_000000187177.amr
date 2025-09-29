@@ -1,0 +1,36 @@
+# ::tok Man holding dog mouth open to brush teeth in tiled area
+# ::node	m	man	0-1
+# ::node	h	hold-01	1-2
+# ::node	d	dog	2-3
+# ::node	m2	mouth	3-4
+# ::node	o	open-01	4-5
+# ::node	b	brush-01	6-7
+# ::node	t2	tooth	7-8
+# ::node	t	tile-01	9-10
+# ::node	a	area	10-11
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	mouth	part-of	dog	m2	d	
+# ::edge	hold-01	ARG1	mouth	h	m2	
+# ::edge	open-01	ARG1	mouth	o	m2	
+# ::edge	hold-01	manner	open-01	h	o	
+# ::edge	open-01	ARG0	man	o	m	
+# ::edge	hold-01	purpose	brush-01	h	b	
+# ::edge	brush-01	ARG0	man	b	m	
+# ::edge	brush-01	ARG1	tooth	b	t2	
+# ::edge	man	part	tooth	m	t2	
+# ::edge	area	ARG1-of	tile-01	a	t	
+# ::edge	brush-01	location	area	b	a	
+(h / hold-01
+    :purpose (b / brush-01
+        :ARG0 (m / man
+            :part (t2 / tooth))
+        :ARG1 t2
+        :location (a / area
+            :ARG1-of (t / tile-01)))
+    :ARG0 m
+    :ARG1 (m2 / mouth
+        :part-of (d / dog))
+    :manner (o / open-01
+        :ARG0 m
+        :ARG1 m2))

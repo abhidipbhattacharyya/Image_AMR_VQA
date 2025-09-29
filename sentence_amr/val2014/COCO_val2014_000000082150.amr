@@ -1,0 +1,30 @@
+# ::tok A boy holds two video game controllers while sitting on a chair .
+# ::node	b	boy	1-2
+# ::node	h	hold-01	2-3
+# ::node	0	2	3-4
+# ::node	v	video	4-5
+# ::node	g	game	5-6
+# ::node	t	thing	6-7
+# ::node	c2	control-01	6-7
+# ::node	s	sit-01	8-9
+# ::node	c	chair	11-12
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	boy	h	b	
+# ::edge	game	mod	video	g	v	
+# ::edge	thing	quant	2	t	0	
+# ::edge	hold-01	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	control-01	t	c2	
+# ::edge	control-01	ARG1	game	c2	g	
+# ::edge	hold-01	time	sit-01	h	s	
+# ::edge	sit-01	ARG1	boy	s	b	
+# ::edge	sit-01	ARG2	chair	s	c	
+(h / hold-01
+    :ARG0 (b / boy)
+    :ARG1 (t / thing
+        :quant 2
+        :ARG0-of (c2 / control-01
+            :ARG1 (g / game
+                :mod (v / video))))
+    :time (s / sit-01
+        :ARG1 b
+        :ARG2 (c / chair)))

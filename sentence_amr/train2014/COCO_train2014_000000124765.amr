@@ -1,0 +1,33 @@
+# ::tok The express bus broke down , so a Lantern service truck is offering assistance .
+# ::node	e	express	1-2
+# ::node	b2	bus	2-3
+# ::node	b	break-down-12	3-4
+# ::node	c	cause-01	6-7
+# ::node	0	Lantern	8-9
+# ::node	s	service-05	9-10
+# ::node	t	truck	10-11
+# ::node	n	name	10-11
+# ::node	o	offer-01	12-13
+# ::node	a	assist-01	13-14
+# ::root	c	cause-01
+# ::edge	bus	mod	express	b2	e	
+# ::edge	break-down-12	ARG1	bus	b	b2	
+# ::edge	cause-01	ARG0	break-down-12	c	b	
+# ::edge	truck	ARG0-of	service-05	t	s	
+# ::edge	truck	name	name	t	n	
+# ::edge	name	op1	Lantern	n	0	
+# ::edge	offer-01	ARG0	truck	o	t	
+# ::edge	cause-01	ARG1	offer-01	c	o	
+# ::edge	offer-01	ARG1	assist-01	o	a	
+# ::edge	assist-01	ARG0	truck	a	t	
+(c / cause-01
+    :ARG0 (b / break-down-12
+        :ARG1 (b2 / bus
+            :mod (e / express)))
+    :ARG1 (o / offer-01
+        :ARG0 (t / truck
+            :name (n / name
+                :op1 "Lantern")
+            :ARG0-of (s / service-05))
+        :ARG1 (a / assist-01
+            :ARG0 t)))

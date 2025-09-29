@@ -1,0 +1,34 @@
+# ::tok Travelers in cars and on motorcylces are riding in the rain
+# ::node	p	person	0-1
+# ::node	t	travel-01	0-1
+# ::node	p2	person	0-1
+# ::node	t2	travel-01	0-1
+# ::node	c	car	2-3
+# ::node	a	and	3-4
+# ::node	c2	car-make	5-6
+# ::node	n	name	5-6
+# ::node	m	motorcycle	5-6
+# ::node	r2	ride-01	7-8
+# ::node	r	rain-01	10-11
+# ::root	r2	ride-01
+# ::edge	person	ARG0-of	travel-01	p	t	
+# ::edge	person	ARG0-of	travel-01	p2	t2	
+# ::edge	and	op2	person	a	p2	
+# ::edge	and	op1	person	a	p	
+# ::edge	travel-01	ARG1	car-make	t2	c2	
+# ::edge	car-make	name	name	c2	n	
+# ::edge	travel-01	op1	motorcycle	t2	m	
+# ::edge	ride-01	ARG0	and	r2	a	
+# ::edge	ride-01	ARG1	rain-01	r2	r	
+# ::edge	ride-01	rel	car	r2	c	
+(r2 / ride-01
+    :ARG0 (a / and
+        :op1 (p / person
+            :ARG0-of (t / travel-01))
+        :op2 (p2 / person
+            :ARG0-of (t2 / travel-01
+                :ARG1 (c2 / car-make
+                    :name (n / name))
+                :op1 (m / motorcycle))))
+    :ARG1 (r / rain-01)
+    :rel (c / car))

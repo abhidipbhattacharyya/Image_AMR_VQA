@@ -1,0 +1,45 @@
+# ::tok a baseball player sitting on an upside down bucket while resting his arm on a baseball bat on a baseball field
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	sit-01	3-4
+# ::node	u	upside	6-7
+# ::node	d	down-03	7-8
+# ::node	b3	bucket	8-9
+# ::node	a	and	9-10
+# ::node	r	rest-01	10-11
+# ::node	a2	arm	12-13
+# ::node	b2	bat	16-17
+# ::node	f	field	20-21
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	upside	op1	down-03	u	d	
+# ::edge	bucket	location	upside	b3	u	
+# ::edge	sit-01	ARG2	bucket	s	b3	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	rest-01	a	r	
+# ::edge	rest-01	ARG0	person	r	p	
+# ::edge	rest-01	ARG1	arm	r	a2	
+# ::edge	person	part	arm	p	a2	
+# ::edge	rest-01	ARG2	bat	r	b2	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	rest-01	location	field	r	f	
+# ::edge	field	mod	baseball	f	b	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b / baseball))
+            :part (a2 / arm))
+        :ARG2 (b3 / bucket
+            :location (u / upside
+                :op1 (d / down-03))))
+    :op2 (r / rest-01
+        :ARG0 p
+        :ARG1 a2
+        :ARG2 (b2 / bat
+            :mod b)
+        :location (f / field
+            :mod b)))

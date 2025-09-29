@@ -1,0 +1,28 @@
+# ::tok A boxcar being prepared to be hitched up or unhitched to a train .
+# ::node	b	boxcar	1-2
+# ::node	p	prepare-02	3-4
+# ::node	h	hit-01	6-7
+# ::node	o	or	8-9
+# ::node	h2	hoist-01	9-10
+# ::node	0	-	9-10
+# ::node	t	train	12-13
+# ::root	b	boxcar
+# ::edge	boxcar	ARG1-of	prepare-02	b	p	
+# ::edge	hit-01	ARG1	boxcar	h	b	
+# ::edge	or	op1	hit-01	o	h	
+# ::edge	prepare-02	ARG2	or	p	o	
+# ::edge	or	op2	hoist-01	o	h2	
+# ::edge	hoist-01	ARG1	boxcar	h2	b	
+# ::edge	hoist-01	polarity	-	h2	0	
+# ::edge	hoist-01	ARG2	train	h2	t	
+# ::edge	hit-01	ARG2	train	h	t	
+(b / boxcar
+    :ARG1-of (p / prepare-02
+        :ARG2 (o / or
+            :op1 (h / hit-01
+                :ARG1 b
+                :ARG2 (t / train))
+            :op2 (h2 / hoist-01
+                :ARG1 b
+                :ARG2 t
+                :polarity -))))

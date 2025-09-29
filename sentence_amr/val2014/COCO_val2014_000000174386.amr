@@ -1,0 +1,37 @@
+# ::tok Several bunches of bananas , some still attached to the branch , hanging from hooks in a kitchen
+# ::node	s	several	0-1
+# ::node	l	load	1-2
+# ::node	b	banana	3-4
+# ::node	i	include-91	5-6
+# ::node	s2	some	5-6
+# ::node	s3	still	6-7
+# ::node	a	attach-01	7-8
+# ::node	b2	branch	10-11
+# ::node	h	hang-01	12-13
+# ::node	t	thing	14-15
+# ::node	h2	hook-01	14-15
+# ::node	k	kitchen	17-18
+# ::root	h	hang-01
+# ::edge	load	quant	several	l	s	
+# ::edge	banana	quant	load	b	l	
+# ::edge	banana	ARG2-of	include-91	b	i	
+# ::edge	include-91	ARG1	some	i	s2	
+# ::edge	attach-01	mod	still	a	s3	
+# ::edge	some	ARG1-of	attach-01	s2	a	
+# ::edge	attach-01	ARG2	branch	a	b2	
+# ::edge	hang-01	ARG1	banana	h	b	
+# ::edge	hang-01	ARG2	thing	h	t	
+# ::edge	thing	ARG2-of	hook-01	t	h2	
+# ::edge	hook-01	location	kitchen	h2	k	
+(h / hang-01
+    :ARG1 (b / banana
+        :quant (l / load
+            :quant (s / several))
+        :ARG2-of (i / include-91
+            :ARG1 (s2 / some
+                :ARG1-of (a / attach-01
+                    :ARG2 (b2 / branch)
+                    :mod (s3 / still)))))
+    :ARG2 (t / thing
+        :ARG2-of (h2 / hook-01
+            :location (k / kitchen))))

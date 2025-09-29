@@ -1,0 +1,30 @@
+# ::tok Semi tractor rig as seen in small round mirror while on roadway .
+# ::node	s2	semi	0-1
+# ::node	t	tractor	1-2
+# ::node	r	rig	2-3
+# ::node	s	see-01	4-5
+# ::node	s3	small	6-7
+# ::node	r3	round-06	7-8
+# ::node	m	mirror	8-9
+# ::node	b	be-located-at-91	10-11
+# ::node	r2	roadway	11-12
+# ::root	s	see-01
+# ::edge	tractor	mod	semi	t	s2	
+# ::edge	rig	mod	tractor	r	t	
+# ::edge	see-01	ARG1	rig	s	r	
+# ::edge	mirror	ARG1-of	round-06	m	r3	
+# ::edge	mirror	mod	small	m	s3	
+# ::edge	see-01	location	mirror	s	m	
+# ::edge	see-01	time	be-located-at-91	s	b	
+# ::edge	be-located-at-91	ARG1	rig	b	r	
+# ::edge	be-located-at-91	ARG2	roadway	b	r2	
+(s / see-01
+    :ARG1 (r / rig
+        :mod (t / tractor
+            :mod (s2 / semi)))
+    :location (m / mirror
+        :ARG1-of (r3 / round-06)
+        :mod (s3 / small))
+    :time (b / be-located-at-91
+        :ARG1 r
+        :ARG2 (r2 / roadway)))

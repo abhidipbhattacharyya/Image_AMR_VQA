@@ -1,0 +1,40 @@
+# ::tok A city side walk with a sign next to a building that says " Enterprise Hotel Parking " .
+# ::node	c	city	1-2
+# ::node	s2	side	2-3
+# ::node	w	walk-01	3-4
+# ::node	h	have-03	4-5
+# ::node	s3	sign	6-7
+# ::node	n2	next-to	7-8
+# ::node	b	building	10-11
+# ::node	s	say-01	12-13
+# ::node	c2	company	14-15
+# ::node	n	name	14-15
+# ::node	0	Enterprise	14-15
+# ::node	1	Hotel	15-16
+# ::node	p	park-01	16-17
+# ::root	w	walk-01
+# ::edge	side	mod	city	s2	c	
+# ::edge	walk-01	location	side	w	s2	
+# ::edge	walk-01	ARG0-of	have-03	w	h	
+# ::edge	have-03	ARG1	sign	h	s3	
+# ::edge	sign	location	next-to	s3	n2	
+# ::edge	next-to	op1	building	n2	b	
+# ::edge	building	ARG0-of	say-01	b	s	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Enterprise	n	0	
+# ::edge	name	op2	Hotel	n	1	
+# ::edge	park-01	ARG0	company	p	c2	
+# ::edge	say-01	ARG1	park-01	s	p	
+(w / walk-01
+    :ARG0-of (h / have-03
+        :ARG1 (s3 / sign
+            :location (n2 / next-to
+                :op1 (b / building
+                    :ARG0-of (s / say-01
+                        :ARG1 (p / park-01
+                            :ARG0 (c2 / company
+                                :name (n / name
+                                    :op1 "Enterprise"
+                                    :op2 "Hotel"))))))))
+    :location (s2 / side
+        :mod (c / city)))

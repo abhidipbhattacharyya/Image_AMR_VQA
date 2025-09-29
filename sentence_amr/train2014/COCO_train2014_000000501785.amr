@@ -1,0 +1,28 @@
+# ::tok A large building with columns barely visible through some trees .
+# ::node	l	large	1-2
+# ::node	b2	building	2-3
+# ::node	p	pillar	4-5
+# ::node	b	barely	5-6
+# ::node	p2	possible-01	6-7
+# ::node	s	see-01	6-7
+# ::node	t	through	7-8
+# ::node	s2	some	8-9
+# ::node	t2	tree	9-10
+# ::root	b2	building
+# ::edge	building	mod	large	b2	l	
+# ::edge	building	part	pillar	b2	p	
+# ::edge	possible-01	degree	barely	p2	b	
+# ::edge	see-01	ARG1-of	possible-01	s	p2	
+# ::edge	pillar	ARG1-of	see-01	p	s	
+# ::edge	see-01	direction	through	s	t	
+# ::edge	tree	quant	some	t2	s2	
+# ::edge	through	op1	tree	t	t2	
+(b2 / building
+    :mod (l / large)
+    :part (p / pillar
+        :ARG1-of (s / see-01
+            :ARG1-of (p2 / possible-01
+                :degree (b / barely))
+            :direction (t / through
+                :op1 (t2 / tree
+                    :quant (s2 / some))))))

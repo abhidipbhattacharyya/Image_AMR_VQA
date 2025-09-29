@@ -1,0 +1,25 @@
+# ::tok A horse pulling a carriage is guided through an urban area at night .
+# ::node	h	horse	1-2
+# ::node	p	pull-01	2-3
+# ::node	c	carriage	4-5
+# ::node	g	guide-01	6-7
+# ::node	u	urban	9-10
+# ::node	a	area	10-11
+# ::node	d	date-entity	12-13
+# ::node	n	night	12-13
+# ::root	g	guide-01
+# ::edge	horse	ARG0-of	pull-01	h	p	
+# ::edge	pull-01	ARG1	carriage	p	c	
+# ::edge	guide-01	ARG1	horse	g	h	
+# ::edge	area	mod	urban	a	u	
+# ::edge	guide-01	path	area	g	a	
+# ::edge	guide-01	time	date-entity	g	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(g / guide-01
+    :ARG1 (h / horse
+        :ARG0-of (p / pull-01
+            :ARG1 (c / carriage)))
+    :path (a / area
+        :mod (u / urban))
+    :time (d / date-entity
+        :dayperiod (n / night)))

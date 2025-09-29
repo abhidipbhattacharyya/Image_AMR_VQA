@@ -1,0 +1,27 @@
+# ::tok A damage cylinder is some sort sitting near a fire hydrant .
+# ::node	d	damage-01	1-2
+# ::node	c	cylinder	2-3
+# ::node	s2	some	4-5
+# ::node	s3	sort	5-6
+# ::node	s	sit-01	6-7
+# ::node	n	near-02	7-8
+# ::node	f	fire	9-10
+# ::node	h	hydrant	10-11
+# ::root	s	sit-01
+# ::edge	cylinder	ARG0-of	damage-01	c	d	
+# ::edge	sort	mod	some	s3	s2	
+# ::edge	cylinder	mod	sort	c	s3	
+# ::edge	sit-01	ARG1	cylinder	s	c	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	cylinder	n	c	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	near-02	ARG2	hydrant	n	h	
+(s / sit-01
+    :ARG1 (c / cylinder
+        :ARG0-of (d / damage-01)
+        :mod (s3 / sort
+            :mod (s2 / some)))
+    :ARG2 (n / near-02
+        :ARG1 c
+        :ARG2 (h / hydrant
+            :mod (f / fire))))

@@ -1,0 +1,33 @@
+# ::tok Two different colored semi trucks parked next to each other without a load attached .
+# ::node	1	2	0-1
+# ::node	d	differ-02	1-2
+# ::node	c	color-01	2-3
+# ::node	s	semi	3-4
+# ::node	t	truck	4-5
+# ::node	p	park-01	5-6
+# ::node	n	next-to	6-7
+# ::node	0	-	10-11
+# ::node	l	load	12-13
+# ::node	a	attach-01	13-14
+# ::root	p	park-01
+# ::edge	truck	mod	semi	t	s	
+# ::edge	truck	ARG1-of	color-01	t	c	
+# ::edge	truck	ARG1-of	differ-02	t	d	
+# ::edge	truck	quant	2	t	1	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	truck	n	t	
+# ::edge	load	polarity	-	l	0	
+# ::edge	attach-01	ARG1	load	a	l	
+# ::edge	truck	ARG2-of	attach-01	t	a	
+(p / park-01
+    :ARG1 (t / truck
+        :quant 2
+        :ARG1-of (c / color-01)
+        :ARG1-of (d / differ-02)
+        :ARG2-of (a / attach-01
+            :ARG1 (l / load
+                :polarity -))
+        :mod (s / semi))
+    :ARG2 (n / next-to
+        :op1 t))

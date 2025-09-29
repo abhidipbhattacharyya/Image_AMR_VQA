@@ -1,0 +1,28 @@
+# ::tok Lighted bar sign mounted near traffic signal in front of a building .
+# ::node	l	light	0-1
+# ::node	b	bar	1-2
+# ::node	s	sign	2-3
+# ::node	m	mount-03	3-4
+# ::node	n	near-02	4-5
+# ::node	t	traffic	5-6
+# ::node	s2	signal	6-7
+# ::node	i	in-front-of	8-9
+# ::node	b2	building	11-12
+# ::root	m	mount-03
+# ::edge	sign	mod	bar	s	b	
+# ::edge	sign	mod	light	s	l	
+# ::edge	mount-03	ARG1	sign	m	s	
+# ::edge	mount-03	ARG1-of	near-02	m	n	
+# ::edge	signal	mod	traffic	s2	t	
+# ::edge	near-02	ARG2	signal	n	s2	
+# ::edge	signal	location	in-front-of	s2	i	
+# ::edge	in-front-of	op1	building	i	b2	
+(m / mount-03
+    :ARG1 (s / sign
+        :mod (b / bar)
+        :mod (l / light))
+    :ARG1-of (n / near-02
+        :ARG2 (s2 / signal
+            :location (i / in-front-of
+                :op1 (b2 / building))
+            :mod (t / traffic))))

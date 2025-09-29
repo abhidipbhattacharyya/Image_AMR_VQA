@@ -1,0 +1,27 @@
+# ::tok A boat pulls up to a stone pier in which a structure is bent and hanging .
+# ::node	b2	boat	1-2
+# ::node	p2	pull-01	2-3
+# ::node	s	stone	6-7
+# ::node	p	pier	7-8
+# ::node	s2	structure	11-12
+# ::node	b	bend-01	13-14
+# ::node	a	and	14-15
+# ::node	h	hang-01	15-16
+# ::root	p2	pull-01
+# ::edge	pull-01	ARG1	boat	p2	b2	
+# ::edge	pier	consist-of	stone	p	s	
+# ::edge	pull-01	ARG2	pier	p2	p	
+# ::edge	bend-01	ARG1	structure	b	s2	
+# ::edge	and	op1	bend-01	a	b	
+# ::edge	pier	location-of	and	p	a	
+# ::edge	and	op2	hang-01	a	h	
+# ::edge	hang-01	ARG1	structure	h	s2	
+(p2 / pull-01
+    :ARG1 (b2 / boat)
+    :ARG2 (p / pier
+        :consist-of (s / stone)
+        :location-of (a / and
+            :op1 (b / bend-01
+                :ARG1 (s2 / structure))
+            :op2 (h / hang-01
+                :ARG1 s2))))

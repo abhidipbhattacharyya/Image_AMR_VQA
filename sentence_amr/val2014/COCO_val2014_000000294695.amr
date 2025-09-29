@@ -1,0 +1,43 @@
+# ::tok People on a beach with a colored windsock and American flag colored windsocks .
+# ::node	p	person	0-1
+# ::node	b	beach	3-4
+# ::node	h	have-03	4-5
+# ::node	c	color-01	6-7
+# ::node	w3	windsock	7-8
+# ::node	a	and	8-9
+# ::node	c3	country	9-10
+# ::node	n	name	9-10
+# ::node	1	United	9-10
+# ::node	0	States	9-10
+# ::node	f	flag	10-11
+# ::node	c2	color-01	11-12
+# ::node	w	wind	12-13
+# ::node	w2	wind	12-13
+# ::root	p	person
+# ::edge	person	location	beach	p	b	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	windsock	ARG1-of	color-01	w3	c	
+# ::edge	and	op1	windsock	a	w3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	United	n	1	
+# ::edge	name	op2	States	n	0	
+# ::edge	flag	mod	country	f	c3	
+# ::edge	color-01	ARG1	wind	c2	w	
+# ::edge	wind	ARG1-of	color-01	w2	c2	
+# ::edge	wind	mod	flag	w2	f	
+# ::edge	and	op2	wind	a	w2	
+(p / person
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (w3 / windsock
+                :ARG1-of (c / color-01))
+            :op2 (w2 / wind
+                :ARG1-of (c2 / color-01
+                    :ARG1 (w / wind))
+                :mod (f / flag
+                    :mod (c3 / country
+                        :name (n / name
+                            :op1 "United"
+                            :op2 "States"))))))
+    :location (b / beach))

@@ -1,0 +1,35 @@
+# ::tok One person helps another cut a doughnut among an assortment of doughnuts .
+# ::node	0	1	0-1
+# ::node	p	person	1-2
+# ::node	p2	person	1-2
+# ::node	h	help-01	2-3
+# ::node	a2	another	3-4
+# ::node	c	cut-01	4-5
+# ::node	d	doughnut	6-7
+# ::node	d2	doughnut	6-7
+# ::node	a	among	7-8
+# ::node	a3	assortment	9-10
+# ::root	h	help-01
+# ::edge	person	quant	1	p	0	
+# ::edge	help-01	ARG2	person	h	p2	
+# ::edge	help-01	ARG0	person	h	p	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	help-01	ARG1	cut-01	h	c	
+# ::edge	cut-01	ARG0	person	c	p2	
+# ::edge	cut-01	ARG1	doughnut	c	d	
+# ::edge	among	op1	doughnut	a	d2	
+# ::edge	cut-01	location	among	c	a	
+# ::edge	among	op2	assortment	a	a3	
+# ::edge	doughnut	quant	assortment	d2	a3	
+(h / help-01
+    :ARG0 (p / person
+        :quant 1)
+    :ARG1 (c / cut-01
+        :ARG0 (p2 / person
+            :mod (a2 / another))
+        :ARG1 (d / doughnut)
+        :location (a / among
+            :op1 (d2 / doughnut
+                :quant (a3 / assortment))
+            :op2 a3))
+    :ARG2 p2)

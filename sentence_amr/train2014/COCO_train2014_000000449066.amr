@@ -1,0 +1,28 @@
+# ::tok Several signs are next to each other including a traffic light .
+# ::node	s	several	0-1
+# ::node	s2	sign	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	n	next-to	3-4
+# ::node	e	each	5-6
+# ::node	o	other	6-7
+# ::node	i	include-01	7-8
+# ::node	t	traffic	9-10
+# ::node	l	light	10-11
+# ::root	b	be-located-at-91
+# ::edge	sign	quant	several	s2	s	
+# ::edge	be-located-at-91	ARG1	sign	b	s2	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	next-to	op1	each	n	e	
+# ::edge	next-to	op2	other	n	o	
+# ::edge	sign	ARG2-of	include-01	s2	i	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	include-01	ARG1	light	i	l	
+(b / be-located-at-91
+    :ARG1 (s2 / sign
+        :quant (s / several)
+        :ARG2-of (i / include-01
+            :ARG1 (l / light
+                :mod (t / traffic))))
+    :ARG2 (n / next-to
+        :op1 (e / each)
+        :op2 (o / other)))

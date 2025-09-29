@@ -1,0 +1,34 @@
+# ::tok A kitchen with white tile floors white fixtures and an enclosed bath and shower combination .
+# ::node	k	kitchen	1-2
+# ::node	w	white-03	3-4
+# ::node	t	tile	4-5
+# ::node	f2	floor	5-6
+# ::node	w2	white-03	6-7
+# ::node	f	fixture	7-8
+# ::node	a	and	8-9
+# ::node	c2	confine-01	10-11
+# ::node	b	bath	11-12
+# ::node	s	shower	13-14
+# ::node	c	combine-01	14-15
+# ::root	k	kitchen
+# ::edge	tile	ARG1-of	white-03	t	w	
+# ::edge	floor	consist-of	tile	f2	t	
+# ::edge	fixture	ARG1-of	white-03	f	w2	
+# ::edge	and	op2	fixture	a	f	
+# ::edge	and	op1	floor	a	f2	
+# ::edge	kitchen	part	and	k	a	
+# ::edge	bath	ARG1-of	confine-01	b	c2	
+# ::edge	and	op3	bath	a	b	
+# ::edge	combine-01	ARG2	shower	c	s	
+# ::edge	bath	op4	combine-01	b	c	
+(k / kitchen
+    :part (a / and
+        :op1 (f2 / floor
+            :consist-of (t / tile
+                :ARG1-of (w / white-03)))
+        :op2 (f / fixture
+            :ARG1-of (w2 / white-03))
+        :op3 (b / bath
+            :ARG1-of (c2 / confine-01)
+            :op4 (c / combine-01
+                :ARG2 (s / shower)))))

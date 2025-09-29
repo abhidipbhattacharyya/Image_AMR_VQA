@@ -1,0 +1,30 @@
+# ::tok baseball player swinging while umpire and catcher stand behind him
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	s2	swing-01	2-3
+# ::node	u	umpire	4-5
+# ::node	a	and	5-6
+# ::node	c	catcher	6-7
+# ::node	s	stand-01	7-8
+# ::node	b2	behind	8-9
+# ::root	s2	swing-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	swing-01	ARG0	person	s2	p	
+# ::edge	and	op1	umpire	a	u	
+# ::edge	and	op2	catcher	a	c	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	swing-01	time	stand-01	s2	s	
+# ::edge	stand-01	ARG2	behind	s	b2	
+# ::edge	behind	op1	person	b2	p	
+(s2 / swing-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball)))
+    :time (s / stand-01
+        :ARG1 (a / and
+            :op1 (u / umpire)
+            :op2 (c / catcher))
+        :ARG2 (b2 / behind
+            :op1 p)))

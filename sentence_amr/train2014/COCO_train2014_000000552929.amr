@@ -1,0 +1,40 @@
+# ::tok An old fashioned bathroom with gravity fed toilet and bidet and a gas water heater on the wall .
+# ::node	o	old	1-2
+# ::node	f	fashion	2-3
+# ::node	b	bathroom	3-4
+# ::node	g2	gravity	5-6
+# ::node	f2	feed-01	6-7
+# ::node	t2	toilet	7-8
+# ::node	a	and	8-9
+# ::node	b2	bidet	9-10
+# ::node	g	gas	12-13
+# ::node	w2	water	13-14
+# ::node	t	thing	14-15
+# ::node	h	heat-01	14-15
+# ::node	w	wall	17-18
+# ::root	b	bathroom
+# ::edge	fashion	mod	old	f	o	
+# ::edge	bathroom	mod	fashion	b	f	
+# ::edge	feed-01	ARG2	gravity	f2	g2	
+# ::edge	and	op1	toilet	a	t2	
+# ::edge	and	ARG1-of	feed-01	a	f2	
+# ::edge	bathroom	prep-with	and	b	a	
+# ::edge	and	op2	bidet	a	b2	
+# ::edge	thing	mod	gas	t	g	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG0-of	heat-01	t	h	
+# ::edge	heat-01	ARG1	water	h	w2	
+# ::edge	thing	location	wall	t	w	
+(b / bathroom
+    :mod (f / fashion
+        :mod (o / old))
+    :prep-with (a / and
+        :ARG1-of (f2 / feed-01
+            :ARG2 (g2 / gravity))
+        :op1 (t2 / toilet)
+        :op2 (b2 / bidet)
+        :op3 (t / thing
+            :ARG0-of (h / heat-01
+                :ARG1 (w2 / water))
+            :location (w / wall)
+            :mod (g / gas))))

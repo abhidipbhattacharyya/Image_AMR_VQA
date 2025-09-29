@@ -1,0 +1,33 @@
+# ::tok A pan with missing slices of pizza that had cheese , meat and broccoli as its toppings .
+# ::node	p	pan	1-2
+# ::node	m2	miss-01	3-4
+# ::node	s	slice	4-5
+# ::node	p2	pizza	6-7
+# ::node	h	have-03	8-9
+# ::node	c	cheese	9-10
+# ::node	a	and	10-11
+# ::node	m	meat	11-12
+# ::node	b	broccoli	13-14
+# ::node	i	ingredient	16-17
+# ::root	p	pan
+# ::edge	slice	ARG1-of	miss-01	s	m2	
+# ::edge	pan	part	slice	p	s	
+# ::edge	slice	mod	pizza	s	p2	
+# ::edge	slice	ARG0-of	have-03	s	h	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	meat	a	m	
+# ::edge	and	op3	broccoli	a	b	
+# ::edge	have-03	prep-as	ingredient	h	i	
+# ::edge	pizza	consist	ingredient	p2	i	
+(p / pan
+    :part (s / slice
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c / cheese)
+                :op2 (m / meat)
+                :op3 (b / broccoli))
+            :prep-as (i / ingredient))
+        :ARG1-of (m2 / miss-01)
+        :mod (p2 / pizza
+            :consist i)))

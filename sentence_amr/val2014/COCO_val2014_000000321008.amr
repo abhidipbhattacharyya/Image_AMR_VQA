@@ -1,0 +1,31 @@
+# ::tok A table setting displaying a warm beverage and a plate of waffles and fruit .
+# ::node	t	table	1-2
+# ::node	s	set-01	2-3
+# ::node	d	display-01	3-4
+# ::node	w	warm-07	5-6
+# ::node	b	beverage	6-7
+# ::node	a	and	7-8
+# ::node	p	plate	9-10
+# ::node	0	W	11-12
+# ::node	a2	and	12-13
+# ::node	f	fruit	13-14
+# ::root	s	set-01
+# ::edge	set-01	ARG1	table	s	t	
+# ::edge	set-01	ARG0-of	display-01	s	d	
+# ::edge	beverage	ARG1-of	warm-07	b	w	
+# ::edge	and	op1	beverage	a	b	
+# ::edge	display-01	ARG1	and	d	a	
+# ::edge	and	op2	plate	a	p	
+# ::edge	and	op1	W	a2	0	
+# ::edge	plate	consist-of	and	p	a2	
+# ::edge	and	op2	fruit	a2	f	
+(s / set-01
+    :ARG0-of (d / display-01
+        :ARG1 (a / and
+            :op1 (b / beverage
+                :ARG1-of (w / warm-07))
+            :op2 (p / plate
+                :consist-of (a2 / and
+                    :op1 W
+                    :op2 (f / fruit)))))
+    :ARG1 (t / table))

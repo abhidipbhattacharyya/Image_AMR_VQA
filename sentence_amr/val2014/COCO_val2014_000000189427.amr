@@ -1,0 +1,33 @@
+# ::tok A warning sign by a trash can at a park reads warns people to not pick the blossoms .
+# ::node	w	warn-01	1-2
+# ::node	s	sign	2-3
+# ::node	t	trash	5-6
+# ::node	c	can	6-7
+# ::node	p	park	9-10
+# ::node	r	read-01	10-11
+# ::node	p2	person	12-13
+# ::node	0	-	14-15
+# ::node	p3	pick-01	15-16
+# ::node	f	flower	17-18
+# ::root	r	read-01
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	can	mod	trash	c	t	
+# ::edge	sign	location	can	s	c	
+# ::edge	can	location	park	c	p	
+# ::edge	read-01	ARG1	sign	r	s	
+# ::edge	read-01	ARG2	person	r	p2	
+# ::edge	pick-01	polarity	-	p3	0	
+# ::edge	pick-01	ARG0	person	p3	p2	
+# ::edge	warn-01	ARG1	pick-01	w	p3	
+# ::edge	pick-01	ARG1	flower	p3	f	
+(r / read-01
+    :ARG1 (s / sign
+        :ARG0-of (w / warn-01
+            :ARG1 (p3 / pick-01
+                :ARG0 (p2 / person)
+                :ARG1 (f / flower)
+                :polarity -))
+        :location (c / can
+            :location (p / park)
+            :mod (t / trash)))
+    :ARG2 p2)

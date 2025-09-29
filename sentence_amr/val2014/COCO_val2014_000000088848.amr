@@ -1,0 +1,45 @@
+# ::tok Multiple pictures of fire hydrants , a woman standing near a tree , and people posing in front of a boat .
+# ::node	m	multiple	0-1
+# ::node	p2	picture	1-2
+# ::node	f	fire	3-4
+# ::node	t	thing	4-5
+# ::node	f2	fire	4-5
+# ::node	w	woman	7-8
+# ::node	s	stand-01	8-9
+# ::node	n	near-02	9-10
+# ::node	t2	tree	11-12
+# ::node	a	and	13-14
+# ::node	p	person	14-15
+# ::node	p3	pose-01	15-16
+# ::node	i	in-front-of	17-18
+# ::node	b	boat	20-21
+# ::root	p2	picture
+# ::edge	picture	quant	multiple	p2	m	
+# ::edge	thing	mod	fire	t	f2	
+# ::edge	fire	mod	fire	f2	f	
+# ::edge	stand-01	ARG1	woman	s	w	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	woman	n	w	
+# ::edge	near-02	ARG2	tree	n	t2	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	and	op1	thing	a	t	
+# ::edge	picture	topic	and	p2	a	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG0-of	pose-01	p	p3	
+# ::edge	pose-01	location	in-front-of	p3	i	
+# ::edge	in-front-of	op1	boat	i	b	
+(p2 / picture
+    :quant (m / multiple)
+    :topic (a / and
+        :op1 (t / thing
+            :mod (f2 / fire
+                :mod (f / fire)))
+        :op2 (s / stand-01
+            :ARG1 (w / woman)
+            :ARG2 (n / near-02
+                :ARG1 w
+                :ARG2 (t2 / tree)))
+        :op3 (p / person
+            :ARG0-of (p3 / pose-01
+                :location (i / in-front-of
+                    :op1 (b / boat))))))

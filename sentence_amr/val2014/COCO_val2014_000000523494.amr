@@ -1,0 +1,33 @@
+# ::tok A group of people waiting to board a commuter bus headed to the Subway .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	w	wait-01	4-5
+# ::node	b	board-01	6-7
+# ::node	c	commute-01	8-9
+# ::node	b2	bus	9-10
+# ::node	h	head-02	10-11
+# ::node	s	station	13-14
+# ::node	n	name	13-14
+# ::node	0	Subway	13-14
+# ::root	h	head-02
+# ::edge	group	consist-of	person	g	p	
+# ::edge	group	ARG1-of	wait-01	g	w	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG0	group	b	g	
+# ::edge	bus	ARG0-of	commute-01	b2	c	
+# ::edge	board-01	ARG1	bus	b	b2	
+# ::edge	head-02	ARG0	group	h	g	
+# ::edge	head-02	ARG1	station	h	s	
+# ::edge	station	name	name	s	n	
+# ::edge	name	op1	Subway	n	0	
+(h / head-02
+    :ARG0 (g / group
+        :ARG1-of (w / wait-01
+            :ARG2 (b / board-01
+                :ARG0 g
+                :ARG1 (b2 / bus
+                    :ARG0-of (c / commute-01))))
+        :consist-of (p / person))
+    :ARG1 (s / station
+        :name (n / name
+            :op1 "Subway")))

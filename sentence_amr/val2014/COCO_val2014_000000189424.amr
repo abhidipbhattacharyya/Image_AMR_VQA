@@ -1,0 +1,31 @@
+# ::tok Tall urinal next to toilet with no tank in public bathroom .
+# ::node	t	tall	0-1
+# ::node	u	urinal	1-2
+# ::node	n	next-to	2-3
+# ::node	t3	toilet	4-5
+# ::node	h	have-03	5-6
+# ::node	0	-	6-7
+# ::node	t2	tank	7-8
+# ::node	p	public-02	9-10
+# ::node	b	bathroom	10-11
+# ::node	e	event	11-12
+# ::root	e	event
+# ::edge	urinal	mod	tall	u	t	
+# ::edge	urinal	location	next-to	u	n	
+# ::edge	next-to	op1	toilet	n	t3	
+# ::edge	urinal	ARG0-of	have-03	u	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	tank	h	t2	
+# ::edge	bathroom	ARG1-of	public-02	b	p	
+# ::edge	urinal	location	bathroom	u	b	
+# ::edge	event	mod	urinal	e	u	
+(e / event
+    :mod (u / urinal
+        :ARG0-of (h / have-03
+            :ARG1 (t2 / tank)
+            :polarity -)
+        :location (n / next-to
+            :op1 (t3 / toilet))
+        :location (b / bathroom
+            :ARG1-of (p / public-02))
+        :mod (t / tall)))

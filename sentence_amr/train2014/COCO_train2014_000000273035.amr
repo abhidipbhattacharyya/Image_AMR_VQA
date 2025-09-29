@@ -1,0 +1,25 @@
+# ::tok A handmade raft holds three people in front of a dock .
+# ::node	m	make-01	1-2
+# ::node	h	hand	1-2
+# ::node	r	raft	2-3
+# ::node	h2	hold-01	3-4
+# ::node	0	3	4-5
+# ::node	p	person	5-6
+# ::node	i	in-front-of	7-8
+# ::node	d	dock	10-11
+# ::root	h2	hold-01
+# ::edge	make-01	ARG1	hand	m	h	
+# ::edge	raft	ARG1-of	make-01	r	m	
+# ::edge	hold-01	ARG0	raft	h2	r	
+# ::edge	person	quant	3	p	0	
+# ::edge	hold-01	ARG1	person	h2	p	
+# ::edge	hold-01	location	in-front-of	h2	i	
+# ::edge	in-front-of	op1	dock	i	d	
+(h2 / hold-01
+    :ARG0 (r / raft
+        :ARG1-of (m / make-01
+            :ARG1 (h / hand)))
+    :ARG1 (p / person
+        :quant 3)
+    :location (i / in-front-of
+        :op1 (d / dock)))

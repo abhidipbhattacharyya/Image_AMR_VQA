@@ -1,0 +1,24 @@
+# ::tok He might not be able to complete his turn off of the ramp .
+# ::node	h	he	0-1
+# ::node	p	possible-01	1-2
+# ::node	0	-	2-3
+# ::node	c	complete-01	6-7
+# ::node	t	turn-01	8-9
+# ::node	o	out-of	9-10
+# ::node	r	ramp	12-13
+# ::root	p	possible-01
+# ::edge	complete-01	polarity	-	c	0	
+# ::edge	possible-01	ARG1	complete-01	p	c	
+# ::edge	complete-01	ARG0	he	c	h	
+# ::edge	complete-01	ARG1	turn-01	c	t	
+# ::edge	turn-01	ARG0	he	t	h	
+# ::edge	turn-01	direction	out-of	t	o	
+# ::edge	out-of	op1	ramp	o	r	
+(p / possible-01
+    :ARG1 (c / complete-01
+        :ARG0 (h / he)
+        :ARG1 (t / turn-01
+            :ARG0 h
+            :direction (o / out-of
+                :op1 (r / ramp)))
+        :polarity -))

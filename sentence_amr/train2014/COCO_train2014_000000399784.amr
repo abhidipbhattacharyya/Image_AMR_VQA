@@ -1,0 +1,24 @@
+# ::tok A service truck at an airport terminal with planes reflected in the windows .
+# ::node	s	service-05	1-2
+# ::node	t2	truck	2-3
+# ::node	a	airport	5-6
+# ::node	t	terminal	6-7
+# ::node	p	plane	8-9
+# ::node	r	reflect-01	9-10
+# ::node	w	window	12-13
+# ::root	t2	truck
+# ::edge	truck	ARG0-of	service-05	t2	s	
+# ::edge	terminal	mod	airport	t	a	
+# ::edge	truck	location	terminal	t2	t	
+# ::edge	reflect-01	ARG2	plane	r	p	
+# ::edge	truck	ARG1-of	reflect-01	t2	r	
+# ::edge	reflect-01	ARG2	window	r	w	
+# ::edge	truck	part	window	t2	w	
+(t2 / truck
+    :ARG0-of (s / service-05)
+    :ARG1-of (r / reflect-01
+        :ARG2 (p / plane)
+        :ARG2 (w / window))
+    :location (t / terminal
+        :mod (a / airport))
+    :part w)

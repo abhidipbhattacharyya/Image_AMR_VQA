@@ -1,0 +1,28 @@
+# ::tok A woman sits at a table with a glass of wine and a cake .
+# ::node	w2	woman	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	w	wine	10-11
+# ::node	a	and	11-12
+# ::node	c	cake	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	woman	s	w2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op1	wine	a	w	
+# ::edge	woman	accompanier	and	w2	a	
+# ::edge	and	op2	cake	a	c	
+(s / sit-01
+    :ARG1 (w2 / woman
+        :accompanier (a / and
+            :op1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass)))
+            :op2 (c / cake)))
+    :ARG2 (t / table))

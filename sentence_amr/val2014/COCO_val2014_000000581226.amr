@@ -1,0 +1,36 @@
+# ::tok Hands holding game controller with colored blocks and audience in background
+# ::node	h	hand	0-1
+# ::node	h3	hold-01	1-2
+# ::node	g	game	2-3
+# ::node	c2	control-01	3-4
+# ::node	h2	have-03	4-5
+# ::node	c	color-01	5-6
+# ::node	b2	block	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	a3	audience	8-9
+# ::node	b	background	10-11
+# ::root	h3	hold-01
+# ::edge	hold-01	ARG0	hand	h3	h	
+# ::edge	control-01	ARG1	game	c2	g	
+# ::edge	block	ARG1-of	color-01	b2	c	
+# ::edge	and	op1	control-01	a	c2	
+# ::edge	and	ARG0-of	control-01	a	c2	
+# ::edge	hold-01	ARG1	and	h3	a	
+# ::edge	block	op2	and	b2	a2	
+# ::edge	and	op2	audience	a2	a3	
+# ::edge	and	location	background	a2	b	
+# ::edge	hold-01	rel	block	h3	b2	
+# ::edge	hold-01	rel	have-03	h3	h2	
+(h3 / hold-01
+    :ARG0 (h / hand)
+    :ARG1 (a / and
+        :ARG0-of (c2 / control-01
+            :ARG1 (g / game))
+        :op1 c2)
+    :rel (b2 / block
+        :ARG1-of (c / color-01)
+        :op2 (a2 / and
+            :location (b / background)
+            :op2 (a3 / audience)))
+    :rel (h2 / have-03))

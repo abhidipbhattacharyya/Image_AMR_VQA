@@ -1,0 +1,48 @@
+# ::tok A large multi layer cake sitting on a glass plate with a frosting yarn ball and frosting knitting needles .
+# ::node	l	large	1-2
+# ::node	m	multiple	2-3
+# ::node	l2	layer	3-4
+# ::node	c	cake	4-5
+# ::node	s	sit-01	5-6
+# ::node	g	glass	8-9
+# ::node	p	plate	9-10
+# ::node	h	have-03	10-11
+# ::node	i	ice	12-13
+# ::node	y	yarn	13-14
+# ::node	b	ball	14-15
+# ::node	a	and	15-16
+# ::node	k	knit-03	17-18
+# ::node	n	needle	18-19
+# ::node	e	event	19-20
+# ::root	e	event
+# ::edge	layer	quant	multiple	l2	m	
+# ::edge	cake	mod	layer	c	l2	
+# ::edge	cake	mod	large	c	l	
+# ::edge	cake	ARG1-of	sit-01	c	s	
+# ::edge	plate	consist-of	glass	p	g	
+# ::edge	sit-01	ARG2	plate	s	p	
+# ::edge	cake	ARG0-of	have-03	c	h	
+# ::edge	ball	consist-of	yarn	b	y	
+# ::edge	ball	mod	ice	b	i	
+# ::edge	and	op1	ball	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	needle	purpose	knit-03	n	k	
+# ::edge	and	op2	needle	a	n	
+# ::edge	needle	mod	ice	n	i	
+# ::edge	event	mod	cake	e	c	
+(e / event
+    :mod (c / cake
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b / ball
+                    :consist-of (y / yarn)
+                    :mod (i / ice))
+                :op2 (n / needle
+                    :purpose (k / knit-03)
+                    :mod i)))
+        :ARG1-of (s / sit-01
+            :ARG2 (p / plate
+                :consist-of (g / glass)))
+        :mod (l2 / layer
+            :quant (m / multiple))
+        :mod (l / large)))

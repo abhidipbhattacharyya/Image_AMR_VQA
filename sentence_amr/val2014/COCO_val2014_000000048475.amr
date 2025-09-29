@@ -1,0 +1,37 @@
+# ::tok The desk holds a laptop , a cd player , some flashlights , and other odds and ends .
+# ::node	d	desk	1-2
+# ::node	h	hold-01	2-3
+# ::node	l	laptop	4-5
+# ::node	d2	disc	7-8
+# ::node	c	compact	7-8
+# ::node	t	thing	8-9
+# ::node	p	play-11	8-9
+# ::node	a	and	9-10
+# ::node	s	some	10-11
+# ::node	f	flashlight	11-12
+# ::node	o2	other	14-15
+# ::node	o	odds-and-ends	15-16
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	desk	h	d	
+# ::edge	disc	mod	compact	d2	c	
+# ::edge	thing	ARG2-of	play-11	t	p	
+# ::edge	play-11	ARG3	disc	p	d2	
+# ::edge	and	op2	thing	a	t	
+# ::edge	and	op1	laptop	a	l	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	flashlight	quant	some	f	s	
+# ::edge	and	op3	flashlight	a	f	
+# ::edge	odds-and-ends	mod	other	o	o2	
+# ::edge	and	op4	odds-and-ends	a	o	
+(h / hold-01
+    :ARG0 (d / desk)
+    :ARG1 (a / and
+        :op1 (l / laptop)
+        :op2 (t / thing
+            :ARG2-of (p / play-11
+                :ARG3 (d2 / disc
+                    :mod (c / compact))))
+        :op3 (f / flashlight
+            :quant (s / some))
+        :op4 (o / odds-and-ends
+            :mod (o2 / other))))

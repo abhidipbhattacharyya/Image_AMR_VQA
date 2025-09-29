@@ -1,0 +1,34 @@
+# ::tok A pizza is cut in 8 pieces with one piece 3/4 of the way eaten .
+# ::node	p3	pizza	1-2
+# ::node	c	cut-01	3-4
+# ::node	2	8	5-6
+# ::node	p	piece	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	p2	piece	9-10
+# ::node	p4	product-of	10-11
+# ::node	1	3/4	10-11
+# ::node	w	way	13-14
+# ::node	e	eat-01	14-15
+# ::root	c	cut-01
+# ::edge	cut-01	ARG1	pizza	c	p3	
+# ::edge	piece	quant	8	p	2	
+# ::edge	cut-01	manner	piece	c	p	
+# ::edge	piece	quant	1	p2	0	
+# ::edge	piece	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG3	product-of	i	p4	
+# ::edge	product-of	op1	3/4	p4	1	
+# ::edge	product-of	op2	way	p4	w	
+# ::edge	eat-01	ARG1	piece	e	p2	
+# ::edge	cut-01	manner	eat-01	c	e	
+(c / cut-01
+    :ARG1 (p3 / pizza)
+    :manner (p / piece
+        :quant 8)
+    :manner (e / eat-01
+        :ARG1 (p2 / piece
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG3 (p4 / product-of
+                    :op1 "3/4"
+                    :op2 (w / way))))))

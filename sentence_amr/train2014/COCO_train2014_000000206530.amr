@@ -1,0 +1,34 @@
+# ::tok A pizza has been prepared with tomatoes , artichokes , and olives .
+# ::node	p	pizza	1-2
+# ::node	p2	prepare-01	4-5
+# ::node	t	tomato	6-7
+# ::node	a2	art	8-9
+# ::node	n	name	8-9
+# ::node	n2	nut	8-9
+# ::node	0	artichokes	8-9
+# ::node	a	and	10-11
+# ::node	l	live-01	11-12
+# ::node	e	equal	11-12
+# ::node	n3	nuts	11-12
+# ::root	p2	prepare-01
+# ::edge	prepare-01	ARG1	pizza	p2	p	
+# ::edge	art	name	name	a2	n	
+# ::edge	name	op1	artichokes	n	0	
+# ::edge	and	op3	nut	a	n2	
+# ::edge	and	op2	art	a	a2	
+# ::edge	and	op1	tomato	a	t	
+# ::edge	prepare-01	accompanier	and	p2	a	
+# ::edge	nut	ARG1-of	live-01	n2	l	
+# ::edge	live-01	ARG3	equal	l	e	
+# ::edge	and	op4	nuts	a	n3	
+(p2 / prepare-01
+    :ARG1 (p / pizza)
+    :accompanier (a / and
+        :op1 (t / tomato)
+        :op2 (a2 / art
+            :name (n / name
+                :op1 "artichokes"))
+        :op3 (n2 / nut
+            :ARG1-of (l / live-01
+                :ARG3 (e / equal)))
+        :op4 (n3 / nuts)))

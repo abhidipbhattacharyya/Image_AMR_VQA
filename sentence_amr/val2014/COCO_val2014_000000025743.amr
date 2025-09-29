@@ -1,0 +1,34 @@
+# ::tok Two elephants in an indoor elephant enclosure standing next to cement wall with closed doors .
+# ::node	0	2	0-1
+# ::node	e	elephant	1-2
+# ::node	i	indoor	4-5
+# ::node	e2	enclosure	6-7
+# ::node	s	stand-01	7-8
+# ::node	n	next-to	8-9
+# ::node	c	cement	10-11
+# ::node	w	wall	11-12
+# ::node	h	have-03	12-13
+# ::node	c2	close-01	13-14
+# ::node	d	door	14-15
+# ::root	s	stand-01
+# ::edge	elephant	quant	2	e	0	
+# ::edge	enclosure	location	indoor	e2	i	
+# ::edge	elephant	location	enclosure	e	e2	
+# ::edge	stand-01	ARG1	elephant	s	e	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	wall	consist-of	cement	w	c	
+# ::edge	next-to	op1	wall	n	w	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	door	ARG1-of	close-01	d	c2	
+# ::edge	have-03	ARG1	door	h	d	
+(s / stand-01
+    :ARG1 (e / elephant
+        :quant 2
+        :location (e2 / enclosure
+            :location (i / indoor)))
+    :ARG2 (n / next-to
+        :op1 (w / wall
+            :ARG0-of (h / have-03
+                :ARG1 (d / door
+                    :ARG1-of (c2 / close-01)))
+            :consist-of (c / cement))))

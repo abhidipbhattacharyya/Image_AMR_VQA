@@ -1,0 +1,53 @@
+# ::tok A fire and rescue RV with the canopy out sits sideways in a aprking lot , as a man sitting beneath the canopy looks on .
+# ::node	f	fire	1-2
+# ::node	r	rescue-01	3-4
+# ::node	v	vehicle	4-5
+# ::node	n	name	4-5
+# ::node	0	RV	4-5
+# ::node	c	canopy	7-8
+# ::node	o	out-06	8-9
+# ::node	s2	sit-01	9-10
+# ::node	s	sideways	10-11
+# ::node	c2	counter-01	13-14
+# ::node	l2	lot	14-15
+# ::node	a	and	15-16
+# ::node	m	man	18-19
+# ::node	s3	sit-01	19-20
+# ::node	b	beneath	20-21
+# ::node	l	look-01	23-24
+# ::root	a	and
+# ::edge	vehicle	ARG0-of	rescue-01	v	r	
+# ::edge	vehicle	mod	fire	v	f	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	RV	n	0	
+# ::edge	vehicle	part	canopy	v	c	
+# ::edge	canopy	ARG1-of	out-06	c	o	
+# ::edge	sit-01	ARG1	vehicle	s2	v	
+# ::edge	sit-01	manner	sideways	s2	s	
+# ::edge	lot	ARG1-of	counter-01	l2	c2	
+# ::edge	sit-01	location	lot	s2	l2	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	man	ARG1-of	sit-01	m	s3	
+# ::edge	sit-01	ARG2	beneath	s3	b	
+# ::edge	beneath	op1	canopy	b	c	
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG1	vehicle	l	v	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (v / vehicle
+            :name (n / name
+                :op1 "RV")
+            :ARG0-of (r / rescue-01)
+            :mod (f / fire)
+            :part (c / canopy
+                :ARG1-of (o / out-06)))
+        :location (l2 / lot
+            :ARG1-of (c2 / counter-01))
+        :manner (s / sideways))
+    :op2 (l / look-01
+        :ARG0 (m / man
+            :ARG1-of (s3 / sit-01
+                :ARG2 (b / beneath
+                    :op1 c)))
+        :ARG1 v))

@@ -1,0 +1,34 @@
+# ::tok A silver pan sitting on top of a table next to other containers of food and juice .
+# ::node	s	silver	1-2
+# ::node	p	pan	2-3
+# ::node	s2	sit-01	3-4
+# ::node	t2	top	5-6
+# ::node	t	table	8-9
+# ::node	n	next-to	9-10
+# ::node	o	other	11-12
+# ::node	c	container	12-13
+# ::node	f	food	14-15
+# ::node	a	and	15-16
+# ::node	j	juice	16-17
+# ::root	s2	sit-01
+# ::edge	pan	consist-of	silver	p	s	
+# ::edge	sit-01	ARG1	pan	s2	p	
+# ::edge	sit-01	ARG2	top	s2	t2	
+# ::edge	top	part-of	table	t2	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	container	mod	other	c	o	
+# ::edge	next-to	op1	container	n	c	
+# ::edge	and	op1	food	a	f	
+# ::edge	container	consist-of	and	c	a	
+# ::edge	and	op2	juice	a	j	
+(s2 / sit-01
+    :ARG1 (p / pan
+        :consist-of (s / silver))
+    :ARG2 (t2 / top
+        :part-of (t / table
+            :location-of (n / next-to
+                :op1 (c / container
+                    :consist-of (a / and
+                        :op1 (f / food)
+                        :op2 (j / juice))
+                    :mod (o / other))))))

@@ -1,0 +1,43 @@
+# ::tok A living room space features long , beige curtains , a futon , hard wood flooring and a large clock .
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	s	space	3-4
+# ::node	f	feature-01	4-5
+# ::node	l3	long-03	5-6
+# ::node	b	beige	7-8
+# ::node	c2	curtain	8-9
+# ::node	f3	futon	11-12
+# ::node	h	hard-04	13-14
+# ::node	w	wood	14-15
+# ::node	f2	floor	15-16
+# ::node	a	and	16-17
+# ::node	l	large	18-19
+# ::node	c	clock	19-20
+# ::root	f	feature-01
+# ::edge	room	mod	living	r	l2	
+# ::edge	space	mod	room	s	r	
+# ::edge	feature-01	ARG0	space	f	s	
+# ::edge	curtain	mod	beige	c2	b	
+# ::edge	curtain	ARG1-of	long-03	c2	l3	
+# ::edge	wood	ARG1-of	hard-04	w	h	
+# ::edge	floor	consist-of	wood	f2	w	
+# ::edge	and	op3	floor	a	f2	
+# ::edge	and	op2	futon	a	f3	
+# ::edge	and	op1	curtain	a	c2	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	clock	mod	large	c	l	
+# ::edge	and	op4	clock	a	c	
+(f / feature-01
+    :ARG0 (s / space
+        :mod (r / room
+            :mod (l2 / living)))
+    :ARG1 (a / and
+        :op1 (c2 / curtain
+            :ARG1-of (l3 / long-03)
+            :mod (b / beige))
+        :op2 (f3 / futon)
+        :op3 (f2 / floor
+            :consist-of (w / wood
+                :ARG1-of (h / hard-04)))
+        :op4 (c / clock
+            :mod (l / large))))

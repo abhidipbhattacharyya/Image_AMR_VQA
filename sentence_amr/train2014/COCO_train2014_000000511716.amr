@@ -1,0 +1,30 @@
+# ::tok The sun is going down in a city setting with pedestrians crossing the street .
+# ::node	s3	sun	1-2
+# ::node	g	go-01	3-4
+# ::node	d	down	4-5
+# ::node	c	city	7-8
+# ::node	s	set-01	8-9
+# ::node	w	walk-01	10-11
+# ::node	c2	cross-02	11-12
+# ::node	p	person	12-13
+# ::node	s2	street	13-14
+# ::root	g	go-01
+# ::edge	go-01	ARG1	sun	g	s3	
+# ::edge	go-01	direction	down	g	d	
+# ::edge	set-01	ARG2	city	s	c	
+# ::edge	go-01	location	set-01	g	s	
+# ::edge	set-01	ARG0-of	cross-02	s	c2	
+# ::edge	person	ARG0-of	cross-02	p	c2	
+# ::edge	set-01	ARG1	person	s	p	
+# ::edge	cross-02	ARG1	street	c2	s2	
+# ::edge	go-01	rel	walk-01	g	w	
+(g / go-01
+    :ARG1 (s3 / sun)
+    :direction (d / down)
+    :location (s / set-01
+        :ARG0-of (c2 / cross-02
+            :ARG1 (s2 / street))
+        :ARG1 (p / person
+            :ARG0-of c2)
+        :ARG2 (c / city))
+    :rel (w / walk-01))

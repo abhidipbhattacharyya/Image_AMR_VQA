@@ -1,0 +1,39 @@
+# ::tok A man at the back of a van with the back open in between two other vehicles with their backs open in the snow .
+# ::node	m	man	1-2
+# ::node	b	back	4-5
+# ::node	v	van	7-8
+# ::node	b2	back	10-11
+# ::node	o2	open-09	11-12
+# ::node	b4	between	13-14
+# ::node	0	2	14-15
+# ::node	o3	other	15-16
+# ::node	v2	vehicle	16-17
+# ::node	b3	back	19-20
+# ::node	o	open-01	20-21
+# ::node	s	snow	23-24
+# ::root	m	man
+# ::edge	man	location	back	m	b	
+# ::edge	back	part-of	van	b	v	
+# ::edge	van	part	back	v	b2	
+# ::edge	back	ARG1-of	open-09	b2	o2	
+# ::edge	man	location	between	m	b4	
+# ::edge	vehicle	mod	other	v2	o3	
+# ::edge	vehicle	quant	2	v2	0	
+# ::edge	between	op1	vehicle	b4	v2	
+# ::edge	vehicle	part	back	v2	b3	
+# ::edge	open-01	ARG1	back	o	b3	
+# ::edge	vehicle	ARG0-of	open-01	v2	o	
+# ::edge	open-01	location	snow	o	s	
+(m / man
+    :location (b / back
+        :part-of (v / van
+            :part (b2 / back
+                :ARG1-of (o2 / open-09))))
+    :location (b4 / between
+        :op1 (v2 / vehicle
+            :quant 2
+            :ARG0-of (o / open-01
+                :ARG1 (b3 / back)
+                :location (s / snow))
+            :mod (o3 / other)
+            :part b3)))

@@ -1,0 +1,22 @@
+# ::tok A hose connected to a fire hydrant near a fire truck .
+# ::node	h	hose	1-2
+# ::node	c	connect-01	2-3
+# ::node	f	fire	5-6
+# ::node	h2	hydrant	6-7
+# ::node	n	near-02	7-8
+# ::node	f2	fire	9-10
+# ::node	t	truck	10-11
+# ::root	c	connect-01
+# ::edge	connect-01	ARG1	hose	c	h	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	connect-01	ARG2	hydrant	c	h2	
+# ::edge	hydrant	ARG1-of	near-02	h2	n	
+# ::edge	truck	mod	fire	t	f2	
+# ::edge	near-02	ARG2	truck	n	t	
+(c / connect-01
+    :ARG1 (h / hose)
+    :ARG2 (h2 / hydrant
+        :ARG1-of (n / near-02
+            :ARG2 (t / truck
+                :mod (f2 / fire)))
+        :mod (f / fire)))

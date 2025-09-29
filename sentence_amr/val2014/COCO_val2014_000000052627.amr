@@ -1,0 +1,32 @@
+# ::tok Someone stands on a fire hydrant , only their shoes and pants visible .
+# ::node	s3	someone	0-1
+# ::node	s4	stand-01	1-2
+# ::node	f	fire	4-5
+# ::node	h	hydrant	5-6
+# ::node	o	only	7-8
+# ::node	s2	shoe-01	9-10
+# ::node	a	and	10-11
+# ::node	p	pant	11-12
+# ::node	s	see-01	12-13
+# ::root	s4	stand-01
+# ::edge	stand-01	ARG1	someone	s4	s3	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	stand-01	ARG2	hydrant	s4	h	
+# ::edge	shoe-01	ARG1	someone	s2	s3	
+# ::edge	and	op1	shoe-01	a	s2	
+# ::edge	and	mod	only	a	o	
+# ::edge	and	op2	pant	a	p	
+# ::edge	pant	poss	someone	p	s3	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	stand-01	time-of	see-01	s4	s	
+(s4 / stand-01
+    :ARG1 (s3 / someone)
+    :ARG2 (h / hydrant
+        :mod (f / fire))
+    :time-of (s / see-01
+        :ARG1 (a / and
+            :mod (o / only)
+            :op1 (s2 / shoe-01
+                :ARG1 s3)
+            :op2 (p / pant
+                :poss s3))))

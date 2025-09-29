@@ -1,0 +1,40 @@
+# ::tok A train with british flags on the front stopped at a train stop with people waiting .
+# ::node	t	train	1-2
+# ::node	h	have-03	2-3
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	Britain	3-4
+# ::node	f	flag	4-5
+# ::node	f2	front	7-8
+# ::node	s	stop-01	8-9
+# ::node	l	location	10-11
+# ::node	t2	train	11-12
+# ::node	s2	stop-01	12-13
+# ::node	p	person	14-15
+# ::node	w	wait-01	15-16
+# ::root	s	stop-01
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Britain	n	0	
+# ::edge	flag	mod	country	f	c	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	have-03	location	front	h	f2	
+# ::edge	stop-01	ARG1	train	s	t	
+# ::edge	stop-01	location	location	s	l	
+# ::edge	stop-01	ARG1	train	s2	t2	
+# ::edge	location	location-of	stop-01	l	s2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	location	ARG2-of	wait-01	l	w	
+(s / stop-01
+    :ARG1 (t / train
+        :ARG0-of (h / have-03
+            :ARG1 (f / flag
+                :mod (c / country
+                    :name (n / name
+                        :op1 "Britain")))
+            :location (f2 / front)))
+    :location (l / location
+        :ARG2-of (w / wait-01
+            :ARG1 (p / person))
+        :location-of (s2 / stop-01
+            :ARG1 (t2 / train))))

@@ -1,0 +1,27 @@
+# ::tok A metal container with flowers in it rests on a tabletop next to a matching bowl .
+# ::node	m2	metal	1-2
+# ::node	c	container	2-3
+# ::node	f	flower	4-5
+# ::node	r	rest-01	7-8
+# ::node	t	tabletop	10-11
+# ::node	n	next-to	11-12
+# ::node	m	match-01	14-15
+# ::node	b	bowl	15-16
+# ::root	r	rest-01
+# ::edge	container	consist-of	metal	c	m2	
+# ::edge	container	location-of	flower	c	f	
+# ::edge	rest-01	ARG1	container	r	c	
+# ::edge	rest-01	ARG2	tabletop	r	t	
+# ::edge	tabletop	location-of	next-to	t	n	
+# ::edge	match-01	ARG2	container	m	c	
+# ::edge	bowl	ARG1-of	match-01	b	m	
+# ::edge	next-to	op1	bowl	n	b	
+(r / rest-01
+    :ARG1 (c / container
+        :consist-of (m2 / metal)
+        :location-of (f / flower))
+    :ARG2 (t / tabletop
+        :location-of (n / next-to
+            :op1 (b / bowl
+                :ARG1-of (m / match-01
+                    :ARG2 c)))))

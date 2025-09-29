@@ -1,0 +1,28 @@
+# ::tok A stop sign and a no left turn sign at the end of a street .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	a	and	3-4
+# ::node	0	-	5-6
+# ::node	l	left-20	6-7
+# ::node	t	turn-01	7-8
+# ::node	s2	signal-07	8-9
+# ::node	e	end	11-12
+# ::node	s4	street	14-15
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	left-20	polarity	-	l	0	
+# ::edge	turn-01	ARG1-of	left-20	t	l	
+# ::edge	signal-07	ARG1	turn-01	s2	t	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	and	location	end	a	e	
+# ::edge	end	part-of	street	e	s4	
+(a / and
+    :location (e / end
+        :part-of (s4 / street))
+    :op1 (s / signal-07
+        :ARG1 (s3 / stop-01))
+    :op2 (s2 / signal-07
+        :ARG1 (t / turn-01
+            :ARG1-of (l / left-20
+                :polarity -))))

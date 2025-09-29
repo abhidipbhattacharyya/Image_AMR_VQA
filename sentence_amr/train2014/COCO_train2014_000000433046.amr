@@ -1,0 +1,28 @@
+# ::tok A clock that uses Roman numerals above a doorway
+# ::node	c	clock	1-2
+# ::node	u	use-01	3-4
+# ::node	c2	country	4-5
+# ::node	n	name	4-5
+# ::node	1	Roman	4-5
+# ::node	0	Empire	4-5
+# ::node	n2	numerical-quantity	5-6
+# ::node	a	above	6-7
+# ::node	d	doorway	8-9
+# ::root	c	clock
+# ::edge	clock	ARG0-of	use-01	c	u	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Roman	n	1	
+# ::edge	name	op2	Empire	n	0	
+# ::edge	numerical-quantity	mod	country	n2	c2	
+# ::edge	use-01	ARG1	numerical-quantity	u	n2	
+# ::edge	clock	location	above	c	a	
+# ::edge	above	op1	doorway	a	d	
+(c / clock
+    :ARG0-of (u / use-01
+        :ARG1 (n2 / numerical-quantity
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "Roman"
+                    :op2 "Empire"))))
+    :location (a / above
+        :op1 (d / doorway)))

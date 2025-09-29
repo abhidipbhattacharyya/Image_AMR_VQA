@@ -1,0 +1,26 @@
+# ::tok A surfer in midair as he wipes out while surfing a wave .
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	m	midair	3-4
+# ::node	w2	wipe-out-02	6-7
+# ::node	c	cause-01	8-9
+# ::node	s2	surf-01	9-10
+# ::node	w	wave	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	person	location	midair	p	m	
+# ::edge	wipe-out-02	ARG1	person	w2	p	
+# ::edge	cause-01	ARG1	wipe-out-02	c	w2	
+# ::edge	person	ARG0-of	cause-01	p	c	
+# ::edge	wipe-out-02	time	surf-01	w2	s2	
+# ::edge	surf-01	ARG0	person	s2	p	
+# ::edge	surf-01	ARG1	wave	s2	w	
+(p / person
+    :ARG0-of (s / surf-01)
+    :ARG0-of (c / cause-01
+        :ARG1 (w2 / wipe-out-02
+            :ARG1 p
+            :time (s2 / surf-01
+                :ARG0 p
+                :ARG1 (w / wave))))
+    :location (m / midair))

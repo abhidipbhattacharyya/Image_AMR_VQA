@@ -1,0 +1,31 @@
+# ::tok Lifesaving devices are stowed along a beach while a lifeguard is elsewhere .
+# ::node	l	life	0-1
+# ::node	d	device	1-2
+# ::node	s	stash-01	3-4
+# ::node	a	along	4-5
+# ::node	b2	beach	6-7
+# ::node	p	person	9-10
+# ::node	h	have-org-role-91	9-10
+# ::node	l2	lifeguard	9-10
+# ::node	b	be-located-at-91	11-12
+# ::node	e	elsewhere	11-12
+# ::root	s	stash-01
+# ::edge	device	mod	life	d	l	
+# ::edge	stash-01	ARG1	device	s	d	
+# ::edge	stash-01	ARG2	along	s	a	
+# ::edge	along	op1	beach	a	b2	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG2	lifeguard	h	l2	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	stash-01	time	be-located-at-91	s	b	
+# ::edge	be-located-at-91	ARG2	elsewhere	b	e	
+(s / stash-01
+    :ARG1 (d / device
+        :mod (l / life))
+    :ARG2 (a / along
+        :op1 (b2 / beach))
+    :time (b / be-located-at-91
+        :ARG1 (p / person
+            :ARG0-of (h / have-org-role-91
+                :ARG2 (l2 / lifeguard)))
+        :ARG2 (e / elsewhere)))

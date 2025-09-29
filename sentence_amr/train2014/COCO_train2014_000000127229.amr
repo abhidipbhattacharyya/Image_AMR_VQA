@@ -1,0 +1,56 @@
+# ::tok A hotel room with twin beds with a towel on one bed and a book and , towel and green bag on other .
+# ::node	h3	hotel	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	t3	twin	4-5
+# ::node	b2	bed	5-6
+# ::node	t	towel	8-9
+# ::node	o	one	10-11
+# ::node	b3	bed	11-12
+# ::node	b4	bed	11-12
+# ::node	b5	book	14-15
+# ::node	t2	towel	17-18
+# ::node	a	and	18-19
+# ::node	h2	have-03	18-19
+# ::node	a2	and	18-19
+# ::node	g	green-02	19-20
+# ::node	b	bag	20-21
+# ::node	o2	other	22-23
+# ::root	h	have-03
+# ::edge	room	mod	hotel	r	h3	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	bed	mod	twin	b2	t3	
+# ::edge	bed	mod	one	b3	o	
+# ::edge	towel	location	bed	t	b3	
+# ::edge	and	op3	book	a	b5	
+# ::edge	and	op2	book	a	b5	
+# ::edge	and	op1	bed	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op4	have-03	a	h2	
+# ::edge	have-03	ARG1	towel	h2	t2	
+# ::edge	have-03	ARG0	and	h2	a2	
+# ::edge	and	op2	towel	a2	t2	
+# ::edge	and	op1	towel	a2	t	
+# ::edge	bag	ARG1-of	green-02	b	g	
+# ::edge	and	op3	bag	a2	b	
+# ::edge	bag	location	bed	b	b4	
+# ::edge	bed	mod	other	b4	o2	
+(h / have-03
+    :ARG0 (r / room
+        :mod (h3 / hotel))
+    :ARG1 (a / and
+        :op1 (b2 / bed
+            :mod (t3 / twin))
+        :op2 (b5 / book)
+        :op3 b5
+        :op4 (h2 / have-03
+            :ARG0 (a2 / and
+                :op1 (t / towel
+                    :location (b3 / bed
+                        :mod (o / one)))
+                :op2 (t2 / towel)
+                :op3 (b / bag
+                    :ARG1-of (g / green-02)
+                    :location (b4 / bed
+                        :mod (o2 / other))))
+            :ARG1 t2)))

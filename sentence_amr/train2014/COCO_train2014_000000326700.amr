@@ -1,0 +1,48 @@
+# ::tok A utility truck parked along the street with a man in the passenger seat and the driver outside talking to another person .
+# ::node	u	utility	1-2
+# ::node	t2	truck	2-3
+# ::node	p	park-01	3-4
+# ::node	a	along	4-5
+# ::node	s2	street	6-7
+# ::node	m	man	9-10
+# ::node	p2	passenger	12-13
+# ::node	s	seat	13-14
+# ::node	a2	and	14-15
+# ::node	p3	person	16-17
+# ::node	d	drive-01	16-17
+# ::node	o	outside	17-18
+# ::node	t	talk-01	18-19
+# ::node	a3	another	20-21
+# ::node	p4	person	21-22
+# ::root	a2	and
+# ::edge	truck	mod	utility	t2	u	
+# ::edge	truck	ARG1-of	park-01	t2	p	
+# ::edge	park-01	location	along	p	a	
+# ::edge	along	op1	street	a	s2	
+# ::edge	seat	mod	passenger	s	p2	
+# ::edge	man	location	seat	m	s	
+# ::edge	and	op1	man	a2	m	
+# ::edge	and	topic	truck	a2	t2	
+# ::edge	person	ARG0-of	drive-01	p3	d	
+# ::edge	drive-01	ARG1	truck	d	t2	
+# ::edge	person	location	outside	p3	o	
+# ::edge	talk-01	ARG0	person	t	p3	
+# ::edge	and	op2	talk-01	a2	t	
+# ::edge	person	mod	another	p4	a3	
+# ::edge	talk-01	ARG2	person	t	p4	
+(a2 / and
+    :op1 (m / man
+        :location (s / seat
+            :mod (p2 / passenger)))
+    :op2 (t / talk-01
+        :ARG0 (p3 / person
+            :ARG0-of (d / drive-01
+                :ARG1 (t2 / truck
+                    :ARG1-of (p / park-01
+                        :location (a / along
+                            :op1 (s2 / street)))
+                    :mod (u / utility)))
+            :location (o / outside))
+        :ARG2 (p4 / person
+            :mod (a3 / another)))
+    :topic t2)

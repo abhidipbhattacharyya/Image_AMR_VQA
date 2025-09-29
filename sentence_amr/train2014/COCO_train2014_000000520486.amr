@@ -1,0 +1,38 @@
+# ::tok An outside dining area with tables and chairs on a sidewalk , and people seated under umbrellas on the tables .
+# ::node	o	outside	1-2
+# ::node	d	dine-01	2-3
+# ::node	a2	area	3-4
+# ::node	t	table	5-6
+# ::node	a	and	6-7
+# ::node	c	chair	7-8
+# ::node	s2	sidewalk	10-11
+# ::node	p	person	13-14
+# ::node	s	seat-01	14-15
+# ::node	u2	under	15-16
+# ::node	u	umbrella	16-17
+# ::root	a2	area
+# ::edge	area	location-of	dine-01	a2	d	
+# ::edge	area	location	outside	a2	o	
+# ::edge	and	op1	area	a	a2	
+# ::edge	area	location-of	and	a2	a	
+# ::edge	and	op2	chair	a	c	
+# ::edge	area	location	sidewalk	a2	s2	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG1-of	seat-01	p	s	
+# ::edge	seat-01	location	area	s	a2	
+# ::edge	seat-01	ARG2	under	s	u2	
+# ::edge	under	op1	umbrella	u2	u	
+# ::edge	area	rel	table	a2	t	
+(a2 / area
+    :location (o / outside)
+    :location (s2 / sidewalk)
+    :location-of (d / dine-01)
+    :location-of (a / and
+        :op1 a2
+        :op2 (c / chair)
+        :op3 (p / person
+            :ARG1-of (s / seat-01
+                :ARG2 (u2 / under
+                    :op1 (u / umbrella))
+                :location a2)))
+    :rel (t / table))

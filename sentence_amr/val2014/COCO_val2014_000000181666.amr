@@ -1,0 +1,30 @@
+# ::tok The nomadic sheepherd walks behind a large group of livestock in their desert habitat .
+# ::node	n	nomad	1-2
+# ::node	s	sheepherd	2-3
+# ::node	w	walk-01	3-4
+# ::node	b	behind	4-5
+# ::node	l	large	6-7
+# ::node	g	group	7-8
+# ::node	l2	livestock	9-10
+# ::node	d	desert	12-13
+# ::node	h	habitat	13-14
+# ::root	w	walk-01
+# ::edge	sheepherd	mod	nomad	s	n	
+# ::edge	walk-01	ARG0	sheepherd	w	s	
+# ::edge	walk-01	ARG2	behind	w	b	
+# ::edge	group	mod	large	g	l	
+# ::edge	behind	op1	group	b	g	
+# ::edge	group	consist-of	livestock	g	l2	
+# ::edge	habitat	mod	desert	h	d	
+# ::edge	habitat	poss	group	h	g	
+# ::edge	walk-01	location	habitat	w	h	
+(w / walk-01
+    :ARG0 (s / sheepherd
+        :mod (n / nomad))
+    :ARG2 (b / behind
+        :op1 (g / group
+            :consist-of (l2 / livestock)
+            :mod (l / large)))
+    :location (h / habitat
+        :mod (d / desert)
+        :poss g))

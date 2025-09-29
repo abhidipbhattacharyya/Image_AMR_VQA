@@ -1,0 +1,77 @@
+# ::tok Outside , play field grass , the scene shows three rows of guys in descending height with two in the front mock - chewing a frisbee , and all of them wearing matching shirts with logo - emblazoned disc on them .
+# ::node	o	outside	0-1
+# ::node	p2	play-01	2-3
+# ::node	f	field	3-4
+# ::node	g	grass	4-5
+# ::node	s	scene	7-8
+# ::node	s3	show-01	8-9
+# ::node	1	3	9-10
+# ::node	r	row	10-11
+# ::node	g2	guy	12-13
+# ::node	d	descend-01	14-15
+# ::node	h	high-02	15-16
+# ::node	p	person	17-18
+# ::node	0	2	17-18
+# ::node	f3	front	20-21
+# ::node	m2	mock	21-22
+# ::node	c	chew-01	23-24
+# ::node	f2	frisbee	25-26
+# ::node	a	and	27-28
+# ::node	w	wear-01	31-32
+# ::node	m	match-01	32-33
+# ::node	s2	shirt	33-34
+# ::node	l	logo	35-36
+# ::node	s4	sport	37-38
+# ::node	d2	disc	38-39
+# ::root	s3	show-01
+# ::edge	field	location-of	play-01	f	p2	
+# ::edge	grass	mod	field	g	f	
+# ::edge	outside	op1	grass	o	g	
+# ::edge	show-01	ARG0	scene	s3	s	
+# ::edge	show-01	location	outside	s3	o	
+# ::edge	row	quant	3	r	1	
+# ::edge	row	consist-of	guy	r	g2	
+# ::edge	guy	ARG0-of	descend-01	g2	d	
+# ::edge	descend-01	ARG1	high-02	d	h	
+# ::edge	high-02	ARG1	row	h	r	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	location	front	p	f3	
+# ::edge	chew-01	mod	mock	c	m2	
+# ::edge	chew-01	ARG0	person	c	p	
+# ::edge	chew-01	ARG1	frisbee	c	f2	
+# ::edge	and	op2	chew-01	a	c	
+# ::edge	and	op1	row	a	r	
+# ::edge	show-01	ARG1	and	s3	a	
+# ::edge	and	op3	wear-01	a	w	
+# ::edge	wear-01	ARG0	guy	w	g2	
+# ::edge	shirt	ARG1-of	match-01	s2	m	
+# ::edge	wear-01	ARG1	shirt	w	s2	
+# ::edge	logo	mod	sport	l	s4	
+# ::edge	disc	consist-of	logo	d2	l	
+# ::edge	shirt	consist-of	disc	s2	d2	
+(s3 / show-01
+    :ARG0 (s / scene)
+    :ARG1 (a / and
+        :op1 (r / row
+            :quant 3
+            :consist-of (g2 / guy
+                :ARG0-of (d / descend-01
+                    :ARG1 (h / high-02
+                        :ARG1 r))))
+        :op2 (c / chew-01
+            :ARG0 (p / person
+                :quant 2
+                :location (f3 / front))
+            :ARG1 (f2 / frisbee)
+            :mod (m2 / mock))
+        :op3 (w / wear-01
+            :ARG0 g2
+            :ARG1 (s2 / shirt
+                :ARG1-of (m / match-01)
+                :consist-of (d2 / disc
+                    :consist-of (l / logo
+                        :mod (s4 / sport))))))
+    :location (o / outside
+        :op1 (g / grass
+            :mod (f / field
+                :location-of (p2 / play-01)))))

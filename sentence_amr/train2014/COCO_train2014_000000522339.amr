@@ -1,0 +1,36 @@
+# ::tok Espresso machine with different settings and white cups on top .
+# ::node	s2	spaceship	0-1
+# ::node	n	name	0-1
+# ::node	0	Espresso	0-1
+# ::node	m	machine	1-2
+# ::node	d	differ-02	3-4
+# ::node	t	thing	4-5
+# ::node	s	set-02	4-5
+# ::node	a	and	5-6
+# ::node	w	white-03	6-7
+# ::node	c	cup	7-8
+# ::node	t2	top	9-10
+# ::root	m	machine
+# ::edge	spaceship	name	name	s2	n	
+# ::edge	name	op1	Espresso	n	0	
+# ::edge	machine	mod	spaceship	m	s2	
+# ::edge	thing	ARG1-of	differ-02	t	d	
+# ::edge	thing	ARG1-of	set-02	t	s	
+# ::edge	set-02	ARG0	machine	s	m	
+# ::edge	and	op1	thing	a	t	
+# ::edge	machine	prep-with	and	m	a	
+# ::edge	cup	ARG1-of	white-03	c	w	
+# ::edge	and	op2	cup	a	c	
+# ::edge	cup	location	top	c	t2	
+(m / machine
+    :mod (s2 / spaceship
+        :name (n / name
+            :op1 "Espresso"))
+    :prep-with (a / and
+        :op1 (t / thing
+            :ARG1-of (d / differ-02)
+            :ARG1-of (s / set-02
+                :ARG0 m))
+        :op2 (c / cup
+            :ARG1-of (w / white-03)
+            :location (t2 / top))))

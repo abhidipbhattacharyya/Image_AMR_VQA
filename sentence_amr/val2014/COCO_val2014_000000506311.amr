@@ -1,0 +1,37 @@
+# ::tok A living room with three laptop computers on the floor and one laptop computer on the couch .
+# ::node	l3	living	1-2
+# ::node	r	room	2-3
+# ::node	1	3	4-5
+# ::node	l	laptop	5-6
+# ::node	c	computer	6-7
+# ::node	f	floor	9-10
+# ::node	a	and	10-11
+# ::node	0	1	11-12
+# ::node	l2	laptop	12-13
+# ::node	c2	computer	13-14
+# ::node	b	be-located-at-91	14-15
+# ::node	c3	couch	16-17
+# ::root	r	room
+# ::edge	room	mod	living	r	l3	
+# ::edge	computer	mod	laptop	c	l	
+# ::edge	computer	quant	3	c	1	
+# ::edge	computer	location	floor	c	f	
+# ::edge	and	op1	computer	a	c	
+# ::edge	room	location-of	and	r	a	
+# ::edge	computer	mod	laptop	c2	l2	
+# ::edge	computer	quant	1	c2	0	
+# ::edge	be-located-at-91	ARG1	computer	b	c2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	couch	b	c3	
+(r / room
+    :location-of (a / and
+        :op1 (c / computer
+            :quant 3
+            :location (f / floor)
+            :mod (l / laptop))
+        :op2 (b / be-located-at-91
+            :ARG1 (c2 / computer
+                :quant 1
+                :mod (l2 / laptop))
+            :ARG2 (c3 / couch)))
+    :mod (l3 / living))

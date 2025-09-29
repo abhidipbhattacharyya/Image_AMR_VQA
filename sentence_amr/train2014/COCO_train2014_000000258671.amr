@@ -1,0 +1,24 @@
+# ::tok A skier successfully zooms down an obstacle track .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	s2	succeed-01	2-3
+# ::node	z	zoom-01	3-4
+# ::node	d	down	4-5
+# ::node	o	obstacle	6-7
+# ::node	t	track	7-8
+# ::root	z	zoom-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	succeed-01	ARG0	person	s2	p	
+# ::edge	zoom-01	ARG1-of	succeed-01	z	s2	
+# ::edge	zoom-01	ARG1	person	z	p	
+# ::edge	zoom-01	direction	down	z	d	
+# ::edge	track	mod	obstacle	t	o	
+# ::edge	zoom-01	ARG2	track	z	t	
+(z / zoom-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01))
+    :ARG1-of (s2 / succeed-01
+        :ARG0 p)
+    :ARG2 (t / track
+        :mod (o / obstacle))
+    :direction (d / down))

@@ -1,0 +1,31 @@
+# ::tok A city street has a fire hydrant , trash bin , and parked vehicles .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	h	have-03	3-4
+# ::node	f	fire	5-6
+# ::node	h2	hydrant	6-7
+# ::node	t	trash	8-9
+# ::node	b	bin	9-10
+# ::node	a	and	11-12
+# ::node	p	park-01	12-13
+# ::node	v	vehicle	13-14
+# ::root	h	have-03
+# ::edge	street	mod	city	s	c	
+# ::edge	have-03	ARG0	street	h	s	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	bin	purpose	trash	b	t	
+# ::edge	and	op2	bin	a	b	
+# ::edge	and	op1	hydrant	a	h2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	vehicle	ARG1-of	park-01	v	p	
+# ::edge	and	op3	vehicle	a	v	
+(h / have-03
+    :ARG0 (s / street
+        :mod (c / city))
+    :ARG1 (a / and
+        :op1 (h2 / hydrant
+            :mod (f / fire))
+        :op2 (b / bin
+            :purpose (t / trash))
+        :op3 (v / vehicle
+            :ARG1-of (p / park-01))))

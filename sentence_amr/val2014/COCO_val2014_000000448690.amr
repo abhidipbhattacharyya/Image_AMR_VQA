@@ -1,0 +1,33 @@
+# ::tok A group of people looking at an air plane with its back cargo hold door open .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	l	look-01	4-5
+# ::node	a	air	7-8
+# ::node	p2	plane	8-9
+# ::node	b	back	11-12
+# ::node	c	cargo	12-13
+# ::node	h	hold	13-14
+# ::node	d	door	14-15
+# ::node	o	open-09	15-16
+# ::root	l	look-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	look-01	ARG0	group	l	g	
+# ::edge	plane	mod	air	p2	a	
+# ::edge	look-01	ARG1	plane	l	p2	
+# ::edge	hold	mod	cargo	h	c	
+# ::edge	door	part-of	hold	d	h	
+# ::edge	door	location	back	d	b	
+# ::edge	plane	part	door	p2	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	plane	manner	open-09	p2	o	
+(l / look-01
+    :ARG0 (g / group
+        :consist-of (p / person))
+    :ARG1 (p2 / plane
+        :manner (o / open-09
+            :ARG1 (d / door
+                :location (b / back)
+                :part-of (h / hold
+                    :mod (c / cargo))))
+        :mod (a / air)
+        :part d))

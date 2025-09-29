@@ -1,0 +1,46 @@
+# ::tok Two men standing in a living room holding Wii remotes and nun - chucks .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	l	living	5-6
+# ::node	r2	room	6-7
+# ::node	h	hold-01	7-8
+# ::node	p	product	8-9
+# ::node	n	name	8-9
+# ::node	2	Wii	8-9
+# ::node	r	remote	9-10
+# ::node	a	and	10-11
+# ::node	o	organization	13-14
+# ::node	n2	name	13-14
+# ::node	g	grandmother	13-14
+# ::node	0	-	13-14
+# ::root	s	stand-01
+# ::edge	man	quant	2	m	1	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	room	mod	living	r2	l	
+# ::edge	stand-01	location	room	s	r2	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	2	
+# ::edge	remote	mod	product	r	p	
+# ::edge	and	op1	remote	a	r	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	and	op2	organization	a	o	
+# ::edge	organization	name	name	o	n2	
+# ::edge	name	op1	grandmother	n2	g	
+# ::edge	grandmother	polarity	-	g	0	
+(s / stand-01
+    :ARG1 (m / man
+        :quant 2
+        :ARG0-of (h / hold-01
+            :ARG1 (a / and
+                :op1 (r / remote
+                    :mod (p / product
+                        :name (n / name
+                            :op1 "Wii")))
+                :op2 (o / organization
+                    :name (n2 / name
+                        :op1 (g / "grandmother"
+                            :polarity -))))))
+    :location (r2 / room
+        :mod (l / living)))

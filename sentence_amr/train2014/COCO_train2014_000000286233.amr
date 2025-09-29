@@ -1,0 +1,42 @@
+# ::tok The signs warn no left turns between 7AM to 7PM unless you are a bus .
+# ::node	s	sign	1-2
+# ::node	w	warn-01	2-3
+# ::node	0	-	3-4
+# ::node	1	-	3-4
+# ::node	l	left-20	4-5
+# ::node	t	turn-01	5-6
+# ::node	b	between	6-7
+# ::node	d	date-entity	7-8
+# ::node	2	19:00	7-8
+# ::node	d2	date-entity	9-10
+# ::node	3	19:00	9-10
+# ::node	y	you	11-12
+# ::node	b2	bus	14-15
+# ::root	w	warn-01
+# ::edge	warn-01	ARG0	sign	w	s	
+# ::edge	turn-01	ARG1-of	left-20	t	l	
+# ::edge	turn-01	polarity	-	t	0	
+# ::edge	warn-01	ARG1	turn-01	w	t	
+# ::edge	turn-01	time	between	t	b	
+# ::edge	between	op1	date-entity	b	d	
+# ::edge	date-entity	time	19:00	d	2	
+# ::edge	between	op2	date-entity	b	d2	
+# ::edge	date-entity	time	19:00	d2	3	
+# ::edge	bus	domain	you	b2	y	
+# ::edge	turn-01	condition	bus	t	b2	
+# ::edge	bus	polarity	-	b2	0	
+# ::edge	warn-01	rel	-	w	1	
+(w / warn-01
+    :ARG0 (s / sign)
+    :ARG1 (t / turn-01
+        :ARG1-of (l / left-20)
+        :condition (b2 / bus
+            :domain (y / you)
+            :polarity -)
+        :polarity -
+        :time (b / between
+            :op1 (d / date-entity
+                :time "19:00")
+            :op2 (d2 / date-entity
+                :time "19:00")))
+    :rel -)

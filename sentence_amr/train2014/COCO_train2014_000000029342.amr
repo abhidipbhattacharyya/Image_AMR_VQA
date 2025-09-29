@@ -1,0 +1,40 @@
+# ::tok A kitchen counter with coffee maker , bread maker and a candy dish visible .
+# ::node	k	kitchen	1-2
+# ::node	c3	counter	2-3
+# ::node	h	have-03	3-4
+# ::node	c2	coffee	4-5
+# ::node	p	person	5-6
+# ::node	m	make-01	5-6
+# ::node	b	bread	7-8
+# ::node	p2	person	8-9
+# ::node	m2	make-01	8-9
+# ::node	a	and	9-10
+# ::node	c	candy	11-12
+# ::node	d	dish	12-13
+# ::node	s	see-01	13-14
+# ::root	s	see-01
+# ::edge	counter	mod	kitchen	c3	k	
+# ::edge	counter	ARG0-of	have-03	c3	h	
+# ::edge	person	ARG0-of	make-01	p	m	
+# ::edge	make-01	ARG1	coffee	m	c2	
+# ::edge	person	ARG0-of	make-01	p2	m2	
+# ::edge	make-01	ARG1	bread	m2	b	
+# ::edge	and	op2	person	a	p2	
+# ::edge	and	op1	person	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	dish	mod	candy	d	c	
+# ::edge	and	op3	dish	a	d	
+# ::edge	see-01	ARG1	counter	s	c3	
+(s / see-01
+    :ARG1 (c3 / counter
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (p / person
+                    :ARG0-of (m / make-01
+                        :ARG1 (c2 / coffee)))
+                :op2 (p2 / person
+                    :ARG0-of (m2 / make-01
+                        :ARG1 (b / bread)))
+                :op3 (d / dish
+                    :mod (c / candy))))
+        :mod (k / kitchen)))

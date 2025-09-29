@@ -1,0 +1,26 @@
+# ::tok The under carriage of a jet plane on take off or landing .
+# ::node	u	under	1-2
+# ::node	c	carriage	2-3
+# ::node	j	jet	5-6
+# ::node	p	plane	6-7
+# ::node	t	take-off-19	8-9
+# ::node	o	or	10-11
+# ::node	l	land-01	11-12
+# ::root	c	carriage
+# ::edge	carriage	mod	under	c	u	
+# ::edge	plane	mod	jet	p	j	
+# ::edge	carriage	ARG1	plane	c	p	
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	or	op1	take-off-19	o	t	
+# ::edge	carriage	time	or	c	o	
+# ::edge	or	op2	land-01	o	l	
+# ::edge	land-01	ARG1	plane	l	p	
+(c / carriage
+    :ARG1 (p / plane
+        :mod (j / jet))
+    :mod (u / under)
+    :time (o / or
+        :op1 (t / take-off-19
+            :ARG1 p)
+        :op2 (l / land-01
+            :ARG1 p)))

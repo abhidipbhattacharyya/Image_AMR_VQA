@@ -1,0 +1,42 @@
+# ::tok A tidy living room area has a brown table , two lamps , a brown desk and some luggage .
+# ::node	t2	tidy	1-2
+# ::node	l	living	2-3
+# ::node	r	room	3-4
+# ::node	a2	area	4-5
+# ::node	h	have-03	5-6
+# ::node	b	brown-01	7-8
+# ::node	t	table	8-9
+# ::node	0	2	10-11
+# ::node	b2	bulb	11-12
+# ::node	d	desk	15-16
+# ::node	a	and	16-17
+# ::node	s	some	17-18
+# ::node	l2	luggage	18-19
+# ::root	h	have-03
+# ::edge	room	mod	living	r	l	
+# ::edge	area	mod	room	a2	r	
+# ::edge	area	mod	tidy	a2	t2	
+# ::edge	have-03	ARG0	area	h	a2	
+# ::edge	table	ARG1-of	brown-01	t	b	
+# ::edge	bulb	quant	2	b2	0	
+# ::edge	brown-01	ARG1	desk	b	d	
+# ::edge	and	op3	desk	a	d	
+# ::edge	and	op2	bulb	a	b2	
+# ::edge	and	op1	table	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	luggage	quant	some	l2	s	
+# ::edge	and	op4	luggage	a	l2	
+(h / have-03
+    :ARG0 (a2 / area
+        :mod (r / room
+            :mod (l / living))
+        :mod (t2 / tidy))
+    :ARG1 (a / and
+        :op1 (t / table
+            :ARG1-of (b / brown-01
+                :ARG1 (d / desk)))
+        :op2 (b2 / bulb
+            :quant 2)
+        :op3 d
+        :op4 (l2 / luggage
+            :quant (s / some))))

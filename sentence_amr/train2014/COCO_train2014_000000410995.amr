@@ -1,0 +1,42 @@
+# ::tok Several no parking signs arranged on a pole near a city street with a large building behind them .
+# ::node	s	several	0-1
+# ::node	0	-	1-2
+# ::node	p	park-01	2-3
+# ::node	s2	sign	3-4
+# ::node	a	arrange-01	4-5
+# ::node	p2	pole	7-8
+# ::node	n	near-02	8-9
+# ::node	c	city	10-11
+# ::node	s3	street	11-12
+# ::node	h	have-03	12-13
+# ::node	l	large	14-15
+# ::node	b2	building	15-16
+# ::node	b	behind	16-17
+# ::root	a	arrange-01
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	sign	topic	park-01	s2	p	
+# ::edge	sign	quant	several	s2	s	
+# ::edge	arrange-01	ARG1	sign	a	s2	
+# ::edge	arrange-01	ARG2	pole	a	p2	
+# ::edge	pole	ARG1-of	near-02	p2	n	
+# ::edge	street	mod	city	s3	c	
+# ::edge	near-02	ARG2	street	n	s3	
+# ::edge	sign	ARG0-of	have-03	s2	h	
+# ::edge	building	mod	large	b2	l	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	behind	b2	b	
+# ::edge	behind	op1	pole	b	p2	
+(a / arrange-01
+    :ARG1 (s2 / sign
+        :quant (s / several)
+        :ARG0-of (h / have-03
+            :ARG1 (b2 / building
+                :location (b / behind
+                    :op1 (p2 / pole
+                        :ARG1-of (n / near-02
+                            :ARG2 (s3 / street
+                                :mod (c / city)))))
+                :mod (l / large)))
+        :topic (p / park-01
+            :polarity -))
+    :ARG2 p2)

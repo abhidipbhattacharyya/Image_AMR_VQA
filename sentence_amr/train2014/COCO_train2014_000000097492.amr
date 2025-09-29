@@ -1,0 +1,71 @@
+# ::tok Home library area , bookshelf in background with several laptops , notebook PC and two VDU / monitor and keyboard for desktop in foreground .
+# ::node	h	home	0-1
+# ::node	l	library	1-2
+# ::node	a3	area	2-3
+# ::node	a	and	3-4
+# ::node	b2	bookshelf	4-5
+# ::node	b	background	6-7
+# ::node	s	several	8-9
+# ::node	n	name	9-10
+# ::node	c	computer	9-10
+# ::node	n2	notebook	11-12
+# ::node	s3	system	12-13
+# ::node	p	personal-02	12-13
+# ::node	0	2	14-15
+# ::node	d3	disc	15-16
+# ::node	d2	digital	15-16
+# ::node	v	video	15-16
+# ::node	s2	slash	16-17
+# ::node	m	monitor	17-18
+# ::node	a2	and	18-19
+# ::node	k	keyboard	19-20
+# ::node	d	desktop	21-22
+# ::node	f	foreground	23-24
+# ::root	a	and
+# ::edge	library	mod	home	l	h	
+# ::edge	area	mod	library	a3	l	
+# ::edge	and	op1	area	a	a3	
+# ::edge	and	op2	bookshelf	a	b2	
+# ::edge	bookshelf	location	background	b2	b	
+# ::edge	several	op1	computer	s	c	
+# ::edge	system	mod	notebook	s3	n2	
+# ::edge	system	name	name	s3	n	
+# ::edge	and	op3	system	a	s3	
+# ::edge	system	ARG1-of	personal-02	s3	p	
+# ::edge	disc	name	name	d3	n	
+# ::edge	disc	mod	digital	d3	d2	
+# ::edge	disc	mod	video	d3	v	
+# ::edge	slash	op1	disc	s2	d3	
+# ::edge	slash	op2	monitor	s2	m	
+# ::edge	and	op2	slash	a2	s2	
+# ::edge	and	op1	and	a2	a	
+# ::edge	and	op4	and	a	a2	
+# ::edge	and	op3	keyboard	a2	k	
+# ::edge	keyboard	purpose	desktop	k	d	
+# ::edge	keyboard	location	foreground	k	f	
+# ::edge	and	rel	several	a	s	
+# ::edge	and	rel	2	a	0	
+(a / and
+    :op1 (a3 / area
+        :mod (l / library
+            :mod (h / home)))
+    :op2 (b2 / bookshelf
+        :location (b / background))
+    :op3 (s3 / system
+        :name (n / name)
+        :ARG1-of (p / personal-02)
+        :mod (n2 / notebook))
+    :op4 (a2 / and
+        :op1 a
+        :op2 (s2 / slash
+            :op1 (d3 / disc
+                :name n
+                :mod (d2 / digital)
+                :mod (v / video))
+            :op2 (m / monitor))
+        :op3 (k / keyboard
+            :purpose (d / desktop)
+            :location (f / foreground)))
+    :rel (s / several
+        :op1 (c / computer))
+    :rel 2)

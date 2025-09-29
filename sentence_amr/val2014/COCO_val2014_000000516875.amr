@@ -1,0 +1,37 @@
+# ::tok A girl looks at a plastic container that has two hot dogs on a bun and all the trimmings .
+# ::node	g	girl	1-2
+# ::node	l	look-01	2-3
+# ::node	p	plastic	5-6
+# ::node	c	container	6-7
+# ::node	h	have-03	8-9
+# ::node	0	2	9-10
+# ::node	e	eat-01	10-11
+# ::node	h2	hot-dog	11-12
+# ::node	b	bun	14-15
+# ::node	a2	and	15-16
+# ::node	a	all	16-17
+# ::node	t	truffle	18-19
+# ::root	l	look-01
+# ::edge	look-01	ARG0	girl	l	g	
+# ::edge	container	consist-of	plastic	c	p	
+# ::edge	look-01	ARG1	container	l	c	
+# ::edge	container	ARG0-of	have-03	c	h	
+# ::edge	hot-dog	ARG1-of	eat-01	h2	e	
+# ::edge	hot-dog	quant	2	h2	0	
+# ::edge	eat-01	prep-on	bun	e	b	
+# ::edge	and	op1	hot-dog	a2	h2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	truffle	mod	all	t	a	
+# ::edge	and	op2	truffle	a2	t	
+(l / look-01
+    :ARG0 (g / girl)
+    :ARG1 (c / container
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (h2 / hot-dog
+                    :quant 2
+                    :ARG1-of (e / eat-01
+                        :prep-on (b / bun)))
+                :op2 (t / truffle
+                    :mod (a / all))))
+        :consist-of (p / plastic)))

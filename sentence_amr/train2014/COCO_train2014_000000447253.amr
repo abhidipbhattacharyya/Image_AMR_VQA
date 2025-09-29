@@ -1,0 +1,50 @@
+# ::tok A man carries a tray of small colorful items over his head on the beach and in front of two jet skis .
+# ::node	m	man	1-2
+# ::node	c	carry-01	2-3
+# ::node	t	tray	4-5
+# ::node	s3	small	6-7
+# ::node	c2	colorful	7-8
+# ::node	i2	item	8-9
+# ::node	o	over	9-10
+# ::node	h	head	11-12
+# ::node	b	beach	14-15
+# ::node	a	and	15-16
+# ::node	i	in-front-of	17-18
+# ::node	0	2	19-20
+# ::node	j	jet	20-21
+# ::node	s	ship	21-22
+# ::node	s2	skim-02	21-22
+# ::root	c	carry-01
+# ::edge	carry-01	ARG0	man	c	m	
+# ::edge	carry-01	ARG1	tray	c	t	
+# ::edge	item	mod	colorful	i2	c2	
+# ::edge	item	mod	small	i2	s3	
+# ::edge	tray	consist-of	item	t	i2	
+# ::edge	carry-01	manner	over	c	o	
+# ::edge	over	op1	head	o	h	
+# ::edge	man	part	head	m	h	
+# ::edge	and	op1	beach	a	b	
+# ::edge	carry-01	location	and	c	a	
+# ::edge	and	op2	in-front-of	a	i	
+# ::edge	ship	quant	jet	s	j	
+# ::edge	in-front-of	op1	ship	i	s	
+# ::edge	ship	ARG0-of	skim-02	s	s2	
+# ::edge	skim-02	ARG1	jet	s2	j	
+# ::edge	carry-01	rel	2	c	0	
+(c / carry-01
+    :ARG0 (m / man
+        :part (h / head))
+    :ARG1 (t / tray
+        :consist-of (i2 / item
+            :mod (c2 / colorful)
+            :mod (s3 / small)))
+    :location (a / and
+        :op1 (b / beach)
+        :op2 (i / in-front-of
+            :op1 (s / ship
+                :quant (j / jet)
+                :ARG0-of (s2 / skim-02
+                    :ARG1 j))))
+    :manner (o / over
+        :op1 h)
+    :rel 2)

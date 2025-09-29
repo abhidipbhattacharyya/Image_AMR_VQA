@@ -1,0 +1,33 @@
+# ::tok Men are bent over standing on one leg with their arms in the air as people watch .
+# ::node	m	man	0-1
+# ::node	b	bend-01	2-3
+# ::node	s	stand-01	4-5
+# ::node	0	1	6-7
+# ::node	l	leg	7-8
+# ::node	a2	and	8-9
+# ::node	a3	arm	10-11
+# ::node	a	air	13-14
+# ::node	p	person	15-16
+# ::node	w	watch-01	16-17
+# ::root	a2	and
+# ::edge	bend-01	ARG1	man	b	m	
+# ::edge	stand-01	ARG0	man	s	m	
+# ::edge	leg	quant	1	l	0	
+# ::edge	stand-01	ARG2	leg	s	l	
+# ::edge	and	op2	stand-01	a2	s	
+# ::edge	and	op1	bend-01	a2	b	
+# ::edge	man	part	arm	m	a3	
+# ::edge	arm	location	air	a3	a	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	and	ARG1-of	watch-01	a2	w	
+(a2 / and
+    :ARG1-of (w / watch-01
+        :ARG0 (p / person))
+    :op1 (b / bend-01
+        :ARG1 (m / man
+            :part (a3 / arm
+                :location (a / air))))
+    :op2 (s / stand-01
+        :ARG0 m
+        :ARG2 (l / leg
+            :quant 1)))

@@ -1,0 +1,28 @@
+# ::tok A dog rests on dirty tiles between near a bike and metal doors .
+# ::node	d2	dog	1-2
+# ::node	r	rest-01	2-3
+# ::node	d	dirty-02	4-5
+# ::node	t	tile	5-6
+# ::node	b	between	6-7
+# ::node	n	near-02	7-8
+# ::node	b2	bike	9-10
+# ::node	m	metal	11-12
+# ::node	d3	door	12-13
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	dog	r	d2	
+# ::edge	tile	ARG1-of	dirty-02	t	d	
+# ::edge	rest-01	ARG2	tile	r	t	
+# ::edge	tile	location	between	t	b	
+# ::edge	between	op1	near-02	b	n	
+# ::edge	near-02	ARG2	bike	n	b2	
+# ::edge	door	mod	metal	d3	m	
+# ::edge	between	op2	door	b	d3	
+(r / rest-01
+    :ARG1 (d2 / dog)
+    :ARG2 (t / tile
+        :ARG1-of (d / dirty-02)
+        :location (b / between
+            :op1 (n / near-02
+                :ARG2 (b2 / bike))
+            :op2 (d3 / door
+                :mod (m / metal)))))

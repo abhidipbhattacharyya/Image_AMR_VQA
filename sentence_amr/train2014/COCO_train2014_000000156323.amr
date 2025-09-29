@@ -1,0 +1,54 @@
+# ::tok A persons feet resting on a desk either side of an open laptop with a second screen behind it , two desk lamps and some books
+# ::node	p	person	1-2
+# ::node	f	foot	2-3
+# ::node	r	rest-01	3-4
+# ::node	d	desk	6-7
+# ::node	e	either	7-8
+# ::node	s2	side	8-9
+# ::node	o	open-01	11-12
+# ::node	l	laptop	12-13
+# ::node	h	have-03	13-14
+# ::node	o2	ordinal-entity	15-16
+# ::node	0	2	15-16
+# ::node	s	screen	16-17
+# ::node	b	behind	17-18
+# ::node	1	2	20-21
+# ::node	b3	bulb	22-23
+# ::node	s3	some	24-25
+# ::node	b2	book	25-26
+# ::root	r	rest-01
+# ::edge	foot	part-of	person	f	p	
+# ::edge	rest-01	ARG1	foot	r	f	
+# ::edge	rest-01	ARG2	desk	r	d	
+# ::edge	side	mod	either	s2	e	
+# ::edge	desk	location	side	d	s2	
+# ::edge	laptop	ARG1-of	open-01	l	o	
+# ::edge	side	part-of	laptop	s2	l	
+# ::edge	laptop	ARG0-of	have-03	l	h	
+# ::edge	ordinal-entity	value	2	o2	0	
+# ::edge	screen	ord	ordinal-entity	s	o2	
+# ::edge	screen	location	behind	s	b	
+# ::edge	behind	op1	laptop	b	l	
+# ::edge	bulb	quant	2	b3	1	
+# ::edge	desk	part	bulb	d	b3	
+# ::edge	book	quant	some	b2	s3	
+# ::edge	laptop	part	book	l	b2	
+# ::edge	rest-01	rel	screen	r	s	
+(r / rest-01
+    :ARG1 (f / foot
+        :part-of (p / person))
+    :ARG2 (d / desk
+        :location (s2 / side
+            :mod (e / either)
+            :part-of (l / laptop
+                :ARG0-of (h / have-03)
+                :ARG1-of (o / open-01)
+                :part (b2 / book
+                    :quant (s3 / some))))
+        :part (b3 / bulb
+            :quant 2))
+    :rel (s / screen
+        :location (b / behind
+            :op1 l)
+        :ord (o2 / ordinal-entity
+            :value 2)))

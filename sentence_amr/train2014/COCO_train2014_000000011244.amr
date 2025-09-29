@@ -1,0 +1,29 @@
+# ::tok A cat sits inside a plastic - wrapped box with its mouth open .
+# ::node	c	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	i	inside	3-4
+# ::node	p	plastic	5-6
+# ::node	w	wrap-01	7-8
+# ::node	b	box	8-9
+# ::node	m	mouth	11-12
+# ::node	o	open-01	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	inside	s	i	
+# ::edge	wrap-01	ARG2	plastic	w	p	
+# ::edge	box	ARG1-of	wrap-01	b	w	
+# ::edge	inside	op1	box	i	b	
+# ::edge	cat	part	mouth	c	m	
+# ::edge	open-01	ARG1	mouth	o	m	
+# ::edge	sit-01	manner	open-01	s	o	
+# ::edge	open-01	ARG0	cat	o	c	
+(s / sit-01
+    :ARG1 (c / cat
+        :part (m / mouth))
+    :ARG2 (i / inside
+        :op1 (b / box
+            :ARG1-of (w / wrap-01
+                :ARG2 (p / plastic))))
+    :manner (o / open-01
+        :ARG0 c
+        :ARG1 m))

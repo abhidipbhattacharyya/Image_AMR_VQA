@@ -1,0 +1,58 @@
+# ::tok This young toddler stuffed the Tigger toothbrush into her mouth hoping to stave off the devastating effects of tooth decay and gingivitis .
+# ::node	t	this	0-1
+# ::node	y	young	1-2
+# ::node	t2	toddler	2-3
+# ::node	s2	stuff-01	3-4
+# ::node	n	name	5-6
+# ::node	0	Tigger	5-6
+# ::node	p	product	6-7
+# ::node	t4	toothbrush	6-7
+# ::node	m	mouth	9-10
+# ::node	h	hope-01	10-11
+# ::node	s	stave-off-01	12-13
+# ::node	d2	devastate-01	15-16
+# ::node	a	affect-01	16-17
+# ::node	t3	tooth	18-19
+# ::node	d	decay-01	19-20
+# ::node	a2	and	20-21
+# ::node	g	gingivitis	21-22
+# ::root	s2	stuff-01
+# ::edge	toddler	mod	young	t2	y	
+# ::edge	toddler	mod	this	t2	t	
+# ::edge	stuff-01	ARG0	toddler	s2	t2	
+# ::edge	name	op1	Tigger	n	0	
+# ::edge	product	name	name	p	n	
+# ::edge	stuff-01	ARG1	product	s2	p	
+# ::edge	stuff-01	instrument	toothbrush	s2	t4	
+# ::edge	stuff-01	ARG2	mouth	s2	m	
+# ::edge	toddler	part	mouth	t2	m	
+# ::edge	stuff-01	subevent-of	hope-01	s2	h	
+# ::edge	hope-01	ARG0	toddler	h	t2	
+# ::edge	hope-01	ARG1	stave-off-01	h	s	
+# ::edge	stave-off-01	ARG0	toddler	s	t2	
+# ::edge	affect-01	ARG0-of	devastate-01	a	d2	
+# ::edge	stave-off-01	ARG1	affect-01	s	a	
+# ::edge	decay-01	ARG1	tooth	d	t3	
+# ::edge	and	op1	decay-01	a2	d	
+# ::edge	affect-01	ARG0	and	a	a2	
+# ::edge	and	op2	gingivitis	a2	g	
+(s2 / stuff-01
+    :ARG0 (t2 / toddler
+        :mod (y / young)
+        :mod (t / this)
+        :part (m / mouth))
+    :ARG1 (p / product
+        :name (n / name
+            :op1 "Tigger"))
+    :ARG2 m
+    :instrument (t4 / toothbrush)
+    :subevent-of (h / hope-01
+        :ARG0 t2
+        :ARG1 (s / stave-off-01
+            :ARG0 t2
+            :ARG1 (a / affect-01
+                :ARG0 (a2 / and
+                    :op1 (d / decay-01
+                        :ARG1 (t3 / tooth))
+                    :op2 (g / gingivitis))
+                :ARG0-of (d2 / devastate-01)))))

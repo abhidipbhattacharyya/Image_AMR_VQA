@@ -1,0 +1,40 @@
+# ::tok a red truck parked on a dirt ground next to several trees and a blue barrel container .
+# ::node	r	red-02	1-2
+# ::node	t2	truck	2-3
+# ::node	p	park-01	3-4
+# ::node	d	dirt	6-7
+# ::node	g	ground	7-8
+# ::node	n	next-to	8-9
+# ::node	s	several	10-11
+# ::node	t	tree	11-12
+# ::node	a	and	12-13
+# ::node	b2	blue	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	b	barrel	15-16
+# ::node	c	container	16-17
+# ::root	p	park-01
+# ::edge	truck	ARG1-of	red-02	t2	r	
+# ::edge	park-01	ARG1	truck	p	t2	
+# ::edge	ground	consist-of	dirt	g	d	
+# ::edge	park-01	ARG2	ground	p	g	
+# ::edge	ground	location-of	next-to	g	n	
+# ::edge	tree	quant	several	t	s	
+# ::edge	and	op1	tree	a	t	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	volume-quantity	mod	blue	v	b2	
+# ::edge	volume-quantity	unit	barrel	v	b	
+# ::edge	container	mod	volume-quantity	c	v	
+# ::edge	and	op2	container	a	c	
+(p / park-01
+    :ARG1 (t2 / truck
+        :ARG1-of (r / red-02))
+    :ARG2 (g / ground
+        :consist-of (d / dirt)
+        :location-of (n / next-to
+            :op1 (a / and
+                :op1 (t / tree
+                    :quant (s / several))
+                :op2 (c / container
+                    :mod (v / volume-quantity
+                        :mod (b2 / blue)
+                        :unit (b / barrel)))))))

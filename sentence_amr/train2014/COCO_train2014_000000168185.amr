@@ -1,0 +1,29 @@
+# ::tok Two zebras are standing next to each other in dry grass .
+# ::node	e2	elephant	1-2
+# ::node	n	name	1-2
+# ::node	i	i	1-2
+# ::node	e	either	1-2
+# ::node	s	stand-01	3-4
+# ::node	n2	next-to	4-5
+# ::node	d	dry-08	9-10
+# ::node	g	grass	10-11
+# ::root	s	stand-01
+# ::edge	elephant	name	name	e2	n	
+# ::edge	elephant	mod	either	e2	e	
+# ::edge	stand-01	ARG1	elephant	s	e2	
+# ::edge	stand-01	ARG0	elephant	s	e2	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	elephant	n2	e2	
+# ::edge	grass	ARG1-of	dry-08	g	d	
+# ::edge	next-to	location	grass	n2	g	
+# ::edge	stand-01	rel	i	s	i	
+(s / stand-01
+    :ARG0 (e2 / elephant
+        :name (n / name)
+        :mod (e / either))
+    :ARG1 e2
+    :ARG2 (n2 / next-to
+        :location (g / grass
+            :ARG1-of (d / dry-08))
+        :op1 e2)
+    :rel (i / i))

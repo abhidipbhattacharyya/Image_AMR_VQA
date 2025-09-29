@@ -1,0 +1,35 @@
+# ::tok group of people sitting around a table getting ready to take a bite out of a cake .
+# ::node	g2	group	0-1
+# ::node	p	person	2-3
+# ::node	s	sit-01	3-4
+# ::node	a	around	4-5
+# ::node	t	table	6-7
+# ::node	g	get-04	7-8
+# ::node	r	ready-01	8-9
+# ::node	b	bite-01	12-13
+# ::node	c	cake	16-17
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	group	ARG1-of	sit-01	g2	s	
+# ::edge	sit-01	ARG2	around	s	a	
+# ::edge	around	op1	table	a	t	
+# ::edge	group	ARG0-of	get-04	g2	g	
+# ::edge	get-04	ARG1	ready-01	g	r	
+# ::edge	ready-01	ARG1	group	r	g2	
+# ::edge	ready-01	ARG2	bite-01	r	b	
+# ::edge	bite-01	ARG0	person	b	p	
+# ::edge	bite-01	ARG1	cake	b	c	
+# ::edge	event	mod	group	e	g2	
+(e / event
+    :mod (g2 / group
+        :ARG0-of (g / get-04
+            :ARG1 (r / ready-01
+                :ARG1 g2
+                :ARG2 (b / bite-01
+                    :ARG0 (p / person)
+                    :ARG1 (c / cake))))
+        :ARG1-of (s / sit-01
+            :ARG2 (a / around
+                :op1 (t / table)))
+        :consist-of p))

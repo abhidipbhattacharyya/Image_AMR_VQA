@@ -1,0 +1,41 @@
+# ::tok Many elephants stand in the stream while one human in the background stands among them risking death .
+# ::node	m	many	0-1
+# ::node	e	elephant	1-2
+# ::node	s	stand-01	2-3
+# ::node	s3	stream	5-6
+# ::node	c	contrast-01	6-7
+# ::node	0	1	7-8
+# ::node	h	human	8-9
+# ::node	b	background	11-12
+# ::node	s2	stand-01	12-13
+# ::node	a	among	13-14
+# ::node	r	risk-01	15-16
+# ::node	d	die-01	16-17
+# ::root	c	contrast-01
+# ::edge	elephant	quant	many	e	m	
+# ::edge	stand-01	ARG1	elephant	s	e	
+# ::edge	stand-01	ARG2	stream	s	s3	
+# ::edge	contrast-01	ARG1	stand-01	c	s	
+# ::edge	human	quant	1	h	0	
+# ::edge	human	location	background	h	b	
+# ::edge	stand-01	ARG1	human	s2	h	
+# ::edge	contrast-01	ARG2	stand-01	c	s2	
+# ::edge	stand-01	ARG2	among	s2	a	
+# ::edge	among	op1	elephant	a	e	
+# ::edge	human	ARG0-of	risk-01	h	r	
+# ::edge	risk-01	ARG2	die-01	r	d	
+# ::edge	die-01	ARG1	human	d	h	
+(c / contrast-01
+    :ARG1 (s / stand-01
+        :ARG1 (e / elephant
+            :quant (m / many))
+        :ARG2 (s3 / stream))
+    :ARG2 (s2 / stand-01
+        :ARG1 (h / human
+            :quant 1
+            :ARG0-of (r / risk-01
+                :ARG2 (d / die-01
+                    :ARG1 h))
+            :location (b / background))
+        :ARG2 (a / among
+            :op1 e)))

@@ -1,0 +1,25 @@
+# ::tok A car parked in front of a building and fire hydrant in the rain .
+# ::node	c	car	1-2
+# ::node	p	park-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	b	building	7-8
+# ::node	a	and	8-9
+# ::node	f	fire	9-10
+# ::node	h	hydrant	10-11
+# ::node	r	rain-01	13-14
+# ::root	p	park-01
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	and	op1	building	a	b	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	and	op2	hydrant	a	h	
+# ::edge	park-01	condition	rain-01	p	r	
+(p / park-01
+    :ARG1 (c / car)
+    :ARG2 (i / in-front-of
+        :op1 (a / and
+            :op1 (b / building)
+            :op2 (h / hydrant
+                :mod (f / fire))))
+    :condition (r / rain-01))

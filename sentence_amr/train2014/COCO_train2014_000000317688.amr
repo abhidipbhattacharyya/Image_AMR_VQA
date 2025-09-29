@@ -1,0 +1,40 @@
+# ::tok some buttered toast , peanut butter , cream cheese spread and a cup of coffee
+# ::node	s	some	0-1
+# ::node	s2	spread-02	1-2
+# ::node	t	toast	2-3
+# ::node	a	and	3-4
+# ::node	p	peanut	4-5
+# ::node	b	butter	5-6
+# ::node	c3	cream	7-8
+# ::node	c	cheese	8-9
+# ::node	s3	spread-02	9-10
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	c4	cup	12-13
+# ::node	c2	coffee	14-15
+# ::root	a	and
+# ::edge	toast	ARG1-of	spread-02	t	s2	
+# ::edge	toast	quant	some	t	s	
+# ::edge	and	op1	toast	a	t	
+# ::edge	butter	mod	peanut	b	p	
+# ::edge	and	op2	butter	a	b	
+# ::edge	cheese	mod	cream	c	c3	
+# ::edge	spread-02	ARG1	cheese	s3	c	
+# ::edge	and	op3	spread-02	a	s3	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	and	op4	coffee	a	c2	
+(a / and
+    :op1 (t / toast
+        :quant (s / some)
+        :ARG1-of (s2 / spread-02))
+    :op2 (b / butter
+        :mod (p / peanut))
+    :op3 (s3 / spread-02
+        :ARG1 (c / cheese
+            :mod (c3 / cream)))
+    :op4 (c2 / coffee
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c4 / cup))))

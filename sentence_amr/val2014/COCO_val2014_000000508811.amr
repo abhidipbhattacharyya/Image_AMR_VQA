@@ -1,0 +1,33 @@
+# ::tok A guy tossing the ball in the air getting ready to serve the ball in a game of tennis .
+# ::node	g2	guy	1-2
+# ::node	t2	toss-01	2-3
+# ::node	b	ball	4-5
+# ::node	a	air	7-8
+# ::node	r	ready-01	9-10
+# ::node	s	serve-02	11-12
+# ::node	g	game	16-17
+# ::node	t	tennis	18-19
+# ::root	t2	toss-01
+# ::edge	toss-01	ARG0	guy	t2	g2	
+# ::edge	toss-01	ARG1	ball	t2	b	
+# ::edge	toss-01	destination	air	t2	a	
+# ::edge	toss-01	purpose	ready-01	t2	r	
+# ::edge	ready-01	ARG1	guy	r	g2	
+# ::edge	ready-01	ARG0	guy	r	g2	
+# ::edge	ready-01	ARG2	serve-02	r	s	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	serve-02	ARG0	guy	s	g2	
+# ::edge	serve-02	subevent-of	game	s	g	
+# ::edge	game	mod	tennis	g	t	
+(t2 / toss-01
+    :purpose (r / ready-01
+        :ARG0 (g2 / guy)
+        :ARG1 g2
+        :ARG2 (s / serve-02
+            :ARG0 g2
+            :ARG1 (b / ball)
+            :subevent-of (g / game
+                :mod (t / tennis))))
+    :ARG0 g2
+    :ARG1 b
+    :destination (a / air))

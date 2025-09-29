@@ -1,0 +1,36 @@
+# ::tok A group of people at laptops sitting behind a person a projector screen .
+# ::node	g	group-01	1-2
+# ::node	p	person	3-4
+# ::node	n	name	5-6
+# ::node	c	computer	5-6
+# ::node	s2	sit-01	6-7
+# ::node	b	behind	7-8
+# ::node	p2	person	9-10
+# ::node	h	have-03	10-11
+# ::node	p3	person	10-11
+# ::node	p4	projector	11-12
+# ::node	s	screen	12-13
+# ::root	s2	sit-01
+# ::edge	group-01	ARG1	person	g	p	
+# ::edge	sit-01	ARG2	behind	s2	b	
+# ::edge	behind	op1	person	b	p2	
+# ::edge	computer	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	computer	h	c	
+# ::edge	behind	op2	person	b	p3	
+# ::edge	person	name	name	p3	n	
+# ::edge	screen	mod	projector	s	p4	
+# ::edge	behind	op1	screen	b	s	
+# ::edge	sit-01	rel	group-01	s2	g	
+# ::edge	sit-01	rel	have-03	s2	h	
+(s2 / sit-01
+    :ARG2 (b / behind
+        :op1 (p2 / person)
+        :op1 (s / screen
+            :mod (p4 / projector))
+        :op2 (p3 / person
+            :name (n / name)))
+    :rel (g / group-01
+        :ARG1 (p / person))
+    :rel (h / have-03
+        :ARG1 (c / computer
+            :ARG0-of h)))

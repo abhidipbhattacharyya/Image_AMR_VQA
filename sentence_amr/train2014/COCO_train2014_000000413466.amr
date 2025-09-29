@@ -1,0 +1,27 @@
+# ::tok A jet flying over an airport runway with it 's landing gear down ..
+# ::node	j	jet	1-2
+# ::node	f	fly-01	2-3
+# ::node	o	over	3-4
+# ::node	a	airport	5-6
+# ::node	r	runway	6-7
+# ::node	l	land-01	10-11
+# ::node	g	gear	11-12
+# ::node	d	down-03	12-13
+# ::root	j	jet
+# ::edge	jet	ARG2-of	fly-01	j	f	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	runway	mod	airport	r	a	
+# ::edge	over	op1	runway	o	r	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	jet	part	gear	j	g	
+# ::edge	down-03	ARG1	gear	d	g	
+# ::edge	fly-01	manner	down-03	f	d	
+(j / jet
+    :ARG2-of (f / fly-01
+        :manner (d / down-03
+            :ARG1 (g / gear
+                :ARG1-of (l / land-01)))
+        :path (o / over
+            :op1 (r / runway
+                :mod (a / airport))))
+    :part g)

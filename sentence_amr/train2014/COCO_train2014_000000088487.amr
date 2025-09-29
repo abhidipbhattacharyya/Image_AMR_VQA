@@ -1,0 +1,49 @@
+# ::tok A street sign labeled " Seltzer Way , " with a red fire hydrant in the foreground and a street stretching into the background .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	l	label-01	3-4
+# ::node	n	name	5-6
+# ::node	0	Seltzer	5-6
+# ::node	r2	road	6-7
+# ::node	1	Way	6-7
+# ::node	h	have-03	9-10
+# ::node	r	red-02	11-12
+# ::node	f	fire	12-13
+# ::node	h2	hydrant	13-14
+# ::node	f2	foreground	16-17
+# ::node	a	and	17-18
+# ::node	s3	street	19-20
+# ::node	s4	stretch-01	20-21
+# ::node	b	background	23-24
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG1-of	label-01	s	l	
+# ::edge	name	op1	Seltzer	n	0	
+# ::edge	road	name	name	r2	n	
+# ::edge	label-01	ARG2	road	l	r2	
+# ::edge	name	op2	Way	n	1	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	red-02	h2	r	
+# ::edge	hydrant	location	foreground	h2	f2	
+# ::edge	and	op1	hydrant	a	h2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	stretch-01	ARG1	street	s4	s3	
+# ::edge	and	op2	stretch-01	a	s4	
+# ::edge	stretch-01	ARG2	background	s4	b	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (h2 / hydrant
+                :ARG1-of (r / red-02)
+                :location (f2 / foreground)
+                :mod (f / fire))
+            :op2 (s4 / stretch-01
+                :ARG1 (s3 / street)
+                :ARG2 (b / background))))
+    :ARG1-of (l / label-01
+        :ARG2 (r2 / road
+            :name (n / name
+                :op1 "Seltzer"
+                :op2 "Way")))
+    :mod (s2 / street))

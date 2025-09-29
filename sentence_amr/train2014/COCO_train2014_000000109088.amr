@@ -1,0 +1,33 @@
+# ::tok A chef puts the toppings on a pizza before it goes into the oven
+# ::node	c	chef	1-2
+# ::node	p2	put-01	2-3
+# ::node	c2	continent	4-5
+# ::node	n	name	4-5
+# ::node	0	coast	4-5
+# ::node	1	of	4-5
+# ::node	p	pizza	7-8
+# ::node	b	before	8-9
+# ::node	g	go-01	10-11
+# ::node	o	oven	13-14
+# ::root	p2	put-01
+# ::edge	put-01	ARG0	chef	p2	c	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	coast	n	0	
+# ::edge	name	op2	of	n	1	
+# ::edge	pizza	mod	continent	p	c2	
+# ::edge	put-01	ARG1	pizza	p2	p	
+# ::edge	put-01	time	before	p2	b	
+# ::edge	before	op1	go-01	b	g	
+# ::edge	go-01	ARG1	pizza	g	p	
+# ::edge	go-01	ARG4	oven	g	o	
+(p2 / put-01
+    :ARG0 (c / chef)
+    :ARG1 (p / pizza
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "coast"
+                :op2 "of")))
+    :time (b / before
+        :op1 (g / go-01
+            :ARG1 p
+            :ARG4 (o / oven))))

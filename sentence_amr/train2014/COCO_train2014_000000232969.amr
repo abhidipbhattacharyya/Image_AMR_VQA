@@ -1,0 +1,31 @@
+# ::tok Cat sitting on entertainment center base watching Lassie on TV .
+# ::node	c	cat	0-1
+# ::node	s	sit-01	1-2
+# ::node	e	entertainment	3-4
+# ::node	c2	center	4-5
+# ::node	b	base	5-6
+# ::node	w	watch-01	6-7
+# ::node	b2	broadcast-program	7-8
+# ::node	n	name	7-8
+# ::node	0	Lassie	7-8
+# ::node	t	television	9-10
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	center	mod	entertainment	c2	e	
+# ::edge	base	mod	center	b	c2	
+# ::edge	sit-01	ARG2	base	s	b	
+# ::edge	cat	ARG0-of	watch-01	c	w	
+# ::edge	watch-01	ARG1	broadcast-program	w	b2	
+# ::edge	broadcast-program	name	name	b2	n	
+# ::edge	name	op1	Lassie	n	0	
+# ::edge	broadcast-program	medium	television	b2	t	
+(s / sit-01
+    :ARG1 (c / cat
+        :ARG0-of (w / watch-01
+            :ARG1 (b2 / broadcast-program
+                :name (n / name
+                    :op1 "Lassie")
+                :medium (t / television))))
+    :ARG2 (b / base
+        :mod (c2 / center
+            :mod (e / entertainment))))

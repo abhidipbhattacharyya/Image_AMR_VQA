@@ -1,0 +1,42 @@
+# ::tok This is a collection of many remote control devices arranged so that there is little space or no between them .
+# ::node	t	this	0-1
+# ::node	c	collect-01	3-4
+# ::node	m	many	5-6
+# ::node	r	remote	6-7
+# ::node	c2	control-01	7-8
+# ::node	d	device	8-9
+# ::node	a	arrange-01	9-10
+# ::node	l	little	14-15
+# ::node	s	space	15-16
+# ::node	s2	space	15-16
+# ::node	o	or	16-17
+# ::node	0	-	17-18
+# ::node	b	between	18-19
+# ::root	c	collect-01
+# ::edge	collect-01	domain	this	c	t	
+# ::edge	control-01	mod	remote	c2	r	
+# ::edge	device	ARG0-of	control-01	d	c2	
+# ::edge	device	quant	many	d	m	
+# ::edge	collect-01	ARG1	device	c	d	
+# ::edge	device	ARG1-of	arrange-01	d	a	
+# ::edge	space	quant	little	s	l	
+# ::edge	or	op2	space	o	s2	
+# ::edge	or	op1	space	o	s	
+# ::edge	arrange-01	manner	or	a	o	
+# ::edge	space	polarity	-	s2	0	
+# ::edge	space	location	between	s2	b	
+# ::edge	between	op1	device	b	d	
+(c / collect-01
+    :ARG1 (d / device
+        :quant (m / many)
+        :ARG0-of (c2 / control-01
+            :mod (r / remote))
+        :ARG1-of (a / arrange-01
+            :manner (o / or
+                :op1 (s / space
+                    :quant (l / little))
+                :op2 (s2 / space
+                    :location (b / between
+                        :op1 d)
+                    :polarity -))))
+    :domain (t / this))

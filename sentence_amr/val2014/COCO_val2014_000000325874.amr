@@ -1,0 +1,41 @@
+# ::tok three giraffes some brown and green grass some bushes and trees
+# ::node	0	3	0-1
+# ::node	g	giraffe	1-2
+# ::node	s	some	2-3
+# ::node	g4	green-02	3-4
+# ::node	a	and	4-5
+# ::node	a2	and	4-5
+# ::node	g5	green-02	5-6
+# ::node	g2	grass	6-7
+# ::node	g3	grass	6-7
+# ::node	s2	some	7-8
+# ::node	b	bush	8-9
+# ::node	t	tree	10-11
+# ::root	a	and
+# ::edge	giraffe	quant	3	g	0	
+# ::edge	and	op1	giraffe	a	g	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	green-02	a2	g4	
+# ::edge	and	op2	green-02	a2	g5	
+# ::edge	green-02	ARG1	grass	g5	g2	
+# ::edge	grass	ARG1-of	green-02	g2	g4	
+# ::edge	green-02	ARG1	grass	g5	g3	
+# ::edge	bush	quant	some	b	s2	
+# ::edge	and	op2	bush	a	b	
+# ::edge	tree	quant	some	t	s2	
+# ::edge	and	op3	tree	a	t	
+# ::edge	and	rel	some	a	s	
+(a / and
+    :op1 (g / giraffe
+        :quant 3)
+    :op2 (a2 / and
+        :op1 (g4 / green-02)
+        :op2 (g5 / green-02
+            :ARG1 (g2 / grass
+                :ARG1-of g4)
+            :ARG1 (g3 / grass)))
+    :op2 (b / bush
+        :quant (s2 / some))
+    :op3 (t / tree
+        :quant s2)
+    :rel (s / some))

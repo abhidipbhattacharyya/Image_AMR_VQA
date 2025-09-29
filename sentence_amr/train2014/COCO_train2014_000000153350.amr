@@ -1,0 +1,30 @@
+# ::tok A plane is landing or taking off from water with a large cargo ship in the background .
+# ::node	p	plane	1-2
+# ::node	l	land-01	3-4
+# ::node	o	or	4-5
+# ::node	t	take-off-19	5-6
+# ::node	w	water	8-9
+# ::node	l2	large	11-12
+# ::node	c	cargo	12-13
+# ::node	s	ship	13-14
+# ::node	b	background	16-17
+# ::root	o	or
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	or	op1	land-01	o	l	
+# ::edge	or	op2	take-off-19	o	t	
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	take-off-19	source	water	t	w	
+# ::edge	ship	mod	cargo	s	c	
+# ::edge	ship	mod	large	s	l2	
+# ::edge	plane	prep-with	ship	p	s	
+# ::edge	ship	location	background	s	b	
+(o / or
+    :op1 (l / land-01
+        :ARG1 (p / plane
+            :prep-with (s / ship
+                :location (b / background)
+                :mod (c / cargo)
+                :mod (l2 / large))))
+    :op2 (t / take-off-19
+        :ARG1 p
+        :source (w / water)))

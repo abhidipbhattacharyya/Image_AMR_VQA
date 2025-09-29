@@ -1,0 +1,32 @@
+# ::tok A banana has been decorated with a pink paper monkey that is riding it like a horse .
+# ::node	b	banana	1-2
+# ::node	d	decorate-01	4-5
+# ::node	p2	pink-04	7-8
+# ::node	p	paper	8-9
+# ::node	m	monkey	9-10
+# ::node	r2	ride-01	12-13
+# ::node	r3	ride-01	12-13
+# ::node	r	resemble-01	14-15
+# ::node	h	horse	16-17
+# ::root	d	decorate-01
+# ::edge	decorate-01	ARG1	banana	d	b	
+# ::edge	monkey	consist-of	paper	m	p	
+# ::edge	monkey	ARG1-of	pink-04	m	p2	
+# ::edge	decorate-01	ARG2	monkey	d	m	
+# ::edge	monkey	ARG0-of	ride-01	m	r2	
+# ::edge	ride-01	ARG1	banana	r2	b	
+# ::edge	ride-01	ARG0	monkey	r3	m	
+# ::edge	resemble-01	ARG2	ride-01	r	r3	
+# ::edge	ride-01	ARG1-of	resemble-01	r2	r	
+# ::edge	ride-01	ARG1	horse	r3	h	
+(d / decorate-01
+    :ARG1 (b / banana)
+    :ARG2 (m / monkey
+        :ARG0-of (r2 / ride-01
+            :ARG1 b
+            :ARG1-of (r / resemble-01
+                :ARG2 (r3 / ride-01
+                    :ARG0 m
+                    :ARG1 (h / horse))))
+        :ARG1-of (p2 / pink-04)
+        :consist-of (p / paper)))

@@ -1,0 +1,25 @@
+# ::tok A train sitting inside of a train station near a loading platform .
+# ::node	t	train	1-2
+# ::node	s	sit-01	2-3
+# ::node	i	inside	3-4
+# ::node	t2	train	6-7
+# ::node	s2	station	7-8
+# ::node	n	near-02	8-9
+# ::node	l	load-01	10-11
+# ::node	p	platform	11-12
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	train	s	t	
+# ::edge	sit-01	ARG2	inside	s	i	
+# ::edge	station	mod	train	s2	t2	
+# ::edge	inside	op1	station	i	s2	
+# ::edge	station	ARG1-of	near-02	s2	n	
+# ::edge	platform	purpose	load-01	p	l	
+# ::edge	near-02	ARG2	platform	n	p	
+(s / sit-01
+    :ARG1 (t / train)
+    :ARG2 (i / inside
+        :op1 (s2 / station
+            :ARG1-of (n / near-02
+                :ARG2 (p / platform
+                    :purpose (l / load-01)))
+            :mod (t2 / train))))

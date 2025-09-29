@@ -1,0 +1,40 @@
+# ::tok Blurry image of a street with several lanes , with a person on a motorcycle from back diagonal view , behind a red vehicle .
+# ::node	b3	blur-01	0-1
+# ::node	i	image	1-2
+# ::node	s2	street	4-5
+# ::node	s	several	6-7
+# ::node	l	lane	7-8
+# ::node	p	person	11-12
+# ::node	m	motorcycle	14-15
+# ::node	b	back	16-17
+# ::node	d	diagonal	17-18
+# ::node	v2	view	18-19
+# ::node	b2	behind	20-21
+# ::node	r	red-02	22-23
+# ::node	v	vehicle	23-24
+# ::root	i	image
+# ::edge	image	ARG1-of	blur-01	i	b3	
+# ::edge	image	topic	street	i	s2	
+# ::edge	lane	quant	several	l	s	
+# ::edge	street	part	lane	s2	l	
+# ::edge	street	location-of	person	s2	p	
+# ::edge	person	poss-of	motorcycle	p	m	
+# ::edge	view	mod	diagonal	v2	d	
+# ::edge	view	direction	back	v2	b	
+# ::edge	person	source	view	p	v2	
+# ::edge	person	location	behind	p	b2	
+# ::edge	vehicle	ARG1-of	red-02	v	r	
+# ::edge	behind	op1	vehicle	b2	v	
+(i / image
+    :ARG1-of (b3 / blur-01)
+    :topic (s2 / street
+        :location-of (p / person
+            :location (b2 / behind
+                :op1 (v / vehicle
+                    :ARG1-of (r / red-02)))
+            :poss-of (m / motorcycle)
+            :source (v2 / view
+                :direction (b / back)
+                :mod (d / diagonal)))
+        :part (l / lane
+            :quant (s / several))))

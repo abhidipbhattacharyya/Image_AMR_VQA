@@ -1,0 +1,34 @@
+# ::tok Lots of skiers ski down a hill while others ride a ski lift in the background .
+# ::node	l2	lot	0-1
+# ::node	p	person	2-3
+# ::node	s	ski-01	2-3
+# ::node	s2	ski-01	3-4
+# ::node	d	down	4-5
+# ::node	h	hill	6-7
+# ::node	o	other	8-9
+# ::node	r	ride-01	9-10
+# ::node	s3	ski-01	11-12
+# ::node	l	lift	12-13
+# ::node	b	background	15-16
+# ::root	s2	ski-01
+# ::edge	person	quant	lot	p	l2	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	ski-01	ARG0	person	s2	p	
+# ::edge	ski-01	direction	down	s2	d	
+# ::edge	ski-01	path	hill	s2	h	
+# ::edge	ride-01	ARG0	other	r	o	
+# ::edge	ski-01	time	ride-01	s2	r	
+# ::edge	lift	mod	ski-01	l	s3	
+# ::edge	ride-01	ARG1	lift	r	l	
+# ::edge	lift	location	background	l	b	
+(s2 / ski-01
+    :ARG0 (p / person
+        :quant (l2 / lot)
+        :ARG0-of (s / ski-01))
+    :direction (d / down)
+    :path (h / hill)
+    :time (r / ride-01
+        :ARG0 (o / other)
+        :ARG1 (l / lift
+            :location (b / background)
+            :mod (s3 / ski-01))))

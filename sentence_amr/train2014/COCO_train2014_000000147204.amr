@@ -1,0 +1,49 @@
+# ::tok Men and women in swimwear of the 1940 s greet officers coming off a military pontoon water plane .
+# ::node	m	man	0-1
+# ::node	a	and	1-2
+# ::node	w2	woman	2-3
+# ::node	s	swimwear	4-5
+# ::node	d	date-entity	7-8
+# ::node	0	1940	7-8
+# ::node	g	greet-01	9-10
+# ::node	p	person	10-11
+# ::node	h	have-org-role-91	10-11
+# ::node	o2	officer	10-11
+# ::node	c	come-01	11-12
+# ::node	o	off	12-13
+# ::node	m2	military	14-15
+# ::node	p3	pontoon	15-16
+# ::node	w	water	16-17
+# ::node	p2	plane	17-18
+# ::root	g	greet-01
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	and	domain	swimwear	a	s	
+# ::edge	swimwear	time	date-entity	s	d	
+# ::edge	date-entity	decade	1940	d	0	
+# ::edge	greet-01	ARG0	and	g	a	
+# ::edge	greet-01	ARG1	person	g	p	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG2	officer	h	o2	
+# ::edge	person	ARG1-of	come-01	p	c	
+# ::edge	come-01	ARG4	off	c	o	
+# ::edge	water	mod	pontoon	w	p3	
+# ::edge	plane	mod	water	p2	w	
+# ::edge	plane	mod	military	p2	m2	
+# ::edge	off	op1	plane	o	p2	
+(g / greet-01
+    :ARG0 (a / and
+        :domain (s / swimwear
+            :time (d / date-entity
+                :decade 1940))
+        :op1 (m / man)
+        :op2 (w2 / woman))
+    :ARG1 (p / person
+        :ARG0-of (h / have-org-role-91
+            :ARG2 (o2 / officer))
+        :ARG1-of (c / come-01
+            :ARG4 (o / off
+                :op1 (p2 / plane
+                    :mod (w / water
+                        :mod (p3 / pontoon))
+                    :mod (m2 / military))))))

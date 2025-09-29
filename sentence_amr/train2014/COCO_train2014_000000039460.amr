@@ -1,0 +1,40 @@
+# ::tok People walk along a path or over a bridge near a river , palm trees , and building .
+# ::node	p3	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	a	along	2-3
+# ::node	p2	path	4-5
+# ::node	o	or	5-6
+# ::node	o2	over	6-7
+# ::node	b	bridge	8-9
+# ::node	n	near-02	9-10
+# ::node	r	river	11-12
+# ::node	a2	and	12-13
+# ::node	p	palm	13-14
+# ::node	t	tree	14-15
+# ::node	b2	building	17-18
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p3	
+# ::edge	along	op1	path	a	p2	
+# ::edge	or	op1	along	o	a	
+# ::edge	walk-01	ARG2	or	w	o	
+# ::edge	or	op2	over	o	o2	
+# ::edge	over	op1	bridge	o2	b	
+# ::edge	bridge	ARG1-of	near-02	b	n	
+# ::edge	and	op1	river	a2	r	
+# ::edge	near-02	ARG2	and	n	a2	
+# ::edge	tree	mod	palm	t	p	
+# ::edge	and	op2	tree	a2	t	
+# ::edge	and	op3	building	a2	b2	
+(w / walk-01
+    :ARG0 (p3 / person)
+    :ARG2 (o / or
+        :op1 (a / along
+            :op1 (p2 / path))
+        :op2 (o2 / over
+            :op1 (b / bridge
+                :ARG1-of (n / near-02
+                    :ARG2 (a2 / and
+                        :op1 (r / river)
+                        :op2 (t / tree
+                            :mod (p / palm))
+                        :op3 (b2 / building)))))))

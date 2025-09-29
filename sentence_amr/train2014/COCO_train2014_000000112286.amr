@@ -1,0 +1,39 @@
+# ::tok A double stainless steel sink with apples in one side and the other side of the sink is empty .
+# ::node	d	double	1-2
+# ::node	s4	stainless	2-3
+# ::node	s5	steel	3-4
+# ::node	s3	sink	4-5
+# ::node	h	have-03	5-6
+# ::node	a2	apple	6-7
+# ::node	o	one	8-9
+# ::node	s	side	9-10
+# ::node	a	and	10-11
+# ::node	o2	other	12-13
+# ::node	s2	side	13-14
+# ::node	e	empty-02	18-19
+# ::root	a	and
+# ::edge	steel	mod	stainless	s5	s4	
+# ::edge	steel	mod	double	s5	d	
+# ::edge	sink	consist-of	steel	s3	s5	
+# ::edge	sink	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	apple	h	a2	
+# ::edge	side	mod	one	s	o	
+# ::edge	apple	location	side	a2	s	
+# ::edge	and	op1	sink	a	s3	
+# ::edge	side	mod	other	s2	o2	
+# ::edge	sink	part	side	s3	s2	
+# ::edge	empty-02	ARG1	side	e	s2	
+# ::edge	and	op2	empty-02	a	e	
+(a / and
+    :op1 (s3 / sink
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / apple
+                :location (s / side
+                    :mod (o / one))))
+        :consist-of (s5 / steel
+            :mod (s4 / stainless)
+            :mod (d / double))
+        :part (s2 / side
+            :mod (o2 / other)))
+    :op2 (e / empty-02
+        :ARG1 s2))

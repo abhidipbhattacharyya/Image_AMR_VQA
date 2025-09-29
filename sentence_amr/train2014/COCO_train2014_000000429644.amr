@@ -1,0 +1,31 @@
+# ::tok A yellow light rail is going down the track and there are a bunch of wires overhead .
+# ::node	y	yellow-02	1-2
+# ::node	l	light	2-3
+# ::node	r	rail	3-4
+# ::node	g	go-02	5-6
+# ::node	d	down	6-7
+# ::node	t	track	8-9
+# ::node	a	and	9-10
+# ::node	b	bunch	13-14
+# ::node	w	wire	15-16
+# ::node	o	overhead	16-17
+# ::root	a	and
+# ::edge	rail	mod	light	r	l	
+# ::edge	rail	ARG1-of	yellow-02	r	y	
+# ::edge	go-02	ARG0	rail	g	r	
+# ::edge	go-02	direction	down	g	d	
+# ::edge	go-02	path	track	g	t	
+# ::edge	and	op1	go-02	a	g	
+# ::edge	wire	quant	bunch	w	b	
+# ::edge	and	op2	wire	a	w	
+# ::edge	wire	location	overhead	w	o	
+(a / and
+    :op1 (g / go-02
+        :ARG0 (r / rail
+            :ARG1-of (y / yellow-02)
+            :mod (l / light))
+        :direction (d / down)
+        :path (t / track))
+    :op2 (w / wire
+        :quant (b / bunch)
+        :location (o / overhead)))

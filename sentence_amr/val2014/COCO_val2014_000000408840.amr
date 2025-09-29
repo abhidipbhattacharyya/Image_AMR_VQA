@@ -1,0 +1,25 @@
+# ::tok Articulated bus and taxi in light traffic crossing an intersection .
+# ::node	c	coordinate-01	0-1
+# ::node	b	bus	1-2
+# ::node	a	and	2-3
+# ::node	t	taxi	3-4
+# ::node	l	light-06	5-6
+# ::node	t2	traffic	6-7
+# ::node	c2	cross-02	7-8
+# ::node	i	intersect-01	9-10
+# ::root	a	and
+# ::edge	and	op1	bus	a	b	
+# ::edge	and	ARG1-of	coordinate-01	a	c	
+# ::edge	and	op2	taxi	a	t	
+# ::edge	traffic	ARG1-of	light-06	t2	l	
+# ::edge	cross-02	ARG1	traffic	c2	t2	
+# ::edge	and	ARG0-of	cross-02	a	c2	
+# ::edge	and	ARG0-of	intersect-01	a	i	
+(a / and
+    :ARG0-of (c2 / cross-02
+        :ARG1 (t2 / traffic
+            :ARG1-of (l / light-06)))
+    :ARG0-of (i / intersect-01)
+    :ARG1-of (c / coordinate-01)
+    :op1 (b / bus)
+    :op2 (t / taxi))

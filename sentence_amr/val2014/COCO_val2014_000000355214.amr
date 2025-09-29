@@ -1,0 +1,50 @@
+# ::tok A man outside with a teddy bear sitting in front of him on a chair .
+# ::node	m	man	1-2
+# ::node	o	outside	2-3
+# ::node	h	have-03	3-4
+# ::node	t	teddy	5-6
+# ::node	b	bear	6-7
+# ::node	s	sit-01	7-8
+# ::node	i	in-front-of	9-10
+# ::node	c	chair	14-15
+# ::root	m	man
+# ::edge	man	location	outside	m	o	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	have-03	ARG1	bear	h	b	
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	man	i	m	
+# ::edge	sit-01	ARG2	chair	s	c	
+(m / man
+    :ARG0-of (h / have-03
+        :ARG1 (b / bear
+            :mod (t / teddy)))
+    :ARG1-of (s / sit-01
+        :ARG2 (i / in-front-of
+            :op1 m)
+        :ARG2 (c / chair))
+    :location (o / outside))
+
+
+# ::tok The teddy bear is watching TV in while in the desert .
+# ::node	t	teddy	1-2
+# ::node	b2	bear	2-3
+# ::node	w	watch-01	4-5
+# ::node	t2	television	5-6
+# ::node	b	be-located-at-91	8-9
+# ::node	d	desert	10-11
+# ::root	w	watch-01
+# ::edge	bear	mod	teddy	b2	t	
+# ::edge	watch-01	ARG0	bear	w	b2	
+# ::edge	watch-01	ARG1	television	w	t2	
+# ::edge	watch-01	time	be-located-at-91	w	b	
+# ::edge	be-located-at-91	ARG1	bear	b	b2	
+# ::edge	be-located-at-91	ARG2	desert	b	d	
+(w / watch-01
+    :ARG0 (b2 / bear
+        :mod (t / teddy))
+    :ARG1 (t2 / television)
+    :time (b / be-located-at-91
+        :ARG1 b2
+        :ARG2 (d / desert)))

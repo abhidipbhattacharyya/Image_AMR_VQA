@@ -1,0 +1,28 @@
+# ::tok A glass jar with metal top contains a leaf and sliced carrots .
+# ::node	g	glass	1-2
+# ::node	j	jar	2-3
+# ::node	m	metal	4-5
+# ::node	t	top	5-6
+# ::node	c2	contain-01	6-7
+# ::node	l	leaf	8-9
+# ::node	a	and	9-10
+# ::node	s	slice-01	10-11
+# ::node	c	carrot	11-12
+# ::root	c2	contain-01
+# ::edge	jar	consist-of	glass	j	g	
+# ::edge	top	consist-of	metal	t	m	
+# ::edge	jar	prep-with	top	j	t	
+# ::edge	contain-01	ARG0	jar	c2	j	
+# ::edge	and	op1	leaf	a	l	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	carrot	ARG1-of	slice-01	c	s	
+# ::edge	and	op2	carrot	a	c	
+(c2 / contain-01
+    :ARG0 (j / jar
+        :consist-of (g / glass)
+        :prep-with (t / top
+            :consist-of (m / metal)))
+    :ARG1 (a / and
+        :op1 (l / leaf)
+        :op2 (c / carrot
+            :ARG1-of (s / slice-01))))

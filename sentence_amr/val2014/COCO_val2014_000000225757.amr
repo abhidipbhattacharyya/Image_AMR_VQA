@@ -1,0 +1,34 @@
+# ::tok This workstation features three desktop monitors with a single keyboard as well as a laptop computer .
+# ::node	t	this	0-1
+# ::node	w	workstation	1-2
+# ::node	f	feature-01	2-3
+# ::node	0	3	3-4
+# ::node	d	desktop	4-5
+# ::node	m	monitor	5-6
+# ::node	s	single-02	8-9
+# ::node	k	keyboard	9-10
+# ::node	a	and	10-11
+# ::node	l	laptop	14-15
+# ::node	c	computer	15-16
+# ::root	f	feature-01
+# ::edge	workstation	mod	this	w	t	
+# ::edge	feature-01	ARG2	workstation	f	w	
+# ::edge	monitor	mod	desktop	m	d	
+# ::edge	monitor	quant	3	m	0	
+# ::edge	keyboard	ARG1-of	single-02	k	s	
+# ::edge	monitor	prep-with	keyboard	m	k	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	computer	mod	laptop	c	l	
+# ::edge	and	op2	computer	a	c	
+(f / feature-01
+    :ARG1 (a / and
+        :op1 (m / monitor
+            :quant 3
+            :mod (d / desktop)
+            :prep-with (k / keyboard
+                :ARG1-of (s / single-02)))
+        :op2 (c / computer
+            :mod (l / laptop)))
+    :ARG2 (w / workstation
+        :mod (t / this)))

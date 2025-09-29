@@ -1,0 +1,85 @@
+# ::tok A minimally furnished room shows small window pairs with blinds and no curtains , an unmade double bed with a heavy , taupe duvet , and a white border near the ceiling with colorful birds trailing in both directions .
+# ::node	m2	minimal-02	1-2
+# ::node	f2	furnish-01	2-3
+# ::node	r	room	3-4
+# ::node	s	show-01	4-5
+# ::node	s2	small	5-6
+# ::node	w2	window	6-7
+# ::node	p	pair-01	7-8
+# ::node	b3	blind	9-10
+# ::node	a	and	10-11
+# ::node	0	-	11-12
+# ::node	c3	curtain	12-13
+# ::node	m	make-01	15-16
+# ::node	1	-	15-16
+# ::node	d2	double	16-17
+# ::node	b	bed	17-18
+# ::node	h	heavy	20-21
+# ::node	t	taupe	22-23
+# ::node	d3	duvet	23-24
+# ::node	a2	and	25-26
+# ::node	w	white-03	27-28
+# ::node	b4	border	28-29
+# ::node	n	near-02	29-30
+# ::node	c	ceiling	31-32
+# ::node	c2	colorful	33-34
+# ::node	b2	bird	34-35
+# ::node	f	follow-01	35-36
+# ::node	b5	both	37-38
+# ::node	d	direction	38-39
+# ::root	s	show-01
+# ::edge	furnish-01	ARG1-of	minimal-02	f2	m2	
+# ::edge	room	ARG1-of	furnish-01	r	f2	
+# ::edge	show-01	ARG0	room	s	r	
+# ::edge	window	mod	small	w2	s2	
+# ::edge	pair-01	ARG1	window	p	w2	
+# ::edge	and	op1	blind	a	b3	
+# ::edge	pair-01	ARG2	and	p	a	
+# ::edge	curtain	polarity	-	c3	0	
+# ::edge	and	op2	curtain	a	c3	
+# ::edge	make-01	polarity	-	m	1	
+# ::edge	bed	mod	double	b	d2	
+# ::edge	bed	ARG1-of	make-01	b	m	
+# ::edge	duvet	mod	taupe	d3	t	
+# ::edge	duvet	mod	heavy	d3	h	
+# ::edge	bed	part	duvet	b	d3	
+# ::edge	and	op2	bed	a2	b	
+# ::edge	and	op1	pair-01	a2	p	
+# ::edge	show-01	ARG1	and	s	a2	
+# ::edge	border	ARG1-of	white-03	b4	w	
+# ::edge	and	op3	border	a2	b4	
+# ::edge	border	ARG1-of	near-02	b4	n	
+# ::edge	near-02	ARG2	ceiling	n	c	
+# ::edge	bird	mod	colorful	b2	c2	
+# ::edge	follow-01	ARG1	bird	f	b2	
+# ::edge	border	ARG2-of	follow-01	b4	f	
+# ::edge	direction	mod	both	d	b5	
+# ::edge	follow-01	direction	direction	f	d	
+(s / show-01
+    :ARG0 (r / room
+        :ARG1-of (f2 / furnish-01
+            :ARG1-of (m2 / minimal-02)))
+    :ARG1 (a2 / and
+        :op1 (p / pair-01
+            :ARG1 (w2 / window
+                :mod (s2 / small))
+            :ARG2 (a / and
+                :op1 (b3 / blind)
+                :op2 (c3 / curtain
+                    :polarity -)))
+        :op2 (b / bed
+            :ARG1-of (m / make-01
+                :polarity -)
+            :mod (d2 / double)
+            :part (d3 / duvet
+                :mod (t / taupe)
+                :mod (h / heavy)))
+        :op3 (b4 / border
+            :ARG1-of (w / white-03)
+            :ARG1-of (n / near-02
+                :ARG2 (c / ceiling))
+            :ARG2-of (f / follow-01
+                :ARG1 (b2 / bird
+                    :mod (c2 / colorful))
+                :direction (d / direction
+                    :mod (b5 / both))))))

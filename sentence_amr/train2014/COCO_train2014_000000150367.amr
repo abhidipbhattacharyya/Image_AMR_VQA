@@ -1,0 +1,49 @@
+# ::tok Plate of food with pancakes , bacon and fruit .
+# ::node	p	plate	0-1
+# ::node	f	food	2-3
+# ::node	e	enzyme	4-5
+# ::node	t	tax-01	4-5
+# ::node	a	and	5-6
+# ::node	b	bacon	6-7
+# ::node	f2	fruit	8-9
+# ::root	p	plate
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	enzyme	ARG1-of	tax-01	e	t	
+# ::edge	and	op1	enzyme	a	e	
+# ::edge	food	accompanier	and	f	a	
+# ::edge	and	op2	bacon	a	b	
+# ::edge	and	op3	fruit	a	f2	
+(p / plate
+    :consist-of (f / food
+        :accompanier (a / and
+            :op1 (e / enzyme
+                :ARG1-of (t / tax-01))
+            :op2 (b / bacon)
+            :op3 (f2 / fruit))))
+
+
+# ::tok Coffee cup and Maple syrup bottle in background
+# ::node	e	Tea	0-1
+# ::node	c	cup	1-2
+# ::node	a	and	2-3
+# ::node	n	name	3-4
+# ::node	0	Maple	3-4
+# ::node	s	syrup	4-5
+# ::node	b2	bottle	5-6
+# ::node	b	background	7-8
+# ::root	a	and
+# ::edge	cup	consist-of	Tea	c	e	
+# ::edge	and	op1	cup	a	c	
+# ::edge	name	op1	Maple	n	0	
+# ::edge	syrup	name	name	s	n	
+# ::edge	bottle	mod	syrup	b2	s	
+# ::edge	and	op2	bottle	a	b2	
+# ::edge	and	location	background	a	b	
+(a / and
+    :location (b / background)
+    :op1 (c / cup
+        :consist-of (e / Tea))
+    :op2 (b2 / bottle
+        :mod (s / syrup
+            :name (n / name
+                :op1 "Maple"))))

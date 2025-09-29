@@ -1,0 +1,29 @@
+# ::tok A parking meter with a metal fork sticking out of it 's coin slot .
+# ::node	p	park-01	1-2
+# ::node	m2	meter	2-3
+# ::node	m	metal	5-6
+# ::node	f	fork	6-7
+# ::node	s2	stick-out-02	7-8
+# ::node	h	have-03	7-8
+# ::node	c	coin	12-13
+# ::node	s	slot	13-14
+# ::root	m2	meter
+# ::edge	meter	purpose	park-01	m2	p	
+# ::edge	fork	consist-of	metal	f	m	
+# ::edge	stick-out-02	ARG1	fork	s2	f	
+# ::edge	have-03	ARG1	fork	h	f	
+# ::edge	meter	ARG0-of	have-03	m2	h	
+# ::edge	slot	mod	coin	s	c	
+# ::edge	stick-out-02	ARG3	slot	s2	s	
+# ::edge	slot	poss	meter	s	m2	
+# ::edge	meter	rel	stick-out-02	m2	s2	
+(m2 / meter
+    :purpose (p / park-01)
+    :ARG0-of (h / have-03
+        :ARG1 (f / fork
+            :consist-of (m / metal)))
+    :rel (s2 / stick-out-02
+        :ARG1 f
+        :ARG3 (s / slot
+            :mod (c / coin)
+            :poss m2)))

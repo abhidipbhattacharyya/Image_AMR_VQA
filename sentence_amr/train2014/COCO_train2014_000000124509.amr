@@ -1,0 +1,25 @@
+# ::tok a street sign indicates nearby locations in front of an empty street
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	i2	indicate-01	3-4
+# ::node	n	nearby	4-5
+# ::node	l	location	5-6
+# ::node	i	in-front-of	7-8
+# ::node	e	empty-02	10-11
+# ::node	s3	street	11-12
+# ::root	i2	indicate-01
+# ::edge	sign	mod	street	s	s2	
+# ::edge	indicate-01	ARG0	sign	i2	s	
+# ::edge	location	mod	nearby	l	n	
+# ::edge	indicate-01	ARG1	location	i2	l	
+# ::edge	location	location	in-front-of	l	i	
+# ::edge	street	ARG1-of	empty-02	s3	e	
+# ::edge	in-front-of	op1	street	i	s3	
+(i2 / indicate-01
+    :ARG0 (s / sign
+        :mod (s2 / street))
+    :ARG1 (l / location
+        :location (i / in-front-of
+            :op1 (s3 / street
+                :ARG1-of (e / empty-02)))
+        :mod (n / nearby)))

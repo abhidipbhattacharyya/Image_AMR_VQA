@@ -1,0 +1,25 @@
+# ::tok Commercial train in motion moving through green hillside in rural area
+# ::node	c	commerce	0-1
+# ::node	t	train	1-2
+# ::node	m	move-01	3-4
+# ::node	m2	move-01	4-5
+# ::node	g	green-02	6-7
+# ::node	h	hillside	7-8
+# ::node	r	rural	9-10
+# ::node	a	area	10-11
+# ::root	m2	move-01
+# ::edge	train	mod	commerce	t	c	
+# ::edge	train	ARG1-of	move-01	t	m	
+# ::edge	move-01	ARG1	train	m2	t	
+# ::edge	hillside	ARG1-of	green-02	h	g	
+# ::edge	move-01	path	hillside	m2	h	
+# ::edge	area	mod	rural	a	r	
+# ::edge	hillside	location	area	h	a	
+(m2 / move-01
+    :ARG1 (t / train
+        :ARG1-of (m / move-01)
+        :mod (c / commerce))
+    :path (h / hillside
+        :ARG1-of (g / green-02)
+        :location (a / area
+            :mod (r / rural))))

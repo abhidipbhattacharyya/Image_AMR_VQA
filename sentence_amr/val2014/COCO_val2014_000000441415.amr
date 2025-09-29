@@ -1,0 +1,37 @@
+# ::tok There is two laptops on the table and bag on one of the chairs .
+# ::node	1	2	2-3
+# ::node	n	name	3-4
+# ::node	l	laptop	3-4
+# ::node	b2	be-located-at-91	4-5
+# ::node	t	table	6-7
+# ::node	a	and	7-8
+# ::node	b	bag	8-9
+# ::node	b3	be-located-at-91	9-10
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	c	chair	13-14
+# ::node	c2	chair	13-14
+# ::root	a	and
+# ::edge	laptop	quant	2	l	1	
+# ::edge	be-located-at-91	ARG1	laptop	b2	l	
+# ::edge	be-located-at-91	ARG2	table	b2	t	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	and	op2	bag	a	b	
+# ::edge	bag	ARG1-of	be-located-at-91	b	b3	
+# ::edge	chair	ARG1-of	include-91	c	i	
+# ::edge	chair	quant	1	c	0	
+# ::edge	be-located-at-91	ARG2	chair	b3	c	
+# ::edge	include-91	ARG2	chair	i	c2	
+# ::edge	and	rel	name	a	n	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (l / laptop
+            :quant 2)
+        :ARG2 (t / table))
+    :op2 (b / bag
+        :ARG1-of (b3 / be-located-at-91
+            :ARG2 (c / chair
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 (c2 / chair)))))
+    :rel (n / name))

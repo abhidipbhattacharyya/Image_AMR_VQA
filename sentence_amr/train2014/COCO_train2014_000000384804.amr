@@ -1,0 +1,27 @@
+# ::tok Cows stand inside a fence looking at a dog on the other side .
+# ::node	c	cow	0-1
+# ::node	s2	stand-01	1-2
+# ::node	i	inside	2-3
+# ::node	f	fence	4-5
+# ::node	l	look-01	5-6
+# ::node	d	dog	8-9
+# ::node	o	other	11-12
+# ::node	s	side	12-13
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	cow	s2	c	
+# ::edge	stand-01	ARG2	inside	s2	i	
+# ::edge	inside	op1	fence	i	f	
+# ::edge	cow	ARG0-of	look-01	c	l	
+# ::edge	look-01	ARG1	dog	l	d	
+# ::edge	side	mod	other	s	o	
+# ::edge	dog	location	side	d	s	
+# ::edge	fence	part	side	f	s	
+(s2 / stand-01
+    :ARG1 (c / cow
+        :ARG0-of (l / look-01
+            :ARG1 (d / dog
+                :location (s / side
+                    :mod (o / other)))))
+    :ARG2 (i / inside
+        :op1 (f / fence
+            :part s)))

@@ -1,0 +1,34 @@
+# ::tok A sign on the side of a building for the business of Tomasino 's Cellar Ristorante .
+# ::node	s2	sign	1-2
+# ::node	s	side	4-5
+# ::node	b	building	7-8
+# ::node	b2	business	10-11
+# ::node	p	person	12-13
+# ::node	n	name	12-13
+# ::node	2	Tomasino	12-13
+# ::node	n2	name	14-15
+# ::node	0	Cellar	14-15
+# ::node	l	local-region	15-16
+# ::node	1	Ristorante	15-16
+# ::root	s2	sign
+# ::edge	sign	location	side	s2	s	
+# ::edge	side	part-of	building	s	b	
+# ::edge	sign	purpose	business	s2	b2	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Tomasino	n	2	
+# ::edge	name	op1	Cellar	n2	0	
+# ::edge	local-region	name	name	l	n2	
+# ::edge	local-region	poss	person	l	p	
+# ::edge	business	poss	local-region	b2	l	
+# ::edge	name	op2	Ristorante	n2	1	
+(s2 / sign
+    :purpose (b2 / business
+        :poss (l / local-region
+            :name (n2 / name
+                :op1 "Cellar"
+                :op2 "Ristorante")
+            :poss (p / person
+                :name (n / name
+                    :op1 "Tomasino"))))
+    :location (s / side
+        :part-of (b / building)))

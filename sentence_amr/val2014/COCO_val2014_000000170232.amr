@@ -1,0 +1,26 @@
+# ::tok Vehicles driving and parked on a street in the rain .
+# ::node	v	vehicle	0-1
+# ::node	v2	vehicle	0-1
+# ::node	d	drive-01	1-2
+# ::node	a	and	2-3
+# ::node	p	park-01	3-4
+# ::node	s	street	6-7
+# ::node	r	rain-01	9-10
+# ::root	a	and
+# ::edge	vehicle	ARG1-of	drive-01	v	d	
+# ::edge	drive-01	ARG0	vehicle	d	v	
+# ::edge	and	op2	vehicle	a	v2	
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	vehicle	ARG1-of	park-01	v2	p	
+# ::edge	park-01	ARG0	vehicle	p	v	
+# ::edge	park-01	location	street	p	s	
+# ::edge	and	time	rain-01	a	r	
+(a / and
+    :op1 (v / vehicle
+        :ARG1-of (d / drive-01
+            :ARG0 v))
+    :op2 (v2 / vehicle
+        :ARG1-of (p / park-01
+            :ARG0 v
+            :location (s / street)))
+    :time (r / rain-01))

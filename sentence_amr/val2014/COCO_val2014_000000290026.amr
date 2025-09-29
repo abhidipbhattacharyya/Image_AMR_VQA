@@ -1,0 +1,27 @@
+# ::tok A city bus thats turning a corner with another at the intersection .
+# ::node	c	city	1-2
+# ::node	b	bus	2-3
+# ::node	b2	bus	2-3
+# ::node	t	turn-01	4-5
+# ::node	c2	corner	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	i	intersect-01	11-12
+# ::root	t	turn-01
+# ::edge	bus	mod	city	b	c	
+# ::edge	turn-01	ARG0	bus	t	b	
+# ::edge	turn-01	ARG1	corner	t	c2	
+# ::edge	turn-01	ARG1	and	t	a	
+# ::edge	and	op2	bus	a	b2	
+# ::edge	and	op1	bus	a	b	
+# ::edge	bus	mod	another	b2	a2	
+# ::edge	bus	location	intersect-01	b2	i	
+(t / turn-01
+    :ARG0 (b / bus
+        :mod (c / city))
+    :ARG1 (c2 / corner)
+    :ARG1 (a / and
+        :op1 b
+        :op2 (b2 / bus
+            :location (i / intersect-01)
+            :mod (a2 / another))))

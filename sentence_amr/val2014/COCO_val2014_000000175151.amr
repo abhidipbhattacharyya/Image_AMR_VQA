@@ -1,0 +1,27 @@
+# ::tok A city passenger bus on a street that has construction cones on the lanes on the street .
+# ::node	c	city	1-2
+# ::node	p	passenger	2-3
+# ::node	b	bus	3-4
+# ::node	s	street	6-7
+# ::node	h	have-03	8-9
+# ::node	c3	construct-01	9-10
+# ::node	c2	cone	10-11
+# ::node	l	lane	13-14
+# ::root	b	bus
+# ::edge	bus	mod	passenger	b	p	
+# ::edge	bus	mod	city	b	c	
+# ::edge	bus	location	street	b	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	cone	purpose	construct-01	c2	c3	
+# ::edge	have-03	ARG1	cone	h	c2	
+# ::edge	cone	location	lane	c2	l	
+# ::edge	lane	location	street	l	s	
+(b / bus
+    :location (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (c2 / cone
+                :purpose (c3 / construct-01)
+                :location (l / lane
+                    :location s))))
+    :mod (p / passenger)
+    :mod (c / city))

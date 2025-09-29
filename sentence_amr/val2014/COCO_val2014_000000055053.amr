@@ -1,0 +1,28 @@
+# ::tok THREE SHEEP IN SMALL TOWN WANDERING DOWN THE ROAD UNDISTURBED
+# ::node	1	3	0-1
+# ::node	s	shack	1-2
+# ::node	s2	small	3-4
+# ::node	t	town	4-5
+# ::node	w	walk-01	5-6
+# ::node	d2	down-01	6-7
+# ::node	r	road	8-9
+# ::node	d	dismiss-01	9-10
+# ::node	0	-	9-10
+# ::root	w	walk-01
+# ::edge	shack	quant	3	s	1	
+# ::edge	town	mod	small	t	s2	
+# ::edge	shack	location	town	s	t	
+# ::edge	walk-01	ARG0	shack	w	s	
+# ::edge	walk-01	direction	down-01	w	d2	
+# ::edge	down-01	op1	road	d2	r	
+# ::edge	shack	ARG1-of	dismiss-01	s	d	
+# ::edge	dismiss-01	polarity	-	d	0	
+(w / walk-01
+    :ARG0 (s / shack
+        :quant 3
+        :ARG1-of (d / dismiss-01
+            :polarity -)
+        :location (t / town
+            :mod (s2 / small)))
+    :direction (d2 / down-01
+        :op1 (r / road)))

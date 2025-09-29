@@ -1,0 +1,42 @@
+# ::tok Looking down on a spiral staircase that has a large clock in the middle on a stand , and a chandelier hanging from above .
+# ::node	l2	look-01	0-1
+# ::node	d	down	1-2
+# ::node	s	spiral	4-5
+# ::node	s2	staircase	5-6
+# ::node	h2	have-03	7-8
+# ::node	l	large	9-10
+# ::node	c2	clock	10-11
+# ::node	m	middle	13-14
+# ::node	s3	stand	16-17
+# ::node	a2	and	18-19
+# ::node	c	chandelier	20-21
+# ::node	h	hang-01	21-22
+# ::node	a	above	23-24
+# ::root	l2	look-01
+# ::edge	look-01	direction	down	l2	d	
+# ::edge	staircase	mod	spiral	s2	s	
+# ::edge	look-01	ARG1	staircase	l2	s2	
+# ::edge	staircase	ARG0-of	have-03	s2	h2	
+# ::edge	clock	mod	large	c2	l	
+# ::edge	clock	location	middle	c2	m	
+# ::edge	clock	location	stand	c2	s3	
+# ::edge	and	op1	clock	a2	c2	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op2	chandelier	a2	c	
+# ::edge	chandelier	ARG1-of	hang-01	c	h	
+# ::edge	hang-01	ARG2	above	h	a	
+# ::edge	above	op1	staircase	a	s2	
+(l2 / look-01
+    :ARG1 (s2 / staircase
+        :ARG0-of (h2 / have-03
+            :ARG1 (a2 / and
+                :op1 (c2 / clock
+                    :location (m / middle)
+                    :location (s3 / stand)
+                    :mod (l / large))
+                :op2 (c / chandelier
+                    :ARG1-of (h / hang-01
+                        :ARG2 (a / above
+                            :op1 s2)))))
+        :mod (s / spiral))
+    :direction (d / down))

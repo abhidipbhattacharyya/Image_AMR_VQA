@@ -1,0 +1,44 @@
+# ::tok a baseball player who has just swung his bat at a ball and the catcher holds a closed mitt behind him
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	j	just	5-6
+# ::node	s	swing-02	6-7
+# ::node	b3	bat	8-9
+# ::node	b	ball	11-12
+# ::node	p2	person	14-15
+# ::node	c	catch-01	14-15
+# ::node	h	hold-01	15-16
+# ::node	c2	close-01	17-18
+# ::node	m	mitt	18-19
+# ::node	b4	behind	19-20
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	swing-02	mod	just	s	j	
+# ::edge	person	ARG0-of	swing-02	p	s	
+# ::edge	swing-02	ARG1	bat	s	b3	
+# ::edge	bat	poss	person	b3	p	
+# ::edge	swing-02	ARG2	ball	s	b	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	mitt	ARG1-of	close-01	m	c2	
+# ::edge	hold-01	ARG1	mitt	h	m	
+# ::edge	hold-01	location	behind	h	b4	
+# ::edge	behind	op1	person	b4	p	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG0-of (s / swing-02
+        :ARG1 (b3 / bat
+            :poss p)
+        :ARG2 (b / ball)
+        :mod (j / just))
+    :ARG0-of (h / hold-01
+        :ARG0 (p2 / person
+            :ARG0-of (c / catch-01))
+        :ARG1 (m / mitt
+            :ARG1-of (c2 / close-01))
+        :location (b4 / behind
+            :op1 p)))

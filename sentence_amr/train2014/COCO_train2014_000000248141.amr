@@ -1,0 +1,52 @@
+# ::tok Man in dark purple top and woman in red top holding Wii controllers , as if in heated competition .
+# ::node	m	man	0-1
+# ::node	w	wear-01	1-2
+# ::node	d	dark-02	2-3
+# ::node	p2	purple-02	3-4
+# ::node	t	top	4-5
+# ::node	a	and	5-6
+# ::node	w2	woman	6-7
+# ::node	r	red-02	8-9
+# ::node	t2	top	9-10
+# ::node	h2	hold-01	10-11
+# ::node	p	product	11-12
+# ::node	n	name	11-12
+# ::node	0	Wii	11-12
+# ::node	c2	control-01	12-13
+# ::node	r2	resemble-01	14-15
+# ::node	h	heat-01	17-18
+# ::node	c	compete-01	18-19
+# ::root	a	and
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	top	ARG1-of	purple-02	t	p2	
+# ::edge	top	ARG1-of	dark-02	t	d	
+# ::edge	wear-01	ARG1	top	w	t	
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	top	ARG1-of	red-02	t2	r	
+# ::edge	woman	ARG0-of	hold-01	w2	h2	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	control-01	ARG1	product	c2	p	
+# ::edge	hold-01	ARG1	control-01	h2	c2	
+# ::edge	and	ARG1-of	resemble-01	a	r2	
+# ::edge	compete-01	ARG1-of	heat-01	c	h	
+# ::edge	resemble-01	ARG2	compete-01	r2	c	
+# ::edge	and	rel	top	a	t2	
+(a / and
+    :ARG1-of (r2 / resemble-01
+        :ARG2 (c / compete-01
+            :ARG1-of (h / heat-01)))
+    :op1 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (t / top
+                :ARG1-of (p2 / purple-02)
+                :ARG1-of (d / dark-02))))
+    :op2 (w2 / woman
+        :ARG0-of (h2 / hold-01
+            :ARG1 (c2 / control-01
+                :ARG1 (p / product
+                    :name (n / name
+                        :op1 "Wii")))))
+    :rel (t2 / top
+        :ARG1-of (r / red-02)))

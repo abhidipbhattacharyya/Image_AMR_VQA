@@ -1,0 +1,46 @@
+# ::tok A man that is jumping in the air with one leg over one of his arms and a frisbee in his hand .
+# ::node	m	man	1-2
+# ::node	j	jump-03	4-5
+# ::node	a	air	7-8
+# ::node	l	leg	10-11
+# ::node	o	over	11-12
+# ::node	0	1	12-13
+# ::node	1	1	12-13
+# ::node	i	include-91	13-14
+# ::node	a3	arm	15-16
+# ::node	a4	arm	15-16
+# ::node	a2	and	16-17
+# ::node	f	frisbee	18-19
+# ::node	h	hand	21-22
+# ::root	m	man
+# ::edge	man	ARG0-of	jump-03	m	j	
+# ::edge	jump-03	destination	air	j	a	
+# ::edge	leg	location	over	l	o	
+# ::edge	leg	quant	1	l	0	
+# ::edge	arm	ARG1-of	include-91	a3	i	
+# ::edge	arm	quant	1	a3	0	
+# ::edge	over	op1	arm	o	a3	
+# ::edge	include-91	ARG2	arm	i	a4	
+# ::edge	man	part	arm	m	a4	
+# ::edge	and	op1	leg	a2	l	
+# ::edge	jump-03	manner	and	j	a2	
+# ::edge	and	op2	frisbee	a2	f	
+# ::edge	frisbee	location	hand	f	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	man	rel	1	m	1	
+(m / man
+    :ARG0-of (j / jump-03
+        :destination (a / air)
+        :manner (a2 / and
+            :op1 (l / leg
+                :quant 1
+                :location (o / over
+                    :op1 (a3 / arm
+                        :quant 1
+                        :ARG1-of (i / include-91
+                            :ARG2 (a4 / arm)))))
+            :op2 (f / frisbee
+                :location (h / hand))))
+    :part a4
+    :part h
+    :rel 1)

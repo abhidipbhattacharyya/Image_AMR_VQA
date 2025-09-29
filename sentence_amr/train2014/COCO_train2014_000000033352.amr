@@ -1,0 +1,22 @@
+# ::tok A mid sized transport plane sitting on a tarmac at an airport .
+# ::node	m	mid	1-2
+# ::node	s2	size-01	2-3
+# ::node	t2	transport-01	3-4
+# ::node	p	plane	4-5
+# ::node	s	sit-01	5-6
+# ::node	t	tarmac	8-9
+# ::node	a	airport	11-12
+# ::root	s	sit-01
+# ::edge	size-01	ARG2	mid	s2	m	
+# ::edge	plane	ARG0-of	transport-01	p	t2	
+# ::edge	plane	ARG1-of	size-01	p	s2	
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	tarmac	location	airport	t	a	
+(s / sit-01
+    :ARG1 (p / plane
+        :ARG0-of (t2 / transport-01)
+        :ARG1-of (s2 / size-01
+            :ARG2 (m / mid)))
+    :ARG2 (t / tarmac
+        :location (a / airport)))

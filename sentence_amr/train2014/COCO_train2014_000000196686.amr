@@ -1,0 +1,27 @@
+# ::tok Plants on the edge of a street near traffic lights and signals .
+# ::node	p	plant	0-1
+# ::node	e	edge	3-4
+# ::node	s2	street	6-7
+# ::node	n	near-02	7-8
+# ::node	t	traffic	8-9
+# ::node	l	light	9-10
+# ::node	a	and	10-11
+# ::node	s	signal-07	11-12
+# ::root	p	plant
+# ::edge	plant	location	edge	p	e	
+# ::edge	edge	part-of	street	e	s2	
+# ::edge	plant	ARG1-of	near-02	p	n	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	and	op2	signal-07	a	s	
+# ::edge	signal-07	mod	traffic	s	t	
+(p / plant
+    :ARG1-of (n / near-02
+        :ARG2 (a / and
+            :op1 (l / light
+                :mod (t / traffic))
+            :op2 (s / signal-07
+                :mod t)))
+    :location (e / edge
+        :part-of (s2 / street)))

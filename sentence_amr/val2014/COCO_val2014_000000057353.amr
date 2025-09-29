@@ -1,0 +1,37 @@
+# ::tok A fruit market with green and yellow bananas and a big platter of coconuts .
+# ::node	f	fruit	1-2
+# ::node	m	market	2-3
+# ::node	h	have-03	3-4
+# ::node	g	green-02	4-5
+# ::node	a	and	5-6
+# ::node	y	yellow-02	6-7
+# ::node	b	banana	7-8
+# ::node	b2	banana	7-8
+# ::node	a2	and	8-9
+# ::node	b4	big	10-11
+# ::node	p	platter	11-12
+# ::node	b3	banana	13-14
+# ::root	m	market
+# ::edge	market	mod	fruit	m	f	
+# ::edge	market	ARG0-of	have-03	m	h	
+# ::edge	and	op1	banana	a	b	
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	banana	ARG1-of	yellow-02	b2	y	
+# ::edge	and	op2	banana	a	b2	
+# ::edge	and	op1	and	a2	a	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	platter	mod	big	p	b4	
+# ::edge	and	op2	platter	a2	p	
+# ::edge	platter	consist-of	banana	p	b3	
+(m / market
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (a / and
+                :op1 (b / banana
+                    :ARG1-of (g / green-02))
+                :op2 (b2 / banana
+                    :ARG1-of (y / yellow-02)))
+            :op2 (p / platter
+                :consist-of (b3 / banana)
+                :mod (b4 / big))))
+    :mod (f / fruit))

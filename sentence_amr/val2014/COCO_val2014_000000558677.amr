@@ -1,0 +1,27 @@
+# ::tok a plane at the airport being offloaded and some trucks moving besides it
+# ::node	p	plane	1-2
+# ::node	a	airport	4-5
+# ::node	o	offload-01	6-7
+# ::node	a2	and	7-8
+# ::node	s	some	8-9
+# ::node	t	truck	9-10
+# ::node	m	move-01	10-11
+# ::node	b	besides	11-12
+# ::root	a2	and
+# ::edge	plane	location	airport	p	a	
+# ::edge	offload-01	ARG2	plane	o	p	
+# ::edge	and	op1	offload-01	a2	o	
+# ::edge	truck	quant	some	t	s	
+# ::edge	move-01	ARG0	truck	m	t	
+# ::edge	and	op2	move-01	a2	m	
+# ::edge	move-01	location	besides	m	b	
+# ::edge	besides	op1	plane	b	p	
+(a2 / and
+    :op1 (o / offload-01
+        :ARG2 (p / plane
+            :location (a / airport)))
+    :op2 (m / move-01
+        :ARG0 (t / truck
+            :quant (s / some))
+        :location (b / besides
+            :op1 p)))

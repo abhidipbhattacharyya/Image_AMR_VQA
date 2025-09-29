@@ -1,0 +1,27 @@
+# ::tok A glass display case that contains many various items made of glass .
+# ::node	g	glass	1-2
+# ::node	d	display-01	2-3
+# ::node	c	case	3-4
+# ::node	c2	contain-01	5-6
+# ::node	m2	many	6-7
+# ::node	v	various	7-8
+# ::node	i	item	8-9
+# ::node	m	make-01	9-10
+# ::root	c	case
+# ::edge	display-01	ARG2	glass	d	g	
+# ::edge	case	ARG1-of	display-01	c	d	
+# ::edge	case	ARG0-of	contain-01	c	c2	
+# ::edge	item	mod	various	i	v	
+# ::edge	item	quant	many	i	m2	
+# ::edge	contain-01	ARG1	item	c2	i	
+# ::edge	item	ARG1-of	make-01	i	m	
+# ::edge	make-01	ARG2	glass	m	g	
+(c / case
+    :ARG0-of (c2 / contain-01
+        :ARG1 (i / item
+            :quant (m2 / many)
+            :ARG1-of (m / make-01
+                :ARG2 (g / glass))
+            :mod (v / various)))
+    :ARG1-of (d / display-01
+        :ARG2 g))

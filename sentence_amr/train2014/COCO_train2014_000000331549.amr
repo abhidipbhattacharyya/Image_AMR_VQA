@@ -1,0 +1,43 @@
+# ::tok two men just finishing or starting a tennis match .
+# ::node	0	2	0-1
+# ::node	m	man	1-2
+# ::node	j	just	2-3
+# ::node	f	finish-01	3-4
+# ::node	o	or	4-5
+# ::node	s	start-01	5-6
+# ::node	t	tennis	7-8
+# ::node	m2	match-03	8-9
+# ::root	o	or
+# ::edge	man	quant	2	m	0	
+# ::edge	finish-01	ARG0	man	f	m	
+# ::edge	or	op1	finish-01	o	f	
+# ::edge	or	mod	just	o	j	
+# ::edge	or	op2	start-01	o	s	
+# ::edge	start-01	ARG0	man	s	m	
+# ::edge	match-03	mod	tennis	m2	t	
+# ::edge	start-01	ARG1	match-03	s	m2	
+# ::edge	finish-01	ARG1	match-03	f	m2	
+# ::edge	match-03	ARG0	man	m2	m	
+(o / or
+    :mod (j / just)
+    :op1 (f / finish-01
+        :ARG0 (m / man
+            :quant 2)
+        :ARG1 (m2 / match-03
+            :ARG0 m
+            :mod (t / tennis)))
+    :op2 (s / start-01
+        :ARG0 m
+        :ARG1 m2))
+
+
+# ::tok they are shaking hands
+# ::node	t	they	0-1
+# ::node	s	shake-01	2-3
+# ::node	h	hand	3-4
+# ::root	s	shake-01
+# ::edge	shake-01	ARG0	they	s	t	
+# ::edge	shake-01	ARG1	hand	s	h	
+(s / shake-01
+    :ARG0 (t / they)
+    :ARG1 (h / hand))

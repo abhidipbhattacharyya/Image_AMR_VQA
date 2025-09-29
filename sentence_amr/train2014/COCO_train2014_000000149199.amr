@@ -1,0 +1,26 @@
+# ::tok A horse raises its tail while standing next to a pile of hay .
+# ::node	h2	horse	1-2
+# ::node	r	raise-01	2-3
+# ::node	t	tail	4-5
+# ::node	s	stand-01	6-7
+# ::node	n	next-to	7-8
+# ::node	p	pile-01	10-11
+# ::node	h	hay	12-13
+# ::root	r	raise-01
+# ::edge	raise-01	ARG0	horse	r	h2	
+# ::edge	raise-01	ARG1	tail	r	t	
+# ::edge	horse	part	tail	h2	t	
+# ::edge	raise-01	time	stand-01	r	s	
+# ::edge	stand-01	ARG1	horse	s	h2	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	pile-01	n	p	
+# ::edge	pile-01	ARG1	hay	p	h	
+(r / raise-01
+    :ARG0 (h2 / horse
+        :part (t / tail))
+    :ARG1 t
+    :time (s / stand-01
+        :ARG1 h2
+        :ARG2 (n / next-to
+            :op1 (p / pile-01
+                :ARG1 (h / hay)))))

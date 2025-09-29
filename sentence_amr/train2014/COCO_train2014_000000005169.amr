@@ -1,0 +1,39 @@
+# ::tok A red double decker passenger bus moves past a building with it 's lights on in a snow flurry .
+# ::node	r	red-02	1-2
+# ::node	0	2	2-3
+# ::node	d	deck	3-4
+# ::node	p	passenger	4-5
+# ::node	b2	bus	5-6
+# ::node	m	move-01	6-7
+# ::node	p2	past	7-8
+# ::node	b	building	9-10
+# ::node	l	light	13-14
+# ::node	o	on-01	14-15
+# ::node	s	snow	17-18
+# ::node	f	flurry	18-19
+# ::root	m	move-01
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	passenger	b2	p	
+# ::edge	bus	mod	deck	b2	d	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	move-01	ARG0	bus	m	b2	
+# ::edge	move-01	path	past	m	p2	
+# ::edge	past	op1	building	p2	b	
+# ::edge	light	poss	bus	l	b2	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	building	location-of	on-01	b	o	
+# ::edge	flurry	mod	snow	f	s	
+# ::edge	on-01	time	flurry	o	f	
+(m / move-01
+    :ARG0 (b2 / bus
+        :ARG1-of (r / red-02)
+        :mod (p / passenger)
+        :mod (d / deck
+            :quant 2))
+    :path (p2 / past
+        :op1 (b / building
+            :location-of (o / on-01
+                :ARG1 (l / light
+                    :poss b2)
+                :time (f / flurry
+                    :mod (s / snow))))))

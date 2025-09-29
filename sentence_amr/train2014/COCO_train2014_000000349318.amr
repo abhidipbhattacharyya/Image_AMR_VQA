@@ -1,0 +1,58 @@
+# ::tok American Airlines ' 707 Astrojet was the first to be commercially successful in the 1960 s , cutting travel time from coast to coast .
+# ::node	4	American	0-1
+# ::node	c4	company	1-2
+# ::node	n	name	1-2
+# ::node	3	Airlines	1-2
+# ::node	a	aircraft-type	3-4
+# ::node	n2	name	3-4
+# ::node	2	707	3-4
+# ::node	5	Astrojet	4-5
+# ::node	o	ordinal-entity	7-8
+# ::node	0	1	7-8
+# ::node	c3	commercial	10-11
+# ::node	s	succeed-01	11-12
+# ::node	d	date-entity	14-15
+# ::node	1	1960	14-15
+# ::node	c5	cut-02	17-18
+# ::node	t2	travel-01	18-19
+# ::node	t	time	19-20
+# ::node	c	coast	21-22
+# ::node	c2	coast	23-24
+# ::root	s	succeed-01
+# ::edge	company	name	name	c4	n	
+# ::edge	name	op1	American	n	4	
+# ::edge	name	op2	Airlines	n	3	
+# ::edge	aircraft-type	poss	company	a	c4	
+# ::edge	aircraft-type	name	name	a	n2	
+# ::edge	name	op1	707	n2	2	
+# ::edge	name	op2	Astrojet	n2	5	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	succeed-01	manner	commercial	s	c3	
+# ::edge	succeed-01	ord	ordinal-entity	s	o	
+# ::edge	succeed-01	ARG0	aircraft-type	s	a	
+# ::edge	succeed-01	time	date-entity	s	d	
+# ::edge	date-entity	decade	1960	d	1	
+# ::edge	succeed-01	ARG0-of	cut-02	s	c5	
+# ::edge	time	duration-of	travel-01	t	t2	
+# ::edge	cut-02	ARG1	time	c5	t	
+# ::edge	travel-01	ARG1	coast	t2	c	
+# ::edge	travel-01	destination	coast	t2	c2	
+(s / succeed-01
+    :ARG0 (a / aircraft-type
+        :name (n2 / name
+            :op1 707
+            :op2 "Astrojet")
+        :poss (c4 / company
+            :name (n / name
+                :op1 "American"
+                :op2 "Airlines")))
+    :ARG0-of (c5 / cut-02
+        :ARG1 (t / time
+            :duration-of (t2 / travel-01
+                :ARG1 (c / coast)
+                :destination (c2 / coast))))
+    :manner (c3 / commercial)
+    :ord (o / ordinal-entity
+        :value 1)
+    :time (d / date-entity
+        :decade 1960))

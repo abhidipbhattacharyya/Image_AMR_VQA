@@ -1,0 +1,44 @@
+# ::tok Tennis player trying to reach tennis ball while other player watches from other side of net .
+# ::node	c	court	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	t	try-01	2-3
+# ::node	r	reach-01	4-5
+# ::node	b	ball	6-7
+# ::node	o	other	8-9
+# ::node	p2	person	9-10
+# ::node	p4	play-01	9-10
+# ::node	w	watch-01	10-11
+# ::node	o2	other	12-13
+# ::node	s	side	13-14
+# ::node	n	net	15-16
+# ::root	t	try-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	court	p3	c	
+# ::edge	try-01	ARG0	person	t	p	
+# ::edge	try-01	ARG1	reach-01	t	r	
+# ::edge	reach-01	ARG0	person	r	p	
+# ::edge	reach-01	ARG1	ball	r	b	
+# ::edge	ball	mod	court	b	c	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	try-01	time	watch-01	t	w	
+# ::edge	side	mod	other	s	o2	
+# ::edge	watch-01	source	side	w	s	
+# ::edge	side	part-of	net	s	n	
+(t / try-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (c / court)))
+    :ARG1 (r / reach-01
+        :ARG0 p
+        :ARG1 (b / ball
+            :mod c))
+    :time (w / watch-01
+        :ARG0 (p2 / person
+            :ARG0-of (p4 / play-01)
+            :mod (o / other))
+        :source (s / side
+            :mod (o2 / other)
+            :part-of (n / net))))

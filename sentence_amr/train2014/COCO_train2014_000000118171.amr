@@ -1,0 +1,40 @@
+# ::tok Two men running for a flying frisbee with one reaching up to catch it .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	r2	run-02	2-3
+# ::node	f	fly-01	5-6
+# ::node	f2	frisbee	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	r	reach-03	9-10
+# ::node	u	up	10-11
+# ::node	c	catch-01	12-13
+# ::root	r2	run-02
+# ::edge	man	quant	2	m	1	
+# ::edge	run-02	ARG0	man	r2	m	
+# ::edge	frisbee	ARG1-of	fly-01	f2	f	
+# ::edge	run-02	ARG2	frisbee	r2	f2	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	ARG0-of	reach-03	m2	r	
+# ::edge	reach-03	direction	up	r	u	
+# ::edge	reach-03	purpose	catch-01	r	c	
+# ::edge	catch-01	ARG1	frisbee	c	f2	
+# ::edge	catch-01	ARG0	man	c	m2	
+# ::edge	run-02	rel	reach-03	r2	r	
+(r2 / run-02
+    :ARG0 (m / man
+        :quant 2)
+    :ARG2 (f2 / frisbee
+        :ARG1-of (f / fly-01))
+    :rel (r / reach-03
+        :purpose (c / catch-01
+            :ARG0 (m2 / man
+                :quant 1
+                :ARG0-of r
+                :ARG1-of (i / include-91
+                    :ARG2 m))
+            :ARG1 f2)
+        :direction (u / up)))

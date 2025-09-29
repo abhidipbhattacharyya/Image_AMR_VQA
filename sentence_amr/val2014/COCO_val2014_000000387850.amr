@@ -1,0 +1,25 @@
+# ::tok People wait at a public transport station in Thailand .
+# ::node	p	person	0-1
+# ::node	w	wait-01	1-2
+# ::node	p2	public-02	4-5
+# ::node	t	transport	5-6
+# ::node	s	station	6-7
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	Thailand	8-9
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	transport	ARG1-of	public-02	t	p2	
+# ::edge	station	mod	transport	s	t	
+# ::edge	wait-01	ARG2	station	w	s	
+# ::edge	station	location	country	s	c	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Thailand	n	0	
+(w / wait-01
+    :ARG1 (p / person)
+    :ARG2 (s / station
+        :location (c / country
+            :name (n / name
+                :op1 "Thailand"))
+        :mod (t / transport
+            :ARG1-of (p2 / public-02))))

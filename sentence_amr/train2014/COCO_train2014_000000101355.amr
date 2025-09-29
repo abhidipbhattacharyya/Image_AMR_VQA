@@ -1,0 +1,39 @@
+# ::tok A man pouring mix into a red blender that is sitting on a counter with lots of snacks and drinks .
+# ::node	m	man	1-2
+# ::node	p	pour-01	2-3
+# ::node	m2	mix-01	3-4
+# ::node	r	red-02	6-7
+# ::node	t	thing	7-8
+# ::node	p2	process-01	7-8
+# ::node	s	sit-01	10-11
+# ::node	c	counter	13-14
+# ::node	l	lot	15-16
+# ::node	s2	snack	17-18
+# ::node	a	and	18-19
+# ::node	d	drink-01	19-20
+# ::root	p	pour-01
+# ::edge	pour-01	ARG0	man	p	m	
+# ::edge	pour-01	ARG1	mix-01	p	m2	
+# ::edge	thing	ARG1-of	red-02	t	r	
+# ::edge	pour-01	ARG3	thing	p	t	
+# ::edge	thing	ARG0-of	process-01	t	p2	
+# ::edge	thing	ARG1-of	sit-01	t	s	
+# ::edge	sit-01	ARG2	counter	s	c	
+# ::edge	snack	quant	lot	s2	l	
+# ::edge	and	op1	snack	a	s2	
+# ::edge	thing	accompanier	and	t	a	
+# ::edge	and	op2	drink-01	a	d	
+# ::edge	drink-01	quant	lot	d	l	
+(p / pour-01
+    :ARG0 (m / man)
+    :ARG1 (m2 / mix-01)
+    :ARG3 (t / thing
+        :ARG0-of (p2 / process-01)
+        :ARG1-of (r / red-02)
+        :ARG1-of (s / sit-01
+            :ARG2 (c / counter))
+        :accompanier (a / and
+            :op1 (s2 / snack
+                :quant (l / lot))
+            :op2 (d / drink-01
+                :quant l))))

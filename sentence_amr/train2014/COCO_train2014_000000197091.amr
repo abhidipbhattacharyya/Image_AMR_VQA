@@ -1,0 +1,54 @@
+# ::tok A tiny bathroom area shows a phone hanging above a double toilet - roll dispenser , the edge of a shower curtain , and a toilet in the middle .
+# ::node	t2	tiny	1-2
+# ::node	b	bathroom	2-3
+# ::node	a4	area	3-4
+# ::node	s	show-01	4-5
+# ::node	p	phone	6-7
+# ::node	h	hang-01	7-8
+# ::node	a	above	8-9
+# ::node	d	double	10-11
+# ::node	r	roll-01	13-14
+# ::node	t	thing	14-15
+# ::node	a2	administer-01	14-15
+# ::node	e	edge	17-18
+# ::node	s2	shower	20-21
+# ::node	c	curtain	21-22
+# ::node	a3	and	23-24
+# ::node	t3	toilet	25-26
+# ::node	m	middle	28-29
+# ::root	s	show-01
+# ::edge	area	mod	bathroom	a4	b	
+# ::edge	area	mod	tiny	a4	t2	
+# ::edge	show-01	ARG0	area	s	a4	
+# ::edge	hang-01	ARG1	phone	h	p	
+# ::edge	hang-01	ARG2	above	h	a	
+# ::edge	thing	mod	double	t	d	
+# ::edge	above	op1	thing	a	t	
+# ::edge	thing	ARG0-of	administer-01	t	a2	
+# ::edge	administer-01	ARG1	roll-01	a2	r	
+# ::edge	curtain	mod	shower	c	s2	
+# ::edge	edge	part-of	curtain	e	c	
+# ::edge	and	op2	edge	a3	e	
+# ::edge	and	op1	hang-01	a3	h	
+# ::edge	show-01	ARG1	and	s	a3	
+# ::edge	and	op3	toilet	a3	t3	
+# ::edge	toilet	location	middle	t3	m	
+# ::edge	middle	op1	area	m	a4	
+(s / show-01
+    :ARG0 (a4 / area
+        :mod (b / bathroom)
+        :mod (t2 / tiny))
+    :ARG1 (a3 / and
+        :op1 (h / hang-01
+            :ARG1 (p / phone)
+            :ARG2 (a / above
+                :op1 (t / thing
+                    :ARG0-of (a2 / administer-01
+                        :ARG1 (r / roll-01))
+                    :mod (d / double))))
+        :op2 (e / edge
+            :part-of (c / curtain
+                :mod (s2 / shower)))
+        :op3 (t3 / toilet
+            :location (m / middle
+                :op1 a4))))

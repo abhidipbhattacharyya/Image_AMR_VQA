@@ -1,0 +1,43 @@
+# ::tok Baseball player just hit the ball and is getting ready to run to first base .
+# ::node	b3	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	j	just	2-3
+# ::node	h	hit-01	3-4
+# ::node	b	ball	5-6
+# ::node	a	and	6-7
+# ::node	r	ready-01	9-10
+# ::node	r2	run-02	11-12
+# ::node	o	ordinal-entity	13-14
+# ::node	0	1	13-14
+# ::node	b2	base	14-15
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b3	
+# ::edge	hit-01	time	just	h	j	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	and	op1	hit-01	a	h	
+# ::edge	and	op2	ready-01	a	r	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	run-02	r	r2	
+# ::edge	run-02	ARG0	person	r2	p	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	run-02	destination	base	r2	b2	
+(a / and
+    :op1 (h / hit-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b3 / baseball)))
+        :ARG1 (b / ball)
+        :time (j / just))
+    :op2 (r / ready-01
+        :ARG0 p
+        :ARG1 p
+        :ARG2 (r2 / run-02
+            :ARG0 p
+            :destination (b2 / base
+                :ord (o / ordinal-entity
+                    :value 1)))))

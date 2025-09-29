@@ -1,0 +1,28 @@
+# ::tok a road sign showing no bikes passing and a stop sign
+# ::node	r	road	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	3-4
+# ::node	0	-	4-5
+# ::node	b	bike-01	5-6
+# ::node	p	pass-03	6-7
+# ::node	a	and	7-8
+# ::node	s4	stop-01	9-10
+# ::node	s3	signal-07	10-11
+# ::root	s	show-01
+# ::edge	sign	mod	road	s2	r	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	bike-01	polarity	-	b	0	
+# ::edge	pass-03	ARG1	bike-01	p	b	
+# ::edge	and	op1	pass-03	a	p	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	signal-07	ARG1	stop-01	s3	s4	
+# ::edge	and	op2	signal-07	a	s3	
+(s / show-01
+    :ARG0 (s2 / sign
+        :mod (r / road))
+    :ARG1 (a / and
+        :op1 (p / pass-03
+            :ARG1 (b / bike-01
+                :polarity -))
+        :op2 (s3 / signal-07
+            :ARG1 (s4 / stop-01))))

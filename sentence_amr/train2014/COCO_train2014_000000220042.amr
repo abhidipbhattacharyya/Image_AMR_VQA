@@ -1,0 +1,32 @@
+# ::tok People in a safari vehicle wait and watch as an elephant crosses the road .
+# ::node	p	person	0-1
+# ::node	s	safari	3-4
+# ::node	v	vehicle	4-5
+# ::node	w	wait-01	5-6
+# ::node	a	and	6-7
+# ::node	w2	watch-01	7-8
+# ::node	e	elephant	10-11
+# ::node	c	cross-02	11-12
+# ::node	r	road	13-14
+# ::root	a	and
+# ::edge	vehicle	mod	safari	v	s	
+# ::edge	person	location	vehicle	p	v	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	and	op1	wait-01	a	w	
+# ::edge	and	op2	watch-01	a	w2	
+# ::edge	watch-01	ARG0	person	w2	p	
+# ::edge	cross-02	ARG0	elephant	c	e	
+# ::edge	watch-01	ARG1	cross-02	w2	c	
+# ::edge	wait-01	ARG2	cross-02	w	c	
+# ::edge	cross-02	ARG1	road	c	r	
+(a / and
+    :op1 (w / wait-01
+        :ARG1 (p / person
+            :location (v / vehicle
+                :mod (s / safari)))
+        :ARG2 (c / cross-02
+            :ARG0 (e / elephant)
+            :ARG1 (r / road)))
+    :op2 (w2 / watch-01
+        :ARG0 p
+        :ARG1 c))

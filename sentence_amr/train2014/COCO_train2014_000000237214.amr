@@ -1,0 +1,34 @@
+# ::tok Rows of luggage behind barrier with people standing around .
+# ::node	m	multiple	0-1
+# ::node	d	distance-quantity	0-1
+# ::node	w	week	0-1
+# ::node	0	1	0-1
+# ::node	l	luggage	2-3
+# ::node	b2	behind	3-4
+# ::node	b	barrier	4-5
+# ::node	p	person	6-7
+# ::node	s	stand-01	7-8
+# ::node	a2	around	8-9
+# ::node	a	and	9-10
+# ::root	a	and
+# ::edge	multiple	op1	distance-quantity	m	d	
+# ::edge	distance-quantity	unit	week	d	w	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	luggage	quant	multiple	l	m	
+# ::edge	luggage	location	behind	l	b2	
+# ::edge	behind	op1	barrier	b2	b	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	around	s	a2	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	and	op1	luggage	a	l	
+(a / and
+    :op1 (l / luggage
+        :quant (m / multiple
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (w / week)))
+        :location (b2 / behind
+            :op1 (b / barrier)))
+    :op2 (s / stand-01
+        :ARG1 (p / person)
+        :ARG2 (a2 / around)))

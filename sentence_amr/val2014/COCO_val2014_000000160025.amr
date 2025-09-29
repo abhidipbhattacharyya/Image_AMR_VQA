@@ -1,0 +1,34 @@
+# ::tok A blue sky with puffy white clouds and the top of a stop light .
+# ::node	b	blue	1-2
+# ::node	s	sky	2-3
+# ::node	h	have-03	3-4
+# ::node	p	puffy	4-5
+# ::node	w	white-03	5-6
+# ::node	c	cloud	6-7
+# ::node	a	and	7-8
+# ::node	t2	top	9-10
+# ::node	t	thing	11-12
+# ::node	s2	stop-01	12-13
+# ::node	l	light	13-14
+# ::root	s	sky
+# ::edge	sky	mod	blue	s	b	
+# ::edge	sky	ARG0-of	have-03	s	h	
+# ::edge	cloud	ARG1-of	white-03	c	w	
+# ::edge	cloud	mod	puffy	c	p	
+# ::edge	and	op1	cloud	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	top	a	t2	
+# ::edge	top	part-of	thing	t2	t	
+# ::edge	light	mod	stop-01	l	s2	
+# ::edge	thing	part-of	light	t	l	
+(s / sky
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / cloud
+                :ARG1-of (w / white-03)
+                :mod (p / puffy))
+            :op2 (t2 / top
+                :part-of (t / thing
+                    :part-of (l / light
+                        :mod (s2 / stop-01))))))
+    :mod (b / blue))

@@ -1,0 +1,67 @@
+# ::tok In the foreground stands markers on a ski slope , in the middle area a skier trekking down the slope and in the distance a second skier , and an area of dense trees .
+# ::node	f	foreground	2-3
+# ::node	s5	stand-01	3-4
+# ::node	m	mark-01	4-5
+# ::node	t	thing	5-6
+# ::node	s	ski-01	7-8
+# ::node	s4	slope	8-9
+# ::node	m2	middle	12-13
+# ::node	a2	area	13-14
+# ::node	p	person	15-16
+# ::node	s2	ski-01	15-16
+# ::node	w	walk-01	16-17
+# ::node	d3	down	17-18
+# ::node	d2	distance	23-24
+# ::node	o	ordinal-entity	25-26
+# ::node	0	2	25-26
+# ::node	p2	person	26-27
+# ::node	s3	ski-01	26-27
+# ::node	a	and	28-29
+# ::node	a3	area	30-31
+# ::node	a4	area	30-31
+# ::node	d	dense	32-33
+# ::node	t2	tree	33-34
+# ::root	a	and
+# ::edge	stand-01	location	foreground	s5	f	
+# ::edge	thing	ARG0-of	mark-01	t	m	
+# ::edge	stand-01	ARG1	thing	s5	t	
+# ::edge	slope	mod	ski-01	s4	s	
+# ::edge	thing	location	slope	t	s4	
+# ::edge	area	location	middle	a2	m2	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	location	area	w	a2	
+# ::edge	walk-01	direction	down	w	d3	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	person	ord	ordinal-entity	p2	o	
+# ::edge	person	ARG0-of	ski-01	p2	s3	
+# ::edge	and	op2	person	a	p2	
+# ::edge	and	op1	stand-01	a	s5	
+# ::edge	and	op3	area	a	a3	
+# ::edge	area	location	distance	a3	d2	
+# ::edge	and	op4	area	a	a4	
+# ::edge	tree	mod	dense	t2	d	
+# ::edge	area	consist-of	tree	a4	t2	
+# ::edge	and	rel	person	a	p	
+(a / and
+    :op1 (s5 / stand-01
+        :ARG1 (t / thing
+            :ARG0-of (m / mark-01)
+            :location (s4 / slope
+                :mod (s / ski-01)))
+        :location (f / foreground))
+    :op2 (p2 / person
+        :ARG0-of (s3 / ski-01)
+        :ord (o / ordinal-entity
+            :value 2))
+    :op3 (a3 / area
+        :location (d2 / distance))
+    :op4 (a4 / area
+        :consist-of (t2 / tree
+            :mod (d / dense)))
+    :rel (p / person
+        :ARG0-of (s2 / ski-01)
+        :ARG0-of (w / walk-01
+            :direction (d3 / down)
+            :location (a2 / area
+                :location (m2 / middle)))))

@@ -1,0 +1,33 @@
+# ::tok A machine that has a slot for change or for paper money has grafiti written on it .
+# ::node	m	machine	1-2
+# ::node	h	have-03	3-4
+# ::node	s	slot	5-6
+# ::node	c	change-01	7-8
+# ::node	o	or	8-9
+# ::node	p	paper	10-11
+# ::node	m2	money	11-12
+# ::node	h2	have-03	12-13
+# ::node	g	grafiti	13-14
+# ::node	w	write-01	14-15
+# ::root	h2	have-03
+# ::edge	machine	ARG0-of	have-03	m	h	
+# ::edge	have-03	ARG1	slot	h	s	
+# ::edge	or	op1	change-01	o	c	
+# ::edge	slot	purpose	or	s	o	
+# ::edge	money	mod	paper	m2	p	
+# ::edge	or	op2	money	o	m2	
+# ::edge	have-03	ARG0	machine	h2	m	
+# ::edge	write-01	ARG1	grafiti	w	g	
+# ::edge	have-03	ARG1	write-01	h2	w	
+# ::edge	write-01	location	machine	w	m	
+(h2 / have-03
+    :ARG0 (m / machine
+        :ARG0-of (h / have-03
+            :ARG1 (s / slot
+                :purpose (o / or
+                    :op1 (c / change-01)
+                    :op2 (m2 / money
+                        :mod (p / paper))))))
+    :ARG1 (w / write-01
+        :ARG1 (g / grafiti)
+        :location m))

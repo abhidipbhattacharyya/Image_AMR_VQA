@@ -1,0 +1,43 @@
+# ::tok Salmon - colored clock tower with Florida architectural features including a window 's walk .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	1	Salmon	0-1
+# ::node	c2	color-01	2-3
+# ::node	c	clock	3-4
+# ::node	t	tower	4-5
+# ::node	s	state	6-7
+# ::node	n2	name	6-7
+# ::node	0	Florida	6-7
+# ::node	a	architectural	7-8
+# ::node	f	feature	8-9
+# ::node	i	include-01	9-10
+# ::node	w2	window	11-12
+# ::node	w	walk-01	13-14
+# ::root	t	tower
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Salmon	n	1	
+# ::edge	color-01	ARG2	person	c2	p	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	ARG1-of	color-01	t	c2	
+# ::edge	state	name	name	s	n2	
+# ::edge	name	op1	Florida	n2	0	
+# ::edge	feature	mod	architectural	f	a	
+# ::edge	feature	mod	state	f	s	
+# ::edge	tower	part	feature	t	f	
+# ::edge	feature	ARG2-of	include-01	f	i	
+# ::edge	walk-01	ARG2	window	w	w2	
+# ::edge	include-01	ARG1	walk-01	i	w	
+(t / tower
+    :ARG1-of (c2 / color-01
+        :ARG2 (p / person
+            :name (n / name
+                :op1 "Salmon")))
+    :mod (c / clock)
+    :part (f / feature
+        :ARG2-of (i / include-01
+            :ARG1 (w / walk-01
+                :ARG2 (w2 / window)))
+        :mod (a / architectural)
+        :mod (s / state
+            :name (n2 / name
+                :op1 "Florida"))))

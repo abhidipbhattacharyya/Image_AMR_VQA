@@ -1,0 +1,23 @@
+# ::tok A cat is curled up on the ground and appears to be grooming itself .
+# ::node	c	cat	1-2
+# ::node	c2	curl-up-02	3-4
+# ::node	g2	ground	7-8
+# ::node	a	and	8-9
+# ::node	a2	appear-02	9-10
+# ::node	g	groom-02	12-13
+# ::root	a	and
+# ::edge	curl-up-02	ARG1	cat	c2	c	
+# ::edge	curl-up-02	location	ground	c2	g2	
+# ::edge	and	op1	curl-up-02	a	c2	
+# ::edge	and	op2	appear-02	a	a2	
+# ::edge	appear-02	ARG1	groom-02	a2	g	
+# ::edge	groom-02	ARG1	cat	g	c	
+# ::edge	groom-02	ARG0	cat	g	c	
+(a / and
+    :op1 (c2 / curl-up-02
+        :ARG1 (c / cat)
+        :location (g2 / ground))
+    :op2 (a2 / appear-02
+        :ARG1 (g / groom-02
+            :ARG0 c
+            :ARG1 c)))

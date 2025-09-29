@@ -1,0 +1,39 @@
+# ::tok A plate resting on a colorful place mat with food on it and a glass of milk on the side .
+# ::node	p2	plate	1-2
+# ::node	r	rest-01	2-3
+# ::node	c	colorful	5-6
+# ::node	p	place	6-7
+# ::node	m	mat	7-8
+# ::node	f	food	9-10
+# ::node	a	and	12-13
+# ::node	v	volume-quantity	13-14
+# ::node	0	1	13-14
+# ::node	g	glass	14-15
+# ::node	m2	milk	16-17
+# ::node	s	side	19-20
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	plate	r	p2	
+# ::edge	mat	mod	place	m	p	
+# ::edge	mat	mod	colorful	m	c	
+# ::edge	rest-01	ARG2	mat	r	m	
+# ::edge	food	location	mat	f	m	
+# ::edge	and	op1	food	a	f	
+# ::edge	mat	consist-of	and	m	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	milk	quant	volume-quantity	m2	v	
+# ::edge	and	op2	milk	a	m2	
+# ::edge	milk	location	side	m2	s	
+(r / rest-01
+    :ARG1 (p2 / plate)
+    :ARG2 (m / mat
+        :consist-of (a / and
+            :op1 (f / food
+                :location m)
+            :op2 (m2 / milk
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))
+                :location (s / side)))
+        :mod (p / place)
+        :mod (c / colorful)))

@@ -1,0 +1,52 @@
+# ::tok An office desk with two laptops , one television , and two desktops stacked on it in front of a wall with a dry erase board .
+# ::node	o	office	1-2
+# ::node	d	desk	2-3
+# ::node	1	2	4-5
+# ::node	n	name	5-6
+# ::node	c	computer	5-6
+# ::node	0	1	7-8
+# ::node	t	television	8-9
+# ::node	a	and	10-11
+# ::node	2	2	11-12
+# ::node	d2	desk	12-13
+# ::node	s	stack-01	13-14
+# ::node	i	in-front-of	17-18
+# ::node	w	wall	20-21
+# ::node	h	have-03	21-22
+# ::node	d3	dry-08	23-24
+# ::node	e	erase	24-25
+# ::node	b	board	25-26
+# ::root	s	stack-01
+# ::edge	desk	mod	office	d	o	
+# ::edge	computer	quant	2	c	1	
+# ::edge	television	quant	1	t	0	
+# ::edge	and	op2	television	a	t	
+# ::edge	and	op1	computer	a	c	
+# ::edge	desk	quant	2	d2	2	
+# ::edge	and	op3	desk	a	d2	
+# ::edge	stack-01	ARG1	and	s	a	
+# ::edge	stack-01	ARG2	desk	s	d	
+# ::edge	desk	location	in-front-of	d	i	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	erase	ARG1-of	dry-08	e	d3	
+# ::edge	board	mod	erase	b	e	
+# ::edge	have-03	ARG1	board	h	b	
+# ::edge	stack-01	rel	name	s	n	
+(s / stack-01
+    :ARG1 (a / and
+        :op1 (c / computer
+            :quant 2)
+        :op2 (t / television
+            :quant 1)
+        :op3 (d2 / desk
+            :quant 2))
+    :ARG2 (d / desk
+        :location (i / in-front-of
+            :op1 (w / wall
+                :ARG0-of (h / have-03
+                    :ARG1 (b / board
+                        :mod (e / erase
+                            :ARG1-of (d3 / dry-08))))))
+        :mod (o / office))
+    :rel (n / name))

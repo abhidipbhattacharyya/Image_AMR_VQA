@@ -1,0 +1,26 @@
+# ::tok A man takes a picture while pointing his camera at multiple mirrors .
+# ::node	m	man	1-2
+# ::node	t	take-01	2-3
+# ::node	p	picture	4-5
+# ::node	p2	point-01	6-7
+# ::node	c	camera	8-9
+# ::node	m3	multiple	10-11
+# ::node	m2	mirror	11-12
+# ::root	t	take-01
+# ::edge	take-01	ARG0	man	t	m	
+# ::edge	take-01	ARG1	picture	t	p	
+# ::edge	take-01	time	point-01	t	p2	
+# ::edge	point-01	ARG0	man	p2	m	
+# ::edge	point-01	ARG1	camera	p2	c	
+# ::edge	camera	poss	man	c	m	
+# ::edge	mirror	quant	multiple	m2	m3	
+# ::edge	point-01	ARG2	mirror	p2	m2	
+(t / take-01
+    :ARG0 (m / man)
+    :ARG1 (p / picture)
+    :time (p2 / point-01
+        :ARG0 m
+        :ARG1 (c / camera
+            :poss m)
+        :ARG2 (m2 / mirror
+            :quant (m3 / multiple))))

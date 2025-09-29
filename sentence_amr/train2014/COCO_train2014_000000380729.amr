@@ -1,0 +1,22 @@
+# ::tok City street in residential area where there are many identical buildings .
+# ::node	c	city	0-1
+# ::node	s	street	1-2
+# ::node	r	reside-01	3-4
+# ::node	a	area	4-5
+# ::node	m	many	8-9
+# ::node	i	identical-01	9-10
+# ::node	b	building	10-11
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	area	ARG1-of	reside-01	a	r	
+# ::edge	street	location	area	s	a	
+# ::edge	building	ARG1-of	identical-01	b	i	
+# ::edge	building	quant	many	b	m	
+# ::edge	area	location-of	building	a	b	
+(s / street
+    :location (a / area
+        :ARG1-of (r / reside-01)
+        :location-of (b / building
+            :quant (m / many)
+            :ARG1-of (i / identical-01)))
+    :mod (c / city))

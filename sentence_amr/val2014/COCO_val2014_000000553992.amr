@@ -1,0 +1,80 @@
+# ::tok An institutional looking room holds an exit sign , chairs , recording equipment and a man with one arm aloft that appears to be demonstrating something with a device in the held - up hand for the benefit of a woman behind him that is watching closely .
+# ::node	i	institution	1-2
+# ::node	l	look-02	2-3
+# ::node	r2	room	3-4
+# ::node	h2	hold-01	4-5
+# ::node	e2	exit-01	6-7
+# ::node	s	sign	7-8
+# ::node	a2	and	8-9
+# ::node	c	chair	9-10
+# ::node	r	record-01	11-12
+# ::node	e	equipment	12-13
+# ::node	m	man	15-16
+# ::node	0	1	17-18
+# ::node	a4	arm	18-19
+# ::node	a	aloft	19-20
+# ::node	a3	appear-02	21-22
+# ::node	d	demonstrate-01	24-25
+# ::node	s2	something	25-26
+# ::node	d2	device	28-29
+# ::node	h3	hold-up-10	31-32
+# ::node	h	hand	34-35
+# ::node	b2	benefit-01	37-38
+# ::node	w2	woman	40-41
+# ::node	b	behind	41-42
+# ::node	w	watch-01	45-46
+# ::node	c2	close-10	46-47
+# ::root	h2	hold-01
+# ::edge	look-02	ARG1	institution	l	i	
+# ::edge	room	ARG0-of	look-02	r2	l	
+# ::edge	hold-01	ARG0	room	h2	r2	
+# ::edge	sign	purpose	exit-01	s	e2	
+# ::edge	and	op1	sign	a2	s	
+# ::edge	hold-01	ARG1	and	h2	a2	
+# ::edge	and	op2	chair	a2	c	
+# ::edge	equipment	instrument-of	record-01	e	r	
+# ::edge	and	op3	equipment	a2	e	
+# ::edge	arm	quant	1	a4	0	
+# ::edge	man	part	arm	m	a4	
+# ::edge	arm	mod	aloft	a4	a	
+# ::edge	man	ARG1-of	appear-02	m	a3	
+# ::edge	man	ARG0-of	demonstrate-01	m	d	
+# ::edge	demonstrate-01	ARG1	something	d	s2	
+# ::edge	demonstrate-01	instrument	device	d	d2	
+# ::edge	hand	ARG1-of	hold-up-10	h	h3	
+# ::edge	device	location	hand	d2	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	demonstrate-01	ARG0-of	benefit-01	d	b2	
+# ::edge	benefit-01	ARG1	woman	b2	w2	
+# ::edge	woman	location	behind	w2	b	
+# ::edge	behind	op1	man	b	m	
+# ::edge	woman	ARG0-of	watch-01	w2	w	
+# ::edge	watch-01	ARG1-of	close-10	w	c2	
+# ::edge	hold-01	rel	demonstrate-01	h2	d	
+(h2 / hold-01
+    :ARG0 (r2 / room
+        :ARG0-of (l / look-02
+            :ARG1 (i / institution)))
+    :ARG1 (a2 / and
+        :op1 (s / sign
+            :purpose (e2 / exit-01))
+        :op2 (c / chair)
+        :op3 (e / equipment
+            :instrument-of (r / record-01)))
+    :rel (d / demonstrate-01
+        :ARG0-of (b2 / benefit-01
+            :ARG1 (w2 / woman
+                :ARG0-of (w / watch-01
+                    :ARG1-of (c2 / close-10))
+                :location (b / behind
+                    :op1 (m / man
+                        :ARG0-of d
+                        :ARG1-of (a3 / appear-02)
+                        :part (a4 / arm
+                            :quant 1
+                            :mod (a / aloft))
+                        :part (h / hand
+                            :ARG1-of (h3 / hold-up-10))))))
+        :ARG1 (s2 / something)
+        :instrument (d2 / device
+            :location h)))

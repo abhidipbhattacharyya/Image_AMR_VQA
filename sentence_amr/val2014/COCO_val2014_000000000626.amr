@@ -1,0 +1,30 @@
+# ::tok A brick building with many windows and a clock tower in the middle of the building .
+# ::node	b	brick	1-2
+# ::node	b2	building	2-3
+# ::node	h	have-03	3-4
+# ::node	m	many	4-5
+# ::node	w	window	5-6
+# ::node	a	and	6-7
+# ::node	c	clock	8-9
+# ::node	t	tower	9-10
+# ::node	m2	middle	12-13
+# ::root	b2	building
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	window	quant	many	w	m	
+# ::edge	and	op1	window	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	and	op2	tower	a	t	
+# ::edge	and	location	middle	a	m2	
+# ::edge	building	part	middle	b2	m2	
+(b2 / building
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (m2 / middle)
+            :op1 (w / window
+                :quant (m / many))
+            :op2 (t / tower
+                :mod (c / clock))))
+    :consist-of (b / brick)
+    :part m2)

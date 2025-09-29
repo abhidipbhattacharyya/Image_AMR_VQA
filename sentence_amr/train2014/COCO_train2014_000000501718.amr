@@ -1,0 +1,36 @@
+# ::tok Deserts sit on a table and include chocolate cake and ice cream .
+# ::node	s2	state	0-1
+# ::node	n	name	0-1
+# ::node	0	desert	0-1
+# ::node	s	sit-01	1-2
+# ::node	t	table	4-5
+# ::node	a	and	5-6
+# ::node	i2	include-01	6-7
+# ::node	c2	chocolate	7-8
+# ::node	c	cake	8-9
+# ::node	a2	and	9-10
+# ::node	i	ice-cream	11-12
+# ::root	a	and
+# ::edge	state	name	name	s2	n	
+# ::edge	name	op1	desert	n	0	
+# ::edge	sit-01	ARG1	state	s	s2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	include-01	a	i2	
+# ::edge	include-01	ARG2	state	i2	s2	
+# ::edge	cake	mod	chocolate	c	c2	
+# ::edge	and	op1	cake	a2	c	
+# ::edge	include-01	ARG1	and	i2	a2	
+# ::edge	and	op2	ice-cream	a2	i	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (s2 / state
+            :name (n / name
+                :op1 "desert"))
+        :ARG2 (t / table))
+    :op2 (i2 / include-01
+        :ARG1 (a2 / and
+            :op1 (c / cake
+                :mod (c2 / chocolate))
+            :op2 (i / ice-cream))
+        :ARG2 s2))

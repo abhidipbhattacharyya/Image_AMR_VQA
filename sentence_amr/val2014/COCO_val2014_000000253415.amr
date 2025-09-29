@@ -1,0 +1,35 @@
+# ::tok MTA F train comes rolling through the bridge tracks .
+# ::node	g	government-organization	0-1
+# ::node	n	name	0-1
+# ::node	1	MTA	0-1
+# ::node	0	F	1-2
+# ::node	t2	train	2-3
+# ::node	n2	name	2-3
+# ::node	c	come-01	3-4
+# ::node	r	roll-01	4-5
+# ::node	b	bridge	7-8
+# ::node	t	track	8-9
+# ::root	c	come-01
+# ::edge	government-organization	name	name	g	n	
+# ::edge	name	op1	MTA	n	1	
+# ::edge	name	op2	F	n	0	
+# ::edge	train	mod	government-organization	t2	g	
+# ::edge	train	name	name	t2	n2	
+# ::edge	name	op1	F	n2	0	
+# ::edge	come-01	ARG1	train	c	t2	
+# ::edge	come-01	manner	roll-01	c	r	
+# ::edge	roll-01	ARG1	train	r	t2	
+# ::edge	track	purpose	bridge	t	b	
+# ::edge	roll-01	path	track	r	t	
+(c / come-01
+    :ARG1 (t2 / train
+        :name (n2 / name
+            :op1 "F")
+        :mod (g / government-organization
+            :name (n / name
+                :op1 "MTA"
+                :op2 "F")))
+    :manner (r / roll-01
+        :ARG1 t2
+        :path (t / track
+            :purpose (b / bridge))))

@@ -1,0 +1,42 @@
+# ::tok The wild animals from Africa are now penned in , some with their snouts to the floor sniffing designs
+# ::node	w	wild	1-2
+# ::node	a	animal	2-3
+# ::node	c2	continent	4-5
+# ::node	n	name	4-5
+# ::node	0	Africa	4-5
+# ::node	n3	now	6-7
+# ::node	c	chain-01	7-8
+# ::node	i	include-91	10-11
+# ::node	s2	some	10-11
+# ::node	n2	nose	13-14
+# ::node	f	floor	16-17
+# ::node	s	sniff-01	17-18
+# ::node	d	design-01	18-19
+# ::root	c	chain-01
+# ::edge	animal	mod	wild	a	w	
+# ::edge	animal	source	continent	a	c2	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Africa	n	0	
+# ::edge	chain-01	time	now	c	n3	
+# ::edge	chain-01	ARG1	animal	c	a	
+# ::edge	animal	ARG2-of	include-91	a	i	
+# ::edge	some	ARG1	nose	s2	n2	
+# ::edge	animal	part	nose	a	n2	
+# ::edge	nose	location	floor	n2	f	
+# ::edge	design-01	ARG0-of	sniff-01	d	s	
+# ::edge	nose	ARG1-of	design-01	n2	d	
+# ::edge	chain-01	rel	some	c	s2	
+(c / chain-01
+    :ARG1 (a / animal
+        :ARG2-of (i / include-91)
+        :mod (w / wild)
+        :part (n2 / nose
+            :ARG1-of (d / design-01
+                :ARG0-of (s / sniff-01))
+            :location (f / floor))
+        :source (c2 / continent
+            :name (n / name
+                :op1 "Africa")))
+    :rel (s2 / some
+        :ARG1 n2)
+    :time (n3 / now))

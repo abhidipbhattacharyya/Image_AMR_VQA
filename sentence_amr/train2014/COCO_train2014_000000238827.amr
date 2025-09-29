@@ -1,0 +1,31 @@
+# ::tok A baseball game showing a player taking a lead off of first base .
+# ::node	b2	baseball	1-2
+# ::node	g	game	2-3
+# ::node	s	show-01	3-4
+# ::node	p	person	5-6
+# ::node	p2	play-01	5-6
+# ::node	t	take-01	6-7
+# ::node	l	lead-01	8-9
+# ::node	o	ordinal-entity	11-12
+# ::node	0	1	11-12
+# ::node	b	base	12-13
+# ::root	s	show-01
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	show-01	ARG0	game	s	g	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	show-01	ARG1	take-01	s	t	
+# ::edge	take-01	ARG1	lead-01	t	l	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b	o	
+# ::edge	take-01	source	base	t	b	
+(s / show-01
+    :ARG0 (g / game
+        :mod (b2 / baseball))
+    :ARG1 (t / take-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01))
+        :ARG1 (l / lead-01)
+        :source (b / base
+            :ord (o / ordinal-entity
+                :value 1))))

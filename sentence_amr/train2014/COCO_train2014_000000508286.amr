@@ -1,0 +1,27 @@
+# ::tok Wash basins , paper towels , mirror and fluorescent light
+# ::node	w	wash-01	0-1
+# ::node	c	counter-01	1-2
+# ::node	a	and	2-3
+# ::node	p	paper	3-4
+# ::node	w2	wipe-01	4-5
+# ::node	m	mirror	6-7
+# ::node	f	fluorescent	8-9
+# ::node	l	light	9-10
+# ::root	a	and
+# ::edge	and	op2	counter-01	a	c	
+# ::edge	and	op1	counter-01	a	c	
+# ::edge	wipe-01	ARG2	paper	w2	p	
+# ::edge	counter-01	ARG1	wipe-01	c	w2	
+# ::edge	and	op3	mirror	a	m	
+# ::edge	light	mod	fluorescent	l	f	
+# ::edge	and	op4	light	a	l	
+# ::edge	and	rel	wash-01	a	w	
+(a / and
+    :op1 (c / counter-01
+        :ARG1 (w2 / wipe-01
+            :ARG2 (p / paper)))
+    :op2 c
+    :op3 (m / mirror)
+    :op4 (l / light
+        :mod (f / fluorescent))
+    :rel (w / wash-01))

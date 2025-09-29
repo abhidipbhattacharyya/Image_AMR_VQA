@@ -1,0 +1,36 @@
+# ::tok Player preparing to serve ball while referees look on during match play .
+# ::node	p	person	0-1
+# ::node	p3	play-01	0-1
+# ::node	p5	prepare-02	1-2
+# ::node	s	serve-02	3-4
+# ::node	b	ball	4-5
+# ::node	p2	person	6-7
+# ::node	h	have-org-role-91	6-7
+# ::node	n	nurse	6-7
+# ::node	l	look-01	7-8
+# ::node	m	match	10-11
+# ::node	p4	play-01	11-12
+# ::root	p5	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	prepare-02	ARG1	person	p5	p	
+# ::edge	prepare-02	ARG2	serve-02	p5	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h	
+# ::edge	have-org-role-91	ARG2	nurse	h	n	
+# ::edge	look-01	ARG0	person	l	p2	
+# ::edge	prepare-02	time	look-01	p5	l	
+# ::edge	play-01	mod	match	p4	m	
+# ::edge	look-01	time	play-01	l	p4	
+(p5 / prepare-02
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01))
+    :ARG2 (s / serve-02
+        :ARG0 p
+        :ARG1 (b / ball))
+    :time (l / look-01
+        :ARG0 (p2 / person
+            :ARG0-of (h / have-org-role-91
+                :ARG2 (n / nurse)))
+        :time (p4 / play-01
+            :mod (m / match))))

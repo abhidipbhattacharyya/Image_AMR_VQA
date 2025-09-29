@@ -1,0 +1,31 @@
+# ::tok Several Sailors in a control room working , one of which is on the radio
+# ::node	s2	several	0-1
+# ::node	p	person	1-2
+# ::node	s	sail-01	1-2
+# ::node	c	control-01	4-5
+# ::node	r2	room	5-6
+# ::node	w	work-01	6-7
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	t	thing	12-13
+# ::node	r	radio	14-15
+# ::root	w	work-01
+# ::edge	person	quant	several	p	s2	
+# ::edge	person	ARG0-of	sail-01	p	s	
+# ::edge	room	location-of	control-01	r2	c	
+# ::edge	person	location	room	p	r2	
+# ::edge	work-01	ARG0	person	w	p	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	thing	quant	1	t	0	
+# ::edge	include-91	ARG1	thing	i	t	
+# ::edge	thing	location	radio	t	r	
+(w / work-01
+    :ARG0 (p / person
+        :quant (s2 / several)
+        :ARG0-of (s / sail-01)
+        :ARG2-of (i / include-91
+            :ARG1 (t / thing
+                :quant 1
+                :location (r / radio)))
+        :location (r2 / room
+            :location-of (c / control-01))))

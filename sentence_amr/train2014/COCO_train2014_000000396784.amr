@@ -1,0 +1,28 @@
+# ::tok A pile of luggage waiting to be picked up and taken to their destination .
+# ::node	p2	pile-01	1-2
+# ::node	l	luggage	3-4
+# ::node	w	wait-01	4-5
+# ::node	p	pick-up-04	7-8
+# ::node	a	and	9-10
+# ::node	t	take-01	10-11
+# ::node	d	destination	13-14
+# ::root	w	wait-01
+# ::edge	pile-01	ARG1	luggage	p2	l	
+# ::edge	wait-01	ARG1	pile-01	w	p2	
+# ::edge	pick-up-04	ARG1	pile-01	p	p2	
+# ::edge	and	op1	pick-up-04	a	p	
+# ::edge	wait-01	ARG2	and	w	a	
+# ::edge	and	op2	take-01	a	t	
+# ::edge	take-01	ARG1	pile-01	t	p2	
+# ::edge	take-01	ARG3	destination	t	d	
+# ::edge	destination	poss	pile-01	d	p2	
+(w / wait-01
+    :ARG1 (p2 / pile-01
+        :ARG1 (l / luggage))
+    :ARG2 (a / and
+        :op1 (p / pick-up-04
+            :ARG1 p2)
+        :op2 (t / take-01
+            :ARG1 p2
+            :ARG3 (d / destination
+                :poss p2))))

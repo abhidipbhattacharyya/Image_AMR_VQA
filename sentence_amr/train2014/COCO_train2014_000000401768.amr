@@ -1,0 +1,30 @@
+# ::tok Player preparing to return volley during match on red clay court .
+# ::node	p	person	0-1
+# ::node	p2	play-01	0-1
+# ::node	p3	prepare-02	1-2
+# ::node	r2	return-01	3-4
+# ::node	v	volley	4-5
+# ::node	m	match	6-7
+# ::node	r	red-02	8-9
+# ::node	c	clay	9-10
+# ::node	c2	court	10-11
+# ::root	p3	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	return-01	ARG0	person	r2	p	
+# ::edge	volley	mod	return-01	v	r2	
+# ::edge	prepare-02	ARG1	volley	p3	v	
+# ::edge	prepare-02	time	match	p3	m	
+# ::edge	clay	ARG1-of	red-02	c	r	
+# ::edge	court	mod	clay	c2	c	
+# ::edge	match	location	court	m	c2	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01))
+    :ARG1 (v / volley
+        :mod (r2 / return-01
+            :ARG0 p))
+    :time (m / match
+        :location (c2 / court
+            :mod (c / clay
+                :ARG1-of (r / red-02)))))

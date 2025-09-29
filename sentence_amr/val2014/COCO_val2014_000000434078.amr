@@ -1,0 +1,44 @@
+# ::tok two rafts with people with life vests one boat is red the other white
+# ::node	1	2	0-1
+# ::node	r	raft-01	1-2
+# ::node	p	person	3-4
+# ::node	h	have-03	4-5
+# ::node	l	life	5-6
+# ::node	j	jacket	6-7
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	b	boat	8-9
+# ::node	b2	boat	8-9
+# ::node	r2	red-02	10-11
+# ::node	c	contrast-01	13-14
+# ::node	w	white-02	13-14
+# ::root	c	contrast-01
+# ::edge	raft-01	quant	2	r	1	
+# ::edge	raft-01	ARG1	person	r	p	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	jacket	mod	life	j	l	
+# ::edge	have-03	ARG1	jacket	h	j	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	boat	quant	1	b	0	
+# ::edge	include-91	ARG1	boat	i	b	
+# ::edge	red-02	ARG1	boat	r2	b	
+# ::edge	contrast-01	ARG2	red-02	c	r2	
+# ::edge	contrast-01	ARG1	boat	c	b	
+# ::edge	white-02	ARG1	boat	w	b2	
+# ::edge	contrast-01	rel	raft-01	c	r	
+# ::edge	contrast-01	rel	white-02	c	w	
+(c / contrast-01
+    :ARG1 (b / boat
+        :quant 1)
+    :ARG2 (r2 / red-02
+        :ARG1 b)
+    :rel (r / raft-01
+        :quant 2
+        :ARG1 (p / person
+            :ARG0-of (h / have-03
+                :ARG1 (j / jacket
+                    :mod (l / life)))
+            :ARG2-of (i / include-91
+                :ARG1 b)))
+    :rel (w / white-02
+        :ARG1 (b2 / boat)))

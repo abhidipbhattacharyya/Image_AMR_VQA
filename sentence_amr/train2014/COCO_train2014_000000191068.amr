@@ -1,0 +1,46 @@
+# ::tok Pizza and fries are on a table and a woman has a candled cake and some strawberries .
+# ::node	c3	country-region	0-1
+# ::node	n	name	0-1
+# ::node	0	Pizza	0-1
+# ::node	a	and	1-2
+# ::node	f	fry-01	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	t	table	6-7
+# ::node	a2	and	7-8
+# ::node	w	woman	9-10
+# ::node	h	have-03	10-11
+# ::node	c2	candled	12-13
+# ::node	c	cake	13-14
+# ::node	a3	and	14-15
+# ::node	s	some	15-16
+# ::node	r	rocket	16-17
+# ::root	a2	and
+# ::edge	country-region	name	name	c3	n	
+# ::edge	name	op1	Pizza	n	0	
+# ::edge	and	op1	country-region	a	c3	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	have-03	ARG0	woman	h	w	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	cake	mod	candled	c	c2	
+# ::edge	and	op1	cake	a3	c	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	rocket	quant	some	r	s	
+# ::edge	and	op2	rocket	a3	r	
+(a2 / and
+    :op1 (b / be-located-at-91
+        :ARG1 (a / and
+            :op1 (c3 / country-region
+                :name (n / name
+                    :op1 "Pizza"))
+            :op2 (f / fry-01))
+        :ARG2 (t / table))
+    :op2 (h / have-03
+        :ARG0 (w / woman)
+        :ARG1 (a3 / and
+            :op1 (c / cake
+                :mod (c2 / candled))
+            :op2 (r / rocket
+                :quant (s / some)))))

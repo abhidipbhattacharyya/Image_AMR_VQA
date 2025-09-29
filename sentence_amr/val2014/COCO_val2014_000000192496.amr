@@ -1,0 +1,28 @@
+# ::tok Two train cars that run on electricity are standing still outside a building .
+# ::node	0	2	0-1
+# ::node	t	train	1-2
+# ::node	c	car	2-3
+# ::node	r	run-01	4-5
+# ::node	e	electricity	6-7
+# ::node	s	stand-01	8-9
+# ::node	s2	still	9-10
+# ::node	o	outside	10-11
+# ::node	b	building	12-13
+# ::root	s	stand-01
+# ::edge	car	mod	train	c	t	
+# ::edge	car	quant	2	c	0	
+# ::edge	car	ARG1-of	run-01	c	r	
+# ::edge	run-01	ARG3	electricity	r	e	
+# ::edge	stand-01	ARG1	car	s	c	
+# ::edge	stand-01	mod	still	s	s2	
+# ::edge	stand-01	ARG2	outside	s	o	
+# ::edge	outside	op1	building	o	b	
+(s / stand-01
+    :ARG1 (c / car
+        :quant 2
+        :ARG1-of (r / run-01
+            :ARG3 (e / electricity))
+        :mod (t / train))
+    :ARG2 (o / outside
+        :op1 (b / building))
+    :mod (s2 / still))

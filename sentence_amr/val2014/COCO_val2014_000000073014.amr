@@ -1,0 +1,31 @@
+# ::tok a clock showing 9:00 AM or 9:00 PM with a pixelated design for the font
+# ::node	c	clock	1-2
+# ::node	s	show-01	2-3
+# ::node	d	date-entity	3-4
+# ::node	0	9:00	3-4
+# ::node	o	or	5-6
+# ::node	d2	date-entity	6-7
+# ::node	1	9:00	6-7
+# ::node	d4	digit	10-11
+# ::node	d3	design	11-12
+# ::node	f	font	14-15
+# ::root	c	clock
+# ::edge	clock	ARG0-of	show-01	c	s	
+# ::edge	date-entity	time	9:00	d	0	
+# ::edge	or	op1	date-entity	o	d	
+# ::edge	show-01	ARG1	or	s	o	
+# ::edge	or	op2	date-entity	o	d2	
+# ::edge	date-entity	time	9:00	d2	1	
+# ::edge	design	mod	digit	d3	d4	
+# ::edge	clock	accompanier	design	c	d3	
+# ::edge	design	beneficiary	font	d3	f	
+(c / clock
+    :ARG0-of (s / show-01
+        :ARG1 (o / or
+            :op1 (d / date-entity
+                :time "9:00")
+            :op2 (d2 / date-entity
+                :time "9:00")))
+    :accompanier (d3 / design
+        :beneficiary (f / font)
+        :mod (d4 / digit)))

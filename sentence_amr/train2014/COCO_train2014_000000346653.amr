@@ -1,0 +1,48 @@
+# ::tok A police man ridding a motorcycle leading a police car and more traffic down a street lined with orange traffic cones .
+# ::node	p	police	1-2
+# ::node	m	man	2-3
+# ::node	r	rid-01	3-4
+# ::node	m3	motorcycle	5-6
+# ::node	l	lead-01	6-7
+# ::node	c	car	9-10
+# ::node	a	and	10-11
+# ::node	m2	more	11-12
+# ::node	t	traffic	12-13
+# ::node	d	down	13-14
+# ::node	s	street	15-16
+# ::node	l2	line-01	16-17
+# ::node	o	orange	18-19
+# ::node	t2	traffic	19-20
+# ::node	c2	cone	20-21
+# ::root	l	lead-01
+# ::edge	man	mod	police	m	p	
+# ::edge	man	ARG0-of	rid-01	m	r	
+# ::edge	rid-01	ARG1	motorcycle	r	m3	
+# ::edge	lead-01	ARG0	man	l	m	
+# ::edge	car	mod	police	c	p	
+# ::edge	and	op1	car	a	c	
+# ::edge	lead-01	ARG1	and	l	a	
+# ::edge	traffic	mod	more	t	m2	
+# ::edge	and	op2	traffic	a	t	
+# ::edge	lead-01	direction	down	l	d	
+# ::edge	lead-01	path	street	l	s	
+# ::edge	street	ARG1-of	line-01	s	l2	
+# ::edge	cone	mod	traffic	c2	t2	
+# ::edge	cone	mod	orange	c2	o	
+# ::edge	line-01	ARG2	cone	l2	c2	
+(l / lead-01
+    :ARG0 (m / man
+        :ARG0-of (r / rid-01
+            :ARG1 (m3 / motorcycle))
+        :mod (p / police))
+    :ARG1 (a / and
+        :op1 (c / car
+            :mod p)
+        :op2 (t / traffic
+            :mod (m2 / more)))
+    :direction (d / down)
+    :path (s / street
+        :ARG1-of (l2 / line-01
+            :ARG2 (c2 / cone
+                :mod (t2 / traffic)
+                :mod (o / orange)))))

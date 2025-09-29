@@ -1,0 +1,26 @@
+# ::tok The old airplane is about ready to take off to delivering mail .
+# ::node	o	old	1-2
+# ::node	a2	airplane	2-3
+# ::node	a	about-to	4-5
+# ::node	r	ready-02	5-6
+# ::node	t	take-off-19	7-8
+# ::node	d	deliver-01	10-11
+# ::node	m	mail	11-12
+# ::root	r	ready-02
+# ::edge	airplane	mod	old	a2	o	
+# ::edge	ready-02	time	about-to	r	a	
+# ::edge	ready-02	ARG1	airplane	r	a2	
+# ::edge	ready-02	ARG2	take-off-19	r	t	
+# ::edge	take-off-19	ARG1	airplane	t	a2	
+# ::edge	take-off-19	purpose	deliver-01	t	d	
+# ::edge	deliver-01	ARG0	airplane	d	a2	
+# ::edge	deliver-01	ARG1	mail	d	m	
+(r / ready-02
+    :ARG1 (a2 / airplane
+        :mod (o / old))
+    :ARG2 (t / take-off-19
+        :purpose (d / deliver-01
+            :ARG0 a2
+            :ARG1 (m / mail))
+        :ARG1 a2)
+    :time (a / about-to))

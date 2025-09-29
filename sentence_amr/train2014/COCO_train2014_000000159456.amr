@@ -1,0 +1,61 @@
+# ::tok Traditional analog clock , Roman numerals , " Le Cacheur Chateau Hierry " on metallic blue stripped / curtain background .
+# ::node	t	traditional	0-1
+# ::node	a	analog	1-2
+# ::node	c	clock	2-3
+# ::node	c2	country	4-5
+# ::node	n	name	4-5
+# ::node	4	Roman	4-5
+# ::node	n3	number	5-6
+# ::node	n2	name	8-9
+# ::node	3	Le	8-9
+# ::node	0	Cacheur	9-10
+# ::node	1	Chateau	10-11
+# ::node	2	Hierry	11-12
+# ::node	w	work-of-art	12-13
+# ::node	a2	and	12-13
+# ::node	m	metallic	14-15
+# ::node	b2	blue	15-16
+# ::node	s2	strip-01	16-17
+# ::node	s	slash	17-18
+# ::node	c3	curtain	18-19
+# ::node	b	background	19-20
+# ::root	w	work-of-art
+# ::edge	clock	mod	analog	c	a	
+# ::edge	clock	mod	traditional	c	t	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Roman	n	4	
+# ::edge	number	mod	country	n3	c2	
+# ::edge	name	op1	Le	n2	3	
+# ::edge	name	op2	Cacheur	n2	0	
+# ::edge	name	op3	Chateau	n2	1	
+# ::edge	name	op4	Hierry	n2	2	
+# ::edge	work-of-art	name	name	w	n2	
+# ::edge	work-of-art	domain	and	w	a2	
+# ::edge	and	op2	number	a2	n3	
+# ::edge	and	op1	clock	a2	c	
+# ::edge	blue	mod	metallic	b2	m	
+# ::edge	slash	op1	strip-01	s	s2	
+# ::edge	slash	op2	curtain	s	c3	
+# ::edge	background	mod	slash	b	s	
+# ::edge	background	mod	blue	b	b2	
+# ::edge	work-of-art	location	background	w	b	
+(w / work-of-art
+    :name (n2 / name
+        :op1 "Le"
+        :op2 "Cacheur"
+        :op3 "Chateau"
+        :op4 "Hierry")
+    :domain (a2 / and
+        :op1 (c / clock
+            :mod (a / analog)
+            :mod (t / traditional))
+        :op2 (n3 / number
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "Roman"))))
+    :location (b / background
+        :mod (s / slash
+            :op1 (s2 / strip-01)
+            :op2 (c3 / curtain))
+        :mod (b2 / blue
+            :mod (m / metallic))))

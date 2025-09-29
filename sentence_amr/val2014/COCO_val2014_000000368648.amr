@@ -1,0 +1,30 @@
+# ::tok Train type of vehicle beside a road with some cars beside it .
+# ::node	t	train	0-1
+# ::node	t2	type	1-2
+# ::node	v	vehicle	3-4
+# ::node	b2	beside	4-5
+# ::node	r	road	6-7
+# ::node	s	some	8-9
+# ::node	c	car	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	n	near-02	10-11
+# ::root	v	vehicle
+# ::edge	type	mod	train	t2	t	
+# ::edge	vehicle	mod	type	v	t2	
+# ::edge	vehicle	location	beside	v	b2	
+# ::edge	beside	op1	road	b2	r	
+# ::edge	car	quant	some	c	s	
+# ::edge	be-located-at-91	ARG1	car	b	c	
+# ::edge	beside	ARG2-of	be-located-at-91	b2	b	
+# ::edge	be-located-at-91	ARG1-of	near-02	b	n	
+# ::edge	near-02	ARG2	beside	n	b2	
+(v / vehicle
+    :location (b2 / beside
+        :ARG2-of (b / be-located-at-91
+            :ARG1 (c / car
+                :quant (s / some))
+            :ARG1-of (n / near-02
+                :ARG2 b2))
+        :op1 (r / road))
+    :mod (t2 / type
+        :mod (t / train)))

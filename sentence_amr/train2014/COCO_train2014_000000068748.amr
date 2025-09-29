@@ -1,0 +1,22 @@
+# ::tok According to the traffic sign the majority of traffic will be making a left turn .
+# ::node	s	say-01	0-1
+# ::node	t	traffic	3-4
+# ::node	s2	sign	4-5
+# ::node	m	majority	6-7
+# ::node	t2	traffic	8-9
+# ::node	l	left-20	13-14
+# ::node	t3	turn-01	14-15
+# ::root	s	say-01
+# ::edge	sign	mod	traffic	s2	t	
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	traffic	quant	majority	t2	m	
+# ::edge	turn-01	ARG1-of	left-20	t3	l	
+# ::edge	turn-01	ARG0	traffic	t3	t2	
+# ::edge	say-01	ARG1	turn-01	s	t3	
+(s / say-01
+    :ARG0 (s2 / sign
+        :mod (t / traffic))
+    :ARG1 (t3 / turn-01
+        :ARG0 (t2 / traffic
+            :quant (m / majority))
+        :ARG1-of (l / left-20)))

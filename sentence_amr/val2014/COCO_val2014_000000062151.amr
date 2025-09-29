@@ -1,0 +1,27 @@
+# ::tok Horses stand and drink from pond water near the road .
+# ::node	h	horse	0-1
+# ::node	s	stand-01	1-2
+# ::node	a	and	2-3
+# ::node	d	drink-01	3-4
+# ::node	p	pond	5-6
+# ::node	w	water	6-7
+# ::node	n	near-02	7-8
+# ::node	r	road	9-10
+# ::root	a	and
+# ::edge	stand-01	ARG1	horse	s	h	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	drink-01	a	d	
+# ::edge	drink-01	ARG0	horse	d	h	
+# ::edge	water	source	pond	w	p	
+# ::edge	drink-01	ARG2	water	d	w	
+# ::edge	water	ARG1-of	near-02	w	n	
+# ::edge	near-02	ARG2	road	n	r	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (h / horse))
+    :op2 (d / drink-01
+        :ARG0 h
+        :ARG2 (w / water
+            :ARG1-of (n / near-02
+                :ARG2 (r / road))
+            :source (p / pond))))

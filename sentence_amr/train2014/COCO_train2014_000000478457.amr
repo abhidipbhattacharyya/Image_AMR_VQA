@@ -1,0 +1,35 @@
+# ::tok A very young child with half a peeled orange hanging out of his mouth .
+# ::node	v	very	1-2
+# ::node	y	young	2-3
+# ::node	c	child	3-4
+# ::node	h3	have-03	4-5
+# ::node	h	half	5-6
+# ::node	e	extract-01	7-8
+# ::node	o	orange	8-9
+# ::node	h2	hang-01	9-10
+# ::node	o2	out-06	10-11
+# ::node	m	mouth	13-14
+# ::root	c	child
+# ::edge	young	degree	very	y	v	
+# ::edge	child	mod	young	c	y	
+# ::edge	child	ARG0-of	have-03	c	h3	
+# ::edge	orange	ARG1-of	extract-01	o	e	
+# ::edge	orange	quant	half	o	h	
+# ::edge	hang-01	ARG1	orange	h2	o	
+# ::edge	have-03	ARG1	hang-01	h3	h2	
+# ::edge	hang-01	ARG2	out-06	h2	o2	
+# ::edge	out-06	ARG1	orange	o2	o	
+# ::edge	out-06	ARG2	mouth	o2	m	
+# ::edge	child	part	mouth	c	m	
+(c / child
+    :ARG0-of (h3 / have-03
+        :ARG1 (h2 / hang-01
+            :ARG1 (o / orange
+                :quant (h / half)
+                :ARG1-of (e / extract-01))
+            :ARG2 (o2 / out-06
+                :ARG1 o
+                :ARG2 (m / mouth))))
+    :mod (y / young
+        :degree (v / very))
+    :part m)

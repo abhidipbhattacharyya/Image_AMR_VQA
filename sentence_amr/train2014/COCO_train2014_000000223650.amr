@@ -1,0 +1,34 @@
+# ::tok A pair of parking meters with three hour time limit stickers on each meter .
+# ::node	p	pair	1-2
+# ::node	p2	park-01	3-4
+# ::node	m	meter	4-5
+# ::node	t	temporal-quantity	6-7
+# ::node	0	3	6-7
+# ::node	h	hour	7-8
+# ::node	t3	time	8-9
+# ::node	l	limit-01	9-10
+# ::node	t2	thing	10-11
+# ::node	s	stick-01	10-11
+# ::node	e	each	12-13
+# ::root	t2	thing
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	meter	quant	pair	m	p	
+# ::edge	temporal-quantity	quant	3	t	0	
+# ::edge	temporal-quantity	unit	hour	t	h	
+# ::edge	time	duration	temporal-quantity	t3	t	
+# ::edge	limit-01	ARG1	time	l	t3	
+# ::edge	thing	ARG1-of	stick-01	t2	s	
+# ::edge	stick-01	ARG2	limit-01	s	l	
+# ::edge	meter	mod	each	m	e	
+# ::edge	thing	rel	meter	t2	m	
+(t2 / thing
+    :ARG1-of (s / stick-01
+        :ARG2 (l / limit-01
+            :ARG1 (t3 / time
+                :duration (t / temporal-quantity
+                    :quant 3
+                    :unit (h / hour)))))
+    :rel (m / meter
+        :purpose (p2 / park-01)
+        :quant (p / pair)
+        :mod (e / each)))

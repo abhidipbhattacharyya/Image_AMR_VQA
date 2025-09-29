@@ -1,0 +1,31 @@
+# ::tok A cow standing on a mount of rock filled dirt next to a lush green field .
+# ::node	c	cow	1-2
+# ::node	s	stand-01	2-3
+# ::node	m	mount	5-6
+# ::node	r	rock	7-8
+# ::node	f2	fill-01	8-9
+# ::node	d	dirt	9-10
+# ::node	n	next-to	10-11
+# ::node	l	lush	13-14
+# ::node	g	green-02	14-15
+# ::node	f	field	15-16
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	cow	s	c	
+# ::edge	stand-01	ARG2	mount	s	m	
+# ::edge	fill-01	ARG2	rock	f2	r	
+# ::edge	dirt	ARG1-of	fill-01	d	f2	
+# ::edge	mount	consist-of	dirt	m	d	
+# ::edge	stand-01	location	next-to	s	n	
+# ::edge	field	ARG1-of	green-02	f	g	
+# ::edge	field	mod	lush	f	l	
+# ::edge	next-to	op1	field	n	f	
+(s / stand-01
+    :ARG1 (c / cow)
+    :ARG2 (m / mount
+        :consist-of (d / dirt
+            :ARG1-of (f2 / fill-01
+                :ARG2 (r / rock))))
+    :location (n / next-to
+        :op1 (f / field
+            :ARG1-of (g / green-02)
+            :mod (l / lush))))

@@ -1,0 +1,51 @@
+# ::tok two large sausage sandwiches with onions sitting on a table with a drink , napkins and a large container of mustard
+# ::node	0	2	0-1
+# ::node	l	large	1-2
+# ::node	s2	sausage	2-3
+# ::node	s	sandwich	3-4
+# ::node	h	have-03	4-5
+# ::node	p2	potato	5-6
+# ::node	s3	sit-01	6-7
+# ::node	t	table	9-10
+# ::node	d	drink	12-13
+# ::node	a	and	13-14
+# ::node	a2	and	13-14
+# ::node	p	parent	14-15
+# ::node	n	napkins	14-15
+# ::node	l2	large	17-18
+# ::node	c	container	18-19
+# ::node	m	mustard	20-21
+# ::root	a	and
+# ::edge	sandwich	mod	sausage	s	s2	
+# ::edge	sandwich	mod	large	s	l	
+# ::edge	sandwich	quant	2	s	0	
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	potato	h	p2	
+# ::edge	sandwich	ARG1-of	sit-01	s	s3	
+# ::edge	sit-01	ARG2	table	s3	t	
+# ::edge	and	op1	drink	a	d	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	drink	a2	d	
+# ::edge	and	op2	parent	a2	p	
+# ::edge	and	op2	napkins	a2	n	
+# ::edge	container	mod	large	c	l2	
+# ::edge	and	op3	container	a2	c	
+# ::edge	container	consist-of	mustard	c	m	
+# ::edge	and	rel	sandwich	a	s	
+(a / and
+    :op1 (d / drink)
+    :op2 (a2 / and
+        :op1 d
+        :op2 (p / parent)
+        :op2 (n / napkins)
+        :op3 (c / container
+            :consist-of (m / mustard)
+            :mod (l2 / large)))
+    :rel (s / sandwich
+        :quant 2
+        :ARG0-of (h / have-03
+            :ARG1 (p2 / potato))
+        :ARG1-of (s3 / sit-01
+            :ARG2 (t / table))
+        :mod (s2 / sausage)
+        :mod (l / large)))

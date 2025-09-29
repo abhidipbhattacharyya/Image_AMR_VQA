@@ -1,0 +1,45 @@
+# ::tok Bowls contain carrots and another vegetable as they sit by a flower pot and two cabbages .
+# ::node	p3	pound	0-1
+# ::node	c2	contain-01	1-2
+# ::node	c	carrot	2-3
+# ::node	a	and	3-4
+# ::node	a3	another	4-5
+# ::node	v	vegetable	5-6
+# ::node	s	sit-01	8-9
+# ::node	b2	by	9-10
+# ::node	f	flower	11-12
+# ::node	p2	pot	12-13
+# ::node	a2	and	13-14
+# ::node	0	2	14-15
+# ::node	b	bomb	15-16
+# ::node	p	poppy	15-16
+# ::root	c2	contain-01
+# ::edge	contain-01	ARG0	pound	c2	p3	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	vegetable	mod	another	v	a3	
+# ::edge	and	op2	vegetable	a	v	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	contain-01	time	sit-01	c2	s	
+# ::edge	sit-01	ARG2	by	s	b2	
+# ::edge	pot	mod	flower	p2	f	
+# ::edge	and	op1	pot	a2	p2	
+# ::edge	by	op1	and	b2	a2	
+# ::edge	bomb	quant	2	b	0	
+# ::edge	and	op2	bomb	a2	b	
+# ::edge	bomb	op2	poppy	b	p	
+(c2 / contain-01
+    :ARG0 (p3 / pound)
+    :ARG1 (a / and
+        :op1 (c / carrot)
+        :op2 (v / vegetable
+            :mod (a3 / another)))
+    :time (s / sit-01
+        :ARG1 a
+        :ARG2 (b2 / by
+            :op1 (a2 / and
+                :op1 (p2 / pot
+                    :mod (f / flower))
+                :op2 (b / bomb
+                    :quant 2
+                    :op2 (p / poppy))))))

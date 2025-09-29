@@ -1,0 +1,25 @@
+# ::tok A food service cart serves people out of a converted antique car .
+# ::node	f	food	1-2
+# ::node	s	serve-01	2-3
+# ::node	c2	cart	3-4
+# ::node	s2	serve-02	4-5
+# ::node	p	person	5-6
+# ::node	c3	convert-01	9-10
+# ::node	a	antique	10-11
+# ::node	c	car	11-12
+# ::root	s2	serve-02
+# ::edge	serve-01	ARG1	food	s	f	
+# ::edge	cart	ARG0-of	serve-01	c2	s	
+# ::edge	serve-02	ARG0	cart	s2	c2	
+# ::edge	serve-02	ARG2	person	s2	p	
+# ::edge	car	mod	antique	c	a	
+# ::edge	car	ARG1-of	convert-01	c	c3	
+# ::edge	serve-02	source	car	s2	c	
+(s2 / serve-02
+    :ARG0 (c2 / cart
+        :ARG0-of (s / serve-01
+            :ARG1 (f / food)))
+    :ARG2 (p / person)
+    :source (c / car
+        :ARG1-of (c3 / convert-01)
+        :mod (a / antique)))

@@ -1,0 +1,34 @@
+# ::tok Cement mixer and city bus stopped with traffic at a highway exit ramp light .
+# ::node	c	cable	0-1
+# ::node	m	mix-01	1-2
+# ::node	a	and	2-3
+# ::node	c2	city	3-4
+# ::node	b	bus	4-5
+# ::node	s	stop-01	5-6
+# ::node	t	traffic	7-8
+# ::node	h	highway	10-11
+# ::node	e	exit-01	11-12
+# ::node	r	ramp	12-13
+# ::node	l	light	13-14
+# ::root	s	stop-01
+# ::edge	mix-01	ARG1	cable	m	c	
+# ::edge	and	op1	mix-01	a	m	
+# ::edge	bus	mod	city	b	c2	
+# ::edge	and	op2	bus	a	b	
+# ::edge	stop-01	ARG1	and	s	a	
+# ::edge	stop-01	accompanier	traffic	s	t	
+# ::edge	ramp	purpose	exit-01	r	e	
+# ::edge	ramp	part-of	highway	r	h	
+# ::edge	light	mod	ramp	l	r	
+# ::edge	stop-01	location	light	s	l	
+(s / stop-01
+    :ARG1 (a / and
+        :op1 (m / mix-01
+            :ARG1 (c / cable))
+        :op2 (b / bus
+            :mod (c2 / city)))
+    :accompanier (t / traffic)
+    :location (l / light
+        :mod (r / ramp
+            :purpose (e / exit-01)
+            :part-of (h / highway))))

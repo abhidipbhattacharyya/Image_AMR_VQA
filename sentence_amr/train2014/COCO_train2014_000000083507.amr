@@ -1,0 +1,28 @@
+# ::tok A red light showing do not walk across intersection .
+# ::node	r	red-02	1-2
+# ::node	l	light	2-3
+# ::node	s	show-01	3-4
+# ::node	y	you	4-5
+# ::node	1	imperative	4-5
+# ::node	0	-	5-6
+# ::node	w	walk-01	6-7
+# ::node	a	across	7-8
+# ::node	i	intersect-01	8-9
+# ::root	w	walk-01
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	show-01	ARG1	light	s	l	
+# ::edge	walk-01	polarity	-	w	0	
+# ::edge	walk-01	mode	imperative	w	1	
+# ::edge	walk-01	ARG0	you	w	y	
+# ::edge	walk-01	condition	show-01	w	s	
+# ::edge	walk-01	ARG2	across	w	a	
+# ::edge	across	op1	intersect-01	a	i	
+(w / walk-01
+    :ARG0 (y / you)
+    :ARG2 (a / across
+        :op1 (i / intersect-01))
+    :condition (s / show-01
+        :ARG1 (l / light
+            :ARG1-of (r / red-02)))
+    :mode imperative
+    :polarity -)

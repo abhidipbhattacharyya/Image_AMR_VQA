@@ -1,0 +1,31 @@
+# ::tok a parking meter stands in front of a door on a green building with two windows
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	s	stand-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	d	door	8-9
+# ::node	g	green-02	11-12
+# ::node	b	building	12-13
+# ::node	h	have-03	13-14
+# ::node	0	2	14-15
+# ::node	w	window	15-16
+# ::root	s	stand-01
+# ::edge	meter	mod	park-01	m	p	
+# ::edge	stand-01	ARG1	meter	s	m	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	door	i	d	
+# ::edge	building	ARG1-of	green-02	b	g	
+# ::edge	door	location	building	d	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	window	quant	2	w	0	
+# ::edge	have-03	ARG1	window	h	w	
+(s / stand-01
+    :ARG1 (m / meter
+        :mod (p / park-01))
+    :ARG2 (i / in-front-of
+        :op1 (d / door
+            :location (b / building
+                :ARG0-of (h / have-03
+                    :ARG1 (w / window
+                        :quant 2))
+                :ARG1-of (g / green-02)))))

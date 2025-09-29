@@ -1,0 +1,35 @@
+# ::tok Guy winds up to swing the imaginary bat for the Wii baseball game
+# ::node	g2	guy	0-1
+# ::node	w	wind-up-02	1-2
+# ::node	s	swing-02	4-5
+# ::node	i	imagine-01	6-7
+# ::node	b2	bat	7-8
+# ::node	p	product	10-11
+# ::node	n	name	10-11
+# ::node	0	Wii	10-11
+# ::node	b	baseball	11-12
+# ::node	g	game	12-13
+# ::root	w	wind-up-02
+# ::edge	wind-up-02	ARG1	guy	w	g2	
+# ::edge	wind-up-02	ARG2	swing-02	w	s	
+# ::edge	swing-02	ARG0	guy	s	g2	
+# ::edge	imagine-01	ARG0	guy	i	g2	
+# ::edge	bat	ARG1-of	imagine-01	b2	i	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	mod	product	g	p	
+# ::edge	swing-02	purpose	game	s	g	
+(w / wind-up-02
+    :ARG1 (g2 / guy)
+    :ARG2 (s / swing-02
+        :purpose (g / game
+            :mod (b / baseball)
+            :mod (p / product
+                :name (n / name
+                    :op1 "Wii")))
+        :ARG0 g2
+        :ARG1 (b2 / bat
+            :ARG1-of (i / imagine-01
+                :ARG0 g2))))

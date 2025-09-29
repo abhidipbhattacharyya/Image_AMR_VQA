@@ -1,0 +1,30 @@
+# ::tok Tennis player who just recently hit the tennis ball that is approaching the camera
+# ::node	c2	court	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	j	just	3-4
+# ::node	r	recent	4-5
+# ::node	h	hit-01	5-6
+# ::node	b	ball	8-9
+# ::node	a	approach-01	11-12
+# ::node	c	camera	13-14
+# ::root	h	hit-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	court	p2	c2	
+# ::edge	recent	mod	just	r	j	
+# ::edge	hit-01	time	recent	h	r	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	ball	mod	court	b	c2	
+# ::edge	ball	ARG1-of	approach-01	b	a	
+# ::edge	approach-01	ARG2	camera	a	c	
+(h / hit-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (c2 / court)))
+    :ARG1 (b / ball
+        :ARG1-of (a / approach-01
+            :ARG2 (c / camera))
+        :mod c2)
+    :time (r / recent
+        :mod (j / just)))

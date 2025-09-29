@@ -1,0 +1,34 @@
+# ::tok Dog jumps up high to it 's owner to grab a hold on the frisbee
+# ::node	d	dog	0-1
+# ::node	j	jump-03	1-2
+# ::node	u	up	2-3
+# ::node	h	high-02	3-4
+# ::node	p	person	7-8
+# ::node	o	own-01	7-8
+# ::node	g	grab-01	9-10
+# ::node	h2	hold-01	11-12
+# ::node	f	frisbee	14-15
+# ::root	j	jump-03
+# ::edge	jump-03	ARG0	dog	j	d	
+# ::edge	jump-03	direction	up	j	u	
+# ::edge	jump-03	ARG1-of	high-02	j	h	
+# ::edge	jump-03	destination	person	j	p	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	dog	o	d	
+# ::edge	jump-03	purpose	grab-01	j	g	
+# ::edge	grab-01	ARG0	dog	g	d	
+# ::edge	grab-01	ARG1	hold-01	g	h2	
+# ::edge	hold-01	ARG0	dog	h2	d	
+# ::edge	hold-01	ARG1	frisbee	h2	f	
+(j / jump-03
+    :purpose (g / grab-01
+        :ARG0 (d / dog)
+        :ARG1 (h2 / hold-01
+            :ARG0 d
+            :ARG1 (f / frisbee)))
+    :ARG0 d
+    :ARG1-of (h / high-02)
+    :destination (p / person
+        :ARG0-of (o / own-01
+            :ARG1 d))
+    :direction (u / up))

@@ -1,0 +1,28 @@
+# ::tok Helmets should always be worn by motorcycle riders and passengers .
+# ::node	h	helicopter	0-1
+# ::node	r	recommend-01	1-2
+# ::node	a	always	2-3
+# ::node	w	wear-01	4-5
+# ::node	m	motorcycle	6-7
+# ::node	p2	person	7-8
+# ::node	r2	ride-01	7-8
+# ::node	a2	and	8-9
+# ::node	p	passenger	9-10
+# ::root	r	recommend-01
+# ::edge	wear-01	time	always	w	a	
+# ::edge	recommend-01	ARG1	wear-01	r	w	
+# ::edge	wear-01	ARG1	helicopter	w	h	
+# ::edge	person	ARG0-of	ride-01	p2	r2	
+# ::edge	ride-01	ARG1	motorcycle	r2	m	
+# ::edge	and	op1	person	a2	p2	
+# ::edge	wear-01	ARG0	and	w	a2	
+# ::edge	and	op2	passenger	a2	p	
+(r / recommend-01
+    :ARG1 (w / wear-01
+        :ARG0 (a2 / and
+            :op1 (p2 / person
+                :ARG0-of (r2 / ride-01
+                    :ARG1 (m / motorcycle)))
+            :op2 (p / passenger))
+        :ARG1 (h / helicopter)
+        :time (a / always)))

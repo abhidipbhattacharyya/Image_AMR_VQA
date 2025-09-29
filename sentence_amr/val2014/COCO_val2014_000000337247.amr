@@ -1,0 +1,31 @@
+# ::tok Two bananas and an apple are next to an Amazon box .
+# ::node	0	2	0-1
+# ::node	b	banana	1-2
+# ::node	a	and	2-3
+# ::node	a2	apple	4-5
+# ::node	b2	be-located-at-91	6-7
+# ::node	n2	next-to	6-7
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	1	Amazon	9-10
+# ::node	b3	box	10-11
+# ::root	b2	be-located-at-91
+# ::edge	banana	quant	2	b	0	
+# ::edge	and	op1	banana	a	b	
+# ::edge	and	op2	apple	a	a2	
+# ::edge	be-located-at-91	ARG1	and	b2	a	
+# ::edge	be-located-at-91	ARG2	next-to	b2	n2	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Amazon	n	1	
+# ::edge	box	mod	company	b3	c	
+# ::edge	next-to	op1	box	n2	b3	
+(b2 / be-located-at-91
+    :ARG1 (a / and
+        :op1 (b / banana
+            :quant 2)
+        :op2 (a2 / apple))
+    :ARG2 (n2 / next-to
+        :op1 (b3 / box
+            :mod (c / company
+                :name (n / name
+                    :op1 "Amazon")))))

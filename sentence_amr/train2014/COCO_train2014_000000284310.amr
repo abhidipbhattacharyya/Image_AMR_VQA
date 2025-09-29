@@ -1,0 +1,30 @@
+# ::tok A busy street with lots of lights , cars and a corner full of people .
+# ::node	b	busy-02	1-2
+# ::node	s	street	2-3
+# ::node	l2	lot	4-5
+# ::node	l	light	6-7
+# ::node	c	car	8-9
+# ::node	a	and	9-10
+# ::node	c2	corner	11-12
+# ::node	f	full-09	12-13
+# ::node	p	person	14-15
+# ::root	s	street
+# ::edge	street	ARG1-of	busy-02	s	b	
+# ::edge	light	quant	lot	l	l2	
+# ::edge	car	quant	lot	c	l2	
+# ::edge	and	op2	car	a	c	
+# ::edge	and	op1	light	a	l	
+# ::edge	street	location-of	and	s	a	
+# ::edge	and	op3	corner	a	c2	
+# ::edge	corner	ARG1-of	full-09	c2	f	
+# ::edge	full-09	ARG2	person	f	p	
+(s / street
+    :ARG1-of (b / busy-02)
+    :location-of (a / and
+        :op1 (l / light
+            :quant (l2 / lot))
+        :op2 (c / car
+            :quant l2)
+        :op3 (c2 / corner
+            :ARG1-of (f / full-09
+                :ARG2 (p / person)))))

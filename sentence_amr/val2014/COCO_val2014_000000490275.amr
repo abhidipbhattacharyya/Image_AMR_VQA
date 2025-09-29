@@ -1,0 +1,33 @@
+# ::tok Air force jet in a take off position above the tree line .
+# ::node	0	Air	0-1
+# ::node	m	military	1-2
+# ::node	n	name	1-2
+# ::node	1	Force	1-2
+# ::node	j	jet	2-3
+# ::node	t	take-off-19	5-6
+# ::node	p	position-01	7-8
+# ::node	a	above	8-9
+# ::node	t2	tree	10-11
+# ::node	l	line	11-12
+# ::root	p	position-01
+# ::edge	military	name	name	m	n	
+# ::edge	name	op1	Air	n	0	
+# ::edge	name	op2	Force	n	1	
+# ::edge	jet	poss	military	j	m	
+# ::edge	take-off-19	ARG1	jet	t	j	
+# ::edge	position-01	ARG2	take-off-19	p	t	
+# ::edge	position-01	ARG1	jet	p	j	
+# ::edge	position-01	ARG2	above	p	a	
+# ::edge	line	mod	tree	l	t2	
+# ::edge	above	op1	line	a	l	
+(p / position-01
+    :ARG1 (j / jet
+        :poss (m / military
+            :name (n / name
+                :op1 "Air"
+                :op2 "Force")))
+    :ARG2 (t / take-off-19
+        :ARG1 j)
+    :ARG2 (a / above
+        :op1 (l / line
+            :mod (t2 / tree))))

@@ -1,0 +1,39 @@
+# ::tok a bathroom with double sinks and mirrors , with a strip of multi - colored tiles on the white wall
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	d	double	3-4
+# ::node	s	sink-01	4-5
+# ::node	a	and	5-6
+# ::node	m	mirror	6-7
+# ::node	s2	strip	10-11
+# ::node	m2	multiple	12-13
+# ::node	c	color-01	14-15
+# ::node	t	tile	15-16
+# ::node	w2	white-03	18-19
+# ::node	w	wall	19-20
+# ::root	b	bathroom
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	sink-01	mod	double	s	d	
+# ::edge	and	op1	sink-01	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	mirror	mod	double	m	d	
+# ::edge	bathroom	consist-of	strip	b	s2	
+# ::edge	color-01	ARG2	multiple	c	m2	
+# ::edge	tile	ARG1-of	color-01	t	c	
+# ::edge	strip	consist-of	tile	s2	t	
+# ::edge	wall	ARG1-of	white-03	w	w2	
+# ::edge	strip	location	wall	s2	w	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sink-01
+                :mod (d / double))
+            :op2 (m / mirror
+                :mod d)))
+    :consist-of (s2 / strip
+        :consist-of (t / tile
+            :ARG1-of (c / color-01
+                :ARG2 (m2 / multiple)))
+        :location (w / wall
+            :ARG1-of (w2 / white-03))))

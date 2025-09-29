@@ -1,0 +1,34 @@
+# ::tok Three people on a motor bile that is riding in a street , with one of them wearing a helmet .
+# ::node	1	3	0-1
+# ::node	p	person	1-2
+# ::node	p2	person	1-2
+# ::node	m	motor	4-5
+# ::node	b	bile	5-6
+# ::node	r	ride-01	8-9
+# ::node	s	street	11-12
+# ::node	0	1	14-15
+# ::node	i	include-91	15-16
+# ::node	w	wear-01	17-18
+# ::node	h	helmet	19-20
+# ::root	r	ride-01
+# ::edge	person	quant	3	p	1	
+# ::edge	bile	mod	motor	b	m	
+# ::edge	ride-01	ARG1	bile	r	b	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	location	street	r	s	
+# ::edge	person	quant	1	p2	0	
+# ::edge	include-91	ARG1	person	i	p2	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	ARG0-of	wear-01	p2	w	
+# ::edge	wear-01	ARG1	helmet	w	h	
+(r / ride-01
+    :ARG0 (p / person
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1 (p2 / person
+                :quant 1
+                :ARG0-of (w / wear-01
+                    :ARG1 (h / helmet)))))
+    :ARG1 (b / bile
+        :mod (m / motor))
+    :location (s / street))

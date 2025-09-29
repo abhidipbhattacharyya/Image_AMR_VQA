@@ -1,0 +1,28 @@
+# ::tok Men aiming guns from military type vehicles while a crowd of people watch .
+# ::node	m	man	0-1
+# ::node	a	aim-01	1-2
+# ::node	g	gun	2-3
+# ::node	m2	military	4-5
+# ::node	t	type	5-6
+# ::node	v	vehicle	6-7
+# ::node	c	crowd	9-10
+# ::node	p	person	11-12
+# ::node	w	watch-01	12-13
+# ::root	a	aim-01
+# ::edge	aim-01	ARG0	man	a	m	
+# ::edge	aim-01	ARG1	gun	a	g	
+# ::edge	type	mod	military	t	m2	
+# ::edge	vehicle	mod	type	v	t	
+# ::edge	aim-01	source	vehicle	a	v	
+# ::edge	crowd	consist-of	person	c	p	
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	aim-01	time	watch-01	a	w	
+(a / aim-01
+    :ARG0 (m / man)
+    :ARG1 (g / gun)
+    :source (v / vehicle
+        :mod (t / type
+            :mod (m2 / military)))
+    :time (w / watch-01
+        :ARG0 (c / crowd
+            :consist-of (p / person))))

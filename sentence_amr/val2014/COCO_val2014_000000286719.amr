@@ -1,0 +1,28 @@
+# ::tok Several bunches of carrots and a crate of lemons at a produce stand .
+# ::node	s	several	0-1
+# ::node	l2	load	1-2
+# ::node	c	carrot	3-4
+# ::node	a	and	4-5
+# ::node	c2	crate	6-7
+# ::node	l	lemon	8-9
+# ::node	b	be-located-at-91	9-10
+# ::node	p	produce	11-12
+# ::node	s2	stand	12-13
+# ::root	b	be-located-at-91
+# ::edge	load	quant	several	l2	s	
+# ::edge	load	quant-of	carrot	l2	c	
+# ::edge	and	op1	load	a	l2	
+# ::edge	and	op2	crate	a	c2	
+# ::edge	crate	consist-of	lemon	c2	l	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	stand	mod	produce	s2	p	
+# ::edge	be-located-at-91	ARG2	stand	b	s2	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (l2 / load
+            :quant (s / several)
+            :quant-of (c / carrot))
+        :op2 (c2 / crate
+            :consist-of (l / lemon)))
+    :ARG2 (s2 / stand
+        :mod (p / produce)))

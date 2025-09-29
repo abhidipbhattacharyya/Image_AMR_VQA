@@ -1,0 +1,27 @@
+# ::tok A yellow striped cat rest on two large cushions to take a nap .
+# ::node	y	yellow-02	1-2
+# ::node	s	stripe	2-3
+# ::node	c	cat	3-4
+# ::node	r	rest-01	4-5
+# ::node	0	2	6-7
+# ::node	l	large	7-8
+# ::node	c2	cushion	8-9
+# ::node	n	nap-01	12-13
+# ::root	r	rest-01
+# ::edge	stripe	ARG1-of	yellow-02	s	y	
+# ::edge	cat	mod	stripe	c	s	
+# ::edge	rest-01	ARG1	cat	r	c	
+# ::edge	cushion	mod	large	c2	l	
+# ::edge	cushion	quant	2	c2	0	
+# ::edge	rest-01	ARG2	cushion	r	c2	
+# ::edge	rest-01	purpose	nap-01	r	n	
+# ::edge	nap-01	ARG0	cat	n	c	
+(r / rest-01
+    :purpose (n / nap-01
+        :ARG0 (c / cat
+            :mod (s / stripe
+                :ARG1-of (y / yellow-02))))
+    :ARG1 c
+    :ARG2 (c2 / cushion
+        :quant 2
+        :mod (l / large)))

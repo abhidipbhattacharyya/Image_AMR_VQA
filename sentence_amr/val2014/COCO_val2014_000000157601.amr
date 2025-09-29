@@ -1,0 +1,40 @@
+# ::tok A woman of Asian heritage eating a sandwich at a table with two cups of hot beverages .
+# ::node	w	woman	1-2
+# ::node	c	continent	3-4
+# ::node	n	name	3-4
+# ::node	1	Asia	3-4
+# ::node	h	heritage	4-5
+# ::node	e	eat-01	5-6
+# ::node	s	sandwich	7-8
+# ::node	t	table	10-11
+# ::node	0	2	12-13
+# ::node	v	volume-quantity	13-14
+# ::node	c2	cup	13-14
+# ::node	h2	hot-05	15-16
+# ::node	b	beverage	16-17
+# ::root	e	eat-01
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	1	
+# ::edge	heritage	mod	continent	h	c	
+# ::edge	woman	mod	heritage	w	h	
+# ::edge	eat-01	ARG0	woman	e	w	
+# ::edge	eat-01	ARG1	sandwich	e	s	
+# ::edge	eat-01	location	table	e	t	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	beverage	ARG1-of	hot-05	b	h2	
+# ::edge	beverage	quant	volume-quantity	b	v	
+# ::edge	eat-01	accompanier	beverage	e	b	
+(e / eat-01
+    :ARG0 (w / woman
+        :mod (h / heritage
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Asia"))))
+    :ARG1 (s / sandwich)
+    :accompanier (b / beverage
+        :quant (v / volume-quantity
+            :quant 2
+            :unit (c2 / cup))
+        :ARG1-of (h2 / hot-05))
+    :location (t / table))

@@ -1,0 +1,27 @@
+# ::tok A train riding pass a train station and a freshly mowed lawn .
+# ::node	t	train	1-2
+# ::node	r	ride-01	2-3
+# ::node	p	pass-02	3-4
+# ::node	s	station	6-7
+# ::node	a	and	7-8
+# ::node	f	fresh-04	9-10
+# ::node	m	mow-01	10-11
+# ::node	l	lawn	11-12
+# ::root	p	pass-02
+# ::edge	ride-01	ARG1	train	r	t	
+# ::edge	pass-02	ARG0	ride-01	p	r	
+# ::edge	station	mod	train	s	t	
+# ::edge	and	op1	station	a	s	
+# ::edge	pass-02	ARG1	and	p	a	
+# ::edge	mow-01	ARG1-of	fresh-04	m	f	
+# ::edge	lawn	ARG1-of	mow-01	l	m	
+# ::edge	and	op2	lawn	a	l	
+(p / pass-02
+    :ARG0 (r / ride-01
+        :ARG1 (t / train))
+    :ARG1 (a / and
+        :op1 (s / station
+            :mod t)
+        :op2 (l / lawn
+            :ARG1-of (m / mow-01
+                :ARG1-of (f / fresh-04)))))

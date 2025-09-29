@@ -1,0 +1,27 @@
+# ::tok a building with a big clock attached to the side of it between two windows
+# ::node	b3	building	1-2
+# ::node	b2	big	4-5
+# ::node	c	clock	5-6
+# ::node	a	attach-01	6-7
+# ::node	s	side	9-10
+# ::node	b	between	12-13
+# ::node	0	2	13-14
+# ::node	w	window	14-15
+# ::root	b3	building
+# ::edge	clock	mod	big	c	b2	
+# ::edge	attach-01	ARG1	clock	a	c	
+# ::edge	building	location-of	attach-01	b3	a	
+# ::edge	attach-01	ARG2	side	a	s	
+# ::edge	building	part	side	b3	s	
+# ::edge	side	location	between	s	b	
+# ::edge	window	quant	2	w	0	
+# ::edge	between	op1	window	b	w	
+(b3 / building
+    :location-of (a / attach-01
+        :ARG1 (c / clock
+            :mod (b2 / big))
+        :ARG2 (s / side
+            :location (b / between
+                :op1 (w / window
+                    :quant 2))))
+    :part s)

@@ -1,0 +1,27 @@
+# ::tok The workers are trying to pry up the damaged traffic light .
+# ::node	p	person	1-2
+# ::node	w	work-01	1-2
+# ::node	t2	try-01	3-4
+# ::node	p2	pry-01	5-6
+# ::node	u	up	6-7
+# ::node	d	damage-01	8-9
+# ::node	t	traffic	9-10
+# ::node	l	light	10-11
+# ::root	t2	try-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	try-01	ARG0	person	t2	p	
+# ::edge	try-01	ARG1	pry-01	t2	p2	
+# ::edge	pry-01	ARG0	person	p2	p	
+# ::edge	pry-01	direction	up	p2	u	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	damage-01	l	d	
+# ::edge	pry-01	ARG1	light	p2	l	
+(t2 / try-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01))
+    :ARG1 (p2 / pry-01
+        :ARG0 p
+        :ARG1 (l / light
+            :ARG1-of (d / damage-01)
+            :mod (t / traffic))
+        :direction (u / up)))

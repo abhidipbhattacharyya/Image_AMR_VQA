@@ -1,0 +1,25 @@
+# ::tok A plane flies through the sky past a smoke streak of another plane .
+# ::node	p2	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	s	sky	5-6
+# ::node	p	past	6-7
+# ::node	s2	smoke	8-9
+# ::node	s3	streak	9-10
+# ::node	a	another	11-12
+# ::node	p3	plane	12-13
+# ::root	f	fly-01
+# ::edge	fly-01	ARG2	plane	f	p2	
+# ::edge	fly-01	path	sky	f	s	
+# ::edge	fly-01	path	past	f	p	
+# ::edge	streak	mod	smoke	s3	s2	
+# ::edge	past	op1	streak	p	s3	
+# ::edge	plane	mod	another	p3	a	
+# ::edge	streak	poss	plane	s3	p3	
+(f / fly-01
+    :ARG2 (p2 / plane)
+    :path (s / sky)
+    :path (p / past
+        :op1 (s3 / streak
+            :mod (s2 / smoke)
+            :poss (p3 / plane
+                :mod (a / another)))))

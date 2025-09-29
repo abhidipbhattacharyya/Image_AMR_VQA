@@ -1,0 +1,22 @@
+# ::tok A train engine with no passenger carts moving on the track .
+# ::node	t2	train	1-2
+# ::node	e	engine	2-3
+# ::node	0	-	4-5
+# ::node	p	passenger	5-6
+# ::node	c	cart	6-7
+# ::node	m	move-01	7-8
+# ::node	t	track	10-11
+# ::root	e	engine
+# ::edge	engine	mod	train	e	t2	
+# ::edge	cart	mod	passenger	c	p	
+# ::edge	cart	polarity	-	c	0	
+# ::edge	move-01	ARG0	cart	m	c	
+# ::edge	engine	location-of	move-01	e	m	
+# ::edge	move-01	ARG2	track	m	t	
+(e / engine
+    :location-of (m / move-01
+        :ARG0 (c / cart
+            :mod (p / passenger)
+            :polarity -)
+        :ARG2 (t / track))
+    :mod (t2 / train))

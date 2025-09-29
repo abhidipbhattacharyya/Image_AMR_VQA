@@ -1,0 +1,31 @@
+# ::tok A yellow taxi on a city street corner with a couple of people talking to the driver .
+# ::node	y	yellow-02	1-2
+# ::node	t2	taxi	2-3
+# ::node	c	city	5-6
+# ::node	s	street	6-7
+# ::node	c2	corner	7-8
+# ::node	c3	couple	10-11
+# ::node	p	person	12-13
+# ::node	t	talk-01	13-14
+# ::node	p2	person	16-17
+# ::node	d	drive-01	16-17
+# ::root	t2	taxi
+# ::edge	taxi	ARG1-of	yellow-02	t2	y	
+# ::edge	street	mod	city	s	c	
+# ::edge	corner	op1	street	c2	s	
+# ::edge	taxi	location	corner	t2	c2	
+# ::edge	person	quant	couple	p	c3	
+# ::edge	talk-01	ARG0	person	t	p	
+# ::edge	taxi	ARG1-of	talk-01	t2	t	
+# ::edge	talk-01	ARG2	person	t	p2	
+# ::edge	person	ARG0-of	drive-01	p2	d	
+(t2 / taxi
+    :ARG1-of (y / yellow-02)
+    :ARG1-of (t / talk-01
+        :ARG0 (p / person
+            :quant (c3 / couple))
+        :ARG2 (p2 / person
+            :ARG0-of (d / drive-01)))
+    :location (c2 / corner
+        :op1 (s / street
+            :mod (c / city))))

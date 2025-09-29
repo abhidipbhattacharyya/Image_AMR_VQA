@@ -1,0 +1,34 @@
+# ::tok A small cell phone sitting next to a glass of Pepsi .
+# ::node	s2	small	1-2
+# ::node	c	cell	2-3
+# ::node	p	phone	3-4
+# ::node	s	sit-01	4-5
+# ::node	n2	next-to	5-6
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	c2	company	10-11
+# ::node	n	name	10-11
+# ::node	1	Pepsi	10-11
+# ::root	s	sit-01
+# ::edge	phone	mod	cell	p	c	
+# ::edge	phone	mod	small	p	s2	
+# ::edge	sit-01	ARG1	phone	s	p	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	company	quant	volume-quantity	c2	v	
+# ::edge	next-to	op1	company	n2	c2	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Pepsi	n	1	
+(s / sit-01
+    :ARG1 (p / phone
+        :mod (c / cell)
+        :mod (s2 / small))
+    :ARG2 (n2 / next-to
+        :op1 (c2 / company
+            :name (n / name
+                :op1 "Pepsi")
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))))

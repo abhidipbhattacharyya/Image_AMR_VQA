@@ -1,0 +1,33 @@
+# ::tok A double decker bus that has a load of people on top and an advertisement on the side .
+# ::node	d	double-decker	2-3
+# ::node	b2	bus	3-4
+# ::node	h	have-03	5-6
+# ::node	l	load	7-8
+# ::node	p	person	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	t	top	11-12
+# ::node	a2	and	12-13
+# ::node	a	advertise-01	14-15
+# ::node	s	side	17-18
+# ::root	b2	bus
+# ::edge	bus	mod	double-decker	b2	d	
+# ::edge	bus	ARG0-of	have-03	b2	h	
+# ::edge	load	consist-of	person	l	p	
+# ::edge	be-located-at-91	ARG1	load	b	l	
+# ::edge	be-located-at-91	ARG2	top	b	t	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	advertise-01	a2	a	
+# ::edge	advertise-01	location	side	a	s	
+# ::edge	bus	part	side	b2	s	
+(b2 / bus
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (b / be-located-at-91
+                :ARG1 (l / load
+                    :consist-of (p / person))
+                :ARG2 (t / top))
+            :op2 (a / advertise-01
+                :location (s / side))))
+    :mod (d / double-decker)
+    :part s)

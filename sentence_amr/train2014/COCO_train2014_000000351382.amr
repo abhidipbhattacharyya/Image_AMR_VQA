@@ -1,0 +1,28 @@
+# ::tok Fire trucks spray water on a small plane on a busy airport runway .
+# ::node	f	fire-03	0-1
+# ::node	t	truck	1-2
+# ::node	s2	spray-01	2-3
+# ::node	w	water	3-4
+# ::node	s	small	6-7
+# ::node	p	plane	7-8
+# ::node	b	busy-02	10-11
+# ::node	a	airport	11-12
+# ::node	r	runway	12-13
+# ::root	s2	spray-01
+# ::edge	truck	purpose	fire-03	t	f	
+# ::edge	spray-01	ARG0	truck	s2	t	
+# ::edge	spray-01	ARG1	water	s2	w	
+# ::edge	plane	mod	small	p	s	
+# ::edge	spray-01	ARG2	plane	s2	p	
+# ::edge	airport	ARG1-of	busy-02	a	b	
+# ::edge	runway	purpose	airport	r	a	
+# ::edge	plane	location	runway	p	r	
+(s2 / spray-01
+    :ARG0 (t / truck
+        :purpose (f / fire-03))
+    :ARG1 (w / water)
+    :ARG2 (p / plane
+        :location (r / runway
+            :purpose (a / airport
+                :ARG1-of (b / busy-02)))
+        :mod (s / small)))

@@ -1,0 +1,25 @@
+# ::tok Several toilets with various types of lids on display for sale
+# ::node	s2	several	0-1
+# ::node	t	toilet	1-2
+# ::node	v	vary-01	3-4
+# ::node	t2	type	4-5
+# ::node	v2	volume-quantity	6-7
+# ::node	l	liter	6-7
+# ::node	d	display-01	8-9
+# ::node	s	sell-01	10-11
+# ::root	d	display-01
+# ::edge	toilet	quant	several	t	s2	
+# ::edge	type	ARG1-of	vary-01	t2	v	
+# ::edge	volume-quantity	mod	type	v2	t2	
+# ::edge	toilet	prep-with	volume-quantity	t	v2	
+# ::edge	volume-quantity	unit	liter	v2	l	
+# ::edge	display-01	ARG1	toilet	d	t	
+# ::edge	display-01	ARG1-of	sell-01	d	s	
+(d / display-01
+    :ARG1 (t / toilet
+        :quant (s2 / several)
+        :prep-with (v2 / volume-quantity
+            :mod (t2 / type
+                :ARG1-of (v / vary-01))
+            :unit (l / liter)))
+    :ARG1-of (s / sell-01))

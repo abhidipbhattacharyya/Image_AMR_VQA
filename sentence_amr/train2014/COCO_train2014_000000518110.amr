@@ -1,0 +1,37 @@
+# ::tok A stuffed bear sits beside a book and a clock that reads 3:14 .
+# ::node	s2	stuff-01	1-2
+# ::node	b	bear	2-3
+# ::node	s	sit-01	3-4
+# ::node	b2	beside	4-5
+# ::node	b3	book	6-7
+# ::node	a	and	7-8
+# ::node	c2	clock	9-10
+# ::node	r	read-01	11-12
+# ::node	v	verse	12-13
+# ::node	c	chapter	12-13
+# ::node	0	14	12-13
+# ::node	1	3	12-13
+# ::root	s	sit-01
+# ::edge	bear	ARG1-of	stuff-01	b	s2	
+# ::edge	sit-01	ARG1	bear	s	b	
+# ::edge	sit-01	ARG2	beside	s	b2	
+# ::edge	and	op1	book	a	b3	
+# ::edge	beside	op1	and	b2	a	
+# ::edge	and	op2	clock	a	c2	
+# ::edge	clock	ARG0-of	read-01	c2	r	
+# ::edge	read-01	ARG1	verse	r	v	
+# ::edge	verse	part-of	chapter	v	c	
+# ::edge	chapter	mod	14	c	0	
+# ::edge	verse	mod	3	v	1	
+(s / sit-01
+    :ARG1 (b / bear
+        :ARG1-of (s2 / stuff-01))
+    :ARG2 (b2 / beside
+        :op1 (a / and
+            :op1 (b3 / book)
+            :op2 (c2 / clock
+                :ARG0-of (r / read-01
+                    :ARG1 (v / verse
+                        :mod 3
+                        :part-of (c / chapter
+                            :mod 14)))))))

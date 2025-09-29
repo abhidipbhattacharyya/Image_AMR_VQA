@@ -1,0 +1,49 @@
+# ::tok A sign with a hand print details the five different dishes you can get at this restaurant for $5 .
+# ::node	s	sign	1-2
+# ::node	h2	have-03	2-3
+# ::node	h	hand	4-5
+# ::node	p2	print-01	5-6
+# ::node	d	detail-01	6-7
+# ::node	0	5	8-9
+# ::node	d2	differ-02	9-10
+# ::node	d3	dish	10-11
+# ::node	y	you	11-12
+# ::node	p	possible-01	12-13
+# ::node	g	get-01	13-14
+# ::node	t	this	15-16
+# ::node	r	restaurant	16-17
+# ::node	m	monetary-quantity	18-19
+# ::node	d4	dollar	18-19
+# ::node	1	5	18-19
+# ::root	d	detail-01
+# ::edge	sign	ARG0-of	have-03	s	h2	
+# ::edge	print-01	ARG0	hand	p2	h	
+# ::edge	have-03	ARG1	print-01	h2	p2	
+# ::edge	detail-01	ARG0	sign	d	s	
+# ::edge	dish	ARG1-of	differ-02	d3	d2	
+# ::edge	dish	quant	5	d3	0	
+# ::edge	detail-01	ARG1	dish	d	d3	
+# ::edge	get-01	ARG1-of	possible-01	g	p	
+# ::edge	get-01	ARG0	you	g	y	
+# ::edge	dish	ARG1-of	get-01	d3	g	
+# ::edge	restaurant	mod	this	r	t	
+# ::edge	get-01	location	restaurant	g	r	
+# ::edge	get-01	ARG3	monetary-quantity	g	m	
+# ::edge	monetary-quantity	unit	dollar	m	d4	
+# ::edge	monetary-quantity	quant	5	m	1	
+(d / detail-01
+    :ARG0 (s / sign
+        :ARG0-of (h2 / have-03
+            :ARG1 (p2 / print-01
+                :ARG0 (h / hand))))
+    :ARG1 (d3 / dish
+        :quant 5
+        :ARG1-of (d2 / differ-02)
+        :ARG1-of (g / get-01
+            :ARG0 (y / you)
+            :ARG1-of (p / possible-01)
+            :ARG3 (m / monetary-quantity
+                :quant 5
+                :unit (d4 / dollar))
+            :location (r / restaurant
+                :mod (t / this)))))

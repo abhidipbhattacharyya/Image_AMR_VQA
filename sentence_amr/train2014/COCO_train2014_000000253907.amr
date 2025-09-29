@@ -1,0 +1,48 @@
+# ::tok Outside , on an asphalt area surrounded by green vegetation , stands a large motorbike with a pair of smiling young men behind it .
+# ::node	o	outside	0-1
+# ::node	a2	asphalt	4-5
+# ::node	a	area	5-6
+# ::node	s3	surround-01	6-7
+# ::node	g	green-02	8-9
+# ::node	v	vegetation	9-10
+# ::node	s2	stand-01	11-12
+# ::node	l	large	13-14
+# ::node	m2	motorbike	14-15
+# ::node	h	have-03	15-16
+# ::node	p	pair	17-18
+# ::node	s	smile-01	19-20
+# ::node	y	young	20-21
+# ::node	m	man	21-22
+# ::node	b	behind	22-23
+# ::root	s2	stand-01
+# ::edge	area	mod	asphalt	a	a2	
+# ::edge	area	ARG2-of	surround-01	a	s3	
+# ::edge	vegetation	ARG1-of	green-02	v	g	
+# ::edge	surround-01	ARG1	vegetation	s3	v	
+# ::edge	stand-01	ARG2	area	s2	a	
+# ::edge	stand-01	location	outside	s2	o	
+# ::edge	motorbike	mod	large	m2	l	
+# ::edge	stand-01	ARG1	motorbike	s2	m2	
+# ::edge	motorbike	ARG0-of	have-03	m2	h	
+# ::edge	man	mod	young	m	y	
+# ::edge	man	ARG0-of	smile-01	m	s	
+# ::edge	man	quant	pair	m	p	
+# ::edge	have-03	ARG1	man	h	m	
+# ::edge	man	location	behind	m	b	
+# ::edge	behind	op1	motorbike	b	m2	
+(s2 / stand-01
+    :ARG1 (m2 / motorbike
+        :ARG0-of (h / have-03
+            :ARG1 (m / man
+                :quant (p / pair)
+                :ARG0-of (s / smile-01)
+                :location (b / behind
+                    :op1 m2)
+                :mod (y / young)))
+        :mod (l / large))
+    :ARG2 (a / area
+        :ARG2-of (s3 / surround-01
+            :ARG1 (v / vegetation
+                :ARG1-of (g / green-02)))
+        :mod (a2 / asphalt))
+    :location (o / outside))

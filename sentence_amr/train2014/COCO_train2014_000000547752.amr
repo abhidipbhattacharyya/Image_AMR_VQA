@@ -1,0 +1,34 @@
+# ::tok Open refrigerator showing food inside including milk and green soft drinks ..
+# ::node	o	open-01	0-1
+# ::node	r	refrigerator	1-2
+# ::node	s	show-01	2-3
+# ::node	f	food	3-4
+# ::node	i2	inside	4-5
+# ::node	i	include-01	5-6
+# ::node	m	milk	6-7
+# ::node	a	and	7-8
+# ::node	g	green-02	8-9
+# ::node	s2	soft	9-10
+# ::node	d	drink	10-11
+# ::root	s	show-01
+# ::edge	refrigerator	ARG1-of	open-01	r	o	
+# ::edge	show-01	ARG0	refrigerator	s	r	
+# ::edge	show-01	ARG1	food	s	f	
+# ::edge	food	location	inside	f	i2	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	and	op1	milk	a	m	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	drink	mod	soft	d	s2	
+# ::edge	drink	ARG1-of	green-02	d	g	
+# ::edge	and	op2	drink	a	d	
+(s / show-01
+    :ARG0 (r / refrigerator
+        :ARG1-of (o / open-01))
+    :ARG1 (f / food
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (m / milk)
+                :op2 (d / drink
+                    :ARG1-of (g / green-02)
+                    :mod (s2 / soft))))
+        :location (i2 / inside)))

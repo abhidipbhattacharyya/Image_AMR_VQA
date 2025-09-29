@@ -1,0 +1,34 @@
+# ::tok A giraffe standing under a tree on a hard surface ground , in a zoo like area while it is raining .
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	u	under	3-4
+# ::node	t	tree	5-6
+# ::node	h	hard-04	8-9
+# ::node	s2	surface	9-10
+# ::node	g2	ground	10-11
+# ::node	z	zoo	14-15
+# ::node	r2	resemble-01	15-16
+# ::node	a	area	16-17
+# ::node	r	rain-01	20-21
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	ARG2	under	s	u	
+# ::edge	under	op1	tree	u	t	
+# ::edge	surface	ARG1-of	hard-04	s2	h	
+# ::edge	ground	mod	surface	g2	s2	
+# ::edge	under	location	ground	u	g2	
+# ::edge	resemble-01	ARG2	zoo	r2	z	
+# ::edge	area	ARG1-of	resemble-01	a	r2	
+# ::edge	stand-01	location	area	s	a	
+# ::edge	stand-01	time	rain-01	s	r	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (u / under
+        :location (g2 / ground
+            :mod (s2 / surface
+                :ARG1-of (h / hard-04)))
+        :op1 (t / tree))
+    :location (a / area
+        :ARG1-of (r2 / resemble-01
+            :ARG2 (z / zoo)))
+    :time (r / rain-01))

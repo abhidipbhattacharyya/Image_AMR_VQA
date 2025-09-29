@@ -1,0 +1,38 @@
+# ::tok a base ball player ready to hit the ball with the umpire kneeling behind him
+# ::node	b3	base	1-2
+# ::node	b	ball	2-3
+# ::node	p	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	r	ready-02	4-5
+# ::node	h	hit-01	6-7
+# ::node	b2	ball	8-9
+# ::node	p2	person	11-12
+# ::node	u	umpire-01	11-12
+# ::node	k	kneel-01	12-13
+# ::node	b4	behind	13-14
+# ::root	p	person
+# ::edge	ball	mod	base	b	b3	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	ball	p3	b	
+# ::edge	person	ARG1-of	ready-02	p	r	
+# ::edge	ready-02	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b2	
+# ::edge	hit-01	accompanier	person	h	p2	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	person	ARG0-of	kneel-01	p2	k	
+# ::edge	kneel-01	location	behind	k	b4	
+# ::edge	behind	op1	person	b4	p	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b / ball
+            :mod (b3 / base)))
+    :ARG1-of (r / ready-02
+        :ARG2 (h / hit-01
+            :ARG0 p
+            :ARG1 (b2 / ball)
+            :accompanier (p2 / person
+                :ARG0-of (u / umpire-01)
+                :ARG0-of (k / kneel-01
+                    :location (b4 / behind
+                        :op1 p))))))

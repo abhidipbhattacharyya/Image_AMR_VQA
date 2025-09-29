@@ -1,0 +1,46 @@
+# ::tok Many pairs of scissors sitting on red white and blue fabric and fabric with US flags .
+# ::node	m	many	0-1
+# ::node	p	pair-01	1-2
+# ::node	s	scissors	3-4
+# ::node	s2	sit-01	4-5
+# ::node	r	red-02	6-7
+# ::node	w	white-03	7-8
+# ::node	a	and	8-9
+# ::node	b	blue	9-10
+# ::node	f	fabric	10-11
+# ::node	f2	fabric	10-11
+# ::node	f3	fabric	12-13
+# ::node	c	country	14-15
+# ::node	n	name	14-15
+# ::node	0	US	14-15
+# ::node	f4	flag	15-16
+# ::root	s2	sit-01
+# ::edge	pair-01	quant	many	p	m	
+# ::edge	scissors	ARG1-of	pair-01	s	p	
+# ::edge	sit-01	ARG1	scissors	s2	s	
+# ::edge	sit-01	ARG2	and	s2	a	
+# ::edge	and	op1	fabric	a	f	
+# ::edge	fabric	ARG1-of	white-03	f	w	
+# ::edge	fabric	ARG1-of	red-02	f	r	
+# ::edge	fabric	mod	blue	f2	b	
+# ::edge	and	op2	fabric	a	f2	
+# ::edge	and	op3	fabric	a	f3	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	US	n	0	
+# ::edge	flag	mod	country	f4	c	
+# ::edge	fabric	mod	flag	f3	f4	
+(s2 / sit-01
+    :ARG1 (s / scissors
+        :ARG1-of (p / pair-01
+            :quant (m / many)))
+    :ARG2 (a / and
+        :op1 (f / fabric
+            :ARG1-of (w / white-03)
+            :ARG1-of (r / red-02))
+        :op2 (f2 / fabric
+            :mod (b / blue))
+        :op3 (f3 / fabric
+            :mod (f4 / flag
+                :mod (c / country
+                    :name (n / name
+                        :op1 "US"))))))

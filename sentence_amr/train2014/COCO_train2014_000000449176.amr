@@ -1,0 +1,34 @@
+# ::tok A bathroom behind remolded with an open wall revealing plubing and a toilet sitting in the bathtub .
+# ::node	b	bathroom	1-2
+# ::node	b3	behind	2-3
+# ::node	r	remaster-01	3-4
+# ::node	o	open-01	6-7
+# ::node	w	wall	7-8
+# ::node	r2	reveal-01	8-9
+# ::node	p	plubing	9-10
+# ::node	a	and	10-11
+# ::node	t	toilet	12-13
+# ::node	s	sit-01	13-14
+# ::node	b2	bathtub	16-17
+# ::root	r	remaster-01
+# ::edge	bathroom	location	behind	b	b3	
+# ::edge	remaster-01	ARG1	bathroom	r	b	
+# ::edge	wall	ARG1-of	open-01	w	o	
+# ::edge	remaster-01	prep-with	wall	r	w	
+# ::edge	remaster-01	ARG0-of	reveal-01	r	r2	
+# ::edge	and	op1	plubing	a	p	
+# ::edge	reveal-01	ARG1	and	r2	a	
+# ::edge	and	op2	toilet	a	t	
+# ::edge	toilet	ARG1-of	sit-01	t	s	
+# ::edge	sit-01	ARG2	bathtub	s	b2	
+(r / remaster-01
+    :ARG0-of (r2 / reveal-01
+        :ARG1 (a / and
+            :op1 (p / plubing)
+            :op2 (t / toilet
+                :ARG1-of (s / sit-01
+                    :ARG2 (b2 / bathtub)))))
+    :ARG1 (b / bathroom
+        :location (b3 / behind))
+    :prep-with (w / wall
+        :ARG1-of (o / open-01)))

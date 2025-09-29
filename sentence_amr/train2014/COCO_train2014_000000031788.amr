@@ -1,0 +1,74 @@
+# ::tok A man is seated on a motorbike , on a path that runs past an ornate building , bordered by ornamental trees , speaking to a man in a long red garment , while other people move close by and in the distance .
+# ::node	m	man	1-2
+# ::node	s	seat-01	3-4
+# ::node	m3	motorbike	6-7
+# ::node	p2	path	10-11
+# ::node	r2	run-04	12-13
+# ::node	p	past	13-14
+# ::node	o2	ornate	15-16
+# ::node	b2	building	16-17
+# ::node	b	border-01	18-19
+# ::node	o	ornamental	20-21
+# ::node	t	tree	21-22
+# ::node	s2	speak-01	23-24
+# ::node	m2	man	26-27
+# ::node	w	wear-01	27-28
+# ::node	l	long-03	29-30
+# ::node	r	red-02	30-31
+# ::node	g	garment	31-32
+# ::node	o3	other	34-35
+# ::node	p3	person	35-36
+# ::node	m4	move-01	36-37
+# ::node	c	close-10	37-38
+# ::node	a	and	39-40
+# ::node	d	distant-02	42-43
+# ::root	s	seat-01
+# ::edge	seat-01	ARG1	man	s	m	
+# ::edge	seat-01	ARG2	motorbike	s	m3	
+# ::edge	seat-01	location	path	s	p2	
+# ::edge	path	ARG1-of	run-04	p2	r2	
+# ::edge	run-04	path	past	r2	p	
+# ::edge	building	mod	ornate	b2	o2	
+# ::edge	past	op1	building	p	b2	
+# ::edge	building	ARG1-of	border-01	b2	b	
+# ::edge	tree	mod	ornamental	t	o	
+# ::edge	border-01	ARG2	tree	b	t	
+# ::edge	man	ARG0-of	speak-01	m	s2	
+# ::edge	speak-01	ARG2	man	s2	m2	
+# ::edge	man	ARG0-of	wear-01	m2	w	
+# ::edge	garment	ARG1-of	red-02	g	r	
+# ::edge	garment	ARG1-of	long-03	g	l	
+# ::edge	wear-01	ARG1	garment	w	g	
+# ::edge	person	mod	other	p3	o3	
+# ::edge	move-01	ARG0	person	m4	p3	
+# ::edge	seat-01	time	move-01	s	m4	
+# ::edge	close-10	ARG2	person	c	p3	
+# ::edge	and	op1	close-10	a	c	
+# ::edge	move-01	ARG2	and	m4	a	
+# ::edge	and	op2	distant-02	a	d	
+# ::edge	distant-02	ARG2	person	d	p3	
+(s / seat-01
+    :ARG1 (m / man
+        :ARG0-of (s2 / speak-01
+            :ARG2 (m2 / man
+                :ARG0-of (w / wear-01
+                    :ARG1 (g / garment
+                        :ARG1-of (r / red-02)
+                        :ARG1-of (l / long-03))))))
+    :ARG2 (m3 / motorbike)
+    :location (p2 / path
+        :ARG1-of (r2 / run-04
+            :path (p / past
+                :op1 (b2 / building
+                    :ARG1-of (b / border-01
+                        :ARG2 (t / tree
+                            :mod (o / ornamental)))
+                    :mod (o2 / ornate)))))
+    :time (m4 / move-01
+        :ARG0 (p3 / person
+            :mod (o3 / other))
+        :ARG2 (a / and
+            :op1 (c / close-10
+                :ARG2 p3)
+            :op2 (d / distant-02
+                :ARG2 p3))))

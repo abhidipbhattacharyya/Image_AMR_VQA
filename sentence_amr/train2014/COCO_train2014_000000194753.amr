@@ -1,0 +1,28 @@
+# ::tok Here are 4 views of the same window with varying opening of the shutters
+# ::node	h	here	0-1
+# ::node	0	4	2-3
+# ::node	v2	view-01	3-4
+# ::node	s	same-01	6-7
+# ::node	w	window	7-8
+# ::node	v	vary-01	9-10
+# ::node	o	open-01	10-11
+# ::node	g	gate	13-14
+# ::node	c	close-01	13-14
+# ::root	v2	view-01
+# ::edge	view-01	quant	4	v2	0	
+# ::edge	view-01	medium	here	v2	h	
+# ::edge	window	ARG1-of	same-01	w	s	
+# ::edge	view-01	ARG1	window	v2	w	
+# ::edge	open-01	ARG1-of	vary-01	o	v	
+# ::edge	view-01	ARG0-of	open-01	v2	o	
+# ::edge	open-01	ARG1	gate	o	g	
+# ::edge	gate	ARG1-of	close-01	g	c	
+(v2 / view-01
+    :quant 4
+    :ARG0-of (o / open-01
+        :ARG1 (g / gate
+            :ARG1-of (c / close-01))
+        :ARG1-of (v / vary-01))
+    :ARG1 (w / window
+        :ARG1-of (s / same-01))
+    :medium (h / here))

@@ -1,0 +1,36 @@
+# ::tok Someone ate the meat first not the mashed potatoes or green beans .
+# ::node	s	someone	0-1
+# ::node	e	eat-01	1-2
+# ::node	e2	eat-01	1-2
+# ::node	m	meat	3-4
+# ::node	f	first	4-5
+# ::node	c	contrast-01	5-6
+# ::node	0	-	5-6
+# ::node	p	potato	7-8
+# ::node	o	or	9-10
+# ::node	g	green-02	10-11
+# ::node	b	bean	11-12
+# ::root	c	contrast-01
+# ::edge	eat-01	ARG0	someone	e	s	
+# ::edge	eat-01	ARG0	someone	e2	s	
+# ::edge	eat-01	ARG1	meat	e	m	
+# ::edge	eat-01	time	first	e	f	
+# ::edge	contrast-01	ARG2	eat-01	c	e2	
+# ::edge	contrast-01	ARG1	eat-01	c	e	
+# ::edge	eat-01	polarity	-	e2	0	
+# ::edge	or	op1	potato	o	p	
+# ::edge	eat-01	ARG1	or	e2	o	
+# ::edge	bean	ARG1-of	green-02	b	g	
+# ::edge	or	op2	bean	o	b	
+(c / contrast-01
+    :ARG1 (e / eat-01
+        :ARG0 (s / someone)
+        :ARG1 (m / meat)
+        :time (f / first))
+    :ARG2 (e2 / eat-01
+        :ARG0 s
+        :ARG1 (o / or
+            :op1 (p / potato)
+            :op2 (b / bean
+                :ARG1-of (g / green-02)))
+        :polarity -))

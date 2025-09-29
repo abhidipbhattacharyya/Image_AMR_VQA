@@ -1,0 +1,36 @@
+# ::tok A street light post has two street signs on it , including the sign for " Pirate 's Alley " .
+# ::node	s3	street	1-2
+# ::node	l	light	2-3
+# ::node	p	post	3-4
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	s	sign	7-8
+# ::node	i	include-01	11-12
+# ::node	s2	sign	13-14
+# ::node	2	Pirate's	16-17
+# ::node	n	name	18-19
+# ::node	1	Alley	18-19
+# ::root	h	have-03
+# ::edge	light	mod	street	l	s3	
+# ::edge	post	mod	light	p	l	
+# ::edge	have-03	ARG0	post	h	p	
+# ::edge	sign	quant	2	s	0	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	street	s	s3	
+# ::edge	sign	ARG2-of	include-01	s	i	
+# ::edge	include-01	ARG1	sign	i	s2	
+# ::edge	name	op1	Pirate's	n	2	
+# ::edge	sign	name	name	s2	n	
+# ::edge	name	op2	Alley	n	1	
+(h / have-03
+    :ARG0 (p / post
+        :mod (l / light
+            :mod (s3 / street)))
+    :ARG1 (s / sign
+        :quant 2
+        :ARG2-of (i / include-01
+            :ARG1 (s2 / sign
+                :name (n / name
+                    :op1 "Pirate's"
+                    :op2 "Alley")))
+        :location s3))

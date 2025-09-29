@@ -1,0 +1,34 @@
+# ::tok A remote control that is laid on a piece of furniture 's cushion , which is ripped and exposing springs and wood .
+# ::node	r	remote	1-2
+# ::node	c	control	2-3
+# ::node	l	lay-01	5-6
+# ::node	p	piece	8-9
+# ::node	f	furniture	10-11
+# ::node	c2	cushion	12-13
+# ::node	r2	rip-01	16-17
+# ::node	e	expose-01	18-19
+# ::node	s	spring	19-20
+# ::node	a	and	20-21
+# ::node	w	wood	21-22
+# ::root	l	lay-01
+# ::edge	control	mod	remote	c	r	
+# ::edge	lay-01	ARG1	control	l	c	
+# ::edge	lay-01	ARG2	piece	l	p	
+# ::edge	cushion	part-of	furniture	c2	f	
+# ::edge	piece	part-of	cushion	p	c2	
+# ::edge	piece	ARG1-of	rip-01	p	r2	
+# ::edge	rip-01	ARG0-of	expose-01	r2	e	
+# ::edge	and	op1	spring	a	s	
+# ::edge	expose-01	ARG1	and	e	a	
+# ::edge	and	op2	wood	a	w	
+(l / lay-01
+    :ARG1 (c / control
+        :mod (r / remote))
+    :ARG2 (p / piece
+        :ARG1-of (r2 / rip-01
+            :ARG0-of (e / expose-01
+                :ARG1 (a / and
+                    :op1 (s / spring)
+                    :op2 (w / wood))))
+        :part-of (c2 / cushion
+            :part-of (f / furniture))))

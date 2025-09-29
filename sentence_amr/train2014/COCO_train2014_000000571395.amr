@@ -1,0 +1,39 @@
+# ::tok A metal clock topped by a rampant lion in front of an old building with covered chimneys .
+# ::node	m	metal	1-2
+# ::node	c	clock	2-3
+# ::node	t	top-01	3-4
+# ::node	r	rampant	6-7
+# ::node	l	lion	7-8
+# ::node	i	in-front-of	9-10
+# ::node	o	old	12-13
+# ::node	b	building	13-14
+# ::node	c2	cover-02	15-16
+# ::node	r2	roof	16-17
+# ::node	s	smoke-02	16-17
+# ::node	m2	multi-sentence	17-18
+# ::root	m2	multi-sentence
+# ::edge	clock	mod	metal	c	m	
+# ::edge	clock	ARG1-of	top-01	c	t	
+# ::edge	lion	mod	rampant	l	r	
+# ::edge	top-01	ARG2	lion	t	l	
+# ::edge	clock	location	in-front-of	c	i	
+# ::edge	building	mod	old	b	o	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	roof	ARG1-of	cover-02	r2	c2	
+# ::edge	building	part	roof	b	r2	
+# ::edge	roof	ARG0-of	smoke-02	r2	s	
+# ::edge	multi-sentence	snt2	clock	m2	c	
+# ::edge	multi-sentence	snt1	clock	m2	c	
+(m2 / multi-sentence
+    :snt1 (c / clock
+        :ARG1-of (t / top-01
+            :ARG2 (l / lion
+                :mod (r / rampant)))
+        :location (i / in-front-of
+            :op1 (b / building
+                :mod (o / old)
+                :part (r2 / roof
+                    :ARG0-of (s / smoke-02)
+                    :ARG1-of (c2 / cover-02))))
+        :mod (m / metal))
+    :snt2 c)

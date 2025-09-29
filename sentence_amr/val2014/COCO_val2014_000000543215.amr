@@ -1,0 +1,36 @@
+# ::tok A sign with the name of a street and the name of a cemetery posted on a quiet street .
+# ::node	s	sign	1-2
+# ::node	t	thing	3-4
+# ::node	s2	street	7-8
+# ::node	a	and	8-9
+# ::node	n	name-01	10-11
+# ::node	n2	name-01	10-11
+# ::node	c	cemetery	13-14
+# ::node	p	post-01	14-15
+# ::node	q	quiet-04	17-18
+# ::node	s3	street	18-19
+# ::node	s4	street	18-19
+# ::root	p	post-01
+# ::edge	and	op1	thing	a	t	
+# ::edge	name-01	ARG1	street	n	s2	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	and	op2	name-01	a	n2	
+# ::edge	name-01	ARG1	cemetery	n2	c	
+# ::edge	post-01	ARG1	and	p	a	
+# ::edge	street	ARG1-of	quiet-04	s3	q	
+# ::edge	post-01	ARG2	street	p	s3	
+# ::edge	street	ARG1-of	name-01	s4	n	
+# ::edge	post-01	ARG2	street	p	s4	
+# ::edge	post-01	rel	sign	p	s	
+(p / post-01
+    :ARG1 (a / and
+        :op1 (t / thing
+            :ARG2-of (n / name-01
+                :ARG1 (s2 / street)))
+        :op2 (n2 / name-01
+            :ARG1 (c / cemetery)))
+    :ARG2 (s3 / street
+        :ARG1-of (q / quiet-04))
+    :ARG2 (s4 / street
+        :ARG1-of n)
+    :rel (s / sign))

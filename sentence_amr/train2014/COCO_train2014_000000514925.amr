@@ -1,0 +1,24 @@
+# ::tok A train drives down the train tracks towards the other train tracks .
+# ::node	t3	train	1-2
+# ::node	d2	drive-01	2-3
+# ::node	d	down	3-4
+# ::node	t	track	6-7
+# ::node	o	other	9-10
+# ::node	t4	train	10-11
+# ::node	t2	track	11-12
+# ::root	d2	drive-01
+# ::edge	drive-01	ARG0	train	d2	t3	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	path	track	d2	t	
+# ::edge	track	mod	train	t	t4	
+# ::edge	track	mod	train	t2	t4	
+# ::edge	track	mod	other	t2	o	
+# ::edge	drive-01	direction	track	d2	t2	
+(d2 / drive-01
+    :ARG0 (t3 / train)
+    :direction (d / down)
+    :direction (t2 / track
+        :mod (t4 / train)
+        :mod (o / other))
+    :path (t / track
+        :mod t4))

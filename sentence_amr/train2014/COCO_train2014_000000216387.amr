@@ -1,0 +1,28 @@
+# ::tok A stop sign sits below a traffic light near a white building .
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	s2	sit-01	3-4
+# ::node	b	below	4-5
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	n	near-02	8-9
+# ::node	w	white-03	10-11
+# ::node	b2	building	11-12
+# ::root	s2	sit-01
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	sit-01	ARG1	sign	s2	s	
+# ::edge	sit-01	ARG2	below	s2	b	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	below	op1	light	b	l	
+# ::edge	sign	ARG1-of	near-02	s	n	
+# ::edge	building	ARG1-of	white-03	b2	w	
+# ::edge	near-02	ARG2	building	n	b2	
+(s2 / sit-01
+    :ARG1 (s / sign
+        :purpose (s3 / stop-01)
+        :ARG1-of (n / near-02
+            :ARG2 (b2 / building
+                :ARG1-of (w / white-03))))
+    :ARG2 (b / below
+        :op1 (l / light
+            :mod (t / traffic))))

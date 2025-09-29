@@ -1,0 +1,26 @@
+# ::tok You want to have even slices when cutting a pizza .
+# ::node	y	you	0-1
+# ::node	w	want-01	1-2
+# ::node	h	have-03	3-4
+# ::node	e	even	4-5
+# ::node	s	slice	5-6
+# ::node	c	cut-01	7-8
+# ::node	p	pizza	9-10
+# ::root	w	want-01
+# ::edge	want-01	ARG0	you	w	y	
+# ::edge	want-01	ARG1	have-03	w	h	
+# ::edge	have-03	ARG0	you	h	y	
+# ::edge	slice	mod	even	s	e	
+# ::edge	have-03	ARG1	slice	h	s	
+# ::edge	have-03	time	cut-01	h	c	
+# ::edge	cut-01	ARG0	you	c	y	
+# ::edge	cut-01	ARG1	pizza	c	p	
+(w / want-01
+    :ARG0 (y / you)
+    :ARG1 (h / have-03
+        :ARG0 y
+        :ARG1 (s / slice
+            :mod (e / even))
+        :time (c / cut-01
+            :ARG0 y
+            :ARG1 (p / pizza))))

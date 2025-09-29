@@ -1,0 +1,28 @@
+# ::tok A man picks up one of 8 suitcases outside of a building .
+# ::node	m	man	1-2
+# ::node	p	pick-up-04	2-3
+# ::node	0	1	4-5
+# ::node	i	include-91	5-6
+# ::node	1	8	6-7
+# ::node	s	suitcase	7-8
+# ::node	s2	suitcase	7-8
+# ::node	o	outside	8-9
+# ::node	b	building	11-12
+# ::root	p	pick-up-04
+# ::edge	pick-up-04	ARG0	man	p	m	
+# ::edge	suitcase	ARG1-of	include-91	s	i	
+# ::edge	suitcase	quant	1	s	0	
+# ::edge	pick-up-04	ARG1	suitcase	p	s	
+# ::edge	suitcase	quant	8	s2	1	
+# ::edge	include-91	ARG2	suitcase	i	s2	
+# ::edge	pick-up-04	location	outside	p	o	
+# ::edge	outside	op1	building	o	b	
+(p / pick-up-04
+    :ARG0 (m / man)
+    :ARG1 (s / suitcase
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 (s2 / suitcase
+                :quant 8)))
+    :location (o / outside
+        :op1 (b / building)))

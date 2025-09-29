@@ -1,0 +1,27 @@
+# ::tok A large jet plane kicks up a puff of smoke as it lands on a runway .
+# ::node	l2	large	1-2
+# ::node	j	jet	2-3
+# ::node	p	plane	3-4
+# ::node	k	kick-01	4-5
+# ::node	p2	puff-01	7-8
+# ::node	s	smoke	9-10
+# ::node	l	land-01	12-13
+# ::node	r	runway	15-16
+# ::root	k	kick-01
+# ::edge	plane	mod	jet	p	j	
+# ::edge	plane	mod	large	p	l2	
+# ::edge	kick-01	ARG0	plane	k	p	
+# ::edge	kick-01	ARG1	puff-01	k	p2	
+# ::edge	puff-01	ARG1	smoke	p2	s	
+# ::edge	kick-01	time	land-01	k	l	
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	land-01	location	runway	l	r	
+(k / kick-01
+    :ARG0 (p / plane
+        :mod (j / jet)
+        :mod (l2 / large))
+    :ARG1 (p2 / puff-01
+        :ARG1 (s / smoke))
+    :time (l / land-01
+        :ARG1 p
+        :location (r / runway)))

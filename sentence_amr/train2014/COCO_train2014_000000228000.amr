@@ -1,0 +1,33 @@
+# ::tok Men are sitting in chairs relaxing , one with a dog in his lap .
+# ::node	m	man	0-1
+# ::node	m2	man	0-1
+# ::node	s	sit-01	2-3
+# ::node	c	chair	4-5
+# ::node	r	relax-01	5-6
+# ::node	a	and	6-7
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	d	dog	10-11
+# ::node	l	lap	13-14
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	sit-01	ARG0-of	relax-01	s	r	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	dog	location	lap	d	l	
+# ::edge	man	part	lap	m2	l	
+# ::edge	and	rel	dog	a	d	
+(a / and
+    :op1 (s / sit-01
+        :ARG0-of (r / relax-01)
+        :ARG1 (m / man
+            :ARG2-of (i / include-91
+                :ARG1 (m2 / man
+                    :quant 1
+                    :part (l / lap))))
+        :ARG2 (c / chair))
+    :rel (d / dog
+        :location l))

@@ -1,0 +1,50 @@
+# ::tok A horse behind a fence and fence door with a sign that says " Be Aware Horses May Bite or Kick " .
+# ::node	h	horse	1-2
+# ::node	b	behind	2-3
+# ::node	f	fence	4-5
+# ::node	a	and	5-6
+# ::node	d	door	7-8
+# ::node	s2	sign	10-11
+# ::node	s	say-01	12-13
+# ::node	y	you	14-15
+# ::node	0	imperative	14-15
+# ::node	r	realize-01	15-16
+# ::node	h2	horse	16-17
+# ::node	p	possible-01	17-18
+# ::node	b2	bite-01	18-19
+# ::node	o	or	19-20
+# ::node	k	kick-01	20-21
+# ::root	h	horse
+# ::edge	horse	location	behind	h	b	
+# ::edge	and	op1	fence	a	f	
+# ::edge	behind	op1	and	b	a	
+# ::edge	and	op2	door	a	d	
+# ::edge	door	mod	fence	d	f	
+# ::edge	horse	part	sign	h	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	realize-01	mode	imperative	r	0	
+# ::edge	realize-01	ARG0	you	r	y	
+# ::edge	say-01	ARG1	realize-01	s	r	
+# ::edge	realize-01	ARG1	possible-01	r	p	
+# ::edge	bite-01	ARG0	horse	b2	h2	
+# ::edge	or	op1	bite-01	o	b2	
+# ::edge	possible-01	ARG1	or	p	o	
+# ::edge	or	op2	kick-01	o	k	
+# ::edge	kick-01	ARG0	horse	k	h2	
+(h / horse
+    :location (b / behind
+        :op1 (a / and
+            :op1 (f / fence)
+            :op2 (d / door
+                :mod f)))
+    :part (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (r / realize-01
+                :ARG0 (y / you)
+                :ARG1 (p / possible-01
+                    :ARG1 (o / or
+                        :op1 (b2 / bite-01
+                            :ARG0 (h2 / horse))
+                        :op2 (k / kick-01
+                            :ARG0 h2)))
+                :mode imperative))))

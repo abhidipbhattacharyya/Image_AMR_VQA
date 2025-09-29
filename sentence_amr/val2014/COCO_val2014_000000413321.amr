@@ -1,0 +1,28 @@
+# ::tok An explorer or adventurer hikes in a remote area in challenging weather .
+# ::node	p	person	1-2
+# ::node	e	explore-01	1-2
+# ::node	o	or	2-3
+# ::node	a	adventurer	3-4
+# ::node	h	hike-02	4-5
+# ::node	r	remote	7-8
+# ::node	a2	area	8-9
+# ::node	c	challenge-01	10-11
+# ::node	w	weather	11-12
+# ::root	h	hike-02
+# ::edge	person	ARG0-of	explore-01	p	e	
+# ::edge	or	op1	person	o	p	
+# ::edge	or	op2	adventurer	o	a	
+# ::edge	hike-02	ARG0	or	h	o	
+# ::edge	area	mod	remote	a2	r	
+# ::edge	hike-02	location	area	h	a2	
+# ::edge	weather	ARG0-of	challenge-01	w	c	
+# ::edge	hike-02	condition	weather	h	w	
+(h / hike-02
+    :ARG0 (o / or
+        :op1 (p / person
+            :ARG0-of (e / explore-01))
+        :op2 (a / adventurer))
+    :condition (w / weather
+        :ARG0-of (c / challenge-01))
+    :location (a2 / area
+        :mod (r / remote)))

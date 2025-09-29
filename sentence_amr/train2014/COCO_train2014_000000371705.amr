@@ -1,0 +1,42 @@
+# ::tok A room with wooden beams across the ceiling , a bed met on the floor and a glass wall seperating the room .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	w2	wood	3-4
+# ::node	b	beam	4-5
+# ::node	a	across	5-6
+# ::node	c	ceiling	7-8
+# ::node	b2	bed	10-11
+# ::node	m	meet-03	11-12
+# ::node	f	floor	14-15
+# ::node	a2	and	15-16
+# ::node	g	glass	17-18
+# ::node	w	wall	18-19
+# ::node	s	separate-01	19-20
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	beam	mod	wood	b	w2	
+# ::edge	beam	location	across	b	a	
+# ::edge	across	op1	ceiling	a	c	
+# ::edge	meet-03	ARG0	bed	m	b2	
+# ::edge	meet-03	location	floor	m	f	
+# ::edge	and	op2	meet-03	a2	m	
+# ::edge	and	op1	beam	a2	b	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	wall	consist-of	glass	w	g	
+# ::edge	and	op3	wall	a2	w	
+# ::edge	wall	ARG0-of	separate-01	w	s	
+# ::edge	separate-01	ARG1	room	s	r	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (b / beam
+                :location (a / across
+                    :op1 (c / ceiling))
+                :mod (w2 / wood))
+            :op2 (m / meet-03
+                :ARG0 (b2 / bed)
+                :location (f / floor))
+            :op3 (w / wall
+                :ARG0-of (s / separate-01
+                    :ARG1 r)
+                :consist-of (g / glass)))))

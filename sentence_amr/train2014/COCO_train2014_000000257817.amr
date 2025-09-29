@@ -1,0 +1,40 @@
+# ::tok Legs on top of a desk next to a bottle of soda and a medium sized pizza pie .
+# ::node	l	leg	0-1
+# ::node	b	be-located-at-91	1-2
+# ::node	t	top	2-3
+# ::node	d	desk	5-6
+# ::node	n	next-to	6-7
+# ::node	b2	bottle	9-10
+# ::node	c	contain-01	9-10
+# ::node	s2	soda	11-12
+# ::node	a	and	12-13
+# ::node	m	medium	14-15
+# ::node	s	size-01	15-16
+# ::node	p2	pizza	16-17
+# ::node	p	pie	17-18
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	leg	b	l	
+# ::edge	be-located-at-91	ARG2	top	b	t	
+# ::edge	top	part-of	desk	t	d	
+# ::edge	desk	location	next-to	d	n	
+# ::edge	bottle	ARG0-of	contain-01	b2	c	
+# ::edge	contain-01	ARG1	soda	c	s2	
+# ::edge	and	op1	bottle	a	b2	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	size-01	ARG2	medium	s	m	
+# ::edge	pie	mod	pizza	p	p2	
+# ::edge	pie	ARG1-of	size-01	p	s	
+# ::edge	and	op2	pie	a	p	
+(b / be-located-at-91
+    :ARG1 (l / leg)
+    :ARG2 (t / top
+        :part-of (d / desk
+            :location (n / next-to
+                :op1 (a / and
+                    :op1 (b2 / bottle
+                        :ARG0-of (c / contain-01
+                            :ARG1 (s2 / soda)))
+                    :op2 (p / pie
+                        :ARG1-of (s / size-01
+                            :ARG2 (m / medium))
+                        :mod (p2 / pizza)))))))

@@ -1,0 +1,36 @@
+# ::tok Spectators watch a tennis match as a player waits for the ball to come his way
+# ::node	p	person	0-1
+# ::node	w2	watch-01	0-1
+# ::node	w3	watch-01	1-2
+# ::node	t	tennis	3-4
+# ::node	m	match-03	4-5
+# ::node	p2	person	7-8
+# ::node	p3	play-01	7-8
+# ::node	w	wait-01	8-9
+# ::node	b	ball	11-12
+# ::node	c	come-01	13-14
+# ::node	w4	way	15-16
+# ::root	w3	watch-01
+# ::edge	person	ARG0-of	watch-01	p	w2	
+# ::edge	watch-01	ARG0	person	w3	p	
+# ::edge	match-03	mod	tennis	m	t	
+# ::edge	watch-01	ARG1	match-03	w3	m	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	watch-01	time	wait-01	w3	w	
+# ::edge	come-01	ARG1	ball	c	b	
+# ::edge	wait-01	ARG2	come-01	w	c	
+# ::edge	come-01	ARG4	way	c	w4	
+# ::edge	way	poss	person	w4	p2	
+(w3 / watch-01
+    :ARG0 (p / person
+        :ARG0-of (w2 / watch-01))
+    :ARG1 (m / match-03
+        :mod (t / tennis))
+    :time (w / wait-01
+        :ARG1 (p2 / person
+            :ARG0-of (p3 / play-01))
+        :ARG2 (c / come-01
+            :ARG1 (b / ball)
+            :ARG4 (w4 / way
+                :poss p2))))

@@ -1,0 +1,27 @@
+# ::tok A traffic light shows a green light and is topped with snow .
+# ::node	t2	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s	show-01	3-4
+# ::node	g	green-02	5-6
+# ::node	l2	light	6-7
+# ::node	a	and	7-8
+# ::node	t	top-02	9-10
+# ::node	s2	snow	11-12
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	show-01	ARG0	light	s	l	
+# ::edge	light	ARG1-of	green-02	l2	g	
+# ::edge	show-01	ARG1	light	s	l2	
+# ::edge	and	op1	show-01	a	s	
+# ::edge	and	op2	top-02	a	t	
+# ::edge	top-02	ARG0	light	t	l	
+# ::edge	top-02	ARG1	snow	t	s2	
+(a / and
+    :op1 (s / show-01
+        :ARG0 (l / light
+            :mod (t2 / traffic))
+        :ARG1 (l2 / light
+            :ARG1-of (g / green-02)))
+    :op2 (t / top-02
+        :ARG0 l
+        :ARG1 (s2 / snow)))

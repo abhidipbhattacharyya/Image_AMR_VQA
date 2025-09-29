@@ -1,0 +1,48 @@
+# ::tok People at a convention center standing around a green and gold motorcycle with Asian lettering written on it .
+# ::node	p	person	0-1
+# ::node	c3	convene-01	3-4
+# ::node	c	center	4-5
+# ::node	s	stand-01	5-6
+# ::node	a2	around	6-7
+# ::node	g2	green-02	8-9
+# ::node	a	and	9-10
+# ::node	g	gold	10-11
+# ::node	m	motorcycle	11-12
+# ::node	m2	motorcycle	11-12
+# ::node	c2	continent	13-14
+# ::node	n	name	13-14
+# ::node	0	Asia	13-14
+# ::node	l	letter	14-15
+# ::node	w	write-01	15-16
+# ::root	s	stand-01
+# ::edge	center	mod	convene-01	c	c3	
+# ::edge	stand-01	location	center	s	c	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	around	s	a2	
+# ::edge	around	op1	and	a2	a	
+# ::edge	and	op1	motorcycle	a	m	
+# ::edge	motorcycle	ARG1-of	green-02	m	g2	
+# ::edge	motorcycle	mod	gold	m2	g	
+# ::edge	and	op2	motorcycle	a	m2	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	letter	mod	continent	l	c2	
+# ::edge	motorcycle	part	letter	m	l	
+# ::edge	write-01	ARG1	letter	w	l	
+# ::edge	and	location-of	write-01	a	w	
+(s / stand-01
+    :ARG1 (p / person)
+    :ARG2 (a2 / around
+        :op1 (a / and
+            :location-of (w / write-01
+                :ARG1 (l / letter
+                    :mod (c2 / continent
+                        :name (n / name
+                            :op1 "Asia"))))
+            :op1 (m / motorcycle
+                :ARG1-of (g2 / green-02)
+                :part l)
+            :op2 (m2 / motorcycle
+                :mod (g / gold))))
+    :location (c / center
+        :mod (c3 / convene-01)))

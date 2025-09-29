@@ -1,0 +1,34 @@
+# ::tok A deli grocery sign is hanging next to a Marlboro sign next to the street .
+# ::node	d	deli	1-2
+# ::node	g	grocery	2-3
+# ::node	s	sign	3-4
+# ::node	h	hang-01	5-6
+# ::node	n2	next-to	6-7
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	0	Marlboro	9-10
+# ::node	s2	sign	10-11
+# ::node	n3	next-to	11-12
+# ::node	s3	street	14-15
+# ::root	h	hang-01
+# ::edge	grocery	mod	deli	g	d	
+# ::edge	sign	mod	grocery	s	g	
+# ::edge	hang-01	ARG1	sign	h	s	
+# ::edge	hang-01	ARG2	next-to	h	n2	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Marlboro	n	0	
+# ::edge	sign	mod	company	s2	c	
+# ::edge	next-to	op1	sign	n2	s2	
+# ::edge	sign	location	next-to	s2	n3	
+# ::edge	next-to	op1	street	n3	s3	
+(h / hang-01
+    :ARG1 (s / sign
+        :mod (g / grocery
+            :mod (d / deli)))
+    :ARG2 (n2 / next-to
+        :op1 (s2 / sign
+            :location (n3 / next-to
+                :op1 (s3 / street))
+            :mod (c / company
+                :name (n / name
+                    :op1 "Marlboro")))))

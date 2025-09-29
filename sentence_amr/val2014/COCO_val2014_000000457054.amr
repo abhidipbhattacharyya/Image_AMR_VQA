@@ -1,0 +1,28 @@
+# ::tok Airport vehicles carry items and other equipment to parked planes
+# ::node	a	airport	0-1
+# ::node	v	vehicle	1-2
+# ::node	c	carry-01	2-3
+# ::node	i	item	3-4
+# ::node	a2	and	4-5
+# ::node	o	other	5-6
+# ::node	e	equipment	6-7
+# ::node	p	park-01	8-9
+# ::node	p2	plane	9-10
+# ::root	c	carry-01
+# ::edge	vehicle	mod	airport	v	a	
+# ::edge	carry-01	ARG0	vehicle	c	v	
+# ::edge	and	op1	item	a2	i	
+# ::edge	carry-01	ARG1	and	c	a2	
+# ::edge	equipment	mod	other	e	o	
+# ::edge	and	op2	equipment	a2	e	
+# ::edge	plane	ARG1-of	park-01	p2	p	
+# ::edge	carry-01	destination	plane	c	p2	
+(c / carry-01
+    :ARG0 (v / vehicle
+        :mod (a / airport))
+    :ARG1 (a2 / and
+        :op1 (i / item)
+        :op2 (e / equipment
+            :mod (o / other)))
+    :destination (p2 / plane
+        :ARG1-of (p / park-01)))

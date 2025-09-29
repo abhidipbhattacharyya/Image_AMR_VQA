@@ -1,0 +1,25 @@
+# ::tok A steam locomotive train pulling up to a station platform with people waiting .
+# ::node	s2	steam	1-2
+# ::node	l	locomotive	2-3
+# ::node	t	train	3-4
+# ::node	p3	pull-01	4-5
+# ::node	s	station	8-9
+# ::node	p2	platform	9-10
+# ::node	p	person	11-12
+# ::node	w	wait-01	12-13
+# ::root	p3	pull-01
+# ::edge	train	mod	locomotive	t	l	
+# ::edge	train	mod	steam	t	s2	
+# ::edge	pull-01	ARG1	train	p3	t	
+# ::edge	platform	mod	station	p2	s	
+# ::edge	pull-01	ARG2	platform	p3	p2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	train	ARG2-of	wait-01	t	w	
+(p3 / pull-01
+    :ARG1 (t / train
+        :ARG2-of (w / wait-01
+            :ARG1 (p / person))
+        :mod (l / locomotive)
+        :mod (s2 / steam))
+    :ARG2 (p2 / platform
+        :mod (s / station)))

@@ -1,0 +1,33 @@
+# ::tok Cows stand near a barbed wire fence with trees along the horizon .
+# ::node	c	cow	0-1
+# ::node	s	stand-01	1-2
+# ::node	n	near-02	2-3
+# ::node	b	barb-01	4-5
+# ::node	w	wire	5-6
+# ::node	f	fence	6-7
+# ::node	h	have-03	7-8
+# ::node	t	tree	8-9
+# ::node	a	along	9-10
+# ::node	h2	horizon	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	cow	s	c	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	cow	n	c	
+# ::edge	wire	ARG1-of	barb-01	w	b	
+# ::edge	fence	consist-of	wire	f	w	
+# ::edge	near-02	ARG2	fence	n	f	
+# ::edge	fence	ARG0-of	have-03	f	h	
+# ::edge	have-03	ARG1	tree	h	t	
+# ::edge	tree	location	along	t	a	
+# ::edge	along	op1	horizon	a	h2	
+(s / stand-01
+    :ARG1 (c / cow)
+    :ARG2 (n / near-02
+        :ARG1 c
+        :ARG2 (f / fence
+            :ARG0-of (h / have-03
+                :ARG1 (t / tree
+                    :location (a / along
+                        :op1 (h2 / horizon))))
+            :consist-of (w / wire
+                :ARG1-of (b / barb-01)))))

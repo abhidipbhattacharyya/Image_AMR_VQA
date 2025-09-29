@@ -1,0 +1,27 @@
+# ::tok bike made with lounge chair on top for passenger to ride in
+# ::node	b2	bike	0-1
+# ::node	m	make-01	1-2
+# ::node	l	lounge	3-4
+# ::node	c	chair	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	t	top	6-7
+# ::node	p	passenger	8-9
+# ::node	r	ride-01	10-11
+# ::root	m	make-01
+# ::edge	make-01	ARG1	bike	m	b2	
+# ::edge	chair	mod	lounge	c	l	
+# ::edge	be-located-at-91	ARG1	chair	b	c	
+# ::edge	make-01	ARG3	be-located-at-91	m	b	
+# ::edge	be-located-at-91	ARG2	top	b	t	
+# ::edge	ride-01	ARG0	passenger	r	p	
+# ::edge	make-01	purpose	ride-01	m	r	
+# ::edge	ride-01	ARG1	bike	r	b2	
+(m / make-01
+    :purpose (r / ride-01
+        :ARG0 (p / passenger)
+        :ARG1 (b2 / bike))
+    :ARG1 b2
+    :ARG3 (b / be-located-at-91
+        :ARG1 (c / chair
+            :mod (l / lounge))
+        :ARG2 (t / top)))

@@ -1,0 +1,25 @@
+# ::tok People cut sandwiches on cutting boards with ingredients nearby .
+# ::node	p	person	0-1
+# ::node	c	cut-01	1-2
+# ::node	s	sandwich	2-3
+# ::node	c2	cut-01	4-5
+# ::node	b	board	5-6
+# ::node	h	have-03	6-7
+# ::node	i	ingredient	7-8
+# ::node	n	nearby	8-9
+# ::root	c	cut-01
+# ::edge	cut-01	ARG0	person	c	p	
+# ::edge	cut-01	ARG1	sandwich	c	s	
+# ::edge	board	purpose	cut-01	b	c2	
+# ::edge	cut-01	location	board	c	b	
+# ::edge	board	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	ingredient	h	i	
+# ::edge	ingredient	location	nearby	i	n	
+(c / cut-01
+    :ARG0 (p / person)
+    :ARG1 (s / sandwich)
+    :location (b / board
+        :purpose (c2 / cut-01)
+        :ARG0-of (h / have-03
+            :ARG1 (i / ingredient
+                :location (n / nearby)))))

@@ -1,0 +1,41 @@
+# ::tok A tv showing a man walking down a hall maybe a small computer sitting next to tv .
+# ::node	t	television	1-2
+# ::node	s	show-01	2-3
+# ::node	m	man	4-5
+# ::node	w	walk-01	5-6
+# ::node	d	down	6-7
+# ::node	h	hall	8-9
+# ::node	p	possible-01	9-10
+# ::node	s3	small	11-12
+# ::node	c	computer	12-13
+# ::node	s2	sit-01	13-14
+# ::node	n	next-to	14-15
+# ::node	o	or	17-18
+# ::root	o	or
+# ::edge	show-01	ARG0	television	s	t	
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	show-01	ARG1	walk-01	s	w	
+# ::edge	walk-01	direction	down	w	d	
+# ::edge	walk-01	ARG2	hall	w	h	
+# ::edge	computer	mod	small	c	s3	
+# ::edge	computer	ARG1-of	possible-01	c	p	
+# ::edge	sit-01	ARG1	computer	s2	c	
+# ::edge	possible-01	ARG1	sit-01	p	s2	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	television	n	t	
+# ::edge	or	op2	possible-01	o	p	
+# ::edge	or	op1	show-01	o	s	
+(o / or
+    :op1 (s / show-01
+        :ARG0 (t / television)
+        :ARG1 (w / walk-01
+            :ARG0 (m / man)
+            :ARG2 (h / hall)
+            :direction (d / down)))
+    :op2 (p / possible-01
+        :ARG1 (s2 / sit-01
+            :ARG1 (c / computer
+                :ARG1-of p
+                :mod (s3 / small))
+            :ARG2 (n / next-to
+                :op1 t))))

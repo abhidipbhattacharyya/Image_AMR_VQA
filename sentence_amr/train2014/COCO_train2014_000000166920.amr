@@ -1,0 +1,40 @@
+# ::tok A train station with a train pulled up the the passenger platform area and several people on the walkway .
+# ::node	t	train	1-2
+# ::node	s2	station	2-3
+# ::node	t2	train	5-6
+# ::node	p4	pull-01	6-7
+# ::node	u	up	7-8
+# ::node	p	passenger	10-11
+# ::node	p3	platform	11-12
+# ::node	a2	area	12-13
+# ::node	a	and	13-14
+# ::node	s	several	14-15
+# ::node	p2	person	15-16
+# ::node	b	be-located-at-91	16-17
+# ::node	w	walkway	18-19
+# ::root	a	and
+# ::edge	station	mod	train	s2	t	
+# ::edge	station	part	train	s2	t2	
+# ::edge	pull-01	ARG1	station	p4	s2	
+# ::edge	pull-01	direction	up	p4	u	
+# ::edge	platform	mod	passenger	p3	p	
+# ::edge	area	location-of	platform	a2	p3	
+# ::edge	pull-01	ARG2	area	p4	a2	
+# ::edge	and	op1	pull-01	a	p4	
+# ::edge	person	quant	several	p2	s	
+# ::edge	be-located-at-91	ARG1	person	b	p2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	walkway	b	w	
+(a / and
+    :op1 (p4 / pull-01
+        :ARG1 (s2 / station
+            :mod (t / train)
+            :part (t2 / train))
+        :ARG2 (a2 / area
+            :location-of (p3 / platform
+                :mod (p / passenger)))
+        :direction (u / up))
+    :op2 (b / be-located-at-91
+        :ARG1 (p2 / person
+            :quant (s / several))
+        :ARG2 (w / walkway)))

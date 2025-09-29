@@ -1,0 +1,37 @@
+# ::tok Food is on the counter including a glass of water , rice , vegetables , and more
+# ::node	f	food	0-1
+# ::node	b	be-located-at-91	2-3
+# ::node	c	counter	4-5
+# ::node	i	include-01	5-6
+# ::node	v2	volume-quantity	6-7
+# ::node	0	1	6-7
+# ::node	g	glass	7-8
+# ::node	w	water	9-10
+# ::node	a	and	10-11
+# ::node	r	rice	11-12
+# ::node	v	vegetable	13-14
+# ::node	m	more	16-17
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	food	b	f	
+# ::edge	be-located-at-91	ARG2	counter	b	c	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	volume-quantity	unit	glass	v2	g	
+# ::edge	water	quant	volume-quantity	w	v2	
+# ::edge	and	op1	water	a	w	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	rice	a	r	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	and	op4	more	a	m	
+(b / be-located-at-91
+    :ARG1 (f / food
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (w / water
+                    :quant (v2 / volume-quantity
+                        :quant 1
+                        :unit (g / glass)))
+                :op2 (r / rice)
+                :op3 (v / vegetable)
+                :op4 (m / more))))
+    :ARG2 (c / counter))

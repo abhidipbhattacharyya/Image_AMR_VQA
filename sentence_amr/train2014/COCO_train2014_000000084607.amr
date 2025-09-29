@@ -1,0 +1,46 @@
+# ::tok A pizza and two open takeout boxes containing chicken wings and appetizers sit on a table .
+# ::node	p	pizza	1-2
+# ::node	a	and	2-3
+# ::node	0	2	3-4
+# ::node	o	open-01	4-5
+# ::node	t2	take-out-11	5-6
+# ::node	b	box	6-7
+# ::node	c2	contain-01	7-8
+# ::node	c	chicken	8-9
+# ::node	w	wing	9-10
+# ::node	a2	and	10-11
+# ::node	e	event	11-12
+# ::node	n	name	11-12
+# ::node	1	diplomat	11-12
+# ::node	s	sit-01	12-13
+# ::node	t	table	15-16
+# ::root	s	sit-01
+# ::edge	and	op1	pizza	a	p	
+# ::edge	box	mod	take-out-11	b	t2	
+# ::edge	box	ARG1-of	open-01	b	o	
+# ::edge	box	quant	2	b	0	
+# ::edge	and	op2	box	a	b	
+# ::edge	box	ARG0-of	contain-01	b	c2	
+# ::edge	wing	mod	chicken	w	c	
+# ::edge	and	op1	wing	a2	w	
+# ::edge	contain-01	ARG1	and	c2	a2	
+# ::edge	and	op2	event	a2	e	
+# ::edge	event	name	name	e	n	
+# ::edge	name	op1	diplomat	n	1	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (p / pizza)
+        :op2 (b / box
+            :quant 2
+            :ARG0-of (c2 / contain-01
+                :ARG1 (a2 / and
+                    :op1 (w / wing
+                        :mod (c / chicken))
+                    :op2 (e / event
+                        :name (n / name
+                            :op1 "diplomat"))))
+            :ARG1-of (o / open-01)
+            :mod (t2 / take-out-11)))
+    :ARG2 (t / table))

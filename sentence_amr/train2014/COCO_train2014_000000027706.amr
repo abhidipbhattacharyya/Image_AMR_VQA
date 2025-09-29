@@ -1,0 +1,43 @@
+# ::tok A Siamese cat with a red collar and tag next to a Mac Book Pro .
+# ::node	b	breed	1-2
+# ::node	n	name	1-2
+# ::node	3	Siamese	1-2
+# ::node	c	cat	2-3
+# ::node	r	red-02	5-6
+# ::node	c2	collar	6-7
+# ::node	a	and	7-8
+# ::node	t	tag	8-9
+# ::node	n3	next-to	9-10
+# ::node	p	product	12-13
+# ::node	n2	name	12-13
+# ::node	1	Mac	12-13
+# ::node	0	Book	13-14
+# ::node	2	Pro	14-15
+# ::root	c	cat
+# ::edge	breed	name	name	b	n	
+# ::edge	name	op1	Siamese	n	3	
+# ::edge	cat	mod	breed	c	b	
+# ::edge	collar	ARG1-of	red-02	c2	r	
+# ::edge	and	op1	collar	a	c2	
+# ::edge	cat	part	and	c	a	
+# ::edge	and	op2	tag	a	t	
+# ::edge	cat	location	next-to	c	n3	
+# ::edge	next-to	op1	product	n3	p	
+# ::edge	product	name	name	p	n2	
+# ::edge	name	op1	Mac	n2	1	
+# ::edge	name	op2	Book	n2	0	
+# ::edge	name	op3	Pro	n2	2	
+(c / cat
+    :location (n3 / next-to
+        :op1 (p / product
+            :name (n2 / name
+                :op1 "Mac"
+                :op2 "Book"
+                :op3 "Pro")))
+    :mod (b / breed
+        :name (n / name
+            :op1 "Siamese"))
+    :part (a / and
+        :op1 (c2 / collar
+            :ARG1-of (r / red-02))
+        :op2 (t / tag)))

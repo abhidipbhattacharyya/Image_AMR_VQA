@@ -1,0 +1,34 @@
+# ::tok A star bucks cup sits in the middle of empty bleachers in a gym .
+# ::node	p	person	1-2
+# ::node	n	name	1-2
+# ::node	0	Star	1-2
+# ::node	1	dollar	2-3
+# ::node	c	cup	3-4
+# ::node	s	sit-01	4-5
+# ::node	m	middle	7-8
+# ::node	e	empty-02	9-10
+# ::node	f	field	10-11
+# ::node	b	bleach-01	10-11
+# ::node	g	gym	13-14
+# ::root	s	sit-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Star	n	0	
+# ::edge	name	op2	dollar	n	1	
+# ::edge	cup	mod	person	c	p	
+# ::edge	sit-01	ARG1	cup	s	c	
+# ::edge	sit-01	ARG2	middle	s	m	
+# ::edge	field	ARG1-of	empty-02	f	e	
+# ::edge	middle	part-of	field	m	f	
+# ::edge	field	ARG0-of	bleach-01	f	b	
+# ::edge	field	location	gym	f	g	
+(s / sit-01
+    :ARG1 (c / cup
+        :mod (p / person
+            :name (n / name
+                :op1 "Star"
+                :op2 "dollar")))
+    :ARG2 (m / middle
+        :part-of (f / field
+            :ARG0-of (b / bleach-01)
+            :ARG1-of (e / empty-02)
+            :location (g / gym))))

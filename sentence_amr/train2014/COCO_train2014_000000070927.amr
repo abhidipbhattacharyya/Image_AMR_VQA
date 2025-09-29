@@ -1,0 +1,28 @@
+# ::tok A herd of giraffes and two zebras are grazing in a field near a fence .
+# ::node	h	herd	1-2
+# ::node	g	giraffe	3-4
+# ::node	a	and	4-5
+# ::node	0	2	5-6
+# ::node	g2	giraffe	6-7
+# ::node	g3	graze-01	8-9
+# ::node	f2	field	11-12
+# ::node	n	near-02	12-13
+# ::node	f	fence	14-15
+# ::root	g3	graze-01
+# ::edge	herd	consist-of	giraffe	h	g	
+# ::edge	and	op1	herd	a	h	
+# ::edge	giraffe	quant	2	g2	0	
+# ::edge	and	op2	giraffe	a	g2	
+# ::edge	graze-01	ARG0	and	g3	a	
+# ::edge	graze-01	ARG1	field	g3	f2	
+# ::edge	field	ARG1-of	near-02	f2	n	
+# ::edge	near-02	ARG2	fence	n	f	
+(g3 / graze-01
+    :ARG0 (a / and
+        :op1 (h / herd
+            :consist-of (g / giraffe))
+        :op2 (g2 / giraffe
+            :quant 2))
+    :ARG1 (f2 / field
+        :ARG1-of (n / near-02
+            :ARG2 (f / fence))))

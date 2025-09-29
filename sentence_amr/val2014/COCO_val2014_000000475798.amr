@@ -1,0 +1,24 @@
+# ::tok An airplane parked next to a terminal ready for passengers to board .
+# ::node	a	airplane	1-2
+# ::node	p	park-01	2-3
+# ::node	n	next-to	3-4
+# ::node	t	terminal	6-7
+# ::node	r	ready-02	7-8
+# ::node	p2	passenger	9-10
+# ::node	b	board-01	11-12
+# ::root	p	park-01
+# ::edge	park-01	ARG1	airplane	p	a	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	terminal	n	t	
+# ::edge	airplane	ARG1-of	ready-02	a	r	
+# ::edge	board-01	ARG0	passenger	b	p2	
+# ::edge	ready-02	ARG2	board-01	r	b	
+# ::edge	board-01	ARG1	airplane	b	a	
+(p / park-01
+    :ARG1 (a / airplane
+        :ARG1-of (r / ready-02
+            :ARG2 (b / board-01
+                :ARG0 (p2 / passenger)
+                :ARG1 a)))
+    :ARG2 (n / next-to
+        :op1 (t / terminal)))

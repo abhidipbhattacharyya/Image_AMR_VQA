@@ -1,0 +1,48 @@
+# ::tok A glass desk with labels placed beside a cordless mouse , an mp3 player , a keyboard , and a webcam .
+# ::node	g	glass	1-2
+# ::node	d	desk	2-3
+# ::node	l	label	4-5
+# ::node	p	place-01	5-6
+# ::node	b	beside	6-7
+# ::node	c	cord	8-9
+# ::node	m	mouse	9-10
+# ::node	d2	disc	12-13
+# ::node	b2	blu-ray	12-13
+# ::node	v	versatile	12-13
+# ::node	t	thing	13-14
+# ::node	p2	play-11	13-14
+# ::node	k	keyboard	16-17
+# ::node	a	and	18-19
+# ::node	w	webcam	20-21
+# ::root	p	place-01
+# ::edge	desk	consist-of	glass	d	g	
+# ::edge	desk	consist-of	label	d	l	
+# ::edge	place-01	ARG1	desk	p	d	
+# ::edge	place-01	ARG2	beside	p	b	
+# ::edge	mouse	mod	cord	m	c	
+# ::edge	disc	mod	blu-ray	d2	b2	
+# ::edge	disc	mod	versatile	d2	v	
+# ::edge	thing	ARG2-of	play-11	t	p2	
+# ::edge	play-11	ARG3	disc	p2	d2	
+# ::edge	and	op4	keyboard	a	k	
+# ::edge	and	op3	thing	a	t	
+# ::edge	and	op2	mouse	a	m	
+# ::edge	and	op1	mouse	a	m	
+# ::edge	beside	op1	and	b	a	
+# ::edge	and	op5	webcam	a	w	
+(p / place-01
+    :ARG1 (d / desk
+        :consist-of (g / glass)
+        :consist-of (l / label))
+    :ARG2 (b / beside
+        :op1 (a / and
+            :op1 (m / mouse
+                :mod (c / cord))
+            :op2 m
+            :op3 (t / thing
+                :ARG2-of (p2 / play-11
+                    :ARG3 (d2 / disc
+                        :mod (b2 / blu-ray)
+                        :mod (v / versatile))))
+            :op4 (k / keyboard)
+            :op5 (w / webcam))))

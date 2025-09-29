@@ -1,0 +1,40 @@
+# ::tok A road with two vehicles out in the middle of nowhere with animals climbing up a hill on the left .
+# ::node	r2	road	1-2
+# ::node	0	2	3-4
+# ::node	v	vehicle	4-5
+# ::node	o	out	5-6
+# ::node	m	middle	8-9
+# ::node	r	relative-position	9-10
+# ::node	n	nowhere	10-11
+# ::node	a	and	11-12
+# ::node	a2	animal	12-13
+# ::node	c	climb-01	13-14
+# ::node	u	up	14-15
+# ::node	h	hill	16-17
+# ::node	l	left-20	19-20
+# ::root	r2	road
+# ::edge	vehicle	quant	2	v	0	
+# ::edge	relative-position	direction	middle	r	m	
+# ::edge	relative-position	direction	out	r	o	
+# ::edge	vehicle	location	relative-position	v	r	
+# ::edge	relative-position	op1	nowhere	r	n	
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	road	location-of	and	r2	a	
+# ::edge	climb-01	ARG0	animal	c	a2	
+# ::edge	and	op2	climb-01	a	c	
+# ::edge	climb-01	direction	up	c	u	
+# ::edge	climb-01	ARG1	hill	c	h	
+# ::edge	hill	ARG1-of	left-20	h	l	
+(r2 / road
+    :location-of (a / and
+        :op1 (v / vehicle
+            :quant 2
+            :location (r / relative-position
+                :direction (m / middle)
+                :direction (o / out)
+                :op1 (n / nowhere)))
+        :op2 (c / climb-01
+            :ARG0 (a2 / animal)
+            :ARG1 (h / hill
+                :ARG1-of (l / left-20))
+            :direction (u / up))))

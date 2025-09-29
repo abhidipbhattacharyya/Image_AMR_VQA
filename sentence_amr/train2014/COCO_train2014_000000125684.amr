@@ -1,0 +1,31 @@
+# ::tok A red traffic light next to a stop sign with a double arrow sign also .
+# ::node	r	red-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	n	next-to	4-5
+# ::node	s3	stop-01	7-8
+# ::node	s2	signal-07	8-9
+# ::node	d	double	11-12
+# ::node	a2	arrow	12-13
+# ::node	s	sign	13-14
+# ::node	a	also	14-15
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	light	location	next-to	l	n	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	next-to	op1	signal-07	n	s2	
+# ::edge	arrow	mod	double	a2	d	
+# ::edge	sign	mod	arrow	s	a2	
+# ::edge	light	op2	sign	l	s	
+# ::edge	sign	mod	also	s	a	
+(l / light
+    :ARG1-of (r / red-02)
+    :location (n / next-to
+        :op1 (s2 / signal-07
+            :ARG1 (s3 / stop-01)))
+    :mod (t / traffic)
+    :op2 (s / sign
+        :mod (a2 / arrow
+            :mod (d / double))
+        :mod (a / also)))

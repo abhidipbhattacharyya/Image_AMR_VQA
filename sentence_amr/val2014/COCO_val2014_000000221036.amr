@@ -1,0 +1,38 @@
+# ::tok A batter has just hit the ball but has not dropped the bat yet to run .
+# ::node	p	person	1-2
+# ::node	b3	batter-01	1-2
+# ::node	j	just	3-4
+# ::node	h2	hit-01	4-5
+# ::node	b	ball	6-7
+# ::node	h	have-concession-91	7-8
+# ::node	0	-	9-10
+# ::node	d	drop-01	10-11
+# ::node	b2	bat	12-13
+# ::node	y	yet	13-14
+# ::node	r	run-02	15-16
+# ::root	h	have-concession-91
+# ::edge	person	ARG2-of	batter-01	p	b3	
+# ::edge	hit-01	mod	just	h2	j	
+# ::edge	hit-01	ARG0	person	h2	p	
+# ::edge	hit-01	ARG1	ball	h2	b	
+# ::edge	have-concession-91	ARG2	hit-01	h	h2	
+# ::edge	drop-01	polarity	-	d	0	
+# ::edge	have-concession-91	ARG1	drop-01	h	d	
+# ::edge	drop-01	ARG0	person	d	p	
+# ::edge	drop-01	ARG1	bat	d	b2	
+# ::edge	drop-01	time	yet	d	y	
+# ::edge	drop-01	purpose	run-02	d	r	
+# ::edge	run-02	ARG0	person	r	p	
+(h / have-concession-91
+    :ARG1 (d / drop-01
+        :purpose (r / run-02
+            :ARG0 (p / person
+                :ARG2-of (b3 / batter-01)))
+        :ARG0 p
+        :ARG1 (b2 / bat)
+        :polarity -
+        :time (y / yet))
+    :ARG2 (h2 / hit-01
+        :ARG0 p
+        :ARG1 (b / ball)
+        :mod (j / just)))

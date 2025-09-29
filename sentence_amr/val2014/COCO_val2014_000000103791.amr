@@ -1,0 +1,30 @@
+# ::tok A truck drives down a street with lots of houses on a hill behind it .
+# ::node	t	truck	1-2
+# ::node	d2	drive-01	2-3
+# ::node	d	down	3-4
+# ::node	s	street	5-6
+# ::node	h	have-03	6-7
+# ::node	l	lot	7-8
+# ::node	h3	house	9-10
+# ::node	h2	hill	12-13
+# ::node	b	behind	13-14
+# ::root	d2	drive-01
+# ::edge	drive-01	ARG0	truck	d2	t	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	house	quant	lot	h3	l	
+# ::edge	have-03	ARG1	house	h	h3	
+# ::edge	house	location	hill	h3	h2	
+# ::edge	hill	location	behind	h2	b	
+# ::edge	behind	op1	truck	b	t	
+(d2 / drive-01
+    :ARG0 (t / truck)
+    :ARG1 (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (h3 / house
+                :quant (l / lot)
+                :location (h2 / hill
+                    :location (b / behind
+                        :op1 t)))))
+    :direction (d / down))

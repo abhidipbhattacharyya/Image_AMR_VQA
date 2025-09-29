@@ -1,0 +1,27 @@
+# ::tok Big trucks are needed to haul construction equipment to the work site .
+# ::node	b	big	0-1
+# ::node	t	truck	1-2
+# ::node	n	need-01	3-4
+# ::node	h	haul-01	5-6
+# ::node	c	construct-01	6-7
+# ::node	e	equipment	7-8
+# ::node	w	work-01	10-11
+# ::node	s	site	11-12
+# ::root	n	need-01
+# ::edge	truck	mod	big	t	b	
+# ::edge	need-01	ARG1	truck	n	t	
+# ::edge	need-01	purpose	haul-01	n	h	
+# ::edge	haul-01	ARG0	truck	h	t	
+# ::edge	equipment	mod	construct-01	e	c	
+# ::edge	haul-01	ARG1	equipment	h	e	
+# ::edge	site	location-of	work-01	s	w	
+# ::edge	haul-01	ARG3	site	h	s	
+(n / need-01
+    :purpose (h / haul-01
+        :ARG0 (t / truck
+            :mod (b / big))
+        :ARG1 (e / equipment
+            :mod (c / construct-01))
+        :ARG3 (s / site
+            :location-of (w / work-01)))
+    :ARG1 t)

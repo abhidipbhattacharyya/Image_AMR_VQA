@@ -1,0 +1,28 @@
+# ::tok A store filled with lots of fresh produce piled on top of each other .
+# ::node	s	store	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	f2	fresh-04	6-7
+# ::node	p2	produce	7-8
+# ::node	p	pile-01	8-9
+# ::node	t	top	10-11
+# ::node	e	each	12-13
+# ::node	o	other	13-14
+# ::root	s	store
+# ::edge	store	ARG1-of	fill-01	s	f	
+# ::edge	produce	ARG1-of	fresh-04	p2	f2	
+# ::edge	produce	quant	lot	p2	l	
+# ::edge	pile-01	ARG1	produce	p	p2	
+# ::edge	fill-01	ARG2	pile-01	f	p	
+# ::edge	pile-01	ARG2	top	p	t	
+# ::edge	other	mod	each	o	e	
+# ::edge	top	op1	other	t	o	
+(s / store
+    :ARG1-of (f / fill-01
+        :ARG2 (p / pile-01
+            :ARG1 (p2 / produce
+                :quant (l / lot)
+                :ARG1-of (f2 / fresh-04))
+            :ARG2 (t / top
+                :op1 (o / other
+                    :mod (e / each))))))

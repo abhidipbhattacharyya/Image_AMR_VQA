@@ -1,0 +1,43 @@
+# ::tok A row of clean - looking , non - operational toilets with their lids down next to several lidless ones .
+# ::node	r	row	1-2
+# ::node	c	clean-04	3-4
+# ::node	l2	look-02	5-6
+# ::node	0	-	7-8
+# ::node	o	operate-01	9-10
+# ::node	t	toilet	10-11
+# ::node	t2	toilet	10-11
+# ::node	l	lip	13-14
+# ::node	d	down-03	14-15
+# ::node	n	next-to	15-16
+# ::node	s	several	17-18
+# ::node	c2	close-01	18-19
+# ::node	1	-	18-19
+# ::node	e	event	20-21
+# ::root	e	event
+# ::edge	look-02	ARG1	clean-04	l2	c	
+# ::edge	operate-01	polarity	-	o	0	
+# ::edge	toilet	ARG1-of	operate-01	t	o	
+# ::edge	toilet	ARG0-of	look-02	t	l2	
+# ::edge	row	consist-of	toilet	r	t	
+# ::edge	toilet	part	lip	t	l	
+# ::edge	lip	ARG1-of	down-03	l	d	
+# ::edge	next-to	op1	toilet	n	t2	
+# ::edge	row	location	next-to	r	n	
+# ::edge	toilet	quant	several	t2	s	
+# ::edge	toilet	ARG1-of	close-01	t2	c2	
+# ::edge	close-01	polarity	-	c2	1	
+# ::edge	event	mod	row	e	r	
+(e / event
+    :mod (r / row
+        :consist-of (t / toilet
+            :ARG0-of (l2 / look-02
+                :ARG1 (c / clean-04))
+            :ARG1-of (o / operate-01
+                :polarity -)
+            :part (l / lip
+                :ARG1-of (d / down-03)))
+        :location (n / next-to
+            :op1 (t2 / toilet
+                :quant (s / several)
+                :ARG1-of (c2 / close-01
+                    :polarity -)))))

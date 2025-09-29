@@ -1,0 +1,27 @@
+# ::tok A man pointing in the opposite direction of the one way sign above him .
+# ::node	m	man	1-2
+# ::node	p	point-01	2-3
+# ::node	o	opposite-01	5-6
+# ::node	d	direction	6-7
+# ::node	0	1	9-10
+# ::node	w	way	10-11
+# ::node	s	sign	11-12
+# ::node	a	above	12-13
+# ::root	p	point-01
+# ::edge	point-01	ARG0	man	p	m	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	point-01	ARG2	direction	p	d	
+# ::edge	way	quant	1	w	0	
+# ::edge	sign	mod	way	s	w	
+# ::edge	opposite-01	ARG3	sign	o	s	
+# ::edge	sign	location	above	s	a	
+# ::edge	above	op1	man	a	m	
+(p / point-01
+    :ARG0 (m / man)
+    :ARG2 (d / direction
+        :ARG1-of (o / opposite-01
+            :ARG3 (s / sign
+                :location (a / above
+                    :op1 m)
+                :mod (w / way
+                    :quant 1)))))

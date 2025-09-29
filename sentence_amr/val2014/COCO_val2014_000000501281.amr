@@ -1,0 +1,33 @@
+# ::tok Tennis players walking on a street with a crowd behind an event barricade .
+# ::node	m	multi-sentence	0-1
+# ::node	e	Tennis	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	w	walk-01	2-3
+# ::node	s	street	5-6
+# ::node	c	crowd	8-9
+# ::node	b2	behind	9-10
+# ::node	e2	event	11-12
+# ::node	b	barricade	12-13
+# ::root	w	walk-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	Tennis	p2	e	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	multi-sentence	snt1	walk-01	m	w	
+# ::edge	walk-01	ARG2	street	w	s	
+# ::edge	walk-01	accompanier	crowd	w	c	
+# ::edge	crowd	location	behind	c	b2	
+# ::edge	barricade	mod	event	b	e2	
+# ::edge	behind	op1	barricade	b2	b	
+# ::edge	walk-01	rel	multi-sentence	w	m	
+(w / walk-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (e / Tennis)))
+    :ARG2 (s / street)
+    :accompanier (c / crowd
+        :location (b2 / behind
+            :op1 (b / barricade
+                :mod (e2 / event))))
+    :rel (m / multi-sentence
+        :snt1 w))

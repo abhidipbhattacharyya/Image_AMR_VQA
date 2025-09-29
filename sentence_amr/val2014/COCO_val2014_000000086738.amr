@@ -1,0 +1,28 @@
+# ::tok A catcher is returning the ball to the pitcher while the batter waits .
+# ::node	p	person	1-2
+# ::node	c	catch-01	1-2
+# ::node	r	return-02	3-4
+# ::node	b	ball	5-6
+# ::node	p2	person	8-9
+# ::node	t	throw-01	8-9
+# ::node	p3	person	11-12
+# ::node	b2	batter-01	11-12
+# ::node	w	wait-01	12-13
+# ::root	r	return-02
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	return-02	ARG0	person	r	p	
+# ::edge	return-02	ARG1	ball	r	b	
+# ::edge	return-02	ARG2	person	r	p2	
+# ::edge	person	ARG0-of	throw-01	p2	t	
+# ::edge	person	ARG0-of	batter-01	p3	b2	
+# ::edge	wait-01	ARG1	person	w	p3	
+# ::edge	return-02	time	wait-01	r	w	
+(r / return-02
+    :ARG0 (p / person
+        :ARG0-of (c / catch-01))
+    :ARG1 (b / ball)
+    :ARG2 (p2 / person
+        :ARG0-of (t / throw-01))
+    :time (w / wait-01
+        :ARG1 (p3 / person
+            :ARG0-of (b2 / batter-01))))

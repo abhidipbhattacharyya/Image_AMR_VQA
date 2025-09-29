@@ -1,0 +1,30 @@
+# ::tok A pair of scissors , a crochet hook and a sewing needle are ready to craft .
+# ::node	p	pair	1-2
+# ::node	s	scissors	3-4
+# ::node	c2	crochet	6-7
+# ::node	h	hook	7-8
+# ::node	a	and	8-9
+# ::node	w	weave-01	10-11
+# ::node	n	needle	11-12
+# ::node	r	ready-02	13-14
+# ::node	c	craft-01	15-16
+# ::root	r	ready-02
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	hook	mod	crochet	h	c2	
+# ::edge	and	op2	hook	a	h	
+# ::edge	and	op1	scissors	a	s	
+# ::edge	needle	purpose	weave-01	n	w	
+# ::edge	and	op3	needle	a	n	
+# ::edge	ready-02	ARG1	and	r	a	
+# ::edge	ready-02	ARG2	craft-01	r	c	
+# ::edge	craft-01	ARG0	and	c	a	
+(r / ready-02
+    :ARG1 (a / and
+        :op1 (s / scissors
+            :quant (p / pair))
+        :op2 (h / hook
+            :mod (c2 / crochet))
+        :op3 (n / needle
+            :purpose (w / weave-01)))
+    :ARG2 (c / craft-01
+        :ARG0 a))

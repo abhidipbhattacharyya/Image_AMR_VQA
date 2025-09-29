@@ -1,0 +1,35 @@
+# ::tok A tennis player straining to hit a tennis ball while line judges watch .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	strain-01	3-4
+# ::node	h	hit-01	5-6
+# ::node	b	ball	8-9
+# ::node	l	line	10-11
+# ::node	p2	person	11-12
+# ::node	j	judge-01	11-12
+# ::node	w	watch-01	12-13
+# ::root	s	strain-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	strain-01	ARG0	person	s	p	
+# ::edge	strain-01	ARG1	hit-01	s	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	person	mod	line	p2	l	
+# ::edge	person	ARG0-of	judge-01	p2	j	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	strain-01	time	watch-01	s	w	
+(s / strain-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (t / tennis)))
+    :ARG1 (h / hit-01
+        :ARG0 p
+        :ARG1 (b / ball
+            :mod t))
+    :time (w / watch-01
+        :ARG0 (p2 / person
+            :ARG0-of (j / judge-01)
+            :mod (l / line))))

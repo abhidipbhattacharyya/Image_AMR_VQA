@@ -1,0 +1,46 @@
+# ::tok A modern kitchen with stainless steel fridge , wooden cabinets , and overhead lighting is separated from the dining room by a bar .
+# ::node	m	modern-02	1-2
+# ::node	k	kitchen	2-3
+# ::node	h	have-03	3-4
+# ::node	s2	stainless	4-5
+# ::node	s3	steel	5-6
+# ::node	f	fridge	6-7
+# ::node	w	wood	8-9
+# ::node	c	cabinet	9-10
+# ::node	a	and	11-12
+# ::node	o	overhead	12-13
+# ::node	l	lighting	13-14
+# ::node	s	separate-01	15-16
+# ::node	d	dine-01	18-19
+# ::node	r	room	19-20
+# ::node	b	bar	22-23
+# ::root	s	separate-01
+# ::edge	kitchen	ARG1-of	modern-02	k	m	
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	steel	mod	stainless	s3	s2	
+# ::edge	fridge	mod	steel	f	s3	
+# ::edge	cabinet	mod	wood	c	w	
+# ::edge	and	op2	cabinet	a	c	
+# ::edge	and	op1	fridge	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	lighting	location	overhead	l	o	
+# ::edge	and	op3	lighting	a	l	
+# ::edge	separate-01	ARG1	kitchen	s	k	
+# ::edge	room	mod	dine-01	r	d	
+# ::edge	separate-01	ARG2	room	s	r	
+# ::edge	separate-01	ARG0	bar	s	b	
+(s / separate-01
+    :ARG0 (b / bar)
+    :ARG1 (k / kitchen
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (f / fridge
+                    :mod (s3 / steel
+                        :mod (s2 / stainless)))
+                :op2 (c / cabinet
+                    :mod (w / wood))
+                :op3 (l / lighting
+                    :location (o / overhead))))
+        :ARG1-of (m / modern-02))
+    :ARG2 (r / room
+        :mod (d / dine-01)))

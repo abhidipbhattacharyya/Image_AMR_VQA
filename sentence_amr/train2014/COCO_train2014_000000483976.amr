@@ -1,0 +1,27 @@
+# ::tok Several people waiting to get on the train at a public transportation area .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	wait-01	2-3
+# ::node	g	get-05	4-5
+# ::node	t	train	7-8
+# ::node	p2	public-02	10-11
+# ::node	t2	transport-01	11-12
+# ::node	a	area	12-13
+# ::root	w	wait-01
+# ::edge	person	quant	several	p	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG2	train	g	t	
+# ::edge	area	location-of	transport-01	a	t2	
+# ::edge	area	ARG1-of	public-02	a	p2	
+# ::edge	get-05	location	area	g	a	
+(w / wait-01
+    :ARG1 (p / person
+        :quant (s / several))
+    :ARG2 (g / get-05
+        :ARG1 p
+        :ARG2 (t / train)
+        :location (a / area
+            :ARG1-of (p2 / public-02)
+            :location-of (t2 / transport-01))))

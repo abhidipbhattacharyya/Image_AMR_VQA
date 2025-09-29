@@ -1,0 +1,32 @@
+# ::tok A tennis player serves the tennis ball as he jumps up from the baseline of the court .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	serve-02	3-4
+# ::node	b	ball	6-7
+# ::node	j	jump-03	9-10
+# ::node	u	up	10-11
+# ::node	b2	baseline	13-14
+# ::node	c	court	16-17
+# ::root	s	serve-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	serve-02	time	jump-03	s	j	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	jump-03	direction	up	j	u	
+# ::edge	jump-03	source	baseline	j	b2	
+# ::edge	baseline	part-of	court	b2	c	
+(s / serve-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis)))
+    :ARG1 (b / ball
+        :mod t)
+    :time (j / jump-03
+        :ARG0 p
+        :direction (u / up)
+        :source (b2 / baseline
+            :part-of (c / court))))

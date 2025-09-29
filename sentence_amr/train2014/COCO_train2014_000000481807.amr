@@ -1,0 +1,35 @@
+# ::tok A man is swinging a bat as a man squats to catch the ball while the crowd watches behind them .
+# ::node	m	man	1-2
+# ::node	s2	swing-02	3-4
+# ::node	b2	bat	5-6
+# ::node	m2	man	8-9
+# ::node	s	squat-01	9-10
+# ::node	c	catch-01	11-12
+# ::node	b	ball	13-14
+# ::node	c2	crowd	16-17
+# ::node	w	watch-01	17-18
+# ::node	b3	behind	18-19
+# ::root	s2	swing-02
+# ::edge	swing-02	ARG0	man	s2	m	
+# ::edge	swing-02	ARG1	bat	s2	b2	
+# ::edge	squat-01	ARG1	man	s	m2	
+# ::edge	swing-02	time	squat-01	s2	s	
+# ::edge	squat-01	purpose	catch-01	s	c	
+# ::edge	catch-01	ARG0	man	c	m2	
+# ::edge	catch-01	ARG1	ball	c	b	
+# ::edge	watch-01	ARG0	crowd	w	c2	
+# ::edge	swing-02	time	watch-01	s2	w	
+# ::edge	watch-01	location	behind	w	b3	
+# ::edge	behind	op1	man	b3	m2	
+(s2 / swing-02
+    :ARG0 (m / man)
+    :ARG1 (b2 / bat)
+    :time (s / squat-01
+        :purpose (c / catch-01
+            :ARG0 (m2 / man)
+            :ARG1 (b / ball))
+        :ARG1 m2)
+    :time (w / watch-01
+        :ARG0 (c2 / crowd)
+        :location (b3 / behind
+            :op1 m2)))

@@ -1,0 +1,41 @@
+# ::tok A brick wall and window that has a clock with military style time numbers on the clock face .
+# ::node	b	brick	1-2
+# ::node	w	wall	2-3
+# ::node	a	and	3-4
+# ::node	w2	window	4-5
+# ::node	h	have-03	6-7
+# ::node	c	clock	8-9
+# ::node	h2	have-03	9-10
+# ::node	m	military	10-11
+# ::node	s	style	11-12
+# ::node	t	time	12-13
+# ::node	n	number	13-14
+# ::node	f	face	17-18
+# ::root	a	and
+# ::edge	wall	consist-of	brick	w	b	
+# ::edge	and	op1	wall	a	w	
+# ::edge	and	op2	window	a	w2	
+# ::edge	window	consist-of	brick	w2	b	
+# ::edge	and	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	clock	h	c	
+# ::edge	clock	ARG0-of	have-03	c	h2	
+# ::edge	style	mod	military	s	m	
+# ::edge	number	mod	time	n	t	
+# ::edge	number	mod	style	n	s	
+# ::edge	have-03	ARG1	number	h2	n	
+# ::edge	number	location	face	n	f	
+# ::edge	clock	part	face	c	f	
+(a / and
+    :ARG0-of (h / have-03
+        :ARG1 (c / clock
+            :ARG0-of (h2 / have-03
+                :ARG1 (n / number
+                    :location (f / face)
+                    :mod (t / time)
+                    :mod (s / style
+                        :mod (m / military))))
+            :part f))
+    :op1 (w / wall
+        :consist-of (b / brick))
+    :op2 (w2 / window
+        :consist-of b))

@@ -1,0 +1,34 @@
+# ::tok A cat is looking in the mirror at a front side that does n't look anything like the back side .
+# ::node	c	cat	1-2
+# ::node	l	look-01	3-4
+# ::node	m	mirror	6-7
+# ::node	f	front	9-10
+# ::node	s	side	10-11
+# ::node	0	-	13-14
+# ::node	l2	look-02	14-15
+# ::node	a	anything	15-16
+# ::node	r	resemble-01	16-17
+# ::node	b	back	18-19
+# ::node	s2	side	19-20
+# ::root	l	look-01
+# ::edge	look-01	ARG0	cat	l	c	
+# ::edge	look-01	ARG1	mirror	l	m	
+# ::edge	side	mod	front	s	f	
+# ::edge	look-01	ARG2	side	l	s	
+# ::edge	look-02	polarity	-	l2	0	
+# ::edge	side	ARG0-of	look-02	s	l2	
+# ::edge	look-02	ARG1	anything	l2	a	
+# ::edge	anything	ARG1-of	resemble-01	a	r	
+# ::edge	side	mod	back	s2	b	
+# ::edge	resemble-01	ARG2	side	r	s2	
+(l / look-01
+    :ARG0 (c / cat)
+    :ARG1 (m / mirror)
+    :ARG2 (s / side
+        :ARG0-of (l2 / look-02
+            :ARG1 (a / anything
+                :ARG1-of (r / resemble-01
+                    :ARG2 (s2 / side
+                        :mod (b / back))))
+            :polarity -)
+        :mod (f / front)))

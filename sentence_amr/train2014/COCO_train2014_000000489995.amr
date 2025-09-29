@@ -1,0 +1,46 @@
+# ::tok A fenced in area with a grass field and three zebra together near four green poles .
+# ::node	m	market	1-2
+# ::node	n	name	1-2
+# ::node	2	fence	1-2
+# ::node	a2	area	3-4
+# ::node	h	have-03	4-5
+# ::node	g	grass	6-7
+# ::node	f	field	7-8
+# ::node	a	and	8-9
+# ::node	0	3	9-10
+# ::node	z	zebra	10-11
+# ::node	t	together	11-12
+# ::node	n2	near-02	12-13
+# ::node	1	4	13-14
+# ::node	g2	green-02	14-15
+# ::node	p	pole	15-16
+# ::root	a2	area
+# ::edge	market	name	name	m	n	
+# ::edge	name	op1	fence	n	2	
+# ::edge	area	location-of	market	a2	m	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	and	op1	field	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	zebra	quant	3	z	0	
+# ::edge	and	op2	zebra	a	z	
+# ::edge	and	mod	together	a	t	
+# ::edge	and	ARG1-of	near-02	a	n2	
+# ::edge	pole	ARG1-of	green-02	p	g2	
+# ::edge	pole	quant	4	p	1	
+# ::edge	near-02	ARG2	pole	n2	p	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG1-of (n2 / near-02
+                :ARG2 (p / pole
+                    :quant 4
+                    :ARG1-of (g2 / green-02)))
+            :mod (t / together)
+            :op1 (f / field
+                :consist-of (g / grass))
+            :op2 (z / zebra
+                :quant 3)))
+    :location-of (m / market
+        :name (n / name
+            :op1 "fence")))

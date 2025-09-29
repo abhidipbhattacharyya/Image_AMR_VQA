@@ -1,0 +1,42 @@
+# ::tok A black and red locomotive train parked on the train tracks next to a small building .
+# ::node	b	black-04	1-2
+# ::node	a	and	2-3
+# ::node	r	red-02	3-4
+# ::node	o	operate-01	4-5
+# ::node	l	locomotive	4-5
+# ::node	t2	train	5-6
+# ::node	t3	train	5-6
+# ::node	p	park-01	6-7
+# ::node	t4	train	9-10
+# ::node	t	track	10-11
+# ::node	n	next-to	11-12
+# ::node	s	small	14-15
+# ::node	b2	building	15-16
+# ::root	p	park-01
+# ::edge	operate-01	ARG1	locomotive	o	l	
+# ::edge	train	ARG0-of	operate-01	t2	o	
+# ::edge	and	op1	train	a	t2	
+# ::edge	train	ARG1-of	black-04	t2	b	
+# ::edge	train	ARG0-of	operate-01	t3	o	
+# ::edge	train	ARG1-of	red-02	t3	r	
+# ::edge	and	op2	train	a	t3	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	track	mod	train	t	t4	
+# ::edge	park-01	ARG2	track	p	t	
+# ::edge	park-01	location	next-to	p	n	
+# ::edge	building	mod	small	b2	s	
+# ::edge	next-to	op1	building	n	b2	
+(p / park-01
+    :ARG1 (a / and
+        :op1 (t2 / train
+            :ARG0-of (o / operate-01
+                :ARG1 (l / locomotive))
+            :ARG1-of (b / black-04))
+        :op2 (t3 / train
+            :ARG0-of o
+            :ARG1-of (r / red-02)))
+    :ARG2 (t / track
+        :mod (t4 / train))
+    :location (n / next-to
+        :op1 (b2 / building
+            :mod (s / small))))

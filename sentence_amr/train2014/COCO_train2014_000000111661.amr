@@ -1,0 +1,28 @@
+# ::tok A passenger train at an indoor stop with passengers on both sides of the platform area .
+# ::node	p	passenger	1-2
+# ::node	t	train	2-3
+# ::node	i	indoor	5-6
+# ::node	s2	stop-01	6-7
+# ::node	p2	passenger	8-9
+# ::node	b	both	10-11
+# ::node	s	side	11-12
+# ::node	p3	platform	14-15
+# ::node	a	area	15-16
+# ::root	t	train
+# ::edge	train	mod	passenger	t	p	
+# ::edge	stop-01	location	indoor	s2	i	
+# ::edge	train	location	stop-01	t	s2	
+# ::edge	train	location-of	passenger	t	p2	
+# ::edge	side	mod	both	s	b	
+# ::edge	passenger	location	side	p2	s	
+# ::edge	area	mod	platform	a	p3	
+# ::edge	side	part-of	area	s	a	
+(t / train
+    :location (s2 / stop-01
+        :location (i / indoor))
+    :location-of (p2 / passenger
+        :location (s / side
+            :mod (b / both)
+            :part-of (a / area
+                :mod (p3 / platform))))
+    :mod (p / passenger))

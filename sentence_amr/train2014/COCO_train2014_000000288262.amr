@@ -1,0 +1,25 @@
+# ::tok A stop sign sits at the entrance to a residential area road intersection .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	s2	sit-01	3-4
+# ::node	e	entrance	6-7
+# ::node	r	residential	9-10
+# ::node	a	area	10-11
+# ::node	r2	road	11-12
+# ::node	i	intersect-01	12-13
+# ::root	s2	sit-01
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	sit-01	ARG1	signal-07	s2	s	
+# ::edge	sit-01	ARG2	entrance	s2	e	
+# ::edge	area	mod	residential	a	r	
+# ::edge	road	mod	area	r2	a	
+# ::edge	intersect-01	ARG1	road	i	r2	
+# ::edge	entrance	location-of	intersect-01	e	i	
+(s2 / sit-01
+    :ARG1 (s / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG2 (e / entrance
+        :location-of (i / intersect-01
+            :ARG1 (r2 / road
+                :mod (a / area
+                    :mod (r / residential))))))

@@ -1,0 +1,33 @@
+# ::tok Dog on motorcycle in roadway with adult and other dog nearby .
+# ::node	d	dog	0-1
+# ::node	m	motorcycle	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	r	roadway	4-5
+# ::node	a	adult	6-7
+# ::node	a2	and	7-8
+# ::node	o	other	8-9
+# ::node	d2	dog	9-10
+# ::node	n	nearby	10-11
+# ::node	c	cause-01	11-12
+# ::root	c	cause-01
+# ::edge	be-located-at-91	ARG2	motorcycle	b	m	
+# ::edge	be-located-at-91	ARG1	dog	b	d	
+# ::edge	be-located-at-91	ARG2	roadway	b	r	
+# ::edge	and	op1	dog	a2	d	
+# ::edge	dog	mod	other	d2	o	
+# ::edge	and	op2	dog	a2	d2	
+# ::edge	nearby	location-of	and	n	a2	
+# ::edge	cause-01	location	nearby	c	n	
+# ::edge	cause-01	ARG1	be-located-at-91	c	b	
+# ::edge	cause-01	rel	adult	c	a	
+(c / cause-01
+    :ARG1 (b / be-located-at-91
+        :ARG1 (d / dog)
+        :ARG2 (m / motorcycle)
+        :ARG2 (r / roadway))
+    :location (n / nearby
+        :location-of (a2 / and
+            :op1 d
+            :op2 (d2 / dog
+                :mod (o / other))))
+    :rel (a / adult))

@@ -1,0 +1,28 @@
+# ::tok An intersection with traffic lights , no traffic and cones in the street .
+# ::node	i	intersect-01	1-2
+# ::node	t	traffic	3-4
+# ::node	l	light	4-5
+# ::node	0	-	6-7
+# ::node	t2	traffic	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	c	cone	9-10
+# ::node	s	street	12-13
+# ::root	i	intersect-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	traffic	a2	t2	
+# ::edge	and	polarity	-	a2	0	
+# ::edge	and	op2	cone	a2	c	
+# ::edge	and	location	street	a2	s	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (l / light
+            :mod (t / traffic))
+        :op2 (a2 / and
+            :location (s / street)
+            :op1 (t2 / traffic)
+            :op2 (c / cone)
+            :polarity -)))

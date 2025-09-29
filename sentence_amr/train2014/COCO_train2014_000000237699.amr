@@ -1,0 +1,31 @@
+# ::tok Two signs are listed on a pole , parking and no parking .
+# ::node	1	2	0-1
+# ::node	s	sign	1-2
+# ::node	s2	sign	1-2
+# ::node	s3	sign	1-2
+# ::node	l	list-01	3-4
+# ::node	p3	pole	6-7
+# ::node	p	park-01	8-9
+# ::node	a	and	9-10
+# ::node	0	-	10-11
+# ::node	p2	park-01	11-12
+# ::root	l	list-01
+# ::edge	sign	quant	2	s	1	
+# ::edge	list-01	ARG1	sign	l	s	
+# ::edge	list-01	ARG2	pole	l	p3	
+# ::edge	sign	mod	park-01	s2	p	
+# ::edge	and	op2	sign	a	s3	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	sign	topic	and	s	a	
+# ::edge	park-01	polarity	-	p2	0	
+# ::edge	sign	mod	park-01	s3	p2	
+(l / list-01
+    :ARG1 (s / sign
+        :quant 2
+        :topic (a / and
+            :op1 (s2 / sign
+                :mod (p / park-01))
+            :op2 (s3 / sign
+                :mod (p2 / park-01
+                    :polarity -))))
+    :ARG2 (p3 / pole))

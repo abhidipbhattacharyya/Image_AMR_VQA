@@ -1,0 +1,36 @@
+# ::tok Two players vying to grab the disc in a game of Ultimate Frisbee .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	v	vie-01	2-3
+# ::node	g2	grab-01	4-5
+# ::node	d	disc	6-7
+# ::node	g	game	9-10
+# ::node	u	ultimate	11-12
+# ::node	l	league	12-13
+# ::node	n	name	12-13
+# ::node	1	Frisbee	12-13
+# ::root	v	vie-01
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	vie-01	ARG0	person	v	p	
+# ::edge	vie-01	ARG2	grab-01	v	g2	
+# ::edge	grab-01	ARG0	person	g2	p	
+# ::edge	grab-01	ARG1	disc	g2	d	
+# ::edge	grab-01	subevent-of	game	g2	g	
+# ::edge	league	mod	ultimate	l	u	
+# ::edge	game	mod	league	g	l	
+# ::edge	league	name	name	l	n	
+# ::edge	name	op1	Frisbee	n	1	
+(v / vie-01
+    :ARG0 (p / person
+        :quant 2
+        :ARG0-of (p2 / play-01))
+    :ARG2 (g2 / grab-01
+        :ARG0 p
+        :ARG1 (d / disc)
+        :subevent-of (g / game
+            :mod (l / league
+                :name (n / name
+                    :op1 "Frisbee")
+                :mod (u / ultimate)))))

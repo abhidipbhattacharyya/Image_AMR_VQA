@@ -1,0 +1,31 @@
+# ::tok A busy street with many cars , buildings and stop light .
+# ::node	b2	busy-02	1-2
+# ::node	s2	street	2-3
+# ::node	m	many	4-5
+# ::node	m2	many	4-5
+# ::node	m3	many	4-5
+# ::node	c	car	5-6
+# ::node	b	building	7-8
+# ::node	a	and	8-9
+# ::node	s	stop-01	9-10
+# ::node	l	light	10-11
+# ::root	s2	street
+# ::edge	street	ARG1-of	busy-02	s2	b2	
+# ::edge	car	quant	many	c	m	
+# ::edge	building	quant	many	b	m2	
+# ::edge	and	op2	building	a	b	
+# ::edge	and	op1	car	a	c	
+# ::edge	street	location-of	and	s2	a	
+# ::edge	light	purpose	stop-01	l	s	
+# ::edge	and	op3	light	a	l	
+# ::edge	street	rel	many	s2	m3	
+(s2 / street
+    :ARG1-of (b2 / busy-02)
+    :location-of (a / and
+        :op1 (c / car
+            :quant (m / many))
+        :op2 (b / building
+            :quant (m2 / many))
+        :op3 (l / light
+            :purpose (s / stop-01)))
+    :rel (m3 / many))

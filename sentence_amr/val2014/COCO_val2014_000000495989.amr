@@ -1,0 +1,36 @@
+# ::tok A man jumps down stairs while attempting a skate trick with many people in the background watching .
+# ::node	m	man	1-2
+# ::node	j	jump-03	2-3
+# ::node	d	down	3-4
+# ::node	s2	stair	4-5
+# ::node	a	attempt-01	6-7
+# ::node	s	skate-01	8-9
+# ::node	t	trick	9-10
+# ::node	m2	many	11-12
+# ::node	p	person	12-13
+# ::node	b	background	15-16
+# ::node	w	watch-01	16-17
+# ::root	j	jump-03
+# ::edge	jump-03	ARG0	man	j	m	
+# ::edge	jump-03	direction	down	j	d	
+# ::edge	jump-03	location	stair	j	s2	
+# ::edge	jump-03	time-of	attempt-01	j	a	
+# ::edge	attempt-01	ARG0	man	a	m	
+# ::edge	trick	mod	skate-01	t	s	
+# ::edge	attempt-01	ARG1	trick	a	t	
+# ::edge	person	quant	many	p	m2	
+# ::edge	person	location	background	p	b	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	attempt-01	ARG1-of	watch-01	a	w	
+(j / jump-03
+    :ARG0 (m / man)
+    :direction (d / down)
+    :location (s2 / stair)
+    :time-of (a / attempt-01
+        :ARG0 m
+        :ARG1 (t / trick
+            :mod (s / skate-01))
+        :ARG1-of (w / watch-01
+            :ARG0 (p / person
+                :quant (m2 / many)
+                :location (b / background)))))

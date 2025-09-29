@@ -1,0 +1,37 @@
+# ::tok A large Kentucky Fried Chicken bucket on top of a pole .
+# ::node	l	large	1-2
+# ::node	c	company	2-3
+# ::node	n	name	2-3
+# ::node	2	Kentucky	2-3
+# ::node	m	make-01	3-4
+# ::node	1	Fried	3-4
+# ::node	p2	product	4-5
+# ::node	0	Chicken	4-5
+# ::node	b2	bucket	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	t	top	7-8
+# ::node	p	pole	10-11
+# ::root	b	be-located-at-91
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Kentucky	n	2	
+# ::edge	make-01	ARG0	company	m	c	
+# ::edge	name	op2	Fried	n	1	
+# ::edge	product	ARG1-of	make-01	p2	m	
+# ::edge	name	op3	Chicken	n	0	
+# ::edge	bucket	mod	product	b2	p2	
+# ::edge	bucket	mod	large	b2	l	
+# ::edge	be-located-at-91	ARG1	bucket	b	b2	
+# ::edge	be-located-at-91	ARG2	top	b	t	
+# ::edge	top	part-of	pole	t	p	
+(b / be-located-at-91
+    :ARG1 (b2 / bucket
+        :mod (p2 / product
+            :ARG1-of (m / make-01
+                :ARG0 (c / company
+                    :name (n / name
+                        :op1 "Kentucky"
+                        :op2 "Fried"
+                        :op3 "Chicken"))))
+        :mod (l / large))
+    :ARG2 (t / top
+        :part-of (p / pole)))

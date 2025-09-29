@@ -1,0 +1,33 @@
+# ::tok A plate with bits of cake and ice cream left on it with three forks .
+# ::node	p2	plate	1-2
+# ::node	h	have-03	2-3
+# ::node	b	bit	3-4
+# ::node	c	cake	5-6
+# ::node	a	and	6-7
+# ::node	i	ice	7-8
+# ::node	c2	cream	8-9
+# ::node	l	leave-12	9-10
+# ::node	0	3	13-14
+# ::node	p	pitchfork	14-15
+# ::root	p2	plate
+# ::edge	plate	ARG0-of	have-03	p2	h	
+# ::edge	bit	part-of	cake	b	c	
+# ::edge	and	op1	bit	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cream	mod	ice	c2	i	
+# ::edge	and	op2	cream	a	c2	
+# ::edge	and	ARG1-of	leave-12	a	l	
+# ::edge	leave-12	ARG2	plate	l	p2	
+# ::edge	pitchfork	quant	3	p	0	
+# ::edge	leave-12	instrument	pitchfork	l	p	
+(p2 / plate
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG1-of (l / leave-12
+                :ARG2 p2
+                :instrument (p / pitchfork
+                    :quant 3))
+            :op1 (b / bit
+                :part-of (c / cake))
+            :op2 (c2 / cream
+                :mod (i / ice)))))

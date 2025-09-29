@@ -1,0 +1,26 @@
+# ::tok Several giraffes eating and standing at an enclosed area .
+# ::node	s	several	0-1
+# ::node	g	giraffe	1-2
+# ::node	e	eat-01	2-3
+# ::node	a	and	3-4
+# ::node	s2	stand-01	4-5
+# ::node	c	confine-01	7-8
+# ::node	a2	area	8-9
+# ::root	a	and
+# ::edge	giraffe	quant	several	g	s	
+# ::edge	eat-01	ARG0	giraffe	e	g	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	giraffe	s2	g	
+# ::edge	area	ARG1-of	confine-01	a2	c	
+# ::edge	stand-01	ARG2	area	s2	a2	
+# ::edge	eat-01	ARG1	area	e	a2	
+(a / and
+    :op1 (e / eat-01
+        :ARG0 (g / giraffe
+            :quant (s / several))
+        :ARG1 (a2 / area
+            :ARG1-of (c / confine-01)))
+    :op2 (s2 / stand-01
+        :ARG1 g
+        :ARG2 a2))

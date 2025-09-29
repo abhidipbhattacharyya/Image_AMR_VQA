@@ -1,0 +1,25 @@
+# ::tok A group of passengers at a train station standing on the platform as a train arrives
+# ::node	g	group	1-2
+# ::node	p	passenger	3-4
+# ::node	t	train	6-7
+# ::node	s2	station	7-8
+# ::node	s	stand-01	8-9
+# ::node	p2	platform	11-12
+# ::node	t2	train	14-15
+# ::node	a	arrive-01	15-16
+# ::root	s	stand-01
+# ::edge	group	consist-of	passenger	g	p	
+# ::edge	station	mod	train	s2	t	
+# ::edge	stand-01	location	station	s	s2	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	arrive-01	ARG1	train	a	t2	
+# ::edge	stand-01	time	arrive-01	s	a	
+(s / stand-01
+    :ARG1 (g / group
+        :consist-of (p / passenger))
+    :ARG2 (p2 / platform)
+    :location (s2 / station
+        :mod (t / train))
+    :time (a / arrive-01
+        :ARG1 (t2 / train)))

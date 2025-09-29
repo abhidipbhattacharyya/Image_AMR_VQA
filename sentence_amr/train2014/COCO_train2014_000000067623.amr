@@ -1,0 +1,25 @@
+# ::tok A three lane highway breaks off to the left and the right .
+# ::node	0	3	1-2
+# ::node	l	lane	2-3
+# ::node	h	highway	3-4
+# ::node	b	break-01	4-5
+# ::node	o	off	5-6
+# ::node	l2	left-20	8-9
+# ::node	a	and	9-10
+# ::node	r	right-04	11-12
+# ::root	b	break-01
+# ::edge	lane	quant	3	l	0	
+# ::edge	highway	mod	lane	h	l	
+# ::edge	break-01	ARG1	highway	b	h	
+# ::edge	break-01	mod	off	b	o	
+# ::edge	and	op1	left-20	a	l2	
+# ::edge	break-01	direction	and	b	a	
+# ::edge	and	op2	right-04	a	r	
+(b / break-01
+    :ARG1 (h / highway
+        :mod (l / lane
+            :quant 3))
+    :direction (a / and
+        :op1 (l2 / left-20)
+        :op2 (r / right-04))
+    :mod (o / off))

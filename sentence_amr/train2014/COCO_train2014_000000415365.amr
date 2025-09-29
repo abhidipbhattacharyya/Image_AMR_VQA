@@ -1,0 +1,32 @@
+# ::tok Four sheep stick close together to drive off a curious cat .
+# ::node	0	4	0-1
+# ::node	s	sheep	1-2
+# ::node	s2	stick-01	2-3
+# ::node	c2	close-10	3-4
+# ::node	t	together	4-5
+# ::node	d	drive-02	6-7
+# ::node	o	off	7-8
+# ::node	c3	curious-01	9-10
+# ::node	c	cat	10-11
+# ::root	s2	stick-01
+# ::edge	sheep	quant	4	s	0	
+# ::edge	stick-01	ARG1	sheep	s2	s	
+# ::edge	stick-01	ARG2	close-10	s2	c2	
+# ::edge	close-10	ARG1	sheep	c2	s	
+# ::edge	close-10	ARG2	together	c2	t	
+# ::edge	stick-01	purpose	drive-02	s2	d	
+# ::edge	drive-02	ARG0	sheep	d	s	
+# ::edge	drive-02	ARG2	off	d	o	
+# ::edge	cat	ARG1-of	curious-01	c	c3	
+# ::edge	drive-02	ARG1	cat	d	c	
+(s2 / stick-01
+    :purpose (d / drive-02
+        :ARG0 (s / sheep
+            :quant 4)
+        :ARG1 (c / cat
+            :ARG1-of (c3 / curious-01))
+        :ARG2 (o / off))
+    :ARG1 s
+    :ARG2 (c2 / close-10
+        :ARG1 s
+        :ARG2 (t / together)))

@@ -1,0 +1,27 @@
+# ::tok A baseball player in full uniform playing an infield position on the baseball diamond .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	f	full-09	4-5
+# ::node	u	uniform	5-6
+# ::node	i	infield	8-9
+# ::node	p3	position	9-10
+# ::node	d	diamond	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	uniform	ARG1-of	full-09	u	f	
+# ::edge	person	mod	uniform	p	u	
+# ::edge	position	mod	infield	p3	i	
+# ::edge	play-01	ARG1	position	p2	p3	
+# ::edge	infield	location	diamond	i	d	
+# ::edge	diamond	mod	baseball	d	b	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball)
+        :ARG1 (p3 / position
+            :mod (i / infield
+                :location (d / diamond
+                    :mod b))))
+    :mod (u / uniform
+        :ARG1-of (f / full-09)))

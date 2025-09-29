@@ -1,0 +1,37 @@
+# ::tok One cow sits as another stands around a structure made of wooden sticks .
+# ::node	0	1	0-1
+# ::node	c	cow	1-2
+# ::node	c2	cow	1-2
+# ::node	s	sit-01	2-3
+# ::node	a	and	3-4
+# ::node	a2	another	4-5
+# ::node	s2	stand-01	5-6
+# ::node	a3	around	6-7
+# ::node	s4	structure	8-9
+# ::node	m	make-01	9-10
+# ::node	w	wood	11-12
+# ::node	s3	stick	12-13
+# ::root	a	and
+# ::edge	cow	quant	1	c	0	
+# ::edge	sit-01	ARG1	cow	s	c	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	cow	mod	another	c2	a2	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	cow	s2	c2	
+# ::edge	stand-01	ARG2	around	s2	a3	
+# ::edge	around	op1	structure	a3	s4	
+# ::edge	structure	ARG1-of	make-01	s4	m	
+# ::edge	stick	consist-of	wood	s3	w	
+# ::edge	make-01	ARG2	stick	m	s3	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (c / cow
+            :quant 1))
+    :op2 (s2 / stand-01
+        :ARG1 (c2 / cow
+            :mod (a2 / another))
+        :ARG2 (a3 / around
+            :op1 (s4 / structure
+                :ARG1-of (m / make-01
+                    :ARG2 (s3 / stick
+                        :consist-of (w / wood)))))))

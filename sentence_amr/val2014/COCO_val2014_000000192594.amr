@@ -1,0 +1,28 @@
+# ::tok A city with tall buildings and parked card lit up at night .
+# ::node	c2	city	1-2
+# ::node	t	tall	3-4
+# ::node	b	building	4-5
+# ::node	a	and	5-6
+# ::node	p	park-01	6-7
+# ::node	c	card	7-8
+# ::node	l	light-04	8-9
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	c2	city
+# ::edge	building	mod	tall	b	t	
+# ::edge	and	op1	building	a	b	
+# ::edge	card	ARG1-of	park-01	c	p	
+# ::edge	and	op2	card	a	c	
+# ::edge	light-04	ARG1	and	l	a	
+# ::edge	city	location-of	light-04	c2	l	
+# ::edge	light-04	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(c2 / city
+    :location-of (l / light-04
+        :ARG1 (a / and
+            :op1 (b / building
+                :mod (t / tall))
+            :op2 (c / card
+                :ARG1-of (p / park-01)))
+        :time (d / date-entity
+            :dayperiod (n / night))))

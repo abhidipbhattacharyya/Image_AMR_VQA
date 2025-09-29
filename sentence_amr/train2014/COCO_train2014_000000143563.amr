@@ -1,0 +1,27 @@
+# ::tok People moving about inside of a subway terminal beside a parked subway .
+# ::node	p2	person	0-1
+# ::node	m	move-01	1-2
+# ::node	a	about	2-3
+# ::node	i	inside	3-4
+# ::node	t	terminal	7-8
+# ::node	b	beside	8-9
+# ::node	p	park-01	10-11
+# ::node	s	subway	11-12
+# ::root	m	move-01
+# ::edge	move-01	ARG1	person	m	p2	
+# ::edge	move-01	mod	about	m	a	
+# ::edge	move-01	ARG2	inside	m	i	
+# ::edge	inside	op1	terminal	i	t	
+# ::edge	terminal	location	beside	t	b	
+# ::edge	subway	ARG1-of	park-01	s	p	
+# ::edge	beside	op1	subway	b	s	
+# ::edge	terminal	mod	subway	t	s	
+(m / move-01
+    :ARG1 (p2 / person)
+    :ARG2 (i / inside
+        :op1 (t / terminal
+            :location (b / beside
+                :op1 (s / subway
+                    :ARG1-of (p / park-01)))
+            :mod s))
+    :mod (a / about))

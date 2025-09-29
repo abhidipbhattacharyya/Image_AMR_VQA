@@ -1,0 +1,27 @@
+# ::tok Male using pair of scissors to sharpen blade against metal object .
+# ::node	m	male	0-1
+# ::node	u	use-01	1-2
+# ::node	p	pair	2-3
+# ::node	n	needle	4-5
+# ::node	s	sharp-02	6-7
+# ::node	b	blade	7-8
+# ::node	m2	metal	9-10
+# ::node	o	object	10-11
+# ::root	u	use-01
+# ::edge	use-01	ARG0	male	u	m	
+# ::edge	needle	quant	pair	n	p	
+# ::edge	use-01	ARG1	needle	u	n	
+# ::edge	use-01	ARG2	sharp-02	u	s	
+# ::edge	sharp-02	ARG0	male	s	m	
+# ::edge	sharp-02	ARG1	blade	s	b	
+# ::edge	object	mod	metal	o	m2	
+# ::edge	sharp-02	ARG2	object	s	o	
+(u / use-01
+    :ARG0 (m / male)
+    :ARG1 (n / needle
+        :quant (p / pair))
+    :ARG2 (s / sharp-02
+        :ARG0 m
+        :ARG1 (b / blade)
+        :ARG2 (o / object
+            :mod (m2 / metal))))

@@ -1,0 +1,34 @@
+# ::tok A stuffed animal sitting in a pizza box with some slices of olive and cheese pizza .
+# ::node	s4	stuff-01	1-2
+# ::node	a2	animal	2-3
+# ::node	s	sit-01	3-4
+# ::node	p	pizza	6-7
+# ::node	b	box	7-8
+# ::node	s3	some	9-10
+# ::node	s2	slice	10-11
+# ::node	o	olive	12-13
+# ::node	a	and	13-14
+# ::node	c	cheese	14-15
+# ::node	p2	pizza	15-16
+# ::root	s	sit-01
+# ::edge	animal	ARG1-of	stuff-01	a2	s4	
+# ::edge	sit-01	ARG1	animal	s	a2	
+# ::edge	box	mod	pizza	b	p	
+# ::edge	sit-01	ARG2	box	s	b	
+# ::edge	slice	quant	some	s2	s3	
+# ::edge	slice	mod	olive	s2	o	
+# ::edge	and	op1	slice	a	s2	
+# ::edge	pizza	accompanier	and	p	a	
+# ::edge	pizza	mod	cheese	p2	c	
+# ::edge	and	op2	pizza	a	p2	
+(s / sit-01
+    :ARG1 (a2 / animal
+        :ARG1-of (s4 / stuff-01))
+    :ARG2 (b / box
+        :mod (p / pizza
+            :accompanier (a / and
+                :op1 (s2 / slice
+                    :quant (s3 / some)
+                    :mod (o / olive))
+                :op2 (p2 / pizza
+                    :mod (c / cheese))))))

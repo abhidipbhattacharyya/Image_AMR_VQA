@@ -1,0 +1,27 @@
+# ::tok Player preparing to swing at ball during major baseball game .
+# ::node	p	person	0-1
+# ::node	p2	play-01	0-1
+# ::node	p3	prepare-02	1-2
+# ::node	s	swing-02	3-4
+# ::node	b	ball	5-6
+# ::node	m	major-02	7-8
+# ::node	b2	baseball	8-9
+# ::node	g	game	9-10
+# ::root	p3	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	prepare-02	ARG1	person	p3	p	
+# ::edge	prepare-02	ARG2	swing-02	p3	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	destination	ball	s	b	
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	game	ARG1-of	major-02	g	m	
+# ::edge	swing-02	time	game	s	g	
+(p3 / prepare-02
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01))
+    :ARG2 (s / swing-02
+        :ARG0 p
+        :destination (b / ball)
+        :time (g / game
+            :ARG1-of (m / major-02)
+            :mod (b2 / baseball))))

@@ -1,0 +1,36 @@
+# ::tok Several remotes lay in a row and include a black one and a silver one .
+# ::node	s	several	0-1
+# ::node	r	remote	1-2
+# ::node	r2	remote	1-2
+# ::node	r3	remote	1-2
+# ::node	l	lay-01	2-3
+# ::node	r4	row	5-6
+# ::node	a	and	6-7
+# ::node	i	include-01	7-8
+# ::node	b	black-05	9-10
+# ::node	a2	and	11-12
+# ::node	s2	silver	13-14
+# ::root	a	and
+# ::edge	remote	quant	several	r	s	
+# ::edge	lay-01	ARG1	remote	l	r	
+# ::edge	lay-01	ARG2	row	l	r4	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	and	op2	include-01	a	i	
+# ::edge	include-01	ARG2	remote	i	r3	
+# ::edge	remote	ARG1-of	black-05	r2	b	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op2	remote	a2	r3	
+# ::edge	and	op1	remote	a2	r2	
+# ::edge	remote	mod	silver	r3	s2	
+(a / and
+    :op1 (l / lay-01
+        :ARG1 (r / remote
+            :quant (s / several))
+        :ARG2 (r4 / row))
+    :op2 (i / include-01
+        :ARG1 (a2 / and
+            :op1 (r2 / remote
+                :ARG1-of (b / black-05))
+            :op2 (r3 / remote
+                :mod (s2 / silver)))
+        :ARG2 r3))

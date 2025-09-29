@@ -1,0 +1,103 @@
+# ::tok A black and white shot shows a bus interior with windows , hand rail , and a woman , her eyes closed , as she holds a bag on her lap , an empty seat , and a second , male passenger , holding a cell and reaching under his jacket , while holding a suitcase .
+# ::node	b2	black-and-white	1-2
+# ::node	s2	shot	4-5
+# ::node	s3	show-01	5-6
+# ::node	b3	bus	7-8
+# ::node	i	interior	8-9
+# ::node	w	window	10-11
+# ::node	a	and	11-12
+# ::node	h	hand	12-13
+# ::node	r	rail	13-14
+# ::node	a2	and	15-16
+# ::node	w2	woman	17-18
+# ::node	e2	eye	20-21
+# ::node	c2	close-01	21-22
+# ::node	h2	hold-01	25-26
+# ::node	b	bag	27-28
+# ::node	l	lap	30-31
+# ::node	a3	and	31-32
+# ::node	e	empty-02	33-34
+# ::node	s	seat	34-35
+# ::node	o	ordinal-entity	38-39
+# ::node	0	2	38-39
+# ::node	m	male	40-41
+# ::node	p	passenger	41-42
+# ::node	h3	hold-01	43-44
+# ::node	c	cell	45-46
+# ::node	r2	reach-03	47-48
+# ::node	u	under	48-49
+# ::node	j	jacket	50-51
+# ::node	h4	hold-01	53-54
+# ::node	s4	suitcase	55-56
+# ::root	s3	show-01
+# ::edge	shot	mod	black-and-white	s2	b2	
+# ::edge	show-01	ARG0	shot	s3	s2	
+# ::edge	interior	part-of	bus	i	b3	
+# ::edge	interior	part	window	i	w	
+# ::edge	and	op1	window	a	w	
+# ::edge	interior	part	and	i	a	
+# ::edge	rail	mod	hand	r	h	
+# ::edge	and	op2	rail	a	r	
+# ::edge	and	op1	and	a2	a	
+# ::edge	show-01	ARG1	and	s3	a2	
+# ::edge	and	op2	woman	a2	w2	
+# ::edge	woman	part	eye	w2	e2	
+# ::edge	close-01	ARG1	eye	c2	e2	
+# ::edge	woman	ARG0-of	close-01	w2	c2	
+# ::edge	woman	ARG0-of	hold-01	w2	h2	
+# ::edge	bag	location	lap	b	l	
+# ::edge	lap	poss	woman	l	w2	
+# ::edge	and	op1	bag	a3	b	
+# ::edge	hold-01	ARG1	and	h2	a3	
+# ::edge	seat	ARG1-of	empty-02	s	e	
+# ::edge	and	op2	seat	a3	s	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	passenger	mod	male	p	m	
+# ::edge	passenger	ord	ordinal-entity	p	o	
+# ::edge	and	op3	passenger	a2	p	
+# ::edge	passenger	ARG0-of	hold-01	p	h3	
+# ::edge	hold-01	ARG1	cell	h3	c	
+# ::edge	passenger	ARG0-of	reach-03	p	r2	
+# ::edge	reach-03	ARG2	under	r2	u	
+# ::edge	under	op1	jacket	u	j	
+# ::edge	jacket	poss	passenger	j	p	
+# ::edge	reach-03	time	hold-01	r2	h4	
+# ::edge	hold-01	ARG0	passenger	h4	p	
+# ::edge	hold-01	ARG1	suitcase	h4	s4	
+# ::edge	show-01	rel	interior	s3	i	
+(s3 / show-01
+    :ARG0 (s2 / shot
+        :mod (b2 / black-and-white))
+    :ARG1 (a2 / and
+        :op1 (a / and
+            :op1 (w / window)
+            :op2 (r / rail
+                :mod (h / hand)))
+        :op2 (w2 / woman
+            :ARG0-of (c2 / close-01
+                :ARG1 (e2 / eye))
+            :ARG0-of (h2 / hold-01
+                :ARG1 (a3 / and
+                    :op1 (b / bag
+                        :location (l / lap
+                            :poss w2))
+                    :op2 (s / seat
+                        :ARG1-of (e / empty-02))))
+            :part e2)
+        :op3 (p / passenger
+            :ARG0-of (h3 / hold-01
+                :ARG1 (c / cell))
+            :ARG0-of (r2 / reach-03
+                :ARG2 (u / under
+                    :op1 (j / jacket
+                        :poss p))
+                :time (h4 / hold-01
+                    :ARG0 p
+                    :ARG1 (s4 / suitcase)))
+            :mod (m / male)
+            :ord (o / ordinal-entity
+                :value 2)))
+    :rel (i / interior
+        :part w
+        :part a
+        :part-of (b3 / bus)))

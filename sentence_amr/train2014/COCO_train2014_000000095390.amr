@@ -1,0 +1,24 @@
+# ::tok A train bridge off in the distance with a train about to go over it .
+# ::node	b	bridge	2-3
+# ::node	o	off	3-4
+# ::node	d	distance	6-7
+# ::node	t	train	9-10
+# ::node	a	about-to	10-11
+# ::node	g	go-01	12-13
+# ::node	o2	over	13-14
+# ::root	b	bridge
+# ::edge	distance	mod	off	d	o	
+# ::edge	bridge	location	distance	b	d	
+# ::edge	bridge	prep-with	train	b	t	
+# ::edge	go-01	time	about-to	g	a	
+# ::edge	train	ARG1-of	go-01	t	g	
+# ::edge	go-01	ARG4	over	g	o2	
+# ::edge	over	op1	bridge	o2	b	
+(b / bridge
+    :location (d / distance
+        :mod (o / off))
+    :prep-with (t / train
+        :ARG1-of (g / go-01
+            :ARG4 (o2 / over
+                :op1 b)
+            :time (a / about-to))))

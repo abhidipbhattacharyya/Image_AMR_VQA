@@ -1,0 +1,24 @@
+# ::tok A plate of brownies or chocolate cake are ready to be eaten .
+# ::node	p	plate	1-2
+# ::node	c3	cookie	3-4
+# ::node	o	or	4-5
+# ::node	c2	chocolate	5-6
+# ::node	c	cake	6-7
+# ::node	r	ready-02	8-9
+# ::node	e	eat-01	11-12
+# ::root	r	ready-02
+# ::edge	or	op1	cookie	o	c3	
+# ::edge	plate	consist-of	or	p	o	
+# ::edge	cake	mod	chocolate	c	c2	
+# ::edge	or	op2	cake	o	c	
+# ::edge	ready-02	ARG1	plate	r	p	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	plate	e	p	
+(r / ready-02
+    :ARG1 (p / plate
+        :consist-of (o / or
+            :op1 (c3 / cookie)
+            :op2 (c / cake
+                :mod (c2 / chocolate))))
+    :ARG2 (e / eat-01
+        :ARG1 p))

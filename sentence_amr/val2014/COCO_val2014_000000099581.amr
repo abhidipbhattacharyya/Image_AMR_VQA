@@ -1,0 +1,35 @@
+# ::tok someone is holding in their hands a very old mp3 player
+# ::node	s	someone	0-1
+# ::node	h	hold-01	2-3
+# ::node	i	in-ones-hands-04	5-6
+# ::node	v	very	7-8
+# ::node	o	old	8-9
+# ::node	m	music	9-10
+# ::node	n	name	9-10
+# ::node	0	mp3	9-10
+# ::node	t	thing	10-11
+# ::node	p	play-11	10-11
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	someone	h	s	
+# ::edge	hold-01	manner	in-ones-hands-04	h	i	
+# ::edge	in-ones-hands-04	ARG0	someone	i	s	
+# ::edge	old	degree	very	o	v	
+# ::edge	music	name	name	m	n	
+# ::edge	name	op1	mp3	n	0	
+# ::edge	thing	mod	old	t	o	
+# ::edge	old	ARG1	thing	o	t	
+# ::edge	thing	ARG0-of	play-11	t	p	
+# ::edge	play-11	ARG2	music	p	m	
+# ::edge	hold-01	rel	old	h	o	
+(h / hold-01
+    :ARG0 (s / someone)
+    :manner (i / in-ones-hands-04
+        :ARG0 s)
+    :rel (o / old
+        :ARG1 (t / thing
+            :ARG0-of (p / play-11
+                :ARG2 (m / music
+                    :name (n / name
+                        :op1 "mp3")))
+            :mod o)
+        :degree (v / very)))

@@ -1,0 +1,33 @@
+# ::tok A bus driver in Santa hat sitting in the driver 's seat .
+# ::node	b	bus	1-2
+# ::node	p	person	2-3
+# ::node	d	drive-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	p2	person	4-5
+# ::node	n	name	4-5
+# ::node	0	Santa	4-5
+# ::node	h	hat	5-6
+# ::node	s2	sit-01	6-7
+# ::node	s	seat	11-12
+# ::root	s2	sit-01
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	drive-01	ARG1	bus	d	b	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Santa	n	0	
+# ::edge	hat	mod	person	h	p2	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	seat	s2	s	
+# ::edge	seat	location	drive-01	s	d	
+(s2 / sit-01
+    :ARG1 (p / person
+        :ARG0-of (d / drive-01
+            :ARG1 (b / bus))
+        :ARG0-of (w / wear-01
+            :ARG1 (h / hat
+                :mod (p2 / person
+                    :name (n / name
+                        :op1 "Santa")))))
+    :ARG2 (s / seat
+        :location d))

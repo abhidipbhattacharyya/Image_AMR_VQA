@@ -1,0 +1,36 @@
+# ::tok A person is using a knife and fork to eat one of the two donuts .
+# ::node	p	person	1-2
+# ::node	u	use-01	3-4
+# ::node	k	knife	5-6
+# ::node	a	and	6-7
+# ::node	f	fork	7-8
+# ::node	e	eat-01	9-10
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	1	2	13-14
+# ::node	d	donut	14-15
+# ::node	d2	donut	14-15
+# ::root	u	use-01
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	and	op1	knife	a	k	
+# ::edge	use-01	ARG1	and	u	a	
+# ::edge	and	op2	fork	a	f	
+# ::edge	use-01	ARG2	eat-01	u	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	donut	ARG1-of	include-91	d	i	
+# ::edge	donut	quant	1	d	0	
+# ::edge	eat-01	ARG1	donut	e	d	
+# ::edge	donut	quant	2	d2	1	
+# ::edge	include-91	ARG2	donut	i	d2	
+(u / use-01
+    :ARG0 (p / person)
+    :ARG1 (a / and
+        :op1 (k / knife)
+        :op2 (f / fork))
+    :ARG2 (e / eat-01
+        :ARG0 p
+        :ARG1 (d / donut
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (d2 / donut
+                    :quant 2)))))

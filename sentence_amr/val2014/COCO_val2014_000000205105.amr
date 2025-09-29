@@ -1,0 +1,30 @@
+# ::tok Tennis player preparing to hit ball on standard court .
+# ::node	m	multi-sentence	0-1
+# ::node	e	Tennis	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	p3	prepare-02	2-3
+# ::node	h	hit-01	4-5
+# ::node	b	ball	5-6
+# ::node	s	standard-02	7-8
+# ::node	c	court	8-9
+# ::root	m	multi-sentence
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	Tennis	p2	e	
+# ::edge	prepare-02	ARG1	person	p3	p	
+# ::edge	multi-sentence	snt1	prepare-02	m	p3	
+# ::edge	prepare-02	ARG2	hit-01	p3	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	court	ARG1-of	standard-02	c	s	
+# ::edge	hit-01	location	court	h	c	
+(m / multi-sentence
+    :snt1 (p3 / prepare-02
+        :ARG1 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (e / Tennis)))
+        :ARG2 (h / hit-01
+            :ARG0 p
+            :ARG1 (b / ball)
+            :location (c / court
+                :ARG1-of (s / standard-02)))))

@@ -1,0 +1,41 @@
+# ::tok A truck kicking up dust from driving on the desert .
+# ::node	t	truck	1-2
+# ::node	k	kick-01	2-3
+# ::node	d3	dust	4-5
+# ::node	c	cause-01	5-6
+# ::node	d2	drive-01	6-7
+# ::node	d	desert	9-10
+# ::root	k	kick-01
+# ::edge	kick-01	ARG0	truck	k	t	
+# ::edge	kick-01	ARG1	dust	k	d3	
+# ::edge	kick-01	ARG1-of	cause-01	k	c	
+# ::edge	cause-01	ARG0	drive-01	c	d2	
+# ::edge	drive-01	ARG0	truck	d2	t	
+# ::edge	drive-01	ARG1	desert	d2	d	
+(k / kick-01
+    :ARG0 (t / truck)
+    :ARG1 (d3 / dust)
+    :ARG1-of (c / cause-01
+        :ARG0 (d2 / drive-01
+            :ARG0 t
+            :ARG1 (d / desert))))
+
+
+# ::tok People standing near the road waving .
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	n	near-02	2-3
+# ::node	r	road	4-5
+# ::node	w	wave-01	5-6
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	road	n	r	
+# ::edge	person	ARG0-of	wave-01	p	w	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (w / wave-01))
+    :ARG2 (n / near-02
+        :ARG1 p
+        :ARG2 (r / road)))

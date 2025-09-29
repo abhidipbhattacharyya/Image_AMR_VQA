@@ -1,0 +1,23 @@
+# ::tok The rear end of a train as it comes to a stop at the station
+# ::node	r	rear	1-2
+# ::node	e	end	2-3
+# ::node	t	train	5-6
+# ::node	c	come-01	8-9
+# ::node	s2	stop-01	11-12
+# ::node	s	station	14-15
+# ::root	e	end
+# ::edge	end	mod	rear	e	r	
+# ::edge	end	part-of	train	e	t	
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	end	time	come-01	e	c	
+# ::edge	come-01	ARG4	stop-01	c	s2	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	stop-01	location	station	s2	s	
+(e / end
+    :mod (r / rear)
+    :part-of (t / train)
+    :time (c / come-01
+        :ARG1 t
+        :ARG4 (s2 / stop-01
+            :ARG1 t
+            :location (s / station))))

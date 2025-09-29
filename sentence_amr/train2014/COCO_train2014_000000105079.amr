@@ -1,0 +1,24 @@
+# ::tok A snowboarder who has fallen and is propping himself up off the ground
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	f	fall-01	4-5
+# ::node	p2	prop-up-01	7-8
+# ::node	u	up	9-10
+# ::node	o	off	10-11
+# ::node	g	ground	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	ARG1-of	fall-01	p	f	
+# ::edge	prop-up-01	ARG1	person	p2	p	
+# ::edge	person	ARG0-of	prop-up-01	p	p2	
+# ::edge	prop-up-01	ARG2	up	p2	u	
+# ::edge	up	mod	off	u	o	
+# ::edge	off	op1	ground	o	g	
+(p / person
+    :ARG0-of (s / ski-01)
+    :ARG0-of (p2 / prop-up-01
+        :ARG1 p
+        :ARG2 (u / up
+            :mod (o / off
+                :op1 (g / ground))))
+    :ARG1-of (f / fall-01))

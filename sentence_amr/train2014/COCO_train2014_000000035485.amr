@@ -1,0 +1,24 @@
+# ::tok Plane in the air at a incline with it 's landing gears still out
+# ::node	p	plane	0-1
+# ::node	a	air	3-4
+# ::node	i	incline-01	6-7
+# ::node	l	land-01	10-11
+# ::node	g	gate	11-12
+# ::node	s	still	12-13
+# ::node	o	out-06	13-14
+# ::root	p	plane
+# ::edge	plane	location	air	p	a	
+# ::edge	plane	ARG0-of	incline-01	p	i	
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	gate	purpose	land-01	g	l	
+# ::edge	out-06	mod	still	o	s	
+# ::edge	out-06	ARG1	gate	o	g	
+# ::edge	plane	location-of	out-06	p	o	
+(p / plane
+    :ARG0-of (i / incline-01)
+    :location (a / air)
+    :location-of (o / out-06
+        :ARG1 (g / gate
+            :purpose (l / land-01
+                :ARG1 p))
+        :mod (s / still)))

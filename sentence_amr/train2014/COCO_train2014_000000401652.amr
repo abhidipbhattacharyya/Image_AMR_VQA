@@ -1,0 +1,40 @@
+# ::tok This living room has one red toned wall and another wall is cream colored .
+# ::node	t	this	0-1
+# ::node	l	living	1-2
+# ::node	r2	room	2-3
+# ::node	h	have-03	3-4
+# ::node	0	1	4-5
+# ::node	r	red-02	5-6
+# ::node	t2	ton	6-7
+# ::node	w	wall	7-8
+# ::node	a	and	8-9
+# ::node	a2	another	9-10
+# ::node	w2	wall	10-11
+# ::node	c2	cream	12-13
+# ::node	c	color-01	13-14
+# ::root	a	and
+# ::edge	room	mod	living	r2	l	
+# ::edge	room	mod	this	r2	t	
+# ::edge	have-03	ARG0	room	h	r2	
+# ::edge	ton	ARG1-of	red-02	t2	r	
+# ::edge	wall	mod	ton	w	t2	
+# ::edge	wall	quant	1	w	0	
+# ::edge	have-03	ARG1	wall	h	w	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	wall	mod	another	w2	a2	
+# ::edge	color-01	ARG2	cream	c	c2	
+# ::edge	color-01	ARG1	wall	c	w2	
+# ::edge	and	op2	color-01	a	c	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (r2 / room
+            :mod (l / living)
+            :mod (t / this))
+        :ARG1 (w / wall
+            :quant 1
+            :mod (t2 / ton
+                :ARG1-of (r / red-02))))
+    :op2 (c / color-01
+        :ARG1 (w2 / wall
+            :mod (a2 / another))
+        :ARG2 (c2 / cream)))

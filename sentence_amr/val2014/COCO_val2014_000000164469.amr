@@ -1,0 +1,48 @@
+# ::tok Young dark - haired male skateboarder coming off a ramp and airborne at nighttime under lights .
+# ::node	y	young	0-1
+# ::node	d	dark-02	1-2
+# ::node	h	hair	3-4
+# ::node	m	male	4-5
+# ::node	p	person	5-6
+# ::node	s	skate-01	5-6
+# ::node	c	come-01	6-7
+# ::node	o	off	7-8
+# ::node	r	ramp	9-10
+# ::node	a2	and	10-11
+# ::node	a	airborne	11-12
+# ::node	d2	date-entity	13-14
+# ::node	n	night	13-14
+# ::node	u	under	14-15
+# ::node	l	light	15-16
+# ::root	a2	and
+# ::edge	hair	ARG1-of	dark-02	h	d	
+# ::edge	person	mod	male	p	m	
+# ::edge	person	part	hair	p	h	
+# ::edge	person	mod	young	p	y	
+# ::edge	person	ARG0-of	skate-01	p	s	
+# ::edge	come-01	ARG1	person	c	p	
+# ::edge	come-01	direction	off	c	o	
+# ::edge	come-01	ARG3	ramp	c	r	
+# ::edge	and	op1	come-01	a2	c	
+# ::edge	and	op2	airborne	a2	a	
+# ::edge	airborne	domain	person	a	p	
+# ::edge	and	time	date-entity	a2	d2	
+# ::edge	date-entity	dayperiod	night	d2	n	
+# ::edge	airborne	location	under	a	u	
+# ::edge	under	op1	light	u	l	
+(a2 / and
+    :op1 (c / come-01
+        :ARG1 (p / person
+            :ARG0-of (s / skate-01)
+            :mod (m / male)
+            :mod (y / young)
+            :part (h / hair
+                :ARG1-of (d / dark-02)))
+        :ARG3 (r / ramp)
+        :direction (o / off))
+    :op2 (a / airborne
+        :domain p
+        :location (u / under
+            :op1 (l / light)))
+    :time (d2 / date-entity
+        :dayperiod (n / night)))

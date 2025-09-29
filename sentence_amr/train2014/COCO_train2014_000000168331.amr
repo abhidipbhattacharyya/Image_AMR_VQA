@@ -1,0 +1,34 @@
+# ::tok White microwave over with lots of clutter on it in front of a wood panel wall .
+# ::node	w2	white-03	0-1
+# ::node	m	microwave	1-2
+# ::node	o	over	2-3
+# ::node	l	lot	4-5
+# ::node	c	clutter	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	i	in-front-of	10-11
+# ::node	w3	wood	13-14
+# ::node	p	panel	14-15
+# ::node	w	wall	15-16
+# ::node	e	event	16-17
+# ::root	e	event
+# ::edge	microwave	ARG1-of	white-03	m	w2	
+# ::edge	microwave	location	over	m	o	
+# ::edge	clutter	quant	lot	c	l	
+# ::edge	be-located-at-91	ARG2	clutter	b	c	
+# ::edge	microwave	ARG1-of	be-located-at-91	m	b	
+# ::edge	microwave	location	in-front-of	m	i	
+# ::edge	panel	consist-of	wood	p	w3	
+# ::edge	wall	part	panel	w	p	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	event	mod	microwave	e	m	
+(e / event
+    :mod (m / microwave
+        :ARG1-of (w2 / white-03)
+        :ARG1-of (b / be-located-at-91
+            :ARG2 (c / clutter
+                :quant (l / lot)))
+        :location (o / over)
+        :location (i / in-front-of
+            :op1 (w / wall
+                :part (p / panel
+                    :consist-of (w3 / wood))))))

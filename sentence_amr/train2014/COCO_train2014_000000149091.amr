@@ -1,0 +1,40 @@
+# ::tok A partially eaten Tim Horton 's donut and cup of coffee sit on a black countertop .
+# ::node	p	part	1-2
+# ::node	e	eat-01	2-3
+# ::node	n	name	3-4
+# ::node	1	Tim	3-4
+# ::node	c2	company	4-5
+# ::node	0	Horton	4-5
+# ::node	d	donut	6-7
+# ::node	a	and	7-8
+# ::node	c4	cup	8-9
+# ::node	c	coffee	10-11
+# ::node	s	sit-01	11-12
+# ::node	b	black-04	14-15
+# ::node	c3	countertop	15-16
+# ::root	s	sit-01
+# ::edge	eat-01	degree	part	e	p	
+# ::edge	name	op1	Tim	n	1	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op2	Horton	n	0	
+# ::edge	donut	mod	company	d	c2	
+# ::edge	donut	ARG1-of	eat-01	d	e	
+# ::edge	and	op1	donut	a	d	
+# ::edge	and	op2	cup	a	c4	
+# ::edge	cup	consist-of	coffee	c4	c	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	countertop	ARG1-of	black-04	c3	b	
+# ::edge	sit-01	ARG2	countertop	s	c3	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (d / donut
+            :ARG1-of (e / eat-01
+                :degree (p / part))
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "Tim"
+                    :op2 "Horton")))
+        :op2 (c4 / cup
+            :consist-of (c / coffee)))
+    :ARG2 (c3 / countertop
+        :ARG1-of (b / black-04)))

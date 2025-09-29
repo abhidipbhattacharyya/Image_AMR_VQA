@@ -1,0 +1,30 @@
+# ::tok a pepperoni pizza sitting in a box with one partially eaten slice
+# ::node	p2	pepperoni	1-2
+# ::node	p3	pizza	2-3
+# ::node	p4	pizza	2-3
+# ::node	s	sit-01	3-4
+# ::node	b	box	6-7
+# ::node	a	and	7-8
+# ::node	p	part	9-10
+# ::node	e	eat-01	10-11
+# ::node	s2	slice	11-12
+# ::root	a	and
+# ::edge	pizza	mod	pepperoni	p3	p2	
+# ::edge	sit-01	ARG1	pizza	s	p3	
+# ::edge	sit-01	ARG2	box	s	b	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	eat-01	degree	part	e	p	
+# ::edge	pizza	ARG1-of	eat-01	p4	e	
+# ::edge	eat-01	ARG0	slice	e	s2	
+# ::edge	slice	quant	pizza	s2	p4	
+# ::edge	and	rel	eat-01	a	e	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p3 / pizza
+            :mod (p2 / pepperoni))
+        :ARG2 (b / box))
+    :rel (e / eat-01
+        :ARG0 (s2 / slice
+            :quant (p4 / pizza
+                :ARG1-of e))
+        :degree (p / part)))

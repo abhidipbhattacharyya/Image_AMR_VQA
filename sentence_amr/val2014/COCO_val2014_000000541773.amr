@@ -1,0 +1,31 @@
+# ::tok The man is pouring a glass of wine , and there are several others on the table .
+# ::node	m	man	1-2
+# ::node	p	pour-01	3-4
+# ::node	g	glass	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	w	wine	7-8
+# ::node	w2	wine	7-8
+# ::node	a	and	9-10
+# ::node	s	several	12-13
+# ::node	o	other	13-14
+# ::node	t	table-01	16-17
+# ::root	a	and
+# ::edge	pour-01	ARG0	man	p	m	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	pour-01	ARG1	wine	p	w	
+# ::edge	and	op1	pour-01	a	p	
+# ::edge	wine	quant	several	w2	s	
+# ::edge	wine	mod	other	w2	o	
+# ::edge	and	op2	table-01	a	t	
+# ::edge	table-01	ARG1	wine	t	w2	
+(a / and
+    :op1 (p / pour-01
+        :ARG0 (m / man)
+        :ARG1 (w / wine
+            :quant (v / volume-quantity
+                :unit (g / glass))))
+    :op2 (t / table-01
+        :ARG1 (w2 / wine
+            :quant (s / several)
+            :mod (o / other))))

@@ -1,0 +1,34 @@
+# ::tok Parking meters at the side of a road which lets people pay by credit card or cash .
+# ::node	p	park-01	0-1
+# ::node	m	meter	1-2
+# ::node	s	side	4-5
+# ::node	r	road	7-8
+# ::node	l	let-01	9-10
+# ::node	p3	person	10-11
+# ::node	p2	pay-01	11-12
+# ::node	c3	credit-01	13-14
+# ::node	c	card	14-15
+# ::node	o	or	15-16
+# ::node	c2	cash	16-17
+# ::root	m	meter
+# ::edge	meter	location-of	park-01	m	p	
+# ::edge	meter	location	side	m	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	meter	ARG0-of	let-01	m	l	
+# ::edge	pay-01	ARG0	person	p2	p3	
+# ::edge	let-01	ARG1	pay-01	l	p2	
+# ::edge	card	mod	credit-01	c	c3	
+# ::edge	or	op1	card	o	c	
+# ::edge	pay-01	manner	or	p2	o	
+# ::edge	or	op2	cash	o	c2	
+(m / meter
+    :ARG0-of (l / let-01
+        :ARG1 (p2 / pay-01
+            :ARG0 (p3 / person)
+            :manner (o / or
+                :op1 (c / card
+                    :mod (c3 / credit-01))
+                :op2 (c2 / cash))))
+    :location (s / side
+        :part-of (r / road))
+    :location-of (p / park-01))

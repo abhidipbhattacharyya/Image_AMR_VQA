@@ -1,0 +1,30 @@
+# ::tok a intersection is flooded with muddy water that is completely covering a part of a sidewalk
+# ::node	i	intersect-01	1-2
+# ::node	f	flood-01	3-4
+# ::node	m	muddy-01	5-6
+# ::node	w	water	6-7
+# ::node	c	complete-02	9-10
+# ::node	c2	cover-02	10-11
+# ::node	t	thing	11-12
+# ::node	r	relative-position	14-15
+# ::node	s	sidewalk	15-16
+# ::root	f	flood-01
+# ::edge	flood-01	ARG1	intersect-01	f	i	
+# ::edge	water	ARG1-of	muddy-01	w	m	
+# ::edge	flood-01	ARG2	water	f	w	
+# ::edge	cover-02	ARG1-of	complete-02	c2	c	
+# ::edge	water	ARG2-of	cover-02	w	c2	
+# ::edge	cover-02	ARG1	thing	c2	t	
+# ::edge	flood-01	location	relative-position	f	r	
+# ::edge	relative-position	op1	intersect-01	r	i	
+# ::edge	relative-position	part-of	sidewalk	r	s	
+(f / flood-01
+    :ARG1 (i / intersect-01)
+    :ARG2 (w / water
+        :ARG1-of (m / muddy-01)
+        :ARG2-of (c2 / cover-02
+            :ARG1 (t / thing)
+            :ARG1-of (c / complete-02)))
+    :location (r / relative-position
+        :op1 i
+        :part-of (s / sidewalk)))

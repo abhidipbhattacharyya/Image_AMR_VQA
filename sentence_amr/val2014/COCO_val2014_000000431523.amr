@@ -1,0 +1,24 @@
+# ::tok A train travelling in the snow on a track with smoke coming from it .
+# ::node	t2	train	1-2
+# ::node	t3	travel-01	2-3
+# ::node	s2	snow	5-6
+# ::node	t	track	8-9
+# ::node	h	have-03	9-10
+# ::node	s	smoke	10-11
+# ::node	c	come-01	11-12
+# ::root	t2	train
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	travel-01	path	snow	t3	s2	
+# ::edge	travel-01	ARG1	track	t3	t	
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	come-01	s	c	
+# ::edge	come-01	ARG3	train	c	t2	
+(t2 / train
+    :ARG0-of (t3 / travel-01
+        :ARG1 (t / track)
+        :path (s2 / snow))
+    :ARG0-of (h / have-03
+        :ARG1 (s / smoke
+            :ARG1-of (c / come-01
+                :ARG3 t2))))

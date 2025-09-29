@@ -1,0 +1,50 @@
+# ::tok View looking out of two adjacent airplane windows of two airplanes on pavement with yellow lines and grayish sky .
+# ::node	v	view-01	0-1
+# ::node	l2	look-01	1-2
+# ::node	o	out	2-3
+# ::node	b	border-01	5-6
+# ::node	w	window	7-8
+# ::node	0	2	9-10
+# ::node	a	airplane	10-11
+# ::node	a2	airplane	10-11
+# ::node	p	pavement	12-13
+# ::node	h	have-03	13-14
+# ::node	y	yellow-02	14-15
+# ::node	l	line	15-16
+# ::node	a3	and	16-17
+# ::node	g	gray-02	17-18
+# ::node	s	sky	18-19
+# ::root	v	view-01
+# ::edge	view-01	ARG1	look-01	v	l2	
+# ::edge	look-01	direction	out	l2	o	
+# ::edge	window	ARG1-of	border-01	w	b	
+# ::edge	out	op1	window	o	w	
+# ::edge	airplane	quant	2	a	0	
+# ::edge	airplane	part	window	a	w	
+# ::edge	border-01	ARG2	airplane	b	a	
+# ::edge	airplane	quant	2	a2	0	
+# ::edge	window	part-of	airplane	w	a2	
+# ::edge	window	location	pavement	w	p	
+# ::edge	pavement	ARG0-of	have-03	p	h	
+# ::edge	line	ARG1-of	yellow-02	l	y	
+# ::edge	and	op1	line	a3	l	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	sky	ARG1-of	gray-02	s	g	
+# ::edge	and	op2	sky	a3	s	
+(v / view-01
+    :ARG1 (l2 / look-01
+        :direction (o / out
+            :op1 (w / window
+                :ARG1-of (b / border-01
+                    :ARG2 (a / airplane
+                        :quant 2
+                        :part w))
+                :location (p / pavement
+                    :ARG0-of (h / have-03
+                        :ARG1 (a3 / and
+                            :op1 (l / line
+                                :ARG1-of (y / yellow-02))
+                            :op2 (s / sky
+                                :ARG1-of (g / gray-02)))))
+                :part-of (a2 / airplane
+                    :quant 2)))))

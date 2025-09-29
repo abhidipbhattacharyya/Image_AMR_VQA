@@ -1,0 +1,36 @@
+# ::tok Male and female rams climb search for food on the side of a snowy hill .
+# ::node	m	male	0-1
+# ::node	a	and	1-2
+# ::node	f	female	2-3
+# ::node	r	ram-01	3-4
+# ::node	r2	ram-01	3-4
+# ::node	c	climb-01	4-5
+# ::node	s	search-01	5-6
+# ::node	f2	food	7-8
+# ::node	s2	side	10-11
+# ::node	s3	snowy-02	13-14
+# ::node	h	hill	14-15
+# ::root	c	climb-01
+# ::edge	and	op1	ram-01	a	r	
+# ::edge	ram-01	ARG0	male	r	m	
+# ::edge	ram-01	ARG0	female	r2	f	
+# ::edge	and	op2	ram-01	a	r2	
+# ::edge	climb-01	ARG0	and	c	a	
+# ::edge	climb-01	ARG1	search-01	c	s	
+# ::edge	search-01	ARG0	and	s	a	
+# ::edge	search-01	ARG2	food	s	f2	
+# ::edge	search-01	location	side	s	s2	
+# ::edge	hill	ARG2-of	snowy-02	h	s3	
+# ::edge	side	part-of	hill	s2	h	
+(c / climb-01
+    :ARG0 (a / and
+        :op1 (r / ram-01
+            :ARG0 (m / male))
+        :op2 (r2 / ram-01
+            :ARG0 (f / female)))
+    :ARG1 (s / search-01
+        :ARG0 a
+        :ARG2 (f2 / food)
+        :location (s2 / side
+            :part-of (h / hill
+                :ARG2-of (s3 / snowy-02)))))

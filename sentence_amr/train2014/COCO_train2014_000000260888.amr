@@ -1,0 +1,35 @@
+# ::tok An outdoor park area with a bench that has a man laying on his back and sleeping .
+# ::node	o	outdoor	1-2
+# ::node	p	park	2-3
+# ::node	a2	area	3-4
+# ::node	h	have-03	4-5
+# ::node	b2	bench	6-7
+# ::node	m	man	10-11
+# ::node	l	lay-01	11-12
+# ::node	b	back	14-15
+# ::node	a	and	15-16
+# ::node	s	sleep-01	16-17
+# ::root	a2	area
+# ::edge	park	mod	outdoor	p	o	
+# ::edge	area	location-of	park	a2	p	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	have-03	ARG1	bench	h	b2	
+# ::edge	lay-01	ARG1	man	l	m	
+# ::edge	lay-01	ARG2	back	l	b	
+# ::edge	man	part	back	m	b	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	bench	location-of	and	b2	a	
+# ::edge	and	op2	sleep-01	a	s	
+# ::edge	sleep-01	ARG0	man	s	m	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / bench
+            :location-of (a / and
+                :op1 (l / lay-01
+                    :ARG1 (m / man
+                        :part (b / back))
+                    :ARG2 b)
+                :op2 (s / sleep-01
+                    :ARG0 m))))
+    :location-of (p / park
+        :mod (o / outdoor)))

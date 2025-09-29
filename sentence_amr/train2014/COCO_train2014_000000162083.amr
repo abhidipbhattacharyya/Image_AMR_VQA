@@ -1,0 +1,46 @@
+# ::tok Two motorcycles with double riders and one motorcycle with a single riding traveling together on a track .
+# ::node	1	2	0-1
+# ::node	m	motorcycle	1-2
+# ::node	d	double	3-4
+# ::node	p	person	4-5
+# ::node	r	ride-01	4-5
+# ::node	a	and	5-6
+# ::node	0	1	6-7
+# ::node	m2	motorcycle	7-8
+# ::node	h	have-03	8-9
+# ::node	p2	person	9-10
+# ::node	s	single-02	10-11
+# ::node	r2	ride-01	11-12
+# ::node	t3	travel-01	12-13
+# ::node	t	together	13-14
+# ::node	t2	track	16-17
+# ::root	a	and
+# ::edge	motorcycle	quant	2	m	1	
+# ::edge	person	mod	double	p	d	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	and	op1	motorcycle	a	m	
+# ::edge	motorcycle	quant	1	m2	0	
+# ::edge	and	op2	motorcycle	a	m2	
+# ::edge	motorcycle	ARG0-of	have-03	m2	h	
+# ::edge	have-03	ARG1	person	h	p2	
+# ::edge	person	ARG1-of	single-02	p2	s	
+# ::edge	person	ARG0-of	ride-01	p2	r2	
+# ::edge	and	ARG0-of	travel-01	a	t3	
+# ::edge	travel-01	manner	together	t3	t	
+# ::edge	travel-01	ARG1	track	t3	t2	
+# ::edge	and	rel	person	a	p	
+(a / and
+    :ARG0-of (t3 / travel-01
+        :ARG1 (t2 / track)
+        :manner (t / together))
+    :op1 (m / motorcycle
+        :quant 2)
+    :op2 (m2 / motorcycle
+        :quant 1
+        :ARG0-of (h / have-03
+            :ARG1 (p2 / person
+                :ARG0-of (r2 / ride-01)
+                :ARG1-of (s / single-02))))
+    :rel (p / person
+        :ARG0-of (r / ride-01)
+        :mod (d / double)))

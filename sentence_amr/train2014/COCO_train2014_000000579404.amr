@@ -1,0 +1,27 @@
+# ::tok A baseball player stands in the batter 's box while taking a pitch .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	stand-01	3-4
+# ::node	p2	person	6-7
+# ::node	b2	bomb-01	6-7
+# ::node	b3	box	8-9
+# ::node	t	throw-01	12-13
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	person	ARG0-of	bomb-01	p2	b2	
+# ::edge	box	mod	person	b3	p2	
+# ::edge	stand-01	ARG2	box	s	b3	
+# ::edge	stand-01	time	throw-01	s	t	
+# ::edge	throw-01	ARG0	person	t	p	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (b3 / box
+        :mod (p2 / person
+            :ARG0-of (b2 / bomb-01)))
+    :time (t / throw-01
+        :ARG0 p))

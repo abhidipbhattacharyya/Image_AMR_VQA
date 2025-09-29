@@ -1,0 +1,27 @@
+# ::tok A blue and orange passenger train is leaving the platform .
+# ::node	b	blue	1-2
+# ::node	a	and	2-3
+# ::node	o	orange	3-4
+# ::node	p	passenger	4-5
+# ::node	t	train	5-6
+# ::node	t2	train	5-6
+# ::node	l	leave-11	7-8
+# ::node	p2	platform	9-10
+# ::root	l	leave-11
+# ::edge	train	mod	passenger	t	p	
+# ::edge	and	op1	train	a	t	
+# ::edge	train	mod	blue	t	b	
+# ::edge	train	mod	passenger	t2	p	
+# ::edge	train	mod	orange	t2	o	
+# ::edge	and	op2	train	a	t2	
+# ::edge	leave-11	ARG0	and	l	a	
+# ::edge	leave-11	ARG1	platform	l	p2	
+(l / leave-11
+    :ARG0 (a / and
+        :op1 (t / train
+            :mod (p / passenger)
+            :mod (b / blue))
+        :op2 (t2 / train
+            :mod p
+            :mod (o / orange)))
+    :ARG1 (p2 / platform))

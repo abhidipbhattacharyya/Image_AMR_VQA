@@ -1,0 +1,28 @@
+# ::tok a fleet of red firetrucks parked in a lot with a group of firemen
+# ::node	f3	fleet	1-2
+# ::node	r	red-02	3-4
+# ::node	f2	firetruck	4-5
+# ::node	p	park-01	5-6
+# ::node	l	lot	8-9
+# ::node	g	group	11-12
+# ::node	p2	person	13-14
+# ::node	h	have-org-role-91	13-14
+# ::node	f	fire	13-14
+# ::root	p	park-01
+# ::edge	firetruck	ARG1-of	red-02	f2	r	
+# ::edge	fleet	consist-of	firetruck	f3	f2	
+# ::edge	park-01	ARG1	fleet	p	f3	
+# ::edge	park-01	ARG2	lot	p	l	
+# ::edge	fleet	accompanier	group	f3	g	
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h	
+# ::edge	have-org-role-91	ARG1	fire	h	f	
+(p / park-01
+    :ARG1 (f3 / fleet
+        :accompanier (g / group
+            :consist-of (p2 / person
+                :ARG0-of (h / have-org-role-91
+                    :ARG1 (f / fire))))
+        :consist-of (f2 / firetruck
+            :ARG1-of (r / red-02)))
+    :ARG2 (l / lot))

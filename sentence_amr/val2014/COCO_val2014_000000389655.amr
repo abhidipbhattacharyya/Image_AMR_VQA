@@ -1,0 +1,33 @@
+# ::tok Many people are standing next to a very large plane with its bottom doors open
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	s	stand-01	3-4
+# ::node	n	next-to	4-5
+# ::node	v	very	7-8
+# ::node	l	large	8-9
+# ::node	p2	plane	9-10
+# ::node	b	bottom	12-13
+# ::node	d	door	13-14
+# ::node	o	open-09	14-15
+# ::root	s	stand-01
+# ::edge	person	quant	many	p	m	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	large	degree	very	l	v	
+# ::edge	plane	mod	large	p2	l	
+# ::edge	next-to	op1	plane	n	p2	
+# ::edge	door	mod	bottom	d	b	
+# ::edge	plane	part	door	p2	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	plane	manner	open-09	p2	o	
+(s / stand-01
+    :ARG1 (p / person
+        :quant (m / many))
+    :ARG2 (n / next-to
+        :op1 (p2 / plane
+            :manner (o / open-09
+                :ARG1 (d / door
+                    :mod (b / bottom)))
+            :mod (l / large
+                :degree (v / very))
+            :part d)))

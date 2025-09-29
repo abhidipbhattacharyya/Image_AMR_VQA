@@ -1,0 +1,33 @@
+# ::tok There 's a dog 's head in a rear view mirror with sky and trees in the background .
+# ::node	d	dog	3-4
+# ::node	h	head	5-6
+# ::node	b2	be-located-at-91	6-7
+# ::node	r	rearview	9-10
+# ::node	m	mirror	10-11
+# ::node	s	sky	12-13
+# ::node	a	and	13-14
+# ::node	a2	and	13-14
+# ::node	t	tree	14-15
+# ::node	b	background	17-18
+# ::root	a	and
+# ::edge	head	part-of	dog	h	d	
+# ::edge	be-located-at-91	ARG1	head	b2	h	
+# ::edge	mirror	mod	rearview	m	r	
+# ::edge	be-located-at-91	ARG2	mirror	b2	m	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	sky	op2	and	s	a2	
+# ::edge	and	op1	sky	a2	s	
+# ::edge	and	op2	tree	a2	t	
+# ::edge	and	location	background	a2	b	
+# ::edge	and	rel	and	a	a2	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (h / head
+            :part-of (d / dog))
+        :ARG2 (m / mirror
+            :mod (r / rearview)))
+    :rel (a2 / and
+        :location (b / background)
+        :op1 (s / sky
+            :op2 a2)
+        :op2 (t / tree)))

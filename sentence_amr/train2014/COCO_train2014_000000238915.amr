@@ -1,0 +1,34 @@
+# ::tok Dogs cleaning themselves in plastic pool cool shaking water off from back
+# ::node	d	dog	0-1
+# ::node	c	clean-01	1-2
+# ::node	p	plastic	4-5
+# ::node	p2	pool	5-6
+# ::node	c2	cool-01	6-7
+# ::node	s	shake-01	7-8
+# ::node	w	water	8-9
+# ::node	o	off	9-10
+# ::node	b	back	11-12
+# ::root	c2	cool-01
+# ::edge	clean-01	ARG1	dog	c	d	
+# ::edge	clean-01	ARG0	dog	c	d	
+# ::edge	pool	consist-of	plastic	p2	p	
+# ::edge	clean-01	location	pool	c	p2	
+# ::edge	cool-01	ARG1	dog	c2	d	
+# ::edge	cool-01	manner	shake-01	c2	s	
+# ::edge	shake-01	ARG0	dog	s	d	
+# ::edge	shake-01	ARG1	water	s	w	
+# ::edge	shake-01	direction	off	s	o	
+# ::edge	shake-01	source	back	s	b	
+# ::edge	cool-01	rel	clean-01	c2	c	
+(c2 / cool-01
+    :ARG1 (d / dog)
+    :manner (s / shake-01
+        :ARG0 d
+        :ARG1 (w / water)
+        :direction (o / off)
+        :source (b / back))
+    :rel (c / clean-01
+        :ARG0 d
+        :ARG1 d
+        :location (p2 / pool
+            :consist-of (p / plastic))))

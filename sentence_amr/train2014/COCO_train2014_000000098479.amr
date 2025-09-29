@@ -1,0 +1,42 @@
+# ::tok Two men loading and offloading luggage on two convery belts paked against a large airplane .
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	l2	load-01	2-3
+# ::node	a3	and	3-4
+# ::node	o	offload-01	4-5
+# ::node	l3	luggage	5-6
+# ::node	0	2	7-8
+# ::node	v	very	8-9
+# ::node	b	belt	9-10
+# ::node	p	pound	10-11
+# ::node	a	against	11-12
+# ::node	l	large	13-14
+# ::node	a2	airplane	14-15
+# ::root	a3	and
+# ::edge	man	ARG0-of	load-01	m	l2	
+# ::edge	and	op2	man	a3	m2	
+# ::edge	and	op1	man	a3	m	
+# ::edge	man	ARG0-of	offload-01	m2	o	
+# ::edge	offload-01	ARG1	luggage	o	l3	
+# ::edge	load-01	ARG1	luggage	l2	l3	
+# ::edge	belt	mod	very	b	v	
+# ::edge	belt	quant	2	b	0	
+# ::edge	offload-01	ARG2	belt	o	b	
+# ::edge	belt	location	against	b	a	
+# ::edge	airplane	mod	large	a2	l	
+# ::edge	against	op1	airplane	a	a2	
+# ::edge	and	rel	pound	a3	p	
+(a3 / and
+    :op1 (m / man
+        :ARG0-of (l2 / load-01
+            :ARG1 (l3 / luggage)))
+    :op2 (m2 / man
+        :ARG0-of (o / offload-01
+            :ARG1 l3
+            :ARG2 (b / belt
+                :quant 2
+                :location (a / against
+                    :op1 (a2 / airplane
+                        :mod (l / large)))
+                :mod (v / very))))
+    :rel (p / pound))

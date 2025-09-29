@@ -1,0 +1,24 @@
+# ::tok Donuts move along an automated assembly line in a factory .
+# ::node	d	donut	0-1
+# ::node	m	move-01	1-2
+# ::node	a	along	2-3
+# ::node	a3	automate-01	4-5
+# ::node	a2	assemble-01	5-6
+# ::node	l	line	6-7
+# ::node	f	factory	9-10
+# ::root	m	move-01
+# ::edge	move-01	ARG1	donut	m	d	
+# ::edge	move-01	path	along	m	a	
+# ::edge	assemble-01	ARG1	donut	a2	d	
+# ::edge	line	ARG0-of	assemble-01	l	a2	
+# ::edge	line	ARG1-of	automate-01	l	a3	
+# ::edge	along	op1	line	a	l	
+# ::edge	line	location	factory	l	f	
+(m / move-01
+    :ARG1 (d / donut)
+    :path (a / along
+        :op1 (l / line
+            :ARG0-of (a2 / assemble-01
+                :ARG1 d)
+            :ARG1-of (a3 / automate-01)
+            :location (f / factory))))

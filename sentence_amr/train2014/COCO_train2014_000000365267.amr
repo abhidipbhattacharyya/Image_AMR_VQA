@@ -1,0 +1,27 @@
+# ::tok A giraffe is poking its neck across a fence as a group of kids watch .
+# ::node	g	giraffe	1-2
+# ::node	p	poke-01	3-4
+# ::node	n	neck	5-6
+# ::node	a	across	6-7
+# ::node	f	fence	8-9
+# ::node	g2	group	11-12
+# ::node	k	kid	13-14
+# ::node	w	watch-01	14-15
+# ::root	p	poke-01
+# ::edge	poke-01	ARG0	giraffe	p	g	
+# ::edge	poke-01	ARG1	neck	p	n	
+# ::edge	giraffe	part	neck	g	n	
+# ::edge	poke-01	ARG2	across	p	a	
+# ::edge	across	op1	fence	a	f	
+# ::edge	group	consist-of	kid	g2	k	
+# ::edge	watch-01	ARG0	group	w	g2	
+# ::edge	poke-01	ARG1-of	watch-01	p	w	
+(p / poke-01
+    :ARG0 (g / giraffe
+        :part (n / neck))
+    :ARG1 n
+    :ARG1-of (w / watch-01
+        :ARG0 (g2 / group
+            :consist-of (k / kid)))
+    :ARG2 (a / across
+        :op1 (f / fence)))

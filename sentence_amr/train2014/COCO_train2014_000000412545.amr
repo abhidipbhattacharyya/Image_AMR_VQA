@@ -1,0 +1,25 @@
+# ::tok A refrigerator with two gallons of milk hanging on the side of a door .
+# ::node	r	refrigerator	1-2
+# ::node	0	2	3-4
+# ::node	v	volume-quantity	4-5
+# ::node	g	gallon	4-5
+# ::node	m	milk	6-7
+# ::node	h	hang-01	7-8
+# ::node	s	side	10-11
+# ::node	d	door	13-14
+# ::root	r	refrigerator
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	gallon	v	g	
+# ::edge	milk	quant	volume-quantity	m	v	
+# ::edge	hang-01	ARG1	milk	h	m	
+# ::edge	refrigerator	location-of	hang-01	r	h	
+# ::edge	hang-01	ARG2	side	h	s	
+# ::edge	side	part-of	door	s	d	
+(r / refrigerator
+    :location-of (h / hang-01
+        :ARG1 (m / milk
+            :quant (v / volume-quantity
+                :quant 2
+                :unit (g / gallon)))
+        :ARG2 (s / side
+            :part-of (d / door))))

@@ -1,0 +1,33 @@
+# ::tok A historical locomotive sits on a track beside of a more modern type train .
+# ::node	h2	history	1-2
+# ::node	l	locomotive	2-3
+# ::node	s	sit-01	3-4
+# ::node	t	track	6-7
+# ::node	n	next-to	7-8
+# ::node	h	have-degree-91	10-11
+# ::node	m2	more	10-11
+# ::node	m	modern-02	11-12
+# ::node	t3	type	12-13
+# ::node	t2	train	13-14
+# ::root	s	sit-01
+# ::edge	locomotive	mod	history	l	h2	
+# ::edge	sit-01	ARG1	locomotive	s	l	
+# ::edge	sit-01	ARG2	track	s	t	
+# ::edge	sit-01	location	next-to	s	n	
+# ::edge	have-degree-91	ARG3	more	h	m2	
+# ::edge	have-degree-91	ARG2	modern-02	h	m	
+# ::edge	modern-02	ARG1	type	m	t3	
+# ::edge	type	ARG1-of	have-degree-91	t3	h	
+# ::edge	train	mod	type	t2	t3	
+# ::edge	next-to	op1	train	n	t2	
+(s / sit-01
+    :ARG1 (l / locomotive
+        :mod (h2 / history))
+    :ARG2 (t / track)
+    :location (n / next-to
+        :op1 (t2 / train
+            :mod (t3 / type
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (m / modern-02
+                        :ARG1 t3)
+                    :ARG3 (m2 / more))))))

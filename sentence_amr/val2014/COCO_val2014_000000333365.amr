@@ -1,0 +1,31 @@
+# ::tok Virgin Ameican Airline planes with passenger boarding bridges attached .
+# ::node	n	name	0-1
+# ::node	2	Virgin	0-1
+# ::node	1	Ameican	1-2
+# ::node	c	company	2-3
+# ::node	0	Airline	2-3
+# ::node	p2	plane	3-4
+# ::node	p	passenger	5-6
+# ::node	b	board-01	6-7
+# ::node	b2	bridge	7-8
+# ::node	a	attach-01	8-9
+# ::root	p2	plane
+# ::edge	name	op1	Virgin	n	2	
+# ::edge	name	op2	Ameican	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op3	Airline	n	0	
+# ::edge	plane	mod	company	p2	c	
+# ::edge	board-01	ARG0	passenger	b	p	
+# ::edge	bridge	purpose	board-01	b2	b	
+# ::edge	attach-01	ARG1	bridge	a	b2	
+# ::edge	plane	ARG2-of	attach-01	p2	a	
+(p2 / plane
+    :ARG2-of (a / attach-01
+        :ARG1 (b2 / bridge
+            :purpose (b / board-01
+                :ARG0 (p / passenger))))
+    :mod (c / company
+        :name (n / name
+            :op1 "Virgin"
+            :op2 "Ameican"
+            :op3 "Airline")))

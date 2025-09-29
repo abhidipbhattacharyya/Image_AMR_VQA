@@ -1,0 +1,28 @@
+# ::tok A box truck with the cargo door frame partly ripped off by an accident .
+# ::node	b	box	1-2
+# ::node	t	truck	2-3
+# ::node	c	cargo	5-6
+# ::node	d	door	6-7
+# ::node	f	frame	7-8
+# ::node	p	part	8-9
+# ::node	r	rip-01	9-10
+# ::node	o	off	10-11
+# ::node	a	accident	13-14
+# ::root	t	truck
+# ::edge	truck	mod	box	t	b	
+# ::edge	door	mod	cargo	d	c	
+# ::edge	frame	part-of	door	f	d	
+# ::edge	rip-01	degree	part	r	p	
+# ::edge	rip-01	ARG1	frame	r	f	
+# ::edge	truck	part	rip-01	t	r	
+# ::edge	rip-01	direction	off	r	o	
+# ::edge	rip-01	ARG0	accident	r	a	
+(t / truck
+    :mod (b / box)
+    :part (r / rip-01
+        :ARG0 (a / accident)
+        :ARG1 (f / frame
+            :part-of (d / door
+                :mod (c / cargo)))
+        :degree (p / part)
+        :direction (o / off)))

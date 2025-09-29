@@ -1,0 +1,19 @@
+# ::tok People waiting on a platform for a train pulling into the station .
+# ::node	p	person	0-1
+# ::node	w	wait-01	1-2
+# ::node	p2	platform	4-5
+# ::node	t	train	7-8
+# ::node	p3	pull-01	8-9
+# ::node	s	station	11-12
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	platform	w	p2	
+# ::edge	wait-01	ARG1	train	w	t	
+# ::edge	train	ARG1-of	pull-01	t	p3	
+# ::edge	pull-01	ARG2	station	p3	s	
+(w / wait-01
+    :ARG1 (p / person)
+    :ARG1 (t / train
+        :ARG1-of (p3 / pull-01
+            :ARG2 (s / station)))
+    :ARG2 (p2 / platform))

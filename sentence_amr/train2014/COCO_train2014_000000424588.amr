@@ -1,0 +1,25 @@
+# ::tok some one making a home made pizza with chunks of white stuff
+# ::node	s	someone	0-1
+# ::node	m	make-01	2-3
+# ::node	h	home	4-5
+# ::node	m2	make-01	5-6
+# ::node	p	pizza	6-7
+# ::node	c	chunk-01	8-9
+# ::node	w	white-03	10-11
+# ::node	s2	stuff	11-12
+# ::root	m	make-01
+# ::edge	make-01	ARG0	someone	m	s	
+# ::edge	make-01	location	home	m2	h	
+# ::edge	pizza	ARG1-of	make-01	p	m2	
+# ::edge	make-01	ARG1	pizza	m	p	
+# ::edge	pizza	consist-of	chunk-01	p	c	
+# ::edge	stuff	ARG1-of	white-03	s2	w	
+# ::edge	chunk-01	ARG1	stuff	c	s2	
+(m / make-01
+    :ARG0 (s / someone)
+    :ARG1 (p / pizza
+        :ARG1-of (m2 / make-01
+            :location (h / home))
+        :consist-of (c / chunk-01
+            :ARG1 (s2 / stuff
+                :ARG1-of (w / white-03)))))

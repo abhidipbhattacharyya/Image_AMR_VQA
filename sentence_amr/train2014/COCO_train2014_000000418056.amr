@@ -1,0 +1,40 @@
+# ::tok a group of men on a baseball field with one man standing over another man who is kneeling on the ground .
+# ::node	g2	group	1-2
+# ::node	m	man	3-4
+# ::node	b	baseball	6-7
+# ::node	f	field	7-8
+# ::node	o	one	9-10
+# ::node	m2	man	10-11
+# ::node	s	stand-01	11-12
+# ::node	o2	over	12-13
+# ::node	a	another	13-14
+# ::node	m3	man	14-15
+# ::node	c	cause-01	16-17
+# ::node	k	kneel-01	17-18
+# ::node	g	ground	20-21
+# ::root	c	cause-01
+# ::edge	group	consist-of	man	g2	m	
+# ::edge	field	mod	baseball	f	b	
+# ::edge	group	location	field	g2	f	
+# ::edge	man	quant	one	m2	o	
+# ::edge	stand-01	ARG1	man	s	m2	
+# ::edge	stand-01	ARG2	over	s	o2	
+# ::edge	man	mod	another	m3	a	
+# ::edge	over	op1	man	o2	m3	
+# ::edge	cause-01	ARG1	stand-01	c	s	
+# ::edge	cause-01	ARG0	group	c	g2	
+# ::edge	man	ARG0-of	kneel-01	m3	k	
+# ::edge	kneel-01	location	ground	k	g	
+(c / cause-01
+    :ARG0 (g2 / group
+        :consist-of (m / man)
+        :location (f / field
+            :mod (b / baseball)))
+    :ARG1 (s / stand-01
+        :ARG1 (m2 / man
+            :quant (o / one))
+        :ARG2 (o2 / over
+            :op1 (m3 / man
+                :ARG0-of (k / kneel-01
+                    :location (g / ground))
+                :mod (a / another)))))

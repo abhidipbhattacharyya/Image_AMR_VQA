@@ -1,0 +1,28 @@
+# ::tok Racks of donuts and sweet rolls for sale in a bakery display case .
+# ::node	u	Rush	0-1
+# ::node	d2	donut	2-3
+# ::node	a	and	3-4
+# ::node	s2	sweet-05	4-5
+# ::node	r	roll	5-6
+# ::node	s	sell-01	7-8
+# ::node	b	bakery	10-11
+# ::node	d	display-01	11-12
+# ::node	c	case	12-13
+# ::root	s	sell-01
+# ::edge	and	op1	donut	a	d2	
+# ::edge	Rush	consist-of	and	u	a	
+# ::edge	roll	ARG1-of	sweet-05	r	s2	
+# ::edge	and	op2	roll	a	r	
+# ::edge	sell-01	ARG1	Rush	s	u	
+# ::edge	display-01	ARG1	bakery	d	b	
+# ::edge	case	ARG2-of	display-01	c	d	
+# ::edge	sell-01	location	case	s	c	
+(s / sell-01
+    :ARG1 (u / Rush
+        :consist-of (a / and
+            :op1 (d2 / donut)
+            :op2 (r / roll
+                :ARG1-of (s2 / sweet-05))))
+    :location (c / case
+        :ARG2-of (d / display-01
+            :ARG1 (b / bakery))))

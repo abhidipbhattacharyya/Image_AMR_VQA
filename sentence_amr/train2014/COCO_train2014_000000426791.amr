@@ -1,0 +1,32 @@
+# ::tok Female tennis player selecting the right racket to use duringnmatch
+# ::node	f	female	0-1
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	select-01	3-4
+# ::node	r2	right-03	5-6
+# ::node	r	racket	6-7
+# ::node	u	use-01	8-9
+# ::node	m	match-03	9-10
+# ::root	s	select-01
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	select-01	ARG0	person	s	p	
+# ::edge	racket	ARG1-of	right-03	r	r2	
+# ::edge	select-01	ARG1	racket	s	r	
+# ::edge	racket	ARG1-of	use-01	r	u	
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	use-01	ARG2	match-03	u	m	
+# ::edge	match-03	ARG0	person	m	p	
+(s / select-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis))
+        :mod (f / female))
+    :ARG1 (r / racket
+        :ARG1-of (r2 / right-03)
+        :ARG1-of (u / use-01
+            :ARG0 p
+            :ARG2 (m / match-03
+                :ARG0 p))))

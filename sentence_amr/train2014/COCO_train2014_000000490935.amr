@@ -1,0 +1,29 @@
+# ::tok A small bathroom in a metal room looks terrible and dirty .
+# ::node	s	small	1-2
+# ::node	b	bathroom	2-3
+# ::node	m	metal	5-6
+# ::node	r	room	6-7
+# ::node	l	look-02	7-8
+# ::node	t	terrible-01	8-9
+# ::node	a	and	9-10
+# ::node	d	dirty-02	10-11
+# ::root	l	look-02
+# ::edge	bathroom	mod	small	b	s	
+# ::edge	room	consist-of	metal	r	m	
+# ::edge	bathroom	location	room	b	r	
+# ::edge	look-02	ARG0	bathroom	l	b	
+# ::edge	terrible-01	ARG1	bathroom	t	b	
+# ::edge	and	op1	terrible-01	a	t	
+# ::edge	look-02	ARG1	and	l	a	
+# ::edge	and	op2	dirty-02	a	d	
+# ::edge	dirty-02	ARG1	bathroom	d	b	
+(l / look-02
+    :ARG0 (b / bathroom
+        :location (r / room
+            :consist-of (m / metal))
+        :mod (s / small))
+    :ARG1 (a / and
+        :op1 (t / terrible-01
+            :ARG1 b)
+        :op2 (d / dirty-02
+            :ARG1 b)))

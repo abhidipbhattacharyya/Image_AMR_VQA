@@ -1,0 +1,34 @@
+# ::tok Interior scene at a coffee shop with a boxed sandwich and a cup of coffee .
+# ::node	i	interior	0-1
+# ::node	s2	scene	1-2
+# ::node	c	coffee	4-5
+# ::node	s3	shop	5-6
+# ::node	b	box-01	8-9
+# ::node	s	sandwich	9-10
+# ::node	a	and	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	c3	cup	12-13
+# ::node	c2	coffee	14-15
+# ::root	s2	scene
+# ::edge	scene	mod	interior	s2	i	
+# ::edge	shop	mod	coffee	s3	c	
+# ::edge	scene	location	shop	s2	s3	
+# ::edge	sandwich	ARG1-of	box-01	s	b	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	scene	accompanier	and	s2	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	and	op2	coffee	a	c2	
+(s2 / scene
+    :accompanier (a / and
+        :op1 (s / sandwich
+            :ARG1-of (b / box-01))
+        :op2 (c2 / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c3 / cup))))
+    :location (s3 / shop
+        :mod (c / coffee))
+    :mod (i / interior))

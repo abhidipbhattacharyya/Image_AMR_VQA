@@ -1,0 +1,34 @@
+# ::tok An intersection with heavy traffic in both directions and the traffic signal showing a red light .
+# ::node	i	intersect-01	1-2
+# ::node	h	heavy	3-4
+# ::node	t	traffic	4-5
+# ::node	b	both	6-7
+# ::node	d	direction	7-8
+# ::node	a	and	8-9
+# ::node	t2	traffic	10-11
+# ::node	s2	signal-07	11-12
+# ::node	s	show-01	12-13
+# ::node	r	red-02	14-15
+# ::node	l	light	15-16
+# ::root	i	intersect-01
+# ::edge	traffic	mod	heavy	t	h	
+# ::edge	direction	mod	both	d	b	
+# ::edge	traffic	direction	direction	t	d	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	signal-07	ARG1	traffic	s2	t2	
+# ::edge	show-01	ARG0	signal-07	s	s2	
+# ::edge	and	op2	show-01	a	s	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	show-01	ARG1	light	s	l	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (t / traffic
+            :direction (d / direction
+                :mod (b / both))
+            :mod (h / heavy))
+        :op2 (s / show-01
+            :ARG0 (s2 / signal-07
+                :ARG1 (t2 / traffic))
+            :ARG1 (l / light
+                :ARG1-of (r / red-02)))))

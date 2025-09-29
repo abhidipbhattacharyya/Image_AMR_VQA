@@ -1,0 +1,39 @@
+# ::tok A small dog sitting in the back seat of a car looking out the window looking sad .
+# ::node	s4	small	1-2
+# ::node	d	dog	2-3
+# ::node	s3	sit-01	3-4
+# ::node	b	back	6-7
+# ::node	s2	seat	7-8
+# ::node	c	car	10-11
+# ::node	l	look-01	11-12
+# ::node	o	out	12-13
+# ::node	w	window	14-15
+# ::node	l2	look-02	15-16
+# ::node	s	sad-02	16-17
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	dog	mod	small	d	s4	
+# ::edge	dog	ARG1-of	sit-01	d	s3	
+# ::edge	seat	mod	back	s2	b	
+# ::edge	sit-01	ARG2	seat	s3	s2	
+# ::edge	seat	part-of	car	s2	c	
+# ::edge	dog	ARG0-of	look-01	d	l	
+# ::edge	look-01	direction	out	l	o	
+# ::edge	out	op1	window	o	w	
+# ::edge	dog	ARG0-of	look-02	d	l2	
+# ::edge	look-02	ARG1	sad-02	l2	s	
+# ::edge	sad-02	ARG1	dog	s	d	
+# ::edge	event	mod	dog	e	d	
+(e / event
+    :mod (d / dog
+        :ARG0-of (l / look-01
+            :direction (o / out
+                :op1 (w / window)))
+        :ARG0-of (l2 / look-02
+            :ARG1 (s / sad-02
+                :ARG1 d))
+        :ARG1-of (s3 / sit-01
+            :ARG2 (s2 / seat
+                :mod (b / back)
+                :part-of (c / car)))
+        :mod (s4 / small)))

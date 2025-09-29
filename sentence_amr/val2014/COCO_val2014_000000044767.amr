@@ -1,0 +1,37 @@
+# ::tok A fork lays on a white plate next to some shredded carrots and a piece of cooked fish .
+# ::node	f2	fork	1-2
+# ::node	l	lay-01	2-3
+# ::node	w	white-03	5-6
+# ::node	p2	plate	6-7
+# ::node	n	next-to	7-8
+# ::node	s2	some	9-10
+# ::node	s	shred-01	10-11
+# ::node	c	carrot	11-12
+# ::node	a	and	12-13
+# ::node	p	piece	14-15
+# ::node	c2	cook-01	16-17
+# ::node	f	fish	17-18
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	fork	l	f2	
+# ::edge	plate	ARG1-of	white-03	p2	w	
+# ::edge	lay-01	ARG2	plate	l	p2	
+# ::edge	lay-01	ARG2	next-to	l	n	
+# ::edge	carrot	ARG1-of	shred-01	c	s	
+# ::edge	carrot	quant	some	c	s2	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	piece	a	p	
+# ::edge	fish	ARG1-of	cook-01	f	c2	
+# ::edge	piece	consist-of	fish	p	f	
+(l / lay-01
+    :ARG1 (f2 / fork)
+    :ARG2 (p2 / plate
+        :ARG1-of (w / white-03))
+    :ARG2 (n / next-to
+        :op1 (a / and
+            :op1 (c / carrot
+                :quant (s2 / some)
+                :ARG1-of (s / shred-01))
+            :op2 (p / piece
+                :consist-of (f / fish
+                    :ARG1-of (c2 / cook-01))))))

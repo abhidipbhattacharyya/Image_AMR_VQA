@@ -1,0 +1,38 @@
+# ::tok There are people standing or sitting on either side of several large bins filled with bananas .
+# ::node	p	person	2-3
+# ::node	s4	stand-01	3-4
+# ::node	o	or	4-5
+# ::node	s3	sit-01	5-6
+# ::node	e	either	7-8
+# ::node	s2	side	8-9
+# ::node	s	several	10-11
+# ::node	l	large	11-12
+# ::node	i	Bin	12-13
+# ::node	f	fill-01	13-14
+# ::node	b	banana	15-16
+# ::root	o	or
+# ::edge	stand-01	ARG1	person	s4	p	
+# ::edge	or	op1	stand-01	o	s4	
+# ::edge	or	op2	sit-01	o	s3	
+# ::edge	sit-01	ARG1	person	s3	p	
+# ::edge	side	mod	either	s2	e	
+# ::edge	sit-01	ARG2	side	s3	s2	
+# ::edge	stand-01	ARG2	side	s4	s2	
+# ::edge	Bin	mod	large	i	l	
+# ::edge	Bin	quant	several	i	s	
+# ::edge	side	op1	Bin	s2	i	
+# ::edge	Bin	ARG1-of	fill-01	i	f	
+# ::edge	fill-01	ARG2	banana	f	b	
+(o / or
+    :op1 (s4 / stand-01
+        :ARG1 (p / person)
+        :ARG2 (s2 / side
+            :mod (e / either)
+            :op1 (i / Bin
+                :quant (s / several)
+                :ARG1-of (f / fill-01
+                    :ARG2 (b / banana))
+                :mod (l / large))))
+    :op2 (s3 / sit-01
+        :ARG1 p
+        :ARG2 s2))

@@ -1,0 +1,24 @@
+# ::tok People hurriedly cross the street while the traffic light is red .
+# ::node	p	person	0-1
+# ::node	h	hurry-01	1-2
+# ::node	c	cross-02	2-3
+# ::node	s	street	4-5
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	r	red-02	10-11
+# ::root	c	cross-02
+# ::edge	hurry-01	ARG1	person	h	p	
+# ::edge	cross-02	ARG2-of	hurry-01	c	h	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	cross-02	ARG1	street	c	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	red-02	ARG1	light	r	l	
+# ::edge	cross-02	time	red-02	c	r	
+(c / cross-02
+    :ARG0 (p / person)
+    :ARG1 (s / street)
+    :ARG2-of (h / hurry-01
+        :ARG1 p)
+    :time (r / red-02
+        :ARG1 (l / light
+            :mod (t / traffic))))

@@ -1,0 +1,37 @@
+# ::tok A motor boat driving next to a Coulson flying tanker plane that has landed in the water .
+# ::node	m	motor-01	1-2
+# ::node	b	boat	2-3
+# ::node	d	drive-01	3-4
+# ::node	n2	next-to	4-5
+# ::node	c	company	7-8
+# ::node	n	name	7-8
+# ::node	0	Coulson	7-8
+# ::node	f	fly-01	8-9
+# ::node	t	tanker	9-10
+# ::node	p	plane	10-11
+# ::node	l	land-01	13-14
+# ::node	w	water	16-17
+# ::root	d	drive-01
+# ::edge	boat	ARG1-of	motor-01	b	m	
+# ::edge	drive-01	ARG0	boat	d	b	
+# ::edge	drive-01	location	next-to	d	n2	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Coulson	n	0	
+# ::edge	plane	mod	tanker	p	t	
+# ::edge	plane	ARG0-of	fly-01	p	f	
+# ::edge	plane	mod	company	p	c	
+# ::edge	next-to	op1	plane	n2	p	
+# ::edge	plane	ARG1-of	land-01	p	l	
+# ::edge	land-01	location	water	l	w	
+(d / drive-01
+    :ARG0 (b / boat
+        :ARG1-of (m / motor-01))
+    :location (n2 / next-to
+        :op1 (p / plane
+            :ARG0-of (f / fly-01)
+            :ARG1-of (l / land-01
+                :location (w / water))
+            :mod (t / tanker)
+            :mod (c / company
+                :name (n / name
+                    :op1 "Coulson")))))

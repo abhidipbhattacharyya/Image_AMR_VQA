@@ -1,0 +1,31 @@
+# ::tok A small pizza topped with red peppers , green peppers , and onions .
+# ::node	s	small	1-2
+# ::node	p3	pizza	2-3
+# ::node	t	top-01	3-4
+# ::node	r	red-02	5-6
+# ::node	p	pepper-spray	6-7
+# ::node	g2	green-02	8-9
+# ::node	p2	pepper-spray	9-10
+# ::node	a	and	11-12
+# ::node	p4	potato	12-13
+# ::node	g	gram	12-13
+# ::root	p3	pizza
+# ::edge	pizza	mod	small	p3	s	
+# ::edge	pizza	ARG2-of	top-01	p3	t	
+# ::edge	pepper-spray	ARG1-of	red-02	p	r	
+# ::edge	pepper-spray	ARG1-of	green-02	p2	g2	
+# ::edge	and	op2	pepper-spray	a	p2	
+# ::edge	and	op1	pepper-spray	a	p	
+# ::edge	top-01	ARG1	and	t	a	
+# ::edge	and	op3	potato	a	p4	
+# ::edge	potato	unit	gram	p4	g	
+(p3 / pizza
+    :ARG2-of (t / top-01
+        :ARG1 (a / and
+            :op1 (p / pepper-spray
+                :ARG1-of (r / red-02))
+            :op2 (p2 / pepper-spray
+                :ARG1-of (g2 / green-02))
+            :op3 (p4 / potato
+                :unit (g / gram))))
+    :mod (s / small))

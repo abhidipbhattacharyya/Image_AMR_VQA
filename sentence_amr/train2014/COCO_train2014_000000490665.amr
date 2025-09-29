@@ -1,0 +1,42 @@
+# ::tok A grocery store with a rack of Chiquita bananas for sale and other groceries behind it .
+# ::node	g	grocery	1-2
+# ::node	s2	store	2-3
+# ::node	h	have-03	3-4
+# ::node	r	rack	5-6
+# ::node	p	product	7-8
+# ::node	n	name	7-8
+# ::node	0	Chiquita	7-8
+# ::node	b	banana	8-9
+# ::node	s	sell-01	10-11
+# ::node	a	and	11-12
+# ::node	o	other	12-13
+# ::node	g2	grocery	13-14
+# ::node	b2	behind	14-15
+# ::root	s2	store
+# ::edge	store	mod	grocery	s2	g	
+# ::edge	store	ARG0-of	have-03	s2	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Chiquita	n	0	
+# ::edge	banana	mod	product	b	p	
+# ::edge	rack	consist-of	banana	r	b	
+# ::edge	rack	ARG1-of	sell-01	r	s	
+# ::edge	and	op1	rack	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	grocery	mod	other	g2	o	
+# ::edge	and	op2	grocery	a	g2	
+# ::edge	and	location	behind	a	b2	
+# ::edge	behind	op1	store	b2	s2	
+(s2 / store
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (b2 / behind
+                :op1 s2)
+            :op1 (r / rack
+                :ARG1-of (s / sell-01)
+                :consist-of (b / banana
+                    :mod (p / product
+                        :name (n / name
+                            :op1 "Chiquita"))))
+            :op2 (g2 / grocery
+                :mod (o / other))))
+    :mod (g / grocery))

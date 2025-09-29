@@ -1,0 +1,34 @@
+# ::tok A beach scene with hundreds of people on the sand and plenty of kites in the sky .
+# ::node	b2	beach	1-2
+# ::node	s2	scene	2-3
+# ::node	m	multiple	4-5
+# ::node	0	100	4-5
+# ::node	p	person	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	s	sand	9-10
+# ::node	a	and	10-11
+# ::node	p2	plenty	11-12
+# ::node	o	Korea	13-14
+# ::node	s3	sky	16-17
+# ::root	s2	scene
+# ::edge	scene	mod	beach	s2	b2	
+# ::edge	multiple	op1	100	m	0	
+# ::edge	person	quant	multiple	p	m	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	sand	b	s	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	scene	location-of	and	s2	a	
+# ::edge	Korea	quant	plenty	o	p2	
+# ::edge	and	op2	Korea	a	o	
+# ::edge	Korea	location	sky	o	s3	
+(s2 / scene
+    :location-of (a / and
+        :op1 (b / be-located-at-91
+            :ARG1 (p / person
+                :quant (m / multiple
+                    :op1 100))
+            :ARG2 (s / sand))
+        :op2 (o / Korea
+            :quant (p2 / plenty)
+            :location (s3 / sky)))
+    :mod (b2 / beach))

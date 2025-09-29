@@ -1,0 +1,25 @@
+# ::tok A bed room with louvered , curtained windows in the daytime
+# ::node	b	bed	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	l	louvered	4-5
+# ::node	c	curtain	6-7
+# ::node	w	window	7-8
+# ::node	d	date-entity	10-11
+# ::node	d2	daytime	10-11
+# ::root	r	room
+# ::edge	room	mod	bed	r	b	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	window	mod	curtain	w	c	
+# ::edge	window	mod	louvered	w	l	
+# ::edge	have-03	ARG1	window	h	w	
+# ::edge	room	time	date-entity	r	d	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (w / window
+            :mod (c / curtain)
+            :mod (l / louvered)))
+    :mod (b / bed)
+    :time (d / date-entity
+        :dayperiod (d2 / daytime)))

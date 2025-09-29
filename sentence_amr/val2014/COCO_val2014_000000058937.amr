@@ -1,0 +1,36 @@
+# ::tok A table has three wine glasses , several bottles of wine , and a bowl of salad .
+# ::node	t	table	1-2
+# ::node	h	have-03	2-3
+# ::node	0	3	3-4
+# ::node	w	wine	4-5
+# ::node	g	glass	5-6
+# ::node	s2	several	7-8
+# ::node	b	bottle	8-9
+# ::node	w2	wine	10-11
+# ::node	a	and	12-13
+# ::node	b2	bowl	14-15
+# ::node	s	salad	16-17
+# ::root	h	have-03
+# ::edge	have-03	ARG0	table	h	t	
+# ::edge	glass	mod	wine	g	w	
+# ::edge	glass	quant	3	g	0	
+# ::edge	several	op1	bottle	s2	b	
+# ::edge	bottle	quant	wine	b	w	
+# ::edge	wine	quant	several	w2	s2	
+# ::edge	and	op2	wine	a	w2	
+# ::edge	and	op1	glass	a	g	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	salad	quant	bowl	s	b2	
+# ::edge	and	op3	salad	a	s	
+(h / have-03
+    :ARG0 (t / table)
+    :ARG1 (a / and
+        :op1 (g / glass
+            :quant 3
+            :mod (w / wine))
+        :op2 (w2 / wine
+            :quant (s2 / several
+                :op1 (b / bottle
+                    :quant w)))
+        :op3 (s / salad
+            :quant (b2 / bowl))))

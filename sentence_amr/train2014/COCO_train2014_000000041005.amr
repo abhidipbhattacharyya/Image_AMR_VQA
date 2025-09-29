@@ -1,0 +1,29 @@
+# ::tok These skiers pause to review their surroundings in the snow
+# ::node	t2	this	0-1
+# ::node	p2	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	p	pause-01	2-3
+# ::node	r	review-01	4-5
+# ::node	t	thing	6-7
+# ::node	s3	surround-01	6-7
+# ::node	s2	snow	9-10
+# ::root	p	pause-01
+# ::edge	person	mod	this	p2	t2	
+# ::edge	person	ARG0-of	ski-01	p2	s	
+# ::edge	pause-01	ARG0	person	p	p2	
+# ::edge	pause-01	purpose	review-01	p	r	
+# ::edge	review-01	ARG0	person	r	p2	
+# ::edge	review-01	ARG1	thing	r	t	
+# ::edge	thing	ARG1-of	surround-01	t	s3	
+# ::edge	surround-01	ARG2	person	s3	p2	
+# ::edge	thing	location	snow	t	s2	
+(p / pause-01
+    :purpose (r / review-01
+        :ARG0 (p2 / person
+            :ARG0-of (s / ski-01)
+            :mod (t2 / this))
+        :ARG1 (t / thing
+            :ARG1-of (s3 / surround-01
+                :ARG2 p2)
+            :location (s2 / snow)))
+    :ARG0 p2)

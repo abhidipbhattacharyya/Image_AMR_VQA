@@ -1,0 +1,21 @@
+# ::tok Train operating down a train track on a cloudy day .
+# ::node	t2	train	0-1
+# ::node	o	operate-01	1-2
+# ::node	d2	down	2-3
+# ::node	t	track	5-6
+# ::node	c	cloudy-02	8-9
+# ::node	d	day	9-10
+# ::root	o	operate-01
+# ::edge	operate-01	ARG1	train	o	t2	
+# ::edge	operate-01	path	down	o	d2	
+# ::edge	down	op1	track	d2	t	
+# ::edge	track	mod	train	t	t2	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	operate-01	time	day	o	d	
+(o / operate-01
+    :ARG1 (t2 / train)
+    :path (d2 / down
+        :op1 (t / track
+            :mod t2))
+    :time (d / day
+        :ARG1-of (c / cloudy-02)))

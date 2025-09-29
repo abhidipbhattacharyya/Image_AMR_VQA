@@ -1,0 +1,27 @@
+# ::tok People on bicycles and motorcycles at an intersection where the light has turned green .
+# ::node	p	person	0-1
+# ::node	b	bicycle	2-3
+# ::node	a	and	3-4
+# ::node	m	motorcycle	4-5
+# ::node	i	intersect-01	7-8
+# ::node	l	light	10-11
+# ::node	t	turn-02	12-13
+# ::node	g	green-02	13-14
+# ::root	a	and
+# ::edge	and	op1	bicycle	a	b	
+# ::edge	and	domain	person	a	p	
+# ::edge	and	op2	motorcycle	a	m	
+# ::edge	and	location	intersect-01	a	i	
+# ::edge	turn-02	ARG1	light	t	l	
+# ::edge	intersect-01	location-of	turn-02	i	t	
+# ::edge	turn-02	ARG2	green-02	t	g	
+# ::edge	green-02	ARG1	light	g	l	
+(a / and
+    :domain (p / person)
+    :location (i / intersect-01
+        :location-of (t / turn-02
+            :ARG1 (l / light)
+            :ARG2 (g / green-02
+                :ARG1 l)))
+    :op1 (b / bicycle)
+    :op2 (m / motorcycle))

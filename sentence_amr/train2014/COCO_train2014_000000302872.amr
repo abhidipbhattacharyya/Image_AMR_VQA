@@ -1,0 +1,32 @@
+# ::tok A tall building with a lot of windows , two clocks on it and the top of it lit up .
+# ::node	t	tall	1-2
+# ::node	b	building	2-3
+# ::node	l2	lot	5-6
+# ::node	w2	window	7-8
+# ::node	0	2	9-10
+# ::node	w	watch	10-11
+# ::node	a	and	13-14
+# ::node	t2	top	15-16
+# ::node	l	light-up-08	18-19
+# ::root	b	building
+# ::edge	building	mod	tall	b	t	
+# ::edge	window	quant	lot	w2	l2	
+# ::edge	building	part	window	b	w2	
+# ::edge	watch	quant	2	w	0	
+# ::edge	and	op2	watch	a	w	
+# ::edge	and	op1	building	a	b	
+# ::edge	building	part	top	b	t2	
+# ::edge	light-up-08	ARG1	top	l	t2	
+# ::edge	building	op3	light-up-08	b	l	
+# ::edge	building	rel	and	b	a	
+(b / building
+    :mod (t / tall)
+    :op3 (l / light-up-08
+        :ARG1 (t2 / top))
+    :part (w2 / window
+        :quant (l2 / lot))
+    :part t2
+    :rel (a / and
+        :op1 b
+        :op2 (w / watch
+            :quant 2)))

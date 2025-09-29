@@ -1,0 +1,40 @@
+# ::tok A motel has a line of blankets hanging over the railing as two people play basketball in the parking lot .
+# ::node	m	motel	1-2
+# ::node	h2	have-03	2-3
+# ::node	l	line	4-5
+# ::node	b2	blanket	6-7
+# ::node	h	hang-01	7-8
+# ::node	o	over	8-9
+# ::node	r	railing	10-11
+# ::node	0	2	12-13
+# ::node	p2	person	13-14
+# ::node	p3	play-01	14-15
+# ::node	b	basketball	15-16
+# ::node	p	park-01	18-19
+# ::node	l2	lot	19-20
+# ::root	h2	have-03
+# ::edge	have-03	ARG0	motel	h2	m	
+# ::edge	line	consist-of	blanket	l	b2	
+# ::edge	blanket	ARG1-of	hang-01	b2	h	
+# ::edge	hang-01	ARG2	over	h	o	
+# ::edge	over	op1	railing	o	r	
+# ::edge	person	quant	2	p2	0	
+# ::edge	play-01	ARG0	person	p3	p2	
+# ::edge	have-03	time	play-01	h2	p3	
+# ::edge	play-01	ARG1	basketball	p3	b	
+# ::edge	lot	purpose	park-01	l2	p	
+# ::edge	play-01	location	lot	p3	l2	
+# ::edge	have-03	rel	line	h2	l	
+(h2 / have-03
+    :ARG0 (m / motel)
+    :rel (l / line
+        :consist-of (b2 / blanket
+            :ARG1-of (h / hang-01
+                :ARG2 (o / over
+                    :op1 (r / railing)))))
+    :time (p3 / play-01
+        :ARG0 (p2 / person
+            :quant 2)
+        :ARG1 (b / basketball)
+        :location (l2 / lot
+            :purpose (p / park-01))))

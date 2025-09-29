@@ -1,0 +1,27 @@
+# ::tok A yellow tractor digging next to a yellow and red fire hydrant .
+# ::node	y	yellow	1-2
+# ::node	t	tractor	2-3
+# ::node	d	dig-01	3-4
+# ::node	n	next-to	4-5
+# ::node	a	and	8-9
+# ::node	r	red-02	9-10
+# ::node	f	fire	10-11
+# ::node	h	hydrant	11-12
+# ::root	d	dig-01
+# ::edge	tractor	mod	yellow	t	y	
+# ::edge	dig-01	ARG0	tractor	d	t	
+# ::edge	dig-01	location	next-to	d	n	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op1	tractor	a	t	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	and	op2	hydrant	a	h	
+(d / dig-01
+    :ARG0 (t / tractor
+        :mod (y / yellow))
+    :location (n / next-to
+        :op1 (a / and
+            :op1 t
+            :op2 (h / hydrant
+                :ARG1-of (r / red-02)
+                :mod (f / fire)))))

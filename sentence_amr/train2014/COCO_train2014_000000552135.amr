@@ -1,0 +1,34 @@
+# ::tok A road sign that reads " STOP here on RED " on the shoulder of a rural highway .
+# ::node	r3	road	1-2
+# ::node	s2	sign	2-3
+# ::node	r	read-01	4-5
+# ::node	s3	stop-01	6-7
+# ::node	y	you	6-7
+# ::node	0	imperative	6-7
+# ::node	h	here	7-8
+# ::node	r2	red-02	9-10
+# ::node	s	shoulder	13-14
+# ::node	r4	rural	16-17
+# ::node	h2	highway	17-18
+# ::root	s2	sign
+# ::edge	sign	mod	road	s2	r3	
+# ::edge	sign	ARG1-of	read-01	s2	r	
+# ::edge	read-01	ARG3	stop-01	r	s3	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	stop-01	mode	imperative	s3	0	
+# ::edge	stop-01	location	here	s3	h	
+# ::edge	here	ARG1-of	red-02	h	r2	
+# ::edge	sign	location	shoulder	s2	s	
+# ::edge	highway	mod	rural	h2	r4	
+# ::edge	shoulder	part-of	highway	s	h2	
+(s2 / sign
+    :ARG1-of (r / read-01
+        :ARG3 (s3 / stop-01
+            :ARG0 (y / you)
+            :location (h / here
+                :ARG1-of (r2 / red-02))
+            :mode imperative))
+    :location (s / shoulder
+        :part-of (h2 / highway
+            :mod (r4 / rural)))
+    :mod (r3 / road))

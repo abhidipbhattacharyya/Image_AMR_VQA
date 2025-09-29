@@ -1,0 +1,24 @@
+# ::tok Many elephants are walking near a muddy watering hole .
+# ::node	m	many	0-1
+# ::node	e	elephant	1-2
+# ::node	w	walk-01	3-4
+# ::node	n	near-02	4-5
+# ::node	m2	muddy-01	6-7
+# ::node	w2	water-01	7-8
+# ::node	h	hole	8-9
+# ::root	w	walk-01
+# ::edge	elephant	quant	many	e	m	
+# ::edge	walk-01	ARG0	elephant	w	e	
+# ::edge	walk-01	ARG2	near-02	w	n	
+# ::edge	near-02	ARG1	elephant	n	e	
+# ::edge	hole	purpose	water-01	h	w2	
+# ::edge	hole	ARG1-of	muddy-01	h	m2	
+# ::edge	near-02	ARG2	hole	n	h	
+(w / walk-01
+    :ARG0 (e / elephant
+        :quant (m / many))
+    :ARG2 (n / near-02
+        :ARG1 e
+        :ARG2 (h / hole
+            :purpose (w2 / water-01)
+            :ARG1-of (m2 / muddy-01))))

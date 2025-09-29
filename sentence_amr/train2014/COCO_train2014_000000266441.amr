@@ -1,0 +1,34 @@
+# ::tok A man falls trying to catch a frisbee , while another catches it instead .
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	f	fall-01	2-3
+# ::node	t	try-01	3-4
+# ::node	c2	catch-03	5-6
+# ::node	f2	frisbee	7-8
+# ::node	a	another	10-11
+# ::node	c	catch-01	11-12
+# ::node	i	instead-of-91	13-14
+# ::root	f	fall-01
+# ::edge	fall-01	ARG1	man	f	m	
+# ::edge	fall-01	manner	try-01	f	t	
+# ::edge	try-01	ARG0	man	t	m	
+# ::edge	try-01	ARG1	catch-03	t	c2	
+# ::edge	catch-03	ARG0	man	c2	m	
+# ::edge	catch-03	ARG1	frisbee	c2	f2	
+# ::edge	man	mod	another	m2	a	
+# ::edge	catch-01	ARG1	frisbee	c	f2	
+# ::edge	man	ARG0-of	catch-01	m2	c	
+# ::edge	catch-01	ARG1-of	instead-of-91	c	i	
+# ::edge	fall-01	rel	man	f	m2	
+(f / fall-01
+    :ARG1 (m / man)
+    :manner (t / try-01
+        :ARG0 m
+        :ARG1 (c2 / catch-03
+            :ARG0 m
+            :ARG1 (f2 / frisbee)))
+    :rel (m2 / man
+        :ARG0-of (c / catch-01
+            :ARG1 f2
+            :ARG1-of (i / instead-of-91))
+        :mod (a / another)))

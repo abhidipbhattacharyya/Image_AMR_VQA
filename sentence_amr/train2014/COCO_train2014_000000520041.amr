@@ -1,0 +1,31 @@
+# ::tok A room with three bunk bed sets and a stack full of mattresses .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	0	3	3-4
+# ::node	b2	bunk	4-5
+# ::node	b	bed	5-6
+# ::node	s	set	6-7
+# ::node	a	and	7-8
+# ::node	s2	stack	9-10
+# ::node	f	full-09	10-11
+# ::node	m	mattock	12-13
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	mod	bunk	b	b2	
+# ::edge	set	mod	bed	s	b	
+# ::edge	set	quant	3	s	0	
+# ::edge	and	op1	set	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	stack	a	s2	
+# ::edge	stack	ARG1-of	full-09	s2	f	
+# ::edge	full-09	ARG2	mattock	f	m	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / set
+                :quant 3
+                :mod (b / bed
+                    :mod (b2 / bunk)))
+            :op2 (s2 / stack
+                :ARG1-of (f / full-09
+                    :ARG2 (m / mattock))))))

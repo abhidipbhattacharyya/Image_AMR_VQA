@@ -1,0 +1,24 @@
+# ::tok Smoke billows out of a train engine coming down a train track .
+# ::node	s	smoke-02	0-1
+# ::node	b	billow-01	1-2
+# ::node	t2	train	5-6
+# ::node	e	engine	6-7
+# ::node	c	come-01	7-8
+# ::node	d	down	8-9
+# ::node	t	track	11-12
+# ::root	b	billow-01
+# ::edge	billow-01	ARG1	smoke-02	b	s	
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	billow-01	ARG0	engine	b	e	
+# ::edge	engine	ARG1-of	come-01	e	c	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	down	path	track	d	t	
+# ::edge	train	path	track	t2	t	
+(b / billow-01
+    :ARG0 (e / engine
+        :ARG1-of (c / come-01
+            :direction (d / down
+                :path (t / track)))
+        :part-of (t2 / train
+            :path t))
+    :ARG1 (s / smoke-02))

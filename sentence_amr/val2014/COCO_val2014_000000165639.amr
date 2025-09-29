@@ -1,0 +1,28 @@
+# ::tok A trash can filled with a hot dog , a banana and other garbage .
+# ::node	t	trash	1-2
+# ::node	c	can	2-3
+# ::node	f	fill-01	3-4
+# ::node	e	eat-01	6-7
+# ::node	h	hot-dog	7-8
+# ::node	b	banana	10-11
+# ::node	a	and	11-12
+# ::node	o	other	12-13
+# ::node	g	garbage	13-14
+# ::root	c	can
+# ::edge	can	mod	trash	c	t	
+# ::edge	can	ARG1-of	fill-01	c	f	
+# ::edge	hot-dog	ARG1-of	eat-01	h	e	
+# ::edge	and	op2	banana	a	b	
+# ::edge	and	op1	hot-dog	a	h	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	garbage	mod	other	g	o	
+# ::edge	and	op3	garbage	a	g	
+(c / can
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (h / hot-dog
+                :ARG1-of (e / eat-01))
+            :op2 (b / banana)
+            :op3 (g / garbage
+                :mod (o / other))))
+    :mod (t / trash))

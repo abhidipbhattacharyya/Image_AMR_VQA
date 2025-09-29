@@ -1,0 +1,31 @@
+# ::tok A parking meter with 9 minutes remaining in front of a red car .
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	0	9	4-5
+# ::node	t	temporal-quantity	5-6
+# ::node	m2	minute	5-6
+# ::node	r2	remain-01	6-7
+# ::node	i	in-front-of	8-9
+# ::node	r	red-02	11-12
+# ::node	c	car	12-13
+# ::node	c2	cause-01	13-14
+# ::root	m	meter
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	temporal-quantity	quant	9	t	0	
+# ::edge	temporal-quantity	unit	minute	t	m2	
+# ::edge	remain-01	ARG1	temporal-quantity	r2	t	
+# ::edge	remain-01	location	in-front-of	r2	i	
+# ::edge	car	ARG1-of	red-02	c	r	
+# ::edge	in-front-of	op1	car	i	c	
+# ::edge	cause-01	ARG1	remain-01	c2	r2	
+# ::edge	meter	ARG0-of	cause-01	m	c2	
+(m / meter
+    :purpose (p / park-01)
+    :ARG0-of (c2 / cause-01
+        :ARG1 (r2 / remain-01
+            :ARG1 (t / temporal-quantity
+                :quant 9
+                :unit (m2 / minute))
+            :location (i / in-front-of
+                :op1 (c / car
+                    :ARG1-of (r / red-02))))))

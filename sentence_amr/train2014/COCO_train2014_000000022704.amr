@@ -1,0 +1,39 @@
+# ::tok A spool of yellow yarn and a pair of silver scissors with some yarn between them , ready to cut
+# ::node	s4	spool	1-2
+# ::node	y3	yellow-02	3-4
+# ::node	y	yarn	4-5
+# ::node	a	and	5-6
+# ::node	p	pair	7-8
+# ::node	s2	silver	9-10
+# ::node	s	scissors	10-11
+# ::node	s3	some	12-13
+# ::node	y2	yarn	13-14
+# ::node	b	between	14-15
+# ::node	r	ready-02	17-18
+# ::node	c	cut-01	19-20
+# ::root	r	ready-02
+# ::edge	yarn	ARG1-of	yellow-02	y	y3	
+# ::edge	spool	consist-of	yarn	s4	y	
+# ::edge	and	op1	spool	a	s4	
+# ::edge	and	op2	pair	a	p	
+# ::edge	scissors	mod	silver	s	s2	
+# ::edge	pair	consist-of	scissors	p	s	
+# ::edge	yarn	quant	some	y2	s3	
+# ::edge	between	op1	yarn	b	y2	
+# ::edge	scissors	op1-of	between	s	b	
+# ::edge	ready-02	ARG1	and	r	a	
+# ::edge	ready-02	ARG2	cut-01	r	c	
+# ::edge	cut-01	ARG0	and	c	a	
+(r / ready-02
+    :ARG1 (a / and
+        :op1 (s4 / spool
+            :consist-of (y / yarn
+                :ARG1-of (y3 / yellow-02)))
+        :op2 (p / pair
+            :consist-of (s / scissors
+                :mod (s2 / silver)
+                :op1-of (b / between
+                    :op1 (y2 / yarn
+                        :quant (s3 / some))))))
+    :ARG2 (c / cut-01
+        :ARG0 a))

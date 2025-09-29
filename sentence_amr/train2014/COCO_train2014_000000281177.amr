@@ -1,0 +1,57 @@
+# ::tok A beauty pageant winner in a red convertible holds 2 parasols for herself and another pageant winner .
+# ::node	b	beauty	1-2
+# ::node	p	pageant	2-3
+# ::node	p3	person	3-4
+# ::node	w2	win-01	3-4
+# ::node	w	wear-01	4-5
+# ::node	r	red-02	6-7
+# ::node	c	car-make	7-8
+# ::node	n	name	7-8
+# ::node	1	cleric	7-8
+# ::node	2	convertible	7-8
+# ::node	h	hold-01	8-9
+# ::node	0	2	9-10
+# ::node	u	umbrella	10-11
+# ::node	a	and	13-14
+# ::node	a2	another	14-15
+# ::node	p2	pageant	15-16
+# ::node	p4	person	16-17
+# ::node	w3	win-01	16-17
+# ::root	h	hold-01
+# ::edge	pageant	mod	beauty	p	b	
+# ::edge	person	ARG0-of	win-01	p3	w2	
+# ::edge	win-01	ARG1	pageant	w2	p	
+# ::edge	person	ARG0-of	wear-01	p3	w	
+# ::edge	car-make	ARG1-of	red-02	c	r	
+# ::edge	wear-01	ARG1	car-make	w	c	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	cleric	n	1	
+# ::edge	name	op2	convertible	n	2	
+# ::edge	hold-01	ARG0	person	h	p3	
+# ::edge	umbrella	quant	2	u	0	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	hold-01	beneficiary	and	h	a	
+# ::edge	and	op1	person	a	p3	
+# ::edge	person	mod	another	p4	a2	
+# ::edge	and	op2	person	a	p4	
+# ::edge	person	ARG0-of	win-01	p4	w3	
+# ::edge	win-01	ARG1	pageant	w3	p2	
+(h / hold-01
+    :ARG0 (p3 / person
+        :ARG0-of (w2 / win-01
+            :ARG1 (p / pageant
+                :mod (b / beauty)))
+        :ARG0-of (w / wear-01
+            :ARG1 (c / car-make
+                :name (n / name
+                    :op1 "cleric"
+                    :op2 "convertible")
+                :ARG1-of (r / red-02))))
+    :ARG1 (u / umbrella
+        :quant 2)
+    :beneficiary (a / and
+        :op1 p3
+        :op2 (p4 / person
+            :ARG0-of (w3 / win-01
+                :ARG1 (p2 / pageant))
+            :mod (a2 / another))))

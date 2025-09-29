@@ -1,0 +1,27 @@
+# ::tok A motorcycle police man slows to inspect the busy intersection .
+# ::node	m2	motorcycle	1-2
+# ::node	h	have-org-role-91	2-3
+# ::node	p	police	2-3
+# ::node	m	man	3-4
+# ::node	s	slow-01	4-5
+# ::node	i	inspect-01	6-7
+# ::node	b	busy-02	8-9
+# ::node	i2	intersect-01	9-10
+# ::root	s	slow-01
+# ::edge	have-org-role-91	ARG1	police	h	p	
+# ::edge	man	ARG0-of	have-org-role-91	m	h	
+# ::edge	man	mod	motorcycle	m	m2	
+# ::edge	slow-01	ARG1	man	s	m	
+# ::edge	slow-01	purpose	inspect-01	s	i	
+# ::edge	inspect-01	ARG0	man	i	m	
+# ::edge	intersect-01	ARG1-of	busy-02	i2	b	
+# ::edge	inspect-01	ARG1	intersect-01	i	i2	
+(s / slow-01
+    :purpose (i / inspect-01
+        :ARG0 (m / man
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (p / police))
+            :mod (m2 / motorcycle))
+        :ARG1 (i2 / intersect-01
+            :ARG1-of (b / busy-02)))
+    :ARG1 m)

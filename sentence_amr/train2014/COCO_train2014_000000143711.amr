@@ -1,0 +1,36 @@
+# ::tok Some people riding up the mountain on a ski lift , while other are skiing down it .
+# ::node	s3	some	0-1
+# ::node	p	person	1-2
+# ::node	r	ride-01	2-3
+# ::node	u	up-03	3-4
+# ::node	m	mountain	5-6
+# ::node	s	ski-01	8-9
+# ::node	l	lift	9-10
+# ::node	a	and	10-11
+# ::node	o	other	12-13
+# ::node	s2	ski-01	14-15
+# ::node	d	down	15-16
+# ::root	a	and
+# ::edge	person	mod	some	p	s3	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	direction	up-03	r	u	
+# ::edge	up-03	ARG2	mountain	u	m	
+# ::edge	lift	mod	ski-01	l	s	
+# ::edge	ride-01	ARG1	lift	r	l	
+# ::edge	and	op1	ride-01	a	r	
+# ::edge	ski-01	ARG0	other	s2	o	
+# ::edge	and	op2	ski-01	a	s2	
+# ::edge	ski-01	direction	down	s2	d	
+# ::edge	down	op1	mountain	d	m	
+(a / and
+    :op1 (r / ride-01
+        :ARG0 (p / person
+            :mod (s3 / some))
+        :ARG1 (l / lift
+            :mod (s / ski-01))
+        :direction (u / up-03
+            :ARG2 (m / mountain)))
+    :op2 (s2 / ski-01
+        :ARG0 (o / other)
+        :direction (d / down
+            :op1 m)))

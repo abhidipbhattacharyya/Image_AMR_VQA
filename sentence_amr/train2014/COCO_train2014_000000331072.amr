@@ -1,0 +1,23 @@
+# ::tok A surfer on a board is waiting on a wave to take him away .
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	b	board	4-5
+# ::node	w	wait-01	6-7
+# ::node	w2	wave	9-10
+# ::node	t	take-away-05	11-12
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	person	location	board	p	b	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	wave	w	w2	
+# ::edge	take-away-05	ARG0	wave	t	w2	
+# ::edge	wait-01	purpose	take-away-05	w	t	
+# ::edge	take-away-05	ARG1	person	t	p	
+(w / wait-01
+    :purpose (t / take-away-05
+        :ARG0 (w2 / wave)
+        :ARG1 (p / person
+            :ARG0-of (s / surf-01)
+            :location (b / board)))
+    :ARG1 p
+    :ARG2 w2)

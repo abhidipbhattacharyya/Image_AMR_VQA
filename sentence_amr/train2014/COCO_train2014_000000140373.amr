@@ -1,0 +1,42 @@
+# ::tok Two slices of pizza with cheese and pepperoni are sitting in a cardboard box , next to another box of pizza .
+# ::node	0	2	0-1
+# ::node	s2	slice	1-2
+# ::node	p2	pizza	3-4
+# ::node	h	have-03	4-5
+# ::node	c2	cheese	5-6
+# ::node	a	and	6-7
+# ::node	p	pepperoni	7-8
+# ::node	s	sit-01	9-10
+# ::node	c	cardboard	12-13
+# ::node	b	box	13-14
+# ::node	n	next-to	15-16
+# ::node	a2	another	17-18
+# ::node	b2	box	18-19
+# ::root	s	sit-01
+# ::edge	slice	quant	2	s2	0	
+# ::edge	slice	consist-of	pizza	s2	p2	
+# ::edge	slice	ARG0-of	have-03	s2	h	
+# ::edge	and	op1	cheese	a	c2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	pepperoni	a	p	
+# ::edge	sit-01	ARG1	slice	s	s2	
+# ::edge	box	consist-of	cardboard	b	c	
+# ::edge	sit-01	ARG2	box	s	b	
+# ::edge	box	location	next-to	b	n	
+# ::edge	box	mod	another	b2	a2	
+# ::edge	next-to	op1	box	n	b2	
+# ::edge	box	mod	pizza	b2	p2	
+(s / sit-01
+    :ARG1 (s2 / slice
+        :quant 2
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c2 / cheese)
+                :op2 (p / pepperoni)))
+        :consist-of (p2 / pizza))
+    :ARG2 (b / box
+        :consist-of (c / cardboard)
+        :location (n / next-to
+            :op1 (b2 / box
+                :mod (a2 / another)
+                :mod p2))))

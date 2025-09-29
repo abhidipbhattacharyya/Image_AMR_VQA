@@ -1,0 +1,27 @@
+# ::tok Fishing boats with hulls aligned throughout the water create a carousel effect .
+# ::node	f	fish-01	0-1
+# ::node	b	boat	1-2
+# ::node	c	carcass	3-4
+# ::node	a	align-01	4-5
+# ::node	w	water	7-8
+# ::node	c3	create-01	8-9
+# ::node	c2	carousel	10-11
+# ::node	e	effect	11-12
+# ::root	c3	create-01
+# ::edge	boat	purpose	fish-01	b	f	
+# ::edge	boat	part	carcass	b	c	
+# ::edge	align-01	ARG1	carcass	a	c	
+# ::edge	align-01	ARG2	water	a	w	
+# ::edge	create-01	ARG0	align-01	c3	a	
+# ::edge	effect	mod	carousel	e	c2	
+# ::edge	create-01	ARG1	effect	c3	e	
+# ::edge	create-01	rel	boat	c3	b	
+(c3 / create-01
+    :ARG0 (a / align-01
+        :ARG1 (c / carcass)
+        :ARG2 (w / water))
+    :ARG1 (e / effect
+        :mod (c2 / carousel))
+    :rel (b / boat
+        :purpose (f / fish-01)
+        :part c))

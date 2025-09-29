@@ -1,0 +1,32 @@
+# ::tok A man in a suit smelling a glass of wine before tasting it .
+# ::node	m	man	1-2
+# ::node	s2	suit	4-5
+# ::node	s	smell-01	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	0	1	6-7
+# ::node	g	glass	7-8
+# ::node	w	wine	9-10
+# ::node	b	before	10-11
+# ::node	t	taste-01	11-12
+# ::root	s	smell-01
+# ::edge	man	mod	suit	m	s2	
+# ::edge	smell-01	ARG0	man	s	m	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	smell-01	ARG1	wine	s	w	
+# ::edge	smell-01	time	before	s	b	
+# ::edge	before	op1	taste-01	b	t	
+# ::edge	taste-01	ARG1	wine	t	w	
+# ::edge	taste-01	ARG0	man	t	m	
+(s / smell-01
+    :ARG0 (m / man
+        :mod (s2 / suit))
+    :ARG1 (w / wine
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass)))
+    :time (b / before
+        :op1 (t / taste-01
+            :ARG0 m
+            :ARG1 w)))

@@ -1,0 +1,42 @@
+# ::tok Older high rise buildings in the foreground are followed by newer versions around the bend .
+# ::node	o	old	0-1
+# ::node	h2	high	1-2
+# ::node	r	rise-01	2-3
+# ::node	b2	building	3-4
+# ::node	b3	building	3-4
+# ::node	f2	foreground	6-7
+# ::node	f	follow-01	8-9
+# ::node	h	have-degree-91	10-11
+# ::node	n	new-01	10-11
+# ::node	m	more	10-11
+# ::node	v	version	11-12
+# ::node	a	around	12-13
+# ::node	b	bend	14-15
+# ::root	f	follow-01
+# ::edge	rise-01	ARG2	high	r	h2	
+# ::edge	building	ARG1-of	rise-01	b2	r	
+# ::edge	building	mod	old	b2	o	
+# ::edge	building	location	foreground	b2	f2	
+# ::edge	follow-01	ARG2	building	f	b3	
+# ::edge	follow-01	ARG1	building	f	b2	
+# ::edge	building	ARG1-of	have-degree-91	b3	h	
+# ::edge	have-degree-91	ARG2	new-01	h	n	
+# ::edge	new-01	ARG1	building	n	b3	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	building	mod	version	b3	v	
+# ::edge	building	location	around	b3	a	
+# ::edge	around	op1	bend	a	b	
+(f / follow-01
+    :ARG1 (b2 / building
+        :ARG1-of (r / rise-01
+            :ARG2 (h2 / high))
+        :location (f2 / foreground)
+        :mod (o / old))
+    :ARG2 (b3 / building
+        :ARG1-of (h / have-degree-91
+            :ARG2 (n / new-01
+                :ARG1 b3)
+            :ARG3 (m / more))
+        :location (a / around
+            :op1 (b / bend))
+        :mod (v / version)))

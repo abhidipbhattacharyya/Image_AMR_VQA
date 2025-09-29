@@ -1,0 +1,58 @@
+# ::tok Kitchen area , with storage shelves , stove / oven , dish washer , refrigerator , counter and two person dining table .
+# ::node	c	cook-01	0-1
+# ::node	a2	area	1-2
+# ::node	h	have-03	3-4
+# ::node	s3	store-01	4-5
+# ::node	s	shelf	5-6
+# ::node	s4	stove	7-8
+# ::node	s2	slash	8-9
+# ::node	o	oven	9-10
+# ::node	d2	dish	11-12
+# ::node	w	washer	12-13
+# ::node	r	refrigerator	14-15
+# ::node	c2	counter	16-17
+# ::node	a	and	17-18
+# ::node	0	2	18-19
+# ::node	p	person	19-20
+# ::node	d	dine-01	20-21
+# ::node	t	table	21-22
+# ::root	a2	area
+# ::edge	area	location-of	cook-01	a2	c	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	shelf	ARG2-of	store-01	s	s3	
+# ::edge	slash	op1	stove	s2	s4	
+# ::edge	slash	op2	oven	s2	o	
+# ::edge	washer	mod	dish	w	d2	
+# ::edge	and	op7	counter	a	c2	
+# ::edge	and	op6	refrigerator	a	r	
+# ::edge	and	op5	refrigerator	a	r	
+# ::edge	and	op4	slash	a	s2	
+# ::edge	and	op3	slash	a	s2	
+# ::edge	and	op2	slash	a	s2	
+# ::edge	and	op1	shelf	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	person	quant	2	p	0	
+# ::edge	table	purpose	dine-01	t	d	
+# ::edge	table	beneficiary	person	t	p	
+# ::edge	and	op8	table	a	t	
+# ::edge	area	rel	washer	a2	w	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / shelf
+                :ARG2-of (s3 / store-01))
+            :op2 (s2 / slash
+                :op1 (s4 / stove)
+                :op2 (o / oven))
+            :op3 s2
+            :op4 s2
+            :op5 (r / refrigerator)
+            :op6 r
+            :op7 (c2 / counter)
+            :op8 (t / table
+                :purpose (d / dine-01)
+                :beneficiary (p / person
+                    :quant 2))))
+    :location-of (c / cook-01)
+    :rel (w / washer
+        :mod (d2 / dish)))

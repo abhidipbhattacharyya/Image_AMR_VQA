@@ -1,0 +1,36 @@
+# ::tok A baseball game in progress with the batter at home plate getting ready to bunt the oncoming ball .
+# ::node	b2	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p3	progress-01	4-5
+# ::node	p	person	7-8
+# ::node	b3	batter-01	7-8
+# ::node	h	home	9-10
+# ::node	p2	plate	10-11
+# ::node	r	ready-01	12-13
+# ::node	a	B	14-15
+# ::node	c	come-01	16-17
+# ::node	b	ball	17-18
+# ::root	p3	progress-01
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	progress-01	ARG1	game	p3	g	
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	person	location	plate	p	p2	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	game	ARG0-of	ready-01	g	r	
+# ::edge	ready-01	ARG2	B	r	a	
+# ::edge	B	ARG0	person	a	p	
+# ::edge	ball	ARG1-of	come-01	b	c	
+# ::edge	B	ARG1	ball	a	b	
+(p3 / progress-01
+    :ARG1 (g / game
+        :ARG0-of (r / ready-01
+            :ARG1 (p / person
+                :ARG0-of (b3 / batter-01)
+                :location (p2 / plate
+                    :mod (h / home)))
+            :ARG2 (a / B
+                :ARG0 p
+                :ARG1 (b / ball
+                    :ARG1-of (c / come-01))))
+        :mod (b2 / baseball)))

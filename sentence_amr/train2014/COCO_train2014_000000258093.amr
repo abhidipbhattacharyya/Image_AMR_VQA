@@ -1,0 +1,34 @@
+# ::tok A king size bed in a hotel front with the drapes closed and a tv on a table .
+# ::node	k	king	1-2
+# ::node	s	size	2-3
+# ::node	b	bed	3-4
+# ::node	h	hotel	6-7
+# ::node	f	front	7-8
+# ::node	w	window	10-11
+# ::node	c2	curtain	10-11
+# ::node	c	close-01	11-12
+# ::node	a	and	12-13
+# ::node	t2	television	14-15
+# ::node	t	table	17-18
+# ::root	a	and
+# ::edge	size	mod	king	s	k	
+# ::edge	bed	mod	size	b	s	
+# ::edge	front	mod	hotel	f	h	
+# ::edge	bed	location	front	b	f	
+# ::edge	close-01	ARG1	window	c	w	
+# ::edge	bed	condition	close-01	b	c	
+# ::edge	and	op1	bed	a	b	
+# ::edge	and	op2	television	a	t2	
+# ::edge	television	location	table	t2	t	
+# ::edge	and	rel	curtain	a	c2	
+(a / and
+    :op1 (b / bed
+        :condition (c / close-01
+            :ARG1 (w / window))
+        :location (f / front
+            :mod (h / hotel))
+        :mod (s / size
+            :mod (k / king)))
+    :op2 (t2 / television
+        :location (t / table))
+    :rel (c2 / curtain))

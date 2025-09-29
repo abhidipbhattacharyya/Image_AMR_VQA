@@ -1,0 +1,33 @@
+# ::tok A young man next to a group of other young people in a room .
+# ::node	y	young	1-2
+# ::node	m	man	2-3
+# ::node	n	next-to	3-4
+# ::node	i	include-91	4-5
+# ::node	g	group	6-7
+# ::node	o	other	8-9
+# ::node	y2	young	9-10
+# ::node	p	person	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	r	room	13-14
+# ::root	b	be-located-at-91
+# ::edge	man	mod	young	m	y	
+# ::edge	next-to	op1	man	n	m	
+# ::edge	include-91	ARG2	next-to	i	n	
+# ::edge	group	ARG1-of	include-91	g	i	
+# ::edge	person	mod	young	p	y2	
+# ::edge	person	mod	other	p	o	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	be-located-at-91	ARG1	next-to	b	n	
+# ::edge	be-located-at-91	ARG2	room	b	r	
+# ::edge	be-located-at-91	rel	group	b	g	
+(b / be-located-at-91
+    :ARG1 (n / next-to
+        :op1 (m / man
+            :mod (y / young)))
+    :ARG2 (r / room)
+    :rel (g / group
+        :ARG1-of (i / include-91
+            :ARG2 n)
+        :consist-of (p / person
+            :mod (y2 / young)
+            :mod (o / other))))

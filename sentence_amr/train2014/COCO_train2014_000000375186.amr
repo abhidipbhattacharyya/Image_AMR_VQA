@@ -1,0 +1,36 @@
+# ::tok an attendant with hundreds of bunches of bananas selling to a customer
+# ::node	p	person	1-2
+# ::node	a	attend-02	1-2
+# ::node	h	have-03	2-3
+# ::node	m	multiple	3-4
+# ::node	0	100	3-4
+# ::node	l	load	5-6
+# ::node	b	banana	7-8
+# ::node	s	sell-01	8-9
+# ::node	p2	person	11-12
+# ::node	h2	have-rel-role-91	11-12
+# ::node	c	customer	11-12
+# ::root	h	have-03
+# ::edge	person	ARG0-of	attend-02	p	a	
+# ::edge	have-03	ARG0	person	h	p	
+# ::edge	multiple	op1	100	m	0	
+# ::edge	load	quant	multiple	l	m	
+# ::edge	banana	quant	load	b	l	
+# ::edge	have-03	ARG1	banana	h	b	
+# ::edge	person	ARG0-of	sell-01	p	s	
+# ::edge	sell-01	ARG2	person	s	p2	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h2	
+# ::edge	have-rel-role-91	ARG1	person	h2	p	
+# ::edge	have-rel-role-91	ARG2	customer	h2	c	
+(h / have-03
+    :ARG0 (p / person
+        :ARG0-of (a / attend-02)
+        :ARG0-of (s / sell-01
+            :ARG2 (p2 / person
+                :ARG0-of (h2 / have-rel-role-91
+                    :ARG1 p
+                    :ARG2 (c / customer)))))
+    :ARG1 (b / banana
+        :quant (l / load
+            :quant (m / multiple
+                :op1 100))))

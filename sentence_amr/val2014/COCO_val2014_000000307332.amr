@@ -1,0 +1,37 @@
+# ::tok A dog looking the same direction as two females sitting on a park bench facing a body of water .
+# ::node	d2	dog	1-2
+# ::node	l	look-01	2-3
+# ::node	s	same-01	4-5
+# ::node	d	direction	5-6
+# ::node	0	2	7-8
+# ::node	f2	female	8-9
+# ::node	s2	sit-01	9-10
+# ::node	p	park	12-13
+# ::node	b	bench	13-14
+# ::node	f	face-01	14-15
+# ::node	b2	body	16-17
+# ::node	w	water	18-19
+# ::root	l	look-01
+# ::edge	look-01	ARG0	dog	l	d2	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	look-01	direction	direction	l	d	
+# ::edge	female	quant	2	f2	0	
+# ::edge	same-01	ARG2	female	s	f2	
+# ::edge	female	ARG1-of	sit-01	f2	s2	
+# ::edge	bench	location	park	b	p	
+# ::edge	sit-01	ARG2	bench	s2	b	
+# ::edge	female	ARG0-of	face-01	f2	f	
+# ::edge	face-01	ARG1	body	f	b2	
+# ::edge	body	consist-of	water	b2	w	
+(l / look-01
+    :ARG0 (d2 / dog)
+    :direction (d / direction
+        :ARG1-of (s / same-01
+            :ARG2 (f2 / female
+                :quant 2
+                :ARG0-of (f / face-01
+                    :ARG1 (b2 / body
+                        :consist-of (w / water)))
+                :ARG1-of (s2 / sit-01
+                    :ARG2 (b / bench
+                        :location (p / park)))))))

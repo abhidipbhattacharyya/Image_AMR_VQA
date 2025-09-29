@@ -1,0 +1,32 @@
+# ::tok Several street signs and street lights by a street with cars going by .
+# ::node	s	several	0-1
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	a	and	3-4
+# ::node	l	light	5-6
+# ::node	s4	street	8-9
+# ::node	c	car	10-11
+# ::node	g	go-01	11-12
+# ::node	b	by	12-13
+# ::root	a	and
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	quant	several	s2	s	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	mod	street	l	s3	
+# ::edge	light	quant	several	l	s	
+# ::edge	and	location	street	a	s4	
+# ::edge	go-01	ARG1	car	g	c	
+# ::edge	street	location-of	go-01	s4	g	
+# ::edge	go-01	direction	by	g	b	
+(a / and
+    :location (s4 / street
+        :location-of (g / go-01
+            :ARG1 (c / car)
+            :direction (b / by)))
+    :op1 (s2 / sign
+        :quant (s / several)
+        :mod (s3 / street))
+    :op2 (l / light
+        :quant s
+        :mod s3))

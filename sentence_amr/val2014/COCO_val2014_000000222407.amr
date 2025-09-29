@@ -1,0 +1,27 @@
+# ::tok A bird perches on a branch with no leaves while avoiding rain droplets .
+# ::node	b	bird	1-2
+# ::node	p	perch-01	2-3
+# ::node	b2	branch	5-6
+# ::node	0	-	7-8
+# ::node	l	leaf	8-9
+# ::node	a	avoid-01	10-11
+# ::node	r	rain-01	11-12
+# ::node	d	droplet	12-13
+# ::root	p	perch-01
+# ::edge	perch-01	ARG1	bird	p	b	
+# ::edge	perch-01	ARG2	branch	p	b2	
+# ::edge	leaf	polarity	-	l	0	
+# ::edge	branch	part	leaf	b2	l	
+# ::edge	perch-01	time	avoid-01	p	a	
+# ::edge	avoid-01	ARG0	bird	a	b	
+# ::edge	droplet	mod	rain-01	d	r	
+# ::edge	avoid-01	ARG1	droplet	a	d	
+(p / perch-01
+    :ARG1 (b / bird)
+    :ARG2 (b2 / branch
+        :part (l / leaf
+            :polarity -))
+    :time (a / avoid-01
+        :ARG0 b
+        :ARG1 (d / droplet
+            :mod (r / rain-01))))

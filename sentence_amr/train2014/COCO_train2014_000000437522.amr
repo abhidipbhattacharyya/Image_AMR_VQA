@@ -1,0 +1,22 @@
+# ::tok Partial flooding of street and sidewalk from a fire hydrant .
+# ::node	p	partial-01	0-1
+# ::node	f2	flood-01	1-2
+# ::node	s2	street	3-4
+# ::node	a	and	4-5
+# ::node	s	sidewalk	5-6
+# ::node	f	fire	8-9
+# ::node	h	hydrant	9-10
+# ::root	f2	flood-01
+# ::edge	flood-01	ARG1-of	partial-01	f2	p	
+# ::edge	and	op1	street	a	s2	
+# ::edge	flood-01	ARG1	and	f2	a	
+# ::edge	and	op2	sidewalk	a	s	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	flood-01	ARG0	hydrant	f2	h	
+(f2 / flood-01
+    :ARG0 (h / hydrant
+        :mod (f / fire))
+    :ARG1 (a / and
+        :op1 (s2 / street)
+        :op2 (s / sidewalk))
+    :ARG1-of (p / partial-01))

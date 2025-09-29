@@ -1,0 +1,49 @@
+# ::tok A pair of jeans , some socks , a cell phone , some cables , and a Ziploc bag are on top of a bed .
+# ::node	p	pair	1-2
+# ::node	j	jeans	3-4
+# ::node	s2	some	5-6
+# ::node	s	sock	6-7
+# ::node	c2	cell	9-10
+# ::node	p2	phone	10-11
+# ::node	s3	some	12-13
+# ::node	c	cable	13-14
+# ::node	a	and	15-16
+# ::node	c3	company	17-18
+# ::node	n	name	17-18
+# ::node	0	Ziploc	17-18
+# ::node	b	bag	18-19
+# ::node	b2	be-located-at-91	20-21
+# ::node	t	top	21-22
+# ::node	b3	bed	24-25
+# ::root	b2	be-located-at-91
+# ::edge	pair	consist-of	jeans	p	j	
+# ::edge	sock	quant	some	s	s2	
+# ::edge	phone	mod	cell	p2	c2	
+# ::edge	cable	quant	some	c	s3	
+# ::edge	and	op4	cable	a	c	
+# ::edge	and	op3	phone	a	p2	
+# ::edge	and	op2	sock	a	s	
+# ::edge	and	op1	pair	a	p	
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op1	Ziploc	n	0	
+# ::edge	bag	mod	company	b	c3	
+# ::edge	and	op5	bag	a	b	
+# ::edge	be-located-at-91	ARG1	and	b2	a	
+# ::edge	be-located-at-91	ARG2	top	b2	t	
+# ::edge	top	part-of	bed	t	b3	
+(b2 / be-located-at-91
+    :ARG1 (a / and
+        :op1 (p / pair
+            :consist-of (j / jeans))
+        :op2 (s / sock
+            :quant (s2 / some))
+        :op3 (p2 / phone
+            :mod (c2 / cell))
+        :op4 (c / cable
+            :quant (s3 / some))
+        :op5 (b / bag
+            :mod (c3 / company
+                :name (n / name
+                    :op1 "Ziploc"))))
+    :ARG2 (t / top
+        :part-of (b3 / bed)))

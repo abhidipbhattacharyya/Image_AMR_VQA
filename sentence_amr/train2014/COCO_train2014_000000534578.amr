@@ -1,0 +1,50 @@
+# ::tok Two blue and white street signs that read " sync signal " and " western av . "
+# ::node	0	2	0-1
+# ::node	b	blue	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	s4	street	4-5
+# ::node	s	sign	5-6
+# ::node	s2	sign	5-6
+# ::node	r	read-01	7-8
+# ::node	s5	synchronize-01	9-10
+# ::node	s3	signal	10-11
+# ::node	a2	and	12-13
+# ::node	w2	world-region	14-15
+# ::node	n	name	14-15
+# ::node	1	West	14-15
+# ::node	o	or	15-16
+# ::root	a	and
+# ::edge	and	quant	2	a	0	
+# ::edge	sign	mod	street	s	s4	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	mod	blue	s	b	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	sign	ARG1-of	white-03	s2	w	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	ARG1-of	read-01	a	r	
+# ::edge	signal	ARG1-of	synchronize-01	s3	s5	
+# ::edge	and	op1	signal	a2	s3	
+# ::edge	read-01	ARG3	and	r	a2	
+# ::edge	world-region	name	name	w2	n	
+# ::edge	name	op1	West	n	1	
+# ::edge	or	mod	world-region	o	w2	
+# ::edge	and	op2	or	a2	o	
+# ::edge	or	domain	sign	o	s2	
+(a / and
+    :quant 2
+    :ARG1-of (r / read-01
+        :ARG3 (a2 / and
+            :op1 (s3 / signal
+                :ARG1-of (s5 / synchronize-01))
+            :op2 (o / or
+                :domain (s2 / sign
+                    :ARG1-of (w / white-03)
+                    :mod (s4 / street))
+                :mod (w2 / world-region
+                    :name (n / name
+                        :op1 "West")))))
+    :op1 (s / sign
+        :mod s4
+        :mod (b / blue))
+    :op2 s2)

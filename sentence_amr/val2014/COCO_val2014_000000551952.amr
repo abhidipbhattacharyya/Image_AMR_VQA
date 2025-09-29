@@ -1,0 +1,24 @@
+# ::tok A white vehicle with a flatbed designed to carry multiple bicycles on it .
+# ::node	w	white-03	1-2
+# ::node	v	vehicle	2-3
+# ::node	f	flatbed	5-6
+# ::node	d	design-01	6-7
+# ::node	c	carry-01	8-9
+# ::node	m	multiple	9-10
+# ::node	b	bicycle	10-11
+# ::root	v	vehicle
+# ::edge	vehicle	ARG1-of	white-03	v	w	
+# ::edge	vehicle	part	flatbed	v	f	
+# ::edge	vehicle	ARG1-of	design-01	v	d	
+# ::edge	design-01	ARG3	carry-01	d	c	
+# ::edge	carry-01	ARG0	vehicle	c	v	
+# ::edge	bicycle	quant	multiple	b	m	
+# ::edge	carry-01	ARG1	bicycle	c	b	
+(v / vehicle
+    :ARG1-of (w / white-03)
+    :ARG1-of (d / design-01
+        :ARG3 (c / carry-01
+            :ARG0 v
+            :ARG1 (b / bicycle
+                :quant (m / multiple))))
+    :part (f / flatbed))

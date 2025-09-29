@@ -1,0 +1,25 @@
+# ::tok A city street at night with red wondering lights on it .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	r	red-02	6-7
+# ::node	w	wonder-01	7-8
+# ::node	l	light	8-9
+# ::node	b	be-located-at-91	9-10
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	ARG0-of	wonder-01	l	w	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	be-located-at-91	ARG1	light	b	l	
+# ::edge	street	ARG2-of	be-located-at-91	s	b	
+(s / street
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (l / light
+            :ARG0-of (w / wonder-01)
+            :ARG1-of (r / red-02)))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (n / night)))

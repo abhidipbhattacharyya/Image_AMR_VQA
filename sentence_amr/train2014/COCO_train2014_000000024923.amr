@@ -1,0 +1,28 @@
+# ::tok A train traveling down train tracks next to a track switch .
+# ::node	t4	train	1-2
+# ::node	t6	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	t5	train	4-5
+# ::node	t2	track	5-6
+# ::node	n	next-to	6-7
+# ::node	t	thing	8-9
+# ::node	t3	track	9-10
+# ::node	s	switch-01	10-11
+# ::root	t6	travel-01
+# ::edge	travel-01	ARG0	train	t6	t4	
+# ::edge	travel-01	direction	down	t6	d	
+# ::edge	track	mod	train	t2	t5	
+# ::edge	travel-01	path	track	t6	t2	
+# ::edge	travel-01	location	next-to	t6	n	
+# ::edge	next-to	op1	thing	n	t	
+# ::edge	switch-01	ARG1	track	s	t3	
+# ::edge	thing	ARG0-of	switch-01	t	s	
+(t6 / travel-01
+    :ARG0 (t4 / train)
+    :direction (d / down)
+    :location (n / next-to
+        :op1 (t / thing
+            :ARG0-of (s / switch-01
+                :ARG1 (t3 / track))))
+    :path (t2 / track
+        :mod (t5 / train)))

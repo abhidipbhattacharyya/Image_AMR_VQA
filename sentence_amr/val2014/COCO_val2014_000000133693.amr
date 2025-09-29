@@ -1,0 +1,48 @@
+# ::tok An electric pole with a single light and two street signs next to a 5 eleven sign .
+# ::node	e	electric	1-2
+# ::node	p	pole	2-3
+# ::node	h	have-03	3-4
+# ::node	s3	single-02	5-6
+# ::node	l	light	6-7
+# ::node	a	and	7-8
+# ::node	1	2	8-9
+# ::node	s4	street	9-10
+# ::node	s	sign	10-11
+# ::node	n	next-to	11-12
+# ::node	t	television	15-16
+# ::node	c	circuit	15-16
+# ::node	0	11	15-16
+# ::node	s2	sign	16-17
+# ::node	e2	event	17-18
+# ::root	p	pole
+# ::edge	pole	mod	electric	p	e	
+# ::edge	pole	ARG0-of	have-03	p	h	
+# ::edge	light	ARG1-of	single-02	l	s3	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sign	purpose	street	s	s4	
+# ::edge	sign	quant	2	s	1	
+# ::edge	and	op2	sign	a	s	
+# ::edge	pole	location	next-to	p	n	
+# ::edge	television	mod	circuit	t	c	
+# ::edge	circuit	quant	11	c	0	
+# ::edge	sign	mod	television	s2	t	
+# ::edge	next-to	op1	sign	n	s2	
+# ::edge	event	mod	television	e2	t	
+# ::edge	next-to	op1	event	n	e2	
+(p / pole
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / light
+                :ARG1-of (s3 / single-02))
+            :op2 (s / sign
+                :purpose (s4 / street)
+                :quant 2)))
+    :location (n / next-to
+        :op1 (s2 / sign
+            :mod (t / television
+                :mod (c / circuit
+                    :quant 11)))
+        :op1 (e2 / event
+            :mod t))
+    :mod (e / electric))

@@ -1,0 +1,45 @@
+# ::tok Two elephants , one in the foreground , one further away , stand in an open grass field .
+# ::node	2	2	0-1
+# ::node	e	elephant	1-2
+# ::node	e2	elephant	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	f2	foreground	6-7
+# ::node	0	1	8-9
+# ::node	1	1	8-9
+# ::node	f3	further	9-10
+# ::node	a	away	10-11
+# ::node	s	stand-01	12-13
+# ::node	o	open-06	15-16
+# ::node	g	grass	16-17
+# ::node	f	field	17-18
+# ::root	s	stand-01
+# ::edge	elephant	quant	2	e	2	
+# ::edge	include-91	ARG1	elephant	i	e	
+# ::edge	elephant	ARG2-of	include-91	e	i	
+# ::edge	include-91	ARG1	elephant	i2	e2	
+# ::edge	elephant	ARG2-of	include-91	e	i2	
+# ::edge	elephant	location	foreground	e2	f2	
+# ::edge	elephant	quant	1	e2	0	
+# ::edge	elephant	quant	1	e2	1	
+# ::edge	away	op1	further	a	f3	
+# ::edge	elephant	location	away	e2	a	
+# ::edge	stand-01	ARG1	elephant	s	e	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	field	ARG1-of	open-06	f	o	
+# ::edge	stand-01	ARG2	field	s	f	
+(s / stand-01
+    :ARG1 (e / elephant
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 e)
+        :ARG2-of (i2 / include-91
+            :ARG1 (e2 / elephant
+                :quant 1
+                :quant 1
+                :location (f2 / foreground)
+                :location (a / away
+                    :op1 (f3 / further)))))
+    :ARG2 (f / field
+        :ARG1-of (o / open-06)
+        :consist-of (g / grass)))

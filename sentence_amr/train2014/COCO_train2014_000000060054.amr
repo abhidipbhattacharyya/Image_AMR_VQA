@@ -1,0 +1,33 @@
+# ::tok A plane flying in a blue sky with white clouds with the ocean and ships below .
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	b2	blue	5-6
+# ::node	s2	sky	6-7
+# ::node	w	white-03	8-9
+# ::node	c	cloud	9-10
+# ::node	o	ocean	12-13
+# ::node	a	and	13-14
+# ::node	s	ship	14-15
+# ::node	b	below	15-16
+# ::root	p	plane
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	sky	mod	blue	s2	b2	
+# ::edge	fly-01	path	sky	f	s2	
+# ::edge	cloud	ARG1-of	white-03	c	w	
+# ::edge	sky	part	cloud	s2	c	
+# ::edge	and	op1	ocean	a	o	
+# ::edge	plane	accompanier	and	p	a	
+# ::edge	and	op2	ship	a	s	
+# ::edge	ship	location	below	s	b	
+# ::edge	below	op1	ocean	b	o	
+(p / plane
+    :ARG2-of (f / fly-01
+        :path (s2 / sky
+            :mod (b2 / blue)
+            :part (c / cloud
+                :ARG1-of (w / white-03))))
+    :accompanier (a / and
+        :op1 (o / ocean)
+        :op2 (s / ship
+            :location (b / below
+                :op1 o))))

@@ -1,0 +1,33 @@
+# ::tok A group of children sitting in the grass with two of them holding a Frisbee .
+# ::node	g2	group	1-2
+# ::node	c	child	3-4
+# ::node	s	sit-01	4-5
+# ::node	g	grass	7-8
+# ::node	p	person	9-10
+# ::node	0	2	9-10
+# ::node	i	include-91	10-11
+# ::node	h	hold-01	12-13
+# ::node	f	football	14-15
+# ::node	a	and	15-16
+# ::root	a	and
+# ::edge	group	consist-of	child	g2	c	
+# ::edge	sit-01	ARG1	group	s	g2	
+# ::edge	sit-01	ARG2	grass	s	g	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG1-of	include-91	p	i	
+# ::edge	include-91	ARG2	group	i	g2	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	football	h	f	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	and	op1	sit-01	a	s	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (g2 / group
+            :consist-of (c / child))
+        :ARG2 (g / grass))
+    :op2 (h / hold-01
+        :ARG0 (p / person
+            :quant 2
+            :ARG1-of (i / include-91
+                :ARG2 g2))
+        :ARG1 (f / football)))

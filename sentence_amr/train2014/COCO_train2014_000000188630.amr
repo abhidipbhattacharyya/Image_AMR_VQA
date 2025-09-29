@@ -1,0 +1,31 @@
+# ::tok A tennis player reaching up for a shot as the tennis ball nears him
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	r	reach-03	3-4
+# ::node	u	up	4-5
+# ::node	s	shoot-01	7-8
+# ::node	b	ball	11-12
+# ::node	n	near-01	12-13
+# ::root	r	reach-03
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	reach-03	direction	up	r	u	
+# ::edge	reach-03	purpose	shoot-01	r	s	
+# ::edge	shoot-01	ARG0	person	s	p	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	near-01	ARG1	ball	n	b	
+# ::edge	reach-03	time	near-01	r	n	
+# ::edge	near-01	ARG2	person	n	p	
+(r / reach-03
+    :purpose (s / shoot-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))))
+    :ARG0 p
+    :direction (u / up)
+    :time (n / near-01
+        :ARG1 (b / ball
+            :mod t)
+        :ARG2 p))

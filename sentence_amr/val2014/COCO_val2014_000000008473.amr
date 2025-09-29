@@ -1,0 +1,46 @@
+# ::tok a fresh produce stand that have bins of oranges , sweet potatoes , and what looks like Idaho potatoes .
+# ::node	f	fresh-04	1-2
+# ::node	p3	produce	2-3
+# ::node	s	stand	3-4
+# ::node	h	have-03	5-6
+# ::node	b	bin	6-7
+# ::node	o	orange	8-9
+# ::node	s3	sweet-04	10-11
+# ::node	p	potato	11-12
+# ::node	a	and	13-14
+# ::node	t	thing	14-15
+# ::node	l	look-02	15-16
+# ::node	s2	state	17-18
+# ::node	n	name	17-18
+# ::node	0	Idaho	17-18
+# ::node	p2	potato	18-19
+# ::root	s	stand
+# ::edge	produce	ARG1-of	fresh-04	p3	f	
+# ::edge	stand	mod	produce	s	p3	
+# ::edge	stand	ARG0-of	have-03	s	h	
+# ::edge	bin	consist-of	orange	b	o	
+# ::edge	potato	ARG1-of	sweet-04	p	s3	
+# ::edge	and	op2	potato	a	p	
+# ::edge	and	op1	bin	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG0-of	look-02	t	l	
+# ::edge	state	name	name	s2	n	
+# ::edge	name	op1	Idaho	n	0	
+# ::edge	potato	source	state	p2	s2	
+# ::edge	look-02	ARG1	potato	l	p2	
+(s / stand
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bin
+                :consist-of (o / orange))
+            :op2 (p / potato
+                :ARG1-of (s3 / sweet-04))
+            :op3 (t / thing
+                :ARG0-of (l / look-02
+                    :ARG1 (p2 / potato
+                        :source (s2 / state
+                            :name (n / name
+                                :op1 "Idaho")))))))
+    :mod (p3 / produce
+        :ARG1-of (f / fresh-04)))

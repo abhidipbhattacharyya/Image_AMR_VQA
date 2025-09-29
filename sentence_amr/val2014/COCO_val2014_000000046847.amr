@@ -1,0 +1,43 @@
+# ::tok A rocky beach area with seagulls swooping down and some standing on the ground .
+# ::node	r	rocky	1-2
+# ::node	b	beach	2-3
+# ::node	a2	area	3-4
+# ::node	p	pelican	5-6
+# ::node	o	ocean	5-6
+# ::node	n	name	5-6
+# ::node	o2	ocean	5-6
+# ::node	0	Europe	5-6
+# ::node	s3	swoop-01	6-7
+# ::node	d	down	7-8
+# ::node	a	and	8-9
+# ::node	s	some	9-10
+# ::node	s2	stand-01	10-11
+# ::node	g	ground	13-14
+# ::root	a2	area
+# ::edge	beach	mod	rocky	b	r	
+# ::edge	area	location-of	beach	a2	b	
+# ::edge	pelican	mod	ocean	p	o	
+# ::edge	ocean	name	name	o	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	swoop-01	ARG0	pelican	s3	p	
+# ::edge	swoop-01	direction	down	s3	d	
+# ::edge	and	op1	swoop-01	a	s3	
+# ::edge	area	location-of	and	a2	a	
+# ::edge	ocean	quant	some	o2	s	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	ocean	s2	o2	
+# ::edge	stand-01	ARG2	ground	s2	g	
+(a2 / area
+    :location-of (b / beach
+        :mod (r / rocky))
+    :location-of (a / and
+        :op1 (s3 / swoop-01
+            :ARG0 (p / pelican
+                :mod (o / ocean
+                    :name (n / name
+                        :op1 "Europe")))
+            :direction (d / down))
+        :op2 (s2 / stand-01
+            :ARG1 (o2 / ocean
+                :quant (s / some))
+            :ARG2 (g / ground))))

@@ -1,0 +1,93 @@
+# ::tok A metal street pole with illuminated walk image , no parking sign with a tow sign , one way sign , and turning lanes only sign with two curved arrows , with an awning , trees and office buildings behind .
+# ::node	m	metal	1-2
+# ::node	s6	street	2-3
+# ::node	p2	pole	3-4
+# ::node	i	illuminate-01	5-6
+# ::node	w	walk-01	6-7
+# ::node	i2	image	7-8
+# ::node	0	-	9-10
+# ::node	p	park-01	10-11
+# ::node	s	sign	11-12
+# ::node	h	have-03	12-13
+# ::node	t	tow-01	14-15
+# ::node	s2	sign	15-16
+# ::node	1	1	17-18
+# ::node	w2	way	18-19
+# ::node	s3	sign	19-20
+# ::node	a	and	21-22
+# ::node	t3	turn-01	22-23
+# ::node	l	lane	23-24
+# ::node	o3	only	24-25
+# ::node	s4	sign	25-26
+# ::node	h2	have-03	26-27
+# ::node	2	2	27-28
+# ::node	s5	straight-04	28-29
+# ::node	o2	officer	29-30
+# ::node	a3	awning	33-34
+# ::node	t2	tree	35-36
+# ::node	a2	and	36-37
+# ::node	o	office	37-38
+# ::node	b2	building	38-39
+# ::node	b	behind	39-40
+# ::root	a	and
+# ::edge	pole	location	street	p2	s6	
+# ::edge	pole	consist-of	metal	p2	m	
+# ::edge	image	mod	walk-01	i2	w	
+# ::edge	image	ARG1-of	illuminate-01	i2	i	
+# ::edge	pole	part	image	p2	i2	
+# ::edge	sign	purpose	park-01	s	p	
+# ::edge	sign	polarity	-	s	0	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	sign	purpose	tow-01	s2	t	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	way	quant	1	w2	1	
+# ::edge	sign	mod	way	s3	w2	
+# ::edge	and	op3	sign	a	s3	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	op1	pole	a	p2	
+# ::edge	lane	purpose	turn-01	l	t3	
+# ::edge	lane	mod	only	l	o3	
+# ::edge	sign	mod	lane	s4	l	
+# ::edge	and	op4	sign	a	s4	
+# ::edge	sign	ARG0-of	have-03	s4	h2	
+# ::edge	officer	ARG1-of	straight-04	o2	s5	
+# ::edge	officer	quant	2	o2	2	
+# ::edge	have-03	ARG1	officer	h2	o2	
+# ::edge	and	op2	tree	a2	t2	
+# ::edge	and	op1	awning	a2	a3	
+# ::edge	pole	location-of	and	p2	a2	
+# ::edge	building	mod	office	b2	o	
+# ::edge	and	op3	building	a2	b2	
+# ::edge	and	location	behind	a2	b	
+# ::edge	behind	op1	pole	b	p2	
+(a / and
+    :op1 (p2 / pole
+        :consist-of (m / metal)
+        :location (s6 / street)
+        :location-of (a2 / and
+            :location (b / behind
+                :op1 p2)
+            :op1 (a3 / awning)
+            :op2 (t2 / tree)
+            :op3 (b2 / building
+                :mod (o / office)))
+        :part (i2 / image
+            :ARG1-of (i / illuminate-01)
+            :mod (w / walk-01)))
+    :op2 (s / sign
+        :purpose (p / park-01)
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / sign
+                :purpose (t / tow-01)))
+        :polarity -)
+    :op3 (s3 / sign
+        :mod (w2 / way
+            :quant 1))
+    :op4 (s4 / sign
+        :ARG0-of (h2 / have-03
+            :ARG1 (o2 / officer
+                :quant 2
+                :ARG1-of (s5 / straight-04)))
+        :mod (l / lane
+            :purpose (t3 / turn-01)
+            :mod (o3 / only))))

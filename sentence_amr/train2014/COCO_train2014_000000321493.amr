@@ -1,0 +1,37 @@
+# ::tok Man in hay field pulling binding off a large bale with cows in the background .
+# ::node	m	man	0-1
+# ::node	h2	hay	2-3
+# ::node	f	field	3-4
+# ::node	p	pull-01	4-5
+# ::node	b3	bind-01	5-6
+# ::node	o	off	6-7
+# ::node	t	thing	7-8
+# ::node	l	large	8-9
+# ::node	b2	bale	9-10
+# ::node	h	have-03	10-11
+# ::node	c	cow	11-12
+# ::node	b	background	14-15
+# ::root	p	pull-01
+# ::edge	field	mod	hay	f	h2	
+# ::edge	man	location	field	m	f	
+# ::edge	pull-01	ARG0	man	p	m	
+# ::edge	pull-01	mod	off	p	o	
+# ::edge	thing	ARG2-of	bind-01	t	b3	
+# ::edge	pull-01	ARG1	thing	p	t	
+# ::edge	bale	mod	large	b2	l	
+# ::edge	pull-01	ARG1	bale	p	b2	
+# ::edge	bale	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	cow	h	c	
+# ::edge	cow	location	background	c	b	
+(p / pull-01
+    :ARG0 (m / man
+        :location (f / field
+            :mod (h2 / hay)))
+    :ARG1 (t / thing
+        :ARG2-of (b3 / bind-01))
+    :ARG1 (b2 / bale
+        :ARG0-of (h / have-03
+            :ARG1 (c / cow
+                :location (b / background)))
+        :mod (l / large))
+    :mod (o / off))

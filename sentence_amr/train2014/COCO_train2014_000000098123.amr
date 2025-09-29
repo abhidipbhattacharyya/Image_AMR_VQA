@@ -1,0 +1,33 @@
+# ::tok Someone holding two foot long hot dogs while standing outside in the snow
+# ::node	s2	someone	0-1
+# ::node	h	hold-01	1-2
+# ::node	0	2	2-3
+# ::node	d	distance-quantity	3-4
+# ::node	f	foot	3-4
+# ::node	l	long-03	4-5
+# ::node	h2	hot-dog	6-7
+# ::node	s3	stand-01	8-9
+# ::node	o	outside	9-10
+# ::node	s	snow	12-13
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	someone	h	s2	
+# ::edge	distance-quantity	quant	2	d	0	
+# ::edge	distance-quantity	unit	foot	d	f	
+# ::edge	long-03	ARG2	distance-quantity	l	d	
+# ::edge	hot-dog	ARG1-of	long-03	h2	l	
+# ::edge	hold-01	ARG1	hot-dog	h	h2	
+# ::edge	hold-01	time	stand-01	h	s3	
+# ::edge	stand-01	ARG1	someone	s3	s2	
+# ::edge	stand-01	ARG2	outside	s3	o	
+# ::edge	outside	location	snow	o	s	
+(h / hold-01
+    :ARG0 (s2 / someone)
+    :ARG1 (h2 / hot-dog
+        :ARG1-of (l / long-03
+            :ARG2 (d / distance-quantity
+                :quant 2
+                :unit (f / foot))))
+    :time (s3 / stand-01
+        :ARG1 s2
+        :ARG2 (o / outside
+            :location (s / snow))))

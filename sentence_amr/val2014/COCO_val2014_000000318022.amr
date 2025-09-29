@@ -1,0 +1,41 @@
+# ::tok A man looking in a mirror with a toothbrush in his mouth and cotton swabs in one of his ears .
+# ::node	m	man	1-2
+# ::node	l	look-01	2-3
+# ::node	m2	mirror	5-6
+# ::node	t	toothbrush	8-9
+# ::node	m3	mouth	11-12
+# ::node	a	and	12-13
+# ::node	c	cotton	13-14
+# ::node	s	swabby	14-15
+# ::node	0	1	16-17
+# ::node	i	include-91	17-18
+# ::node	e	ear	19-20
+# ::node	e2	ear	19-20
+# ::root	l	look-01
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	look-01	ARG1	mirror	l	m2	
+# ::edge	toothbrush	location	mouth	t	m3	
+# ::edge	man	part	mouth	m	m3	
+# ::edge	and	op1	toothbrush	a	t	
+# ::edge	look-01	instrument	and	l	a	
+# ::edge	swabby	consist-of	cotton	s	c	
+# ::edge	and	op2	swabby	a	s	
+# ::edge	ear	ARG1-of	include-91	e	i	
+# ::edge	ear	quant	1	e	0	
+# ::edge	swabby	location	ear	s	e	
+# ::edge	include-91	ARG2	ear	i	e2	
+# ::edge	man	part	ear	m	e2	
+(l / look-01
+    :ARG0 (m / man
+        :part (m3 / mouth)
+        :part (e2 / ear))
+    :ARG1 (m2 / mirror)
+    :instrument (a / and
+        :op1 (t / toothbrush
+            :location m3)
+        :op2 (s / swabby
+            :consist-of (c / cotton)
+            :location (e / ear
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 e2)))))

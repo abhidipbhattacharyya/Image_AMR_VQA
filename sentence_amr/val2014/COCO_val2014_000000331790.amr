@@ -1,0 +1,40 @@
+# ::tok A man is selling gourds out of a push cart as an elderly woman and a younger man look on .
+# ::node	m	man	1-2
+# ::node	s	sell-01	3-4
+# ::node	g	gourd	4-5
+# ::node	p	push-01	8-9
+# ::node	c	cart	9-10
+# ::node	e	elderly	12-13
+# ::node	w	woman	13-14
+# ::node	a	and	14-15
+# ::node	h	have-degree-91	16-17
+# ::node	y	young	16-17
+# ::node	m3	more	16-17
+# ::node	m2	man	17-18
+# ::node	l	look-01	18-19
+# ::root	s	sell-01
+# ::edge	sell-01	ARG0	man	s	m	
+# ::edge	sell-01	ARG1	gourd	s	g	
+# ::edge	cart	ARG2-of	push-01	c	p	
+# ::edge	sell-01	source	cart	s	c	
+# ::edge	woman	mod	elderly	w	e	
+# ::edge	and	op1	woman	a	w	
+# ::edge	have-degree-91	ARG2	young	h	y	
+# ::edge	have-degree-91	ARG3	more	h	m3	
+# ::edge	man	ARG1-of	have-degree-91	m2	h	
+# ::edge	and	op2	man	a	m2	
+# ::edge	look-01	ARG0	and	l	a	
+# ::edge	sell-01	ARG1-of	look-01	s	l	
+(s / sell-01
+    :ARG0 (m / man)
+    :ARG1 (g / gourd)
+    :ARG1-of (l / look-01
+        :ARG0 (a / and
+            :op1 (w / woman
+                :mod (e / elderly))
+            :op2 (m2 / man
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (y / young)
+                    :ARG3 (m3 / more)))))
+    :source (c / cart
+        :ARG2-of (p / push-01)))

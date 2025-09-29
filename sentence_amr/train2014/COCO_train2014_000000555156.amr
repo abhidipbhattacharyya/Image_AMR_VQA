@@ -1,0 +1,25 @@
+# ::tok An open refrigerator that is full of food on all the shelves and on the door
+# ::node	o	open-01	1-2
+# ::node	r	refrigerator	2-3
+# ::node	f	fill-01	5-6
+# ::node	f2	food	7-8
+# ::node	a	all	9-10
+# ::node	s	shelf	11-12
+# ::node	a2	and	12-13
+# ::node	d	door	15-16
+# ::root	r	refrigerator
+# ::edge	refrigerator	ARG1-of	open-01	r	o	
+# ::edge	refrigerator	ARG1-of	fill-01	r	f	
+# ::edge	fill-01	ARG2	food	f	f2	
+# ::edge	shelf	mod	all	s	a	
+# ::edge	and	op1	shelf	a2	s	
+# ::edge	food	location	and	f2	a2	
+# ::edge	and	op2	door	a2	d	
+(r / refrigerator
+    :ARG1-of (o / open-01)
+    :ARG1-of (f / fill-01
+        :ARG2 (f2 / food
+            :location (a2 / and
+                :op1 (s / shelf
+                    :mod (a / all))
+                :op2 (d / door)))))

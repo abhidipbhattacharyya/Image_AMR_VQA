@@ -1,0 +1,34 @@
+# ::tok A sidewalk under a pedestrian overpass walkway near a public transit passenger train terminal .
+# ::node	s	sidewalk	1-2
+# ::node	u	under	2-3
+# ::node	p2	pedestrian	4-5
+# ::node	o	overpass	5-6
+# ::node	w	walkway	6-7
+# ::node	n	near-02	7-8
+# ::node	p3	public-02	9-10
+# ::node	t3	transit	10-11
+# ::node	p	passenger	11-12
+# ::node	t2	train	12-13
+# ::node	t	terminal	13-14
+# ::root	s	sidewalk
+# ::edge	sidewalk	location	under	s	u	
+# ::edge	overpass	mod	pedestrian	o	p2	
+# ::edge	walkway	mod	overpass	w	o	
+# ::edge	under	op1	walkway	u	w	
+# ::edge	sidewalk	ARG1-of	near-02	s	n	
+# ::edge	transit	ARG1-of	public-02	t3	p3	
+# ::edge	train	mod	passenger	t2	p	
+# ::edge	train	mod	transit	t2	t3	
+# ::edge	terminal	mod	train	t	t2	
+# ::edge	near-02	ARG2	terminal	n	t	
+(s / sidewalk
+    :ARG1-of (n / near-02
+        :ARG2 (t / terminal
+            :mod (t2 / train
+                :mod (p / passenger)
+                :mod (t3 / transit
+                    :ARG1-of (p3 / public-02)))))
+    :location (u / under
+        :op1 (w / walkway
+            :mod (o / overpass
+                :mod (p2 / pedestrian)))))

@@ -1,0 +1,36 @@
+# ::tok Tennis serve on blue court with green boarder , spectators on blue observation area .
+# ::node	y	you	0-1
+# ::node	p	play-01	0-1
+# ::node	s	serve-02	1-2
+# ::node	b	blue	3-4
+# ::node	c	court	4-5
+# ::node	g	green-02	6-7
+# ::node	b2	boarder	7-8
+# ::node	a	and	8-9
+# ::node	s2	spectator	9-10
+# ::node	o	observe-01	12-13
+# ::node	a2	area	13-14
+# ::root	s	serve-02
+# ::edge	play-01	ARG0	you	p	y	
+# ::edge	serve-02	ARG1	play-01	s	p	
+# ::edge	court	mod	blue	c	b	
+# ::edge	serve-02	location	court	s	c	
+# ::edge	boarder	ARG1-of	green-02	b2	g	
+# ::edge	and	op1	boarder	a	b2	
+# ::edge	play-01	accompanier	and	p	a	
+# ::edge	and	op2	spectator	a	s2	
+# ::edge	area	location-of	observe-01	a2	o	
+# ::edge	spectator	location	area	s2	a2	
+# ::edge	area	mod	blue	a2	b	
+(s / serve-02
+    :ARG1 (p / play-01
+        :ARG0 (y / you)
+        :accompanier (a / and
+            :op1 (b2 / boarder
+                :ARG1-of (g / green-02))
+            :op2 (s2 / spectator
+                :location (a2 / area
+                    :location-of (o / observe-01)
+                    :mod (b / blue)))))
+    :location (c / court
+        :mod b))

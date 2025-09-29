@@ -1,0 +1,31 @@
+# ::tok A traffic light is on green while a SUV travels down the road .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	g	green-02	5-6
+# ::node	v	vehicle	8-9
+# ::node	n	name	8-9
+# ::node	0	SUV	8-9
+# ::node	t2	travel-01	9-10
+# ::node	d	down	10-11
+# ::node	r	road	12-13
+# ::root	b	be-located-at-91
+# ::edge	light	mod	traffic	l	t	
+# ::edge	be-located-at-91	ARG1	light	b	l	
+# ::edge	be-located-at-91	ARG2	green-02	b	g	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	SUV	n	0	
+# ::edge	travel-01	ARG0	vehicle	t2	v	
+# ::edge	be-located-at-91	time	travel-01	b	t2	
+# ::edge	travel-01	direction	down	t2	d	
+# ::edge	travel-01	ARG1	road	t2	r	
+(b / be-located-at-91
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :ARG2 (g / green-02)
+    :time (t2 / travel-01
+        :ARG0 (v / vehicle
+            :name (n / name
+                :op1 "SUV"))
+        :ARG1 (r / road)
+        :direction (d / down)))

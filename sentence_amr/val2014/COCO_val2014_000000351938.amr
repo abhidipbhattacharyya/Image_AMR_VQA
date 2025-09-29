@@ -1,0 +1,69 @@
+# ::tok A bright yellow fire hydrant has pretty flowers and decorative stones surrounding it ; a cement building is in the background and one of the curtains is very colorful .
+# ::node	b2	bright-02	1-2
+# ::node	y	yellow-02	2-3
+# ::node	f	fire	3-4
+# ::node	h2	hydrant	4-5
+# ::node	h	have-03	5-6
+# ::node	p	pretty	6-7
+# ::node	f2	flower	7-8
+# ::node	a	and	8-9
+# ::node	d	decorative	9-10
+# ::node	s	stone	10-11
+# ::node	s2	surround-01	11-12
+# ::node	m	multi-sentence	13-14
+# ::node	c	cement	15-16
+# ::node	b3	building	16-17
+# ::node	b	background	20-21
+# ::node	a2	and	21-22
+# ::node	0	1	22-23
+# ::node	i	include-91	23-24
+# ::node	c3	curtain	25-26
+# ::node	c4	curtain	25-26
+# ::node	v	very	27-28
+# ::node	c2	colorful	28-29
+# ::root	m	multi-sentence
+# ::edge	yellow-02	ARG1-of	bright-02	y	b2	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	yellow-02	h2	y	
+# ::edge	have-03	ARG0	hydrant	h	h2	
+# ::edge	flower	mod	pretty	f2	p	
+# ::edge	and	op1	flower	a	f2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	stone	mod	decorative	s	d	
+# ::edge	and	op2	stone	a	s	
+# ::edge	and	ARG1-of	surround-01	a	s2	
+# ::edge	surround-01	ARG2	hydrant	s2	h2	
+# ::edge	multi-sentence	snt1	have-03	m	h	
+# ::edge	building	consist-of	cement	b3	c	
+# ::edge	building	location	background	b3	b	
+# ::edge	and	op1	building	a2	b3	
+# ::edge	multi-sentence	snt2	and	m	a2	
+# ::edge	curtain	ARG1-of	include-91	c3	i	
+# ::edge	curtain	quant	1	c3	0	
+# ::edge	and	op2	curtain	a2	c3	
+# ::edge	include-91	ARG2	curtain	i	c4	
+# ::edge	colorful	degree	very	c2	v	
+# ::edge	curtain	mod	colorful	c3	c2	
+(m / multi-sentence
+    :snt1 (h / have-03
+        :ARG0 (h2 / hydrant
+            :ARG1-of (y / yellow-02
+                :ARG1-of (b2 / bright-02))
+            :mod (f / fire))
+        :ARG1 (a / and
+            :ARG1-of (s2 / surround-01
+                :ARG2 h2)
+            :op1 (f2 / flower
+                :mod (p / pretty))
+            :op2 (s / stone
+                :mod (d / decorative))))
+    :snt2 (a2 / and
+        :op1 (b3 / building
+            :consist-of (c / cement)
+            :location (b / background))
+        :op2 (c3 / curtain
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (c4 / curtain))
+            :mod (c2 / colorful
+                :degree (v / very)))))

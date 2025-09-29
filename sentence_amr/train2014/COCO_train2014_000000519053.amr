@@ -1,0 +1,44 @@
+# ::tok A lot of bikers with similar bikes and gear are moving in formation up the street .
+# ::node	l	lot	1-2
+# ::node	b	bike-01	3-4
+# ::node	h	have-03	4-5
+# ::node	r	resemble-01	5-6
+# ::node	b2	bike-01	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	g	gear	8-9
+# ::node	p	person	9-10
+# ::node	m	move-01	10-11
+# ::node	f	form-01	12-13
+# ::node	u	up	13-14
+# ::node	s	street	15-16
+# ::root	m	move-01
+# ::edge	and	op1	bike-01	a	b2	
+# ::edge	and	ARG1-of	resemble-01	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	bike-01	a2	b2	
+# ::edge	resemble-01	ARG2	and	r	a2	
+# ::edge	and	op2	gear	a2	g	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	person	ARG0-of	bike-01	p	b	
+# ::edge	person	quant	lot	p	l	
+# ::edge	move-01	ARG1	person	m	p	
+# ::edge	move-01	manner	form-01	m	f	
+# ::edge	form-01	ARG1	person	f	p	
+# ::edge	move-01	direction	up	m	u	
+# ::edge	up	op1	street	u	s	
+(m / move-01
+    :ARG1 (p / person
+        :quant (l / lot)
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :ARG1-of (r / resemble-01
+                    :ARG2 (a2 / and
+                        :op1 (b2 / bike-01)
+                        :op2 (g / gear)))
+                :op1 b2))
+        :ARG0-of (b / bike-01))
+    :direction (u / up
+        :op1 (s / street))
+    :manner (f / form-01
+        :ARG1 p))

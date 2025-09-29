@@ -1,0 +1,24 @@
+# ::tok A city bus with a bicycle on the front makes a stop for people to board .
+# ::node	c	city	1-2
+# ::node	b3	bus	2-3
+# ::node	b	bicycle	5-6
+# ::node	f	front	8-9
+# ::node	s	stop-01	11-12
+# ::node	p	person	13-14
+# ::node	b2	board-01	15-16
+# ::root	s	stop-01
+# ::edge	bus	mod	city	b3	c	
+# ::edge	bus	part	bicycle	b3	b	
+# ::edge	bicycle	location	front	b	f	
+# ::edge	stop-01	ARG1	bus	s	b3	
+# ::edge	board-01	ARG0	person	b2	p	
+# ::edge	stop-01	purpose	board-01	s	b2	
+# ::edge	board-01	ARG1	bus	b2	b3	
+(s / stop-01
+    :purpose (b2 / board-01
+        :ARG0 (p / person)
+        :ARG1 (b3 / bus
+            :mod (c / city)
+            :part (b / bicycle
+                :location (f / front))))
+    :ARG1 b3)

@@ -1,0 +1,51 @@
+# ::tok Two bento boxes of stir fry , rice and assorted fruits and vegetables , with one pair of chopsticks resting on a container of the food .
+# ::node	1	2	0-1
+# ::node	b	bento	1-2
+# ::node	b2	box	2-3
+# ::node	s2	stir-01	4-5
+# ::node	f3	fry-01	5-6
+# ::node	a	and	6-7
+# ::node	r2	rice	7-8
+# ::node	a2	assorted	9-10
+# ::node	f2	fruit	10-11
+# ::node	v	vegetable	12-13
+# ::node	0	1	15-16
+# ::node	p	pair	16-17
+# ::node	s	spoon	18-19
+# ::node	r	rest-01	19-20
+# ::node	c	container	22-23
+# ::node	f	food	25-26
+# ::root	r	rest-01
+# ::edge	box	mod	bento	b2	b	
+# ::edge	box	quant	2	b2	1	
+# ::edge	fry-01	manner	stir-01	f3	s2	
+# ::edge	and	op1	fry-01	a	f3	
+# ::edge	box	consist-of	and	b2	a	
+# ::edge	and	op2	rice	a	r2	
+# ::edge	fruit	mod	assorted	f2	a2	
+# ::edge	and	op3	fruit	a	f2	
+# ::edge	vegetable	mod	assorted	v	a2	
+# ::edge	and	op4	vegetable	a	v	
+# ::edge	pair	quant	1	p	0	
+# ::edge	spoon	quant	pair	s	p	
+# ::edge	rest-01	ARG1	spoon	r	s	
+# ::edge	rest-01	consist-of	box	r	b2	
+# ::edge	rest-01	ARG2	container	r	c	
+# ::edge	container	consist-of	food	c	f	
+(r / rest-01
+    :ARG1 (s / spoon
+        :quant (p / pair
+            :quant 1))
+    :ARG2 (c / container
+        :consist-of (f / food))
+    :consist-of (b2 / box
+        :quant 2
+        :consist-of (a / and
+            :op1 (f3 / fry-01
+                :manner (s2 / stir-01))
+            :op2 (r2 / rice)
+            :op3 (f2 / fruit
+                :mod (a2 / assorted))
+            :op4 (v / vegetable
+                :mod a2))
+        :mod (b / bento)))

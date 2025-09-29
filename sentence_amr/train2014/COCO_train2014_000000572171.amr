@@ -1,0 +1,31 @@
+# ::tok Car passing down a road at night in front of a large lit building .
+# ::node	c	car	0-1
+# ::node	p	pass-03	1-2
+# ::node	d2	down	2-3
+# ::node	r	road	4-5
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	i	in-front-of	8-9
+# ::node	l	large	11-12
+# ::node	l2	light-04	12-13
+# ::node	b	building	13-14
+# ::root	p	pass-03
+# ::edge	pass-03	ARG1	car	p	c	
+# ::edge	pass-03	direction	down	p	d2	
+# ::edge	pass-03	path	road	p	r	
+# ::edge	pass-03	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	pass-03	location	in-front-of	p	i	
+# ::edge	building	ARG1-of	light-04	b	l2	
+# ::edge	building	mod	large	b	l	
+# ::edge	in-front-of	op1	building	i	b	
+(p / pass-03
+    :ARG1 (c / car)
+    :direction (d2 / down)
+    :location (i / in-front-of
+        :op1 (b / building
+            :ARG1-of (l2 / light-04)
+            :mod (l / large)))
+    :path (r / road)
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,30 @@
+# ::tok A zebra in front of a fence beside another zebra on the other side of the fence .
+# ::node	z	zebra	1-2
+# ::node	i	in-front-of	3-4
+# ::node	f	fence	6-7
+# ::node	b	beside	7-8
+# ::node	a	another	8-9
+# ::node	z2	zebra	9-10
+# ::node	o	other	12-13
+# ::node	s	side	13-14
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	zebra	location	in-front-of	z	i	
+# ::edge	in-front-of	op1	fence	i	f	
+# ::edge	zebra	location	beside	z	b	
+# ::edge	zebra	mod	another	z2	a	
+# ::edge	beside	op1	zebra	b	z2	
+# ::edge	side	mod	other	s	o	
+# ::edge	zebra	location	side	z2	s	
+# ::edge	fence	part	side	f	s	
+# ::edge	event	mod	zebra	e	z	
+(e / event
+    :mod (z / zebra
+        :location (i / in-front-of
+            :op1 (f / fence
+                :part (s / side
+                    :mod (o / other))))
+        :location (b / beside
+            :op1 (z2 / zebra
+                :location s
+                :mod (a / another)))))

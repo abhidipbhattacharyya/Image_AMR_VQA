@@ -1,0 +1,34 @@
+# ::tok A wood vase holding tiny flowers with a cup of milk on a tray .
+# ::node	w	wood	1-2
+# ::node	v	vase	2-3
+# ::node	h	hold-01	3-4
+# ::node	t	tiny	4-5
+# ::node	f	flower	5-6
+# ::node	v2	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	c	cup	8-9
+# ::node	m	milk	10-11
+# ::node	t2	tray	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	vase	consist-of	wood	v	w	
+# ::edge	vase	ARG0-of	hold-01	v	h	
+# ::edge	flower	mod	tiny	f	t	
+# ::edge	hold-01	ARG1	flower	h	f	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	volume-quantity	unit	cup	v2	c	
+# ::edge	milk	quant	volume-quantity	m	v2	
+# ::edge	vase	accompanier	milk	v	m	
+# ::edge	vase	location	tray	v	t2	
+# ::edge	event	mod	vase	e	v	
+(e / event
+    :mod (v / vase
+        :ARG0-of (h / hold-01
+            :ARG1 (f / flower
+                :mod (t / tiny)))
+        :accompanier (m / milk
+            :quant (v2 / volume-quantity
+                :quant 1
+                :unit (c / cup)))
+        :consist-of (w / wood)
+        :location (t2 / tray)))

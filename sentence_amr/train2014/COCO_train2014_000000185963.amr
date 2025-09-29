@@ -1,0 +1,31 @@
+# ::tok There 's nothing quite like a bright mug of tea to wake you in the morning .
+# ::node	n	nothing	2-3
+# ::node	q	quite	3-4
+# ::node	r	resemble-01	4-5
+# ::node	b	bright-02	6-7
+# ::node	m2	mug	7-8
+# ::node	t	tea	9-10
+# ::node	w	wake-01	11-12
+# ::node	y	you	12-13
+# ::node	d	date-entity	15-16
+# ::node	m	morning	15-16
+# ::root	r	resemble-01
+# ::edge	resemble-01	degree	quite	r	q	
+# ::edge	resemble-01	ARG1	nothing	r	n	
+# ::edge	mug	ARG1-of	bright-02	m2	b	
+# ::edge	mug	consist-of	tea	m2	t	
+# ::edge	wake-01	ARG0	mug	w	m2	
+# ::edge	resemble-01	ARG2	wake-01	r	w	
+# ::edge	wake-01	ARG1	you	w	y	
+# ::edge	wake-01	time	date-entity	w	d	
+# ::edge	date-entity	dayperiod	morning	d	m	
+(r / resemble-01
+    :ARG1 (n / nothing)
+    :ARG2 (w / wake-01
+        :ARG0 (m2 / mug
+            :ARG1-of (b / bright-02)
+            :consist-of (t / tea))
+        :ARG1 (y / you)
+        :time (d / date-entity
+            :dayperiod (m / morning)))
+    :degree (q / quite))

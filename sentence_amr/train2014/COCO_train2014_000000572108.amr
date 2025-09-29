@@ -1,0 +1,46 @@
+# ::tok Men in suits sit and stand around a small arena as other men stand with cows in the center .
+# ::node	m	man	0-1
+# ::node	s5	suit	2-3
+# ::node	s	sit-01	3-4
+# ::node	a	and	4-5
+# ::node	s3	stand-01	5-6
+# ::node	a3	around	6-7
+# ::node	s2	small	8-9
+# ::node	a2	arena	9-10
+# ::node	o	other	11-12
+# ::node	m2	man	12-13
+# ::node	s4	stand-01	13-14
+# ::node	c2	cow	15-16
+# ::node	c	center	18-19
+# ::root	a	and
+# ::edge	man	mod	suit	m	s5	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	stand-01	ARG1	man	s3	m	
+# ::edge	stand-01	ARG2	around	s3	a3	
+# ::edge	sit-01	ARG2	around	s	a3	
+# ::edge	arena	mod	small	a2	s2	
+# ::edge	around	op1	arena	a3	a2	
+# ::edge	man	mod	other	m2	o	
+# ::edge	stand-01	ARG1	man	s4	m2	
+# ::edge	and	time	stand-01	a	s4	
+# ::edge	stand-01	accompanier	cow	s4	c2	
+# ::edge	stand-01	location	center	s4	c	
+# ::edge	arena	part	center	a2	c	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man
+            :mod (s5 / suit))
+        :ARG2 (a3 / around
+            :op1 (a2 / arena
+                :mod (s2 / small)
+                :part (c / center))))
+    :op2 (s3 / stand-01
+        :ARG1 m
+        :ARG2 a3)
+    :time (s4 / stand-01
+        :ARG1 (m2 / man
+            :mod (o / other))
+        :accompanier (c2 / cow)
+        :location c))

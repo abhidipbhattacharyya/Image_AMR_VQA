@@ -1,0 +1,36 @@
+# ::tok A FedEx truck and car parked on a street with leaves on the ground .
+# ::node	c2	company	1-2
+# ::node	n	name	1-2
+# ::node	0	FedEx	1-2
+# ::node	t	truck	2-3
+# ::node	a	and	3-4
+# ::node	c	car	4-5
+# ::node	p	park-01	5-6
+# ::node	s	street	8-9
+# ::node	h	have-03	9-10
+# ::node	l	leaf	10-11
+# ::node	g	ground	13-14
+# ::root	p	park-01
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	FedEx	n	0	
+# ::edge	truck	mod	company	t	c2	
+# ::edge	and	op1	truck	a	t	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	mod	company	c	c2	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	park-01	ARG2	street	p	s	
+# ::edge	and	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	leaf	h	l	
+# ::edge	leaf	location	ground	l	g	
+(p / park-01
+    :ARG1 (a / and
+        :ARG0-of (h / have-03
+            :ARG1 (l / leaf
+                :location (g / ground)))
+        :op1 (t / truck
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "FedEx")))
+        :op2 (c / car
+            :mod c2))
+    :ARG2 (s / street))

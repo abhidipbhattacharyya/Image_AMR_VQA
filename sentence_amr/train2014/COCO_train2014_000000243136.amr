@@ -1,0 +1,48 @@
+# ::tok Two donuts , one with a bite taken from it , rest on a sheet of wax next to a cup of coffee .
+# ::node	2	2	0-1
+# ::node	d	donut	1-2
+# ::node	d2	donut	1-2
+# ::node	i	include-91	3-4
+# ::node	0	1	3-4
+# ::node	b	bite	6-7
+# ::node	t	take-01	7-8
+# ::node	r	rest-01	11-12
+# ::node	s	sheet	14-15
+# ::node	w	wax	16-17
+# ::node	n	next-to	17-18
+# ::node	v	volume-quantity	19-20
+# ::node	1	1	19-20
+# ::node	c2	cup	20-21
+# ::node	c	coffee	22-23
+# ::root	r	rest-01
+# ::edge	donut	quant	2	d	2	
+# ::edge	include-91	ARG1	donut	i	d2	
+# ::edge	donut	ARG2-of	include-91	d	i	
+# ::edge	donut	quant	1	d2	0	
+# ::edge	donut	part	bite	d2	b	
+# ::edge	bite	ARG1-of	take-01	b	t	
+# ::edge	take-01	ARG2	donut	t	d2	
+# ::edge	rest-01	ARG1	donut	r	d	
+# ::edge	rest-01	ARG2	sheet	r	s	
+# ::edge	sheet	consist-of	wax	s	w	
+# ::edge	sheet	location	next-to	s	n	
+# ::edge	volume-quantity	quant	1	v	1	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	next-to	op1	coffee	n	c	
+(r / rest-01
+    :ARG1 (d / donut
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (d2 / donut
+                :quant 1
+                :part (b / bite
+                    :ARG1-of (t / take-01
+                        :ARG2 d2)))))
+    :ARG2 (s / sheet
+        :consist-of (w / wax)
+        :location (n / next-to
+            :op1 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup))))))

@@ -1,0 +1,46 @@
+# ::tok The lady dumps out the contents of her purse and neatly arranges all the stupid crap contained within .
+# ::node	l	lady	1-2
+# ::node	d	dump-01	2-3
+# ::node	t	thing	5-6
+# ::node	c	contain-01	5-6
+# ::node	p	purse	8-9
+# ::node	a2	and	9-10
+# ::node	n	neat	10-11
+# ::node	a3	arrange-01	11-12
+# ::node	a	all	12-13
+# ::node	s	stupid	14-15
+# ::node	t2	thing	15-16
+# ::node	c3	crap-01	15-16
+# ::node	c2	contain-01	16-17
+# ::root	a2	and
+# ::edge	dump-01	ARG0	lady	d	l	
+# ::edge	dump-01	ARG1	thing	d	t	
+# ::edge	thing	ARG1-of	contain-01	t	c	
+# ::edge	contain-01	ARG0	purse	c	p	
+# ::edge	purse	poss	lady	p	l	
+# ::edge	and	op1	dump-01	a2	d	
+# ::edge	arrange-01	manner	neat	a3	n	
+# ::edge	and	op2	arrange-01	a2	a3	
+# ::edge	arrange-01	ARG0	lady	a3	l	
+# ::edge	thing	mod	stupid	t2	s	
+# ::edge	thing	mod	all	t2	a	
+# ::edge	arrange-01	ARG1	thing	a3	t2	
+# ::edge	thing	ARG1-of	crap-01	t2	c3	
+# ::edge	thing	ARG1-of	contain-01	t2	c2	
+# ::edge	contain-01	ARG0	purse	c2	p	
+(a2 / and
+    :op1 (d / dump-01
+        :ARG0 (l / lady)
+        :ARG1 (t / thing
+            :ARG1-of (c / contain-01
+                :ARG0 (p / purse
+                    :poss l))))
+    :op2 (a3 / arrange-01
+        :ARG0 l
+        :ARG1 (t2 / thing
+            :ARG1-of (c3 / crap-01)
+            :ARG1-of (c2 / contain-01
+                :ARG0 p)
+            :mod (s / stupid)
+            :mod (a / all))
+        :manner (n / neat)))

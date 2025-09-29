@@ -1,0 +1,44 @@
+# ::tok some telephone poles , street signs , standing near a open road and grassy ditches
+# ::node	s2	some	0-1
+# ::node	t	telephone	1-2
+# ::node	p	pole	2-3
+# ::node	a	and	3-4
+# ::node	s4	street	4-5
+# ::node	s	sign	5-6
+# ::node	s3	stand-01	7-8
+# ::node	n	near-02	8-9
+# ::node	o	open-06	10-11
+# ::node	r	road	11-12
+# ::node	a2	and	12-13
+# ::node	g	grass	13-14
+# ::node	d	ditch	14-15
+# ::root	a	and
+# ::edge	pole	mod	telephone	p	t	
+# ::edge	pole	quant	some	p	s2	
+# ::edge	and	op1	pole	a	p	
+# ::edge	sign	mod	street	s	s4	
+# ::edge	and	op2	sign	a	s	
+# ::edge	sign	quant	some	s	s2	
+# ::edge	and	ARG1-of	stand-01	a	s3	
+# ::edge	stand-01	ARG2	near-02	s3	n	
+# ::edge	near-02	ARG1	and	n	a	
+# ::edge	road	ARG1-of	open-06	r	o	
+# ::edge	and	op1	road	a2	r	
+# ::edge	near-02	ARG2	and	n	a2	
+# ::edge	ditch	consist-of	grass	d	g	
+# ::edge	and	op2	ditch	a2	d	
+(a / and
+    :ARG1-of (s3 / stand-01
+        :ARG2 (n / near-02
+            :ARG1 a
+            :ARG2 (a2 / and
+                :op1 (r / road
+                    :ARG1-of (o / open-06))
+                :op2 (d / ditch
+                    :consist-of (g / grass)))))
+    :op1 (p / pole
+        :quant (s2 / some)
+        :mod (t / telephone))
+    :op2 (s / sign
+        :quant s2
+        :mod (s4 / street)))

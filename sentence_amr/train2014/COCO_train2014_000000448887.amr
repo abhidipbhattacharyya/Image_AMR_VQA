@@ -1,0 +1,38 @@
+# ::tok lines of buses sitting around in a bus lot with arabic writing on the side
+# ::node	l2	line	0-1
+# ::node	b	bus	2-3
+# ::node	s2	sit-01	3-4
+# ::node	a	around	4-5
+# ::node	l3	lot	8-9
+# ::node	h	have-03	9-10
+# ::node	l	language	10-11
+# ::node	n	name	10-11
+# ::node	0	Arab	10-11
+# ::node	w	write-01	11-12
+# ::node	s	side	14-15
+# ::root	s2	sit-01
+# ::edge	line	consist-of	bus	l2	b	
+# ::edge	sit-01	ARG1	line	s2	l2	
+# ::edge	sit-01	manner	around	s2	a	
+# ::edge	sit-01	location	lot	s2	l3	
+# ::edge	lot	mod	bus	l3	b	
+# ::edge	line	ARG0-of	have-03	l2	h	
+# ::edge	language	name	name	l	n	
+# ::edge	name	op1	Arab	n	0	
+# ::edge	write-01	mod	language	w	l	
+# ::edge	have-03	ARG1	write-01	h	w	
+# ::edge	write-01	location	side	w	s	
+# ::edge	lot	part	side	l3	s	
+(s2 / sit-01
+    :ARG1 (l2 / line
+        :ARG0-of (h / have-03
+            :ARG1 (w / write-01
+                :location (s / side)
+                :mod (l / language
+                    :name (n / name
+                        :op1 "Arab"))))
+        :consist-of (b / bus))
+    :location (l3 / lot
+        :mod b
+        :part s)
+    :manner (a / around))

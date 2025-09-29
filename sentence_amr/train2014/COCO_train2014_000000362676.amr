@@ -1,0 +1,31 @@
+# ::tok A room with stained glass windows that have french doors opened .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	s	stain-01	3-4
+# ::node	g	glass	4-5
+# ::node	w	window	5-6
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	d	door	9-10
+# ::node	o	open-01	10-11
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	glass	ARG1-of	stain-01	g	s	
+# ::edge	window	mod	glass	w	g	
+# ::edge	have-03	ARG1	window	h	w	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	door	mod	country	d	c	
+# ::edge	window	part	door	w	d	
+# ::edge	door	ARG1-of	open-01	d	o	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (w / window
+            :mod (g / glass
+                :ARG1-of (s / stain-01))
+            :part (d / door
+                :ARG1-of (o / open-01)
+                :mod (c / country
+                    :name (n / name
+                        :op1 "France"))))))

@@ -1,0 +1,66 @@
+# ::tok At the end of the shady , stone - fence surrounded path sits a brick clock tower on on a stone pedestal ; beyond that , mountains loom in the distance beneath an impending stormy sky .
+# ::node	e	end-01	2-3
+# ::node	s	shady	5-6
+# ::node	s4	stone	7-8
+# ::node	f	fence	9-10
+# ::node	s7	surround-01	10-11
+# ::node	p	path	11-12
+# ::node	s2	sit-01	12-13
+# ::node	b3	brick	14-15
+# ::node	c	clock	15-16
+# ::node	t	tower	16-17
+# ::node	s5	stone	20-21
+# ::node	p2	pedestal	21-22
+# ::node	a	and	22-23
+# ::node	b2	beyond	23-24
+# ::node	m	mountain	26-27
+# ::node	l	loom-01	27-28
+# ::node	d	distant-02	30-31
+# ::node	b	beneath	31-32
+# ::node	i	impend-01	33-34
+# ::node	s6	storm-01	34-35
+# ::node	s3	sky	35-36
+# ::root	a	and
+# ::edge	fence	consist-of	stone	f	s4	
+# ::edge	surround-01	ARG2	fence	s7	f	
+# ::edge	path	ARG1-of	surround-01	p	s7	
+# ::edge	path	mod	shady	p	s	
+# ::edge	end-01	ARG1	path	e	p	
+# ::edge	sit-01	ARG2	end-01	s2	e	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	consist-of	brick	t	b3	
+# ::edge	sit-01	ARG1	tower	s2	t	
+# ::edge	pedestal	consist-of	stone	p2	s5	
+# ::edge	tower	location	pedestal	t	p2	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	beyond	op1	tower	b2	t	
+# ::edge	loom-01	ARG1	mountain	l	m	
+# ::edge	loom-01	location	beyond	l	b2	
+# ::edge	and	op2	loom-01	a	l	
+# ::edge	loom-01	ARG1-of	distant-02	l	d	
+# ::edge	loom-01	location	beneath	l	b	
+# ::edge	sky	ARG0-of	storm-01	s3	s6	
+# ::edge	sky	ARG1-of	impend-01	s3	i	
+# ::edge	beneath	op1	sky	b	s3	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (t / tower
+            :consist-of (b3 / brick)
+            :location (p2 / pedestal
+                :consist-of (s5 / stone))
+            :mod (c / clock))
+        :ARG2 (e / end-01
+            :ARG1 (p / path
+                :ARG1-of (s7 / surround-01
+                    :ARG2 (f / fence
+                        :consist-of (s4 / stone)))
+                :mod (s / shady))))
+    :op2 (l / loom-01
+        :ARG1 (m / mountain)
+        :ARG1-of (d / distant-02)
+        :location (b2 / beyond
+            :op1 t)
+        :location (b / beneath
+            :op1 (s3 / sky
+                :ARG0-of (s6 / storm-01)
+                :ARG1-of (i / impend-01)))))

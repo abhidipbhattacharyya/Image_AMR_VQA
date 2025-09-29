@@ -1,0 +1,24 @@
+# ::tok An oven that is slightly opened revealing that some food is baking in it .
+# ::node	o2	oven	1-2
+# ::node	s	slight	4-5
+# ::node	o	open-01	5-6
+# ::node	r	reveal-01	6-7
+# ::node	s2	some	8-9
+# ::node	f	food	9-10
+# ::node	b	bake-01	11-12
+# ::root	r	reveal-01
+# ::edge	open-01	degree	slight	o	s	
+# ::edge	oven	ARG1-of	open-01	o2	o	
+# ::edge	reveal-01	ARG0	oven	r	o2	
+# ::edge	food	quant	some	f	s2	
+# ::edge	bake-01	ARG1	food	b	f	
+# ::edge	reveal-01	ARG1	bake-01	r	b	
+# ::edge	bake-01	location	oven	b	o2	
+(r / reveal-01
+    :ARG0 (o2 / oven
+        :ARG1-of (o / open-01
+            :degree (s / slight)))
+    :ARG1 (b / bake-01
+        :ARG1 (f / food
+            :quant (s2 / some))
+        :location o2))

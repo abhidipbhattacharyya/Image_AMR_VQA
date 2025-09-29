@@ -1,0 +1,42 @@
+# ::tok A Chinese Airplane is sitting and waiting to lift off and fly
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	China	1-2
+# ::node	a	airplane	2-3
+# ::node	s	sit-01	4-5
+# ::node	a2	and	5-6
+# ::node	w	wait-01	6-7
+# ::node	l	lift-01	8-9
+# ::node	o	off	9-10
+# ::node	a3	and	10-11
+# ::node	f	fly-01	11-12
+# ::root	a2	and
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	airplane	mod	country	a	c	
+# ::edge	sit-01	ARG1	airplane	s	a	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	and	op2	wait-01	a2	w	
+# ::edge	wait-01	ARG1	airplane	w	a	
+# ::edge	lift-01	ARG1	airplane	l	a	
+# ::edge	lift-01	direction	off	l	o	
+# ::edge	and	op1	lift-01	a3	l	
+# ::edge	wait-01	ARG2	and	w	a3	
+# ::edge	sit-01	ARG2	and	s	a3	
+# ::edge	and	op2	fly-01	a3	f	
+# ::edge	fly-01	ARG1	airplane	f	a	
+(a2 / and
+    :op1 (s / sit-01
+        :ARG1 (a / airplane
+            :mod (c / country
+                :name (n / name
+                    :op1 "China")))
+        :ARG2 (a3 / and
+            :op1 (l / lift-01
+                :ARG1 a
+                :direction (o / off))
+            :op2 (f / fly-01
+                :ARG1 a)))
+    :op2 (w / wait-01
+        :ARG1 a
+        :ARG2 a3))

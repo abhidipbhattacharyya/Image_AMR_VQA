@@ -1,0 +1,34 @@
+# ::tok A air blimp is flying over the city skyline as birds are perched on a brick building nearby .
+# ::node	a	air	1-2
+# ::node	b2	blimp	2-3
+# ::node	f	fly-01	4-5
+# ::node	o	over	5-6
+# ::node	c	city	7-8
+# ::node	s	skyline	8-9
+# ::node	b	bird	10-11
+# ::node	p	perch-01	12-13
+# ::node	b3	brick	15-16
+# ::node	b4	building	16-17
+# ::node	n	nearby	17-18
+# ::root	f	fly-01
+# ::edge	blimp	mod	air	b2	a	
+# ::edge	fly-01	ARG2	blimp	f	b2	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	skyline	mod	city	s	c	
+# ::edge	over	op1	skyline	o	s	
+# ::edge	perch-01	ARG1	bird	p	b	
+# ::edge	fly-01	time	perch-01	f	p	
+# ::edge	building	consist-of	brick	b4	b3	
+# ::edge	perch-01	ARG2	building	p	b4	
+# ::edge	building	location	nearby	b4	n	
+(f / fly-01
+    :ARG2 (b2 / blimp
+        :mod (a / air))
+    :path (o / over
+        :op1 (s / skyline
+            :mod (c / city)))
+    :time (p / perch-01
+        :ARG1 (b / bird)
+        :ARG2 (b4 / building
+            :consist-of (b3 / brick)
+            :location (n / nearby))))

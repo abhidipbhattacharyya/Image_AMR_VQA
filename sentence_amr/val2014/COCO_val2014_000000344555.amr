@@ -1,0 +1,27 @@
+# ::tok Scissors are sitting on the table with needles and a pin cushion behind it .
+# ::node	s2	statistic	0-1
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	n	needle	7-8
+# ::node	a	and	8-9
+# ::node	p	pin	10-11
+# ::node	c	cushion	11-12
+# ::node	b	behind	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	statistic	s	s2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	needle	a	n	
+# ::edge	sit-01	accompanier	and	s	a	
+# ::edge	cushion	mod	pin	c	p	
+# ::edge	and	op2	cushion	a	c	
+# ::edge	cushion	location	behind	c	b	
+# ::edge	behind	op1	statistic	b	s2	
+(s / sit-01
+    :ARG1 (s2 / statistic)
+    :ARG2 (t / table)
+    :accompanier (a / and
+        :op1 (n / needle)
+        :op2 (c / cushion
+            :location (b / behind
+                :op1 s2)
+            :mod (p / pin))))

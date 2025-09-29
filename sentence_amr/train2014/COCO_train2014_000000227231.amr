@@ -1,0 +1,24 @@
+# ::tok a bus parked on the side of the road so someone can get on it
+# ::node	b	bus	1-2
+# ::node	p	park-01	2-3
+# ::node	s	side	5-6
+# ::node	r	road	8-9
+# ::node	s2	someone	10-11
+# ::node	p2	possible-01	11-12
+# ::node	g	get-05	12-13
+# ::root	b	bus
+# ::edge	bus	ARG1-of	park-01	b	p	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	bus	purpose	possible-01	b	p2	
+# ::edge	possible-01	ARG1	get-05	p2	g	
+# ::edge	get-05	ARG1	someone	g	s2	
+# ::edge	get-05	ARG2	bus	g	b	
+(b / bus
+    :purpose (p2 / possible-01
+        :ARG1 (g / get-05
+            :ARG1 (s2 / someone)
+            :ARG2 b))
+    :ARG1-of (p / park-01
+        :ARG2 (s / side
+            :part-of (r / road))))

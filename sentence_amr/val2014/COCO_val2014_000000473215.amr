@@ -1,0 +1,36 @@
+# ::tok On the table are a banana split , yet untouched , and another chocolate soda fountain treat .
+# ::node	t	table	2-3
+# ::node	b	banana	5-6
+# ::node	s2	split-01	6-7
+# ::node	t2	touch-01	9-10
+# ::node	0	-	9-10
+# ::node	a	and	11-12
+# ::node	a2	another	12-13
+# ::node	c	chocolate	13-14
+# ::node	s	soda	14-15
+# ::node	f	fountain	15-16
+# ::node	t3	treat	16-17
+# ::root	a	and
+# ::edge	split-01	ARG1	banana	s2	b	
+# ::edge	split-01	concession-of	touch-01	s2	t2	
+# ::edge	touch-01	ARG1	banana	t2	b	
+# ::edge	touch-01	polarity	-	t2	0	
+# ::edge	and	op1	split-01	a	s2	
+# ::edge	and	location	table	a	t	
+# ::edge	fountain	mod	soda	f	s	
+# ::edge	fountain	mod	chocolate	f	c	
+# ::edge	treat	mod	fountain	t3	f	
+# ::edge	treat	mod	another	t3	a2	
+# ::edge	and	op2	treat	a	t3	
+(a / and
+    :location (t / table)
+    :op1 (s2 / split-01
+        :ARG1 (b / banana)
+        :concession-of (t2 / touch-01
+            :ARG1 b
+            :polarity -))
+    :op2 (t3 / treat
+        :mod (f / fountain
+            :mod (s / soda)
+            :mod (c / chocolate))
+        :mod (a2 / another)))

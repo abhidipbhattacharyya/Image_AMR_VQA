@@ -1,0 +1,58 @@
+# ::tok A man , with other people in the background , is sitting at a picnic table with a cell phone in front of him while he uses a fork and knife to cut a dessert on a plate .
+# ::node	m	man	1-2
+# ::node	o	other	4-5
+# ::node	p	person	5-6
+# ::node	b	background	8-9
+# ::node	s	sit-01	11-12
+# ::node	p3	picnic-01	14-15
+# ::node	t	table	15-16
+# ::node	c	cell	18-19
+# ::node	p2	phone	19-20
+# ::node	i	in-front-of	21-22
+# ::node	u	use-01	26-27
+# ::node	f	fork	28-29
+# ::node	a	and	29-30
+# ::node	k	knife	30-31
+# ::node	c2	cut-01	32-33
+# ::node	d	dessert	34-35
+# ::node	p4	plate	37-38
+# ::root	s	sit-01
+# ::edge	person	mod	other	p	o	
+# ::edge	man	accompanier	person	m	p	
+# ::edge	person	location	background	p	b	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	table	mod	picnic-01	t	p3	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	phone	mod	cell	p2	c	
+# ::edge	phone	location	in-front-of	p2	i	
+# ::edge	in-front-of	op1	man	i	m	
+# ::edge	sit-01	time	use-01	s	u	
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	and	op1	fork	a	f	
+# ::edge	use-01	ARG1	and	u	a	
+# ::edge	and	op2	knife	a	k	
+# ::edge	use-01	ARG2	cut-01	u	c2	
+# ::edge	cut-01	ARG0	man	c2	m	
+# ::edge	cut-01	ARG1	dessert	c2	d	
+# ::edge	dessert	location	plate	d	p4	
+# ::edge	sit-01	rel	phone	s	p2	
+(s / sit-01
+    :ARG1 (m / man
+        :accompanier (p / person
+            :location (b / background)
+            :mod (o / other)))
+    :ARG2 (t / table
+        :mod (p3 / picnic-01))
+    :rel (p2 / phone
+        :location (i / in-front-of
+            :op1 m)
+        :mod (c / cell))
+    :time (u / use-01
+        :ARG0 m
+        :ARG1 (a / and
+            :op1 (f / fork)
+            :op2 (k / knife))
+        :ARG2 (c2 / cut-01
+            :ARG0 m
+            :ARG1 (d / dessert
+                :location (p4 / plate)))))

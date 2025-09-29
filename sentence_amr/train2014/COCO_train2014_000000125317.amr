@@ -1,0 +1,34 @@
+# ::tok A man with tinted glasses wearing black gloves and a striped tie points a camera at the camera .
+# ::node	m	man	1-2
+# ::node	t2	tint-01	3-4
+# ::node	g	glasses	4-5
+# ::node	w	wear-01	5-6
+# ::node	b	black-04	6-7
+# ::node	g2	glove	7-8
+# ::node	a	and	8-9
+# ::node	s	stripe	10-11
+# ::node	t	tie	11-12
+# ::node	p	point-01	12-13
+# ::node	c	camera	14-15
+# ::root	p	point-01
+# ::edge	glasses	ARG1-of	tint-01	g	t2	
+# ::edge	glasses	ARG0-of	wear-01	g	w	
+# ::edge	glove	ARG1-of	black-04	g2	b	
+# ::edge	and	op1	glove	a	g2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	tie	mod	stripe	t	s	
+# ::edge	and	op2	tie	a	t	
+# ::edge	point-01	ARG0	man	p	m	
+# ::edge	point-01	ARG1	camera	p	c	
+# ::edge	point-01	rel	glasses	p	g	
+(p / point-01
+    :ARG0 (m / man)
+    :ARG1 (c / camera)
+    :rel (g / glasses
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (g2 / glove
+                    :ARG1-of (b / black-04))
+                :op2 (t / tie
+                    :mod (s / stripe))))
+        :ARG1-of (t2 / tint-01)))

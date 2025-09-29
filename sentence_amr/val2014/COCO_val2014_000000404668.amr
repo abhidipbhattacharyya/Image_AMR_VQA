@@ -1,0 +1,40 @@
+# ::tok You can see five different meals , one for each of five different ethnic groups .
+# ::node	y	you	0-1
+# ::node	p	possible-01	1-2
+# ::node	s	see-01	2-3
+# ::node	1	5	3-4
+# ::node	d	differ-02	4-5
+# ::node	m	meal	5-6
+# ::node	m2	meal	5-6
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	e	each	9-10
+# ::node	2	5	11-12
+# ::node	d2	differ-02	12-13
+# ::node	e2	ethnic-group	13-14
+# ::root	p	possible-01
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	meal	ARG1-of	differ-02	m	d	
+# ::edge	meal	quant	5	m	1	
+# ::edge	see-01	ARG1	meal	s	m	
+# ::edge	include-91	ARG1	meal	i	m2	
+# ::edge	meal	ARG2-of	include-91	m	i	
+# ::edge	meal	quant	1	m2	0	
+# ::edge	meal	mod	each	m2	e	
+# ::edge	ethnic-group	ARG1-of	differ-02	e2	d2	
+# ::edge	ethnic-group	quant	5	e2	2	
+# ::edge	meal	part-of	ethnic-group	m2	e2	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG0 (y / you)
+        :ARG1 (m / meal
+            :quant 5
+            :ARG1-of (d / differ-02)
+            :ARG2-of (i / include-91
+                :ARG1 (m2 / meal
+                    :quant 1
+                    :mod (e / each)
+                    :part-of (e2 / ethnic-group
+                        :quant 5
+                        :ARG1-of (d2 / differ-02)))))))

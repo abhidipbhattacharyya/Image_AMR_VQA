@@ -1,0 +1,33 @@
+# ::tok A lady attempting to carry a black cat in the same room as two other cats .
+# ::node	l	lady	1-2
+# ::node	a	attempt-01	2-3
+# ::node	c	carry-01	4-5
+# ::node	b	black-04	6-7
+# ::node	c2	cat	7-8
+# ::node	s	same-01	10-11
+# ::node	r	room	11-12
+# ::node	0	2	13-14
+# ::node	o	other	14-15
+# ::node	c3	cat	15-16
+# ::root	a	attempt-01
+# ::edge	attempt-01	ARG0	lady	a	l	
+# ::edge	attempt-01	ARG1	carry-01	a	c	
+# ::edge	carry-01	ARG0	lady	c	l	
+# ::edge	cat	ARG1-of	black-04	c2	b	
+# ::edge	carry-01	ARG1	cat	c	c2	
+# ::edge	room	ARG1-of	same-01	r	s	
+# ::edge	carry-01	location	room	c	r	
+# ::edge	cat	mod	other	c3	o	
+# ::edge	cat	quant	2	c3	0	
+# ::edge	same-01	ARG2	cat	s	c3	
+(a / attempt-01
+    :ARG0 (l / lady)
+    :ARG1 (c / carry-01
+        :ARG0 l
+        :ARG1 (c2 / cat
+            :ARG1-of (b / black-04))
+        :location (r / room
+            :ARG1-of (s / same-01
+                :ARG2 (c3 / cat
+                    :quant 2
+                    :mod (o / other))))))

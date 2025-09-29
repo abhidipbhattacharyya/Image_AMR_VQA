@@ -1,0 +1,34 @@
+# ::tok A thin pizza with tomatoes and cheese with green onions and bacon .
+# ::node	t	thin-03	1-2
+# ::node	p	pizza	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	tomato	4-5
+# ::node	a	and	5-6
+# ::node	c	cheese	6-7
+# ::node	g	green-02	8-9
+# ::node	i	inside	9-10
+# ::node	d	date-entity	9-10
+# ::node	d2	day	9-10
+# ::node	b	bacon	11-12
+# ::root	p	pizza
+# ::edge	pizza	ARG1-of	thin-03	p	t	
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	and	op1	tomato	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	cheese	a	c	
+# ::edge	and	mod	inside	a	i	
+# ::edge	inside	op1	date-entity	i	d	
+# ::edge	date-entity	mod	day	d	d2	
+# ::edge	day	ARG1-of	green-02	d2	g	
+# ::edge	and	op3	bacon	a	b	
+(p / pizza
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :mod (i / inside
+                :op1 (d / date-entity
+                    :mod (d2 / day
+                        :ARG1-of (g / green-02))))
+            :op1 (t2 / tomato)
+            :op2 (c / cheese)
+            :op3 (b / bacon)))
+    :ARG1-of (t / thin-03))

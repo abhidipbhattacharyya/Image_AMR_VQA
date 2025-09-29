@@ -1,0 +1,40 @@
+# ::tok A red traffic light halts cars on a city street with palm trees and a gas station .
+# ::node	r	red-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	h	halt-01	4-5
+# ::node	c	car	5-6
+# ::node	c2	city	8-9
+# ::node	s2	street	9-10
+# ::node	h2	have-03	10-11
+# ::node	p	palm	11-12
+# ::node	t2	tree	12-13
+# ::node	a	and	13-14
+# ::node	g	gas	15-16
+# ::node	s	station	16-17
+# ::root	h	halt-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	halt-01	ARG0	light	h	l	
+# ::edge	halt-01	ARG1	car	h	c	
+# ::edge	street	mod	city	s2	c2	
+# ::edge	halt-01	location	street	h	s2	
+# ::edge	street	ARG0-of	have-03	s2	h2	
+# ::edge	tree	mod	palm	t2	p	
+# ::edge	and	op1	tree	a	t2	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	station	mod	gas	s	g	
+# ::edge	and	op2	station	a	s	
+(h / halt-01
+    :ARG0 (l / light
+        :ARG1-of (r / red-02)
+        :mod (t / traffic))
+    :ARG1 (c / car)
+    :location (s2 / street
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :op1 (t2 / tree
+                    :mod (p / palm))
+                :op2 (s / station
+                    :mod (g / gas))))
+        :mod (c2 / city)))

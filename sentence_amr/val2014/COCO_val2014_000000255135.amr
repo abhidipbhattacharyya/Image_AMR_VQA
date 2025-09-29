@@ -1,0 +1,27 @@
+# ::tok Someone did not observe the stop sign and now it is knocked over .
+# ::node	s2	someone	0-1
+# ::node	0	-	2-3
+# ::node	o	observe-01	3-4
+# ::node	s3	stop-01	5-6
+# ::node	s	signal-07	6-7
+# ::node	a	and	7-8
+# ::node	n	now	8-9
+# ::node	k	knock-down-02	11-12
+# ::root	a	and
+# ::edge	observe-01	polarity	-	o	0	
+# ::edge	observe-01	ARG0	someone	o	s2	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	observe-01	ARG1	signal-07	o	s	
+# ::edge	and	op1	observe-01	a	o	
+# ::edge	knock-down-02	time	now	k	n	
+# ::edge	and	op2	knock-down-02	a	k	
+# ::edge	knock-down-02	ARG1	signal-07	k	s	
+(a / and
+    :op1 (o / observe-01
+        :ARG0 (s2 / someone)
+        :ARG1 (s / signal-07
+            :ARG1 (s3 / stop-01))
+        :polarity -)
+    :op2 (k / knock-down-02
+        :ARG1 s
+        :time (n / now)))

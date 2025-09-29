@@ -1,0 +1,21 @@
+# ::tok A living room that has a fireplace but is otherwise empty .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	4-5
+# ::node	f	fireplace	6-7
+# ::node	e2	except-01	9-10
+# ::node	e	empty-02	10-11
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	have-03	ARG1	fireplace	h	f	
+# ::edge	except-01	ARG2	have-03	e2	h	
+# ::edge	empty-02	ARG1-of	except-01	e	e2	
+# ::edge	room	ARG1-of	empty-02	r	e	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (f / fireplace))
+    :ARG1-of (e / empty-02
+        :ARG1-of (e2 / except-01
+            :ARG2 h))
+    :mod (l / living))

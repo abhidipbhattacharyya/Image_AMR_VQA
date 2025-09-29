@@ -1,0 +1,22 @@
+# ::tok Up close blurry image of a STOP sign used for traffic
+# ::node	c	close-10	1-2
+# ::node	b	blur-01	2-3
+# ::node	i	image	3-4
+# ::node	s2	stop-01	6-7
+# ::node	s	sign	7-8
+# ::node	u	use-01	8-9
+# ::node	t	traffic	10-11
+# ::root	i	image
+# ::edge	image	ARG1-of	blur-01	i	b	
+# ::edge	image	ARG1-of	close-10	i	c	
+# ::edge	sign	purpose	stop-01	s	s2	
+# ::edge	image	mod	sign	i	s	
+# ::edge	sign	ARG1-of	use-01	s	u	
+# ::edge	use-01	ARG2	traffic	u	t	
+(i / image
+    :ARG1-of (b / blur-01)
+    :ARG1-of (c / close-10)
+    :mod (s / sign
+        :purpose (s2 / stop-01)
+        :ARG1-of (u / use-01
+            :ARG2 (t / traffic))))

@@ -1,0 +1,32 @@
+# ::tok A plate of Canadian bacon and eggs and pancakes on the table .
+# ::node	p	plate	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	Canada	3-4
+# ::node	b	bacon	4-5
+# ::node	a	and	5-6
+# ::node	e	egg	6-7
+# ::node	e2	egg	8-9
+# ::node	t	table-01	11-12
+# ::root	t	table-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Canada	n	0	
+# ::edge	bacon	mod	country	b	c	
+# ::edge	and	op1	bacon	a	b	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	and	op2	egg	a	e	
+# ::edge	egg	mod	country	e	c	
+# ::edge	and	op3	egg	a	e2	
+# ::edge	egg	mod	country	e2	c	
+# ::edge	table-01	ARG1	plate	t	p	
+(t / table-01
+    :ARG1 (p / plate
+        :consist-of (a / and
+            :op1 (b / bacon
+                :mod (c / country
+                    :name (n / name
+                        :op1 "Canada")))
+            :op2 (e / egg
+                :mod c)
+            :op3 (e2 / egg
+                :mod c))))

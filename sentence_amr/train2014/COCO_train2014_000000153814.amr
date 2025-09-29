@@ -1,0 +1,29 @@
+# ::tok Pizzas rest on the table at this restaurant as people wait to eat .
+# ::node	s	submarine	0-1
+# ::node	r	rest-01	1-2
+# ::node	t	table	4-5
+# ::node	t2	this	6-7
+# ::node	r2	restaurant	7-8
+# ::node	p	person	9-10
+# ::node	w	wait-01	10-11
+# ::node	e	eat-01	12-13
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	submarine	r	s	
+# ::edge	rest-01	location	table	r	t	
+# ::edge	restaurant	mod	this	r2	t2	
+# ::edge	table	location	restaurant	t	r2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	rest-01	time	wait-01	r	w	
+# ::edge	wait-01	ARG2	eat-01	w	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	submarine	e	s	
+(r / rest-01
+    :ARG1 (s / submarine)
+    :location (t / table
+        :location (r2 / restaurant
+            :mod (t2 / this)))
+    :time (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 (e / eat-01
+            :ARG0 p
+            :ARG1 s)))

@@ -1,0 +1,45 @@
+# ::tok The front of a bicycle with a carrying unit attached that has a bag , a box and a piece of furniture with three books on it .
+# ::node	f	front	1-2
+# ::node	b2	bicycle	4-5
+# ::node	c	carry-01	7-8
+# ::node	u	unit	8-9
+# ::node	a2	attach-01	9-10
+# ::node	h	have-03	11-12
+# ::node	b	bag	13-14
+# ::node	b4	box	16-17
+# ::node	a	and	17-18
+# ::node	p	piece	19-20
+# ::node	f2	furniture	21-22
+# ::node	h2	have-03	22-23
+# ::node	0	3	23-24
+# ::node	b3	book	24-25
+# ::root	f	front
+# ::edge	front	part-of	bicycle	f	b2	
+# ::edge	unit	ARG0-of	carry-01	u	c	
+# ::edge	bicycle	part-of	unit	b2	u	
+# ::edge	unit	ARG1-of	attach-01	u	a2	
+# ::edge	attach-01	ARG2	bicycle	a2	b2	
+# ::edge	unit	ARG0-of	have-03	u	h	
+# ::edge	and	op2	box	a	b4	
+# ::edge	and	op1	bag	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	piece	a	p	
+# ::edge	piece	mod	furniture	p	f2	
+# ::edge	piece	ARG0-of	have-03	p	h2	
+# ::edge	book	quant	3	b3	0	
+# ::edge	have-03	ARG1	book	h2	b3	
+(f / front
+    :part-of (b2 / bicycle
+        :part-of (u / unit
+            :ARG0-of (c / carry-01)
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (b / bag)
+                    :op2 (b4 / box)
+                    :op3 (p / piece
+                        :ARG0-of (h2 / have-03
+                            :ARG1 (b3 / book
+                                :quant 3))
+                        :mod (f2 / furniture))))
+            :ARG1-of (a2 / attach-01
+                :ARG2 b2))))

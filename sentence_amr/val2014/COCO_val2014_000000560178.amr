@@ -1,0 +1,21 @@
+# ::tok Someone is holding a veggie with a bite already taken from it .
+# ::node	s	someone	0-1
+# ::node	h	hold-01	2-3
+# ::node	v	vegetable	4-5
+# ::node	b	bite	7-8
+# ::node	a	already	8-9
+# ::node	t	take-01	9-10
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	someone	h	s	
+# ::edge	hold-01	ARG1	vegetable	h	v	
+# ::edge	vegetable	part	bite	v	b	
+# ::edge	take-01	time	already	t	a	
+# ::edge	bite	ARG1-of	take-01	b	t	
+# ::edge	take-01	ARG2	vegetable	t	v	
+(h / hold-01
+    :ARG0 (s / someone)
+    :ARG1 (v / vegetable
+        :part (b / bite
+            :ARG1-of (t / take-01
+                :ARG2 v
+                :time (a / already)))))

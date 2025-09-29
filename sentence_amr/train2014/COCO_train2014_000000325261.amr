@@ -1,0 +1,45 @@
+# ::tok Man in front of red curtain , dressed in business attire , dark striped shirt , dark neck tie and dark pants .
+# ::node	m	man	0-1
+# ::node	i	in-front-of	2-3
+# ::node	r	red-02	4-5
+# ::node	c	curtain	5-6
+# ::node	d2	dress-01	7-8
+# ::node	b	business	9-10
+# ::node	a2	attire	10-11
+# ::node	s2	stripe	13-14
+# ::node	s	shirt	14-15
+# ::node	d	dark-02	16-17
+# ::node	n	neck	17-18
+# ::node	t	tie	18-19
+# ::node	a	and	19-20
+# ::node	p	pant	21-22
+# ::root	m	man
+# ::edge	man	location	in-front-of	m	i	
+# ::edge	curtain	ARG1-of	red-02	c	r	
+# ::edge	in-front-of	op1	curtain	i	c	
+# ::edge	man	ARG1-of	dress-01	m	d2	
+# ::edge	attire	mod	business	a2	b	
+# ::edge	shirt	mod	stripe	s	s2	
+# ::edge	shirt	ARG1-of	dark-02	s	d	
+# ::edge	tie	mod	neck	t	n	
+# ::edge	and	op3	tie	a	t	
+# ::edge	and	op2	shirt	a	s	
+# ::edge	and	op1	attire	a	a2	
+# ::edge	dress-01	ARG2	and	d2	a	
+# ::edge	and	op4	pant	a	p	
+# ::edge	dark-02	ARG1	pant	d	p	
+(m / man
+    :ARG1-of (d2 / dress-01
+        :ARG2 (a / and
+            :op1 (a2 / attire
+                :mod (b / business))
+            :op2 (s / shirt
+                :ARG1-of (d / dark-02
+                    :ARG1 (p / pant))
+                :mod (s2 / stripe))
+            :op3 (t / tie
+                :mod (n / neck))
+            :op4 p))
+    :location (i / in-front-of
+        :op1 (c / curtain
+            :ARG1-of (r / red-02))))

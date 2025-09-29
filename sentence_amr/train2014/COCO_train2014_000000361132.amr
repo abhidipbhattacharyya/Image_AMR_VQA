@@ -1,0 +1,25 @@
+# ::tok A giraffe crops grass while a second lays in the background .
+# ::node	g	giraffe	1-2
+# ::node	c	crop-01	2-3
+# ::node	g2	grass	3-4
+# ::node	o	ordinal-entity	6-7
+# ::node	0	2	6-7
+# ::node	l	lay-01	7-8
+# ::node	t	thing	9-10
+# ::node	b	background	10-11
+# ::root	c	crop-01
+# ::edge	crop-01	ARG0	giraffe	c	g	
+# ::edge	crop-01	ARG1	grass	c	g2	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	thing	ARG1-of	lay-01	t	l	
+# ::edge	thing	ord	ordinal-entity	t	o	
+# ::edge	crop-01	time	thing	c	t	
+# ::edge	lay-01	ARG2	background	l	b	
+(c / crop-01
+    :ARG0 (g / giraffe)
+    :ARG1 (g2 / grass)
+    :time (t / thing
+        :ARG1-of (l / lay-01
+            :ARG2 (b / background))
+        :ord (o / ordinal-entity
+            :value 2)))

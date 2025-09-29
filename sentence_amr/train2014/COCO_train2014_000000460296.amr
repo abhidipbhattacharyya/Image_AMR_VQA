@@ -1,0 +1,30 @@
+# ::tok A plate of some type of meat and some spaghetti with vegetables on top of it .
+# ::node	p	plate	1-2
+# ::node	s	some	3-4
+# ::node	t2	type	4-5
+# ::node	m	meat	6-7
+# ::node	a	and	7-8
+# ::node	s2	some	8-9
+# ::node	s3	spaghetti	9-10
+# ::node	v	vegetable	11-12
+# ::node	t	top-01	13-14
+# ::root	p	plate
+# ::edge	type	mod	some	t2	s	
+# ::edge	meat	mod	type	m	t2	
+# ::edge	and	op1	meat	a	m	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	spaghetti	quant	some	s3	s2	
+# ::edge	and	op2	spaghetti	a	s3	
+# ::edge	spaghetti	accompanier	vegetable	s3	v	
+# ::edge	spaghetti	ARG2-of	top-01	s3	t	
+# ::edge	top-01	ARG1	plate	t	p	
+(p / plate
+    :consist-of (a / and
+        :op1 (m / meat
+            :mod (t2 / type
+                :mod (s / some)))
+        :op2 (s3 / spaghetti
+            :quant (s2 / some)
+            :ARG2-of (t / top-01
+                :ARG1 p)
+            :accompanier (v / vegetable))))

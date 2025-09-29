@@ -1,0 +1,46 @@
+# ::tok This elephant is standing with its front legs on one stool and its back legs on another stool .
+# ::node	t	this	0-1
+# ::node	e	elephant	1-2
+# ::node	s	stand-01	3-4
+# ::node	f	front	6-7
+# ::node	o	one	9-10
+# ::node	s2	stool	10-11
+# ::node	a	and	11-12
+# ::node	b	back	13-14
+# ::node	l	leg	14-15
+# ::node	l2	leg	14-15
+# ::node	b2	be-located-at-91	15-16
+# ::node	a2	another	16-17
+# ::node	s3	stool	17-18
+# ::root	s	stand-01
+# ::edge	elephant	mod	this	e	t	
+# ::edge	stand-01	ARG1	elephant	s	e	
+# ::edge	stool	mod	one	s2	o	
+# ::edge	stand-01	manner	and	s	a	
+# ::edge	and	op1	leg	a	l	
+# ::edge	leg	mod	one	l	o	
+# ::edge	elephant	part	leg	e	l	
+# ::edge	leg	mod	back	l2	b	
+# ::edge	elephant	part	leg	e	l2	
+# ::edge	be-located-at-91	ARG1	leg	b2	l2	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	stool	mod	another	s3	a2	
+# ::edge	be-located-at-91	ARG2	stool	b2	s3	
+# ::edge	stand-01	rel	stool	s	s2	
+# ::edge	stand-01	rel	front	s	f	
+(s / stand-01
+    :ARG1 (e / elephant
+        :mod (t / this)
+        :part (l / leg
+            :mod (o / one))
+        :part (l2 / leg
+            :mod (b / back)))
+    :manner (a / and
+        :op1 l
+        :op2 (b2 / be-located-at-91
+            :ARG1 l2
+            :ARG2 (s3 / stool
+                :mod (a2 / another))))
+    :rel (s2 / stool
+        :mod o)
+    :rel (f / front))

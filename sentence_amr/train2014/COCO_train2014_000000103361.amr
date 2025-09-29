@@ -1,0 +1,25 @@
+# ::tok A bus drives down an urban street lined with parked cars .
+# ::node	b	bus	1-2
+# ::node	d2	drive-01	2-3
+# ::node	d	down	3-4
+# ::node	u	urban	5-6
+# ::node	s	street	6-7
+# ::node	l	line-01	7-8
+# ::node	p	park-01	9-10
+# ::node	c	car	10-11
+# ::root	d2	drive-01
+# ::edge	drive-01	ARG0	bus	d2	b	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	street	mod	urban	s	u	
+# ::edge	drive-01	ARG1	street	d2	s	
+# ::edge	street	ARG1-of	line-01	s	l	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	line-01	ARG2	car	l	c	
+(d2 / drive-01
+    :ARG0 (b / bus)
+    :ARG1 (s / street
+        :ARG1-of (l / line-01
+            :ARG2 (c / car
+                :ARG1-of (p / park-01)))
+        :mod (u / urban))
+    :direction (d / down))

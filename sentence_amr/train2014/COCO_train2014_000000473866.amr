@@ -1,0 +1,28 @@
+# ::tok The salad in this container is made of carrots , green beans , and zucchini .
+# ::node	s	salad	1-2
+# ::node	t	this	3-4
+# ::node	c2	container	4-5
+# ::node	m	make-01	6-7
+# ::node	c	carrot	8-9
+# ::node	g	green-02	10-11
+# ::node	b	bean	11-12
+# ::node	a	and	13-14
+# ::node	z	zucchini	14-15
+# ::root	m	make-01
+# ::edge	container	mod	this	c2	t	
+# ::edge	salad	location	container	s	c2	
+# ::edge	make-01	ARG1	salad	m	s	
+# ::edge	bean	ARG1-of	green-02	b	g	
+# ::edge	and	op2	bean	a	b	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	make-01	ARG2	and	m	a	
+# ::edge	and	op3	zucchini	a	z	
+(m / make-01
+    :ARG1 (s / salad
+        :location (c2 / container
+            :mod (t / this)))
+    :ARG2 (a / and
+        :op1 (c / carrot)
+        :op2 (b / bean
+            :ARG1-of (g / green-02))
+        :op3 (z / zucchini)))

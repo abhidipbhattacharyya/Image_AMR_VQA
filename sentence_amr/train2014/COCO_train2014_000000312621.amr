@@ -1,0 +1,48 @@
+# ::tok A clock that is red and white .
+# ::node	c	clock	1-2
+# ::node	r	red-02	4-5
+# ::node	w	white-03	6-7
+# ::root	c	clock
+# ::edge	clock	ARG1-of	red-02	c	r	
+# ::edge	clock	ARG1-of	white-03	c	w	
+(c / clock
+    :ARG1-of (r / red-02)
+    :ARG1-of (w / white-03))
+
+
+# ::tok It appears to be above a door and has statues all above the clock .
+# ::node	i	it	0-1
+# ::node	a5	appear-02	1-2
+# ::node	b	be-located-at-91	4-5
+# ::node	a	above	4-5
+# ::node	d	door	6-7
+# ::node	a4	and	7-8
+# ::node	h	have-03	8-9
+# ::node	s	statue	9-10
+# ::node	a3	all	10-11
+# ::node	a2	above	11-12
+# ::node	c	clock	13-14
+# ::root	a4	and
+# ::edge	appear-02	ARG1	be-located-at-91	a5	b	
+# ::edge	be-located-at-91	ARG1	it	b	i	
+# ::edge	be-located-at-91	ARG2	above	b	a	
+# ::edge	above	op1	door	a	d	
+# ::edge	and	op1	appear-02	a4	a5	
+# ::edge	and	op2	have-03	a4	h	
+# ::edge	have-03	ARG0	it	h	i	
+# ::edge	have-03	ARG1	statue	h	s	
+# ::edge	above	degree	all	a2	a3	
+# ::edge	statue	location	above	s	a2	
+# ::edge	above	op1	clock	a2	c	
+(a4 / and
+    :op1 (a5 / appear-02
+        :ARG1 (b / be-located-at-91
+            :ARG1 (i / it)
+            :ARG2 (a / above
+                :op1 (d / door))))
+    :op2 (h / have-03
+        :ARG0 i
+        :ARG1 (s / statue
+            :location (a2 / above
+                :degree (a3 / all)
+                :op1 (c / clock)))))

@@ -1,0 +1,34 @@
+# ::tok A train with a colorful tagged front and seemingly white sides is coming around the bend .
+# ::node	t2	train	1-2
+# ::node	c	colorful	4-5
+# ::node	t	tag-01	5-6
+# ::node	f	front	6-7
+# ::node	a	and	7-8
+# ::node	s	seem-01	8-9
+# ::node	w	white-03	9-10
+# ::node	s2	side	10-11
+# ::node	c2	come-01	12-13
+# ::node	a2	around	13-14
+# ::node	b	bend	15-16
+# ::root	c2	come-01
+# ::edge	tag-01	ARG2	colorful	t	c	
+# ::edge	front	ARG1-of	tag-01	f	t	
+# ::edge	and	op1	front	a	f	
+# ::edge	train	part	and	t2	a	
+# ::edge	white-03	ARG1-of	seem-01	w	s	
+# ::edge	side	ARG1-of	white-03	s2	w	
+# ::edge	and	op2	side	a	s2	
+# ::edge	come-01	ARG1	train	c2	t2	
+# ::edge	come-01	path	around	c2	a2	
+# ::edge	around	op1	bend	a2	b	
+(c2 / come-01
+    :ARG1 (t2 / train
+        :part (a / and
+            :op1 (f / front
+                :ARG1-of (t / tag-01
+                    :ARG2 (c / colorful)))
+            :op2 (s2 / side
+                :ARG1-of (w / white-03
+                    :ARG1-of (s / seem-01)))))
+    :path (a2 / around
+        :op1 (b / bend)))

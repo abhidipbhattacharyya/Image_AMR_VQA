@@ -1,0 +1,29 @@
+# ::tok two zebra in an enclosed area with surrounding rocks and a rock wall
+# ::node	0	2	0-1
+# ::node	z	zebra	1-2
+# ::node	c	confine-01	4-5
+# ::node	a2	area	5-6
+# ::node	s	surround-01	7-8
+# ::node	r	rock	8-9
+# ::node	a	and	9-10
+# ::node	w	wall	12-13
+# ::root	z	zebra
+# ::edge	zebra	quant	2	z	0	
+# ::edge	area	ARG1-of	confine-01	a2	c	
+# ::edge	zebra	location	area	z	a2	
+# ::edge	surround-01	ARG2	area	s	a2	
+# ::edge	rock	ARG1-of	surround-01	r	s	
+# ::edge	and	op1	rock	a	r	
+# ::edge	area	accompanier	and	a2	a	
+# ::edge	and	op2	wall	a	w	
+# ::edge	rock	consist	wall	r	w	
+(z / zebra
+    :quant 2
+    :location (a2 / area
+        :ARG1-of (c / confine-01)
+        :accompanier (a / and
+            :op1 (r / rock
+                :ARG1-of (s / surround-01
+                    :ARG2 a2)
+                :consist (w / wall))
+            :op2 w)))

@@ -1,0 +1,27 @@
+# ::tok People at a zoo observing a giraffe leaning down to take a bite of grass .
+# ::node	p	person	0-1
+# ::node	z	zoo	3-4
+# ::node	o	observe-01	4-5
+# ::node	g	giraffe	6-7
+# ::node	l	lean-01	7-8
+# ::node	d	down	8-9
+# ::node	b	bite-01	12-13
+# ::node	g2	grass	14-15
+# ::root	o	observe-01
+# ::edge	person	location	zoo	p	z	
+# ::edge	observe-01	ARG0	person	o	p	
+# ::edge	lean-01	ARG1	giraffe	l	g	
+# ::edge	observe-01	ARG1	lean-01	o	l	
+# ::edge	lean-01	ARG2	down	l	d	
+# ::edge	lean-01	purpose	bite-01	l	b	
+# ::edge	bite-01	ARG0	giraffe	b	g	
+# ::edge	bite-01	ARG1	grass	b	g2	
+(o / observe-01
+    :ARG0 (p / person
+        :location (z / zoo))
+    :ARG1 (l / lean-01
+        :purpose (b / bite-01
+            :ARG0 (g / giraffe)
+            :ARG1 (g2 / grass))
+        :ARG1 g
+        :ARG2 (d / down)))

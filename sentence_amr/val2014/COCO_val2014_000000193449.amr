@@ -1,0 +1,28 @@
+# ::tok The old metal bed with dirty linens is the only furnishing in the abandoned room
+# ::node	o	old	1-2
+# ::node	m	metal	2-3
+# ::node	b	bed	3-4
+# ::node	d	dirty-02	5-6
+# ::node	c	carpet	6-7
+# ::node	o2	only	9-10
+# ::node	e	equip-01	10-11
+# ::node	a	abandon-01	13-14
+# ::node	r	room	14-15
+# ::root	e	equip-01
+# ::edge	bed	consist-of	metal	b	m	
+# ::edge	bed	mod	old	b	o	
+# ::edge	carpet	ARG1-of	dirty-02	c	d	
+# ::edge	bed	part	carpet	b	c	
+# ::edge	equip-01	mod	only	e	o2	
+# ::edge	equip-01	ARG2	bed	e	b	
+# ::edge	room	ARG1-of	abandon-01	r	a	
+# ::edge	equip-01	ARG1	room	e	r	
+(e / equip-01
+    :ARG1 (r / room
+        :ARG1-of (a / abandon-01))
+    :ARG2 (b / bed
+        :consist-of (m / metal)
+        :mod (o / old)
+        :part (c / carpet
+            :ARG1-of (d / dirty-02)))
+    :mod (o2 / only))

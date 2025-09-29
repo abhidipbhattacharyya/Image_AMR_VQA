@@ -1,0 +1,27 @@
+# ::tok A skier maneuvers around poles , coming down a slope .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	m	maneuver-01	2-3
+# ::node	a	around	3-4
+# ::node	p2	pole	4-5
+# ::node	c	come-01	6-7
+# ::node	d	down	7-8
+# ::node	s2	slope	9-10
+# ::root	m	maneuver-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	maneuver-01	ARG1	person	m	p	
+# ::edge	maneuver-01	path	around	m	a	
+# ::edge	around	op1	pole	a	p2	
+# ::edge	maneuver-01	time-of	come-01	m	c	
+# ::edge	come-01	ARG1	person	c	p	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	come-01	ARG3	slope	c	s2	
+(m / maneuver-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01))
+    :path (a / around
+        :op1 (p2 / pole))
+    :time-of (c / come-01
+        :ARG1 p
+        :ARG3 (s2 / slope)
+        :direction (d / down)))

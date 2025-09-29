@@ -1,0 +1,43 @@
+# ::tok The group of IBM executives stand around holding drinks and recommending hair gel to each other .
+# ::node	g2	group	1-2
+# ::node	c	company	3-4
+# ::node	n	name	3-4
+# ::node	0	IBM	3-4
+# ::node	p	person	4-5
+# ::node	h2	have-org-role-91	4-5
+# ::node	e	executive	4-5
+# ::node	s	stand-01	5-6
+# ::node	a	around	6-7
+# ::node	h3	hold-01	7-8
+# ::node	d	drink-01	8-9
+# ::node	r	recommend-01	10-11
+# ::node	h	hair	11-12
+# ::node	g	gel	12-13
+# ::root	s	stand-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	IBM	n	0	
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	person	ARG0-of	have-org-role-91	p	h2	
+# ::edge	have-org-role-91	ARG1	company	h2	c	
+# ::edge	have-org-role-91	ARG2	executive	h2	e	
+# ::edge	stand-01	ARG1	group	s	g2	
+# ::edge	stand-01	ARG2	around	s	a	
+# ::edge	group	ARG0-of	hold-01	g2	h3	
+# ::edge	hold-01	ARG1	drink-01	h3	d	
+# ::edge	group	ARG0-of	recommend-01	g2	r	
+# ::edge	gel	mod	hair	g	h	
+# ::edge	recommend-01	ARG1	gel	r	g	
+(s / stand-01
+    :ARG1 (g2 / group
+        :ARG0-of (h3 / hold-01
+            :ARG1 (d / drink-01))
+        :ARG0-of (r / recommend-01
+            :ARG1 (g / gel
+                :mod (h / hair)))
+        :consist-of (p / person
+            :ARG0-of (h2 / have-org-role-91
+                :ARG1 (c / company
+                    :name (n / name
+                        :op1 "IBM"))
+                :ARG2 (e / executive))))
+    :ARG2 (a / around))

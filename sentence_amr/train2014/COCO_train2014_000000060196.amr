@@ -1,0 +1,36 @@
+# ::tok a train yard with one train on the tracks and cars not on tracks .
+# ::node	t2	train	1-2
+# ::node	y	yard	2-3
+# ::node	h	have-03	3-4
+# ::node	1	1	4-5
+# ::node	t3	train	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	t	track	8-9
+# ::node	a	and	9-10
+# ::node	c	car	10-11
+# ::node	c2	contrast-01	11-12
+# ::node	0	-	11-12
+# ::root	y	yard
+# ::edge	yard	mod	train	y	t2	
+# ::edge	yard	ARG0-of	have-03	y	h	
+# ::edge	train	quant	1	t3	1	
+# ::edge	be-located-at-91	ARG1	train	b	t3	
+# ::edge	be-located-at-91	ARG2	track	b	t	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	ARG1-of	contrast-01	c	c2	
+# ::edge	contrast-01	ARG2	track	c2	t	
+# ::edge	yard	rel	-	y	0	
+(y / yard
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / be-located-at-91
+                :ARG1 (t3 / train
+                    :quant 1)
+                :ARG2 (t / track))
+            :op2 (c / car
+                :ARG1-of (c2 / contrast-01
+                    :ARG2 t))))
+    :mod (t2 / train)
+    :rel -)

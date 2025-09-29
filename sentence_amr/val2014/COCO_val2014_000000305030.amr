@@ -1,0 +1,27 @@
+# ::tok a pub sign atttached to an outside wall with a clock above it
+# ::node	p	pub	1-2
+# ::node	s	sign	2-3
+# ::node	a2	attach-01	3-4
+# ::node	o	outside	6-7
+# ::node	w	wall	7-8
+# ::node	h	have-03	8-9
+# ::node	c	clock	10-11
+# ::node	a	above	11-12
+# ::root	a2	attach-01
+# ::edge	sign	mod	pub	s	p	
+# ::edge	attach-01	ARG1	sign	a2	s	
+# ::edge	wall	location	outside	w	o	
+# ::edge	attach-01	ARG2	wall	a2	w	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	clock	h	c	
+# ::edge	clock	location	above	c	a	
+# ::edge	above	op1	sign	a	s	
+(a2 / attach-01
+    :ARG1 (s / sign
+        :ARG0-of (h / have-03
+            :ARG1 (c / clock
+                :location (a / above
+                    :op1 s)))
+        :mod (p / pub))
+    :ARG2 (w / wall
+        :location (o / outside)))

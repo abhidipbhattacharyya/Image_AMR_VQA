@@ -1,0 +1,31 @@
+# ::tok Two traffic lights showing the stop signal in front of buildings and trees .
+# ::node	0	2	0-1
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s	show-01	3-4
+# ::node	s3	stop-01	5-6
+# ::node	s2	signal-07	6-7
+# ::node	i	in-front-of	8-9
+# ::node	b	building	10-11
+# ::node	a	and	11-12
+# ::node	t2	tree	12-13
+# ::root	s	show-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	2	l	0	
+# ::edge	show-01	ARG0	light	s	l	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	show-01	ARG1	signal-07	s	s2	
+# ::edge	show-01	location	in-front-of	s	i	
+# ::edge	and	op1	building	a	b	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	and	op2	tree	a	t2	
+(s / show-01
+    :ARG0 (l / light
+        :quant 2
+        :mod (t / traffic))
+    :ARG1 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :location (i / in-front-of
+        :op1 (a / and
+            :op1 (b / building)
+            :op2 (t2 / tree))))

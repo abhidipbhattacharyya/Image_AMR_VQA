@@ -1,0 +1,34 @@
+# ::tok A street sign marking Historic Druid Hills and the names of the streets .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	m	mark-01	3-4
+# ::node	2	Historic	4-5
+# ::node	n	name	5-6
+# ::node	0	Druid	5-6
+# ::node	l	local-region	6-7
+# ::node	1	Hills	6-7
+# ::node	a	and	7-8
+# ::node	n2	name	9-10
+# ::node	s3	street	12-13
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG0-of	mark-01	s	m	
+# ::edge	name	op1	Historic	n	2	
+# ::edge	name	op2	Druid	n	0	
+# ::edge	local-region	name	name	l	n	
+# ::edge	name	op3	Hills	n	1	
+# ::edge	and	op1	local-region	a	l	
+# ::edge	mark-01	ARG1	and	m	a	
+# ::edge	and	op2	name	a	n2	
+# ::edge	name	location	street	n2	s3	
+(s / sign
+    :ARG0-of (m / mark-01
+        :ARG1 (a / and
+            :op1 (l / local-region
+                :name (n / name
+                    :op1 "Historic"
+                    :op2 "Druid"
+                    :op3 "Hills"))
+            :op2 (n2 / name
+                :location (s3 / street))))
+    :mod (s2 / street))

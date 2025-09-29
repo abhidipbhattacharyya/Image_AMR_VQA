@@ -1,0 +1,30 @@
+# ::tok People riding jet skis near a barge on a river , while a man watches the river .
+# ::node	p	person	0-1
+# ::node	r	ride-01	1-2
+# ::node	s2	ski-01	2-3
+# ::node	s	ship	3-4
+# ::node	n	near-02	4-5
+# ::node	b	barge	6-7
+# ::node	r2	river	9-10
+# ::node	m	man	13-14
+# ::node	w	watch-01	14-15
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ship	ARG1-of	ski-01	s	s2	
+# ::edge	ride-01	ARG1	ship	r	s	
+# ::edge	ride-01	ARG1-of	near-02	r	n	
+# ::edge	near-02	ARG2	barge	n	b	
+# ::edge	barge	location	river	b	r2	
+# ::edge	watch-01	ARG0	man	w	m	
+# ::edge	watch-01	ARG1	river	w	r2	
+# ::edge	ride-01	time	watch-01	r	w	
+(r / ride-01
+    :ARG0 (p / person)
+    :ARG1 (s / ship
+        :ARG1-of (s2 / ski-01))
+    :ARG1-of (n / near-02
+        :ARG2 (b / barge
+            :location (r2 / river)))
+    :time (w / watch-01
+        :ARG0 (m / man)
+        :ARG1 r2))

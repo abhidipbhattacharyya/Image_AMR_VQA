@@ -1,0 +1,31 @@
+# ::tok looking through a rained on window at a stop sign and slippery road sign
+# ::node	l	look-01	0-1
+# ::node	t	through	1-2
+# ::node	r	rain-01	3-4
+# ::node	w	window	5-6
+# ::node	s4	stop-01	8-9
+# ::node	s2	signal-07	9-10
+# ::node	a	and	10-11
+# ::node	s3	slippery	11-12
+# ::node	r2	road	12-13
+# ::node	s	sign	13-14
+# ::root	l	look-01
+# ::edge	look-01	path	through	l	t	
+# ::edge	window	mod	rain-01	w	r	
+# ::edge	through	op1	window	t	w	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	look-01	ARG1	and	l	a	
+# ::edge	sign	mod	road	s	r2	
+# ::edge	sign	mod	slippery	s	s3	
+# ::edge	and	op2	sign	a	s	
+(l / look-01
+    :ARG1 (a / and
+        :op1 (s2 / signal-07
+            :ARG1 (s4 / stop-01))
+        :op2 (s / sign
+            :mod (r2 / road)
+            :mod (s3 / slippery)))
+    :path (t / through
+        :op1 (w / window
+            :mod (r / rain-01))))

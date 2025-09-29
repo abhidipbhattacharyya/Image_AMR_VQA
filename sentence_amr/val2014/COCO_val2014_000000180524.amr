@@ -1,0 +1,47 @@
+# ::tok Asian elephants with Asian drivers and decoration carry riders .
+# ::node	c2	continent	0-1
+# ::node	n	name	0-1
+# ::node	0	Asia	0-1
+# ::node	e	elephant	1-2
+# ::node	p	person	4-5
+# ::node	d2	drive-01	4-5
+# ::node	a	and	5-6
+# ::node	t	thing	6-7
+# ::node	d	decorate-01	6-7
+# ::node	c	carry-01	7-8
+# ::node	p2	person	8-9
+# ::node	r	ride-01	8-9
+# ::root	c	carry-01
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	elephant	mod	continent	e	c2	
+# ::edge	person	mod	continent	p	c2	
+# ::edge	person	ARG0-of	drive-01	p	d2	
+# ::edge	drive-01	ARG1	elephant	d2	e	
+# ::edge	and	op1	person	a	p	
+# ::edge	elephant	part	and	e	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	mod	continent	t	c2	
+# ::edge	thing	ARG0-of	decorate-01	t	d	
+# ::edge	decorate-01	ARG1	elephant	d	e	
+# ::edge	carry-01	ARG0	elephant	c	e	
+# ::edge	carry-01	ARG1	person	c	p2	
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	ride-01	ARG1	elephant	r	e	
+(c / carry-01
+    :ARG0 (e / elephant
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Asia"))
+        :part (a / and
+            :op1 (p / person
+                :ARG0-of (d2 / drive-01
+                    :ARG1 e)
+                :mod c2)
+            :op2 (t / thing
+                :ARG0-of (d / decorate-01
+                    :ARG1 e)
+                :mod c2)))
+    :ARG1 (p2 / person
+        :ARG0-of (r / ride-01
+            :ARG1 e)))

@@ -1,0 +1,58 @@
+# ::tok A small table features a printer while a large desk has a laptop , mouse and lamp on it while in between the table and the desk has a tangle of wires on the floor .
+# ::node	s	small	1-2
+# ::node	t	table	2-3
+# ::node	f	feature-01	3-4
+# ::node	p	printer	5-6
+# ::node	c	contrast-01	6-7
+# ::node	l3	large	8-9
+# ::node	d	desk	9-10
+# ::node	h	have-03	10-11
+# ::node	l2	laptop	12-13
+# ::node	a	and	13-14
+# ::node	m	mouse	14-15
+# ::node	l	lamp	16-17
+# ::node	b	be-located-at-91	21-22
+# ::node	b2	between	21-22
+# ::node	t2	tangle-01	29-30
+# ::node	w	wire	31-32
+# ::node	f2	floor	34-35
+# ::root	c	contrast-01
+# ::edge	table	mod	small	t	s	
+# ::edge	feature-01	ARG2	table	f	t	
+# ::edge	feature-01	ARG1	printer	f	p	
+# ::edge	contrast-01	ARG1	feature-01	c	f	
+# ::edge	desk	mod	large	d	l3	
+# ::edge	have-03	ARG0	desk	h	d	
+# ::edge	contrast-01	ARG2	have-03	c	h	
+# ::edge	and	op1	laptop	a	l2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	location	desk	a	d	
+# ::edge	and	op2	mouse	a	m	
+# ::edge	and	op3	lamp	a	l	
+# ::edge	be-located-at-91	ARG2	desk	b	d	
+# ::edge	be-located-at-91	ARG2	between	b	b2	
+# ::edge	between	op1	table	b2	t	
+# ::edge	tangle-01	location	be-located-at-91	t2	b	
+# ::edge	contrast-01	ARG2	tangle-01	c	t2	
+# ::edge	tangle-01	ARG1	wire	t2	w	
+# ::edge	tangle-01	location	floor	t2	f2	
+(c / contrast-01
+    :ARG1 (f / feature-01
+        :ARG1 (p / printer)
+        :ARG2 (t / table
+            :mod (s / small)))
+    :ARG2 (h / have-03
+        :ARG0 (d / desk
+            :mod (l3 / large))
+        :ARG1 (a / and
+            :location d
+            :op1 (l2 / laptop)
+            :op2 (m / mouse)
+            :op3 (l / lamp)))
+    :ARG2 (t2 / tangle-01
+        :ARG1 (w / wire)
+        :location (b / be-located-at-91
+            :ARG2 d
+            :ARG2 (b2 / between
+                :op1 t))
+        :location (f2 / floor)))

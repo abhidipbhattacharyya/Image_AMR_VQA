@@ -1,0 +1,33 @@
+# ::tok A baseball player is at bat while watching another player await a pitch .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	b2	bat-01	5-6
+# ::node	w	watch-01	7-8
+# ::node	a	another	8-9
+# ::node	p2	person	9-10
+# ::node	p5	play-01	9-10
+# ::node	a2	await-01	10-11
+# ::node	p3	pitch	12-13
+# ::root	b2	bat-01
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	bat-01	ARG0	person	b2	p	
+# ::edge	bat-01	time	watch-01	b2	w	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	person	mod	another	p2	a	
+# ::edge	person	ARG0-of	play-01	p2	p5	
+# ::edge	await-01	ARG1	person	a2	p2	
+# ::edge	watch-01	ARG1	await-01	w	a2	
+# ::edge	await-01	ARG2	pitch	a2	p3	
+(b2 / bat-01
+    :ARG0 (p / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (b / baseball)))
+    :time (w / watch-01
+        :ARG0 p
+        :ARG1 (a2 / await-01
+            :ARG1 (p2 / person
+                :ARG0-of (p5 / play-01)
+                :mod (a / another))
+            :ARG2 (p3 / pitch))))

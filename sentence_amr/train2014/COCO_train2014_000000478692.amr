@@ -1,0 +1,28 @@
+# ::tok A stop sign is on a wall next to an escalator with a man that is going up .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	w	wall	6-7
+# ::node	n	next-to	7-8
+# ::node	e	escalator	10-11
+# ::node	m	man	13-14
+# ::node	g	go-02	16-17
+# ::node	u	up	17-18
+# ::root	b	be-located-at-91
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	be-located-at-91	ARG1	signal-07	b	s	
+# ::edge	be-located-at-91	ARG2	wall	b	w	
+# ::edge	wall	location-of	next-to	w	n	
+# ::edge	next-to	op1	escalator	n	e	
+# ::edge	escalator	location-of	man	e	m	
+# ::edge	man	ARG0-of	go-02	m	g	
+# ::edge	go-02	direction	up	g	u	
+(b / be-located-at-91
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG2 (w / wall
+        :location-of (n / next-to
+            :op1 (e / escalator
+                :location-of (m / man
+                    :ARG0-of (g / go-02
+                        :direction (u / up)))))))

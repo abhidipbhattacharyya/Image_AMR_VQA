@@ -1,0 +1,36 @@
+# ::tok A man sitting on a brown couch while holding a Nintendo Wii controller .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	b	brown-01	5-6
+# ::node	c2	couch	6-7
+# ::node	h	hold-01	8-9
+# ::node	0	Nintendo	10-11
+# ::node	p	product	11-12
+# ::node	n	name	11-12
+# ::node	1	Wii	11-12
+# ::node	c	controller	12-13
+# ::node	a	and	13-14
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	couch	ARG1-of	brown-01	c2	b	
+# ::edge	sit-01	ARG2	couch	s	c2	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Nintendo	n	0	
+# ::edge	name	op2	Wii	n	1	
+# ::edge	controller	mod	product	c	p	
+# ::edge	hold-01	ARG1	controller	h	c	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	and	op1	sit-01	a	s	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man)
+        :ARG2 (c2 / couch
+            :ARG1-of (b / brown-01)))
+    :op2 (h / hold-01
+        :ARG0 m
+        :ARG1 (c / controller
+            :mod (p / product
+                :name (n / name
+                    :op1 "Nintendo"
+                    :op2 "Wii")))))

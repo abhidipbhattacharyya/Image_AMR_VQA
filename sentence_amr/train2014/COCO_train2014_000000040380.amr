@@ -1,0 +1,54 @@
+# ::tok A tree branch with various green and red colored fruit hanging in bunches with the sunlight coming from behind the apples .
+# ::node	t	tree	1-2
+# ::node	b2	branch	2-3
+# ::node	h2	have-03	3-4
+# ::node	v	various	4-5
+# ::node	g	green-02	5-6
+# ::node	a	and	6-7
+# ::node	r	red-02	7-8
+# ::node	c	color-01	8-9
+# ::node	c2	color-01	8-9
+# ::node	f	fruit	9-10
+# ::node	f2	fruit	9-10
+# ::node	h	hang-01	10-11
+# ::node	m	multiple	12-13
+# ::node	0	12	12-13
+# ::node	s	sunlight	15-16
+# ::node	c3	come-01	16-17
+# ::node	b	behind	18-19
+# ::root	b2	branch
+# ::edge	branch	part-of	tree	b2	t	
+# ::edge	branch	ARG0-of	have-03	b2	h2	
+# ::edge	and	mod	various	a	v	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	color-01	ARG2	green-02	c	g	
+# ::edge	color-01	ARG2	red-02	c2	r	
+# ::edge	fruit	ARG1-of	color-01	f	c	
+# ::edge	and	op1	fruit	a	f	
+# ::edge	fruit	ARG1-of	color-01	f2	c2	
+# ::edge	and	op2	fruit	a	f2	
+# ::edge	and	ARG1-of	hang-01	a	h	
+# ::edge	hang-01	quant	multiple	h	m	
+# ::edge	multiple	op1	12	m	0	
+# ::edge	come-01	ARG1	sunlight	c3	s	
+# ::edge	hang-01	time	come-01	h	c3	
+# ::edge	come-01	ARG3	behind	c3	b	
+# ::edge	behind	op1	fruit	b	f	
+(b2 / branch
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :ARG1-of (h / hang-01
+                :quant (m / multiple
+                    :op1 12)
+                :time (c3 / come-01
+                    :ARG1 (s / sunlight)
+                    :ARG3 (b / behind
+                        :op1 (f / fruit
+                            :ARG1-of (c / color-01
+                                :ARG2 (g / green-02))))))
+            :mod (v / various)
+            :op1 f
+            :op2 (f2 / fruit
+                :ARG1-of (c2 / color-01
+                    :ARG2 (r / red-02)))))
+    :part-of (t / tree))

@@ -1,0 +1,24 @@
+# ::tok A plate of red meat and broccoli is ready to be eaten .
+# ::node	p	plate	1-2
+# ::node	r2	red-02	3-4
+# ::node	m	meat	4-5
+# ::node	a	and	5-6
+# ::node	b	broccoli	6-7
+# ::node	r	ready-02	8-9
+# ::node	e	eat-01	11-12
+# ::root	r	ready-02
+# ::edge	meat	ARG1-of	red-02	m	r2	
+# ::edge	and	op1	meat	a	m	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	and	op2	broccoli	a	b	
+# ::edge	ready-02	ARG1	plate	r	p	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	plate	e	p	
+(r / ready-02
+    :ARG1 (p / plate
+        :consist-of (a / and
+            :op1 (m / meat
+                :ARG1-of (r2 / red-02))
+            :op2 (b / broccoli)))
+    :ARG2 (e / eat-01
+        :ARG1 p))

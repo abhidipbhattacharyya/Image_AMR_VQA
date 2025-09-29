@@ -1,0 +1,40 @@
+# ::tok People walk in a city square area that houses a church and an alpine - style building .
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	c2	city	4-5
+# ::node	s	square	5-6
+# ::node	a2	area	6-7
+# ::node	h	house-01	8-9
+# ::node	c	church	10-11
+# ::node	a	and	11-12
+# ::node	m	mountain	13-14
+# ::node	n	name	13-14
+# ::node	0	Alps	13-14
+# ::node	s2	style	15-16
+# ::node	b	building	16-17
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	square	mod	city	s	c2	
+# ::edge	area	mod	square	a2	s	
+# ::edge	walk-01	location	area	w	a2	
+# ::edge	area	ARG0-of	house-01	a2	h	
+# ::edge	and	op1	church	a	c	
+# ::edge	house-01	ARG1	and	h	a	
+# ::edge	mountain	name	name	m	n	
+# ::edge	name	op1	Alps	n	0	
+# ::edge	style	mod	mountain	s2	m	
+# ::edge	building	mod	style	b	s2	
+# ::edge	and	op2	building	a	b	
+(w / walk-01
+    :ARG0 (p / person)
+    :location (a2 / area
+        :ARG0-of (h / house-01
+            :ARG1 (a / and
+                :op1 (c / church)
+                :op2 (b / building
+                    :mod (s2 / style
+                        :mod (m / mountain
+                            :name (n / name
+                                :op1 "Alps"))))))
+        :mod (s / square
+            :mod (c2 / city))))

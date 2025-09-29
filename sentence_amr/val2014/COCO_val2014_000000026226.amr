@@ -1,0 +1,36 @@
+# ::tok Train rolling down opposite set of tracks , industrial area in finest
+# ::node	t2	train	0-1
+# ::node	r	roll-01	1-2
+# ::node	d	down	2-3
+# ::node	o	opposite-01	3-4
+# ::node	s	set	4-5
+# ::node	t	track	6-7
+# ::node	i	industry	8-9
+# ::node	a	area	9-10
+# ::node	f	fine-03	11-12
+# ::node	h	have-degree-91	11-12
+# ::node	m	most	11-12
+# ::root	r	roll-01
+# ::edge	roll-01	ARG1	train	r	t2	
+# ::edge	roll-01	direction	down	r	d	
+# ::edge	set	ARG1-of	opposite-01	s	o	
+# ::edge	roll-01	path	set	r	s	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	area	mod	industry	a	i	
+# ::edge	roll-01	location	area	r	a	
+# ::edge	area	ARG1-of	fine-03	a	f	
+# ::edge	fine-03	ARG2-of	have-degree-91	f	h	
+# ::edge	have-degree-91	ARG1	area	h	a	
+# ::edge	have-degree-91	ARG3	most	h	m	
+(r / roll-01
+    :ARG1 (t2 / train)
+    :direction (d / down)
+    :location (a / area
+        :ARG1-of (f / fine-03
+            :ARG2-of (h / have-degree-91
+                :ARG1 a
+                :ARG3 (m / most)))
+        :mod (i / industry))
+    :path (s / set
+        :ARG1-of (o / opposite-01)
+        :consist-of (t / track)))

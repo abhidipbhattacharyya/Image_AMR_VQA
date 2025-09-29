@@ -1,0 +1,30 @@
+# ::tok An iphone and and a remote that is being used to control a tv or other device .
+# ::node	i	iphone	1-2
+# ::node	a	and	3-4
+# ::node	r	remote	5-6
+# ::node	u	use-01	9-10
+# ::node	c	control-01	11-12
+# ::node	t	television	13-14
+# ::node	o	or	14-15
+# ::node	o2	other	15-16
+# ::node	d	device	16-17
+# ::root	a	and
+# ::edge	and	op1	iphone	a	i	
+# ::edge	and	op2	remote	a	r	
+# ::edge	remote	ARG1-of	use-01	r	u	
+# ::edge	use-01	ARG2	control-01	u	c	
+# ::edge	control-01	ARG0	remote	c	r	
+# ::edge	or	op1	television	o	t	
+# ::edge	control-01	ARG1	or	c	o	
+# ::edge	device	mod	other	d	o2	
+# ::edge	or	op2	device	o	d	
+(a / and
+    :op1 (i / iphone)
+    :op2 (r / remote
+        :ARG1-of (u / use-01
+            :ARG2 (c / control-01
+                :ARG0 r
+                :ARG1 (o / or
+                    :op1 (t / television)
+                    :op2 (d / device
+                        :mod (o2 / other)))))))

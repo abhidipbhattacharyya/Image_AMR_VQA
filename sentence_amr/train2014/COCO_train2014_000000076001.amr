@@ -1,0 +1,86 @@
+# ::tok A stormy - looking sky backs a down - sloping , grass - covered region of rough terrain , crested by tall trees with tuft - like tops , rocks , and then dotted with more rocks and a pair of cows .
+# ::node	s3	storm-01	1-2
+# ::node	l	look-02	3-4
+# ::node	s	sky	4-5
+# ::node	b	back-01	5-6
+# ::node	d2	down	7-8
+# ::node	s2	slant-01	9-10
+# ::node	g	grass	11-12
+# ::node	c	cover-02	13-14
+# ::node	r	region	14-15
+# ::node	r4	rough-04	16-17
+# ::node	t2	terrain	17-18
+# ::node	c3	cream-01	19-20
+# ::node	t	tall	21-22
+# ::node	t5	tree	22-23
+# ::node	h	have-03	23-24
+# ::node	t6	tuft	24-25
+# ::node	r2	resemble-01	26-27
+# ::node	t4	top	27-28
+# ::node	a	and	28-29
+# ::node	r3	rock	29-30
+# ::node	a2	and	31-32
+# ::node	t3	then	32-33
+# ::node	d	dot-01	33-34
+# ::node	m	more	35-36
+# ::node	a3	and	37-38
+# ::node	0	2	39-40
+# ::node	c2	cow	41-42
+# ::root	a2	and
+# ::edge	look-02	ARG1	storm-01	l	s3	
+# ::edge	sky	ARG0-of	look-02	s	l	
+# ::edge	back-01	ARG0	sky	b	s	
+# ::edge	slant-01	direction	down	s2	d2	
+# ::edge	cover-02	ARG2	grass	c	g	
+# ::edge	region	ARG1-of	cover-02	r	c	
+# ::edge	region	ARG1-of	slant-01	r	s2	
+# ::edge	back-01	ARG1	region	b	r	
+# ::edge	terrain	ARG1-of	rough-04	t2	r4	
+# ::edge	region	consist-of	terrain	r	t2	
+# ::edge	region	ARG1-of	cream-01	r	c3	
+# ::edge	tree	mod	tall	t5	t	
+# ::edge	cream-01	ARG0	tree	c3	t5	
+# ::edge	tree	ARG0-of	have-03	t5	h	
+# ::edge	resemble-01	ARG2	tuft	r2	t6	
+# ::edge	top	ARG1-of	resemble-01	t4	r2	
+# ::edge	and	op1	top	a	t4	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	rock	a	r3	
+# ::edge	and	op1	back-01	a2	b	
+# ::edge	dot-01	time	then	d	t3	
+# ::edge	and	op2	dot-01	a2	d	
+# ::edge	dot-01	ARG2	region	d	r	
+# ::edge	rock	quant	more	r3	m	
+# ::edge	dot-01	ARG1	and	d	a3	
+# ::edge	and	op1	rock	a3	r3	
+# ::edge	cow	quant	2	c2	0	
+# ::edge	and	op2	cow	a3	c2	
+(a2 / and
+    :op1 (b / back-01
+        :ARG0 (s / sky
+            :ARG0-of (l / look-02
+                :ARG1 (s3 / storm-01)))
+        :ARG1 (r / region
+            :ARG1-of (c / cover-02
+                :ARG2 (g / grass))
+            :ARG1-of (s2 / slant-01
+                :direction (d2 / down))
+            :ARG1-of (c3 / cream-01
+                :ARG0 (t5 / tree
+                    :ARG0-of (h / have-03
+                        :ARG1 (a / and
+                            :op1 (t4 / top
+                                :ARG1-of (r2 / resemble-01
+                                    :ARG2 (t6 / tuft)))
+                            :op2 (r3 / rock
+                                :quant (m / more))))
+                    :mod (t / tall)))
+            :consist-of (t2 / terrain
+                :ARG1-of (r4 / rough-04))))
+    :op2 (d / dot-01
+        :ARG1 (a3 / and
+            :op1 r3
+            :op2 (c2 / cow
+                :quant 2))
+        :ARG2 r
+        :time (t3 / then)))

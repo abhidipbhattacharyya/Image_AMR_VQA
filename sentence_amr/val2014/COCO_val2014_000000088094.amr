@@ -1,0 +1,35 @@
+# ::tok A steam engine chugs along pulling coal cars behind it past a rural township .
+# ::node	s	steam	1-2
+# ::node	e	engine	2-3
+# ::node	m	move-01	3-4
+# ::node	p2	pull-01	5-6
+# ::node	c2	coal	6-7
+# ::node	c	car	7-8
+# ::node	b	behind	8-9
+# ::node	p	past	10-11
+# ::node	r	rural	12-13
+# ::node	t	township	13-14
+# ::root	m	move-01
+# ::edge	engine	mod	steam	e	s	
+# ::edge	move-01	ARG0	engine	m	e	
+# ::edge	move-01	ARG2	pull-01	m	p2	
+# ::edge	pull-01	ARG0	engine	p2	e	
+# ::edge	car	mod	coal	c	c2	
+# ::edge	pull-01	ARG1	car	p2	c	
+# ::edge	pull-01	ARG2	behind	p2	b	
+# ::edge	behind	op1	engine	b	e	
+# ::edge	pull-01	path	past	p2	p	
+# ::edge	township	mod	rural	t	r	
+# ::edge	past	op1	township	p	t	
+(m / move-01
+    :ARG0 (e / engine
+        :mod (s / steam))
+    :ARG2 (p2 / pull-01
+        :ARG0 e
+        :ARG1 (c / car
+            :mod (c2 / coal))
+        :ARG2 (b / behind
+            :op1 e)
+        :path (p / past
+            :op1 (t / township
+                :mod (r / rural)))))

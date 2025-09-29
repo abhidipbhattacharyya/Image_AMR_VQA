@@ -1,0 +1,48 @@
+# ::tok A dirt road that has two people on an elephant and a dog further up the road looking back at them .
+# ::node	d	dirt	1-2
+# ::node	r	road	2-3
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	p	person	6-7
+# ::node	h2	have-03	7-8
+# ::node	e	elephant	9-10
+# ::node	a	and	10-11
+# ::node	d2	dog	12-13
+# ::node	f	further	13-14
+# ::node	u	up-03	14-15
+# ::node	r2	road	16-17
+# ::node	l	look-01	17-18
+# ::node	b	back	18-19
+# ::node	t	they	20-21
+# ::root	r	road
+# ::edge	road	mod	dirt	r	d	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	have-03	p	h2	
+# ::edge	have-03	ARG1	elephant	h2	e	
+# ::edge	and	op1	person	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	dog	a	d2	
+# ::edge	up-03	direction	further	u	f	
+# ::edge	road	ARG1-of	up-03	r2	u	
+# ::edge	further	location	road	f	r2	
+# ::edge	and	ARG0-of	look-01	a	l	
+# ::edge	look-01	direction	back	l	b	
+# ::edge	look-01	ARG1	they	l	t	
+# ::edge	road	rel	further	r	f	
+(r / road
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG0-of (l / look-01
+                :ARG1 (t / they)
+                :direction (b / back))
+            :op1 (p / person
+                :quant 2
+                :ARG0-of (h2 / have-03
+                    :ARG1 (e / elephant)))
+            :op2 (d2 / dog)))
+    :mod (d / dirt)
+    :rel (f / further
+        :location (r2 / road
+            :ARG1-of (u / up-03
+                :direction f))))

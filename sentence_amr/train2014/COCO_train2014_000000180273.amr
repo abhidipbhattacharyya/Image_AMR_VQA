@@ -1,0 +1,36 @@
+# ::tok a blurred image of people waking inside a building with one holding an umbrella
+# ::node	b	blur-01	1-2
+# ::node	i	image	2-3
+# ::node	p	person	4-5
+# ::node	w	wake-01	5-6
+# ::node	i3	inside	6-7
+# ::node	b2	building	8-9
+# ::node	p2	person	10-11
+# ::node	i2	include-91	10-11
+# ::node	0	1	10-11
+# ::node	h	hold-01	11-12
+# ::node	u	umbrella	13-14
+# ::root	i	image
+# ::edge	image	ARG1-of	blur-01	i	b	
+# ::edge	wake-01	ARG1	person	w	p	
+# ::edge	image	topic	wake-01	i	w	
+# ::edge	wake-01	location	inside	w	i3	
+# ::edge	inside	op1	building	i3	b2	
+# ::edge	person	ARG1-of	include-91	p2	i2	
+# ::edge	include-91	ARG2	person	i2	p	
+# ::edge	person	quant	1	p2	0	
+# ::edge	person	ARG0-of	hold-01	p2	h	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	image	rel	person	i	p2	
+(i / image
+    :ARG1-of (b / blur-01)
+    :rel (p2 / person
+        :quant 1
+        :ARG0-of (h / hold-01
+            :ARG1 (u / umbrella))
+        :ARG1-of (i2 / include-91
+            :ARG2 (p / person)))
+    :topic (w / wake-01
+        :ARG1 p
+        :location (i3 / inside
+            :op1 (b2 / building))))

@@ -1,0 +1,25 @@
+# ::tok A police motorcyclist with a flag is riding while a large crowd watches .
+# ::node	p	police	1-2
+# ::node	m	motorcycle	2-3
+# ::node	h	have-03	3-4
+# ::node	f	flag	5-6
+# ::node	r	ride-01	7-8
+# ::node	l	large	10-11
+# ::node	c	crowd	11-12
+# ::node	w	watch-01	12-13
+# ::root	r	ride-01
+# ::edge	motorcycle	mod	police	m	p	
+# ::edge	motorcycle	ARG0-of	have-03	m	h	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	ride-01	ARG0	motorcycle	r	m	
+# ::edge	crowd	quant	large	c	l	
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	ride-01	time	watch-01	r	w	
+(r / ride-01
+    :ARG0 (m / motorcycle
+        :ARG0-of (h / have-03
+            :ARG1 (f / flag))
+        :mod (p / police))
+    :time (w / watch-01
+        :ARG0 (c / crowd
+            :quant (l / large))))

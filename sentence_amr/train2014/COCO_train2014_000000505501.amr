@@ -1,0 +1,33 @@
+# ::tok A policeman issuing a traffic ticket to a person riding a three wheeler bicycle .
+# ::node	p2	policeman	1-2
+# ::node	i	issue-01	2-3
+# ::node	t2	traffic	4-5
+# ::node	t	ticket-02	5-6
+# ::node	p	person	8-9
+# ::node	r	ride-01	9-10
+# ::node	0	3	11-12
+# ::node	v	vehicle	12-13
+# ::node	w	wheeler	12-13
+# ::node	b	bicycle	13-14
+# ::root	i	issue-01
+# ::edge	issue-01	ARG0	policeman	i	p2	
+# ::edge	ticket-02	mod	traffic	t	t2	
+# ::edge	issue-01	ARG1	ticket-02	i	t	
+# ::edge	ticket-02	ARG0	policeman	t	p2	
+# ::edge	ticket-02	ARG1	person	t	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	vehicle	quant	3	v	0	
+# ::edge	vehicle	part	wheeler	v	w	
+# ::edge	bicycle	mod	vehicle	b	v	
+# ::edge	ride-01	ARG1	bicycle	r	b	
+(i / issue-01
+    :ARG0 (p2 / policeman)
+    :ARG1 (t / ticket-02
+        :ARG0 p2
+        :ARG1 (p / person
+            :ARG0-of (r / ride-01
+                :ARG1 (b / bicycle
+                    :mod (v / vehicle
+                        :quant 3
+                        :part (w / wheeler)))))
+        :mod (t2 / traffic)))

@@ -1,0 +1,43 @@
+# ::tok a Mexican - style pizza sits on a plate with a knife and small cups of salsa and sour cream .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Mexico	1-2
+# ::node	s5	style	3-4
+# ::node	p	pizza	4-5
+# ::node	s2	sit-01	5-6
+# ::node	p2	plate	8-9
+# ::node	k	knife	11-12
+# ::node	s3	small	13-14
+# ::node	c3	cup	14-15
+# ::node	s	salsa	16-17
+# ::node	a	and	17-18
+# ::node	s4	sour	18-19
+# ::node	c2	cream	19-20
+# ::root	s2	sit-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Mexico	n	0	
+# ::edge	style	mod	country	s5	c	
+# ::edge	pizza	mod	style	p	s5	
+# ::edge	sit-01	ARG1	pizza	s2	p	
+# ::edge	sit-01	ARG2	plate	s2	p2	
+# ::edge	sit-01	instrument	knife	s2	k	
+# ::edge	cup	mod	small	c3	s3	
+# ::edge	and	op1	salsa	a	s	
+# ::edge	and	consist-of	cup	a	c3	
+# ::edge	plate	accompanier	and	p2	a	
+# ::edge	cream	mod	sour	c2	s4	
+# ::edge	and	op2	cream	a	c2	
+(s2 / sit-01
+    :ARG1 (p / pizza
+        :mod (s5 / style
+            :mod (c / country
+                :name (n / name
+                    :op1 "Mexico"))))
+    :ARG2 (p2 / plate
+        :accompanier (a / and
+            :consist-of (c3 / cup
+                :mod (s3 / small))
+            :op1 (s / salsa)
+            :op2 (c2 / cream
+                :mod (s4 / sour))))
+    :instrument (k / knife))

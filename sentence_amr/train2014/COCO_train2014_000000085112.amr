@@ -1,0 +1,32 @@
+# ::tok Large boats are in the water and a flock of birds are flying over them
+# ::node	l	large	0-1
+# ::node	b3	boat	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	w	water	5-6
+# ::node	a	and	6-7
+# ::node	f	flock	8-9
+# ::node	b2	bird	10-11
+# ::node	f2	fly-01	12-13
+# ::node	o	over	13-14
+# ::root	a	and
+# ::edge	boat	mod	large	b3	l	
+# ::edge	be-located-at-91	ARG1	boat	b	b3	
+# ::edge	be-located-at-91	ARG2	water	b	w	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	flock	consist-of	bird	f	b2	
+# ::edge	fly-01	ARG0	flock	f2	f	
+# ::edge	and	op2	fly-01	a	f2	
+# ::edge	fly-01	ARG2	boat	f2	b3	
+# ::edge	fly-01	path	over	f2	o	
+# ::edge	over	op1	boat	o	b3	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (b3 / boat
+            :mod (l / large))
+        :ARG2 (w / water))
+    :op2 (f2 / fly-01
+        :ARG0 (f / flock
+            :consist-of (b2 / bird))
+        :ARG2 b3
+        :path (o / over
+            :op1 b3)))

@@ -1,0 +1,33 @@
+# ::tok A van parked on a roadside near some building with Stop sign next to it
+# ::node	v	van	1-2
+# ::node	p	park-01	2-3
+# ::node	r	roadside	5-6
+# ::node	n	near-02	6-7
+# ::node	s2	some	7-8
+# ::node	b	building	8-9
+# ::node	h	have-03	9-10
+# ::node	s3	stop-01	10-11
+# ::node	s	sign	11-12
+# ::node	n2	next-to	12-13
+# ::root	v	van
+# ::edge	van	ARG1-of	park-01	v	p	
+# ::edge	park-01	ARG2	roadside	p	r	
+# ::edge	roadside	ARG1-of	near-02	r	n	
+# ::edge	building	mod	some	b	s2	
+# ::edge	near-02	ARG2	building	n	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	sign	topic	stop-01	s	s3	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	next-to	s	n2	
+# ::edge	next-to	op1	building	n2	b	
+(v / van
+    :ARG1-of (p / park-01
+        :ARG2 (r / roadside
+            :ARG1-of (n / near-02
+                :ARG2 (b / building
+                    :ARG0-of (h / have-03
+                        :ARG1 (s / sign
+                            :location (n2 / next-to
+                                :op1 b)
+                            :topic (s3 / stop-01)))
+                    :mod (s2 / some))))))

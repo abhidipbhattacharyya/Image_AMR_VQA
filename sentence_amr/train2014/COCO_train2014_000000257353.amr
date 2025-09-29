@@ -1,0 +1,31 @@
+# ::tok A plate with bun , grilled chicken breast and french fries .
+# ::node	p	plate	1-2
+# ::node	b3	bun	3-4
+# ::node	b2	broil-01	5-6
+# ::node	c	chicken	6-7
+# ::node	b	breast	7-8
+# ::node	a	and	8-9
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	France	9-10
+# ::node	f	fry-01	10-11
+# ::root	p	plate
+# ::edge	breast	consist-of	chicken	b	c	
+# ::edge	breast	ARG1-of	broil-01	b	b2	
+# ::edge	and	op2	breast	a	b	
+# ::edge	and	op1	bun	a	b3	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG2	country	f	c2	
+# ::edge	and	op3	fry-01	a	f	
+(p / plate
+    :consist-of (a / and
+        :op1 (b3 / bun)
+        :op2 (b / breast
+            :ARG1-of (b2 / broil-01)
+            :consist-of (c / chicken))
+        :op3 (f / fry-01
+            :ARG2 (c2 / country
+                :name (n / name
+                    :op1 "France")))))

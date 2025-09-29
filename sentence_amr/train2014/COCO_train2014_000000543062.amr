@@ -1,0 +1,40 @@
+# ::tok A police officer conducting traffic on a busy city street near a busted fire hydrant .
+# ::node	p2	police	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	o	officer	2-3
+# ::node	c2	conduct-01	3-4
+# ::node	t	traffic	4-5
+# ::node	b2	busy-02	7-8
+# ::node	c	city	8-9
+# ::node	s	street	9-10
+# ::node	n	near-02	10-11
+# ::node	b	bust-01	12-13
+# ::node	f	fire	13-14
+# ::node	h2	hydrant	14-15
+# ::root	c2	conduct-01
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	police	h	p2	
+# ::edge	have-org-role-91	ARG2	officer	h	o	
+# ::edge	conduct-01	ARG0	person	c2	p	
+# ::edge	conduct-01	ARG1	traffic	c2	t	
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	conduct-01	location	street	c2	s	
+# ::edge	street	ARG1-of	near-02	s	n	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	bust-01	h2	b	
+# ::edge	near-02	ARG2	hydrant	n	h2	
+(c2 / conduct-01
+    :ARG0 (p / person
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (p2 / police)
+            :ARG2 (o / officer)))
+    :ARG1 (t / traffic)
+    :location (s / street
+        :ARG1-of (b2 / busy-02)
+        :ARG1-of (n / near-02
+            :ARG2 (h2 / hydrant
+                :ARG1-of (b / bust-01)
+                :mod (f / fire)))
+        :mod (c / city)))

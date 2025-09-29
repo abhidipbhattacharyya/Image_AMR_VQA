@@ -1,0 +1,49 @@
+# ::tok Two glass vases , one containing one flower and the other containing two
+# ::node	1	2	0-1
+# ::node	g	glass	1-2
+# ::node	f	flower	2-3
+# ::node	c	cabinet	2-3
+# ::node	c4	council	2-3
+# ::node	i	include-91	4-5
+# ::node	i2	include-91	4-5
+# ::node	c2	contain-01	5-6
+# ::node	0	1	6-7
+# ::node	f2	flower	7-8
+# ::node	f3	flower	7-8
+# ::node	a	and	8-9
+# ::node	c3	contain-01	11-12
+# ::node	2	2	12-13
+# ::root	a	and
+# ::edge	flower	consist-of	glass	f	g	
+# ::edge	flower	quant	2	f	1	
+# ::edge	include-91	ARG1	flower	i	f	
+# ::edge	flower	ARG2-of	include-91	f	i	
+# ::edge	include-91	ARG1	council	i2	c4	
+# ::edge	flower	ARG2-of	include-91	f	i2	
+# ::edge	cabinet	ARG0-of	contain-01	c	c2	
+# ::edge	flower	quant	1	f2	0	
+# ::edge	contain-01	ARG1	flower	c2	f2	
+# ::edge	and	op2	include-91	a	i2	
+# ::edge	and	op1	flower	a	f	
+# ::edge	flower	ARG0-of	contain-01	f3	c3	
+# ::edge	contain-01	ARG1	flower	c3	f3	
+# ::edge	flower	quant	2	f3	2	
+# ::edge	and	rel	cabinet	a	c	
+# ::edge	and	rel	contain-01	a	c3	
+(a / and
+    :op1 (f / flower
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 f)
+        :ARG2-of (i2 / include-91
+            :ARG1 (c4 / council))
+        :consist-of (g / glass))
+    :op2 i2
+    :rel (c / cabinet
+        :ARG0-of (c2 / contain-01
+            :ARG1 (f2 / flower
+                :quant 1)))
+    :rel (c3 / contain-01
+        :ARG1 (f3 / flower
+            :quant 2
+            :ARG0-of c3)))

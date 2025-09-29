@@ -1,0 +1,50 @@
+# ::tok A night scene of a brightly lit street with a cathedral across the street and a decorative pillar in the middle dividing the street .
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	s	scene	2-3
+# ::node	b	bright-02	5-6
+# ::node	l	light-04	6-7
+# ::node	s2	street	7-8
+# ::node	h	have-03	8-9
+# ::node	c	cathedral	10-11
+# ::node	a	across	11-12
+# ::node	s3	street	13-14
+# ::node	a2	and	14-15
+# ::node	d2	decorative	16-17
+# ::node	p	pillar	17-18
+# ::node	m	middle	20-21
+# ::node	d3	divide-02	21-22
+# ::root	s	scene
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	light-04	ARG1-of	bright-02	l	b	
+# ::edge	street	ARG1-of	light-04	s2	l	
+# ::edge	scene	consist-of	street	s	s2	
+# ::edge	street	ARG0-of	have-03	s2	h	
+# ::edge	cathedral	location	across	c	a	
+# ::edge	across	op1	street	a	s3	
+# ::edge	and	op1	cathedral	a2	c	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	pillar	mod	decorative	p	d2	
+# ::edge	and	op2	pillar	a2	p	
+# ::edge	pillar	location	middle	p	m	
+# ::edge	street	part	middle	s3	m	
+# ::edge	pillar	ARG0-of	divide-02	p	d3	
+# ::edge	divide-02	ARG1	street	d3	s2	
+(s / scene
+    :consist-of (s2 / street
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (c / cathedral
+                    :location (a / across
+                        :op1 (s3 / street
+                            :part (m / middle))))
+                :op2 (p / pillar
+                    :ARG0-of (d3 / divide-02
+                        :ARG1 s2)
+                    :location m
+                    :mod (d2 / decorative))))
+        :ARG1-of (l / light-04
+            :ARG1-of (b / bright-02)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

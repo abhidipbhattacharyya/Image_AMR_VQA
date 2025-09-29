@@ -1,0 +1,46 @@
+# ::tok Two giraffes , one sitting and one with head bowed , make a graceful pair as they lounge in their enclosure .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	s	sit-01	4-5
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	h	head	8-9
+# ::node	b	bow-01	9-10
+# ::node	m	make-01	11-12
+# ::node	g3	graceful	13-14
+# ::node	p	pair	14-15
+# ::node	l	lounge-01	17-18
+# ::node	e	enclosure	20-21
+# ::root	m	make-01
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	giraffe	ARG1-of	sit-01	g	s	
+# ::edge	include-91	ARG1	giraffe	i	g2	
+# ::edge	giraffe	ARG2-of	include-91	g	i	
+# ::edge	giraffe	quant	1	g2	0	
+# ::edge	giraffe	part	head	g2	h	
+# ::edge	bow-01	ARG1	head	b	h	
+# ::edge	giraffe	ARG0-of	bow-01	g2	b	
+# ::edge	make-01	ARG0	giraffe	m	g	
+# ::edge	pair	mod	graceful	p	g3	
+# ::edge	make-01	ARG1	pair	m	p	
+# ::edge	make-01	time	lounge-01	m	l	
+# ::edge	lounge-01	ARG0	giraffe	l	g	
+# ::edge	lounge-01	location	enclosure	l	e	
+# ::edge	enclosure	poss	giraffe	e	g	
+(m / make-01
+    :ARG0 (g / giraffe
+        :quant 2
+        :ARG1-of (s / sit-01)
+        :ARG2-of (i / include-91
+            :ARG1 (g2 / giraffe
+                :quant 1
+                :ARG0-of (b / bow-01
+                    :ARG1 (h / head))
+                :part h)))
+    :ARG1 (p / pair
+        :mod (g3 / graceful))
+    :time (l / lounge-01
+        :ARG0 g
+        :location (e / enclosure
+            :poss g)))

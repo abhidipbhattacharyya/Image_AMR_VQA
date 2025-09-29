@@ -1,0 +1,28 @@
+# ::tok A dinner plate that looks finished as do the other plates .
+# ::node	d	dinner	1-2
+# ::node	p	plate	2-3
+# ::node	l	look-02	4-5
+# ::node	l2	look-02	4-5
+# ::node	f	finish-01	5-6
+# ::node	f2	finish-01	5-6
+# ::node	r	resemble-01	6-7
+# ::node	o	other	9-10
+# ::node	p2	plate	10-11
+# ::root	p	plate
+# ::edge	plate	mod	dinner	p	d	
+# ::edge	plate	ARG0-of	look-02	p	l	
+# ::edge	look-02	ARG1	finish-01	l	f	
+# ::edge	look-02	ARG1	finish-01	l2	f2	
+# ::edge	resemble-01	ARG2	look-02	r	l2	
+# ::edge	look-02	ARG1-of	resemble-01	l	r	
+# ::edge	plate	mod	other	p2	o	
+# ::edge	finish-01	ARG0	plate	f2	p2	
+(p / plate
+    :ARG0-of (l / look-02
+        :ARG1 (f / finish-01)
+        :ARG1-of (r / resemble-01
+            :ARG2 (l2 / look-02
+                :ARG1 (f2 / finish-01
+                    :ARG0 (p2 / plate
+                        :mod (o / other))))))
+    :mod (d / dinner))

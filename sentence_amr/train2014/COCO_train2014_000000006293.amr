@@ -1,0 +1,33 @@
+# ::tok A man balances on top of some platforms and poles while holding torches .
+# ::node	m	man	1-2
+# ::node	b	balance-01	2-3
+# ::node	t	top	4-5
+# ::node	s	some	6-7
+# ::node	s2	some	6-7
+# ::node	p	platform	7-8
+# ::node	a	and	8-9
+# ::node	p2	pole	9-10
+# ::node	h	hold-01	11-12
+# ::node	t2	torch	12-13
+# ::root	b	balance-01
+# ::edge	balance-01	ARG0	man	b	m	
+# ::edge	balance-01	ARG2	top	b	t	
+# ::edge	platform	quant	some	p	s	
+# ::edge	and	op1	platform	a	p	
+# ::edge	top	part-of	and	t	a	
+# ::edge	and	op2	pole	a	p2	
+# ::edge	pole	mod	some	p2	s2	
+# ::edge	balance-01	time	hold-01	b	h	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	hold-01	ARG1	torch	h	t2	
+(b / balance-01
+    :ARG0 (m / man)
+    :ARG2 (t / top
+        :part-of (a / and
+            :op1 (p / platform
+                :quant (s / some))
+            :op2 (p2 / pole
+                :mod (s2 / some))))
+    :time (h / hold-01
+        :ARG0 m
+        :ARG1 (t2 / torch)))

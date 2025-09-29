@@ -1,0 +1,39 @@
+# ::tok Group of people standing waiting next to an even larger group of luggage .
+# ::node	g	group	0-1
+# ::node	p	person	2-3
+# ::node	s	stand-01	3-4
+# ::node	w	wait-01	4-5
+# ::node	n	next-to	5-6
+# ::node	e	even	8-9
+# ::node	h	have-degree-91	9-10
+# ::node	l	large	9-10
+# ::node	m	more	9-10
+# ::node	g2	group	10-11
+# ::node	g3	group	10-11
+# ::node	l2	luggage	12-13
+# ::root	s	stand-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	stand-01	ARG2	wait-01	s	w	
+# ::edge	wait-01	ARG1	group	w	g	
+# ::edge	wait-01	location	next-to	w	n	
+# ::edge	have-degree-91	ARG2	large	h	l	
+# ::edge	large	mod	even	l	e	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	group	ARG1-of	have-degree-91	g2	h	
+# ::edge	next-to	op1	group	n	g2	
+# ::edge	have-degree-91	ARG4	group	h	g3	
+# ::edge	group	consist-of	luggage	g3	l2	
+(s / stand-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (w / wait-01
+        :ARG1 g
+        :location (n / next-to
+            :op1 (g2 / group
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (l / large
+                        :mod (e / even))
+                    :ARG3 (m / more)
+                    :ARG4 (g3 / group
+                        :consist-of (l2 / luggage)))))))

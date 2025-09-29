@@ -1,0 +1,27 @@
+# ::tok A stainless steel refrigerator moved away from its normal position in the kitchen .
+# ::node	s	stainless	1-2
+# ::node	s2	steel	2-3
+# ::node	r	refrigerator	3-4
+# ::node	m	move-01	4-5
+# ::node	a	away	5-6
+# ::node	n	normal-02	8-9
+# ::node	p	position-01	9-10
+# ::node	k	kitchen	12-13
+# ::root	m	move-01
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	refrigerator	part	steel	r	s2	
+# ::edge	move-01	ARG1	refrigerator	m	r	
+# ::edge	move-01	direction	away	m	a	
+# ::edge	position-01	ARG1-of	normal-02	p	n	
+# ::edge	away	op1	position-01	a	p	
+# ::edge	position-01	ARG1	refrigerator	p	r	
+# ::edge	position-01	ARG2	kitchen	p	k	
+(m / move-01
+    :ARG1 (r / refrigerator
+        :part (s2 / steel
+            :mod (s / stainless)))
+    :direction (a / away
+        :op1 (p / position-01
+            :ARG1 r
+            :ARG1-of (n / normal-02)
+            :ARG2 (k / kitchen))))

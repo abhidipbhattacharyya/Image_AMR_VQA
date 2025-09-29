@@ -1,0 +1,34 @@
+# ::tok A small room with a cupboard and mirror .
+# ::node	s	small	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	c	cupboard	5-6
+# ::node	a	and	6-7
+# ::node	m	mirror	7-8
+# ::root	r	room
+# ::edge	room	mod	small	r	s	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	and	op1	cupboard	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	mirror	a	m	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / cupboard)
+            :op2 (m / mirror)))
+    :mod (s / small))
+
+
+# ::tok In cupboard white roles are kept .
+# ::node	c	cupboard	1-2
+# ::node	w	white-02	2-3
+# ::node	r	role	3-4
+# ::node	k	keep-01	5-6
+# ::root	k	keep-01
+# ::edge	role	ARG1-of	white-02	r	w	
+# ::edge	keep-01	ARG1	role	k	r	
+# ::edge	keep-01	location	cupboard	k	c	
+(k / keep-01
+    :ARG1 (r / role
+        :ARG1-of (w / white-02))
+    :location (c / cupboard))

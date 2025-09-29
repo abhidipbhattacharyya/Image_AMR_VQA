@@ -1,0 +1,55 @@
+# ::tok A railway garage with multiple railway tracks shows two similar railway cars , one of which is on a trackway , while the other is parked in the garage .
+# ::node	g	garage	2-3
+# ::node	h	have-03	3-4
+# ::node	m	multiple	4-5
+# ::node	r	railway	5-6
+# ::node	t	track	6-7
+# ::node	s	show-01	7-8
+# ::node	1	2	8-9
+# ::node	r2	resemble-01	9-10
+# ::node	c	car	11-12
+# ::node	c2	car	11-12
+# ::node	c3	car	11-12
+# ::node	i	include-91	13-14
+# ::node	0	1	13-14
+# ::node	t2	trackway	19-20
+# ::node	o	other	23-24
+# ::node	p	park-01	25-26
+# ::root	s	show-01
+# ::edge	garage	ARG0-of	have-03	g	h	
+# ::edge	have-03	mod	railway	h	r	
+# ::edge	track	mod	railway	t	r	
+# ::edge	track	quant	multiple	t	m	
+# ::edge	have-03	ARG1	track	h	t	
+# ::edge	show-01	ARG0	garage	s	g	
+# ::edge	car	ARG1-of	resemble-01	c	r2	
+# ::edge	car	quant	2	c	1	
+# ::edge	show-01	ARG1	car	s	c	
+# ::edge	car	mod	railway	c	r	
+# ::edge	include-91	ARG1	car	i	c2	
+# ::edge	car	ARG2-of	include-91	c	i	
+# ::edge	car	quant	1	c2	0	
+# ::edge	car	location	trackway	c2	t2	
+# ::edge	car	mod	other	c3	o	
+# ::edge	car	ARG1-of	park-01	c3	p	
+# ::edge	park-01	ARG2	garage	p	g	
+# ::edge	show-01	rel	car	s	c3	
+(s / show-01
+    :ARG0 (g / garage
+        :ARG0-of (h / have-03
+            :ARG1 (t / track
+                :quant (m / multiple)
+                :mod (r / railway))
+            :mod r))
+    :ARG1 (c / car
+        :quant 2
+        :ARG1-of (r2 / resemble-01)
+        :ARG2-of (i / include-91
+            :ARG1 (c2 / car
+                :quant 1
+                :location (t2 / trackway)))
+        :mod r)
+    :rel (c3 / car
+        :ARG1-of (p / park-01
+            :ARG2 g)
+        :mod (o / other)))

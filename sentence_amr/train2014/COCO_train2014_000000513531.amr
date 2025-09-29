@@ -1,0 +1,22 @@
+# ::tok A red train pulling up to the train platform with people waiting
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	p3	pull-01	3-4
+# ::node	t2	train	7-8
+# ::node	p2	platform	8-9
+# ::node	p	person	10-11
+# ::node	w	wait-01	11-12
+# ::root	p3	pull-01
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	pull-01	ARG1	train	p3	t	
+# ::edge	platform	mod	train	p2	t2	
+# ::edge	pull-01	ARG2	platform	p3	p2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	train	ARG2-of	wait-01	t	w	
+(p3 / pull-01
+    :ARG1 (t / train
+        :ARG1-of (r / red-02)
+        :ARG2-of (w / wait-01
+            :ARG1 (p / person)))
+    :ARG2 (p2 / platform
+        :mod (t2 / train)))

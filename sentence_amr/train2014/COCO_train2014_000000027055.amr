@@ -1,0 +1,42 @@
+# ::tok A hedge row with rock pillars and a blue gate with sheep behind the gate and a mountain in the background .
+# ::node	h3	hedge	1-2
+# ::node	r2	row	2-3
+# ::node	h	have-03	3-4
+# ::node	r	rock	4-5
+# ::node	p	pillar	5-6
+# ::node	a	and	6-7
+# ::node	b3	blue	8-9
+# ::node	g	gate	9-10
+# ::node	h2	have-03	10-11
+# ::node	s	sheep	11-12
+# ::node	b2	behind	12-13
+# ::node	m	mountain	17-18
+# ::node	b	background	20-21
+# ::root	r2	row
+# ::edge	row	consist-of	hedge	r2	h3	
+# ::edge	row	ARG0-of	have-03	r2	h	
+# ::edge	pillar	mod	rock	p	r	
+# ::edge	and	op1	pillar	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	gate	mod	blue	g	b3	
+# ::edge	and	op2	gate	a	g	
+# ::edge	gate	ARG0-of	have-03	g	h2	
+# ::edge	have-03	ARG1	sheep	h2	s	
+# ::edge	sheep	location	behind	s	b2	
+# ::edge	behind	op1	gate	b2	g	
+# ::edge	and	op3	mountain	a	m	
+# ::edge	mountain	location	background	m	b	
+(r2 / row
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p / pillar
+                :mod (r / rock))
+            :op2 (g / gate
+                :ARG0-of (h2 / have-03
+                    :ARG1 (s / sheep
+                        :location (b2 / behind
+                            :op1 g)))
+                :mod (b3 / blue))
+            :op3 (m / mountain
+                :location (b / background))))
+    :consist-of (h3 / hedge))

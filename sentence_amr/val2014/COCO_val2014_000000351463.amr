@@ -1,0 +1,36 @@
+# ::tok A man in a leather jacket and knit hat resting a baseball over his shoulder
+# ::node	m	man	1-2
+# ::node	l	leather	4-5
+# ::node	j	jacket	5-6
+# ::node	a	and	6-7
+# ::node	w	wear-01	6-7
+# ::node	k	knit-03	7-8
+# ::node	h	hat	8-9
+# ::node	r	rest-01	9-10
+# ::node	b	baseball	11-12
+# ::node	o	over	12-13
+# ::node	s	shoulder	14-15
+# ::root	m	man
+# ::edge	jacket	mod	leather	j	l	
+# ::edge	and	op1	jacket	a	j	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	hat	ARG1-of	knit-03	h	k	
+# ::edge	and	op2	hat	a	h	
+# ::edge	man	ARG0-of	rest-01	m	r	
+# ::edge	rest-01	ARG1	baseball	r	b	
+# ::edge	rest-01	location	over	r	o	
+# ::edge	over	op1	shoulder	o	s	
+# ::edge	man	part	shoulder	m	s	
+# ::edge	man	rel	and	m	a	
+(m / man
+    :ARG0-of (w / wear-01)
+    :ARG0-of (r / rest-01
+        :ARG1 (b / baseball)
+        :location (o / over
+            :op1 (s / shoulder)))
+    :part s
+    :rel (a / and
+        :op1 (j / jacket
+            :mod (l / leather))
+        :op2 (h / hat
+            :ARG1-of (k / knit-03))))

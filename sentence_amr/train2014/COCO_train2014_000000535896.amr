@@ -1,0 +1,28 @@
+# ::tok A lone skier on a snow slope with some areas of dirt expolsed .
+# ::node	l	lone	1-2
+# ::node	p	person	2-3
+# ::node	s	ski-01	2-3
+# ::node	s3	snow	5-6
+# ::node	s2	slope	6-7
+# ::node	s4	some	8-9
+# ::node	a	area	9-10
+# ::node	d	dirt	11-12
+# ::node	b	blow-01	12-13
+# ::root	p	person
+# ::edge	person	mod	lone	p	l	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	slope	mod	snow	s2	s3	
+# ::edge	person	location	slope	p	s2	
+# ::edge	area	quant	some	a	s4	
+# ::edge	dirt	quant	area	d	a	
+# ::edge	blow-01	ARG1	dirt	b	d	
+# ::edge	slope	ARG0-of	blow-01	s2	b	
+(p / person
+    :ARG0-of (s / ski-01)
+    :location (s2 / slope
+        :ARG0-of (b / blow-01
+            :ARG1 (d / dirt
+                :quant (a / area
+                    :quant (s4 / some))))
+        :mod (s3 / snow))
+    :mod (l / lone))

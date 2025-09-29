@@ -1,0 +1,30 @@
+# ::tok A cop car parked next to a fire hydrant with a hose sticking out of it .
+# ::node	c2	cop	1-2
+# ::node	c	car	2-3
+# ::node	p	park-01	3-4
+# ::node	n	next-to	4-5
+# ::node	f	fire	7-8
+# ::node	h3	hydrant	8-9
+# ::node	h	have-03	9-10
+# ::node	h2	hose	11-12
+# ::node	s	stick-out-02	12-13
+# ::root	p	park-01
+# ::edge	car	mod	cop	c	c2	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	hydrant	mod	fire	h3	f	
+# ::edge	next-to	op1	hydrant	n	h3	
+# ::edge	hydrant	ARG0-of	have-03	h3	h	
+# ::edge	have-03	ARG1	hose	h	h2	
+# ::edge	hose	ARG1-of	stick-out-02	h2	s	
+# ::edge	stick-out-02	location	hydrant	s	h3	
+(p / park-01
+    :ARG1 (c / car
+        :mod (c2 / cop))
+    :ARG2 (n / next-to
+        :op1 (h3 / hydrant
+            :ARG0-of (h / have-03
+                :ARG1 (h2 / hose
+                    :ARG1-of (s / stick-out-02
+                        :location h3)))
+            :mod (f / fire))))

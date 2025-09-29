@@ -1,0 +1,30 @@
+# ::tok People line up to get on a bus at the bus stop on a sunny day .
+# ::node	p	person	0-1
+# ::node	l	line-up-02	1-2
+# ::node	g	get-05	4-5
+# ::node	b	bus	7-8
+# ::node	f	facility	9-10
+# ::node	b2	bus	10-11
+# ::node	s	stop-01	11-12
+# ::node	s2	sunny	14-15
+# ::node	d	day	15-16
+# ::root	l	line-up-02
+# ::edge	line-up-02	ARG1	person	l	p	
+# ::edge	line-up-02	purpose	get-05	l	g	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG2	bus	g	b	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	stop-01	location	facility	s	f	
+# ::edge	get-05	location	stop-01	g	s	
+# ::edge	day	mod	sunny	d	s2	
+# ::edge	line-up-02	time	day	l	d	
+(l / line-up-02
+    :purpose (g / get-05
+        :ARG1 (p / person)
+        :ARG2 (b / bus)
+        :location (s / stop-01
+            :ARG1 (b2 / bus)
+            :location (f / facility)))
+    :ARG1 p
+    :time (d / day
+        :mod (s2 / sunny)))

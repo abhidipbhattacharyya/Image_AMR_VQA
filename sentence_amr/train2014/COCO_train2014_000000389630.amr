@@ -1,0 +1,28 @@
+# ::tok A vacant city street with a traffic signal on a dark night .
+# ::node	v	vacant	1-2
+# ::node	c	city	2-3
+# ::node	s2	street	3-4
+# ::node	h	have-03	4-5
+# ::node	t	traffic	6-7
+# ::node	s	signal	7-8
+# ::node	d	dark-02	10-11
+# ::node	d2	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	s2	street
+# ::edge	street	mod	city	s2	c	
+# ::edge	street	mod	vacant	s2	v	
+# ::edge	street	ARG0-of	have-03	s2	h	
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	have-03	ARG1	signal	h	s	
+# ::edge	date-entity	ARG1-of	dark-02	d2	d	
+# ::edge	street	time	date-entity	s2	d2	
+# ::edge	date-entity	dayperiod	night	d2	n	
+(s2 / street
+    :ARG0-of (h / have-03
+        :ARG1 (s / signal
+            :mod (t / traffic)))
+    :mod (c / city)
+    :mod (v / vacant)
+    :time (d2 / date-entity
+        :ARG1-of (d / dark-02)
+        :dayperiod (n / night)))

@@ -1,0 +1,49 @@
+# ::tok A large flat screen television is surrounded by many DVDs , magazines , and electronic equipment in a wood paneled room .
+# ::node	l	large	1-2
+# ::node	f	flat	2-3
+# ::node	s	screen	3-4
+# ::node	t	television	4-5
+# ::node	s2	surround-01	6-7
+# ::node	m2	many	8-9
+# ::node	d2	disc	9-10
+# ::node	d	digital	9-10
+# ::node	a	and	9-10
+# ::node	m	magazine	11-12
+# ::node	e	electronic	14-15
+# ::node	e2	equipment	15-16
+# ::node	w	wood	18-19
+# ::node	p	panel	19-20
+# ::node	r	room	20-21
+# ::node	t2	thing	21-22
+# ::root	s2	surround-01
+# ::edge	screen	mod	flat	s	f	
+# ::edge	television	mod	screen	t	s	
+# ::edge	television	mod	large	t	l	
+# ::edge	surround-01	ARG2	television	s2	t	
+# ::edge	disc	mod	digital	d2	d	
+# ::edge	and	op1	disc	a	d2	
+# ::edge	and	op2	magazine	a	m	
+# ::edge	equipment	mod	electronic	e2	e	
+# ::edge	and	op3	equipment	a	e2	
+# ::edge	panel	consist-of	wood	p	w	
+# ::edge	room	part	panel	r	p	
+# ::edge	surround-01	location	room	s2	r	
+# ::edge	thing	example	and	t2	a	
+# ::edge	thing	quant	many	t2	m2	
+# ::edge	surround-01	ARG1	thing	s2	t2	
+(s2 / surround-01
+    :ARG1 (t2 / thing
+        :quant (m2 / many)
+        :example (a / and
+            :op1 (d2 / disc
+                :mod (d / digital))
+            :op2 (m / magazine)
+            :op3 (e2 / equipment
+                :mod (e / electronic))))
+    :ARG2 (t / television
+        :mod (s / screen
+            :mod (f / flat))
+        :mod (l / large))
+    :location (r / room
+        :part (p / panel
+            :consist-of (w / wood))))

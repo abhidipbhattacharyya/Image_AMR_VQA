@@ -1,0 +1,36 @@
+# ::tok A colorful but blurry street scene at night features a car driving through an intersection .
+# ::node	c2	colorful	1-2
+# ::node	c3	contrast-01	2-3
+# ::node	b	blur-01	3-4
+# ::node	s2	street	4-5
+# ::node	s	scene	5-6
+# ::node	d	date-entity	7-8
+# ::node	n	night	7-8
+# ::node	f	feature-01	8-9
+# ::node	c	car	10-11
+# ::node	d2	drive-01	11-12
+# ::node	i	intersect-01	14-15
+# ::root	f	feature-01
+# ::edge	colorful	ARG1-of	contrast-01	c2	c3	
+# ::edge	contrast-01	ARG2	blur-01	c3	b	
+# ::edge	scene	mod	street	s	s2	
+# ::edge	blur-01	ARG1	scene	b	s	
+# ::edge	scene	mod	colorful	s	c2	
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	feature-01	ARG0	scene	f	s	
+# ::edge	feature-01	ARG1	car	f	c	
+# ::edge	car	ARG0-of	drive-01	c	d2	
+# ::edge	drive-01	path	intersect-01	d2	i	
+(f / feature-01
+    :ARG0 (s / scene
+        :mod (s2 / street)
+        :mod (c2 / colorful
+            :ARG1-of (c3 / contrast-01
+                :ARG2 (b / blur-01
+                    :ARG1 s)))
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :ARG1 (c / car
+        :ARG0-of (d2 / drive-01
+            :path (i / intersect-01))))

@@ -1,0 +1,29 @@
+# ::tok A dog has came up from underneath a picnic table and rests his arms .
+# ::node	d	dog	1-2
+# ::node	c	come-01	3-4
+# ::node	u	underneath	6-7
+# ::node	p	picnic	8-9
+# ::node	t	table	9-10
+# ::node	a	and	10-11
+# ::node	r	rest-01	11-12
+# ::node	a2	arm	13-14
+# ::root	a	and
+# ::edge	come-01	ARG1	dog	c	d	
+# ::edge	come-01	ARG3	underneath	c	u	
+# ::edge	table	mod	picnic	t	p	
+# ::edge	underneath	op1	table	u	t	
+# ::edge	and	op1	come-01	a	c	
+# ::edge	and	op2	rest-01	a	r	
+# ::edge	rest-01	ARG0	dog	r	d	
+# ::edge	rest-01	ARG1	arm	r	a2	
+# ::edge	dog	part	arm	d	a2	
+(a / and
+    :op1 (c / come-01
+        :ARG1 (d / dog
+            :part (a2 / arm))
+        :ARG3 (u / underneath
+            :op1 (t / table
+                :mod (p / picnic))))
+    :op2 (r / rest-01
+        :ARG0 d
+        :ARG1 a2))

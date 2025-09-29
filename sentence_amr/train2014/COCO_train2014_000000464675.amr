@@ -1,0 +1,39 @@
+# ::tok A dog standing on top of a pillow or bench with back feet body and front feet on the bed .
+# ::node	d	dog	1-2
+# ::node	s	stand-01	2-3
+# ::node	t	top	4-5
+# ::node	p	pillow	7-8
+# ::node	o	or	8-9
+# ::node	b2	bench	9-10
+# ::node	b	back	11-12
+# ::node	b3	body	13-14
+# ::node	a	and	14-15
+# ::node	f3	front	15-16
+# ::node	f	foot	16-17
+# ::node	f2	foot	16-17
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	dog	s	d	
+# ::edge	stand-01	ARG2	top	s	t	
+# ::edge	or	op1	pillow	o	p	
+# ::edge	top	part-of	or	t	o	
+# ::edge	or	op2	bench	o	b2	
+# ::edge	and	op1	body	a	b3	
+# ::edge	stand-01	manner	and	s	a	
+# ::edge	and	op2	foot	a	f	
+# ::edge	foot	part	body	f	b3	
+# ::edge	foot	mod	back	f	b	
+# ::edge	foot	mod	front	f2	f3	
+# ::edge	and	op3	foot	a	f2	
+(s / stand-01
+    :ARG1 (d / dog)
+    :ARG2 (t / top
+        :part-of (o / or
+            :op1 (p / pillow)
+            :op2 (b2 / bench)))
+    :manner (a / and
+        :op1 (b3 / body)
+        :op2 (f / foot
+            :mod (b / back)
+            :part b3)
+        :op3 (f2 / foot
+            :mod (f3 / front))))

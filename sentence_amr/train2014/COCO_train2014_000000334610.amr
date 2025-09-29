@@ -1,0 +1,27 @@
+# ::tok Small toy train engine preparing to ride over a bridge .
+# ::node	s	small	0-1
+# ::node	t	toy	1-2
+# ::node	t2	train	2-3
+# ::node	e	engine	3-4
+# ::node	p	prepare-02	4-5
+# ::node	r	ride-01	6-7
+# ::node	o	over	7-8
+# ::node	b	bridge	9-10
+# ::root	p	prepare-02
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	engine	mod	toy	e	t	
+# ::edge	engine	mod	small	e	s	
+# ::edge	prepare-02	ARG1	engine	p	e	
+# ::edge	prepare-02	ARG2	ride-01	p	r	
+# ::edge	ride-01	ARG0	engine	r	e	
+# ::edge	ride-01	path	over	r	o	
+# ::edge	over	op1	bridge	o	b	
+(p / prepare-02
+    :ARG1 (e / engine
+        :mod (t / toy)
+        :mod (s / small)
+        :part-of (t2 / train))
+    :ARG2 (r / ride-01
+        :ARG0 e
+        :path (o / over
+            :op1 (b / bridge))))

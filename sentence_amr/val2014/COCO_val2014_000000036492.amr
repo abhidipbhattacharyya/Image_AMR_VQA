@@ -1,0 +1,25 @@
+# ::tok A large jetliner parked an airport near a passenger loading terminal .
+# ::node	l	large	1-2
+# ::node	j	jetliner	2-3
+# ::node	p	park-01	3-4
+# ::node	a	airport	5-6
+# ::node	n	near-02	6-7
+# ::node	p2	passenger	8-9
+# ::node	l2	load-01	9-10
+# ::node	t	terminal	10-11
+# ::root	p	park-01
+# ::edge	jetliner	mod	large	j	l	
+# ::edge	park-01	ARG0	jetliner	p	j	
+# ::edge	park-01	ARG1	airport	p	a	
+# ::edge	airport	ARG1-of	near-02	a	n	
+# ::edge	load-01	ARG2	passenger	l2	p2	
+# ::edge	terminal	location-of	load-01	t	l2	
+# ::edge	near-02	ARG2	terminal	n	t	
+(p / park-01
+    :ARG0 (j / jetliner
+        :mod (l / large))
+    :ARG1 (a / airport
+        :ARG1-of (n / near-02
+            :ARG2 (t / terminal
+                :location-of (l2 / load-01
+                    :ARG2 (p2 / passenger))))))

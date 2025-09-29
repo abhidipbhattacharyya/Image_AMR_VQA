@@ -1,0 +1,29 @@
+# ::tok A boat is parked on a waterway and lit up for nighttime enjoyment .
+# ::node	b	boat	1-2
+# ::node	p	park-01	3-4
+# ::node	w	waterway	6-7
+# ::node	a	and	7-8
+# ::node	l	light-up-08	8-9
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::node	e	enjoy-01	12-13
+# ::root	a	and
+# ::edge	park-01	ARG1	boat	p	b	
+# ::edge	park-01	ARG2	waterway	p	w	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	and	op2	light-up-08	a	l	
+# ::edge	light-up-08	ARG1	boat	l	b	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	enjoy-01	time	date-entity	e	d	
+# ::edge	and	purpose	enjoy-01	a	e	
+# ::edge	enjoy-01	ARG0	boat	e	b	
+(a / and
+    :purpose (e / enjoy-01
+        :ARG0 (b / boat)
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :op1 (p / park-01
+        :ARG1 b
+        :ARG2 (w / waterway))
+    :op2 (l / light-up-08
+        :ARG1 b))

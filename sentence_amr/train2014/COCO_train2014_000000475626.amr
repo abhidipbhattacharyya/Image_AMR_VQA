@@ -1,0 +1,28 @@
+# ::tok An intersection that does not allow right turns and the driver must stop .
+# ::node	i	intersect-01	1-2
+# ::node	0	-	4-5
+# ::node	a	allow-01	5-6
+# ::node	r	right-04	6-7
+# ::node	t	turn-01	7-8
+# ::node	p	person	10-11
+# ::node	d	drive-01	10-11
+# ::node	o	obligate-01	11-12
+# ::node	s	stop-01	12-13
+# ::root	i	intersect-01
+# ::edge	allow-01	polarity	-	a	0	
+# ::edge	intersect-01	ARG0-of	allow-01	i	a	
+# ::edge	turn-01	ARG1-of	right-04	t	r	
+# ::edge	allow-01	ARG1	turn-01	a	t	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	intersect-01	ARG0-of	obligate-01	i	o	
+# ::edge	obligate-01	ARG2	stop-01	o	s	
+# ::edge	stop-01	ARG0	person	s	p	
+(i / intersect-01
+    :ARG0-of (a / allow-01
+        :ARG1 (t / turn-01
+            :ARG1-of (r / right-04))
+        :polarity -)
+    :ARG0-of (o / obligate-01
+        :ARG2 (s / stop-01
+            :ARG0 (p / person
+                :ARG0-of (d / drive-01)))))

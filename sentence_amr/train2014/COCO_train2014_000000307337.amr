@@ -1,0 +1,22 @@
+# ::tok Someone watching a plane that is either boarding or letting people off .
+# ::node	s	someone	0-1
+# ::node	w	watch-01	1-2
+# ::node	p2	plane	3-4
+# ::node	b	board-01	7-8
+# ::node	l	let-01	9-10
+# ::node	p	person	10-11
+# ::node	g	get-off-23	11-12
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	someone	w	s	
+# ::edge	watch-01	ARG1	plane	w	p2	
+# ::edge	plane	ARG1-of	board-01	p2	b	
+# ::edge	plane	ARG0-of	let-01	p2	l	
+# ::edge	get-off-23	ARG1	person	g	p	
+# ::edge	let-01	ARG1	get-off-23	l	g	
+(w / watch-01
+    :ARG0 (s / someone)
+    :ARG1 (p2 / plane
+        :ARG0-of (l / let-01
+            :ARG1 (g / get-off-23
+                :ARG1 (p / person)))
+        :ARG1-of (b / board-01)))

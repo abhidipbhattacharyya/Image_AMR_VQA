@@ -1,0 +1,40 @@
+# ::tok a KLM passenger jet plane sitting on a tarmac with people and various vehicles around it
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	KLM	1-2
+# ::node	p	passenger	2-3
+# ::node	j	jet	3-4
+# ::node	p3	plane	4-5
+# ::node	s	sit-01	5-6
+# ::node	t	tarmac	8-9
+# ::node	p2	person	10-11
+# ::node	a	and	11-12
+# ::node	v	various	12-13
+# ::node	v2	vehicle	13-14
+# ::node	a2	around	14-15
+# ::root	s	sit-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	KLM	n	0	
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	plane	mod	jet	p3	j	
+# ::edge	plane	mod	company	p3	c	
+# ::edge	sit-01	ARG1	plane	s	p3	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	and	op1	person	a	p2	
+# ::edge	vehicle	mod	various	v2	v	
+# ::edge	and	op2	vehicle	a	v2	
+# ::edge	around	location-of	and	a2	a	
+# ::edge	plane	ARG1-of	around	p3	a2	
+(s / sit-01
+    :ARG1 (p3 / plane
+        :ARG1-of (a2 / around
+            :location-of (a / and
+                :op1 (p2 / person)
+                :op2 (v2 / vehicle
+                    :mod (v / various))))
+        :mod (j / jet
+            :mod (p / passenger))
+        :mod (c / company
+            :name (n / name
+                :op1 "KLM")))
+    :ARG2 (t / tarmac))

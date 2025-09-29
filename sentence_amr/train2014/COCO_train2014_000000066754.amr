@@ -1,0 +1,34 @@
+# ::tok Crowded sidewalks are lit by shop signs in a Japanese city at night .
+# ::node	c3	crowd-01	0-1
+# ::node	s2	sidewalk	1-2
+# ::node	l	light-04	3-4
+# ::node	s	shop	5-6
+# ::node	s3	sign	6-7
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	Japan	9-10
+# ::node	c	city	10-11
+# ::node	d	date-entity	12-13
+# ::node	n2	night	12-13
+# ::root	l	light-04
+# ::edge	sidewalk	ARG1-of	crowd-01	s2	c3	
+# ::edge	light-04	ARG1	sidewalk	l	s2	
+# ::edge	sign	mod	shop	s3	s	
+# ::edge	light-04	ARG0	sign	l	s3	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Japan	n	0	
+# ::edge	city	location	country	c	c2	
+# ::edge	light-04	location	city	l	c	
+# ::edge	light-04	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(l / light-04
+    :ARG0 (s3 / sign
+        :mod (s / shop))
+    :ARG1 (s2 / sidewalk
+        :ARG1-of (c3 / crowd-01))
+    :location (c / city
+        :location (c2 / country
+            :name (n / name
+                :op1 "Japan")))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

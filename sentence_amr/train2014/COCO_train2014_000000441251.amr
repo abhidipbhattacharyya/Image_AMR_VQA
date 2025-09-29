@@ -1,0 +1,50 @@
+# ::tok A man is trying to stay on a wild horse while two other men on horses and spectators in the bleachers look on .
+# ::node	m	man	1-2
+# ::node	t	try-01	3-4
+# ::node	s2	stay-01	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	w	wild	8-9
+# ::node	h	horse	9-10
+# ::node	0	2	11-12
+# ::node	o	other	12-13
+# ::node	m2	man	13-14
+# ::node	h2	horse	15-16
+# ::node	a	and	16-17
+# ::node	s	spectator	17-18
+# ::node	f	field	20-21
+# ::node	b2	bleach-01	20-21
+# ::node	l	look-01	21-22
+# ::root	t	try-01
+# ::edge	try-01	ARG0	man	t	m	
+# ::edge	try-01	ARG1	stay-01	t	s2	
+# ::edge	stay-01	ARG1	man	s2	m	
+# ::edge	stay-01	ARG3	be-located-at-91	s2	b	
+# ::edge	be-located-at-91	ARG1	man	b	m	
+# ::edge	horse	mod	wild	h	w	
+# ::edge	be-located-at-91	ARG2	horse	b	h	
+# ::edge	man	mod	other	m2	o	
+# ::edge	man	quant	2	m2	0	
+# ::edge	man	prep-on	horse	m2	h2	
+# ::edge	and	op1	man	a	m2	
+# ::edge	and	op2	spectator	a	s	
+# ::edge	spectator	location	field	s	f	
+# ::edge	field	ARG0-of	bleach-01	f	b2	
+# ::edge	look-01	ARG0	and	l	a	
+# ::edge	try-01	ARG1-of	look-01	t	l	
+(t / try-01
+    :ARG0 (m / man)
+    :ARG1 (s2 / stay-01
+        :ARG1 m
+        :ARG3 (b / be-located-at-91
+            :ARG1 m
+            :ARG2 (h / horse
+                :mod (w / wild))))
+    :ARG1-of (l / look-01
+        :ARG0 (a / and
+            :op1 (m2 / man
+                :quant 2
+                :mod (o / other)
+                :prep-on (h2 / horse))
+            :op2 (s / spectator
+                :location (f / field
+                    :ARG0-of (b2 / bleach-01))))))

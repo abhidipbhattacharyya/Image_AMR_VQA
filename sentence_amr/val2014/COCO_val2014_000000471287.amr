@@ -1,0 +1,46 @@
+# ::tok A living room containing a couch , glass case , a red brick fire place and French doors .
+# ::node	l	living	1-2
+# ::node	r2	room	2-3
+# ::node	c2	contain-01	3-4
+# ::node	c3	couch	5-6
+# ::node	a	and	6-7
+# ::node	g	glass	7-8
+# ::node	c	case	8-9
+# ::node	r	red-02	11-12
+# ::node	b	brick	12-13
+# ::node	f	fire	13-14
+# ::node	p	place	14-15
+# ::node	c4	country	16-17
+# ::node	n	name	16-17
+# ::node	0	France	16-17
+# ::node	d	door	17-18
+# ::root	r2	room
+# ::edge	room	mod	living	r2	l	
+# ::edge	room	ARG0-of	contain-01	r2	c2	
+# ::edge	and	op1	couch	a	c3	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	case	consist-of	glass	c	g	
+# ::edge	and	op2	case	a	c	
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	place	mod	fire	p	f	
+# ::edge	place	consist-of	brick	p	b	
+# ::edge	and	op3	place	a	p	
+# ::edge	country	name	name	c4	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	door	mod	country	d	c4	
+# ::edge	and	op4	door	a	d	
+(r2 / room
+    :ARG0-of (c2 / contain-01
+        :ARG1 (a / and
+            :op1 (c3 / couch)
+            :op2 (c / case
+                :consist-of (g / glass))
+            :op3 (p / place
+                :consist-of (b / brick
+                    :ARG1-of (r / red-02))
+                :mod (f / fire))
+            :op4 (d / door
+                :mod (c4 / country
+                    :name (n / name
+                        :op1 "France")))))
+    :mod (l / living))

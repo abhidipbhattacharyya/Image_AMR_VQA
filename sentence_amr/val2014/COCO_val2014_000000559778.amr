@@ -1,0 +1,32 @@
+# ::tok The dog is looking in the other direction as he has a stuffed animal in front of him .
+# ::node	d2	dog	1-2
+# ::node	l	look-01	3-4
+# ::node	o	other	6-7
+# ::node	d	direction	7-8
+# ::node	c	cause-01	8-9
+# ::node	h	have-03	10-11
+# ::node	s	stuff-01	12-13
+# ::node	a	animal	13-14
+# ::node	i	in-front-of	15-16
+# ::root	l	look-01
+# ::edge	look-01	ARG0	dog	l	d2	
+# ::edge	direction	mod	other	d	o	
+# ::edge	look-01	ARG1	direction	l	d	
+# ::edge	look-01	ARG1-of	cause-01	l	c	
+# ::edge	cause-01	ARG0	have-03	c	h	
+# ::edge	have-03	ARG0	dog	h	d2	
+# ::edge	animal	ARG1-of	stuff-01	a	s	
+# ::edge	have-03	ARG1	animal	h	a	
+# ::edge	have-03	location	in-front-of	h	i	
+# ::edge	in-front-of	op1	dog	i	d2	
+(l / look-01
+    :ARG0 (d2 / dog)
+    :ARG1 (d / direction
+        :mod (o / other))
+    :ARG1-of (c / cause-01
+        :ARG0 (h / have-03
+            :ARG0 d2
+            :ARG1 (a / animal
+                :ARG1-of (s / stuff-01))
+            :location (i / in-front-of
+                :op1 d2))))

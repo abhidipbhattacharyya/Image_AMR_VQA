@@ -1,0 +1,33 @@
+# ::tok A professional tennis player holding a tennis racket at the US Open .
+# ::node	p3	professional	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	h	hold-01	4-5
+# ::node	r	racket	7-8
+# ::node	n	name	10-11
+# ::node	1	US	10-11
+# ::node	e	event	11-12
+# ::node	0	Open	11-12
+# ::root	p	person
+# ::edge	person	mod	professional	p	p3	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	racket	h	r	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	name	op1	US	n	1	
+# ::edge	event	name	name	e	n	
+# ::edge	hold-01	location	event	h	e	
+# ::edge	name	op2	Open	n	0	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (h / hold-01
+        :ARG1 (r / racket
+            :mod t)
+        :location (e / event
+            :name (n / name
+                :op1 "US"
+                :op2 "Open")))
+    :mod (p3 / professional))

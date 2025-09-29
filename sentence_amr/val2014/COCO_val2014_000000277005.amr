@@ -1,0 +1,36 @@
+# ::tok Several people are leaving a bus station with a bus next to it as a person rides by on a bicycle
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	l	leave-11	3-4
+# ::node	b2	bus	5-6
+# ::node	s2	station	6-7
+# ::node	b3	bus	9-10
+# ::node	n	next-to	10-11
+# ::node	p2	person	15-16
+# ::node	r	ride-01	16-17
+# ::node	b4	by	17-18
+# ::node	b	bicycle	20-21
+# ::root	l	leave-11
+# ::edge	person	quant	several	p	s	
+# ::edge	leave-11	ARG0	person	l	p	
+# ::edge	station	mod	bus	s2	b2	
+# ::edge	leave-11	ARG1	station	l	s2	
+# ::edge	leave-11	prep-with	bus	l	b3	
+# ::edge	bus	location	next-to	b3	n	
+# ::edge	next-to	op1	station	n	s2	
+# ::edge	ride-01	ARG0	person	r	p2	
+# ::edge	leave-11	time	ride-01	l	r	
+# ::edge	ride-01	direction	by	r	b4	
+# ::edge	ride-01	ARG1	bicycle	r	b	
+(l / leave-11
+    :ARG0 (p / person
+        :quant (s / several))
+    :ARG1 (s2 / station
+        :mod (b2 / bus))
+    :prep-with (b3 / bus
+        :location (n / next-to
+            :op1 s2))
+    :time (r / ride-01
+        :ARG0 (p2 / person)
+        :ARG1 (b / bicycle)
+        :direction (b4 / by)))

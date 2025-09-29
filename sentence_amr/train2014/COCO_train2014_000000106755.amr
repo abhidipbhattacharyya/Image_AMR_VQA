@@ -1,0 +1,34 @@
+# ::tok The Asian market has a large quantity of pears available as well as other produce .
+# ::node	c	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	m	market	2-3
+# ::node	h	have-03	3-4
+# ::node	l	large	5-6
+# ::node	a2	apple	8-9
+# ::node	a3	available-02	9-10
+# ::node	a	and	10-11
+# ::node	o	other	13-14
+# ::node	p	produce	14-15
+# ::root	h	have-03
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	market	mod	continent	m	c	
+# ::edge	have-03	ARG0	market	h	m	
+# ::edge	apple	mod	large	a2	l	
+# ::edge	available-02	ARG2	apple	a3	a2	
+# ::edge	and	op1	available-02	a	a3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	produce	mod	other	p	o	
+# ::edge	and	op2	produce	a	p	
+(h / have-03
+    :ARG0 (m / market
+        :mod (c / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG1 (a / and
+        :op1 (a3 / available-02
+            :ARG2 (a2 / apple
+                :mod (l / large)))
+        :op2 (p / produce
+            :mod (o / other))))

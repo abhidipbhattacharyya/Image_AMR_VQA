@@ -1,0 +1,73 @@
+# ::tok Two slices of thin crust pizza , one topped with tomatoes , fresh mozzarella , and green onions , the other topped with pesto , tomatoes , cucumber , and pine nuts .
+# ::node	0	2	0-1
+# ::node	s	slice	1-2
+# ::node	s2	slice	1-2
+# ::node	t	thin-03	3-4
+# ::node	c	crust	4-5
+# ::node	p3	pizza	5-6
+# ::node	p4	pizza	5-6
+# ::node	a	and	6-7
+# ::node	o	one	7-8
+# ::node	t4	top-02	8-9
+# ::node	t2	tomato	10-11
+# ::node	a2	and	11-12
+# ::node	f	fresh-04	12-13
+# ::node	m2	mozzarella	13-14
+# ::node	g	green-02	16-17
+# ::node	a4	apple	17-18
+# ::node	o2	other	20-21
+# ::node	t3	top-01	21-22
+# ::node	p	pesto	23-24
+# ::node	a3	and	24-25
+# ::node	m	mountain	25-26
+# ::node	c2	cucumber	27-28
+# ::node	p2	pine	30-31
+# ::node	n	nut	31-32
+# ::root	a	and
+# ::edge	slice	quant	2	s	0	
+# ::edge	crust	ARG1-of	thin-03	c	t	
+# ::edge	pizza	mod	crust	p3	c	
+# ::edge	pizza	consist-of	slice	p3	s	
+# ::edge	pizza	mod	slice	p4	s2	
+# ::edge	and	op2	pizza	a	p4	
+# ::edge	and	op1	pizza	a	p3	
+# ::edge	slice	mod	one	s	o	
+# ::edge	one	ARG0-of	top-02	o	t4	
+# ::edge	and	op1	tomato	a2	t2	
+# ::edge	top-02	ARG1	and	t4	a2	
+# ::edge	mozzarella	ARG1-of	fresh-04	m2	f	
+# ::edge	and	op2	mozzarella	a2	m2	
+# ::edge	apple	ARG1-of	green-02	a4	g	
+# ::edge	and	op3	apple	a2	a4	
+# ::edge	slice	mod	other	s2	o2	
+# ::edge	slice	ARG1-of	top-01	s2	t3	
+# ::edge	and	op1	pesto	a3	p	
+# ::edge	top-01	ARG2	and	t3	a3	
+# ::edge	and	op2	cucumber	a3	c2	
+# ::edge	nut	mod	pine	n	p2	
+# ::edge	and	op3	nut	a3	n	
+# ::edge	and	rel	mountain	a	m	
+(a / and
+    :op1 (p3 / pizza
+        :consist-of (s / slice
+            :quant 2
+            :mod (o / one
+                :ARG0-of (t4 / top-02
+                    :ARG1 (a2 / and
+                        :op1 (t2 / tomato)
+                        :op2 (m2 / mozzarella
+                            :ARG1-of (f / fresh-04))
+                        :op3 (a4 / apple
+                            :ARG1-of (g / green-02))))))
+        :mod (c / crust
+            :ARG1-of (t / thin-03)))
+    :op2 (p4 / pizza
+        :mod (s2 / slice
+            :ARG1-of (t3 / top-01
+                :ARG2 (a3 / and
+                    :op1 (p / pesto)
+                    :op2 (c2 / cucumber)
+                    :op3 (n / nut
+                        :mod (p2 / pine))))
+            :mod (o2 / other)))
+    :rel (m / mountain))

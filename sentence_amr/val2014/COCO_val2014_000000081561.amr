@@ -1,0 +1,22 @@
+# ::tok Traffic signals direct traffic while a tower is in the background .
+# ::node	t2	traffic	0-1
+# ::node	s	signal-07	1-2
+# ::node	d	direct-01	2-3
+# ::node	t3	traffic	3-4
+# ::node	t	tower	6-7
+# ::node	b2	be-located-at-91	8-9
+# ::node	b	background	10-11
+# ::root	d	direct-01
+# ::edge	signal-07	ARG1	traffic	s	t2	
+# ::edge	direct-01	ARG0	signal-07	d	s	
+# ::edge	direct-01	ARG1	traffic	d	t3	
+# ::edge	be-located-at-91	ARG1	tower	b2	t	
+# ::edge	direct-01	time	be-located-at-91	d	b2	
+# ::edge	be-located-at-91	ARG2	background	b2	b	
+(d / direct-01
+    :ARG0 (s / signal-07
+        :ARG1 (t2 / traffic))
+    :ARG1 (t3 / traffic)
+    :time (b2 / be-located-at-91
+        :ARG1 (t / tower)
+        :ARG2 (b / background)))

@@ -1,0 +1,54 @@
+# ::tok Many people and children are on the grass near a red building while different balls dot the grassy area near the kids .
+# ::node	m	many	0-1
+# ::node	m2	many	0-1
+# ::node	p	person	1-2
+# ::node	a	and	2-3
+# ::node	c	child	3-4
+# ::node	b2	be-located-at-91	5-6
+# ::node	g	grass	7-8
+# ::node	n	near-02	8-9
+# ::node	r	red-02	10-11
+# ::node	b3	building	11-12
+# ::node	c2	contrast-01	12-13
+# ::node	d	differ-02	13-14
+# ::node	b	ball	14-15
+# ::node	d2	dot-01	15-16
+# ::node	a2	area	18-19
+# ::node	n2	near-02	19-20
+# ::node	k	kid	21-22
+# ::root	c2	contrast-01
+# ::edge	person	quant	many	p	m	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	child	a	c	
+# ::edge	child	quant	many	c	m2	
+# ::edge	be-located-at-91	ARG1	and	b2	a	
+# ::edge	be-located-at-91	ARG2	grass	b2	g	
+# ::edge	grass	ARG1-of	near-02	g	n	
+# ::edge	building	ARG1-of	red-02	b3	r	
+# ::edge	near-02	ARG2	building	n	b3	
+# ::edge	contrast-01	ARG1	be-located-at-91	c2	b2	
+# ::edge	ball	ARG1-of	differ-02	b	d	
+# ::edge	dot-01	ARG2	ball	d2	b	
+# ::edge	contrast-01	ARG2	dot-01	c2	d2	
+# ::edge	dot-01	ARG1	area	d2	a2	
+# ::edge	grass	consist	area	g	a2	
+# ::edge	area	ARG1-of	near-02	a2	n2	
+# ::edge	near-02	ARG2	kid	n2	k	
+(c2 / contrast-01
+    :ARG1 (b2 / be-located-at-91
+        :ARG1 (a / and
+            :op1 (p / person
+                :quant (m / many))
+            :op2 (c / child
+                :quant (m2 / many)))
+        :ARG2 (g / grass
+            :ARG1-of (n / near-02
+                :ARG2 (b3 / building
+                    :ARG1-of (r / red-02)))
+            :consist (a2 / area
+                :ARG1-of (n2 / near-02
+                    :ARG2 (k / kid)))))
+    :ARG2 (d2 / dot-01
+        :ARG1 a2
+        :ARG2 (b / ball
+            :ARG1-of (d / differ-02))))

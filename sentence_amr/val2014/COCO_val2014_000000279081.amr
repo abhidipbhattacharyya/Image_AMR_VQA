@@ -1,0 +1,37 @@
+# ::tok an electric traffic sign indicating that pedestrians can cross and bicyclists may go
+# ::node	e	electric	1-2
+# ::node	t	traffic	2-3
+# ::node	s	sign	3-4
+# ::node	i	indicate-01	4-5
+# ::node	p	person	6-7
+# ::node	w	walk-01	6-7
+# ::node	p2	possible-01	7-8
+# ::node	c	cross-02	8-9
+# ::node	a	and	9-10
+# ::node	b	bicyclist	10-11
+# ::node	p3	possible-01	11-12
+# ::node	g	go-02	12-13
+# ::root	i	indicate-01
+# ::edge	sign	mod	traffic	s	t	
+# ::edge	sign	mod	electric	s	e	
+# ::edge	indicate-01	ARG0	sign	i	s	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	possible-01	ARG1	cross-02	p2	c	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	and	op1	possible-01	a	p2	
+# ::edge	indicate-01	ARG1	and	i	a	
+# ::edge	and	op2	possible-01	a	p3	
+# ::edge	possible-01	ARG1	go-02	p3	g	
+# ::edge	go-02	ARG0	bicyclist	g	b	
+(i / indicate-01
+    :ARG0 (s / sign
+        :mod (t / traffic)
+        :mod (e / electric))
+    :ARG1 (a / and
+        :op1 (p2 / possible-01
+            :ARG1 (c / cross-02
+                :ARG0 (p / person
+                    :ARG0-of (w / walk-01))))
+        :op2 (p3 / possible-01
+            :ARG1 (g / go-02
+                :ARG0 (b / bicyclist)))))

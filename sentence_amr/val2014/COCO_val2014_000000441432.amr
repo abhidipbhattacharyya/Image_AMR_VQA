@@ -1,0 +1,42 @@
+# ::tok A green trashcan is filled garbage including some cups , a green can , a plastic cup and a broken umbrella .
+# ::node	g2	green-03	1-2
+# ::node	t	trashcan	2-3
+# ::node	f	fill-01	4-5
+# ::node	g	garbage	5-6
+# ::node	i	include-01	6-7
+# ::node	s	some	7-8
+# ::node	c2	cup	8-9
+# ::node	c	can	12-13
+# ::node	p	plastic	15-16
+# ::node	c3	cup	16-17
+# ::node	a	and	17-18
+# ::node	b	break-01	19-20
+# ::node	u	umbrella	20-21
+# ::root	f	fill-01
+# ::edge	trashcan	ARG1-of	green-03	t	g2	
+# ::edge	fill-01	ARG1	trashcan	f	t	
+# ::edge	fill-01	ARG2	garbage	f	g	
+# ::edge	garbage	ARG2-of	include-01	g	i	
+# ::edge	cup	quant	some	c2	s	
+# ::edge	green-03	ARG1	can	g2	c	
+# ::edge	cup	consist-of	plastic	c3	p	
+# ::edge	and	op3	cup	a	c3	
+# ::edge	and	op2	can	a	c	
+# ::edge	and	op1	cup	a	c2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	umbrella	ARG1-of	break-01	u	b	
+# ::edge	and	op4	umbrella	a	u	
+(f / fill-01
+    :ARG1 (t / trashcan
+        :ARG1-of (g2 / green-03
+            :ARG1 (c / can)))
+    :ARG2 (g / garbage
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (c2 / cup
+                    :quant (s / some))
+                :op2 c
+                :op3 (c3 / cup
+                    :consist-of (p / plastic))
+                :op4 (u / umbrella
+                    :ARG1-of (b / break-01))))))

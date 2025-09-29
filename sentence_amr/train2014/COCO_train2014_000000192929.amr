@@ -1,0 +1,28 @@
+# ::tok Pedestrians on crossing intersection near large buildings in urban area .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	c	cross-02	2-3
+# ::node	i	intersect-01	3-4
+# ::node	n	near-02	4-5
+# ::node	l	large	5-6
+# ::node	b	building	6-7
+# ::node	u	urban	8-9
+# ::node	a	area	9-10
+# ::root	c	cross-02
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	cross-02	ARG1	intersect-01	c	i	
+# ::edge	cross-02	ARG1-of	near-02	c	n	
+# ::edge	building	mod	large	b	l	
+# ::edge	near-02	ARG2	building	n	b	
+# ::edge	area	mod	urban	a	u	
+# ::edge	building	location	area	b	a	
+(c / cross-02
+    :ARG0 (p / person
+        :ARG0-of (w / walk-01))
+    :ARG1 (i / intersect-01)
+    :ARG1-of (n / near-02
+        :ARG2 (b / building
+            :location (a / area
+                :mod (u / urban))
+            :mod (l / large))))

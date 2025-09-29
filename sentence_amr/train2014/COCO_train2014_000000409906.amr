@@ -1,0 +1,43 @@
+# ::tok A metro area of a city in Asia with various billboards and a busy street full of traffic .
+# ::node	m	metro	1-2
+# ::node	a2	area	2-3
+# ::node	c	city	5-6
+# ::node	c2	continent	7-8
+# ::node	n	name	7-8
+# ::node	0	Asia	7-8
+# ::node	h	have-03	8-9
+# ::node	v	various	9-10
+# ::node	s	sign	10-11
+# ::node	a	and	11-12
+# ::node	b	busy-02	13-14
+# ::node	s2	street	14-15
+# ::node	f	full-09	15-16
+# ::node	t	traffic	17-18
+# ::root	a2	area
+# ::edge	area	mod	metro	a2	m	
+# ::edge	area	part-of	city	a2	c	
+# ::edge	city	location	continent	c	c2	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	sign	mod	various	s	v	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	street	ARG1-of	busy-02	s2	b	
+# ::edge	and	op2	street	a	s2	
+# ::edge	street	ARG1-of	full-09	s2	f	
+# ::edge	full-09	ARG2	traffic	f	t	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :mod (v / various))
+            :op2 (s2 / street
+                :ARG1-of (b / busy-02)
+                :ARG1-of (f / full-09
+                    :ARG2 (t / traffic)))))
+    :mod (m / metro)
+    :part-of (c / city
+        :location (c2 / continent
+            :name (n / name
+                :op1 "Asia"))))

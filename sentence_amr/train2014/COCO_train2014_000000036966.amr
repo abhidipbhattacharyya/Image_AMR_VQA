@@ -1,0 +1,28 @@
+# ::tok A plate of barbequed rib meat garnished with a carrot slice .
+# ::node	p	plate	1-2
+# ::node	s2	state	3-4
+# ::node	n	name	3-4
+# ::node	h	here	3-4
+# ::node	r	rib	4-5
+# ::node	m	meat	5-6
+# ::node	g	garner-01	6-7
+# ::node	c	carrot	9-10
+# ::node	s	slice	10-11
+# ::root	p	plate
+# ::edge	state	name	name	s2	n	
+# ::edge	state	op1	here	s2	h	
+# ::edge	meat	mod	rib	m	r	
+# ::edge	meat	mod	state	m	s2	
+# ::edge	plate	consist-of	meat	p	m	
+# ::edge	meat	ARG1-of	garner-01	m	g	
+# ::edge	slice	consist-of	carrot	s	c	
+# ::edge	garner-01	ARG2	slice	g	s	
+(p / plate
+    :consist-of (m / meat
+        :ARG1-of (g / garner-01
+            :ARG2 (s / slice
+                :consist-of (c / carrot)))
+        :mod (r / rib)
+        :mod (s2 / state
+            :name (n / name)
+            :op1 (h / here))))

@@ -1,0 +1,48 @@
+# ::tok A Mercedes passenger bus driving on a road with an overpass behind it and tree on the side with no leaves .
+# ::node	c	car-make	1-2
+# ::node	n	name	1-2
+# ::node	1	Mercedes	1-2
+# ::node	p	passenger	2-3
+# ::node	b2	bus	3-4
+# ::node	d	drive-01	4-5
+# ::node	r	road	7-8
+# ::node	h	have-03	8-9
+# ::node	o	overpass	10-11
+# ::node	b	behind	11-12
+# ::node	a	and	13-14
+# ::node	t	tree	14-15
+# ::node	s	side	17-18
+# ::node	0	-	19-20
+# ::node	l	leaf-02	20-21
+# ::root	d	drive-01
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	Mercedes	n	1	
+# ::edge	bus	mod	passenger	b2	p	
+# ::edge	bus	mod	car-make	b2	c	
+# ::edge	drive-01	ARG0	bus	d	b2	
+# ::edge	drive-01	ARG1	road	d	r	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	overpass	location	behind	o	b	
+# ::edge	behind	op1	bus	b	b2	
+# ::edge	and	op1	overpass	a	o	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	tree	a	t	
+# ::edge	tree	location	side	t	s	
+# ::edge	leaf-02	polarity	-	l	0	
+# ::edge	tree	ARG0-of	leaf-02	t	l	
+(d / drive-01
+    :ARG0 (b2 / bus
+        :mod (p / passenger)
+        :mod (c / car-make
+            :name (n / name
+                :op1 "Mercedes")))
+    :ARG1 (r / road
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (o / overpass
+                    :location (b / behind
+                        :op1 b2))
+                :op2 (t / tree
+                    :ARG0-of (l / leaf-02
+                        :polarity -)
+                    :location (s / side))))))

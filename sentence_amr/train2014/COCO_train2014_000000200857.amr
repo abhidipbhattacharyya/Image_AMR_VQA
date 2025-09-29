@@ -1,0 +1,47 @@
+# ::tok A kitchen with counters and appliances wrapped in plastic and blue painters tape holding it in place .
+# ::node	k	kitchen	1-2
+# ::node	c	counter-01	3-4
+# ::node	a	and	4-5
+# ::node	a3	appliance	5-6
+# ::node	w	wrap-01	6-7
+# ::node	p3	plastic	8-9
+# ::node	a2	and	9-10
+# ::node	b	blue	10-11
+# ::node	p2	person	11-12
+# ::node	p	pain-01	11-12
+# ::node	t	tape	12-13
+# ::node	t2	tape	12-13
+# ::node	h	hold-01	13-14
+# ::node	i	in-place	16-17
+# ::root	k	kitchen
+# ::edge	and	op1	counter-01	a	c	
+# ::edge	kitchen	consist-of	and	k	a	
+# ::edge	and	op2	appliance	a	a3	
+# ::edge	and	ARG1-of	wrap-01	a	w	
+# ::edge	wrap-01	ARG2	and	w	a2	
+# ::edge	person	ARG0-of	pain-01	p2	p	
+# ::edge	tape	mod	person	t	p2	
+# ::edge	and	op1	tape	a2	t	
+# ::edge	tape	consist-of	plastic	t	p3	
+# ::edge	tape	mod	person	t2	p2	
+# ::edge	tape	mod	blue	t2	b	
+# ::edge	and	op2	tape	a2	t2	
+# ::edge	and	ARG0-of	hold-01	a2	h	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	hold-01	ARG3	in-place	h	i	
+(k / kitchen
+    :consist-of (a / and
+        :ARG1-of (w / wrap-01
+            :ARG2 (a2 / and
+                :ARG0-of (h / hold-01
+                    :ARG1 a
+                    :ARG3 (i / in-place))
+                :op1 (t / tape
+                    :consist-of (p3 / plastic)
+                    :mod (p2 / person
+                        :ARG0-of (p / pain-01)))
+                :op2 (t2 / tape
+                    :mod p2
+                    :mod (b / blue))))
+        :op1 (c / counter-01)
+        :op2 (a3 / appliance)))

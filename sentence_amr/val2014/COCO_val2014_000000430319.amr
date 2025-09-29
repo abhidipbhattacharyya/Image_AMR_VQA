@@ -1,0 +1,31 @@
+# ::tok The cat is on the mans lap even when he is trying to use his laptop .
+# ::node	c	cat	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	m	man	5-6
+# ::node	l	lap	6-7
+# ::node	e	even-when	7-8
+# ::node	t	try-01	11-12
+# ::node	u	use-01	13-14
+# ::node	l2	laptop	15-16
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	cat	b	c	
+# ::edge	lap	part-of	man	l	m	
+# ::edge	be-located-at-91	ARG2	lap	b	l	
+# ::edge	be-located-at-91	concession	even-when	b	e	
+# ::edge	even-when	op1	try-01	e	t	
+# ::edge	try-01	ARG0	man	t	m	
+# ::edge	try-01	ARG1	use-01	t	u	
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	use-01	ARG1	laptop	u	l2	
+# ::edge	laptop	poss	man	l2	m	
+(b / be-located-at-91
+    :ARG1 (c / cat)
+    :ARG2 (l / lap
+        :part-of (m / man))
+    :concession (e / even-when
+        :op1 (t / try-01
+            :ARG0 m
+            :ARG1 (u / use-01
+                :ARG0 m
+                :ARG1 (l2 / laptop
+                    :poss m)))))

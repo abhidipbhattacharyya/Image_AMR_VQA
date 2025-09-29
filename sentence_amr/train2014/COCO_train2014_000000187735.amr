@@ -1,0 +1,36 @@
+# ::tok A baseball player at home plate who has just broken a bat after hitting the ball
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	h2	home	4-5
+# ::node	p2	plate	5-6
+# ::node	j	just	8-9
+# ::node	b4	break-01	9-10
+# ::node	b3	bat	11-12
+# ::node	a	after	12-13
+# ::node	h	hit-01	13-14
+# ::node	b	ball	15-16
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	plate	mod	home	p2	h2	
+# ::edge	person	location	plate	p	p2	
+# ::edge	break-01	mod	just	b4	j	
+# ::edge	person	ARG0-of	break-01	p	b4	
+# ::edge	break-01	ARG1	bat	b4	b3	
+# ::edge	break-01	time	after	b4	a	
+# ::edge	after	op1	hit-01	a	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG0-of (b4 / break-01
+        :ARG1 (b3 / bat)
+        :mod (j / just)
+        :time (a / after
+            :op1 (h / hit-01
+                :ARG0 p
+                :ARG1 (b / ball))))
+    :location (p2 / plate
+        :mod (h2 / home)))

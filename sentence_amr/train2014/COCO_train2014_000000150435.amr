@@ -1,0 +1,36 @@
+# ::tok A group of men standing around a living room holding Wii controllers .
+# ::node	g	group	1-2
+# ::node	m	man	3-4
+# ::node	s	stand-01	4-5
+# ::node	a	around	5-6
+# ::node	l	living	7-8
+# ::node	r	room	8-9
+# ::node	h	hold-01	9-10
+# ::node	p	product	10-11
+# ::node	n	name	10-11
+# ::node	0	Wii	10-11
+# ::node	c	control-01	11-12
+# ::root	s	stand-01
+# ::edge	group	consist-of	man	g	m	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	stand-01	ARG2	around	s	a	
+# ::edge	room	mod	living	r	l	
+# ::edge	around	op1	room	a	r	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	control-01	ARG3	product	c	p	
+# ::edge	hold-01	ARG1	control-01	h	c	
+# ::edge	control-01	ARG0	man	c	m	
+(s / stand-01
+    :ARG1 (g / group
+        :consist-of (m / man
+            :ARG0-of (h / hold-01
+                :ARG1 (c / control-01
+                    :ARG0 m
+                    :ARG3 (p / product
+                        :name (n / name
+                            :op1 "Wii"))))))
+    :ARG2 (a / around
+        :op1 (r / room
+            :mod (l / living))))

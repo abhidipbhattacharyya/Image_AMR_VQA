@@ -1,0 +1,36 @@
+# ::tok A lone boaters glide on top of the water with hills and valleys behind the water .
+# ::node	l	lone	1-2
+# ::node	p	person	2-3
+# ::node	b2	boat-01	2-3
+# ::node	s	slip-02	3-4
+# ::node	t	top	5-6
+# ::node	w	water	8-9
+# ::node	h	have-03	9-10
+# ::node	h2	hill	10-11
+# ::node	a	and	11-12
+# ::node	v	valley	12-13
+# ::node	b	behind	13-14
+# ::root	s	slip-02
+# ::edge	person	mod	lone	p	l	
+# ::edge	person	ARG0-of	boat-01	p	b2	
+# ::edge	slip-02	ARG1	person	s	p	
+# ::edge	slip-02	location	top	s	t	
+# ::edge	top	part-of	water	t	w	
+# ::edge	water	ARG0-of	have-03	w	h	
+# ::edge	and	op1	hill	a	h2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	valley	a	v	
+# ::edge	and	location	behind	a	b	
+# ::edge	behind	op1	water	b	w	
+(s / slip-02
+    :ARG1 (p / person
+        :ARG0-of (b2 / boat-01)
+        :mod (l / lone))
+    :location (t / top
+        :part-of (w / water
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :location (b / behind
+                        :op1 w)
+                    :op1 (h2 / hill)
+                    :op2 (v / valley))))))

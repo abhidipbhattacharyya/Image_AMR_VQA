@@ -1,0 +1,37 @@
+# ::tok Two road signs , one for the beltway and one for I - 95 .
+# ::node	2	2	0-1
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	s2	sign	2-3
+# ::node	s3	signal-07	2-3
+# ::node	0	1	4-5
+# ::node	b	beltway	7-8
+# ::node	a	and	8-9
+# ::node	1	1	9-10
+# ::node	r2	road	11-12
+# ::node	n	name	11-12
+# ::node	3	I-65	11-12
+# ::root	a	and
+# ::edge	sign	purpose	road	s	r	
+# ::edge	sign	quant	2	s	2	
+# ::edge	sign	quant	1	s2	0	
+# ::edge	sign	purpose	beltway	s2	b	
+# ::edge	and	op2	signal-07	a	s3	
+# ::edge	and	op1	sign	a	s	
+# ::edge	signal-07	quant	1	s3	1	
+# ::edge	signal-07	ARG1	road	s3	r2	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op1	I-65	n	3	
+# ::edge	and	rel	sign	a	s2	
+(a / and
+    :op1 (s / sign
+        :purpose (r / road)
+        :quant 2)
+    :op2 (s3 / signal-07
+        :quant 1
+        :ARG1 (r2 / road
+            :name (n / name
+                :op1 "I-65")))
+    :rel (s2 / sign
+        :purpose (b / beltway)
+        :quant 1))

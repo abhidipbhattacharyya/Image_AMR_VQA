@@ -1,0 +1,25 @@
+# ::tok two street meters attached to the same pole on the road
+# ::node	0	2	0-1
+# ::node	s2	street	1-2
+# ::node	d	distance-quantity	2-3
+# ::node	m	meter	2-3
+# ::node	a	attach-01	3-4
+# ::node	s	same-01	6-7
+# ::node	p	pole	7-8
+# ::node	r	road	10-11
+# ::root	a	attach-01
+# ::edge	distance-quantity	mod	street	d	s2	
+# ::edge	distance-quantity	quant	2	d	0	
+# ::edge	distance-quantity	unit	meter	d	m	
+# ::edge	attach-01	ARG1	distance-quantity	a	d	
+# ::edge	pole	ARG1-of	same-01	p	s	
+# ::edge	attach-01	ARG2	pole	a	p	
+# ::edge	pole	location	road	p	r	
+(a / attach-01
+    :ARG1 (d / distance-quantity
+        :quant 2
+        :mod (s2 / street)
+        :unit (m / meter))
+    :ARG2 (p / pole
+        :ARG1-of (s / same-01)
+        :location (r / road)))

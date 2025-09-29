@@ -1,0 +1,34 @@
+# ::tok A small Canadian commuter airplane taxis down a snow lined runway .
+# ::node	s	small	1-2
+# ::node	c2	country	2-3
+# ::node	n	name	2-3
+# ::node	0	Canada	2-3
+# ::node	c	commuter	3-4
+# ::node	a	airplane	4-5
+# ::node	t	taxi	5-6
+# ::node	d	down	6-7
+# ::node	s2	snow	8-9
+# ::node	l	line-01	9-10
+# ::node	r	runway	10-11
+# ::root	t	taxi
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Canada	n	0	
+# ::edge	airplane	mod	commuter	a	c	
+# ::edge	airplane	mod	country	a	c2	
+# ::edge	airplane	mod	small	a	s	
+# ::edge	taxi	domain	airplane	t	a	
+# ::edge	taxi	direction	down	t	d	
+# ::edge	line-01	ARG2	snow	l	s2	
+# ::edge	runway	ARG1-of	line-01	r	l	
+# ::edge	down	path	runway	d	r	
+(t / taxi
+    :direction (d / down
+        :path (r / runway
+            :ARG1-of (l / line-01
+                :ARG2 (s2 / snow))))
+    :domain (a / airplane
+        :mod (c / commuter)
+        :mod (c2 / country
+            :name (n / name
+                :op1 "Canada"))
+        :mod (s / small)))

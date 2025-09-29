@@ -1,0 +1,34 @@
+# ::tok A female wearing winter clothing standing next to a tent inside an unfinished building .
+# ::node	f	female	1-2
+# ::node	d	date-entity	3-4
+# ::node	w	winter	3-4
+# ::node	c	clothe-01	4-5
+# ::node	s	stand-01	5-6
+# ::node	n	next-to	6-7
+# ::node	t	tent	9-10
+# ::node	i	inside	10-11
+# ::node	0	-	11-12
+# ::node	f2	finish-01	12-13
+# ::node	b	building	13-14
+# ::root	s	stand-01
+# ::edge	date-entity	season	winter	d	w	
+# ::edge	clothe-01	ARG2	date-entity	c	d	
+# ::edge	female	ARG1-of	clothe-01	f	c	
+# ::edge	stand-01	ARG1	female	s	f	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	tent	n	t	
+# ::edge	tent	location	inside	t	i	
+# ::edge	finish-01	polarity	-	f2	0	
+# ::edge	building	ARG1-of	finish-01	b	f2	
+# ::edge	inside	op1	building	i	b	
+(s / stand-01
+    :ARG1 (f / female
+        :ARG1-of (c / clothe-01
+            :ARG2 (d / date-entity
+                :season (w / winter))))
+    :ARG2 (n / next-to
+        :op1 (t / tent
+            :location (i / inside
+                :op1 (b / building
+                    :ARG1-of (f2 / finish-01
+                        :polarity -))))))

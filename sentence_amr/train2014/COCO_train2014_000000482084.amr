@@ -1,0 +1,37 @@
+# ::tok Several grocery items , mostly toppings for ice cream sundaes , sitting on a wooden table
+# ::node	s	several	0-1
+# ::node	g	grocery	1-2
+# ::node	i3	item	2-3
+# ::node	i4	item	2-3
+# ::node	i2	include-91	4-5
+# ::node	m	most	4-5
+# ::node	t2	top-01	5-6
+# ::node	i	ice-cream	8-9
+# ::node	s3	sunday	9-10
+# ::node	s2	sit-01	11-12
+# ::node	w	wood	14-15
+# ::node	t	table	15-16
+# ::root	s2	sit-01
+# ::edge	item	mod	grocery	i3	g	
+# ::edge	item	quant	several	i3	s	
+# ::edge	include-91	ARG1	item	i2	i4	
+# ::edge	item	ARG2-of	include-91	i3	i2	
+# ::edge	include-91	ARG3	most	i2	m	
+# ::edge	item	ARG2-of	top-01	i4	t2	
+# ::edge	sunday	mod	ice-cream	s3	i	
+# ::edge	top-01	ARG1	sunday	t2	s3	
+# ::edge	sit-01	ARG1	item	s2	i3	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	sit-01	ARG2	table	s2	t	
+(s2 / sit-01
+    :ARG1 (i3 / item
+        :quant (s / several)
+        :ARG2-of (i2 / include-91
+            :ARG1 (i4 / item
+                :ARG2-of (t2 / top-01
+                    :ARG1 (s3 / sunday
+                        :mod (i / ice-cream))))
+            :ARG3 (m / most))
+        :mod (g / grocery))
+    :ARG2 (t / table
+        :consist-of (w / wood)))

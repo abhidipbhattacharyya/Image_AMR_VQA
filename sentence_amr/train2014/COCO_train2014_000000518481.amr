@@ -1,0 +1,28 @@
+# ::tok A room filled with large windows and two sinks under mirrors .
+# ::node	r	room	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	large	4-5
+# ::node	w	window	5-6
+# ::node	a	and	6-7
+# ::node	0	2	7-8
+# ::node	s	sink-01	8-9
+# ::node	u	under	9-10
+# ::node	m	mirror	10-11
+# ::root	r	room
+# ::edge	room	ARG1-of	fill-01	r	f	
+# ::edge	window	mod	large	w	l	
+# ::edge	and	op1	window	a	w	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	sink-01	quant	2	s	0	
+# ::edge	and	op2	sink-01	a	s	
+# ::edge	sink-01	location	under	s	u	
+# ::edge	under	op1	mirror	u	m	
+(r / room
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (w / window
+                :mod (l / large))
+            :op2 (s / sink-01
+                :quant 2
+                :location (u / under
+                    :op1 (m / mirror))))))

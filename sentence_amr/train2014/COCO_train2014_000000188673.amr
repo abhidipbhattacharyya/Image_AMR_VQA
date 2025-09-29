@@ -1,0 +1,40 @@
+# ::tok A craft project with seed pods and cardboard sitting on a wooden floor next to a pair of scissors .
+# ::node	c2	craft	1-2
+# ::node	p3	project	2-3
+# ::node	s2	seed	4-5
+# ::node	p2	pod	5-6
+# ::node	a	and	6-7
+# ::node	c	cardboard	7-8
+# ::node	s3	sit-01	8-9
+# ::node	w	wood	11-12
+# ::node	f	floor	12-13
+# ::node	n	next-to	13-14
+# ::node	0	1	15-16
+# ::node	p	pair	16-17
+# ::node	s	scissors	18-19
+# ::root	p3	project
+# ::edge	project	mod	craft	p3	c2	
+# ::edge	pod	mod	seed	p2	s2	
+# ::edge	and	op1	pod	a	p2	
+# ::edge	project	consist-of	and	p3	a	
+# ::edge	and	op2	cardboard	a	c	
+# ::edge	and	ARG1-of	sit-01	a	s3	
+# ::edge	floor	consist-of	wood	f	w	
+# ::edge	sit-01	ARG2	floor	s3	f	
+# ::edge	sit-01	location	next-to	s3	n	
+# ::edge	pair	quant	1	p	0	
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	next-to	op1	scissors	n	s	
+(p3 / project
+    :consist-of (a / and
+        :ARG1-of (s3 / sit-01
+            :ARG2 (f / floor
+                :consist-of (w / wood))
+            :location (n / next-to
+                :op1 (s / scissors
+                    :quant (p / pair
+                        :quant 1))))
+        :op1 (p2 / pod
+            :mod (s2 / seed))
+        :op2 (c / cardboard))
+    :mod (c2 / craft))

@@ -1,0 +1,45 @@
+# ::tok Eating area , red / green tables with attached chairs and two microwave ovens .
+# ::node	e	eat-01	0-1
+# ::node	a3	area	1-2
+# ::node	a	and	2-3
+# ::node	r	red-02	3-4
+# ::node	s	slash	4-5
+# ::node	g	green-02	5-6
+# ::node	t	table	6-7
+# ::node	t2	table	6-7
+# ::node	a4	attach-01	8-9
+# ::node	c	chair	9-10
+# ::node	a2	and	10-11
+# ::node	0	2	11-12
+# ::node	m	microwave	12-13
+# ::node	o	oven	13-14
+# ::root	a	and
+# ::edge	area	location-of	eat-01	a3	e	
+# ::edge	and	op1	area	a	a3	
+# ::edge	slash	op1	table	s	t	
+# ::edge	table	ARG1-of	red-02	t	r	
+# ::edge	table	ARG1-of	green-02	t2	g	
+# ::edge	slash	op2	table	s	t2	
+# ::edge	chair	ARG1-of	attach-01	c	a4	
+# ::edge	slash	part	chair	s	c	
+# ::edge	and	op1	chair	a2	c	
+# ::edge	and	op2	and	a	a2	
+# ::edge	oven	mod	microwave	o	m	
+# ::edge	oven	quant	2	o	0	
+# ::edge	and	op2	oven	a2	o	
+# ::edge	and	rel	slash	a	s	
+(a / and
+    :op1 (a3 / area
+        :location-of (e / eat-01))
+    :op2 (a2 / and
+        :op1 (c / chair
+            :ARG1-of (a4 / attach-01))
+        :op2 (o / oven
+            :quant 2
+            :mod (m / microwave)))
+    :rel (s / slash
+        :op1 (t / table
+            :ARG1-of (r / red-02))
+        :op2 (t2 / table
+            :ARG1-of (g / green-02))
+        :part c))

@@ -1,0 +1,45 @@
+# ::tok a line of older looking buses and rvs sit as people walk between them
+# ::node	l	line	1-2
+# ::node	h	have-degree-91	3-4
+# ::node	o	old	3-4
+# ::node	m	more	3-4
+# ::node	l2	look-02	4-5
+# ::node	b2	bus	5-6
+# ::node	a	and	6-7
+# ::node	v	vehicle	7-8
+# ::node	n	name	7-8
+# ::node	0	RV	7-8
+# ::node	s	sit-01	8-9
+# ::node	p	person	10-11
+# ::node	w	walk-01	11-12
+# ::node	b	between	12-13
+# ::root	s	sit-01
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	look-02	ARG2	have-degree-91	l2	h	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	and	ARG1-of	look-02	a	l2	
+# ::edge	line	consist-of	and	l	a	
+# ::edge	and	op2	vehicle	a	v	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	RV	n	0	
+# ::edge	sit-01	ARG1	line	s	l	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	sit-01	time	walk-01	s	w	
+# ::edge	walk-01	ARG2	between	w	b	
+# ::edge	between	op1	and	b	a	
+(s / sit-01
+    :ARG1 (l / line
+        :consist-of (a / and
+            :ARG1-of (l2 / look-02
+                :ARG2 (h / have-degree-91
+                    :ARG2 (o / old)
+                    :ARG3 (m / more)))
+            :op1 (b2 / bus)
+            :op2 (v / vehicle
+                :name (n / name
+                    :op1 "RV"))))
+    :time (w / walk-01
+        :ARG0 (p / person)
+        :ARG2 (b / between
+            :op1 a)))

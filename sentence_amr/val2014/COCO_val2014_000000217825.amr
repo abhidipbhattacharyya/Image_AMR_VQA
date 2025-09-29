@@ -1,0 +1,22 @@
+# ::tok A bus is pulled up along a curb with no passengers waiting .
+# ::node	b	bus	1-2
+# ::node	p2	pull-01	3-4
+# ::node	a	along	5-6
+# ::node	c	curb	7-8
+# ::node	0	-	9-10
+# ::node	p	passenger	10-11
+# ::node	w	wait-01	11-12
+# ::root	p2	pull-01
+# ::edge	pull-01	ARG1	bus	p2	b	
+# ::edge	pull-01	ARG2	along	p2	a	
+# ::edge	along	op1	curb	a	c	
+# ::edge	passenger	polarity	-	p	0	
+# ::edge	wait-01	ARG1	passenger	w	p	
+# ::edge	bus	location-of	wait-01	b	w	
+(p2 / pull-01
+    :ARG1 (b / bus
+        :location-of (w / wait-01
+            :ARG1 (p / passenger
+                :polarity -)))
+    :ARG2 (a / along
+        :op1 (c / curb)))

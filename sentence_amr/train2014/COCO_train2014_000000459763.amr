@@ -1,0 +1,36 @@
+# ::tok A man is cooking some food outdoors while a group of people gather near the water behind him .
+# ::node	m	man	1-2
+# ::node	c	cook-01	3-4
+# ::node	s	some	4-5
+# ::node	f	food	5-6
+# ::node	o	outdoors	6-7
+# ::node	g2	group	9-10
+# ::node	p	person	11-12
+# ::node	g	gather-03	12-13
+# ::node	n	near-02	13-14
+# ::node	w	water	15-16
+# ::node	b	behind	16-17
+# ::root	c	cook-01
+# ::edge	cook-01	ARG0	man	c	m	
+# ::edge	food	mod	some	f	s	
+# ::edge	cook-01	ARG1	food	c	f	
+# ::edge	cook-01	location	outdoors	c	o	
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	gather-03	ARG0	group	g	g2	
+# ::edge	cook-01	time	gather-03	c	g	
+# ::edge	gather-03	ARG1-of	near-02	g	n	
+# ::edge	near-02	ARG2	water	n	w	
+# ::edge	water	location	behind	w	b	
+# ::edge	behind	op1	man	b	m	
+(c / cook-01
+    :ARG0 (m / man)
+    :ARG1 (f / food
+        :mod (s / some))
+    :location (o / outdoors)
+    :time (g / gather-03
+        :ARG0 (g2 / group
+            :consist-of (p / person))
+        :ARG1-of (n / near-02
+            :ARG2 (w / water
+                :location (b / behind
+                    :op1 m)))))

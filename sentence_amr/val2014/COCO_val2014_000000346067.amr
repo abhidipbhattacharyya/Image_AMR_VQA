@@ -1,0 +1,33 @@
+# ::tok A bird sitting on a branch .
+# ::node	b	bird	1-2
+# ::node	s	sit-01	2-3
+# ::node	b2	branch	5-6
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	bird	s	b	
+# ::edge	sit-01	ARG2	branch	s	b2	
+(s / sit-01
+    :ARG1 (b / bird)
+    :ARG2 (b2 / branch))
+
+
+# ::tok The bird is yellow and black in color .
+# ::node	b	bird	1-2
+# ::node	y	yellow-02	3-4
+# ::node	a	and	4-5
+# ::node	b2	black-04	5-6
+# ::node	c	color-01	7-8
+# ::node	c2	color-01	7-8
+# ::root	a	and
+# ::edge	and	op1	color-01	a	c	
+# ::edge	color-01	ARG2	yellow-02	c	y	
+# ::edge	color-01	ARG1	bird	c	b	
+# ::edge	color-01	ARG2	black-04	c2	b2	
+# ::edge	and	op2	color-01	a	c2	
+# ::edge	color-01	ARG1	bird	c2	b	
+(a / and
+    :op1 (c / color-01
+        :ARG1 (b / bird)
+        :ARG2 (y / yellow-02))
+    :op2 (c2 / color-01
+        :ARG1 b
+        :ARG2 (b2 / black-04)))

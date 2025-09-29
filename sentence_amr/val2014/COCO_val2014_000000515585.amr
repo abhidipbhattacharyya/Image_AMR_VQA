@@ -1,0 +1,42 @@
+# ::tok Two cats are sleeping in suspended beds and another cat is perched on top of one of the beds .
+# ::node	1	2	0-1
+# ::node	c	cat	1-2
+# ::node	s	sleep-01	3-4
+# ::node	s2	suspend-01	5-6
+# ::node	b	bed	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	c2	cat	9-10
+# ::node	p	perch-01	11-12
+# ::node	t	top	13-14
+# ::node	0	1	15-16
+# ::node	i	include-91	16-17
+# ::node	b2	bed	18-19
+# ::root	a	and
+# ::edge	cat	quant	2	c	1	
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	bed	ARG1-of	suspend-01	b	s2	
+# ::edge	sleep-01	location	bed	s	b	
+# ::edge	and	op1	sleep-01	a	s	
+# ::edge	cat	mod	another	c2	a2	
+# ::edge	perch-01	ARG1	cat	p	c2	
+# ::edge	and	op2	perch-01	a	p	
+# ::edge	perch-01	ARG2	top	p	t	
+# ::edge	include-91	ARG2	bed	i	b	
+# ::edge	bed	ARG1-of	include-91	b2	i	
+# ::edge	top	op1	bed	t	b2	
+# ::edge	and	rel	1	a	0	
+(a / and
+    :op1 (s / sleep-01
+        :ARG0 (c / cat
+            :quant 2)
+        :location (b / bed
+            :ARG1-of (s2 / suspend-01)))
+    :op2 (p / perch-01
+        :ARG1 (c2 / cat
+            :mod (a2 / another))
+        :ARG2 (t / top
+            :op1 (b2 / bed
+                :ARG1-of (i / include-91
+                    :ARG2 b))))
+    :rel 1)

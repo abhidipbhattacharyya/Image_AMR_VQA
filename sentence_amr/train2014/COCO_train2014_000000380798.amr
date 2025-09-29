@@ -1,0 +1,24 @@
+# ::tok Spectators watching people participate in a nude bike ride .
+# ::node	p2	person	0-1
+# ::node	w	watch-01	0-1
+# ::node	p3	person	2-3
+# ::node	p	participate-01	3-4
+# ::node	n	nude	6-7
+# ::node	b	bike	7-8
+# ::node	r	ride-01	8-9
+# ::root	p2	person
+# ::edge	person	ARG0-of	watch-01	p2	w	
+# ::edge	participate-01	ARG0	person	p	p3	
+# ::edge	watch-01	ARG1	participate-01	w	p	
+# ::edge	bike	mod	nude	b	n	
+# ::edge	ride-01	ARG1	bike	r	b	
+# ::edge	participate-01	ARG1	ride-01	p	r	
+# ::edge	ride-01	ARG0	person	r	p3	
+(p2 / person
+    :ARG0-of (w / watch-01
+        :ARG1 (p / participate-01
+            :ARG0 (p3 / person)
+            :ARG1 (r / ride-01
+                :ARG0 p3
+                :ARG1 (b / bike
+                    :mod (n / nude))))))

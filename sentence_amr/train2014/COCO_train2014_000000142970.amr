@@ -1,0 +1,28 @@
+# ::tok Small Pizza on plate partially eaten , with fork and knife visible .
+# ::node	s3	small	0-1
+# ::node	s2	slice	1-2
+# ::node	p2	plate	3-4
+# ::node	p	part	4-5
+# ::node	e	eat-01	5-6
+# ::node	f	fork	8-9
+# ::node	a	and	9-10
+# ::node	k	knife	10-11
+# ::node	s	see-01	11-12
+# ::root	e	eat-01
+# ::edge	slice	mod	small	s2	s3	
+# ::edge	slice	location	plate	s2	p2	
+# ::edge	eat-01	degree	part	e	p	
+# ::edge	eat-01	ARG1	slice	e	s2	
+# ::edge	and	op1	fork	a	f	
+# ::edge	and	op2	knife	a	k	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	eat-01	manner	see-01	e	s	
+(e / eat-01
+    :ARG1 (s2 / slice
+        :location (p2 / plate)
+        :mod (s3 / small))
+    :degree (p / part)
+    :manner (s / see-01
+        :ARG1 (a / and
+            :op1 (f / fork)
+            :op2 (k / knife))))

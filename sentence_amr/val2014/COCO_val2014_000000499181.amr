@@ -1,0 +1,32 @@
+# ::tok A self service parking lot with a building behind it and an intersection in front of it .
+# ::node	s	self	1-2
+# ::node	s2	serve-01	2-3
+# ::node	p	park-01	3-4
+# ::node	l	lot	4-5
+# ::node	b2	building	7-8
+# ::node	b	behind	8-9
+# ::node	a	and	10-11
+# ::node	i2	intersect-01	12-13
+# ::node	i	in-front-of	14-15
+# ::root	l	lot
+# ::edge	serve-01	ARG1	self	s2	s	
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	lot	purpose	serve-01	l	s2	
+# ::edge	building	location	behind	b2	b	
+# ::edge	behind	op1	lot	b	l	
+# ::edge	and	op1	building	a	b2	
+# ::edge	lot	location-of	and	l	a	
+# ::edge	and	op2	intersect-01	a	i2	
+# ::edge	intersect-01	location	in-front-of	i2	i	
+# ::edge	in-front-of	op1	lot	i	l	
+(l / lot
+    :purpose (p / park-01)
+    :purpose (s2 / serve-01
+        :ARG1 (s / self))
+    :location-of (a / and
+        :op1 (b2 / building
+            :location (b / behind
+                :op1 l))
+        :op2 (i2 / intersect-01
+            :location (i / in-front-of
+                :op1 l))))

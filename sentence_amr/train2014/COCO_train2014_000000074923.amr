@@ -1,0 +1,37 @@
+# ::tok a group of baseball players in uniform standing behind a wire mesh gate on a dirt surface .
+# ::node	g2	group-01	1-2
+# ::node	b	baseball	3-4
+# ::node	p	person	4-5
+# ::node	p2	play-01	4-5
+# ::node	u	uniform	6-7
+# ::node	s	stand-01	7-8
+# ::node	b2	behind	8-9
+# ::node	w	wire	10-11
+# ::node	m	mesh	11-12
+# ::node	g	gate	12-13
+# ::node	d	dirt	15-16
+# ::node	s2	surface	16-17
+# ::root	s	stand-01
+# ::edge	group-01	ARG1	person	g2	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	person	mod	uniform	p	u	
+# ::edge	stand-01	ARG1	group-01	s	g2	
+# ::edge	stand-01	ARG2	behind	s	b2	
+# ::edge	mesh	consist-of	wire	m	w	
+# ::edge	gate	mod	mesh	g	m	
+# ::edge	behind	op1	gate	b2	g	
+# ::edge	surface	consist-of	dirt	s2	d	
+# ::edge	gate	location	surface	g	s2	
+(s / stand-01
+    :ARG1 (g2 / group-01
+        :ARG1 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b / baseball))
+            :mod (u / uniform)))
+    :ARG2 (b2 / behind
+        :op1 (g / gate
+            :location (s2 / surface
+                :consist-of (d / dirt))
+            :mod (m / mesh
+                :consist-of (w / wire)))))

@@ -1,0 +1,31 @@
+# ::tok A man watches another man play Wii in the living room .
+# ::node	m	man	1-2
+# ::node	w	watch-01	2-3
+# ::node	a	another	3-4
+# ::node	m2	man	4-5
+# ::node	p	play-01	5-6
+# ::node	p2	product	6-7
+# ::node	n	name	6-7
+# ::node	0	Wii	6-7
+# ::node	l	living	9-10
+# ::node	r	room	10-11
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	man	w	m	
+# ::edge	man	mod	another	m2	a	
+# ::edge	play-01	ARG0	man	p	m2	
+# ::edge	watch-01	ARG1	play-01	w	p	
+# ::edge	play-01	ARG1	product	p	p2	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	room	mod	living	r	l	
+# ::edge	play-01	location	room	p	r	
+(w / watch-01
+    :ARG0 (m / man)
+    :ARG1 (p / play-01
+        :ARG0 (m2 / man
+            :mod (a / another))
+        :ARG1 (p2 / product
+            :name (n / name
+                :op1 "Wii"))
+        :location (r / room
+            :mod (l / living))))

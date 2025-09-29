@@ -1,0 +1,25 @@
+# ::tok a number of people seated at a table with glasses of wine
+# ::node	n	number	1-2
+# ::node	p	person	3-4
+# ::node	s	seat-01	4-5
+# ::node	t	table	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	g	glasses	9-10
+# ::node	0	1	9-10
+# ::node	w	wine	11-12
+# ::root	p	person
+# ::edge	person	quant	number	p	n	
+# ::edge	person	ARG1-of	seat-01	p	s	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	volume-quantity	unit	glasses	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	person	accompanier	wine	p	w	
+(p / person
+    :quant (n / number)
+    :ARG1-of (s / seat-01
+        :ARG2 (t / table))
+    :accompanier (w / wine
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glasses))))

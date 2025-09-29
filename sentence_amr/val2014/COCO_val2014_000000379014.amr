@@ -1,0 +1,45 @@
+# ::tok A picture of a city at night with no people a traffic light and assorted fences and poles .
+# ::node	p2	picture-01	1-2
+# ::node	c	city	4-5
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	h	have-03	7-8
+# ::node	0	-	8-9
+# ::node	p	person	9-10
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::node	a3	assorted	14-15
+# ::node	f	fence	15-16
+# ::node	a	and	16-17
+# ::node	a2	and	16-17
+# ::node	p3	pole	17-18
+# ::root	p2	picture-01
+# ::edge	picture-01	ARG1	city	p2	c	
+# ::edge	city	time	date-entity	c	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	city	ARG0-of	have-03	c	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	person	h	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	and	a	a2	
+# ::edge	and	op1	fence	a2	f	
+# ::edge	and	mod	assorted	a2	a3	
+# ::edge	and	op2	pole	a2	p3	
+(p2 / picture-01
+    :ARG1 (c / city
+        :ARG0-of (h / have-03
+            :ARG1 (p / person)
+            :ARG1 (a / and
+                :op1 (l / light
+                    :mod (t / traffic))
+                :op2 l
+                :op3 (a2 / and
+                    :mod (a3 / assorted)
+                    :op1 (f / fence)
+                    :op2 (p3 / pole)))
+            :polarity -)
+        :time (d / date-entity
+            :dayperiod (n / night))))

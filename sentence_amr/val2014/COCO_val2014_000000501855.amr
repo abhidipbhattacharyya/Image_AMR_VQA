@@ -1,0 +1,46 @@
+# ::tok A commercial kitchen with stainless steel worktable and appliances including refrigerator , deep fryer , and gas stove .
+# ::node	c	commerce	1-2
+# ::node	k	kitchen	2-3
+# ::node	s	stainless	4-5
+# ::node	s2	steel	5-6
+# ::node	w	worktable	6-7
+# ::node	a	and	7-8
+# ::node	a3	appliance	8-9
+# ::node	i	include-01	9-10
+# ::node	r	refrigerator	10-11
+# ::node	a2	and	11-12
+# ::node	d	deep-02	12-13
+# ::node	t	thing	13-14
+# ::node	f	fry-01	13-14
+# ::node	g	gas	16-17
+# ::node	s3	stove	17-18
+# ::root	k	kitchen
+# ::edge	kitchen	mod	commerce	k	c	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	worktable	mod	steel	w	s2	
+# ::edge	and	op1	worktable	a	w	
+# ::edge	kitchen	part	and	k	a	
+# ::edge	and	op2	appliance	a	a3	
+# ::edge	appliance	ARG2-of	include-01	a3	i	
+# ::edge	and	op1	refrigerator	a2	r	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op2	thing	a2	t	
+# ::edge	thing	ARG0-of	fry-01	t	f	
+# ::edge	fry-01	ARG1-of	deep-02	f	d	
+# ::edge	stove	mod	gas	s3	g	
+# ::edge	and	op3	stove	a2	s3	
+(k / kitchen
+    :mod (c / commerce)
+    :part (a / and
+        :op1 (w / worktable
+            :mod (s2 / steel
+                :mod (s / stainless)))
+        :op2 (a3 / appliance
+            :ARG2-of (i / include-01
+                :ARG1 (a2 / and
+                    :op1 (r / refrigerator)
+                    :op2 (t / thing
+                        :ARG0-of (f / fry-01
+                            :ARG1-of (d / deep-02)))
+                    :op3 (s3 / stove
+                        :mod (g / gas)))))))

@@ -1,0 +1,35 @@
+# ::tok Kids sitting and walking on the grass .
+# ::node	k	kid	0-1
+# ::node	s	sit-01	1-2
+# ::node	a	and	2-3
+# ::node	w	walk-01	3-4
+# ::node	g	grass	6-7
+# ::root	a	and
+# ::edge	sit-01	ARG1	kid	s	k	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG0	kid	w	k	
+# ::edge	walk-01	ARG2	grass	w	g	
+# ::edge	sit-01	ARG2	grass	s	g	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (k / kid)
+        :ARG2 (g / grass))
+    :op2 (w / walk-01
+        :ARG0 k
+        :ARG2 g))
+
+
+# ::tok One is hoding the others foot .
+# ::node	o	one	0-1
+# ::node	e	export-01	2-3
+# ::node	o2	other	4-5
+# ::node	f	foot	5-6
+# ::root	e	export-01
+# ::edge	export-01	ARG0	one	e	o	
+# ::edge	foot	part-of	other	f	o2	
+# ::edge	export-01	ARG1	foot	e	f	
+(e / export-01
+    :ARG0 (o / one)
+    :ARG1 (f / foot
+        :part-of (o2 / other)))

@@ -1,0 +1,56 @@
+# ::tok A woman softball player bending to pick the ball up as a second woman runs past her and people watch from metal bleachers .
+# ::node	w2	woman	1-2
+# ::node	s	softball	2-3
+# ::node	p4	play-01	3-4
+# ::node	b2	bend-01	4-5
+# ::node	p3	pick-up-04	6-7
+# ::node	b	ball	8-9
+# ::node	o	ordinal-entity	12-13
+# ::node	0	2	12-13
+# ::node	w3	woman	13-14
+# ::node	r	run-02	14-15
+# ::node	p	past	15-16
+# ::node	a	and	17-18
+# ::node	p2	person	18-19
+# ::node	w	watch-01	19-20
+# ::node	m	metal	21-22
+# ::node	f	field	22-23
+# ::node	b3	bleach-01	22-23
+# ::root	a	and
+# ::edge	play-01	ARG1	softball	p4	s	
+# ::edge	woman	ARG0-of	play-01	w2	p4	
+# ::edge	bend-01	ARG0	woman	b2	w2	
+# ::edge	bend-01	purpose	pick-up-04	b2	p3	
+# ::edge	pick-up-04	ARG0	woman	p3	w2	
+# ::edge	pick-up-04	ARG1	ball	p3	b	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	woman	ord	ordinal-entity	w3	o	
+# ::edge	run-02	ARG0	woman	r	w3	
+# ::edge	bend-01	time	run-02	b2	r	
+# ::edge	run-02	path	past	r	p	
+# ::edge	past	op1	woman	p	w2	
+# ::edge	and	op1	bend-01	a	b2	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	field	mod	metal	f	m	
+# ::edge	watch-01	source	field	w	f	
+# ::edge	field	ARG0-of	bleach-01	f	b3	
+(a / and
+    :op1 (b2 / bend-01
+        :purpose (p3 / pick-up-04
+            :ARG0 (w2 / woman
+                :ARG0-of (p4 / play-01
+                    :ARG1 (s / softball)))
+            :ARG1 (b / ball))
+        :ARG0 w2
+        :time (r / run-02
+            :ARG0 (w3 / woman
+                :ord (o / ordinal-entity
+                    :value 2))
+            :path (p / past
+                :op1 w2)))
+    :op2 (w / watch-01
+        :ARG0 (p2 / person)
+        :source (f / field
+            :ARG0-of (b3 / bleach-01)
+            :mod (m / metal))))

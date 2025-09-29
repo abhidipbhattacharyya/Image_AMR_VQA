@@ -1,0 +1,28 @@
+# ::tok two street signs with one pointing towards the right next to a building .
+# ::node	0	2	0-1
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	s2	sign	2-3
+# ::node	i	include-91	4-5
+# ::node	p	point-01	5-6
+# ::node	r	right	8-9
+# ::node	n	next-to	9-10
+# ::node	b	building	12-13
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	quant	2	s	0	
+# ::edge	include-91	ARG1	sign	i	s2	
+# ::edge	sign	ARG2-of	include-91	s	i	
+# ::edge	sign	ARG0-of	point-01	s2	p	
+# ::edge	next-to	mod	right	n	r	
+# ::edge	point-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	building	n	b	
+(s / sign
+    :quant 2
+    :ARG2-of (i / include-91
+        :ARG1 (s2 / sign
+            :ARG0-of (p / point-01
+                :ARG2 (n / next-to
+                    :mod (r / right)
+                    :op1 (b / building)))))
+    :mod (s3 / street))

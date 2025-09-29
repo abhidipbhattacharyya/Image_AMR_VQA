@@ -1,0 +1,30 @@
+# ::tok A shopping cart is propped on top of a street sign , making the sign start to collapse .
+# ::node	s	shop-01	1-2
+# ::node	c	cart	2-3
+# ::node	p	prop-up-01	4-5
+# ::node	t	top	6-7
+# ::node	s4	street	9-10
+# ::node	s2	sign	10-11
+# ::node	m	make-02	12-13
+# ::node	s3	start-01	15-16
+# ::node	c2	collapse-01	17-18
+# ::root	p	prop-up-01
+# ::edge	cart	purpose	shop-01	c	s	
+# ::edge	prop-up-01	ARG1	cart	p	c	
+# ::edge	prop-up-01	ARG2	top	p	t	
+# ::edge	sign	location	street	s2	s4	
+# ::edge	top	op1	sign	t	s2	
+# ::edge	prop-up-01	ARG0-of	make-02	p	m	
+# ::edge	make-02	ARG1	start-01	m	s3	
+# ::edge	start-01	ARG1	collapse-01	s3	c2	
+# ::edge	collapse-01	ARG1	sign	c2	s2	
+(p / prop-up-01
+    :ARG0-of (m / make-02
+        :ARG1 (s3 / start-01
+            :ARG1 (c2 / collapse-01
+                :ARG1 (s2 / sign
+                    :location (s4 / street)))))
+    :ARG1 (c / cart
+        :purpose (s / shop-01))
+    :ARG2 (t / top
+        :op1 s2))

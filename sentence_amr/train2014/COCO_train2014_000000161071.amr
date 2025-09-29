@@ -1,0 +1,34 @@
+# ::tok A teddy bear shop is equipped with a door guard teddy and a neighbor teddy above .
+# ::node	t	teddy	1-2
+# ::node	b	bear	2-3
+# ::node	s	shop	3-4
+# ::node	e	equip-01	5-6
+# ::node	d	door	8-9
+# ::node	g	guard-01	9-10
+# ::node	t2	teddy	10-11
+# ::node	a2	and	11-12
+# ::node	n	neighbor-01	13-14
+# ::node	t3	teddy	14-15
+# ::node	a	above	15-16
+# ::root	e	equip-01
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	shop	mod	bear	s	b	
+# ::edge	equip-01	ARG1	shop	e	s	
+# ::edge	guard-01	ARG1	door	g	d	
+# ::edge	teddy	ARG0-of	guard-01	t2	g	
+# ::edge	and	op1	teddy	a2	t2	
+# ::edge	equip-01	ARG2	and	e	a2	
+# ::edge	teddy	ARG1-of	neighbor-01	t3	n	
+# ::edge	and	op2	teddy	a2	t3	
+# ::edge	teddy	location	above	t3	a	
+(e / equip-01
+    :ARG1 (s / shop
+        :mod (b / bear
+            :mod (t / teddy)))
+    :ARG2 (a2 / and
+        :op1 (t2 / teddy
+            :ARG0-of (g / guard-01
+                :ARG1 (d / door)))
+        :op2 (t3 / teddy
+            :ARG1-of (n / neighbor-01)
+            :location (a / above))))

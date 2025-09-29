@@ -1,0 +1,42 @@
+# ::tok You can see the corner of a keyboard along with another plastic device that has Microsoft printed on it .
+# ::node	y	you	0-1
+# ::node	p2	possible-01	1-2
+# ::node	s	see-01	2-3
+# ::node	c2	corner	4-5
+# ::node	k	keyboard	7-8
+# ::node	a	and	9-10
+# ::node	a2	another	10-11
+# ::node	p	plastic	11-12
+# ::node	d	device	12-13
+# ::node	c	company	15-16
+# ::node	n	name	15-16
+# ::node	0	Microsoft	15-16
+# ::node	p3	print-01	16-17
+# ::root	p2	possible-01
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	corner	part-of	keyboard	c2	k	
+# ::edge	and	op1	corner	a	c2	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	device	consist-of	plastic	d	p	
+# ::edge	device	mod	another	d	a2	
+# ::edge	and	op2	device	a	d	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Microsoft	n	0	
+# ::edge	print-01	ARG0	company	p3	c	
+# ::edge	device	ARG1-of	print-01	d	p3	
+# ::edge	print-01	location	device	p3	d	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG0 (y / you)
+        :ARG1 (a / and
+            :op1 (c2 / corner
+                :part-of (k / keyboard))
+            :op2 (d / device
+                :ARG1-of (p3 / print-01
+                    :ARG0 (c / company
+                        :name (n / name
+                            :op1 "Microsoft"))
+                    :location d)
+                :consist-of (p / plastic)
+                :mod (a2 / another)))))

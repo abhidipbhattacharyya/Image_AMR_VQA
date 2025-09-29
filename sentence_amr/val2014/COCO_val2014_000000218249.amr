@@ -1,0 +1,31 @@
+# ::tok A tray topped with a chicken sandwich next to a cup of fries .
+# ::node	t2	tray	1-2
+# ::node	t	top-01	2-3
+# ::node	c	chicken	5-6
+# ::node	s	sandwich	6-7
+# ::node	n	next-to	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c2	cup	10-11
+# ::node	f	fry-01	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	tray	ARG1-of	top-01	t2	t	
+# ::edge	sandwich	mod	chicken	s	c	
+# ::edge	top-01	ARG2	sandwich	t	s	
+# ::edge	tray	location	next-to	t2	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	fry-01	quant	volume-quantity	f	v	
+# ::edge	next-to	op1	fry-01	n	f	
+# ::edge	event	mod	tray	e	t2	
+(e / event
+    :mod (t2 / tray
+        :ARG1-of (t / top-01
+            :ARG2 (s / sandwich
+                :mod (c / chicken)))
+        :location (n / next-to
+            :op1 (f / fry-01
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup))))))

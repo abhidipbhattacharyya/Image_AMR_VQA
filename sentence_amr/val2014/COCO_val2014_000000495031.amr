@@ -1,0 +1,42 @@
+# ::tok If you ca n't hit the tennis ball with a racket , try to catch it in your hand .
+# ::node	y	you	1-2
+# ::node	p	possible-01	2-3
+# ::node	0	-	3-4
+# ::node	h2	hit-01	4-5
+# ::node	t	tennis	6-7
+# ::node	b	ball	7-8
+# ::node	r	racket	10-11
+# ::node	t2	try-01	12-13
+# ::node	1	imperative	12-13
+# ::node	c	catch-03	14-15
+# ::node	h	hand	18-19
+# ::root	t2	try-01
+# ::edge	possible-01	polarity	-	p	0	
+# ::edge	possible-01	ARG1	hit-01	p	h2	
+# ::edge	hit-01	ARG0	you	h2	y	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	hit-01	ARG1	ball	h2	b	
+# ::edge	hit-01	instrument	racket	h2	r	
+# ::edge	try-01	condition	possible-01	t2	p	
+# ::edge	try-01	ARG0	you	t2	y	
+# ::edge	try-01	mode	imperative	t2	1	
+# ::edge	try-01	ARG1	catch-03	t2	c	
+# ::edge	catch-03	ARG1	ball	c	b	
+# ::edge	catch-03	ARG0	you	c	y	
+# ::edge	catch-03	location	hand	c	h	
+# ::edge	you	part	hand	y	h	
+(t2 / try-01
+    :ARG0 (y / you
+        :part (h / hand))
+    :ARG1 (c / catch-03
+        :ARG0 y
+        :ARG1 (b / ball
+            :mod (t / tennis))
+        :location h)
+    :condition (p / possible-01
+        :ARG1 (h2 / hit-01
+            :ARG0 y
+            :ARG1 b
+            :instrument (r / racket))
+        :polarity -)
+    :mode imperative)

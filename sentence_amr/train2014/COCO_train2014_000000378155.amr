@@ -1,0 +1,30 @@
+# ::tok A multi direction parking sign in front or a large building .
+# ::node	m	multiple	1-2
+# ::node	d	direction	2-3
+# ::node	p	park-01	3-4
+# ::node	s	sign	4-5
+# ::node	i	in-front-of	6-7
+# ::node	o	or	7-8
+# ::node	b	be-located-at-91	8-9
+# ::node	l	large	9-10
+# ::node	b2	building	10-11
+# ::root	o	or
+# ::edge	direction	quant	multiple	d	m	
+# ::edge	sign	purpose	park-01	s	p	
+# ::edge	sign	mod	direction	s	d	
+# ::edge	or	op1	in-front-of	o	i	
+# ::edge	or	op2	be-located-at-91	o	b	
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	be-located-at-91	ARG1	sign	b	s	
+# ::edge	building	mod	large	b2	l	
+# ::edge	or	op2	building	o	b2	
+(o / or
+    :op1 (i / in-front-of)
+    :op2 (b / be-located-at-91
+        :ARG1 (s / sign
+            :purpose (p / park-01)
+            :mod (d / direction
+                :quant (m / multiple)))
+        :ARG2 i)
+    :op2 (b2 / building
+        :mod (l / large)))

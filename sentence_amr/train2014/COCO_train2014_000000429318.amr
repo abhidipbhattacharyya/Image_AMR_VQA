@@ -1,0 +1,28 @@
+# ::tok many different wooden boxes suitcases stacked on top of each other
+# ::node	m	many	0-1
+# ::node	d	differ-02	1-2
+# ::node	w	wood	2-3
+# ::node	b	box	3-4
+# ::node	s2	suitcase	4-5
+# ::node	s	stack-01	5-6
+# ::node	t	top	7-8
+# ::node	e	each	9-10
+# ::node	o	other	10-11
+# ::root	s	stack-01
+# ::edge	box	consist-of	wood	b	w	
+# ::edge	suitcase	mod	box	s2	b	
+# ::edge	suitcase	ARG1-of	differ-02	s2	d	
+# ::edge	suitcase	quant	many	s2	m	
+# ::edge	stack-01	ARG1	suitcase	s	s2	
+# ::edge	stack-01	ARG2	top	s	t	
+# ::edge	other	mod	each	o	e	
+# ::edge	top	op1	other	t	o	
+(s / stack-01
+    :ARG1 (s2 / suitcase
+        :quant (m / many)
+        :ARG1-of (d / differ-02)
+        :mod (b / box
+            :consist-of (w / wood)))
+    :ARG2 (t / top
+        :op1 (o / other
+            :mod (e / each))))

@@ -1,0 +1,37 @@
+# ::tok Various street signs such as parking and no parking as well as a stop sign is attached to a telephone pole .
+# ::node	v	various	0-1
+# ::node	s4	street	1-2
+# ::node	s	sign	2-3
+# ::node	p	park-01	5-6
+# ::node	a	and	6-7
+# ::node	0	-	7-8
+# ::node	p2	park-01	8-9
+# ::node	s3	stop-01	13-14
+# ::node	s2	sign	14-15
+# ::node	a2	attach-01	16-17
+# ::node	t	telephone	19-20
+# ::node	p3	pole	20-21
+# ::root	a2	attach-01
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	mod	various	s	v	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	sign	example	and	s	a	
+# ::edge	park-01	polarity	-	p2	0	
+# ::edge	and	op2	park-01	a	p2	
+# ::edge	sign	topic	stop-01	s2	s3	
+# ::edge	and	op3	sign	a	s2	
+# ::edge	attach-01	ARG1	sign	a2	s	
+# ::edge	pole	mod	telephone	p3	t	
+# ::edge	attach-01	ARG2	pole	a2	p3	
+(a2 / attach-01
+    :ARG1 (s / sign
+        :example (a / and
+            :op1 (p / park-01)
+            :op2 (p2 / park-01
+                :polarity -)
+            :op3 (s2 / sign
+                :topic (s3 / stop-01)))
+        :mod (s4 / street)
+        :mod (v / various))
+    :ARG2 (p3 / pole
+        :mod (t / telephone)))

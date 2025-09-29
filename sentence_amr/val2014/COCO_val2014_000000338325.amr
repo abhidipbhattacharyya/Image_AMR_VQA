@@ -1,0 +1,27 @@
+# ::tok A striped plane flying up into the sky as the sun shines behind it .
+# ::node	s3	stripe	1-2
+# ::node	p	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	u	up-03	4-5
+# ::node	s2	sky	7-8
+# ::node	s4	sun	10-11
+# ::node	s	shine-01	11-12
+# ::node	b	behind	12-13
+# ::root	p	plane
+# ::edge	plane	mod	stripe	p	s3	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	direction	up-03	f	u	
+# ::edge	fly-01	destination	sky	f	s2	
+# ::edge	shine-01	ARG1	sun	s	s4	
+# ::edge	fly-01	time	shine-01	f	s	
+# ::edge	shine-01	location	behind	s	b	
+# ::edge	behind	op1	plane	b	p	
+(p / plane
+    :ARG2-of (f / fly-01
+        :destination (s2 / sky)
+        :direction (u / up-03)
+        :time (s / shine-01
+            :ARG1 (s4 / sun)
+            :location (b / behind
+                :op1 p)))
+    :mod (s3 / stripe))

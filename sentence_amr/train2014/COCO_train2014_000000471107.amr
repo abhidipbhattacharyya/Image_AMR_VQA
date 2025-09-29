@@ -1,0 +1,28 @@
+# ::tok A stop sign standing at an intersection at night with a car passing by a house .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	s2	stand-01	3-4
+# ::node	i	intersect-01	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::node	c	car	11-12
+# ::node	p	pass-by-17	12-13
+# ::node	h	house	15-16
+# ::root	s2	stand-01
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	stand-01	ARG1	signal-07	s2	s	
+# ::edge	stand-01	ARG2	intersect-01	s2	i	
+# ::edge	stand-01	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	pass-by-17	ARG0	car	p	c	
+# ::edge	intersect-01	ARG1	pass-by-17	i	p	
+# ::edge	pass-by-17	ARG1	house	p	h	
+(s2 / stand-01
+    :ARG1 (s / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG2 (i / intersect-01
+        :ARG1 (p / pass-by-17
+            :ARG0 (c / car)
+            :ARG1 (h / house)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

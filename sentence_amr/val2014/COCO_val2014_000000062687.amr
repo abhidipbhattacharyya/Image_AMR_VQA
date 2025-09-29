@@ -1,0 +1,30 @@
+# ::tok Pedestrians hold umbrellas as they cross the street as snow starts to fall .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	h	hold-01	1-2
+# ::node	u	umbrella	2-3
+# ::node	c	cross-02	5-6
+# ::node	s3	street	7-8
+# ::node	s	snow	9-10
+# ::node	s2	start-01	10-11
+# ::node	f	fall-01	12-13
+# ::root	h	hold-01
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	hold-01	time	cross-02	h	c	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	cross-02	ARG1	street	c	s3	
+# ::edge	cross-02	time	start-01	c	s2	
+# ::edge	start-01	ARG1	fall-01	s2	f	
+# ::edge	fall-01	ARG1	snow	f	s	
+(h / hold-01
+    :ARG0 (p / person
+        :ARG0-of (w / walk-01))
+    :ARG1 (u / umbrella)
+    :time (c / cross-02
+        :ARG0 p
+        :ARG1 (s3 / street)
+        :time (s2 / start-01
+            :ARG1 (f / fall-01
+                :ARG1 (s / snow)))))

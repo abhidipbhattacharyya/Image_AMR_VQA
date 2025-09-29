@@ -1,0 +1,43 @@
+# ::tok Guys in the woods are looking at their phones , probably trying to use a gps feature .
+# ::node	g	guy	0-1
+# ::node	w	woods	3-4
+# ::node	l	look-01	5-6
+# ::node	p	phone	8-9
+# ::node	a	and	9-10
+# ::node	p2	probable	10-11
+# ::node	t	try-01	11-12
+# ::node	u	use-01	13-14
+# ::node	p3	product	15-16
+# ::node	n	name	15-16
+# ::node	0	Google	15-16
+# ::node	f	feature-01	16-17
+# ::root	a	and
+# ::edge	guy	location	woods	g	w	
+# ::edge	look-01	ARG0	guy	l	g	
+# ::edge	look-01	ARG1	phone	l	p	
+# ::edge	phone	poss	guy	p	g	
+# ::edge	and	op1	look-01	a	l	
+# ::edge	try-01	mod	probable	t	p2	
+# ::edge	and	op2	try-01	a	t	
+# ::edge	try-01	ARG0	guy	t	g	
+# ::edge	try-01	ARG1	use-01	t	u	
+# ::edge	use-01	ARG0	guy	u	g	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Google	n	0	
+# ::edge	feature-01	ARG1	product	f	p3	
+# ::edge	use-01	ARG1	feature-01	u	f	
+(a / and
+    :op1 (l / look-01
+        :ARG0 (g / guy
+            :location (w / woods))
+        :ARG1 (p / phone
+            :poss g))
+    :op2 (t / try-01
+        :ARG0 g
+        :ARG1 (u / use-01
+            :ARG0 g
+            :ARG1 (f / feature-01
+                :ARG1 (p3 / product
+                    :name (n / name
+                        :op1 "Google"))))
+        :mod (p2 / probable)))

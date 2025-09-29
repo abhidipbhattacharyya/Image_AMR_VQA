@@ -1,0 +1,37 @@
+# ::tok a person laying in a bed with a cat on their chest making the cat look like a long beard
+# ::node	p	person	1-2
+# ::node	l	lay-01	2-3
+# ::node	b2	bed	5-6
+# ::node	h	have-03	6-7
+# ::node	c	cat	8-9
+# ::node	c2	chest	11-12
+# ::node	m	make-02	12-13
+# ::node	l3	look-02	15-16
+# ::node	l2	long-03	18-19
+# ::node	b	beard	19-20
+# ::root	m	make-02
+# ::edge	lay-01	ARG1	person	l	p	
+# ::edge	lay-01	ARG2	bed	l	b2	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	cat	h	c	
+# ::edge	have-03	location	chest	h	c2	
+# ::edge	person	part	chest	p	c2	
+# ::edge	make-02	ARG0	person	m	p	
+# ::edge	make-02	ARG1	look-02	m	l3	
+# ::edge	look-02	ARG0	cat	l3	c	
+# ::edge	beard	ARG1-of	long-03	b	l2	
+# ::edge	look-02	ARG1	beard	l3	b	
+# ::edge	make-02	rel	lay-01	m	l	
+(m / make-02
+    :ARG0 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (c / cat)
+            :location (c2 / chest))
+        :part c2)
+    :ARG1 (l3 / look-02
+        :ARG0 c
+        :ARG1 (b / beard
+            :ARG1-of (l2 / long-03)))
+    :rel (l / lay-01
+        :ARG1 p
+        :ARG2 (b2 / bed)))

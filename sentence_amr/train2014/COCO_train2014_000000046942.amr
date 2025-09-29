@@ -1,0 +1,21 @@
+# ::tok A person on a moving sidewalk pulling a suitcase on wheels .
+# ::node	p	person	1-2
+# ::node	m	move-01	4-5
+# ::node	s	sidewalk	5-6
+# ::node	p2	pull-01	6-7
+# ::node	s2	suitcase	8-9
+# ::node	w	wheel	10-11
+# ::root	p	person
+# ::edge	sidewalk	ARG1-of	move-01	s	m	
+# ::edge	person	location	sidewalk	p	s	
+# ::edge	person	ARG0-of	pull-01	p	p2	
+# ::edge	pull-01	ARG1	suitcase	p2	s2	
+# ::edge	suitcase	part	wheel	s2	w	
+# ::edge	pull-01	ARG2	wheel	p2	w	
+(p / person
+    :ARG0-of (p2 / pull-01
+        :ARG1 (s2 / suitcase
+            :part (w / wheel))
+        :ARG2 w)
+    :location (s / sidewalk
+        :ARG1-of (m / move-01)))

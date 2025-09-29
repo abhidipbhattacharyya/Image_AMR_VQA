@@ -1,0 +1,24 @@
+# ::tok A woman uses a ladle to baste a turkey roasting in the oven .
+# ::node	w	woman	1-2
+# ::node	u	use-01	2-3
+# ::node	l	ladle	4-5
+# ::node	r	roast-01	6-7
+# ::node	t	turkey	8-9
+# ::node	r2	roast-01	9-10
+# ::node	o	oven	12-13
+# ::root	u	use-01
+# ::edge	use-01	ARG0	woman	u	w	
+# ::edge	use-01	ARG1	ladle	u	l	
+# ::edge	use-01	ARG2	roast-01	u	r	
+# ::edge	roast-01	ARG0	woman	r	w	
+# ::edge	roast-01	ARG1	turkey	r	t	
+# ::edge	turkey	ARG1-of	roast-01	t	r2	
+# ::edge	roast-01	location	oven	r2	o	
+(u / use-01
+    :ARG0 (w / woman)
+    :ARG1 (l / ladle)
+    :ARG2 (r / roast-01
+        :ARG0 w
+        :ARG1 (t / turkey
+            :ARG1-of (r2 / roast-01
+                :location (o / oven)))))

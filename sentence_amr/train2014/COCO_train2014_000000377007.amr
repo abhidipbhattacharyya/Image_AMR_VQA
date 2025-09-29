@@ -1,0 +1,31 @@
+# ::tok Apple computer products with two monitors sitting on a desk .
+# ::node	c	company	0-1
+# ::node	n	name	0-1
+# ::node	1	Apple	0-1
+# ::node	c2	computer	1-2
+# ::node	p	product	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	m	monitor	5-6
+# ::node	s	sit-01	6-7
+# ::node	d	desk	9-10
+# ::root	p	product
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Apple	n	1	
+# ::edge	product	mod	computer	p	c2	
+# ::edge	product	mod	company	p	c	
+# ::edge	product	ARG0-of	have-03	p	h	
+# ::edge	monitor	quant	2	m	0	
+# ::edge	have-03	ARG1	monitor	h	m	
+# ::edge	monitor	ARG1-of	sit-01	m	s	
+# ::edge	sit-01	ARG2	desk	s	d	
+(p / product
+    :ARG0-of (h / have-03
+        :ARG1 (m / monitor
+            :quant 2
+            :ARG1-of (s / sit-01
+                :ARG2 (d / desk))))
+    :mod (c2 / computer)
+    :mod (c / company
+        :name (n / name
+            :op1 "Apple")))

@@ -1,0 +1,35 @@
+# ::tok A white bathroom , tiled floor to ceiling , with a dirtier toilet .
+# ::node	w	white-03	1-2
+# ::node	b	bathroom	2-3
+# ::node	t	tile-01	4-5
+# ::node	f	floor	5-6
+# ::node	c	ceiling	7-8
+# ::node	h	have-03	9-10
+# ::node	h2	have-degree-91	11-12
+# ::node	d	dry-08	11-12
+# ::node	m	more	11-12
+# ::node	t2	toilet	12-13
+# ::root	h	have-03
+# ::edge	bathroom	ARG1-of	white-03	b	w	
+# ::edge	bathroom	ARG1-of	tile-01	b	t	
+# ::edge	tile-01	prep-from	floor	t	f	
+# ::edge	floor	prep-to	ceiling	f	c	
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	have-degree-91	ARG4	have-03	h2	h	
+# ::edge	have-degree-91	ARG2	dry-08	h2	d	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	dry-08	ARG1	toilet	d	t2	
+# ::edge	toilet	ARG1-of	have-degree-91	t2	h2	
+# ::edge	have-03	ARG1	toilet	h	t2	
+(h / have-03
+    :ARG0 (b / bathroom
+        :ARG1-of (w / white-03)
+        :ARG1-of (t / tile-01
+            :prep-from (f / floor
+                :prep-to (c / ceiling))))
+    :ARG1 (t2 / toilet
+        :ARG1-of (h2 / have-degree-91
+            :ARG2 (d / dry-08
+                :ARG1 t2)
+            :ARG3 (m / more)
+            :ARG4 h)))

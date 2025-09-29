@@ -1,0 +1,26 @@
+# ::tok Several different trains are either moving or stopped on the tracks .
+# ::node	s	several	0-1
+# ::node	d	differ-02	1-2
+# ::node	t2	train	2-3
+# ::node	m	move-01	5-6
+# ::node	o	or	6-7
+# ::node	s2	stop-01	7-8
+# ::node	t	track	10-11
+# ::root	o	or
+# ::edge	train	ARG1-of	differ-02	t2	d	
+# ::edge	train	quant	several	t2	s	
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	or	op1	move-01	o	m	
+# ::edge	or	op2	stop-01	o	s2	
+# ::edge	stop-01	ARG1	train	s2	t2	
+# ::edge	or	location	track	o	t	
+# ::edge	move-01	location	track	m	t	
+(o / or
+    :location (t / track)
+    :op1 (m / move-01
+        :ARG1 (t2 / train
+            :quant (s / several)
+            :ARG1-of (d / differ-02))
+        :location t)
+    :op2 (s2 / stop-01
+        :ARG1 t2))

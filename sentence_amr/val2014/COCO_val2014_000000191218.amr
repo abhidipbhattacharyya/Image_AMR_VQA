@@ -1,0 +1,49 @@
+# ::tok A Philly steak sandwich with sliced beef , onions , and cheese on a bun .
+# ::node	c2	city	1-2
+# ::node	n	name	1-2
+# ::node	1	Philly	1-2
+# ::node	s3	steak	2-3
+# ::node	s	sandwich	3-4
+# ::node	s2	slice-01	5-6
+# ::node	b	beef	6-7
+# ::node	a	and	7-8
+# ::node	v	variable	8-9
+# ::node	n2	name	8-9
+# ::node	v2	variable	8-9
+# ::node	n3	name	8-9
+# ::node	0	Marine	8-9
+# ::node	2	prime	8-9
+# ::node	c	cheese	11-12
+# ::node	b2	bun	14-15
+# ::root	s	sandwich
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Philly	n	1	
+# ::edge	sandwich	mod	steak	s	s3	
+# ::edge	sandwich	mod	city	s	c2	
+# ::edge	beef	ARG1-of	slice-01	b	s2	
+# ::edge	and	op1	beef	a	b	
+# ::edge	sandwich	accompanier	and	s	a	
+# ::edge	sandwich	mod	variable	s	v	
+# ::edge	variable	name	name	v	n2	
+# ::edge	variable	name	name	v2	n3	
+# ::edge	name	op1	Marine	n2	0	
+# ::edge	name	op2	prime	n3	2	
+# ::edge	cheese	mod	variable	c	v2	
+# ::edge	and	op3	cheese	a	c	
+# ::edge	sandwich	prep-on	bun	s	b2	
+(s / sandwich
+    :accompanier (a / and
+        :op1 (b / beef
+            :ARG1-of (s2 / slice-01))
+        :op3 (c / cheese
+            :mod (v2 / variable
+                :name (n3 / name
+                    :op2 "prime"))))
+    :mod (s3 / steak)
+    :mod (c2 / city
+        :name (n / name
+            :op1 "Philly"))
+    :mod (v / variable
+        :name (n2 / name
+            :op1 "Marine"))
+    :prep-on (b2 / bun))

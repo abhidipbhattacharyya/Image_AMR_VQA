@@ -1,0 +1,24 @@
+# ::tok All of the boats are tied to the shore awaiting for their owners .
+# ::node	a	all	0-1
+# ::node	b	boat	3-4
+# ::node	t	tie-01	5-6
+# ::node	s	shore	8-9
+# ::node	a2	await-01	9-10
+# ::node	p	person	12-13
+# ::node	o	own-01	12-13
+# ::root	t	tie-01
+# ::edge	boat	mod	all	b	a	
+# ::edge	tie-01	ARG1	boat	t	b	
+# ::edge	tie-01	ARG2	shore	t	s	
+# ::edge	boat	ARG1-of	await-01	b	a2	
+# ::edge	await-01	ARG2	person	a2	p	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	boat	o	b	
+(t / tie-01
+    :ARG1 (b / boat
+        :ARG1-of (a2 / await-01
+            :ARG2 (p / person
+                :ARG0-of (o / own-01
+                    :ARG1 b)))
+        :mod (a / all))
+    :ARG2 (s / shore))

@@ -1,0 +1,31 @@
+# ::tok A slice of cake is being served from a table where several bottle of beer are sitting .
+# ::node	s4	slice	1-2
+# ::node	c	cake	3-4
+# ::node	s	serve-02	6-7
+# ::node	t	table	9-10
+# ::node	s2	several	11-12
+# ::node	0	1	11-12
+# ::node	v	volume-quantity	12-13
+# ::node	b2	bottle	12-13
+# ::node	b	beer	14-15
+# ::node	s3	sit-01	16-17
+# ::root	s	serve-02
+# ::edge	slice	part-of	cake	s4	c	
+# ::edge	serve-02	ARG1	slice	s	s4	
+# ::edge	serve-02	source	table	s	t	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	several	op1	volume-quantity	s2	v	
+# ::edge	volume-quantity	unit	bottle	v	b2	
+# ::edge	beer	quant	several	b	s2	
+# ::edge	sit-01	ARG1	beer	s3	b	
+# ::edge	table	ARG2-of	sit-01	t	s3	
+(s / serve-02
+    :ARG1 (s4 / slice
+        :part-of (c / cake))
+    :source (t / table
+        :ARG2-of (s3 / sit-01
+            :ARG1 (b / beer
+                :quant (s2 / several
+                    :op1 (v / volume-quantity
+                        :quant 1
+                        :unit (b2 / bottle)))))))

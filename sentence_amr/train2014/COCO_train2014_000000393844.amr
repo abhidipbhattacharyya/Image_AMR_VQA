@@ -1,0 +1,27 @@
+# ::tok Some sheep are walking in the high grass and posing for a picture .
+# ::node	s2	some	0-1
+# ::node	s	sheep	1-2
+# ::node	w	walk-01	3-4
+# ::node	h	high-02	6-7
+# ::node	g	grass	7-8
+# ::node	a	and	8-9
+# ::node	p2	pose-01	9-10
+# ::node	p	picture	12-13
+# ::root	a	and
+# ::edge	sheep	quant	some	s	s2	
+# ::edge	walk-01	ARG0	sheep	w	s	
+# ::edge	grass	ARG1-of	high-02	g	h	
+# ::edge	walk-01	ARG2	grass	w	g	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	pose-01	a	p2	
+# ::edge	pose-01	ARG0	sheep	p2	s	
+# ::edge	pose-01	purpose	picture	p2	p	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (s / sheep
+            :quant (s2 / some))
+        :ARG2 (g / grass
+            :ARG1-of (h / high-02)))
+    :op2 (p2 / pose-01
+        :purpose (p / picture)
+        :ARG0 s))

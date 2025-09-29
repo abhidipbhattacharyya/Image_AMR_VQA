@@ -1,0 +1,25 @@
+# ::tok A multi car train parked on train tracks near trees .
+# ::node	m	multiple	1-2
+# ::node	c	car	2-3
+# ::node	t2	train	3-4
+# ::node	p	park-01	4-5
+# ::node	t3	train	6-7
+# ::node	t	track	7-8
+# ::node	n	near-02	8-9
+# ::node	t4	tree	9-10
+# ::root	p	park-01
+# ::edge	car	quant	multiple	c	m	
+# ::edge	train	mod	car	t2	c	
+# ::edge	park-01	ARG1	train	p	t2	
+# ::edge	track	mod	train	t	t3	
+# ::edge	park-01	ARG2	track	p	t	
+# ::edge	track	ARG1-of	near-02	t	n	
+# ::edge	near-02	ARG2	tree	n	t4	
+(p / park-01
+    :ARG1 (t2 / train
+        :mod (c / car
+            :quant (m / multiple)))
+    :ARG2 (t / track
+        :ARG1-of (n / near-02
+            :ARG2 (t4 / tree))
+        :mod (t3 / train)))

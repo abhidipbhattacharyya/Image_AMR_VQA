@@ -1,0 +1,36 @@
+# ::tok CARTOON DEPICTION OF A SNOW SKIER GOING DOWN THE SLOPES
+# ::node	c	city	0-1
+# ::node	n	name	0-1
+# ::node	o	ocean	0-1
+# ::node	p2	predict-01	1-2
+# ::node	s2	snow-01	4-5
+# ::node	p	person	5-6
+# ::node	s	ski-01	5-6
+# ::node	g	go-01	6-7
+# ::node	d	down-01	7-8
+# ::node	l	line	9-10
+# ::node	b	beach	9-10
+# ::root	p2	predict-01
+# ::edge	city	name	name	c	n	
+# ::edge	predict-01	ARG0	ocean	p2	o	
+# ::edge	person	mod	snow-01	p	s2	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	go-01	ARG1	person	g	p	
+# ::edge	predict-01	ARG1	go-01	p2	g	
+# ::edge	go-01	ARG3	ocean	g	o	
+# ::edge	go-01	direction	down-01	g	d	
+# ::edge	down-01	op1	line	d	l	
+# ::edge	line	location	beach	l	b	
+# ::edge	predict-01	rel	city	p2	c	
+(p2 / predict-01
+    :ARG0 (o / ocean)
+    :ARG1 (g / go-01
+        :ARG1 (p / person
+            :ARG0-of (s / ski-01)
+            :mod (s2 / snow-01))
+        :ARG3 o
+        :direction (d / down-01
+            :op1 (l / line
+                :location (b / beach))))
+    :rel (c / city
+        :name (n / name)))

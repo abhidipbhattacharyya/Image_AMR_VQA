@@ -1,0 +1,31 @@
+# ::tok Several people in chef hats stand around a shelf with bowls of food .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	c	chef	3-4
+# ::node	h	hat	4-5
+# ::node	s3	stand-01	5-6
+# ::node	a	around	6-7
+# ::node	s2	shelf	8-9
+# ::node	h2	have-03	9-10
+# ::node	p2	pound	10-11
+# ::node	f	food	12-13
+# ::root	s3	stand-01
+# ::edge	person	quant	several	p	s	
+# ::edge	hat	mod	chef	h	c	
+# ::edge	person	mod	hat	p	h	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	around	s3	a	
+# ::edge	around	op1	shelf	a	s2	
+# ::edge	person	ARG0-of	have-03	p	h2	
+# ::edge	food	quant	pound	f	p2	
+# ::edge	have-03	ARG1	food	h2	f	
+(s3 / stand-01
+    :ARG1 (p / person
+        :quant (s / several)
+        :ARG0-of (h2 / have-03
+            :ARG1 (f / food
+                :quant (p2 / pound)))
+        :mod (h / hat
+            :mod (c / chef)))
+    :ARG2 (a / around
+        :op1 (s2 / shelf)))

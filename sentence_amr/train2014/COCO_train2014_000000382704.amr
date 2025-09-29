@@ -1,0 +1,51 @@
+# ::tok A man stands in the distance with his leg up as another man crouches with his mitt and both men wear white uniforms .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	d	distant-02	5-6
+# ::node	l	leg	8-9
+# ::node	u2	up-03	9-10
+# ::node	a3	another	11-12
+# ::node	m2	man	12-13
+# ::node	c	crouch-01	13-14
+# ::node	m3	mitt	16-17
+# ::node	a	and	17-18
+# ::node	a2	and	17-18
+# ::node	w	wear-01	20-21
+# ::node	w2	white-03	21-22
+# ::node	u	uniform	22-23
+# ::root	a	and
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	distant-02	s	d	
+# ::edge	man	part	leg	m	l	
+# ::edge	up-03	ARG1	leg	u2	l	
+# ::edge	stand-01	manner	up-03	s	u2	
+# ::edge	man	mod	another	m2	a3	
+# ::edge	crouch-01	ARG0	man	c	m2	
+# ::edge	crouch-01	instrument	mitt	c	m3	
+# ::edge	mitt	poss	man	m3	m2	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	man	a2	m2	
+# ::edge	and	op1	man	a2	m	
+# ::edge	wear-01	ARG0	and	w	a2	
+# ::edge	and	op2	wear-01	a	w	
+# ::edge	uniform	ARG1-of	white-03	u	w2	
+# ::edge	wear-01	ARG1	uniform	w	u	
+# ::edge	and	rel	crouch-01	a	c	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (m / man
+            :part (l / leg))
+        :ARG2 (d / distant-02)
+        :manner (u2 / up-03
+            :ARG1 l))
+    :op2 (w / wear-01
+        :ARG0 (a2 / and
+            :op1 m
+            :op2 (m2 / man
+                :mod (a3 / another)))
+        :ARG1 (u / uniform
+            :ARG1-of (w2 / white-03)))
+    :rel (c / crouch-01
+        :ARG0 m2
+        :instrument (m3 / mitt
+            :poss m2)))

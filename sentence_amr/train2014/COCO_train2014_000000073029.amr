@@ -1,0 +1,31 @@
+# ::tok A herk C - 130 military transporter jet is flying through the blue skies .
+# ::node	0	C-130	1-2
+# ::node	a	aircraft-type	2-3
+# ::node	n	name	2-3
+# ::node	1	C-130	2-3
+# ::node	m	military	5-6
+# ::node	t	transport-01	6-7
+# ::node	j	jet	7-8
+# ::node	f	fly-01	9-10
+# ::node	b	blue	12-13
+# ::node	s	sky	13-14
+# ::root	f	fly-01
+# ::edge	aircraft-type	name	name	a	n	
+# ::edge	name	op1	C-130	n	0	
+# ::edge	name	op2	C-130	n	1	
+# ::edge	jet	ARG0-of	transport-01	j	t	
+# ::edge	jet	mod	military	j	m	
+# ::edge	aircraft-type	domain	jet	a	j	
+# ::edge	fly-01	ARG2	aircraft-type	f	a	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	fly-01	path	sky	f	s	
+(f / fly-01
+    :ARG2 (a / aircraft-type
+        :name (n / name
+            :op1 "C-130"
+            :op2 "C-130")
+        :domain (j / jet
+            :ARG0-of (t / transport-01)
+            :mod (m / military)))
+    :path (s / sky
+        :mod (b / blue)))

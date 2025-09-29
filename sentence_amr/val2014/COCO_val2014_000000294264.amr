@@ -1,0 +1,39 @@
+# ::tok a box of donuts one has green topping another brown and another has sprinkles
+# ::node	b	box	1-2
+# ::node	b2	box	1-2
+# ::node	d	donut	3-4
+# ::node	o	one	4-5
+# ::node	h	have-03	5-6
+# ::node	h2	have-03	5-6
+# ::node	g	green-02	6-7
+# ::node	t	topping	7-8
+# ::node	t2	topping	7-8
+# ::node	b3	brown	9-10
+# ::node	a	and	10-11
+# ::node	s	sprinkle-01	13-14
+# ::root	a	and
+# ::edge	box	consist-of	donut	b	d	
+# ::edge	box	part	one	b	o	
+# ::edge	have-03	ARG0	one	h	o	
+# ::edge	have-03	ARG0	box	h2	b2	
+# ::edge	topping	ARG1-of	green-02	t	g	
+# ::edge	have-03	ARG1	topping	h	t	
+# ::edge	have-03	ARG1	topping	h2	t2	
+# ::edge	topping	mod	brown	t2	b3	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	topping	ARG1-of	sprinkle-01	t2	s	
+# ::edge	and	rel	box	a	b	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (o / one)
+        :ARG1 (t / topping
+            :ARG1-of (g / green-02)))
+    :op2 (h2 / have-03
+        :ARG0 (b2 / box)
+        :ARG1 (t2 / topping
+            :ARG1-of (s / sprinkle-01)
+            :mod (b3 / brown)))
+    :rel (b / box
+        :consist-of (d / donut)
+        :part o))

@@ -1,0 +1,25 @@
+# ::tok Vehicles are traveling at both ends of the intersection with no traffic control .
+# ::node	v	vehicle	0-1
+# ::node	t2	travel-01	2-3
+# ::node	b	both	4-5
+# ::node	e	end	5-6
+# ::node	i	intersect-01	8-9
+# ::node	0	-	10-11
+# ::node	t	traffic	11-12
+# ::node	c	control-01	12-13
+# ::root	t2	travel-01
+# ::edge	travel-01	ARG0	vehicle	t2	v	
+# ::edge	end	mod	both	e	b	
+# ::edge	travel-01	location	end	t2	e	
+# ::edge	end	part-of	intersect-01	e	i	
+# ::edge	control-01	ARG1	traffic	c	t	
+# ::edge	control-01	polarity	-	c	0	
+# ::edge	travel-01	poss-of	control-01	t2	c	
+(t2 / travel-01
+    :ARG0 (v / vehicle)
+    :location (e / end
+        :mod (b / both)
+        :part-of (i / intersect-01))
+    :poss-of (c / control-01
+        :ARG1 (t / traffic)
+        :polarity -))

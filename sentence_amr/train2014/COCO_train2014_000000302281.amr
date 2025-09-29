@@ -1,0 +1,25 @@
+# ::tok The jetway has been deployed so that passengers are able to move between the airplane and the airport .
+# ::node	j	jetway	1-2
+# ::node	d	deploy-01	4-5
+# ::node	p	passenger	7-8
+# ::node	p2	possible-01	9-10
+# ::node	m	move-01	11-12
+# ::node	b	between	12-13
+# ::node	a	airplane	14-15
+# ::node	a2	airport	17-18
+# ::root	d	deploy-01
+# ::edge	deploy-01	ARG1	jetway	d	j	
+# ::edge	deploy-01	purpose	possible-01	d	p2	
+# ::edge	possible-01	ARG1	move-01	p2	m	
+# ::edge	move-01	ARG0	passenger	m	p	
+# ::edge	move-01	ARG2	between	m	b	
+# ::edge	between	op1	airplane	b	a	
+# ::edge	between	op2	airport	b	a2	
+(d / deploy-01
+    :purpose (p2 / possible-01
+        :ARG1 (m / move-01
+            :ARG0 (p / passenger)
+            :ARG2 (b / between
+                :op1 (a / airplane)
+                :op2 (a2 / airport))))
+    :ARG1 (j / jetway))

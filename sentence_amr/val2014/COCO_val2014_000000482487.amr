@@ -1,0 +1,67 @@
+# ::tok A large ornate metal clock rests beside a miniature clock , also , featuring great detail , both of which stand behind a pane of glass that also shows the view from outside .
+# ::node	l	large	1-2
+# ::node	o	ornate	2-3
+# ::node	m	metal	3-4
+# ::node	c	clock	4-5
+# ::node	r	rest-01	5-6
+# ::node	b2	beside	6-7
+# ::node	m2	miniature	8-9
+# ::node	c2	clock	9-10
+# ::node	f	feature-01	13-14
+# ::node	g2	great	14-15
+# ::node	d	detail	15-16
+# ::node	b3	both	17-18
+# ::node	s2	stand-01	20-21
+# ::node	b	behind	21-22
+# ::node	p	pane	23-24
+# ::node	g	glass	25-26
+# ::node	a	also	27-28
+# ::node	s	show-01	28-29
+# ::node	v	view-01	30-31
+# ::node	o2	outside	32-33
+# ::root	r	rest-01
+# ::edge	clock	consist-of	metal	c	m	
+# ::edge	clock	mod	ornate	c	o	
+# ::edge	clock	mod	large	c	l	
+# ::edge	rest-01	ARG1	clock	r	c	
+# ::edge	rest-01	ARG2	beside	r	b2	
+# ::edge	clock	mod	miniature	c2	m2	
+# ::edge	beside	op1	clock	b2	c2	
+# ::edge	clock	ARG2-of	feature-01	c	f	
+# ::edge	detail	mod	great	d	g2	
+# ::edge	feature-01	ARG1	detail	f	d	
+# ::edge	both	op2	clock	b3	c2	
+# ::edge	both	op1	clock	b3	c	
+# ::edge	stand-01	ARG1	both	s2	b3	
+# ::edge	clock	ARG0-of	stand-01	c	s2	
+# ::edge	stand-01	ARG2	behind	s2	b	
+# ::edge	behind	op1	pane	b	p	
+# ::edge	pane	consist-of	glass	p	g	
+# ::edge	stand-01	mod	also	s2	a	
+# ::edge	show-01	mod	also	s	a	
+# ::edge	pane	ARG0-of	show-01	p	s	
+# ::edge	show-01	ARG1	view-01	s	v	
+# ::edge	view-01	source	outside	v	o2	
+(r / rest-01
+    :ARG1 (c / clock
+        :ARG0-of (s2 / stand-01
+            :ARG1 (b3 / both
+                :op1 c
+                :op2 (c2 / clock
+                    :mod (m2 / miniature)))
+            :ARG2 (b / behind
+                :op1 (p / pane
+                    :ARG0-of (s / show-01
+                        :ARG1 (v / view-01
+                            :source (o2 / outside))
+                        :mod (a / also))
+                    :consist-of (g / glass)))
+            :mod a)
+        :ARG2-of (f / feature-01
+            :ARG1 (d / detail
+                :mod (g2 / great)))
+        :consist-of (m / metal)
+        :mod (o / ornate)
+        :mod (l / large))
+    :ARG2 (b2 / beside
+        :op1 c2))

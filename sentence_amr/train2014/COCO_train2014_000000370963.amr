@@ -1,0 +1,41 @@
+# ::tok A group of people in uniforms with witting down reading , talking or looking at their phones are surrounded by black luggage .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	u	uniform	5-6
+# ::node	r	read-01	7-8
+# ::node	d	down	8-9
+# ::node	r2	read-01	9-10
+# ::node	t	talk-01	11-12
+# ::node	l	look-01	13-14
+# ::node	p2	phone	16-17
+# ::node	s	surround-01	18-19
+# ::node	b	black-04	20-21
+# ::node	l2	luggage	21-22
+# ::root	s	surround-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	mod	uniform	p	u	
+# ::edge	person	ARG0-of	read-01	p	r	
+# ::edge	read-01	direction	down	r	d	
+# ::edge	person	ARG0-of	read-01	p	r2	
+# ::edge	person	ARG0-of	talk-01	p	t	
+# ::edge	person	ARG0-of	look-01	p	l	
+# ::edge	look-01	ARG1	phone	l	p2	
+# ::edge	talk-01	ARG1	phone	t	p2	
+# ::edge	phone	poss	person	p2	p	
+# ::edge	surround-01	ARG2	group	s	g	
+# ::edge	luggage	ARG1-of	black-04	l2	b	
+# ::edge	surround-01	ARG1	luggage	s	l2	
+(s / surround-01
+    :ARG1 (l2 / luggage
+        :ARG1-of (b / black-04))
+    :ARG2 (g / group
+        :consist-of (p / person
+            :ARG0-of (r / read-01
+                :direction (d / down))
+            :ARG0-of (r2 / read-01)
+            :ARG0-of (t / talk-01
+                :ARG1 (p2 / phone
+                    :poss p))
+            :ARG0-of (l / look-01
+                :ARG1 p2)
+            :mod (u / uniform))))

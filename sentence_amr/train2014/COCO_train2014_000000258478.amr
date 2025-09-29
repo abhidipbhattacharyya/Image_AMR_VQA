@@ -1,0 +1,30 @@
+# ::tok Baseball playing on home base almost kneeling down to strike a ball .
+# ::node	b3	baseball	0-1
+# ::node	p	play-01	1-2
+# ::node	h	home	3-4
+# ::node	b2	base	4-5
+# ::node	a	almost	5-6
+# ::node	k	kneel-01	6-7
+# ::node	d	down	7-8
+# ::node	s	strike-01	9-10
+# ::node	b	ball	11-12
+# ::root	p	play-01
+# ::edge	play-01	ARG1	baseball	p	b3	
+# ::edge	base	mod	home	b2	h	
+# ::edge	play-01	location	base	p	b2	
+# ::edge	kneel-01	mod	almost	k	a	
+# ::edge	play-01	ARG0-of	kneel-01	p	k	
+# ::edge	kneel-01	mod	down	k	d	
+# ::edge	kneel-01	purpose	strike-01	k	s	
+# ::edge	strike-01	ARG0	baseball	s	b3	
+# ::edge	strike-01	ARG1	ball	s	b	
+(p / play-01
+    :ARG0-of (k / kneel-01
+        :purpose (s / strike-01
+            :ARG0 (b3 / baseball)
+            :ARG1 (b / ball))
+        :mod (a / almost)
+        :mod (d / down))
+    :ARG1 b3
+    :location (b2 / base
+        :mod (h / home)))

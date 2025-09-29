@@ -1,0 +1,31 @@
+# ::tok A Swiss Army knife sits next to a flash drive on a table .
+# ::node	n	name	1-2
+# ::node	1	Swiss	1-2
+# ::node	m	military	2-3
+# ::node	0	Army	2-3
+# ::node	k	knife	3-4
+# ::node	s	sit-01	4-5
+# ::node	n2	next-to	5-6
+# ::node	f	flash	8-9
+# ::node	d	drive	9-10
+# ::node	t	table	12-13
+# ::root	s	sit-01
+# ::edge	name	op1	Swiss	n	1	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op2	Army	n	0	
+# ::edge	knife	mod	military	k	m	
+# ::edge	sit-01	ARG1	knife	s	k	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	drive	mod	flash	d	f	
+# ::edge	next-to	op1	drive	n2	d	
+# ::edge	drive	location	table	d	t	
+(s / sit-01
+    :ARG1 (k / knife
+        :mod (m / military
+            :name (n / name
+                :op1 "Swiss"
+                :op2 "Army")))
+    :ARG2 (n2 / next-to
+        :op1 (d / drive
+            :location (t / table)
+            :mod (f / flash))))

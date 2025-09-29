@@ -1,0 +1,33 @@
+# ::tok Some lemons are in a vase and oranges and grapes are in a plate .
+# ::node	s	some	0-1
+# ::node	l	lemon	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	v	vase	5-6
+# ::node	o	orange	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	o2	orange	9-10
+# ::node	b2	be-located-at-91	11-12
+# ::node	p	plate	13-14
+# ::root	a	and
+# ::edge	lemon	mod	some	l	s	
+# ::edge	be-located-at-91	ARG1	lemon	b	l	
+# ::edge	be-located-at-91	ARG2	vase	b	v	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	orange	a2	o	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	and	op3	orange	a2	o2	
+# ::edge	be-located-at-91	ARG1	and	b2	a2	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	plate	b2	p	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (l / lemon
+            :mod (s / some))
+        :ARG2 (v / vase))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (a2 / and
+            :op1 b
+            :op2 (o / orange)
+            :op3 (o2 / orange))
+        :ARG2 (p / plate)))

@@ -1,0 +1,39 @@
+# ::tok Yellow - orange pecial purpose train engine with American flag painted in the side .
+# ::node	y	yellow-02	0-1
+# ::node	o	orange	2-3
+# ::node	s2	special-02	3-4
+# ::node	p2	purpose	4-5
+# ::node	t	train	5-6
+# ::node	e	engine	6-7
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	America	8-9
+# ::node	f	flag	9-10
+# ::node	p	paint-01	10-11
+# ::node	s	side	13-14
+# ::root	e	engine
+# ::edge	purpose	ARG1-of	special-02	p2	s2	
+# ::edge	engine	mod	train	e	t	
+# ::edge	engine	mod	purpose	e	p2	
+# ::edge	engine	mod	orange	e	o	
+# ::edge	engine	ARG1-of	yellow-02	e	y	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c	
+# ::edge	paint-01	ARG2	flag	p	f	
+# ::edge	engine	ARG1-of	paint-01	e	p	
+# ::edge	paint-01	location	side	p	s	
+# ::edge	engine	part	side	e	s	
+(e / engine
+    :ARG1-of (y / yellow-02)
+    :ARG1-of (p / paint-01
+        :ARG2 (f / flag
+            :mod (c / country
+                :name (n / name
+                    :op1 "America")))
+        :location (s / side))
+    :mod (t / train)
+    :mod (p2 / purpose
+        :ARG1-of (s2 / special-02))
+    :mod (o / orange)
+    :part s)

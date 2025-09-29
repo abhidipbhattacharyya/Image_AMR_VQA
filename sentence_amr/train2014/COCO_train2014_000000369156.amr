@@ -1,0 +1,31 @@
+# ::tok Old style trucks , one military , parked on stone pavement .
+# ::node	o	old	0-1
+# ::node	s2	style	1-2
+# ::node	t	truck	2-3
+# ::node	a	and	3-4
+# ::node	i	include-91	4-5
+# ::node	0	1	4-5
+# ::node	m	military	5-6
+# ::node	p	park-01	7-8
+# ::node	s	stone	9-10
+# ::node	p2	pavement	10-11
+# ::root	p	park-01
+# ::edge	style	mod	old	s2	o	
+# ::edge	truck	mod	style	t	s2	
+# ::edge	and	op1	truck	a	t	
+# ::edge	and	ARG2-of	include-91	a	i	
+# ::edge	military	quant	1	m	0	
+# ::edge	include-91	ARG1	military	i	m	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	pavement	consist-of	stone	p2	s	
+# ::edge	park-01	ARG2	pavement	p	p2	
+(p / park-01
+    :ARG1 (a / and
+        :ARG2-of (i / include-91
+            :ARG1 (m / military
+                :quant 1))
+        :op1 (t / truck
+            :mod (s2 / style
+                :mod (o / old))))
+    :ARG2 (p2 / pavement
+        :consist-of (s / stone)))

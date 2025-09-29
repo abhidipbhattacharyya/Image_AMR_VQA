@@ -1,0 +1,22 @@
+# ::tok Small cart with assorted suitcases at curbside on sidewalk .
+# ::node	s2	small	0-1
+# ::node	c	cart	1-2
+# ::node	a	assorted	3-4
+# ::node	s3	suitcase	4-5
+# ::node	c2	curbside	6-7
+# ::node	s	sidewalk	8-9
+# ::node	e	event	9-10
+# ::root	e	event
+# ::edge	cart	mod	small	c	s2	
+# ::edge	suitcase	mod	assorted	s3	a	
+# ::edge	cart	prep-with	suitcase	c	s3	
+# ::edge	cart	location	curbside	c	c2	
+# ::edge	curbside	location	sidewalk	c2	s	
+# ::edge	event	mod	cart	e	c	
+(e / event
+    :mod (c / cart
+        :location (c2 / curbside
+            :location (s / sidewalk))
+        :mod (s2 / small)
+        :prep-with (s3 / suitcase
+            :mod (a / assorted))))

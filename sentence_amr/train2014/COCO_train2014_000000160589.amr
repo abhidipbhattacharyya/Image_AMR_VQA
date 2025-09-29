@@ -1,0 +1,49 @@
+# ::tok A round clock with the numbers 3 and 6 in the center is hanging from two black metal chains , with a time of 9:31 .
+# ::node	r	round-06	1-2
+# ::node	c3	clock	2-3
+# ::node	h2	have-03	3-4
+# ::node	n	number	5-6
+# ::node	n2	number	5-6
+# ::node	1	3	6-7
+# ::node	a	and	7-8
+# ::node	2	6	8-9
+# ::node	c	center	11-12
+# ::node	h	hanging-07	13-14
+# ::node	0	2	15-16
+# ::node	b	black-04	16-17
+# ::node	m	metal	17-18
+# ::node	c2	chain	18-19
+# ::node	d	date-entity	24-25
+# ::node	3	9:31	24-25
+# ::root	h	hanging-07
+# ::edge	clock	ARG1-of	round-06	c3	r	
+# ::edge	clock	ARG0-of	have-03	c3	h2	
+# ::edge	number	value	3	n	1	
+# ::edge	and	op2	number	a	n2	
+# ::edge	and	op1	number	a	n	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	number	value	6	n2	2	
+# ::edge	and	location	center	a	c	
+# ::edge	hanging-07	ARG1	clock	h	c3	
+# ::edge	metal	ARG1-of	black-04	m	b	
+# ::edge	chain	consist-of	metal	c2	m	
+# ::edge	chain	quant	2	c2	0	
+# ::edge	hanging-07	ARG2	chain	h	c2	
+# ::edge	hanging-07	time	date-entity	h	d	
+# ::edge	date-entity	time	9:31	d	3	
+(h / hanging-07
+    :ARG1 (c3 / clock
+        :ARG0-of (h2 / have-03
+            :ARG1 (a / and
+                :location (c / center)
+                :op1 (n / number
+                    :value 3)
+                :op2 (n2 / number
+                    :value 6)))
+        :ARG1-of (r / round-06))
+    :ARG2 (c2 / chain
+        :quant 2
+        :consist-of (m / metal
+            :ARG1-of (b / black-04)))
+    :time (d / date-entity
+        :time "9:31"))

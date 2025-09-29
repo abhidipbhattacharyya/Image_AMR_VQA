@@ -1,0 +1,31 @@
+# ::tok A stop sign with two orange flags waving in the breeze on a stormy day .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	o	orange	5-6
+# ::node	f	flag	6-7
+# ::node	w	wave-01	7-8
+# ::node	b	breeze	10-11
+# ::node	s3	storm-01	13-14
+# ::node	d	day	14-15
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	signal-07	ARG0-of	have-03	s	h	
+# ::edge	flag	mod	orange	f	o	
+# ::edge	flag	quant	2	f	0	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	flag	ARG1-of	wave-01	f	w	
+# ::edge	wave-01	direction	breeze	w	b	
+# ::edge	day	mod	storm-01	d	s3	
+# ::edge	wave-01	time	day	w	d	
+(s / signal-07
+    :ARG0-of (h / have-03
+        :ARG1 (f / flag
+            :quant 2
+            :ARG1-of (w / wave-01
+                :direction (b / breeze)
+                :time (d / day
+                    :mod (s3 / storm-01)))
+            :mod (o / orange)))
+    :ARG1 (s2 / stop-01))

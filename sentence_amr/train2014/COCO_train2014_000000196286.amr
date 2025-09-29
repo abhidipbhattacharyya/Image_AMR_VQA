@@ -1,0 +1,41 @@
+# ::tok A baby is lying on a bed with blanket covering all of his body except for one arm and his head .
+# ::node	b	baby	1-2
+# ::node	l	lie-07	3-4
+# ::node	b2	bed	6-7
+# ::node	b3	blanket	8-9
+# ::node	c	cover-02	9-10
+# ::node	a	all	10-11
+# ::node	b4	body	13-14
+# ::node	e	except-01	14-15
+# ::node	0	1	16-17
+# ::node	a3	arm	17-18
+# ::node	a2	and	18-19
+# ::node	h	head	20-21
+# ::root	l	lie-07
+# ::edge	lie-07	ARG1	baby	l	b	
+# ::edge	lie-07	ARG2	bed	l	b2	
+# ::edge	cover-02	ARG2	blanket	c	b3	
+# ::edge	lie-07	manner	cover-02	l	c	
+# ::edge	body	mod	all	b4	a	
+# ::edge	cover-02	ARG1	body	c	b4	
+# ::edge	baby	part	body	b	b4	
+# ::edge	body	ARG2-of	except-01	b4	e	
+# ::edge	arm	quant	1	a3	0	
+# ::edge	and	op1	arm	a2	a3	
+# ::edge	except-01	ARG1	and	e	a2	
+# ::edge	and	op2	head	a2	h	
+# ::edge	baby	part	head	b	h	
+(l / lie-07
+    :ARG1 (b / baby
+        :part (b4 / body
+            :ARG2-of (e / except-01
+                :ARG1 (a2 / and
+                    :op1 (a3 / arm
+                        :quant 1)
+                    :op2 (h / head)))
+            :mod (a / all))
+        :part h)
+    :ARG2 (b2 / bed)
+    :manner (c / cover-02
+        :ARG1 b4
+        :ARG2 (b3 / blanket)))

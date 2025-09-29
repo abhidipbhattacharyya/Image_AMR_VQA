@@ -1,0 +1,34 @@
+# ::tok An unused train car sits on a track while another train drives by in the distance .
+# ::node	u	use-01	1-2
+# ::node	t2	train	2-3
+# ::node	c	car	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	track	7-8
+# ::node	a	another	9-10
+# ::node	t3	train	10-11
+# ::node	d2	drive-01	11-12
+# ::node	b	by	12-13
+# ::node	d	distance	15-16
+# ::node	0	-	15-16
+# ::root	s	sit-01
+# ::edge	car	mod	train	c	t2	
+# ::edge	car	ARG1-of	use-01	c	u	
+# ::edge	sit-01	ARG1	car	s	c	
+# ::edge	sit-01	ARG2	track	s	t	
+# ::edge	train	mod	another	t3	a	
+# ::edge	drive-01	ARG0	train	d2	t3	
+# ::edge	sit-01	time	drive-01	s	d2	
+# ::edge	drive-01	path	by	d2	b	
+# ::edge	drive-01	location	distance	d2	d	
+# ::edge	use-01	polarity	-	u	0	
+(s / sit-01
+    :ARG1 (c / car
+        :ARG1-of (u / use-01
+            :polarity -)
+        :mod (t2 / train))
+    :ARG2 (t / track)
+    :time (d2 / drive-01
+        :ARG0 (t3 / train
+            :mod (a / another))
+        :location (d / distance)
+        :path (b / by)))

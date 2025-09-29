@@ -1,0 +1,37 @@
+# ::tok A boat travels in one direction of the ocean while a smaller pleasure craft travels in the opposite direction .
+# ::node	b	boat	1-2
+# ::node	t	travel-01	2-3
+# ::node	o	ocean	8-9
+# ::node	c	contrast-01	9-10
+# ::node	h	have-degree-91	11-12
+# ::node	s	small	11-12
+# ::node	m	more	11-12
+# ::node	p	pleasure	12-13
+# ::node	c2	craft	13-14
+# ::node	t2	travel-01	14-15
+# ::node	o2	opposite-01	17-18
+# ::node	d	direction	18-19
+# ::root	c	contrast-01
+# ::edge	travel-01	ARG0	boat	t	b	
+# ::edge	travel-01	direction	ocean	t	o	
+# ::edge	contrast-01	ARG1	travel-01	c	t	
+# ::edge	have-degree-91	ARG2	small	h	s	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	craft	mod	pleasure	c2	p	
+# ::edge	craft	ARG1-of	have-degree-91	c2	h	
+# ::edge	travel-01	ARG0	craft	t2	c2	
+# ::edge	contrast-01	ARG2	travel-01	c	t2	
+# ::edge	direction	ARG1-of	opposite-01	d	o2	
+# ::edge	travel-01	direction	direction	t2	d	
+(c / contrast-01
+    :ARG1 (t / travel-01
+        :ARG0 (b / boat)
+        :direction (o / ocean))
+    :ARG2 (t2 / travel-01
+        :ARG0 (c2 / craft
+            :ARG1-of (h / have-degree-91
+                :ARG2 (s / small)
+                :ARG3 (m / more))
+            :mod (p / pleasure))
+        :direction (d / direction
+            :ARG1-of (o2 / opposite-01))))

@@ -1,0 +1,34 @@
+# ::tok Spectators observe a player about to swing at an outdoor youth baseball game .
+# ::node	p	person	0-1
+# ::node	w	watch-01	0-1
+# ::node	o	observe-01	1-2
+# ::node	p2	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	a	about-to	4-5
+# ::node	s	swing-02	6-7
+# ::node	o2	outdoor	9-10
+# ::node	y	youth	10-11
+# ::node	b	baseball	11-12
+# ::node	g	game	12-13
+# ::root	o	observe-01
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	observe-01	ARG0	person	o	p	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	swing-02	time	about-to	s	a	
+# ::edge	swing-02	ARG0	person	s	p2	
+# ::edge	watch-01	ARG1	swing-02	w	s	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	mod	youth	g	y	
+# ::edge	game	location	outdoor	g	o2	
+# ::edge	swing-02	location	game	s	g	
+(o / observe-01
+    :ARG0 (p / person
+        :ARG0-of (w / watch-01
+            :ARG1 (s / swing-02
+                :ARG0 (p2 / person
+                    :ARG0-of (p3 / play-01))
+                :location (g / game
+                    :location (o2 / outdoor)
+                    :mod (b / baseball)
+                    :mod (y / youth))
+                :time (a / about-to)))))

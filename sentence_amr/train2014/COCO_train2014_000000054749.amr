@@ -1,0 +1,22 @@
+# ::tok many signs on the side of a city street with buildings in the background
+# ::node	m	many	0-1
+# ::node	s2	sign	1-2
+# ::node	s	side	4-5
+# ::node	c	city	7-8
+# ::node	s3	street	8-9
+# ::node	b2	building	10-11
+# ::node	b	background	13-14
+# ::root	s2	sign
+# ::edge	sign	quant	many	s2	m	
+# ::edge	sign	location	side	s2	s	
+# ::edge	street	mod	city	s3	c	
+# ::edge	side	part-of	street	s	s3	
+# ::edge	sign	location-of	building	s2	b2	
+# ::edge	building	location	background	b2	b	
+(s2 / sign
+    :quant (m / many)
+    :location (s / side
+        :part-of (s3 / street
+            :mod (c / city)))
+    :location-of (b2 / building
+        :location (b / background)))

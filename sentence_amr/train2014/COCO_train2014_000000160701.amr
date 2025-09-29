@@ -1,0 +1,28 @@
+# ::tok A pole with multiple street signs on it including stop and no parking .
+# ::node	p2	pole	1-2
+# ::node	m	multiple	3-4
+# ::node	s3	street	4-5
+# ::node	s	sign	5-6
+# ::node	i	include-01	8-9
+# ::node	s2	stop-01	9-10
+# ::node	a	and	10-11
+# ::node	0	-	11-12
+# ::node	p	park-01	12-13
+# ::root	p2	pole
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	quant	multiple	s	m	
+# ::edge	pole	location-of	sign	p2	s	
+# ::edge	sign	ARG2-of	include-01	s	i	
+# ::edge	and	op1	stop-01	a	s2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	and	op2	park-01	a	p	
+(p2 / pole
+    :location-of (s / sign
+        :quant (m / multiple)
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (s2 / stop-01)
+                :op2 (p / park-01
+                    :polarity -)))
+        :mod (s3 / street)))

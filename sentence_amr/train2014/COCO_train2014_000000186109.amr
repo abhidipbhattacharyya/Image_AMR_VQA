@@ -1,0 +1,40 @@
+# ::tok Rugby player prepares to make a move to avoid other team .
+# ::node	n	name	0-1
+# ::node	0	Rugby	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	p3	prepare-02	2-3
+# ::node	m	make-01	4-5
+# ::node	m2	move-01	6-7
+# ::node	a	avoid-01	8-9
+# ::node	o	other	9-10
+# ::node	t	team	10-11
+# ::node	t2	team	10-11
+# ::root	p3	prepare-02
+# ::edge	name	op1	Rugby	n	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG1	make-01	p3	m	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	make-01	ARG1	move-01	m	m2	
+# ::edge	move-01	ARG0	person	m2	p	
+# ::edge	move-01	purpose	avoid-01	m2	a	
+# ::edge	avoid-01	ARG0	person	a	p	
+# ::edge	team	mod	other	t	o	
+# ::edge	avoid-01	ARG1	team	a	t	
+# ::edge	person	source	team	p	t2	
+# ::edge	team	name	name	t2	n	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01)
+        :source (t2 / team
+            :name (n / name
+                :op1 "Rugby")))
+    :ARG1 (m / make-01
+        :ARG0 p
+        :ARG1 (m2 / move-01
+            :purpose (a / avoid-01
+                :ARG0 p
+                :ARG1 (t / team
+                    :mod (o / other)))
+            :ARG0 p)))

@@ -1,0 +1,36 @@
+# ::tok Inside of a food court area with various fast food restaurant neon signs .
+# ::node	i	inside	0-1
+# ::node	f2	food	3-4
+# ::node	c	court	4-5
+# ::node	a	area	5-6
+# ::node	h	have-03	6-7
+# ::node	v	various	7-8
+# ::node	f	fast-02	8-9
+# ::node	f3	food	9-10
+# ::node	r	restaurant	10-11
+# ::node	n	neon	11-12
+# ::node	s	sign	12-13
+# ::root	s	sign
+# ::edge	court	mod	food	c	f2	
+# ::edge	area	location-of	court	a	c	
+# ::edge	inside	op1	area	i	a	
+# ::edge	area	ARG0-of	have-03	a	h	
+# ::edge	food	ARG1-of	fast-02	f3	f	
+# ::edge	restaurant	mod	food	r	f3	
+# ::edge	sign	mod	neon	s	n	
+# ::edge	sign	mod	restaurant	s	r	
+# ::edge	sign	mod	various	s	v	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	rel	inside	s	i	
+(s / sign
+    :mod (n / neon)
+    :mod (r / restaurant
+        :mod (f3 / food
+            :ARG1-of (f / fast-02)))
+    :mod (v / various)
+    :rel (i / inside
+        :op1 (a / area
+            :ARG0-of (h / have-03
+                :ARG1 s)
+            :location-of (c / court
+                :mod (f2 / food)))))

@@ -1,0 +1,71 @@
+# ::tok A baseball pitcher has his leg back and arm extended and his mitt in the other hand while the man in outfield has his feet spread out and his hand and mitt out .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	t	throw-01	2-3
+# ::node	l	leg	5-6
+# ::node	b	back	6-7
+# ::node	a	and	7-8
+# ::node	a4	arm	8-9
+# ::node	e	extend-01	9-10
+# ::node	o	other	15-16
+# ::node	h	hand	16-17
+# ::node	c	contrast-01	17-18
+# ::node	m	man	19-20
+# ::node	o2	outfield	21-22
+# ::node	h3	have-06	22-23
+# ::node	f	foot	24-25
+# ::node	s	spread-out-04	25-26
+# ::node	a2	and	27-28
+# ::node	h2	hand	29-30
+# ::node	a3	and	30-31
+# ::node	m2	mitt	31-32
+# ::root	c	contrast-01
+# ::edge	person	ARG0-of	throw-01	p	t	
+# ::edge	throw-01	ARG1	baseball	t	b2	
+# ::edge	back	domain	leg	b	l	
+# ::edge	and	op1	back	a	b	
+# ::edge	person	part	arm	p	a4	
+# ::edge	extend-01	ARG1	arm	e	a4	
+# ::edge	and	op2	extend-01	a	e	
+# ::edge	hand	mod	other	h	o	
+# ::edge	and	op3	hand	a	h	
+# ::edge	person	part	hand	p	h	
+# ::edge	contrast-01	ARG1	and	c	a	
+# ::edge	man	location	outfield	m	o2	
+# ::edge	have-06	ARG0	man	h3	m	
+# ::edge	contrast-01	ARG2	have-06	c	h3	
+# ::edge	man	part	foot	m	f	
+# ::edge	spread-out-04	ARG1	foot	s	f	
+# ::edge	and	op1	spread-out-04	a2	s	
+# ::edge	have-06	ARG1	and	h3	a2	
+# ::edge	man	part	hand	m	h2	
+# ::edge	and	op1	hand	a3	h2	
+# ::edge	and	op2	and	a2	a3	
+# ::edge	man	op2	mitt	m	m2	
+# ::edge	man	part	mitt	m	m2	
+# ::edge	contrast-01	rel	person	c	p	
+(c / contrast-01
+    :ARG1 (a / and
+        :op1 (b / back
+            :domain (l / leg))
+        :op2 (e / extend-01
+            :ARG1 (a4 / arm))
+        :op3 (h / hand
+            :mod (o / other)))
+    :ARG2 (h3 / have-06
+        :ARG0 (m / man
+            :location (o2 / outfield)
+            :op2 (m2 / mitt)
+            :part (f / foot)
+            :part (h2 / hand)
+            :part m2)
+        :ARG1 (a2 / and
+            :op1 (s / spread-out-04
+                :ARG1 f)
+            :op2 (a3 / and
+                :op1 h2)))
+    :rel (p / person
+        :ARG0-of (t / throw-01
+            :ARG1 (b2 / baseball))
+        :part a4
+        :part h))

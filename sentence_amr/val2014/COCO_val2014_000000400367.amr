@@ -1,0 +1,28 @@
+# ::tok A picture taken at slow shutter speed on a city street at night .
+# ::node	p	picture	1-2
+# ::node	t	take-01	2-3
+# ::node	s2	slow-05	4-5
+# ::node	s	shutter	5-6
+# ::node	s3	speed	6-7
+# ::node	c	city	9-10
+# ::node	s4	street	10-11
+# ::node	d	date-entity	12-13
+# ::node	n	night	12-13
+# ::root	p	picture
+# ::edge	picture	ARG1-of	take-01	p	t	
+# ::edge	speed	mod	shutter	s3	s	
+# ::edge	speed	ARG1-of	slow-05	s3	s2	
+# ::edge	take-01	manner	speed	t	s3	
+# ::edge	street	mod	city	s4	c	
+# ::edge	picture	location	street	p	s4	
+# ::edge	picture	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(p / picture
+    :ARG1-of (t / take-01
+        :manner (s3 / speed
+            :ARG1-of (s2 / slow-05)
+            :mod (s / shutter)))
+    :location (s4 / street
+        :mod (c / city))
+    :time (d / date-entity
+        :dayperiod (n / night)))

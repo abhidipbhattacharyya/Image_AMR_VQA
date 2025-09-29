@@ -1,0 +1,27 @@
+# ::tok A store on the corner with an American flag flying from it 's side .
+# ::node	s2	store	1-2
+# ::node	c	corner	4-5
+# ::node	c2	country	7-8
+# ::node	n	name	7-8
+# ::node	0	America	7-8
+# ::node	f	flag	8-9
+# ::node	f2	fly-01	9-10
+# ::node	s	side	13-14
+# ::root	s2	store
+# ::edge	store	location	corner	s2	c	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	fly-01	ARG2	flag	f2	f	
+# ::edge	store	ARG1-of	fly-01	s2	f2	
+# ::edge	fly-01	source	side	f2	s	
+# ::edge	store	part	side	s2	s	
+(s2 / store
+    :ARG1-of (f2 / fly-01
+        :ARG2 (f / flag
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "America")))
+        :source (s / side))
+    :location (c / corner)
+    :part s)

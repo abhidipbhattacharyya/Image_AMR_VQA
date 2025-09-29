@@ -1,0 +1,27 @@
+# ::tok A street signs with street names at an intersection of two roads at a stop sign
+# ::node	s	sign	2-3
+# ::node	s4	street	4-5
+# ::node	n	name	5-6
+# ::node	i	intersect-01	8-9
+# ::node	0	2	10-11
+# ::node	r	road	11-12
+# ::node	s3	stop-01	14-15
+# ::node	s2	sign	15-16
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s4	
+# ::edge	name	mod	street	n	s4	
+# ::edge	sign	poss-of	name	s	n	
+# ::edge	sign	location	intersect-01	s	i	
+# ::edge	road	quant	2	r	0	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	sign	purpose	stop-01	s2	s3	
+# ::edge	sign	location	sign	s	s2	
+(s / sign
+    :location (i / intersect-01
+        :ARG1 (r / road
+            :quant 2))
+    :location (s2 / sign
+        :purpose (s3 / stop-01))
+    :mod (s4 / street)
+    :poss-of (n / name
+        :mod s4))

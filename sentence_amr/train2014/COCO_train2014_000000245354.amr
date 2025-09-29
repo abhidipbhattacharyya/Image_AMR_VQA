@@ -1,0 +1,33 @@
+# ::tok The man peers out of the red and black locomotive as it pulls into the station .
+# ::node	m	man	1-2
+# ::node	p	peer-01	2-3
+# ::node	o	out-of	3-4
+# ::node	r	red-02	6-7
+# ::node	a	and	7-8
+# ::node	b	black-04	8-9
+# ::node	l	locomotive	9-10
+# ::node	l2	locomotive	9-10
+# ::node	p2	pull-01	12-13
+# ::node	s	station	15-16
+# ::root	p	peer-01
+# ::edge	peer-01	ARG0	man	p	m	
+# ::edge	peer-01	ARG1	out-of	p	o	
+# ::edge	out-of	op1	and	o	a	
+# ::edge	and	op1	locomotive	a	l	
+# ::edge	locomotive	ARG1-of	red-02	l	r	
+# ::edge	locomotive	ARG1-of	black-04	l2	b	
+# ::edge	and	op2	locomotive	a	l2	
+# ::edge	pull-01	ARG0	locomotive	p2	l	
+# ::edge	peer-01	time	pull-01	p	p2	
+# ::edge	pull-01	ARG2	station	p2	s	
+(p / peer-01
+    :ARG0 (m / man)
+    :ARG1 (o / out-of
+        :op1 (a / and
+            :op1 (l / locomotive
+                :ARG1-of (r / red-02))
+            :op2 (l2 / locomotive
+                :ARG1-of (b / black-04))))
+    :time (p2 / pull-01
+        :ARG0 l
+        :ARG2 (s / station)))

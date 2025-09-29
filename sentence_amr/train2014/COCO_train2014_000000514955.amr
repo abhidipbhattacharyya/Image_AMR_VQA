@@ -1,0 +1,27 @@
+# ::tok A group of three birds sitting and standing on a parking lot .
+# ::node	g	group	1-2
+# ::node	0	3	3-4
+# ::node	b	bird	4-5
+# ::node	s	sit-01	5-6
+# ::node	s2	stand-01	7-8
+# ::node	p	park-01	10-11
+# ::node	l	lot	11-12
+# ::node	e	event	12-13
+# ::root	e	event
+# ::edge	bird	quant	3	b	0	
+# ::edge	group	consist-of	bird	g	b	
+# ::edge	group	ARG1-of	sit-01	g	s	
+# ::edge	group	ARG1-of	stand-01	g	s2	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	stand-01	ARG2	lot	s2	l	
+# ::edge	sit-01	ARG2	lot	s	l	
+# ::edge	event	mod	group	e	g	
+(e / event
+    :mod (g / group
+        :ARG1-of (s / sit-01
+            :ARG2 (l / lot
+                :ARG2-of (p / park-01)))
+        :ARG1-of (s2 / stand-01
+            :ARG2 l)
+        :consist-of (b / bird
+            :quant 3)))

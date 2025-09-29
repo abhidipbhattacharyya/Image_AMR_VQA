@@ -1,0 +1,28 @@
+# ::tok A stop sign on a residential street where the street and sidewalk is cleared from snow .
+# ::node	s4	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	r	residential	5-6
+# ::node	s5	street	6-7
+# ::node	s6	street	9-10
+# ::node	a	and	10-11
+# ::node	s	sidewalk	11-12
+# ::node	c	clear-01	13-14
+# ::node	s3	snow	15-16
+# ::root	s2	signal-07
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	street	mod	residential	s5	r	
+# ::edge	signal-07	location	street	s2	s5	
+# ::edge	and	op1	street	a	s6	
+# ::edge	and	op2	sidewalk	a	s	
+# ::edge	clear-01	ARG1	and	c	a	
+# ::edge	street	location-of	clear-01	s5	c	
+# ::edge	clear-01	ARG2	snow	c	s3	
+(s2 / signal-07
+    :ARG1 (s4 / stop-01)
+    :location (s5 / street
+        :location-of (c / clear-01
+            :ARG1 (a / and
+                :op1 (s6 / street)
+                :op2 (s / sidewalk))
+            :ARG2 (s3 / snow))
+        :mod (r / residential)))

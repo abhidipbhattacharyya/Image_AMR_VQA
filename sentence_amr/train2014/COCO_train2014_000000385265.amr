@@ -1,0 +1,40 @@
+# ::tok A road sign that reads " Lucky Layne " is posted right in front of a speed limit sign .
+# ::node	r3	road	1-2
+# ::node	s	sign	2-3
+# ::node	r	read-01	4-5
+# ::node	l2	lucky	6-7
+# ::node	p	person	7-8
+# ::node	n	name	7-8
+# ::node	0	Layne	7-8
+# ::node	p2	post-01	10-11
+# ::node	r2	right	11-12
+# ::node	i	in-front-of	13-14
+# ::node	s3	speed-01	16-17
+# ::node	l	limit-01	17-18
+# ::node	s2	sign	18-19
+# ::root	p2	post-01
+# ::edge	sign	mod	road	s	r3	
+# ::edge	sign	ARG0-of	read-01	s	r	
+# ::edge	person	mod	lucky	p	l2	
+# ::edge	read-01	ARG3	person	r	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Layne	n	0	
+# ::edge	post-01	ARG1	sign	p2	s	
+# ::edge	in-front-of	mod	right	i	r2	
+# ::edge	post-01	ARG2	in-front-of	p2	i	
+# ::edge	limit-01	ARG1	speed-01	l	s3	
+# ::edge	sign	topic	limit-01	s2	l	
+# ::edge	in-front-of	op1	sign	i	s2	
+(p2 / post-01
+    :ARG1 (s / sign
+        :ARG0-of (r / read-01
+            :ARG3 (p / person
+                :name (n / name
+                    :op1 "Layne")
+                :mod (l2 / lucky)))
+        :mod (r3 / road))
+    :ARG2 (i / in-front-of
+        :mod (r2 / right)
+        :op1 (s2 / sign
+            :topic (l / limit-01
+                :ARG1 (s3 / speed-01)))))

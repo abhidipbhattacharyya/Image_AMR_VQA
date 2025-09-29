@@ -1,0 +1,40 @@
+# ::tok A bamboo - thatch umbrella by the water is in the foreground ; in the background , a lone person stands at the end of the pier .
+# ::node	b2	bamboo	1-2
+# ::node	t	thatch	3-4
+# ::node	u	umbrella	4-5
+# ::node	w	water	7-8
+# ::node	b3	be-located-at-91	9-10
+# ::node	f	foreground	11-12
+# ::node	a	and	12-13
+# ::node	b	background	15-16
+# ::node	l	lone	18-19
+# ::node	p	person	19-20
+# ::node	s	stand-01	20-21
+# ::node	e	end	23-24
+# ::node	p2	pier	26-27
+# ::root	a	and
+# ::edge	thatch	mod	bamboo	t	b2	
+# ::edge	umbrella	mod	thatch	u	t	
+# ::edge	umbrella	location	water	u	w	
+# ::edge	be-located-at-91	ARG1	umbrella	b3	u	
+# ::edge	be-located-at-91	ARG2	foreground	b3	f	
+# ::edge	and	op1	be-located-at-91	a	b3	
+# ::edge	person	mod	lone	p	l	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	location	background	s	b	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG2	end	s	e	
+# ::edge	end	part-of	pier	e	p2	
+(a / and
+    :op1 (b3 / be-located-at-91
+        :ARG1 (u / umbrella
+            :location (w / water)
+            :mod (t / thatch
+                :mod (b2 / bamboo)))
+        :ARG2 (f / foreground))
+    :op2 (s / stand-01
+        :ARG1 (p / person
+            :mod (l / lone))
+        :ARG2 (e / end
+            :part-of (p2 / pier))
+        :location (b / background)))

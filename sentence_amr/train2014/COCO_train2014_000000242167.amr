@@ -1,0 +1,46 @@
+# ::tok A papa johns pizza sitting in a box next to a cup of garlic sauce and a pepperoncini .
+# ::node	n	name	1-2
+# ::node	1	John	1-2
+# ::node	p2	person	2-3
+# ::node	2	John	2-3
+# ::node	p3	pizza	3-4
+# ::node	s2	sit-01	4-5
+# ::node	b	box	7-8
+# ::node	n2	next-to	8-9
+# ::node	v	volume-quantity	10-11
+# ::node	0	1	10-11
+# ::node	c	cup	11-12
+# ::node	g	garlic	13-14
+# ::node	s	sauce	14-15
+# ::node	a	and	15-16
+# ::node	p	pepperoncini	17-18
+# ::root	s2	sit-01
+# ::edge	name	op1	John	n	1	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op2	John	n	2	
+# ::edge	pizza	mod	person	p3	p2	
+# ::edge	sit-01	ARG1	pizza	s2	p3	
+# ::edge	sit-01	ARG2	box	s2	b	
+# ::edge	sit-01	location	next-to	s2	n2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	sauce	mod	garlic	s	g	
+# ::edge	sauce	quant	volume-quantity	s	v	
+# ::edge	and	op1	sauce	a	s	
+# ::edge	next-to	op1	and	n2	a	
+# ::edge	and	op2	pepperoncini	a	p	
+(s2 / sit-01
+    :ARG1 (p3 / pizza
+        :mod (p2 / person
+            :name (n / name
+                :op1 "John"
+                :op2 "John")))
+    :ARG2 (b / box)
+    :location (n2 / next-to
+        :op1 (a / and
+            :op1 (s / sauce
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c / cup))
+                :mod (g / garlic))
+            :op2 (p / pepperoncini))))

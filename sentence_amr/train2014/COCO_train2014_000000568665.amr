@@ -1,0 +1,24 @@
+# ::tok A motor bike parked on a dirt path in front of debris covering the path .
+# ::node	m	motorcycle	1-2
+# ::node	p	park-01	3-4
+# ::node	d2	dirt	6-7
+# ::node	i	in-front-of	9-10
+# ::node	d	debris	11-12
+# ::node	c	cover-01	12-13
+# ::node	p2	path	14-15
+# ::root	p	park-01
+# ::edge	park-01	ARG1	motorcycle	p	m	
+# ::edge	park-01	location	in-front-of	p	i	
+# ::edge	in-front-of	op1	debris	i	d	
+# ::edge	debris	ARG0-of	cover-01	d	c	
+# ::edge	cover-01	ARG1	path	c	p2	
+# ::edge	path	mod	dirt	p2	d2	
+# ::edge	park-01	ARG2	path	p	p2	
+(p / park-01
+    :ARG1 (m / motorcycle)
+    :ARG2 (p2 / path
+        :mod (d2 / dirt))
+    :location (i / in-front-of
+        :op1 (d / debris
+            :ARG0-of (c / cover-01
+                :ARG1 p2))))

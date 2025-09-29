@@ -1,0 +1,56 @@
+# ::tok Farm scene with mostly green grass , short trees , two cows and two grain silos in background .
+# ::node	f	farm-01	0-1
+# ::node	s	scene	1-2
+# ::node	m2	most	3-4
+# ::node	g3	green-02	4-5
+# ::node	g2	grass	5-6
+# ::node	s2	short-07	7-8
+# ::node	t	tree	8-9
+# ::node	0	2	10-11
+# ::node	c2	cow	11-12
+# ::node	a	and	12-13
+# ::node	1	2	13-14
+# ::node	g	grain	14-15
+# ::node	m	magazine	15-16
+# ::node	n	name	15-16
+# ::node	c	country	15-16
+# ::node	2	amr-unknown	15-16
+# ::node	b	background	17-18
+# ::root	s	scene
+# ::edge	scene	topic	farm-01	s	f	
+# ::edge	grass	ARG1-of	green-02	g2	g3	
+# ::edge	grass	mod	most	g2	m2	
+# ::edge	tree	ARG1-of	short-07	t	s2	
+# ::edge	tree	mod	most	t	m2	
+# ::edge	cow	quant	2	c2	0	
+# ::edge	and	op3	cow	a	c2	
+# ::edge	and	op2	tree	a	t	
+# ::edge	and	op1	grass	a	g2	
+# ::edge	scene	accompanier	and	s	a	
+# ::edge	magazine	quant	2	m	1	
+# ::edge	and	op4	magazine	a	m	
+# ::edge	magazine	name	name	m	n	
+# ::edge	and	part-of	country	a	c	
+# ::edge	country	ARG0-of	farm-01	c	f	
+# ::edge	name	polarity	amr-unknown	n	2	
+# ::edge	and	location	background	a	b	
+# ::edge	scene	rel	grain	s	g	
+(s / scene
+    :accompanier (a / and
+        :location (b / background)
+        :op1 (g2 / grass
+            :ARG1-of (g3 / green-02)
+            :mod (m2 / most))
+        :op2 (t / tree
+            :ARG1-of (s2 / short-07)
+            :mod m2)
+        :op3 (c2 / cow
+            :quant 2)
+        :op4 (m / magazine
+            :name (n / name
+                :polarity "amr-unknown")
+            :quant 2)
+        :part-of (c / country
+            :ARG0-of (f / farm-01)))
+    :rel (g / grain)
+    :topic f)

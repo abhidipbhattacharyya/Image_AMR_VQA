@@ -1,0 +1,22 @@
+# ::tok An indoor train station with a train pulled up to the passenger platform .
+# ::node	i	indoor	1-2
+# ::node	t	train	2-3
+# ::node	s	station	3-4
+# ::node	t2	train	6-7
+# ::node	p3	pull-01	7-8
+# ::node	p	passenger	11-12
+# ::node	p2	platform	12-13
+# ::root	s	station
+# ::edge	station	mod	train	s	t	
+# ::edge	station	location	indoor	s	i	
+# ::edge	station	part	train	s	t2	
+# ::edge	train	ARG1-of	pull-01	t2	p3	
+# ::edge	platform	mod	passenger	p2	p	
+# ::edge	pull-01	ARG2	platform	p3	p2	
+(s / station
+    :location (i / indoor)
+    :mod (t / train)
+    :part (t2 / train
+        :ARG1-of (p3 / pull-01
+            :ARG2 (p2 / platform
+                :mod (p / passenger)))))

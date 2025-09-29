@@ -1,0 +1,25 @@
+# ::tok The coffeecake made this morning will be offered as a luncheon special .
+# ::node	c	coffeecake	1-2
+# ::node	m	make-01	2-3
+# ::node	t	today	3-4
+# ::node	d	date-entity	4-5
+# ::node	m2	morning	4-5
+# ::node	o	offer-01	7-8
+# ::node	l	luncheon	10-11
+# ::node	s	special-02	11-12
+# ::root	o	offer-01
+# ::edge	coffeecake	ARG1-of	make-01	c	m	
+# ::edge	date-entity	mod	today	d	t	
+# ::edge	make-01	time	date-entity	m	d	
+# ::edge	date-entity	dayperiod	morning	d	m2	
+# ::edge	offer-01	ARG1	coffeecake	o	c	
+# ::edge	special-02	ARG1	luncheon	s	l	
+# ::edge	offer-01	prep-as	special-02	o	s	
+(o / offer-01
+    :ARG1 (c / coffeecake
+        :ARG1-of (m / make-01
+            :time (d / date-entity
+                :dayperiod (m2 / morning)
+                :mod (t / today))))
+    :prep-as (s / special-02
+        :ARG1 (l / luncheon)))

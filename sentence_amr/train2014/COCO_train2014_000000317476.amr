@@ -1,0 +1,37 @@
+# ::tok Several road signs , including an El Rapido in a downtown area .
+# ::node	s	several	0-1
+# ::node	r	road	1-2
+# ::node	s2	sign	2-3
+# ::node	i	include-01	4-5
+# ::node	n	name	6-7
+# ::node	0	El	6-7
+# ::node	p	person	7-8
+# ::node	n2	name	7-8
+# ::node	1	Rapido	7-8
+# ::node	w	work-of-art	8-9
+# ::node	d	downtown	10-11
+# ::node	a	area	11-12
+# ::root	s2	sign
+# ::edge	sign	mod	road	s2	r	
+# ::edge	sign	quant	several	s2	s	
+# ::edge	sign	ARG2-of	include-01	s2	i	
+# ::edge	name	op1	El	n	0	
+# ::edge	include-01	ARG1	person	i	p	
+# ::edge	person	name	name	p	n2	
+# ::edge	name	op2	Rapido	n2	1	
+# ::edge	person	mod	work-of-art	p	w	
+# ::edge	work-of-art	name	name	w	n	
+# ::edge	area	mod	downtown	a	d	
+# ::edge	person	location	area	p	a	
+(s2 / sign
+    :quant (s / several)
+    :ARG2-of (i / include-01
+        :ARG1 (p / person
+            :name (n2 / name
+                :op2 "Rapido")
+            :location (a / area
+                :mod (d / downtown))
+            :mod (w / work-of-art
+                :name (n / name
+                    :op1 "El"))))
+    :mod (r / road))

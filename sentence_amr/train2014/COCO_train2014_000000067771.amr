@@ -1,0 +1,24 @@
+# ::tok The garbage truck is stopping to pick up the trash on a snowy day .
+# ::node	g	garbage	1-2
+# ::node	t2	truck	2-3
+# ::node	s2	stop-01	4-5
+# ::node	p	pick-up-04	6-7
+# ::node	t	trash	9-10
+# ::node	s	snowy-02	12-13
+# ::node	d	day	13-14
+# ::root	s2	stop-01
+# ::edge	truck	mod	garbage	t2	g	
+# ::edge	stop-01	ARG1	truck	s2	t2	
+# ::edge	stop-01	purpose	pick-up-04	s2	p	
+# ::edge	pick-up-04	ARG0	truck	p	t2	
+# ::edge	pick-up-04	ARG1	trash	p	t	
+# ::edge	stop-01	time	snowy-02	s2	s	
+# ::edge	snowy-02	ARG1	day	s	d	
+(s2 / stop-01
+    :purpose (p / pick-up-04
+        :ARG0 (t2 / truck
+            :mod (g / garbage))
+        :ARG1 (t / trash))
+    :ARG1 t2
+    :time (s / snowy-02
+        :ARG1 (d / day)))

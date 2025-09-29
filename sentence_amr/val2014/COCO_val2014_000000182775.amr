@@ -1,0 +1,37 @@
+# ::tok A plate of meat and vegetables and a glass of wine on a wooden dining table .
+# ::node	p	plate	1-2
+# ::node	m	meat	3-4
+# ::node	a	and	4-5
+# ::node	v	vegetable	5-6
+# ::node	a2	and	6-7
+# ::node	v2	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	w	wine	10-11
+# ::node	w2	wood	13-14
+# ::node	d	dine-01	14-15
+# ::node	t	table	15-16
+# ::root	a2	and
+# ::edge	and	op1	meat	a	m	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	and	op2	vegetable	a	v	
+# ::edge	and	op1	plate	a2	p	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	volume-quantity	unit	glass	v2	g	
+# ::edge	wine	quant	volume-quantity	w	v2	
+# ::edge	and	op2	wine	a2	w	
+# ::edge	table	purpose	dine-01	t	d	
+# ::edge	table	consist-of	wood	t	w2	
+# ::edge	and	location	table	a2	t	
+(a2 / and
+    :location (t / table
+        :purpose (d / dine-01)
+        :consist-of (w2 / wood))
+    :op1 (p / plate
+        :consist-of (a / and
+            :op1 (m / meat)
+            :op2 (v / vegetable)))
+    :op2 (w / wine
+        :quant (v2 / volume-quantity
+            :quant 1
+            :unit (g / glass))))

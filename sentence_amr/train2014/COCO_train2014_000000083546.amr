@@ -1,0 +1,39 @@
+# ::tok A store on a corner with Asian writing has many bicycles parked in front .
+# ::node	s	store	1-2
+# ::node	c2	corner	4-5
+# ::node	h	have-03	5-6
+# ::node	c	continent	6-7
+# ::node	n	name	6-7
+# ::node	0	Asia	6-7
+# ::node	w	write-01	7-8
+# ::node	h2	have-03	8-9
+# ::node	m	many	9-10
+# ::node	b	bicycle	10-11
+# ::node	p	park-01	11-12
+# ::node	f	front	13-14
+# ::root	h2	have-03
+# ::edge	store	location	corner	s	c2	
+# ::edge	store	ARG0-of	have-03	s	h	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	write-01	mod	continent	w	c	
+# ::edge	have-03	ARG1	write-01	h	w	
+# ::edge	have-03	ARG0	store	h2	s	
+# ::edge	bicycle	quant	many	b	m	
+# ::edge	have-03	ARG1	bicycle	h2	b	
+# ::edge	bicycle	ARG1-of	park-01	b	p	
+# ::edge	park-01	ARG2	front	p	f	
+# ::edge	store	part	front	s	f	
+(h2 / have-03
+    :ARG0 (s / store
+        :ARG0-of (h / have-03
+            :ARG1 (w / write-01
+                :mod (c / continent
+                    :name (n / name
+                        :op1 "Asia"))))
+        :location (c2 / corner)
+        :part (f / front))
+    :ARG1 (b / bicycle
+        :quant (m / many)
+        :ARG1-of (p / park-01
+            :ARG2 f)))

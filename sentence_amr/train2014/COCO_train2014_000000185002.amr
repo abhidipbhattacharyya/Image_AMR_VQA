@@ -1,0 +1,28 @@
+# ::tok a street filled with parked cars street lights in the night hours
+# ::node	s	street	1-2
+# ::node	f	fill-01	2-3
+# ::node	p	park-01	4-5
+# ::node	c	car	5-6
+# ::node	s2	street	6-7
+# ::node	l	light	7-8
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::node	h	hour	11-12
+# ::root	s	street
+# ::edge	street	ARG1-of	fill-01	s	f	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	fill-01	ARG2	car	f	c	
+# ::edge	light	mod	street	l	s2	
+# ::edge	street	part	light	s	l	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	hour	mod	date-entity	h	d	
+# ::edge	fill-01	time	hour	f	h	
+(s / street
+    :ARG1-of (f / fill-01
+        :ARG2 (c / car
+            :ARG1-of (p / park-01))
+        :time (h / hour
+            :mod (d / date-entity
+                :dayperiod (n / night))))
+    :part (l / light
+        :mod (s2 / street)))

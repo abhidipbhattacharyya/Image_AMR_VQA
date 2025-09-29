@@ -1,0 +1,25 @@
+# ::tok Large commuter train parked on the track with no people around .
+# ::node	l	large	0-1
+# ::node	c	commute-01	1-2
+# ::node	t2	train	2-3
+# ::node	p	park-01	3-4
+# ::node	t	track	6-7
+# ::node	0	-	8-9
+# ::node	p2	person	9-10
+# ::node	a	around	10-11
+# ::root	p	park-01
+# ::edge	train	ARG0-of	commute-01	t2	c	
+# ::edge	train	mod	large	t2	l	
+# ::edge	park-01	ARG1	train	p	t2	
+# ::edge	park-01	ARG2	track	p	t	
+# ::edge	person	polarity	-	p2	0	
+# ::edge	around	location-of	person	a	p2	
+# ::edge	train	time	around	t2	a	
+(p / park-01
+    :ARG1 (t2 / train
+        :ARG0-of (c / commute-01)
+        :mod (l / large)
+        :time (a / around
+            :location-of (p2 / person
+                :polarity -)))
+    :ARG2 (t / track))

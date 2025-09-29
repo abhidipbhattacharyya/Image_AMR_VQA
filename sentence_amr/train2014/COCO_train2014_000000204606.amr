@@ -1,0 +1,41 @@
+# ::tok A man wearing a Godzilla mask appears to be brushing his teeth while looking in the bathroom mirror .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	p	person	4-5
+# ::node	n	name	4-5
+# ::node	0	Godzilla	4-5
+# ::node	m2	mask	5-6
+# ::node	a	appear-02	6-7
+# ::node	b2	brush-01	9-10
+# ::node	t	tooth	11-12
+# ::node	l	look-01	13-14
+# ::node	b	bathroom	16-17
+# ::node	m3	mirror	17-18
+# ::root	a	appear-02
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Godzilla	n	0	
+# ::edge	mask	mod	person	m2	p	
+# ::edge	wear-01	ARG1	mask	w	m2	
+# ::edge	appear-02	ARG1	brush-01	a	b2	
+# ::edge	brush-01	ARG0	man	b2	m	
+# ::edge	brush-01	ARG1	tooth	b2	t	
+# ::edge	man	part	tooth	m	t	
+# ::edge	brush-01	time	look-01	b2	l	
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	mirror	location	bathroom	m3	b	
+# ::edge	look-01	ARG1	mirror	l	m3	
+(a / appear-02
+    :ARG1 (b2 / brush-01
+        :ARG0 (m / man
+            :ARG0-of (w / wear-01
+                :ARG1 (m2 / mask
+                    :mod (p / person
+                        :name (n / name
+                            :op1 "Godzilla"))))
+            :part (t / tooth))
+        :ARG1 t
+        :time (l / look-01
+            :ARG0 m
+            :ARG1 (m3 / mirror
+                :location (b / bathroom)))))

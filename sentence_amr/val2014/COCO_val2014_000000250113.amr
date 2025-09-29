@@ -1,0 +1,34 @@
+# ::tok Frisbee being buriesd in sand by many pairs of feet
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	1	Frisbee	0-1
+# ::node	b	bury-01	2-3
+# ::node	s	sand	4-5
+# ::node	m	many	6-7
+# ::node	0	1	6-7
+# ::node	d	distance-quantity	7-8
+# ::node	f	foot	7-8
+# ::node	d2	distance-quantity	9-10
+# ::node	f2	foot	9-10
+# ::root	b	bury-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Frisbee	n	1	
+# ::edge	bury-01	ARG1	person	b	p	
+# ::edge	bury-01	ARG2	sand	b	s	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	many	op1	distance-quantity	m	d	
+# ::edge	distance-quantity	unit	foot	d	f	
+# ::edge	distance-quantity	quant	many	d2	m	
+# ::edge	bury-01	prep-by	distance-quantity	b	d2	
+# ::edge	distance-quantity	unit	foot	d2	f2	
+(b / bury-01
+    :ARG1 (p / person
+        :name (n / name
+            :op1 "Frisbee"))
+    :ARG2 (s / sand)
+    :prep-by (d2 / distance-quantity
+        :quant (m / many
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (f / foot)))
+        :unit (f2 / foot)))

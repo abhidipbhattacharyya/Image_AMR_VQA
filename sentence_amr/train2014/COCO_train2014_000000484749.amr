@@ -1,0 +1,37 @@
+# ::tok Four Zebras nibbling grass on the plain beneath a cloud filled sky .
+# ::node	0	4	0-1
+# ::node	a	animal	1-2
+# ::node	n	name	1-2
+# ::node	2	hurricane	1-2
+# ::node	1	Guard	1-2
+# ::node	c	chew-01	2-3
+# ::node	g	grass	3-4
+# ::node	p	plain	6-7
+# ::node	b	beneath	7-8
+# ::node	c2	cloud	9-10
+# ::node	f	fill-01	10-11
+# ::node	s	sky	11-12
+# ::root	c	chew-01
+# ::edge	animal	quant	4	a	0	
+# ::edge	animal	name	name	a	n	
+# ::edge	name	op1	hurricane	n	2	
+# ::edge	name	op2	Guard	n	1	
+# ::edge	chew-01	ARG0	animal	c	a	
+# ::edge	chew-01	ARG1	grass	c	g	
+# ::edge	chew-01	location	plain	c	p	
+# ::edge	plain	location	beneath	p	b	
+# ::edge	fill-01	ARG2	cloud	f	c2	
+# ::edge	sky	ARG1-of	fill-01	s	f	
+# ::edge	beneath	op1	sky	b	s	
+(c / chew-01
+    :ARG0 (a / animal
+        :name (n / name
+            :op1 "hurricane"
+            :op2 "Guard")
+        :quant 4)
+    :ARG1 (g / grass)
+    :location (p / plain
+        :location (b / beneath
+            :op1 (s / sky
+                :ARG1-of (f / fill-01
+                    :ARG2 (c2 / cloud))))))

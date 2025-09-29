@@ -1,0 +1,37 @@
+# ::tok A sign on display behind a window that reads " Go Spurts Go " .
+# ::node	s	sign	1-2
+# ::node	d	display-01	3-4
+# ::node	b	behind	4-5
+# ::node	w	window	6-7
+# ::node	r	read-01	8-9
+# ::node	g	go-01	10-11
+# ::node	y	you	10-11
+# ::node	2	imperative	10-11
+# ::node	p	person	11-12
+# ::node	n	name	11-12
+# ::node	1	Spurts	11-12
+# ::node	0	Go	12-13
+# ::root	d	display-01
+# ::edge	display-01	ARG1	sign	d	s	
+# ::edge	display-01	location	behind	d	b	
+# ::edge	behind	op1	window	b	w	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	read-01	ARG3	go-01	r	g	
+# ::edge	go-01	ARG0	you	g	y	
+# ::edge	go-01	mode	imperative	g	2	
+# ::edge	go-01	ARG1	person	g	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Spurts	n	1	
+# ::edge	name	op2	Go	n	0	
+(d / display-01
+    :ARG1 (s / sign
+        :ARG1-of (r / read-01
+            :ARG3 (g / go-01
+                :ARG0 (y / you)
+                :ARG1 (p / person
+                    :name (n / name
+                        :op1 "Spurts"
+                        :op2 "Go"))
+                :mode imperative)))
+    :location (b / behind
+        :op1 (w / window)))

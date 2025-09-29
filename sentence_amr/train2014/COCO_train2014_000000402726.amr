@@ -1,0 +1,29 @@
+# ::tok people waiting around and picking their luggage at the airport carousel
+# ::node	p	person	0-1
+# ::node	w	wait-01	1-2
+# ::node	a3	around	2-3
+# ::node	a2	and	3-4
+# ::node	p2	pick-01	4-5
+# ::node	l	luggage	6-7
+# ::node	a	airport	9-10
+# ::node	c	carousel	10-11
+# ::root	a2	and
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	around	w	a3	
+# ::edge	and	op1	wait-01	a2	w	
+# ::edge	and	op2	pick-01	a2	p2	
+# ::edge	pick-01	ARG0	person	p2	p	
+# ::edge	pick-01	ARG1	luggage	p2	l	
+# ::edge	luggage	poss	person	l	p	
+# ::edge	carousel	mod	airport	c	a	
+# ::edge	pick-01	location	carousel	p2	c	
+(a2 / and
+    :op1 (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 (a3 / around))
+    :op2 (p2 / pick-01
+        :ARG0 p
+        :ARG1 (l / luggage
+            :poss p)
+        :location (c / carousel
+            :mod (a / airport))))

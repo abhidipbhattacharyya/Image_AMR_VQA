@@ -1,0 +1,30 @@
+# ::tok Goats grazing along grassy rocky cliffs with grass growing from them .
+# ::node	g	goat	0-1
+# ::node	g3	graze-01	1-2
+# ::node	a	along	2-3
+# ::node	m	mountain	4-5
+# ::node	n	name	4-5
+# ::node	s	sand	4-5
+# ::node	l	Cliff	5-6
+# ::node	g2	grass	7-8
+# ::node	g4	grow-03	8-9
+# ::root	g3	graze-01
+# ::edge	graze-01	ARG1	goat	g3	g	
+# ::edge	graze-01	location	along	g3	a	
+# ::edge	mountain	name	name	m	n	
+# ::edge	Cliff	mod	sand	l	s	
+# ::edge	Cliff	mod	mountain	l	m	
+# ::edge	along	op1	Cliff	a	l	
+# ::edge	grow-03	ARG1	grass	g4	g2	
+# ::edge	grow-03	location	Cliff	g4	l	
+# ::edge	graze-01	location-of	grow-03	g3	g4	
+(g3 / graze-01
+    :ARG1 (g / goat)
+    :location (a / along
+        :op1 (l / Cliff
+            :mod (s / sand)
+            :mod (m / mountain
+                :name (n / name))))
+    :location-of (g4 / grow-03
+        :ARG1 (g2 / grass)
+        :location l))

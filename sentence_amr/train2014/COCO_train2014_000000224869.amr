@@ -1,0 +1,38 @@
+# ::tok COBBLE STONE STREET , AND DOG LOOKING OUT AN OPEN WINDOW
+# ::node	n	name	0-1
+# ::node	0	Cobra	0-1
+# ::node	1	Street	1-2
+# ::node	r	road	2-3
+# ::node	2	Street	2-3
+# ::node	a	and	4-5
+# ::node	a2	and	4-5
+# ::node	d	dog	5-6
+# ::node	l	look-01	6-7
+# ::node	o	open-01	9-10
+# ::node	w	wind	10-11
+# ::root	a	and
+# ::edge	name	op1	Cobra	n	0	
+# ::edge	name	op2	Street	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op3	Street	n	2	
+# ::edge	and	op1	road	a	r	
+# ::edge	and	op2	road	a2	r	
+# ::edge	and	op1	Street	a2	1	
+# ::edge	and	op1	dog	a2	d	
+# ::edge	look-01	ARG0	and	l	a2	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	wind	ARG1-of	open-01	w	o	
+# ::edge	look-01	ARG1	wind	l	w	
+(a / and
+    :op1 (r / road
+        :name (n / name
+            :op1 "Cobra"
+            :op2 "Street"
+            :op3 "Street"))
+    :op2 (l / look-01
+        :ARG0 (a2 / and
+            :op1 "Street"
+            :op1 (d / dog)
+            :op2 r)
+        :ARG1 (w / wind
+            :ARG1-of (o / open-01))))

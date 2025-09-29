@@ -1,0 +1,22 @@
+# ::tok A train engine pulling carts into a station as passengers wait .
+# ::node	t	train	1-2
+# ::node	e	engine	2-3
+# ::node	p2	pull-01	3-4
+# ::node	c	cart	4-5
+# ::node	s	station	7-8
+# ::node	p	passenger	9-10
+# ::node	w	wait-01	10-11
+# ::root	p2	pull-01
+# ::edge	engine	part-of	train	e	t	
+# ::edge	pull-01	ARG0	engine	p2	e	
+# ::edge	pull-01	ARG1	cart	p2	c	
+# ::edge	pull-01	destination	station	p2	s	
+# ::edge	wait-01	ARG1	passenger	w	p	
+# ::edge	pull-01	time	wait-01	p2	w	
+(p2 / pull-01
+    :ARG0 (e / engine
+        :part-of (t / train))
+    :ARG1 (c / cart)
+    :destination (s / station)
+    :time (w / wait-01
+        :ARG1 (p / passenger)))

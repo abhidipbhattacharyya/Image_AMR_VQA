@@ -1,0 +1,28 @@
+# ::tok A saab car dealership sign with several cars parked around it .
+# ::node	n	name	1-2
+# ::node	0	Arabia	1-2
+# ::node	c	car	2-3
+# ::node	d	dealership	3-4
+# ::node	s2	sign	4-5
+# ::node	s	several	6-7
+# ::node	c2	car	7-8
+# ::node	p	park-01	8-9
+# ::node	a	around	9-10
+# ::root	s2	sign
+# ::edge	name	op1	Arabia	n	0	
+# ::edge	car	name	name	c	n	
+# ::edge	dealership	mod	car	d	c	
+# ::edge	sign	mod	dealership	s2	d	
+# ::edge	car	quant	several	c2	s	
+# ::edge	park-01	ARG1	car	p	c2	
+# ::edge	around	location-of	park-01	a	p	
+# ::edge	sign	location-of	around	s2	a	
+(s2 / sign
+    :location-of (a / around
+        :location-of (p / park-01
+            :ARG1 (c2 / car
+                :quant (s / several))))
+    :mod (d / dealership
+        :mod (c / car
+            :name (n / name
+                :op1 "Arabia"))))

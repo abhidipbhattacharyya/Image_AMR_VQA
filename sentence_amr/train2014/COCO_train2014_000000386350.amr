@@ -1,0 +1,49 @@
+# ::tok A defunct fire hydrant next to a long white propane tank with a happy panting dog face painted on one end .
+# ::node	d	defunct	1-2
+# ::node	f2	fire	2-3
+# ::node	h2	hydrant	3-4
+# ::node	n	next-to	4-5
+# ::node	l	long-03	7-8
+# ::node	w	white-03	8-9
+# ::node	p3	propane	9-10
+# ::node	t	tank	10-11
+# ::node	h	happy-01	13-14
+# ::node	p2	pant	14-15
+# ::node	d2	dog	15-16
+# ::node	f	face	16-17
+# ::node	p	paint-01	17-18
+# ::node	0	1	19-20
+# ::node	e	end	20-21
+# ::node	e2	event	21-22
+# ::root	e2	event
+# ::edge	hydrant	mod	fire	h2	f2	
+# ::edge	hydrant	mod	defunct	h2	d	
+# ::edge	hydrant	location	next-to	h2	n	
+# ::edge	tank	mod	propane	t	p3	
+# ::edge	tank	ARG1-of	white-03	t	w	
+# ::edge	tank	ARG1-of	long-03	t	l	
+# ::edge	next-to	op1	tank	n	t	
+# ::edge	dog	ARG0-of	pant	d2	p2	
+# ::edge	dog	ARG1-of	happy-01	d2	h	
+# ::edge	face	mod	dog	f	d2	
+# ::edge	hydrant	part	face	h2	f	
+# ::edge	face	ARG1-of	paint-01	f	p	
+# ::edge	end	quant	1	e	0	
+# ::edge	paint-01	location	end	p	e	
+# ::edge	event	mod	hydrant	e2	h2	
+(e2 / event
+    :mod (h2 / hydrant
+        :location (n / next-to
+            :op1 (t / tank
+                :ARG1-of (w / white-03)
+                :ARG1-of (l / long-03)
+                :mod (p3 / propane)))
+        :mod (f2 / fire)
+        :mod (d / defunct)
+        :part (f / face
+            :ARG1-of (p / paint-01
+                :location (e / end
+                    :quant 1))
+            :mod (d2 / dog
+                :ARG0-of (p2 / pant)
+                :ARG1-of (h / happy-01)))))

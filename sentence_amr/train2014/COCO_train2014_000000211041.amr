@@ -1,0 +1,30 @@
+# ::tok An airborne pair of scissors glides either toward or away from an outstretched hand .
+# ::node	a	airborne	1-2
+# ::node	p	pair	2-3
+# ::node	s	scissors	4-5
+# ::node	s2	skid-01	5-6
+# ::node	t	toward	7-8
+# ::node	o	or	8-9
+# ::node	a2	away	9-10
+# ::node	e	extend-01	12-13
+# ::node	h	hand	13-14
+# ::root	s2	skid-01
+# ::edge	pair	mod	airborne	p	a	
+# ::edge	pair	consist-of	scissors	p	s	
+# ::edge	skid-01	ARG0	pair	s2	p	
+# ::edge	or	op1	toward	o	t	
+# ::edge	skid-01	direction	or	s2	o	
+# ::edge	or	op2	away	o	a2	
+# ::edge	hand	ARG1-of	extend-01	h	e	
+# ::edge	skid-01	source	hand	s2	h	
+# ::edge	toward	op1	hand	t	h	
+(s2 / skid-01
+    :ARG0 (p / pair
+        :consist-of (s / scissors)
+        :mod (a / airborne))
+    :direction (o / or
+        :op1 (t / toward
+            :op1 (h / hand
+                :ARG1-of (e / extend-01)))
+        :op2 (a2 / away))
+    :source h)

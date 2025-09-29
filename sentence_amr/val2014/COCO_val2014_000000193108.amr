@@ -1,0 +1,34 @@
+# ::tok A baseball player with the number 25 on his uniform , with a baseball bat and in a batting stance .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	n	number	5-6
+# ::node	0	25	6-7
+# ::node	u	uniform	9-10
+# ::node	b2	bat	14-15
+# ::node	b3	bat-01	18-19
+# ::node	s	stand-11	19-20
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	number	value	25	n	0	
+# ::edge	number	part-of	uniform	n	u	
+# ::edge	uniform	poss	person	u	p	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	person	instrument	bat	p	b2	
+# ::edge	bat-01	ARG0	person	b3	p	
+# ::edge	stand-11	ARG1	bat-01	s	b3	
+# ::edge	person	ARG0-of	stand-11	p	s	
+# ::edge	person	rel	number	p	n	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (s / stand-11
+        :ARG1 (b3 / bat-01
+            :ARG0 p))
+    :instrument (b2 / bat
+        :mod b)
+    :rel (n / number
+        :part-of (u / uniform
+            :poss p)
+        :value 25))

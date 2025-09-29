@@ -1,0 +1,25 @@
+# ::tok This golden colored engine car is followed by several cars .
+# ::node	t	this	0-1
+# ::node	g	golden	1-2
+# ::node	c3	color-01	2-3
+# ::node	e	engine	3-4
+# ::node	c	car	4-5
+# ::node	f	follow-01	6-7
+# ::node	s	several	8-9
+# ::node	c2	car	9-10
+# ::root	f	follow-01
+# ::edge	color-01	ARG2	golden	c3	g	
+# ::edge	car	mod	engine	c	e	
+# ::edge	car	ARG1-of	color-01	c	c3	
+# ::edge	car	mod	this	c	t	
+# ::edge	follow-01	ARG2	car	f	c	
+# ::edge	car	quant	several	c2	s	
+# ::edge	follow-01	ARG1	car	f	c2	
+(f / follow-01
+    :ARG1 (c2 / car
+        :quant (s / several))
+    :ARG2 (c / car
+        :ARG1-of (c3 / color-01
+            :ARG2 (g / golden))
+        :mod (e / engine)
+        :mod (t / this)))

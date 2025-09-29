@@ -1,0 +1,28 @@
+# ::tok A line of cars are parked in opposite directions in front of a pub style building .
+# ::node	l	line	1-2
+# ::node	c	car	3-4
+# ::node	p	park-01	5-6
+# ::node	o	opposite-01	7-8
+# ::node	d	direction	8-9
+# ::node	i	in-front-of	10-11
+# ::node	p2	pub	13-14
+# ::node	s	style	14-15
+# ::node	b	building	15-16
+# ::root	p	park-01
+# ::edge	line	consist-of	car	l	c	
+# ::edge	park-01	ARG1	line	p	l	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	park-01	direction	direction	p	d	
+# ::edge	park-01	location	in-front-of	p	i	
+# ::edge	style	mod	pub	s	p2	
+# ::edge	building	mod	style	b	s	
+# ::edge	in-front-of	op1	building	i	b	
+(p / park-01
+    :ARG1 (l / line
+        :consist-of (c / car))
+    :direction (d / direction
+        :ARG1-of (o / opposite-01))
+    :location (i / in-front-of
+        :op1 (b / building
+            :mod (s / style
+                :mod (p2 / pub)))))

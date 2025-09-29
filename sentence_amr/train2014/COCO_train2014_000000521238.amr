@@ -1,0 +1,59 @@
+# ::tok Two people are sitting with hot dogs and fries on their laps and one is holding a diet coke and the other a diet pepsi .
+# ::node	1	2	0-1
+# ::node	p2	person	1-2
+# ::node	s	sit-01	3-4
+# ::node	h3	hot-05	5-6
+# ::node	d3	dog	6-7
+# ::node	a	and	7-8
+# ::node	f	fry-01	8-9
+# ::node	l	lap	11-12
+# ::node	a2	and	12-13
+# ::node	i	include-91	13-14
+# ::node	0	1	13-14
+# ::node	h	hold-01	15-16
+# ::node	h2	hold-01	15-16
+# ::node	c	coke	18-19
+# ::node	a3	and	19-20
+# ::node	d	diet	23-24
+# ::node	d2	diet	23-24
+# ::node	p	pepsi	24-25
+# ::root	a2	and
+# ::edge	person	quant	2	p2	1	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	dog	ARG1-of	hot-05	d3	h3	
+# ::edge	and	op1	dog	a	d3	
+# ::edge	sit-01	ARG2	and	s	a	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	sit-01	location	lap	s	l	
+# ::edge	person	part	lap	p2	l	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	include-91	ARG2	person	i	p2	
+# ::edge	hold-01	ARG0	include-91	h	i	
+# ::edge	hold-01	ARG1	coke	h	c	
+# ::edge	and	op2	hold-01	a3	h2	
+# ::edge	and	op1	hold-01	a3	h	
+# ::edge	and	op2	and	a2	a3	
+# ::edge	coke	mod	diet	c	d	
+# ::edge	pepsi	mod	diet	p	d2	
+# ::edge	hold-01	ARG1	pepsi	h2	p	
+# ::edge	and	rel	1	a2	0	
+(a2 / and
+    :op1 (s / sit-01
+        :ARG1 (p2 / person
+            :quant 2
+            :part (l / lap))
+        :ARG2 (a / and
+            :op1 (d3 / dog
+                :ARG1-of (h3 / hot-05))
+            :op2 (f / fry-01))
+        :location l)
+    :op2 (a3 / and
+        :op1 (h / hold-01
+            :ARG0 (i / include-91
+                :ARG2 p2)
+            :ARG1 (c / coke
+                :mod (d / diet)))
+        :op2 (h2 / hold-01
+            :ARG1 (p / pepsi
+                :mod (d2 / diet))))
+    :rel 1)

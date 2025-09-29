@@ -1,0 +1,29 @@
+# ::tok a group of people sitting close to each other all using cell phones
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	c2	close-10	5-6
+# ::node	a	all	9-10
+# ::node	u	use-01	10-11
+# ::node	c	cell	11-12
+# ::node	p2	phone	12-13
+# ::root	s	sit-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	sit-01	ARG2	close-10	s	c2	
+# ::edge	close-10	ARG2	person	c2	p	
+# ::edge	close-10	ARG1	person	c2	p	
+# ::edge	use-01	mod	all	u	a	
+# ::edge	person	ARG0-of	use-01	p	u	
+# ::edge	phone	mod	cell	p2	c	
+# ::edge	use-01	ARG1	phone	u	p2	
+(s / sit-01
+    :ARG1 (g / group
+        :consist-of (p / person
+            :ARG0-of (u / use-01
+                :ARG1 (p2 / phone
+                    :mod (c / cell))
+                :mod (a / all))))
+    :ARG2 (c2 / close-10
+        :ARG1 p
+        :ARG2 p))

@@ -1,0 +1,37 @@
+# ::tok Several people ride horses on a beach that is equipped with a wooden plank walkway and a multicolored horizon .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	r	ride-01	2-3
+# ::node	h2	horse	3-4
+# ::node	b	beach	6-7
+# ::node	e	equip-01	9-10
+# ::node	w2	wood	12-13
+# ::node	p2	plank	13-14
+# ::node	w	walkway	14-15
+# ::node	a	and	15-16
+# ::node	m	multiple	17-18
+# ::node	h	horizon	18-19
+# ::root	r	ride-01
+# ::edge	person	quant	several	p	s	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	horse	r	h2	
+# ::edge	ride-01	location	beach	r	b	
+# ::edge	beach	ARG1-of	equip-01	b	e	
+# ::edge	plank	consist-of	wood	p2	w2	
+# ::edge	walkway	consist-of	plank	w	p2	
+# ::edge	and	op1	walkway	a	w	
+# ::edge	equip-01	ARG2	and	e	a	
+# ::edge	horizon	mod	multiple	h	m	
+# ::edge	and	op2	horizon	a	h	
+(r / ride-01
+    :ARG0 (p / person
+        :quant (s / several))
+    :ARG1 (h2 / horse)
+    :location (b / beach
+        :ARG1-of (e / equip-01
+            :ARG2 (a / and
+                :op1 (w / walkway
+                    :consist-of (p2 / plank
+                        :consist-of (w2 / wood)))
+                :op2 (h / horizon
+                    :mod (m / multiple))))))

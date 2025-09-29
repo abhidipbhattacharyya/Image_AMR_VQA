@@ -1,0 +1,28 @@
+# ::tok One side of this refrigerator is open the other side is closed
+# ::node	0	1	0-1
+# ::node	s	side	1-2
+# ::node	t	this	3-4
+# ::node	r	refrigerator	4-5
+# ::node	o	open-01	6-7
+# ::node	a	and	7-8
+# ::node	o2	other	8-9
+# ::node	s2	side	9-10
+# ::node	c	close-01	11-12
+# ::root	a	and
+# ::edge	side	quant	1	s	0	
+# ::edge	refrigerator	mod	this	r	t	
+# ::edge	side	part-of	refrigerator	s	r	
+# ::edge	open-01	ARG1	side	o	s	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	side	mod	other	s2	o2	
+# ::edge	close-01	ARG1	side	c	s2	
+# ::edge	and	op2	close-01	a	c	
+(a / and
+    :op1 (o / open-01
+        :ARG1 (s / side
+            :quant 1
+            :part-of (r / refrigerator
+                :mod (t / this))))
+    :op2 (c / close-01
+        :ARG1 (s2 / side
+            :mod (o2 / other))))

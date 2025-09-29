@@ -1,0 +1,30 @@
+# ::tok A stop sign telling pedestrians not to enter an area where there is work taking place .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	t	tell-01	3-4
+# ::node	p	person	4-5
+# ::node	w	walk-01	4-5
+# ::node	0	-	5-6
+# ::node	e	enter-01	7-8
+# ::node	a	area	9-10
+# ::node	w2	work-01	13-14
+# ::root	t	tell-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	tell-01	ARG0	signal-07	t	s	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	ARG0	person	e	p	
+# ::edge	tell-01	ARG1	enter-01	t	e	
+# ::edge	enter-01	ARG1	area	e	a	
+# ::edge	area	location-of	work-01	a	w2	
+(t / tell-01
+    :ARG0 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG1 (e / enter-01
+        :ARG0 (p / person
+            :ARG0-of (w / walk-01))
+        :ARG1 (a / area
+            :location-of (w2 / work-01))
+        :polarity -)
+    :ARG2 p)

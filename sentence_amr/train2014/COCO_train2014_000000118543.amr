@@ -1,0 +1,28 @@
+# ::tok A box filled with lots of fresh produce stacked on top of each other .
+# ::node	b	box	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	f2	fresh-04	6-7
+# ::node	p	produce	7-8
+# ::node	s	stack-01	8-9
+# ::node	t	top	10-11
+# ::node	e	each	12-13
+# ::node	o	other	13-14
+# ::root	b	box
+# ::edge	box	ARG1-of	fill-01	b	f	
+# ::edge	produce	ARG1-of	fresh-04	p	f2	
+# ::edge	produce	quant	lot	p	l	
+# ::edge	stack-01	ARG1	produce	s	p	
+# ::edge	fill-01	ARG2	stack-01	f	s	
+# ::edge	stack-01	ARG2	top	s	t	
+# ::edge	other	mod	each	o	e	
+# ::edge	top	op1	other	t	o	
+(b / box
+    :ARG1-of (f / fill-01
+        :ARG2 (s / stack-01
+            :ARG1 (p / produce
+                :quant (l / lot)
+                :ARG1-of (f2 / fresh-04))
+            :ARG2 (t / top
+                :op1 (o / other
+                    :mod (e / each))))))

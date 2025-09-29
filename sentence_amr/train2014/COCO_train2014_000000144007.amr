@@ -1,0 +1,33 @@
+# ::tok A couple of pans of pizza dough spread out without any toppings .
+# ::node	c2	couple	1-2
+# ::node	a2	Pan	3-4
+# ::node	p	pizza	5-6
+# ::node	d	dough	6-7
+# ::node	s	spread-out-04	7-8
+# ::node	a	-	9-10
+# ::node	0	any	10-11
+# ::node	c	continent	11-12
+# ::node	n	name	11-12
+# ::node	t	top-01	11-12
+# ::root	s	spread-out-04
+# ::edge	Pan	quant	couple	a2	c2	
+# ::edge	dough	consist-of	pizza	d	p	
+# ::edge	Pan	consist-of	dough	a2	d	
+# ::edge	spread-out-04	ARG1	Pan	s	a2	
+# ::edge	-	mod	continent	a	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	any	n	0	
+# ::edge	name	polarity	-	n	a	
+# ::edge	dough	ARG2-of	top-01	d	t	
+# ::edge	spread-out-04	rel	continent	s	c	
+(s / spread-out-04
+    :ARG1 (a2 / Pan
+        :quant (c2 / couple)
+        :consist-of (d / dough
+            :ARG2-of (t / top-01)
+            :consist-of (p / pizza)))
+    :rel (c / continent
+        :name (n / name
+            :op1 "any"
+            :polarity (a / -
+                :mod c))))

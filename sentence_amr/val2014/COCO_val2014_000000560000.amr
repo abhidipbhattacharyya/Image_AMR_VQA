@@ -1,0 +1,36 @@
+# ::tok A pizza it sitting on a plate with toppings hanging over the side .
+# ::node	p	pizza	1-2
+# ::node	s2	sit-01	3-4
+# ::node	p2	plate	6-7
+# ::node	h2	have-03	7-8
+# ::node	c	continent	8-9
+# ::node	n	name	8-9
+# ::node	m	member	8-9
+# ::node	t	toppings	8-9
+# ::node	h	hang-01	9-10
+# ::node	o	over	10-11
+# ::node	s	side	12-13
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	pizza	s2	p	
+# ::edge	sit-01	ARG2	plate	s2	p2	
+# ::edge	pizza	ARG0-of	have-03	p	h2	
+# ::edge	continent	name	name	c	n	
+# ::edge	pizza	ARG2	member	p	m	
+# ::edge	have-03	ARG1	toppings	h2	t	
+# ::edge	toppings	ARG1-of	hang-01	t	h	
+# ::edge	hang-01	ARG2	over	h	o	
+# ::edge	over	op1	side	o	s	
+# ::edge	side	part	member	s	m	
+# ::edge	sit-01	rel	continent	s2	c	
+(s2 / sit-01
+    :ARG1 (p / pizza
+        :ARG0-of (h2 / have-03
+            :ARG1 (t / toppings
+                :ARG1-of (h / hang-01
+                    :ARG2 (o / over
+                        :op1 (s / side
+                            :part (m / member))))))
+        :ARG2 m)
+    :ARG2 (p2 / plate)
+    :rel (c / continent
+        :name (n / name)))

@@ -1,0 +1,40 @@
+# ::tok A US Air Force fighter jet flying far above the earth .
+# ::node	n	name	1-2
+# ::node	3	US	1-2
+# ::node	0	Air	2-3
+# ::node	m	military	3-4
+# ::node	2	Force	3-4
+# ::node	f2	fight-01	4-5
+# ::node	j	jet	5-6
+# ::node	f3	fly-01	6-7
+# ::node	f	far	7-8
+# ::node	a	above	8-9
+# ::node	p	planet	10-11
+# ::node	n2	name	10-11
+# ::node	1	Earth	10-11
+# ::root	j	jet
+# ::edge	name	op1	US	n	3	
+# ::edge	name	op2	Air	n	0	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op3	Force	n	2	
+# ::edge	jet	ARG0-of	fight-01	j	f2	
+# ::edge	jet	poss	military	j	m	
+# ::edge	jet	ARG2-of	fly-01	j	f3	
+# ::edge	above	quant	far	a	f	
+# ::edge	fly-01	path	above	f3	a	
+# ::edge	above	op1	planet	a	p	
+# ::edge	planet	name	name	p	n2	
+# ::edge	name	op1	Earth	n2	1	
+(j / jet
+    :ARG0-of (f2 / fight-01)
+    :ARG2-of (f3 / fly-01
+        :path (a / above
+            :quant (f / far)
+            :op1 (p / planet
+                :name (n2 / name
+                    :op1 "Earth"))))
+    :poss (m / military
+        :name (n / name
+            :op1 "US"
+            :op2 "Air"
+            :op3 "Force")))

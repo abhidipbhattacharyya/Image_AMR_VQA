@@ -1,0 +1,24 @@
+# ::tok Workers are preparing an airplane at the gate for its next flight .
+# ::node	p	person	0-1
+# ::node	w	work-01	0-1
+# ::node	p2	prepare-02	2-3
+# ::node	a	airplane	4-5
+# ::node	g	gate	7-8
+# ::node	n	next	10-11
+# ::node	f	fly-01	11-12
+# ::root	p2	prepare-02
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	prepare-02	ARG0	person	p2	p	
+# ::edge	prepare-02	ARG1	airplane	p2	a	
+# ::edge	prepare-02	location	gate	p2	g	
+# ::edge	fly-01	mod	next	f	n	
+# ::edge	fly-01	ARG1	airplane	f	a	
+# ::edge	prepare-02	ARG2	fly-01	p2	f	
+(p2 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (w / work-01))
+    :ARG1 (a / airplane)
+    :ARG2 (f / fly-01
+        :ARG1 a
+        :mod (n / next))
+    :location (g / gate))

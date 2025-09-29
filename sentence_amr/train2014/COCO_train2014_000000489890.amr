@@ -1,0 +1,34 @@
+# ::tok A uhaul sitting in an open field with a driver behind the wheel .
+# ::node	v	vehicle	1-2
+# ::node	n	name	1-2
+# ::node	0	umm	1-2
+# ::node	s	sit-01	2-3
+# ::node	o	open-06	5-6
+# ::node	f	field	6-7
+# ::node	p	person	9-10
+# ::node	d	drive-01	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	b2	behind	10-11
+# ::node	w	wheel	12-13
+# ::root	s	sit-01
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	umm	n	0	
+# ::edge	sit-01	ARG1	vehicle	s	v	
+# ::edge	field	ARG1-of	open-06	f	o	
+# ::edge	sit-01	ARG2	field	s	f	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	vehicle	ARG2-of	be-located-at-91	v	b	
+# ::edge	person	location	behind	p	b2	
+# ::edge	behind	op1	wheel	b2	w	
+(s / sit-01
+    :ARG1 (v / vehicle
+        :name (n / name
+            :op1 "umm")
+        :ARG2-of (b / be-located-at-91
+            :ARG1 (p / person
+                :ARG0-of (d / drive-01)
+                :location (b2 / behind
+                    :op1 (w / wheel)))))
+    :ARG2 (f / field
+        :ARG1-of (o / open-06)))

@@ -1,0 +1,36 @@
+# ::tok A multicolored cat sitting on the top portion of an open piece of luggage that has clothes packed in it .
+# ::node	m	multiple	1-2
+# ::node	c	cat	2-3
+# ::node	s	sit-01	3-4
+# ::node	t	top	6-7
+# ::node	p3	portion	7-8
+# ::node	o	open-01	10-11
+# ::node	p2	piece	11-12
+# ::node	l	luggage	13-14
+# ::node	h	have-03	15-16
+# ::node	c2	clothes	16-17
+# ::node	p	pack-01	17-18
+# ::root	s	sit-01
+# ::edge	cat	mod	multiple	c	m	
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	portion	mod	top	p3	t	
+# ::edge	sit-01	ARG2	portion	s	p3	
+# ::edge	piece	ARG1-of	open-01	p2	o	
+# ::edge	portion	part-of	piece	p3	p2	
+# ::edge	piece	part-of	luggage	p2	l	
+# ::edge	piece	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	clothes	h	c2	
+# ::edge	clothes	ARG1-of	pack-01	c2	p	
+# ::edge	pack-01	ARG2	piece	p	p2	
+(s / sit-01
+    :ARG1 (c / cat
+        :mod (m / multiple))
+    :ARG2 (p3 / portion
+        :mod (t / top)
+        :part-of (p2 / piece
+            :ARG0-of (h / have-03
+                :ARG1 (c2 / clothes
+                    :ARG1-of (p / pack-01
+                        :ARG2 p2)))
+            :ARG1-of (o / open-01)
+            :part-of (l / luggage))))

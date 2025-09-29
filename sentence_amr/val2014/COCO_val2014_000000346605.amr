@@ -1,0 +1,87 @@
+# ::tok A small refrigerator with signs on it detailing " BUTTER WORMS " , " WAX WORMS " , " 12 GREEN CRAWLERS " and " 18 CANADIAN NIGHTCRAWLERS OR 30 WORMS $ 3.69 " .
+# ::node	s2	small	1-2
+# ::node	r	refrigerator	2-3
+# ::node	s	sign	4-5
+# ::node	d	detail-01	7-8
+# ::node	n	name	9-10
+# ::node	y	year	9-10
+# ::node	4	BUTTER	9-10
+# ::node	n2	name	14-15
+# ::node	6	Fox	14-15
+# ::node	0	12	19-20
+# ::node	g2	green-02	20-21
+# ::node	c	city	21-22
+# ::node	f	field	21-22
+# ::node	g	game	21-22
+# ::node	w	water	21-22
+# ::node	a	and	23-24
+# ::node	1	18	25-26
+# ::node	c3	country	26-27
+# ::node	n3	name	26-27
+# ::node	5	Canada	26-27
+# ::node	o	or	28-29
+# ::node	3	30	29-30
+# ::node	c2	cost-01	31-32
+# ::node	d2	dollar	31-32
+# ::node	m	monetary-quantity	32-33
+# ::node	2	3.69	32-33
+# ::root	r	refrigerator
+# ::edge	refrigerator	mod	small	r	s2	
+# ::edge	refrigerator	location-of	sign	r	s	
+# ::edge	sign	ARG0-of	detail-01	s	d	
+# ::edge	name	op1	BUTTER	n	4	
+# ::edge	name	op1	Fox	n2	6	
+# ::edge	city	name	name	c	n2	
+# ::edge	city	quant	12	c	0	
+# ::edge	field	name	name	f	n2	
+# ::edge	field	op2	water	f	w	
+# ::edge	water	source	year	w	y	
+# ::edge	and	op4	game	a	g	
+# ::edge	and	op3	field	a	f	
+# ::edge	and	op2	city	a	c	
+# ::edge	and	op1	city	a	c	
+# ::edge	detail-01	ARG1	and	d	a	
+# ::edge	game	quant	18	g	1	
+# ::edge	game	mod	country	g	c3	
+# ::edge	country	name	name	c3	n3	
+# ::edge	name	op1	Canada	n3	5	
+# ::edge	game	op5	or	g	o	
+# ::edge	or	op2	game	o	g	
+# ::edge	or	op1	field	o	f	
+# ::edge	game	quant	30	g	3	
+# ::edge	or	ARG1-of	cost-01	o	c2	
+# ::edge	monetary-quantity	unit	dollar	m	d2	
+# ::edge	cost-01	ARG2	monetary-quantity	c2	m	
+# ::edge	monetary-quantity	quant	3.69	m	2	
+# ::edge	refrigerator	rel	name	r	n	
+# ::edge	refrigerator	rel	green-02	r	g2	
+(r / refrigerator
+    :location-of (s / sign
+        :ARG0-of (d / detail-01
+            :ARG1 (a / and
+                :op1 (c / city
+                    :name (n2 / name
+                        :op1 "Fox")
+                    :quant 12)
+                :op2 c
+                :op3 (f / field
+                    :name n2
+                    :op2 (w / water
+                        :source (y / year)))
+                :op4 (g / game
+                    :quant 18
+                    :quant 30
+                    :mod (c3 / country
+                        :name (n3 / name
+                            :op1 "Canada"))
+                    :op5 (o / or
+                        :ARG1-of (c2 / cost-01
+                            :ARG2 (m / monetary-quantity
+                                :quant 3.69
+                                :unit (d2 / dollar)))
+                        :op1 f
+                        :op2 g)))))
+    :mod (s2 / small)
+    :rel (n / name
+        :op1 "BUTTER")
+    :rel (g2 / green-02))

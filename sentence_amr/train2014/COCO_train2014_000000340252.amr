@@ -1,0 +1,50 @@
+# ::tok an Air Canada passenger jet plane sits on a tarmac while airport workers pull baggage out of the plane
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Air	1-2
+# ::node	1	Canada	2-3
+# ::node	p	passenger	3-4
+# ::node	j	jet	4-5
+# ::node	p3	plane	5-6
+# ::node	s	sit-01	6-7
+# ::node	t	tarmac	9-10
+# ::node	a	airport	11-12
+# ::node	p2	person	12-13
+# ::node	w	work-01	12-13
+# ::node	p4	pull-01	13-14
+# ::node	b	baggage	14-15
+# ::node	o	out-06	15-16
+# ::root	s	sit-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Air	n	0	
+# ::edge	name	op2	Canada	n	1	
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	mod	company	j	c	
+# ::edge	plane	mod	jet	p3	j	
+# ::edge	sit-01	ARG1	plane	s	p3	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	person	ARG0-of	work-01	p2	w	
+# ::edge	work-01	ARG1	airport	w	a	
+# ::edge	pull-01	ARG0	person	p4	p2	
+# ::edge	sit-01	time	pull-01	s	p4	
+# ::edge	pull-01	ARG1	plane	p4	p3	
+# ::edge	pull-01	ARG2	baggage	p4	b	
+# ::edge	baggage	ARG1-of	out-06	b	o	
+# ::edge	out-06	ARG2	plane	o	p3	
+(s / sit-01
+    :ARG1 (p3 / plane
+        :mod (j / jet
+            :mod (p / passenger)
+            :mod (c / company
+                :name (n / name
+                    :op1 "Air"
+                    :op2 "Canada"))))
+    :ARG2 (t / tarmac)
+    :time (p4 / pull-01
+        :ARG0 (p2 / person
+            :ARG0-of (w / work-01
+                :ARG1 (a / airport)))
+        :ARG1 p3
+        :ARG2 (b / baggage
+            :ARG1-of (o / out-06
+                :ARG2 p3))))

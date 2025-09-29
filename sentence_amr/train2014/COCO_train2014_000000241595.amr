@@ -1,0 +1,28 @@
+# ::tok Vita Mix blender with something in it already blended .
+# ::node	p	product	0-1
+# ::node	n	name	0-1
+# ::node	1	Vita	0-1
+# ::node	0	Mix	1-2
+# ::node	t	thing	2-3
+# ::node	m	mix-01	2-3
+# ::node	s	something	4-5
+# ::node	a	already	7-8
+# ::node	b	blend-01	8-9
+# ::root	t	thing
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Vita	n	1	
+# ::edge	name	op2	Mix	n	0	
+# ::edge	thing	mod	product	t	p	
+# ::edge	thing	ARG0-of	mix-01	t	m	
+# ::edge	mix-01	ARG1	something	m	s	
+# ::edge	blend-01	time	already	b	a	
+# ::edge	something	ARG1-of	blend-01	s	b	
+(t / thing
+    :ARG0-of (m / mix-01
+        :ARG1 (s / something
+            :ARG1-of (b / blend-01
+                :time (a / already))))
+    :mod (p / product
+        :name (n / name
+            :op1 "Vita"
+            :op2 "Mix")))

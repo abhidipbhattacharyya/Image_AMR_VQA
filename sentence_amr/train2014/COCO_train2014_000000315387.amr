@@ -1,0 +1,49 @@
+# ::tok A bedroom contains a dresser and mirror , a side table and lamp and a twin bed with matching bed covers and pillows .
+# ::node	b3	bedroom	1-2
+# ::node	c	contain-01	2-3
+# ::node	d	dresser	4-5
+# ::node	a	and	5-6
+# ::node	m2	mirror	6-7
+# ::node	s	side	9-10
+# ::node	t	table	10-11
+# ::node	a2	and	11-12
+# ::node	l	lamp	12-13
+# ::node	t2	twin	15-16
+# ::node	b	bed	16-17
+# ::node	m	match-01	18-19
+# ::node	b2	bed	19-20
+# ::node	c2	cover-02	20-21
+# ::node	a3	and	21-22
+# ::node	p	pill	22-23
+# ::root	c	contain-01
+# ::edge	contain-01	ARG0	bedroom	c	b3	
+# ::edge	and	op1	dresser	a	d	
+# ::edge	and	op2	mirror	a	m2	
+# ::edge	table	mod	side	t	s	
+# ::edge	and	op2	table	a2	t	
+# ::edge	and	op1	and	a2	a	
+# ::edge	contain-01	ARG1	and	c	a2	
+# ::edge	and	op3	lamp	a2	l	
+# ::edge	bed	mod	twin	b	t2	
+# ::edge	and	op4	bed	a	b	
+# ::edge	cover-02	ARG1	bed	c2	b2	
+# ::edge	and	op1	cover-02	a3	c2	
+# ::edge	and	ARG1-of	match-01	a3	m	
+# ::edge	bed	part	and	b	a3	
+# ::edge	and	op2	pill	a3	p	
+(c / contain-01
+    :ARG0 (b3 / bedroom)
+    :ARG1 (a2 / and
+        :op1 (a / and
+            :op1 (d / dresser)
+            :op2 (m2 / mirror)
+            :op4 (b / bed
+                :mod (t2 / twin)
+                :part (a3 / and
+                    :ARG1-of (m / match-01)
+                    :op1 (c2 / cover-02
+                        :ARG1 (b2 / bed))
+                    :op2 (p / pill))))
+        :op2 (t / table
+            :mod (s / side))
+        :op3 (l / lamp)))

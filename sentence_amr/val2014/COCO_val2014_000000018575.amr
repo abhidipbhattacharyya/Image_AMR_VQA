@@ -1,0 +1,43 @@
+# ::tok Two plates , one with a sandwich and fries , the other with just a sandwich and a pickle .
+# ::node	0	2	0-1
+# ::node	p2	plate	1-2
+# ::node	p3	plate	1-2
+# ::node	o	one	3-4
+# ::node	s	sandwich	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	f	fry-01	8-9
+# ::node	o2	other	11-12
+# ::node	h	have-03	12-13
+# ::node	j	just	13-14
+# ::node	s2	sandwich	15-16
+# ::node	a3	and	16-17
+# ::node	p	pickle	18-19
+# ::root	a	and
+# ::edge	plate	quant	2	p2	0	
+# ::edge	plate	domain	one	p2	o	
+# ::edge	and	op2	plate	a	p3	
+# ::edge	and	op1	plate	a	p2	
+# ::edge	and	op1	sandwich	a2	s	
+# ::edge	one	part	and	o	a2	
+# ::edge	and	op2	fry-01	a2	f	
+# ::edge	plate	mod	other	p3	o2	
+# ::edge	and	ARG0-of	have-03	a2	h	
+# ::edge	sandwich	mod	just	s2	j	
+# ::edge	and	op1	sandwich	a3	s2	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	and	op2	pickle	a3	p	
+(a / and
+    :op1 (p2 / plate
+        :quant 2
+        :domain (o / one
+            :part (a2 / and
+                :ARG0-of (h / have-03
+                    :ARG1 (a3 / and
+                        :op1 (s2 / sandwich
+                            :mod (j / just))
+                        :op2 (p / pickle)))
+                :op1 (s / sandwich)
+                :op2 (f / fry-01))))
+    :op2 (p3 / plate
+        :mod (o2 / other)))

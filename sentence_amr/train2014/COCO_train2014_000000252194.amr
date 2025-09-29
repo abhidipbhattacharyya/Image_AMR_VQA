@@ -1,0 +1,37 @@
+# ::tok An old style lamp post has a sign that displays the names of businesses inside of the building .
+# ::node	o	old	1-2
+# ::node	s2	style	2-3
+# ::node	l	lamp	3-4
+# ::node	p	post	4-5
+# ::node	h	have-03	5-6
+# ::node	s	sign	7-8
+# ::node	d	display-01	9-10
+# ::node	t	thing	11-12
+# ::node	n	name-01	11-12
+# ::node	b2	business	13-14
+# ::node	i	inside	14-15
+# ::node	b	building	17-18
+# ::root	h	have-03
+# ::edge	style	mod	old	s2	o	
+# ::edge	post	mod	lamp	p	l	
+# ::edge	post	mod	style	p	s2	
+# ::edge	have-03	ARG0	post	h	p	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	ARG0-of	display-01	s	d	
+# ::edge	display-01	ARG1	thing	d	t	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	name-01	ARG1	business	n	b2	
+# ::edge	business	location	inside	b2	i	
+# ::edge	inside	op1	building	i	b	
+(h / have-03
+    :ARG0 (p / post
+        :mod (l / lamp)
+        :mod (s2 / style
+            :mod (o / old)))
+    :ARG1 (s / sign
+        :ARG0-of (d / display-01
+            :ARG1 (t / thing
+                :ARG2-of (n / name-01
+                    :ARG1 (b2 / business
+                        :location (i / inside
+                            :op1 (b / building))))))))

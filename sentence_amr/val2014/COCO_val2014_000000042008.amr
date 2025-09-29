@@ -1,0 +1,24 @@
+# ::tok A small vehicle travels behind another in the desert .
+# ::node	s	small	1-2
+# ::node	v	vehicle	2-3
+# ::node	v2	vehicle	2-3
+# ::node	t	travel-01	3-4
+# ::node	b	behind	4-5
+# ::node	a	another	5-6
+# ::node	d	desert	8-9
+# ::root	t	travel-01
+# ::edge	vehicle	mod	small	v	s	
+# ::edge	travel-01	ARG0	vehicle	t	v	
+# ::edge	travel-01	ARG1	behind	t	b	
+# ::edge	behind	op2	vehicle	b	v2	
+# ::edge	behind	op1	vehicle	b	v	
+# ::edge	vehicle	mod	another	v2	a	
+# ::edge	travel-01	location	desert	t	d	
+(t / travel-01
+    :ARG0 (v / vehicle
+        :mod (s / small))
+    :ARG1 (b / behind
+        :op1 v
+        :op2 (v2 / vehicle
+            :mod (a / another)))
+    :location (d / desert))

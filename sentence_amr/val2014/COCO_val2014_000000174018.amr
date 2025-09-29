@@ -1,0 +1,55 @@
+# ::tok Two teddy bears a pink one , and a tan one .
+# ::node	0	2	0-1
+# ::node	t2	teddy	1-2
+# ::node	t3	teddy	1-2
+# ::node	t4	teddy	1-2
+# ::node	b	bear	2-3
+# ::node	b2	bear	2-3
+# ::node	p	pink-04	4-5
+# ::node	a	and	7-8
+# ::node	t	tan-01	9-10
+# ::root	a	and
+# ::edge	teddy	quant	2	t2	0	
+# ::edge	bear	mod	teddy	b	t3	
+# ::edge	bear	mod	teddy	b2	t4	
+# ::edge	teddy	ARG1-of	pink-04	t3	p	
+# ::edge	and	op2	bear	a	b2	
+# ::edge	and	op1	bear	a	b	
+# ::edge	teddy	ARG1-of	tan-01	t4	t	
+# ::edge	and	rel	teddy	a	t2	
+(a / and
+    :op1 (b / bear
+        :mod (t3 / teddy
+            :ARG1-of (p / pink-04)))
+    :op2 (b2 / bear
+        :mod (t4 / teddy
+            :ARG1-of (t / tan-01)))
+    :rel (t2 / teddy
+        :quant 2))
+
+
+# ::tok The tan bear is wearing a pink shirt that says the harvey girls .
+# ::node	t	tan-01	1-2
+# ::node	b	bear	2-3
+# ::node	w	wear-01	4-5
+# ::node	p	pink-04	6-7
+# ::node	s2	shirt	7-8
+# ::node	s	say-01	9-10
+# ::node	h	harvey	11-12
+# ::node	g	girl	12-13
+# ::root	w	wear-01
+# ::edge	bear	ARG1-of	tan-01	b	t	
+# ::edge	wear-01	ARG0	bear	w	b	
+# ::edge	shirt	ARG1-of	pink-04	s2	p	
+# ::edge	wear-01	ARG1	shirt	w	s2	
+# ::edge	shirt	ARG0-of	say-01	s2	s	
+# ::edge	girl	mod	harvey	g	h	
+# ::edge	say-01	ARG1	girl	s	g	
+(w / wear-01
+    :ARG0 (b / bear
+        :ARG1-of (t / tan-01))
+    :ARG1 (s2 / shirt
+        :ARG0-of (s / say-01
+            :ARG1 (g / girl
+                :mod (h / harvey)))
+        :ARG1-of (p / pink-04)))

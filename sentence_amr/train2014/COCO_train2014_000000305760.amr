@@ -1,0 +1,25 @@
+# ::tok Man surfing large wave in daytime on open ocean .
+# ::node	m	man	0-1
+# ::node	s	surf-01	1-2
+# ::node	l	large	2-3
+# ::node	w	wave	3-4
+# ::node	d	date-entity	5-6
+# ::node	d2	daytime	5-6
+# ::node	o2	open-06	7-8
+# ::node	o	ocean	8-9
+# ::root	s	surf-01
+# ::edge	surf-01	ARG0	man	s	m	
+# ::edge	wave	mod	large	w	l	
+# ::edge	surf-01	ARG2	wave	s	w	
+# ::edge	surf-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+# ::edge	ocean	ARG1-of	open-06	o	o2	
+# ::edge	surf-01	location	ocean	s	o	
+(s / surf-01
+    :ARG0 (m / man)
+    :ARG2 (w / wave
+        :mod (l / large))
+    :location (o / ocean
+        :ARG1-of (o2 / open-06))
+    :time (d / date-entity
+        :dayperiod (d2 / daytime)))

@@ -1,0 +1,34 @@
+# ::tok One boy tries to pass a frisbee while another tries to block him .
+# ::node	0	1	0-1
+# ::node	b2	boy	1-2
+# ::node	b3	boy	1-2
+# ::node	t	try-01	2-3
+# ::node	p	pass-05	4-5
+# ::node	f	frisbee	6-7
+# ::node	a	another	8-9
+# ::node	t2	try-01	9-10
+# ::node	b	block-01	11-12
+# ::root	t	try-01
+# ::edge	boy	quant	1	b2	0	
+# ::edge	try-01	ARG0	boy	t	b2	
+# ::edge	try-01	ARG1	pass-05	t	p	
+# ::edge	pass-05	ARG0	boy	p	b2	
+# ::edge	pass-05	ARG1	frisbee	p	f	
+# ::edge	boy	mod	another	b3	a	
+# ::edge	boy	ARG0-of	try-01	b3	t2	
+# ::edge	try-01	ARG1	block-01	t2	b	
+# ::edge	block-01	ARG0	boy	b	b3	
+# ::edge	block-01	ARG1	boy	b	b2	
+# ::edge	try-01	rel	try-01	t	t2	
+(t / try-01
+    :ARG0 (b2 / boy
+        :quant 1)
+    :ARG1 (p / pass-05
+        :ARG0 b2
+        :ARG1 (f / frisbee))
+    :rel (t2 / try-01
+        :ARG1 (b / block-01
+            :ARG0 (b3 / boy
+                :ARG0-of t2
+                :mod (a / another))
+            :ARG1 b2)))

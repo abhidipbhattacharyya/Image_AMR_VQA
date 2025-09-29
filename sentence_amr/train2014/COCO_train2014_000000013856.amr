@@ -1,0 +1,36 @@
+# ::tok A person is eating a sandwich in the background while some food is wrapped in plastic and sits on a table .
+# ::node	p	person	1-2
+# ::node	e	eat-01	3-4
+# ::node	s	sandwich	5-6
+# ::node	b	background	8-9
+# ::node	s3	some	10-11
+# ::node	f	food	11-12
+# ::node	w	wrap-01	13-14
+# ::node	p2	plastic	15-16
+# ::node	a	and	16-17
+# ::node	s2	sit-01	17-18
+# ::node	t	table	20-21
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	sandwich	e	s	
+# ::edge	eat-01	location	background	e	b	
+# ::edge	food	mod	some	f	s3	
+# ::edge	wrap-01	ARG1	food	w	f	
+# ::edge	wrap-01	ARG2	plastic	w	p2	
+# ::edge	and	op1	wrap-01	a	w	
+# ::edge	eat-01	time	and	e	a	
+# ::edge	and	op2	sit-01	a	s2	
+# ::edge	sit-01	ARG1	food	s2	f	
+# ::edge	sit-01	ARG2	table	s2	t	
+(e / eat-01
+    :ARG0 (p / person)
+    :ARG1 (s / sandwich)
+    :location (b / background)
+    :time (a / and
+        :op1 (w / wrap-01
+            :ARG1 (f / food
+                :mod (s3 / some))
+            :ARG2 (p2 / plastic))
+        :op2 (s2 / sit-01
+            :ARG1 f
+            :ARG2 (t / table))))

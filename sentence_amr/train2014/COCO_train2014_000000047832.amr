@@ -1,0 +1,50 @@
+# ::tok A baseball player wears a dark blue shirt and white pants as he holds the bat while the baseball is near his ear .
+# ::node	b	baseball	1-2
+# ::node	p2	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	d	dark-02	5-6
+# ::node	b4	blue	6-7
+# ::node	s	shirt	7-8
+# ::node	a	and	8-9
+# ::node	w2	white-03	9-10
+# ::node	p	pants	10-11
+# ::node	h	hold-01	13-14
+# ::node	b3	bat	15-16
+# ::node	b2	baseball	18-19
+# ::node	n	near-02	20-21
+# ::node	e	ear	22-23
+# ::root	w	wear-01
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	wear-01	ARG0	person	w	p2	
+# ::edge	blue	ARG1-of	dark-02	b4	d	
+# ::edge	shirt	mod	blue	s	b4	
+# ::edge	and	op1	shirt	a	s	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	pants	ARG1-of	white-03	p	w2	
+# ::edge	and	op2	pants	a	p	
+# ::edge	wear-01	time	hold-01	w	h	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	hold-01	ARG1	bat	h	b3	
+# ::edge	near-02	ARG1	baseball	n	b2	
+# ::edge	hold-01	time	near-02	h	n	
+# ::edge	near-02	ARG2	ear	n	e	
+# ::edge	person	part	ear	p2	e	
+(w / wear-01
+    :ARG0 (p2 / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball))
+        :part (e / ear))
+    :ARG1 (a / and
+        :op1 (s / shirt
+            :mod (b4 / blue
+                :ARG1-of (d / dark-02)))
+        :op2 (p / pants
+            :ARG1-of (w2 / white-03)))
+    :time (h / hold-01
+        :ARG0 p2
+        :ARG1 (b3 / bat)
+        :time (n / near-02
+            :ARG1 (b2 / baseball)
+            :ARG2 e)))

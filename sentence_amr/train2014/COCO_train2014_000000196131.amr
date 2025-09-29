@@ -1,0 +1,28 @@
+# ::tok A busy four lane highway with lots of traffic stopped at a red light .
+# ::node	b	busy-01	1-2
+# ::node	0	4	2-3
+# ::node	l	lane	3-4
+# ::node	h	highway	4-5
+# ::node	l3	lot	6-7
+# ::node	t	traffic	8-9
+# ::node	s	stop-01	9-10
+# ::node	r	red-02	12-13
+# ::node	l2	light	13-14
+# ::root	h	highway
+# ::edge	lane	quant	4	l	0	
+# ::edge	highway	part	lane	h	l	
+# ::edge	highway	ARG1-of	busy-01	h	b	
+# ::edge	traffic	quant	lot	t	l3	
+# ::edge	highway	location-of	traffic	h	t	
+# ::edge	highway	ARG1-of	stop-01	h	s	
+# ::edge	light	ARG1-of	red-02	l2	r	
+# ::edge	stop-01	location	light	s	l2	
+(h / highway
+    :ARG1-of (b / busy-01)
+    :ARG1-of (s / stop-01
+        :location (l2 / light
+            :ARG1-of (r / red-02)))
+    :location-of (t / traffic
+        :quant (l3 / lot))
+    :part (l / lane
+        :quant 4))

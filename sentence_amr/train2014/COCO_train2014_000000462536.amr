@@ -1,0 +1,31 @@
+# ::tok A bus traveling through town , ready to pick up passengers and drop them off .
+# ::node	b	bus	1-2
+# ::node	t2	travel-01	2-3
+# ::node	t	town	4-5
+# ::node	r	ready-02	6-7
+# ::node	p2	pick-up-04	8-9
+# ::node	p	passenger	10-11
+# ::node	a	and	11-12
+# ::node	d	drop-off-03	12-13
+# ::root	t2	travel-01
+# ::edge	travel-01	ARG0	bus	t2	b	
+# ::edge	travel-01	path	town	t2	t	
+# ::edge	bus	ARG1-of	ready-02	b	r	
+# ::edge	pick-up-04	ARG0	bus	p2	b	
+# ::edge	pick-up-04	ARG1	passenger	p2	p	
+# ::edge	and	op1	pick-up-04	a	p2	
+# ::edge	ready-02	ARG2	and	r	a	
+# ::edge	and	op2	drop-off-03	a	d	
+# ::edge	drop-off-03	ARG1	passenger	d	p	
+# ::edge	drop-off-03	ARG0	bus	d	b	
+(t2 / travel-01
+    :ARG0 (b / bus
+        :ARG1-of (r / ready-02
+            :ARG2 (a / and
+                :op1 (p2 / pick-up-04
+                    :ARG0 b
+                    :ARG1 (p / passenger))
+                :op2 (d / drop-off-03
+                    :ARG0 b
+                    :ARG1 p))))
+    :path (t / town))

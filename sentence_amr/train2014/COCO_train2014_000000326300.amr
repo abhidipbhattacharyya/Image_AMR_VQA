@@ -1,0 +1,27 @@
+# ::tok Man about to eat a hot dog that someone is holding in front of him .
+# ::node	m	man	0-1
+# ::node	a	about-to	1-2
+# ::node	e	eat-01	3-4
+# ::node	e2	eat-01	5-6
+# ::node	h2	hot-dog	6-7
+# ::node	s	someone	8-9
+# ::node	h	hold-01	10-11
+# ::node	i	in-front-of	12-13
+# ::root	e	eat-01
+# ::edge	eat-01	time	about-to	e	a	
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	hot-dog	ARG1-of	eat-01	h2	e2	
+# ::edge	eat-01	ARG1	hot-dog	e	h2	
+# ::edge	hold-01	ARG0	someone	h	s	
+# ::edge	hot-dog	ARG1-of	hold-01	h2	h	
+# ::edge	hold-01	location	in-front-of	h	i	
+# ::edge	in-front-of	op1	man	i	m	
+(e / eat-01
+    :ARG0 (m / man)
+    :ARG1 (h2 / hot-dog
+        :ARG1-of (e2 / eat-01)
+        :ARG1-of (h / hold-01
+            :ARG0 (s / someone)
+            :location (i / in-front-of
+                :op1 m)))
+    :time (a / about-to))

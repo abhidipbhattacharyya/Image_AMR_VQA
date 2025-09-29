@@ -1,0 +1,24 @@
+# ::tok Multiple chopped up vegetables with seasoning in a jar ready to cooking .
+# ::node	m	multiple	0-1
+# ::node	c	chill-01	1-2
+# ::node	v	vegetable	3-4
+# ::node	s	season-01	5-6
+# ::node	j	jar	8-9
+# ::node	r	ready-02	9-10
+# ::node	c2	cook-01	11-12
+# ::root	v	vegetable
+# ::edge	vegetable	ARG1-of	chill-01	v	c	
+# ::edge	vegetable	quant	multiple	v	m	
+# ::edge	vegetable	accompanier	season-01	v	s	
+# ::edge	vegetable	location	jar	v	j	
+# ::edge	jar	ARG1-of	ready-02	j	r	
+# ::edge	ready-02	ARG2	cook-01	r	c2	
+# ::edge	cook-01	ARG1	vegetable	c2	v	
+(v / vegetable
+    :quant (m / multiple)
+    :ARG1-of (c / chill-01)
+    :accompanier (s / season-01)
+    :location (j / jar
+        :ARG1-of (r / ready-02
+            :ARG2 (c2 / cook-01
+                :ARG1 v))))

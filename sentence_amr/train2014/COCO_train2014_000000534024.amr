@@ -1,0 +1,25 @@
+# ::tok A kitchen is being installed with stainless steel refrigerator and glue is on the island .
+# ::node	k	kitchen	1-2
+# ::node	i	install-01	4-5
+# ::node	s	stainless	6-7
+# ::node	s2	steel	7-8
+# ::node	r	refrigerator	8-9
+# ::node	a	and	9-10
+# ::node	g	glue	10-11
+# ::node	i2	island	14-15
+# ::root	a	and
+# ::edge	install-01	ARG1	kitchen	i	k	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	refrigerator	mod	steel	r	s2	
+# ::edge	install-01	ARG2	refrigerator	i	r	
+# ::edge	and	op1	install-01	a	i	
+# ::edge	and	op2	glue	a	g	
+# ::edge	glue	location	island	g	i2	
+(a / and
+    :op1 (i / install-01
+        :ARG1 (k / kitchen)
+        :ARG2 (r / refrigerator
+            :mod (s2 / steel
+                :mod (s / stainless))))
+    :op2 (g / glue
+        :location (i2 / island)))

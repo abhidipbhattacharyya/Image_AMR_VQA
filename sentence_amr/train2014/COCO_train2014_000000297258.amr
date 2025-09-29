@@ -1,0 +1,39 @@
+# ::tok An Emirates commercial plane is preparing to taxi down the runway at an airport on a cloudy day .
+# ::node	c3	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Emirates	1-2
+# ::node	c2	commerce	2-3
+# ::node	p	plane	3-4
+# ::node	p2	prepare-02	5-6
+# ::node	t	tax-01	7-8
+# ::node	d2	down	8-9
+# ::node	r	runway	10-11
+# ::node	a	airport	13-14
+# ::node	c	cloudy-02	16-17
+# ::node	d	day	17-18
+# ::root	p2	prepare-02
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op1	Emirates	n	0	
+# ::edge	plane	mod	commerce	p	c2	
+# ::edge	plane	mod	company	p	c3	
+# ::edge	prepare-02	ARG1	plane	p2	p	
+# ::edge	prepare-02	ARG2	tax-01	p2	t	
+# ::edge	tax-01	ARG1	plane	t	p	
+# ::edge	tax-01	direction	down	t	d2	
+# ::edge	tax-01	path	runway	t	r	
+# ::edge	runway	location	airport	r	a	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	tax-01	time	day	t	d	
+(p2 / prepare-02
+    :ARG1 (p / plane
+        :mod (c2 / commerce)
+        :mod (c3 / company
+            :name (n / name
+                :op1 "Emirates")))
+    :ARG2 (t / tax-01
+        :ARG1 p
+        :direction (d2 / down)
+        :path (r / runway
+            :location (a / airport))
+        :time (d / day
+            :ARG1-of (c / cloudy-02))))

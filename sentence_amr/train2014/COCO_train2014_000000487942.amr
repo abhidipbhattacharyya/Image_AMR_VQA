@@ -1,0 +1,31 @@
+# ::tok Two dump trucks sitting idle waiting for a load to be dumped in the back .
+# ::node	0	2	0-1
+# ::node	d	dump-01	1-2
+# ::node	t	truck	2-3
+# ::node	i	idle-01	4-5
+# ::node	w	wait-01	5-6
+# ::node	l	load	8-9
+# ::node	d2	dump-01	11-12
+# ::node	b	back	14-15
+# ::root	i	idle-01
+# ::edge	truck	ARG0-of	dump-01	t	d	
+# ::edge	truck	quant	2	t	0	
+# ::edge	idle-01	ARG1	truck	i	t	
+# ::edge	idle-01	ARG2	wait-01	i	w	
+# ::edge	wait-01	ARG1	truck	w	t	
+# ::edge	dump-01	ARG1	load	d2	l	
+# ::edge	wait-01	ARG2	dump-01	w	d2	
+# ::edge	dump-01	ARG0	truck	d2	t	
+# ::edge	dump-01	location	back	d2	b	
+# ::edge	truck	part	back	t	b	
+(i / idle-01
+    :ARG1 (t / truck
+        :quant 2
+        :ARG0-of (d / dump-01)
+        :part (b / back))
+    :ARG2 (w / wait-01
+        :ARG1 t
+        :ARG2 (d2 / dump-01
+            :ARG0 t
+            :ARG1 (l / load)
+            :location b)))

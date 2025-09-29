@@ -1,0 +1,37 @@
+# ::tok An uncooked pizza with diced meat , tomato , and green onion on top of a cutting board .
+# ::node	0	-	0-1
+# ::node	c	cook-01	1-2
+# ::node	p	pizza	2-3
+# ::node	s	slice-01	4-5
+# ::node	m	meat	5-6
+# ::node	t	tomato	7-8
+# ::node	a	and	9-10
+# ::node	g	green-02	10-11
+# ::node	o	onion	11-12
+# ::node	t2	top	13-14
+# ::node	c2	cut-01	16-17
+# ::node	b	board	17-18
+# ::root	p	pizza
+# ::edge	cook-01	polarity	-	c	0	
+# ::edge	pizza	ARG1-of	cook-01	p	c	
+# ::edge	meat	ARG1-of	slice-01	m	s	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	and	op1	meat	a	m	
+# ::edge	pizza	accompanier	and	p	a	
+# ::edge	onion	ARG1-of	green-02	o	g	
+# ::edge	and	op3	onion	a	o	
+# ::edge	pizza	location	top	p	t2	
+# ::edge	board	purpose	cut-01	b	c2	
+# ::edge	top	part-of	board	t2	b	
+(p / pizza
+    :ARG1-of (c / cook-01
+        :polarity -)
+    :accompanier (a / and
+        :op1 (m / meat
+            :ARG1-of (s / slice-01))
+        :op2 (t / tomato)
+        :op3 (o / onion
+            :ARG1-of (g / green-02)))
+    :location (t2 / top
+        :part-of (b / board
+            :purpose (c2 / cut-01))))

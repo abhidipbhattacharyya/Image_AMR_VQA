@@ -1,0 +1,43 @@
+# ::tok A man in a green and red polo shirt holding a plate with a piece of cake on it .
+# ::node	m	man	1-2
+# ::node	g	green-02	4-5
+# ::node	a	and	5-6
+# ::node	r	red-02	6-7
+# ::node	p3	polo	7-8
+# ::node	s	shirt	8-9
+# ::node	s2	shirt	8-9
+# ::node	h2	hold-01	9-10
+# ::node	p2	plate	11-12
+# ::node	h	have-03	12-13
+# ::node	p	piece	14-15
+# ::node	c	cake	16-17
+# ::root	m	man
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	red-02	a	r	
+# ::edge	shirt	mod	polo	s	p3	
+# ::edge	and	op1	shirt	a	s	
+# ::edge	shirt	ARG1-of	green-02	s	g	
+# ::edge	shirt	mod	polo	s2	p3	
+# ::edge	red-02	ARG1	shirt	r	s2	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	plate	h2	p2	
+# ::edge	plate	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	piece	h	p	
+# ::edge	piece	location	plate	p	p2	
+# ::edge	piece	mod	cake	p	c	
+# ::edge	man	rel	and	m	a	
+(m / man
+    :ARG0-of (h2 / hold-01
+        :ARG1 (p2 / plate
+            :ARG0-of (h / have-03
+                :ARG1 (p / piece
+                    :location p2
+                    :mod (c / cake)))))
+    :rel (a / and
+        :op1 m
+        :op1 (s / shirt
+            :ARG1-of (g / green-02)
+            :mod (p3 / polo))
+        :op2 (r / red-02
+            :ARG1 (s2 / shirt
+                :mod p3))))

@@ -1,0 +1,28 @@
+# ::tok a cat sitting on an L shaped desk with a monitor and laptop on it .
+# ::node	c	cat	1-2
+# ::node	s2	sit-01	2-3
+# ::node	s3	string-entity	5-6
+# ::node	0	L	5-6
+# ::node	s	shape-01	6-7
+# ::node	d	desk	7-8
+# ::node	m	monitor	10-11
+# ::node	a	and	11-12
+# ::node	l	laptop	12-13
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	cat	s2	c	
+# ::edge	string-entity	value	L	s3	0	
+# ::edge	shape-01	ARG2	string-entity	s	s3	
+# ::edge	desk	ARG1-of	shape-01	d	s	
+# ::edge	sit-01	ARG2	desk	s2	d	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	desk	part	and	d	a	
+# ::edge	and	op2	laptop	a	l	
+(s2 / sit-01
+    :ARG1 (c / cat)
+    :ARG2 (d / desk
+        :ARG1-of (s / shape-01
+            :ARG2 (s3 / string-entity
+                :value "L"))
+        :part (a / and
+            :op1 (m / monitor)
+            :op2 (l / laptop))))

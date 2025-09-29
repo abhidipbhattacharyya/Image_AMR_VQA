@@ -1,0 +1,26 @@
+# ::tok A table that has people sitting around it with food in front of them .
+# ::node	t	table	1-2
+# ::node	p	person	4-5
+# ::node	s	sit-01	5-6
+# ::node	a2	around	6-7
+# ::node	a	and	8-9
+# ::node	f	food	9-10
+# ::node	i	in-front-of	11-12
+# ::root	t	table
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	around	op1	table	a2	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	table	location-of	and	t	a	
+# ::edge	in-front-of	location-of	food	i	f	
+# ::edge	and	op2	in-front-of	a	i	
+# ::edge	in-front-of	op1	person	i	p	
+(t / table
+    :location-of (a / and
+        :op1 (s / sit-01
+            :ARG1 (p / person)
+            :ARG2 (a2 / around
+                :op1 t))
+        :op2 (i / in-front-of
+            :location-of (f / food)
+            :op1 p)))

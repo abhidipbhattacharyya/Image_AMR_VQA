@@ -1,0 +1,33 @@
+# ::tok Two sandwiches with toasted bread set on a baking sheet that has tinfoil over it .
+# ::node	0	2	0-1
+# ::node	s	sandwich	1-2
+# ::node	b	bake-01	3-4
+# ::node	b3	bread	4-5
+# ::node	s2	set-01	5-6
+# ::node	b2	bake-01	8-9
+# ::node	s3	sheet	9-10
+# ::node	h	have-03	11-12
+# ::node	t	tinfoil	12-13
+# ::node	o	over	13-14
+# ::root	s	sandwich
+# ::edge	sandwich	quant	2	s	0	
+# ::edge	bread	ARG2-of	bake-01	b3	b	
+# ::edge	sandwich	consist-of	bread	s	b3	
+# ::edge	sandwich	ARG1-of	set-01	s	s2	
+# ::edge	sheet	instrument-of	bake-01	s3	b2	
+# ::edge	set-01	ARG2	sheet	s2	s3	
+# ::edge	sheet	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	tinfoil	h	t	
+# ::edge	have-03	location	over	h	o	
+# ::edge	over	op1	bread	o	b3	
+(s / sandwich
+    :quant 2
+    :ARG1-of (s2 / set-01
+        :ARG2 (s3 / sheet
+            :ARG0-of (h / have-03
+                :ARG1 (t / tinfoil)
+                :location (o / over
+                    :op1 (b3 / bread
+                        :ARG2-of (b / bake-01))))
+            :instrument-of (b2 / bake-01)))
+    :consist-of b3)

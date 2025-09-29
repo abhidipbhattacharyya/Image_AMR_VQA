@@ -1,0 +1,30 @@
+# ::tok Part of train car with a door to the rear connected to the car behind it
+# ::node	h2	have-part-91	0-1
+# ::node	t	train	2-3
+# ::node	c	car	3-4
+# ::node	h	have-03	4-5
+# ::node	d	door	6-7
+# ::node	r	rear	9-10
+# ::node	c3	connect-01	10-11
+# ::node	c2	car	13-14
+# ::node	b	behind	14-15
+# ::root	c3	connect-01
+# ::edge	car	mod	train	c	t	
+# ::edge	have-part-91	ARG1	car	h2	c	
+# ::edge	car	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	door	h	d	
+# ::edge	door	location	rear	d	r	
+# ::edge	connect-01	ARG1	have-part-91	c3	h2	
+# ::edge	connect-01	ARG2	car	c3	c2	
+# ::edge	car	location	behind	c2	b	
+# ::edge	behind	op1	car	b	c	
+(c3 / connect-01
+    :ARG1 (h2 / have-part-91
+        :ARG1 (c / car
+            :ARG0-of (h / have-03
+                :ARG1 (d / door
+                    :location (r / rear)))
+            :mod (t / train)))
+    :ARG2 (c2 / car
+        :location (b / behind
+            :op1 c)))

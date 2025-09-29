@@ -1,0 +1,72 @@
+# ::tok Four seagulls standing and facing same direction on a rusting pipe resting on rusting tank , and leaning in ocean , with a ship in the distance on the horizon during daytime with clear blue sky .
+# ::node	0	4	0-1
+# ::node	s2	seaman	1-2
+# ::node	s5	stand-01	2-3
+# ::node	a	and	3-4
+# ::node	f	face-01	4-5
+# ::node	s	same-01	5-6
+# ::node	d3	direction	6-7
+# ::node	r2	rust-01	9-10
+# ::node	p	pipe	10-11
+# ::node	r	rest-01	11-12
+# ::node	t	tank	14-15
+# ::node	l	lean-01	17-18
+# ::node	o	ocean	19-20
+# ::node	s3	ship	23-24
+# ::node	d4	distant-02	26-27
+# ::node	h	horizon	29-30
+# ::node	d	date-entity	31-32
+# ::node	d2	daytime	31-32
+# ::node	c	clear-08	33-34
+# ::node	b	blue	34-35
+# ::node	s4	sky	35-36
+# ::root	a	and
+# ::edge	seaman	quant	4	s2	0	
+# ::edge	stand-01	ARG1	seaman	s5	s2	
+# ::edge	and	op1	stand-01	a	s5	
+# ::edge	and	op2	face-01	a	f	
+# ::edge	face-01	ARG0	seaman	f	s2	
+# ::edge	direction	ARG1-of	same-01	d3	s	
+# ::edge	face-01	ARG1	direction	f	d3	
+# ::edge	pipe	ARG1-of	rust-01	p	r2	
+# ::edge	face-01	ARG2	pipe	f	p	
+# ::edge	pipe	ARG1-of	rest-01	p	r	
+# ::edge	rest-01	ARG2	tank	r	t	
+# ::edge	rust-01	ARG1	tank	r2	t	
+# ::edge	and	op3	lean-01	a	l	
+# ::edge	lean-01	ARG1	seaman	l	s2	
+# ::edge	lean-01	ARG2	ocean	l	o	
+# ::edge	and	op4	ship	a	s3	
+# ::edge	ship	ARG1-of	distant-02	s3	d4	
+# ::edge	distant-02	ARG2	seaman	d4	s2	
+# ::edge	ship	location	horizon	s3	h	
+# ::edge	ship	time	date-entity	s3	d	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+# ::edge	sky	mod	blue	s4	b	
+# ::edge	sky	ARG1-of	clear-08	s4	c	
+# ::edge	horizon	prep-with	sky	h	s4	
+(a / and
+    :op1 (s5 / stand-01
+        :ARG1 (s2 / seaman
+            :quant 4))
+    :op2 (f / face-01
+        :ARG0 s2
+        :ARG1 (d3 / direction
+            :ARG1-of (s / same-01))
+        :ARG2 (p / pipe
+            :ARG1-of (r2 / rust-01
+                :ARG1 (t / tank))
+            :ARG1-of (r / rest-01
+                :ARG2 t)))
+    :op3 (l / lean-01
+        :ARG1 s2
+        :ARG2 (o / ocean))
+    :op4 (s3 / ship
+        :ARG1-of (d4 / distant-02
+            :ARG2 s2)
+        :location (h / horizon
+            :prep-with (s4 / sky
+                :ARG1-of (c / clear-08)
+                :mod (b / blue)))
+        :time (d / date-entity
+            :dayperiod (d2 / daytime))))

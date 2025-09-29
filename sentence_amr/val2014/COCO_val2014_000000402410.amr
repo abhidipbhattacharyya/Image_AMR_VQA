@@ -1,0 +1,40 @@
+# ::tok A man with blue pants is on a snowy hillside a couple feet off the ground on a snowboard .
+# ::node	m	man	1-2
+# ::node	b2	blue	3-4
+# ::node	p	pants	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	s2	snowy-02	8-9
+# ::node	h	hillside	9-10
+# ::node	c	couple	11-12
+# ::node	0	1	11-12
+# ::node	d	distance-quantity	12-13
+# ::node	f	foot	12-13
+# ::node	o	off	13-14
+# ::node	g	ground	15-16
+# ::node	s	snowboard	18-19
+# ::root	b	be-located-at-91
+# ::edge	pants	mod	blue	p	b2	
+# ::edge	be-located-at-91	ARG1	man	b	m	
+# ::edge	hillside	ARG1-of	snowy-02	h	s2	
+# ::edge	be-located-at-91	ARG2	hillside	b	h	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	couple	op1	distance-quantity	c	d	
+# ::edge	distance-quantity	unit	foot	d	f	
+# ::edge	off	quant	couple	o	c	
+# ::edge	hillside	location	off	h	o	
+# ::edge	off	op1	ground	o	g	
+# ::edge	be-located-at-91	instrument	snowboard	b	s	
+# ::edge	be-located-at-91	rel	pants	b	p	
+(b / be-located-at-91
+    :ARG1 (m / man)
+    :ARG2 (h / hillside
+        :ARG1-of (s2 / snowy-02)
+        :location (o / off
+            :quant (c / couple
+                :op1 (d / distance-quantity
+                    :quant 1
+                    :unit (f / foot)))
+            :op1 (g / ground)))
+    :instrument (s / snowboard)
+    :rel (p / pants
+        :mod (b2 / blue)))

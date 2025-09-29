@@ -1,0 +1,40 @@
+# ::tok A person sitting at a table that has a blue checked tablecloth on it and a large round pizza that is uncut .
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	h	have-03	7-8
+# ::node	b	blue	9-10
+# ::node	c	check-01	10-11
+# ::node	t2	tablecloth	11-12
+# ::node	a	and	14-15
+# ::node	l	large	16-17
+# ::node	r	round-06	17-18
+# ::node	p2	pizza	18-19
+# ::node	0	-	20-21
+# ::node	c2	cut-02	21-22
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	tablecloth	ARG1-of	check-01	t2	c	
+# ::edge	tablecloth	mod	blue	t2	b	
+# ::edge	and	op1	tablecloth	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	pizza	ARG1-of	round-06	p2	r	
+# ::edge	pizza	mod	large	p2	l	
+# ::edge	and	op2	pizza	a	p2	
+# ::edge	cut-02	polarity	-	c2	0	
+# ::edge	pizza	ARG1-of	cut-02	p2	c2	
+(s / sit-01
+    :ARG1 (p / person)
+    :ARG2 (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (t2 / tablecloth
+                    :ARG1-of (c / check-01)
+                    :mod (b / blue))
+                :op2 (p2 / pizza
+                    :ARG1-of (r / round-06)
+                    :ARG1-of (c2 / cut-02
+                        :polarity -)
+                    :mod (l / large))))))

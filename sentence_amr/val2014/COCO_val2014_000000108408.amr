@@ -1,0 +1,25 @@
+# ::tok Rows of suitcases on carpet with crate in background .
+# ::node	m	multiple	0-1
+# ::node	d	distance-quantity	0-1
+# ::node	w	week	0-1
+# ::node	0	1	0-1
+# ::node	s	suitcase	2-3
+# ::node	c	carpet	4-5
+# ::node	c2	crate	6-7
+# ::node	b	background	8-9
+# ::root	s	suitcase
+# ::edge	multiple	op1	distance-quantity	m	d	
+# ::edge	distance-quantity	unit	week	d	w	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	suitcase	quant	multiple	s	m	
+# ::edge	suitcase	location	carpet	s	c	
+# ::edge	suitcase	accompanier	crate	s	c2	
+# ::edge	crate	location	background	c2	b	
+(s / suitcase
+    :quant (m / multiple
+        :op1 (d / distance-quantity
+            :quant 1
+            :unit (w / week)))
+    :accompanier (c2 / crate
+        :location (b / background))
+    :location (c / carpet))

@@ -1,0 +1,25 @@
+# ::tok The red double decker bus is followed by another identical bus .
+# ::node	r	red-02	1-2
+# ::node	0	2	2-3
+# ::node	d	deck	3-4
+# ::node	b	bus	4-5
+# ::node	f	follow-01	6-7
+# ::node	a	another	8-9
+# ::node	i	identical-01	9-10
+# ::node	b2	bus	10-11
+# ::root	f	follow-01
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	bus	ARG1-of	red-02	b	r	
+# ::edge	follow-01	ARG2	bus	f	b	
+# ::edge	bus	ARG1-of	identical-01	b2	i	
+# ::edge	bus	mod	another	b2	a	
+# ::edge	follow-01	ARG1	bus	f	b2	
+(f / follow-01
+    :ARG1 (b2 / bus
+        :ARG1-of (i / identical-01)
+        :mod (a / another))
+    :ARG2 (b / bus
+        :ARG1-of (r / red-02)
+        :mod (d / deck
+            :quant 2)))

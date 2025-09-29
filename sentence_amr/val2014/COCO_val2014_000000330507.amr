@@ -1,0 +1,33 @@
+# ::tok Two people stand near a table , both cutting a cake , while others look on .
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	t	table	5-6
+# ::node	c2	cut-01	8-9
+# ::node	c	cake	10-11
+# ::node	p2	person	13-14
+# ::node	o	other	13-14
+# ::node	l	look-01	14-15
+# ::root	s	stand-01
+# ::edge	person	quant	2	p	0	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	table	n	t	
+# ::edge	person	ARG0-of	cut-01	p	c2	
+# ::edge	cut-01	ARG1	cake	c2	c	
+# ::edge	person	mod	other	p2	o	
+# ::edge	look-01	ARG0	person	l	p2	
+# ::edge	cut-01	ARG1-of	look-01	c2	l	
+(s / stand-01
+    :ARG1 (p / person
+        :quant 2
+        :ARG0-of (c2 / cut-01
+            :ARG1 (c / cake)
+            :ARG1-of (l / look-01
+                :ARG0 (p2 / person
+                    :mod (o / other)))))
+    :ARG2 (n / near-02
+        :ARG1 p
+        :ARG2 (t / table)))

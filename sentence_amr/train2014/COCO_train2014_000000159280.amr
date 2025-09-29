@@ -1,0 +1,44 @@
+# ::tok When looking out a glass window you can see a parked motorcycle that looks like there is a white dog standing on it .
+# ::node	l	look-01	1-2
+# ::node	o	out	2-3
+# ::node	g	glass	4-5
+# ::node	w2	window	5-6
+# ::node	y	you	6-7
+# ::node	p2	possible-01	7-8
+# ::node	s	see-01	8-9
+# ::node	p	park-01	10-11
+# ::node	m	motorcycle	11-12
+# ::node	l2	look-02	13-14
+# ::node	w	white-03	18-19
+# ::node	d	dog	19-20
+# ::node	s2	stand-01	20-21
+# ::root	p2	possible-01
+# ::edge	look-01	direction	out	l	o	
+# ::edge	window	consist-of	glass	w2	g	
+# ::edge	look-01	op1	window	l	w2	
+# ::edge	look-01	ARG0	you	l	y	
+# ::edge	possible-01	time	look-01	p2	l	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	motorcycle	ARG1-of	park-01	m	p	
+# ::edge	see-01	ARG1	motorcycle	s	m	
+# ::edge	motorcycle	ARG0-of	look-02	m	l2	
+# ::edge	dog	ARG1-of	white-03	d	w	
+# ::edge	stand-01	ARG1	dog	s2	d	
+# ::edge	look-02	ARG1	stand-01	l2	s2	
+# ::edge	stand-01	ARG2	motorcycle	s2	m	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG0 (y / you)
+        :ARG1 (m / motorcycle
+            :ARG0-of (l2 / look-02
+                :ARG1 (s2 / stand-01
+                    :ARG1 (d / dog
+                        :ARG1-of (w / white-03))
+                    :ARG2 m))
+            :ARG1-of (p / park-01)))
+    :time (l / look-01
+        :ARG0 y
+        :direction (o / out)
+        :op1 (w2 / window
+            :consist-of (g / glass))))

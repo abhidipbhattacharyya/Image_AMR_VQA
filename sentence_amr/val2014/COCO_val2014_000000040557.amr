@@ -1,0 +1,30 @@
+# ::tok Traffic light hanging near power lines with trees in back .
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	h	hang-01	2-3
+# ::node	n	near-02	3-4
+# ::node	p	power	4-5
+# ::node	l2	line	5-6
+# ::node	h2	have-03	6-7
+# ::node	t2	tree	7-8
+# ::node	b	back	9-10
+# ::root	h	hang-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	hang-01	ARG1	light	h	l	
+# ::edge	hang-01	ARG2	near-02	h	n	
+# ::edge	near-02	ARG1	light	n	l	
+# ::edge	line	mod	power	l2	p	
+# ::edge	near-02	ARG2	line	n	l2	
+# ::edge	line	ARG0-of	have-03	l2	h2	
+# ::edge	have-03	ARG1	tree	h2	t2	
+# ::edge	tree	location	back	t2	b	
+(h / hang-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :ARG2 (n / near-02
+        :ARG1 l
+        :ARG2 (l2 / line
+            :ARG0-of (h2 / have-03
+                :ARG1 (t2 / tree
+                    :location (b / back)))
+            :mod (p / power))))

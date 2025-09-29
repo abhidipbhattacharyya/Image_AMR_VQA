@@ -1,0 +1,25 @@
+# ::tok A baseball playing is standing at home plate getting ready to hit the ball .
+# ::node	b2	baseball	1-2
+# ::node	p2	play-01	2-3
+# ::node	s	stand-01	4-5
+# ::node	h2	home	6-7
+# ::node	p	plate	7-8
+# ::node	r	ready-01	9-10
+# ::node	h	hit-01	11-12
+# ::node	b	ball	13-14
+# ::root	s	stand-01
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	stand-01	ARG1	play-01	s	p2	
+# ::edge	plate	mod	home	p	h2	
+# ::edge	stand-01	ARG2	plate	s	p	
+# ::edge	stand-01	purpose	ready-01	s	r	
+# ::edge	ready-01	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG1	ball	h	b	
+(s / stand-01
+    :purpose (r / ready-01
+        :ARG2 (h / hit-01
+            :ARG1 (b / ball)))
+    :ARG1 (p2 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG2 (p / plate
+        :mod (h2 / home)))

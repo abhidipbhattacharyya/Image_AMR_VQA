@@ -1,0 +1,31 @@
+# ::tok A metro bus at night at a bus stop letting people off on the sidewalk .
+# ::node	m	metro	1-2
+# ::node	b	bus	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	b2	bus	7-8
+# ::node	s2	stop-01	8-9
+# ::node	l	let-01	9-10
+# ::node	p	person	10-11
+# ::node	o	off	11-12
+# ::node	s	sidewalk	14-15
+# ::root	l	let-01
+# ::edge	bus	mod	metro	b	m	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	stop-01	ARG1	bus	s2	b2	
+# ::edge	let-01	location	stop-01	l	s2	
+# ::edge	let-01	time	date-entity	l	d	
+# ::edge	let-01	ARG0	bus	l	b	
+# ::edge	off	domain	person	o	p	
+# ::edge	let-01	ARG1	off	l	o	
+# ::edge	let-01	location	sidewalk	l	s	
+(l / let-01
+    :ARG0 (b / bus
+        :mod (m / metro))
+    :ARG1 (o / off
+        :domain (p / person))
+    :location (s2 / stop-01
+        :ARG1 (b2 / bus))
+    :location (s / sidewalk)
+    :time (d / date-entity
+        :dayperiod (n / night)))

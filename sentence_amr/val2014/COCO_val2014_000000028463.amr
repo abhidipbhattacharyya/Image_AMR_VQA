@@ -1,0 +1,52 @@
+# ::tok A plate of pancakes and eggs with 2 packages of syrup and a glass of orange juice and a cup of coffee .
+# ::node	p2	plate	1-2
+# ::node	e2	enzyme	3-4
+# ::node	f	farm-01	3-4
+# ::node	a	and	4-5
+# ::node	e	egg	5-6
+# ::node	2	2	7-8
+# ::node	p	package	8-9
+# ::node	s	syrup	10-11
+# ::node	v	volume-quantity	12-13
+# ::node	0	1	12-13
+# ::node	g	glass	13-14
+# ::node	o	orange	15-16
+# ::node	j	juice	16-17
+# ::node	1	1	18-19
+# ::node	v2	volume-quantity	19-20
+# ::node	c2	cup	19-20
+# ::node	c	coffee	21-22
+# ::root	a	and
+# ::edge	enzyme	ARG1-of	farm-01	e2	f	
+# ::edge	and	op1	enzyme	a	e2	
+# ::edge	and	quant	plate	a	p2	
+# ::edge	and	op2	egg	a	e	
+# ::edge	package	quant	2	p	2	
+# ::edge	and	op3	package	a	p	
+# ::edge	package	consist-of	syrup	p	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	and	op4	juice	a	j	
+# ::edge	volume-quantity	quant	1	v2	1	
+# ::edge	volume-quantity	unit	cup	v2	c2	
+# ::edge	coffee	quant	volume-quantity	c	v2	
+# ::edge	and	op5	coffee	a	c	
+(a / and
+    :quant (p2 / plate)
+    :op1 (e2 / enzyme
+        :ARG1-of (f / farm-01))
+    :op2 (e / egg)
+    :op3 (p / package
+        :quant 2
+        :consist-of (s / syrup))
+    :op4 (j / juice
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass))
+        :mod (o / orange))
+    :op5 (c / coffee
+        :quant (v2 / volume-quantity
+            :quant 1
+            :unit (c2 / cup))))

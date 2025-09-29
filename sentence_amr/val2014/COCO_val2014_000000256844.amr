@@ -1,0 +1,24 @@
+# ::tok A small , modern commode in a public restroom that needs to be cleaned .
+# ::node	s	small	1-2
+# ::node	m	modern-02	3-4
+# ::node	c2	commode	4-5
+# ::node	p	public-02	7-8
+# ::node	r	restroom	8-9
+# ::node	n	need-01	10-11
+# ::node	c	clean-01	13-14
+# ::root	c2	commode
+# ::edge	commode	ARG1-of	modern-02	c2	m	
+# ::edge	commode	mod	small	c2	s	
+# ::edge	restroom	ARG1-of	public-02	r	p	
+# ::edge	commode	location	restroom	c2	r	
+# ::edge	commode	ARG0-of	need-01	c2	n	
+# ::edge	need-01	ARG1	clean-01	n	c	
+# ::edge	clean-01	ARG1	commode	c	c2	
+(c2 / commode
+    :ARG0-of (n / need-01
+        :ARG1 (c / clean-01
+            :ARG1 c2))
+    :ARG1-of (m / modern-02)
+    :location (r / restroom
+        :ARG1-of (p / public-02))
+    :mod (s / small))

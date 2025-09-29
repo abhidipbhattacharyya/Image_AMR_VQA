@@ -1,0 +1,30 @@
+# ::tok Baseball player practicing his batting near an outfield foul line .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	p3	practice-01	2-3
+# ::node	b2	bat-01	4-5
+# ::node	n	near-02	5-6
+# ::node	o	outfield	7-8
+# ::node	f	foul-01	8-9
+# ::node	l	line	9-10
+# ::root	p3	practice-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	practice-01	ARG0	person	p3	p	
+# ::edge	practice-01	ARG1	bat-01	p3	b2	
+# ::edge	bat-01	ARG0	person	b2	p	
+# ::edge	bat-01	ARG1-of	near-02	b2	n	
+# ::edge	line	mod	foul-01	l	f	
+# ::edge	line	mod	outfield	l	o	
+# ::edge	near-02	ARG2	line	n	l	
+(p3 / practice-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball)))
+    :ARG1 (b2 / bat-01
+        :ARG0 p
+        :ARG1-of (n / near-02
+            :ARG2 (l / line
+                :mod (f / foul-01)
+                :mod (o / outfield)))))

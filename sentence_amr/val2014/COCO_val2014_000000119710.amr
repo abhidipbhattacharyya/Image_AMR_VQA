@@ -1,0 +1,31 @@
+# ::tok Somewhere in Asia a man holding the lead to a cow in a rice paddy
+# ::node	s	somewhere	0-1
+# ::node	c	continent	2-3
+# ::node	n	name	2-3
+# ::node	0	Asia	2-3
+# ::node	m	man	4-5
+# ::node	h	hold-01	5-6
+# ::node	l	lead-01	7-8
+# ::node	c2	cow	10-11
+# ::node	r	rice	13-14
+# ::node	p	paddy	14-15
+# ::root	m	man
+# ::edge	somewhere	op1	continent	s	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	man	location	somewhere	m	s	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	ARG1	lead-01	h	l	
+# ::edge	lead-01	ARG4	cow	l	c2	
+# ::edge	paddy	mod	rice	p	r	
+# ::edge	cow	location	paddy	c2	p	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (l / lead-01
+            :ARG4 (c2 / cow
+                :location (p / paddy
+                    :mod (r / rice)))))
+    :location (s / somewhere
+        :op1 (c / continent
+            :name (n / name
+                :op1 "Asia"))))

@@ -1,0 +1,38 @@
+# ::tok A girl tries to kick a soccer ball while avoiding interference from a player on the opposing team .
+# ::node	g	girl	1-2
+# ::node	t2	try-01	2-3
+# ::node	k	kick-01	4-5
+# ::node	s	soccer	6-7
+# ::node	b	ball	7-8
+# ::node	a	avoid-01	9-10
+# ::node	i	interfere-01	10-11
+# ::node	p	person	13-14
+# ::node	p2	play-01	13-14
+# ::node	o	oppose-01	16-17
+# ::node	t	team	17-18
+# ::root	t2	try-01
+# ::edge	try-01	ARG0	girl	t2	g	
+# ::edge	try-01	ARG1	kick-01	t2	k	
+# ::edge	kick-01	ARG0	girl	k	g	
+# ::edge	ball	mod	soccer	b	s	
+# ::edge	kick-01	ARG1	ball	k	b	
+# ::edge	try-01	time	avoid-01	t2	a	
+# ::edge	avoid-01	ARG0	girl	a	g	
+# ::edge	avoid-01	ARG1	interfere-01	a	i	
+# ::edge	interfere-01	ARG0	person	i	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	team	ARG0-of	oppose-01	t	o	
+# ::edge	person	part-of	team	p	t	
+(t2 / try-01
+    :ARG0 (g / girl)
+    :ARG1 (k / kick-01
+        :ARG0 g
+        :ARG1 (b / ball
+            :mod (s / soccer)))
+    :time (a / avoid-01
+        :ARG0 g
+        :ARG1 (i / interfere-01
+            :ARG0 (p / person
+                :ARG0-of (p2 / play-01)
+                :part-of (t / team
+                    :ARG0-of (o / oppose-01))))))

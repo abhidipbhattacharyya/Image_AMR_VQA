@@ -1,0 +1,36 @@
+# ::tok This is the end of a road with a stop sign and barricades blocking off part of the road it intersects with .
+# ::node	t	this	0-1
+# ::node	e	end-01	3-4
+# ::node	r	road	6-7
+# ::node	s2	stop-01	9-10
+# ::node	s	signal-07	10-11
+# ::node	a	and	11-12
+# ::node	b	barricade	12-13
+# ::node	b2	block-01	13-14
+# ::node	p	part	15-16
+# ::node	r2	road	18-19
+# ::node	i	intersect-01	20-21
+# ::root	e	end-01
+# ::edge	end-01	domain	this	e	t	
+# ::edge	end-01	ARG1	road	e	r	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	road	location-of	and	r	a	
+# ::edge	and	op2	barricade	a	b	
+# ::edge	and	ARG0-of	block-01	a	b2	
+# ::edge	block-01	ARG1	part	b2	p	
+# ::edge	part	part-of	road	p	r2	
+# ::edge	road	ARG1-of	intersect-01	r2	i	
+# ::edge	intersect-01	ARG0	road	i	r	
+(e / end-01
+    :ARG1 (r / road
+        :location-of (a / and
+            :ARG0-of (b2 / block-01
+                :ARG1 (p / part
+                    :part-of (r2 / road
+                        :ARG1-of (i / intersect-01
+                            :ARG0 r))))
+            :op1 (s / signal-07
+                :ARG1 (s2 / stop-01))
+            :op2 (b / barricade)))
+    :domain (t / this))

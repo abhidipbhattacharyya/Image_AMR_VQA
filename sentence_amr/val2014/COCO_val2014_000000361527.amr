@@ -1,0 +1,40 @@
+# ::tok An Apple computer monitor and early generation iPod sitting on a desk
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Apple	1-2
+# ::node	c2	computer	2-3
+# ::node	m	monitor	3-4
+# ::node	a	and	4-5
+# ::node	e	early	5-6
+# ::node	g	generation	6-7
+# ::node	p	product	7-8
+# ::node	n2	name	7-8
+# ::node	1	iPod	7-8
+# ::node	s	sit-01	8-9
+# ::node	d	desk	11-12
+# ::root	a	and
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Apple	n	0	
+# ::edge	monitor	mod	computer	m	c2	
+# ::edge	monitor	mod	company	m	c	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	generation	mod	early	g	e	
+# ::edge	product	mod	generation	p	g	
+# ::edge	and	op2	product	a	p	
+# ::edge	product	name	name	p	n2	
+# ::edge	name	op1	iPod	n2	1	
+# ::edge	and	ARG1-of	sit-01	a	s	
+# ::edge	sit-01	ARG2	desk	s	d	
+(a / and
+    :ARG1-of (s / sit-01
+        :ARG2 (d / desk))
+    :op1 (m / monitor
+        :mod (c2 / computer)
+        :mod (c / company
+            :name (n / name
+                :op1 "Apple")))
+    :op2 (p / product
+        :name (n2 / name
+            :op1 "iPod")
+        :mod (g / generation
+            :mod (e / early))))

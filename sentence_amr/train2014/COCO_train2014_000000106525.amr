@@ -1,0 +1,46 @@
+# ::tok A man in a blue shirt has a green parrot on his chest and a dog sitting beside him .
+# ::node	m	man	1-2
+# ::node	b2	blue	4-5
+# ::node	s	shirt	5-6
+# ::node	h	have-03	6-7
+# ::node	g	green-02	8-9
+# ::node	p2	person	9-10
+# ::node	p	parrot-01	9-10
+# ::node	c	chest	12-13
+# ::node	a	and	13-14
+# ::node	a2	and	13-14
+# ::node	d	dog	15-16
+# ::node	s2	sit-01	16-17
+# ::node	b	beside	17-18
+# ::root	a	and
+# ::edge	shirt	mod	blue	s	b2	
+# ::edge	man	domain	shirt	m	s	
+# ::edge	have-03	ARG0	man	h	m	
+# ::edge	person	ARG1-of	green-02	p2	g	
+# ::edge	person	ARG0-of	parrot-01	p2	p	
+# ::edge	person	location	chest	p2	c	
+# ::edge	man	part	chest	m	c	
+# ::edge	and	op1	person	a	p2	
+# ::edge	and	op1	person	a2	p2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	dog	a2	d	
+# ::edge	dog	ARG1-of	sit-01	d	s2	
+# ::edge	sit-01	ARG2	beside	s2	b	
+# ::edge	beside	op1	man	b	m	
+# ::edge	and	rel	have-03	a	h	
+(a / and
+    :op1 (p2 / person
+        :ARG0-of (p / parrot-01)
+        :ARG1-of (g / green-02)
+        :location (c / chest))
+    :rel (h / have-03
+        :ARG0 (m / man
+            :domain (s / shirt
+                :mod (b2 / blue))
+            :part c)
+        :ARG1 (a2 / and
+            :op1 p2
+            :op2 (d / dog
+                :ARG1-of (s2 / sit-01
+                    :ARG2 (b / beside
+                        :op1 m))))))

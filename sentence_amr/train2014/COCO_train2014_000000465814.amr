@@ -1,0 +1,23 @@
+# ::tok A man standing at a train station waiting for the train to come in .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	s2	station	6-7
+# ::node	w	wait-01	7-8
+# ::node	t	train	10-11
+# ::node	c	come-01	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	station	s	s2	
+# ::edge	stand-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	station	mod	train	s2	t	
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	wait-01	ARG2	come-01	w	c	
+(s / stand-01
+    :purpose (w / wait-01
+        :ARG1 (m / man)
+        :ARG2 (c / come-01
+            :ARG1 (t / train)))
+    :ARG1 m
+    :ARG2 (s2 / station
+        :mod t))

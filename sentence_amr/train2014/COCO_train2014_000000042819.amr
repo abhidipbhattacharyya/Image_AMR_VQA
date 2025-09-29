@@ -1,0 +1,29 @@
+# ::tok A bunch of people getting on and off a subway train at the platform .
+# ::node	b	bunch	1-2
+# ::node	p	person	3-4
+# ::node	g	get-05	4-5
+# ::node	g2	get-05	4-5
+# ::node	a	and	6-7
+# ::node	s	subway	9-10
+# ::node	t	train	10-11
+# ::node	p2	platform	13-14
+# ::root	a	and
+# ::edge	person	quant	bunch	p	b	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG1	person	g2	p	
+# ::edge	and	op2	get-05	a	g2	
+# ::edge	and	op1	get-05	a	g	
+# ::edge	train	mod	subway	t	s	
+# ::edge	get-05	ARG2	train	g2	t	
+# ::edge	get-05	ARG2	train	g	t	
+# ::edge	and	location	platform	a	p2	
+(a / and
+    :location (p2 / platform)
+    :op1 (g / get-05
+        :ARG1 (p / person
+            :quant (b / bunch))
+        :ARG2 (t / train
+            :mod (s / subway)))
+    :op2 (g2 / get-05
+        :ARG1 p
+        :ARG2 t))

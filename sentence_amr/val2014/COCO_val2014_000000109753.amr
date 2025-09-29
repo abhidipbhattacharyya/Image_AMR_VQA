@@ -1,0 +1,24 @@
+# ::tok A stained clock reads 12 noon as it hangs on the wall .
+# ::node	s	stain-01	1-2
+# ::node	c	clock	2-3
+# ::node	r	read-01	3-4
+# ::node	d	date-entity	5-6
+# ::node	n	noon	5-6
+# ::node	h	hang-01	8-9
+# ::node	w	wall	11-12
+# ::root	r	read-01
+# ::edge	clock	ARG1-of	stain-01	c	s	
+# ::edge	read-01	ARG1	clock	r	c	
+# ::edge	read-01	ARG3	date-entity	r	d	
+# ::edge	date-entity	dayperiod	noon	d	n	
+# ::edge	clock	time	hang-01	c	h	
+# ::edge	hang-01	ARG1	clock	h	c	
+# ::edge	hang-01	ARG2	wall	h	w	
+(r / read-01
+    :ARG1 (c / clock
+        :ARG1-of (s / stain-01)
+        :time (h / hang-01
+            :ARG1 c
+            :ARG2 (w / wall)))
+    :ARG3 (d / date-entity
+        :dayperiod (n / noon)))

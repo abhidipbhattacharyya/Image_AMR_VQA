@@ -1,0 +1,37 @@
+# ::tok Tray with cooked potato slices and some kind of meat sandwich coated in melted cheese .
+# ::node	t	tent	0-1
+# ::node	c3	cook-01	2-3
+# ::node	p	potato	3-4
+# ::node	s2	slice	4-5
+# ::node	a	and	5-6
+# ::node	s3	some	6-7
+# ::node	k	kind	7-8
+# ::node	m	meat	9-10
+# ::node	s	sandwich	10-11
+# ::node	c2	coat-01	11-12
+# ::node	m2	melt-01	13-14
+# ::node	c	cheese	14-15
+# ::root	t	tent
+# ::edge	slice	consist-of	potato	s2	p	
+# ::edge	slice	ARG1-of	cook-01	s2	c3	
+# ::edge	and	op1	slice	a	s2	
+# ::edge	tent	accompanier	and	t	a	
+# ::edge	kind	mod	some	k	s3	
+# ::edge	sandwich	consist-of	meat	s	m	
+# ::edge	sandwich	mod	kind	s	k	
+# ::edge	and	op2	sandwich	a	s	
+# ::edge	sandwich	ARG1-of	coat-01	s	c2	
+# ::edge	cheese	ARG1-of	melt-01	c	m2	
+# ::edge	coat-01	ARG2	cheese	c2	c	
+(t / tent
+    :accompanier (a / and
+        :op1 (s2 / slice
+            :ARG1-of (c3 / cook-01)
+            :consist-of (p / potato))
+        :op2 (s / sandwich
+            :ARG1-of (c2 / coat-01
+                :ARG2 (c / cheese
+                    :ARG1-of (m2 / melt-01)))
+            :consist-of (m / meat)
+            :mod (k / kind
+                :mod (s3 / some)))))

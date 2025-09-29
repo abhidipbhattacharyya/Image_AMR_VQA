@@ -1,0 +1,35 @@
+# ::tok Three Asian people working or shopping in a cluttered store .
+# ::node	0	3	0-1
+# ::node	c	continent	1-2
+# ::node	n	name	1-2
+# ::node	1	Asia	1-2
+# ::node	p	person	2-3
+# ::node	w	work-01	3-4
+# ::node	o	or	4-5
+# ::node	s	shop-01	5-6
+# ::node	c2	crowd-01	8-9
+# ::node	s2	store	9-10
+# ::root	o	or
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	1	
+# ::edge	person	mod	continent	p	c	
+# ::edge	person	quant	3	p	0	
+# ::edge	work-01	ARG0	person	w	p	
+# ::edge	or	op1	work-01	o	w	
+# ::edge	or	op2	shop-01	o	s	
+# ::edge	shop-01	ARG0	person	s	p	
+# ::edge	store	ARG1-of	crowd-01	s2	c2	
+# ::edge	or	location	store	o	s2	
+# ::edge	work-01	location	store	w	s2	
+(o / or
+    :location (s2 / store
+        :ARG1-of (c2 / crowd-01))
+    :op1 (w / work-01
+        :ARG0 (p / person
+            :quant 3
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Asia")))
+        :location s2)
+    :op2 (s / shop-01
+        :ARG0 p))

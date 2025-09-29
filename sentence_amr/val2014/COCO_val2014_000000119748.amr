@@ -1,0 +1,25 @@
+# ::tok Red traffic signal on street with snow covered mountains in the distance .
+# ::node	r	red-02	0-1
+# ::node	t	traffic	1-2
+# ::node	s	signal	2-3
+# ::node	s3	street	4-5
+# ::node	s2	snow	6-7
+# ::node	c	cover-02	7-8
+# ::node	m	mountain	8-9
+# ::node	d	distance	11-12
+# ::root	s	signal
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	signal	ARG1-of	red-02	s	r	
+# ::edge	signal	location	street	s	s3	
+# ::edge	cover-02	ARG2	snow	c	s2	
+# ::edge	mountain	ARG1-of	cover-02	m	c	
+# ::edge	street	location-of	mountain	s3	m	
+# ::edge	mountain	location	distance	m	d	
+(s / signal
+    :ARG1-of (r / red-02)
+    :location (s3 / street
+        :location-of (m / mountain
+            :ARG1-of (c / cover-02
+                :ARG2 (s2 / snow))
+            :location (d / distance)))
+    :mod (t / traffic))

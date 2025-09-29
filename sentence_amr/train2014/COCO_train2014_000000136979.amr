@@ -1,0 +1,39 @@
+# ::tok A bicycle rider wears a backpack and helmet as a bus is near him on a busy city street .
+# ::node	b2	bicycle	1-2
+# ::node	p	person	2-3
+# ::node	r	ride-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	b	backpack	5-6
+# ::node	a	and	6-7
+# ::node	h	helmet	7-8
+# ::node	b3	bus	10-11
+# ::node	n	near-02	12-13
+# ::node	b4	busy-02	16-17
+# ::node	c	city	17-18
+# ::node	s	street	18-19
+# ::root	w	wear-01
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	bicycle	r	b2	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	and	op1	backpack	a	b	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	helmet	a	h	
+# ::edge	near-02	ARG1	bus	n	b3	
+# ::edge	wear-01	time	near-02	w	n	
+# ::edge	near-02	ARG2	person	n	p	
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG1-of	busy-02	s	b4	
+# ::edge	near-02	location	street	n	s	
+(w / wear-01
+    :ARG0 (p / person
+        :ARG0-of (r / ride-01
+            :ARG1 (b2 / bicycle)))
+    :ARG1 (a / and
+        :op1 (b / backpack)
+        :op2 (h / helmet))
+    :time (n / near-02
+        :ARG1 (b3 / bus)
+        :ARG2 p
+        :location (s / street
+            :ARG1-of (b4 / busy-02)
+            :mod (c / city))))

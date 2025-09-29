@@ -1,0 +1,24 @@
+# ::tok several hoses are attached to carts with people behind them
+# ::node	s	several	0-1
+# ::node	h	hose-00	1-2
+# ::node	a	attach-01	3-4
+# ::node	c	cart	5-6
+# ::node	p	person	7-8
+# ::node	t	thing	8-9
+# ::node	b	behind	8-9
+# ::root	a	attach-01
+# ::edge	hose-00	quant	several	h	s	
+# ::edge	attach-01	ARG1	hose-00	a	h	
+# ::edge	attach-01	ARG2	cart	a	c	
+# ::edge	thing	ARG2-of	person	t	p	
+# ::edge	cart	location-of	thing	c	t	
+# ::edge	person	location	behind	p	b	
+# ::edge	behind	op1	hose-00	b	h	
+(a / attach-01
+    :ARG1 (h / hose-00
+        :quant (s / several))
+    :ARG2 (c / cart
+        :location-of (t / thing
+            :ARG2-of (p / person
+                :location (b / behind
+                    :op1 h)))))

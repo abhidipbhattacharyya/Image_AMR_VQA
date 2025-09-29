@@ -1,0 +1,28 @@
+# ::tok a cat laying on a couch pillow while the rest of the living room is empty of people
+# ::node	c	cat	1-2
+# ::node	l	lay-01	2-3
+# ::node	c2	couch	5-6
+# ::node	p2	pillow	6-7
+# ::node	r	rest	9-10
+# ::node	l2	living	12-13
+# ::node	r2	room	13-14
+# ::node	e	empty-02	15-16
+# ::node	p	person	17-18
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	cat	l	c	
+# ::edge	pillow	mod	couch	p2	c2	
+# ::edge	lay-01	ARG2	pillow	l	p2	
+# ::edge	room	mod	living	r2	l2	
+# ::edge	rest	part-of	room	r	r2	
+# ::edge	empty-02	ARG1	rest	e	r	
+# ::edge	lay-01	time	empty-02	l	e	
+# ::edge	empty-02	ARG2	person	e	p	
+(l / lay-01
+    :ARG1 (c / cat)
+    :ARG2 (p2 / pillow
+        :mod (c2 / couch))
+    :time (e / empty-02
+        :ARG1 (r / rest
+            :part-of (r2 / room
+                :mod (l2 / living)))
+        :ARG2 (p / person)))

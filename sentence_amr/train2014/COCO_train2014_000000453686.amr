@@ -1,0 +1,28 @@
+# ::tok A person is playing a remote controlled video game while others watch
+# ::node	p	person	1-2
+# ::node	p3	play-01	3-4
+# ::node	r	remote	5-6
+# ::node	c	control-01	6-7
+# ::node	v	video	7-8
+# ::node	g	game	8-9
+# ::node	p2	person	10-11
+# ::node	o	other	10-11
+# ::node	w	watch-01	11-12
+# ::root	p3	play-01
+# ::edge	play-01	ARG0	person	p3	p	
+# ::edge	control-01	mod	remote	c	r	
+# ::edge	game	mod	video	g	v	
+# ::edge	game	ARG1-of	control-01	g	c	
+# ::edge	play-01	ARG1	game	p3	g	
+# ::edge	person	mod	other	p2	o	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	play-01	time	watch-01	p3	w	
+(p3 / play-01
+    :ARG0 (p / person)
+    :ARG1 (g / game
+        :ARG1-of (c / control-01
+            :mod (r / remote))
+        :mod (v / video))
+    :time (w / watch-01
+        :ARG0 (p2 / person
+            :mod (o / other))))

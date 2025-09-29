@@ -1,0 +1,42 @@
+# ::tok Two donuts are stacked on a plate and one is covered in nuts while the other is dusted with powdered sugar .
+# ::node	0	2	0-1
+# ::node	d	donut	1-2
+# ::node	d2	donut	1-2
+# ::node	s	stack-01	3-4
+# ::node	p	plate	6-7
+# ::node	a	and	7-8
+# ::node	c2	cover-02	10-11
+# ::node	n	nut	12-13
+# ::node	c	contrast-01	13-14
+# ::node	o	other	15-16
+# ::node	d3	dust-01	17-18
+# ::node	p2	powder-01	19-20
+# ::node	s2	sugar	20-21
+# ::root	a	and
+# ::edge	donut	quant	2	d	0	
+# ::edge	stack-01	ARG1	donut	s	d	
+# ::edge	stack-01	ARG2	plate	s	p	
+# ::edge	and	op1	stack-01	a	s	
+# ::edge	and	op2	cover-02	a	c2	
+# ::edge	cover-02	ARG1	donut	c2	d2	
+# ::edge	cover-02	ARG2	nut	c2	n	
+# ::edge	cover-02	ARG1-of	contrast-01	c2	c	
+# ::edge	donut	mod	other	d2	o	
+# ::edge	dust-01	ARG1	other	d3	o	
+# ::edge	contrast-01	ARG2	dust-01	c	d3	
+# ::edge	sugar	ARG1-of	powder-01	s2	p2	
+# ::edge	dust-01	ARG2	sugar	d3	s2	
+(a / and
+    :op1 (s / stack-01
+        :ARG1 (d / donut
+            :quant 2)
+        :ARG2 (p / plate))
+    :op2 (c2 / cover-02
+        :ARG1 (d2 / donut
+            :mod (o / other))
+        :ARG1-of (c / contrast-01
+            :ARG2 (d3 / dust-01
+                :ARG1 o
+                :ARG2 (s2 / sugar
+                    :ARG1-of (p2 / powder-01))))
+        :ARG2 (n / nut)))

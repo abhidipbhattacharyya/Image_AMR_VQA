@@ -1,0 +1,24 @@
+# ::tok A metro train is speedily approaching beside awaiting passengers .
+# ::node	m	metro	1-2
+# ::node	t	train	2-3
+# ::node	s	speed-01	4-5
+# ::node	a	approach-01	5-6
+# ::node	b	beside	6-7
+# ::node	a2	await-01	7-8
+# ::node	p	passenger	8-9
+# ::root	a	approach-01
+# ::edge	train	mod	metro	t	m	
+# ::edge	approach-01	ARG1-of	speed-01	a	s	
+# ::edge	approach-01	ARG1	train	a	t	
+# ::edge	approach-01	location	beside	a	b	
+# ::edge	beside	location-of	await-01	b	a2	
+# ::edge	await-01	ARG1	train	a2	t	
+# ::edge	await-01	ARG2	passenger	a2	p	
+(a / approach-01
+    :ARG1 (t / train
+        :mod (m / metro))
+    :ARG1-of (s / speed-01)
+    :location (b / beside
+        :location-of (a2 / await-01
+            :ARG1 t
+            :ARG2 (p / passenger))))

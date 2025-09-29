@@ -1,0 +1,40 @@
+# ::tok A child sitting at a table of homemade donuts with bowls of frosting and a Crisco oil container .
+# ::node	c	child	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	h	homemade	7-8
+# ::node	d	donut	8-9
+# ::node	p	pound	10-11
+# ::node	i	ice	12-13
+# ::node	a	and	13-14
+# ::node	p2	product	15-16
+# ::node	n	name	15-16
+# ::node	0	Crisco	15-16
+# ::node	o	oil	16-17
+# ::node	c2	container	17-18
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	child	s	c	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	donut	mod	homemade	d	h	
+# ::edge	table	consist-of	donut	t	d	
+# ::edge	pound	consist-of	ice	p	i	
+# ::edge	and	op1	pound	a	p	
+# ::edge	donut	accompanier	and	d	a	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Crisco	n	0	
+# ::edge	oil	source	product	o	p2	
+# ::edge	container	mod	oil	c2	o	
+# ::edge	and	op2	container	a	c2	
+(s / sit-01
+    :ARG1 (c / child)
+    :ARG2 (t / table
+        :consist-of (d / donut
+            :accompanier (a / and
+                :op1 (p / pound
+                    :consist-of (i / ice))
+                :op2 (c2 / container
+                    :mod (o / oil
+                        :source (p2 / product
+                            :name (n / name
+                                :op1 "Crisco")))))
+            :mod (h / homemade))))

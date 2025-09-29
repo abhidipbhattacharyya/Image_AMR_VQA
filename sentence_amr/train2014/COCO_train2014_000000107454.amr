@@ -1,0 +1,47 @@
+# ::tok A kitchen with wood cabinets , stainless steel oven , stainless steel microwave and a refrigerator and a hole where the cooktop goes .
+# ::node	k	kitchen	1-2
+# ::node	w	wood	3-4
+# ::node	c	cabinet	4-5
+# ::node	o	oven	8-9
+# ::node	s	stainless	10-11
+# ::node	s2	stainless	10-11
+# ::node	s3	steel	11-12
+# ::node	s4	steel	11-12
+# ::node	m	microwave	12-13
+# ::node	a	and	13-14
+# ::node	r	refrigerator	15-16
+# ::node	h	hole	18-19
+# ::node	c2	cooktop	21-22
+# ::node	g	go-01	22-23
+# ::root	k	kitchen
+# ::edge	cabinet	consist-of	wood	c	w	
+# ::edge	oven	mod	stainless	o	s	
+# ::edge	steel	mod	stainless	s3	s2	
+# ::edge	steel	mod	stainless	s4	s2	
+# ::edge	microwave	mod	steel	m	s4	
+# ::edge	and	op4	microwave	a	m	
+# ::edge	and	op3	microwave	a	m	
+# ::edge	and	op2	oven	a	o	
+# ::edge	and	op1	cabinet	a	c	
+# ::edge	kitchen	consist-of	and	k	a	
+# ::edge	and	op5	refrigerator	a	r	
+# ::edge	and	op6	hole	a	h	
+# ::edge	go-01	ARG1	cooktop	g	c2	
+# ::edge	hole	ARG4-of	go-01	h	g	
+# ::edge	kitchen	rel	steel	k	s3	
+(k / kitchen
+    :consist-of (a / and
+        :op1 (c / cabinet
+            :consist-of (w / wood))
+        :op2 (o / oven
+            :mod (s / stainless))
+        :op3 (m / microwave
+            :mod (s4 / steel
+                :mod (s2 / stainless)))
+        :op4 m
+        :op5 (r / refrigerator)
+        :op6 (h / hole
+            :ARG4-of (g / go-01
+                :ARG1 (c2 / cooktop))))
+    :rel (s3 / steel
+        :mod s2))

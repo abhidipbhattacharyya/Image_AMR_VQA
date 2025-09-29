@@ -1,0 +1,30 @@
+# ::tok A cameraman shoots in a walkway while two groups of people sit on either side of him .
+# ::node	c	cameraman	1-2
+# ::node	s	shoot-02	2-3
+# ::node	w	walkway	5-6
+# ::node	0	2	7-8
+# ::node	g	group	8-9
+# ::node	p	person	10-11
+# ::node	s3	sit-01	11-12
+# ::node	e	either	13-14
+# ::node	s2	side	14-15
+# ::root	s	shoot-02
+# ::edge	shoot-02	ARG0	cameraman	s	c	
+# ::edge	shoot-02	location	walkway	s	w	
+# ::edge	group	quant	2	g	0	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	sit-01	ARG1	group	s3	g	
+# ::edge	shoot-02	time	sit-01	s	s3	
+# ::edge	side	mod	either	s2	e	
+# ::edge	sit-01	ARG2	side	s3	s2	
+# ::edge	cameraman	part	side	c	s2	
+(s / shoot-02
+    :ARG0 (c / cameraman
+        :part (s2 / side
+            :mod (e / either)))
+    :location (w / walkway)
+    :time (s3 / sit-01
+        :ARG1 (g / group
+            :quant 2
+            :consist-of (p / person))
+        :ARG2 s2))

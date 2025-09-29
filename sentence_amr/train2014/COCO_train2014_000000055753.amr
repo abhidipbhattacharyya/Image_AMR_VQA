@@ -1,0 +1,34 @@
+# ::tok Stop sign is above a red triangle sign next to a barb wire fence .
+# ::node	s3	stop-01	0-1
+# ::node	s	sign	1-2
+# ::node	b2	be-located-at-91	3-4
+# ::node	a	above	3-4
+# ::node	r	red-02	5-6
+# ::node	t	triangle	6-7
+# ::node	s2	sign	7-8
+# ::node	n	next-to	8-9
+# ::node	b	barb	11-12
+# ::node	w	wire	12-13
+# ::node	f	fence	13-14
+# ::root	b2	be-located-at-91
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	be-located-at-91	ARG1	sign	b2	s	
+# ::edge	be-located-at-91	ARG2	above	b2	a	
+# ::edge	triangle	ARG1-of	red-02	t	r	
+# ::edge	sign	mod	triangle	s2	t	
+# ::edge	above	op1	sign	a	s2	
+# ::edge	sign	location	next-to	s2	n	
+# ::edge	wire	mod	barb	w	b	
+# ::edge	fence	consist-of	wire	f	w	
+# ::edge	next-to	op1	fence	n	f	
+(b2 / be-located-at-91
+    :ARG1 (s / sign
+        :purpose (s3 / stop-01))
+    :ARG2 (a / above
+        :op1 (s2 / sign
+            :location (n / next-to
+                :op1 (f / fence
+                    :consist-of (w / wire
+                        :mod (b / barb))))
+            :mod (t / triangle
+                :ARG1-of (r / red-02)))))

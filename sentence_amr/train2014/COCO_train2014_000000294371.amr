@@ -1,0 +1,37 @@
+# ::tok A bathroom counter with two sinks and a mirror and a door that leads to a shower tub combo
+# ::node	b	bathroom	1-2
+# ::node	c2	counter	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	s2	sink-01	5-6
+# ::node	a	and	6-7
+# ::node	m	mirror	8-9
+# ::node	d	door	11-12
+# ::node	l	lead-01	13-14
+# ::node	s	shower	16-17
+# ::node	t	tub	17-18
+# ::node	c	combine-01	18-19
+# ::root	c2	counter
+# ::edge	counter	location	bathroom	c2	b	
+# ::edge	counter	ARG0-of	have-03	c2	h	
+# ::edge	sink-01	quant	2	s2	0	
+# ::edge	and	op1	sink-01	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	and	op3	door	a	d	
+# ::edge	door	ARG0-of	lead-01	d	l	
+# ::edge	tub	mod	shower	t	s	
+# ::edge	combine-01	ARG2	tub	c	t	
+# ::edge	lead-01	ARG4	combine-01	l	c	
+(c2 / counter
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / sink-01
+                :quant 2)
+            :op2 (m / mirror)
+            :op3 (d / door
+                :ARG0-of (l / lead-01
+                    :ARG4 (c / combine-01
+                        :ARG2 (t / tub
+                            :mod (s / shower)))))))
+    :location (b / bathroom))

@@ -1,0 +1,30 @@
+# ::tok A small tray containing everything needed to prepare and eat waffles .
+# ::node	s	small	1-2
+# ::node	t	tray	2-3
+# ::node	c	contain-01	3-4
+# ::node	e2	everything	4-5
+# ::node	n	need-01	5-6
+# ::node	p	prepare-01	7-8
+# ::node	a	and	8-9
+# ::node	e	eat-01	9-10
+# ::node	0	W	10-11
+# ::root	c	contain-01
+# ::edge	tray	mod	small	t	s	
+# ::edge	contain-01	ARG0	tray	c	t	
+# ::edge	contain-01	ARG1	everything	c	e2	
+# ::edge	everything	ARG1-of	need-01	e2	n	
+# ::edge	and	op1	prepare-01	a	p	
+# ::edge	need-01	purpose	and	n	a	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG1	W	e	0	
+# ::edge	prepare-01	ARG1	W	p	0	
+(c / contain-01
+    :ARG0 (t / tray
+        :mod (s / small))
+    :ARG1 (e2 / everything
+        :ARG1-of (n / need-01
+            :purpose (a / and
+                :op1 (p / prepare-01
+                    :ARG1 W)
+                :op2 (e / eat-01
+                    :ARG1 W)))))

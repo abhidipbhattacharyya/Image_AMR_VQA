@@ -1,0 +1,34 @@
+# ::tok many cars parked on a city street with a building in the bakcground
+# ::node	m	many	0-1
+# ::node	c	car	1-2
+# ::node	p	park-01	2-3
+# ::node	c2	city	5-6
+# ::node	s	street	6-7
+# ::node	h	have-03	7-8
+# ::node	b	building	9-10
+# ::node	b2	building	12-13
+# ::node	n	name	12-13
+# ::node	1	mosque	12-13
+# ::node	0	Street	12-13
+# ::root	p	park-01
+# ::edge	car	quant	many	c	m	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	street	mod	city	s	c2	
+# ::edge	park-01	ARG2	street	p	s	
+# ::edge	car	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	building	h	b	
+# ::edge	building	location	building	b	b2	
+# ::edge	building	name	name	b2	n	
+# ::edge	name	op1	mosque	n	1	
+# ::edge	name	op2	Street	n	0	
+(p / park-01
+    :ARG1 (c / car
+        :quant (m / many)
+        :ARG0-of (h / have-03
+            :ARG1 (b / building
+                :location (b2 / building
+                    :name (n / name
+                        :op1 "mosque"
+                        :op2 "Street")))))
+    :ARG2 (s / street
+        :mod (c2 / city)))

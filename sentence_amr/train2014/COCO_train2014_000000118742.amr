@@ -1,0 +1,33 @@
+# ::tok End of a train just past a road crossing , pulling into a village station .
+# ::node	e	end-01	0-1
+# ::node	t	train	3-4
+# ::node	j	just	4-5
+# ::node	p	past	5-6
+# ::node	r	road	7-8
+# ::node	c	cross-02	8-9
+# ::node	a	and	9-10
+# ::node	p2	pull-01	10-11
+# ::node	v	village	13-14
+# ::node	s	station	14-15
+# ::root	a	and
+# ::edge	end-01	ARG1	train	e	t	
+# ::edge	past	mod	just	p	j	
+# ::edge	end-01	path	past	e	p	
+# ::edge	cross-02	ARG1	road	c	r	
+# ::edge	past	op1	cross-02	p	c	
+# ::edge	and	op1	end-01	a	e	
+# ::edge	and	op2	pull-01	a	p2	
+# ::edge	pull-01	ARG1	train	p2	t	
+# ::edge	station	mod	village	s	v	
+# ::edge	pull-01	ARG2	station	p2	s	
+(a / and
+    :op1 (e / end-01
+        :ARG1 (t / train)
+        :path (p / past
+            :mod (j / just)
+            :op1 (c / cross-02
+                :ARG1 (r / road))))
+    :op2 (p2 / pull-01
+        :ARG1 t
+        :ARG2 (s / station
+            :mod (v / village))))

@@ -1,0 +1,45 @@
+# ::tok Two men sitting at a table and one of the men is cutting a pepperoni pizza with a knife and a fork .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	a	and	6-7
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::node	m2	man	10-11
+# ::node	c	cut-01	12-13
+# ::node	p	pepperoni	14-15
+# ::node	p2	pizza	15-16
+# ::node	k	knife	18-19
+# ::node	a2	and	19-20
+# ::node	f	fork	21-22
+# ::root	a	and
+# ::edge	man	quant	2	m	1	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	cut-01	ARG0	man	c	m2	
+# ::edge	and	op2	cut-01	a	c	
+# ::edge	pizza	mod	pepperoni	p2	p	
+# ::edge	cut-01	ARG1	pizza	c	p2	
+# ::edge	and	op1	knife	a2	k	
+# ::edge	cut-01	instrument	and	c	a2	
+# ::edge	and	op2	fork	a2	f	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man
+            :quant 2)
+        :ARG2 (t / table))
+    :op2 (c / cut-01
+        :ARG0 (m2 / man
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 m))
+        :ARG1 (p2 / pizza
+            :mod (p / pepperoni))
+        :instrument (a2 / and
+            :op1 (k / knife)
+            :op2 (f / fork))))

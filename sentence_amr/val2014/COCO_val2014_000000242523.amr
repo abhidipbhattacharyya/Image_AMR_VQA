@@ -1,0 +1,31 @@
+# ::tok Street signs indicating that Beaver Place is a private one way street .
+# ::node	s2	street	0-1
+# ::node	s	sign	1-2
+# ::node	i	indicate-01	2-3
+# ::node	n	name	4-5
+# ::node	0	Beaver	4-5
+# ::node	l	location	5-6
+# ::node	1	Place	5-6
+# ::node	p	private-03	8-9
+# ::node	o	one-way	10-11
+# ::node	s3	street	11-12
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	name	op1	Beaver	n	0	
+# ::edge	location	name	name	l	n	
+# ::edge	name	op2	Place	n	1	
+# ::edge	street	mod	one-way	s3	o	
+# ::edge	street	ARG1-of	private-03	s3	p	
+# ::edge	street	domain	location	s3	l	
+# ::edge	indicate-01	ARG1	street	i	s3	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (s3 / street
+            :ARG1-of (p / private-03)
+            :domain (l / location
+                :name (n / name
+                    :op1 "Beaver"
+                    :op2 "Place"))
+            :mod (o / one-way)))
+    :mod (s2 / street))

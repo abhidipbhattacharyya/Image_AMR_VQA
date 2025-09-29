@@ -1,0 +1,30 @@
+# ::tok A bathroom area with an in floor toilet and a crate of toilet paper .
+# ::node	b	bathroom	1-2
+# ::node	a2	area	2-3
+# ::node	h	have-03	3-4
+# ::node	f	floor	6-7
+# ::node	t	toilet	7-8
+# ::node	a	and	8-9
+# ::node	c2	crate	10-11
+# ::node	c	contain-01	10-11
+# ::node	p	paper	13-14
+# ::root	a2	area
+# ::edge	area	location-of	bathroom	a2	b	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	toilet	location	floor	t	f	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	crate	a	c2	
+# ::edge	crate	ARG0-of	contain-01	c2	c	
+# ::edge	contain-01	ARG1	paper	c	p	
+# ::edge	paper	mod	bathroom	p	b	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / toilet
+                :location (f / floor))
+            :op2 (c2 / crate
+                :ARG0-of (c / contain-01
+                    :ARG1 (p / paper
+                        :mod (b / bathroom))))))
+    :location-of b)

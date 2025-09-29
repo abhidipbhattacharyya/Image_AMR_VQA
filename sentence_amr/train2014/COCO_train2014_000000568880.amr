@@ -1,0 +1,30 @@
+# ::tok Several people are sitting around an outdoor table eating a meal .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	sit-01	3-4
+# ::node	a2	around	4-5
+# ::node	o	outdoor	6-7
+# ::node	t	table	7-8
+# ::node	e	eat-01	8-9
+# ::node	m	meal	10-11
+# ::node	a	and	11-12
+# ::root	a	and
+# ::edge	person	quant	several	p	s	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	around	s2	a2	
+# ::edge	table	location	outdoor	t	o	
+# ::edge	around	op1	table	a2	t	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	eat-01	ARG1	meal	e	m	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	and	op1	sit-01	a	s2	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / person
+            :quant (s / several))
+        :ARG2 (a2 / around
+            :op1 (t / table
+                :location (o / outdoor))))
+    :op2 (e / eat-01
+        :ARG0 p
+        :ARG1 (m / meal)))

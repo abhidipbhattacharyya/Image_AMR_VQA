@@ -1,0 +1,33 @@
+# ::tok An elephant is on a walrus body as it lays on some rocks near a group of penguins .
+# ::node	e	elephant	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	w	walrus	5-6
+# ::node	b2	body	6-7
+# ::node	l	lay-01	9-10
+# ::node	s	some	11-12
+# ::node	r	rock	12-13
+# ::node	n	near-02	13-14
+# ::node	g	group	15-16
+# ::node	p	penguin	17-18
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	elephant	b	e	
+# ::edge	body	mod	walrus	b2	w	
+# ::edge	be-located-at-91	ARG2	body	b	b2	
+# ::edge	lay-01	ARG1	body	l	b2	
+# ::edge	be-located-at-91	time	lay-01	b	l	
+# ::edge	rock	mod	some	r	s	
+# ::edge	lay-01	ARG2	rock	l	r	
+# ::edge	rock	ARG1-of	near-02	r	n	
+# ::edge	near-02	ARG2	group	n	g	
+# ::edge	group	consist-of	penguin	g	p	
+(b / be-located-at-91
+    :ARG1 (e / elephant)
+    :ARG2 (b2 / body
+        :mod (w / walrus))
+    :time (l / lay-01
+        :ARG1 b2
+        :ARG2 (r / rock
+            :ARG1-of (n / near-02
+                :ARG2 (g / group
+                    :consist-of (p / penguin)))
+            :mod (s / some))))

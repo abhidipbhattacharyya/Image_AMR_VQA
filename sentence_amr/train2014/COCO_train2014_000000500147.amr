@@ -1,0 +1,33 @@
+# ::tok Truck driving along side a train track when the sun is setting or rising .
+# ::node	t3	truck	0-1
+# ::node	d	drive-01	1-2
+# ::node	a	along	2-3
+# ::node	s2	side	3-4
+# ::node	t2	train	5-6
+# ::node	t	track	6-7
+# ::node	s3	sun	9-10
+# ::node	s	set-02	11-12
+# ::node	o	or	12-13
+# ::node	r	rise-01	13-14
+# ::root	d	drive-01
+# ::edge	drive-01	ARG1	truck	d	t3	
+# ::edge	drive-01	path	along	d	a	
+# ::edge	along	op1	side	a	s2	
+# ::edge	track	mod	train	t	t2	
+# ::edge	side	op1	track	s2	t	
+# ::edge	set-02	ARG1	sun	s	s3	
+# ::edge	or	op1	set-02	o	s	
+# ::edge	drive-01	time	or	d	o	
+# ::edge	or	op2	rise-01	o	r	
+# ::edge	rise-01	ARG1	sun	r	s3	
+(d / drive-01
+    :ARG1 (t3 / truck)
+    :path (a / along
+        :op1 (s2 / side
+            :op1 (t / track
+                :mod (t2 / train))))
+    :time (o / or
+        :op1 (s / set-02
+            :ARG1 (s3 / sun))
+        :op2 (r / rise-01
+            :ARG1 s3)))

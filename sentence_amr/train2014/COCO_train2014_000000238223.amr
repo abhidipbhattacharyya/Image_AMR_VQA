@@ -1,0 +1,28 @@
+# ::tok Train on tracks riding pass bus and couple cars on the street
+# ::node	t2	train	0-1
+# ::node	t	track	2-3
+# ::node	r	ride-01	3-4
+# ::node	p	pass-03	4-5
+# ::node	b	bus	5-6
+# ::node	a	and	6-7
+# ::node	c2	couple	7-8
+# ::node	c	car	8-9
+# ::node	s	street	11-12
+# ::root	t2	train
+# ::edge	train	location	track	t2	t	
+# ::edge	train	ARG0-of	ride-01	t2	r	
+# ::edge	bus	ARG1-of	pass-03	b	p	
+# ::edge	and	op1	bus	a	b	
+# ::edge	ride-01	ARG1	and	r	a	
+# ::edge	car	quant	couple	c	c2	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	location	street	c	s	
+(t2 / train
+    :ARG0-of (r / ride-01
+        :ARG1 (a / and
+            :op1 (b / bus
+                :ARG1-of (p / pass-03))
+            :op2 (c / car
+                :quant (c2 / couple)
+                :location (s / street))))
+    :location (t / track))

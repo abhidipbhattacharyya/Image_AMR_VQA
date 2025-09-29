@@ -1,0 +1,25 @@
+# ::tok A police motorbike on the road at a corner behind a car as people watches
+# ::node	p2	police	1-2
+# ::node	m	motorbike	2-3
+# ::node	r	road	5-6
+# ::node	c2	corner	8-9
+# ::node	b	behind	9-10
+# ::node	c	car	11-12
+# ::node	p	person	13-14
+# ::node	w	watch-01	14-15
+# ::root	m	motorbike
+# ::edge	motorbike	mod	police	m	p2	
+# ::edge	motorbike	location	road	m	r	
+# ::edge	road	location	corner	r	c2	
+# ::edge	road	location	behind	r	b	
+# ::edge	behind	op1	car	b	c	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	motorbike	ARG1-of	watch-01	m	w	
+(m / motorbike
+    :ARG1-of (w / watch-01
+        :ARG0 (p / person))
+    :location (r / road
+        :location (c2 / corner)
+        :location (b / behind
+            :op1 (c / car)))
+    :mod (p2 / police))

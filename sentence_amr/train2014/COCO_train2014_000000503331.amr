@@ -1,0 +1,27 @@
+# ::tok Vehicles in queue at level train cross waiting for train to pass .
+# ::node	v	vehicle	0-1
+# ::node	l2	line-up-02	2-3
+# ::node	l	level	4-5
+# ::node	c	cross-02	6-7
+# ::node	w	wait-01	7-8
+# ::node	h	have-purpose-91	8-9
+# ::node	t	train	9-10
+# ::node	p	pass-03	11-12
+# ::root	v	vehicle
+# ::edge	vehicle	ARG1-of	line-up-02	v	l2	
+# ::edge	vehicle	ARG1-of	wait-01	v	w	
+# ::edge	have-purpose-91	ARG2	cross-02	h	c	
+# ::edge	have-purpose-91	mod	level	h	l	
+# ::edge	line-up-02	ARG1-of	have-purpose-91	l2	h	
+# ::edge	cross-02	ARG1	train	c	t	
+# ::edge	pass-03	ARG1	train	p	t	
+# ::edge	wait-01	ARG2	pass-03	w	p	
+(v / vehicle
+    :ARG1-of (l2 / line-up-02
+        :ARG1-of (h / have-purpose-91
+            :ARG2 (c / cross-02
+                :ARG1 (t / train))
+            :mod (l / level)))
+    :ARG1-of (w / wait-01
+        :ARG2 (p / pass-03
+            :ARG1 t)))

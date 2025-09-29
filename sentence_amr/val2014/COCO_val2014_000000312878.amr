@@ -1,0 +1,30 @@
+# ::tok a person wearing a backpack and pulling a rolling suitcase behind them while walking on a sidewalk .
+# ::node	p	person	1-2
+# ::node	w2	wear-01	2-3
+# ::node	b	backpack	4-5
+# ::node	p2	pull-01	6-7
+# ::node	r	roll-01	8-9
+# ::node	s2	suitcase	9-10
+# ::node	b2	behind	10-11
+# ::node	w	walk-01	13-14
+# ::node	s	sidewalk	16-17
+# ::root	p	person
+# ::edge	person	ARG0-of	wear-01	p	w2	
+# ::edge	wear-01	ARG1	backpack	w2	b	
+# ::edge	person	ARG0-of	pull-01	p	p2	
+# ::edge	suitcase	ARG1-of	roll-01	s2	r	
+# ::edge	pull-01	ARG1	suitcase	p2	s2	
+# ::edge	pull-01	ARG2	behind	p2	b2	
+# ::edge	behind	op1	person	b2	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	ARG2	sidewalk	w	s	
+(p / person
+    :ARG0-of (w2 / wear-01
+        :ARG1 (b / backpack))
+    :ARG0-of (p2 / pull-01
+        :ARG1 (s2 / suitcase
+            :ARG1-of (r / roll-01))
+        :ARG2 (b2 / behind
+            :op1 p))
+    :ARG0-of (w / walk-01
+        :ARG2 (s / sidewalk)))

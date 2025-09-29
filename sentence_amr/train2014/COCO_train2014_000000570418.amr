@@ -1,0 +1,28 @@
+# ::tok A plate of some sort of hamburger and french fries .
+# ::node	p	plate	1-2
+# ::node	s	some	3-4
+# ::node	s2	sort	4-5
+# ::node	h	hamburger	6-7
+# ::node	a	and	7-8
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::root	p	plate
+# ::edge	sort	mod	some	s2	s	
+# ::edge	hamburger	mod	sort	h	s2	
+# ::edge	and	op1	hamburger	a	h	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG0	country	f	c	
+# ::edge	and	op2	fry-01	a	f	
+(p / plate
+    :consist-of (a / and
+        :op1 (h / hamburger
+            :mod (s2 / sort
+                :mod (s / some)))
+        :op2 (f / fry-01
+            :ARG0 (c / country
+                :name (n / name
+                    :op1 "France")))))

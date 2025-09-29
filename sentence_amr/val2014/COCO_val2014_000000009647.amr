@@ -1,0 +1,63 @@
+# ::tok Five men in dark suits stand next to each other while one in the center holds a large pair of scissors near a red ribbon .
+# ::node	1	5	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	d	dark-02	3-4
+# ::node	s3	suit	4-5
+# ::node	s2	stand-01	5-6
+# ::node	n2	next-to	6-7
+# ::node	e	each	8-9
+# ::node	o	other	9-10
+# ::node	c2	contrast-01	10-11
+# ::node	i	include-91	11-12
+# ::node	0	1	11-12
+# ::node	c	center	14-15
+# ::node	h	hold-01	15-16
+# ::node	l	large	17-18
+# ::node	p	pair	18-19
+# ::node	s	scissors	20-21
+# ::node	n	near-02	21-22
+# ::node	r	red-02	23-24
+# ::node	r2	ribbon	24-25
+# ::root	c2	contrast-01
+# ::edge	man	quant	5	m	1	
+# ::edge	suit	ARG1-of	dark-02	s3	d	
+# ::edge	man	mod	suit	m	s3	
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	next-to	s2	n2	
+# ::edge	next-to	op1	each	n2	e	
+# ::edge	each	mod	other	e	o	
+# ::edge	contrast-01	ARG1	stand-01	c2	s2	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	location	center	m2	c	
+# ::edge	contrast-01	ARG2	hold-01	c2	h	
+# ::edge	hold-01	ARG0	man	h	m2	
+# ::edge	pair	mod	large	p	l	
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	hold-01	ARG1	scissors	h	s	
+# ::edge	scissors	ARG1-of	near-02	s	n	
+# ::edge	ribbon	ARG1-of	red-02	r2	r	
+# ::edge	near-02	ARG2	ribbon	n	r2	
+(c2 / contrast-01
+    :ARG1 (s2 / stand-01
+        :ARG1 (m / man
+            :quant 5
+            :mod (s3 / suit
+                :ARG1-of (d / dark-02)))
+        :ARG2 (n2 / next-to
+            :op1 (e / each
+                :mod (o / other))))
+    :ARG2 (h / hold-01
+        :ARG0 (m2 / man
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 m)
+            :location (c / center))
+        :ARG1 (s / scissors
+            :quant (p / pair
+                :mod (l / large))
+            :ARG1-of (n / near-02
+                :ARG2 (r2 / ribbon
+                    :ARG1-of (r / red-02))))))

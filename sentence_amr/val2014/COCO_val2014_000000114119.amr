@@ -1,0 +1,24 @@
+# ::tok A clock hangs on a wall with a sleeping cat beneath it .
+# ::node	c2	clock	1-2
+# ::node	h	hang-01	2-3
+# ::node	w	wall	5-6
+# ::node	h2	have-03	6-7
+# ::node	s	sleep-01	8-9
+# ::node	c	cat	9-10
+# ::node	b	beneath	10-11
+# ::root	h	hang-01
+# ::edge	hang-01	ARG1	clock	h	c2	
+# ::edge	hang-01	ARG2	wall	h	w	
+# ::edge	clock	ARG0-of	have-03	c2	h2	
+# ::edge	cat	ARG0-of	sleep-01	c	s	
+# ::edge	have-03	ARG1	cat	h2	c	
+# ::edge	cat	location	beneath	c	b	
+# ::edge	beneath	op1	clock	b	c2	
+(h / hang-01
+    :ARG1 (c2 / clock
+        :ARG0-of (h2 / have-03
+            :ARG1 (c / cat
+                :ARG0-of (s / sleep-01)
+                :location (b / beneath
+                    :op1 c2))))
+    :ARG2 (w / wall))

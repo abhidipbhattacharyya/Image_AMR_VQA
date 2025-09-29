@@ -1,0 +1,33 @@
+# ::tok A clock tower in a European city looks down at the traffic below .
+# ::node	c2	clock	1-2
+# ::node	t	tower	2-3
+# ::node	c3	continent	5-6
+# ::node	n	name	5-6
+# ::node	0	Europe	5-6
+# ::node	c	city	6-7
+# ::node	l	look-01	7-8
+# ::node	d	down	8-9
+# ::node	t2	traffic	11-12
+# ::node	b	below	12-13
+# ::root	l	look-01
+# ::edge	tower	mod	clock	t	c2	
+# ::edge	continent	name	name	c3	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	city	location	continent	c	c3	
+# ::edge	tower	location	city	t	c	
+# ::edge	look-01	ARG0	tower	l	t	
+# ::edge	look-01	direction	down	l	d	
+# ::edge	look-01	ARG1	traffic	l	t2	
+# ::edge	traffic	location	below	t2	b	
+# ::edge	below	op1	city	b	c	
+(l / look-01
+    :ARG0 (t / tower
+        :location (c / city
+            :location (c3 / continent
+                :name (n / name
+                    :op1 "Europe")))
+        :mod (c2 / clock))
+    :ARG1 (t2 / traffic
+        :location (b / below
+            :op1 c))
+    :direction (d / down))

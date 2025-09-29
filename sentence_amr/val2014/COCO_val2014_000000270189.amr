@@ -1,0 +1,35 @@
+# ::tok the bus is blue and is stopped .
+# ::node	b2	bus	1-2
+# ::node	b	blue	3-4
+# ::node	a	and	4-5
+# ::node	s	stop-01	6-7
+# ::root	a	and
+# ::edge	blue	domain	bus	b	b2	
+# ::edge	and	op1	blue	a	b	
+# ::edge	and	op2	stop-01	a	s	
+# ::edge	stop-01	ARG1	bus	s	b2	
+(a / and
+    :op1 (b / blue
+        :domain (b2 / bus))
+    :op2 (s / stop-01
+        :ARG1 b2))
+
+
+# ::tok Some people are standing waiting for it
+# ::node	s	some	0-1
+# ::node	p	person	1-2
+# ::node	s2	stand-01	3-4
+# ::node	w	wait-01	4-5
+# ::node	i	it	6-7
+# ::root	s2	stand-01
+# ::edge	person	quant	some	p	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	wait-01	s2	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	it	w	i	
+(s2 / stand-01
+    :ARG1 (p / person
+        :quant (s / some))
+    :ARG2 (w / wait-01
+        :ARG1 p
+        :ARG2 (i / it)))

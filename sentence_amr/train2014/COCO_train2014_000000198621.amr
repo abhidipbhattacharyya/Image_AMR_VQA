@@ -1,0 +1,30 @@
+# ::tok A living room with a white couch sitting under a white wall mounted light .
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	w2	white-03	5-6
+# ::node	c	couch	6-7
+# ::node	s	sit-01	7-8
+# ::node	u	under	8-9
+# ::node	w	wall	11-12
+# ::node	m	mount-03	12-13
+# ::node	l	light	13-14
+# ::root	r	room
+# ::edge	room	mod	living	r	l2	
+# ::edge	couch	ARG1-of	white-03	c	w2	
+# ::edge	sit-01	ARG1	couch	s	c	
+# ::edge	room	location-of	sit-01	r	s	
+# ::edge	sit-01	ARG2	under	s	u	
+# ::edge	white-03	ARG1	wall	w2	w	
+# ::edge	mount-03	ARG1	wall	m	w	
+# ::edge	light	ARG0-of	mount-03	l	m	
+# ::edge	under	op1	light	u	l	
+(r / room
+    :location-of (s / sit-01
+        :ARG1 (c / couch
+            :ARG1-of (w2 / white-03
+                :ARG1 (w / wall)))
+        :ARG2 (u / under
+            :op1 (l / light
+                :ARG0-of (m / mount-03
+                    :ARG1 w))))
+    :mod (l2 / living))

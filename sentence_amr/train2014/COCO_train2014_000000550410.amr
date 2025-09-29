@@ -1,0 +1,37 @@
+# ::tok A banana laying next a blue glass disk with two orange glass disks in the background .
+# ::node	b2	banana	1-2
+# ::node	l	lay-01	2-3
+# ::node	n	next-to	3-4
+# ::node	b3	blue	5-6
+# ::node	g	glass	6-7
+# ::node	d2	disk	7-8
+# ::node	h	have-03	8-9
+# ::node	0	2	9-10
+# ::node	o	orange	10-11
+# ::node	g2	glass	11-12
+# ::node	d	disc	12-13
+# ::node	b	background	15-16
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	banana	l	b2	
+# ::edge	lay-01	ARG2	next-to	l	n	
+# ::edge	glass	mod	blue	g	b3	
+# ::edge	disk	consist-of	glass	d2	g	
+# ::edge	next-to	op1	disk	n	d2	
+# ::edge	disk	ARG0-of	have-03	d2	h	
+# ::edge	glass	mod	orange	g2	o	
+# ::edge	disc	consist-of	glass	d	g2	
+# ::edge	disc	quant	2	d	0	
+# ::edge	have-03	ARG1	disc	h	d	
+# ::edge	disc	location	background	d	b	
+(l / lay-01
+    :ARG1 (b2 / banana)
+    :ARG2 (n / next-to
+        :op1 (d2 / disk
+            :ARG0-of (h / have-03
+                :ARG1 (d / disc
+                    :quant 2
+                    :consist-of (g2 / glass
+                        :mod (o / orange))
+                    :location (b / background)))
+            :consist-of (g / glass
+                :mod (b3 / blue)))))

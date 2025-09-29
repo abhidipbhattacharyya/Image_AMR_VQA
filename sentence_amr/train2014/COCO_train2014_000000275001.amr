@@ -1,0 +1,39 @@
+# ::tok A teddy bear is wearing the same uniform for Starbucks as employees do .
+# ::node	t	teddy	1-2
+# ::node	b	bear	2-3
+# ::node	w	wear-01	4-5
+# ::node	w2	wear-01	4-5
+# ::node	s	same-01	6-7
+# ::node	u	uniform	7-8
+# ::node	u2	uniform	7-8
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	0	Starbucks	9-10
+# ::node	p	person	11-12
+# ::node	e	employ-01	11-12
+# ::root	w	wear-01
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	wear-01	ARG0	bear	w	b	
+# ::edge	uniform	ARG1-of	same-01	u	s	
+# ::edge	wear-01	ARG1	uniform	w	u	
+# ::edge	same-01	ARG2	uniform	s	u2	
+# ::edge	uniform	ARG1-of	wear-01	u2	w2	
+# ::edge	wear-01	beneficiary	company	w2	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Starbucks	n	0	
+# ::edge	wear-01	ARG0	person	w2	p	
+# ::edge	person	ARG1-of	employ-01	p	e	
+# ::edge	employ-01	ARG0	company	e	c	
+(w / wear-01
+    :ARG0 (b / bear
+        :mod (t / teddy))
+    :ARG1 (u / uniform
+        :ARG1-of (s / same-01
+            :ARG2 (u2 / uniform
+                :ARG1-of (w2 / wear-01
+                    :ARG0 (p / person
+                        :ARG1-of (e / employ-01
+                            :ARG0 (c / company
+                                :name (n / name
+                                    :op1 "Starbucks"))))
+                    :beneficiary c)))))

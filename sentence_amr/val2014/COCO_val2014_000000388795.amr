@@ -1,0 +1,46 @@
+# ::tok Bed room scene with car bucket seats on end of queen sized bed , brightly lit by sun shining though window .
+# ::node	r	room	1-2
+# ::node	s	scene	2-3
+# ::node	h	have-03	3-4
+# ::node	c	car	4-5
+# ::node	b3	bucket	5-6
+# ::node	s2	seat	6-7
+# ::node	e	end	8-9
+# ::node	q	queen	10-11
+# ::node	s4	size-01	11-12
+# ::node	b	bed	12-13
+# ::node	b2	bright-02	14-15
+# ::node	l	light-04	15-16
+# ::node	s5	sun	17-18
+# ::node	s3	shine-01	18-19
+# ::node	w	window	20-21
+# ::root	s	scene
+# ::edge	scene	domain	room	s	r	
+# ::edge	scene	ARG0-of	have-03	s	h	
+# ::edge	bucket	mod	car	b3	c	
+# ::edge	seat	mod	bucket	s2	b3	
+# ::edge	have-03	ARG1	seat	h	s2	
+# ::edge	seat	location	end	s2	e	
+# ::edge	size-01	ARG2	queen	s4	q	
+# ::edge	bed	ARG1-of	size-01	b	s4	
+# ::edge	end	part-of	bed	e	b	
+# ::edge	light-04	ARG1-of	bright-02	l	b2	
+# ::edge	seat	ARG1-of	light-04	s2	l	
+# ::edge	light-04	ARG0	sun	l	s5	
+# ::edge	sun	ARG1-of	shine-01	s5	s3	
+# ::edge	shine-01	path	window	s3	w	
+(s / scene
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / seat
+            :ARG1-of (l / light-04
+                :ARG0 (s5 / sun
+                    :ARG1-of (s3 / shine-01
+                        :path (w / window)))
+                :ARG1-of (b2 / bright-02))
+            :location (e / end
+                :part-of (b / bed
+                    :ARG1-of (s4 / size-01
+                        :ARG2 (q / queen))))
+            :mod (b3 / bucket
+                :mod (c / car))))
+    :domain (r / room))

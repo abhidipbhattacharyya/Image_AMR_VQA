@@ -1,0 +1,24 @@
+# ::tok a sign in the middle of a road telling people to stop for crosswalks
+# ::node	s	sign	1-2
+# ::node	m	middle	4-5
+# ::node	r	road	7-8
+# ::node	t	tell-01	8-9
+# ::node	p	person	9-10
+# ::node	s2	stop-01	11-12
+# ::node	w	walk-01	13-14
+# ::root	s	sign
+# ::edge	sign	location	middle	s	m	
+# ::edge	middle	part-of	road	m	r	
+# ::edge	sign	ARG0-of	tell-01	s	t	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	tell-01	ARG1	stop-01	t	s2	
+# ::edge	stop-01	purpose	walk-01	s2	w	
+(s / sign
+    :ARG0-of (t / tell-01
+        :ARG1 (s2 / stop-01
+            :purpose (w / walk-01)
+            :ARG0 (p / person))
+        :ARG2 p)
+    :location (m / middle
+        :part-of (r / road)))

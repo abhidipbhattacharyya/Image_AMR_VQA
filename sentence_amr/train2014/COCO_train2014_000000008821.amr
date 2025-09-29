@@ -1,0 +1,33 @@
+# ::tok Several tents set up in the grass and a banner in front of a couple of them .
+# ::node	s2	several	0-1
+# ::node	t	tent	1-2
+# ::node	t2	tent	1-2
+# ::node	s	set-up-03	2-3
+# ::node	g	grass	6-7
+# ::node	a	and	7-8
+# ::node	b	banner	9-10
+# ::node	i	in-front-of	11-12
+# ::node	c	couple	14-15
+# ::node	i2	include-91	15-16
+# ::root	a	and
+# ::edge	tent	quant	several	t	s2	
+# ::edge	set-up-03	ARG1	tent	s	t	
+# ::edge	set-up-03	location	grass	s	g	
+# ::edge	and	op1	set-up-03	a	s	
+# ::edge	and	op2	banner	a	b	
+# ::edge	banner	location	in-front-of	b	i	
+# ::edge	in-front-of	op1	tent	i	t2	
+# ::edge	tent	quant	couple	t2	c	
+# ::edge	tent	ARG1-of	include-91	t2	i2	
+# ::edge	include-91	ARG2	tent	i2	t	
+(a / and
+    :op1 (s / set-up-03
+        :ARG1 (t / tent
+            :quant (s2 / several))
+        :location (g / grass))
+    :op2 (b / banner
+        :location (i / in-front-of
+            :op1 (t2 / tent
+                :quant (c / couple)
+                :ARG1-of (i2 / include-91
+                    :ARG2 t)))))

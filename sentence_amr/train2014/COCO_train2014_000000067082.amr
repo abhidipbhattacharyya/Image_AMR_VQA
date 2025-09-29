@@ -1,0 +1,47 @@
+# ::tok Five cows meander around a meadow and one scratches his face on an old brick structure .
+# ::node	1	5	0-1
+# ::node	c	cow	1-2
+# ::node	c2	cow	1-2
+# ::node	m2	meander-01	2-3
+# ::node	a2	around	3-4
+# ::node	m	meadow	5-6
+# ::node	a	and	6-7
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	s	scratch-02	8-9
+# ::node	f	face	10-11
+# ::node	o	old	13-14
+# ::node	b	brick	14-15
+# ::node	s2	structure	15-16
+# ::root	a	and
+# ::edge	cow	quant	5	c	1	
+# ::edge	meander-01	ARG0	cow	m2	c	
+# ::edge	meander-01	ARG1	around	m2	a2	
+# ::edge	around	op1	meadow	a2	m	
+# ::edge	and	op1	meander-01	a	m2	
+# ::edge	cow	ARG1-of	include-91	c2	i	
+# ::edge	include-91	ARG2	cow	i	c	
+# ::edge	cow	quant	1	c2	0	
+# ::edge	and	op2	scratch-02	a	s	
+# ::edge	scratch-02	ARG0	cow	s	c2	
+# ::edge	scratch-02	ARG1	face	s	f	
+# ::edge	cow	part	face	c2	f	
+# ::edge	structure	consist-of	brick	s2	b	
+# ::edge	structure	mod	old	s2	o	
+# ::edge	scratch-02	location	structure	s	s2	
+(a / and
+    :op1 (m2 / meander-01
+        :ARG0 (c / cow
+            :quant 5)
+        :ARG1 (a2 / around
+            :op1 (m / meadow)))
+    :op2 (s / scratch-02
+        :ARG0 (c2 / cow
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 c)
+            :part (f / face))
+        :ARG1 f
+        :location (s2 / structure
+            :consist-of (b / brick)
+            :mod (o / old))))

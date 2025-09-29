@@ -1,0 +1,48 @@
+# ::tok two people wearing skis next to each other on a snow covered slope
+# ::node	0	2	0-1
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	s	ski-01	3-4
+# ::node	n	next-to	4-5
+# ::node	r	relative-position	5-6
+# ::node	s3	snow	10-11
+# ::node	c	cover-02	11-12
+# ::node	s2	slope	12-13
+# ::root	s2	slope
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	wear-01	ARG1	ski-01	w	s	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	next-to	op1	person	n	p	
+# ::edge	relative-position	location	next-to	r	n	
+# ::edge	relative-position	op1	person	r	p	
+# ::edge	cover-02	ARG2	snow	c	s3	
+# ::edge	slope	ARG1-of	cover-02	s2	c	
+# ::edge	slope	location	relative-position	s2	r	
+# ::edge	wear-01	location	slope	w	s2	
+# ::edge	slope	rel	2	s2	0	
+# ::edge	slope	rel	wear-01	s2	w	
+# ::edge	slope	rel	ski-01	s2	s	
+# ::edge	slope	rel	next-to	s2	n	
+# ::edge	slope	rel	snow	s2	s3	
+# ::edge	slope	rel	cover-02	s2	c	
+# ::edge	slope	rel	relative-position	s2	r	
+(s2 / slope
+    :ARG1-of (c / cover-02
+        :ARG2 (s3 / snow))
+    :location (r / relative-position
+        :location (n / next-to
+            :op1 (p / person
+                :quant 2
+                :ARG0-of (w / wear-01
+                    :ARG1 (s / ski-01
+                        :ARG0 p)
+                    :location s2)))
+        :op1 p)
+    :rel 2
+    :rel w
+    :rel s
+    :rel n
+    :rel s3
+    :rel c
+    :rel r)

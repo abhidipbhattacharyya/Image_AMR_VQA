@@ -1,0 +1,37 @@
+# ::tok Two men standing around a pizza on the counter , one wearing an oven mitt .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	a	around	3-4
+# ::node	p	pizza	5-6
+# ::node	c	counter	8-9
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	w	wear-01	11-12
+# ::node	o	oven	13-14
+# ::node	m3	mitt	14-15
+# ::root	s	stand-01
+# ::edge	man	quant	2	m	1	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	around	s	a	
+# ::edge	around	op1	pizza	a	p	
+# ::edge	pizza	location	counter	p	c	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	ARG0-of	wear-01	m2	w	
+# ::edge	mitt	mod	oven	m3	o	
+# ::edge	wear-01	ARG1	mitt	w	m3	
+(s / stand-01
+    :ARG1 (m / man
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (m2 / man
+                :quant 1
+                :ARG0-of (w / wear-01
+                    :ARG1 (m3 / mitt
+                        :mod (o / oven))))))
+    :ARG2 (a / around
+        :op1 (p / pizza
+            :location (c / counter))))

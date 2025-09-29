@@ -1,0 +1,30 @@
+# ::tok A person has his feet next to a half eaten box of pizza .
+# ::node	p	person	1-2
+# ::node	f	foot	4-5
+# ::node	n	next-to	5-6
+# ::node	h	half	8-9
+# ::node	e	eat-01	9-10
+# ::node	b	box	10-11
+# ::node	c	contain-01	10-11
+# ::node	p2	pizza	12-13
+# ::node	e2	event	13-14
+# ::root	e2	event
+# ::edge	person	part	foot	p	f	
+# ::edge	foot	location	next-to	f	n	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	box	ARG1-of	eat-01	b	e	
+# ::edge	next-to	op1	box	n	b	
+# ::edge	box	ARG0-of	contain-01	b	c	
+# ::edge	contain-01	ARG1	pizza	c	p2	
+# ::edge	event	mod	foot	e2	f	
+# ::edge	event	rel	person	e2	p	
+(e2 / event
+    :mod (f / foot
+        :location (n / next-to
+            :op1 (b / box
+                :ARG0-of (c / contain-01
+                    :ARG1 (p2 / pizza))
+                :ARG1-of (e / eat-01
+                    :degree (h / half)))))
+    :rel (p / person
+        :part f))

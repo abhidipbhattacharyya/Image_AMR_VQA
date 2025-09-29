@@ -1,0 +1,25 @@
+# ::tok The teams surround the player juming in the air for the ball .
+# ::node	t	team	1-2
+# ::node	s	surround-01	2-3
+# ::node	p	person	4-5
+# ::node	p2	play-01	4-5
+# ::node	p3	pound	5-6
+# ::node	j	jiggle-01	5-6
+# ::node	a	air	8-9
+# ::node	b	ball	11-12
+# ::root	s	surround-01
+# ::edge	surround-01	ARG1	team	s	t	
+# ::edge	surround-01	ARG2	person	s	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	unit	pound	p	p3	
+# ::edge	person	ARG0-of	jiggle-01	p	j	
+# ::edge	jiggle-01	location	air	j	a	
+# ::edge	jiggle-01	purpose	ball	j	b	
+(s / surround-01
+    :ARG1 (t / team)
+    :ARG2 (p / person
+        :ARG0-of (p2 / play-01)
+        :ARG0-of (j / jiggle-01
+            :purpose (b / ball)
+            :location (a / air))
+        :unit (p3 / pound)))

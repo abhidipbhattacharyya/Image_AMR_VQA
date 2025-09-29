@@ -1,0 +1,25 @@
+# ::tok Pedestrians stroll through a neon lighted street at dusk .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	s2	stroll-01	1-2
+# ::node	n	neon	4-5
+# ::node	l	light-04	5-6
+# ::node	s	street	6-7
+# ::node	d	date-entity	8-9
+# ::node	d2	dusk	8-9
+# ::root	s2	stroll-01
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	stroll-01	ARG0	person	s2	p	
+# ::edge	light-04	mod	neon	l	n	
+# ::edge	street	ARG1-of	light-04	s	l	
+# ::edge	stroll-01	ARG1	street	s2	s	
+# ::edge	stroll-01	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	dusk	d	d2	
+(s2 / stroll-01
+    :ARG0 (p / person
+        :ARG0-of (w / walk-01))
+    :ARG1 (s / street
+        :ARG1-of (l / light-04
+            :mod (n / neon)))
+    :time (d / date-entity
+        :dayperiod (d2 / dusk)))

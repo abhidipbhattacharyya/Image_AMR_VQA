@@ -1,0 +1,47 @@
+# ::tok a red and white passenger bus with a ' final destination 5 ' billboard on the side of it
+# ::node	r	red-02	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	p	passenger	4-5
+# ::node	b2	bus	5-6
+# ::node	b3	bus	5-6
+# ::node	h	have-03	6-7
+# ::node	f	final	9-10
+# ::node	d	destination	10-11
+# ::node	d2	distance-quantity	11-12
+# ::node	0	5	11-12
+# ::node	f2	foot	12-13
+# ::node	b	billboard	13-14
+# ::node	s	side	16-17
+# ::root	a	and
+# ::edge	bus	mod	passenger	b2	p	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	bus	mod	passenger	b3	p	
+# ::edge	bus	ARG1-of	white-03	b3	w	
+# ::edge	and	op2	bus	a	b3	
+# ::edge	bus	ARG0-of	have-03	b2	h	
+# ::edge	destination	mod	final	d	f	
+# ::edge	distance-quantity	quant	5	d2	0	
+# ::edge	distance-quantity	unit	foot	d2	f2	
+# ::edge	billboard	mod	distance-quantity	b	d2	
+# ::edge	billboard	mod	destination	b	d	
+# ::edge	have-03	ARG1	billboard	h	b	
+# ::edge	billboard	location	side	b	s	
+# ::edge	bus	part	side	b2	s	
+(a / and
+    :op1 (b2 / bus
+        :ARG0-of (h / have-03
+            :ARG1 (b / billboard
+                :location (s / side)
+                :mod (d2 / distance-quantity
+                    :quant 5
+                    :unit (f2 / foot))
+                :mod (d / destination
+                    :mod (f / final))))
+        :ARG1-of (r / red-02)
+        :mod (p / passenger)
+        :part s)
+    :op2 (b3 / bus
+        :ARG1-of (w / white-03)
+        :mod p))

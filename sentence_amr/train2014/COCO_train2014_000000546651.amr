@@ -1,0 +1,41 @@
+# ::tok Three people sitting on a bench watching people below them in a raft sailing on a body of water .
+# ::node	0	3	0-1
+# ::node	p	person	1-2
+# ::node	s2	sit-01	2-3
+# ::node	b2	bench	5-6
+# ::node	w	watch-01	6-7
+# ::node	p2	person	7-8
+# ::node	b	below	8-9
+# ::node	r	raft	12-13
+# ::node	s	sail-01	13-14
+# ::node	b3	body	16-17
+# ::node	w2	water	18-19
+# ::node	a	and	19-20
+# ::root	a	and
+# ::edge	person	quant	3	p	0	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	bench	s2	b2	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	ARG1	person	w	p2	
+# ::edge	person	location	below	p2	b	
+# ::edge	below	op1	person	b	p	
+# ::edge	sail-01	ARG1	raft	s	r	
+# ::edge	person	ARG0-of	sail-01	p2	s	
+# ::edge	sail-01	location	body	s	b3	
+# ::edge	body	consist-of	water	b3	w2	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	and	op1	sit-01	a	s2	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / person
+            :quant 3)
+        :ARG2 (b2 / bench))
+    :op2 (w / watch-01
+        :ARG0 p
+        :ARG1 (p2 / person
+            :ARG0-of (s / sail-01
+                :ARG1 (r / raft)
+                :location (b3 / body
+                    :consist-of (w2 / water)))
+            :location (b / below
+                :op1 p))))

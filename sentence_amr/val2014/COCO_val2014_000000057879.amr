@@ -1,0 +1,40 @@
+# ::tok A man is standing next to a road sign with a line of parked cars across the street in an urban area
+# ::node	m	man	1-2
+# ::node	s2	stand-01	3-4
+# ::node	n	next-to	4-5
+# ::node	r	road	7-8
+# ::node	s	sign	8-9
+# ::node	h	have-03	9-10
+# ::node	l	line	11-12
+# ::node	p	park-01	13-14
+# ::node	c	car	14-15
+# ::node	a	across	15-16
+# ::node	s3	street	17-18
+# ::node	u	urban	20-21
+# ::node	a2	area	21-22
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	sign	mod	road	s	r	
+# ::edge	next-to	op1	sign	n	s	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	line	h	l	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	line	consist-of	car	l	c	
+# ::edge	line	location	across	l	a	
+# ::edge	across	op1	street	a	s3	
+# ::edge	area	mod	urban	a2	u	
+# ::edge	street	location	area	s3	a2	
+(s2 / stand-01
+    :ARG1 (m / man)
+    :ARG2 (n / next-to
+        :op1 (s / sign
+            :ARG0-of (h / have-03
+                :ARG1 (l / line
+                    :consist-of (c / car
+                        :ARG1-of (p / park-01))
+                    :location (a / across
+                        :op1 (s3 / street
+                            :location (a2 / area
+                                :mod (u / urban))))))
+            :mod (r / road))))

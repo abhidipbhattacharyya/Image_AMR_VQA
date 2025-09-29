@@ -1,0 +1,28 @@
+# ::tok The front end of a passenger rail train with conductor seen through a window .
+# ::node	f	front	1-2
+# ::node	e	end	2-3
+# ::node	p	passenger	5-6
+# ::node	r	rail	6-7
+# ::node	t	train	7-8
+# ::node	p2	person	9-10
+# ::node	c	conduct-01	9-10
+# ::node	s	see-01	10-11
+# ::node	w	window	13-14
+# ::root	s	see-01
+# ::edge	end	mod	front	e	f	
+# ::edge	rail	mod	passenger	r	p	
+# ::edge	train	mod	rail	t	r	
+# ::edge	end	part-of	train	e	t	
+# ::edge	end	location-of	person	e	p2	
+# ::edge	person	ARG0-of	conduct-01	p2	c	
+# ::edge	see-01	ARG1	end	s	e	
+# ::edge	see-01	location	window	s	w	
+(s / see-01
+    :ARG1 (e / end
+        :location-of (p2 / person
+            :ARG0-of (c / conduct-01))
+        :mod (f / front)
+        :part-of (t / train
+            :mod (r / rail
+                :mod (p / passenger))))
+    :location (w / window))

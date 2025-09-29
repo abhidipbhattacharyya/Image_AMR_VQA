@@ -1,0 +1,36 @@
+# ::tok A bowl of stew , and several plates of English Muffins and bread .
+# ::node	b	bowl	1-2
+# ::node	s2	stew	3-4
+# ::node	a	and	5-6
+# ::node	s	several	6-7
+# ::node	p	plate	7-8
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	England	9-10
+# ::node	c	cookie	10-11
+# ::node	a2	and	11-12
+# ::node	b2	bread	12-13
+# ::root	a	and
+# ::edge	stew	quant	bowl	s2	b	
+# ::edge	and	op1	stew	a	s2	
+# ::edge	plate	quant	several	p	s	
+# ::edge	and	op2	plate	a	p	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	England	n	0	
+# ::edge	cookie	mod	country	c	c2	
+# ::edge	and	op1	cookie	a2	c	
+# ::edge	plate	consist-of	and	p	a2	
+# ::edge	and	op2	bread	a2	b2	
+# ::edge	bread	mod	country	b2	c2	
+(a / and
+    :op1 (s2 / stew
+        :quant (b / bowl))
+    :op2 (p / plate
+        :quant (s / several)
+        :consist-of (a2 / and
+            :op1 (c / cookie
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "England")))
+            :op2 (b2 / bread
+                :mod c2))))

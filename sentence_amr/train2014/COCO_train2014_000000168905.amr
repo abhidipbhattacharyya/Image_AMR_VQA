@@ -1,0 +1,33 @@
+# ::tok A street sign with three mounted street signs next to tall brick buildings .
+# ::node	s	sign	2-3
+# ::node	h	have-03	3-4
+# ::node	0	3	4-5
+# ::node	m	mount-03	5-6
+# ::node	s3	street	6-7
+# ::node	s2	sign	7-8
+# ::node	n	next-to	8-9
+# ::node	t	tall	10-11
+# ::node	b	brick	11-12
+# ::node	b2	building	12-13
+# ::root	s	sign
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	ARG1-of	street	s2	s3	
+# ::edge	sign	quant	3	s2	0	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	mount-03	location	next-to	m	n	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	building	mod	tall	b2	t	
+# ::edge	next-to	op1	building	n	b2	
+# ::edge	sign	rel	mount-03	s	m	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :quant 3
+            :ARG1-of (s3 / street)))
+    :mod s3
+    :rel (m / mount-03
+        :location (n / next-to
+            :op1 (b2 / building
+                :consist-of (b / brick)
+                :mod (t / tall)))))

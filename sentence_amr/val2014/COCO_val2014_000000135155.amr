@@ -1,0 +1,40 @@
+# ::tok A very snowy day at the ski range ; a couple of skiers trudge back up the hill .
+# ::node	v	very	1-2
+# ::node	s3	snowy-02	2-3
+# ::node	d	day	3-4
+# ::node	s	ski-01	6-7
+# ::node	r	range	7-8
+# ::node	m	multi-sentence	8-9
+# ::node	c	couple	10-11
+# ::node	p	person	12-13
+# ::node	s2	ski-01	12-13
+# ::node	t	trample-01	13-14
+# ::node	b	back	14-15
+# ::node	u	up	15-16
+# ::node	h	hill	17-18
+# ::root	m	multi-sentence
+# ::edge	snowy-02	degree	very	s3	v	
+# ::edge	day	ARG1-of	snowy-02	d	s3	
+# ::edge	range	mod	ski-01	r	s	
+# ::edge	day	location	range	d	r	
+# ::edge	multi-sentence	snt1	day	m	d	
+# ::edge	person	quant	couple	p	c	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	trample-01	ARG0	person	t	p	
+# ::edge	multi-sentence	snt2	trample-01	m	t	
+# ::edge	trample-01	direction	back	t	b	
+# ::edge	trample-01	direction	up	t	u	
+# ::edge	trample-01	ARG1	hill	t	h	
+(m / multi-sentence
+    :snt1 (d / day
+        :ARG1-of (s3 / snowy-02
+            :degree (v / very))
+        :location (r / range
+            :mod (s / ski-01)))
+    :snt2 (t / trample-01
+        :ARG0 (p / person
+            :quant (c / couple)
+            :ARG0-of (s2 / ski-01))
+        :ARG1 (h / hill)
+        :direction (b / back)
+        :direction (u / up)))

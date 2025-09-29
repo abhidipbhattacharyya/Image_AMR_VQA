@@ -1,0 +1,31 @@
+# ::tok A bathroom has a sink , mirror and shower without a shower curtain .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	s3	sink	4-5
+# ::node	m	mirror	6-7
+# ::node	a	and	7-8
+# ::node	s	shower	8-9
+# ::node	h2	have-03	9-10
+# ::node	0	-	9-10
+# ::node	s2	shower-01	11-12
+# ::node	c	curtain	12-13
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	and	op1	sink	a	s3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	shower	a	s	
+# ::edge	and	ARG0-of	have-03	a	h2	
+# ::edge	have-03	polarity	-	h2	0	
+# ::edge	curtain	mod	shower-01	c	s2	
+# ::edge	have-03	ARG1	curtain	h2	c	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :ARG1 (a / and
+        :ARG0-of (h2 / have-03
+            :ARG1 (c / curtain
+                :mod (s2 / shower-01))
+            :polarity -)
+        :op1 (s3 / sink)
+        :op2 (m / mirror)
+        :op3 (s / shower)))

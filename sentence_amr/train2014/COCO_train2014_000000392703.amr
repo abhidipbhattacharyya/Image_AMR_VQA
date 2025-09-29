@@ -1,0 +1,25 @@
+# ::tok Sub sandwiches held together by different territory location flags .
+# ::node	s2	substitute-01	0-1
+# ::node	s	sandwich	1-2
+# ::node	h	hold-01	2-3
+# ::node	t2	together	3-4
+# ::node	d	differ-02	5-6
+# ::node	t	territory	6-7
+# ::node	l	location	7-8
+# ::node	f	flag	8-9
+# ::root	s	sandwich
+# ::edge	sandwich	ARG1-of	substitute-01	s	s2	
+# ::edge	sandwich	ARG1-of	hold-01	s	h	
+# ::edge	hold-01	mod	together	h	t2	
+# ::edge	location	location-of	territory	l	t	
+# ::edge	flag	mod	location	f	l	
+# ::edge	flag	ARG1-of	differ-02	f	d	
+# ::edge	hold-01	ARG0	flag	h	f	
+(s / sandwich
+    :ARG1-of (s2 / substitute-01)
+    :ARG1-of (h / hold-01
+        :ARG0 (f / flag
+            :ARG1-of (d / differ-02)
+            :mod (l / location
+                :location-of (t / territory)))
+        :mod (t2 / together)))

@@ -1,0 +1,28 @@
+# ::tok Someone is cooking rustic looking pizzas in a coal oven on aluminum foil .
+# ::node	s	someone	0-1
+# ::node	c2	cook-01	2-3
+# ::node	r	rustic	3-4
+# ::node	l	look-02	4-5
+# ::node	p	pizzeria	5-6
+# ::node	c	coal	8-9
+# ::node	o	oven	9-10
+# ::node	a	aluminum	11-12
+# ::node	f	foil	12-13
+# ::root	c2	cook-01
+# ::edge	cook-01	ARG0	someone	c2	s	
+# ::edge	look-02	ARG1	rustic	l	r	
+# ::edge	pizzeria	ARG0-of	look-02	p	l	
+# ::edge	cook-01	ARG1	pizzeria	c2	p	
+# ::edge	oven	mod	coal	o	c	
+# ::edge	cook-01	location	oven	c2	o	
+# ::edge	foil	consist-of	aluminum	f	a	
+# ::edge	oven	prep-on	foil	o	f	
+(c2 / cook-01
+    :ARG0 (s / someone)
+    :ARG1 (p / pizzeria
+        :ARG0-of (l / look-02
+            :ARG1 (r / rustic)))
+    :location (o / oven
+        :mod (c / coal)
+        :prep-on (f / foil
+            :consist-of (a / aluminum))))

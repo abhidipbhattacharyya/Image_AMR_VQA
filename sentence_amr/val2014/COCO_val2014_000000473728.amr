@@ -1,0 +1,30 @@
+# ::tok A parking meter with a reserved space bag over it 's right side .
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	h	have-03	3-4
+# ::node	r	reserve-01	5-6
+# ::node	s2	space	6-7
+# ::node	b	bag	7-8
+# ::node	o	over	8-9
+# ::node	r2	right-04	11-12
+# ::node	s	side	12-13
+# ::root	m	meter
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	ARG0-of	have-03	m	h	
+# ::edge	bag	mod	space	b	s2	
+# ::edge	bag	ARG1-of	reserve-01	b	r	
+# ::edge	have-03	ARG1	bag	h	b	
+# ::edge	meter	location	over	m	o	
+# ::edge	side	ARG1-of	right-04	s	r2	
+# ::edge	over	op1	side	o	s	
+# ::edge	meter	part	side	m	s	
+(m / meter
+    :purpose (p / park-01)
+    :ARG0-of (h / have-03
+        :ARG1 (b / bag
+            :ARG1-of (r / reserve-01)
+            :mod (s2 / space)))
+    :location (o / over
+        :op1 (s / side
+            :ARG1-of (r2 / right-04)))
+    :part s)

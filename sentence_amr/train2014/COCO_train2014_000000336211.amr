@@ -1,0 +1,28 @@
+# ::tok Some leftover pizza from tonight 's dinner sitting on the stove .
+# ::node	s2	some	0-1
+# ::node	l	leave-over-08	1-2
+# ::node	p	pizza	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	t	today	4-5
+# ::node	d2	dinner	6-7
+# ::node	s	sit-01	7-8
+# ::node	s3	stove	10-11
+# ::root	s	sit-01
+# ::edge	pizza	ARG1-of	leave-over-08	p	l	
+# ::edge	pizza	quant	some	p	s2	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	date-entity	mod	today	d	t	
+# ::edge	dinner	time	date-entity	d2	d	
+# ::edge	pizza	source	dinner	p	d2	
+# ::edge	sit-01	ARG1	pizza	s	p	
+# ::edge	sit-01	ARG2	stove	s	s3	
+(s / sit-01
+    :ARG1 (p / pizza
+        :quant (s2 / some)
+        :ARG1-of (l / leave-over-08)
+        :source (d2 / dinner
+            :time (d / date-entity
+                :dayperiod (n / night)
+                :mod (t / today))))
+    :ARG2 (s3 / stove))

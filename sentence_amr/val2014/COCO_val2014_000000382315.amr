@@ -1,0 +1,32 @@
+# ::tok Cow sticking head through gate so she can eat some hay
+# ::node	c2	cow	0-1
+# ::node	s2	stick-01	1-2
+# ::node	h2	head	2-3
+# ::node	c	cause-01	3-4
+# ::node	g	gate	4-5
+# ::node	p	possible-01	7-8
+# ::node	e	eat-01	8-9
+# ::node	s	some	9-10
+# ::node	h	hay	10-11
+# ::root	s2	stick-01
+# ::edge	stick-01	ARG1	cow	s2	c2	
+# ::edge	stick-01	ARG1	head	s2	h2	
+# ::edge	cow	part	head	c2	h2	
+# ::edge	stick-01	ARG1-of	cause-01	s2	c	
+# ::edge	stick-01	ARG2	gate	s2	g	
+# ::edge	cause-01	ARG0	possible-01	c	p	
+# ::edge	possible-01	ARG1	eat-01	p	e	
+# ::edge	eat-01	ARG0	cow	e	c2	
+# ::edge	hay	quant	some	h	s	
+# ::edge	eat-01	ARG1	hay	e	h	
+(s2 / stick-01
+    :ARG1 (c2 / cow
+        :part (h2 / head))
+    :ARG1 h2
+    :ARG1-of (c / cause-01
+        :ARG0 (p / possible-01
+            :ARG1 (e / eat-01
+                :ARG0 c2
+                :ARG1 (h / hay
+                    :quant (s / some)))))
+    :ARG2 (g / gate))

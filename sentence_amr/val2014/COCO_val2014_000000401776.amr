@@ -1,0 +1,45 @@
+# ::tok A bus pulls toward the sidewalk behind a cyclist as a line of cars makes their way down the street on the other side .
+# ::node	b2	bus	1-2
+# ::node	p2	pull-01	2-3
+# ::node	s2	sidewalk	5-6
+# ::node	b	behind	6-7
+# ::node	p	person	8-9
+# ::node	c2	cycle-01	8-9
+# ::node	l	line	11-12
+# ::node	c	car	13-14
+# ::node	m	make-19	14-15
+# ::node	w	way	16-17
+# ::node	d	down	17-18
+# ::node	s3	street	19-20
+# ::node	o	other	22-23
+# ::node	s	side	23-24
+# ::root	p2	pull-01
+# ::edge	pull-01	ARG1	bus	p2	b2	
+# ::edge	pull-01	ARG2	sidewalk	p2	s2	
+# ::edge	pull-01	location	behind	p2	b	
+# ::edge	behind	op1	person	b	p	
+# ::edge	person	ARG0-of	cycle-01	p	c2	
+# ::edge	line	consist-of	car	l	c	
+# ::edge	make-19	ARG0	line	m	l	
+# ::edge	pull-01	time	make-19	p2	m	
+# ::edge	make-19	ARG1	way	m	w	
+# ::edge	way	poss	line	w	l	
+# ::edge	way	direction	down	w	d	
+# ::edge	make-19	ARG2	street	m	s3	
+# ::edge	side	mod	other	s	o	
+# ::edge	street	location	side	s3	s	
+(p2 / pull-01
+    :ARG1 (b2 / bus)
+    :ARG2 (s2 / sidewalk)
+    :location (b / behind
+        :op1 (p / person
+            :ARG0-of (c2 / cycle-01)))
+    :time (m / make-19
+        :ARG0 (l / line
+            :consist-of (c / car))
+        :ARG1 (w / way
+            :direction (d / down)
+            :poss l)
+        :ARG2 (s3 / street
+            :location (s / side
+                :mod (o / other)))))

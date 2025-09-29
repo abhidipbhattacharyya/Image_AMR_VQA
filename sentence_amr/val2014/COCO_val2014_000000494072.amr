@@ -1,0 +1,39 @@
+# ::tok A fuzzy teddy bear wearing a Santa hat and coat sitting on a table .
+# ::node	f	fuzz-01	1-2
+# ::node	t2	teddy	2-3
+# ::node	b	bear	3-4
+# ::node	w	wear-01	4-5
+# ::node	p	person	6-7
+# ::node	n	name	6-7
+# ::node	0	Santa	6-7
+# ::node	h	hat	7-8
+# ::node	a	and	8-9
+# ::node	c	coat	9-10
+# ::node	s	sit-01	10-11
+# ::node	t	table	13-14
+# ::root	s	sit-01
+# ::edge	bear	mod	teddy	b	t2	
+# ::edge	bear	ARG1-of	fuzz-01	b	f	
+# ::edge	bear	ARG0-of	wear-01	b	w	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Santa	n	0	
+# ::edge	hat	mod	person	h	p	
+# ::edge	and	op1	hat	a	h	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	coat	a	c	
+# ::edge	coat	mod	person	c	p	
+# ::edge	sit-01	ARG1	bear	s	b	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (b / bear
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (h / hat
+                    :mod (p / person
+                        :name (n / name
+                            :op1 "Santa")))
+                :op2 (c / coat
+                    :mod p)))
+        :ARG1-of (f / fuzz-01)
+        :mod (t2 / teddy))
+    :ARG2 (t / table))

@@ -1,0 +1,29 @@
+# ::tok A man glances to the right as he crosses the street with a group of people .
+# ::node	m	man	1-2
+# ::node	g	glance-01	2-3
+# ::node	r	right-04	5-6
+# ::node	c	cross-02	8-9
+# ::node	p	person	9-10
+# ::node	s	street	10-11
+# ::node	g2	group	13-14
+# ::node	p2	person	15-16
+# ::root	g	glance-01
+# ::edge	glance-01	ARG0	man	g	m	
+# ::edge	glance-01	time-of	cross-02	g	c	
+# ::edge	cross-02	ARG0	man	c	m	
+# ::edge	person	ARG0-of	cross-02	p	c	
+# ::edge	glance-01	ARG1	person	g	p	
+# ::edge	cross-02	ARG1	street	c	s	
+# ::edge	person	accompanier	group	p	g2	
+# ::edge	group	consist-of	person	g2	p2	
+# ::edge	glance-01	rel	right-04	g	r	
+(g / glance-01
+    :ARG0 (m / man)
+    :ARG1 (p / person
+        :ARG0-of (c / cross-02
+            :ARG0 m
+            :ARG1 (s / street))
+        :accompanier (g2 / group
+            :consist-of (p2 / person)))
+    :rel (r / right-04)
+    :time-of c)

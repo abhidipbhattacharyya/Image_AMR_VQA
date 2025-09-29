@@ -1,0 +1,22 @@
+# ::tok The traffic light and mirror are surrounded by high buildings .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	a	and	3-4
+# ::node	m	mirror	4-5
+# ::node	s	surround-01	6-7
+# ::node	h	high-02	8-9
+# ::node	b	building	9-10
+# ::root	s	surround-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	surround-01	ARG2	and	s	a	
+# ::edge	building	ARG1-of	high-02	b	h	
+# ::edge	surround-01	ARG1	building	s	b	
+(s / surround-01
+    :ARG1 (b / building
+        :ARG1-of (h / high-02))
+    :ARG2 (a / and
+        :op1 (l / light
+            :mod (t / traffic))
+        :op2 (m / mirror)))

@@ -1,0 +1,27 @@
+# ::tok An old fashioned train is parked as workers gather around it .
+# ::node	o	old	1-2
+# ::node	f	fashion	2-3
+# ::node	t	train	3-4
+# ::node	p	park-01	5-6
+# ::node	p2	person	7-8
+# ::node	w	work-01	7-8
+# ::node	g	gather-03	8-9
+# ::node	a	around	9-10
+# ::root	p	park-01
+# ::edge	fashion	mod	old	f	o	
+# ::edge	train	mod	fashion	t	f	
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	person	ARG0-of	work-01	p2	w	
+# ::edge	gather-03	ARG0	person	g	p2	
+# ::edge	park-01	time	gather-03	p	g	
+# ::edge	gather-03	location	around	g	a	
+# ::edge	around	op1	train	a	t	
+(p / park-01
+    :ARG1 (t / train
+        :mod (f / fashion
+            :mod (o / old)))
+    :time (g / gather-03
+        :ARG0 (p2 / person
+            :ARG0-of (w / work-01))
+        :location (a / around
+            :op1 t)))

@@ -1,0 +1,39 @@
+# ::tok busy street corner in a city where they are doing construction in the background and there may have been a wreck in the foreground .
+# ::node	b2	busy	0-1
+# ::node	s	street	1-2
+# ::node	c3	corner	2-3
+# ::node	c	city	5-6
+# ::node	t	they	7-8
+# ::node	d	do-02	9-10
+# ::node	c2	construct-01	10-11
+# ::node	b	background	13-14
+# ::node	a	and	14-15
+# ::node	p	possible-01	16-17
+# ::node	w	wreck-01	20-21
+# ::node	f	foreground	23-24
+# ::root	c3	corner
+# ::edge	corner	mod	street	c3	s	
+# ::edge	corner	mod	busy	c3	b2	
+# ::edge	corner	location	city	c3	c	
+# ::edge	do-02	ARG0	they	d	t	
+# ::edge	do-02	ARG1	construct-01	d	c2	
+# ::edge	construct-01	ARG0	they	c2	t	
+# ::edge	do-02	location	background	d	b	
+# ::edge	and	op1	do-02	a	d	
+# ::edge	city	location-of	and	c	a	
+# ::edge	and	op2	possible-01	a	p	
+# ::edge	possible-01	ARG1	wreck-01	p	w	
+# ::edge	wreck-01	location	foreground	w	f	
+(c3 / corner
+    :location (c / city
+        :location-of (a / and
+            :op1 (d / do-02
+                :ARG0 (t / they)
+                :ARG1 (c2 / construct-01
+                    :ARG0 t)
+                :location (b / background))
+            :op2 (p / possible-01
+                :ARG1 (w / wreck-01
+                    :location (f / foreground)))))
+    :mod (s / street)
+    :mod (b2 / busy))

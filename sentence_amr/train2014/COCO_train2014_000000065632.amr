@@ -1,0 +1,30 @@
+# ::tok One soccer player falling to the ground as another falls over him .
+# ::node	0	1	0-1
+# ::node	s	soccer	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	f	fall-01	3-4
+# ::node	g	ground	6-7
+# ::node	a	another	8-9
+# ::node	f2	fall-01	9-10
+# ::node	o	over	10-11
+# ::root	f	fall-01
+# ::edge	person	quant	1	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	soccer	p2	s	
+# ::edge	fall-01	ARG1	person	f	p	
+# ::edge	fall-01	ARG4	ground	f	g	
+# ::edge	fall-01	ARG1	another	f2	a	
+# ::edge	fall-01	time	fall-01	f	f2	
+# ::edge	fall-01	ARG4	over	f2	o	
+# ::edge	over	op1	person	o	p	
+(f / fall-01
+    :ARG1 (p / person
+        :quant 1
+        :ARG0-of (p2 / play-01
+            :ARG1 (s / soccer)))
+    :ARG4 (g / ground)
+    :time (f2 / fall-01
+        :ARG1 (a / another)
+        :ARG4 (o / over
+            :op1 p)))

@@ -1,0 +1,24 @@
+# ::tok Multiple trains are moving along the railroad tracks in a railroad station .
+# ::node	m2	multiple	0-1
+# ::node	t2	train	1-2
+# ::node	m	move-01	3-4
+# ::node	a	along	4-5
+# ::node	r	railroad	6-7
+# ::node	t	track	7-8
+# ::node	s	station	11-12
+# ::root	m	move-01
+# ::edge	train	quant	multiple	t2	m2	
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	move-01	ARG2	along	m	a	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	along	op1	track	a	t	
+# ::edge	station	mod	railroad	s	r	
+# ::edge	move-01	location	station	m	s	
+(m / move-01
+    :ARG1 (t2 / train
+        :quant (m2 / multiple))
+    :ARG2 (a / along
+        :op1 (t / track
+            :mod (r / railroad)))
+    :location (s / station
+        :mod r))

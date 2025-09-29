@@ -1,0 +1,30 @@
+# ::tok A very large building with pedestrians driving and walking by .
+# ::node	v	very	1-2
+# ::node	l	large	2-3
+# ::node	b	building	3-4
+# ::node	w	walk-01	5-6
+# ::node	d	drive-01	6-7
+# ::node	a	and	7-8
+# ::node	w2	walk-01	8-9
+# ::node	p	person	9-10
+# ::node	b2	by	9-10
+# ::root	b	building
+# ::edge	large	degree	very	l	v	
+# ::edge	building	mod	large	b	l	
+# ::edge	and	op1	drive-01	a	d	
+# ::edge	building	location-of	and	b	a	
+# ::edge	and	op2	walk-01	a	w2	
+# ::edge	walk-01	ARG0	person	w2	p	
+# ::edge	drive-01	ARG0	person	d	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	location	by	a	b2	
+(b / building
+    :location-of (a / and
+        :location (b2 / by)
+        :op1 (d / drive-01
+            :ARG0 (p / person
+                :ARG0-of (w / walk-01)))
+        :op2 (w2 / walk-01
+            :ARG0 p))
+    :mod (l / large
+        :degree (v / very)))

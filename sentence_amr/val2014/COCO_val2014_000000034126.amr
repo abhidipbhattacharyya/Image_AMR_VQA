@@ -1,0 +1,28 @@
+# ::tok A fast moving image of cars on a busy street with a tower clock in the background .
+# ::node	f	fast-02	1-2
+# ::node	m	move-01	2-3
+# ::node	i	image	3-4
+# ::node	c	car	5-6
+# ::node	b2	busy-02	8-9
+# ::node	s	street	9-10
+# ::node	t	tower	12-13
+# ::node	c2	clock	13-14
+# ::node	b	background	16-17
+# ::root	i	image
+# ::edge	move-01	ARG1-of	fast-02	m	f	
+# ::edge	image	ARG1-of	move-01	i	m	
+# ::edge	image	mod	car	i	c	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	car	location	street	c	s	
+# ::edge	clock	mod	tower	c2	t	
+# ::edge	image	time	clock	i	c2	
+# ::edge	clock	location	background	c2	b	
+(i / image
+    :ARG1-of (m / move-01
+        :ARG1-of (f / fast-02))
+    :mod (c / car
+        :location (s / street
+            :ARG1-of (b2 / busy-02)))
+    :time (c2 / clock
+        :location (b / background)
+        :mod (t / tower)))

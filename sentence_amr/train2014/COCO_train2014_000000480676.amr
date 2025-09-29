@@ -1,0 +1,45 @@
+# ::tok Ice cream cone of soft serve of Betty Ann 's exit sign with a motel next door .
+# ::node	i	ice	0-1
+# ::node	i2	ice-cream	1-2
+# ::node	c	cone	2-3
+# ::node	s3	soft-02	4-5
+# ::node	s	serve-02	5-6
+# ::node	n	name	7-8
+# ::node	1	Betty	7-8
+# ::node	p	person	8-9
+# ::node	0	Ann	8-9
+# ::node	e	exit-01	10-11
+# ::node	s2	sign	11-12
+# ::node	m	motel	14-15
+# ::node	n2	next	15-16
+# ::node	d	door	16-17
+# ::root	c	cone
+# ::edge	ice-cream	mod	ice	i2	i	
+# ::edge	cone	consist-of	ice-cream	c	i2	
+# ::edge	cone	ARG1-of	soft-02	c	s3	
+# ::edge	cone	ARG1-of	serve-02	c	s	
+# ::edge	name	op1	Betty	n	1	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op2	Ann	n	0	
+# ::edge	exit-01	ARG0	person	e	p	
+# ::edge	sign	purpose	exit-01	s2	e	
+# ::edge	sign	poss	person	s2	p	
+# ::edge	cone	source	sign	c	s2	
+# ::edge	sign	accompanier	motel	s2	m	
+# ::edge	door	mod	next	d	n2	
+# ::edge	motel	location	door	m	d	
+(c / cone
+    :ARG1-of (s3 / soft-02)
+    :ARG1-of (s / serve-02)
+    :consist-of (i2 / ice-cream
+        :mod (i / ice))
+    :source (s2 / sign
+        :purpose (e / exit-01
+            :ARG0 (p / person
+                :name (n / name
+                    :op1 "Betty"
+                    :op2 "Ann")))
+        :accompanier (m / motel
+            :location (d / door
+                :mod (n2 / next)))
+        :poss p))

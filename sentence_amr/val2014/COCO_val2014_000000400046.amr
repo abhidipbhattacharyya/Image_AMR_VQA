@@ -1,0 +1,37 @@
+# ::tok A blurry photo shows black and multicolored cows trotting across a pasture bisected by a shadow line .
+# ::node	b2	blur-01	1-2
+# ::node	p2	photo	2-3
+# ::node	s2	show-01	3-4
+# ::node	b	black-04	4-5
+# ::node	m	multiple	6-7
+# ::node	c	cow	7-8
+# ::node	t	trot-out-02	8-9
+# ::node	a	across	9-10
+# ::node	p	pasture	11-12
+# ::node	b3	border-01	12-13
+# ::node	s	shadow-02	15-16
+# ::node	l	line	16-17
+# ::root	s2	show-01
+# ::edge	photo	ARG1-of	blur-01	p2	b2	
+# ::edge	show-01	ARG0	photo	s2	p2	
+# ::edge	cow	mod	multiple	c	m	
+# ::edge	cow	ARG1-of	black-04	c	b	
+# ::edge	show-01	ARG1	cow	s2	c	
+# ::edge	cow	ARG0-of	trot-out-02	c	t	
+# ::edge	trot-out-02	ARG1	across	t	a	
+# ::edge	across	op1	pasture	a	p	
+# ::edge	pasture	ARG1-of	border-01	p	b3	
+# ::edge	line	ARG1-of	shadow-02	l	s	
+# ::edge	border-01	ARG2	line	b3	l	
+(s2 / show-01
+    :ARG0 (p2 / photo
+        :ARG1-of (b2 / blur-01))
+    :ARG1 (c / cow
+        :ARG0-of (t / trot-out-02
+            :ARG1 (a / across
+                :op1 (p / pasture
+                    :ARG1-of (b3 / border-01
+                        :ARG2 (l / line
+                            :ARG1-of (s / shadow-02))))))
+        :ARG1-of (b / black-04)
+        :mod (m / multiple)))

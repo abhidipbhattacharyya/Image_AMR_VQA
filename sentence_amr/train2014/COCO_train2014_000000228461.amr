@@ -1,0 +1,34 @@
+# ::tok A red fire hydrant sitting next to a street light with a speed limit sign .
+# ::node	r	red-02	1-2
+# ::node	f	fire	2-3
+# ::node	h2	hydrant	3-4
+# ::node	s2	sit-01	4-5
+# ::node	n	next-to	5-6
+# ::node	s4	street	8-9
+# ::node	l	light	9-10
+# ::node	h	have-03	10-11
+# ::node	s3	speed-01	12-13
+# ::node	l2	limit-01	13-14
+# ::node	s	sign	14-15
+# ::root	s2	sit-01
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	red-02	h2	r	
+# ::edge	sit-01	ARG1	hydrant	s2	h2	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	light	mod	street	l	s4	
+# ::edge	next-to	op1	light	n	l	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	limit-01	ARG2	speed-01	l2	s3	
+# ::edge	sign	topic	limit-01	s	l2	
+# ::edge	have-03	ARG1	sign	h	s	
+(s2 / sit-01
+    :ARG1 (h2 / hydrant
+        :ARG1-of (r / red-02)
+        :mod (f / fire))
+    :ARG2 (n / next-to
+        :op1 (l / light
+            :ARG0-of (h / have-03
+                :ARG1 (s / sign
+                    :topic (l2 / limit-01
+                        :ARG2 (s3 / speed-01))))
+            :mod (s4 / street))))

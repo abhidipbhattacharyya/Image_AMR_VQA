@@ -1,0 +1,49 @@
+# ::tok A young man works from his laptop and talks on his cell phone over a cup of coffee at a coffee shop .
+# ::node	y	young	1-2
+# ::node	m	man	2-3
+# ::node	w	work-01	3-4
+# ::node	l	laptop	6-7
+# ::node	a	and	7-8
+# ::node	t	talk-01	8-9
+# ::node	c	cell	11-12
+# ::node	p	phone	12-13
+# ::node	v	volume-quantity	14-15
+# ::node	0	1	14-15
+# ::node	c4	cup	15-16
+# ::node	c2	coffee	17-18
+# ::node	c3	coffee	20-21
+# ::node	s	shop	21-22
+# ::root	a	and
+# ::edge	man	mod	young	m	y	
+# ::edge	work-01	ARG0	man	w	m	
+# ::edge	work-01	instrument	laptop	w	l	
+# ::edge	laptop	poss	man	l	m	
+# ::edge	and	op1	work-01	a	w	
+# ::edge	and	op2	talk-01	a	t	
+# ::edge	talk-01	ARG0	man	t	m	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	talk-01	instrument	phone	t	p	
+# ::edge	phone	poss	man	p	m	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	talk-01	manner	coffee	t	c2	
+# ::edge	shop	mod	coffee	s	c3	
+# ::edge	and	location	shop	a	s	
+(a / and
+    :location (s / shop
+        :mod (c3 / coffee))
+    :op1 (w / work-01
+        :ARG0 (m / man
+            :mod (y / young))
+        :instrument (l / laptop
+            :poss m))
+    :op2 (t / talk-01
+        :ARG0 m
+        :instrument (p / phone
+            :mod (c / cell)
+            :poss m)
+        :manner (c2 / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c4 / cup)))))

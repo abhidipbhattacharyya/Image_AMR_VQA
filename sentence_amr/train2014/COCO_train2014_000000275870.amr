@@ -1,0 +1,40 @@
+# ::tok Triple Decker bus advertising $1 fares parked by rocks ..
+# ::node	2	Triple	0-1
+# ::node	c	company	1-2
+# ::node	1	Decker	1-2
+# ::node	b	bus	2-3
+# ::node	n	name	2-3
+# ::node	a	advertise-01	3-4
+# ::node	c2	cost-01	4-5
+# ::node	m	monetary-quantity	4-5
+# ::node	d	dollar	4-5
+# ::node	0	1	4-5
+# ::node	f	fare	5-6
+# ::node	p	park-01	6-7
+# ::node	r	rock	8-9
+# ::root	a	advertise-01
+# ::edge	bus	mod	company	b	c	
+# ::edge	name	op2	Decker	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Triple	n	2	
+# ::edge	advertise-01	ARG0	bus	a	b	
+# ::edge	cost-01	ARG2	monetary-quantity	c2	m	
+# ::edge	monetary-quantity	unit	dollar	m	d	
+# ::edge	monetary-quantity	quant	1	m	0	
+# ::edge	fare	ARG1-of	cost-01	f	c2	
+# ::edge	advertise-01	ARG1	fare	a	f	
+# ::edge	bus	ARG1-of	park-01	b	p	
+# ::edge	park-01	ARG2	rock	p	r	
+(a / advertise-01
+    :ARG0 (b / bus
+        :ARG1-of (p / park-01
+            :ARG2 (r / rock))
+        :mod (c / company
+            :name (n / name
+                :op1 "Triple"
+                :op2 "Decker")))
+    :ARG1 (f / fare
+        :ARG1-of (c2 / cost-01
+            :ARG2 (m / monetary-quantity
+                :quant 1
+                :unit (d / dollar)))))

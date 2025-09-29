@@ -1,0 +1,29 @@
+# ::tok Someone sliding their credit card into a parking meter to pay fare .
+# ::node	s2	someone	0-1
+# ::node	s	slide-01	1-2
+# ::node	c2	credit	3-4
+# ::node	c	card	4-5
+# ::node	p	park-01	7-8
+# ::node	m	meter	8-9
+# ::node	p2	pay-01	10-11
+# ::node	f	fare	11-12
+# ::root	s	slide-01
+# ::edge	slide-01	ARG0	someone	s	s2	
+# ::edge	card	mod	credit	c	c2	
+# ::edge	slide-01	ARG1	card	s	c	
+# ::edge	card	poss	someone	c	s2	
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	slide-01	ARG2	meter	s	m	
+# ::edge	slide-01	purpose	pay-01	s	p2	
+# ::edge	pay-01	ARG0	someone	p2	s2	
+# ::edge	pay-01	ARG1	fare	p2	f	
+(s / slide-01
+    :purpose (p2 / pay-01
+        :ARG0 (s2 / someone)
+        :ARG1 (f / fare))
+    :ARG0 s2
+    :ARG1 (c / card
+        :mod (c2 / credit)
+        :poss s2)
+    :ARG2 (m / meter
+        :purpose (p / park-01)))

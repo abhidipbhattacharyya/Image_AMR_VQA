@@ -1,0 +1,34 @@
+# ::tok Computers with speakers and printer sit on a desk with books on the shelf above
+# ::node	c	computer	0-1
+# ::node	t	thing	2-3
+# ::node	s3	speak-01	2-3
+# ::node	a2	and	3-4
+# ::node	t2	thing	4-5
+# ::node	p	print-01	4-5
+# ::node	s2	sit-01	5-6
+# ::node	d	desk	8-9
+# ::node	b	book	10-11
+# ::node	s	shelf	13-14
+# ::node	a	above	14-15
+# ::root	s2	sit-01
+# ::edge	thing	ARG0-of	speak-01	t	s3	
+# ::edge	and	op1	thing	a2	t	
+# ::edge	computer	part	and	c	a2	
+# ::edge	and	op2	thing	a2	t2	
+# ::edge	thing	ARG0-of	print-01	t2	p	
+# ::edge	sit-01	ARG1	computer	s2	c	
+# ::edge	sit-01	ARG2	desk	s2	d	
+# ::edge	and	accompanier	book	a2	b	
+# ::edge	book	location	shelf	b	s	
+# ::edge	shelf	location	above	s	a	
+(s2 / sit-01
+    :ARG1 (c / computer
+        :part (a2 / and
+            :accompanier (b / book
+                :location (s / shelf
+                    :location (a / above)))
+            :op1 (t / thing
+                :ARG0-of (s3 / speak-01))
+            :op2 (t2 / thing
+                :ARG0-of (p / print-01))))
+    :ARG2 (d / desk))

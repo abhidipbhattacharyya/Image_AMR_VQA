@@ -1,0 +1,39 @@
+# ::tok A man has a motorcycle helmet half on and he is near crates of green bananas .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	m2	motorcycle	4-5
+# ::node	h2	helmet	5-6
+# ::node	h	half	6-7
+# ::node	o	on	7-8
+# ::node	a	and	8-9
+# ::node	n	near-02	11-12
+# ::node	i	Bin	12-13
+# ::node	c	contain-01	12-13
+# ::node	g	green-02	14-15
+# ::node	b	banana	15-16
+# ::root	a	and
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	helmet	mod	motorcycle	h2	m2	
+# ::edge	wear-01	ARG1	helmet	w	h2	
+# ::edge	on	degree	half	o	h	
+# ::edge	wear-01	manner	on	w	o	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op2	near-02	a	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	near-02	ARG2	Bin	n	i	
+# ::edge	Bin	ARG0-of	contain-01	i	c	
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	contain-01	ARG1	banana	c	b	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (m / man)
+        :ARG1 (h2 / helmet
+            :mod (m2 / motorcycle))
+        :manner (o / on
+            :degree (h / half)))
+    :op2 (n / near-02
+        :ARG1 m
+        :ARG2 (i / Bin
+            :ARG0-of (c / contain-01
+                :ARG1 (b / banana
+                    :ARG1-of (g / green-02))))))

@@ -1,0 +1,28 @@
+# ::tok A car sitting at a traffic light near a motorcycle and transit bus .
+# ::node	c	car	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	traffic	5-6
+# ::node	l	light	6-7
+# ::node	n	near-02	7-8
+# ::node	m	motorcycle	9-10
+# ::node	a	and	10-11
+# ::node	t2	transit-01	11-12
+# ::node	b	bus	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	car	s	c	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	sit-01	ARG2	light	s	l	
+# ::edge	light	ARG1-of	near-02	l	n	
+# ::edge	and	op1	motorcycle	a	m	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	bus	ARG2-of	transit-01	b	t2	
+# ::edge	and	op2	bus	a	b	
+(s / sit-01
+    :ARG1 (c / car)
+    :ARG2 (l / light
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (m / motorcycle)
+                :op2 (b / bus
+                    :ARG2-of (t2 / transit-01))))
+        :mod (t / traffic)))

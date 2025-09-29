@@ -1,0 +1,50 @@
+# ::tok A knot of sheep are huddled close and looking out of a barbed wire fence with a frost - covered landscape behind them .
+# ::node	k	knot	1-2
+# ::node	s	sheep	3-4
+# ::node	h2	huddle-01	5-6
+# ::node	c	close-10	6-7
+# ::node	a	and	7-8
+# ::node	l2	look-01	8-9
+# ::node	o	out	9-10
+# ::node	b	barb-01	12-13
+# ::node	w	wire	13-14
+# ::node	f	fence	14-15
+# ::node	h	have-03	15-16
+# ::node	f2	frost	17-18
+# ::node	c2	cover-02	19-20
+# ::node	l	landscape	20-21
+# ::node	b2	behind	21-22
+# ::root	a	and
+# ::edge	knot	consist-of	sheep	k	s	
+# ::edge	huddle-01	ARG0	knot	h2	k	
+# ::edge	huddle-01	ARG1-of	close-10	h2	c	
+# ::edge	and	op1	huddle-01	a	h2	
+# ::edge	and	op2	look-01	a	l2	
+# ::edge	look-01	ARG0	knot	l2	k	
+# ::edge	look-01	direction	out	l2	o	
+# ::edge	wire	ARG1-of	barb-01	w	b	
+# ::edge	fence	mod	wire	f	w	
+# ::edge	out	op1	fence	o	f	
+# ::edge	fence	ARG0-of	have-03	f	h	
+# ::edge	cover-02	ARG2	frost	c2	f2	
+# ::edge	landscape	ARG1-of	cover-02	l	c2	
+# ::edge	have-03	ARG1	landscape	h	l	
+# ::edge	landscape	location	behind	l	b2	
+# ::edge	behind	op1	knot	b2	k	
+(a / and
+    :op1 (h2 / huddle-01
+        :ARG0 (k / knot
+            :consist-of (s / sheep))
+        :ARG1-of (c / close-10))
+    :op2 (l2 / look-01
+        :ARG0 k
+        :direction (o / out
+            :op1 (f / fence
+                :ARG0-of (h / have-03
+                    :ARG1 (l / landscape
+                        :ARG1-of (c2 / cover-02
+                            :ARG2 (f2 / frost))
+                        :location (b2 / behind
+                            :op1 k)))
+                :mod (w / wire
+                    :ARG1-of (b / barb-01))))))

@@ -1,0 +1,26 @@
+# ::tok A flock of water fowl eating and cleaning themselves in a pond .
+# ::node	f	flock	1-2
+# ::node	w	water	3-4
+# ::node	f2	fowl	4-5
+# ::node	e	eat-01	5-6
+# ::node	a	and	6-7
+# ::node	c	clean-01	7-8
+# ::node	p	pond	11-12
+# ::root	a	and
+# ::edge	fowl	mod	water	f2	w	
+# ::edge	flock	consist-of	fowl	f	f2	
+# ::edge	eat-01	ARG0	fowl	e	f2	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	and	op2	clean-01	a	c	
+# ::edge	clean-01	ARG1	flock	c	f	
+# ::edge	clean-01	ARG0	flock	c	f	
+# ::edge	and	location	pond	a	p	
+(a / and
+    :location (p / pond)
+    :op1 (e / eat-01
+        :ARG0 (f2 / fowl
+            :mod (w / water)))
+    :op2 (c / clean-01
+        :ARG0 (f / flock
+            :consist-of f2)
+        :ARG1 f))

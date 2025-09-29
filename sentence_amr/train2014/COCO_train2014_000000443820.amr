@@ -1,0 +1,31 @@
+# ::tok Someone touching something that looks like cornbread and that was cooked in a cast iron pan .
+# ::node	s	someone	0-1
+# ::node	t	touch-01	1-2
+# ::node	s2	something	2-3
+# ::node	l	look-02	4-5
+# ::node	r	resemble-01	5-6
+# ::node	c3	cornbread	6-7
+# ::node	c2	cook-01	10-11
+# ::node	c	cast-01	13-14
+# ::node	i	iron	14-15
+# ::node	p	pan	15-16
+# ::root	t	touch-01
+# ::edge	touch-01	ARG0	someone	t	s	
+# ::edge	touch-01	ARG1	something	t	s2	
+# ::edge	something	ARG0-of	look-02	s2	l	
+# ::edge	look-02	ARG1	resemble-01	l	r	
+# ::edge	resemble-01	ARG2	cornbread	r	c3	
+# ::edge	something	ARG1-of	cook-01	s2	c2	
+# ::edge	iron	ARG1-of	cast-01	i	c	
+# ::edge	pan	consist-of	iron	p	i	
+# ::edge	cook-01	location	pan	c2	p	
+(t / touch-01
+    :ARG0 (s / someone)
+    :ARG1 (s2 / something
+        :ARG0-of (l / look-02
+            :ARG1 (r / resemble-01
+                :ARG2 (c3 / cornbread)))
+        :ARG1-of (c2 / cook-01
+            :location (p / pan
+                :consist-of (i / iron
+                    :ARG1-of (c / cast-01))))))

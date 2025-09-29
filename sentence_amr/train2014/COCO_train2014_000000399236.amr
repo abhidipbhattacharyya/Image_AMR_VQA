@@ -1,0 +1,26 @@
+# ::tok A city bus that 's pulled into the bus terminal and is being unloaded .
+# ::node	c	city	1-2
+# ::node	b	bus	2-3
+# ::node	p	pull-01	5-6
+# ::node	b2	bus	8-9
+# ::node	t	terminal	9-10
+# ::node	a	and	10-11
+# ::node	u	unload-02	13-14
+# ::root	a	and
+# ::edge	bus	mod	city	b	c	
+# ::edge	pull-01	ARG1	bus	p	b	
+# ::edge	terminal	mod	bus	t	b2	
+# ::edge	pull-01	ARG2	terminal	p	t	
+# ::edge	and	op1	pull-01	a	p	
+# ::edge	and	op2	unload-02	a	u	
+# ::edge	unload-02	ARG2	bus	u	b	
+# ::edge	unload-02	ARG1	bus	u	b	
+(a / and
+    :op1 (p / pull-01
+        :ARG1 (b / bus
+            :mod (c / city))
+        :ARG2 (t / terminal
+            :mod (b2 / bus)))
+    :op2 (u / unload-02
+        :ARG1 b
+        :ARG2 b))

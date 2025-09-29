@@ -1,0 +1,24 @@
+# ::tok A bus going down the track with walls near the track
+# ::node	b	bus	1-2
+# ::node	g	go-01	2-3
+# ::node	d	down	3-4
+# ::node	t	track	5-6
+# ::node	h	have-03	6-7
+# ::node	w	wall	7-8
+# ::node	n	near-02	8-9
+# ::root	b	bus
+# ::edge	bus	ARG1-of	go-01	b	g	
+# ::edge	go-01	direction	down	g	d	
+# ::edge	go-01	path	track	g	t	
+# ::edge	bus	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	wall	h	w	
+# ::edge	wall	ARG1-of	near-02	w	n	
+# ::edge	near-02	ARG2	track	n	t	
+(b / bus
+    :ARG0-of (h / have-03
+        :ARG1 (w / wall
+            :ARG1-of (n / near-02
+                :ARG2 (t / track))))
+    :ARG1-of (g / go-01
+        :direction (d / down)
+        :path t))

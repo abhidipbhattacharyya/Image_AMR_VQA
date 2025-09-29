@@ -1,0 +1,23 @@
+# ::tok a man at a bus stop is waiting to get on to the bus
+# ::node	m	man	1-2
+# ::node	f	facility	3-4
+# ::node	b	bus	4-5
+# ::node	s	stop-01	5-6
+# ::node	w	wait-01	7-8
+# ::node	g	get-05	9-10
+# ::root	w	wait-01
+# ::edge	stop-01	ARG1	bus	s	b	
+# ::edge	facility	location-of	stop-01	f	s	
+# ::edge	wait-01	location	facility	w	f	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG2	bus	g	b	
+# ::edge	get-05	ARG1	man	g	m	
+(w / wait-01
+    :ARG1 (m / man)
+    :ARG2 (g / get-05
+        :ARG1 m
+        :ARG2 (b / bus))
+    :location (f / facility
+        :location-of (s / stop-01
+            :ARG1 b)))

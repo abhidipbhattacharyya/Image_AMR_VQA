@@ -1,0 +1,45 @@
+# ::tok a store with bushels of bananas and crates and baskets of various fruits including oranges and pears .
+# ::node	s	store	1-2
+# ::node	h	have-03	2-3
+# ::node	b4	bushel	3-4
+# ::node	b	banana	5-6
+# ::node	b2	barrel	7-8
+# ::node	b3	basket	9-10
+# ::node	v	various	11-12
+# ::node	f	fruit	12-13
+# ::node	i	include-91	13-14
+# ::node	i2	include-91	13-14
+# ::node	o	orange	14-15
+# ::node	a	and	15-16
+# ::node	a2	and	15-16
+# ::node	o2	orange	16-17
+# ::root	s	store
+# ::edge	store	ARG0-of	have-03	s	h	
+# ::edge	bushel	consist-of	banana	b4	b	
+# ::edge	fruit	mod	various	f	v	
+# ::edge	include-91	ARG1	fruit	i	f	
+# ::edge	fruit	ARG2-of	include-91	f	i	
+# ::edge	fruit	ARG2-of	include-91	f	i2	
+# ::edge	and	op3	basket	a	b3	
+# ::edge	and	op2	barrel	a	b2	
+# ::edge	and	op1	bushel	a	b4	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	orange	a2	o	
+# ::edge	include-91	ARG1	and	i2	a2	
+# ::edge	and	op2	orange	a2	o2	
+# ::edge	store	rel	fruit	s	f	
+(s / store
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b4 / bushel
+                :consist-of (b / banana))
+            :op2 (b2 / barrel)
+            :op3 (b3 / basket)))
+    :rel (f / fruit
+        :ARG2-of (i / include-91
+            :ARG1 f)
+        :ARG2-of (i2 / include-91
+            :ARG1 (a2 / and
+                :op1 (o / orange)
+                :op2 (o2 / orange)))
+        :mod (v / various)))

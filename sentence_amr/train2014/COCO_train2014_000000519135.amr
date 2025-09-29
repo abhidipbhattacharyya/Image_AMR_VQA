@@ -1,0 +1,24 @@
+# ::tok The luggage is connected to the rail so that no one may take it .
+# ::node	l	luggage	1-2
+# ::node	c2	connect-01	3-4
+# ::node	r	rail	6-7
+# ::node	c	cause-01	7-8
+# ::node	n	no-one	9-10
+# ::node	p	possible-01	11-12
+# ::node	t	take-01	12-13
+# ::root	c2	connect-01
+# ::edge	connect-01	ARG1	luggage	c2	l	
+# ::edge	connect-01	ARG2	rail	c2	r	
+# ::edge	connect-01	ARG0-of	cause-01	c2	c	
+# ::edge	cause-01	ARG1	possible-01	c	p	
+# ::edge	possible-01	ARG1	take-01	p	t	
+# ::edge	take-01	ARG0	no-one	t	n	
+# ::edge	take-01	ARG1	luggage	t	l	
+(c2 / connect-01
+    :ARG0-of (c / cause-01
+        :ARG1 (p / possible-01
+            :ARG1 (t / take-01
+                :ARG0 (n / no-one)
+                :ARG1 (l / luggage))))
+    :ARG1 l
+    :ARG2 (r / rail))

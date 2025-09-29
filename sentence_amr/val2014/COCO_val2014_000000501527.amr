@@ -1,0 +1,24 @@
+# ::tok The surfers wear wetsuits when they surf in the evening .
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	w	wear-01	2-3
+# ::node	s3	swimsuit	3-4
+# ::node	s2	surf-01	6-7
+# ::node	d	date-entity	9-10
+# ::node	e	evening	9-10
+# ::root	w	wear-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	wear-01	ARG1	swimsuit	w	s3	
+# ::edge	wear-01	time	surf-01	w	s2	
+# ::edge	surf-01	ARG0	person	s2	p	
+# ::edge	surf-01	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+(w / wear-01
+    :ARG0 (p / person
+        :ARG0-of (s / surf-01))
+    :ARG1 (s3 / swimsuit)
+    :time (s2 / surf-01
+        :ARG0 p
+        :time (d / date-entity
+            :dayperiod (e / evening))))

@@ -1,0 +1,43 @@
+# ::tok A giraffe sticks his nose and tongue out of a wire fence to accept something a man is offering him .
+# ::node	g	giraffe	1-2
+# ::node	s2	stick-01	2-3
+# ::node	n	nose	4-5
+# ::node	a2	and	5-6
+# ::node	t	tongue	6-7
+# ::node	o2	out-06	7-8
+# ::node	w	wire	10-11
+# ::node	f	fence	11-12
+# ::node	a	accept-01	13-14
+# ::node	s	something	14-15
+# ::node	m	man	16-17
+# ::node	o	offer-01	18-19
+# ::root	s2	stick-01
+# ::edge	stick-01	ARG0	giraffe	s2	g	
+# ::edge	and	op1	nose	a2	n	
+# ::edge	stick-01	ARG1	and	s2	a2	
+# ::edge	giraffe	part	and	g	a2	
+# ::edge	and	op2	tongue	a2	t	
+# ::edge	stick-01	ARG2	out-06	s2	o2	
+# ::edge	fence	consist-of	wire	f	w	
+# ::edge	out-06	ARG2	fence	o2	f	
+# ::edge	stick-01	purpose	accept-01	s2	a	
+# ::edge	accept-01	ARG0	giraffe	a	g	
+# ::edge	accept-01	ARG1	something	a	s	
+# ::edge	offer-01	ARG0	man	o	m	
+# ::edge	something	ARG1-of	offer-01	s	o	
+# ::edge	offer-01	ARG3	giraffe	o	g	
+(s2 / stick-01
+    :purpose (a / accept-01
+        :ARG0 (g / giraffe
+            :part (a2 / and
+                :op1 (n / nose)
+                :op2 (t / tongue)))
+        :ARG1 (s / something
+            :ARG1-of (o / offer-01
+                :ARG0 (m / man)
+                :ARG3 g)))
+    :ARG0 g
+    :ARG1 a2
+    :ARG2 (o2 / out-06
+        :ARG2 (f / fence
+            :consist-of (w / wire))))

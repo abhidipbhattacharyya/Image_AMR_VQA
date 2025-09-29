@@ -1,0 +1,17 @@
+# ::tok a plane with the attachment to let passengers on the plane
+# ::node	p2	plane	1-2
+# ::node	a	attach-01	4-5
+# ::node	l	let-01	6-7
+# ::node	p	passenger	7-8
+# ::root	p2	plane
+# ::edge	plane	ARG1-of	attach-01	p2	a	
+# ::edge	let-01	ARG0	attach-01	l	a	
+# ::edge	plane	purpose	let-01	p2	l	
+# ::edge	let-01	ARG1	passenger	l	p	
+# ::edge	passenger	location	plane	p	p2	
+(p2 / plane
+    :purpose (l / let-01
+        :ARG0 (a / attach-01)
+        :ARG1 (p / passenger
+            :location p2))
+    :ARG1-of a)

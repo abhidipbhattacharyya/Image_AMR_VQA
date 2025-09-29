@@ -1,0 +1,25 @@
+# ::tok A FIRE HYDRANT ON THE CORNER OF AN INTERSECTION NEAR A GAS STATION
+# ::node	f	fire	1-2
+# ::node	f2	fire	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	w	wrong-04	5-6
+# ::node	a	area	8-9
+# ::node	n	near-02	9-10
+# ::node	g	gas	11-12
+# ::node	s	station	12-13
+# ::root	b	be-located-at-91
+# ::edge	fire	mod	fire	f2	f	
+# ::edge	be-located-at-91	ARG1	fire	b	f2	
+# ::edge	be-located-at-91	ARG2	wrong-04	b	w	
+# ::edge	wrong-04	ARG2	area	w	a	
+# ::edge	area	ARG1-of	near-02	a	n	
+# ::edge	station	mod	gas	s	g	
+# ::edge	near-02	ARG2	station	n	s	
+(b / be-located-at-91
+    :ARG1 (f2 / fire
+        :mod (f / fire))
+    :ARG2 (w / wrong-04
+        :ARG2 (a / area
+            :ARG1-of (n / near-02
+                :ARG2 (s / station
+                    :mod (g / gas))))))

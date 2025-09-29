@@ -1,0 +1,40 @@
+# ::tok Airplanes in the distance on a large paved area with few vehicles , under a blue sky with white clouds .
+# ::node	a	airplane	0-1
+# ::node	d	distance	3-4
+# ::node	l	large	6-7
+# ::node	p	pave-01	7-8
+# ::node	a2	area	8-9
+# ::node	f	few	10-11
+# ::node	v	vehicle	11-12
+# ::node	u	under	13-14
+# ::node	b	blue	15-16
+# ::node	s	sky	16-17
+# ::node	h	have-03	17-18
+# ::node	w	white-03	18-19
+# ::node	c	cloud	19-20
+# ::root	a	airplane
+# ::edge	airplane	location	distance	a	d	
+# ::edge	area	ARG1-of	pave-01	a2	p	
+# ::edge	area	mod	large	a2	l	
+# ::edge	airplane	location	area	a	a2	
+# ::edge	vehicle	quant	few	v	f	
+# ::edge	area	location-of	vehicle	a2	v	
+# ::edge	airplane	location	under	a	u	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	under	op1	sky	u	s	
+# ::edge	sky	ARG0-of	have-03	s	h	
+# ::edge	cloud	ARG1-of	white-03	c	w	
+# ::edge	have-03	ARG1	cloud	h	c	
+(a / airplane
+    :location (d / distance)
+    :location (a2 / area
+        :ARG1-of (p / pave-01)
+        :location-of (v / vehicle
+            :quant (f / few))
+        :mod (l / large))
+    :location (u / under
+        :op1 (s / sky
+            :ARG0-of (h / have-03
+                :ARG1 (c / cloud
+                    :ARG1-of (w / white-03)))
+            :mod (b / blue))))

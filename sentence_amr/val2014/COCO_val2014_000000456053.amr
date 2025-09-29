@@ -1,0 +1,27 @@
+# ::tok A passenger train parked at an indoor train platform with people on the platform area .
+# ::node	p2	passenger	1-2
+# ::node	t	train	2-3
+# ::node	p	park-01	3-4
+# ::node	i	indoor	6-7
+# ::node	t2	train	7-8
+# ::node	p4	platform	8-9
+# ::node	p3	person	10-11
+# ::node	a	area	14-15
+# ::root	p	park-01
+# ::edge	train	mod	passenger	t	p2	
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	platform	purpose	train	p4	t2	
+# ::edge	platform	location	indoor	p4	i	
+# ::edge	park-01	ARG2	platform	p	p4	
+# ::edge	train	location-of	person	t	p3	
+# ::edge	person	location	area	p3	a	
+# ::edge	area	location	platform	a	p4	
+(p / park-01
+    :ARG1 (t / train
+        :location-of (p3 / person
+            :location (a / area
+                :location (p4 / platform
+                    :purpose (t2 / train)
+                    :location (i / indoor))))
+        :mod (p2 / passenger))
+    :ARG2 p4)

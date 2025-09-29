@@ -1,0 +1,34 @@
+# ::tok Two packages of chocolate souffle cake mixes with green and red ribbons .
+# ::node	0	2	0-1
+# ::node	p	package	1-2
+# ::node	c2	chocolate	3-4
+# ::node	s	souffle	4-5
+# ::node	c	cake	5-6
+# ::node	m	mix-01	6-7
+# ::node	g	green-02	8-9
+# ::node	a	and	9-10
+# ::node	r	red-02	10-11
+# ::node	r2	ribbon	11-12
+# ::node	r3	ribbon	11-12
+# ::root	m	mix-01
+# ::edge	package	quant	2	p	0	
+# ::edge	cake	mod	souffle	c	s	
+# ::edge	cake	mod	chocolate	c	c2	
+# ::edge	package	consist-of	cake	p	c	
+# ::edge	mix-01	ARG1	package	m	p	
+# ::edge	mix-01	ARG2	and	m	a	
+# ::edge	and	op1	ribbon	a	r2	
+# ::edge	ribbon	ARG1-of	green-02	r2	g	
+# ::edge	ribbon	ARG1-of	red-02	r3	r	
+# ::edge	and	op2	ribbon	a	r3	
+(m / mix-01
+    :ARG1 (p / package
+        :quant 2
+        :consist-of (c / cake
+            :mod (s / souffle)
+            :mod (c2 / chocolate)))
+    :ARG2 (a / and
+        :op1 (r2 / ribbon
+            :ARG1-of (g / green-02))
+        :op2 (r3 / ribbon
+            :ARG1-of (r / red-02))))

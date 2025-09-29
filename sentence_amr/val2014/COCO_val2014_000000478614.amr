@@ -1,0 +1,31 @@
+# ::tok a clock is mounted on a building in a city with many other large buildings , at night .
+# ::node	c2	clock	1-2
+# ::node	m2	mount-03	3-4
+# ::node	b	building	6-7
+# ::node	c	city	9-10
+# ::node	m	many	11-12
+# ::node	o	other	12-13
+# ::node	l	large	13-14
+# ::node	b2	building	14-15
+# ::node	d	date-entity	17-18
+# ::node	n	night	17-18
+# ::root	m2	mount-03
+# ::edge	mount-03	ARG1	clock	m2	c2	
+# ::edge	mount-03	location	building	m2	b	
+# ::edge	building	location	city	b	c	
+# ::edge	building	mod	large	b2	l	
+# ::edge	building	mod	other	b2	o	
+# ::edge	building	quant	many	b2	m	
+# ::edge	city	accompanier	building	c	b2	
+# ::edge	mount-03	time	date-entity	m2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(m2 / mount-03
+    :ARG1 (c2 / clock)
+    :location (b / building
+        :location (c / city
+            :accompanier (b2 / building
+                :quant (m / many)
+                :mod (l / large)
+                :mod (o / other))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,25 @@
+# ::tok A caution sign in a mountainous area warning to stay behind ropes .
+# ::node	c	caution-01	1-2
+# ::node	s	sign	2-3
+# ::node	m	mountain	5-6
+# ::node	a	area	6-7
+# ::node	w	warn-01	7-8
+# ::node	s2	stay-01	9-10
+# ::node	b	behind	10-11
+# ::node	w2	wire	11-12
+# ::root	s	sign
+# ::edge	sign	ARG0-of	caution-01	s	c	
+# ::edge	area	mod	mountain	a	m	
+# ::edge	sign	location	area	s	a	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	warn-01	ARG1	stay-01	w	s2	
+# ::edge	stay-01	location	behind	s2	b	
+# ::edge	behind	op1	wire	b	w2	
+(s / sign
+    :ARG0-of (c / caution-01)
+    :ARG0-of (w / warn-01
+        :ARG1 (s2 / stay-01
+            :location (b / behind
+                :op1 (w2 / wire))))
+    :location (a / area
+        :mod (m / mountain)))

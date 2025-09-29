@@ -1,0 +1,34 @@
+# ::tok A man in a Santa Clause hat holding a stuffed teddy bear .
+# ::node	m	man	1-2
+# ::node	n	name	4-5
+# ::node	1	Santa	4-5
+# ::node	p	person	5-6
+# ::node	0	Clause	5-6
+# ::node	h	hat	6-7
+# ::node	h2	hold-01	7-8
+# ::node	h3	hold-01	7-8
+# ::node	s	stuff-01	9-10
+# ::node	t	teddy	10-11
+# ::node	b	bear	11-12
+# ::root	m	man
+# ::edge	name	op1	Santa	n	1	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op2	Clause	n	0	
+# ::edge	hat	mod	person	h	p	
+# ::edge	hold-01	ARG1	hat	h2	h	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	man	ARG0-of	hold-01	m	h3	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	bear	ARG1-of	stuff-01	b	s	
+# ::edge	hold-01	ARG1	bear	h3	b	
+(m / man
+    :ARG0-of (h2 / hold-01
+        :ARG1 (h / hat
+            :mod (p / person
+                :name (n / name
+                    :op1 "Santa"
+                    :op2 "Clause"))))
+    :ARG0-of (h3 / hold-01
+        :ARG1 (b / bear
+            :ARG1-of (s / stuff-01)
+            :mod (t / teddy))))

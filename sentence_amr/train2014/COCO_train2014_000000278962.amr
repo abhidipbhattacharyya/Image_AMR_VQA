@@ -1,0 +1,27 @@
+# ::tok Someone uses a long pole to take a pizza out of a brink oven .
+# ::node	s	someone	0-1
+# ::node	u	use-01	1-2
+# ::node	l	long-03	3-4
+# ::node	p2	pole	4-5
+# ::node	t	take-out-11	6-7
+# ::node	p	pizza	8-9
+# ::node	b	brink	12-13
+# ::node	o	oven	13-14
+# ::root	u	use-01
+# ::edge	use-01	ARG0	someone	u	s	
+# ::edge	pole	ARG1-of	long-03	p2	l	
+# ::edge	use-01	ARG1	pole	u	p2	
+# ::edge	use-01	ARG2	take-out-11	u	t	
+# ::edge	take-out-11	ARG0	someone	t	s	
+# ::edge	take-out-11	ARG1	pizza	t	p	
+# ::edge	oven	mod	brink	o	b	
+# ::edge	take-out-11	source	oven	t	o	
+(u / use-01
+    :ARG0 (s / someone)
+    :ARG1 (p2 / pole
+        :ARG1-of (l / long-03))
+    :ARG2 (t / take-out-11
+        :ARG0 s
+        :ARG1 (p / pizza)
+        :source (o / oven
+            :mod (b / brink))))

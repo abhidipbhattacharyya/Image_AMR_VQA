@@ -1,0 +1,71 @@
+# ::tok Several children watch while a girl in a pink sweatshirt plays with a Wii remote while another person with a little girl on their lap snuggle in a chair in the background .
+# ::node	s	several	0-1
+# ::node	c2	child	1-2
+# ::node	w	watch-01	2-3
+# ::node	g	girl	5-6
+# ::node	w2	wear-01	6-7
+# ::node	p2	pink-04	8-9
+# ::node	s2	sweatshirt	9-10
+# ::node	p3	play-01	10-11
+# ::node	p4	product	13-14
+# ::node	n	name	13-14
+# ::node	0	Wii	13-14
+# ::node	r	remote	14-15
+# ::node	a	another	16-17
+# ::node	p	person	17-18
+# ::node	h	have-03	18-19
+# ::node	l2	little	20-21
+# ::node	g2	girl	21-22
+# ::node	l	lap	24-25
+# ::node	h2	have-polarity-91	25-26
+# ::node	n2	nuke	25-26
+# ::node	c	chair	28-29
+# ::node	b	background	31-32
+# ::root	w	watch-01
+# ::edge	child	quant	several	c2	s	
+# ::edge	watch-01	ARG0	child	w	c2	
+# ::edge	girl	ARG0-of	wear-01	g	w2	
+# ::edge	sweatshirt	ARG1-of	pink-04	s2	p2	
+# ::edge	wear-01	ARG1	sweatshirt	w2	s2	
+# ::edge	play-01	ARG0	girl	p3	g	
+# ::edge	watch-01	ARG1	play-01	w	p3	
+# ::edge	product	name	name	p4	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	remote	mod	product	r	p4	
+# ::edge	play-01	ARG2	remote	p3	r	
+# ::edge	person	mod	another	p	a	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	girl	mod	little	g2	l2	
+# ::edge	have-03	ARG1	girl	h	g2	
+# ::edge	girl	location	lap	g2	l	
+# ::edge	person	part	lap	p	l	
+# ::edge	have-polarity-91	ARG1	play-01	h2	p3	
+# ::edge	play-01	time	have-polarity-91	p3	h2	
+# ::edge	have-polarity-91	ARG2	nuke	h2	n2	
+# ::edge	nuke	location	chair	n2	c	
+# ::edge	chair	location	background	c	b	
+# ::edge	watch-01	rel	person	w	p	
+(w / watch-01
+    :ARG0 (c2 / child
+        :quant (s / several))
+    :ARG1 (p3 / play-01
+        :ARG0 (g / girl
+            :ARG0-of (w2 / wear-01
+                :ARG1 (s2 / sweatshirt
+                    :ARG1-of (p2 / pink-04))))
+        :ARG2 (r / remote
+            :mod (p4 / product
+                :name (n / name
+                    :op1 "Wii")))
+        :time (h2 / have-polarity-91
+            :ARG1 p3
+            :ARG2 (n2 / nuke
+                :location (c / chair
+                    :location (b / background)))))
+    :rel (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (g2 / girl
+                :location (l / lap)
+                :mod (l2 / little)))
+        :mod (a / another)
+        :part l))

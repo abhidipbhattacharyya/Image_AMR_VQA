@@ -1,0 +1,24 @@
+# ::tok Corn being picked from a field and blown into a waiting truck .
+# ::node	c	crop	0-1
+# ::node	p	pick-01	2-3
+# ::node	f	field	5-6
+# ::node	a	and	6-7
+# ::node	b	blow-01	7-8
+# ::node	w	wait-01	10-11
+# ::node	t	truck	11-12
+# ::root	a	and
+# ::edge	pick-01	ARG1	crop	p	c	
+# ::edge	pick-01	source	field	p	f	
+# ::edge	and	op1	pick-01	a	p	
+# ::edge	and	op2	blow-01	a	b	
+# ::edge	blow-01	ARG1	crop	b	c	
+# ::edge	truck	ARG2-of	wait-01	t	w	
+# ::edge	blow-01	destination	truck	b	t	
+(a / and
+    :op1 (p / pick-01
+        :ARG1 (c / crop)
+        :source (f / field))
+    :op2 (b / blow-01
+        :ARG1 c
+        :destination (t / truck
+            :ARG2-of (w / wait-01))))

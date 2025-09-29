@@ -1,0 +1,28 @@
+# ::tok A toilet in a stall with a sink attached to the toilet tank and a console attached to the lid .
+# ::node	t2	toilet	1-2
+# ::node	s2	stall	4-5
+# ::node	s	sink	7-8
+# ::node	a	attach-01	8-9
+# ::node	t3	toilet	11-12
+# ::node	t	tank	12-13
+# ::node	c	console	15-16
+# ::node	a2	attach-01	16-17
+# ::node	l	lid	19-20
+# ::root	t2	toilet
+# ::edge	toilet	location	stall	t2	s2	
+# ::edge	attach-01	ARG1	sink	a	s	
+# ::edge	toilet	prep-with	attach-01	t2	a	
+# ::edge	tank	mod	toilet	t	t3	
+# ::edge	attach-01	ARG2	tank	a	t	
+# ::edge	attach-01	ARG1	console	a2	c	
+# ::edge	toilet	ARG2-of	attach-01	t2	a2	
+# ::edge	attach-01	ARG2	lid	a2	l	
+(t2 / toilet
+    :ARG2-of (a2 / attach-01
+        :ARG1 (c / console)
+        :ARG2 (l / lid))
+    :location (s2 / stall)
+    :prep-with (a / attach-01
+        :ARG1 (s / sink)
+        :ARG2 (t / tank
+            :mod (t3 / toilet))))

@@ -1,0 +1,44 @@
+# ::tok Four giraffes are standing outside , and one of the giraffes is sticking their nose into the side of a basket on a pole .
+# ::node	1	4	0-1
+# ::node	g	giraffe	1-2
+# ::node	s2	stand-01	3-4
+# ::node	o	outside	4-5
+# ::node	a	and	6-7
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::node	g2	giraffe	10-11
+# ::node	s3	stick-01	12-13
+# ::node	n	nose	14-15
+# ::node	s	side	17-18
+# ::node	b	basket	20-21
+# ::node	p	pole	23-24
+# ::root	a	and
+# ::edge	giraffe	quant	4	g	1	
+# ::edge	stand-01	ARG0	giraffe	s2	g	
+# ::edge	stand-01	ARG2	outside	s2	o	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	include-91	ARG2	giraffe	i	g	
+# ::edge	giraffe	ARG1-of	include-91	g2	i	
+# ::edge	giraffe	quant	1	g2	0	
+# ::edge	stick-01	ARG0	giraffe	s3	g2	
+# ::edge	and	op2	stick-01	a	s3	
+# ::edge	stick-01	ARG1	nose	s3	n	
+# ::edge	giraffe	part	nose	g2	n	
+# ::edge	stick-01	ARG2	side	s3	s	
+# ::edge	side	part-of	basket	s	b	
+# ::edge	basket	part-of	pole	b	p	
+(a / and
+    :op1 (s2 / stand-01
+        :ARG0 (g / giraffe
+            :quant 4)
+        :ARG2 (o / outside))
+    :op2 (s3 / stick-01
+        :ARG0 (g2 / giraffe
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 g)
+            :part (n / nose))
+        :ARG1 n
+        :ARG2 (s / side
+            :part-of (b / basket
+                :part-of (p / pole)))))

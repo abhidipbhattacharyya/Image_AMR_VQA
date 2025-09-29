@@ -1,0 +1,41 @@
+# ::tok Two giraffes in a zoo enclosure , one is leaning over and licking a pole .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	z	zoo	4-5
+# ::node	e	enclosure	5-6
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	l	lean-01	9-10
+# ::node	o	over	10-11
+# ::node	a	and	11-12
+# ::node	l2	lick-01	12-13
+# ::node	p	pole	14-15
+# ::root	a	and
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	enclosure	mod	zoo	e	z	
+# ::edge	giraffe	location	enclosure	g	e	
+# ::edge	giraffe	ARG1-of	include-91	g2	i	
+# ::edge	include-91	ARG2	giraffe	i	g	
+# ::edge	giraffe	quant	1	g2	0	
+# ::edge	lean-01	ARG1	giraffe	l	g2	
+# ::edge	lean-01	ARG2	over	l	o	
+# ::edge	and	op1	lean-01	a	l	
+# ::edge	and	location	giraffe	a	g	
+# ::edge	and	op2	lick-01	a	l2	
+# ::edge	lick-01	ARG0	giraffe	l2	g2	
+# ::edge	lick-01	ARG1	pole	l2	p	
+(a / and
+    :location (g / giraffe
+        :quant 2
+        :location (e / enclosure
+            :mod (z / zoo)))
+    :op1 (l / lean-01
+        :ARG1 (g2 / giraffe
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 g))
+        :ARG2 (o / over))
+    :op2 (l2 / lick-01
+        :ARG0 g2
+        :ARG1 (p / pole)))

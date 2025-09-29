@@ -1,0 +1,39 @@
+# ::tok Two pizzas and a glass of beer and utensils are lined up on a wooden picnic table .
+# ::node	1	2	0-1
+# ::node	p2	pizzeria	1-2
+# ::node	a	and	2-3
+# ::node	v	volume-quantity	3-4
+# ::node	0	1	3-4
+# ::node	g	glass	4-5
+# ::node	b	beer	6-7
+# ::node	k	knife	8-9
+# ::node	l	line-up-02	10-11
+# ::node	w	wood	14-15
+# ::node	p	picnic	15-16
+# ::node	t	table	16-17
+# ::root	l	line-up-02
+# ::edge	pizzeria	quant	2	p2	1	
+# ::edge	and	op1	pizzeria	a	p2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	beer	quant	volume-quantity	b	v	
+# ::edge	and	op2	beer	a	b	
+# ::edge	knife	quant	volume-quantity	k	v	
+# ::edge	and	op3	knife	a	k	
+# ::edge	line-up-02	ARG1	and	l	a	
+# ::edge	table	mod	picnic	t	p	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	line-up-02	location	table	l	t	
+(l / line-up-02
+    :ARG1 (a / and
+        :op1 (p2 / pizzeria
+            :quant 2)
+        :op2 (b / beer
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))
+        :op3 (k / knife
+            :quant v))
+    :location (t / table
+        :consist-of (w / wood)
+        :mod (p / picnic)))

@@ -1,0 +1,40 @@
+# ::tok White dishes stacked on a stainless steel counter with utensils and towels hanging over head .
+# ::node	w	white-03	0-1
+# ::node	d	dish	1-2
+# ::node	s	stack-01	2-3
+# ::node	s2	stainless	5-6
+# ::node	s3	steel	6-7
+# ::node	c2	counter	7-8
+# ::node	e	enzyme	9-10
+# ::node	c	clean-01	9-10
+# ::node	a	and	10-11
+# ::node	t	tile	11-12
+# ::node	h	hang-01	12-13
+# ::node	o	over	13-14
+# ::node	h2	head	14-15
+# ::root	s	stack-01
+# ::edge	dish	ARG1-of	white-03	d	w	
+# ::edge	stack-01	ARG1	dish	s	d	
+# ::edge	steel	mod	stainless	s3	s2	
+# ::edge	counter	consist-of	steel	c2	s3	
+# ::edge	stack-01	ARG2	counter	s	c2	
+# ::edge	enzyme	ARG1-of	clean-01	e	c	
+# ::edge	and	op1	enzyme	a	e	
+# ::edge	and	op2	tile	a	t	
+# ::edge	hang-01	ARG1	and	h	a	
+# ::edge	counter	ARG2-of	hang-01	c2	h	
+# ::edge	hang-01	location	over	h	o	
+# ::edge	over	op1	head	o	h2	
+(s / stack-01
+    :ARG1 (d / dish
+        :ARG1-of (w / white-03))
+    :ARG2 (c2 / counter
+        :ARG2-of (h / hang-01
+            :ARG1 (a / and
+                :op1 (e / enzyme
+                    :ARG1-of (c / clean-01))
+                :op2 (t / tile))
+            :location (o / over
+                :op1 (h2 / head)))
+        :consist-of (s3 / steel
+            :mod (s2 / stainless))))

@@ -1,0 +1,48 @@
+# ::tok On a baseball field a player wearing white and a player with a black shirt and white pants are near each other .
+# ::node	b	baseball	2-3
+# ::node	f	field	3-4
+# ::node	p2	person	5-6
+# ::node	p4	play-01	5-6
+# ::node	w	wear-01	6-7
+# ::node	w3	white-03	7-8
+# ::node	a	and	8-9
+# ::node	p3	person	10-11
+# ::node	p5	play-01	10-11
+# ::node	w2	wear-01	11-12
+# ::node	b2	black-04	13-14
+# ::node	s	shirt	14-15
+# ::node	a2	and	15-16
+# ::node	p	pants	17-18
+# ::node	n	near-02	19-20
+# ::root	n	near-02
+# ::edge	field	mod	baseball	f	b	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	person	ARG0-of	wear-01	p2	w	
+# ::edge	and	op1	person	a	p2	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	play-01	p3	p5	
+# ::edge	person	ARG0-of	wear-01	p3	w2	
+# ::edge	shirt	ARG1-of	black-04	s	b2	
+# ::edge	and	op1	shirt	a2	s	
+# ::edge	wear-01	ARG1	and	w2	a2	
+# ::edge	and	op2	pants	a2	p	
+# ::edge	white-03	ARG1	pants	w3	p	
+# ::edge	near-02	ARG1	and	n	a	
+# ::edge	near-02	location	field	n	f	
+# ::edge	near-02	rel	white-03	n	w3	
+(n / near-02
+    :ARG1 (a / and
+        :op1 (p2 / person
+            :ARG0-of (p4 / play-01)
+            :ARG0-of (w / wear-01))
+        :op2 (p3 / person
+            :ARG0-of (p5 / play-01)
+            :ARG0-of (w2 / wear-01
+                :ARG1 (a2 / and
+                    :op1 (s / shirt
+                        :ARG1-of (b2 / black-04))
+                    :op2 (p / pants)))))
+    :location (f / field
+        :mod (b / baseball))
+    :rel (w3 / white-03
+        :ARG1 p))

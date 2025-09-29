@@ -1,0 +1,40 @@
+# ::tok This sandwich consists of two meat patties , tomatoes , and onions on a French roll .
+# ::node	t	this	0-1
+# ::node	s	sandwich	1-2
+# ::node	c	consist-01	2-3
+# ::node	0	2	4-5
+# ::node	m	meat	5-6
+# ::node	s2	submarine	6-7
+# ::node	t2	tomato	8-9
+# ::node	a	and	10-11
+# ::node	p	potato	11-12
+# ::node	c2	country	14-15
+# ::node	n	name	14-15
+# ::node	1	France	14-15
+# ::node	r	roll	15-16
+# ::root	c	consist-01
+# ::edge	sandwich	mod	this	s	t	
+# ::edge	consist-01	ARG1	sandwich	c	s	
+# ::edge	submarine	consist-of	meat	s2	m	
+# ::edge	submarine	quant	2	s2	0	
+# ::edge	and	op2	tomato	a	t2	
+# ::edge	and	op1	submarine	a	s2	
+# ::edge	consist-01	ARG2	and	c	a	
+# ::edge	and	op3	potato	a	p	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	1	
+# ::edge	roll	mod	country	r	c2	
+# ::edge	and	location	roll	a	r	
+(c / consist-01
+    :ARG1 (s / sandwich
+        :mod (t / this))
+    :ARG2 (a / and
+        :location (r / roll
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "France")))
+        :op1 (s2 / submarine
+            :quant 2
+            :consist-of (m / meat))
+        :op2 (t2 / tomato)
+        :op3 (p / potato)))

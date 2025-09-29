@@ -1,0 +1,25 @@
+# ::tok People getting of a double decker bus waiting for the next excitement of the day .
+# ::node	p	person	0-1
+# ::node	g	get-05	1-2
+# ::node	d2	double-decker	5-6
+# ::node	b	bus	6-7
+# ::node	w	wait-01	7-8
+# ::node	n	next	10-11
+# ::node	e	excite-01	11-12
+# ::node	d	day	14-15
+# ::root	g	get-05
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	bus	mod	double-decker	b	d2	
+# ::edge	get-05	ARG2	bus	g	b	
+# ::edge	get-05	ARG1-of	wait-01	g	w	
+# ::edge	excite-01	mod	next	e	n	
+# ::edge	wait-01	ARG2	excite-01	w	e	
+# ::edge	excite-01	time	day	e	d	
+(g / get-05
+    :ARG1 (p / person)
+    :ARG1-of (w / wait-01
+        :ARG2 (e / excite-01
+            :mod (n / next)
+            :time (d / day)))
+    :ARG2 (b / bus
+        :mod (d2 / double-decker)))

@@ -1,0 +1,34 @@
+# ::tok An old style bar and restaurant setting with a waitress waiting on a group of 3 people .
+# ::node	o	old	1-2
+# ::node	s3	style	2-3
+# ::node	b	bar	3-4
+# ::node	r	restaurant	5-6
+# ::node	s2	set-01	6-7
+# ::node	p	person	9-10
+# ::node	s	serve-01	9-10
+# ::node	w	wait-01	10-11
+# ::node	g	group	13-14
+# ::node	0	3	15-16
+# ::node	p2	person	16-17
+# ::root	s2	set-01
+# ::edge	style	mod	old	s3	o	
+# ::edge	set-01	ARG2	restaurant	s2	r	
+# ::edge	set-01	ARG1	bar	s2	b	
+# ::edge	set-01	mod	style	s2	s3	
+# ::edge	person	ARG0-of	serve-01	p	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	set-01	location-of	wait-01	s2	w	
+# ::edge	wait-01	ARG2	group	w	g	
+# ::edge	person	quant	3	p2	0	
+# ::edge	group	consist-of	person	g	p2	
+(s2 / set-01
+    :ARG1 (b / bar)
+    :ARG2 (r / restaurant)
+    :location-of (w / wait-01
+        :ARG1 (p / person
+            :ARG0-of (s / serve-01))
+        :ARG2 (g / group
+            :consist-of (p2 / person
+                :quant 3)))
+    :mod (s3 / style
+        :mod (o / old)))

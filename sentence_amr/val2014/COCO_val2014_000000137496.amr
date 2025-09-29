@@ -1,0 +1,46 @@
+# ::tok Small yellow plane with red , white and blue stripes , parked with mechanic checking it out .
+# ::node	s	small	0-1
+# ::node	y	yellow-02	1-2
+# ::node	p3	plane	2-3
+# ::node	h	have-03	3-4
+# ::node	r	red-02	4-5
+# ::node	w	white-03	6-7
+# ::node	a	and	7-8
+# ::node	b	blue	8-9
+# ::node	s2	stripe	9-10
+# ::node	s3	stripe	9-10
+# ::node	s4	stripe	9-10
+# ::node	p	park-01	11-12
+# ::node	p2	person	13-14
+# ::node	m	mechanic	13-14
+# ::node	c	check-out-05	14-15
+# ::root	p3	plane
+# ::edge	plane	ARG1-of	yellow-02	p3	y	
+# ::edge	plane	mod	small	p3	s	
+# ::edge	plane	ARG0-of	have-03	p3	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	stripe	a	s2	
+# ::edge	stripe	ARG1-of	red-02	s2	r	
+# ::edge	and	op2	stripe	a	s3	
+# ::edge	stripe	ARG1-of	white-03	s3	w	
+# ::edge	stripe	mod	blue	s4	b	
+# ::edge	and	op3	stripe	a	s4	
+# ::edge	plane	ARG1-of	park-01	p3	p	
+# ::edge	person	mod	mechanic	p2	m	
+# ::edge	check-out-05	ARG0	person	c	p2	
+# ::edge	park-01	ARG1-of	check-out-05	p	c	
+(p3 / plane
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / stripe
+                :ARG1-of (r / red-02))
+            :op2 (s3 / stripe
+                :ARG1-of (w / white-03))
+            :op3 (s4 / stripe
+                :mod (b / blue))))
+    :ARG1-of (y / yellow-02)
+    :ARG1-of (p / park-01
+        :ARG1-of (c / check-out-05
+            :ARG0 (p2 / person
+                :mod (m / mechanic))))
+    :mod (s / small))

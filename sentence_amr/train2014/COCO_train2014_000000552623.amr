@@ -1,0 +1,25 @@
+# ::tok A man stands in front of a row of chairs at a nighttime event .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	r	row	7-8
+# ::node	c	chair	9-10
+# ::node	d	date-entity	12-13
+# ::node	n	night	12-13
+# ::node	e	event	13-14
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	row	i	r	
+# ::edge	row	consist-of	chair	r	c	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	event	time	date-entity	e	d	
+# ::edge	stand-01	time	event	s	e	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (i / in-front-of
+        :op1 (r / row
+            :consist-of (c / chair)))
+    :time (e / event
+        :time (d / date-entity
+            :dayperiod (n / night))))

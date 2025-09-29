@@ -1,0 +1,24 @@
+# ::tok Pizza baking in dome wood fired oven for consumption .
+# ::node	p	protein	0-1
+# ::node	b	bake-01	1-2
+# ::node	d	dome	3-4
+# ::node	w	wood	4-5
+# ::node	f	fire-04	5-6
+# ::node	o	oven	6-7
+# ::node	c	consume-01	8-9
+# ::root	b	bake-01
+# ::edge	bake-01	ARG1	protein	b	p	
+# ::edge	fire-04	instrument	wood	f	w	
+# ::edge	oven	ARG1-of	fire-04	o	f	
+# ::edge	oven	mod	dome	o	d	
+# ::edge	bake-01	location	oven	b	o	
+# ::edge	bake-01	purpose	consume-01	b	c	
+# ::edge	consume-01	ARG1	protein	c	p	
+(b / bake-01
+    :purpose (c / consume-01
+        :ARG1 (p / protein))
+    :ARG1 p
+    :location (o / oven
+        :ARG1-of (f / fire-04
+            :instrument (w / wood))
+        :mod (d / dome)))

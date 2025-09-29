@@ -1,0 +1,45 @@
+# ::tok A living room containing a red chair with a matching foot rest near a cabinet with several green vase .
+# ::node	l	living	1-2
+# ::node	r3	room	2-3
+# ::node	c3	contain-01	3-4
+# ::node	r	red-02	5-6
+# ::node	c2	chair	6-7
+# ::node	m	match-01	9-10
+# ::node	f	foot	10-11
+# ::node	r2	rest	11-12
+# ::node	n	near-02	12-13
+# ::node	c	cabinet	14-15
+# ::node	h	have-03	15-16
+# ::node	s	several	16-17
+# ::node	g	green-02	17-18
+# ::node	v	vase	18-19
+# ::root	c3	contain-01
+# ::edge	room	mod	living	r3	l	
+# ::edge	contain-01	ARG0	room	c3	r3	
+# ::edge	chair	ARG1-of	red-02	c2	r	
+# ::edge	contain-01	ARG1	chair	c3	c2	
+# ::edge	match-01	ARG2	chair	m	c2	
+# ::edge	rest	mod	foot	r2	f	
+# ::edge	rest	ARG1-of	match-01	r2	m	
+# ::edge	chair	part	rest	c2	r2	
+# ::edge	room	ARG1-of	near-02	r3	n	
+# ::edge	near-02	ARG2	cabinet	n	c	
+# ::edge	cabinet	ARG0-of	have-03	c	h	
+# ::edge	vase	ARG1-of	green-02	v	g	
+# ::edge	vase	quant	several	v	s	
+# ::edge	have-03	ARG1	vase	h	v	
+(c3 / contain-01
+    :ARG0 (r3 / room
+        :ARG1-of (n / near-02
+            :ARG2 (c / cabinet
+                :ARG0-of (h / have-03
+                    :ARG1 (v / vase
+                        :quant (s / several)
+                        :ARG1-of (g / green-02)))))
+        :mod (l / living))
+    :ARG1 (c2 / chair
+        :ARG1-of (r / red-02)
+        :part (r2 / rest
+            :ARG1-of (m / match-01
+                :ARG2 c2)
+            :mod (f / foot))))

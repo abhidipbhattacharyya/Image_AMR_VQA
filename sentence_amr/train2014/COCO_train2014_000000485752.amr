@@ -1,0 +1,27 @@
+# ::tok A line of train cars on a train track next to an empty set of tracks .
+# ::node	l	line	1-2
+# ::node	t3	train	3-4
+# ::node	c	car	4-5
+# ::node	t	track	8-9
+# ::node	n	next-to	9-10
+# ::node	e	empty-02	12-13
+# ::node	s	set	13-14
+# ::node	t2	track	15-16
+# ::root	l	line
+# ::edge	car	mod	train	c	t3	
+# ::edge	line	consist-of	car	l	c	
+# ::edge	track	mod	train	t	t3	
+# ::edge	line	location	track	l	t	
+# ::edge	line	location-of	next-to	l	n	
+# ::edge	set	ARG1-of	empty-02	s	e	
+# ::edge	next-to	op1	set	n	s	
+# ::edge	set	consist-of	track	s	t2	
+(l / line
+    :consist-of (c / car
+        :mod (t3 / train))
+    :location (t / track
+        :mod t3)
+    :location-of (n / next-to
+        :op1 (s / set
+            :ARG1-of (e / empty-02)
+            :consist-of (t2 / track))))

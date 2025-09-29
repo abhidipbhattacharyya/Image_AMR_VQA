@@ -1,0 +1,21 @@
+# ::tok The train needs to be serviced so it is o the truck .
+# ::node	t	train	1-2
+# ::node	n	need-01	2-3
+# ::node	s	service-05	5-6
+# ::node	c	cause-01	6-7
+# ::node	b	be-located-at-91	8-9
+# ::node	t2	truck	11-12
+# ::root	n	need-01
+# ::edge	need-01	ARG1	service-05	n	s	
+# ::edge	service-05	ARG1	train	s	t	
+# ::edge	need-01	ARG0-of	cause-01	n	c	
+# ::edge	cause-01	ARG1	be-located-at-91	c	b	
+# ::edge	be-located-at-91	ARG1	train	b	t	
+# ::edge	be-located-at-91	ARG2	truck	b	t2	
+(n / need-01
+    :ARG0-of (c / cause-01
+        :ARG1 (b / be-located-at-91
+            :ARG1 (t / train)
+            :ARG2 (t2 / truck)))
+    :ARG1 (s / service-05
+        :ARG1 t))

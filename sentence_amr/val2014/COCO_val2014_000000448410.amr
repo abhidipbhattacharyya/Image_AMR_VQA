@@ -1,0 +1,27 @@
+# ::tok A train car pulls into a train station where travelers wait nearby .
+# ::node	t	train	1-2
+# ::node	c	car	2-3
+# ::node	p2	pull-01	3-4
+# ::node	s	station	7-8
+# ::node	p	person	9-10
+# ::node	t2	travel-01	9-10
+# ::node	w	wait-01	10-11
+# ::node	n	nearby	11-12
+# ::root	p2	pull-01
+# ::edge	car	mod	train	c	t	
+# ::edge	pull-01	ARG1	car	p2	c	
+# ::edge	pull-01	ARG2	station	p2	s	
+# ::edge	station	mod	train	s	t	
+# ::edge	person	ARG0-of	travel-01	p	t2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	station	location-of	wait-01	s	w	
+# ::edge	wait-01	location	nearby	w	n	
+(p2 / pull-01
+    :ARG1 (c / car
+        :mod (t / train))
+    :ARG2 (s / station
+        :location-of (w / wait-01
+            :ARG1 (p / person
+                :ARG0-of (t2 / travel-01))
+            :location (n / nearby))
+        :mod t))

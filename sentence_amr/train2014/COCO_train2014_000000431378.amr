@@ -1,0 +1,35 @@
+# ::tok A surfer is in the first stage of wipe out as he attempts to match a wall of wave .
+# ::node	p	person	1-2
+# ::node	s2	surf-01	1-2
+# ::node	o	ordinal-entity	5-6
+# ::node	0	1	5-6
+# ::node	s	stage	6-7
+# ::node	w3	wipe-out-02	8-9
+# ::node	a	attempt-01	12-13
+# ::node	m	match-01	14-15
+# ::node	w	wall	16-17
+# ::node	w2	wave	18-19
+# ::root	w3	wipe-out-02
+# ::edge	person	ARG0-of	surf-01	p	s2	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	stage	ord	ordinal-entity	s	o	
+# ::edge	wipe-out-02	mod	stage	w3	s	
+# ::edge	wipe-out-02	ARG1	person	w3	p	
+# ::edge	wipe-out-02	time	attempt-01	w3	a	
+# ::edge	attempt-01	ARG0	person	a	p	
+# ::edge	attempt-01	ARG1	match-01	a	m	
+# ::edge	match-01	ARG0	person	m	p	
+# ::edge	match-01	ARG1	wall	m	w	
+# ::edge	wall	consist-of	wave	w	w2	
+(w3 / wipe-out-02
+    :ARG1 (p / person
+        :ARG0-of (s2 / surf-01))
+    :mod (s / stage
+        :ord (o / ordinal-entity
+            :value 1))
+    :time (a / attempt-01
+        :ARG0 p
+        :ARG1 (m / match-01
+            :ARG0 p
+            :ARG1 (w / wall
+                :consist-of (w2 / wave)))))

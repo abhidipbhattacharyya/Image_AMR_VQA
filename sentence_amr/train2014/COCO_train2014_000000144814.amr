@@ -1,0 +1,33 @@
+# ::tok A very big cab over semi with a long trailer for hauling big loads .
+# ::node	v	very	1-2
+# ::node	b	big	2-3
+# ::node	c	cab	3-4
+# ::node	o	over	4-5
+# ::node	s	semi	5-6
+# ::node	l2	long-03	8-9
+# ::node	t	trailer	9-10
+# ::node	h	haul-01	11-12
+# ::node	b2	big	12-13
+# ::node	l	load	13-14
+# ::root	s	semi
+# ::edge	big	degree	very	b	v	
+# ::edge	cab	mod	big	c	b	
+# ::edge	cab	mod	over	c	o	
+# ::edge	semi	mod	cab	s	c	
+# ::edge	trailer	ARG1-of	long-03	t	l2	
+# ::edge	semi	part	trailer	s	t	
+# ::edge	haul-01	ARG0	trailer	h	t	
+# ::edge	cab	purpose	haul-01	c	h	
+# ::edge	load	mod	big	l	b2	
+# ::edge	haul-01	ARG1	load	h	l	
+(s / semi
+    :mod (c / cab
+        :purpose (h / haul-01
+            :ARG0 (t / trailer
+                :ARG1-of (l2 / long-03))
+            :ARG1 (l / load
+                :mod (b2 / big)))
+        :mod (b / big
+            :degree (v / very))
+        :mod (o / over))
+    :part t)

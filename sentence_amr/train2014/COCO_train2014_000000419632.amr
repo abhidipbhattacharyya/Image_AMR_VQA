@@ -1,0 +1,50 @@
+# ::tok Utility workers stand near a traffic light , a sign and an orange and white traffic cone .
+# ::node	u	utility	0-1
+# ::node	p	person	1-2
+# ::node	w2	work-01	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	t	traffic	5-6
+# ::node	l	light	6-7
+# ::node	s	sign	9-10
+# ::node	a	and	10-11
+# ::node	o	orange	12-13
+# ::node	a2	and	13-14
+# ::node	w	white-03	14-15
+# ::node	t2	traffic	15-16
+# ::node	c	cone	16-17
+# ::node	c2	cone	16-17
+# ::root	s2	stand-01
+# ::edge	person	ARG0-of	work-01	p	w2	
+# ::edge	work-01	ARG1	utility	w2	u	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	near-02	s2	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	op1	light	a	l	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	and	op3	and	a	a2	
+# ::edge	cone	mod	traffic	c	t2	
+# ::edge	and	op1	cone	a2	c	
+# ::edge	cone	mod	orange	c	o	
+# ::edge	cone	mod	traffic	c2	t2	
+# ::edge	cone	ARG1-of	white-03	c2	w	
+# ::edge	and	op2	cone	a2	c2	
+(s2 / stand-01
+    :ARG1 (p / person
+        :ARG0-of (w2 / work-01
+            :ARG1 (u / utility)))
+    :ARG2 (n / near-02
+        :ARG1 p
+        :ARG2 (a / and
+            :op1 (l / light
+                :mod (t / traffic))
+            :op2 (s / sign)
+            :op3 (a2 / and
+                :op1 (c / cone
+                    :mod (t2 / traffic)
+                    :mod (o / orange))
+                :op2 (c2 / cone
+                    :ARG1-of (w / white-03)
+                    :mod t2)))))

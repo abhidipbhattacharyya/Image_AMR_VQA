@@ -1,0 +1,39 @@
+# ::tok A man in a colorful shirt and plaid shorts flying through the air as he catches a Frisbee .
+# ::node	m	man	1-2
+# ::node	c2	colorful	4-5
+# ::node	s	shirt	5-6
+# ::node	a2	and	6-7
+# ::node	p	plaid	7-8
+# ::node	s2	shorts	8-9
+# ::node	f	fly-01	9-10
+# ::node	a	air	12-13
+# ::node	c	catch-01	15-16
+# ::node	d	disc	17-18
+# ::node	n	name	17-18
+# ::node	0	Frisbee	17-18
+# ::root	m	man
+# ::edge	shirt	mod	colorful	s	c2	
+# ::edge	and	op1	shirt	a2	s	
+# ::edge	man	domain	and	m	a2	
+# ::edge	shorts	mod	plaid	s2	p	
+# ::edge	and	op2	shorts	a2	s2	
+# ::edge	man	ARG0-of	fly-01	m	f	
+# ::edge	fly-01	path	air	f	a	
+# ::edge	fly-01	time	catch-01	f	c	
+# ::edge	catch-01	ARG0	man	c	m	
+# ::edge	catch-01	ARG1	disc	c	d	
+# ::edge	disc	name	name	d	n	
+# ::edge	name	op1	Frisbee	n	0	
+(m / man
+    :ARG0-of (f / fly-01
+        :path (a / air)
+        :time (c / catch-01
+            :ARG0 m
+            :ARG1 (d / disc
+                :name (n / name
+                    :op1 "Frisbee"))))
+    :domain (a2 / and
+        :op1 (s / shirt
+            :mod (c2 / colorful))
+        :op2 (s2 / shorts
+            :mod (p / plaid))))

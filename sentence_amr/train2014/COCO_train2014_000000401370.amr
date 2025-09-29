@@ -1,0 +1,29 @@
+# ::tok A man begins his run by going down a very steep hill
+# ::node	m	man	1-2
+# ::node	b	begin-01	2-3
+# ::node	r	run-02	4-5
+# ::node	g	go-02	6-7
+# ::node	d	down	7-8
+# ::node	v	very	9-10
+# ::node	s	steep	10-11
+# ::node	h	hill	11-12
+# ::root	b	begin-01
+# ::edge	begin-01	ARG0	man	b	m	
+# ::edge	begin-01	ARG1	run-02	b	r	
+# ::edge	run-02	ARG0	man	r	m	
+# ::edge	begin-01	ARG2	go-02	b	g	
+# ::edge	go-02	ARG0	man	g	m	
+# ::edge	go-02	direction	down	g	d	
+# ::edge	steep	degree	very	s	v	
+# ::edge	hill	mod	steep	h	s	
+# ::edge	go-02	ARG1	hill	g	h	
+(b / begin-01
+    :ARG0 (m / man)
+    :ARG1 (r / run-02
+        :ARG0 m)
+    :ARG2 (g / go-02
+        :ARG0 m
+        :ARG1 (h / hill
+            :mod (s / steep
+                :degree (v / very)))
+        :direction (d / down)))

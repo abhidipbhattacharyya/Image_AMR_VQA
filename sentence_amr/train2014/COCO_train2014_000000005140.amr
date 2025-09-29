@@ -1,0 +1,46 @@
+# ::tok A television set is showing a hockey game in the background while an open laptop sits besides a tall glass and a cell phone .
+# ::node	t2	television	1-2
+# ::node	s	set	2-3
+# ::node	s2	show-01	4-5
+# ::node	h	hockey	6-7
+# ::node	g	game	7-8
+# ::node	b	background	10-11
+# ::node	o	open-01	13-14
+# ::node	l	laptop	14-15
+# ::node	s3	sit-01	15-16
+# ::node	b2	besides	16-17
+# ::node	t	tall	18-19
+# ::node	g2	glass	19-20
+# ::node	a	and	20-21
+# ::node	c	cell	22-23
+# ::node	p	phone	23-24
+# ::root	s2	show-01
+# ::edge	set	mod	television	s	t2	
+# ::edge	show-01	ARG0	set	s2	s	
+# ::edge	game	mod	hockey	g	h	
+# ::edge	show-01	ARG1	game	s2	g	
+# ::edge	game	location	background	g	b	
+# ::edge	laptop	ARG1-of	open-01	l	o	
+# ::edge	sit-01	ARG1	laptop	s3	l	
+# ::edge	show-01	time	sit-01	s2	s3	
+# ::edge	sit-01	ARG2	besides	s3	b2	
+# ::edge	glass	mod	tall	g2	t	
+# ::edge	and	op1	glass	a	g2	
+# ::edge	besides	op1	and	b2	a	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	and	op2	phone	a	p	
+(s2 / show-01
+    :ARG0 (s / set
+        :mod (t2 / television))
+    :ARG1 (g / game
+        :location (b / background)
+        :mod (h / hockey))
+    :time (s3 / sit-01
+        :ARG1 (l / laptop
+            :ARG1-of (o / open-01))
+        :ARG2 (b2 / besides
+            :op1 (a / and
+                :op1 (g2 / glass
+                    :mod (t / tall))
+                :op2 (p / phone
+                    :mod (c / cell))))))

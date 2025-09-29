@@ -1,0 +1,25 @@
+# ::tok People sit on stone pedestals while a red kite flies overhead .
+# ::node	p2	person	0-1
+# ::node	s	sit-01	1-2
+# ::node	s2	stone	3-4
+# ::node	p	pedestal	4-5
+# ::node	r	red-02	7-8
+# ::node	k	kite	8-9
+# ::node	f	fly-01	9-10
+# ::node	o	overhead	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	pedestal	consist-of	stone	p	s2	
+# ::edge	sit-01	ARG2	pedestal	s	p	
+# ::edge	kite	ARG1-of	red-02	k	r	
+# ::edge	fly-01	ARG1	kite	f	k	
+# ::edge	sit-01	time	fly-01	s	f	
+# ::edge	fly-01	location	overhead	f	o	
+(s / sit-01
+    :ARG1 (p2 / person)
+    :ARG2 (p / pedestal
+        :consist-of (s2 / stone))
+    :time (f / fly-01
+        :ARG1 (k / kite
+            :ARG1-of (r / red-02))
+        :location (o / overhead)))

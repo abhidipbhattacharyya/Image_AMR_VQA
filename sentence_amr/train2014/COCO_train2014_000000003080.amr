@@ -1,0 +1,28 @@
+# ::tok A clock tower near an office building telling the time of 3:23 pm .
+# ::node	c	clock	1-2
+# ::node	t3	tower	2-3
+# ::node	n	near-02	3-4
+# ::node	o	office	5-6
+# ::node	b	building	6-7
+# ::node	t	tell-01	7-8
+# ::node	t2	time	9-10
+# ::node	d	date-entity	11-12
+# ::node	0	23:59	11-12
+# ::root	t	tell-01
+# ::edge	tower	mod	clock	t3	c	
+# ::edge	tower	ARG1-of	near-02	t3	n	
+# ::edge	building	mod	office	b	o	
+# ::edge	near-02	ARG2	building	n	b	
+# ::edge	tell-01	ARG0	tower	t	t3	
+# ::edge	tell-01	ARG1	time	t	t2	
+# ::edge	time	time	date-entity	t2	d	
+# ::edge	date-entity	time	23:59	d	0	
+(t / tell-01
+    :ARG0 (t3 / tower
+        :ARG1-of (n / near-02
+            :ARG2 (b / building
+                :mod (o / office)))
+        :mod (c / clock))
+    :ARG1 (t2 / time
+        :time (d / date-entity
+            :time "23:59")))

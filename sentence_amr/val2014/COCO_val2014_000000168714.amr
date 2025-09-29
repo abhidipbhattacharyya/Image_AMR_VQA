@@ -1,0 +1,34 @@
+# ::tok a bus with foreign language covering the front windshield and license plate riding on the road
+# ::node	b	bus	1-2
+# ::node	f	foreign	3-4
+# ::node	l	language	4-5
+# ::node	c	cover-02	5-6
+# ::node	f2	front	7-8
+# ::node	w	windshield	8-9
+# ::node	a	and	9-10
+# ::node	l2	license-01	10-11
+# ::node	p	plate	11-12
+# ::node	r	ride-01	12-13
+# ::node	r2	road	15-16
+# ::root	r	ride-01
+# ::edge	language	mod	foreign	l	f	
+# ::edge	cover-02	ARG2	language	c	l	
+# ::edge	bus	ARG0-of	cover-02	b	c	
+# ::edge	windshield	mod	front	w	f2	
+# ::edge	and	op1	windshield	a	w	
+# ::edge	cover-02	ARG1	and	c	a	
+# ::edge	plate	mod	license-01	p	l2	
+# ::edge	and	op2	plate	a	p	
+# ::edge	ride-01	ARG0	bus	r	b	
+# ::edge	ride-01	ARG1	road	r	r2	
+(r / ride-01
+    :ARG0 (b / bus
+        :ARG0-of (c / cover-02
+            :ARG1 (a / and
+                :op1 (w / windshield
+                    :mod (f2 / front))
+                :op2 (p / plate
+                    :mod (l2 / license-01)))
+            :ARG2 (l / language
+                :mod (f / foreign))))
+    :ARG1 (r2 / road))

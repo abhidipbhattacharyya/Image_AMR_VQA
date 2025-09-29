@@ -1,0 +1,55 @@
+# ::tok A street sign is pointing towards 8th avenue and the other is pointing towards 22 3/4 street in the middle of the forest .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	s2	sign	2-3
+# ::node	p	point-01	4-5
+# ::node	n	name	6-7
+# ::node	2	8th	6-7
+# ::node	a2	avenue	7-8
+# ::node	3	Avenue	7-8
+# ::node	a	and	8-9
+# ::node	o	other	10-11
+# ::node	p2	point-01	12-13
+# ::node	0	22	14-15
+# ::node	p3	product-of	15-16
+# ::node	t	temporal-quantity	15-16
+# ::node	1	4	15-16
+# ::node	s4	street	16-17
+# ::node	m	middle	19-20
+# ::node	f	forest	22-23
+# ::root	a	and
+# ::edge	sign	mod	street	s	s3	
+# ::edge	point-01	ARG0	sign	p	s	
+# ::edge	name	op1	8th	n	2	
+# ::edge	avenue	name	name	a2	n	
+# ::edge	point-01	ARG2	avenue	p	a2	
+# ::edge	name	op2	Avenue	n	3	
+# ::edge	and	op1	point-01	a	p	
+# ::edge	sign	mod	other	s2	o	
+# ::edge	and	op2	point-01	a	p2	
+# ::edge	point-01	ARG0	sign	p2	s2	
+# ::edge	product-of	op1	22	p3	0	
+# ::edge	product-of	op2	temporal-quantity	p3	t	
+# ::edge	temporal-quantity	quant	4	t	1	
+# ::edge	street	mod	product-of	s4	p3	
+# ::edge	point-01	ARG2	street	p2	s4	
+# ::edge	street	location	middle	s4	m	
+# ::edge	middle	part-of	forest	m	f	
+(a / and
+    :op1 (p / point-01
+        :ARG0 (s / sign
+            :mod (s3 / street))
+        :ARG2 (a2 / avenue
+            :name (n / name
+                :op1 "8th"
+                :op2 "Avenue")))
+    :op2 (p2 / point-01
+        :ARG0 (s2 / sign
+            :mod (o / other))
+        :ARG2 (s4 / street
+            :location (m / middle
+                :part-of (f / forest))
+            :mod (p3 / product-of
+                :op1 22
+                :op2 (t / temporal-quantity
+                    :quant 4)))))

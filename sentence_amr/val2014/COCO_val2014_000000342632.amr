@@ -1,0 +1,52 @@
+# ::tok some brown black and white horses in their pen and some water
+# ::node	s	some	0-1
+# ::node	s2	some	0-1
+# ::node	b2	brown	1-2
+# ::node	b3	brown	1-2
+# ::node	b	black-04	2-3
+# ::node	a	and	3-4
+# ::node	a2	and	3-4
+# ::node	w2	white-03	4-5
+# ::node	h	horse	5-6
+# ::node	h2	horse	5-6
+# ::node	h3	horse	5-6
+# ::node	p	pen	8-9
+# ::node	a3	and	9-10
+# ::node	s3	some	10-11
+# ::node	w	water	11-12
+# ::root	a	and
+# ::edge	and	op1	and	a	a2	
+# ::edge	and	op1	black-04	a2	b	
+# ::edge	and	quant	brown	a2	b2	
+# ::edge	and	op1	horse	a2	h	
+# ::edge	horse	ARG1-of	black-04	h	b	
+# ::edge	horse	ARG1-of	white-03	h2	w2	
+# ::edge	and	op2	horse	a2	h2	
+# ::edge	horse	quant	some	h2	s2	
+# ::edge	and	op2	horse	a	h3	
+# ::edge	horse	mod	brown	h3	b3	
+# ::edge	horse	quant	some	h3	s2	
+# ::edge	pen	poss	and	p	a2	
+# ::edge	and	op1	pen	a3	p	
+# ::edge	and	op2	and	a	a3	
+# ::edge	water	quant	some	w	s3	
+# ::edge	and	op2	water	a3	w	
+# ::edge	and	rel	some	a	s	
+(a / and
+    :op1 (a2 / and
+        :quant (b2 / brown)
+        :op1 (b / black-04)
+        :op1 (h / horse
+            :ARG1-of b)
+        :op2 (h2 / horse
+            :quant (s2 / some)
+            :ARG1-of (w2 / white-03)))
+    :op2 (h3 / horse
+        :quant s2
+        :mod (b3 / brown))
+    :op2 (a3 / and
+        :op1 (p / pen
+            :poss a2)
+        :op2 (w / water
+            :quant (s3 / some)))
+    :rel (s / some))

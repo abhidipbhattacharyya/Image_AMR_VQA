@@ -1,0 +1,24 @@
+# ::tok Vehicles traveling on roadway near intersection with traffic signals .
+# ::node	v	vehicle	0-1
+# ::node	t2	travel-01	1-2
+# ::node	r	roadway	3-4
+# ::node	n	near-02	4-5
+# ::node	i	intersect-01	5-6
+# ::node	t	traffic	7-8
+# ::node	s	signal-07	8-9
+# ::root	t2	travel-01
+# ::edge	travel-01	ARG0	vehicle	t2	v	
+# ::edge	travel-01	ARG1	roadway	t2	r	
+# ::edge	roadway	ARG1-of	near-02	r	n	
+# ::edge	near-02	ARG2	intersect-01	n	i	
+# ::edge	intersect-01	ARG0	vehicle	i	v	
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	intersect-01	ARG1	signal-07	i	s	
+(t2 / travel-01
+    :ARG0 (v / vehicle)
+    :ARG1 (r / roadway
+        :ARG1-of (n / near-02
+            :ARG2 (i / intersect-01
+                :ARG0 v
+                :ARG1 (s / signal-07
+                    :ARG1 (t / traffic))))))

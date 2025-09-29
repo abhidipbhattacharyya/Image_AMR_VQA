@@ -1,0 +1,28 @@
+# ::tok A man shuffles a deck of cards while other people sit around the table .
+# ::node	m	man	1-2
+# ::node	s	shake-01	2-3
+# ::node	d	deck	4-5
+# ::node	c	card	6-7
+# ::node	o	other	8-9
+# ::node	p	person	9-10
+# ::node	s2	sit-01	10-11
+# ::node	a	around	11-12
+# ::node	t	table	13-14
+# ::root	s	shake-01
+# ::edge	shake-01	ARG0	man	s	m	
+# ::edge	shake-01	ARG1	deck	s	d	
+# ::edge	deck	consist-of	card	d	c	
+# ::edge	person	mod	other	p	o	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	shake-01	time	sit-01	s	s2	
+# ::edge	sit-01	ARG2	around	s2	a	
+# ::edge	around	op1	table	a	t	
+(s / shake-01
+    :ARG0 (m / man)
+    :ARG1 (d / deck
+        :consist-of (c / card))
+    :time (s2 / sit-01
+        :ARG1 (p / person
+            :mod (o / other))
+        :ARG2 (a / around
+            :op1 (t / table))))

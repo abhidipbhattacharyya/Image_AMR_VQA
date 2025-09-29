@@ -1,0 +1,45 @@
+# ::tok A man and a woman are playing a Wii game while a woman sits on the couch with a wine glass in her hand .
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	w2	woman	4-5
+# ::node	p	play-01	6-7
+# ::node	p2	product	8-9
+# ::node	n	name	8-9
+# ::node	0	Wii	8-9
+# ::node	g	game	9-10
+# ::node	w3	woman	12-13
+# ::node	s	sit-01	13-14
+# ::node	c	couch	16-17
+# ::node	w	wine	19-20
+# ::node	g2	glass	20-21
+# ::node	h	hand	23-24
+# ::root	p	play-01
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	play-01	ARG0	and	p	a	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	game	mod	product	g	p2	
+# ::edge	play-01	ARG1	game	p	g	
+# ::edge	sit-01	ARG1	woman	s	w3	
+# ::edge	play-01	time	sit-01	p	s	
+# ::edge	sit-01	ARG2	couch	s	c	
+# ::edge	glass	consist-of	wine	g2	w	
+# ::edge	hand	domain	glass	h	g2	
+# ::edge	woman	manner	hand	w3	h	
+# ::edge	woman	part	hand	w3	h	
+(p / play-01
+    :ARG0 (a / and
+        :op1 (m / man)
+        :op2 (w2 / woman))
+    :ARG1 (g / game
+        :mod (p2 / product
+            :name (n / name
+                :op1 "Wii")))
+    :time (s / sit-01
+        :ARG1 (w3 / woman
+            :manner (h / hand
+                :domain (g2 / glass
+                    :consist-of (w / wine)))
+            :part h)
+        :ARG2 (c / couch)))

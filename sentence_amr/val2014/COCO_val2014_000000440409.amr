@@ -1,0 +1,30 @@
+# ::tok green and white street signs at an intersection at night
+# ::node	g	green-02	0-1
+# ::node	a	and	1-2
+# ::node	w	white-03	2-3
+# ::node	s3	street	3-4
+# ::node	s	sign	4-5
+# ::node	s2	sign	4-5
+# ::node	i	intersect-01	7-8
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::root	a	and
+# ::edge	sign	mod	street	s	s3	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	ARG1-of	green-02	s	g	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	ARG1-of	white-03	s2	w	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	location	intersect-01	a	i	
+# ::edge	intersect-01	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(a / and
+    :location (i / intersect-01
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :op1 (s / sign
+        :ARG1-of (g / green-02)
+        :mod (s3 / street))
+    :op2 (s2 / sign
+        :ARG1-of (w / white-03)
+        :mod s3))

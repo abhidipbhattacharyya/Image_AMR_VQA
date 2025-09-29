@@ -1,0 +1,29 @@
+# ::tok A train is parked in a train station as several people walk along a train platform .
+# ::node	t	train	1-2
+# ::node	p	park-01	3-4
+# ::node	s2	station	7-8
+# ::node	s	several	9-10
+# ::node	p2	person	10-11
+# ::node	w	walk-01	11-12
+# ::node	a	along	12-13
+# ::node	p3	platform	15-16
+# ::root	p	park-01
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	station	p	s2	
+# ::edge	train	mod	station	t	s2	
+# ::edge	person	quant	several	p2	s	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	park-01	time	walk-01	p	w	
+# ::edge	walk-01	ARG2	along	w	a	
+# ::edge	along	op1	platform	a	p3	
+# ::edge	platform	mod	train	p3	t	
+(p / park-01
+    :ARG1 (t / train
+        :mod (s2 / station))
+    :ARG2 s2
+    :time (w / walk-01
+        :ARG0 (p2 / person
+            :quant (s / several))
+        :ARG2 (a / along
+            :op1 (p3 / platform
+                :mod t))))

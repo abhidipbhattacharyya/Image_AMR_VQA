@@ -1,0 +1,33 @@
+# ::tok A person sits down to their meal of a sandwich on a croissant with a side of french fries .
+# ::node	p	person	1-2
+# ::node	s3	sit-down-02	2-3
+# ::node	m	meal	6-7
+# ::node	s	sandwich	9-10
+# ::node	c2	croissant	12-13
+# ::node	s2	side	15-16
+# ::node	c	country	17-18
+# ::node	n	name	17-18
+# ::node	0	France	17-18
+# ::node	f	fry-01	18-19
+# ::root	s3	sit-down-02
+# ::edge	sit-down-02	ARG1	person	s3	p	
+# ::edge	sit-down-02	ARG2	meal	s3	m	
+# ::edge	meal	poss	person	m	p	
+# ::edge	meal	consist-of	sandwich	m	s	
+# ::edge	meal	prep-on	croissant	m	c2	
+# ::edge	croissant	accompanier	side	c2	s2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG2	country	f	c	
+# ::edge	side	consist-of	fry-01	s2	f	
+(s3 / sit-down-02
+    :ARG1 (p / person)
+    :ARG2 (m / meal
+        :consist-of (s / sandwich)
+        :poss p
+        :prep-on (c2 / croissant
+            :accompanier (s2 / side
+                :consist-of (f / fry-01
+                    :ARG2 (c / country
+                        :name (n / name
+                            :op1 "France")))))))

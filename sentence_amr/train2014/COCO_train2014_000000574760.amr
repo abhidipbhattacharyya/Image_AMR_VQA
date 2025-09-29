@@ -1,0 +1,32 @@
+# ::tok A women is talking to a hair dresser who is drying her hair with a hair dryer .
+# ::node	w	woman	1-2
+# ::node	t	talk-01	3-4
+# ::node	h	hair	6-7
+# ::node	p	person	7-8
+# ::node	d	dress-01	7-8
+# ::node	d2	dry-02	10-11
+# ::node	h2	hair	12-13
+# ::node	t2	thing	14-15
+# ::node	d3	dry-02	16-17
+# ::root	t	talk-01
+# ::edge	talk-01	ARG0	woman	t	w	
+# ::edge	talk-01	ARG2	person	t	p	
+# ::edge	person	ARG0-of	dress-01	p	d	
+# ::edge	dress-01	ARG1	hair	d	h	
+# ::edge	person	ARG0-of	dry-02	p	d2	
+# ::edge	dry-02	ARG1	hair	d2	h2	
+# ::edge	woman	part	hair	w	h2	
+# ::edge	dry-02	instrument	thing	d2	t2	
+# ::edge	thing	ARG0-of	dry-02	t2	d3	
+# ::edge	dry-02	ARG1	hair	d3	h	
+(t / talk-01
+    :ARG0 (w / woman
+        :part (h2 / hair))
+    :ARG2 (p / person
+        :ARG0-of (d / dress-01
+            :ARG1 (h / hair))
+        :ARG0-of (d2 / dry-02
+            :ARG1 h2
+            :instrument (t2 / thing
+                :ARG0-of (d3 / dry-02
+                    :ARG1 h)))))

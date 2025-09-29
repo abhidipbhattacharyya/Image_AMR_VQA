@@ -1,0 +1,46 @@
+# ::tok A freeway sign indicating Pacific Grove Del Monte Ave exit in 1/2 mile .
+# ::node	f	freeway	1-2
+# ::node	s	sign	2-3
+# ::node	i	indicate-01	3-4
+# ::node	4	Pacific	4-5
+# ::node	2	Grove	5-6
+# ::node	e	Del	6-7
+# ::node	3	Monte	7-8
+# ::node	r2	road	8-9
+# ::node	n	name	8-9
+# ::node	1	Ave	8-9
+# ::node	e2	exit	9-10
+# ::node	r	relative-position	11-12
+# ::node	d	distance-quantity	11-12
+# ::node	0	1	11-12
+# ::node	m	mile	12-13
+# ::root	s	sign
+# ::edge	sign	mod	freeway	s	f	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op3	Monte	n	3	
+# ::edge	name	op2	Grove	n	2	
+# ::edge	name	op1	Pacific	n	4	
+# ::edge	name	op4	Ave	n	1	
+# ::edge	exit	location	road	e2	r2	
+# ::edge	indicate-01	ARG1	exit	i	e2	
+# ::edge	sign	location	relative-position	s	r	
+# ::edge	relative-position	quant	distance-quantity	r	d	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	distance-quantity	unit	mile	d	m	
+# ::edge	sign	rel	Del	s	e	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (e2 / exit
+            :location (r2 / road
+                :name (n / name
+                    :op1 "Pacific"
+                    :op2 "Grove"
+                    :op3 "Monte"
+                    :op4 "Ave"))))
+    :location (r / relative-position
+        :quant (d / distance-quantity
+            :quant 1
+            :unit (m / mile)))
+    :mod (f / freeway)
+    :rel (e / Del))

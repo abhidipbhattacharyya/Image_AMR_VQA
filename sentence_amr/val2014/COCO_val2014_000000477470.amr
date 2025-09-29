@@ -1,0 +1,32 @@
+# ::tok A red traffic light with vehicles passing by too fast to capture .
+# ::node	r	red-02	1-2
+# ::node	t2	traffic	2-3
+# ::node	l	light	3-4
+# ::node	v	vehicle	5-6
+# ::node	p	pass-03	6-7
+# ::node	h	have-degree-91	8-9
+# ::node	t	too	8-9
+# ::node	f	fast-02	9-10
+# ::node	c	capture-01	11-12
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	vehicle	ARG1-of	pass-03	v	p	
+# ::edge	have-degree-91	ARG1	pass-03	h	p	
+# ::edge	have-degree-91	ARG3	too	h	t	
+# ::edge	fast-02	ARG2-of	have-degree-91	f	h	
+# ::edge	pass-03	ARG1-of	fast-02	p	f	
+# ::edge	have-degree-91	ARG6	capture-01	h	c	
+# ::edge	capture-01	ARG1	vehicle	c	v	
+# ::edge	light	rel	have-degree-91	l	h	
+(l / light
+    :ARG1-of (r / red-02)
+    :mod (t2 / traffic)
+    :rel (h / have-degree-91
+        :ARG1 (p / pass-03
+            :ARG1-of (f / fast-02
+                :ARG2-of h))
+        :ARG3 (t / too)
+        :ARG6 (c / capture-01
+            :ARG1 (v / vehicle
+                :ARG1-of p))))

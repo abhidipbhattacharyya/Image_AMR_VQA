@@ -1,0 +1,44 @@
+# ::tok An open door shows a small bathroom space with a toilet and a shower while a sink sits near the open door .
+# ::node	o	open-01	1-2
+# ::node	d	door	2-3
+# ::node	s	show-01	3-4
+# ::node	s5	small	5-6
+# ::node	b	bathroom	6-7
+# ::node	s6	space	7-8
+# ::node	h	have-03	8-9
+# ::node	t	toilet	10-11
+# ::node	a	and	11-12
+# ::node	s2	shower-01	13-14
+# ::node	s3	sink	16-17
+# ::node	s4	sit-01	17-18
+# ::node	n	near-02	18-19
+# ::root	s	show-01
+# ::edge	door	ARG1-of	open-01	d	o	
+# ::edge	show-01	ARG0	door	s	d	
+# ::edge	space	mod	bathroom	s6	b	
+# ::edge	space	mod	small	s6	s5	
+# ::edge	show-01	ARG1	space	s	s6	
+# ::edge	space	ARG0-of	have-03	s6	h	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	shower-01	a	s2	
+# ::edge	sit-01	ARG1	sink	s4	s3	
+# ::edge	show-01	time	sit-01	s	s4	
+# ::edge	sit-01	ARG2	near-02	s4	n	
+# ::edge	near-02	ARG1	sink	n	s3	
+# ::edge	near-02	ARG2	door	n	d	
+(s / show-01
+    :ARG0 (d / door
+        :ARG1-of (o / open-01))
+    :ARG1 (s6 / space
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (t / toilet)
+                :op2 (s2 / shower-01)))
+        :mod (b / bathroom)
+        :mod (s5 / small))
+    :time (s4 / sit-01
+        :ARG1 (s3 / sink)
+        :ARG2 (n / near-02
+            :ARG1 s3
+            :ARG2 d)))

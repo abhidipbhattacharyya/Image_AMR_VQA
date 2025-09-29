@@ -1,0 +1,33 @@
+# ::tok A wooden table with a large cake with strawberries on top of it sitting in a room .
+# ::node	w	wood	1-2
+# ::node	t	table	2-3
+# ::node	h	have-03	3-4
+# ::node	l	large	5-6
+# ::node	c	cake	6-7
+# ::node	h2	have-03	7-8
+# ::node	a	Walmart	8-9
+# ::node	t2	top	10-11
+# ::node	s	sit-01	13-14
+# ::node	r	room	16-17
+# ::root	s	sit-01
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	cake	mod	large	c	l	
+# ::edge	have-03	ARG1	cake	h	c	
+# ::edge	cake	ARG0-of	have-03	c	h2	
+# ::edge	have-03	ARG1	Walmart	h2	a	
+# ::edge	have-03	location	top	h2	t2	
+# ::edge	table	part	top	t	t2	
+# ::edge	sit-01	ARG1	table	s	t	
+# ::edge	sit-01	ARG2	room	s	r	
+(s / sit-01
+    :ARG1 (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (c / cake
+                :ARG0-of (h2 / have-03
+                    :ARG1 (a / Walmart)
+                    :location (t2 / top))
+                :mod (l / large)))
+        :consist-of (w / wood)
+        :part t2)
+    :ARG2 (r / room))

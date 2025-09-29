@@ -1,0 +1,31 @@
+# ::tok The giraffe wanders about its enclosure planning its inevitable escape .
+# ::node	g	giraffe	1-2
+# ::node	w	wander-01	2-3
+# ::node	e	enclosure	5-6
+# ::node	p	plan-01	6-7
+# ::node	a	avoid-01	8-9
+# ::node	p2	possible-01	8-9
+# ::node	0	-	8-9
+# ::node	e2	escape-01	9-10
+# ::root	w	wander-01
+# ::edge	wander-01	ARG0	giraffe	w	g	
+# ::edge	wander-01	ARG1	enclosure	w	e	
+# ::edge	enclosure	poss	giraffe	e	g	
+# ::edge	wander-01	time-of	plan-01	w	p	
+# ::edge	plan-01	ARG0	giraffe	p	g	
+# ::edge	avoid-01	ARG1-of	possible-01	a	p2	
+# ::edge	possible-01	polarity	-	p2	0	
+# ::edge	escape-01	ARG1-of	avoid-01	e2	a	
+# ::edge	plan-01	ARG1	escape-01	p	e2	
+# ::edge	escape-01	ARG0	giraffe	e2	g	
+(w / wander-01
+    :ARG0 (g / giraffe)
+    :ARG1 (e / enclosure
+        :poss g)
+    :time-of (p / plan-01
+        :ARG0 g
+        :ARG1 (e2 / escape-01
+            :ARG0 g
+            :ARG1-of (a / avoid-01
+                :ARG1-of (p2 / possible-01
+                    :polarity -)))))

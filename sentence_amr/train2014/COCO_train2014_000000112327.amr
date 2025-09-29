@@ -1,0 +1,43 @@
+# ::tok A variety of fruit - including oranges , apples , pears , and Kiwi fruit - sit in a cardboard box .
+# ::node	v	variety	1-2
+# ::node	f	fruit	3-4
+# ::node	i	include-01	5-6
+# ::node	o	orange	6-7
+# ::node	a	and	7-8
+# ::node	a2	apple	8-9
+# ::node	a3	apple	10-11
+# ::node	c2	country	13-14
+# ::node	n	name	13-14
+# ::node	0	Kiwi	13-14
+# ::node	f2	fruit	14-15
+# ::node	s	sit-01	16-17
+# ::node	c	cardboard	19-20
+# ::node	b	box	20-21
+# ::root	s	sit-01
+# ::edge	fruit	mod	variety	f	v	
+# ::edge	fruit	ARG2-of	include-01	f	i	
+# ::edge	and	op1	orange	a	o	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	apple	a	a2	
+# ::edge	and	op3	apple	a	a3	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Kiwi	n	0	
+# ::edge	fruit	mod	country	f2	c2	
+# ::edge	and	op4	fruit	a	f2	
+# ::edge	sit-01	ARG1	fruit	s	f	
+# ::edge	box	consist-of	cardboard	b	c	
+# ::edge	sit-01	ARG2	box	s	b	
+(s / sit-01
+    :ARG1 (f / fruit
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (o / orange)
+                :op2 (a2 / apple)
+                :op3 (a3 / apple)
+                :op4 (f2 / fruit
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "Kiwi")))))
+        :mod (v / variety))
+    :ARG2 (b / box
+        :consist-of (c / cardboard)))

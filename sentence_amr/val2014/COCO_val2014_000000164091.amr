@@ -1,0 +1,42 @@
+# ::tok Two dolls inside of a room , one in a stroller and one on the bed .
+# ::node	2	2	0-1
+# ::node	d	doll	1-2
+# ::node	i3	inside	2-3
+# ::node	r	room	5-6
+# ::node	i	include-91	7-8
+# ::node	i2	include-91	7-8
+# ::node	0	1	7-8
+# ::node	1	1	7-8
+# ::node	s	stroller	10-11
+# ::node	a	and	11-12
+# ::node	a2	and	11-12
+# ::node	b	be-located-at-91	13-14
+# ::node	b2	bed	15-16
+# ::root	a	and
+# ::edge	doll	quant	2	d	2	
+# ::edge	doll	location	inside	d	i3	
+# ::edge	inside	op1	room	i3	r	
+# ::edge	doll	ARG2-of	include-91	d	i	
+# ::edge	doll	ARG2-of	include-91	d	i2	
+# ::edge	stroller	quant	1	s	0	
+# ::edge	and	op1	doll	a	d	
+# ::edge	and	op1	stroller	a2	s	
+# ::edge	include-91	ARG1	and	i2	a2	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	bed	b	b2	
+# ::edge	and	rel	1	a	1	
+(a / and
+    :op1 (d / doll
+        :quant 2
+        :ARG2-of (i / include-91)
+        :ARG2-of (i2 / include-91
+            :ARG1 (a2 / and
+                :op1 (s / stroller
+                    :quant 1)))
+        :location (i3 / inside
+            :op1 (r / room)))
+    :op2 (b / be-located-at-91
+        :ARG1 a
+        :ARG2 (b2 / bed))
+    :rel 1)

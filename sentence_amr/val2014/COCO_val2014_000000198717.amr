@@ -1,0 +1,29 @@
+# ::tok While one man is sleeping another is preparing to play cymbals .
+# ::node	o	one	1-2
+# ::node	m	man	2-3
+# ::node	m2	man	2-3
+# ::node	s	sleep-01	4-5
+# ::node	a	another	5-6
+# ::node	p2	prepare-02	7-8
+# ::node	p	play-11	9-10
+# ::node	d	drum	10-11
+# ::root	p2	prepare-02
+# ::edge	man	mod	one	m2	o	
+# ::edge	sleep-01	ARG0	man	s	m2	
+# ::edge	man	mod	another	m	a	
+# ::edge	prepare-02	time	sleep-01	p2	s	
+# ::edge	prepare-02	ARG1	man	p2	m2	
+# ::edge	prepare-02	ARG0	man	p2	m	
+# ::edge	prepare-02	ARG2	play-11	p2	p	
+# ::edge	play-11	ARG0	man	p	m2	
+# ::edge	play-11	ARG1	drum	p	d	
+(p2 / prepare-02
+    :ARG0 (m / man
+        :mod (a / another))
+    :ARG1 (m2 / man
+        :mod (o / one))
+    :ARG2 (p / play-11
+        :ARG0 m2
+        :ARG1 (d / drum))
+    :time (s / sleep-01
+        :ARG0 m2))

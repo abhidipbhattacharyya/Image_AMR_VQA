@@ -1,0 +1,57 @@
+# ::tok A tennis player has one hand up to throw the ball and the other hand is back to hit the tennis ball over the net .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	0	1	4-5
+# ::node	h	hand	5-6
+# ::node	u	up-03	6-7
+# ::node	t2	throw-01	8-9
+# ::node	b2	ball	10-11
+# ::node	a	and	11-12
+# ::node	o	other	13-14
+# ::node	h2	hand	14-15
+# ::node	b	back-02	16-17
+# ::node	h3	hit-01	18-19
+# ::node	b3	ball	21-22
+# ::node	o2	over	22-23
+# ::node	n	net	24-25
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	hand	quant	1	h	0	
+# ::edge	person	part	hand	p	h	
+# ::edge	up-03	ARG1	hand	u	h	
+# ::edge	up-03	purpose	throw-01	u	t2	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	throw-01	ARG1	ball	t2	b2	
+# ::edge	and	op1	up-03	a	u	
+# ::edge	hand	mod	other	h2	o	
+# ::edge	person	part	hand	p	h2	
+# ::edge	back-02	ARG1	hand	b	h2	
+# ::edge	and	op2	back-02	a	b	
+# ::edge	back-02	purpose	hit-01	b	h3	
+# ::edge	hit-01	ARG0	person	h3	p	
+# ::edge	hit-01	ARG1	ball	h3	b3	
+# ::edge	ball	mod	tennis	b3	t	
+# ::edge	hit-01	path	over	h3	o2	
+# ::edge	over	op1	net	o2	n	
+(a / and
+    :op1 (u / up-03
+        :purpose (t2 / throw-01
+            :ARG0 (p / person
+                :ARG0-of (p2 / play-01
+                    :ARG1 (t / tennis))
+                :part (h / hand
+                    :quant 1)
+                :part (h2 / hand
+                    :mod (o / other)))
+            :ARG1 (b2 / ball))
+        :ARG1 h)
+    :op2 (b / back-02
+        :purpose (h3 / hit-01
+            :ARG0 p
+            :ARG1 (b3 / ball
+                :mod t)
+            :path (o2 / over
+                :op1 (n / net)))
+        :ARG1 h2))

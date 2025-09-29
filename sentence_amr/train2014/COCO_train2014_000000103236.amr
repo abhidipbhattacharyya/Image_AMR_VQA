@@ -1,0 +1,27 @@
+# ::tok Urinals inside a bathroom stall with fan on the wall behind them .
+# ::node	o	office	0-1
+# ::node	i	inside	1-2
+# ::node	b	bathroom	3-4
+# ::node	s	stall	4-5
+# ::node	h	have-03	5-6
+# ::node	f	fan	6-7
+# ::node	w	wall	9-10
+# ::node	b2	behind	10-11
+# ::root	o	office
+# ::edge	office	location	inside	o	i	
+# ::edge	stall	mod	bathroom	s	b	
+# ::edge	inside	op1	stall	i	s	
+# ::edge	office	ARG0-of	have-03	o	h	
+# ::edge	have-03	ARG1	fan	h	f	
+# ::edge	fan	location	wall	f	w	
+# ::edge	wall	location	behind	w	b2	
+# ::edge	behind	op1	office	b2	o	
+(o / office
+    :ARG0-of (h / have-03
+        :ARG1 (f / fan
+            :location (w / wall
+                :location (b2 / behind
+                    :op1 o))))
+    :location (i / inside
+        :op1 (s / stall
+            :mod (b / bathroom))))

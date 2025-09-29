@@ -1,0 +1,39 @@
+# ::tok Two buses parked under a bridge overpass , with the name " LEROY " on one of the buses .
+# ::node	1	2	0-1
+# ::node	b2	bus	1-2
+# ::node	p	park-01	2-3
+# ::node	u	under	3-4
+# ::node	b	bridge	5-6
+# ::node	o	overpass	6-7
+# ::node	n2	name-01	10-11
+# ::node	n	name	10-11
+# ::node	2	LEROY	12-13
+# ::node	0	1	15-16
+# ::node	i	include-91	16-17
+# ::node	b3	bus	18-19
+# ::root	p	park-01
+# ::edge	bus	quant	2	b2	1	
+# ::edge	park-01	ARG1	bus	p	b2	
+# ::edge	park-01	location	under	p	u	
+# ::edge	overpass	mod	bridge	o	b	
+# ::edge	under	op1	overpass	u	o	
+# ::edge	bus	ARG1-of	name-01	b2	n2	
+# ::edge	name-01	ARG2	name	n2	n	
+# ::edge	name	op1	LEROY	n	2	
+# ::edge	include-91	ARG2	bus	i	b2	
+# ::edge	bus	ARG1-of	include-91	b3	i	
+# ::edge	name	location	bus	n	b3	
+# ::edge	park-01	rel	1	p	0	
+(p / park-01
+    :ARG1 (b2 / bus
+        :quant 2
+        :ARG1-of (n2 / name-01
+            :ARG2 (n / name
+                :location (b3 / bus
+                    :ARG1-of (i / include-91
+                        :ARG2 b2))
+                :op1 "LEROY")))
+    :location (u / under
+        :op1 (o / overpass
+            :mod (b / bridge)))
+    :rel 1)

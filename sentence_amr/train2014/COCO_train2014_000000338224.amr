@@ -1,0 +1,22 @@
+# ::tok A cat sitting in a screened porch is alerted by something outside .
+# ::node	c	cat	1-2
+# ::node	s2	sit-01	2-3
+# ::node	s	screen-01	5-6
+# ::node	p	porch	6-7
+# ::node	a	alert-01	8-9
+# ::node	s3	something	10-11
+# ::node	o	outside	11-12
+# ::root	a	alert-01
+# ::edge	cat	ARG1-of	sit-01	c	s2	
+# ::edge	porch	ARG1-of	screen-01	p	s	
+# ::edge	sit-01	ARG2	porch	s2	p	
+# ::edge	alert-01	ARG1	cat	a	c	
+# ::edge	alert-01	ARG2	something	a	s3	
+# ::edge	something	location	outside	s3	o	
+(a / alert-01
+    :ARG1 (c / cat
+        :ARG1-of (s2 / sit-01
+            :ARG2 (p / porch
+                :ARG1-of (s / screen-01))))
+    :ARG2 (s3 / something
+        :location (o / outside)))

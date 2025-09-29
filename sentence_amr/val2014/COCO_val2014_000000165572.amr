@@ -1,0 +1,34 @@
+# ::tok A red number 9 bus on a street with two black cars going in the opposite direction .
+# ::node	r	red-02	1-2
+# ::node	n	number	2-3
+# ::node	1	9	3-4
+# ::node	b2	bus	4-5
+# ::node	s	street	7-8
+# ::node	0	2	9-10
+# ::node	b	black-04	10-11
+# ::node	c	car	11-12
+# ::node	g	go-01	12-13
+# ::node	o	opposite-01	15-16
+# ::node	d	direction	16-17
+# ::root	b2	bus
+# ::edge	number	ARG1-of	red-02	n	r	
+# ::edge	number	mod	9	n	1	
+# ::edge	bus	mod	number	b2	n	
+# ::edge	bus	location	street	b2	s	
+# ::edge	car	ARG1-of	black-04	c	b	
+# ::edge	car	quant	2	c	0	
+# ::edge	go-01	ARG1	car	g	c	
+# ::edge	street	location-of	go-01	s	g	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	go-01	direction	direction	g	d	
+(b2 / bus
+    :location (s / street
+        :location-of (g / go-01
+            :ARG1 (c / car
+                :quant 2
+                :ARG1-of (b / black-04))
+            :direction (d / direction
+                :ARG1-of (o / opposite-01))))
+    :mod (n / number
+        :ARG1-of (r / red-02)
+        :mod 9))

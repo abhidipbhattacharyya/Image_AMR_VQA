@@ -1,0 +1,40 @@
+# ::tok Cat is sitting in front of big screen TV watching silhouette of Meerkat on TV .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Cat	0-1
+# ::node	s3	sit-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	b	big	6-7
+# ::node	s	screen	7-8
+# ::node	t	television	8-9
+# ::node	w	watch-01	9-10
+# ::node	s2	silhouette	10-11
+# ::node	b2	broadcast-program	12-13
+# ::node	n2	name	12-13
+# ::node	1	Meerkat	12-13
+# ::root	s3	sit-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Cat	n	0	
+# ::edge	sit-01	ARG1	person	s3	p	
+# ::edge	sit-01	ARG2	in-front-of	s3	i	
+# ::edge	screen	mod	big	s	b	
+# ::edge	television	mod	screen	t	s	
+# ::edge	in-front-of	op1	television	i	t	
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG1	silhouette	w	s2	
+# ::edge	silhouette	mod	broadcast-program	s2	b2	
+# ::edge	broadcast-program	name	name	b2	n2	
+# ::edge	name	op1	Meerkat	n2	1	
+(s3 / sit-01
+    :ARG1 (p / person
+        :name (n / name
+            :op1 "Cat")
+        :ARG0-of (w / watch-01
+            :ARG1 (s2 / silhouette
+                :mod (b2 / broadcast-program
+                    :name (n2 / name
+                        :op1 "Meerkat")))))
+    :ARG2 (i / in-front-of
+        :op1 (t / television
+            :mod (s / screen
+                :mod (b / big)))))

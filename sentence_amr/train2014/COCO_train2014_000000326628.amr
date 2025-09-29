@@ -1,0 +1,31 @@
+# ::tok A baseball player holding a baseball bat over his shoulder while at bat .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	h	hold-01	3-4
+# ::node	b2	bat	6-7
+# ::node	o	over	7-8
+# ::node	s	shoulder	9-10
+# ::node	b3	bat-02	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	bat	h	b2	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	hold-01	ARG2	over	h	o	
+# ::edge	over	op1	shoulder	o	s	
+# ::edge	person	part	shoulder	p	s	
+# ::edge	hold-01	time	bat-02	h	b3	
+# ::edge	bat-02	ARG0	person	b3	p	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (h / hold-01
+        :ARG1 (b2 / bat
+            :mod b)
+        :ARG2 (o / over
+            :op1 (s / shoulder))
+        :time (b3 / bat-02
+            :ARG0 p))
+    :part s)

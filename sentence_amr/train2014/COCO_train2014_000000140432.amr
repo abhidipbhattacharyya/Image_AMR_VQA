@@ -1,0 +1,22 @@
+# ::tok Some smoke is rising in the distance while airplanes are sitting on the runway .
+# ::node	s3	some	0-1
+# ::node	s2	smoke	1-2
+# ::node	r	rise-01	3-4
+# ::node	d	distance	6-7
+# ::node	a	airplane	8-9
+# ::node	s	sit-01	10-11
+# ::node	r2	runway	13-14
+# ::root	r	rise-01
+# ::edge	smoke	quant	some	s2	s3	
+# ::edge	rise-01	ARG1	smoke	r	s2	
+# ::edge	rise-01	location	distance	r	d	
+# ::edge	sit-01	ARG1	airplane	s	a	
+# ::edge	rise-01	time	sit-01	r	s	
+# ::edge	sit-01	ARG2	runway	s	r2	
+(r / rise-01
+    :ARG1 (s2 / smoke
+        :quant (s3 / some))
+    :location (d / distance)
+    :time (s / sit-01
+        :ARG1 (a / airplane)
+        :ARG2 (r2 / runway)))

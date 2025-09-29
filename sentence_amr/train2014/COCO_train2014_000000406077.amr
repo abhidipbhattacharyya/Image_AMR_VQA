@@ -1,0 +1,34 @@
+# ::tok A train going along on the tracks with graffiti written across one of the railways
+# ::node	t2	train	1-2
+# ::node	g	go-01	2-3
+# ::node	a2	along	3-4
+# ::node	t	track	6-7
+# ::node	g2	graffiti-01	8-9
+# ::node	w	write-01	9-10
+# ::node	a	across	10-11
+# ::node	0	1	11-12
+# ::node	i	include-91	12-13
+# ::node	r	railway	14-15
+# ::node	r2	railway	14-15
+# ::root	t2	train
+# ::edge	train	ARG1-of	go-01	t2	g	
+# ::edge	go-01	direction	along	g	a2	
+# ::edge	go-01	path	track	g	t	
+# ::edge	train	ARG2-of	graffiti-01	t2	g2	
+# ::edge	graffiti-01	ARG1-of	write-01	g2	w	
+# ::edge	write-01	location	across	w	a	
+# ::edge	railway	ARG1-of	include-91	r	i	
+# ::edge	railway	quant	1	r	0	
+# ::edge	across	op1	railway	a	r	
+# ::edge	include-91	ARG2	railway	i	r2	
+(t2 / train
+    :ARG1-of (g / go-01
+        :direction (a2 / along)
+        :path (t / track))
+    :ARG2-of (g2 / graffiti-01
+        :ARG1-of (w / write-01
+            :location (a / across
+                :op1 (r / railway
+                    :quant 1
+                    :ARG1-of (i / include-91
+                        :ARG2 (r2 / railway)))))))

@@ -1,0 +1,27 @@
+# ::tok A train departs one one side of the tracks as people wait on the opposite side .
+# ::node	t2	train	1-2
+# ::node	d	depart-01	2-3
+# ::node	s	side	5-6
+# ::node	t	track	8-9
+# ::node	p	person	10-11
+# ::node	w	wait-01	11-12
+# ::node	o	opposite-01	14-15
+# ::node	s2	side	15-16
+# ::root	d	depart-01
+# ::edge	depart-01	ARG0	train	d	t2	
+# ::edge	depart-01	ARG1	side	d	s	
+# ::edge	side	part-of	track	s	t	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	depart-01	time	wait-01	d	w	
+# ::edge	opposite-01	ARG1	track	o	t	
+# ::edge	side	ARG2-of	opposite-01	s2	o	
+# ::edge	wait-01	location	side	w	s2	
+(d / depart-01
+    :ARG0 (t2 / train)
+    :ARG1 (s / side
+        :part-of (t / track))
+    :time (w / wait-01
+        :ARG1 (p / person)
+        :location (s2 / side
+            :ARG2-of (o / opposite-01
+                :ARG1 t))))

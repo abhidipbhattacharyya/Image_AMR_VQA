@@ -1,0 +1,33 @@
+# ::tok A man holding up an open box of pink frosted doughnuts and drinking a drink .
+# ::node	m	man	1-2
+# ::node	h	hold-01	2-3
+# ::node	o	open-01	5-6
+# ::node	b	box	6-7
+# ::node	p	pink-04	8-9
+# ::node	f	freeze-01	9-10
+# ::node	c	cookie	10-11
+# ::node	a	and	11-12
+# ::node	d2	drink-01	12-13
+# ::node	d	drink	14-15
+# ::root	a	and
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	box	ARG1-of	open-01	b	o	
+# ::edge	hold-01	ARG1	box	h	b	
+# ::edge	cookie	ARG1-of	freeze-01	c	f	
+# ::edge	cookie	ARG1-of	pink-04	c	p	
+# ::edge	box	consist-of	cookie	b	c	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	and	op2	drink-01	a	d2	
+# ::edge	drink-01	ARG0	man	d2	m	
+# ::edge	drink-01	ARG1	drink	d2	d	
+(a / and
+    :op1 (h / hold-01
+        :ARG0 (m / man)
+        :ARG1 (b / box
+            :ARG1-of (o / open-01)
+            :consist-of (c / cookie
+                :ARG1-of (f / freeze-01)
+                :ARG1-of (p / pink-04))))
+    :op2 (d2 / drink-01
+        :ARG0 m
+        :ARG1 (d / drink)))

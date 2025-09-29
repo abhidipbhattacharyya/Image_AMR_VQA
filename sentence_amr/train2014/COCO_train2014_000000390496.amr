@@ -1,0 +1,22 @@
+# ::tok One passengers waits while another is getting onto the small plane .
+# ::node	p	passenger	1-2
+# ::node	p2	passenger	1-2
+# ::node	w	wait-01	2-3
+# ::node	a	another	4-5
+# ::node	g	get-05	6-7
+# ::node	s	small	9-10
+# ::node	p3	plane	10-11
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	passenger	w	p	
+# ::edge	passenger	mod	another	p2	a	
+# ::edge	wait-01	ARG2	get-05	w	g	
+# ::edge	get-05	ARG1	passenger	g	p2	
+# ::edge	plane	mod	small	p3	s	
+# ::edge	get-05	ARG2	plane	g	p3	
+(w / wait-01
+    :ARG1 (p / passenger)
+    :ARG2 (g / get-05
+        :ARG1 (p2 / passenger
+            :mod (a / another))
+        :ARG2 (p3 / plane
+            :mod (s / small))))

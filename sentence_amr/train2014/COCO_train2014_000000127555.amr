@@ -1,0 +1,25 @@
+# ::tok A rusted metal pole with different types of traffic signs mounted on it .
+# ::node	r	rust-01	1-2
+# ::node	m	metal	2-3
+# ::node	p	pole	3-4
+# ::node	d	differ-02	5-6
+# ::node	t2	type	6-7
+# ::node	t	traffic	8-9
+# ::node	s	sign	9-10
+# ::node	m2	mount-03	10-11
+# ::root	p	pole
+# ::edge	pole	consist-of	metal	p	m	
+# ::edge	pole	ARG1-of	rust-01	p	r	
+# ::edge	type	ARG1-of	differ-02	t2	d	
+# ::edge	sign	purpose	traffic	s	t	
+# ::edge	sign	mod	type	s	t2	
+# ::edge	mount-03	ARG1	sign	m2	s	
+# ::edge	pole	location-of	mount-03	p	m2	
+(p / pole
+    :ARG1-of (r / rust-01)
+    :consist-of (m / metal)
+    :location-of (m2 / mount-03
+        :ARG1 (s / sign
+            :purpose (t / traffic)
+            :mod (t2 / type
+                :ARG1-of (d / differ-02)))))

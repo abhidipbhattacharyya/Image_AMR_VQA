@@ -1,0 +1,46 @@
+# ::tok Two hot dogs in buns with toppings on a decorated plate , with a hand reaching for one of the hot dogs .
+# ::node	1	2	0-1
+# ::node	h2	hot-dog	2-3
+# ::node	2	B	4-5
+# ::node	c2	continent	6-7
+# ::node	n	name	6-7
+# ::node	3	Health	6-7
+# ::node	d	decorate-01	9-10
+# ::node	p	plate	10-11
+# ::node	h	hand	14-15
+# ::node	r	reach-03	15-16
+# ::node	0	1	17-18
+# ::node	i	include-91	18-19
+# ::node	h3	hot-dog	21-22
+# ::node	h4	hot-dog	21-22
+# ::node	c	cause-01	22-23
+# ::root	c	cause-01
+# ::edge	hot-dog	quant	2	h2	1	
+# ::edge	hot-dog	location	B	h2	2	
+# ::edge	hot-dog	mod	continent	h2	c2	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op2	Health	n	3	
+# ::edge	plate	ARG1-of	decorate-01	p	d	
+# ::edge	hot-dog	location	plate	h2	p	
+# ::edge	reach-03	ARG0	hand	r	h	
+# ::edge	hot-dog	ARG1-of	include-91	h3	i	
+# ::edge	hot-dog	quant	1	h3	0	
+# ::edge	reach-03	ARG2	hot-dog	r	h3	
+# ::edge	include-91	ARG2	hot-dog	i	h4	
+# ::edge	cause-01	ARG1	reach-03	c	r	
+# ::edge	cause-01	ARG0	hot-dog	c	h2	
+(c / cause-01
+    :ARG0 (h2 / hot-dog
+        :quant 2
+        :location B
+        :location (p / plate
+            :ARG1-of (d / decorate-01))
+        :mod (c2 / continent
+            :name (n / name
+                :op2 "Health")))
+    :ARG1 (r / reach-03
+        :ARG0 (h / hand)
+        :ARG2 (h3 / hot-dog
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (h4 / hot-dog)))))

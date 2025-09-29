@@ -1,0 +1,31 @@
+# ::tok A radio station broadcast room with a man and a woman seated at a table with microphones .
+# ::node	r	radio	1-2
+# ::node	s2	station	2-3
+# ::node	b	broadcast-01	3-4
+# ::node	r2	room	4-5
+# ::node	m	man	7-8
+# ::node	a	and	8-9
+# ::node	w	woman	10-11
+# ::node	s	seat-01	11-12
+# ::node	t	table	14-15
+# ::node	c	camera	16-17
+# ::root	r2	room
+# ::edge	station	mod	radio	s2	r	
+# ::edge	room	location-of	broadcast-01	r2	b	
+# ::edge	room	part-of	station	r2	s2	
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w	
+# ::edge	seat-01	ARG1	and	s	a	
+# ::edge	room	location-of	seat-01	r2	s	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	and	instrument	camera	a	c	
+(r2 / room
+    :location-of (b / broadcast-01)
+    :location-of (s / seat-01
+        :ARG1 (a / and
+            :instrument (c / camera)
+            :op1 (m / man)
+            :op2 (w / woman))
+        :ARG2 (t / table))
+    :part-of (s2 / station
+        :mod (r / radio)))

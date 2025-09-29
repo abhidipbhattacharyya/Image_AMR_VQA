@@ -1,0 +1,27 @@
+# ::tok An Amtrak train stopped at a station with people standing by it .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Amtrak	1-2
+# ::node	t	train	2-3
+# ::node	s3	stop-01	3-4
+# ::node	s2	station	6-7
+# ::node	p	person	8-9
+# ::node	s	stand-01	9-10
+# ::root	s3	stop-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Amtrak	n	0	
+# ::edge	train	mod	company	t	c	
+# ::edge	stop-01	ARG1	train	s3	t	
+# ::edge	stop-01	location	station	s3	s2	
+# ::edge	stand-01	ARG0	person	s	p	
+# ::edge	station	location-of	stand-01	s2	s	
+# ::edge	stand-01	ARG1	train	s	t	
+(s3 / stop-01
+    :ARG1 (t / train
+        :mod (c / company
+            :name (n / name
+                :op1 "Amtrak")))
+    :location (s2 / station
+        :location-of (s / stand-01
+            :ARG0 (p / person)
+            :ARG1 t)))

@@ -1,0 +1,38 @@
+# ::tok A man is showing a woman how to hold a controller for a video game while the video game is featured on a screen .
+# ::node	m	man	1-2
+# ::node	s2	show-01	3-4
+# ::node	w	woman	5-6
+# ::node	t	thing	6-7
+# ::node	h	hold-01	8-9
+# ::node	c	control-01	10-11
+# ::node	t2	thing	11-12
+# ::node	v	video	13-14
+# ::node	g	game	14-15
+# ::node	f	feature-01	20-21
+# ::node	s	screen	23-24
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	man	s2	m	
+# ::edge	show-01	ARG2	woman	s2	w	
+# ::edge	show-01	ARG1	thing	s2	t	
+# ::edge	thing	manner-of	hold-01	t	h	
+# ::edge	hold-01	ARG0	woman	h	w	
+# ::edge	thing	ARG0-of	control-01	t2	c	
+# ::edge	hold-01	ARG1	thing	h	t2	
+# ::edge	game	mod	video	g	v	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	feature-01	ARG1	game	f	g	
+# ::edge	show-01	time	feature-01	s2	f	
+# ::edge	feature-01	location	screen	f	s	
+(s2 / show-01
+    :ARG0 (m / man)
+    :ARG1 (t / thing
+        :manner-of (h / hold-01
+            :ARG0 (w / woman)
+            :ARG1 (t2 / thing
+                :ARG0-of (c / control-01
+                    :ARG1 (g / game
+                        :mod (v / video))))))
+    :ARG2 w
+    :time (f / feature-01
+        :ARG1 g
+        :location (s / screen)))

@@ -1,0 +1,39 @@
+# ::tok A young man crouches in front of an open refrigerator , as the light from inside the fridge lights up a section of the dark kitchen .
+# ::node	y	young	1-2
+# ::node	m	man	2-3
+# ::node	c	crouch-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	o	open-01	8-9
+# ::node	r	refrigerator	9-10
+# ::node	l	light	13-14
+# ::node	i2	inside	15-16
+# ::node	l2	light-04	18-19
+# ::node	s	section	21-22
+# ::node	d	dark-02	24-25
+# ::node	k	kitchen	25-26
+# ::root	c	crouch-01
+# ::edge	man	mod	young	m	y	
+# ::edge	crouch-01	ARG0	man	c	m	
+# ::edge	crouch-01	location	in-front-of	c	i	
+# ::edge	refrigerator	ARG1-of	open-01	r	o	
+# ::edge	in-front-of	op1	refrigerator	i	r	
+# ::edge	light	source	inside	l	i2	
+# ::edge	inside	op1	refrigerator	i2	r	
+# ::edge	light-04	ARG0	light	l2	l	
+# ::edge	crouch-01	time	light-04	c	l2	
+# ::edge	light-04	ARG1	section	l2	s	
+# ::edge	kitchen	ARG1-of	dark-02	k	d	
+# ::edge	section	part-of	kitchen	s	k	
+(c / crouch-01
+    :ARG0 (m / man
+        :mod (y / young))
+    :location (i / in-front-of
+        :op1 (r / refrigerator
+            :ARG1-of (o / open-01)))
+    :time (l2 / light-04
+        :ARG0 (l / light
+            :source (i2 / inside
+                :op1 r))
+        :ARG1 (s / section
+            :part-of (k / kitchen
+                :ARG1-of (d / dark-02)))))

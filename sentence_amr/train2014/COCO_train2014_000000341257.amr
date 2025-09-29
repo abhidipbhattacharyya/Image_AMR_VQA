@@ -1,0 +1,40 @@
+# ::tok A kitchen shelf with a blender and dishes is sitting above a stove with a yellow kettle on the rear burner .
+# ::node	k2	kitchen	1-2
+# ::node	s	shelf	2-3
+# ::node	h	have-03	3-4
+# ::node	b	blender	5-6
+# ::node	a2	and	6-7
+# ::node	d	dish	7-8
+# ::node	s2	sit-01	9-10
+# ::node	a	above	10-11
+# ::node	s3	stove	12-13
+# ::node	y	yellow-02	15-16
+# ::node	k	kettle	16-17
+# ::node	r	rear	19-20
+# ::node	b2	burner	20-21
+# ::root	s2	sit-01
+# ::edge	shelf	mod	kitchen	s	k2	
+# ::edge	shelf	ARG0-of	have-03	s	h	
+# ::edge	and	op1	blender	a2	b	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	dish	a2	d	
+# ::edge	sit-01	ARG1	shelf	s2	s	
+# ::edge	sit-01	ARG2	above	s2	a	
+# ::edge	above	op1	stove	a	s3	
+# ::edge	kettle	ARG1-of	yellow-02	k	y	
+# ::edge	and	op2	kettle	a2	k	
+# ::edge	burner	mod	rear	b2	r	
+# ::edge	kettle	location	burner	k	b2	
+(s2 / sit-01
+    :ARG1 (s / shelf
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (b / blender)
+                :op2 (d / dish)
+                :op2 (k / kettle
+                    :ARG1-of (y / yellow-02)
+                    :location (b2 / burner
+                        :mod (r / rear)))))
+        :mod (k2 / kitchen))
+    :ARG2 (a / above
+        :op1 (s3 / stove)))

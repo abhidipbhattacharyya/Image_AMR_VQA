@@ -1,0 +1,45 @@
+# ::tok The tip of a horses head can be seen and beyond that is a busy , little lane with cars and shops .
+# ::node	t	tip	1-2
+# ::node	h3	horse	4-5
+# ::node	h2	head	5-6
+# ::node	p	possible-01	6-7
+# ::node	s	see-01	8-9
+# ::node	a	and	9-10
+# ::node	b	beyond	10-11
+# ::node	b2	busy-02	14-15
+# ::node	l2	little	16-17
+# ::node	l	lane	17-18
+# ::node	h	have-03	18-19
+# ::node	c	car	19-20
+# ::node	a2	and	20-21
+# ::node	s2	shop	21-22
+# ::root	a	and
+# ::edge	head	part-of	horse	h2	h3	
+# ::edge	tip	part-of	head	t	h2	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	tip	s	t	
+# ::edge	and	op1	possible-01	a	p	
+# ::edge	beyond	op1	see-01	b	s	
+# ::edge	lane	mod	little	l	l2	
+# ::edge	lane	ARG1-of	busy-02	l	b2	
+# ::edge	lane	location	beyond	l	b	
+# ::edge	and	op2	lane	a	l	
+# ::edge	lane	ARG0-of	have-03	l	h	
+# ::edge	and	op1	car	a2	c	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	shop	a2	s2	
+(a / and
+    :op1 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG1 (t / tip
+                :part-of (h2 / head
+                    :part-of (h3 / horse)))))
+    :op2 (l / lane
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (c / car)
+                :op2 (s2 / shop)))
+        :ARG1-of (b2 / busy-02)
+        :location (b / beyond
+            :op1 s)
+        :mod (l2 / little)))

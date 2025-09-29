@@ -1,0 +1,31 @@
+# ::tok There is one slice of pizza on the tray and a woman sitting behind a sign .
+# ::node	0	1	2-3
+# ::node	s3	slice	3-4
+# ::node	p	pizza	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	t	tray	8-9
+# ::node	a	and	9-10
+# ::node	w	woman	11-12
+# ::node	s2	sit-01	12-13
+# ::node	b2	behind	13-14
+# ::node	s	sign	15-16
+# ::root	a	and
+# ::edge	slice	quant	1	s3	0	
+# ::edge	pizza	quant	slice	p	s3	
+# ::edge	be-located-at-91	ARG1	pizza	b	p	
+# ::edge	be-located-at-91	ARG2	tray	b	t	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	sit-01	ARG1	woman	s2	w	
+# ::edge	and	op2	sit-01	a	s2	
+# ::edge	sit-01	ARG2	behind	s2	b2	
+# ::edge	behind	op1	sign	b2	s	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (p / pizza
+            :quant (s3 / slice
+                :quant 1))
+        :ARG2 (t / tray))
+    :op2 (s2 / sit-01
+        :ARG1 (w / woman)
+        :ARG2 (b2 / behind
+            :op1 (s / sign))))

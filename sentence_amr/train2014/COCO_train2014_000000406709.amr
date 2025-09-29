@@ -1,0 +1,44 @@
+# ::tok Street sign telling dog owners to leash their pets from 6-8:30 am
+# ::node	s2	street	0-1
+# ::node	s	sign	1-2
+# ::node	t	tell-01	2-3
+# ::node	d4	dog	3-4
+# ::node	p	person	4-5
+# ::node	o	own-01	4-5
+# ::node	l	leash-01	6-7
+# ::node	p2	pet	8-9
+# ::node	d3	date-interval	10-11
+# ::node	d	date-entity	10-11
+# ::node	d2	date-entity	10-11
+# ::node	0	7:30	10-11
+# ::node	1	9:30	10-11
+# ::root	t	tell-01
+# ::edge	sign	location	street	s	s2	
+# ::edge	tell-01	ARG0	sign	t	s	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	dog	o	d4	
+# ::edge	leash-01	ARG0	person	l	p	
+# ::edge	tell-01	ARG1	leash-01	t	l	
+# ::edge	leash-01	ARG1	pet	l	p2	
+# ::edge	pet	poss	person	p2	p	
+# ::edge	leash-01	time	date-interval	l	d3	
+# ::edge	date-interval	op1	date-entity	d3	d	
+# ::edge	date-interval	op2	date-entity	d3	d2	
+# ::edge	date-entity	time	7:30	d	0	
+# ::edge	date-entity	time	9:30	d2	1	
+(t / tell-01
+    :ARG0 (s / sign
+        :location (s2 / street))
+    :ARG1 (l / leash-01
+        :ARG0 (p / person
+            :ARG0-of (o / own-01
+                :ARG1 (d4 / dog)))
+        :ARG1 (p2 / pet
+            :poss p)
+        :time (d3 / date-interval
+            :op1 (d / date-entity
+                :time "7:30")
+            :op2 (d2 / date-entity
+                :time "9:30")))
+    :ARG2 p)

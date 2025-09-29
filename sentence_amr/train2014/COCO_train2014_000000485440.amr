@@ -1,0 +1,26 @@
+# ::tok Several people sitting and walking on a crowded beach .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	sit-01	2-3
+# ::node	a	and	3-4
+# ::node	w	walk-01	4-5
+# ::node	c	crowd-01	7-8
+# ::node	b	beach	8-9
+# ::root	a	and
+# ::edge	person	quant	several	p	s	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	beach	ARG1-of	crowd-01	b	c	
+# ::edge	walk-01	ARG2	beach	w	b	
+# ::edge	sit-01	ARG2	beach	s2	b	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / person
+            :quant (s / several))
+        :ARG2 (b / beach
+            :ARG1-of (c / crowd-01)))
+    :op2 (w / walk-01
+        :ARG0 p
+        :ARG2 b))

@@ -1,0 +1,30 @@
+# ::tok Street signs showing that both cross street begin with the letter " S "
+# ::node	s3	street	0-1
+# ::node	s2	sign	1-2
+# ::node	s	show-01	2-3
+# ::node	b2	both	4-5
+# ::node	c	cross-02	5-6
+# ::node	s4	street	6-7
+# ::node	b	begin-01	7-8
+# ::node	s5	string-entity	9-10
+# ::node	0	S	12-13
+# ::root	s	show-01
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	cross-02	ARG0	both	c	b2	
+# ::edge	cross-02	ARG1	street	c	s4	
+# ::edge	begin-01	ARG1	sign	b	s2	
+# ::edge	show-01	ARG1	begin-01	s	b	
+# ::edge	begin-01	ARG2	string-entity	b	s5	
+# ::edge	string-entity	value	S	s5	0	
+# ::edge	show-01	rel	cross-02	s	c	
+(s / show-01
+    :ARG0 (s2 / sign
+        :mod (s3 / street))
+    :ARG1 (b / begin-01
+        :ARG1 s2
+        :ARG2 (s5 / string-entity
+            :value "S"))
+    :rel (c / cross-02
+        :ARG0 (b2 / both)
+        :ARG1 (s4 / street)))

@@ -1,0 +1,36 @@
+# ::tok A stop sign and no stopping or standing sign on a street at night .
+# ::node	s4	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	0	-	4-5
+# ::node	s5	stop-01	5-6
+# ::node	o	or	6-7
+# ::node	o2	or	6-7
+# ::node	s3	stand-01	7-8
+# ::node	s2	signal-07	8-9
+# ::node	s6	street	11-12
+# ::node	d	date-entity	13-14
+# ::node	n	night	13-14
+# ::root	o	or
+# ::edge	signal-07	ARG1	stop-01	s	s4	
+# ::edge	stop-01	polarity	-	s5	0	
+# ::edge	or	op1	signal-07	o	s	
+# ::edge	or	op1	stop-01	o2	s5	
+# ::edge	or	op2	stand-01	o2	s3	
+# ::edge	signal-07	ARG1	or	s2	o2	
+# ::edge	or	op2	signal-07	o	s2	
+# ::edge	or	location	street	o2	s6	
+# ::edge	stop-01	ARG1	street	s5	s6	
+# ::edge	signal-07	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(o / or
+    :op1 (s / signal-07
+        :ARG1 (s4 / stop-01))
+    :op2 (s2 / signal-07
+        :ARG1 (o2 / or
+            :location (s6 / street)
+            :op1 (s5 / stop-01
+                :ARG1 s6
+                :polarity -)
+            :op2 (s3 / stand-01))
+        :time (d / date-entity
+            :dayperiod (n / night))))

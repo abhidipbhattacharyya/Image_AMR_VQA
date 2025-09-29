@@ -1,0 +1,34 @@
+# ::tok Car approaching side of building with reflection in the window and parki meter on side of street .
+# ::node	c	car	0-1
+# ::node	a2	approach-01	1-2
+# ::node	s	side	2-3
+# ::node	b	building	4-5
+# ::node	r	reflect-01	6-7
+# ::node	w	window	9-10
+# ::node	a	and	10-11
+# ::node	p	parki	11-12
+# ::node	m	meter	12-13
+# ::node	s2	side	14-15
+# ::node	s3	street	16-17
+# ::root	a2	approach-01
+# ::edge	approach-01	ARG1	car	a2	c	
+# ::edge	approach-01	ARG2	side	a2	s	
+# ::edge	side	part-of	building	s	b	
+# ::edge	approach-01	ARG2-of	reflect-01	a2	r	
+# ::edge	and	op1	window	a	w	
+# ::edge	reflect-01	ARG1	and	r	a	
+# ::edge	meter	mod	parki	m	p	
+# ::edge	and	op2	meter	a	m	
+# ::edge	meter	location	side	m	s2	
+# ::edge	side	part-of	street	s2	s3	
+(a2 / approach-01
+    :ARG1 (c / car)
+    :ARG2 (s / side
+        :part-of (b / building))
+    :ARG2-of (r / reflect-01
+        :ARG1 (a / and
+            :op1 (w / window)
+            :op2 (m / meter
+                :location (s2 / side
+                    :part-of (s3 / street))
+                :mod (p / parki)))))

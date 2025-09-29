@@ -1,0 +1,43 @@
+# ::tok A sign welcomes visitors to Lake Kawaguchiko in English and in another language .
+# ::node	s	sign	1-2
+# ::node	w	welcome-01	2-3
+# ::node	p	person	3-4
+# ::node	v	visit-01	3-4
+# ::node	l	lake	5-6
+# ::node	n	name	5-6
+# ::node	2	Lake	5-6
+# ::node	1	Kawaguchiko	6-7
+# ::node	l2	language	8-9
+# ::node	n2	name	8-9
+# ::node	0	English	8-9
+# ::node	a	and	9-10
+# ::node	a2	another	11-12
+# ::node	l3	language	12-13
+# ::root	w	welcome-01
+# ::edge	welcome-01	ARG0	sign	w	s	
+# ::edge	welcome-01	ARG1	person	w	p	
+# ::edge	person	ARG0-of	visit-01	p	v	
+# ::edge	visit-01	ARG1	lake	v	l	
+# ::edge	lake	name	name	l	n	
+# ::edge	name	op1	Lake	n	2	
+# ::edge	name	op2	Kawaguchiko	n	1	
+# ::edge	language	name	name	l2	n2	
+# ::edge	name	op1	English	n2	0	
+# ::edge	and	op1	language	a	l2	
+# ::edge	welcome-01	medium	and	w	a	
+# ::edge	language	mod	another	l3	a2	
+# ::edge	and	op2	language	a	l3	
+(w / welcome-01
+    :ARG0 (s / sign)
+    :ARG1 (p / person
+        :ARG0-of (v / visit-01
+            :ARG1 (l / lake
+                :name (n / name
+                    :op1 "Lake"
+                    :op2 "Kawaguchiko"))))
+    :medium (a / and
+        :op1 (l2 / language
+            :name (n2 / name
+                :op1 "English"))
+        :op2 (l3 / language
+            :mod (a2 / another))))

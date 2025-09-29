@@ -1,0 +1,43 @@
+# ::tok A variety of fancy looking dishes on square plates , including some sort of coleslaw and some flat bread .
+# ::node	v	variety	1-2
+# ::node	f	fancy	3-4
+# ::node	l	look-02	4-5
+# ::node	d	dish	5-6
+# ::node	s4	square	7-8
+# ::node	p	plate	8-9
+# ::node	i	include-01	10-11
+# ::node	s	some	11-12
+# ::node	s3	sort	12-13
+# ::node	c	coleslaw	14-15
+# ::node	a	and	15-16
+# ::node	s2	some	16-17
+# ::node	f2	flat-06	17-18
+# ::node	b	bread	18-19
+# ::root	v	variety
+# ::edge	look-02	ARG1	fancy	l	f	
+# ::edge	dish	ARG0-of	look-02	d	l	
+# ::edge	variety	mod	dish	v	d	
+# ::edge	plate	mod	square	p	s4	
+# ::edge	dish	location	plate	d	p	
+# ::edge	dish	ARG2-of	include-01	d	i	
+# ::edge	sort	mod	some	s3	s	
+# ::edge	coleslaw	mod	sort	c	s3	
+# ::edge	and	op1	coleslaw	a	c	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	bread	ARG1-of	flat-06	b	f2	
+# ::edge	bread	mod	some	b	s2	
+# ::edge	and	op2	bread	a	b	
+(v / variety
+    :mod (d / dish
+        :ARG0-of (l / look-02
+            :ARG1 (f / fancy))
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (c / coleslaw
+                    :mod (s3 / sort
+                        :mod (s / some)))
+                :op2 (b / bread
+                    :ARG1-of (f2 / flat-06)
+                    :mod (s2 / some))))
+        :location (p / plate
+            :mod (s4 / square))))

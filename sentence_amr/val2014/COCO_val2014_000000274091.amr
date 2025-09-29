@@ -1,0 +1,37 @@
+# ::tok A street with brick lined buildings , British flags and a clock tower .
+# ::node	s	street	1-2
+# ::node	h	have-03	2-3
+# ::node	b	brick	3-4
+# ::node	l	line-01	4-5
+# ::node	b2	building	5-6
+# ::node	c2	country	7-8
+# ::node	n	name	7-8
+# ::node	0	Britain	7-8
+# ::node	f	flag	8-9
+# ::node	a	and	9-10
+# ::node	c	clock	11-12
+# ::node	t	tower	12-13
+# ::root	s	street
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	line-01	ARG2	brick	l	b	
+# ::edge	building	ARG1-of	line-01	b2	l	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Britain	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	and	op2	flag	a	f	
+# ::edge	and	op1	building	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	and	op3	tower	a	t	
+(s / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b2 / building
+                :ARG1-of (l / line-01
+                    :ARG2 (b / brick)))
+            :op2 (f / flag
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "Britain")))
+            :op3 (t / tower
+                :mod (c / clock)))))

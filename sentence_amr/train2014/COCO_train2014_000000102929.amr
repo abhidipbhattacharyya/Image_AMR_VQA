@@ -1,0 +1,31 @@
+# ::tok Berries , milk , and other ingredients are being blended in a blender .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	n2	newspaper	0-1
+# ::node	0	Berries	0-1
+# ::node	m	milk	2-3
+# ::node	a	and	4-5
+# ::node	o	other	5-6
+# ::node	i	ingredient	6-7
+# ::node	b	blend-01	9-10
+# ::node	b2	blender	12-13
+# ::root	b	blend-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Berries	n	0	
+# ::edge	and	op2	milk	a	m	
+# ::edge	and	op1	country	a	c	
+# ::edge	ingredient	mod	other	i	o	
+# ::edge	and	op3	ingredient	a	i	
+# ::edge	blend-01	ARG1	and	b	a	
+# ::edge	blend-01	instrument	blender	b	b2	
+# ::edge	blend-01	rel	newspaper	b	n2	
+(b / blend-01
+    :ARG1 (a / and
+        :op1 (c / country
+            :name (n / name
+                :op1 "Berries"))
+        :op2 (m / milk)
+        :op3 (i / ingredient
+            :mod (o / other)))
+    :instrument (b2 / blender)
+    :rel (n2 / newspaper))

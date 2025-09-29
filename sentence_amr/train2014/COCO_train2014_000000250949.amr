@@ -1,0 +1,25 @@
+# ::tok A man moves a cart of fresh bananas at an outdoor produce market .
+# ::node	m	man	1-2
+# ::node	m3	move-01	2-3
+# ::node	c	cart	4-5
+# ::node	f	fresh-04	6-7
+# ::node	b	banana	7-8
+# ::node	o	outdoor	10-11
+# ::node	p	produce	11-12
+# ::node	m2	market	12-13
+# ::root	m3	move-01
+# ::edge	move-01	ARG0	man	m3	m	
+# ::edge	move-01	ARG1	cart	m3	c	
+# ::edge	banana	ARG1-of	fresh-04	b	f	
+# ::edge	cart	consist-of	banana	c	b	
+# ::edge	market	mod	produce	m2	p	
+# ::edge	market	location	outdoor	m2	o	
+# ::edge	move-01	location	market	m3	m2	
+(m3 / move-01
+    :ARG0 (m / man)
+    :ARG1 (c / cart
+        :consist-of (b / banana
+            :ARG1-of (f / fresh-04)))
+    :location (m2 / market
+        :location (o / outdoor)
+        :mod (p / produce)))

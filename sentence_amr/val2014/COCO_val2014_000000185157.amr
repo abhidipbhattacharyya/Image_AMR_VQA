@@ -1,0 +1,22 @@
+# ::tok A sign that might read parking here where bicycles are parked .
+# ::node	s	sign	1-2
+# ::node	p3	possible-01	3-4
+# ::node	r	read-01	4-5
+# ::node	p	park-01	5-6
+# ::node	h	here	6-7
+# ::node	b	bicycle	8-9
+# ::node	p2	park-01	10-11
+# ::root	s	sign
+# ::edge	read-01	ARG1-of	possible-01	r	p3	
+# ::edge	sign	ARG0-of	read-01	s	r	
+# ::edge	read-01	ARG1	park-01	r	p	
+# ::edge	park-01	location	here	p	h	
+# ::edge	park-01	ARG1	bicycle	p2	b	
+# ::edge	here	location-of	park-01	h	p2	
+(s / sign
+    :ARG0-of (r / read-01
+        :ARG1 (p / park-01
+            :location (h / here
+                :location-of (p2 / park-01
+                    :ARG1 (b / bicycle))))
+        :ARG1-of (p3 / possible-01)))

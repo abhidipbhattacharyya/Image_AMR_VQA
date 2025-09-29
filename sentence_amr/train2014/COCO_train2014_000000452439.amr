@@ -1,0 +1,25 @@
+# ::tok A small boat in a body of water with lights on in the night .
+# ::node	s	small	1-2
+# ::node	b	boat	2-3
+# ::node	b2	body	5-6
+# ::node	w	water	7-8
+# ::node	l	light	9-10
+# ::node	o	on-01	10-11
+# ::node	d	date-entity	13-14
+# ::node	n	night	13-14
+# ::root	b	boat
+# ::edge	boat	mod	small	b	s	
+# ::edge	boat	location	body	b	b2	
+# ::edge	body	consist-of	water	b2	w	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	boat	ARG0-of	on-01	b	o	
+# ::edge	on-01	time	date-entity	o	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(b / boat
+    :ARG0-of (o / on-01
+        :ARG1 (l / light)
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :location (b2 / body
+        :consist-of (w / water))
+    :mod (s / small))

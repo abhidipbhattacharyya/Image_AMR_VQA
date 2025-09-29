@@ -1,0 +1,37 @@
+# ::tok A train on top of an overpass bridge set of train tracks with fields on both side .
+# ::node	t3	train	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	t	top	3-4
+# ::node	o	overpass	6-7
+# ::node	b3	bridge	7-8
+# ::node	s	set	8-9
+# ::node	t4	train	10-11
+# ::node	t2	track	11-12
+# ::node	h	have-03	12-13
+# ::node	f	field	13-14
+# ::node	b2	both	15-16
+# ::node	s2	side	16-17
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	train	b	t3	
+# ::edge	be-located-at-91	ARG2	top	b	t	
+# ::edge	bridge	mod	overpass	b3	o	
+# ::edge	top	part-of	bridge	t	b3	
+# ::edge	train	consist-of	set	t3	s	
+# ::edge	track	mod	train	t2	t4	
+# ::edge	set	consist-of	track	s	t2	
+# ::edge	set	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	field	h	f	
+# ::edge	side	mod	both	s2	b2	
+# ::edge	field	location	side	f	s2	
+(b / be-located-at-91
+    :ARG1 (t3 / train
+        :consist-of (s / set
+            :ARG0-of (h / have-03
+                :ARG1 (f / field
+                    :location (s2 / side
+                        :mod (b2 / both))))
+            :consist-of (t2 / track
+                :mod (t4 / train))))
+    :ARG2 (t / top
+        :part-of (b3 / bridge
+            :mod (o / overpass))))

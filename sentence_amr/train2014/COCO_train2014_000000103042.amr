@@ -1,0 +1,40 @@
+# ::tok An adult zebra faces the opposite way of a young zebra while they stand close in grass .
+# ::node	a	adult	1-2
+# ::node	z	zebra	2-3
+# ::node	f	face-01	3-4
+# ::node	f2	face-01	3-4
+# ::node	o	opposite-01	5-6
+# ::node	w	way	6-7
+# ::node	y	young	9-10
+# ::node	z2	zebra	10-11
+# ::node	s	stand-01	13-14
+# ::node	c	close-10	14-15
+# ::node	g	grass	16-17
+# ::root	f	face-01
+# ::edge	zebra	mod	adult	z	a	
+# ::edge	face-01	ARG0	zebra	f	z	
+# ::edge	way	ARG1-of	opposite-01	w	o	
+# ::edge	way	ARG0-of	face-01	w	f2	
+# ::edge	face-01	ARG1	way	f	w	
+# ::edge	zebra	mod	young	z2	y	
+# ::edge	face-01	ARG0	zebra	f2	z2	
+# ::edge	stand-01	ARG1	zebra	s	z2	
+# ::edge	face-01	time	stand-01	f	s	
+# ::edge	stand-01	ARG2	close-10	s	c	
+# ::edge	close-10	ARG1	zebra	c	z2	
+# ::edge	close-10	ARG2	zebra	c	z	
+# ::edge	close-10	ARG2	grass	c	g	
+(f / face-01
+    :ARG0 (z / zebra
+        :mod (a / adult))
+    :ARG1 (w / way
+        :ARG0-of (f2 / face-01
+            :ARG0 (z2 / zebra
+                :mod (y / young)))
+        :ARG1-of (o / opposite-01))
+    :time (s / stand-01
+        :ARG1 z2
+        :ARG2 (c / close-10
+            :ARG1 z2
+            :ARG2 z
+            :ARG2 (g / grass))))

@@ -1,0 +1,51 @@
+# ::tok An unusual bull - like animal with a hump on
+# ::node	0	-	0-1
+# ::node	u	usual	1-2
+# ::node	b	bull	2-3
+# ::node	r	resemble-01	4-5
+# ::node	a	animal	5-6
+# ::node	h	have-03	6-7
+# ::node	h2	hump	8-9
+# ::root	a	animal
+# ::edge	usual	polarity	-	u	0	
+# ::edge	resemble-01	ARG2	bull	r	b	
+# ::edge	animal	ARG1-of	resemble-01	a	r	
+# ::edge	animal	mod	usual	a	u	
+# ::edge	animal	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	hump	h	h2	
+(a / animal
+    :ARG0-of (h / have-03
+        :ARG1 (h2 / hump))
+    :ARG1-of (r / resemble-01
+        :ARG2 (b / bull))
+    :mod (u / usual
+        :polarity -))
+
+
+# ::tok it 's back stands on top of a red brick paved sidewalk .
+# ::node	i	it	0-1
+# ::node	b	back	2-3
+# ::node	s2	stand-01	3-4
+# ::node	t	top	5-6
+# ::node	r	red-02	8-9
+# ::node	b2	brick	9-10
+# ::node	p	pave-01	10-11
+# ::node	s	sidewalk	11-12
+# ::root	s2	stand-01
+# ::edge	it	part	back	i	b	
+# ::edge	stand-01	ARG1	back	s2	b	
+# ::edge	stand-01	ARG2	top	s2	t	
+# ::edge	brick	ARG1-of	red-02	b2	r	
+# ::edge	pave-01	ARG2	brick	p	b2	
+# ::edge	sidewalk	ARG1-of	pave-01	s	p	
+# ::edge	top	part-of	sidewalk	t	s	
+# ::edge	stand-01	rel	it	s2	i	
+(s2 / stand-01
+    :ARG1 (b / back)
+    :ARG2 (t / top
+        :part-of (s / sidewalk
+            :ARG1-of (p / pave-01
+                :ARG2 (b2 / brick
+                    :ARG1-of (r / red-02)))))
+    :rel (i / it
+        :part b))

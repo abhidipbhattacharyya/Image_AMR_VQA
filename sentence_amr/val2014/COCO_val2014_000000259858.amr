@@ -1,0 +1,28 @@
+# ::tok All of the sheep but one in the mucky area are staring for a photo .
+# ::node	a	all	0-1
+# ::node	s	sheep	3-4
+# ::node	s2	sheep	3-4
+# ::node	e	except-01	4-5
+# ::node	0	1	5-6
+# ::node	m	mucky	8-9
+# ::node	a2	area	9-10
+# ::node	s3	stare-01	11-12
+# ::node	p	photo	14-15
+# ::root	s3	stare-01
+# ::edge	sheep	mod	all	s	a	
+# ::edge	except-01	ARG1	sheep	e	s2	
+# ::edge	sheep	ARG2-of	except-01	s	e	
+# ::edge	sheep	quant	1	s2	0	
+# ::edge	area	mod	mucky	a2	m	
+# ::edge	sheep	location	area	s2	a2	
+# ::edge	stare-01	ARG0	sheep	s3	s	
+# ::edge	stare-01	purpose	photo	s3	p	
+(s3 / stare-01
+    :purpose (p / photo)
+    :ARG0 (s / sheep
+        :ARG2-of (e / except-01
+            :ARG1 (s2 / sheep
+                :quant 1
+                :location (a2 / area
+                    :mod (m / mucky))))
+        :mod (a / all)))

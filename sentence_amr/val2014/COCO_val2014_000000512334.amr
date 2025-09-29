@@ -1,0 +1,26 @@
+# ::tok Airplane at airport terminal getting ready to arrive or depart .
+# ::node	a	airplane	0-1
+# ::node	a2	airport	2-3
+# ::node	t	terminal	3-4
+# ::node	r	ready-01	5-6
+# ::node	a3	arrive-01	7-8
+# ::node	o	or	8-9
+# ::node	d	depart-01	9-10
+# ::root	r	ready-01
+# ::edge	terminal	mod	airport	t	a2	
+# ::edge	airplane	location	terminal	a	t	
+# ::edge	ready-01	ARG1	airplane	r	a	
+# ::edge	arrive-01	ARG1	airplane	a3	a	
+# ::edge	or	op1	arrive-01	o	a3	
+# ::edge	ready-01	ARG2	or	r	o	
+# ::edge	or	op2	depart-01	o	d	
+# ::edge	depart-01	ARG0	airplane	d	a	
+(r / ready-01
+    :ARG1 (a / airplane
+        :location (t / terminal
+            :mod (a2 / airport)))
+    :ARG2 (o / or
+        :op1 (a3 / arrive-01
+            :ARG1 a)
+        :op2 (d / depart-01
+            :ARG0 a)))

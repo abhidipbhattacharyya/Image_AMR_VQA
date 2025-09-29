@@ -1,0 +1,27 @@
+# ::tok A polar bear gnaws on a block of ice with fish frozen in it .
+# ::node	p	pole	1-2
+# ::node	b	bear	2-3
+# ::node	c	chew-01	3-4
+# ::node	b2	block	6-7
+# ::node	i	ice	8-9
+# ::node	h	have-03	9-10
+# ::node	f	fish	10-11
+# ::node	f2	freeze-01	11-12
+# ::root	c	chew-01
+# ::edge	bear	mod	pole	b	p	
+# ::edge	chew-01	ARG0	bear	c	b	
+# ::edge	chew-01	ARG1	block	c	b2	
+# ::edge	block	consist-of	ice	b2	i	
+# ::edge	ice	ARG0-of	have-03	i	h	
+# ::edge	have-03	ARG1	fish	h	f	
+# ::edge	fish	ARG1-of	freeze-01	f	f2	
+# ::edge	freeze-01	location	block	f2	b2	
+(c / chew-01
+    :ARG0 (b / bear
+        :mod (p / pole))
+    :ARG1 (b2 / block
+        :consist-of (i / ice
+            :ARG0-of (h / have-03
+                :ARG1 (f / fish
+                    :ARG1-of (f2 / freeze-01
+                        :location b2))))))

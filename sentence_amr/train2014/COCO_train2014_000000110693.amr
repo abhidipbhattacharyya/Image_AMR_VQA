@@ -1,0 +1,33 @@
+# ::tok On a court shared with a basketball hoop , a tennis player runs to return the ball .
+# ::node	c	court	2-3
+# ::node	s	share-01	3-4
+# ::node	b2	basketball	6-7
+# ::node	h	hoop	7-8
+# ::node	t	tennis	10-11
+# ::node	p	person	11-12
+# ::node	p2	play-01	11-12
+# ::node	r2	run-02	12-13
+# ::node	r	return-02	14-15
+# ::node	b	ball	16-17
+# ::root	r2	run-02
+# ::edge	court	ARG1-of	share-01	c	s	
+# ::edge	hoop	mod	basketball	h	b2	
+# ::edge	share-01	ARG2	hoop	s	h	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	run-02	ARG0	person	r2	p	
+# ::edge	run-02	location	court	r2	c	
+# ::edge	run-02	purpose	return-02	r2	r	
+# ::edge	return-02	ARG0	person	r	p	
+# ::edge	return-02	ARG1	ball	r	b	
+(r2 / run-02
+    :purpose (r / return-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis)))
+        :ARG1 (b / ball))
+    :ARG0 p
+    :location (c / court
+        :ARG1-of (s / share-01
+            :ARG2 (h / hoop
+                :mod (b2 / basketball)))))

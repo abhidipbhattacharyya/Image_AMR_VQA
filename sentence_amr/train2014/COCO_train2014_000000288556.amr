@@ -1,0 +1,48 @@
+# ::tok Grill cheese triangles and a cup of tomato soup on a white plate .
+# ::node	c2	cook-01	0-1
+# ::node	y	you	0-1
+# ::node	1	imperative	0-1
+# ::node	c	cheese	1-2
+# ::node	m	mountain	2-3
+# ::node	n	name	2-3
+# ::node	m2	mountain	2-3
+# ::node	a	and	3-4
+# ::node	v	volume-quantity	4-5
+# ::node	0	1	4-5
+# ::node	c3	cup	5-6
+# ::node	t	tomato	7-8
+# ::node	s	soup	8-9
+# ::node	w	white-03	11-12
+# ::node	p	plate	12-13
+# ::root	c2	cook-01
+# ::edge	cook-01	ARG0	you	c2	y	
+# ::edge	cook-01	mode	imperative	c2	1	
+# ::edge	mountain	consist-of	cheese	m	c	
+# ::edge	mountain	name	name	m	n	
+# ::edge	mountain	name	name	m2	n	
+# ::edge	and	op2	mountain	a	m2	
+# ::edge	and	op1	mountain	a	m	
+# ::edge	cook-01	ARG1	and	c2	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	soup	mod	tomato	s	t	
+# ::edge	soup	quant	volume-quantity	s	v	
+# ::edge	and	op3	soup	a	s	
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	cook-01	location	plate	c2	p	
+(c2 / cook-01
+    :ARG0 (y / you)
+    :ARG1 (a / and
+        :op1 (m / mountain
+            :name (n / name)
+            :consist-of (c / cheese))
+        :op2 (m2 / mountain
+            :name n)
+        :op3 (s / soup
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c3 / cup))
+            :mod (t / tomato)))
+    :location (p / plate
+        :ARG1-of (w / white-03))
+    :mode imperative)

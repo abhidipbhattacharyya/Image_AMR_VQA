@@ -1,0 +1,37 @@
+# ::tok A waterway with a boat stationed in front of a small bridge and a large building and clock tower int he background .
+# ::node	w	waterway	1-2
+# ::node	b2	boat	4-5
+# ::node	s2	station-01	5-6
+# ::node	i	in-front-of	7-8
+# ::node	s	small	10-11
+# ::node	b3	bridge	11-12
+# ::node	l	large	14-15
+# ::node	b4	building	15-16
+# ::node	a	and	16-17
+# ::node	c	clock	17-18
+# ::node	t	tower	18-19
+# ::node	b	background	21-22
+# ::root	w	waterway
+# ::edge	station-01	ARG1	boat	s2	b2	
+# ::edge	waterway	location-of	station-01	w	s2	
+# ::edge	station-01	ARG2	in-front-of	s2	i	
+# ::edge	bridge	mod	small	b3	s	
+# ::edge	building	mod	large	b4	l	
+# ::edge	and	op2	building	a	b4	
+# ::edge	and	op1	bridge	a	b3	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	and	op3	tower	a	t	
+# ::edge	and	location	background	a	b	
+(w / waterway
+    :location-of (s2 / station-01
+        :ARG1 (b2 / boat)
+        :ARG2 (i / in-front-of
+            :op1 (a / and
+                :location (b / background)
+                :op1 (b3 / bridge
+                    :mod (s / small))
+                :op2 (b4 / building
+                    :mod (l / large))
+                :op3 (t / tower
+                    :mod (c / clock))))))

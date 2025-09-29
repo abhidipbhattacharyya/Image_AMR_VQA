@@ -1,0 +1,42 @@
+# ::tok A man with a goatee having a pizza with mushrooms and a glass of red wine .
+# ::node	m	man	1-2
+# ::node	h	have-03	2-3
+# ::node	g2	goatee	4-5
+# ::node	h3	have-06	5-6
+# ::node	p	pizza	7-8
+# ::node	h2	have-03	8-9
+# ::node	m2	mushroom	9-10
+# ::node	a	and	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	r	red-02	14-15
+# ::node	w	wine	15-16
+# ::root	h3	have-06
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	have-03	ARG1	goatee	h	g2	
+# ::edge	have-06	ARG0	man	h3	m	
+# ::edge	have-03	ARG1	pizza	h2	p	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	pizza	accompanier	mushroom	p	m2	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	have-06	ARG1	and	h3	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	ARG1-of	red-02	w	r	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op2	wine	a	w	
+(h3 / have-06
+    :ARG0 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (g2 / goatee))
+        :ARG0-of (h2 / have-03
+            :ARG1 (p / pizza
+                :accompanier (m2 / mushroom))))
+    :ARG1 (a / and
+        :op1 p
+        :op2 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :ARG1-of (r / red-02))))

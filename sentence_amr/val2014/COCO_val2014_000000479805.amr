@@ -1,0 +1,34 @@
+# ::tok Traffic lights , one green and one two red at an intersection with cars .
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	l2	light	1-2
+# ::node	l3	light	1-2
+# ::node	0	1	3-4
+# ::node	g	green-02	4-5
+# ::node	a	and	5-6
+# ::node	1	2	7-8
+# ::node	r	red-02	8-9
+# ::node	i	intersect-01	11-12
+# ::node	c	car	13-14
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	1	l2	0	
+# ::edge	light	ARG1-of	green-02	l2	g	
+# ::edge	and	op2	light	a	l3	
+# ::edge	and	op1	light	a	l	
+# ::edge	light	quant	2	l3	1	
+# ::edge	light	ARG1-of	red-02	l3	r	
+# ::edge	and	location	intersect-01	a	i	
+# ::edge	intersect-01	ARG1	car	i	c	
+# ::edge	and	rel	light	a	l2	
+(a / and
+    :location (i / intersect-01
+        :ARG1 (c / car))
+    :op1 (l / light
+        :mod (t / traffic))
+    :op2 (l3 / light
+        :quant 2
+        :ARG1-of (r / red-02))
+    :rel (l2 / light
+        :quant 1
+        :ARG1-of (g / green-02)))

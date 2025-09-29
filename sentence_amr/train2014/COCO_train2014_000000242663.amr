@@ -1,0 +1,22 @@
+# ::tok A stop and go light at an intersection that shows a green light .
+# ::node	s2	stop-01	1-2
+# ::node	g	go-01	3-4
+# ::node	l	light	4-5
+# ::node	i	intersect-01	7-8
+# ::node	s	show-01	9-10
+# ::node	g2	green-02	11-12
+# ::node	l2	light	12-13
+# ::root	l	light
+# ::edge	light	mod	go-01	l	g	
+# ::edge	light	mod	stop-01	l	s2	
+# ::edge	light	location	intersect-01	l	i	
+# ::edge	light	ARG0-of	show-01	l	s	
+# ::edge	light	ARG1-of	green-02	l2	g2	
+# ::edge	show-01	ARG1	light	s	l2	
+(l / light
+    :ARG0-of (s / show-01
+        :ARG1 (l2 / light
+            :ARG1-of (g2 / green-02)))
+    :location (i / intersect-01)
+    :mod (g / go-01)
+    :mod (s2 / stop-01))

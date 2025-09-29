@@ -1,0 +1,42 @@
+# ::tok A baseball player takes his stance in preparation for a pitch while the catcher and the umpire wait , too .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p5	play-01	2-3
+# ::node	s	stand-11	5-6
+# ::node	p6	prepare-02	7-8
+# ::node	p4	pitch	10-11
+# ::node	p2	person	13-14
+# ::node	c	catch-01	13-14
+# ::node	a	and	14-15
+# ::node	p3	person	16-17
+# ::node	u	umpire-01	16-17
+# ::node	w	wait-01	17-18
+# ::node	t	too	19-20
+# ::root	s	stand-11
+# ::edge	person	ARG0-of	play-01	p	p5	
+# ::edge	play-01	ARG1	baseball	p5	b	
+# ::edge	stand-11	ARG0	person	s	p	
+# ::edge	stand-11	purpose	prepare-02	s	p6	
+# ::edge	prepare-02	ARG0	person	p6	p	
+# ::edge	prepare-02	ARG2	pitch	p6	p4	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	and	op1	person	a	p2	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+# ::edge	wait-01	ARG1	and	w	a	
+# ::edge	stand-11	time	wait-01	s	w	
+# ::edge	wait-01	mod	too	w	t	
+(s / stand-11
+    :purpose (p6 / prepare-02
+        :ARG0 (p / person
+            :ARG0-of (p5 / play-01
+                :ARG1 (b / baseball)))
+        :ARG2 (p4 / pitch))
+    :ARG0 p
+    :time (w / wait-01
+        :ARG1 (a / and
+            :op1 (p2 / person
+                :ARG0-of (c / catch-01))
+            :op2 (p3 / person
+                :ARG0-of (u / umpire-01)))
+        :mod (t / too)))

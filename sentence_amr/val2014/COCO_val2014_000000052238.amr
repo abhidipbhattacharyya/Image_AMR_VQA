@@ -1,0 +1,27 @@
+# ::tok Woman walking on train platform as train filled with passengers prepares to leave .
+# ::node	w2	woman	0-1
+# ::node	w	walk-01	1-2
+# ::node	p2	platform	4-5
+# ::node	t	train	6-7
+# ::node	f	fill-01	7-8
+# ::node	p	passenger	9-10
+# ::node	p3	prepare-02	10-11
+# ::node	l	leave-11	12-13
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	woman	w	w2	
+# ::edge	walk-01	ARG2	platform	w	p2	
+# ::edge	train	ARG1-of	fill-01	t	f	
+# ::edge	fill-01	ARG2	passenger	f	p	
+# ::edge	prepare-02	ARG0	train	p3	t	
+# ::edge	walk-01	time	prepare-02	w	p3	
+# ::edge	prepare-02	ARG2	leave-11	p3	l	
+# ::edge	leave-11	ARG0	train	l	t	
+(w / walk-01
+    :ARG0 (w2 / woman)
+    :ARG2 (p2 / platform)
+    :time (p3 / prepare-02
+        :ARG0 (t / train
+            :ARG1-of (f / fill-01
+                :ARG2 (p / passenger)))
+        :ARG2 (l / leave-11
+            :ARG0 t)))

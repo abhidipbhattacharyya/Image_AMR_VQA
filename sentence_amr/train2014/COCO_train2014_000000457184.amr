@@ -1,0 +1,37 @@
+# ::tok Hundreds of birds are flying in the bright blue sky above a circus tent in a theme park .
+# ::node	m	multiple	0-1
+# ::node	0	100	0-1
+# ::node	b	bird	2-3
+# ::node	f	fly-01	4-5
+# ::node	b3	bright-02	7-8
+# ::node	b2	blue	8-9
+# ::node	s	sky	9-10
+# ::node	a	above	10-11
+# ::node	c	circus	12-13
+# ::node	t	tent	13-14
+# ::node	t2	theme	16-17
+# ::node	p	park	17-18
+# ::root	f	fly-01
+# ::edge	multiple	op1	100	m	0	
+# ::edge	bird	quant	multiple	b	m	
+# ::edge	fly-01	ARG1	bird	f	b	
+# ::edge	sky	mod	blue	s	b2	
+# ::edge	sky	ARG1-of	bright-02	s	b3	
+# ::edge	fly-01	direction	sky	f	s	
+# ::edge	sky	location	above	s	a	
+# ::edge	tent	mod	circus	t	c	
+# ::edge	above	op1	tent	a	t	
+# ::edge	park	mod	theme	p	t2	
+# ::edge	tent	location	park	t	p	
+(f / fly-01
+    :ARG1 (b / bird
+        :quant (m / multiple
+            :op1 100))
+    :direction (s / sky
+        :ARG1-of (b3 / bright-02)
+        :location (a / above
+            :op1 (t / tent
+                :location (p / park
+                    :mod (t2 / theme))
+                :mod (c / circus)))
+        :mod (b2 / blue)))

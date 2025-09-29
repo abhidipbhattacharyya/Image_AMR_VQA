@@ -1,0 +1,32 @@
+# ::tok Commercial planes of all shapes and sizes landing and taking off at the airport
+# ::node	c	commerce	0-1
+# ::node	p	plane	1-2
+# ::node	a2	all	3-4
+# ::node	s	shape-01	4-5
+# ::node	s2	size	6-7
+# ::node	l	land-01	7-8
+# ::node	a3	and	8-9
+# ::node	t	take-off-19	9-10
+# ::node	a	airport	13-14
+# ::root	a3	and
+# ::edge	plane	mod	commerce	p	c	
+# ::edge	plane	ARG1-of	shape-01	p	s	
+# ::edge	size	mod	all	s2	a2	
+# ::edge	plane	mod	size	p	s2	
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	and	op1	land-01	a3	l	
+# ::edge	and	op2	take-off-19	a3	t	
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	take-off-19	location	airport	t	a	
+# ::edge	land-01	location	airport	l	a	
+(a3 / and
+    :op1 (l / land-01
+        :ARG1 (p / plane
+            :ARG1-of (s / shape-01)
+            :mod (c / commerce)
+            :mod (s2 / size
+                :mod (a2 / all)))
+        :location (a / airport))
+    :op2 (t / take-off-19
+        :ARG1 p
+        :location a))

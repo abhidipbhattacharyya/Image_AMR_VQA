@@ -1,0 +1,33 @@
+# ::tok A airport runway with a large plane and cars parked on one side .
+# ::node	a	airport	1-2
+# ::node	r	runway	2-3
+# ::node	h	have-03	3-4
+# ::node	l	large	5-6
+# ::node	p2	plane	6-7
+# ::node	a2	and	7-8
+# ::node	c	car	8-9
+# ::node	p	park-01	9-10
+# ::node	0	1	11-12
+# ::node	s	side	12-13
+# ::root	r	runway
+# ::edge	runway	mod	airport	r	a	
+# ::edge	runway	ARG0-of	have-03	r	h	
+# ::edge	plane	mod	large	p2	l	
+# ::edge	and	op1	plane	a2	p2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	car	a2	c	
+# ::edge	car	mod	large	c	l	
+# ::edge	and	ARG1-of	park-01	a2	p	
+# ::edge	side	quant	1	s	0	
+# ::edge	park-01	location	side	p	s	
+(r / runway
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :ARG1-of (p / park-01
+                :location (s / side
+                    :quant 1))
+            :op1 (p2 / plane
+                :mod (l / large))
+            :op2 (c / car
+                :mod l)))
+    :mod (a / airport))

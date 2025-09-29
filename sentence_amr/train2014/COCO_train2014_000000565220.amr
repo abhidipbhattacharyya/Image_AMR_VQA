@@ -1,0 +1,36 @@
+# ::tok A meal of two sausages on bread with onion , mustard , and other toppings .
+# ::node	m	meal	1-2
+# ::node	0	2	3-4
+# ::node	m2	meat	4-5
+# ::node	a	Saudi	4-5
+# ::node	b	bread	6-7
+# ::node	o	onion	8-9
+# ::node	a2	and	9-10
+# ::node	m3	mustard	10-11
+# ::node	o2	other	13-14
+# ::node	s	sunday	14-15
+# ::node	t	thing	15-16
+# ::root	m	meal
+# ::edge	meat	quant	2	m2	0	
+# ::edge	meal	consist-of	meat	m	m2	
+# ::edge	bread	consist-of	meat	b	m2	
+# ::edge	meat	consist-of	bread	m2	b	
+# ::edge	and	op1	onion	a2	o	
+# ::edge	Saudi	accompanier	and	a	a2	
+# ::edge	and	op2	mustard	a2	m3	
+# ::edge	thing	mod	other	t	o2	
+# ::edge	and	op3	thing	a2	t	
+# ::edge	meal	rel	Saudi	m	a	
+# ::edge	meal	rel	sunday	m	s	
+(m / meal
+    :consist-of (m2 / meat
+        :quant 2
+        :consist-of (b / bread
+            :consist-of m2))
+    :rel (a / Saudi
+        :accompanier (a2 / and
+            :op1 (o / onion)
+            :op2 (m3 / mustard)
+            :op3 (t / thing
+                :mod (o2 / other))))
+    :rel (s / sunday))

@@ -1,0 +1,88 @@
+# ::tok Visible through a windshield : in the distance , sidewalks , lined with snow , utility poles , retail outposts , and a few approaching vehicles , in the foreground , a crosswalk with a turning truck at one side and two large vehicles directly past it .
+# ::node	s	see-01	0-1
+# ::node	p3	possible-01	0-1
+# ::node	t	through	1-2
+# ::node	w	windshield	3-4
+# ::node	d2	distance	7-8
+# ::node	s3	sidewalk	9-10
+# ::node	l2	line-01	11-12
+# ::node	s4	snow	13-14
+# ::node	u	utility	15-16
+# ::node	p2	pole	16-17
+# ::node	r	retail-01	18-19
+# ::node	o2	outpost	19-20
+# ::node	a	and	21-22
+# ::node	f	few	23-24
+# ::node	a3	approach-01	24-25
+# ::node	v	vehicle	25-26
+# ::node	f2	foreground	29-30
+# ::node	c	cross-02	32-33
+# ::node	h	have-03	33-34
+# ::node	t3	turn-01	35-36
+# ::node	t2	truck	36-37
+# ::node	o	one	38-39
+# ::node	s2	side	39-40
+# ::node	a2	and	40-41
+# ::node	0	2	41-42
+# ::node	l	large	42-43
+# ::node	v2	vehicle	43-44
+# ::node	d	direct-02	44-45
+# ::node	p	pass-03	45-46
+# ::root	s	see-01
+# ::edge	see-01	ARG1-of	possible-01	s	p3	
+# ::edge	see-01	path	through	s	t	
+# ::edge	through	op1	windshield	t	w	
+# ::edge	sidewalk	ARG1-of	line-01	s3	l2	
+# ::edge	line-01	ARG2	snow	l2	s4	
+# ::edge	pole	mod	utility	p2	u	
+# ::edge	outpost	mod	retail-01	o2	r	
+# ::edge	and	op3	outpost	a	o2	
+# ::edge	and	op2	pole	a	p2	
+# ::edge	and	op1	sidewalk	a	s3	
+# ::edge	and	location	distance	a	d2	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	vehicle	ARG1-of	approach-01	v	a3	
+# ::edge	vehicle	quant	few	v	f	
+# ::edge	and	op4	vehicle	a	v	
+# ::edge	cross-02	location	foreground	c	f2	
+# ::edge	and	op5	cross-02	a	c	
+# ::edge	cross-02	ARG0-of	have-03	c	h	
+# ::edge	truck	ARG0-of	turn-01	t2	t3	
+# ::edge	side	mod	one	s2	o	
+# ::edge	truck	location	side	t2	s2	
+# ::edge	and	op1	truck	a2	t2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	vehicle	mod	large	v2	l	
+# ::edge	vehicle	quant	2	v2	0	
+# ::edge	pass-03	ARG1-of	direct-02	p	d	
+# ::edge	pass-03	ARG1	vehicle	p	v2	
+# ::edge	and	op2	pass-03	a2	p	
+(s / see-01
+    :ARG1 (a / and
+        :location (d2 / distance)
+        :op1 (s3 / sidewalk
+            :ARG1-of (l2 / line-01
+                :ARG2 (s4 / snow)))
+        :op2 (p2 / pole
+            :mod (u / utility))
+        :op3 (o2 / outpost
+            :mod (r / retail-01))
+        :op4 (v / vehicle
+            :quant (f / few)
+            :ARG1-of (a3 / approach-01))
+        :op5 (c / cross-02
+            :ARG0-of (h / have-03
+                :ARG1 (a2 / and
+                    :op1 (t2 / truck
+                        :ARG0-of (t3 / turn-01)
+                        :location (s2 / side
+                            :mod (o / one)))
+                    :op2 (p / pass-03
+                        :ARG1 (v2 / vehicle
+                            :quant 2
+                            :mod (l / large))
+                        :ARG1-of (d / direct-02))))
+            :location (f2 / foreground)))
+    :ARG1-of (p3 / possible-01)
+    :path (t / through
+        :op1 (w / windshield)))

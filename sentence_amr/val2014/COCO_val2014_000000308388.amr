@@ -1,0 +1,28 @@
+# ::tok Traffic drives down a street on a green light passed tall buildings .
+# ::node	t2	traffic	0-1
+# ::node	d2	drive-01	1-2
+# ::node	d	down	2-3
+# ::node	s	street	4-5
+# ::node	g	green-02	7-8
+# ::node	l	light	8-9
+# ::node	p	pass-02	9-10
+# ::node	t	tall	10-11
+# ::node	b	building	11-12
+# ::root	d2	drive-01
+# ::edge	drive-01	ARG0	traffic	d2	t2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s	
+# ::edge	light	ARG1-of	green-02	l	g	
+# ::edge	drive-01	manner	light	d2	l	
+# ::edge	drive-01	ARG0-of	pass-02	d2	p	
+# ::edge	building	mod	tall	b	t	
+# ::edge	pass-02	ARG1	building	p	b	
+(d2 / drive-01
+    :ARG0 (t2 / traffic)
+    :ARG0-of (p / pass-02
+        :ARG1 (b / building
+            :mod (t / tall)))
+    :ARG1 (s / street)
+    :direction (d / down)
+    :manner (l / light
+        :ARG1-of (g / green-02)))

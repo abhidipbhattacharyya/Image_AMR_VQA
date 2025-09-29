@@ -1,0 +1,50 @@
+# ::tok Two cups are sitting on individual trays with spoons in front of them with faces made out of food items floating on top of the liquids they contain
+# ::node	0	2	0-1
+# ::node	c2	cup	1-2
+# ::node	s	sit-01	3-4
+# ::node	i2	individual	5-6
+# ::node	r	Trayvon	6-7
+# ::node	s2	spoon	8-9
+# ::node	i	in-front-of	10-11
+# ::node	f	face	14-15
+# ::node	m	make-01	15-16
+# ::node	f4	food	18-19
+# ::node	i3	item	19-20
+# ::node	f2	float-01	20-21
+# ::node	t	top	22-23
+# ::node	f3	fluid	25-26
+# ::node	c	contain-01	27-28
+# ::root	s	sit-01
+# ::edge	cup	quant	2	c2	0	
+# ::edge	sit-01	ARG1	cup	s	c2	
+# ::edge	Trayvon	mod	individual	r	i2	
+# ::edge	sit-01	ARG2	Trayvon	s	r	
+# ::edge	Trayvon	part	spoon	r	s2	
+# ::edge	spoon	location	in-front-of	s2	i	
+# ::edge	in-front-of	op1	cup	i	c2	
+# ::edge	cup	part	face	c2	f	
+# ::edge	face	ARG1-of	make-01	f	m	
+# ::edge	item	mod	food	i3	f4	
+# ::edge	make-01	ARG2	item	m	i3	
+# ::edge	item	ARG1-of	float-01	i3	f2	
+# ::edge	float-01	ARG2	top	f2	t	
+# ::edge	top	op1	fluid	t	f3	
+# ::edge	fluid	ARG1-of	contain-01	f3	c	
+# ::edge	contain-01	ARG0	cup	c	c2	
+(s / sit-01
+    :ARG1 (c2 / cup
+        :quant 2
+        :part (f / face
+            :ARG1-of (m / make-01
+                :ARG2 (i3 / item
+                    :ARG1-of (f2 / float-01
+                        :ARG2 (t / top
+                            :op1 (f3 / fluid
+                                :ARG1-of (c / contain-01
+                                    :ARG0 c2))))
+                    :mod (f4 / food)))))
+    :ARG2 (r / Trayvon
+        :mod (i2 / individual)
+        :part (s2 / spoon
+            :location (i / in-front-of
+                :op1 c2))))

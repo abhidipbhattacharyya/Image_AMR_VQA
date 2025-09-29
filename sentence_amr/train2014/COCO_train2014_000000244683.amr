@@ -1,0 +1,28 @@
+# ::tok A view of an intersection with traffic lights , a traffic sign and a street sign .
+# ::node	v	view-01	1-2
+# ::node	i	intersect-01	4-5
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	t2	traffic	10-11
+# ::node	s	sign	11-12
+# ::node	s2	sign	11-12
+# ::node	a	and	12-13
+# ::node	s3	street	14-15
+# ::root	v	view-01
+# ::edge	view-01	ARG1	intersect-01	v	i	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	sign	mod	traffic	s	t2	
+# ::edge	and	op3	sign	a	s2	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	op1	light	a	l	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	sign	location	street	s2	s3	
+(v / view-01
+    :ARG1 (i / intersect-01
+        :ARG1 (a / and
+            :op1 (l / light
+                :mod (t / traffic))
+            :op2 (s / sign
+                :mod (t2 / traffic))
+            :op3 (s2 / sign
+                :location (s3 / street)))))

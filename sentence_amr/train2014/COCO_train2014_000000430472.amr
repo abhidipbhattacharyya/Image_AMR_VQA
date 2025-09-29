@@ -1,0 +1,31 @@
+# ::tok some traffic lights besides a building and some road signs
+# ::node	s2	some	0-1
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	e	except-01	3-4
+# ::node	b	building	5-6
+# ::node	a	and	6-7
+# ::node	a2	and	6-7
+# ::node	s3	some	7-8
+# ::node	r	road	8-9
+# ::node	s	sign	9-10
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	some	l	s2	
+# ::edge	light	ARG2-of	except-01	l	e	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	op1	building	a2	b	
+# ::edge	except-01	ARG1	and	e	a2	
+# ::edge	sign	mod	road	s	r	
+# ::edge	sign	quant	some	s	s3	
+# ::edge	and	op2	sign	a2	s	
+(a / and
+    :op1 (l / light
+        :quant (s2 / some)
+        :ARG2-of (e / except-01
+            :ARG1 (a2 / and
+                :op1 (b / building)
+                :op2 (s / sign
+                    :quant (s3 / some)
+                    :mod (r / road))))
+        :mod (t / traffic)))

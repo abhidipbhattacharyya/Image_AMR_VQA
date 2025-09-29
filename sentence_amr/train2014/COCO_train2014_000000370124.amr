@@ -1,0 +1,39 @@
+# ::tok Men standing around a train engine and looking inside of one of the cars .
+# ::node	m	man	0-1
+# ::node	s	stand-01	1-2
+# ::node	a2	around	2-3
+# ::node	t	train	4-5
+# ::node	e	engine	5-6
+# ::node	a	and	6-7
+# ::node	l	look-01	7-8
+# ::node	i2	inside	8-9
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	c	car	13-14
+# ::node	c2	car	13-14
+# ::root	a	and
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	around	s	a2	
+# ::edge	engine	mod	train	e	t	
+# ::edge	around	op1	engine	a2	e	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	look-01	ARG1	inside	l	i2	
+# ::edge	car	ARG1-of	include-91	c	i	
+# ::edge	car	quant	1	c	0	
+# ::edge	inside	op1	car	i2	c	
+# ::edge	include-91	ARG2	car	i	c2	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (m / man)
+        :ARG2 (a2 / around
+            :op1 (e / engine
+                :mod (t / train))))
+    :op2 (l / look-01
+        :ARG0 m
+        :ARG1 (i2 / inside
+            :op1 (c / car
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 (c2 / car))))))

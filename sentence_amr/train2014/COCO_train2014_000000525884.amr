@@ -1,0 +1,28 @@
+# ::tok Lights from buildings and light poles on an empty street at night .
+# ::node	l	light	0-1
+# ::node	b	building	2-3
+# ::node	a	and	3-4
+# ::node	l2	light-04	4-5
+# ::node	p	pole	5-6
+# ::node	e	empty-02	8-9
+# ::node	s	street	9-10
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	a	and
+# ::edge	light	source	building	l	b	
+# ::edge	and	op1	light	a	l	
+# ::edge	pole	ARG0-of	light-04	p	l2	
+# ::edge	and	op2	pole	a	p	
+# ::edge	street	ARG1-of	empty-02	s	e	
+# ::edge	and	location	street	a	s	
+# ::edge	and	time	date-entity	a	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(a / and
+    :location (s / street
+        :ARG1-of (e / empty-02))
+    :op1 (l / light
+        :source (b / building))
+    :op2 (p / pole
+        :ARG0-of (l2 / light-04))
+    :time (d / date-entity
+        :dayperiod (n / night)))

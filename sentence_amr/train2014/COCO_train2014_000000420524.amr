@@ -1,0 +1,24 @@
+# ::tok This handmade pizza is being cut using a pizza wheel .
+# ::node	t	this	0-1
+# ::node	m	make-01	1-2
+# ::node	h	hand	1-2
+# ::node	p	pizza	2-3
+# ::node	c	cut-01	5-6
+# ::node	u	use-01	6-7
+# ::node	w	wheel	9-10
+# ::root	c	cut-01
+# ::edge	make-01	ARG1	hand	m	h	
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	pizza	mod	this	p	t	
+# ::edge	cut-01	ARG1	pizza	c	p	
+# ::edge	cut-01	ARG2-of	use-01	c	u	
+# ::edge	use-01	ARG1	wheel	u	w	
+# ::edge	wheel	mod	pizza	w	p	
+(c / cut-01
+    :ARG1 (p / pizza
+        :ARG1-of (m / make-01
+            :ARG1 (h / hand))
+        :mod (t / this))
+    :ARG2-of (u / use-01
+        :ARG1 (w / wheel
+            :mod p)))

@@ -1,0 +1,40 @@
+# ::tok A jet airplane is flying through the sky just above the highway as a group of cars stay to the left side of the road .
+# ::node	j	jet	1-2
+# ::node	a2	airplane	2-3
+# ::node	f	fly-01	4-5
+# ::node	s2	sky	7-8
+# ::node	j2	just	8-9
+# ::node	a	above	9-10
+# ::node	h	highway	11-12
+# ::node	g	group	14-15
+# ::node	c	car	16-17
+# ::node	s3	stay-01	17-18
+# ::node	l	left-20	20-21
+# ::node	s	side	21-22
+# ::node	r	road	24-25
+# ::root	f	fly-01
+# ::edge	airplane	mod	jet	a2	j	
+# ::edge	fly-01	ARG2	airplane	f	a2	
+# ::edge	fly-01	path	sky	f	s2	
+# ::edge	above	mod	just	a	j2	
+# ::edge	fly-01	path	above	f	a	
+# ::edge	above	op1	highway	a	h	
+# ::edge	group	consist-of	car	g	c	
+# ::edge	stay-01	ARG1	group	s3	g	
+# ::edge	fly-01	time	stay-01	f	s3	
+# ::edge	side	ARG1-of	left-20	s	l	
+# ::edge	stay-01	ARG3	side	s3	s	
+# ::edge	side	part-of	road	s	r	
+(f / fly-01
+    :ARG2 (a2 / airplane
+        :mod (j / jet))
+    :path (s2 / sky)
+    :path (a / above
+        :mod (j2 / just)
+        :op1 (h / highway))
+    :time (s3 / stay-01
+        :ARG1 (g / group
+            :consist-of (c / car))
+        :ARG3 (s / side
+            :ARG1-of (l / left-20)
+            :part-of (r / road))))

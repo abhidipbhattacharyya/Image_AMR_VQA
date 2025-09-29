@@ -1,0 +1,38 @@
+# ::tok One woman wears a bonnet and another holds an umbrella to protect themselves from the heat .
+# ::node	o	one	0-1
+# ::node	w2	woman	1-2
+# ::node	w3	woman	1-2
+# ::node	w	wear-01	2-3
+# ::node	b	bonnet	4-5
+# ::node	a	and	5-6
+# ::node	a2	another	6-7
+# ::node	h2	hold-01	7-8
+# ::node	u	umbrella	9-10
+# ::node	p	protect-01	11-12
+# ::node	h	heat	15-16
+# ::root	a	and
+# ::edge	woman	mod	one	w2	o	
+# ::edge	wear-01	ARG0	woman	w	w2	
+# ::edge	wear-01	ARG1	bonnet	w	b	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	woman	mod	another	w3	a2	
+# ::edge	and	op2	hold-01	a	h2	
+# ::edge	hold-01	ARG0	woman	h2	w3	
+# ::edge	hold-01	ARG1	umbrella	h2	u	
+# ::edge	hold-01	purpose	protect-01	h2	p	
+# ::edge	protect-01	ARG1	woman	p	w3	
+# ::edge	protect-01	ARG0	woman	p	w3	
+# ::edge	protect-01	ARG2	heat	p	h	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (w2 / woman
+            :mod (o / one))
+        :ARG1 (b / bonnet))
+    :op2 (h2 / hold-01
+        :purpose (p / protect-01
+            :ARG0 (w3 / woman
+                :mod (a2 / another))
+            :ARG1 w3
+            :ARG2 (h / heat))
+        :ARG0 w3
+        :ARG1 (u / umbrella)))

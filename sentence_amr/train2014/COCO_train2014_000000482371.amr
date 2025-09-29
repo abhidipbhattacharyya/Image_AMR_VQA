@@ -1,0 +1,39 @@
+# ::tok A golden colored bus is stopped along the road with blue skies and palm trees in the surrounding .
+# ::node	g	golden	1-2
+# ::node	c	color-01	2-3
+# ::node	b2	bus	3-4
+# ::node	s2	stop-01	5-6
+# ::node	a	along	6-7
+# ::node	r	road	8-9
+# ::node	b	blue	10-11
+# ::node	s	sky	11-12
+# ::node	a2	and	12-13
+# ::node	p	palm	13-14
+# ::node	t	tree	14-15
+# ::node	s3	surround-01	17-18
+# ::root	s2	stop-01
+# ::edge	color-01	ARG2	golden	c	g	
+# ::edge	bus	ARG1-of	color-01	b2	c	
+# ::edge	stop-01	ARG1	bus	s2	b2	
+# ::edge	stop-01	location	along	s2	a	
+# ::edge	along	op1	road	a	r	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	and	op1	sky	a2	s	
+# ::edge	road	location-of	and	r	a2	
+# ::edge	tree	mod	palm	t	p	
+# ::edge	and	op2	tree	a2	t	
+# ::edge	and	ARG1-of	surround-01	a2	s3	
+# ::edge	surround-01	ARG2	road	s3	r	
+(s2 / stop-01
+    :ARG1 (b2 / bus
+        :ARG1-of (c / color-01
+            :ARG2 (g / golden)))
+    :location (a / along
+        :op1 (r / road
+            :location-of (a2 / and
+                :ARG1-of (s3 / surround-01
+                    :ARG2 r)
+                :op1 (s / sky
+                    :mod (b / blue))
+                :op2 (t / tree
+                    :mod (p / palm))))))

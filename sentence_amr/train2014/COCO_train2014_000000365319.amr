@@ -1,0 +1,31 @@
+# ::tok According to its registration number , this is a multi - engine plane built in 2007 .
+# ::node	s	say-01	0-1
+# ::node	r	register-02	3-4
+# ::node	n	number	4-5
+# ::node	t	this	6-7
+# ::node	m	multiple	9-10
+# ::node	e	engine	11-12
+# ::node	p	plane	12-13
+# ::node	b	build-01	13-14
+# ::node	d	date-entity	15-16
+# ::node	0	2007	15-16
+# ::root	s	say-01
+# ::edge	number	mod	register-02	n	r	
+# ::edge	say-01	ARG0	number	s	n	
+# ::edge	engine	quant	multiple	e	m	
+# ::edge	plane	mod	engine	p	e	
+# ::edge	plane	domain	this	p	t	
+# ::edge	say-01	ARG1	plane	s	p	
+# ::edge	plane	ARG1-of	build-01	p	b	
+# ::edge	build-01	time	date-entity	b	d	
+# ::edge	date-entity	year	2007	d	0	
+(s / say-01
+    :ARG0 (n / number
+        :mod (r / register-02))
+    :ARG1 (p / plane
+        :ARG1-of (b / build-01
+            :time (d / date-entity
+                :year 2007))
+        :domain (t / this)
+        :mod (e / engine
+            :quant (m / multiple))))

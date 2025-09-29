@@ -1,0 +1,31 @@
+# ::tok An inner city rapid transit station with two rail cars pulled into the bays
+# ::node	i	inner	1-2
+# ::node	c2	city	2-3
+# ::node	r2	rapid	3-4
+# ::node	t	transit-01	4-5
+# ::node	s	station	5-6
+# ::node	0	2	7-8
+# ::node	r	rail	8-9
+# ::node	c	car	9-10
+# ::node	p	pull-01	10-11
+# ::node	b	bay	13-14
+# ::root	s	station
+# ::edge	city	mod	inner	c2	i	
+# ::edge	transit-01	manner	rapid	t	r2	
+# ::edge	station	ARG2-of	transit-01	s	t	
+# ::edge	station	mod	city	s	c2	
+# ::edge	car	mod	rail	c	r	
+# ::edge	car	quant	2	c	0	
+# ::edge	station	part	car	s	c	
+# ::edge	station	ARG1-of	pull-01	s	p	
+# ::edge	pull-01	ARG2	bay	p	b	
+(s / station
+    :ARG1-of (p / pull-01
+        :ARG2 (b / bay))
+    :ARG2-of (t / transit-01
+        :manner (r2 / rapid))
+    :mod (c2 / city
+        :mod (i / inner))
+    :part (c / car
+        :quant 2
+        :mod (r / rail)))

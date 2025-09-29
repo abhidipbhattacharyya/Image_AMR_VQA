@@ -1,0 +1,55 @@
+# ::tok A tray of hotdogs , a bunch of canned drinks in a metal bowl with a stand , plus a few paper cups , are all seated on a linen covered table .
+# ::node	t3	tray	1-2
+# ::node	h	hot-dog	3-4
+# ::node	b2	bunch	6-7
+# ::node	c	can-01	8-9
+# ::node	t2	thing	9-10
+# ::node	d	drink-01	9-10
+# ::node	m	metal	12-13
+# ::node	b	bowl	13-14
+# ::node	s2	stand	16-17
+# ::node	a2	and	18-19
+# ::node	f	few	20-21
+# ::node	p	paper	21-22
+# ::node	c3	cup	22-23
+# ::node	a	all	25-26
+# ::node	s	seat-01	26-27
+# ::node	l	linen	29-30
+# ::node	c2	cover-02	30-31
+# ::node	t	table	31-32
+# ::root	s	seat-01
+# ::edge	tray	consist-of	hot-dog	t3	h	
+# ::edge	thing	ARG1-of	can-01	t2	c	
+# ::edge	thing	quant	bunch	t2	b2	
+# ::edge	thing	ARG1-of	drink-01	t2	d	
+# ::edge	bowl	consist-of	metal	b	m	
+# ::edge	thing	location	bowl	t2	b	
+# ::edge	bowl	prep-with	stand	b	s2	
+# ::edge	and	op2	thing	a2	t2	
+# ::edge	and	op1	tray	a2	t3	
+# ::edge	cup	consist-of	paper	c3	p	
+# ::edge	cup	quant	few	c3	f	
+# ::edge	and	op3	cup	a2	c3	
+# ::edge	and	mod	all	a2	a	
+# ::edge	seat-01	ARG1	and	s	a2	
+# ::edge	cover-02	ARG2	linen	c2	l	
+# ::edge	table	ARG1-of	cover-02	t	c2	
+# ::edge	seat-01	ARG2	table	s	t	
+(s / seat-01
+    :ARG1 (a2 / and
+        :mod (a / all)
+        :op1 (t3 / tray
+            :consist-of (h / hot-dog))
+        :op2 (t2 / thing
+            :quant (b2 / bunch)
+            :ARG1-of (c / can-01)
+            :ARG1-of (d / drink-01)
+            :location (b / bowl
+                :consist-of (m / metal)
+                :prep-with (s2 / stand)))
+        :op3 (c3 / cup
+            :quant (f / few)
+            :consist-of (p / paper)))
+    :ARG2 (t / table
+        :ARG1-of (c2 / cover-02
+            :ARG2 (l / linen))))

@@ -1,0 +1,22 @@
+# ::tok A digital clock is posted on the traffic signal pole of the street .
+# ::node	d	digit	1-2
+# ::node	c	clock	2-3
+# ::node	p2	post-01	4-5
+# ::node	t	traffic	7-8
+# ::node	s	signal-07	8-9
+# ::node	p	pole	9-10
+# ::node	s2	street	12-13
+# ::root	p2	post-01
+# ::edge	clock	mod	digit	c	d	
+# ::edge	post-01	ARG1	clock	p2	c	
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	pole	ARG0-of	signal-07	p	s	
+# ::edge	post-01	ARG2	pole	p2	p	
+# ::edge	pole	part-of	street	p	s2	
+(p2 / post-01
+    :ARG1 (c / clock
+        :mod (d / digit))
+    :ARG2 (p / pole
+        :ARG0-of (s / signal-07
+            :ARG1 (t / traffic))
+        :part-of (s2 / street)))

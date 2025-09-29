@@ -1,0 +1,48 @@
+# ::tok Side by side images of a traffic signal , one with the light red and the other with the light green .
+# ::node	s	side-by-side	2-3
+# ::node	i	image	3-4
+# ::node	i2	image	3-4
+# ::node	t2	traffic	6-7
+# ::node	s2	signal	7-8
+# ::node	o	one	9-10
+# ::node	h	have-03	10-11
+# ::node	r	red-02	13-14
+# ::node	a	and	14-15
+# ::node	o2	other	16-17
+# ::node	h2	have-03	17-18
+# ::node	t	thing	18-19
+# ::node	l	light-07	19-20
+# ::node	l2	light-07	19-20
+# ::node	g	green-02	20-21
+# ::root	a	and
+# ::edge	image	mod	side-by-side	i	s	
+# ::edge	signal	mod	traffic	s2	t2	
+# ::edge	image	topic	signal	i	s2	
+# ::edge	one	ARG0-of	have-03	o	h	
+# ::edge	and	op2	image	a	i2	
+# ::edge	and	op1	image	a	i	
+# ::edge	image	mod	other	i2	o2	
+# ::edge	other	ARG0-of	have-03	o2	h2	
+# ::edge	red-02	ARG1	thing	r	t	
+# ::edge	thing	ARG1-of	red-02	t	r	
+# ::edge	thing	ARG1-of	light-07	t	l	
+# ::edge	green-02	ARG1-of	light-07	g	l2	
+# ::edge	image	ARG1-of	green-02	i2	g	
+# ::edge	and	rel	one	a	o	
+# ::edge	and	rel	thing	a	t	
+(a / and
+    :op1 (i / image
+        :mod (s / side-by-side)
+        :topic (s2 / signal
+            :mod (t2 / traffic)))
+    :op2 (i2 / image
+        :ARG1-of (g / green-02
+            :ARG1-of (l2 / light-07))
+        :mod (o2 / other
+            :ARG0-of (h2 / have-03)))
+    :rel (o / one
+        :ARG0-of (h / have-03))
+    :rel (t / thing
+        :ARG1-of (r / red-02
+            :ARG1 t)
+        :ARG1-of (l / light-07)))

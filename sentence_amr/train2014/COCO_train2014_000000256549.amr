@@ -1,0 +1,28 @@
+# ::tok A bunch of cars are lined up on a busy street and the street light is yellow .
+# ::node	b	bunch	1-2
+# ::node	c	car	3-4
+# ::node	l2	line-up-02	5-6
+# ::node	b2	busy-02	9-10
+# ::node	s	street	10-11
+# ::node	a	and	11-12
+# ::node	s2	street	13-14
+# ::node	l	light	14-15
+# ::node	y	yellow-02	16-17
+# ::root	a	and
+# ::edge	car	quant	bunch	c	b	
+# ::edge	line-up-02	ARG1	car	l2	c	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	line-up-02	location	street	l2	s	
+# ::edge	and	op1	line-up-02	a	l2	
+# ::edge	light	mod	street	l	s2	
+# ::edge	yellow-02	ARG1	light	y	l	
+# ::edge	and	op2	yellow-02	a	y	
+(a / and
+    :op1 (l2 / line-up-02
+        :ARG1 (c / car
+            :quant (b / bunch))
+        :location (s / street
+            :ARG1-of (b2 / busy-02)))
+    :op2 (y / yellow-02
+        :ARG1 (l / light
+            :mod (s2 / street))))

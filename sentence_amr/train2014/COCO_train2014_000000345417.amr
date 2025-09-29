@@ -1,0 +1,31 @@
+# ::tok a man seated on a table eating bread and a cup of coffee
+# ::node	m	man	1-2
+# ::node	s	seat-01	2-3
+# ::node	t	table	5-6
+# ::node	e	eat-01	6-7
+# ::node	b	bread	7-8
+# ::node	a	and	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c2	cup	10-11
+# ::node	c	coffee	12-13
+# ::root	m	man
+# ::edge	man	ARG1-of	seat-01	m	s	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	man	ARG0-of	eat-01	m	e	
+# ::edge	and	op1	bread	a	b	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op2	coffee	a	c	
+(m / man
+    :ARG0-of (e / eat-01
+        :ARG1 (a / and
+            :op1 (b / bread)
+            :op2 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup)))))
+    :ARG1-of (s / seat-01
+        :ARG2 (t / table)))

@@ -1,0 +1,42 @@
+# ::tok A semi truck is backed up to a river with a ramp on its back near water with several rafts with supplies on them .
+# ::node	s	semi	1-2
+# ::node	t2	truck	2-3
+# ::node	b2	back-up-04	4-5
+# ::node	r3	river	8-9
+# ::node	h	have-03	9-10
+# ::node	r2	ramp	11-12
+# ::node	b	back	14-15
+# ::node	n	near-02	15-16
+# ::node	w	water	16-17
+# ::node	s2	several	18-19
+# ::node	r	raft-01	19-20
+# ::node	t	thing	21-22
+# ::node	s3	supply-01	21-22
+# ::root	b2	back-up-04
+# ::edge	truck	mod	semi	t2	s	
+# ::edge	back-up-04	ARG1	truck	b2	t2	
+# ::edge	back-up-04	destination	river	b2	r3	
+# ::edge	truck	ARG0-of	have-03	t2	h	
+# ::edge	have-03	ARG1	ramp	h	r2	
+# ::edge	ramp	location	back	r2	b	
+# ::edge	truck	part	back	t2	b	
+# ::edge	ramp	ARG1-of	near-02	r2	n	
+# ::edge	near-02	ARG2	water	n	w	
+# ::edge	raft-01	quant	several	r	s2	
+# ::edge	river	part	raft-01	r3	r	
+# ::edge	raft-01	ARG1	thing	r	t	
+# ::edge	thing	ARG1-of	supply-01	t	s3	
+(b2 / back-up-04
+    :ARG1 (t2 / truck
+        :ARG0-of (h / have-03
+            :ARG1 (r2 / ramp
+                :ARG1-of (n / near-02
+                    :ARG2 (w / water))
+                :location (b / back)))
+        :mod (s / semi)
+        :part b)
+    :destination (r3 / river
+        :part (r / raft-01
+            :quant (s2 / several)
+            :ARG1 (t / thing
+                :ARG1-of (s3 / supply-01)))))

@@ -1,0 +1,25 @@
+# ::tok Wood slats are visible where the dog is sleeping under the bed .
+# ::node	w	wood	0-1
+# ::node	s2	slab	1-2
+# ::node	p	possible-01	3-4
+# ::node	s	see-01	3-4
+# ::node	d	dog	6-7
+# ::node	s3	sleep-01	8-9
+# ::node	u	under	9-10
+# ::node	b	bed	11-12
+# ::root	p	possible-01
+# ::edge	slab	mod	wood	s2	w	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	slab	s	s2	
+# ::edge	sleep-01	ARG0	dog	s3	d	
+# ::edge	slab	location-of	sleep-01	s2	s3	
+# ::edge	sleep-01	location	under	s3	u	
+# ::edge	under	op1	bed	u	b	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (s2 / slab
+            :location-of (s3 / sleep-01
+                :ARG0 (d / dog)
+                :location (u / under
+                    :op1 (b / bed)))
+            :mod (w / wood))))

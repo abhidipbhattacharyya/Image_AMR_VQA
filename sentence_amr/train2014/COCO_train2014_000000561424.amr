@@ -1,0 +1,37 @@
+# ::tok A trainer leaning downwards to allow a dog to perform a trick by catching a frisbee .
+# ::node	p2	person	1-2
+# ::node	t	train-01	1-2
+# ::node	l	lean-01	2-3
+# ::node	d2	downwards	3-4
+# ::node	a	allow-01	5-6
+# ::node	d	dog	7-8
+# ::node	p	perform-01	9-10
+# ::node	t2	trick-01	11-12
+# ::node	c	catch-01	13-14
+# ::node	f	frisbee	15-16
+# ::root	l	lean-01
+# ::edge	person	ARG0-of	train-01	p2	t	
+# ::edge	lean-01	ARG1	person	l	p2	
+# ::edge	lean-01	ARG2	downwards	l	d2	
+# ::edge	lean-01	purpose	allow-01	l	a	
+# ::edge	allow-01	ARG0	person	a	p2	
+# ::edge	perform-01	ARG0	dog	p	d	
+# ::edge	allow-01	ARG1	perform-01	a	p	
+# ::edge	perform-01	ARG1	trick-01	p	t2	
+# ::edge	trick-01	ARG0	dog	t2	d	
+# ::edge	trick-01	manner	catch-01	t2	c	
+# ::edge	catch-01	ARG0	dog	c	d	
+# ::edge	catch-01	ARG1	frisbee	c	f	
+(l / lean-01
+    :purpose (a / allow-01
+        :ARG0 (p2 / person
+            :ARG0-of (t / train-01))
+        :ARG1 (p / perform-01
+            :ARG0 (d / dog)
+            :ARG1 (t2 / trick-01
+                :ARG0 d
+                :manner (c / catch-01
+                    :ARG0 d
+                    :ARG1 (f / frisbee)))))
+    :ARG1 p2
+    :ARG2 (d2 / downwards))

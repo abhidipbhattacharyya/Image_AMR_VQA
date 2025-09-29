@@ -1,0 +1,39 @@
+# ::tok A man tries to stay on his surf board as he hits a wave at a challenging angle .
+# ::node	m	man	1-2
+# ::node	t	try-01	2-3
+# ::node	s	stay-01	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	s2	surf-01	7-8
+# ::node	b2	board	8-9
+# ::node	h	hit-01	11-12
+# ::node	w	wave	13-14
+# ::node	c	challenge-01	16-17
+# ::node	a	angle	17-18
+# ::root	t	try-01
+# ::edge	try-01	ARG0	man	t	m	
+# ::edge	try-01	ARG1	stay-01	t	s	
+# ::edge	stay-01	ARG1	man	s	m	
+# ::edge	stay-01	ARG3	be-located-at-91	s	b	
+# ::edge	be-located-at-91	ARG1	man	b	m	
+# ::edge	board	mod	surf-01	b2	s2	
+# ::edge	be-located-at-91	ARG2	board	b	b2	
+# ::edge	board	poss	man	b2	m	
+# ::edge	try-01	time-of	hit-01	t	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	hit-01	ARG1	wave	h	w	
+# ::edge	angle	ARG0-of	challenge-01	a	c	
+# ::edge	hit-01	manner	angle	h	a	
+(t / try-01
+    :ARG0 (m / man)
+    :ARG1 (s / stay-01
+        :ARG1 m
+        :ARG3 (b / be-located-at-91
+            :ARG1 m
+            :ARG2 (b2 / board
+                :mod (s2 / surf-01)
+                :poss m)))
+    :time-of (h / hit-01
+        :ARG0 m
+        :ARG1 (w / wave)
+        :manner (a / angle
+            :ARG0-of (c / challenge-01))))

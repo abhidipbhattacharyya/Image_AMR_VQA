@@ -1,0 +1,53 @@
+# ::tok Two giraffes , one standing and one sitting on its haunches .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	s3	stand-01	4-5
+# ::node	a	and	5-6
+# ::node	a2	and	5-6
+# ::node	s	sit-01	7-8
+# ::node	h	have-org-role-91	8-9
+# ::node	e	equal	8-9
+# ::node	l	leg	10-11
+# ::node	s2	species	10-11
+# ::node	b	breast	10-11
+# ::root	a	and
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	giraffe	ARG2-of	include-91	g	i	
+# ::edge	giraffe	ARG2-of	include-91	g	i2	
+# ::edge	and	op1	stand-01	a	s3	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	stand-01	a2	s3	
+# ::edge	and	op2	sit-01	a2	s	
+# ::edge	have-org-role-91	ARG3	equal	h	e	
+# ::edge	have-org-role-91	ARG1	leg	h	l	
+# ::edge	giraffe	part	leg	g	l	
+# ::edge	sit-01	ARG1	species	s	s2	
+# ::edge	species	ARG1-of	1	s2	0	
+# ::edge	species	quant	1	s2	0	
+# ::edge	include-91	ARG1	species	i2	s2	
+# ::edge	sit-01	ARG2	breast	s	b	
+# ::edge	giraffe	part	breast	g	b	
+# ::edge	and	rel	giraffe	a	g	
+# ::edge	and	rel	have-org-role-91	a	h	
+(a / and
+    :op1 (s3 / stand-01)
+    :op2 (a2 / and
+        :op1 s3
+        :op2 (s / sit-01
+            :ARG1 (s2 / species
+                :quant 1
+                :ARG1-of 1)
+            :ARG2 (b / breast)))
+    :rel (g / giraffe
+        :quant 2
+        :ARG2-of (i / include-91)
+        :ARG2-of (i2 / include-91
+            :ARG1 s2)
+        :part (l / leg)
+        :part b)
+    :rel (h / have-org-role-91
+        :ARG1 l
+        :ARG3 (e / equal)))

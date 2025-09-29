@@ -1,0 +1,24 @@
+# ::tok A train carrying cargo driving on train tracks on an overcast day .
+# ::node	t2	train	1-2
+# ::node	c2	carry-01	2-3
+# ::node	c	cargo	3-4
+# ::node	d2	drive-01	4-5
+# ::node	t	track	7-8
+# ::node	o	overcast	10-11
+# ::node	d	day	11-12
+# ::root	d2	drive-01
+# ::edge	train	ARG0-of	carry-01	t2	c2	
+# ::edge	carry-01	ARG1	cargo	c2	c	
+# ::edge	drive-01	ARG0	train	d2	t2	
+# ::edge	drive-01	location	track	d2	t	
+# ::edge	track	mod	train	t	t2	
+# ::edge	day	mod	overcast	d	o	
+# ::edge	drive-01	time	day	d2	d	
+(d2 / drive-01
+    :ARG0 (t2 / train
+        :ARG0-of (c2 / carry-01
+            :ARG1 (c / cargo)))
+    :location (t / track
+        :mod t2)
+    :time (d / day
+        :mod (o / overcast)))

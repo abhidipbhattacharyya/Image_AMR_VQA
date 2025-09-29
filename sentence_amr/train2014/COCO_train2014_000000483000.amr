@@ -1,0 +1,27 @@
+# ::tok Multiple trains parked in front of a train station beneath a tall building .
+# ::node	m	multiple	0-1
+# ::node	t2	train	1-2
+# ::node	p	park-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	s	station	8-9
+# ::node	b	beneath	9-10
+# ::node	t	tall	11-12
+# ::node	b2	building	12-13
+# ::root	p	park-01
+# ::edge	train	quant	multiple	t2	m	
+# ::edge	park-01	ARG1	train	p	t2	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	in-front-of	op1	station	i	s	
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	location	beneath	s	b	
+# ::edge	building	mod	tall	b2	t	
+# ::edge	beneath	op1	building	b	b2	
+(p / park-01
+    :ARG1 (t2 / train
+        :quant (m / multiple))
+    :ARG2 (i / in-front-of
+        :op1 (s / station
+            :location (b / beneath
+                :op1 (b2 / building
+                    :mod (t / tall)))
+            :mod t2)))

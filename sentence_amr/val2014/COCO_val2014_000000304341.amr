@@ -1,0 +1,43 @@
+# ::tok A round clock , mounted on an outdoor wall with three doorways , hovers over a black - and - blue bench .
+# ::node	c	clock	2-3
+# ::node	m	mount-03	4-5
+# ::node	o	outdoor	7-8
+# ::node	w	wall	8-9
+# ::node	h	have-03	9-10
+# ::node	0	3	10-11
+# ::node	d	door	11-12
+# ::node	h2	hover-01	13-14
+# ::node	o2	over	14-15
+# ::node	b3	black-04	16-17
+# ::node	a	and	18-19
+# ::node	b4	blue	20-21
+# ::node	b	bench	21-22
+# ::node	b2	bench	21-22
+# ::root	h2	hover-01
+# ::edge	clock	ARG1-of	mount-03	c	m	
+# ::edge	wall	location	outdoor	w	o	
+# ::edge	mount-03	ARG2	wall	m	w	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	door	quant	3	d	0	
+# ::edge	have-03	ARG1	door	h	d	
+# ::edge	hover-01	ARG1	clock	h2	c	
+# ::edge	hover-01	ARG2	over	h2	o2	
+# ::edge	over	op1	and	o2	a	
+# ::edge	and	op1	bench	a	b	
+# ::edge	bench	ARG1-of	black-04	b	b3	
+# ::edge	bench	mod	blue	b2	b4	
+# ::edge	and	op2	bench	a	b2	
+(h2 / hover-01
+    :ARG1 (c / clock
+        :ARG1-of (m / mount-03
+            :ARG2 (w / wall
+                :ARG0-of (h / have-03
+                    :ARG1 (d / door
+                        :quant 3))
+                :location (o / outdoor))))
+    :ARG2 (o2 / over
+        :op1 (a / and
+            :op1 (b / bench
+                :ARG1-of (b3 / black-04))
+            :op2 (b2 / bench
+                :mod (b4 / blue)))))

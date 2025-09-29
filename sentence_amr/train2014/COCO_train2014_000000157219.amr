@@ -1,0 +1,28 @@
+# ::tok Airplane parts are behind a gate near the tail of a large airliner .
+# ::node	a2	airplane	0-1
+# ::node	p	part	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	b2	behind	3-4
+# ::node	g	gate	5-6
+# ::node	n	near-02	6-7
+# ::node	t	tail	8-9
+# ::node	l	large	11-12
+# ::node	a	airliner	12-13
+# ::root	b	be-located-at-91
+# ::edge	part	part-of	airplane	p	a2	
+# ::edge	be-located-at-91	ARG1	part	b	p	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	gate	b2	g	
+# ::edge	gate	ARG1-of	near-02	g	n	
+# ::edge	near-02	ARG2	tail	n	t	
+# ::edge	airliner	mod	large	a	l	
+# ::edge	tail	part-of	airliner	t	a	
+(b / be-located-at-91
+    :ARG1 (p / part
+        :part-of (a2 / airplane))
+    :ARG2 (b2 / behind
+        :op1 (g / gate
+            :ARG1-of (n / near-02
+                :ARG2 (t / tail
+                    :part-of (a / airliner
+                        :mod (l / large)))))))

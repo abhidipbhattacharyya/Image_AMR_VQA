@@ -1,0 +1,34 @@
+# ::tok A fire hydrant in front of a snow covered field , a lake and mountain backdrop .
+# ::node	f2	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	b2	be-located-at-91	3-4
+# ::node	i	in-front-of	4-5
+# ::node	s	snow	7-8
+# ::node	c	cover-02	8-9
+# ::node	f	field	9-10
+# ::node	l	lake	12-13
+# ::node	a	and	13-14
+# ::node	m	mountain	14-15
+# ::node	b	backdrop	15-16
+# ::root	b2	be-located-at-91
+# ::edge	hydrant	purpose	fire	h	f2	
+# ::edge	be-located-at-91	ARG1	hydrant	b2	h	
+# ::edge	be-located-at-91	ARG2	in-front-of	b2	i	
+# ::edge	cover-02	ARG2	snow	c	s	
+# ::edge	field	ARG1-of	cover-02	f	c	
+# ::edge	and	op2	lake	a	l	
+# ::edge	and	op1	field	a	f	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	backdrop	mod	mountain	b	m	
+# ::edge	and	op3	backdrop	a	b	
+(b2 / be-located-at-91
+    :ARG1 (h / hydrant
+        :purpose (f2 / fire))
+    :ARG2 (i / in-front-of
+        :op1 (a / and
+            :op1 (f / field
+                :ARG1-of (c / cover-02
+                    :ARG2 (s / snow)))
+            :op2 (l / lake)
+            :op3 (b / backdrop
+                :mod (m / mountain)))))

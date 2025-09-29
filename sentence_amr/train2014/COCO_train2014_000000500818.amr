@@ -1,0 +1,30 @@
+# ::tok a car with a cargo full of steer and symbols painted on the side .
+# ::node	c	car	1-2
+# ::node	c2	cargo	4-5
+# ::node	f	fill-01	5-6
+# ::node	s2	steer	7-8
+# ::node	a	and	8-9
+# ::node	t	thing	9-10
+# ::node	s3	symbolize-01	9-10
+# ::node	p	paint-01	10-11
+# ::node	s	side	13-14
+# ::root	c	car
+# ::edge	car	part	cargo	c	c2	
+# ::edge	cargo	ARG1-of	fill-01	c2	f	
+# ::edge	and	op1	steer	a	s2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG1-of	symbolize-01	t	s3	
+# ::edge	thing	ARG1-of	paint-01	t	p	
+# ::edge	paint-01	location	side	p	s	
+# ::edge	car	part	side	c	s	
+(c / car
+    :part (c2 / cargo
+        :ARG1-of (f / fill-01
+            :ARG2 (a / and
+                :op1 (s2 / steer)
+                :op2 (t / thing
+                    :ARG1-of (s3 / symbolize-01)
+                    :ARG1-of (p / paint-01
+                        :location (s / side))))))
+    :part s)

@@ -1,0 +1,33 @@
+# ::tok Whole pizza with lots of toppings being served on a wood table .
+# ::node	w	whole	0-1
+# ::node	p	pizza	1-2
+# ::node	l	lot	3-4
+# ::node	c	continent	5-6
+# ::node	n	name	5-6
+# ::node	e	Health	5-6
+# ::node	s	serve-02	7-8
+# ::node	h	have-03	8-9
+# ::node	w2	wood	10-11
+# ::node	t	table	11-12
+# ::root	s	serve-02
+# ::edge	pizza	mod	whole	p	w	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op2	Health	n	e	
+# ::edge	Health	mod	pizza	e	p	
+# ::edge	have-03	ARG1	continent	h	c	
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	table	consist-of	wood	t	w2	
+# ::edge	serve-02	location	table	s	t	
+# ::edge	serve-02	rel	name	s	n	
+# ::edge	serve-02	rel	lot	s	l	
+(s / serve-02
+    :location (t / table
+        :consist-of (w2 / wood))
+    :rel (n / name
+        :op2 (e / "Health"
+            :mod (p / pizza
+                :ARG0-of (h / have-03
+                    :ARG1 (c / continent
+                        :name n))
+                :mod (w / whole))))
+    :rel (l / lot))

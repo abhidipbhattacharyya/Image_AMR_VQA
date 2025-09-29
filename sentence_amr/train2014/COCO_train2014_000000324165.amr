@@ -1,0 +1,45 @@
+# ::tok Outdoors with a plate that has donuts stacked up and a piece of a small tree branch cut and placed on top of the donut stack .
+# ::node	o	outdoor	0-1
+# ::node	p3	plate	3-4
+# ::node	h	have-03	5-6
+# ::node	d	donut	6-7
+# ::node	s2	stack-01	7-8
+# ::node	u	up	8-9
+# ::node	a	and	9-10
+# ::node	p	piece	11-12
+# ::node	s	small	14-15
+# ::node	t2	tree	15-16
+# ::node	b	branch	16-17
+# ::node	c	cut-01	17-18
+# ::node	p2	place-01	19-20
+# ::node	t	top	21-22
+# ::root	p3	plate
+# ::edge	plate	location	outdoor	p3	o	
+# ::edge	plate	ARG0-of	have-03	p3	h	
+# ::edge	stack-01	ARG1	donut	s2	d	
+# ::edge	stack-01	ARG4	up	s2	u	
+# ::edge	and	op1	stack-01	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	branch	part-of	tree	b	t2	
+# ::edge	branch	mod	small	b	s	
+# ::edge	cut-01	ARG1	branch	c	b	
+# ::edge	piece	part-of	cut-01	p	c	
+# ::edge	place-01	ARG1	piece	p2	p	
+# ::edge	and	op2	place-01	a	p2	
+# ::edge	place-01	ARG2	top	p2	t	
+# ::edge	top	op1	stack-01	t	s2	
+(p3 / plate
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / stack-01
+                :ARG1 (d / donut)
+                :ARG4 (u / up))
+            :op2 (p2 / place-01
+                :ARG1 (p / piece
+                    :part-of (c / cut-01
+                        :ARG1 (b / branch
+                            :mod (s / small)
+                            :part-of (t2 / tree))))
+                :ARG2 (t / top
+                    :op1 s2))))
+    :location (o / outdoor))

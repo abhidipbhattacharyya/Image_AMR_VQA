@@ -1,0 +1,30 @@
+# ::tok Bunches of bananas displayed for sale at outdoor market .
+# ::node	m3	multiple	0-1
+# ::node	m2	monetary-quantity	0-1
+# ::node	p	pound	0-1
+# ::node	0	1	0-1
+# ::node	b	banana	2-3
+# ::node	d	display-01	3-4
+# ::node	s	sell-01	5-6
+# ::node	o	outdoor	7-8
+# ::node	m	market	8-9
+# ::root	d	display-01
+# ::edge	multiple	op1	monetary-quantity	m3	m2	
+# ::edge	monetary-quantity	unit	pound	m2	p	
+# ::edge	monetary-quantity	quant	1	m2	0	
+# ::edge	banana	quant	multiple	b	m3	
+# ::edge	display-01	ARG1	banana	d	b	
+# ::edge	display-01	purpose	sell-01	d	s	
+# ::edge	sell-01	ARG1	banana	s	b	
+# ::edge	market	location	outdoor	m	o	
+# ::edge	sell-01	location	market	s	m	
+(d / display-01
+    :purpose (s / sell-01
+        :ARG1 (b / banana
+            :quant (m3 / multiple
+                :op1 (m2 / monetary-quantity
+                    :quant 1
+                    :unit (p / pound))))
+        :location (m / market
+            :location (o / outdoor)))
+    :ARG1 b)

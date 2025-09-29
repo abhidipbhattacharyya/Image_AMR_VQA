@@ -1,0 +1,46 @@
+# ::tok A room with two large red chairs , a fireplace mantal , flatscreen television and multiple bookshelves with various books .
+# ::node	r2	room	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	l	large	4-5
+# ::node	r	red-02	5-6
+# ::node	c	chair	6-7
+# ::node	f	fireplace	9-10
+# ::node	m	mantal	10-11
+# ::node	f2	flatscreen	12-13
+# ::node	t	television	13-14
+# ::node	a	and	14-15
+# ::node	m2	multiple	15-16
+# ::node	b	book	16-17
+# ::node	v	various	18-19
+# ::node	b2	book	19-20
+# ::root	r2	room
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	chair	ARG1-of	red-02	c	r	
+# ::edge	chair	mod	large	c	l	
+# ::edge	chair	quant	2	c	0	
+# ::edge	mantal	mod	fireplace	m	f	
+# ::edge	television	mod	flatscreen	t	f2	
+# ::edge	and	op3	television	a	t	
+# ::edge	and	op2	mantal	a	m	
+# ::edge	and	op1	chair	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	book	quant	multiple	b	m2	
+# ::edge	and	op4	book	a	b	
+# ::edge	book	mod	various	b2	v	
+# ::edge	book	consist-of	book	b	b2	
+(r2 / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / chair
+                :quant 2
+                :ARG1-of (r / red-02)
+                :mod (l / large))
+            :op2 (m / mantal
+                :mod (f / fireplace))
+            :op3 (t / television
+                :mod (f2 / flatscreen))
+            :op4 (b / book
+                :quant (m2 / multiple)
+                :consist-of (b2 / book
+                    :mod (v / various))))))

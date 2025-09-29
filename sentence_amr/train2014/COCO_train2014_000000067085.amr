@@ -1,0 +1,51 @@
+# ::tok Three motorcycle police in front of a crowd attending an outdoor summer event with beer truck behind them .
+# ::node	0	3	0-1
+# ::node	m	motorcycle	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	p2	police	2-3
+# ::node	i	in-front-of	4-5
+# ::node	c	crowd	7-8
+# ::node	a	attend-01	8-9
+# ::node	o	outdoor	10-11
+# ::node	d	date-entity	11-12
+# ::node	s	summer	11-12
+# ::node	e	event	12-13
+# ::node	b2	beer	14-15
+# ::node	t	truck	15-16
+# ::node	b	be-located-at-91	16-17
+# ::node	b3	behind	16-17
+# ::root	p	person
+# ::edge	person	quant	3	p	0	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG2	police	h	p2	
+# ::edge	police	mod	motorcycle	p2	m	
+# ::edge	person	location	in-front-of	p	i	
+# ::edge	in-front-of	op1	crowd	i	c	
+# ::edge	crowd	ARG0-of	attend-01	c	a	
+# ::edge	date-entity	season	summer	d	s	
+# ::edge	event	time	date-entity	e	d	
+# ::edge	event	location	outdoor	e	o	
+# ::edge	attend-01	ARG1	event	a	e	
+# ::edge	truck	mod	beer	t	b2	
+# ::edge	be-located-at-91	ARG1	truck	b	t	
+# ::edge	crowd	ARG2-of	be-located-at-91	c	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b3	
+# ::edge	behind	op1	person	b3	p	
+(p / person
+    :quant 3
+    :ARG0-of (h / have-org-role-91
+        :ARG2 (p2 / police
+            :mod (m / motorcycle)))
+    :location (i / in-front-of
+        :op1 (c / crowd
+            :ARG0-of (a / attend-01
+                :ARG1 (e / event
+                    :location (o / outdoor)
+                    :time (d / date-entity
+                        :season (s / summer))))
+            :ARG2-of (b / be-located-at-91
+                :ARG1 (t / truck
+                    :mod (b2 / beer))
+                :ARG2 (b3 / behind
+                    :op1 p)))))

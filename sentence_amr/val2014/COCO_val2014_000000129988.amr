@@ -1,0 +1,40 @@
+# ::tok A powder room in Morocco with an arched doorway and white towels on a brass stand .
+# ::node	p	powder	1-2
+# ::node	r2	room	2-3
+# ::node	c	country	4-5
+# ::node	n	name	4-5
+# ::node	0	Morocco	4-5
+# ::node	h	have-03	5-6
+# ::node	r	Arabia	7-8
+# ::node	d	doorway	8-9
+# ::node	a	and	9-10
+# ::node	w	white-03	10-11
+# ::node	w2	wipe-01	11-12
+# ::node	b	brass	14-15
+# ::node	s	stand	15-16
+# ::root	r2	room
+# ::edge	room	mod	powder	r2	p	
+# ::edge	room	location	country	r2	c	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Morocco	n	0	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	doorway	mod	Arabia	d	r	
+# ::edge	and	op1	doorway	a	d	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	wipe-01	ARG1-of	white-03	w2	w	
+# ::edge	and	op2	wipe-01	a	w2	
+# ::edge	stand	consist-of	brass	s	b	
+# ::edge	room	location	stand	r2	s	
+(r2 / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (d / doorway
+                :mod (r / Arabia))
+            :op2 (w2 / wipe-01
+                :ARG1-of (w / white-03))))
+    :location (c / country
+        :name (n / name
+            :op1 "Morocco"))
+    :location (s / stand
+        :consist-of (b / brass))
+    :mod (p / powder))

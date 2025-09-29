@@ -1,0 +1,32 @@
+# ::tok The twin engine airline has it 's landing gear down while in the air .
+# ::node	t	twin	1-2
+# ::node	e	engine	2-3
+# ::node	a2	airline	3-4
+# ::node	h	have-06	4-5
+# ::node	l	land-01	7-8
+# ::node	g	gear	8-9
+# ::node	d	down-01	9-10
+# ::node	b	be-located-at-91	11-12
+# ::node	a	air	13-14
+# ::root	h	have-06
+# ::edge	engine	mod	twin	e	t	
+# ::edge	airline	mod	engine	a2	e	
+# ::edge	have-06	ARG0	airline	h	a2	
+# ::edge	land-01	ARG1	airline	l	a2	
+# ::edge	gear	purpose	land-01	g	l	
+# ::edge	have-06	ARG1	gear	h	g	
+# ::edge	gear	ARG1-of	down-01	g	d	
+# ::edge	have-06	time	be-located-at-91	h	b	
+# ::edge	be-located-at-91	ARG1	airline	b	a2	
+# ::edge	be-located-at-91	ARG2	air	b	a	
+(h / have-06
+    :ARG0 (a2 / airline
+        :mod (e / engine
+            :mod (t / twin)))
+    :ARG1 (g / gear
+        :purpose (l / land-01
+            :ARG1 a2)
+        :ARG1-of (d / down-01))
+    :time (b / be-located-at-91
+        :ARG1 a2
+        :ARG2 (a / air)))

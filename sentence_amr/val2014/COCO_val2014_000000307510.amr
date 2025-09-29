@@ -1,0 +1,36 @@
+# ::tok The tennis player is holding a Wilson racket , poised to return the ball .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	h	hold-01	4-5
+# ::node	c	company	6-7
+# ::node	n	name	6-7
+# ::node	0	Wilson	6-7
+# ::node	r	racket	7-8
+# ::node	p3	poise-01	9-10
+# ::node	r2	return-02	11-12
+# ::node	b	ball	13-14
+# ::root	h	hold-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Wilson	n	0	
+# ::edge	racket	mod	company	r	c	
+# ::edge	hold-01	ARG1	racket	h	r	
+# ::edge	person	ARG1-of	poise-01	p	p3	
+# ::edge	poise-01	ARG2	return-02	p3	r2	
+# ::edge	return-02	ARG0	person	r2	p	
+# ::edge	return-02	ARG1	ball	r2	b	
+(h / hold-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis))
+        :ARG1-of (p3 / poise-01
+            :ARG2 (r2 / return-02
+                :ARG0 p
+                :ARG1 (b / ball))))
+    :ARG1 (r / racket
+        :mod (c / company
+            :name (n / name
+                :op1 "Wilson"))))

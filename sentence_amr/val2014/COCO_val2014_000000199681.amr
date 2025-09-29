@@ -1,0 +1,32 @@
+# ::tok The door to a microwave is open and is exposing a stuffed animal is propped inside .
+# ::node	d	door	1-2
+# ::node	m	microwave	4-5
+# ::node	o	open-01	6-7
+# ::node	a	and	7-8
+# ::node	e	expose-01	9-10
+# ::node	s	stuff-01	11-12
+# ::node	a2	animal	12-13
+# ::node	p	prop-up-01	14-15
+# ::node	i	inside	15-16
+# ::root	a	and
+# ::edge	door	part-of	microwave	d	m	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	and	op2	expose-01	a	e	
+# ::edge	expose-01	ARG0	door	e	d	
+# ::edge	animal	ARG1-of	stuff-01	a2	s	
+# ::edge	expose-01	ARG1	animal	e	a2	
+# ::edge	animal	ARG1-of	prop-up-01	a2	p	
+# ::edge	prop-up-01	ARG2	inside	p	i	
+# ::edge	inside	op1	microwave	i	m	
+(a / and
+    :op1 (o / open-01
+        :ARG1 (d / door
+            :part-of (m / microwave)))
+    :op2 (e / expose-01
+        :ARG0 d
+        :ARG1 (a2 / animal
+            :ARG1-of (s / stuff-01)
+            :ARG1-of (p / prop-up-01
+                :ARG2 (i / inside
+                    :op1 m)))))

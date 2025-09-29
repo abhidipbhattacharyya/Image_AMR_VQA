@@ -1,0 +1,30 @@
+# ::tok A stop light with a one way , do not enter sign above it .
+# ::node	s2	stop-01	1-2
+# ::node	l	light	2-3
+# ::node	o	one-way	6-7
+# ::node	y	you	8-9
+# ::node	1	imperative	8-9
+# ::node	0	-	9-10
+# ::node	e	enter-01	10-11
+# ::node	s	sign	11-12
+# ::node	a	above	12-13
+# ::root	e	enter-01
+# ::edge	light	purpose	stop-01	l	s2	
+# ::edge	light	mod	one-way	l	o	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	mode	imperative	e	1	
+# ::edge	enter-01	ARG0	you	e	y	
+# ::edge	enter-01	condition	light	e	l	
+# ::edge	enter-01	ARG1	sign	e	s	
+# ::edge	sign	location	above	s	a	
+# ::edge	above	op1	light	a	l	
+(e / enter-01
+    :ARG0 (y / you)
+    :ARG1 (s / sign
+        :location (a / above
+            :op1 (l / light
+                :purpose (s2 / stop-01)
+                :mod (o / one-way))))
+    :condition l
+    :mode imperative
+    :polarity -)

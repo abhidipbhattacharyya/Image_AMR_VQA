@@ -1,0 +1,24 @@
+# ::tok Slice of baked dessert item on platter ready for consumption .
+# ::node	s	slash	0-1
+# ::node	b	bake-01	2-3
+# ::node	d	dessert	3-4
+# ::node	i	item	4-5
+# ::node	p	platter	6-7
+# ::node	r	ready-02	7-8
+# ::node	c	consume-01	9-10
+# ::root	r	ready-02
+# ::edge	dessert	ARG1-of	bake-01	d	b	
+# ::edge	item	mod	dessert	i	d	
+# ::edge	slash	part-of	item	s	i	
+# ::edge	slash	location	platter	s	p	
+# ::edge	ready-02	ARG1	slash	r	s	
+# ::edge	ready-02	ARG2	consume-01	r	c	
+# ::edge	consume-01	ARG1	slash	c	s	
+(r / ready-02
+    :ARG1 (s / slash
+        :location (p / platter)
+        :part-of (i / item
+            :mod (d / dessert
+                :ARG1-of (b / bake-01))))
+    :ARG2 (c / consume-01
+        :ARG1 s))

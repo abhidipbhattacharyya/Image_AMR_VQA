@@ -1,0 +1,40 @@
+# ::tok Four men , at least two of whom are barefoot , are playing the Wii together .
+# ::node	1	4	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	m3	man	1-2
+# ::node	a	at-least	4-5
+# ::node	0	2	5-6
+# ::node	i	include-91	6-7
+# ::node	b	barefoot	9-10
+# ::node	p	play-01	12-13
+# ::node	p2	product	14-15
+# ::node	n	name	14-15
+# ::node	2	Wii	14-15
+# ::node	t	together	15-16
+# ::root	p	play-01
+# ::edge	man	quant	4	m	1	
+# ::edge	man	quant	at-least	m2	a	
+# ::edge	at-least	op1	2	a	0	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	man	mod	barefoot	m2	b	
+# ::edge	play-01	ARG0	man	p	m	
+# ::edge	play-01	ARG1	product	p	p2	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Wii	n	2	
+# ::edge	play-01	mod	together	p	t	
+# ::edge	play-01	rel	man	p	m3	
+(p / play-01
+    :ARG0 (m / man
+        :quant 4
+        :ARG2-of (i / include-91
+            :ARG1 (m2 / man
+                :quant (a / at-least
+                    :op1 2)
+                :mod (b / barefoot))))
+    :ARG1 (p2 / product
+        :name (n / name
+            :op1 "Wii"))
+    :mod (t / together)
+    :rel (m3 / man))

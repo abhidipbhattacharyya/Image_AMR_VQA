@@ -1,0 +1,56 @@
+# ::tok A partly eaten cake , with a sports field design , is inscribed " 2013 " and has " Thank You Coaches ! " on its serving plate .
+# ::node	p	part	1-2
+# ::node	e	eat-01	2-3
+# ::node	c	cake	3-4
+# ::node	h	have-03	5-6
+# ::node	s2	sport	7-8
+# ::node	f	field	8-9
+# ::node	d2	design-01	9-10
+# ::node	e2	engrave-01	12-13
+# ::node	d	date-entity	14-15
+# ::node	0	2013	14-15
+# ::node	a	and	16-17
+# ::node	h2	have-03	17-18
+# ::node	t	thank-01	19-20
+# ::node	p2	person	21-22
+# ::node	c2	coach-01	21-22
+# ::node	s	serve-02	26-27
+# ::node	p3	plate	27-28
+# ::root	a	and
+# ::edge	eat-01	degree	part	e	p	
+# ::edge	cake	ARG1-of	eat-01	c	e	
+# ::edge	cake	ARG0-of	have-03	c	h	
+# ::edge	field	mod	sport	f	s2	
+# ::edge	design-01	ARG1	field	d2	f	
+# ::edge	have-03	ARG1	design-01	h	d2	
+# ::edge	engrave-01	ARG1	cake	e2	c	
+# ::edge	engrave-01	ARG2	date-entity	e2	d	
+# ::edge	date-entity	year	2013	d	0	
+# ::edge	and	op1	engrave-01	a	e2	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	have-03	ARG0	cake	h2	c	
+# ::edge	have-03	ARG1	thank-01	h2	t	
+# ::edge	thank-01	ARG1	person	t	p2	
+# ::edge	person	ARG0-of	coach-01	p2	c2	
+# ::edge	plate	consist-of	serve-02	p3	s	
+# ::edge	have-03	location	plate	h2	p3	
+# ::edge	plate	poss	cake	p3	c	
+(a / and
+    :op1 (e2 / engrave-01
+        :ARG1 (c / cake
+            :ARG0-of (h / have-03
+                :ARG1 (d2 / design-01
+                    :ARG1 (f / field
+                        :mod (s2 / sport))))
+            :ARG1-of (e / eat-01
+                :degree (p / part)))
+        :ARG2 (d / date-entity
+            :year 2013))
+    :op2 (h2 / have-03
+        :ARG0 c
+        :ARG1 (t / thank-01
+            :ARG1 (p2 / person
+                :ARG0-of (c2 / coach-01)))
+        :location (p3 / plate
+            :consist-of (s / serve-02)
+            :poss c)))

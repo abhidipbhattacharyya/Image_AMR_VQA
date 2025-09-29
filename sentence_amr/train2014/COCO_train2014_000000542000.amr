@@ -1,0 +1,24 @@
+# ::tok A large jetliner flying through the sky with it 's landing gear down .
+# ::node	l2	large	1-2
+# ::node	j	jetliner	2-3
+# ::node	f	fly-01	3-4
+# ::node	s	sky	6-7
+# ::node	l	land-01	10-11
+# ::node	g	gear	11-12
+# ::node	d	down-03	12-13
+# ::root	j	jetliner
+# ::edge	jetliner	mod	large	j	l2	
+# ::edge	jetliner	ARG2-of	fly-01	j	f	
+# ::edge	fly-01	path	sky	f	s	
+# ::edge	land-01	ARG1	jetliner	l	j	
+# ::edge	gear	part-of	land-01	g	l	
+# ::edge	down-03	ARG1	gear	d	g	
+# ::edge	fly-01	manner	down-03	f	d	
+(j / jetliner
+    :ARG2-of (f / fly-01
+        :manner (d / down-03
+            :ARG1 (g / gear
+                :part-of (l / land-01
+                    :ARG1 j)))
+        :path (s / sky))
+    :mod (l2 / large))

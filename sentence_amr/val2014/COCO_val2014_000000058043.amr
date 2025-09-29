@@ -1,0 +1,41 @@
+# ::tok Several elephants in the water with one up close standing next to a trainer
+# ::node	s	several	0-1
+# ::node	e	elephant	1-2
+# ::node	e2	elephant	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	w	water	4-5
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	c	close-10	8-9
+# ::node	s2	stand-01	9-10
+# ::node	n	next-to	10-11
+# ::node	p	person	13-14
+# ::node	t	train-01	13-14
+# ::root	b	be-located-at-91
+# ::edge	elephant	quant	several	e	s	
+# ::edge	be-located-at-91	ARG1	elephant	b	e	
+# ::edge	be-located-at-91	ARG2	water	b	w	
+# ::edge	elephant	ARG1-of	include-91	e2	i	
+# ::edge	include-91	ARG2	elephant	i	e	
+# ::edge	elephant	quant	1	e2	0	
+# ::edge	close-10	ARG1	elephant	c	e2	
+# ::edge	stand-01	manner	close-10	s2	c	
+# ::edge	elephant	ARG1-of	stand-01	e2	s2	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	person	n	p	
+# ::edge	person	ARG0-of	train-01	p	t	
+# ::edge	be-located-at-91	rel	elephant	b	e2	
+(b / be-located-at-91
+    :ARG1 (e / elephant
+        :quant (s / several))
+    :ARG2 (w / water)
+    :rel (e2 / elephant
+        :quant 1
+        :ARG1-of (i / include-91
+            :ARG2 e)
+        :ARG1-of (s2 / stand-01
+            :ARG2 (n / next-to
+                :op1 (p / person
+                    :ARG0-of (t / train-01)))
+            :manner (c / close-10
+                :ARG1 e2))))

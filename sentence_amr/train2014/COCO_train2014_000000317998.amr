@@ -1,0 +1,31 @@
+# ::tok A diner selects a slice of apple from a bin to place on her lunch tray .
+# ::node	d	diner	1-2
+# ::node	s	select-01	2-3
+# ::node	s2	slice	4-5
+# ::node	a	apple	6-7
+# ::node	b	bin	9-10
+# ::node	p	place-01	11-12
+# ::node	l	lunch	14-15
+# ::node	t	tray	15-16
+# ::root	s	select-01
+# ::edge	select-01	ARG0	diner	s	d	
+# ::edge	select-01	ARG1	slice	s	s2	
+# ::edge	slice	mod	apple	s2	a	
+# ::edge	select-01	ARG2	bin	s	b	
+# ::edge	place-01	ARG1	slice	p	s2	
+# ::edge	select-01	purpose	place-01	s	p	
+# ::edge	place-01	ARG0	diner	p	d	
+# ::edge	tray	mod	lunch	t	l	
+# ::edge	place-01	ARG2	tray	p	t	
+# ::edge	tray	poss	diner	t	d	
+(s / select-01
+    :purpose (p / place-01
+        :ARG0 (d / diner)
+        :ARG1 (s2 / slice
+            :mod (a / apple))
+        :ARG2 (t / tray
+            :mod (l / lunch)
+            :poss d))
+    :ARG0 d
+    :ARG1 s2
+    :ARG2 (b / bin))

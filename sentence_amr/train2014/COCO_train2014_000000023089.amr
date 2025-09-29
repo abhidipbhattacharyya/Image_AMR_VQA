@@ -1,0 +1,58 @@
+# ::tok Retail outlets , traffic lights , trees , cars and side streets run parallel to a street with a seemingly never - ending stream of bikers on it .
+# ::node	r	retail-01	0-1
+# ::node	o	outlet	1-2
+# ::node	t	traffic	3-4
+# ::node	l	light	4-5
+# ::node	t2	tree	6-7
+# ::node	c	car	8-9
+# ::node	a	and	9-10
+# ::node	s2	side	10-11
+# ::node	s4	street	11-12
+# ::node	r2	run-04	12-13
+# ::node	p	parallel	13-14
+# ::node	s5	street	16-17
+# ::node	s	seem-01	19-20
+# ::node	e2	ever	20-21
+# ::node	0	-	20-21
+# ::node	e	end-01	22-23
+# ::node	s3	stream-01	23-24
+# ::node	p2	person	25-26
+# ::node	b	bike-01	25-26
+# ::root	r2	run-04
+# ::edge	outlet	mod	retail-01	o	r	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op4	car	a	c	
+# ::edge	and	op3	tree	a	t2	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	op1	outlet	a	o	
+# ::edge	street	mod	side	s4	s2	
+# ::edge	and	op5	street	a	s4	
+# ::edge	run-04	ARG1	and	r2	a	
+# ::edge	run-04	manner	parallel	r2	p	
+# ::edge	run-04	ARG2	street	r2	s5	
+# ::edge	end-01	polarity	-	e	0	
+# ::edge	end-01	time	ever	e	e2	
+# ::edge	end-01	ARG1-of	seem-01	e	s	
+# ::edge	stream-01	ARG1-of	end-01	s3	e	
+# ::edge	street	location-of	stream-01	s5	s3	
+# ::edge	stream-01	ARG1	person	s3	p2	
+# ::edge	person	ARG0-of	bike-01	p2	b	
+(r2 / run-04
+    :ARG1 (a / and
+        :op1 (o / outlet
+            :mod (r / retail-01))
+        :op2 (l / light
+            :mod (t / traffic))
+        :op3 (t2 / tree)
+        :op4 (c / car)
+        :op5 (s4 / street
+            :mod (s2 / side)))
+    :ARG2 (s5 / street
+        :location-of (s3 / stream-01
+            :ARG1 (p2 / person
+                :ARG0-of (b / bike-01))
+            :ARG1-of (e / end-01
+                :ARG1-of (s / seem-01)
+                :polarity -
+                :time (e2 / ever))))
+    :manner (p / parallel))

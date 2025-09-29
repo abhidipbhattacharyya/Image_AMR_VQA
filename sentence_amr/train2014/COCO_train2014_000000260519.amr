@@ -1,0 +1,58 @@
+# ::tok The tastefully arranged living room has a light colored mantle and walls as well as dark and light colored furnishings and artwork .
+# ::node	n	nice-01	1-2
+# ::node	a3	arrange-01	2-3
+# ::node	l2	living	3-4
+# ::node	r	room	4-5
+# ::node	h	have-03	5-6
+# ::node	l	light-07	7-8
+# ::node	c	color-01	8-9
+# ::node	m	mantle	9-10
+# ::node	a	and	10-11
+# ::node	w	wall	11-12
+# ::node	d	dark-02	15-16
+# ::node	a2	and	16-17
+# ::node	c2	color-01	18-19
+# ::node	t	thing	19-20
+# ::node	c3	contrast-01	19-20
+# ::node	t2	thing	19-20
+# ::node	a4	artwork	21-22
+# ::root	h	have-03
+# ::edge	arrange-01	ARG1-of	nice-01	a3	n	
+# ::edge	room	mod	living	r	l2	
+# ::edge	room	ARG1-of	arrange-01	r	a3	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	color-01	ARG1-of	light-07	c	l	
+# ::edge	mantle	ARG1-of	color-01	m	c	
+# ::edge	and	op1	mantle	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	wall	a	w	
+# ::edge	color-01	ARG1	wall	c	w	
+# ::edge	and	op3	and	a	a2	
+# ::edge	color-01	ARG2	and	c2	a2	
+# ::edge	thing	ARG1-of	and	t	a2	
+# ::edge	and	op1	thing	a2	t	
+# ::edge	thing	ARG1-of	contrast-01	t	c3	
+# ::edge	contrast-01	ARG2	thing	c3	t2	
+# ::edge	thing	ARG1-of	dark-02	t2	d	
+# ::edge	and	op3	artwork	a2	a4	
+# ::edge	have-03	rel	color-01	h	c2	
+(h / have-03
+    :ARG0 (r / room
+        :ARG1-of (a3 / arrange-01
+            :ARG1-of (n / nice-01))
+        :mod (l2 / living))
+    :ARG1 (a / and
+        :op1 (m / mantle
+            :ARG1-of (c / color-01
+                :ARG1 (w / wall)
+                :ARG1-of (l / light-07)))
+        :op2 w
+        :op3 (a2 / and
+            :op1 (t / thing
+                :ARG1-of a2
+                :ARG1-of (c3 / contrast-01
+                    :ARG2 (t2 / thing
+                        :ARG1-of (d / dark-02))))
+            :op3 (a4 / artwork)))
+    :rel (c2 / color-01
+        :ARG2 a2))

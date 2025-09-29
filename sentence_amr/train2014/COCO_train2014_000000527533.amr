@@ -1,0 +1,36 @@
+# ::tok Several pizzas with various toppings in pizza boxes , some with pieces missing .
+# ::node	s	several	0-1
+# ::node	p3	pizzeria	1-2
+# ::node	v	various	3-4
+# ::node	p4	portion	4-5
+# ::node	p2	pizza	6-7
+# ::node	b	box	7-8
+# ::node	a	and	8-9
+# ::node	i	include-91	9-10
+# ::node	s2	some	9-10
+# ::node	p	piece	11-12
+# ::node	m	miss-01	12-13
+# ::root	a	and
+# ::edge	pizzeria	quant	several	p3	s	
+# ::edge	portion	mod	various	p4	v	
+# ::edge	pizzeria	accompanier	portion	p3	p4	
+# ::edge	box	mod	pizza	b	p2	
+# ::edge	pizzeria	location	box	p3	b	
+# ::edge	and	op1	pizzeria	a	p3	
+# ::edge	pizzeria	op2	include-91	p3	i	
+# ::edge	include-91	ARG2	pizzeria	i	p3	
+# ::edge	miss-01	ARG1	piece	m	p	
+# ::edge	miss-01	mod	some	m	s2	
+# ::edge	include-91	ARG1	miss-01	i	m	
+(a / and
+    :op1 (p3 / pizzeria
+        :quant (s / several)
+        :accompanier (p4 / portion
+            :mod (v / various))
+        :location (b / box
+            :mod (p2 / pizza))
+        :op2 (i / include-91
+            :ARG1 (m / miss-01
+                :ARG1 (p / piece)
+                :mod (s2 / some))
+            :ARG2 p3)))

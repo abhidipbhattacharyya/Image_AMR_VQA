@@ -1,0 +1,34 @@
+# ::tok A street has people walking and a clock hangs from one of the buildings .
+# ::node	s	street	1-2
+# ::node	h2	have-03	2-3
+# ::node	p	person	3-4
+# ::node	w	walk-01	4-5
+# ::node	a	and	5-6
+# ::node	c	clock	7-8
+# ::node	h	hang-01	8-9
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	b	building	13-14
+# ::node	b2	building	13-14
+# ::root	a	and
+# ::edge	have-03	ARG0	street	h2	s	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	have-03	ARG1	walk-01	h2	w	
+# ::edge	and	op1	have-03	a	h2	
+# ::edge	hang-01	ARG1	clock	h	c	
+# ::edge	and	op2	hang-01	a	h	
+# ::edge	building	ARG1-of	include-91	b	i	
+# ::edge	building	quant	1	b	0	
+# ::edge	hang-01	ARG2	building	h	b	
+# ::edge	include-91	ARG2	building	i	b2	
+(a / and
+    :op1 (h2 / have-03
+        :ARG0 (s / street)
+        :ARG1 (w / walk-01
+            :ARG0 (p / person)))
+    :op2 (h / hang-01
+        :ARG1 (c / clock)
+        :ARG2 (b / building
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (b2 / building)))))

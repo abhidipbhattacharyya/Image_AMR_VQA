@@ -1,0 +1,33 @@
+# ::tok A fire hydrant sits in front of a wall and near sacks of bungee cords .
+# ::node	f	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	s2	sit-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	w	wall	8-9
+# ::node	a	and	9-10
+# ::node	n	near-02	10-11
+# ::node	s	sack	11-12
+# ::node	b	bungee	13-14
+# ::node	s3	slash	14-15
+# ::root	s2	sit-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	sit-01	ARG1	hydrant	s2	h	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	and	op1	in-front-of	a	i	
+# ::edge	sit-01	ARG2	and	s2	a	
+# ::edge	and	op2	near-02	a	n	
+# ::edge	near-02	ARG1	hydrant	n	h	
+# ::edge	near-02	ARG2	sack	n	s	
+# ::edge	slash	mod	bungee	s3	b	
+# ::edge	sack	consist-of	slash	s	s3	
+(s2 / sit-01
+    :ARG1 (h / hydrant
+        :mod (f / fire))
+    :ARG2 (a / and
+        :op1 (i / in-front-of
+            :op1 (w / wall))
+        :op2 (n / near-02
+            :ARG1 h
+            :ARG2 (s / sack
+                :consist-of (s3 / slash
+                    :mod (b / bungee))))))

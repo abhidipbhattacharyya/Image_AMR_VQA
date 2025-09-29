@@ -1,0 +1,27 @@
+# ::tok A woman dressed in winter clothing at a ski resort in the mountains .
+# ::node	w2	woman	1-2
+# ::node	d2	dress-01	2-3
+# ::node	d	date-entity	4-5
+# ::node	w	winter	4-5
+# ::node	c	clothe-01	5-6
+# ::node	s	ski-01	8-9
+# ::node	r	resort	9-10
+# ::node	m	mountain	12-13
+# ::root	d2	dress-01
+# ::edge	dress-01	ARG1	woman	d2	w2	
+# ::edge	date-entity	season	winter	d	w	
+# ::edge	clothe-01	ARG2	date-entity	c	d	
+# ::edge	dress-01	ARG2	clothe-01	d2	c	
+# ::edge	clothe-01	ARG1	woman	c	w2	
+# ::edge	resort	mod	ski-01	r	s	
+# ::edge	dress-01	location	resort	d2	r	
+# ::edge	resort	location	mountain	r	m	
+(d2 / dress-01
+    :ARG1 (w2 / woman)
+    :ARG2 (c / clothe-01
+        :ARG1 w2
+        :ARG2 (d / date-entity
+            :season (w / winter)))
+    :location (r / resort
+        :location (m / mountain)
+        :mod (s / ski-01)))

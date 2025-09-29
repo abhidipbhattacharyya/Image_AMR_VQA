@@ -1,0 +1,42 @@
+# ::tok a hot dog covered with condiments and french fries with diet coke and ketchup
+# ::node	e	eat-01	1-2
+# ::node	h	hot-dog	2-3
+# ::node	c4	cover-02	3-4
+# ::node	c2	conference	5-6
+# ::node	c3	country	7-8
+# ::node	n	name	7-8
+# ::node	0	France	7-8
+# ::node	f	fry-01	8-9
+# ::node	d	diet	10-11
+# ::node	c	coke	11-12
+# ::node	a	and	12-13
+# ::node	a2	and	12-13
+# ::node	k	ketchup	13-14
+# ::root	e	eat-01
+# ::edge	eat-01	ARG1	hot-dog	e	h	
+# ::edge	hot-dog	ARG1-of	cover-02	h	c4	
+# ::edge	cover-02	ARG2	conference	c4	c2	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c3	
+# ::edge	coke	mod	diet	c	d	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	and	op1	conference	a	c2	
+# ::edge	eat-01	ARG0	and	e	a	
+# ::edge	and	op1	coke	a2	c	
+# ::edge	fry-01	ARG1	and	f	a2	
+# ::edge	and	op2	ketchup	a2	k	
+(e / eat-01
+    :ARG0 (a / and
+        :op1 (c2 / conference)
+        :op2 (f / fry-01
+            :ARG1 (a2 / and
+                :op1 (c / coke
+                    :mod (d / diet))
+                :op2 (k / ketchup))
+            :mod (c3 / country
+                :name (n / name
+                    :op1 "France"))))
+    :ARG1 (h / hot-dog
+        :ARG1-of (c4 / cover-02
+            :ARG2 c2)))

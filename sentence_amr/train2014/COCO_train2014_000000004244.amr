@@ -1,0 +1,31 @@
+# ::tok People in chef 's coats in a kitchen with stainless steel counters and appliances .
+# ::node	p	person	0-1
+# ::node	c	chef	2-3
+# ::node	c2	coat-01	4-5
+# ::node	k	kitchen	7-8
+# ::node	h	have-03	8-9
+# ::node	s	stainless	9-10
+# ::node	s2	steel	10-11
+# ::node	c3	counter-01	11-12
+# ::node	a	and	12-13
+# ::node	a2	appliance	13-14
+# ::root	p	person
+# ::edge	coat-01	ARG2	chef	c2	c	
+# ::edge	person	ARG1-of	coat-01	p	c2	
+# ::edge	person	location	kitchen	p	k	
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	counter-01	ARG2	steel	c3	s2	
+# ::edge	and	op1	counter-01	a	c3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	appliance	a	a2	
+(p / person
+    :ARG1-of (c2 / coat-01
+        :ARG2 (c / chef))
+    :location (k / kitchen
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c3 / counter-01
+                    :ARG2 (s2 / steel
+                        :mod (s / stainless)))
+                :op2 (a2 / appliance)))))

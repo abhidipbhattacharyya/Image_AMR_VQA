@@ -1,0 +1,30 @@
+# ::tok A brick wall with a sign giving directions and a clock on top of it
+# ::node	b	brick	1-2
+# ::node	w	wall	2-3
+# ::node	h	have-03	3-4
+# ::node	s	sign	5-6
+# ::node	g	give-01	6-7
+# ::node	d	direct-01	7-8
+# ::node	a	and	8-9
+# ::node	c	clock	10-11
+# ::node	t	top	12-13
+# ::root	w	wall
+# ::edge	wall	consist-of	brick	w	b	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	sign	ARG0-of	give-01	s	g	
+# ::edge	give-01	ARG1	direct-01	g	d	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	clock	a	c	
+# ::edge	clock	location	top	c	t	
+# ::edge	top	op1	wall	t	w	
+(w / wall
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :ARG0-of (g / give-01
+                    :ARG1 (d / direct-01)))
+            :op2 (c / clock
+                :location (t / top
+                    :op1 w))))
+    :consist-of (b / brick))

@@ -1,0 +1,33 @@
+# ::tok A city street scene of pedestrians and a do n't walk hand signal .
+# ::node	c	city	1-2
+# ::node	s3	street	2-3
+# ::node	s	scene	3-4
+# ::node	w	walk-01	5-6
+# ::node	y	you	8-9
+# ::node	1	imperative	8-9
+# ::node	0	-	9-10
+# ::node	w2	walk-01	10-11
+# ::node	h	hand	11-12
+# ::node	s2	signal-07	12-13
+# ::root	s	scene
+# ::edge	street	mod	city	s3	c	
+# ::edge	scene	location	street	s	s3	
+# ::edge	you	ARG0-of	walk-01	y	w	
+# ::edge	scene	consist-of	you	s	y	
+# ::edge	walk-01	polarity	-	w2	0	
+# ::edge	walk-01	mode	imperative	w2	1	
+# ::edge	walk-01	ARG0	you	w2	y	
+# ::edge	signal-07	ARG1	hand	s2	h	
+# ::edge	signal-07	ARG1	walk-01	s2	w2	
+# ::edge	scene	location-of	signal-07	s	s2	
+(s / scene
+    :consist-of (y / you
+        :ARG0-of (w / walk-01))
+    :location (s3 / street
+        :mod (c / city))
+    :location-of (s2 / signal-07
+        :ARG1 (h / hand)
+        :ARG1 (w2 / walk-01
+            :ARG0 y
+            :mode imperative
+            :polarity -)))

@@ -1,0 +1,28 @@
+# ::tok A child looks at the tire of a large dump truck parked near a field .
+# ::node	c	child	1-2
+# ::node	l2	look-01	2-3
+# ::node	t	tire	5-6
+# ::node	l	large	8-9
+# ::node	d	dump	9-10
+# ::node	t2	truck	10-11
+# ::node	p	park-01	11-12
+# ::node	n	near-02	12-13
+# ::node	f	field	14-15
+# ::root	l2	look-01
+# ::edge	look-01	ARG0	child	l2	c	
+# ::edge	look-01	ARG1	tire	l2	t	
+# ::edge	truck	mod	dump	t2	d	
+# ::edge	truck	mod	large	t2	l	
+# ::edge	tire	part-of	truck	t	t2	
+# ::edge	truck	ARG1-of	park-01	t2	p	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	near-02	ARG2	field	n	f	
+(l2 / look-01
+    :ARG0 (c / child)
+    :ARG1 (t / tire
+        :part-of (t2 / truck
+            :ARG1-of (p / park-01
+                :ARG1-of (n / near-02
+                    :ARG2 (f / field)))
+            :mod (d / dump)
+            :mod (l / large))))

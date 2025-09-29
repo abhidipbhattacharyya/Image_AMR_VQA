@@ -1,0 +1,40 @@
+# ::tok An ice cream and banana crepe dessert on a plate next to a Cappucino in a restaurant ..
+# ::node	i	ice	1-2
+# ::node	c	cream	2-3
+# ::node	a	and	3-4
+# ::node	b	banana	4-5
+# ::node	c2	crepe	5-6
+# ::node	d	dessert	6-7
+# ::node	p	plate	9-10
+# ::node	n2	next-to	10-11
+# ::node	p2	product	13-14
+# ::node	n	name	13-14
+# ::node	0	Cappucino	13-14
+# ::node	r	restaurant	16-17
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	cream	mod	ice	c	i	
+# ::edge	and	op1	cream	a	c	
+# ::edge	crepe	mod	banana	c2	b	
+# ::edge	dessert	mod	crepe	d	c2	
+# ::edge	and	op2	dessert	a	d	
+# ::edge	next-to	location	plate	n2	p	
+# ::edge	and	location	next-to	a	n2	
+# ::edge	next-to	op1	product	n2	p2	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Cappucino	n	0	
+# ::edge	product	location	restaurant	p2	r	
+# ::edge	event	mod	and	e	a	
+(e / event
+    :mod (a / and
+        :location (n2 / next-to
+            :location (p / plate)
+            :op1 (p2 / product
+                :name (n / name
+                    :op1 "Cappucino")
+                :location (r / restaurant)))
+        :op1 (c / cream
+            :mod (i / ice))
+        :op2 (d / dessert
+            :mod (c2 / crepe
+                :mod (b / banana)))))

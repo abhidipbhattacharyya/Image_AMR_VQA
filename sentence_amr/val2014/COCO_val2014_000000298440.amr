@@ -1,0 +1,22 @@
+# ::tok A plane flying through a clear sky can be seen from the bottom .
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	c	clear-08	5-6
+# ::node	s2	sky	6-7
+# ::node	p2	possible-01	7-8
+# ::node	s	see-01	9-10
+# ::node	b	bottom	12-13
+# ::root	p2	possible-01
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	sky	ARG1-of	clear-08	s2	c	
+# ::edge	fly-01	path	sky	f	s2	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG1	plane	s	p	
+# ::edge	see-01	source	bottom	s	b	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (p / plane
+            :ARG2-of (f / fly-01
+                :path (s2 / sky
+                    :ARG1-of (c / clear-08))))
+        :source (b / bottom)))

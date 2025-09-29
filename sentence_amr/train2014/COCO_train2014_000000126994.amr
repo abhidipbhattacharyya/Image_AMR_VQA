@@ -1,0 +1,31 @@
+# ::tok Ocean Blvd sign at an ocean front next to a stop sign .
+# ::node	n	name	0-1
+# ::node	1	Ocean	0-1
+# ::node	r	road	1-2
+# ::node	0	Blvd	1-2
+# ::node	s	sign	2-3
+# ::node	o	ocean	5-6
+# ::node	f	front	6-7
+# ::node	n2	next-to	7-8
+# ::node	s3	stop-01	10-11
+# ::node	s2	signal-07	11-12
+# ::root	s	sign
+# ::edge	name	op1	Ocean	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	Blvd	n	0	
+# ::edge	sign	mod	road	s	r	
+# ::edge	front	mod	ocean	f	o	
+# ::edge	sign	location	front	s	f	
+# ::edge	front	location	next-to	f	n2	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	next-to	op1	signal-07	n2	s2	
+(s / sign
+    :location (f / front
+        :location (n2 / next-to
+            :op1 (s2 / signal-07
+                :ARG1 (s3 / stop-01)))
+        :mod (o / ocean))
+    :mod (r / road
+        :name (n / name
+            :op1 "Ocean"
+            :op2 "Blvd")))

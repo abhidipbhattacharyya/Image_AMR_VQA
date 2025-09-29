@@ -1,0 +1,27 @@
+# ::tok A bare memory foam mattress and pillows sit in a room .
+# ::node	b	bare-02	1-2
+# ::node	m2	memory	2-3
+# ::node	f	foam	3-4
+# ::node	m	mattress	4-5
+# ::node	a	and	5-6
+# ::node	p	pill	6-7
+# ::node	s	sit-01	7-8
+# ::node	r	room	10-11
+# ::root	s	sit-01
+# ::edge	memory	ARG1-of	bare-02	m2	b	
+# ::edge	foam	consist-of	memory	f	m2	
+# ::edge	mattress	consist-of	foam	m	f	
+# ::edge	and	op1	mattress	a	m	
+# ::edge	and	op2	pill	a	p	
+# ::edge	foam	consist	pill	f	p	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	room	s	r	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (m / mattress
+            :consist-of (f / foam
+                :consist (p / pill)
+                :consist-of (m2 / memory
+                    :ARG1-of (b / bare-02))))
+        :op2 p)
+    :ARG2 (r / room))

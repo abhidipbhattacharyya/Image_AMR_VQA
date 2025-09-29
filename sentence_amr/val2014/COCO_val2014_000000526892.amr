@@ -1,0 +1,25 @@
+# ::tok A man touching an iron board in a room filled with other items .
+# ::node	m	man	1-2
+# ::node	t	touch-01	2-3
+# ::node	i	iron	4-5
+# ::node	b	board	5-6
+# ::node	r	room	8-9
+# ::node	f	fill-01	9-10
+# ::node	o	other	11-12
+# ::node	i2	item	12-13
+# ::root	t	touch-01
+# ::edge	touch-01	ARG0	man	t	m	
+# ::edge	board	consist-of	iron	b	i	
+# ::edge	touch-01	ARG1	board	t	b	
+# ::edge	board	location	room	b	r	
+# ::edge	room	ARG1-of	fill-01	r	f	
+# ::edge	item	mod	other	i2	o	
+# ::edge	fill-01	ARG2	item	f	i2	
+(t / touch-01
+    :ARG0 (m / man)
+    :ARG1 (b / board
+        :consist-of (i / iron)
+        :location (r / room
+            :ARG1-of (f / fill-01
+                :ARG2 (i2 / item
+                    :mod (o / other))))))

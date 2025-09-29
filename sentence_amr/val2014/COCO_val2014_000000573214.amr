@@ -1,0 +1,49 @@
+# ::tok One car is driving by a building with a steeple and the other one is two people on a motorcycle going in the opposite direction .
+# ::node	o	one	0-1
+# ::node	c	car	1-2
+# ::node	c2	car	1-2
+# ::node	d2	drive-01	3-4
+# ::node	b2	by	4-5
+# ::node	b	building	6-7
+# ::node	h	have-03	7-8
+# ::node	s	steeple	9-10
+# ::node	a	and	10-11
+# ::node	o3	other	12-13
+# ::node	0	2	15-16
+# ::node	p	person	16-17
+# ::node	m	motorcycle	19-20
+# ::node	g	go-02	20-21
+# ::node	o2	opposite-01	23-24
+# ::node	d	direction	24-25
+# ::root	a	and
+# ::edge	car	mod	one	c	o	
+# ::edge	drive-01	ARG0	car	d2	c	
+# ::edge	drive-01	path	by	d2	b2	
+# ::edge	by	op1	building	b2	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	steeple	h	s	
+# ::edge	and	op1	drive-01	a	d2	
+# ::edge	car	mod	other	c2	o3	
+# ::edge	person	quant	2	p	0	
+# ::edge	motorcycle	consist-of	person	m	p	
+# ::edge	and	op2	motorcycle	a	m	
+# ::edge	motorcycle	ARG0-of	go-02	m	g	
+# ::edge	direction	ARG1-of	opposite-01	d	o2	
+# ::edge	go-02	ARG1	direction	g	d	
+# ::edge	and	rel	car	a	c2	
+(a / and
+    :op1 (d2 / drive-01
+        :ARG0 (c / car
+            :mod (o / one))
+        :path (b2 / by
+            :op1 (b / building
+                :ARG0-of (h / have-03
+                    :ARG1 (s / steeple)))))
+    :op2 (m / motorcycle
+        :ARG0-of (g / go-02
+            :ARG1 (d / direction
+                :ARG1-of (o2 / opposite-01)))
+        :consist-of (p / person
+            :quant 2))
+    :rel (c2 / car
+        :mod (o3 / other)))

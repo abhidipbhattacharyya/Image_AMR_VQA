@@ -1,0 +1,24 @@
+# ::tok Children stand in front of a stop sign with their skis on
+# ::node	c2	child	0-1
+# ::node	s3	stand-01	1-2
+# ::node	i	in-front-of	3-4
+# ::node	s4	stop-01	6-7
+# ::node	s	signal-07	7-8
+# ::node	s2	ski-01	10-11
+# ::node	c	cause-01	11-12
+# ::root	s3	stand-01
+# ::edge	stand-01	ARG1	child	s3	c2	
+# ::edge	stand-01	ARG2	in-front-of	s3	i	
+# ::edge	signal-07	ARG1	stop-01	s	s4	
+# ::edge	in-front-of	op1	signal-07	i	s	
+# ::edge	ski-01	ARG0	child	s2	c2	
+# ::edge	cause-01	ARG1	ski-01	c	s2	
+# ::edge	child	ARG0-of	cause-01	c2	c	
+(s3 / stand-01
+    :ARG1 (c2 / child
+        :ARG0-of (c / cause-01
+            :ARG1 (s2 / ski-01
+                :ARG0 c2)))
+    :ARG2 (i / in-front-of
+        :op1 (s / signal-07
+            :ARG1 (s4 / stop-01))))

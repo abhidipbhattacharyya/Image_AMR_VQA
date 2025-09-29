@@ -1,0 +1,22 @@
+# ::tok Several bunches of bananas in various stages of ripeness .
+# ::node	s	several	0-1
+# ::node	m	multiple	1-2
+# ::node	l	load	1-2
+# ::node	b	banana	3-4
+# ::node	v	various	5-6
+# ::node	s2	stage	6-7
+# ::node	r	rip-01	8-9
+# ::root	m	multiple
+# ::edge	multiple	quant	several	m	s	
+# ::edge	multiple	op1	load	m	l	
+# ::edge	load	consist-of	banana	l	b	
+# ::edge	stage	mod	various	s2	v	
+# ::edge	rip-01	mod	stage	r	s2	
+# ::edge	banana	ARG1-of	rip-01	b	r	
+(m / multiple
+    :quant (s / several)
+    :op1 (l / load
+        :consist-of (b / banana
+            :ARG1-of (r / rip-01
+                :mod (s2 / stage
+                    :mod (v / various))))))

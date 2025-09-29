@@ -1,0 +1,31 @@
+# ::tok A bus traveling down the street , with Walton - Le - Dale written on it .
+# ::node	b	bus	1-2
+# ::node	t	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	s	street	5-6
+# ::node	n	name	8-9
+# ::node	c	company	8-9
+# ::node	n2	name	8-9
+# ::node	0	child	8-9
+# ::node	1	market	8-9
+# ::node	w	write-01	13-14
+# ::root	t	travel-01
+# ::edge	travel-01	ARG0	bus	t	b	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	down	op1	street	d	s	
+# ::edge	company	name	name	c	n2	
+# ::edge	name	op1	child	n	0	
+# ::edge	name	op2	market	n2	1	
+# ::edge	write-01	location	company	w	c	
+# ::edge	bus	ARG1-of	write-01	b	w	
+# ::edge	travel-01	rel	name	t	n	
+(t / travel-01
+    :ARG0 (b / bus
+        :ARG1-of (w / write-01
+            :location (c / company
+                :name (n2 / name
+                    :op2 "market"))))
+    :direction (d / down
+        :op1 (s / street))
+    :rel (n / name
+        :op1 "child"))

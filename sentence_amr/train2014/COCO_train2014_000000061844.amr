@@ -1,0 +1,46 @@
+# ::tok Major League Baseball game with player from Pittsburgh Pirates crossing home plate
+# ::node	2	Major	0-1
+# ::node	1	League	1-2
+# ::node	l	league	2-3
+# ::node	n	name	2-3
+# ::node	0	Baseball	2-3
+# ::node	g	game	3-4
+# ::node	p	person	5-6
+# ::node	p3	play-01	5-6
+# ::node	n2	name	7-8
+# ::node	4	Pittsburgh	7-8
+# ::node	t	team	8-9
+# ::node	3	Pirates	8-9
+# ::node	c	cross-02	9-10
+# ::node	h	home	10-11
+# ::node	p2	plate	11-12
+# ::root	g	game
+# ::edge	league	name	name	l	n	
+# ::edge	name	op2	League	n	1	
+# ::edge	name	op1	Major	n	2	
+# ::edge	name	op3	Baseball	n	0	
+# ::edge	game	mod	league	g	l	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	name	op1	Pittsburgh	n2	4	
+# ::edge	team	name	name	t	n2	
+# ::edge	person	source	team	p	t	
+# ::edge	name	op2	Pirates	n2	3	
+# ::edge	cross-02	ARG0	person	c	p	
+# ::edge	game	time-of	cross-02	g	c	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	cross-02	ARG1	plate	c	p2	
+(g / game
+    :mod (l / league
+        :name (n / name
+            :op1 "Major"
+            :op2 "League"
+            :op3 "Baseball"))
+    :time-of (c / cross-02
+        :ARG0 (p / person
+            :ARG0-of (p3 / play-01)
+            :source (t / team
+                :name (n2 / name
+                    :op1 "Pittsburgh"
+                    :op2 "Pirates")))
+        :ARG1 (p2 / plate
+            :mod (h / home))))

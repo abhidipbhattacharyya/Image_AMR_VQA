@@ -1,0 +1,31 @@
+# ::tok Some people on a sandy beach near the water with sails flying over head .
+# ::node	s3	some	0-1
+# ::node	p	person	1-2
+# ::node	s2	sandy	4-5
+# ::node	b	beach	5-6
+# ::node	n	near-02	6-7
+# ::node	w	water	8-9
+# ::node	s	sail-01	10-11
+# ::node	f	fly-01	11-12
+# ::node	o	over	12-13
+# ::node	h	head	13-14
+# ::root	p	person
+# ::edge	person	quant	some	p	s3	
+# ::edge	beach	mod	sandy	b	s2	
+# ::edge	person	location	beach	p	b	
+# ::edge	beach	ARG1-of	near-02	b	n	
+# ::edge	near-02	ARG2	water	n	w	
+# ::edge	person	ARG0-of	sail-01	p	s	
+# ::edge	sail-01	ARG0-of	fly-01	s	f	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	over	op1	head	o	h	
+(p / person
+    :quant (s3 / some)
+    :ARG0-of (s / sail-01
+        :ARG0-of (f / fly-01
+            :path (o / over
+                :op1 (h / head))))
+    :location (b / beach
+        :ARG1-of (n / near-02
+            :ARG2 (w / water))
+        :mod (s2 / sandy)))

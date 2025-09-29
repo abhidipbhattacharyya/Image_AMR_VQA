@@ -1,0 +1,40 @@
+# ::tok A man wearing a red arctic coat snow skiing down a snow covered hill .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	r	red-02	4-5
+# ::node	w2	world-region	5-6
+# ::node	n	name	5-6
+# ::node	0	Antarctica	5-6
+# ::node	c	coat	6-7
+# ::node	s2	snow	7-8
+# ::node	s	ski-01	8-9
+# ::node	d	down	9-10
+# ::node	s3	snow	11-12
+# ::node	c2	cover-02	12-13
+# ::node	h	hill	13-14
+# ::root	m	man
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	world-region	name	name	w2	n	
+# ::edge	name	op1	Antarctica	n	0	
+# ::edge	coat	mod	world-region	c	w2	
+# ::edge	coat	ARG1-of	red-02	c	r	
+# ::edge	wear-01	ARG1	coat	w	c	
+# ::edge	ski-01	mod	snow	s	s2	
+# ::edge	man	ARG0-of	ski-01	m	s	
+# ::edge	ski-01	direction	down	s	d	
+# ::edge	cover-02	ARG2	snow	c2	s3	
+# ::edge	hill	ARG1-of	cover-02	h	c2	
+# ::edge	ski-01	path	hill	s	h	
+(m / man
+    :ARG0-of (w / wear-01
+        :ARG1 (c / coat
+            :ARG1-of (r / red-02)
+            :mod (w2 / world-region
+                :name (n / name
+                    :op1 "Antarctica"))))
+    :ARG0-of (s / ski-01
+        :direction (d / down)
+        :mod (s2 / snow)
+        :path (h / hill
+            :ARG1-of (c2 / cover-02
+                :ARG2 (s3 / snow)))))

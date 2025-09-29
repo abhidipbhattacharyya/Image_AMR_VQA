@@ -1,0 +1,36 @@
+# ::tok A very small bathroom with tub / shower sink and small commode .
+# ::node	v	very	1-2
+# ::node	s4	small	2-3
+# ::node	b	bathroom	3-4
+# ::node	h	have-03	4-5
+# ::node	t	tub	5-6
+# ::node	s3	slash	6-7
+# ::node	s	shower	7-8
+# ::node	s2	sink	8-9
+# ::node	a	and	9-10
+# ::node	s5	small	10-11
+# ::node	c	commode	11-12
+# ::root	b	bathroom
+# ::edge	small	degree	very	s4	v	
+# ::edge	bathroom	mod	small	b	s4	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	slash	op1	tub	s3	t	
+# ::edge	slash	op2	shower	s3	s	
+# ::edge	sink	mod	slash	s2	s3	
+# ::edge	and	op2	sink	a	s2	
+# ::edge	and	op1	slash	a	s3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	commode	mod	small	c	s5	
+# ::edge	and	op3	commode	a	c	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s3 / slash
+                :op1 (t / tub)
+                :op2 (s / shower))
+            :op2 (s2 / sink
+                :mod s3)
+            :op3 (c / commode
+                :mod (s5 / small))))
+    :mod (s4 / small
+        :degree (v / very)))

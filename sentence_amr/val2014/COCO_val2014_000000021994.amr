@@ -1,0 +1,32 @@
+# ::tok an elephant standing by a little cliff so it can get some water with its trunk
+# ::node	e	elephant	1-2
+# ::node	s2	stand-01	2-3
+# ::node	l	little	5-6
+# ::node	c	cliff	6-7
+# ::node	p	possible-01	9-10
+# ::node	g	get-01	10-11
+# ::node	s	some	11-12
+# ::node	w	water	12-13
+# ::node	t	trunk	15-16
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	elephant	s2	e	
+# ::edge	cliff	mod	little	c	l	
+# ::edge	stand-01	ARG2	cliff	s2	c	
+# ::edge	stand-01	purpose	possible-01	s2	p	
+# ::edge	possible-01	ARG1	get-01	p	g	
+# ::edge	get-01	ARG0	elephant	g	e	
+# ::edge	water	quant	some	w	s	
+# ::edge	get-01	ARG1	water	g	w	
+# ::edge	get-01	instrument	trunk	g	t	
+# ::edge	elephant	part	trunk	e	t	
+(s2 / stand-01
+    :purpose (p / possible-01
+        :ARG1 (g / get-01
+            :ARG0 (e / elephant
+                :part (t / trunk))
+            :ARG1 (w / water
+                :quant (s / some))
+            :instrument t))
+    :ARG1 e
+    :ARG2 (c / cliff
+        :mod (l / little)))

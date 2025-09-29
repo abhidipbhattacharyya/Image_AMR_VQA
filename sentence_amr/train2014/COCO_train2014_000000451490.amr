@@ -1,0 +1,28 @@
+# ::tok Some cows are on a grassy meadow and a mountain looms in the background .
+# ::node	s	some	0-1
+# ::node	c	cow	1-2
+# ::node	b2	be-located-at-91	3-4
+# ::node	g	grass	5-6
+# ::node	m	meadow	6-7
+# ::node	a	and	7-8
+# ::node	m2	mountain	9-10
+# ::node	l	loom-01	10-11
+# ::node	b	background	13-14
+# ::root	a	and
+# ::edge	cow	quant	some	c	s	
+# ::edge	be-located-at-91	ARG1	cow	b2	c	
+# ::edge	meadow	consist-of	grass	m	g	
+# ::edge	be-located-at-91	ARG2	meadow	b2	m	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	loom-01	ARG1	mountain	l	m2	
+# ::edge	and	op2	loom-01	a	l	
+# ::edge	loom-01	location	background	l	b	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (c / cow
+            :quant (s / some))
+        :ARG2 (m / meadow
+            :consist-of (g / grass)))
+    :op2 (l / loom-01
+        :ARG1 (m2 / mountain)
+        :location (b / background)))

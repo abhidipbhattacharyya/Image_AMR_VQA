@@ -1,0 +1,40 @@
+# ::tok A kid getting ready to hit a baseball at a game while a crowd looks on and a back catcher .
+# ::node	k	kid	1-2
+# ::node	r	ready-01	3-4
+# ::node	h	hit-01	5-6
+# ::node	b2	baseball	7-8
+# ::node	g	game	10-11
+# ::node	c2	crowd	13-14
+# ::node	l	look-01	14-15
+# ::node	a	and	16-17
+# ::node	b	back	18-19
+# ::node	p	person	19-20
+# ::node	c	catch-01	19-20
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	kid	r	k	
+# ::edge	ready-01	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG0	kid	h	k	
+# ::edge	hit-01	ARG1	baseball	h	b2	
+# ::edge	hit-01	location	game	h	g	
+# ::edge	look-01	ARG0	crowd	l	c2	
+# ::edge	look-01	ARG1	ready-01	l	r	
+# ::edge	and	op1	look-01	a	l	
+# ::edge	ready-01	time	and	r	a	
+# ::edge	back	op2	person	b	p	
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	catch-01	location	back	c	b	
+# ::edge	ready-01	rel	person	r	p	
+(r / ready-01
+    :ARG1 (k / kid)
+    :ARG2 (h / hit-01
+        :ARG0 k
+        :ARG1 (b2 / baseball)
+        :location (g / game))
+    :rel (p / person
+        :ARG0-of (c / catch-01
+            :location (b / back
+                :op2 p)))
+    :time (a / and
+        :op1 (l / look-01
+            :ARG0 (c2 / crowd)
+            :ARG1 r)))

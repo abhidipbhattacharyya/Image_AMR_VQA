@@ -1,0 +1,34 @@
+# ::tok This kitchen has white cabinets , stainless steel appliances , and wood floors .
+# ::node	t	this	0-1
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	w	white-03	3-4
+# ::node	c	cabinet	4-5
+# ::node	s	stainless	6-7
+# ::node	s2	steel	7-8
+# ::node	a2	appliance	8-9
+# ::node	a	and	10-11
+# ::node	w2	wood	11-12
+# ::node	f	floor	12-13
+# ::root	h	have-03
+# ::edge	kitchen	mod	this	k	t	
+# ::edge	have-03	ARG0	kitchen	h	k	
+# ::edge	cabinet	ARG1-of	white-03	c	w	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	appliance	mod	steel	a2	s2	
+# ::edge	and	op2	appliance	a	a2	
+# ::edge	and	op1	cabinet	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	floor	consist-of	wood	f	w2	
+# ::edge	and	op3	floor	a	f	
+(h / have-03
+    :ARG0 (k / kitchen
+        :mod (t / this))
+    :ARG1 (a / and
+        :op1 (c / cabinet
+            :ARG1-of (w / white-03))
+        :op2 (a2 / appliance
+            :mod (s2 / steel
+                :mod (s / stainless)))
+        :op3 (f / floor
+            :consist-of (w2 / wood))))

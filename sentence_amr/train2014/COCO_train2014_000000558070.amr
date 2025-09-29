@@ -1,0 +1,49 @@
+# ::tok Man and woman in jeans and dark tops on bench , festive lights in background , night scene .
+# ::node	m	man	0-1
+# ::node	a	and	1-2
+# ::node	a2	and	1-2
+# ::node	w2	woman	2-3
+# ::node	w	wear-01	3-4
+# ::node	j	jeans	4-5
+# ::node	a3	and	5-6
+# ::node	d	dark-02	6-7
+# ::node	t	top	7-8
+# ::node	b2	bench	9-10
+# ::node	f	festive	11-12
+# ::node	l	light	12-13
+# ::node	b	background	14-15
+# ::node	d2	date-entity	16-17
+# ::node	n	night	16-17
+# ::node	s	scene	17-18
+# ::root	a	and
+# ::edge	and	op1	man	a2	m	
+# ::edge	and	op2	woman	a2	w2	
+# ::edge	wear-01	ARG0	and	w	a2	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op1	jeans	a3	j	
+# ::edge	wear-01	ARG1	and	w	a3	
+# ::edge	top	ARG1-of	dark-02	t	d	
+# ::edge	and	op2	top	a3	t	
+# ::edge	and	location	bench	a2	b2	
+# ::edge	light	mod	festive	l	f	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	location	background	l	b	
+# ::edge	date-entity	dayperiod	night	d2	n	
+# ::edge	scene	time	date-entity	s	d2	
+# ::edge	and	op3	scene	a	s	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (a2 / and
+            :location (b2 / bench)
+            :op1 (m / man)
+            :op2 (w2 / woman))
+        :ARG1 (a3 / and
+            :op1 (j / jeans)
+            :op2 (t / top
+                :ARG1-of (d / dark-02))))
+    :op2 (l / light
+        :location (b / background)
+        :mod (f / festive))
+    :op3 (s / scene
+        :time (d2 / date-entity
+            :dayperiod (n / night))))

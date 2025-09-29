@@ -1,0 +1,31 @@
+# ::tok A busy intersection with many cars and traffic lanes lies beneath an overpass .
+# ::node	b2	busy-01	1-2
+# ::node	i	intersect-01	2-3
+# ::node	m	many	4-5
+# ::node	c	car	5-6
+# ::node	a	and	6-7
+# ::node	t	traffic	7-8
+# ::node	l	lane	8-9
+# ::node	l2	lie-07	9-10
+# ::node	b	beneath	10-11
+# ::node	o	overpass	12-13
+# ::root	l2	lie-07
+# ::edge	intersect-01	ARG1-of	busy-01	i	b2	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	quant	many	a	m	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	lane	purpose	traffic	l	t	
+# ::edge	and	op2	lane	a	l	
+# ::edge	lie-07	ARG1	intersect-01	l2	i	
+# ::edge	lie-07	ARG2	beneath	l2	b	
+# ::edge	beneath	op1	overpass	b	o	
+(l2 / lie-07
+    :ARG1 (i / intersect-01
+        :ARG1 (a / and
+            :quant (m / many)
+            :op1 (c / car)
+            :op2 (l / lane
+                :purpose (t / traffic)))
+        :ARG1-of (b2 / busy-01))
+    :ARG2 (b / beneath
+        :op1 (o / overpass)))

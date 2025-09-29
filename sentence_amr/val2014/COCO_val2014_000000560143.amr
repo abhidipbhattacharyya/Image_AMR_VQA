@@ -1,0 +1,30 @@
+# ::tok An official watching as a woman tennis player tries to return the ball .
+# ::node	o	official	1-2
+# ::node	w	watch-01	2-3
+# ::node	w2	woman	5-6
+# ::node	t	tennis	6-7
+# ::node	p	person	7-8
+# ::node	p2	play-01	7-8
+# ::node	t2	try-01	8-9
+# ::node	r	return-02	10-11
+# ::node	b	ball	12-13
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	official	w	o	
+# ::edge	person	mod	woman	p	w2	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	try-01	ARG0	person	t2	p	
+# ::edge	watch-01	ARG1	try-01	w	t2	
+# ::edge	try-01	ARG1	return-02	t2	r	
+# ::edge	return-02	ARG0	person	r	p	
+# ::edge	return-02	ARG1	ball	r	b	
+(w / watch-01
+    :ARG0 (o / official)
+    :ARG1 (t2 / try-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))
+            :mod (w2 / woman))
+        :ARG1 (r / return-02
+            :ARG0 p
+            :ARG1 (b / ball))))

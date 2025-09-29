@@ -1,0 +1,43 @@
+# ::tok A vandalized stop sign with black spray paint that reads " you ca n't stop Obama " .
+# ::node	v	vandalize-01	1-2
+# ::node	s3	stop-01	2-3
+# ::node	s	sign	3-4
+# ::node	b	black-04	5-6
+# ::node	s2	spray-01	6-7
+# ::node	p	paint	7-8
+# ::node	r	read-01	9-10
+# ::node	y	you	11-12
+# ::node	p3	possible-01	12-13
+# ::node	0	-	13-14
+# ::node	s4	stop-01	14-15
+# ::node	p2	person	15-16
+# ::node	n	name	15-16
+# ::node	1	Obama	15-16
+# ::root	s	sign
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	sign	ARG1-of	vandalize-01	s	v	
+# ::edge	paint	ARG2-of	spray-01	p	s2	
+# ::edge	paint	ARG1-of	black-04	p	b	
+# ::edge	vandalize-01	instrument	paint	v	p	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	read-01	ARG2	possible-01	r	p3	
+# ::edge	possible-01	polarity	-	p3	0	
+# ::edge	possible-01	ARG1	stop-01	p3	s4	
+# ::edge	stop-01	ARG0	you	s4	y	
+# ::edge	stop-01	ARG1	person	s4	p2	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Obama	n	1	
+(s / sign
+    :purpose (s3 / stop-01)
+    :ARG1-of (v / vandalize-01
+        :instrument (p / paint
+            :ARG1-of (b / black-04)
+            :ARG2-of (s2 / spray-01)))
+    :ARG1-of (r / read-01
+        :ARG2 (p3 / possible-01
+            :ARG1 (s4 / stop-01
+                :ARG0 (y / you)
+                :ARG1 (p2 / person
+                    :name (n / name
+                        :op1 "Obama")))
+            :polarity -)))

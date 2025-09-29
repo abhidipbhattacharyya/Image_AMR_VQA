@@ -1,0 +1,50 @@
+# ::tok Three people on a tennis court , one with a racquet and one sitting touching anothers leg .
+# ::node	2	3	0-1
+# ::node	p	person	1-2
+# ::node	t	tennis	4-5
+# ::node	c	court	5-6
+# ::node	i	include-91	7-8
+# ::node	i2	include-91	7-8
+# ::node	0	1	7-8
+# ::node	p2	person	8-9
+# ::node	r	racquet	10-11
+# ::node	1	1	12-13
+# ::node	s	sit-01	13-14
+# ::node	t2	touch-01	14-15
+# ::node	p3	person	15-16
+# ::node	l	leg	16-17
+# ::node	m	multi-sentence	17-18
+# ::root	m	multi-sentence
+# ::edge	person	quant	3	p	2	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	person	location	court	p	c	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	ARG2-of	include-91	p	i2	
+# ::edge	person	quant	1	p2	0	
+# ::edge	include-91	ARG1	person	i	p2	
+# ::edge	person	instrument	racquet	p2	r	
+# ::edge	person	ARG0-of	touch-01	p3	t2	
+# ::edge	person	ARG1-of	sit-01	p3	s	
+# ::edge	person	quant	1	p3	0	
+# ::edge	include-91	ARG1	person	i2	p3	
+# ::edge	person	part	leg	p3	l	
+# ::edge	touch-01	ARG1	leg	t2	l	
+# ::edge	multi-sentence	snt1	person	m	p	
+# ::edge	multi-sentence	rel	1	m	1	
+(m / multi-sentence
+    :rel 1
+    :snt1 (p / person
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1 (p2 / person
+                :quant 1
+                :instrument (r / racquet)))
+        :ARG2-of (i2 / include-91
+            :ARG1 (p3 / person
+                :quant 1
+                :ARG0-of (t2 / touch-01
+                    :ARG1 (l / leg))
+                :ARG1-of (s / sit-01)
+                :part l))
+        :location (c / court
+            :mod (t / tennis))))

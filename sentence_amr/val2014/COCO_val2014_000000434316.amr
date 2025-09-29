@@ -1,0 +1,28 @@
+# ::tok Night scene of an on ramp with traffic light and assorted street lights .
+# ::node	n	night	0-1
+# ::node	s	scene	1-2
+# ::node	r	ramp-up-01	5-6
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	a	and	9-10
+# ::node	a2	assorted	10-11
+# ::node	s2	street	11-12
+# ::node	l2	light	12-13
+# ::root	s	scene
+# ::edge	scene	time	night	s	n	
+# ::edge	scene	mod	ramp-up-01	s	r	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	ramp-up-01	part	and	r	a	
+# ::edge	light	mod	street	l2	s2	
+# ::edge	light	mod	assorted	l2	a2	
+# ::edge	and	op2	light	a	l2	
+(s / scene
+    :mod (r / ramp-up-01
+        :part (a / and
+            :op1 (l / light
+                :mod (t / traffic))
+            :op2 (l2 / light
+                :mod (s2 / street)
+                :mod (a2 / assorted))))
+    :time (n / night))

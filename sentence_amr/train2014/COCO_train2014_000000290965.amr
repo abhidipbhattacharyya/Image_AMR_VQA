@@ -1,0 +1,37 @@
+# ::tok Delta airplane at an airport terminal with baggage and Pepsi trucks .
+# ::node	c	company	0-1
+# ::node	n	name	0-1
+# ::node	0	Delta	0-1
+# ::node	a	airplane	1-2
+# ::node	a2	airport	4-5
+# ::node	t	terminal	5-6
+# ::node	b	baggage	7-8
+# ::node	a3	and	8-9
+# ::node	c2	company	9-10
+# ::node	n2	name	9-10
+# ::node	1	Pepsi	9-10
+# ::node	t2	truck	10-11
+# ::root	a	airplane
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Delta	n	0	
+# ::edge	airplane	mod	company	a	c	
+# ::edge	terminal	mod	airport	t	a2	
+# ::edge	airplane	location	terminal	a	t	
+# ::edge	and	op1	baggage	a3	b	
+# ::edge	airplane	part	and	a	a3	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	Pepsi	n2	1	
+# ::edge	truck	mod	company	t2	c2	
+# ::edge	and	op2	truck	a3	t2	
+(a / airplane
+    :location (t / terminal
+        :mod (a2 / airport))
+    :mod (c / company
+        :name (n / name
+            :op1 "Delta"))
+    :part (a3 / and
+        :op1 (b / baggage)
+        :op2 (t2 / truck
+            :mod (c2 / company
+                :name (n2 / name
+                    :op1 "Pepsi")))))

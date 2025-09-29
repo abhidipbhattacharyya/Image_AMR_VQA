@@ -1,0 +1,25 @@
+# ::tok Player on court returning volley during major tennis tournament .
+# ::node	p	person	0-1
+# ::node	p2	play-01	0-1
+# ::node	c	court	2-3
+# ::node	r	return-01	3-4
+# ::node	v	volley	4-5
+# ::node	m	major-02	6-7
+# ::node	t	tennis	7-8
+# ::node	t2	tournament	8-9
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	location	court	p	c	
+# ::edge	volley	ARG1-of	return-01	v	r	
+# ::edge	play-01	mod	volley	p2	v	
+# ::edge	tournament	mod	tennis	t2	t	
+# ::edge	tournament	ARG1-of	major-02	t2	m	
+# ::edge	person	time	tournament	p	t2	
+(p / person
+    :ARG0-of (p2 / play-01
+        :mod (v / volley
+            :ARG1-of (r / return-01)))
+    :location (c / court)
+    :time (t2 / tournament
+        :ARG1-of (m / major-02)
+        :mod (t / tennis)))

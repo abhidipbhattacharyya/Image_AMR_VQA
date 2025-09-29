@@ -1,0 +1,64 @@
+# ::tok A polka dot plate with one hotdog , baked beans and carton of grape drink on a green table cloth next to a larger carton of drink .
+# ::node	p2	polka	1-2
+# ::node	d	dot	2-3
+# ::node	p	plate	3-4
+# ::node	0	1	5-6
+# ::node	h2	hotdog	6-7
+# ::node	b	bake-01	8-9
+# ::node	b2	bean	9-10
+# ::node	a	and	10-11
+# ::node	c	carton	11-12
+# ::node	g	grape	13-14
+# ::node	d2	drink	14-15
+# ::node	g2	green-02	17-18
+# ::node	t	table	18-19
+# ::node	c3	cloth	19-20
+# ::node	n	next-to	20-21
+# ::node	h	have-degree-91	23-24
+# ::node	l	large	23-24
+# ::node	m	more	23-24
+# ::node	c2	carton	24-25
+# ::node	d3	drink	26-27
+# ::node	m2	multi-sentence	27-28
+# ::root	m2	multi-sentence
+# ::edge	dot	mod	polka	d	p2	
+# ::edge	plate	consist-of	dot	p	d	
+# ::edge	hotdog	quant	1	h2	0	
+# ::edge	bean	ARG1-of	bake-01	b2	b	
+# ::edge	and	op2	bean	a	b2	
+# ::edge	and	op1	hotdog	a	h2	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	and	op3	carton	a	c	
+# ::edge	drink	mod	grape	d2	g	
+# ::edge	carton	mod	drink	c	d2	
+# ::edge	cloth	mod	table	c3	t	
+# ::edge	cloth	ARG1-of	green-02	c3	g2	
+# ::edge	plate	location	cloth	p	c3	
+# ::edge	plate	location	next-to	p	n	
+# ::edge	have-degree-91	ARG2	large	h	l	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	carton	ARG1-of	have-degree-91	c2	h	
+# ::edge	next-to	op1	carton	n	c2	
+# ::edge	carton	mod	drink	c2	d3	
+# ::edge	multi-sentence	snt1	plate	m2	p	
+(m2 / multi-sentence
+    :snt1 (p / plate
+        :consist-of (d / dot
+            :mod (p2 / polka))
+        :consist-of (a / and
+            :op1 (h2 / hotdog
+                :quant 1)
+            :op2 (b2 / bean
+                :ARG1-of (b / bake-01))
+            :op3 (c / carton
+                :mod (d2 / drink
+                    :mod (g / grape))))
+        :location (c3 / cloth
+            :ARG1-of (g2 / green-02)
+            :mod (t / table))
+        :location (n / next-to
+            :op1 (c2 / carton
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (l / large)
+                    :ARG3 (m / more))
+                :mod (d3 / drink)))))

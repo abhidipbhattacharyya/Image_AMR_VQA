@@ -1,0 +1,31 @@
+# ::tok A room filled with lots of flat screen TVs and bean bag chairs .
+# ::node	r	room	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	f2	flat	6-7
+# ::node	s	screen	7-8
+# ::node	t	television	8-9
+# ::node	a	and	9-10
+# ::node	b2	bean	10-11
+# ::node	b	bag	11-12
+# ::node	c	chair	12-13
+# ::root	r	room
+# ::edge	room	ARG1-of	fill-01	r	f	
+# ::edge	screen	mod	flat	s	f2	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op1	television	a	t	
+# ::edge	and	quant	lot	a	l	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	bag	mod	bean	b	b2	
+# ::edge	chair	mod	bag	c	b	
+# ::edge	and	op2	chair	a	c	
+(r / room
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :quant (l / lot)
+            :op1 (t / television
+                :mod (s / screen
+                    :mod (f2 / flat)))
+            :op2 (c / chair
+                :mod (b / bag
+                    :mod (b2 / bean))))))

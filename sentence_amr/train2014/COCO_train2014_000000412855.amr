@@ -1,0 +1,25 @@
+# ::tok A traffic intersection at night with many street lamps lit .
+# ::node	t	traffic	1-2
+# ::node	i	intersect-01	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	m	many	6-7
+# ::node	s	street	7-8
+# ::node	b	bulb	8-9
+# ::node	l	light-04	9-10
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	traffic	i	t	
+# ::edge	intersect-01	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	bulb	mod	street	b	s	
+# ::edge	bulb	quant	many	b	m	
+# ::edge	light-04	ARG1	bulb	l	b	
+# ::edge	intersect-01	ARG0-of	light-04	i	l	
+(i / intersect-01
+    :ARG0-of (l / light-04
+        :ARG1 (b / bulb
+            :quant (m / many)
+            :mod (s / street)))
+    :ARG1 (t / traffic)
+    :time (d / date-entity
+        :dayperiod (n / night)))

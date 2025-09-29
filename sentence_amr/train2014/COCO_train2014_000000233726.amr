@@ -1,0 +1,34 @@
+# ::tok a person holding a wii remote next to another person holding a wi remote
+# ::node	p	person	1-2
+# ::node	h	hold-01	2-3
+# ::node	n	name	4-5
+# ::node	0	W	4-5
+# ::node	r	remote	5-6
+# ::node	n2	next-to	6-7
+# ::node	a	another	8-9
+# ::node	p2	person	9-10
+# ::node	h2	hold-01	10-11
+# ::node	p3	personal-02	12-13
+# ::node	r2	remote	13-14
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	name	op1	W	n	0	
+# ::edge	remote	name	name	r	n	
+# ::edge	hold-01	ARG1	remote	h	r	
+# ::edge	hold-01	location	next-to	h	n2	
+# ::edge	person	mod	another	p2	a	
+# ::edge	next-to	op1	person	n2	p2	
+# ::edge	person	ARG0-of	hold-01	p2	h2	
+# ::edge	remote	ARG1-of	personal-02	r2	p3	
+# ::edge	hold-01	ARG1	remote	h2	r2	
+(h / hold-01
+    :ARG0 (p / person)
+    :ARG1 (r / remote
+        :name (n / name
+            :op1 "W"))
+    :location (n2 / next-to
+        :op1 (p2 / person
+            :ARG0-of (h2 / hold-01
+                :ARG1 (r2 / remote
+                    :ARG1-of (p3 / personal-02)))
+            :mod (a / another))))

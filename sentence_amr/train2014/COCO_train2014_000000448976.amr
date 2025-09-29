@@ -1,0 +1,40 @@
+# ::tok A tray holds a meal of fried rice with chicken , a roll , some apple slices , a salad , and a bottle of water .
+# ::node	t	tray	1-2
+# ::node	h	hold-01	2-3
+# ::node	m	meal	4-5
+# ::node	f	fry-01	6-7
+# ::node	r	rice	7-8
+# ::node	c	chicken	9-10
+# ::node	r2	roll	12-13
+# ::node	s3	some	14-15
+# ::node	a	apple	15-16
+# ::node	s2	slice	16-17
+# ::node	s	salad	19-20
+# ::node	b	bottle	23-24
+# ::node	w	water	25-26
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	tray	h	t	
+# ::edge	hold-01	ARG1	meal	h	m	
+# ::edge	rice	ARG1-of	fry-01	r	f	
+# ::edge	meal	consist-of	rice	m	r	
+# ::edge	rice	consist-of	chicken	r	c	
+# ::edge	meal	accompanier	roll	m	r2	
+# ::edge	slice	consist-of	apple	s2	a	
+# ::edge	slice	quant	some	s2	s3	
+# ::edge	meal	consist-of	slice	m	s2	
+# ::edge	meal	accompanier	salad	m	s	
+# ::edge	water	quant	bottle	w	b	
+# ::edge	meal	consist-of	water	m	w	
+(h / hold-01
+    :ARG0 (t / tray)
+    :ARG1 (m / meal
+        :accompanier (r2 / roll)
+        :accompanier (s / salad)
+        :consist-of (r / rice
+            :ARG1-of (f / fry-01)
+            :consist-of (c / chicken))
+        :consist-of (s2 / slice
+            :quant (s3 / some)
+            :consist-of (a / apple))
+        :consist-of (w / water
+            :quant (b / bottle))))

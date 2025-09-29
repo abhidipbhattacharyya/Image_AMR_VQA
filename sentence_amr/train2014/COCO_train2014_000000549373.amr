@@ -1,0 +1,43 @@
+# ::tok A red fire hydrant is standing next to a bunch of flowers .
+# ::node	r	red-02	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	s	stand-01	5-6
+# ::node	n	next-to	6-7
+# ::node	b	bunch	9-10
+# ::node	f2	flower	11-12
+# ::root	s	stand-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	stand-01	ARG1	hydrant	s	h	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	flower	quant	bunch	f2	b	
+# ::edge	next-to	op1	flower	n	f2	
+(s / stand-01
+    :ARG1 (h / hydrant
+        :ARG1-of (r / red-02)
+        :mod (f / fire))
+    :ARG2 (n / next-to
+        :op1 (f2 / flower
+            :quant (b / bunch))))
+
+
+# ::tok Some are hanging and some are not .
+# ::node	s	some	0-1
+# ::node	h	hanging-07	2-3
+# ::node	h2	hanging-07	2-3
+# ::node	a	and	3-4
+# ::node	s2	some	4-5
+# ::node	0	-	6-7
+# ::root	a	and
+# ::edge	hanging-07	ARG1	some	h	s	
+# ::edge	and	op2	hanging-07	a	h2	
+# ::edge	and	op1	hanging-07	a	h	
+# ::edge	hanging-07	ARG1	some	h2	s2	
+# ::edge	hanging-07	polarity	-	h2	0	
+(a / and
+    :op1 (h / hanging-07
+        :ARG1 (s / some))
+    :op2 (h2 / hanging-07
+        :ARG1 (s2 / some)
+        :polarity -))

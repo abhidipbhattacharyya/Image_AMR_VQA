@@ -1,0 +1,30 @@
+# ::tok Street lights and wires can be seen with a cloudy sky in the background .
+# ::node	s3	street	0-1
+# ::node	l	light	1-2
+# ::node	a	and	2-3
+# ::node	w	wire	3-4
+# ::node	p	possible-01	4-5
+# ::node	s	see-01	6-7
+# ::node	c	cloudy-02	9-10
+# ::node	s2	sky	10-11
+# ::node	b	background	13-14
+# ::root	p	possible-01
+# ::edge	light	mod	street	l	s3	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	op2	wire	a	w	
+# ::edge	wire	mod	street	w	s3	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	sky	ARG1-of	cloudy-02	s2	c	
+# ::edge	see-01	condition	sky	s	s2	
+# ::edge	sky	location	background	s2	b	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (a / and
+            :op1 (l / light
+                :mod (s3 / street))
+            :op2 (w / wire
+                :mod s3))
+        :condition (s2 / sky
+            :ARG1-of (c / cloudy-02)
+            :location (b / background))))

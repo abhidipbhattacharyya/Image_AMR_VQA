@@ -1,0 +1,58 @@
+# ::tok A video game booth that has a television with two people in front of it and one of them has a video game controller in the shape of a steering wheel .
+# ::node	v	video	1-2
+# ::node	g	game	2-3
+# ::node	b	booth	3-4
+# ::node	h	have-03	5-6
+# ::node	t	television	7-8
+# ::node	0	2	9-10
+# ::node	p	person	10-11
+# ::node	i	in-front-of	12-13
+# ::node	a	and	15-16
+# ::node	o	one	16-17
+# ::node	i2	include-91	17-18
+# ::node	h2	have-03	19-20
+# ::node	t2	thing	23-24
+# ::node	c	control-01	23-24
+# ::node	s	shape-01	26-27
+# ::node	s2	steer-01	29-30
+# ::node	w	wheel	30-31
+# ::root	a	and
+# ::edge	game	mod	video	g	v	
+# ::edge	booth	mod	game	b	g	
+# ::edge	booth	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	television	h	t	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	location	in-front-of	p	i	
+# ::edge	in-front-of	op1	booth	i	b	
+# ::edge	and	op1	booth	a	b	
+# ::edge	one	ARG1-of	include-91	o	i2	
+# ::edge	include-91	ARG2	booth	i2	b	
+# ::edge	have-03	ARG0	one	h2	o	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	have-03	ARG1	thing	h2	t2	
+# ::edge	thing	ARG0-of	control-01	t2	c	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	thing	ARG1-of	shape-01	t2	s	
+# ::edge	wheel	purpose	steer-01	w	s2	
+# ::edge	shape-01	ARG2	wheel	s	w	
+# ::edge	and	rel	person	a	p	
+(a / and
+    :op1 (b / booth
+        :ARG0-of (h / have-03
+            :ARG1 (t / television))
+        :mod (g / game
+            :mod (v / video)))
+    :op2 (h2 / have-03
+        :ARG0 (o / one
+            :ARG1-of (i2 / include-91
+                :ARG2 b))
+        :ARG1 (t2 / thing
+            :ARG0-of (c / control-01
+                :ARG1 g)
+            :ARG1-of (s / shape-01
+                :ARG2 (w / wheel
+                    :purpose (s2 / steer-01)))))
+    :rel (p / person
+        :quant 2
+        :location (i / in-front-of
+            :op1 b)))

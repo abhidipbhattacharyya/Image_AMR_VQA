@@ -1,0 +1,40 @@
+# ::tok A Hawthorne , Derby , and a " right lane must turn right " sign .
+# ::node	n	name	1-2
+# ::node	1	Hawthorne	1-2
+# ::node	f	facility	3-4
+# ::node	r3	road	3-4
+# ::node	n2	name	3-4
+# ::node	0	Derby	3-4
+# ::node	a	and	5-6
+# ::node	r	right-04	8-9
+# ::node	l	lane	9-10
+# ::node	o	obligate-01	10-11
+# ::node	t	turn-01	11-12
+# ::node	r2	right-04	12-13
+# ::node	s	sign	14-15
+# ::root	s	sign
+# ::edge	name	op1	Hawthorne	n	1	
+# ::edge	facility	name	name	f	n	
+# ::edge	road	name	name	r3	n2	
+# ::edge	name	op1	Derby	n2	0	
+# ::edge	and	op2	road	a	r3	
+# ::edge	and	op1	facility	a	f	
+# ::edge	lane	ARG1-of	right-04	l	r	
+# ::edge	obligate-01	ARG2	turn-01	o	t	
+# ::edge	turn-01	ARG1-of	right-04	t	r2	
+# ::edge	sign	topic	obligate-01	s	o	
+# ::edge	sign	example	and	s	a	
+# ::edge	sign	rel	lane	s	l	
+(s / sign
+    :example (a / and
+        :op1 (f / facility
+            :name (n / name
+                :op1 "Hawthorne"))
+        :op2 (r3 / road
+            :name (n2 / name
+                :op1 "Derby")))
+    :rel (l / lane
+        :ARG1-of (r / right-04))
+    :topic (o / obligate-01
+        :ARG2 (t / turn-01
+            :ARG1-of (r2 / right-04))))

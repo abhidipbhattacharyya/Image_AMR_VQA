@@ -1,0 +1,53 @@
+# ::tok A messy unfinished living room area with a sofa and tv , with DVDs and books scattered about .
+# ::node	0	-	0-1
+# ::node	m	messy	1-2
+# ::node	f	finish-01	2-3
+# ::node	l	living	3-4
+# ::node	r	room	4-5
+# ::node	a4	area	5-6
+# ::node	h	have-03	6-7
+# ::node	s2	sofa	8-9
+# ::node	a	and	9-10
+# ::node	t	television	10-11
+# ::node	d2	disc	13-14
+# ::node	d	digital	13-14
+# ::node	a2	and	13-14
+# ::node	a3	and	14-15
+# ::node	b	book	15-16
+# ::node	s	scatter-01	16-17
+# ::root	a4	area
+# ::edge	finish-01	polarity	-	f	0	
+# ::edge	room	mod	living	r	l	
+# ::edge	area	mod	room	a4	r	
+# ::edge	area	ARG1-of	finish-01	a4	f	
+# ::edge	area	mod	messy	a4	m	
+# ::edge	area	ARG0-of	have-03	a4	h	
+# ::edge	and	op1	sofa	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	television	a	t	
+# ::edge	disc	mod	digital	d2	d	
+# ::edge	and	op2	disc	a2	d2	
+# ::edge	and	op1	area	a2	a4	
+# ::edge	and	op1	disc	a3	d2	
+# ::edge	and	op2	book	a3	b	
+# ::edge	scatter-01	ARG1	and	s	a3	
+# ::edge	area	ARG2-of	scatter-01	a4	s	
+# ::edge	area	rel	and	a4	a2	
+(a4 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / sofa)
+            :op2 (t / television)))
+    :ARG1-of (f / finish-01
+        :polarity -)
+    :ARG2-of (s / scatter-01
+        :ARG1 (a3 / and
+            :op1 (d2 / disc
+                :mod (d / digital))
+            :op2 (b / book)))
+    :mod (r / room
+        :mod (l / living))
+    :mod (m / messy)
+    :rel (a2 / and
+        :op1 a4
+        :op2 d2))

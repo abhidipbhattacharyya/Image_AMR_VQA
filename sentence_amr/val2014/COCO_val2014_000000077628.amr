@@ -1,0 +1,24 @@
+# ::tok A motorcycle parked in an intersection with cops on motorcycles going past it .
+# ::node	m	motorcycle	1-2
+# ::node	p	park-01	2-3
+# ::node	i	intersect-01	5-6
+# ::node	c	cop	7-8
+# ::node	m2	motorcycle	9-10
+# ::node	g	go-02	10-11
+# ::node	p2	past	11-12
+# ::root	m	motorcycle
+# ::edge	motorcycle	ARG1-of	park-01	m	p	
+# ::edge	park-01	location	intersect-01	p	i	
+# ::edge	go-02	ARG1	motorcycle	g	m2	
+# ::edge	cop	ARG0-of	go-02	c	g	
+# ::edge	go-02	path	past	g	p2	
+# ::edge	past	op1	motorcycle	p2	m	
+# ::edge	motorcycle	rel	cop	m	c	
+(m / motorcycle
+    :ARG1-of (p / park-01
+        :location (i / intersect-01))
+    :rel (c / cop
+        :ARG0-of (g / go-02
+            :ARG1 (m2 / motorcycle)
+            :path (p2 / past
+                :op1 m))))

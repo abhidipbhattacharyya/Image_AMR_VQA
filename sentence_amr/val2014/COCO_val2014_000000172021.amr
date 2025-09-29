@@ -1,0 +1,21 @@
+# ::tok People are waiting alongside a train track for the train to stop .
+# ::node	p	person	0-1
+# ::node	w	wait-01	2-3
+# ::node	a	alongside	3-4
+# ::node	t	track	6-7
+# ::node	t2	train	9-10
+# ::node	s	stop-01	11-12
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	location	alongside	w	a	
+# ::edge	alongside	op1	track	a	t	
+# ::edge	track	mod	train	t	t2	
+# ::edge	stop-01	ARG0	train	s	t2	
+# ::edge	wait-01	ARG2	stop-01	w	s	
+(w / wait-01
+    :ARG1 (p / person)
+    :ARG2 (s / stop-01
+        :ARG0 (t2 / train))
+    :location (a / alongside
+        :op1 (t / track
+            :mod t2)))

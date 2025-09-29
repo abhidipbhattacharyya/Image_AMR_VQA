@@ -1,0 +1,39 @@
+# ::tok A man rns and swings his arms to prepare to hit a tennis ball with a racket .
+# ::node	m	man	1-2
+# ::node	f	free-01	2-3
+# ::node	a	and	3-4
+# ::node	s	swing-02	4-5
+# ::node	a2	arm	6-7
+# ::node	p	prepare-02	8-9
+# ::node	h	hit-01	10-11
+# ::node	t	tennis	12-13
+# ::node	b	ball	13-14
+# ::node	r	racket	16-17
+# ::root	a	and
+# ::edge	free-01	ARG0	man	f	m	
+# ::edge	and	op1	free-01	a	f	
+# ::edge	and	op2	swing-02	a	s	
+# ::edge	swing-02	ARG0	man	s	m	
+# ::edge	swing-02	ARG1	arm	s	a2	
+# ::edge	man	part	arm	m	a2	
+# ::edge	swing-02	purpose	prepare-02	s	p	
+# ::edge	prepare-02	ARG0	man	p	m	
+# ::edge	prepare-02	ARG2	hit-01	p	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	hit-01	ARG2	racket	h	r	
+(a / and
+    :op1 (f / free-01
+        :ARG0 (m / man
+            :part (a2 / arm)))
+    :op2 (s / swing-02
+        :purpose (p / prepare-02
+            :ARG0 m
+            :ARG2 (h / hit-01
+                :ARG0 m
+                :ARG1 (b / ball
+                    :mod (t / tennis))
+                :ARG2 (r / racket)))
+        :ARG0 m
+        :ARG1 a2))

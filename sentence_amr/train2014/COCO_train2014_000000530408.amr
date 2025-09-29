@@ -1,0 +1,28 @@
+# ::tok many people and line of parked scooters and motorcycles at night
+# ::node	m	many	0-1
+# ::node	p2	person	1-2
+# ::node	a	and	2-3
+# ::node	l	line	3-4
+# ::node	p	park-01	5-6
+# ::node	m2	motorcycle	6-7
+# ::node	m3	motorcycle	8-9
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::root	a	and
+# ::edge	person	quant	many	p2	m	
+# ::edge	and	op1	person	a	p2	
+# ::edge	and	op2	line	a	l	
+# ::edge	motorcycle	ARG1-of	park-01	m2	p	
+# ::edge	line	op1	motorcycle	l	m2	
+# ::edge	line	op2	motorcycle	l	m3	
+# ::edge	and	time	date-entity	a	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(a / and
+    :op1 (p2 / person
+        :quant (m / many))
+    :op2 (l / line
+        :op1 (m2 / motorcycle
+            :ARG1-of (p / park-01))
+        :op2 (m3 / motorcycle))
+    :time (d / date-entity
+        :dayperiod (n / night)))

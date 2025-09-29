@@ -1,0 +1,33 @@
+# ::tok A bus waiting in a lot with its door open in a Latin American city .
+# ::node	b	bus	1-2
+# ::node	w	wait-01	2-3
+# ::node	l	lot	5-6
+# ::node	d	door	8-9
+# ::node	o	open-09	9-10
+# ::node	w2	world-region	12-13
+# ::node	n	name	12-13
+# ::node	1	Latin	12-13
+# ::node	0	America	13-14
+# ::node	c	city	14-15
+# ::root	b	bus
+# ::edge	bus	ARG1-of	wait-01	b	w	
+# ::edge	wait-01	location	lot	w	l	
+# ::edge	bus	part	door	b	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	bus	manner	open-09	b	o	
+# ::edge	world-region	name	name	w2	n	
+# ::edge	name	op1	Latin	n	1	
+# ::edge	name	op2	America	n	0	
+# ::edge	city	location	world-region	c	w2	
+# ::edge	wait-01	location	city	w	c	
+(b / bus
+    :ARG1-of (w / wait-01
+        :location (l / lot)
+        :location (c / city
+            :location (w2 / world-region
+                :name (n / name
+                    :op1 "Latin"
+                    :op2 "America"))))
+    :manner (o / open-09
+        :ARG1 (d / door))
+    :part d)

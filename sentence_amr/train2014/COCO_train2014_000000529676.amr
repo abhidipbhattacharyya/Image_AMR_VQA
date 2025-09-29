@@ -1,0 +1,45 @@
+# ::tok A man in a suit and tie ( one tied pointy and the other broad ) .
+# ::node	m	man	1-2
+# ::node	s	suit	4-5
+# ::node	s2	suit	4-5
+# ::node	a	and	5-6
+# ::node	w	wear-01	5-6
+# ::node	t	tie	6-7
+# ::node	t2	tie	6-7
+# ::node	i	include-91	8-9
+# ::node	i2	include-91	8-9
+# ::node	t3	tie-01	9-10
+# ::node	t4	tie-01	9-10
+# ::node	p	pointy	10-11
+# ::node	o	other	13-14
+# ::node	b	broad-02	14-15
+# ::root	m	man
+# ::edge	and	op1	suit	a	s	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	and	op2	tie	a	t	
+# ::edge	include-91	ARG1	tie	i	t	
+# ::edge	and	ARG2-of	include-91	a	i	
+# ::edge	include-91	ARG1	tie	i2	t2	
+# ::edge	tie	ARG2-of	include-91	t	i2	
+# ::edge	and	ARG1-of	tie-01	a	t3	
+# ::edge	tie	ARG1-of	tie-01	t2	t4	
+# ::edge	tie-01	ARG2	pointy	t3	p	
+# ::edge	tie	mod	other	t2	o	
+# ::edge	tie-01	ARG1-of	broad-02	t4	b	
+# ::edge	man	rel	suit	m	s2	
+(m / man
+    :ARG0-of (w / wear-01
+        :ARG1 (a / and
+            :ARG1-of (t3 / tie-01
+                :ARG2 (p / pointy))
+            :ARG2-of (i / include-91
+                :ARG1 (t / tie
+                    :ARG2-of (i2 / include-91
+                        :ARG1 (t2 / tie
+                            :ARG1-of (t4 / tie-01
+                                :ARG1-of (b / broad-02))
+                            :mod (o / other)))))
+            :op1 (s / suit)
+            :op2 t))
+    :rel (s2 / suit))

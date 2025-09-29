@@ -1,0 +1,36 @@
+# ::tok Spectators watch as tennis players talk to coaches on the court , during a game
+# ::node	p	person	0-1
+# ::node	w	watch-01	0-1
+# ::node	w2	watch-01	1-2
+# ::node	t2	tennis	3-4
+# ::node	p2	person	4-5
+# ::node	p4	play-01	4-5
+# ::node	t	talk-01	5-6
+# ::node	p3	person	7-8
+# ::node	c	coach-01	7-8
+# ::node	c2	court	10-11
+# ::node	g	game	14-15
+# ::root	w2	watch-01
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG0	person	w2	p	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	play-01	ARG1	tennis	p4	t2	
+# ::edge	talk-01	ARG0	person	t	p2	
+# ::edge	watch-01	ARG1	talk-01	w	t	
+# ::edge	talk-01	ARG2	person	t	p3	
+# ::edge	person	ARG0-of	coach-01	p3	c	
+# ::edge	coach-01	ARG1	person	c	p2	
+# ::edge	talk-01	location	court	t	c2	
+# ::edge	talk-01	time	game	t	g	
+(w2 / watch-01
+    :ARG0 (p / person
+        :ARG0-of (w / watch-01
+            :ARG1 (t / talk-01
+                :ARG0 (p2 / person
+                    :ARG0-of (p4 / play-01
+                        :ARG1 (t2 / tennis)))
+                :ARG2 (p3 / person
+                    :ARG0-of (c / coach-01
+                        :ARG1 p2))
+                :location (c2 / court)
+                :time (g / game)))))

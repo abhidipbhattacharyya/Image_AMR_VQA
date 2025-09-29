@@ -1,0 +1,42 @@
+# ::tok This shows a traffic light for cars and a walk signal for pedestrians attached to the street sign .
+# ::node	t	this	0-1
+# ::node	s	show-01	1-2
+# ::node	t2	traffic	3-4
+# ::node	l	light	4-5
+# ::node	c	car	6-7
+# ::node	a	and	7-8
+# ::node	w	walk-01	9-10
+# ::node	s3	signal-07	10-11
+# ::node	w2	walk-01	12-13
+# ::node	a2	attach-01	13-14
+# ::node	p	person	15-16
+# ::node	s4	street	16-17
+# ::node	s2	sign	17-18
+# ::root	s	show-01
+# ::edge	show-01	ARG0	this	s	t	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	light	purpose	car	l	c	
+# ::edge	and	op1	light	a	l	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	signal-07	ARG1	walk-01	s3	w	
+# ::edge	and	op2	signal-07	a	s3	
+# ::edge	walk-01	ARG1-of	attach-01	w2	a2	
+# ::edge	person	ARG1-of	attach-01	p	a2	
+# ::edge	signal-07	ARG0	person	s3	p	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	attach-01	ARG2	sign	a2	s2	
+# ::edge	show-01	rel	walk-01	s	w2	
+(s / show-01
+    :ARG0 (t / this)
+    :ARG1 (a / and
+        :op1 (l / light
+            :purpose (c / car)
+            :mod (t2 / traffic))
+        :op2 (s3 / signal-07
+            :ARG0 (p / person
+                :ARG1-of (a2 / attach-01
+                    :ARG2 (s2 / sign
+                        :mod (s4 / street))))
+            :ARG1 (w / walk-01)))
+    :rel (w2 / walk-01
+        :ARG1-of a2))

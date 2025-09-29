@@ -1,0 +1,28 @@
+# ::tok A light above a sign that says stop is near a parking garage .
+# ::node	l	light	1-2
+# ::node	a	above	2-3
+# ::node	s2	sign	4-5
+# ::node	s	say-01	6-7
+# ::node	s3	stop-01	7-8
+# ::node	n	near-02	9-10
+# ::node	p	park-01	11-12
+# ::node	g	garage	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	light	location	above	l	a	
+# ::edge	above	op1	sign	a	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	stop-01	s	s3	
+# ::edge	light	ARG1-of	near-02	l	n	
+# ::edge	garage	purpose	park-01	g	p	
+# ::edge	near-02	ARG2	garage	n	g	
+# ::edge	event	mod	light	e	l	
+(e / event
+    :mod (l / light
+        :ARG1-of (n / near-02
+            :ARG2 (g / garage
+                :purpose (p / park-01)))
+        :location (a / above
+            :op1 (s2 / sign
+                :ARG0-of (s / say-01
+                    :ARG1 (s3 / stop-01))))))

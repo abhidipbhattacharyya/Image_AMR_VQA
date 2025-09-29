@@ -1,0 +1,40 @@
+# ::tok This seems to be a man - created image of two planes , one in the air , and the other is on ground .
+# ::node	t	this	0-1
+# ::node	s	seem-01	1-2
+# ::node	m	man	5-6
+# ::node	c	create-01	7-8
+# ::node	i	image	8-9
+# ::node	1	2	10-11
+# ::node	p	plane	11-12
+# ::node	p2	plane	11-12
+# ::node	p3	plane	11-12
+# ::node	0	1	13-14
+# ::node	a	air	16-17
+# ::node	a2	and	18-19
+# ::node	g	ground	23-24
+# ::root	s	seem-01
+# ::edge	create-01	ARG0	man	c	m	
+# ::edge	image	ARG1-of	create-01	i	c	
+# ::edge	seem-01	ARG1	image	s	i	
+# ::edge	image	domain	this	i	t	
+# ::edge	plane	quant	2	p	1	
+# ::edge	image	consist-of	plane	i	p	
+# ::edge	plane	quant	1	p2	0	
+# ::edge	plane	location	air	p2	a	
+# ::edge	and	op2	plane	a2	p3	
+# ::edge	and	op1	plane	a2	p2	
+# ::edge	plane	consist-of	and	p	a2	
+# ::edge	plane	location	ground	p3	g	
+(s / seem-01
+    :ARG1 (i / image
+        :ARG1-of (c / create-01
+            :ARG0 (m / man))
+        :consist-of (p / plane
+            :quant 2
+            :consist-of (a2 / and
+                :op1 (p2 / plane
+                    :quant 1
+                    :location (a / air))
+                :op2 (p3 / plane
+                    :location (g / ground))))
+        :domain (t / this)))

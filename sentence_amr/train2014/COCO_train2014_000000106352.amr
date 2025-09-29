@@ -1,0 +1,34 @@
+# ::tok Three workers are at a sandwich prep area while customers are lined up out the door .
+# ::node	0	3	0-1
+# ::node	p	person	1-2
+# ::node	w	work-01	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	s	sandwich	5-6
+# ::node	p2	prepare-01	6-7
+# ::node	a	area	7-8
+# ::node	c	customer	9-10
+# ::node	l	line-up-02	11-12
+# ::node	o	out-06	13-14
+# ::node	d	door	15-16
+# ::root	b	be-located-at-91
+# ::edge	person	quant	3	p	0	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	prepare-01	ARG1	sandwich	p2	s	
+# ::edge	area	location-of	prepare-01	a	p2	
+# ::edge	be-located-at-91	ARG2	area	b	a	
+# ::edge	line-up-02	ARG1	customer	l	c	
+# ::edge	be-located-at-91	time	line-up-02	b	l	
+# ::edge	line-up-02	direction	out-06	l	o	
+# ::edge	out-06	ARG2	door	o	d	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :quant 3
+        :ARG0-of (w / work-01))
+    :ARG2 (a / area
+        :location-of (p2 / prepare-01
+            :ARG1 (s / sandwich)))
+    :time (l / line-up-02
+        :ARG1 (c / customer)
+        :direction (o / out-06
+            :ARG2 (d / door))))

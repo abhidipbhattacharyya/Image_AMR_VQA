@@ -1,0 +1,28 @@
+# ::tok A plane rests on the tarmac at the far end of a field and some buildings .
+# ::node	p	plane	1-2
+# ::node	r	rest-02	2-3
+# ::node	t	tarmac	5-6
+# ::node	f	far	8-9
+# ::node	e	end	9-10
+# ::node	f2	field	12-13
+# ::node	a	and	13-14
+# ::node	s	some	14-15
+# ::node	b	building	15-16
+# ::root	r	rest-02
+# ::edge	rest-02	ARG1	plane	r	p	
+# ::edge	end	mod	far	e	f	
+# ::edge	tarmac	location	end	t	e	
+# ::edge	end	part-of	field	e	f2	
+# ::edge	and	op1	tarmac	a	t	
+# ::edge	rest-02	ARG2	and	r	a	
+# ::edge	building	quant	some	b	s	
+# ::edge	and	op2	building	a	b	
+(r / rest-02
+    :ARG1 (p / plane)
+    :ARG2 (a / and
+        :op1 (t / tarmac
+            :location (e / end
+                :mod (f / far)
+                :part-of (f2 / field)))
+        :op2 (b / building
+            :quant (s / some))))

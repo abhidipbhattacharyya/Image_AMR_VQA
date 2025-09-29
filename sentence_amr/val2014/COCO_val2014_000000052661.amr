@@ -1,0 +1,40 @@
+# ::tok A large sail boat docked while trucks and people drive and walk around it .
+# ::node	l	large	1-2
+# ::node	s	sail-01	2-3
+# ::node	b	boat	3-4
+# ::node	d	dock-01	4-5
+# ::node	t	truck	6-7
+# ::node	a	and	7-8
+# ::node	p	person	8-9
+# ::node	d2	drive-01	9-10
+# ::node	a2	and	10-11
+# ::node	w	walk-01	11-12
+# ::node	a3	around	12-13
+# ::root	d	dock-01
+# ::edge	boat	mod	sail-01	b	s	
+# ::edge	boat	mod	large	b	l	
+# ::edge	dock-01	ARG1	boat	d	b	
+# ::edge	and	op1	dock-01	a	d	
+# ::edge	and	op2	person	a	p	
+# ::edge	drive-01	ARG0	and	d2	a	
+# ::edge	and	op1	drive-01	a2	d2	
+# ::edge	dock-01	time	and	d	a2	
+# ::edge	and	op2	walk-01	a2	w	
+# ::edge	walk-01	ARG0	and	w	a	
+# ::edge	and	location	around	a2	a3	
+# ::edge	around	op1	boat	a3	b	
+# ::edge	dock-01	rel	truck	d	t	
+(d / dock-01
+    :ARG1 (b / boat
+        :mod (s / sail-01)
+        :mod (l / large))
+    :rel (t / truck)
+    :time (a2 / and
+        :location (a3 / around
+            :op1 b)
+        :op1 (d2 / drive-01
+            :ARG0 (a / and
+                :op1 d
+                :op2 (p / person)))
+        :op2 (w / walk-01
+            :ARG0 a)))

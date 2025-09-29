@@ -1,0 +1,28 @@
+# ::tok A row of auto - flush urinals lines the wall in this public restroom .
+# ::node	r2	row	1-2
+# ::node	a	automate-01	3-4
+# ::node	f	flush-01	5-6
+# ::node	u	urinal	6-7
+# ::node	l	line-01	7-8
+# ::node	w	wall	9-10
+# ::node	t	this	11-12
+# ::node	p	public-02	12-13
+# ::node	r	restroom	13-14
+# ::root	l	line-01
+# ::edge	flush-01	ARG1-of	automate-01	f	a	
+# ::edge	urinal	ARG2-of	flush-01	u	f	
+# ::edge	row	consist-of	urinal	r2	u	
+# ::edge	line-01	ARG0	row	l	r2	
+# ::edge	line-01	ARG1	wall	l	w	
+# ::edge	restroom	ARG1-of	public-02	r	p	
+# ::edge	restroom	mod	this	r	t	
+# ::edge	wall	location	restroom	w	r	
+(l / line-01
+    :ARG0 (r2 / row
+        :consist-of (u / urinal
+            :ARG2-of (f / flush-01
+                :ARG1-of (a / automate-01))))
+    :ARG1 (w / wall
+        :location (r / restroom
+            :ARG1-of (p / public-02)
+            :mod (t / this))))

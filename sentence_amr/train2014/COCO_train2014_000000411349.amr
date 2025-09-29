@@ -1,0 +1,41 @@
+# ::tok A older apartment building is equipped with outside fire escape ladders and balconies .
+# ::node	h	have-degree-91	1-2
+# ::node	o	old	1-2
+# ::node	m	more	1-2
+# ::node	a2	apartment	2-3
+# ::node	b	building	3-4
+# ::node	e	equip-01	5-6
+# ::node	o2	outside	7-8
+# ::node	f	fire-04	8-9
+# ::node	e2	escape-01	9-10
+# ::node	r	roof	10-11
+# ::node	a	and	11-12
+# ::node	r2	roof	12-13
+# ::root	e	equip-01
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	building	mod	apartment	b	a2	
+# ::edge	building	ARG1-of	have-degree-91	b	h	
+# ::edge	equip-01	ARG1	building	e	b	
+# ::edge	escape-01	ARG2	fire-04	e2	f	
+# ::edge	roof	purpose	escape-01	r	e2	
+# ::edge	roof	location	outside	r	o2	
+# ::edge	and	op1	roof	a	r	
+# ::edge	equip-01	ARG2	and	e	a	
+# ::edge	and	op2	roof	a	r2	
+# ::edge	roof	purpose	escape-01	r2	e2	
+# ::edge	roof	location	outside	r2	o2	
+(e / equip-01
+    :ARG1 (b / building
+        :ARG1-of (h / have-degree-91
+            :ARG2 (o / old)
+            :ARG3 (m / more))
+        :mod (a2 / apartment))
+    :ARG2 (a / and
+        :op1 (r / roof
+            :purpose (e2 / escape-01
+                :ARG2 (f / fire-04))
+            :location (o2 / outside))
+        :op2 (r2 / roof
+            :purpose e2
+            :location o2)))

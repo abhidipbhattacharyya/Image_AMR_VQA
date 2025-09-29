@@ -1,0 +1,51 @@
+# ::tok Appliance Warehouse truck in a parking lot with two men shaking hands and other men standing behind .
+# ::node	1	Appliance	0-1
+# ::node	c	company	1-2
+# ::node	2	Warehouse	1-2
+# ::node	t	truck	2-3
+# ::node	n	name	2-3
+# ::node	p	park-01	5-6
+# ::node	l	lot	6-7
+# ::node	0	2	8-9
+# ::node	m	man	9-10
+# ::node	s	shake-01	10-11
+# ::node	h	hand	11-12
+# ::node	a	and	12-13
+# ::node	o	other	13-14
+# ::node	m2	man	14-15
+# ::node	s2	stand-01	15-16
+# ::node	b	behind	16-17
+# ::root	t	truck
+# ::edge	truck	poss	company	t	c	
+# ::edge	name	op2	Warehouse	n	2	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Appliance	n	1	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	truck	location	lot	t	l	
+# ::edge	man	quant	2	m	0	
+# ::edge	shake-01	ARG0	man	s	m	
+# ::edge	shake-01	ARG1	hand	s	h	
+# ::edge	and	op1	shake-01	a	s	
+# ::edge	truck	location-of	and	t	a	
+# ::edge	man	mod	other	m2	o	
+# ::edge	stand-01	ARG0	man	s2	m2	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG2	behind	s2	b	
+# ::edge	behind	op1	truck	b	t	
+(t / truck
+    :location (l / lot
+        :ARG2-of (p / park-01))
+    :location-of (a / and
+        :op1 (s / shake-01
+            :ARG0 (m / man
+                :quant 2)
+            :ARG1 (h / hand))
+        :op2 (s2 / stand-01
+            :ARG0 (m2 / man
+                :mod (o / other))
+            :ARG2 (b / behind
+                :op1 t)))
+    :poss (c / company
+        :name (n / name
+            :op1 "Appliance"
+            :op2 "Warehouse")))

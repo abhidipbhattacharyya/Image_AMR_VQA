@@ -1,0 +1,27 @@
+# ::tok A bicycle is parked outside of a stone building with a cat lying next to it .
+# ::node	b	bicycle	1-2
+# ::node	p	park-01	3-4
+# ::node	o	outside	4-5
+# ::node	s	stone	7-8
+# ::node	b2	building	8-9
+# ::node	c	cat	11-12
+# ::node	l	lie-07	12-13
+# ::node	n	next-to	13-14
+# ::root	p	park-01
+# ::edge	park-01	ARG1	bicycle	p	b	
+# ::edge	park-01	ARG2	outside	p	o	
+# ::edge	building	consist-of	stone	b2	s	
+# ::edge	outside	op1	building	o	b2	
+# ::edge	lie-07	ARG1	cat	l	c	
+# ::edge	next-to	ARG2-of	lie-07	n	l	
+# ::edge	building	location-of	next-to	b2	n	
+# ::edge	next-to	op1	building	n	b2	
+(p / park-01
+    :ARG1 (b / bicycle)
+    :ARG2 (o / outside
+        :op1 (b2 / building
+            :consist-of (s / stone)
+            :location-of (n / next-to
+                :ARG2-of (l / lie-07
+                    :ARG1 (c / cat))
+                :op1 b2))))

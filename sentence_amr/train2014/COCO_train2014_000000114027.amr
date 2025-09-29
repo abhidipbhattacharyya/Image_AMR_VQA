@@ -1,0 +1,33 @@
+# ::tok Crowd watches as male tennis player reaches back to serve the ball
+# ::node	c	crowd	0-1
+# ::node	w	watch-01	1-2
+# ::node	m	male	3-4
+# ::node	t	tennis	4-5
+# ::node	p	person	5-6
+# ::node	p2	play-01	5-6
+# ::node	r	reach-03	6-7
+# ::node	b	back	7-8
+# ::node	s	serve-02	9-10
+# ::node	b2	ball	11-12
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	watch-01	ARG1	reach-03	w	r	
+# ::edge	reach-03	ARG2	back	r	b	
+# ::edge	reach-03	purpose	serve-02	r	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b2	
+(w / watch-01
+    :ARG0 (c / crowd)
+    :ARG1 (r / reach-03
+        :purpose (s / serve-02
+            :ARG0 (p / person
+                :ARG0-of (p2 / play-01
+                    :ARG1 (t / tennis))
+                :mod (m / male))
+            :ARG1 (b2 / ball))
+        :ARG0 p
+        :ARG2 (b / back)))

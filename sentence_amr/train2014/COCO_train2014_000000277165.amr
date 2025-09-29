@@ -1,0 +1,39 @@
+# ::tok A device labeled the NutriBullet contains red and green nutritional substances .
+# ::node	d	device	1-2
+# ::node	l	label-01	2-3
+# ::node	p	product	4-5
+# ::node	n	name	4-5
+# ::node	0	NutriBullet	4-5
+# ::node	c	contain-01	5-6
+# ::node	r	red-02	6-7
+# ::node	a	and	7-8
+# ::node	g	green-02	8-9
+# ::node	n2	nutrition	9-10
+# ::node	s	substance	10-11
+# ::node	s2	substance	10-11
+# ::root	c	contain-01
+# ::edge	device	ARG1-of	label-01	d	l	
+# ::edge	label-01	ARG2	product	l	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	NutriBullet	n	0	
+# ::edge	contain-01	ARG0	device	c	d	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	substance	mod	nutrition	s	n2	
+# ::edge	and	op1	substance	a	s	
+# ::edge	substance	ARG1-of	red-02	s	r	
+# ::edge	substance	mod	nutrition	s2	n2	
+# ::edge	substance	ARG1-of	green-02	s2	g	
+# ::edge	and	op2	substance	a	s2	
+(c / contain-01
+    :ARG0 (d / device
+        :ARG1-of (l / label-01
+            :ARG2 (p / product
+                :name (n / name
+                    :op1 "NutriBullet"))))
+    :ARG1 (a / and
+        :op1 (s / substance
+            :ARG1-of (r / red-02)
+            :mod (n2 / nutrition))
+        :op2 (s2 / substance
+            :ARG1-of (g / green-02)
+            :mod n2)))

@@ -1,0 +1,43 @@
+# ::tok There is a no left turn sign attached to a stop sign in front of a house decorated with Christmas lights
+# ::node	0	-	3-4
+# ::node	l	left-20	4-5
+# ::node	t	turn-01	5-6
+# ::node	s	sign	6-7
+# ::node	a	attach-01	7-8
+# ::node	s3	stop-01	10-11
+# ::node	s2	sign	11-12
+# ::node	i	in-front-of	13-14
+# ::node	h	house	16-17
+# ::node	d	decorate-01	17-18
+# ::node	f	festival	19-20
+# ::node	n	name	19-20
+# ::node	1	Christmas	19-20
+# ::node	l2	light	20-21
+# ::root	a	attach-01
+# ::edge	turn-01	ARG1-of	left-20	t	l	
+# ::edge	turn-01	polarity	-	t	0	
+# ::edge	sign	purpose	turn-01	s	t	
+# ::edge	attach-01	ARG1	sign	a	s	
+# ::edge	sign	purpose	stop-01	s2	s3	
+# ::edge	attach-01	ARG2	sign	a	s2	
+# ::edge	sign	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	house	i	h	
+# ::edge	house	ARG1-of	decorate-01	h	d	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	1	
+# ::edge	light	mod	festival	l2	f	
+# ::edge	decorate-01	ARG2	light	d	l2	
+(a / attach-01
+    :ARG1 (s / sign
+        :purpose (t / turn-01
+            :ARG1-of (l / left-20)
+            :polarity -)
+        :location (i / in-front-of
+            :op1 (h / house
+                :ARG1-of (d / decorate-01
+                    :ARG2 (l2 / light
+                        :mod (f / festival
+                            :name (n / name
+                                :op1 "Christmas")))))))
+    :ARG2 (s2 / sign
+        :purpose (s3 / stop-01)))

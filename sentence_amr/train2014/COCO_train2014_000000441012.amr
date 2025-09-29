@@ -1,0 +1,31 @@
+# ::tok busy street at night with rail car coming down the middle of the road
+# ::node	b	busy	0-1
+# ::node	s	street	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	r	rail	5-6
+# ::node	c	car	6-7
+# ::node	c2	come-01	7-8
+# ::node	d2	down	8-9
+# ::node	m	middle	10-11
+# ::node	r2	road	13-14
+# ::root	s	street
+# ::edge	street	mod	busy	s	b	
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	car	mod	rail	c	r	
+# ::edge	come-01	ARG1	car	c2	c	
+# ::edge	street	location-of	come-01	s	c2	
+# ::edge	come-01	direction	down	c2	d2	
+# ::edge	come-01	ARG4	middle	c2	m	
+# ::edge	middle	part-of	road	m	r2	
+(s / street
+    :location-of (c2 / come-01
+        :ARG1 (c / car
+            :mod (r / rail))
+        :ARG4 (m / middle
+            :part-of (r2 / road))
+        :direction (d2 / down))
+    :mod (b / busy)
+    :time (d / date-entity
+        :dayperiod (n / night)))

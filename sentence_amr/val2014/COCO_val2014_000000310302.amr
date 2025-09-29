@@ -1,0 +1,31 @@
+# ::tok Delicious looking pizza on table with some beer poured in a glass
+# ::node	d	deliberate	0-1
+# ::node	l	look-02	1-2
+# ::node	p	pizza	2-3
+# ::node	t	table	4-5
+# ::node	s	some	6-7
+# ::node	b	beer	7-8
+# ::node	p2	pour-01	8-9
+# ::node	0	1	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	g	glass	11-12
+# ::root	p	pizza
+# ::edge	look-02	ARG2	deliberate	l	d	
+# ::edge	pizza	ARG1-of	look-02	p	l	
+# ::edge	pizza	location	table	p	t	
+# ::edge	beer	quant	some	b	s	
+# ::edge	pour-01	ARG1	beer	p2	b	
+# ::edge	pizza	accompanier	pour-01	p	p2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	pour-01	ARG2	volume-quantity	p2	v	
+# ::edge	volume-quantity	unit	glass	v	g	
+(p / pizza
+    :ARG1-of (l / look-02
+        :ARG2 (d / deliberate))
+    :accompanier (p2 / pour-01
+        :ARG1 (b / beer
+            :quant (s / some))
+        :ARG2 (v / volume-quantity
+            :quant 1
+            :unit (g / glass)))
+    :location (t / table))

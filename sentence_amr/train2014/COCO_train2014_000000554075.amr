@@ -1,0 +1,37 @@
+# ::tok Rows of brown and white buildings with a blue ocean in background .
+# ::node	m	multiple	0-1
+# ::node	d2	distance-quantity	0-1
+# ::node	d	day	0-1
+# ::node	0	1	0-1
+# ::node	r	Brown	2-3
+# ::node	a	and	3-4
+# ::node	w	white-03	4-5
+# ::node	b3	building	5-6
+# ::node	b4	building	5-6
+# ::node	b2	blue	8-9
+# ::node	o	ocean	9-10
+# ::node	b	background	11-12
+# ::root	a	and
+# ::edge	multiple	op1	distance-quantity	m	d2	
+# ::edge	distance-quantity	unit	day	d2	d	
+# ::edge	distance-quantity	quant	1	d2	0	
+# ::edge	and	op1	building	a	b3	
+# ::edge	building	mod	Brown	b3	r	
+# ::edge	building	ARG1-of	white-03	b4	w	
+# ::edge	and	op2	building	a	b4	
+# ::edge	ocean	mod	blue	o	b2	
+# ::edge	background	mod	ocean	b	o	
+# ::edge	and	op2	background	a	b	
+# ::edge	and	rel	multiple	a	m	
+(a / and
+    :op1 (b3 / building
+        :mod (r / Brown))
+    :op2 (b4 / building
+        :ARG1-of (w / white-03))
+    :op2 (b / background
+        :mod (o / ocean
+            :mod (b2 / blue)))
+    :rel (m / multiple
+        :op1 (d2 / distance-quantity
+            :quant 1
+            :unit (d / day))))

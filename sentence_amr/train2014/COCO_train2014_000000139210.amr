@@ -1,0 +1,36 @@
+# ::tok A pair of scissors next to a bar of butter that is partially used and an oven mitt next to them .
+# ::node	p	pair	1-2
+# ::node	n	nail	3-4
+# ::node	n2	next-to	4-5
+# ::node	b	bar	7-8
+# ::node	b2	butter	9-10
+# ::node	p2	part	12-13
+# ::node	u	use-01	13-14
+# ::node	a	and	14-15
+# ::node	o	oven	16-17
+# ::node	m	mitt	17-18
+# ::node	n3	next-to	18-19
+# ::root	a	and
+# ::edge	nail	quant	pair	n	p	
+# ::edge	nail	location	next-to	n	n2	
+# ::edge	next-to	op1	bar	n2	b	
+# ::edge	bar	consist-of	butter	b	b2	
+# ::edge	use-01	degree	part	u	p2	
+# ::edge	bar	ARG1-of	use-01	b	u	
+# ::edge	and	op1	nail	a	n	
+# ::edge	mitt	mod	oven	m	o	
+# ::edge	and	op2	mitt	a	m	
+# ::edge	mitt	location	next-to	m	n3	
+# ::edge	next-to	op1	nail	n3	n	
+(a / and
+    :op1 (n / nail
+        :quant (p / pair)
+        :location (n2 / next-to
+            :op1 (b / bar
+                :ARG1-of (u / use-01
+                    :degree (p2 / part))
+                :consist-of (b2 / butter))))
+    :op2 (m / mitt
+        :location (n3 / next-to
+            :op1 n)
+        :mod (o / oven)))

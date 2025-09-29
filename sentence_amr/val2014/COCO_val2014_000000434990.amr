@@ -1,0 +1,27 @@
+# ::tok A tanker trunk is on it 's side on the side of a road near a police car .
+# ::node	t	tanker	1-2
+# ::node	t2	trunk	2-3
+# ::node	s	side	7-8
+# ::node	s2	side	10-11
+# ::node	r	road	13-14
+# ::node	n	near-02	14-15
+# ::node	p	police	16-17
+# ::node	c	car	17-18
+# ::root	s	side
+# ::edge	trunk	mod	tanker	t2	t	
+# ::edge	trunk	part	side	t2	s	
+# ::edge	side	location	side	s	s2	
+# ::edge	side	part-of	road	s2	r	
+# ::edge	side	ARG1-of	near-02	s	n	
+# ::edge	car	mod	police	c	p	
+# ::edge	near-02	ARG2	car	n	c	
+# ::edge	side	rel	trunk	s	t2	
+(s / side
+    :ARG1-of (n / near-02
+        :ARG2 (c / car
+            :mod (p / police)))
+    :location (s2 / side
+        :part-of (r / road))
+    :rel (t2 / trunk
+        :mod (t / tanker)
+        :part s))

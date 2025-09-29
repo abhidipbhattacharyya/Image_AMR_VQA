@@ -1,0 +1,46 @@
+# ::tok Dirty 5th Ave and 5th St street signs at an intersection .
+# ::node	d	dirty-02	0-1
+# ::node	0	5th	1-2
+# ::node	n	name	2-3
+# ::node	2	Ave	2-3
+# ::node	1	5th	4-5
+# ::node	r	road	5-6
+# ::node	r2	road	5-6
+# ::node	n2	name	5-6
+# ::node	3	St	5-6
+# ::node	s3	street	6-7
+# ::node	s4	street	6-7
+# ::node	s	sign	7-8
+# ::node	s2	sign	7-8
+# ::node	a	and	8-9
+# ::node	i	intersect-01	10-11
+# ::root	a	and
+# ::edge	name	op1	5th	n	0	
+# ::edge	name	op2	Ave	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op1	5th	n2	1	
+# ::edge	name	op2	St	n2	3	
+# ::edge	street	mod	road	s3	r	
+# ::edge	street	mod	road	s4	r2	
+# ::edge	sign	topic	street	s	s3	
+# ::edge	sign	topic	street	s2	s4	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	and	ARG1-of	dirty-02	a	d	
+# ::edge	and	ARG1-of	intersect-01	a	i	
+(a / and
+    :ARG1-of (d / dirty-02)
+    :ARG1-of (i / intersect-01)
+    :op1 (s / sign
+        :topic (s3 / street
+            :mod (r / road
+                :name (n / name
+                    :op1 "5th"
+                    :op2 "Ave"))))
+    :op2 (s2 / sign
+        :topic (s4 / street
+            :mod (r2 / road
+                :name (n2 / name
+                    :op1 "5th"
+                    :op2 "St")))))

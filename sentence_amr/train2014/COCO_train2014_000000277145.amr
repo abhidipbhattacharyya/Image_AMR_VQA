@@ -1,0 +1,28 @@
+# ::tok Some giraffes are waiting next to a river with a flock of birds next to them .
+# ::node	s	some	0-1
+# ::node	g	giraffe	1-2
+# ::node	w	wait-01	3-4
+# ::node	n	next-to	4-5
+# ::node	r	river	7-8
+# ::node	f	flock	10-11
+# ::node	b	bird	12-13
+# ::node	n2	next-to	13-14
+# ::node	c	cause-01	14-15
+# ::root	w	wait-01
+# ::edge	giraffe	quant	some	g	s	
+# ::edge	wait-01	ARG1	giraffe	w	g	
+# ::edge	wait-01	location	next-to	w	n	
+# ::edge	next-to	op1	river	n	r	
+# ::edge	flock	consist-of	bird	f	b	
+# ::edge	next-to	location-of	flock	n2	f	
+# ::edge	wait-01	prep-with	next-to	w	n2	
+# ::edge	wait-01	ARG1-of	cause-01	w	c	
+(w / wait-01
+    :ARG1 (g / giraffe
+        :quant (s / some))
+    :ARG1-of (c / cause-01)
+    :location (n / next-to
+        :op1 (r / river))
+    :prep-with (n2 / next-to
+        :location-of (f / flock
+            :consist-of (b / bird))))

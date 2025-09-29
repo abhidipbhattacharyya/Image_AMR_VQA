@@ -1,0 +1,45 @@
+# ::tok A herd of elephants , large and small , near a water hole on a grass covered field in front of a forest .
+# ::node	h	herd	1-2
+# ::node	e	elephant	3-4
+# ::node	e2	elephant	3-4
+# ::node	l	large	5-6
+# ::node	a	and	6-7
+# ::node	s	small	7-8
+# ::node	n	near-02	9-10
+# ::node	w	water	11-12
+# ::node	h2	hole	12-13
+# ::node	g	grass	15-16
+# ::node	c	cover-02	16-17
+# ::node	f	field	17-18
+# ::node	i	in-front-of	19-20
+# ::node	f2	forest	22-23
+# ::root	n	near-02
+# ::edge	herd	consist-of	elephant	h	e	
+# ::edge	elephant	mod	large	e2	l	
+# ::edge	and	op2	elephant	a	e2	
+# ::edge	and	op1	elephant	a	e2	
+# ::edge	herd	consist-of	and	h	a	
+# ::edge	elephant	mod	small	e2	s	
+# ::edge	near-02	ARG1	herd	n	h	
+# ::edge	hole	mod	water	h2	w	
+# ::edge	near-02	ARG2	hole	n	h2	
+# ::edge	cover-02	ARG2	grass	c	g	
+# ::edge	field	ARG1-of	cover-02	f	c	
+# ::edge	hole	location	field	h2	f	
+# ::edge	field	location	in-front-of	f	i	
+# ::edge	in-front-of	op1	forest	i	f2	
+(n / near-02
+    :ARG1 (h / herd
+        :consist-of (e / elephant)
+        :consist-of (a / and
+            :op1 (e2 / elephant
+                :mod (l / large)
+                :mod (s / small))
+            :op2 e2))
+    :ARG2 (h2 / hole
+        :location (f / field
+            :ARG1-of (c / cover-02
+                :ARG2 (g / grass))
+            :location (i / in-front-of
+                :op1 (f2 / forest)))
+        :mod (w / water)))

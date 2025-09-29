@@ -1,0 +1,55 @@
+# ::tok A campfire meal of grilled cheese sandwiches , carrots , Jiffy Pop popcorn and store bought potato salad for two .
+# ::node	c	campfire	1-2
+# ::node	m	meal	2-3
+# ::node	b	broil-01	4-5
+# ::node	c3	cheese	5-6
+# ::node	s2	sandwich	6-7
+# ::node	a	and	7-8
+# ::node	c2	carrot	8-9
+# ::node	c4	company	10-11
+# ::node	1	Jiffy	10-11
+# ::node	2	Pop	11-12
+# ::node	p2	popcorn	12-13
+# ::node	n	name	12-13
+# ::node	s3	store	14-15
+# ::node	b2	buy-01	15-16
+# ::node	p3	potato	16-17
+# ::node	s	salad	17-18
+# ::node	p	person	19-20
+# ::node	0	2	19-20
+# ::root	m	meal
+# ::edge	meal	location	campfire	m	c	
+# ::edge	cheese	ARG1-of	broil-01	c3	b	
+# ::edge	sandwich	mod	cheese	s2	c3	
+# ::edge	and	op1	sandwich	a	s2	
+# ::edge	meal	consist-of	and	m	a	
+# ::edge	and	op2	carrot	a	c2	
+# ::edge	popcorn	mod	company	p2	c4	
+# ::edge	and	op3	popcorn	a	p2	
+# ::edge	name	op2	Pop	n	2	
+# ::edge	name	op1	Jiffy	n	1	
+# ::edge	company	name	name	c4	n	
+# ::edge	buy-01	ARG0	store	b2	s3	
+# ::edge	salad	consist-of	potato	s	p3	
+# ::edge	salad	ARG1-of	buy-01	s	b2	
+# ::edge	and	op4	salad	a	s	
+# ::edge	meal	beneficiary	person	m	p	
+# ::edge	person	quant	2	p	0	
+(m / meal
+    :beneficiary (p / person
+        :quant 2)
+    :consist-of (a / and
+        :op1 (s2 / sandwich
+            :mod (c3 / cheese
+                :ARG1-of (b / broil-01)))
+        :op2 (c2 / carrot)
+        :op3 (p2 / popcorn
+            :mod (c4 / company
+                :name (n / name
+                    :op1 "Jiffy"
+                    :op2 "Pop")))
+        :op4 (s / salad
+            :ARG1-of (b2 / buy-01
+                :ARG0 (s3 / store))
+            :consist-of (p3 / potato)))
+    :location (c / campfire))

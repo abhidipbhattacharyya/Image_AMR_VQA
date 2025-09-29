@@ -1,0 +1,25 @@
+# ::tok Rail train on tracks in a commuter station with lone person in background .
+# ::node	t2	train	0-1
+# ::node	t3	train	1-2
+# ::node	t	track	3-4
+# ::node	c	commute-01	6-7
+# ::node	s	station	7-8
+# ::node	l	lone	9-10
+# ::node	p	person	10-11
+# ::node	b	background	12-13
+# ::root	t3	train
+# ::edge	train	mod	train	t3	t2	
+# ::edge	train	location	track	t3	t	
+# ::edge	station	ARG0-of	commute-01	s	c	
+# ::edge	train	location	station	t3	s	
+# ::edge	person	mod	lone	p	l	
+# ::edge	train	location-of	person	t3	p	
+# ::edge	person	location	background	p	b	
+(t3 / train
+    :location (t / track)
+    :location (s / station
+        :ARG0-of (c / commute-01))
+    :location-of (p / person
+        :location (b / background)
+        :mod (l / lone))
+    :mod (t2 / train))

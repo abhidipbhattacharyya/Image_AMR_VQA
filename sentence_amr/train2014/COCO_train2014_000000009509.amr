@@ -1,0 +1,34 @@
+# ::tok The clock on the top of the tower says it is thirty minutes after two o clock .
+# ::node	c	clock	1-2
+# ::node	t2	top	4-5
+# ::node	t3	tower	7-8
+# ::node	s	say-01	8-9
+# ::node	b	be-temporally-at-91	10-11
+# ::node	t	temporal-quantity	11-12
+# ::node	1	30	11-12
+# ::node	m	minute	12-13
+# ::node	a	after	13-14
+# ::node	d	date-entity	14-15
+# ::node	0	14:00	14-15
+# ::root	s	say-01
+# ::edge	clock	location	top	c	t2	
+# ::edge	top	part-of	tower	t2	t3	
+# ::edge	say-01	ARG0	clock	s	c	
+# ::edge	say-01	ARG1	be-temporally-at-91	s	b	
+# ::edge	temporal-quantity	quant	30	t	1	
+# ::edge	temporal-quantity	unit	minute	t	m	
+# ::edge	after	quant	temporal-quantity	a	t	
+# ::edge	be-temporally-at-91	ARG2	after	b	a	
+# ::edge	after	op1	date-entity	a	d	
+# ::edge	date-entity	time	14:00	d	0	
+(s / say-01
+    :ARG0 (c / clock
+        :location (t2 / top
+            :part-of (t3 / tower)))
+    :ARG1 (b / be-temporally-at-91
+        :ARG2 (a / after
+            :quant (t / temporal-quantity
+                :quant 30
+                :unit (m / minute))
+            :op1 (d / date-entity
+                :time "14:00"))))

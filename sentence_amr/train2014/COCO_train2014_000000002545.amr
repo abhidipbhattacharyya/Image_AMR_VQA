@@ -1,0 +1,25 @@
+# ::tok A train is approaching on the left side of the track in the middle of the afternoon .
+# ::node	t2	train	1-2
+# ::node	a2	approach-01	3-4
+# ::node	l	left-20	6-7
+# ::node	s	side	7-8
+# ::node	t	track	10-11
+# ::node	m	middle	13-14
+# ::node	d	date-entity	16-17
+# ::node	a	afternoon	16-17
+# ::root	a2	approach-01
+# ::edge	approach-01	ARG1	train	a2	t2	
+# ::edge	side	ARG1-of	left-20	s	l	
+# ::edge	approach-01	ARG2	side	a2	s	
+# ::edge	side	part-of	track	s	t	
+# ::edge	approach-01	time	middle	a2	m	
+# ::edge	middle	part-of	date-entity	m	d	
+# ::edge	date-entity	dayperiod	afternoon	d	a	
+(a2 / approach-01
+    :ARG1 (t2 / train)
+    :ARG2 (s / side
+        :ARG1-of (l / left-20)
+        :part-of (t / track))
+    :time (m / middle
+        :part-of (d / date-entity
+            :dayperiod (a / afternoon))))

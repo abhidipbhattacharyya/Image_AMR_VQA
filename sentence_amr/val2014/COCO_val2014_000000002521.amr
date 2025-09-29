@@ -1,0 +1,34 @@
+# ::tok One way sign in front of a building with a painting of someone pointing on the block .
+# ::node	o	one	0-1
+# ::node	w	way	1-2
+# ::node	s	sign	2-3
+# ::node	i	in-front-of	4-5
+# ::node	b2	building	7-8
+# ::node	h	have-03	8-9
+# ::node	p	paint-02	10-11
+# ::node	t	thing	11-12
+# ::node	s2	someone	12-13
+# ::node	p2	point-01	13-14
+# ::node	b	block	16-17
+# ::root	s	sign
+# ::edge	way	mod	one	w	o	
+# ::edge	sign	mod	way	s	w	
+# ::edge	sign	location	in-front-of	s	i	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	thing	ARG1-of	paint-02	t	p	
+# ::edge	have-03	ARG1	thing	h	t	
+# ::edge	paint-02	ARG2	someone	p	s2	
+# ::edge	someone	ARG0-of	point-01	s2	p2	
+# ::edge	point-01	ARG2	block	p2	b	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (t / thing
+            :ARG1-of (p / paint-02
+                :ARG2 (s2 / someone
+                    :ARG0-of (p2 / point-01
+                        :ARG2 (b / block))))))
+    :location (i / in-front-of
+        :op1 (b2 / building))
+    :mod (w / way
+        :mod (o / one)))

@@ -1,0 +1,50 @@
+# ::tok four bowls each containing different foods some have vegetables and some have fruit and vegetables
+# ::node	0	4	0-1
+# ::node	b	bowl-01	1-2
+# ::node	c	contain-01	3-4
+# ::node	d	differ-02	4-5
+# ::node	f	food	5-6
+# ::node	s	some	6-7
+# ::node	h	have-03	7-8
+# ::node	v	vegetable	8-9
+# ::node	a	and	9-10
+# ::node	a2	and	9-10
+# ::node	s2	some	10-11
+# ::node	h2	have-03	11-12
+# ::node	h3	have-03	11-12
+# ::node	f2	fruit	12-13
+# ::node	v2	vegetable	14-15
+# ::root	a	and
+# ::edge	bowl-01	quant	4	b	0	
+# ::edge	contain-01	ARG0	bowl-01	c	b	
+# ::edge	food	ARG1-of	differ-02	f	d	
+# ::edge	contain-01	ARG1	food	c	f	
+# ::edge	have-03	ARG0	some	h	s	
+# ::edge	have-03	ARG1	vegetable	h	v	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	have-03	ARG0	and	h2	a2	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	have-03	ARG1	vegetable	h2	v	
+# ::edge	have-03	ARG0	some	h3	s2	
+# ::edge	and	op3	have-03	a2	h3	
+# ::edge	have-03	ARG1	vegetable	h3	v	
+# ::edge	and	op1	fruit	a2	f2	
+# ::edge	and	op2	vegetable	a2	v2	
+# ::edge	and	rel	contain-01	a	c	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (s / some)
+        :ARG1 (v / vegetable))
+    :op2 (h2 / have-03
+        :ARG0 (a2 / and
+            :op1 (f2 / fruit)
+            :op2 (v2 / vegetable)
+            :op3 (h3 / have-03
+                :ARG0 (s2 / some)
+                :ARG1 v))
+        :ARG1 v)
+    :rel (c / contain-01
+        :ARG0 (b / bowl-01
+            :quant 4)
+        :ARG1 (f / food
+            :ARG1-of (d / differ-02))))

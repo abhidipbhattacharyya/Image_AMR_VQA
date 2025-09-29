@@ -1,0 +1,23 @@
+# ::tok a train car arriving or departing from the station
+# ::node	t	train	1-2
+# ::node	c	car	2-3
+# ::node	a	arrive-01	3-4
+# ::node	o	or	4-5
+# ::node	d	depart-01	5-6
+# ::node	s	station	8-9
+# ::root	o	or
+# ::edge	car	mod	train	c	t	
+# ::edge	arrive-01	ARG1	car	a	c	
+# ::edge	or	op1	arrive-01	o	a	
+# ::edge	or	op2	depart-01	o	d	
+# ::edge	depart-01	ARG0	car	d	c	
+# ::edge	depart-01	ARG1	station	d	s	
+# ::edge	arrive-01	ARG4	station	a	s	
+(o / or
+    :op1 (a / arrive-01
+        :ARG1 (c / car
+            :mod (t / train))
+        :ARG4 (s / station))
+    :op2 (d / depart-01
+        :ARG0 c
+        :ARG1 s))

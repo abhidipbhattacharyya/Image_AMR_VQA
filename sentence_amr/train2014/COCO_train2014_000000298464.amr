@@ -1,0 +1,35 @@
+# ::tok A group of people are sitting and standing around a cake with colorful icing .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	5-6
+# ::node	a	and	6-7
+# ::node	s2	stand-01	7-8
+# ::node	a2	around	8-9
+# ::node	c	cake	10-11
+# ::node	h	have-03	11-12
+# ::node	c2	colorful	12-13
+# ::node	i	ice	13-14
+# ::root	a	and
+# ::edge	group	consist-of	person	g	p	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG1	group	s2	g	
+# ::edge	stand-01	ARG2	around	s2	a2	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	around	op1	cake	a2	c	
+# ::edge	cake	ARG0-of	have-03	c	h	
+# ::edge	ice	mod	colorful	i	c2	
+# ::edge	have-03	ARG1	ice	h	i	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (g / group
+            :consist-of (p / person))
+        :ARG2 (a2 / around
+            :op1 (c / cake
+                :ARG0-of (h / have-03
+                    :ARG1 (i / ice
+                        :mod (c2 / colorful))))))
+    :op2 (s2 / stand-01
+        :ARG1 g
+        :ARG2 a2))

@@ -1,0 +1,42 @@
+# ::tok One of a pair of railroad tracks currently has a train and the other does not .
+# ::node	o	one	0-1
+# ::node	i	include-91	1-2
+# ::node	p	pair	3-4
+# ::node	r	railroad	5-6
+# ::node	t	track	6-7
+# ::node	t2	track	6-7
+# ::node	c	current	7-8
+# ::node	h	have-03	8-9
+# ::node	h2	have-03	8-9
+# ::node	t3	train	10-11
+# ::node	a	and	11-12
+# ::node	o2	other	13-14
+# ::node	0	-	15-16
+# ::root	a	and
+# ::edge	one	ARG1-of	include-91	o	i	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	track	quant	pair	t	p	
+# ::edge	include-91	ARG2	track	i	t	
+# ::edge	have-03	time	current	h	c	
+# ::edge	have-03	ARG0	one	h	o	
+# ::edge	have-03	ARG0	track	h2	t2	
+# ::edge	have-03	ARG1	train	h2	t3	
+# ::edge	have-03	ARG1	train	h	t3	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	track	mod	other	t2	o2	
+# ::edge	have-03	polarity	-	h2	0	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (o / one
+            :ARG1-of (i / include-91
+                :ARG2 (t / track
+                    :quant (p / pair)
+                    :mod (r / railroad))))
+        :ARG1 (t3 / train)
+        :time (c / current))
+    :op2 (h2 / have-03
+        :ARG0 (t2 / track
+            :mod (o2 / other))
+        :ARG1 t3
+        :polarity -))

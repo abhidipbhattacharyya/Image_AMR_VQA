@@ -1,0 +1,37 @@
+# ::tok A train heads down some tracks near a railroad crossing sign and a dirt road .
+# ::node	t2	train	1-2
+# ::node	h	head-02	2-3
+# ::node	d2	down	3-4
+# ::node	s2	some	4-5
+# ::node	t	track	5-6
+# ::node	n	near-02	6-7
+# ::node	r	railroad	8-9
+# ::node	c	cross-02	9-10
+# ::node	s	sign	10-11
+# ::node	a	and	11-12
+# ::node	d	dirt	13-14
+# ::node	r2	road	14-15
+# ::root	h	head-02
+# ::edge	head-02	ARG0	train	h	t2	
+# ::edge	head-02	direction	down	h	d2	
+# ::edge	track	quant	some	t	s2	
+# ::edge	head-02	ARG1	track	h	t	
+# ::edge	track	ARG1-of	near-02	t	n	
+# ::edge	cross-02	ARG1	railroad	c	r	
+# ::edge	sign	purpose	cross-02	s	c	
+# ::edge	and	op1	sign	a	s	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	road	mod	dirt	r2	d	
+# ::edge	and	op2	road	a	r2	
+(h / head-02
+    :ARG0 (t2 / train)
+    :ARG1 (t / track
+        :quant (s2 / some)
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (s / sign
+                    :purpose (c / cross-02
+                        :ARG1 (r / railroad)))
+                :op2 (r2 / road
+                    :mod (d / dirt)))))
+    :direction (d2 / down))

@@ -1,0 +1,29 @@
+# ::tok A pizza is fully topped and ready to bake via a pizza appliance .
+# ::node	p	pizza	1-2
+# ::node	f	full-09	3-4
+# ::node	t	top-01	4-5
+# ::node	a	and	5-6
+# ::node	r	ready-02	6-7
+# ::node	b	bake-01	8-9
+# ::node	p2	pizza	11-12
+# ::node	a2	appliance	12-13
+# ::root	a	and
+# ::edge	top-01	degree	full-09	t	f	
+# ::edge	top-01	ARG1	pizza	t	p	
+# ::edge	and	op1	top-01	a	t	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	pizza	r	p	
+# ::edge	ready-02	ARG2	bake-01	r	b	
+# ::edge	bake-01	ARG2	pizza	b	p	
+# ::edge	appliance	mod	pizza	a2	p2	
+# ::edge	bake-01	instrument	appliance	b	a2	
+(a / and
+    :op1 (t / top-01
+        :ARG1 (p / pizza)
+        :degree (f / full-09))
+    :op2 (r / ready-02
+        :ARG1 p
+        :ARG2 (b / bake-01
+            :ARG2 p
+            :instrument (a2 / appliance
+                :mod (p2 / pizza)))))

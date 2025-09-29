@@ -1,0 +1,28 @@
+# ::tok A store display filled with ripe , unripe bananas and other fruit .
+# ::node	s	store	1-2
+# ::node	d	display	2-3
+# ::node	f	fill-01	3-4
+# ::node	r	ripe-02	5-6
+# ::node	u	unripe	7-8
+# ::node	b	banana	8-9
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	f2	fruit	11-12
+# ::root	d	display
+# ::edge	display	location	store	d	s	
+# ::edge	display	ARG1-of	fill-01	d	f	
+# ::edge	banana	mod	unripe	b	u	
+# ::edge	banana	ARG1-of	ripe-02	b	r	
+# ::edge	and	op1	banana	a	b	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	fruit	mod	other	f2	o	
+# ::edge	and	op2	fruit	a	f2	
+(d / display
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (b / banana
+                :ARG1-of (r / ripe-02)
+                :mod (u / unripe))
+            :op2 (f2 / fruit
+                :mod (o / other))))
+    :location (s / store))

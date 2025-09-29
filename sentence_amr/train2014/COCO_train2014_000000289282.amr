@@ -1,0 +1,33 @@
+# ::tok A pizza sits by a tray of food in a box near four bowls of soup .
+# ::node	p	pizza	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	tray	5-6
+# ::node	f	food	7-8
+# ::node	b	box	10-11
+# ::node	n	near-02	11-12
+# ::node	0	4	12-13
+# ::node	v	volume-quantity	13-14
+# ::node	p2	pound	13-14
+# ::node	s2	soup	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	pizza	s	p	
+# ::edge	tray	consist-of	food	t	f	
+# ::edge	near-02	ARG2	box	n	b	
+# ::edge	near-02	ARG1	sit-01	n	s	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	volume-quantity	quant	4	v	0	
+# ::edge	volume-quantity	unit	pound	v	p2	
+# ::edge	soup	quant	volume-quantity	s2	v	
+# ::edge	box	location-of	soup	b	s2	
+# ::edge	sit-01	rel	tray	s	t	
+(s / sit-01
+    :ARG1 (p / pizza)
+    :ARG2 (n / near-02
+        :ARG1 s
+        :ARG2 (b / box
+            :location-of (s2 / soup
+                :quant (v / volume-quantity
+                    :quant 4
+                    :unit (p2 / pound)))))
+    :rel (t / tray
+        :consist-of (f / food)))

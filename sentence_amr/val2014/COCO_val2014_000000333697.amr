@@ -1,0 +1,43 @@
+# ::tok A corner with a Stop sign , a no entry sign and a one way sign in front of a brick wall with graffiti .
+# ::node	c	corner	1-2
+# ::node	h	have-03	2-3
+# ::node	s4	stop-01	4-5
+# ::node	s2	signal-07	5-6
+# ::node	0	-	8-9
+# ::node	e	enter-01	9-10
+# ::node	a	and	11-12
+# ::node	o	one-way	14-15
+# ::node	s3	signal-07	15-16
+# ::node	s	sign	15-16
+# ::node	i	in-front-of	17-18
+# ::node	b	brick	20-21
+# ::node	w	wall	21-22
+# ::node	g	graffiti-01	23-24
+# ::root	c	corner
+# ::edge	corner	ARG0-of	have-03	c	h	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	signal-07	a	s3	
+# ::edge	signal-07	ARG1	enter-01	s3	e	
+# ::edge	and	op3	sign	a	s	
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	sign	location	in-front-of	s	i	
+# ::edge	wall	consist-of	brick	w	b	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	wall	ARG2-of	graffiti-01	w	g	
+(c / corner
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / signal-07
+                :ARG1 (s4 / stop-01))
+            :op2 (s3 / signal-07
+                :ARG1 (e / enter-01
+                    :polarity -))
+            :op3 (s / sign
+                :location (i / in-front-of
+                    :op1 (w / wall
+                        :ARG2-of (g / graffiti-01)
+                        :consist-of (b / brick)))
+                :mod (o / one-way)))))

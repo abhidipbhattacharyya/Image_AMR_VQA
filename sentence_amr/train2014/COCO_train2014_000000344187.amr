@@ -1,0 +1,44 @@
+# ::tok A person swings the bat and misses the ball while another person holds a catcher 's mitt behind them .
+# ::node	p	person	1-2
+# ::node	s	swing-02	2-3
+# ::node	b2	bat	4-5
+# ::node	a	and	5-6
+# ::node	m	miss-02	6-7
+# ::node	b	ball	8-9
+# ::node	a2	another	10-11
+# ::node	p2	person	11-12
+# ::node	h	hold-01	12-13
+# ::node	p3	person	14-15
+# ::node	c	catch-01	14-15
+# ::node	m2	mitt	16-17
+# ::node	b3	behind	17-18
+# ::root	a	and
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	and	op1	swing-02	a	s	
+# ::edge	and	op2	miss-02	a	m	
+# ::edge	miss-02	ARG0	person	m	p	
+# ::edge	miss-02	ARG1	ball	m	b	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	and	time	hold-01	a	h	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+# ::edge	mitt	poss	person	m2	p3	
+# ::edge	hold-01	ARG1	mitt	h	m2	
+# ::edge	hold-01	location	behind	h	b3	
+# ::edge	behind	op1	person	b3	p	
+(a / and
+    :op1 (s / swing-02
+        :ARG0 (p / person)
+        :ARG1 (b2 / bat))
+    :op2 (m / miss-02
+        :ARG0 p
+        :ARG1 (b / ball))
+    :time (h / hold-01
+        :ARG0 (p2 / person
+            :mod (a2 / another))
+        :ARG1 (m2 / mitt
+            :poss (p3 / person
+                :ARG0-of (c / catch-01)))
+        :location (b3 / behind
+            :op1 p)))

@@ -1,0 +1,43 @@
+# ::tok A large steak sandwich with mushrooms and onion rings next to a cup of butter .
+# ::node	l	large	1-2
+# ::node	s2	steak	2-3
+# ::node	s	sandwich	3-4
+# ::node	h	have-03	4-5
+# ::node	m	mushroom	5-6
+# ::node	a	and	6-7
+# ::node	o	onion	7-8
+# ::node	r	ring	8-9
+# ::node	n	next-to	9-10
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	c	cup	12-13
+# ::node	b	butter	14-15
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	sandwich	mod	steak	s	s2	
+# ::edge	sandwich	mod	large	s	l	
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	and	op1	mushroom	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	ring	consist-of	onion	r	o	
+# ::edge	and	op2	ring	a	r	
+# ::edge	sandwich	location	next-to	s	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	butter	quant	volume-quantity	b	v	
+# ::edge	next-to	op1	butter	n	b	
+# ::edge	event	mod	sandwich	e	s	
+(e / event
+    :mod (s / sandwich
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (m / mushroom)
+                :op2 (r / ring
+                    :consist-of (o / onion))))
+        :location (n / next-to
+            :op1 (b / butter
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c / cup))))
+        :mod (s2 / steak)
+        :mod (l / large)))

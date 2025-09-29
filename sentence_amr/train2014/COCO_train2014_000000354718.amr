@@ -1,0 +1,33 @@
+# ::tok A truck with Showtime written on the front drives down a street .
+# ::node	t	truck	1-2
+# ::node	h	have-03	2-3
+# ::node	b	broadcast-program	3-4
+# ::node	n	name	3-4
+# ::node	0	Showtime	3-4
+# ::node	w	write-01	4-5
+# ::node	f	front	7-8
+# ::node	d2	drive-01	8-9
+# ::node	d	down	9-10
+# ::node	s	street	11-12
+# ::root	d2	drive-01
+# ::edge	truck	ARG0-of	have-03	t	h	
+# ::edge	broadcast-program	name	name	b	n	
+# ::edge	name	op1	Showtime	n	0	
+# ::edge	write-01	ARG1	broadcast-program	w	b	
+# ::edge	have-03	ARG1	write-01	h	w	
+# ::edge	write-01	location	front	w	f	
+# ::edge	truck	part	front	t	f	
+# ::edge	drive-01	ARG0	truck	d2	t	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	ARG1	street	d2	s	
+(d2 / drive-01
+    :ARG0 (t / truck
+        :ARG0-of (h / have-03
+            :ARG1 (w / write-01
+                :ARG1 (b / broadcast-program
+                    :name (n / name
+                        :op1 "Showtime"))
+                :location (f / front)))
+        :part f)
+    :ARG1 (s / street)
+    :direction (d / down))

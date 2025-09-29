@@ -1,0 +1,22 @@
+# ::tok Multiple vehicles parked curbside next to parking meters .
+# ::node	m2	multiple	0-1
+# ::node	v	vehicle	1-2
+# ::node	p	park-01	2-3
+# ::node	c	curb-01	3-4
+# ::node	n	next-to	4-5
+# ::node	p2	park-01	6-7
+# ::node	m	meter	7-8
+# ::root	p	park-01
+# ::edge	vehicle	quant	multiple	v	m2	
+# ::edge	park-01	ARG1	vehicle	p	v	
+# ::edge	next-to	op1	curb-01	n	c	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	next-to	op1	meter	n	m	
+(p / park-01
+    :ARG1 (v / vehicle
+        :quant (m2 / multiple))
+    :ARG2 (n / next-to
+        :op1 (c / curb-01)
+        :op1 (m / meter
+            :purpose (p2 / park-01))))

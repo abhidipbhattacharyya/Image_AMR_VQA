@@ -1,0 +1,41 @@
+# ::tok A group of baseball players lined up sitting on the back of a bench with their feet resting on the seat area of the bench .
+# ::node	g	group	1-2
+# ::node	b2	baseball	3-4
+# ::node	p	person	4-5
+# ::node	p2	play-01	4-5
+# ::node	l	line-up-02	5-6
+# ::node	s2	sit-01	7-8
+# ::node	b	back	10-11
+# ::node	b3	bench	13-14
+# ::node	f	foot	16-17
+# ::node	r	rest-01	17-18
+# ::node	s	seat	20-21
+# ::node	a	area	21-22
+# ::root	l	line-up-02
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	line-up-02	ARG1	group	l	g	
+# ::edge	group	ARG1-of	sit-01	g	s2	
+# ::edge	sit-01	ARG2	back	s2	b	
+# ::edge	back	part-of	bench	b	b3	
+# ::edge	person	part	foot	p	f	
+# ::edge	rest-01	ARG1	foot	r	f	
+# ::edge	sit-01	manner	rest-01	s2	r	
+# ::edge	area	mod	seat	a	s	
+# ::edge	rest-01	ARG2	area	r	a	
+# ::edge	bench	part	area	b3	a	
+(l / line-up-02
+    :ARG1 (g / group
+        :ARG1-of (s2 / sit-01
+            :ARG2 (b / back
+                :part-of (b3 / bench
+                    :part (a / area
+                        :mod (s / seat))))
+            :manner (r / rest-01
+                :ARG1 (f / foot)
+                :ARG2 a))
+        :consist-of (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b2 / baseball))
+            :part f)))

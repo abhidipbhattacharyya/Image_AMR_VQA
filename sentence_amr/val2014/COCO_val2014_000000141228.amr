@@ -1,0 +1,33 @@
+# ::tok Stainless steel refrigerator with door open showing beverages and food items .
+# ::node	s2	stain-01	0-1
+# ::node	s3	steel	1-2
+# ::node	r	refrigerator	2-3
+# ::node	d	door	4-5
+# ::node	o	open-09	5-6
+# ::node	s	show-01	6-7
+# ::node	b	beverage	7-8
+# ::node	a	and	8-9
+# ::node	f	food	9-10
+# ::node	i	item	10-11
+# ::root	r	refrigerator
+# ::edge	steel	ARG1-of	stain-01	s3	s2	
+# ::edge	refrigerator	part	steel	r	s3	
+# ::edge	refrigerator	part	door	r	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	refrigerator	ARG0-of	open-09	r	o	
+# ::edge	door	ARG0-of	show-01	d	s	
+# ::edge	and	op1	beverage	a	b	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	item	mod	food	i	f	
+# ::edge	and	op2	item	a	i	
+(r / refrigerator
+    :ARG0-of (o / open-09
+        :ARG1 (d / door
+            :ARG0-of (s / show-01
+                :ARG1 (a / and
+                    :op1 (b / beverage)
+                    :op2 (i / item
+                        :mod (f / food))))))
+    :part (s3 / steel
+        :ARG1-of (s2 / stain-01))
+    :part d)

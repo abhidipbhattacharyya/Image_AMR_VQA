@@ -1,0 +1,35 @@
+# ::tok The dog is wondering if he will get to have a piece of the roast tonight .
+# ::node	d2	dog	1-2
+# ::node	w	wonder-01	3-4
+# ::node	t2	truth-value	4-5
+# ::node	g	get-22	7-8
+# ::node	h	have-06	9-10
+# ::node	p	piece	11-12
+# ::node	r	roast-01	14-15
+# ::node	d	date-entity	15-16
+# ::node	n	night	15-16
+# ::node	t	today	15-16
+# ::root	w	wonder-01
+# ::edge	wonder-01	ARG0	dog	w	d2	
+# ::edge	wonder-01	ARG1	truth-value	w	t2	
+# ::edge	truth-value	polarity-of	get-22	t2	g	
+# ::edge	get-22	ARG0	dog	g	d2	
+# ::edge	get-22	ARG1	have-06	g	h	
+# ::edge	have-06	ARG0	dog	h	d2	
+# ::edge	have-06	ARG1	piece	h	p	
+# ::edge	piece	part-of	roast-01	p	r	
+# ::edge	have-06	time	date-entity	h	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	date-entity	mod	today	d	t	
+(w / wonder-01
+    :ARG0 (d2 / dog)
+    :ARG1 (t2 / truth-value
+        :polarity-of (g / get-22
+            :ARG0 d2
+            :ARG1 (h / have-06
+                :ARG0 d2
+                :ARG1 (p / piece
+                    :part-of (r / roast-01))
+                :time (d / date-entity
+                    :dayperiod (n / night)
+                    :mod (t / today))))))

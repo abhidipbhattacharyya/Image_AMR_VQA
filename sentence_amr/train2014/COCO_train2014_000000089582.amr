@@ -1,0 +1,30 @@
+# ::tok The coast guard sets out in search of any vessels in distress .
+# ::node	n	name	1-2
+# ::node	0	Coast	1-2
+# ::node	m	military	2-3
+# ::node	1	Guard	2-3
+# ::node	s2	set-out-07	3-4
+# ::node	s	search-01	6-7
+# ::node	a	any	8-9
+# ::node	v	vessel	9-10
+# ::node	d	distress-01	11-12
+# ::root	s2	set-out-07
+# ::edge	name	op1	Coast	n	0	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op2	Guard	n	1	
+# ::edge	set-out-07	ARG0	military	s2	m	
+# ::edge	set-out-07	purpose	search-01	s2	s	
+# ::edge	search-01	ARG0	military	s	m	
+# ::edge	vessel	mod	any	v	a	
+# ::edge	search-01	ARG1	vessel	s	v	
+# ::edge	vessel	ARG1-of	distress-01	v	d	
+(s2 / set-out-07
+    :purpose (s / search-01
+        :ARG0 (m / military
+            :name (n / name
+                :op1 "Coast"
+                :op2 "Guard"))
+        :ARG1 (v / vessel
+            :ARG1-of (d / distress-01)
+            :mod (a / any)))
+    :ARG0 m)

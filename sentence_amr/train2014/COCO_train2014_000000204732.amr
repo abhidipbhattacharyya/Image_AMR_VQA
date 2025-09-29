@@ -1,0 +1,39 @@
+# ::tok A large group of men are grouped together in a room with black and white checkered flooring .
+# ::node	l	large	1-2
+# ::node	g	group	2-3
+# ::node	m	man	4-5
+# ::node	g2	group-01	6-7
+# ::node	t	together	7-8
+# ::node	r	room	10-11
+# ::node	h	have-03	11-12
+# ::node	b	black-04	12-13
+# ::node	a	and	13-14
+# ::node	w	white-03	14-15
+# ::node	p	pattern	15-16
+# ::node	f	floor	16-17
+# ::root	g2	group-01
+# ::edge	group	mod	large	g	l	
+# ::edge	group	consist-of	man	g	m	
+# ::edge	group-01	ARG1	group	g2	g	
+# ::edge	group-01	mod	together	g2	t	
+# ::edge	group-01	location	room	g2	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	floor	mod	pattern	f	p	
+# ::edge	floor	mod	and	f	a	
+# ::edge	have-03	ARG1	floor	h	f	
+# ::edge	group-01	rel	black-04	g2	b	
+(g2 / group-01
+    :ARG1 (g / group
+        :consist-of (m / man)
+        :mod (l / large))
+    :location (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (f / floor
+                :mod (p / pattern)
+                :mod (a / and
+                    :op1 h
+                    :op2 (w / white-03)))))
+    :mod (t / together)
+    :rel (b / black-04))

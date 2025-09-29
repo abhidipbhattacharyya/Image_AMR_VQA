@@ -1,0 +1,52 @@
+# ::tok Street signs for Richmond St. and Prince St. posted on top of stop sign .
+# ::node	s6	street	0-1
+# ::node	s	sign	1-2
+# ::node	s2	sign	1-2
+# ::node	s3	sign	1-2
+# ::node	n	name	3-4
+# ::node	1	Richmond	3-4
+# ::node	r	road	4-5
+# ::node	r2	road	4-5
+# ::node	n2	name	4-5
+# ::node	2	St.	4-5
+# ::node	a	and	5-6
+# ::node	0	Prince	6-7
+# ::node	3	St.	7-8
+# ::node	p	post-01	8-9
+# ::node	t	top	10-11
+# ::node	s5	stop-01	12-13
+# ::node	s4	signal-07	13-14
+# ::root	p	post-01
+# ::edge	sign	mod	street	s	s6	
+# ::edge	name	op1	Richmond	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	sign	mod	road	s	r	
+# ::edge	sign	mod	road	s3	r2	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op2	St.	n	2	
+# ::edge	and	op2	sign	a	s3	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	name	op1	Prince	n2	0	
+# ::edge	name	op2	St.	n2	3	
+# ::edge	post-01	ARG1	and	p	a	
+# ::edge	post-01	ARG2	top	p	t	
+# ::edge	signal-07	ARG1	stop-01	s4	s5	
+# ::edge	top	part-of	signal-07	t	s4	
+# ::edge	post-01	rel	sign	p	s	
+(p / post-01
+    :ARG1 (a / and
+        :op1 (s2 / sign)
+        :op2 (s3 / sign
+            :mod (r2 / road
+                :name (n2 / name
+                    :op1 "Prince"
+                    :op2 "St."))))
+    :ARG2 (t / top
+        :part-of (s4 / signal-07
+            :ARG1 (s5 / stop-01)))
+    :rel (s / sign
+        :mod (s6 / street)
+        :mod (r / road
+            :name (n / name
+                :op1 "Richmond"
+                :op2 "St."))))

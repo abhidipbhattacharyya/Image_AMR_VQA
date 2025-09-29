@@ -1,0 +1,35 @@
+# ::tok A field with sheep milling around , some standing on rocks
+# ::node	f	field	1-2
+# ::node	s	sheep	3-4
+# ::node	s2	sheep	3-4
+# ::node	c	cell	4-5
+# ::node	a2	around	5-6
+# ::node	a	and	6-7
+# ::node	i	include-91	7-8
+# ::node	s3	some	7-8
+# ::node	s4	stand-01	8-9
+# ::node	r	rock	10-11
+# ::root	f	field
+# ::edge	cell	mod	sheep	c	s	
+# ::edge	cell	location	around	c	a2	
+# ::edge	and	op2	cell	a	c	
+# ::edge	and	op1	field	a	f	
+# ::edge	field	location-of	and	f	a	
+# ::edge	sheep	ARG1-of	include-91	s2	i	
+# ::edge	include-91	ARG2	sheep	i	s	
+# ::edge	sheep	quant	some	s2	s3	
+# ::edge	sheep	ARG1-of	stand-01	s2	s4	
+# ::edge	stand-01	ARG2	rock	s4	r	
+# ::edge	field	rel	sheep	f	s2	
+(f / field
+    :location-of (a / and
+        :op1 f
+        :op2 (c / cell
+            :location (a2 / around)
+            :mod (s / sheep)))
+    :rel (s2 / sheep
+        :quant (s3 / some)
+        :ARG1-of (i / include-91
+            :ARG2 s)
+        :ARG1-of (s4 / stand-01
+            :ARG2 (r / rock))))

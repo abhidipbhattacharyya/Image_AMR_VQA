@@ -1,0 +1,36 @@
+# ::tok A woman sitting at a dining table next to a wood stove in a cabin - like room with wood paneling
+# ::node	w	woman	1-2
+# ::node	s	sit-01	2-3
+# ::node	d	dine-01	5-6
+# ::node	t	table	6-7
+# ::node	n	next-to	7-8
+# ::node	s2	stove	11-12
+# ::node	c	cabin	14-15
+# ::node	r	resemble-01	16-17
+# ::node	r2	room	17-18
+# ::node	w2	wood	19-20
+# ::node	p	paneling	20-21
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	woman	s	w	
+# ::edge	table	mod	dine-01	t	d	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location	next-to	t	n	
+# ::edge	next-to	op1	stove	n	s2	
+# ::edge	resemble-01	ARG2	cabin	r	c	
+# ::edge	room	ARG1-of	resemble-01	r2	r	
+# ::edge	table	location	room	t	r2	
+# ::edge	stove	consist-of	wood	s2	w2	
+# ::edge	paneling	consist-of	wood	p	w2	
+# ::edge	room	part	paneling	r2	p	
+(s / sit-01
+    :ARG1 (w / woman)
+    :ARG2 (t / table
+        :location (n / next-to
+            :op1 (s2 / stove
+                :consist-of (w2 / wood)))
+        :location (r2 / room
+            :ARG1-of (r / resemble-01
+                :ARG2 (c / cabin))
+            :part (p / paneling
+                :consist-of w2))
+        :mod (d / dine-01)))

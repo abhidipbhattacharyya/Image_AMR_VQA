@@ -1,0 +1,24 @@
+# ::tok A herd of cattle crossing the street while cars wait behind them .
+# ::node	h	herd	1-2
+# ::node	c2	cattle	3-4
+# ::node	c3	cross-02	4-5
+# ::node	s	street	6-7
+# ::node	c	car	8-9
+# ::node	w	wait-01	9-10
+# ::node	b	behind	10-11
+# ::root	c3	cross-02
+# ::edge	herd	consist-of	cattle	h	c2	
+# ::edge	cross-02	ARG0	herd	c3	h	
+# ::edge	cross-02	ARG1	street	c3	s	
+# ::edge	wait-01	ARG1	car	w	c	
+# ::edge	cross-02	time	wait-01	c3	w	
+# ::edge	wait-01	ARG2	behind	w	b	
+# ::edge	behind	op1	herd	b	h	
+(c3 / cross-02
+    :ARG0 (h / herd
+        :consist-of (c2 / cattle))
+    :ARG1 (s / street)
+    :time (w / wait-01
+        :ARG1 (c / car)
+        :ARG2 (b / behind
+            :op1 h)))

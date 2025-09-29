@@ -1,0 +1,25 @@
+# ::tok A road sign is in the foreground with a street corner in the background .
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	b2	be-located-at-91	4-5
+# ::node	f	foreground	6-7
+# ::node	a	and	7-8
+# ::node	s2	street	9-10
+# ::node	c	corner	10-11
+# ::node	b	background	13-14
+# ::root	a	and
+# ::edge	sign	mod	road	s	r	
+# ::edge	be-located-at-91	ARG1	sign	b2	s	
+# ::edge	be-located-at-91	ARG2	foreground	b2	f	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	corner	mod	street	c	s2	
+# ::edge	and	op2	corner	a	c	
+# ::edge	corner	location	background	c	b	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (s / sign
+            :mod (r / road))
+        :ARG2 (f / foreground))
+    :op2 (c / corner
+        :location (b / background)
+        :mod (s2 / street)))

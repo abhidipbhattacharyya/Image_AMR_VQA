@@ -1,0 +1,35 @@
+# ::tok A young man is brushing his teeth you can see his face in the mirror .
+# ::node	y2	young	1-2
+# ::node	m	man	2-3
+# ::node	b	brush-01	4-5
+# ::node	t	tooth	6-7
+# ::node	y	you	7-8
+# ::node	p	possible-01	8-9
+# ::node	s	see-01	9-10
+# ::node	f	face	11-12
+# ::node	m2	mirror	14-15
+# ::node	c	cause-01	15-16
+# ::root	c	cause-01
+# ::edge	man	mod	young	m	y2	
+# ::edge	brush-01	ARG0	man	b	m	
+# ::edge	brush-01	ARG1	tooth	b	t	
+# ::edge	man	part	tooth	m	t	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	see-01	ARG1	face	s	f	
+# ::edge	man	part	face	m	f	
+# ::edge	see-01	location	mirror	s	m2	
+# ::edge	cause-01	ARG1	possible-01	c	p	
+# ::edge	cause-01	ARG0	brush-01	c	b	
+(c / cause-01
+    :ARG0 (b / brush-01
+        :ARG0 (m / man
+            :mod (y2 / young)
+            :part (t / tooth)
+            :part (f / face))
+        :ARG1 t)
+    :ARG1 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG0 (y / you)
+            :ARG1 f
+            :location (m2 / mirror))))

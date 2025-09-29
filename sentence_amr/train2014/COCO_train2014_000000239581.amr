@@ -1,0 +1,31 @@
+# ::tok a giraffe standing on a dirt surface next to another giraffe behind a wire fence
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	d	dirt	5-6
+# ::node	s2	surface	6-7
+# ::node	n	next-to	7-8
+# ::node	a	another	9-10
+# ::node	g2	giraffe	10-11
+# ::node	b	behind	11-12
+# ::node	w	wire	13-14
+# ::node	f	fence	14-15
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	surface	consist-of	dirt	s2	d	
+# ::edge	stand-01	ARG2	surface	s	s2	
+# ::edge	surface	location	next-to	s2	n	
+# ::edge	giraffe	mod	another	g2	a	
+# ::edge	next-to	op1	giraffe	n	g2	
+# ::edge	giraffe	location	behind	g2	b	
+# ::edge	fence	consist-of	wire	f	w	
+# ::edge	behind	op1	fence	b	f	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (s2 / surface
+        :consist-of (d / dirt)
+        :location (n / next-to
+            :op1 (g2 / giraffe
+                :location (b / behind
+                    :op1 (f / fence
+                        :consist-of (w / wire)))
+                :mod (a / another)))))

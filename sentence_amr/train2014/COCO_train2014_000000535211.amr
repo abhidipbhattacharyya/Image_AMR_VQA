@@ -1,0 +1,37 @@
+# ::tok Workers transporting barrels on a horse drawn carriage stop as one animal lies in the road .
+# ::node	p	person	0-1
+# ::node	w	work-01	0-1
+# ::node	t	transport-01	1-2
+# ::node	b	barrel	2-3
+# ::node	h	horse	5-6
+# ::node	d	draw-02	6-7
+# ::node	c	carriage	7-8
+# ::node	s	stop-01	8-9
+# ::node	0	1	10-11
+# ::node	a	animal	11-12
+# ::node	l	lie-07	12-13
+# ::node	r	road	15-16
+# ::root	s	stop-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	person	ARG0-of	transport-01	p	t	
+# ::edge	transport-01	ARG1	barrel	t	b	
+# ::edge	draw-02	ARG0	horse	d	h	
+# ::edge	carriage	ARG1-of	draw-02	c	d	
+# ::edge	transport-01	instrument	carriage	t	c	
+# ::edge	stop-01	ARG0	person	s	p	
+# ::edge	animal	quant	1	a	0	
+# ::edge	lie-07	ARG1	animal	l	a	
+# ::edge	stop-01	time	lie-07	s	l	
+# ::edge	lie-07	ARG2	road	l	r	
+(s / stop-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01)
+        :ARG0-of (t / transport-01
+            :ARG1 (b / barrel)
+            :instrument (c / carriage
+                :ARG1-of (d / draw-02
+                    :ARG0 (h / horse)))))
+    :time (l / lie-07
+        :ARG1 (a / animal
+            :quant 1)
+        :ARG2 (r / road)))

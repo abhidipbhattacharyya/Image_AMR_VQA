@@ -1,0 +1,39 @@
+# ::tok The Asian woman is at the market where fruits and fresh produce are available for sale .
+# ::node	c	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	w	woman	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	m	market	6-7
+# ::node	f2	fruit	8-9
+# ::node	a	and	9-10
+# ::node	f	fresh-04	10-11
+# ::node	p	produce	11-12
+# ::node	a2	available-02	13-14
+# ::node	s	sell-01	15-16
+# ::root	b	be-located-at-91
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	woman	mod	continent	w	c	
+# ::edge	be-located-at-91	ARG1	woman	b	w	
+# ::edge	be-located-at-91	ARG2	market	b	m	
+# ::edge	and	op1	fruit	a	f2	
+# ::edge	produce	ARG1-of	fresh-04	p	f	
+# ::edge	and	op2	produce	a	p	
+# ::edge	available-02	ARG2	and	a2	a	
+# ::edge	market	location-of	available-02	m	a2	
+# ::edge	available-02	purpose	sell-01	a2	s	
+# ::edge	sell-01	ARG1	and	s	a	
+(b / be-located-at-91
+    :ARG1 (w / woman
+        :mod (c / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG2 (m / market
+        :location-of (a2 / available-02
+            :purpose (s / sell-01
+                :ARG1 (a / and
+                    :op1 (f2 / fruit)
+                    :op2 (p / produce
+                        :ARG1-of (f / fresh-04))))
+            :ARG2 a)))

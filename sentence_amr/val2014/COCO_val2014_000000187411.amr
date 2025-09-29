@@ -1,0 +1,25 @@
+# ::tok A small flock of woolly sheep are shown eating a pile of hay .
+# ::node	s3	small	1-2
+# ::node	f	flock	2-3
+# ::node	w	wool	4-5
+# ::node	s	sheep	5-6
+# ::node	s2	show-01	7-8
+# ::node	e	eat-01	8-9
+# ::node	p	pile-01	10-11
+# ::node	h	hay	12-13
+# ::root	s2	show-01
+# ::edge	flock	mod	small	f	s3	
+# ::edge	sheep	consist-of	wool	s	w	
+# ::edge	flock	consist-of	sheep	f	s	
+# ::edge	show-01	ARG1	eat-01	s2	e	
+# ::edge	eat-01	ARG0	flock	e	f	
+# ::edge	eat-01	ARG1	pile-01	e	p	
+# ::edge	pile-01	ARG1	hay	p	h	
+(s2 / show-01
+    :ARG1 (e / eat-01
+        :ARG0 (f / flock
+            :consist-of (s / sheep
+                :consist-of (w / wool))
+            :mod (s3 / small))
+        :ARG1 (p / pile-01
+            :ARG1 (h / hay))))

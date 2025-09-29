@@ -1,0 +1,43 @@
+# ::tok a night time street with a red do n't walk sign and some street signs
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	s4	street	3-4
+# ::node	h	have-03	4-5
+# ::node	r	red-02	6-7
+# ::node	y	you	7-8
+# ::node	1	imperative	7-8
+# ::node	0	-	8-9
+# ::node	w	walk-01	9-10
+# ::node	s	sign	10-11
+# ::node	a	and	11-12
+# ::node	s3	some	12-13
+# ::node	s5	street	13-14
+# ::node	s2	sign	14-15
+# ::root	s4	street
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	street	time	date-entity	s4	d	
+# ::edge	street	ARG0-of	have-03	s4	h	
+# ::edge	walk-01	polarity	-	w	0	
+# ::edge	walk-01	mode	imperative	w	1	
+# ::edge	walk-01	ARG0	you	w	y	
+# ::edge	sign	topic	walk-01	s	w	
+# ::edge	sign	ARG1-of	red-02	s	r	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sign	topic	street	s2	s5	
+# ::edge	sign	quant	some	s2	s3	
+# ::edge	and	op2	sign	a	s2	
+(s4 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :ARG1-of (r / red-02)
+                :topic (w / walk-01
+                    :ARG0 (y / you)
+                    :mode imperative
+                    :polarity -))
+            :op2 (s2 / sign
+                :quant (s3 / some)
+                :topic (s5 / street))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

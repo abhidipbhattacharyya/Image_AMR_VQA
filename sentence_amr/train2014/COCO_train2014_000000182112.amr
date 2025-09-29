@@ -1,0 +1,36 @@
+# ::tok A twin engine airliner is parked at an airport in the passenger deplaning and service area .
+# ::node	t	twin	1-2
+# ::node	e	engine	2-3
+# ::node	a	airliner	3-4
+# ::node	p	park-01	5-6
+# ::node	a2	airport	8-9
+# ::node	p2	passenger	11-12
+# ::node	d	deplorable-02	12-13
+# ::node	a3	and	13-14
+# ::node	s	service-05	14-15
+# ::node	a4	area	15-16
+# ::node	a5	area	15-16
+# ::root	p	park-01
+# ::edge	engine	mod	twin	e	t	
+# ::edge	airliner	mod	engine	a	e	
+# ::edge	park-01	ARG1	airliner	p	a	
+# ::edge	park-01	ARG2	airport	p	a2	
+# ::edge	deplorable-02	ARG1	passenger	d	p2	
+# ::edge	airport	location-of	and	a2	a3	
+# ::edge	service-05	ARG0	airliner	s	a	
+# ::edge	and	op1	area	a3	a4	
+# ::edge	area	location-of	deplorable-02	a4	d	
+# ::edge	area	ARG2-of	service-05	a5	s	
+# ::edge	and	op2	area	a3	a5	
+(p / park-01
+    :ARG1 (a / airliner
+        :mod (e / engine
+            :mod (t / twin)))
+    :ARG2 (a2 / airport
+        :location-of (a3 / and
+            :op1 (a4 / area
+                :location-of (d / deplorable-02
+                    :ARG1 (p2 / passenger)))
+            :op2 (a5 / area
+                :ARG2-of (s / service-05
+                    :ARG0 a)))))

@@ -1,0 +1,46 @@
+# ::tok A stainless steel oven sits between white cupboards with black counter tops while sun shines through the kitchen windows .
+# ::node	s3	stainless	1-2
+# ::node	s4	steel	2-3
+# ::node	o	oven	3-4
+# ::node	s2	sit-01	4-5
+# ::node	b	between	5-6
+# ::node	w	white-03	6-7
+# ::node	c	cabinet	7-8
+# ::node	b2	black-04	9-10
+# ::node	c2	counter	10-11
+# ::node	t2	top	11-12
+# ::node	s5	sun	13-14
+# ::node	s	shine-01	14-15
+# ::node	t	through	15-16
+# ::node	k	kitchen	17-18
+# ::node	w2	window	18-19
+# ::root	s2	sit-01
+# ::edge	steel	consist-of	stainless	s4	s3	
+# ::edge	oven	consist-of	steel	o	s4	
+# ::edge	sit-01	ARG1	oven	s2	o	
+# ::edge	sit-01	ARG2	between	s2	b	
+# ::edge	cabinet	ARG1-of	white-03	c	w	
+# ::edge	between	op1	cabinet	b	c	
+# ::edge	top	part-of	counter	t2	c2	
+# ::edge	top	ARG1-of	black-04	t2	b2	
+# ::edge	cabinet	part	top	c	t2	
+# ::edge	shine-01	ARG1	sun	s	s5	
+# ::edge	sit-01	time	shine-01	s2	s	
+# ::edge	shine-01	direction	through	s	t	
+# ::edge	window	mod	kitchen	w2	k	
+# ::edge	through	op1	window	t	w2	
+(s2 / sit-01
+    :ARG1 (o / oven
+        :consist-of (s4 / steel
+            :consist-of (s3 / stainless)))
+    :ARG2 (b / between
+        :op1 (c / cabinet
+            :ARG1-of (w / white-03)
+            :part (t2 / top
+                :ARG1-of (b2 / black-04)
+                :part-of (c2 / counter))))
+    :time (s / shine-01
+        :ARG1 (s5 / sun)
+        :direction (t / through
+            :op1 (w2 / window
+                :mod (k / kitchen)))))

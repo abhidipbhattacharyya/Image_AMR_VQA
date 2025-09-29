@@ -1,0 +1,49 @@
+# ::tok Four bowls , one macaroni salad , one trail mix with bananas , another holds watermelon , and broccoli with tomatoes salad .
+# ::node	0	4	0-1
+# ::node	p	pound	1-2
+# ::node	p2	pound	1-2
+# ::node	p3	pound	1-2
+# ::node	m	macaroni	4-5
+# ::node	s	salad	5-6
+# ::node	t2	trail	8-9
+# ::node	m2	mix-01	9-10
+# ::node	b	banana	11-12
+# ::node	a2	another	13-14
+# ::node	h	hold-01	14-15
+# ::node	w	watermelon	15-16
+# ::node	a	and	17-18
+# ::node	b2	broccoli	18-19
+# ::node	t	tomato	20-21
+# ::node	s2	salad	21-22
+# ::root	a	and
+# ::edge	pound	quant	4	p	0	
+# ::edge	salad	mod	macaroni	s	m	
+# ::edge	mix-01	mod	trail	m2	t2	
+# ::edge	mix-01	ARG2	banana	m2	b	
+# ::edge	pound	quant	another	p3	a2	
+# ::edge	hold-01	ARG0	pound	h	p3	
+# ::edge	and	op4	hold-01	a	h	
+# ::edge	and	op3	mix-01	a	m2	
+# ::edge	and	op2	salad	a	s	
+# ::edge	and	op1	pound	a	p	
+# ::edge	and	op5	broccoli	a	b2	
+# ::edge	salad	consist-of	tomato	s2	t	
+# ::edge	broccoli	accompanier	salad	b2	s2	
+# ::edge	and	rel	watermelon	a	w	
+# ::edge	and	rel	pound	a	p2	
+(a / and
+    :op1 (p / pound
+        :quant 4)
+    :op2 (s / salad
+        :mod (m / macaroni))
+    :op3 (m2 / mix-01
+        :ARG2 (b / banana)
+        :mod (t2 / trail))
+    :op4 (h / hold-01
+        :ARG0 (p3 / pound
+            :quant (a2 / another)))
+    :op5 (b2 / broccoli
+        :accompanier (s2 / salad
+            :consist-of (t / tomato)))
+    :rel (w / watermelon)
+    :rel (p2 / pound))

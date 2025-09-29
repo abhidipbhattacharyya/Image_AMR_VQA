@@ -1,0 +1,43 @@
+# ::tok A hot dog covered in onions sitting on tin foil next to a can of Dr Pepper .
+# ::node	e	eat-01	1-2
+# ::node	h	hot-dog	2-3
+# ::node	c3	cover-02	3-4
+# ::node	p	potato	5-6
+# ::node	s	sit-01	6-7
+# ::node	t	tin	8-9
+# ::node	f	foil	9-10
+# ::node	n2	next-to	10-11
+# ::node	c	can	13-14
+# ::node	c2	contain-01	13-14
+# ::node	n	name	15-16
+# ::node	0	Dr	15-16
+# ::node	p2	product	16-17
+# ::node	1	Pepper	16-17
+# ::root	s	sit-01
+# ::edge	hot-dog	ARG1-of	eat-01	h	e	
+# ::edge	hot-dog	ARG1-of	cover-02	h	c3	
+# ::edge	cover-02	ARG2	potato	c3	p	
+# ::edge	sit-01	ARG1	hot-dog	s	h	
+# ::edge	foil	consist-of	tin	f	t	
+# ::edge	sit-01	ARG2	foil	s	f	
+# ::edge	sit-01	location	next-to	s	n2	
+# ::edge	next-to	op1	can	n2	c	
+# ::edge	can	ARG0-of	contain-01	c	c2	
+# ::edge	name	op1	Dr	n	0	
+# ::edge	product	name	name	p2	n	
+# ::edge	contain-01	ARG1	product	c2	p2	
+# ::edge	name	op2	Pepper	n	1	
+(s / sit-01
+    :ARG1 (h / hot-dog
+        :ARG1-of (e / eat-01)
+        :ARG1-of (c3 / cover-02
+            :ARG2 (p / potato)))
+    :ARG2 (f / foil
+        :consist-of (t / tin))
+    :location (n2 / next-to
+        :op1 (c / can
+            :ARG0-of (c2 / contain-01
+                :ARG1 (p2 / product
+                    :name (n / name
+                        :op1 "Dr"
+                        :op2 "Pepper"))))))

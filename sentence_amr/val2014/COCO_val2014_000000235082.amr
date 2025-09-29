@@ -1,0 +1,42 @@
+# ::tok Baseball scene showing the umpire and catcher as the batter has just finished his swing .
+# ::node	b	baseball	0-1
+# ::node	s	scene	1-2
+# ::node	s2	show-01	2-3
+# ::node	p	person	4-5
+# ::node	u	umpire-01	4-5
+# ::node	a	and	5-6
+# ::node	p2	person	6-7
+# ::node	c	catch-01	6-7
+# ::node	p3	person	9-10
+# ::node	s3	strike-01	9-10
+# ::node	j	just	11-12
+# ::node	f	finish-01	12-13
+# ::node	s4	swing-02	14-15
+# ::root	s2	show-01
+# ::edge	scene	topic	baseball	s	b	
+# ::edge	show-01	ARG0	scene	s2	s	
+# ::edge	person	ARG0-of	umpire-01	p	u	
+# ::edge	and	op1	person	a	p	
+# ::edge	show-01	ARG1	and	s2	a	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	person	ARG0-of	strike-01	p3	s3	
+# ::edge	finish-01	mod	just	f	j	
+# ::edge	finish-01	ARG0	person	f	p3	
+# ::edge	show-01	time	finish-01	s2	f	
+# ::edge	finish-01	ARG1	swing-02	f	s4	
+# ::edge	swing-02	ARG0	person	s4	p3	
+(s2 / show-01
+    :ARG0 (s / scene
+        :topic (b / baseball))
+    :ARG1 (a / and
+        :op1 (p / person
+            :ARG0-of (u / umpire-01))
+        :op2 (p2 / person
+            :ARG0-of (c / catch-01)))
+    :time (f / finish-01
+        :ARG0 (p3 / person
+            :ARG0-of (s3 / strike-01))
+        :ARG1 (s4 / swing-02
+            :ARG0 p3)
+        :mod (j / just)))

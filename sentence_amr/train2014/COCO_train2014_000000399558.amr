@@ -1,0 +1,58 @@
+# ::tok Three giraffes , one facing camera and two facing away , in grass field with three in distance .
+# ::node	2	3	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	g3	giraffe	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	f	face-01	4-5
+# ::node	c	camera	5-6
+# ::node	a	and	6-7
+# ::node	1	2	7-8
+# ::node	f2	face-01	8-9
+# ::node	a2	away	9-10
+# ::node	g4	grass	12-13
+# ::node	f3	field	13-14
+# ::node	3	3	15-16
+# ::node	d	distance-01	17-18
+# ::root	a	and
+# ::edge	giraffe	quant	3	g	2	
+# ::edge	include-91	ARG1	giraffe	i	g	
+# ::edge	giraffe	ARG2-of	include-91	g	i	
+# ::edge	include-91	ARG1	giraffe	i2	g3	
+# ::edge	giraffe	ARG2-of	include-91	g	i2	
+# ::edge	giraffe	quant	1	g2	0	
+# ::edge	giraffe	ARG0-of	face-01	g2	f	
+# ::edge	face-01	ARG1	camera	f	c	
+# ::edge	and	op2	giraffe	a	g3	
+# ::edge	and	op1	giraffe	a	g2	
+# ::edge	giraffe	quant	2	g3	1	
+# ::edge	giraffe	ARG0-of	face-01	g3	f2	
+# ::edge	face-01	direction	away	f2	a2	
+# ::edge	field	consist-of	grass	f3	g4	
+# ::edge	giraffe	location	field	g	f3	
+# ::edge	giraffe	quant	3	g3	3	
+# ::edge	field	ARG1-of	distance-01	f3	d	
+# ::edge	distance-01	ARG2	giraffe	d	g	
+# ::edge	and	rel	include-91	a	i	
+(a / and
+    :op1 (g2 / giraffe
+        :quant 1
+        :ARG0-of (f / face-01
+            :ARG1 (c / camera)))
+    :op2 (g3 / giraffe
+        :quant 2
+        :quant 3
+        :ARG0-of (f2 / face-01
+            :direction (a2 / away)))
+    :rel (i / include-91
+        :ARG1 (g / giraffe
+            :quant 3
+            :ARG2-of i
+            :ARG2-of (i2 / include-91
+                :ARG1 g3)
+            :location (f3 / field
+                :ARG1-of (d / distance-01
+                    :ARG2 g)
+                :consist-of (g4 / grass)))))

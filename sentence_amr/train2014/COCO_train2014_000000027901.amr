@@ -1,0 +1,45 @@
+# ::tok Some Mexican food , including a salad and burrito , with some fruit juice , are ready to be eaten .
+# ::node	s2	some	0-1
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Mexico	1-2
+# ::node	f	food	2-3
+# ::node	i	include-01	4-5
+# ::node	s	salad	6-7
+# ::node	a	and	7-8
+# ::node	b	burrito	8-9
+# ::node	s3	some	11-12
+# ::node	f2	fruit	12-13
+# ::node	j	juice	13-14
+# ::node	r	ready-02	16-17
+# ::node	e	eat-01	19-20
+# ::root	r	ready-02
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Mexico	n	0	
+# ::edge	food	mod	country	f	c	
+# ::edge	food	quant	some	f	s2	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	and	op1	salad	a	s	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	burrito	a	b	
+# ::edge	juice	source	fruit	j	f2	
+# ::edge	juice	mod	some	j	s3	
+# ::edge	and	accompanier	juice	a	j	
+# ::edge	ready-02	ARG1	food	r	f	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	food	e	f	
+(r / ready-02
+    :ARG1 (f / food
+        :quant (s2 / some)
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :accompanier (j / juice
+                    :mod (s3 / some)
+                    :source (f2 / fruit))
+                :op1 (s / salad)
+                :op2 (b / burrito)))
+        :mod (c / country
+            :name (n / name
+                :op1 "Mexico")))
+    :ARG2 (e / eat-01
+        :ARG1 f))

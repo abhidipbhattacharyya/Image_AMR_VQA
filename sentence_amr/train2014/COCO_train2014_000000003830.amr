@@ -1,0 +1,22 @@
+# ::tok Brake lights shine as a line of traffic moves through the city .
+# ::node	b	brake-01	0-1
+# ::node	l	light	1-2
+# ::node	s	shine-01	2-3
+# ::node	l2	line	5-6
+# ::node	t	traffic	7-8
+# ::node	m	move-01	8-9
+# ::node	c	city	11-12
+# ::root	s	shine-01
+# ::edge	light	ARG0-of	brake-01	l	b	
+# ::edge	shine-01	ARG1	light	s	l	
+# ::edge	line	consist-of	traffic	l2	t	
+# ::edge	move-01	ARG0	line	m	l2	
+# ::edge	shine-01	time	move-01	s	m	
+# ::edge	move-01	ARG2	city	m	c	
+(s / shine-01
+    :ARG1 (l / light
+        :ARG0-of (b / brake-01))
+    :time (m / move-01
+        :ARG0 (l2 / line
+            :consist-of (t / traffic))
+        :ARG2 (c / city)))

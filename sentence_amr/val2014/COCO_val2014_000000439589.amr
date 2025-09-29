@@ -1,0 +1,28 @@
+# ::tok Two light rail trains are sitting on a track next to a white building .
+# ::node	0	2	0-1
+# ::node	l	light	1-2
+# ::node	r	rail	2-3
+# ::node	t2	train	3-4
+# ::node	s	sit-01	5-6
+# ::node	t	track	8-9
+# ::node	n	next-to	9-10
+# ::node	w	white-03	12-13
+# ::node	b	building	13-14
+# ::root	s	sit-01
+# ::edge	rail	mod	light	r	l	
+# ::edge	train	mod	rail	t2	r	
+# ::edge	train	quant	2	t2	0	
+# ::edge	sit-01	ARG1	train	s	t2	
+# ::edge	sit-01	ARG2	track	s	t	
+# ::edge	track	location-of	next-to	t	n	
+# ::edge	building	ARG1-of	white-03	b	w	
+# ::edge	next-to	op1	building	n	b	
+(s / sit-01
+    :ARG1 (t2 / train
+        :quant 2
+        :mod (r / rail
+            :mod (l / light)))
+    :ARG2 (t / track
+        :location-of (n / next-to
+            :op1 (b / building
+                :ARG1-of (w / white-03)))))

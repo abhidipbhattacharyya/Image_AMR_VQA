@@ -1,0 +1,24 @@
+# ::tok People stand close to an elephant herd walking into water .
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	c	close-10	2-3
+# ::node	e	elephant	5-6
+# ::node	h	herd	6-7
+# ::node	w	walk-01	7-8
+# ::node	w2	water	9-10
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	close-10	s	c	
+# ::edge	close-10	ARG1	person	c	p	
+# ::edge	herd	consist-of	elephant	h	e	
+# ::edge	close-10	ARG2	herd	c	h	
+# ::edge	herd	ARG0-of	walk-01	h	w	
+# ::edge	walk-01	destination	water	w	w2	
+(s / stand-01
+    :ARG1 (p / person)
+    :ARG2 (c / close-10
+        :ARG1 p
+        :ARG2 (h / herd
+            :ARG0-of (w / walk-01
+                :destination (w2 / water))
+            :consist-of (e / elephant))))

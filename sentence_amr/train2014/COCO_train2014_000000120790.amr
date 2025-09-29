@@ -1,0 +1,31 @@
+# ::tok A hybrid electric commuter bus leaves a pond side bus stop
+# ::node	h	hybrid	1-2
+# ::node	e	electric	2-3
+# ::node	c	commute-01	3-4
+# ::node	b	bus	4-5
+# ::node	l	leave-11	5-6
+# ::node	f	facility	6-7
+# ::node	p	pond	7-8
+# ::node	s	side	8-9
+# ::node	b2	bus	9-10
+# ::node	s2	stop-01	10-11
+# ::root	l	leave-11
+# ::edge	bus	ARG0-of	commute-01	b	c	
+# ::edge	bus	mod	electric	b	e	
+# ::edge	bus	mod	hybrid	b	h	
+# ::edge	leave-11	ARG0	bus	l	b	
+# ::edge	leave-11	ARG1	facility	l	f	
+# ::edge	side	part-of	pond	s	p	
+# ::edge	stop-01	ARG1	bus	s2	b2	
+# ::edge	stop-01	location	side	s2	s	
+# ::edge	facility	location-of	stop-01	f	s2	
+(l / leave-11
+    :ARG0 (b / bus
+        :ARG0-of (c / commute-01)
+        :mod (e / electric)
+        :mod (h / hybrid))
+    :ARG1 (f / facility
+        :location-of (s2 / stop-01
+            :ARG1 (b2 / bus)
+            :location (s / side
+                :part-of (p / pond)))))

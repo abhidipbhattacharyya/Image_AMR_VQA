@@ -1,0 +1,28 @@
+# ::tok A sign for a public restroom sign is seen in a Chinese city .
+# ::node	s2	sign	1-2
+# ::node	p	public-02	4-5
+# ::node	r	restroom	5-6
+# ::node	s3	sign	6-7
+# ::node	s	see-01	8-9
+# ::node	c2	country	11-12
+# ::node	n	name	11-12
+# ::node	0	China	11-12
+# ::node	c	city	12-13
+# ::root	s	see-01
+# ::edge	restroom	ARG1-of	public-02	r	p	
+# ::edge	sign	mod	restroom	s3	r	
+# ::edge	sign	mod	sign	s2	s3	
+# ::edge	see-01	ARG1	sign	s	s2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	city	location	country	c	c2	
+# ::edge	see-01	location	city	s	c	
+(s / see-01
+    :ARG1 (s2 / sign
+        :mod (s3 / sign
+            :mod (r / restroom
+                :ARG1-of (p / public-02))))
+    :location (c / city
+        :location (c2 / country
+            :name (n / name
+                :op1 "China"))))

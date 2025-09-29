@@ -1,0 +1,40 @@
+# ::tok SUV and the trailer it is pulling utilizing street parking where there are parking meters .
+# ::node	p3	person	0-1
+# ::node	v	vehicle	0-1
+# ::node	n	name	0-1
+# ::node	0	SUV	0-1
+# ::node	a	and	1-2
+# ::node	t	trailer	3-4
+# ::node	p4	pull-01	6-7
+# ::node	u	utilize-01	7-8
+# ::node	s	street	8-9
+# ::node	p	park-01	9-10
+# ::node	p2	park-01	13-14
+# ::node	m	meter	14-15
+# ::node	c	cause-01	15-16
+# ::root	c	cause-01
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	SUV	n	0	
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	and	op2	trailer	a	t	
+# ::edge	and	ARG1-of	pull-01	a	p4	
+# ::edge	pull-01	ARG0	person	p4	p3	
+# ::edge	and	manner	utilize-01	a	u	
+# ::edge	park-01	ARG2	street	p	s	
+# ::edge	utilize-01	ARG1	park-01	u	p	
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	park-01	location-of	meter	p	m	
+# ::edge	cause-01	ARG1	and	c	a	
+(c / cause-01
+    :ARG1 (a / and
+        :ARG1-of (p4 / pull-01
+            :ARG0 (p3 / person))
+        :manner (u / utilize-01
+            :ARG1 (p / park-01
+                :ARG2 (s / street)
+                :location-of (m / meter
+                    :purpose (p2 / park-01))))
+        :op1 (v / vehicle
+            :name (n / name
+                :op1 "SUV"))
+        :op2 (t / trailer)))

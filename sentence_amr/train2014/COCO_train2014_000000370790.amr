@@ -1,0 +1,34 @@
+# ::tok A construction site with a forklift stacking concrete barricades and yellow trucks driving about .
+# ::node	c2	construct-01	1-2
+# ::node	s	site	2-3
+# ::node	f	forklift	5-6
+# ::node	s2	stack-01	6-7
+# ::node	c	concrete	7-8
+# ::node	b	barricade	8-9
+# ::node	a2	and	9-10
+# ::node	y	yellow-02	10-11
+# ::node	t	truck	11-12
+# ::node	d	drive-01	12-13
+# ::node	a	about	13-14
+# ::root	s	site
+# ::edge	site	topic	construct-01	s	c2	
+# ::edge	stack-01	ARG0	forklift	s2	f	
+# ::edge	barricade	mod	concrete	b	c	
+# ::edge	stack-01	ARG1	barricade	s2	b	
+# ::edge	and	op1	stack-01	a2	s2	
+# ::edge	site	location-of	and	s	a2	
+# ::edge	truck	ARG1-of	yellow-02	t	y	
+# ::edge	drive-01	ARG0	truck	d	t	
+# ::edge	and	op2	drive-01	a2	d	
+# ::edge	drive-01	direction	about	d	a	
+(s / site
+    :location-of (a2 / and
+        :op1 (s2 / stack-01
+            :ARG0 (f / forklift)
+            :ARG1 (b / barricade
+                :mod (c / concrete)))
+        :op2 (d / drive-01
+            :ARG0 (t / truck
+                :ARG1-of (y / yellow-02))
+            :direction (a / about)))
+    :topic (c2 / construct-01))

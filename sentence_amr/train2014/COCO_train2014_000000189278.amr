@@ -1,0 +1,30 @@
+# ::tok There are two ovens in a kitchen restaurant , and one of them is being used .
+# ::node	1	2	2-3
+# ::node	o	oven	3-4
+# ::node	o2	oven	3-4
+# ::node	k	kitchen	6-7
+# ::node	r	restaurant	7-8
+# ::node	a	and	9-10
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	u	use-01	15-16
+# ::root	a	and
+# ::edge	oven	quant	2	o	1	
+# ::edge	restaurant	mod	kitchen	r	k	
+# ::edge	oven	location	restaurant	o	r	
+# ::edge	and	op1	oven	a	o	
+# ::edge	oven	quant	1	o2	0	
+# ::edge	oven	ARG1-of	include-91	o2	i	
+# ::edge	include-91	ARG2	oven	i	o	
+# ::edge	and	op2	use-01	a	u	
+# ::edge	use-01	ARG1	oven	u	o2	
+(a / and
+    :op1 (o / oven
+        :quant 2
+        :location (r / restaurant
+            :mod (k / kitchen)))
+    :op2 (u / use-01
+        :ARG1 (o2 / oven
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 o))))

@@ -1,0 +1,41 @@
+# ::tok Octagonal " Stop " sign on the road with the smaller sign saying " all the way " underneath it .
+# ::node	e	embassy	0-1
+# ::node	s5	stop-01	2-3
+# ::node	s2	sign	4-5
+# ::node	r	road	7-8
+# ::node	s4	small	10-11
+# ::node	h	have-degree-91	10-11
+# ::node	m	more	10-11
+# ::node	s3	sign	11-12
+# ::node	s	say-01	12-13
+# ::node	a	all-the-way	16-17
+# ::node	u	underneath	18-19
+# ::node	a2	and	20-21
+# ::root	a2	and
+# ::edge	sign	purpose	stop-01	s2	s5	
+# ::edge	sign	mod	embassy	s2	e	
+# ::edge	sign	location	road	s2	r	
+# ::edge	small	ARG2-of	have-degree-91	s4	h	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	have-degree-91	ARG1	sign	h	s3	
+# ::edge	sign	mod	small	s3	s4	
+# ::edge	sign	ARG0-of	say-01	s3	s	
+# ::edge	say-01	ARG1	all-the-way	s	a	
+# ::edge	sign	location	underneath	s3	u	
+# ::edge	underneath	op1	sign	u	s2	
+# ::edge	and	op2	sign	a2	s3	
+# ::edge	and	op1	sign	a2	s2	
+(a2 / and
+    :op1 (s2 / sign
+        :purpose (s5 / stop-01)
+        :location (r / road)
+        :mod (e / embassy))
+    :op2 (s3 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (a / all-the-way))
+        :location (u / underneath
+            :op1 s2)
+        :mod (s4 / small
+            :ARG2-of (h / have-degree-91
+                :ARG1 s3
+                :ARG3 (m / more)))))

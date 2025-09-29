@@ -1,0 +1,25 @@
+# ::tok A train stopped at a tran station with two people on the nearby platform .
+# ::node	t	train	1-2
+# ::node	s2	stop-01	2-3
+# ::node	t2	tran	5-6
+# ::node	s	station	6-7
+# ::node	0	2	8-9
+# ::node	p	person	9-10
+# ::node	n	nearby	12-13
+# ::node	p2	platform	13-14
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	station	mod	tran	s	t2	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	person	quant	2	p	0	
+# ::edge	train	location-of	person	t	p	
+# ::edge	platform	location	nearby	p2	n	
+# ::edge	person	location	platform	p	p2	
+(s2 / stop-01
+    :ARG1 (t / train
+        :location-of (p / person
+            :quant 2
+            :location (p2 / platform
+                :location (n / nearby))))
+    :location (s / station
+        :mod (t2 / tran)))

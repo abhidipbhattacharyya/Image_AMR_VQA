@@ -1,0 +1,28 @@
+# ::tok Road signs line the street as cars and people stand nearby .
+# ::node	r	road	0-1
+# ::node	s	sign	1-2
+# ::node	l	line-01	2-3
+# ::node	s3	street	4-5
+# ::node	c	car	6-7
+# ::node	a	and	7-8
+# ::node	p	person	8-9
+# ::node	s2	stand-01	9-10
+# ::node	n	nearby	10-11
+# ::root	l	line-01
+# ::edge	sign	mod	road	s	r	
+# ::edge	line-01	ARG2	sign	l	s	
+# ::edge	line-01	ARG1	street	l	s3	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op2	person	a	p	
+# ::edge	stand-01	ARG1	and	s2	a	
+# ::edge	line-01	time	stand-01	l	s2	
+# ::edge	stand-01	ARG2	nearby	s2	n	
+(l / line-01
+    :ARG1 (s3 / street)
+    :ARG2 (s / sign
+        :mod (r / road))
+    :time (s2 / stand-01
+        :ARG1 (a / and
+            :op1 (c / car)
+            :op2 (p / person))
+        :ARG2 (n / nearby)))

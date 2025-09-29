@@ -1,0 +1,21 @@
+# ::tok Groups of ships tied up together in a pier with items on them .
+# ::node	g	group	0-1
+# ::node	s	ship	2-3
+# ::node	t	tie-01	3-4
+# ::node	t2	together	5-6
+# ::node	p	pier	8-9
+# ::node	i	item	10-11
+# ::root	t	tie-01
+# ::edge	group	consist-of	ship	g	s	
+# ::edge	tie-01	ARG1	group	t	g	
+# ::edge	tie-01	mod	together	t	t2	
+# ::edge	tie-01	location	pier	t	p	
+# ::edge	pier	location-of	item	p	i	
+# ::edge	item	location	group	i	g	
+(t / tie-01
+    :ARG1 (g / group
+        :consist-of (s / ship))
+    :location (p / pier
+        :location-of (i / item
+            :location g))
+    :mod (t2 / together))

@@ -1,0 +1,42 @@
+# ::tok A sign reading Butt Street on the corner of a building with a No Parking sign below it .
+# ::node	s	sign	1-2
+# ::node	r	read-01	2-3
+# ::node	n	name	3-4
+# ::node	1	Butt	3-4
+# ::node	r2	road	4-5
+# ::node	2	Street	4-5
+# ::node	c	corner	7-8
+# ::node	b2	building	10-11
+# ::node	h	have-03	11-12
+# ::node	0	-	13-14
+# ::node	p	park-01	14-15
+# ::node	s2	sign	15-16
+# ::node	b	below	16-17
+# ::root	s	sign
+# ::edge	sign	ARG0-of	read-01	s	r	
+# ::edge	name	op1	Butt	n	1	
+# ::edge	road	name	name	r2	n	
+# ::edge	read-01	ARG3	road	r	r2	
+# ::edge	name	op2	Street	n	2	
+# ::edge	sign	location	corner	s	c	
+# ::edge	corner	part-of	building	c	b2	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	sign	topic	park-01	s2	p	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	below	s2	b	
+# ::edge	below	op1	sign	b	s	
+(s / sign
+    :ARG0-of (r / read-01
+        :ARG3 (r2 / road
+            :name (n / name
+                :op1 "Butt"
+                :op2 "Street")))
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :location (b / below
+                :op1 s)
+            :topic (p / park-01
+                :polarity -)))
+    :location (c / corner
+        :part-of (b2 / building)))

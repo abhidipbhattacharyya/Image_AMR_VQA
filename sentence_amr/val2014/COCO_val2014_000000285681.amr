@@ -1,0 +1,31 @@
+# ::tok A Singapore Airlines jetliner sits on a runway with baggage carts nearby .
+# ::node	1	Singapore	1-2
+# ::node	c2	company	2-3
+# ::node	n	name	2-3
+# ::node	0	Airlines	2-3
+# ::node	j	jetliner	3-4
+# ::node	s	sit-01	4-5
+# ::node	r	runway	7-8
+# ::node	b	baggage	9-10
+# ::node	c	cart	10-11
+# ::node	n2	nearby	11-12
+# ::root	s	sit-01
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Singapore	n	1	
+# ::edge	name	op2	Airlines	n	0	
+# ::edge	jetliner	mod	company	j	c2	
+# ::edge	sit-01	ARG1	jetliner	s	j	
+# ::edge	sit-01	ARG2	runway	s	r	
+# ::edge	cart	purpose	baggage	c	b	
+# ::edge	jetliner	part	cart	j	c	
+# ::edge	cart	location	nearby	c	n2	
+(s / sit-01
+    :ARG1 (j / jetliner
+        :mod (c2 / company
+            :name (n / name
+                :op1 "Singapore"
+                :op2 "Airlines"))
+        :part (c / cart
+            :purpose (b / baggage)
+            :location (n2 / nearby)))
+    :ARG2 (r / runway))

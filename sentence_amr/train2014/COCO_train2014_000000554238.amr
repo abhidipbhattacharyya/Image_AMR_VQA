@@ -1,0 +1,43 @@
+# ::tok People sit in bleachers as a batter , a catcher and an umpire on are home plate of a baseball field .
+# ::node	p	person	0-1
+# ::node	s	sit-01	1-2
+# ::node	b2	bleach-01	3-4
+# ::node	p2	person	6-7
+# ::node	p3	person	9-10
+# ::node	c	catch-01	9-10
+# ::node	a	and	10-11
+# ::node	p4	person	12-13
+# ::node	h	have-org-role-91	12-13
+# ::node	o	official	12-13
+# ::node	h2	home	15-16
+# ::node	p5	plate	16-17
+# ::node	b	baseball	19-20
+# ::node	f	field	20-21
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	person	ARG0-of	bleach-01	p2	b2	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+# ::edge	and	op2	person	a	p3	
+# ::edge	and	op1	person	a	p2	
+# ::edge	sit-01	prep-as	and	s	a	
+# ::edge	and	op3	person	a	p4	
+# ::edge	person	ARG0-of	have-org-role-91	p4	h	
+# ::edge	have-org-role-91	ARG2	official	h	o	
+# ::edge	plate	mod	home	p5	h2	
+# ::edge	sit-01	location	plate	s	p5	
+# ::edge	field	mod	baseball	f	b	
+# ::edge	plate	part-of	field	p5	f	
+(s / sit-01
+    :ARG1 (p / person)
+    :location (p5 / plate
+        :mod (h2 / home)
+        :part-of (f / field
+            :mod (b / baseball)))
+    :prep-as (a / and
+        :op1 (p2 / person
+            :ARG0-of (b2 / bleach-01))
+        :op2 (p3 / person
+            :ARG0-of (c / catch-01))
+        :op3 (p4 / person
+            :ARG0-of (h / have-org-role-91
+                :ARG2 (o / official)))))

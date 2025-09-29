@@ -1,0 +1,24 @@
+# ::tok People being transported by train , baggage cart awaits loading .
+# ::node	p	person	0-1
+# ::node	t2	transport-01	2-3
+# ::node	t	train	4-5
+# ::node	b	baggage	6-7
+# ::node	c	cart	7-8
+# ::node	a	await-01	8-9
+# ::node	l	load-01	9-10
+# ::root	a	await-01
+# ::edge	person	ARG1-of	transport-01	p	t2	
+# ::edge	transport-01	ARG0	train	t2	t	
+# ::edge	cart	mod	baggage	c	b	
+# ::edge	await-01	ARG1	cart	a	c	
+# ::edge	await-01	ARG2	load-01	a	l	
+# ::edge	load-01	ARG1	cart	l	c	
+# ::edge	await-01	rel	person	a	p	
+(a / await-01
+    :ARG1 (c / cart
+        :mod (b / baggage))
+    :ARG2 (l / load-01
+        :ARG1 c)
+    :rel (p / person
+        :ARG1-of (t2 / transport-01
+            :ARG0 (t / train))))

@@ -1,0 +1,27 @@
+# ::tok A motor scooter parked on the sidewalk by bicycles with the front wheel missing
+# ::node	m2	motor	1-2
+# ::node	s	scooter	2-3
+# ::node	p	park-01	3-4
+# ::node	s2	sidewalk	6-7
+# ::node	b	bicycle	8-9
+# ::node	f	front	11-12
+# ::node	w	wheel	12-13
+# ::node	m	miss-01	13-14
+# ::root	p	park-01
+# ::edge	scooter	mod	motor	s	m2	
+# ::edge	park-01	ARG1	scooter	p	s	
+# ::edge	park-01	ARG2	sidewalk	p	s2	
+# ::edge	park-01	prep-by	bicycle	p	b	
+# ::edge	wheel	mod	front	w	f	
+# ::edge	scooter	part	wheel	s	w	
+# ::edge	miss-01	ARG1	wheel	m	w	
+# ::edge	scooter	ARG0-of	miss-01	s	m	
+(p / park-01
+    :ARG1 (s / scooter
+        :ARG0-of (m / miss-01
+            :ARG1 (w / wheel
+                :mod (f / front)))
+        :mod (m2 / motor)
+        :part w)
+    :ARG2 (s2 / sidewalk)
+    :prep-by (b / bicycle))

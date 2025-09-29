@@ -1,0 +1,24 @@
+# ::tok A dish is holding a meat with a side of cooked vegetables .
+# ::node	d	dish	1-2
+# ::node	m	mean-01	2-3
+# ::node	h	hold-01	3-4
+# ::node	m2	meat	5-6
+# ::node	s	side	8-9
+# ::node	c	cook-01	10-11
+# ::node	v	vegetable	11-12
+# ::root	m	mean-01
+# ::edge	mean-01	ARG1	dish	m	d	
+# ::edge	mean-01	ARG2	hold-01	m	h	
+# ::edge	hold-01	ARG0	dish	h	d	
+# ::edge	hold-01	ARG1	meat	h	m2	
+# ::edge	meat	prep-with	side	m2	s	
+# ::edge	vegetable	ARG1-of	cook-01	v	c	
+# ::edge	side	consist-of	vegetable	s	v	
+(m / mean-01
+    :ARG1 (d / dish)
+    :ARG2 (h / hold-01
+        :ARG0 d
+        :ARG1 (m2 / meat
+            :prep-with (s / side
+                :consist-of (v / vegetable
+                    :ARG1-of (c / cook-01))))))

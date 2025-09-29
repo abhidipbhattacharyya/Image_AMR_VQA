@@ -1,0 +1,47 @@
+# ::tok A black and white cat sits on a step in front of a red gate and two walls that have flowers growing on them .
+# ::node	b	black-04	1-2
+# ::node	w2	white-03	3-4
+# ::node	c	cat	4-5
+# ::node	s	sit-01	5-6
+# ::node	s2	step	8-9
+# ::node	i	in-front-of	10-11
+# ::node	r	red-02	13-14
+# ::node	g	gate	14-15
+# ::node	a	and	15-16
+# ::node	0	2	16-17
+# ::node	w	wall	17-18
+# ::node	h	have-03	19-20
+# ::node	f	flower	20-21
+# ::node	g2	grow-03	21-22
+# ::root	s	sit-01
+# ::edge	cat	ARG1-of	white-03	c	w2	
+# ::edge	cat	ARG1-of	black-04	c	b	
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	step	s	s2	
+# ::edge	step	location	in-front-of	s2	i	
+# ::edge	gate	ARG1-of	red-02	g	r	
+# ::edge	and	op1	gate	a	g	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	wall	quant	2	w	0	
+# ::edge	and	op2	wall	a	w	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	have-03	ARG1	flower	h	f	
+# ::edge	flower	location	and	f	a	
+# ::edge	flower	ARG1-of	grow-03	f	g2	
+# ::edge	grow-03	location	and	g2	a	
+(s / sit-01
+    :ARG1 (c / cat
+        :ARG1-of (w2 / white-03)
+        :ARG1-of (b / black-04))
+    :ARG2 (s2 / step
+        :location (i / in-front-of
+            :op1 (a / and
+                :op1 (g / gate
+                    :ARG1-of (r / red-02))
+                :op2 (w / wall
+                    :quant 2
+                    :ARG0-of (h / have-03
+                        :ARG1 (f / flower
+                            :ARG1-of (g2 / grow-03
+                                :location a)
+                            :location a)))))))

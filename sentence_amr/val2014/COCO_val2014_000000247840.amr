@@ -1,0 +1,33 @@
+# ::tok The front of a Dairy Queen restaurant with people entering the side .
+# ::node	f	front	1-2
+# ::node	n	name	4-5
+# ::node	0	Dairy	4-5
+# ::node	c	company	5-6
+# ::node	1	Queen	5-6
+# ::node	r	restaurant	6-7
+# ::node	h	have-03	7-8
+# ::node	p	person	8-9
+# ::node	e	enter-01	9-10
+# ::node	s	side	11-12
+# ::root	h	have-03
+# ::edge	name	op1	Dairy	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Queen	n	1	
+# ::edge	restaurant	mod	company	r	c	
+# ::edge	front	part-of	restaurant	f	r	
+# ::edge	have-03	ARG1	front	h	f	
+# ::edge	have-03	ARG0	person	h	p	
+# ::edge	person	ARG0-of	enter-01	p	e	
+# ::edge	enter-01	ARG1	side	e	s	
+# ::edge	restaurant	part	side	r	s	
+(h / have-03
+    :ARG0 (p / person
+        :ARG0-of (e / enter-01
+            :ARG1 (s / side)))
+    :ARG1 (f / front
+        :part-of (r / restaurant
+            :mod (c / company
+                :name (n / name
+                    :op1 "Dairy"
+                    :op2 "Queen"))
+            :part s)))

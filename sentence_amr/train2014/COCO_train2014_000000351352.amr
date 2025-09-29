@@ -1,0 +1,42 @@
+# ::tok Three planes flying close together , one leading while the other two are in line with each other .
+# ::node	2	3	0-1
+# ::node	p	plane	1-2
+# ::node	p2	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	c	close-10	3-4
+# ::node	t	together	4-5
+# ::node	i2	include-91	6-7
+# ::node	0	1	6-7
+# ::node	l	lead-02	7-8
+# ::node	l2	lead-02	7-8
+# ::node	o	other	10-11
+# ::node	1	2	11-12
+# ::node	i	in-line-04	14-15
+# ::root	f	fly-01
+# ::edge	plane	quant	3	p	2	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	together	ARG1-of	close-10	t	c	
+# ::edge	fly-01	manner	together	f	t	
+# ::edge	plane	ARG2-of	include-91	p2	i2	
+# ::edge	plane	quant	1	p2	0	
+# ::edge	plane	ARG0-of	lead-02	p2	l	
+# ::edge	lead-02	ARG0	plane	l2	p2	
+# ::edge	plane	mod	other	p2	o	
+# ::edge	plane	quant	2	p2	1	
+# ::edge	in-line-04	ARG2	lead-02	i	l2	
+# ::edge	lead-02	ARG1-of	in-line-04	l	i	
+# ::edge	fly-01	rel	lead-02	f	l	
+(f / fly-01
+    :ARG2 (p / plane
+        :quant 3)
+    :manner (t / together
+        :ARG1-of (c / close-10))
+    :rel (l / lead-02
+        :ARG1-of (i / in-line-04
+            :ARG2 (l2 / lead-02
+                :ARG0 (p2 / plane
+                    :quant 1
+                    :quant 2
+                    :ARG0-of l
+                    :ARG2-of (i2 / include-91)
+                    :mod (o / other))))))

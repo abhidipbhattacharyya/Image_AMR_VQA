@@ -1,0 +1,42 @@
+# ::tok Outside a three story brick white / brown building with attached garage and fire hydrant .
+# ::node	o	outside	0-1
+# ::node	0	3	2-3
+# ::node	s2	story	3-4
+# ::node	b	brick	4-5
+# ::node	w	white-03	5-6
+# ::node	s	slash	6-7
+# ::node	b2	brown	7-8
+# ::node	b3	building	8-9
+# ::node	a2	attach-01	10-11
+# ::node	g	garage	11-12
+# ::node	a	and	12-13
+# ::node	f	fire	13-14
+# ::node	h	hydrant	14-15
+# ::root	o	outside
+# ::edge	story	quant	3	s2	0	
+# ::edge	slash	op1	white-03	s	w	
+# ::edge	slash	op2	brown	s	b2	
+# ::edge	building	mod	slash	b3	s	
+# ::edge	building	consist-of	brick	b3	b	
+# ::edge	building	consist-of	story	b3	s2	
+# ::edge	outside	op1	building	o	b3	
+# ::edge	attach-01	ARG2	building	a2	b3	
+# ::edge	garage	ARG1-of	attach-01	g	a2	
+# ::edge	and	op1	garage	a	g	
+# ::edge	building	part	and	b3	a	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	and	op2	hydrant	a	h	
+(o / outside
+    :op1 (b3 / building
+        :consist-of (b / brick)
+        :consist-of (s2 / story
+            :quant 3)
+        :mod (s / slash
+            :op1 (w / white-03)
+            :op2 (b2 / brown))
+        :part (a / and
+            :op1 (g / garage
+                :ARG1-of (a2 / attach-01
+                    :ARG2 b3))
+            :op2 (h / hydrant
+                :mod (f / fire)))))

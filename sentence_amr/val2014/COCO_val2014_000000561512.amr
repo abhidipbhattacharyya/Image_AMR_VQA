@@ -1,0 +1,30 @@
+# ::tok Snowboarder displaying aerial high flying trick in alpine area .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	d	display-01	1-2
+# ::node	a	aerial	2-3
+# ::node	h	high-02	3-4
+# ::node	f	fly-01	4-5
+# ::node	t	trick-01	5-6
+# ::node	a2	alpine	7-8
+# ::node	a3	area	8-9
+# ::root	d	display-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	display-01	ARG0	person	d	p	
+# ::edge	fly-01	ARG1-of	high-02	f	h	
+# ::edge	fly-01	ARG2	aerial	f	a	
+# ::edge	trick-01	mod	fly-01	t	f	
+# ::edge	display-01	ARG1	trick-01	d	t	
+# ::edge	trick-01	ARG0	person	t	p	
+# ::edge	area	mod	alpine	a3	a2	
+# ::edge	display-01	location	area	d	a3	
+(d / display-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01))
+    :ARG1 (t / trick-01
+        :ARG0 p
+        :mod (f / fly-01
+            :ARG1-of (h / high-02)
+            :ARG2 (a / aerial)))
+    :location (a3 / area
+        :mod (a2 / alpine)))

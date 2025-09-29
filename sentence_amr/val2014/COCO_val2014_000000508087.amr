@@ -1,0 +1,36 @@
+# ::tok A truck with a back full of items that has the president and a flag painted on the back .
+# ::node	t	truck	1-2
+# ::node	b	back	4-5
+# ::node	f	fill-01	5-6
+# ::node	i	item	7-8
+# ::node	h	have-03	9-10
+# ::node	p2	person	11-12
+# ::node	h2	have-org-role-91	11-12
+# ::node	p3	president	11-12
+# ::node	a	and	12-13
+# ::node	f2	flag	14-15
+# ::node	p	paint-01	15-16
+# ::root	t	truck
+# ::edge	truck	part	back	t	b	
+# ::edge	back	ARG1-of	fill-01	b	f	
+# ::edge	fill-01	ARG2	item	f	i	
+# ::edge	truck	ARG0-of	have-03	t	h	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h2	
+# ::edge	have-org-role-91	ARG2	president	h2	p3	
+# ::edge	and	op1	person	a	p2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	flag	a	f2	
+# ::edge	flag	ARG1-of	paint-01	f2	p	
+# ::edge	paint-01	location	back	p	b	
+(t / truck
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p2 / person
+                :ARG0-of (h2 / have-org-role-91
+                    :ARG2 (p3 / president)))
+            :op2 (f2 / flag
+                :ARG1-of (p / paint-01
+                    :location (b / back
+                        :ARG1-of (f / fill-01
+                            :ARG2 (i / item)))))))
+    :part b)

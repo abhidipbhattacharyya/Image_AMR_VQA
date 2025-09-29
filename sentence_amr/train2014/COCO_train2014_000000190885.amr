@@ -1,0 +1,31 @@
+# ::tok Rvs traveling down a busy city intersection during the day .
+# ::node	p	person	0-1
+# ::node	v	vehicle	0-1
+# ::node	n	name	0-1
+# ::node	0	RV	0-1
+# ::node	t	travel-01	1-2
+# ::node	d2	down	2-3
+# ::node	b	busy-02	4-5
+# ::node	c	city	5-6
+# ::node	i	intersect-01	6-7
+# ::node	d	day	9-10
+# ::root	t	travel-01
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	RV	n	0	
+# ::edge	travel-01	ARG0	vehicle	t	v	
+# ::edge	travel-01	direction	down	t	d2	
+# ::edge	intersect-01	ARG1	city	i	c	
+# ::edge	intersect-01	ARG1-of	busy-02	i	b	
+# ::edge	travel-01	path	intersect-01	t	i	
+# ::edge	travel-01	time	day	t	d	
+# ::edge	travel-01	rel	person	t	p	
+(t / travel-01
+    :ARG0 (v / vehicle
+        :name (n / name
+            :op1 "RV"))
+    :direction (d2 / down)
+    :path (i / intersect-01
+        :ARG1 (c / city)
+        :ARG1-of (b / busy-02))
+    :rel (p / person)
+    :time (d / day))

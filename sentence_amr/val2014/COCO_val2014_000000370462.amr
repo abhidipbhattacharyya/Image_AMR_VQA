@@ -1,0 +1,49 @@
+# ::tok A snow covered resort with people skiing and enjoying the snow and a carasel with a protective covering over it .
+# ::node	s2	snow	1-2
+# ::node	c2	cover-02	2-3
+# ::node	r	resort	3-4
+# ::node	p	person	5-6
+# ::node	s	ski-01	6-7
+# ::node	a	and	7-8
+# ::node	e	enjoy-01	8-9
+# ::node	a2	and	11-12
+# ::node	c	car-make	13-14
+# ::node	n	name	13-14
+# ::node	1	i	13-14
+# ::node	0	car	13-14
+# ::node	p2	protect-01	16-17
+# ::node	c3	cover-02	17-18
+# ::root	r	resort
+# ::edge	cover-02	ARG2	snow	c2	s2	
+# ::edge	resort	ARG1-of	cover-02	r	c2	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	and	op1	ski-01	a	s	
+# ::edge	and	op2	enjoy-01	a	e	
+# ::edge	enjoy-01	ARG0	person	e	p	
+# ::edge	enjoy-01	ARG1	snow	e	s2	
+# ::edge	and	op1	and	a2	a	
+# ::edge	resort	location-of	and	r	a2	
+# ::edge	and	op2	car-make	a2	c	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	i	n	1	
+# ::edge	name	op2	car	n	0	
+# ::edge	cover-02	ARG3-of	protect-01	c3	p2	
+# ::edge	car-make	ARG1-of	cover-02	c	c3	
+# ::edge	cover-02	ARG2	resort	c3	r	
+(r / resort
+    :ARG1-of (c2 / cover-02
+        :ARG2 (s2 / snow))
+    :location-of (a2 / and
+        :op1 (a / and
+            :op1 (s / ski-01
+                :ARG0 (p / person))
+            :op2 (e / enjoy-01
+                :ARG0 p
+                :ARG1 s2))
+        :op2 (c / car-make
+            :name (n / name
+                :op1 "i"
+                :op2 "car")
+            :ARG1-of (c3 / cover-02
+                :ARG2 r
+                :ARG3-of (p2 / protect-01)))))

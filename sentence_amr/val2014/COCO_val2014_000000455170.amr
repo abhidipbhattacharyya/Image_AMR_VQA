@@ -1,0 +1,28 @@
+# ::tok A stoplight display a do not walk sign with a countdown timer .
+# ::node	s2	stoplight	1-2
+# ::node	d	display-01	2-3
+# ::node	y	you	4-5
+# ::node	1	imperative	4-5
+# ::node	0	-	5-6
+# ::node	w	walk-01	6-7
+# ::node	s	sign	7-8
+# ::node	c	countdown	10-11
+# ::node	t	timer	11-12
+# ::root	d	display-01
+# ::edge	display-01	ARG0	stoplight	d	s2	
+# ::edge	walk-01	polarity	-	w	0	
+# ::edge	walk-01	mode	imperative	w	1	
+# ::edge	walk-01	ARG0	you	w	y	
+# ::edge	sign	topic	walk-01	s	w	
+# ::edge	display-01	ARG1	sign	d	s	
+# ::edge	timer	mod	countdown	t	c	
+# ::edge	display-01	instrument	timer	d	t	
+(d / display-01
+    :ARG0 (s2 / stoplight)
+    :ARG1 (s / sign
+        :topic (w / walk-01
+            :ARG0 (y / you)
+            :mode imperative
+            :polarity -))
+    :instrument (t / timer
+        :mod (c / countdown)))

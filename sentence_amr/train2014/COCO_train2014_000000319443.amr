@@ -1,0 +1,50 @@
+# ::tok The pair of birds scrounged around in the sands hoping to score some seeds or chunks of dead animal flesh .
+# ::node	p	pair	1-2
+# ::node	b	bird	3-4
+# ::node	s3	scrounge-01	4-5
+# ::node	a2	around	5-6
+# ::node	s	sand	8-9
+# ::node	h	hope-01	9-10
+# ::node	s2	score-01	11-12
+# ::node	s5	some	12-13
+# ::node	s6	some	12-13
+# ::node	s4	seed	13-14
+# ::node	o	or	14-15
+# ::node	c	chunk-01	15-16
+# ::node	d	die-01	17-18
+# ::node	a	animal	18-19
+# ::node	f	flesh	19-20
+# ::root	s3	scrounge-01
+# ::edge	bird	quant	pair	b	p	
+# ::edge	scrounge-01	ARG0	bird	s3	b	
+# ::edge	scrounge-01	ARG1	around	s3	a2	
+# ::edge	around	op1	sand	a2	s	
+# ::edge	scrounge-01	purpose	hope-01	s3	h	
+# ::edge	hope-01	ARG0	bird	h	b	
+# ::edge	hope-01	ARG1	score-01	h	s2	
+# ::edge	score-01	ARG0	bird	s2	b	
+# ::edge	seed	quant	some	s4	s5	
+# ::edge	or	op1	seed	o	s4	
+# ::edge	score-01	ARG2	or	s2	o	
+# ::edge	or	op2	chunk-01	o	c	
+# ::edge	chunk-01	quant	some	c	s6	
+# ::edge	flesh	part-of	animal	f	a	
+# ::edge	flesh	ARG1-of	die-01	f	d	
+# ::edge	chunk-01	ARG1	flesh	c	f	
+(s3 / scrounge-01
+    :purpose (h / hope-01
+        :ARG0 (b / bird
+            :quant (p / pair))
+        :ARG1 (s2 / score-01
+            :ARG0 b
+            :ARG2 (o / or
+                :op1 (s4 / seed
+                    :quant (s5 / some))
+                :op2 (c / chunk-01
+                    :quant (s6 / some)
+                    :ARG1 (f / flesh
+                        :ARG1-of (d / die-01)
+                        :part-of (a / animal))))))
+    :ARG0 b
+    :ARG1 (a2 / around
+        :op1 (s / sand)))

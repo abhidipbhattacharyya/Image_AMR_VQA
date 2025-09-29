@@ -1,0 +1,39 @@
+# ::tok A crowd has gathered in a stadium while a batter is in the batter area with an umpire and a catcher .
+# ::node	c2	crowd	1-2
+# ::node	g	gather-03	3-4
+# ::node	s	stadium	6-7
+# ::node	p	person	9-10
+# ::node	b	batter-01	9-10
+# ::node	b2	be-located-at-91	11-12
+# ::node	a2	area	14-15
+# ::node	p2	person	17-18
+# ::node	u	umpire-01	17-18
+# ::node	a	and	18-19
+# ::node	p3	person	20-21
+# ::node	c	catch-01	20-21
+# ::root	g	gather-03
+# ::edge	gather-03	ARG0	crowd	g	c2	
+# ::edge	gather-03	location	stadium	g	s	
+# ::edge	person	ARG0-of	batter-01	p	b	
+# ::edge	be-located-at-91	ARG1	person	b2	p	
+# ::edge	gather-03	time	be-located-at-91	g	b2	
+# ::edge	be-located-at-91	ARG2	area	b2	a2	
+# ::edge	area	mod	batter-01	a2	b	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	and	op1	person	a	p2	
+# ::edge	person	accompanier	and	p	a	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+(g / gather-03
+    :ARG0 (c2 / crowd)
+    :location (s / stadium)
+    :time (b2 / be-located-at-91
+        :ARG1 (p / person
+            :ARG0-of (b / batter-01)
+            :accompanier (a / and
+                :op1 (p2 / person
+                    :ARG0-of (u / umpire-01))
+                :op2 (p3 / person
+                    :ARG0-of (c / catch-01))))
+        :ARG2 (a2 / area
+            :mod b)))

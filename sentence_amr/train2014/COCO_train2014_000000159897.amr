@@ -1,0 +1,43 @@
+# ::tok The evening sky on the lake foretells hope : " Red sky at night , sailors delight . "
+# ::node	d	date-entity	1-2
+# ::node	e	evening	1-2
+# ::node	s3	sky	2-3
+# ::node	l	lake	5-6
+# ::node	f	foretell-01	6-7
+# ::node	h	hopeful-03	7-8
+# ::node	r	red-02	10-11
+# ::node	s4	sky	11-12
+# ::node	d2	date-entity	13-14
+# ::node	n	night	13-14
+# ::node	s2	say-01	14-15
+# ::node	p	person	15-16
+# ::node	s	sail-01	15-16
+# ::node	d3	delight-01	16-17
+# ::root	f	foretell-01
+# ::edge	date-entity	dayperiod	evening	d	e	
+# ::edge	sky	time	date-entity	s3	d	
+# ::edge	sky	location	lake	s3	l	
+# ::edge	foretell-01	ARG0	sky	f	s3	
+# ::edge	foretell-01	ARG1	hopeful-03	f	h	
+# ::edge	sky	ARG1-of	red-02	s4	r	
+# ::edge	sky	time	date-entity	s4	d2	
+# ::edge	date-entity	dayperiod	night	d2	n	
+# ::edge	say-01	ARG1	sky	s2	s4	
+# ::edge	foretell-01	ARG0-of	say-01	f	s2	
+# ::edge	person	ARG0-of	sail-01	p	s	
+# ::edge	delight-01	ARG1	person	d3	p	
+# ::edge	say-01	ARG2	delight-01	s2	d3	
+(f / foretell-01
+    :ARG0 (s3 / sky
+        :location (l / lake)
+        :time (d / date-entity
+            :dayperiod (e / evening)))
+    :ARG0-of (s2 / say-01
+        :ARG1 (s4 / sky
+            :ARG1-of (r / red-02)
+            :time (d2 / date-entity
+                :dayperiod (n / night)))
+        :ARG2 (d3 / delight-01
+            :ARG1 (p / person
+                :ARG0-of (s / sail-01))))
+    :ARG1 (h / hopeful-03))

@@ -1,0 +1,46 @@
+# ::tok A car with a snowboard on it 's ski rack parked in a foggy parking lot next to two cars with empty ski racks .
+# ::node	c	car	1-2
+# ::node	s4	snowboard	4-5
+# ::node	s2	ski-01	8-9
+# ::node	r	rack	9-10
+# ::node	p	park-01	10-11
+# ::node	g	gray-02	13-14
+# ::node	p2	park-01	14-15
+# ::node	l	lot	15-16
+# ::node	n	next-to	16-17
+# ::node	0	2	18-19
+# ::node	c2	car	19-20
+# ::node	h	have-03	20-21
+# ::node	e	empty-02	21-22
+# ::node	s3	ski-01	22-23
+# ::node	s	shelf	23-24
+# ::root	p	park-01
+# ::edge	rack	mod	ski-01	r	s2	
+# ::edge	rack	location-of	snowboard	r	s4	
+# ::edge	car	poss-of	rack	c	r	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	lot	ARG2-of	park-01	l	p2	
+# ::edge	lot	ARG1-of	gray-02	l	g	
+# ::edge	park-01	location	lot	p	l	
+# ::edge	park-01	location	next-to	p	n	
+# ::edge	car	quant	2	c2	0	
+# ::edge	next-to	op1	car	n	c2	
+# ::edge	car	ARG0-of	have-03	c2	h	
+# ::edge	shelf	purpose	ski-01	s	s3	
+# ::edge	shelf	ARG1-of	empty-02	s	e	
+# ::edge	have-03	ARG1	shelf	h	s	
+(p / park-01
+    :ARG1 (c / car
+        :poss-of (r / rack
+            :location-of (s4 / snowboard)
+            :mod (s2 / ski-01)))
+    :location (l / lot
+        :ARG1-of (g / gray-02)
+        :ARG2-of (p2 / park-01))
+    :location (n / next-to
+        :op1 (c2 / car
+            :quant 2
+            :ARG0-of (h / have-03
+                :ARG1 (s / shelf
+                    :purpose (s3 / ski-01)
+                    :ARG1-of (e / empty-02))))))

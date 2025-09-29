@@ -1,0 +1,31 @@
+# ::tok A row of scooters drive between a row of cars being driven and a row of parked cars .
+# ::node	r	row	1-2
+# ::node	m	motorcycle	3-4
+# ::node	d	drive-01	4-5
+# ::node	b	between	5-6
+# ::node	r2	row	7-8
+# ::node	c	car	9-10
+# ::node	d2	drive-01	11-12
+# ::node	r3	row	14-15
+# ::node	p	park-01	16-17
+# ::node	c2	car	17-18
+# ::root	d	drive-01
+# ::edge	row	consist-of	motorcycle	r	m	
+# ::edge	drive-01	ARG0	row	d	r	
+# ::edge	drive-01	ARG1	between	d	b	
+# ::edge	between	op1	row	b	r2	
+# ::edge	row	consist-of	car	r2	c	
+# ::edge	car	ARG1-of	drive-01	c	d2	
+# ::edge	between	op2	row	b	r3	
+# ::edge	car	ARG1-of	park-01	c2	p	
+# ::edge	row	consist-of	car	r3	c2	
+(d / drive-01
+    :ARG0 (r / row
+        :consist-of (m / motorcycle))
+    :ARG1 (b / between
+        :op1 (r2 / row
+            :consist-of (c / car
+                :ARG1-of (d2 / drive-01)))
+        :op2 (r3 / row
+            :consist-of (c2 / car
+                :ARG1-of (p / park-01)))))

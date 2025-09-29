@@ -1,0 +1,31 @@
+# ::tok Small cup of baked brownies being scooped out into small snack sized dishes .
+# ::node	s3	small	0-1
+# ::node	c2	cup	1-2
+# ::node	b	bake-01	3-4
+# ::node	c	cookie	4-5
+# ::node	s	shovel-01	6-7
+# ::node	o	out	7-8
+# ::node	s4	small	9-10
+# ::node	s5	snack	10-11
+# ::node	s2	size-01	11-12
+# ::node	d	dish	12-13
+# ::root	s	shovel-01
+# ::edge	cup	mod	small	c2	s3	
+# ::edge	cookie	ARG1-of	bake-01	c	b	
+# ::edge	cookie	quant	cup	c	c2	
+# ::edge	shovel-01	ARG1	cookie	s	c	
+# ::edge	shovel-01	direction	out	s	o	
+# ::edge	snack	mod	small	s5	s4	
+# ::edge	size-01	ARG2	snack	s2	s5	
+# ::edge	dish	ARG1-of	size-01	d	s2	
+# ::edge	shovel-01	ARG4	dish	s	d	
+(s / shovel-01
+    :ARG1 (c / cookie
+        :quant (c2 / cup
+            :mod (s3 / small))
+        :ARG1-of (b / bake-01))
+    :ARG4 (d / dish
+        :ARG1-of (s2 / size-01
+            :ARG2 (s5 / snack
+                :mod (s4 / small))))
+    :direction (o / out))

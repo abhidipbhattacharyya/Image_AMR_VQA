@@ -1,0 +1,28 @@
+# ::tok A red train pulls alongside a train platform beneath a metal bridge .
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	p2	pull-01	3-4
+# ::node	a	alongside	4-5
+# ::node	t2	train	6-7
+# ::node	p	platform	7-8
+# ::node	b	beneath	8-9
+# ::node	m	metal	10-11
+# ::node	b2	bridge	11-12
+# ::root	p2	pull-01
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	pull-01	ARG1	train	p2	t	
+# ::edge	pull-01	ARG2	alongside	p2	a	
+# ::edge	platform	mod	train	p	t2	
+# ::edge	alongside	op1	platform	a	p	
+# ::edge	platform	location	beneath	p	b	
+# ::edge	bridge	consist-of	metal	b2	m	
+# ::edge	beneath	op1	bridge	b	b2	
+(p2 / pull-01
+    :ARG1 (t / train
+        :ARG1-of (r / red-02))
+    :ARG2 (a / alongside
+        :op1 (p / platform
+            :location (b / beneath
+                :op1 (b2 / bridge
+                    :consist-of (m / metal)))
+            :mod (t2 / train))))

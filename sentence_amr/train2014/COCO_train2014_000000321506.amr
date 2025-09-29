@@ -1,0 +1,52 @@
+# ::tok A table with a bowl of rotten cheddar cheese and an egg is next to a bowl with two apples with a sliced bread .
+# ::node	t	table	1-2
+# ::node	h	have-03	2-3
+# ::node	b2	bowl	4-5
+# ::node	r	rot-01	6-7
+# ::node	c	cheddar	7-8
+# ::node	c2	cheese	8-9
+# ::node	a	and	9-10
+# ::node	e	egg	11-12
+# ::node	b	be-located-at-91	13-14
+# ::node	n	next-to	13-14
+# ::node	b3	bowl	16-17
+# ::node	h2	have-03	17-18
+# ::node	0	2	18-19
+# ::node	a3	apple	19-20
+# ::node	a2	and	20-21
+# ::node	s	slice-01	22-23
+# ::node	b4	bread	23-24
+# ::root	b	be-located-at-91
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	cheese	mod	cheddar	c2	c	
+# ::edge	cheese	ARG1-of	rot-01	c2	r	
+# ::edge	cheese	quant	bowl	c2	b2	
+# ::edge	and	op1	cheese	a	c2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	egg	a	e	
+# ::edge	be-located-at-91	ARG1	table	b	t	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	next-to	op1	bowl	n	b3	
+# ::edge	bowl	ARG0-of	have-03	b3	h2	
+# ::edge	apple	quant	2	a3	0	
+# ::edge	and	op1	apple	a2	a3	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	bread	ARG1-of	slice-01	b4	s	
+# ::edge	and	op2	bread	a2	b4	
+(b / be-located-at-91
+    :ARG1 (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c2 / cheese
+                    :quant (b2 / bowl)
+                    :ARG1-of (r / rot-01)
+                    :mod (c / cheddar))
+                :op2 (e / egg))))
+    :ARG2 (n / next-to
+        :op1 (b3 / bowl
+            :ARG0-of (h2 / have-03
+                :ARG1 (a2 / and
+                    :op1 (a3 / apple
+                        :quant 2)
+                    :op2 (b4 / bread
+                        :ARG1-of (s / slice-01)))))))

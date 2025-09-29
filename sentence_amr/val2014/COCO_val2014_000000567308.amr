@@ -1,0 +1,34 @@
+# ::tok Tennis player in white shorts and green shirt swinging at a ball .
+# ::node	m	multi-sentence	0-1
+# ::node	t	telecommunication	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	w	white-03	3-4
+# ::node	s2	shorts	4-5
+# ::node	a	and	5-6
+# ::node	g	green-02	6-7
+# ::node	s	shirt	7-8
+# ::node	s3	swing-01	8-9
+# ::node	b	ball	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG3	telecommunication	p2	t	
+# ::edge	shorts	ARG1-of	white-03	s2	w	
+# ::edge	and	op1	shorts	a	s2	
+# ::edge	shirt	ARG1-of	green-02	s	g	
+# ::edge	and	op2	shirt	a	s	
+# ::edge	swing-01	ARG0	and	s3	a	
+# ::edge	multi-sentence	snt1	swing-01	m	s3	
+# ::edge	swing-01	ARG2	ball	s3	b	
+# ::edge	person	rel	multi-sentence	p	m	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG3 (t / telecommunication))
+    :rel (m / multi-sentence
+        :snt1 (s3 / swing-01
+            :ARG0 (a / and
+                :op1 (s2 / shorts
+                    :ARG1-of (w / white-03))
+                :op2 (s / shirt
+                    :ARG1-of (g / green-02)))
+            :ARG2 (b / ball))))

@@ -1,0 +1,37 @@
+# ::tok A player running the bases of a base ball game while an opposing player goes for the ball .
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	r	run-01	2-3
+# ::node	b3	base	4-5
+# ::node	b4	base	7-8
+# ::node	b	ball	8-9
+# ::node	g	game	9-10
+# ::node	o	oppose-01	12-13
+# ::node	p2	person	13-14
+# ::node	p4	play-01	13-14
+# ::node	g2	go-03	14-15
+# ::node	b2	ball	17-18
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	person	ARG0-of	run-01	p	r	
+# ::edge	run-01	ARG1	base	r	b3	
+# ::edge	ball	mod	base	b	b4	
+# ::edge	game	mod	ball	g	b	
+# ::edge	base	part-of	game	b3	g	
+# ::edge	person	ARG0-of	oppose-01	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	go-03	ARG0	person	g2	p2	
+# ::edge	run-01	time	go-03	r	g2	
+# ::edge	go-03	ARG1	ball	g2	b2	
+(p / person
+    :ARG0-of (p3 / play-01)
+    :ARG0-of (r / run-01
+        :ARG1 (b3 / base
+            :part-of (g / game
+                :mod (b / ball
+                    :mod (b4 / base))))
+        :time (g2 / go-03
+            :ARG0 (p2 / person
+                :ARG0-of (o / oppose-01)
+                :ARG0-of (p4 / play-01))
+            :ARG1 (b2 / ball))))

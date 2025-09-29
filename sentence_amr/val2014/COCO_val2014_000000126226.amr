@@ -1,0 +1,33 @@
+# ::tok Many caps and gloves sit in front of the players in a baseball dugout .
+# ::node	m	many	0-1
+# ::node	c	cap	1-2
+# ::node	a	and	2-3
+# ::node	g	glove	3-4
+# ::node	s	sit-01	4-5
+# ::node	i	in-front-of	6-7
+# ::node	p	person	9-10
+# ::node	p2	play-01	9-10
+# ::node	b	baseball	12-13
+# ::node	d	dugout	13-14
+# ::root	s	sit-01
+# ::edge	cap	quant	many	c	m	
+# ::edge	and	op1	cap	a	c	
+# ::edge	and	op2	glove	a	g	
+# ::edge	glove	quant	many	g	m	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	person	i	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	dugout	mod	baseball	d	b	
+# ::edge	person	location	dugout	p	d	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (c / cap
+            :quant (m / many))
+        :op2 (g / glove
+            :quant m))
+    :ARG2 (i / in-front-of
+        :op1 (p / person
+            :ARG0-of (p2 / play-01)
+            :location (d / dugout
+                :mod (b / baseball)))))

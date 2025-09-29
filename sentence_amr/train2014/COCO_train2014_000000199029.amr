@@ -1,0 +1,34 @@
+# ::tok A number of cars in a traffic jam with traffic lights and road signs on the roadside
+# ::node	n	number	1-2
+# ::node	c	car	3-4
+# ::node	t	traffic	6-7
+# ::node	j	jam-01	7-8
+# ::node	h	have-03	8-9
+# ::node	t2	traffic	9-10
+# ::node	l	light	10-11
+# ::node	a	and	11-12
+# ::node	r	road	12-13
+# ::node	s	sign	13-14
+# ::node	r2	roadside	16-17
+# ::root	c	car
+# ::edge	car	quant	number	c	n	
+# ::edge	jam-01	ARG1	traffic	j	t	
+# ::edge	car	ARG0-of	jam-01	c	j	
+# ::edge	car	ARG0-of	have-03	c	h	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sign	mod	road	s	r	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	location	roadside	a	r2	
+(c / car
+    :quant (n / number)
+    :ARG0-of (j / jam-01
+        :ARG1 (t / traffic))
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (r2 / roadside)
+            :op1 (l / light
+                :mod (t2 / traffic))
+            :op2 (s / sign
+                :mod (r / road)))))

@@ -1,0 +1,28 @@
+# ::tok A house full of unmatched furniture ; people are coming in through the door .
+# ::node	h	house	1-2
+# ::node	f	fill-01	2-3
+# ::node	m	match-01	4-5
+# ::node	0	-	4-5
+# ::node	f2	furniture	5-6
+# ::node	m2	multi-sentence	6-7
+# ::node	p	person	7-8
+# ::node	c	come-01	9-10
+# ::node	d	door	13-14
+# ::root	m2	multi-sentence
+# ::edge	house	ARG1-of	fill-01	h	f	
+# ::edge	match-01	polarity	-	m	0	
+# ::edge	furniture	ARG1-of	match-01	f2	m	
+# ::edge	fill-01	ARG2	furniture	f	f2	
+# ::edge	multi-sentence	snt1	house	m2	h	
+# ::edge	come-01	ARG1	person	c	p	
+# ::edge	multi-sentence	snt2	come-01	m2	c	
+# ::edge	come-01	path	door	c	d	
+(m2 / multi-sentence
+    :snt1 (h / house
+        :ARG1-of (f / fill-01
+            :ARG2 (f2 / furniture
+                :ARG1-of (m / match-01
+                    :polarity -))))
+    :snt2 (c / come-01
+        :ARG1 (p / person)
+        :path (d / door)))

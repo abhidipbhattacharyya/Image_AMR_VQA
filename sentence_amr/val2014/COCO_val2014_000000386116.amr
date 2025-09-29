@@ -1,0 +1,41 @@
+# ::tok A man laying on his back in a field of grass while holding onto a parachute style kite that is flying in the sky above him .
+# ::node	m	man	1-2
+# ::node	l	lay-01	2-3
+# ::node	b	back	5-6
+# ::node	f	field	8-9
+# ::node	g	grass	10-11
+# ::node	h	hold-01	12-13
+# ::node	p	parachute-01	15-16
+# ::node	s2	style	16-17
+# ::node	k	kite	17-18
+# ::node	f2	fly-01	20-21
+# ::node	s	sky	23-24
+# ::node	a	above	24-25
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	man	l	m	
+# ::edge	lay-01	manner	back	l	b	
+# ::edge	man	part	back	m	b	
+# ::edge	lay-01	location	field	l	f	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	style	mod	parachute-01	s2	p	
+# ::edge	kite	mod	style	k	s2	
+# ::edge	hold-01	ARG1	kite	h	k	
+# ::edge	kite	ARG1-of	fly-01	k	f2	
+# ::edge	fly-01	direction	sky	f2	s	
+# ::edge	sky	location	above	s	a	
+# ::edge	above	op1	man	a	m	
+(l / lay-01
+    :ARG1 (m / man
+        :ARG0-of (h / hold-01
+            :ARG1 (k / kite
+                :ARG1-of (f2 / fly-01
+                    :direction (s / sky
+                        :location (a / above
+                            :op1 m)))
+                :mod (s2 / style
+                    :mod (p / parachute-01))))
+        :part (b / back))
+    :location (f / field
+        :consist-of (g / grass))
+    :manner b)

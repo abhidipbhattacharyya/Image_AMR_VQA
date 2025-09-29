@@ -1,0 +1,28 @@
+# ::tok A traffic and pedestrian crossing signal hangs among power lines .
+# ::node	t	traffic	1-2
+# ::node	a2	and	2-3
+# ::node	p	pedestrian	3-4
+# ::node	c	cross-02	4-5
+# ::node	s	signal	5-6
+# ::node	h	hang-01	6-7
+# ::node	a	among	7-8
+# ::node	p2	power	8-9
+# ::node	l	line	9-10
+# ::root	h	hang-01
+# ::edge	and	op1	traffic	a2	t	
+# ::edge	and	op2	pedestrian	a2	p	
+# ::edge	cross-02	ARG1	and	c	a2	
+# ::edge	signal	ARG0-of	cross-02	s	c	
+# ::edge	hang-01	ARG1	signal	h	s	
+# ::edge	hang-01	ARG2	among	h	a	
+# ::edge	line	mod	power	l	p2	
+# ::edge	among	op1	line	a	l	
+(h / hang-01
+    :ARG1 (s / signal
+        :ARG0-of (c / cross-02
+            :ARG1 (a2 / and
+                :op1 (t / traffic)
+                :op2 (p / pedestrian))))
+    :ARG2 (a / among
+        :op1 (l / line
+            :mod (p2 / power))))

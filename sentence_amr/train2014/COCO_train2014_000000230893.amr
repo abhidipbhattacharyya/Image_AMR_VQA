@@ -1,0 +1,22 @@
+# ::tok Traffic is backed up in all directions as everyone is at a standstill .
+# ::node	t	traffic	0-1
+# ::node	b	back-up-04	2-3
+# ::node	a	all	5-6
+# ::node	d	direction	6-7
+# ::node	c	cause-01	7-8
+# ::node	e	everyone	8-9
+# ::node	s	standstill	12-13
+# ::root	b	back-up-04
+# ::edge	back-up-04	ARG1	traffic	b	t	
+# ::edge	direction	mod	all	d	a	
+# ::edge	back-up-04	direction	direction	b	d	
+# ::edge	back-up-04	ARG1-of	cause-01	b	c	
+# ::edge	standstill	domain	everyone	s	e	
+# ::edge	cause-01	ARG0	standstill	c	s	
+(b / back-up-04
+    :ARG1 (t / traffic)
+    :ARG1-of (c / cause-01
+        :ARG0 (s / standstill
+            :domain (e / everyone)))
+    :direction (d / direction
+        :mod (a / all)))

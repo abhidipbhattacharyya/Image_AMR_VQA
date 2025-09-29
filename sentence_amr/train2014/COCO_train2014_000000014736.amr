@@ -1,0 +1,30 @@
+# ::tok A tall building with five small windows and a clock at the top of the building .
+# ::node	t	tall	1-2
+# ::node	b	building	2-3
+# ::node	h	have-03	3-4
+# ::node	0	5	4-5
+# ::node	s	small	5-6
+# ::node	w	window	6-7
+# ::node	a	and	7-8
+# ::node	c	clock	9-10
+# ::node	t2	top	12-13
+# ::root	b	building
+# ::edge	building	mod	tall	b	t	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	window	mod	small	w	s	
+# ::edge	window	quant	5	w	0	
+# ::edge	and	op1	window	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	clock	a	c	
+# ::edge	clock	location	top	c	t2	
+# ::edge	building	part	top	b	t2	
+(b / building
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (w / window
+                :quant 5
+                :mod (s / small))
+            :op2 (c / clock
+                :location (t2 / top))))
+    :mod (t / tall)
+    :part t2)

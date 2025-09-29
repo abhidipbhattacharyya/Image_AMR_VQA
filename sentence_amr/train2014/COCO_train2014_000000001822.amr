@@ -1,0 +1,40 @@
+# ::tok A large room with tile flooring and four pieces of furniture on a Persian style carpet .
+# ::node	l	large	1-2
+# ::node	r	room	2-3
+# ::node	t	tile	4-5
+# ::node	f	floor	5-6
+# ::node	a	and	6-7
+# ::node	0	4	7-8
+# ::node	p	piece	8-9
+# ::node	f2	furniture	10-11
+# ::node	c2	country	13-14
+# ::node	n	name	13-14
+# ::node	1	Persian	13-14
+# ::node	s	style	14-15
+# ::node	c	carpet	15-16
+# ::root	r	room
+# ::edge	room	mod	large	r	l	
+# ::edge	floor	consist-of	tile	f	t	
+# ::edge	and	op1	floor	a	f	
+# ::edge	room	part	and	r	a	
+# ::edge	piece	quant	4	p	0	
+# ::edge	and	op2	piece	a	p	
+# ::edge	piece	mod	furniture	p	f2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Persian	n	1	
+# ::edge	style	mod	country	s	c2	
+# ::edge	carpet	mod	style	c	s	
+# ::edge	and	location	carpet	a	c	
+(r / room
+    :mod (l / large)
+    :part (a / and
+        :location (c / carpet
+            :mod (s / style
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "Persian"))))
+        :op1 (f / floor
+            :consist-of (t / tile))
+        :op2 (p / piece
+            :quant 4
+            :mod (f2 / furniture))))

@@ -1,0 +1,30 @@
+# ::tok A giraffe is standing in front of a lake filled with zebras that are bending over to drink .
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	l	lake	8-9
+# ::node	f	fill-01	9-10
+# ::node	g2	giraffe	11-12
+# ::node	b	bend-01	14-15
+# ::node	o	over	15-16
+# ::node	d	drink-01	17-18
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	lake	i	l	
+# ::edge	lake	ARG1-of	fill-01	l	f	
+# ::edge	fill-01	ARG2	giraffe	f	g2	
+# ::edge	giraffe	ARG1-of	bend-01	g2	b	
+# ::edge	bend-01	mod	over	b	o	
+# ::edge	bend-01	purpose	drink-01	b	d	
+# ::edge	drink-01	ARG0	giraffe	d	g2	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (i / in-front-of
+        :op1 (l / lake
+            :ARG1-of (f / fill-01
+                :ARG2 (g2 / giraffe
+                    :ARG1-of (b / bend-01
+                        :purpose (d / drink-01
+                            :ARG0 g2)
+                        :mod (o / over)))))))

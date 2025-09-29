@@ -1,0 +1,38 @@
+# ::tok a tennis player tenses his body as he gets ready to swing at an approaching tennis ball
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	t2	tense-03	3-4
+# ::node	b2	body	5-6
+# ::node	r	ready-01	9-10
+# ::node	s	swing-02	11-12
+# ::node	a	approach-01	14-15
+# ::node	b	ball	16-17
+# ::root	t2	tense-03
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	tense-03	ARG0	person	t2	p	
+# ::edge	tense-03	ARG1	body	t2	b2	
+# ::edge	body	poss	person	b2	p	
+# ::edge	tense-03	time	ready-01	t2	r	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	swing-02	r	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	ball	ARG1-of	approach-01	b	a	
+# ::edge	swing-02	ARG1	ball	s	b	
+# ::edge	ball	mod	tennis	b	t	
+(t2 / tense-03
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis)))
+    :ARG1 (b2 / body
+        :poss p)
+    :time (r / ready-01
+        :ARG0 p
+        :ARG1 p
+        :ARG2 (s / swing-02
+            :ARG0 p
+            :ARG1 (b / ball
+                :ARG1-of (a / approach-01)
+                :mod t))))

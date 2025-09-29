@@ -1,0 +1,33 @@
+# ::tok A vied of stopped traffic on a city street with people waiting to cross in a cross walk .
+# ::node	v	vie-01	1-2
+# ::node	s	stop-01	3-4
+# ::node	t	traffic	4-5
+# ::node	c	city	7-8
+# ::node	s2	street	8-9
+# ::node	p	person	10-11
+# ::node	w	wait-01	11-12
+# ::node	c2	cross-02	13-14
+# ::node	c3	cross-02	16-17
+# ::node	w2	walk-01	17-18
+# ::root	v	vie-01
+# ::edge	traffic	ARG1-of	stop-01	t	s	
+# ::edge	vie-01	ARG1	traffic	v	t	
+# ::edge	street	mod	city	s2	c	
+# ::edge	vie-01	location	street	v	s2	
+# ::edge	traffic	location-of	person	t	p	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	cross-02	w	c2	
+# ::edge	cross-02	ARG0	person	c2	p	
+# ::edge	walk-01	manner	cross-02	w2	c3	
+# ::edge	cross-02	manner	walk-01	c2	w2	
+(v / vie-01
+    :ARG1 (t / traffic
+        :ARG1-of (s / stop-01)
+        :location-of (p / person
+            :ARG1-of (w / wait-01
+                :ARG2 (c2 / cross-02
+                    :ARG0 p
+                    :manner (w2 / walk-01
+                        :manner (c3 / cross-02))))))
+    :location (s2 / street
+        :mod (c / city)))

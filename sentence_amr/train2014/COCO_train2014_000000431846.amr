@@ -1,0 +1,25 @@
+# ::tok Jet plane flying high in sky on partly cloudy day .
+# ::node	j	jet	0-1
+# ::node	p2	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	h	high-02	3-4
+# ::node	s	sky	5-6
+# ::node	p	part	7-8
+# ::node	c	cloudy-02	8-9
+# ::node	d	day	9-10
+# ::root	f	fly-01
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	fly-01	ARG2	plane	f	p2	
+# ::edge	fly-01	ARG1-of	high-02	f	h	
+# ::edge	high-02	ARG2	sky	h	s	
+# ::edge	cloudy-02	degree	part	c	p	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	fly-01	time	day	f	d	
+(f / fly-01
+    :ARG1-of (h / high-02
+        :ARG2 (s / sky))
+    :ARG2 (p2 / plane
+        :mod (j / jet))
+    :time (d / day
+        :ARG1-of (c / cloudy-02
+            :degree (p / part))))

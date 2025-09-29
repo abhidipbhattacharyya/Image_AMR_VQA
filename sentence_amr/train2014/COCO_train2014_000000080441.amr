@@ -1,0 +1,33 @@
+# ::tok A man is off duty after being a security guard at a local public building
+# ::node	m	man	1-2
+# ::node	0	-	3-4
+# ::node	d	duty	4-5
+# ::node	a	after	5-6
+# ::node	h	have-org-role-91	6-7
+# ::node	s	security	8-9
+# ::node	g	guard	9-10
+# ::node	l	local-02	12-13
+# ::node	p	public-02	13-14
+# ::node	b	building	14-15
+# ::root	d	duty
+# ::edge	duty	polarity	-	d	0	
+# ::edge	duty	domain	man	d	m	
+# ::edge	duty	time	after	d	a	
+# ::edge	after	op1	have-org-role-91	a	h	
+# ::edge	have-org-role-91	ARG0	man	h	m	
+# ::edge	guard	mod	security	g	s	
+# ::edge	have-org-role-91	ARG2	guard	h	g	
+# ::edge	building	ARG1-of	public-02	b	p	
+# ::edge	building	ARG1-of	local-02	b	l	
+# ::edge	have-org-role-91	ARG1	building	h	b	
+(d / duty
+    :domain (m / man)
+    :polarity -
+    :time (a / after
+        :op1 (h / have-org-role-91
+            :ARG0 m
+            :ARG1 (b / building
+                :ARG1-of (p / public-02)
+                :ARG1-of (l / local-02))
+            :ARG2 (g / guard
+                :mod (s / security)))))

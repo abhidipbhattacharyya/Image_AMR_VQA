@@ -1,0 +1,41 @@
+# ::tok A baseball game with the pitcher in throwing motion and the batter swinging his bat at the ball .
+# ::node	b2	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	t	throw-01	5-6
+# ::node	t2	throw-01	7-8
+# ::node	m	motion-01	8-9
+# ::node	a	and	9-10
+# ::node	p2	person	11-12
+# ::node	b4	batter-01	11-12
+# ::node	s	swing-02	12-13
+# ::node	b3	bat	14-15
+# ::node	b	ball	17-18
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	person	ARG0-of	throw-01	p	t	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	motion-01	ARG1	throw-01	m	t2	
+# ::edge	person	ARG0-of	motion-01	p	m	
+# ::edge	and	op1	person	a	p	
+# ::edge	game	consist-of	and	g	a	
+# ::edge	person	ARG0-of	batter-01	p2	b4	
+# ::edge	swing-02	ARG0	person	s	p2	
+# ::edge	and	op2	swing-02	a	s	
+# ::edge	swing-02	ARG1	bat	s	b3	
+# ::edge	bat	poss	person	b3	p2	
+# ::edge	swing-02	direction	ball	s	b	
+(g / game
+    :consist-of (a / and
+        :op1 (p / person
+            :ARG0-of (t / throw-01)
+            :ARG0-of (m / motion-01
+                :ARG1 (t2 / throw-01
+                    :ARG0 p)))
+        :op2 (s / swing-02
+            :ARG0 (p2 / person
+                :ARG0-of (b4 / batter-01))
+            :ARG1 (b3 / bat
+                :poss p2)
+            :direction (b / ball)))
+    :mod (b2 / baseball))

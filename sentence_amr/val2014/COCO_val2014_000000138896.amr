@@ -1,0 +1,43 @@
+# ::tok Two dump trucks driving down a two lane road with a white pick up approaching from the opposite direction .
+# ::node	0	2	0-1
+# ::node	d4	dump-01	1-2
+# ::node	t	truck	2-3
+# ::node	d3	drive-01	3-4
+# ::node	d2	down	4-5
+# ::node	1	2	6-7
+# ::node	l	lane	7-8
+# ::node	r	road	8-9
+# ::node	w	white-03	11-12
+# ::node	p	pick-up-04	12-13
+# ::node	a2	approach-01	14-15
+# ::node	o	opposite-01	17-18
+# ::node	d	direction	18-19
+# ::node	a	and	19-20
+# ::root	a	and
+# ::edge	truck	ARG0-of	dump-01	t	d4	
+# ::edge	truck	quant	2	t	0	
+# ::edge	drive-01	ARG0	truck	d3	t	
+# ::edge	drive-01	direction	down	d3	d2	
+# ::edge	lane	quant	2	l	1	
+# ::edge	road	part	lane	r	l	
+# ::edge	drive-01	ARG1	road	d3	r	
+# ::edge	pick-up-04	ARG1-of	white-03	p	w	
+# ::edge	approach-01	ARG1	pick-up-04	a2	p	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	approach-01	source	direction	a2	d	
+# ::edge	and	op2	approach-01	a	a2	
+# ::edge	and	op1	drive-01	a	d3	
+(a / and
+    :op1 (d3 / drive-01
+        :ARG0 (t / truck
+            :quant 2
+            :ARG0-of (d4 / dump-01))
+        :ARG1 (r / road
+            :part (l / lane
+                :quant 2))
+        :direction (d2 / down))
+    :op2 (a2 / approach-01
+        :ARG1 (p / pick-up-04
+            :ARG1-of (w / white-03))
+        :source (d / direction
+            :ARG1-of (o / opposite-01))))

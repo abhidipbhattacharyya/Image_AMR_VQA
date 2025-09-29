@@ -1,0 +1,44 @@
+# ::tok Three large balloons with multiple strings attached to each balloon in a field with people near by .
+# ::node	0	3	0-1
+# ::node	l	large	1-2
+# ::node	i	inflate-01	2-3
+# ::node	h	have-03	3-4
+# ::node	m	multiple	4-5
+# ::node	s	string	5-6
+# ::node	a	attach-01	6-7
+# ::node	e	each	8-9
+# ::node	b	balloon	9-10
+# ::node	b2	balloon	9-10
+# ::node	f	field	12-13
+# ::node	p	person	14-15
+# ::node	n	near-02	15-16
+# ::root	i	inflate-01
+# ::edge	string	quant	multiple	s	m	
+# ::edge	have-03	ARG1	string	h	s	
+# ::edge	string	ARG1-of	attach-01	s	a	
+# ::edge	balloon	mod	attach-01	b	a	
+# ::edge	attach-01	ARG2	balloon	a	b	
+# ::edge	balloon	ARG1-of	have-03	b	h	
+# ::edge	balloon	quant	3	b	0	
+# ::edge	balloon	mod	each	b2	e	
+# ::edge	attach-01	ARG2	balloon	a	b2	
+# ::edge	inflate-01	location	field	i	f	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	field	ARG2-of	near-02	f	n	
+# ::edge	inflate-01	rel	string	i	s	
+# ::edge	inflate-01	rel	large	i	l	
+(i / inflate-01
+    :location (f / field
+        :ARG2-of (n / near-02
+            :ARG1 (p / person)))
+    :rel (s / string
+        :quant (m / multiple)
+        :ARG1-of (a / attach-01
+            :ARG2 (b / balloon
+                :quant 3
+                :ARG1-of (h / have-03
+                    :ARG1 s)
+                :mod a)
+            :ARG2 (b2 / balloon
+                :mod (e / each))))
+    :rel (l / large))

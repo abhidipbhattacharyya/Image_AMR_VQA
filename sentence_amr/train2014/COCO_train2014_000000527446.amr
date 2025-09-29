@@ -1,0 +1,42 @@
+# ::tok A baseball player wearing all white and a blue helmet swinging a bat on the baseball field .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	a	all	4-5
+# ::node	w2	white-03	5-6
+# ::node	a2	and	6-7
+# ::node	b3	blue	8-9
+# ::node	h	helmet	9-10
+# ::node	h2	helmet	9-10
+# ::node	s	swing-01	10-11
+# ::node	b2	bat	12-13
+# ::node	f	field	16-17
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	and	op1	helmet	a2	h	
+# ::edge	helmet	ARG1-of	white-03	h	w2	
+# ::edge	helmet	mod	all	h	a	
+# ::edge	helmet	mod	blue	h2	b3	
+# ::edge	and	op2	helmet	a2	h2	
+# ::edge	person	ARG0-of	swing-01	p	s	
+# ::edge	swing-01	ARG1	bat	s	b2	
+# ::edge	swing-01	location	field	s	f	
+# ::edge	field	mod	baseball	f	b	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (w / wear-01
+        :ARG1 (a2 / and
+            :op1 (h / helmet
+                :ARG1-of (w2 / white-03)
+                :mod (a / all))
+            :op2 (h2 / helmet
+                :mod (b3 / blue))))
+    :ARG0-of (s / swing-01
+        :ARG1 (b2 / bat)
+        :location (f / field
+            :mod b)))

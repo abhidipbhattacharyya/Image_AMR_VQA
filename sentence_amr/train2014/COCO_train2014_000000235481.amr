@@ -1,0 +1,25 @@
+# ::tok A doublebdecker red bus is stopped next to the curb outside a building .
+# ::node	d	doublebdecker	1-2
+# ::node	r	red-02	2-3
+# ::node	b2	bus	3-4
+# ::node	s	stop-01	5-6
+# ::node	n	next-to	6-7
+# ::node	c	curb	9-10
+# ::node	o	outside	10-11
+# ::node	b	building	12-13
+# ::root	s	stop-01
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	bus	mod	doublebdecker	b2	d	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	stop-01	location	next-to	s	n	
+# ::edge	next-to	op1	curb	n	c	
+# ::edge	curb	location	outside	c	o	
+# ::edge	outside	op1	building	o	b	
+(s / stop-01
+    :ARG1 (b2 / bus
+        :ARG1-of (r / red-02)
+        :mod (d / doublebdecker))
+    :location (n / next-to
+        :op1 (c / curb
+            :location (o / outside
+                :op1 (b / building)))))

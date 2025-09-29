@@ -1,0 +1,28 @@
+# ::tok A double decker SBS Transit bus driving on the street
+# ::node	0	2	1-2
+# ::node	d	decker	2-3
+# ::node	n	name	3-4
+# ::node	1	SBS	3-4
+# ::node	c	company	4-5
+# ::node	2	Transit	4-5
+# ::node	b	bus	5-6
+# ::node	d2	drive-01	6-7
+# ::node	s	street	9-10
+# ::root	d2	drive-01
+# ::edge	decker	quant	2	d	0	
+# ::edge	name	op1	SBS	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Transit	n	2	
+# ::edge	bus	mod	company	b	c	
+# ::edge	bus	mod	decker	b	d	
+# ::edge	drive-01	ARG0	bus	d2	b	
+# ::edge	drive-01	ARG1	street	d2	s	
+(d2 / drive-01
+    :ARG0 (b / bus
+        :mod (c / company
+            :name (n / name
+                :op1 "SBS"
+                :op2 "Transit"))
+        :mod (d / decker
+            :quant 2))
+    :ARG1 (s / street))

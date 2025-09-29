@@ -1,0 +1,38 @@
+# ::tok A fully clothed man engages in the " Thinking Man " pose as he sits on an uninstalled toilet .
+# ::node	f	full	1-2
+# ::node	c	clothe-01	2-3
+# ::node	m	man	3-4
+# ::node	e	engage-01	4-5
+# ::node	t	think-01	8-9
+# ::node	m2	man	9-10
+# ::node	p	pose-01	11-12
+# ::node	s	sit-01	14-15
+# ::node	0	-	16-17
+# ::node	i	install-01	17-18
+# ::node	t2	toilet	18-19
+# ::root	e	engage-01
+# ::edge	clothe-01	degree	full	c	f	
+# ::edge	man	ARG1-of	clothe-01	m	c	
+# ::edge	engage-01	ARG1	man	e	m	
+# ::edge	man	ARG0-of	think-01	m2	t	
+# ::edge	pose-01	ARG1	man	p	m2	
+# ::edge	engage-01	ARG2	pose-01	e	p	
+# ::edge	pose-01	ARG0	man	p	m	
+# ::edge	engage-01	time	sit-01	e	s	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	install-01	polarity	-	i	0	
+# ::edge	toilet	ARG1-of	install-01	t2	i	
+# ::edge	sit-01	ARG2	toilet	s	t2	
+(e / engage-01
+    :ARG1 (m / man
+        :ARG1-of (c / clothe-01
+            :degree (f / full)))
+    :ARG2 (p / pose-01
+        :ARG0 m
+        :ARG1 (m2 / man
+            :ARG0-of (t / think-01)))
+    :time (s / sit-01
+        :ARG1 m
+        :ARG2 (t2 / toilet
+            :ARG1-of (i / install-01
+                :polarity -))))

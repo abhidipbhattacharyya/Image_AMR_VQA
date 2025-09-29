@@ -1,0 +1,30 @@
+# ::tok A tennis player in a knee brace gets ready to serve the ball .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	k	knee	5-6
+# ::node	b2	brace	6-7
+# ::node	r	ready-01	8-9
+# ::node	s	serve-02	10-11
+# ::node	b	ball	12-13
+# ::root	r	ready-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	brace	mod	knee	b2	k	
+# ::edge	wear-01	ARG1	brace	w	b2	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG2	serve-02	r	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b	
+(r / ready-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis))
+        :ARG0-of (w / wear-01
+            :ARG1 (b2 / brace
+                :mod (k / knee))))
+    :ARG2 (s / serve-02
+        :ARG0 p
+        :ARG1 (b / ball)))

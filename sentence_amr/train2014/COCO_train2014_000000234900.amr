@@ -1,0 +1,41 @@
+# ::tok A man on a sidewalk dressed up as Pac Man , who 's trying to take a bite out of a fire hydrant .
+# ::node	m	man	1-2
+# ::node	s	sidewalk	4-5
+# ::node	d	dress-01	5-6
+# ::node	n	name	8-9
+# ::node	1	Pac	8-9
+# ::node	p	person	9-10
+# ::node	0	Man	9-10
+# ::node	t2	try-01	13-14
+# ::node	t	take-01	15-16
+# ::node	b	bite-01	17-18
+# ::node	f	fire	21-22
+# ::node	h	hydrant	22-23
+# ::root	m	man
+# ::edge	man	location	sidewalk	m	s	
+# ::edge	man	ARG1-of	dress-01	m	d	
+# ::edge	name	op1	Pac	n	1	
+# ::edge	person	name	name	p	n	
+# ::edge	dress-01	ARG2	person	d	p	
+# ::edge	name	op2	Man	n	0	
+# ::edge	man	ARG0-of	try-01	m	t2	
+# ::edge	try-01	ARG1	take-01	t2	t	
+# ::edge	take-01	ARG0	man	t	m	
+# ::edge	take-01	ARG1	bite-01	t	b	
+# ::edge	bite-01	ARG0	man	b	m	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	bite-01	source	hydrant	b	h	
+(m / man
+    :ARG0-of (t2 / try-01
+        :ARG1 (t / take-01
+            :ARG0 m
+            :ARG1 (b / bite-01
+                :ARG0 m
+                :source (h / hydrant
+                    :mod (f / fire)))))
+    :ARG1-of (d / dress-01
+        :ARG2 (p / person
+            :name (n / name
+                :op1 "Pac"
+                :op2 "Man")))
+    :location (s / sidewalk))

@@ -1,0 +1,27 @@
+# ::tok Traffic light hanging from the wire is telling traffic not no move
+# ::node	t2	traffic	0-1
+# ::node	l	light	1-2
+# ::node	h	hanging-07	2-3
+# ::node	w	wire	5-6
+# ::node	t	tell-01	7-8
+# ::node	t3	traffic	8-9
+# ::node	0	-	9-10
+# ::node	m	move-02	11-12
+# ::root	t	tell-01
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	light	ARG1-of	hanging-07	l	h	
+# ::edge	hanging-07	ARG2	wire	h	w	
+# ::edge	tell-01	ARG0	light	t	l	
+# ::edge	tell-01	ARG2	traffic	t	t3	
+# ::edge	move-02	polarity	-	m	0	
+# ::edge	move-02	ARG0	traffic	m	t3	
+# ::edge	tell-01	ARG1	move-02	t	m	
+(t / tell-01
+    :ARG0 (l / light
+        :ARG1-of (h / hanging-07
+            :ARG2 (w / wire))
+        :mod (t2 / traffic))
+    :ARG1 (m / move-02
+        :ARG0 (t3 / traffic)
+        :polarity -)
+    :ARG2 t3)

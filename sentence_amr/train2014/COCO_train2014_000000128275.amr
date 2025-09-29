@@ -1,0 +1,28 @@
+# ::tok Wine is poured into a glass at a wine tasting event .
+# ::node	w	whine-01	0-1
+# ::node	p	pour-01	2-3
+# ::node	v	volume-quantity	4-5
+# ::node	0	1	4-5
+# ::node	g	glass	5-6
+# ::node	w2	wine	8-9
+# ::node	w3	wine	8-9
+# ::node	t	taste-01	9-10
+# ::node	e	event	10-11
+# ::root	p	pour-01
+# ::edge	pour-01	ARG1	whine-01	p	w	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	whine-01	ARG1	wine	w	w2	
+# ::edge	taste-01	ARG1	wine	t	w3	
+# ::edge	event	mod	taste-01	e	t	
+# ::edge	event	quant	volume-quantity	e	v	
+# ::edge	pour-01	location	event	p	e	
+(p / pour-01
+    :ARG1 (w / whine-01
+        :ARG1 (w2 / wine))
+    :location (e / event
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass))
+        :mod (t / taste-01
+            :ARG1 (w3 / wine))))

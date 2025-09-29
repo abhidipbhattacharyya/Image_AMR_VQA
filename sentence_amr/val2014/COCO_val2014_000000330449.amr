@@ -1,0 +1,28 @@
+# ::tok Crates used as tables , full of fresh produce at an outdoor market .
+# ::node	r	rate	0-1
+# ::node	u	use-01	1-2
+# ::node	t	table	3-4
+# ::node	f2	full-09	5-6
+# ::node	f	fresh-04	7-8
+# ::node	p	produce	8-9
+# ::node	o	outdoor	11-12
+# ::node	m	market	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	rate	ARG1-of	use-01	r	u	
+# ::edge	use-01	ARG2	table	u	t	
+# ::edge	rate	ARG1-of	full-09	r	f2	
+# ::edge	produce	ARG1-of	fresh-04	p	f	
+# ::edge	full-09	ARG2	produce	f2	p	
+# ::edge	market	location	outdoor	m	o	
+# ::edge	rate	location	market	r	m	
+# ::edge	event	mod	rate	e	r	
+(e / event
+    :mod (r / rate
+        :ARG1-of (u / use-01
+            :ARG2 (t / table))
+        :ARG1-of (f2 / full-09
+            :ARG2 (p / produce
+                :ARG1-of (f / fresh-04)))
+        :location (m / market
+            :location (o / outdoor))))

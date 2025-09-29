@@ -1,0 +1,30 @@
+# ::tok A small train sitting empty on a train track that kids can ride on .
+# ::node	s2	small	1-2
+# ::node	t2	train	2-3
+# ::node	s	sit-01	3-4
+# ::node	e	empty-02	4-5
+# ::node	t3	train	7-8
+# ::node	t	track	8-9
+# ::node	k	kid	10-11
+# ::node	p	possible-01	11-12
+# ::node	r	ride-01	12-13
+# ::root	s	sit-01
+# ::edge	train	mod	small	t2	s2	
+# ::edge	sit-01	ARG1	train	s	t2	
+# ::edge	sit-01	manner	empty-02	s	e	
+# ::edge	empty-02	ARG1	train	e	t2	
+# ::edge	track	purpose	train	t	t3	
+# ::edge	sit-01	location	track	s	t	
+# ::edge	ride-01	ARG1-of	possible-01	r	p	
+# ::edge	ride-01	ARG0	kid	r	k	
+# ::edge	track	ARG2-of	ride-01	t	r	
+(s / sit-01
+    :ARG1 (t2 / train
+        :mod (s2 / small))
+    :location (t / track
+        :purpose (t3 / train)
+        :ARG2-of (r / ride-01
+            :ARG0 (k / kid)
+            :ARG1-of (p / possible-01)))
+    :manner (e / empty-02
+        :ARG1 t2))

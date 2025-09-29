@@ -1,0 +1,31 @@
+# ::tok Chicken sandwich with lettuce and tomatoes on a plate with French fries
+# ::node	c	chicken	0-1
+# ::node	s	sandwich	1-2
+# ::node	l	lettuce	3-4
+# ::node	a	and	4-5
+# ::node	t	tomato	5-6
+# ::node	p	plate	8-9
+# ::node	c2	country	10-11
+# ::node	n	name	10-11
+# ::node	0	France	10-11
+# ::node	f	fry-01	11-12
+# ::root	s	sandwich
+# ::edge	sandwich	mod	chicken	s	c	
+# ::edge	and	op1	lettuce	a	l	
+# ::edge	sandwich	accompanier	and	s	a	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	sandwich	location	plate	s	p	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG0	country	f	c2	
+# ::edge	plate	accompanier	fry-01	p	f	
+(s / sandwich
+    :accompanier (a / and
+        :op1 (l / lettuce)
+        :op2 (t / tomato))
+    :location (p / plate
+        :accompanier (f / fry-01
+            :ARG0 (c2 / country
+                :name (n / name
+                    :op1 "France"))))
+    :mod (c / chicken))

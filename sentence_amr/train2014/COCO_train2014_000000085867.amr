@@ -1,0 +1,25 @@
+# ::tok Traffic signage displayed at intersection in large city environment .
+# ::node	t2	traffic	0-1
+# ::node	s	signage	1-2
+# ::node	d	display-01	2-3
+# ::node	i	intersect-01	4-5
+# ::node	t	thing	5-6
+# ::node	l	large	6-7
+# ::node	c	city	7-8
+# ::node	e	environment	8-9
+# ::root	d	display-01
+# ::edge	signage	purpose	traffic	s	t2	
+# ::edge	display-01	ARG1	signage	d	s	
+# ::edge	thing	ARG0-of	intersect-01	t	i	
+# ::edge	display-01	ARG2	thing	d	t	
+# ::edge	city	mod	large	c	l	
+# ::edge	environment	mod	city	e	c	
+# ::edge	display-01	location	environment	d	e	
+(d / display-01
+    :ARG1 (s / signage
+        :purpose (t2 / traffic))
+    :ARG2 (t / thing
+        :ARG0-of (i / intersect-01))
+    :location (e / environment
+        :mod (c / city
+            :mod (l / large))))

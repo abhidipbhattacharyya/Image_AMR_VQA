@@ -1,0 +1,37 @@
+# ::tok Harrods department store in London with an old fashioned cab driving by .
+# ::node	0	Harrods	0-1
+# ::node	d	department	1-2
+# ::node	s	store	2-3
+# ::node	n	name	2-3
+# ::node	c2	city	4-5
+# ::node	n2	name	4-5
+# ::node	1	London	4-5
+# ::node	o	old	7-8
+# ::node	f	fashion	8-9
+# ::node	c	cab	9-10
+# ::node	d2	drive-01	10-11
+# ::node	b	by	11-12
+# ::root	s	store
+# ::edge	store	mod	department	s	d	
+# ::edge	store	name	name	s	n	
+# ::edge	name	op1	Harrods	n	0	
+# ::edge	store	location	city	s	c2	
+# ::edge	city	name	name	c2	n2	
+# ::edge	name	op1	London	n2	1	
+# ::edge	fashion	mod	old	f	o	
+# ::edge	cab	mod	fashion	c	f	
+# ::edge	drive-01	ARG1	cab	d2	c	
+# ::edge	store	ARG0-of	drive-01	s	d2	
+# ::edge	drive-01	direction	by	d2	b	
+(s / store
+    :name (n / name
+        :op1 "Harrods")
+    :ARG0-of (d2 / drive-01
+        :ARG1 (c / cab
+            :mod (f / fashion
+                :mod (o / old)))
+        :direction (b / by))
+    :location (c2 / city
+        :name (n2 / name
+            :op1 "London"))
+    :mod (d / department))

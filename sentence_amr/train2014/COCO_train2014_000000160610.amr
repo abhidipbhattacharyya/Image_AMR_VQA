@@ -1,0 +1,40 @@
+# ::tok City bus at a bus stop in an older city with few pedestrians or other vehicles .
+# ::node	c	city	0-1
+# ::node	b	bus	1-2
+# ::node	b2	bus	4-5
+# ::node	s	stop-01	5-6
+# ::node	h	have-degree-91	8-9
+# ::node	o	old	8-9
+# ::node	m	more	8-9
+# ::node	c2	city	9-10
+# ::node	f	few	11-12
+# ::node	w	walk-01	12-13
+# ::node	o2	or	13-14
+# ::node	o3	other	14-15
+# ::node	v	vehicle	15-16
+# ::root	b	bus
+# ::edge	bus	mod	city	b	c	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	bus	location	stop-01	b	s	
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	city	ARG1-of	have-degree-91	c2	h	
+# ::edge	stop-01	location	city	s	c2	
+# ::edge	or	op1	walk-01	o2	w	
+# ::edge	or	quant	few	o2	f	
+# ::edge	city	prep-with	or	c2	o2	
+# ::edge	vehicle	mod	other	v	o3	
+# ::edge	or	op2	vehicle	o2	v	
+(b / bus
+    :location (s / stop-01
+        :ARG1 (b2 / bus)
+        :location (c2 / city
+            :ARG1-of (h / have-degree-91
+                :ARG2 (o / old)
+                :ARG3 (m / more))
+            :prep-with (o2 / or
+                :quant (f / few)
+                :op1 (w / walk-01)
+                :op2 (v / vehicle
+                    :mod (o3 / other)))))
+    :mod (c / city))

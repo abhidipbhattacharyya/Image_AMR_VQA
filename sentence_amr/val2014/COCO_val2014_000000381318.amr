@@ -1,0 +1,34 @@
+# ::tok Hotdogs in baskets with variety of toppings surrounding french fries in baskets on a table .
+# ::node	h	hot-dog	0-1
+# ::node	v	variety	4-5
+# ::node	s2	sunday	6-7
+# ::node	s3	surround-01	7-8
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	b	basket	11-12
+# ::node	s	sink-01	11-12
+# ::node	t	table	14-15
+# ::root	s3	surround-01
+# ::edge	surround-01	ARG1	hot-dog	s3	h	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	surround-01	ARG2	fry-01	s3	f	
+# ::edge	surround-01	location	basket	s3	b	
+# ::edge	basket	ARG1-of	sink-01	b	s	
+# ::edge	sink-01	ARG0	sunday	s	s2	
+# ::edge	basket	location	table	b	t	
+# ::edge	surround-01	rel	variety	s3	v	
+(s3 / surround-01
+    :ARG1 (h / hot-dog)
+    :ARG2 (f / fry-01
+        :mod (c / country
+            :name (n / name
+                :op1 "France")))
+    :location (b / basket
+        :ARG1-of (s / sink-01
+            :ARG0 (s2 / sunday))
+        :location (t / table))
+    :rel (v / variety))

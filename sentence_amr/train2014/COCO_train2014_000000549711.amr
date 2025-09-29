@@ -1,0 +1,48 @@
+# ::tok A PC computer with a color monitor that has stickers around the outside of it and a wire tray as the keyboard holder .
+# ::node	p	personal-02	1-2
+# ::node	p2	politics	1-2
+# ::node	c2	computer	2-3
+# ::node	c	color-01	5-6
+# ::node	m	monitor	6-7
+# ::node	h	have-03	8-9
+# ::node	t	thing	9-10
+# ::node	s	stick-01	9-10
+# ::node	a2	around	10-11
+# ::node	o	outside	12-13
+# ::node	a	and	15-16
+# ::node	w	wire	17-18
+# ::node	t2	tray	18-19
+# ::node	k	keyboard	21-22
+# ::node	h2	hold-01	22-23
+# ::root	c2	computer
+# ::edge	personal-02	mod	politics	p	p2	
+# ::edge	computer	ARG1-of	personal-02	c2	p	
+# ::edge	monitor	ARG1-of	color-01	m	c	
+# ::edge	computer	prep-with	monitor	c2	m	
+# ::edge	computer	ARG0-of	have-03	c2	h	
+# ::edge	thing	ARG1-of	stick-01	t	s	
+# ::edge	thing	location	around	t	a2	
+# ::edge	around	op1	outside	a2	o	
+# ::edge	computer	part	outside	c2	o	
+# ::edge	and	op1	thing	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	tray	consist-of	wire	t2	w	
+# ::edge	and	op2	tray	a	t2	
+# ::edge	hold-01	ARG1	keyboard	h2	k	
+# ::edge	tray	ARG0-of	hold-01	t2	h2	
+(c2 / computer
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / thing
+                :ARG1-of (s / stick-01)
+                :location (a2 / around
+                    :op1 (o / outside)))
+            :op2 (t2 / tray
+                :ARG0-of (h2 / hold-01
+                    :ARG1 (k / keyboard))
+                :consist-of (w / wire))))
+    :ARG1-of (p / personal-02
+        :mod (p2 / politics))
+    :part o
+    :prep-with (m / monitor
+        :ARG1-of (c / color-01)))

@@ -1,0 +1,33 @@
+# ::tok a train that is much larger than it should be , probably due to radiation
+# ::node	t	train	1-2
+# ::node	m2	much	4-5
+# ::node	h	have-degree-91	5-6
+# ::node	l	large	5-6
+# ::node	m	more	5-6
+# ::node	l2	large	5-6
+# ::node	r2	recommend-01	8-9
+# ::node	p	probable	11-12
+# ::node	c	cause-01	12-13
+# ::node	r	radiate-01	14-15
+# ::root	c	cause-01
+# ::edge	train	ARG1-of	have-degree-91	t	h	
+# ::edge	have-degree-91	ARG2	large	h	l	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	more	quant	much	m	m2	
+# ::edge	large	ARG4	recommend-01	l2	r2	
+# ::edge	recommend-01	ARG1	train	r2	t	
+# ::edge	cause-01	mod	probable	c	p	
+# ::edge	cause-01	ARG1	train	c	t	
+# ::edge	cause-01	ARG0	radiate-01	c	r	
+# ::edge	cause-01	rel	large	c	l2	
+(c / cause-01
+    :ARG0 (r / radiate-01)
+    :ARG1 (t / train
+        :ARG1-of (h / have-degree-91
+            :ARG2 (l / large)
+            :ARG3 (m / more
+                :quant (m2 / much))))
+    :mod (p / probable)
+    :rel (l2 / large
+        :ARG4 (r2 / recommend-01
+            :ARG1 t)))

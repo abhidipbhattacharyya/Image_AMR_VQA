@@ -1,0 +1,27 @@
+# ::tok A green double decker bus driving past another green double decker bus .
+# ::node	g	green-02	1-2
+# ::node	d	double-decker	3-4
+# ::node	b	bus	4-5
+# ::node	d2	drive-01	5-6
+# ::node	p	past	6-7
+# ::node	a	another	7-8
+# ::node	0	2	9-10
+# ::node	b2	bus	11-12
+# ::root	d2	drive-01
+# ::edge	bus	mod	double-decker	b	d	
+# ::edge	bus	ARG1-of	green-02	b	g	
+# ::edge	drive-01	ARG0	bus	d2	b	
+# ::edge	drive-01	path	past	d2	p	
+# ::edge	double-decker	quant	2	d	0	
+# ::edge	bus	mod	another	b2	a	
+# ::edge	past	op1	bus	p	b2	
+# ::edge	green-02	ARG1	bus	g	b2	
+(d2 / drive-01
+    :ARG0 (b / bus
+        :ARG1-of (g / green-02
+            :ARG1 (b2 / bus
+                :mod (a / another)))
+        :mod (d / double-decker
+            :quant 2))
+    :path (p / past
+        :op1 b2))

@@ -1,0 +1,42 @@
+# ::tok A cat is tilting it 's head as it sits on top of a dryer and stares at cabinet in front of it .
+# ::node	c2	cat	1-2
+# ::node	d	dismiss-01	3-4
+# ::node	h	head	6-7
+# ::node	s	sit-01	9-10
+# ::node	t2	top	11-12
+# ::node	t	thing	13-14
+# ::node	d2	dry-02	14-15
+# ::node	a	and	15-16
+# ::node	s2	stare-01	16-17
+# ::node	c	cabinet	18-19
+# ::node	i	in-front-of	20-21
+# ::root	d	dismiss-01
+# ::edge	dismiss-01	ARG0	cat	d	c2	
+# ::edge	dismiss-01	ARG1	head	d	h	
+# ::edge	cat	part	head	c2	h	
+# ::edge	sit-01	ARG1	cat	s	c2	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	top	part-of	thing	t2	t	
+# ::edge	thing	ARG0-of	dry-02	t	d2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	dismiss-01	time	and	d	a	
+# ::edge	and	op2	stare-01	a	s2	
+# ::edge	stare-01	ARG0	cat	s2	c2	
+# ::edge	stare-01	ARG1	cabinet	s2	c	
+# ::edge	cabinet	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	thing	i	t	
+(d / dismiss-01
+    :ARG0 (c2 / cat
+        :part (h / head))
+    :ARG1 h
+    :time (a / and
+        :op1 (s / sit-01
+            :ARG1 c2
+            :ARG2 (t2 / top
+                :part-of (t / thing
+                    :ARG0-of (d2 / dry-02))))
+        :op2 (s2 / stare-01
+            :ARG0 c2
+            :ARG1 (c / cabinet
+                :location (i / in-front-of
+                    :op1 t)))))

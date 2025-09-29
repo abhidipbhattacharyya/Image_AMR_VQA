@@ -1,0 +1,24 @@
+# ::tok A motorbike on display equipped with two containers mounted on the side .
+# ::node	m	motorbike	1-2
+# ::node	d	display-01	3-4
+# ::node	e	equip-01	4-5
+# ::node	0	2	6-7
+# ::node	c	container	7-8
+# ::node	m2	mount-03	8-9
+# ::node	s	side	11-12
+# ::root	m	motorbike
+# ::edge	motorbike	ARG1-of	display-01	m	d	
+# ::edge	motorbike	ARG1-of	equip-01	m	e	
+# ::edge	container	quant	2	c	0	
+# ::edge	equip-01	ARG2	container	e	c	
+# ::edge	container	ARG1-of	mount-03	c	m2	
+# ::edge	mount-03	location	side	m2	s	
+# ::edge	motorbike	part	side	m	s	
+(m / motorbike
+    :ARG1-of (d / display-01)
+    :ARG1-of (e / equip-01
+        :ARG2 (c / container
+            :quant 2
+            :ARG1-of (m2 / mount-03
+                :location (s / side))))
+    :part s)

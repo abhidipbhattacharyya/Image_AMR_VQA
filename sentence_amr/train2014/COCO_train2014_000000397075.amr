@@ -1,0 +1,28 @@
+# ::tok A store filled with lots of unripe bananas over a cement ground .
+# ::node	s	store	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	0	-	5-6
+# ::node	p	produce-01	6-7
+# ::node	b	banana	7-8
+# ::node	o	over	8-9
+# ::node	c	cement	10-11
+# ::node	g	ground	11-12
+# ::root	s	store
+# ::edge	store	ARG1-of	fill-01	s	f	
+# ::edge	produce-01	polarity	-	p	0	
+# ::edge	banana	ARG1-of	produce-01	b	p	
+# ::edge	banana	quant	lot	b	l	
+# ::edge	fill-01	ARG2	banana	f	b	
+# ::edge	store	location	over	s	o	
+# ::edge	ground	consist-of	cement	g	c	
+# ::edge	over	op1	ground	o	g	
+(s / store
+    :ARG1-of (f / fill-01
+        :ARG2 (b / banana
+            :quant (l / lot)
+            :ARG1-of (p / produce-01
+                :polarity -)))
+    :location (o / over
+        :op1 (g / ground
+            :consist-of (c / cement))))

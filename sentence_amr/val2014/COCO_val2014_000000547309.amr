@@ -1,0 +1,39 @@
+# ::tok A large semi truck cab with its light on in front of a brick building at night .
+# ::node	l	large	1-2
+# ::node	s	semi	2-3
+# ::node	t	truck	3-4
+# ::node	c	cab	4-5
+# ::node	l2	light	7-8
+# ::node	o	on-01	8-9
+# ::node	i	in-front-of	10-11
+# ::node	b2	brick	13-14
+# ::node	b3	building	14-15
+# ::node	b	be-located-at-91	15-16
+# ::node	d	date-entity	16-17
+# ::node	n	night	16-17
+# ::root	b	be-located-at-91
+# ::edge	truck	mod	semi	t	s	
+# ::edge	cab	mod	truck	c	t	
+# ::edge	cab	mod	large	c	l	
+# ::edge	light	poss	cab	l2	c	
+# ::edge	on-01	ARG1	light	o	l2	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	in-front-of	op1	building	i	b3	
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	be-located-at-91	ARG1	cab	b	c	
+# ::edge	be-located-at-91	time	date-entity	b	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	be-located-at-91	rel	on-01	b	o	
+(b / be-located-at-91
+    :ARG1 (c / cab
+        :mod (t / truck
+            :mod (s / semi))
+        :mod (l / large))
+    :ARG2 (i / in-front-of
+        :op1 (b3 / building
+            :consist-of (b2 / brick)))
+    :rel (o / on-01
+        :ARG1 (l2 / light
+            :poss c))
+    :time (d / date-entity
+        :dayperiod (n / night)))

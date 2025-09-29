@@ -1,0 +1,30 @@
+# ::tok some fridges stacked on each other to look a bit stonehenge like
+# ::node	s	some	0-1
+# ::node	r	refrigerator	1-2
+# ::node	s2	stack-01	2-3
+# ::node	l	look-02	7-8
+# ::node	b	bit	9-10
+# ::node	b2	building	10-11
+# ::node	n	name	10-11
+# ::node	s3	stone	10-11
+# ::node	s4	stonehenge	10-11
+# ::root	s2	stack-01
+# ::edge	refrigerator	quant	some	r	s	
+# ::edge	stack-01	ARG1	refrigerator	s2	r	
+# ::edge	stack-01	purpose	look-02	s2	l	
+# ::edge	look-02	ARG0	refrigerator	l	r	
+# ::edge	building	degree	bit	b2	b	
+# ::edge	look-02	ARG1	building	l	b2	
+# ::edge	building	name	name	b2	n	
+# ::edge	building	mod	stone	b2	s3	
+# ::edge	stone	mod	stonehenge	s3	s4	
+(s2 / stack-01
+    :purpose (l / look-02
+        :ARG0 (r / refrigerator
+            :quant (s / some))
+        :ARG1 (b2 / building
+            :name (n / name)
+            :degree (b / bit)
+            :mod (s3 / stone
+                :mod (s4 / stonehenge))))
+    :ARG1 r)

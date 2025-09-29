@@ -1,0 +1,34 @@
+# ::tok Police escort drive motorcycles down street as people stand by on both sides watching
+# ::node	p2	police	0-1
+# ::node	e	escort-01	1-2
+# ::node	d2	drive-01	2-3
+# ::node	m	motorcycle	3-4
+# ::node	d	down	4-5
+# ::node	s3	street	5-6
+# ::node	p	person	7-8
+# ::node	s2	stand-by-05	8-9
+# ::node	b	both	11-12
+# ::node	s	side	12-13
+# ::node	w	watch-01	13-14
+# ::root	d2	drive-01
+# ::edge	police	ARG0-of	escort-01	p2	e	
+# ::edge	drive-01	ARG0	police	d2	p2	
+# ::edge	drive-01	ARG1	motorcycle	d2	m	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	path	street	d2	s3	
+# ::edge	stand-by-05	ARG1	person	s2	p	
+# ::edge	drive-01	time-of	stand-by-05	d2	s2	
+# ::edge	side	mod	both	s	b	
+# ::edge	person	location	side	p	s	
+# ::edge	person	ARG0-of	watch-01	p	w	
+(d2 / drive-01
+    :ARG0 (p2 / police
+        :ARG0-of (e / escort-01))
+    :ARG1 (m / motorcycle)
+    :direction (d / down)
+    :path (s3 / street)
+    :time-of (s2 / stand-by-05
+        :ARG1 (p / person
+            :ARG0-of (w / watch-01)
+            :location (s / side
+                :mod (b / both)))))

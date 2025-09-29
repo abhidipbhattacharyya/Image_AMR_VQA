@@ -1,0 +1,28 @@
+# ::tok a bus on a wet street at night and some buildings and lights
+# ::node	b2	bus	1-2
+# ::node	w	wet-01	4-5
+# ::node	s2	street	5-6
+# ::node	d	date-entity	7-8
+# ::node	n	night	7-8
+# ::node	a	and	8-9
+# ::node	s	some	9-10
+# ::node	b	building	10-11
+# ::node	l	light	12-13
+# ::root	a	and
+# ::edge	street	ARG1-of	wet-01	s2	w	
+# ::edge	bus	location	street	b2	s2	
+# ::edge	bus	time	date-entity	b2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	building	quant	some	b	s	
+# ::edge	and	op2	building	a	b	
+# ::edge	and	op3	light	a	l	
+(a / and
+    :op1 (b2 / bus
+        :location (s2 / street
+            :ARG1-of (w / wet-01))
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :op2 (b / building
+        :quant (s / some))
+    :op3 (l / light))

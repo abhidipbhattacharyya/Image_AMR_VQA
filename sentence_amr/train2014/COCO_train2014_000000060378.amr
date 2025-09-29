@@ -1,0 +1,33 @@
+# ::tok A street vendor with lots of produce and green bananas at his feet .
+# ::node	s	street	1-2
+# ::node	p	person	2-3
+# ::node	v	vend-01	2-3
+# ::node	h	have-03	3-4
+# ::node	l	lot	4-5
+# ::node	p2	produce	6-7
+# ::node	a	and	7-8
+# ::node	g	green-02	8-9
+# ::node	b	banana	9-10
+# ::node	f	foot	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	vend-01	location	street	v	s	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	produce	quant	lot	p2	l	
+# ::edge	and	op1	produce	a	p2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	and	op2	banana	a	b	
+# ::edge	have-03	location	foot	h	f	
+# ::edge	person	part	foot	p	f	
+(p / person
+    :ARG0-of (v / vend-01
+        :location (s / street))
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p2 / produce
+                :quant (l / lot))
+            :op2 (b / banana
+                :ARG1-of (g / green-02)))
+        :location (f / foot))
+    :part f)

@@ -1,0 +1,32 @@
+# ::tok Surfers watch a man surfing as they await their turn in a wave machine
+# ::node	p	person	0-1
+# ::node	s	surf-01	0-1
+# ::node	w	watch-01	1-2
+# ::node	m2	man	3-4
+# ::node	s2	surf-01	4-5
+# ::node	a	await-01	7-8
+# ::node	t	turn-01	9-10
+# ::node	w2	wave	12-13
+# ::node	m	machine	13-14
+# ::root	w	watch-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	surf-01	ARG0	man	s2	m2	
+# ::edge	watch-01	ARG1	surf-01	w	s2	
+# ::edge	watch-01	time	await-01	w	a	
+# ::edge	await-01	ARG1	person	a	p	
+# ::edge	await-01	ARG2	turn-01	a	t	
+# ::edge	turn-01	ARG1	person	t	p	
+# ::edge	machine	mod	wave	m	w2	
+# ::edge	turn-01	prep-in	machine	t	m	
+(w / watch-01
+    :ARG0 (p / person
+        :ARG0-of (s / surf-01))
+    :ARG1 (s2 / surf-01
+        :ARG0 (m2 / man))
+    :time (a / await-01
+        :ARG1 p
+        :ARG2 (t / turn-01
+            :ARG1 p
+            :prep-in (m / machine
+                :mod (w2 / wave)))))

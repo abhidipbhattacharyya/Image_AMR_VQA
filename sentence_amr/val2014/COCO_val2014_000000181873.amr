@@ -1,0 +1,35 @@
+# ::tok A skier in a white jacket turns her feet toward each other to slow down on the slope .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	w	white-03	4-5
+# ::node	j	jacket	5-6
+# ::node	t	turn-01	6-7
+# ::node	f	foot	8-9
+# ::node	e	each	10-11
+# ::node	o	other	11-12
+# ::node	s3	slow-down-03	13-14
+# ::node	s2	slope	17-18
+# ::root	t	turn-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	jacket	ARG1-of	white-03	j	w	
+# ::edge	person	part-of	jacket	p	j	
+# ::edge	turn-01	ARG0	person	t	p	
+# ::edge	turn-01	ARG1	foot	t	f	
+# ::edge	person	part	foot	p	f	
+# ::edge	other	mod	each	o	e	
+# ::edge	turn-01	direction	other	t	o	
+# ::edge	turn-01	purpose	slow-down-03	t	s3	
+# ::edge	slow-down-03	ARG1	person	s3	p	
+# ::edge	slow-down-03	path	slope	s3	s2	
+(t / turn-01
+    :purpose (s3 / slow-down-03
+        :ARG1 (p / person
+            :ARG0-of (s / ski-01)
+            :part (f / foot)
+            :part-of (j / jacket
+                :ARG1-of (w / white-03)))
+        :path (s2 / slope))
+    :ARG0 p
+    :ARG1 f
+    :direction (o / other
+        :mod (e / each)))

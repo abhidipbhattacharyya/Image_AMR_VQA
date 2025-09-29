@@ -1,0 +1,34 @@
+# ::tok Street signage directs traffic moving right along Broadway .
+# ::node	s2	street	0-1
+# ::node	t	thing	1-2
+# ::node	s	signal-07	1-2
+# ::node	d	direct-01	2-3
+# ::node	t2	traffic	3-4
+# ::node	m	move-01	4-5
+# ::node	r	right	5-6
+# ::node	a	along	6-7
+# ::node	r2	road	7-8
+# ::node	n	name	7-8
+# ::node	0	Broadway	7-8
+# ::root	d	direct-01
+# ::edge	thing	ARG0-of	signal-07	t	s	
+# ::edge	signal-07	ARG1	street	s	s2	
+# ::edge	direct-01	ARG0	thing	d	t	
+# ::edge	direct-01	ARG1	traffic	d	t2	
+# ::edge	traffic	ARG1-of	move-01	t2	m	
+# ::edge	move-01	mod	right	m	r	
+# ::edge	move-01	ARG2	along	m	a	
+# ::edge	along	op1	road	a	r2	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op1	Broadway	n	0	
+(d / direct-01
+    :ARG0 (t / thing
+        :ARG0-of (s / signal-07
+            :ARG1 (s2 / street)))
+    :ARG1 (t2 / traffic
+        :ARG1-of (m / move-01
+            :ARG2 (a / along
+                :op1 (r2 / road
+                    :name (n / name
+                        :op1 "Broadway")))
+            :mod (r / right))))

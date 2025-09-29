@@ -1,0 +1,37 @@
+# ::tok Two pizza slices on paper plate near plastic silverware with cup of fries .
+# ::node	0	2	0-1
+# ::node	p2	pizza	1-2
+# ::node	s2	slice	2-3
+# ::node	p	paper	4-5
+# ::node	p4	plate	5-6
+# ::node	n	near-02	6-7
+# ::node	p3	plastic	7-8
+# ::node	s	silverware	8-9
+# ::node	h	have-03	9-10
+# ::node	c	cup	10-11
+# ::node	f	fry-01	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	slice	mod	pizza	s2	p2	
+# ::edge	slice	quant	2	s2	0	
+# ::edge	plate	consist-of	paper	p4	p	
+# ::edge	slice	location	plate	s2	p4	
+# ::edge	slice	ARG1-of	near-02	s2	n	
+# ::edge	silverware	consist-of	plastic	s	p3	
+# ::edge	near-02	ARG2	silverware	n	s	
+# ::edge	silverware	ARG0-of	have-03	s	h	
+# ::edge	fry-01	quant	cup	f	c	
+# ::edge	have-03	ARG1	fry-01	h	f	
+# ::edge	event	mod	slice	e	s2	
+(e / event
+    :mod (s2 / slice
+        :quant 2
+        :ARG1-of (n / near-02
+            :ARG2 (s / silverware
+                :ARG0-of (h / have-03
+                    :ARG1 (f / fry-01
+                        :quant (c / cup)))
+                :consist-of (p3 / plastic)))
+        :location (p4 / plate
+            :consist-of (p / paper))
+        :mod (p2 / pizza)))

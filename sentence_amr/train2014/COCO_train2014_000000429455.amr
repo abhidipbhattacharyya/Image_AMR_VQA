@@ -1,0 +1,31 @@
+# ::tok Two slices of pizza sitting on a ceramic plate beside a box of cheesesticks .
+# ::node	0	2	0-1
+# ::node	s2	slice	1-2
+# ::node	p	pizza	3-4
+# ::node	s	sit-01	4-5
+# ::node	c	ceramic	7-8
+# ::node	p2	plate	8-9
+# ::node	b	beside	9-10
+# ::node	b2	box	11-12
+# ::node	c2	contain-01	11-12
+# ::node	m	meat	13-14
+# ::root	s	sit-01
+# ::edge	slice	quant	2	s2	0	
+# ::edge	slice	mod	pizza	s2	p	
+# ::edge	sit-01	ARG1	slice	s	s2	
+# ::edge	plate	consist-of	ceramic	p2	c	
+# ::edge	sit-01	ARG2	plate	s	p2	
+# ::edge	plate	location	beside	p2	b	
+# ::edge	beside	op1	box	b	b2	
+# ::edge	box	ARG0-of	contain-01	b2	c2	
+# ::edge	contain-01	ARG1	meat	c2	m	
+(s / sit-01
+    :ARG1 (s2 / slice
+        :quant 2
+        :mod (p / pizza))
+    :ARG2 (p2 / plate
+        :consist-of (c / ceramic)
+        :location (b / beside
+            :op1 (b2 / box
+                :ARG0-of (c2 / contain-01
+                    :ARG1 (m / meat))))))

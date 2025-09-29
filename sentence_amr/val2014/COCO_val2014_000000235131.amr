@@ -1,0 +1,41 @@
+# ::tok People enjoying boating in the river .
+# ::node	p	person	0-1
+# ::node	e	enjoy-01	1-2
+# ::node	b	boat-01	2-3
+# ::node	r	river	5-6
+# ::root	e	enjoy-01
+# ::edge	enjoy-01	ARG0	person	e	p	
+# ::edge	enjoy-01	ARG1	boat-01	e	b	
+# ::edge	boat-01	ARG0	person	b	p	
+# ::edge	boat-01	ARG1	river	b	r	
+(e / enjoy-01
+    :ARG0 (p / person)
+    :ARG1 (b / boat-01
+        :ARG0 p
+        :ARG1 (r / river)))
+
+
+# ::tok Many motorboats and passengers seen at the river bank .
+# ::node	m	many	0-1
+# ::node	m2	motorcycle	1-2
+# ::node	a	and	2-3
+# ::node	p	passenger	3-4
+# ::node	s	see-01	4-5
+# ::node	r	river	7-8
+# ::node	b	bank	8-9
+# ::root	s	see-01
+# ::edge	motorcycle	quant	many	m2	m	
+# ::edge	and	op1	motorcycle	a	m2	
+# ::edge	and	op2	passenger	a	p	
+# ::edge	passenger	quant	many	p	m	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	bank	mod	river	b	r	
+# ::edge	see-01	location	bank	s	b	
+(s / see-01
+    :ARG1 (a / and
+        :op1 (m2 / motorcycle
+            :quant (m / many))
+        :op2 (p / passenger
+            :quant m))
+    :location (b / bank
+        :mod (r / river)))

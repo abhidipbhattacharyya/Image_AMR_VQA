@@ -1,0 +1,21 @@
+# ::tok A train is accelerating down the track with smoke coming from it .
+# ::node	t2	train	1-2
+# ::node	a	accelerate-01	3-4
+# ::node	d	down	4-5
+# ::node	t	track	6-7
+# ::node	s	smoke	8-9
+# ::node	c	come-03	9-10
+# ::root	a	accelerate-01
+# ::edge	accelerate-01	ARG1	train	a	t2	
+# ::edge	accelerate-01	direction	down	a	d	
+# ::edge	down	path	track	d	t	
+# ::edge	accelerate-01	consist-of	smoke	a	s	
+# ::edge	smoke	ARG1-of	come-03	s	c	
+# ::edge	come-03	ARG2	train	c	t2	
+(a / accelerate-01
+    :ARG1 (t2 / train)
+    :consist-of (s / smoke
+        :ARG1-of (c / come-03
+            :ARG2 t2))
+    :direction (d / down
+        :path (t / track)))

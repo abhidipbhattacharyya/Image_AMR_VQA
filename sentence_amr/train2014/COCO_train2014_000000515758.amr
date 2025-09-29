@@ -1,0 +1,31 @@
+# ::tok A boat is moving down the river while others are docked on the side .
+# ::node	b	boat	1-2
+# ::node	b2	boat	1-2
+# ::node	m	move-01	3-4
+# ::node	d2	down	4-5
+# ::node	r	river	6-7
+# ::node	o	other	8-9
+# ::node	d	dock-01	10-11
+# ::node	s	side	13-14
+# ::root	m	move-01
+# ::edge	move-01	ARG1	boat	m	b	
+# ::edge	move-01	direction	down	m	d2	
+# ::edge	down	path	river	d2	r	
+# ::edge	boat	mod	other	b2	o	
+# ::edge	dock-01	ARG2	boat	d	b2	
+# ::edge	boat	time	dock-01	b2	d	
+# ::edge	dock-01	ARG1	boat	d	b2	
+# ::edge	dock-01	location	side	d	s	
+# ::edge	river	part	side	r	s	
+# ::edge	move-01	rel	dock-01	m	d	
+(m / move-01
+    :ARG1 (b / boat)
+    :direction (d2 / down
+        :path (r / river
+            :part (s / side)))
+    :rel (d / dock-01
+        :ARG1 (b2 / boat
+            :mod (o / other)
+            :time d)
+        :ARG2 b2
+        :location s))

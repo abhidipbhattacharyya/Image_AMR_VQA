@@ -1,0 +1,37 @@
+# ::tok A baseball player in gray is preparing to run after hitting a ball during a baseball game .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	g2	gray-02	4-5
+# ::node	p3	prepare-02	6-7
+# ::node	r	run-02	8-9
+# ::node	a	after	9-10
+# ::node	h	hit-01	10-11
+# ::node	b	ball	12-13
+# ::node	g	game	16-17
+# ::root	p3	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	person	ARG1-of	gray-02	p	g2	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG2	run-02	p3	r	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	run-02	time	after	r	a	
+# ::edge	after	op1	hit-01	a	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	hit-01	time	game	h	g	
+# ::edge	game	mod	baseball	g	b2	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b2 / baseball))
+        :ARG1-of (g2 / gray-02))
+    :ARG2 (r / run-02
+        :ARG0 p
+        :time (a / after
+            :op1 (h / hit-01
+                :ARG0 p
+                :ARG1 (b / ball)
+                :time (g / game
+                    :mod b2)))))

@@ -1,0 +1,41 @@
+# ::tok A man checks his smart phone while sitting at an outside table on a city street one night .
+# ::node	m	man	1-2
+# ::node	c	check-01	2-3
+# ::node	s2	smart-06	4-5
+# ::node	p	phone	5-6
+# ::node	s	sit-01	7-8
+# ::node	o2	outside	10-11
+# ::node	t	table	11-12
+# ::node	c2	city	14-15
+# ::node	s3	street	15-16
+# ::node	o	one	16-17
+# ::node	d	date-entity	17-18
+# ::node	n	night	17-18
+# ::root	c	check-01
+# ::edge	check-01	ARG0	man	c	m	
+# ::edge	phone	ARG1-of	smart-06	p	s2	
+# ::edge	check-01	ARG1	phone	c	p	
+# ::edge	phone	poss	man	p	m	
+# ::edge	check-01	time	sit-01	c	s	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	table	location	outside	t	o2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	street	mod	city	s3	c2	
+# ::edge	table	location	street	t	s3	
+# ::edge	date-entity	mod	one	d	o	
+# ::edge	sit-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(c / check-01
+    :ARG0 (m / man)
+    :ARG1 (p / phone
+        :ARG1-of (s2 / smart-06)
+        :poss m)
+    :time (s / sit-01
+        :ARG1 m
+        :ARG2 (t / table
+            :location (o2 / outside)
+            :location (s3 / street
+                :mod (c2 / city)))
+        :time (d / date-entity
+            :dayperiod (n / night)
+            :mod (o / one))))

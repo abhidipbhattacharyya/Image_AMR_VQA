@@ -1,0 +1,54 @@
+# ::tok A camouflage truck drives on a highway next to a semi - truck with a boat on its trailer as other vehicles , across a median , drive by in the other direction .
+# ::node	c	camouflage-01	1-2
+# ::node	t2	truck	2-3
+# ::node	d2	drive-01	3-4
+# ::node	h2	highway	6-7
+# ::node	n	next-to	7-8
+# ::node	s	semi	10-11
+# ::node	t3	truck	12-13
+# ::node	h	have-03	13-14
+# ::node	b	boat	15-16
+# ::node	t	trailer	18-19
+# ::node	o	other	20-21
+# ::node	v	vehicle	21-22
+# ::node	a	across	23-24
+# ::node	m	median	25-26
+# ::node	d3	drive-01	27-28
+# ::node	o2	other	31-32
+# ::node	d	direction	32-33
+# ::root	d2	drive-01
+# ::edge	truck	ARG0-of	camouflage-01	t2	c	
+# ::edge	drive-01	ARG0	truck	d2	t2	
+# ::edge	drive-01	ARG1	highway	d2	h2	
+# ::edge	highway	location-of	next-to	h2	n	
+# ::edge	truck	mod	semi	t3	s	
+# ::edge	next-to	op1	truck	n	t3	
+# ::edge	truck	ARG0-of	have-03	t3	h	
+# ::edge	have-03	ARG1	boat	h	b	
+# ::edge	boat	location	trailer	b	t	
+# ::edge	trailer	poss	truck	t	t3	
+# ::edge	vehicle	mod	other	v	o	
+# ::edge	across	op1	median	a	m	
+# ::edge	drive-01	manner	across	d3	a	
+# ::edge	drive-01	ARG0	vehicle	d3	v	
+# ::edge	drive-01	time	drive-01	d2	d3	
+# ::edge	direction	mod	other	d	o2	
+# ::edge	drive-01	direction	direction	d3	d	
+(d2 / drive-01
+    :ARG0 (t2 / truck
+        :ARG0-of (c / camouflage-01))
+    :ARG1 (h2 / highway
+        :location-of (n / next-to
+            :op1 (t3 / truck
+                :ARG0-of (h / have-03
+                    :ARG1 (b / boat
+                        :location (t / trailer
+                            :poss t3)))
+                :mod (s / semi))))
+    :time (d3 / drive-01
+        :ARG0 (v / vehicle
+            :mod (o / other))
+        :direction (d / direction
+            :mod (o2 / other))
+        :manner (a / across
+            :op1 (m / median))))

@@ -1,0 +1,34 @@
+# ::tok A beach area that has people on the sand and one person flying a kite overhead .
+# ::node	b	beach	1-2
+# ::node	a2	area	2-3
+# ::node	h	have-03	4-5
+# ::node	p	person	5-6
+# ::node	s	sand	8-9
+# ::node	a	and	9-10
+# ::node	0	1	10-11
+# ::node	p2	person	11-12
+# ::node	f	fly-01	12-13
+# ::node	k	kite	14-15
+# ::node	o	overhead	15-16
+# ::root	a2	area
+# ::edge	area	mod	beach	a2	b	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	person	location	sand	p	s	
+# ::edge	and	op1	person	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	person	quant	1	p2	0	
+# ::edge	fly-01	ARG0	person	f	p2	
+# ::edge	and	op2	fly-01	a	f	
+# ::edge	fly-01	ARG1	kite	f	k	
+# ::edge	fly-01	location	overhead	f	o	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p / person
+                :location (s / sand))
+            :op2 (f / fly-01
+                :ARG0 (p2 / person
+                    :quant 1)
+                :ARG1 (k / kite)
+                :location (o / overhead))))
+    :mod (b / beach))

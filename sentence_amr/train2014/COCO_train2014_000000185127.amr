@@ -1,0 +1,34 @@
+# ::tok A man is catching a Frisbee in the foreground while a group of people in the background appear to be running somewhere .
+# ::node	m	man	1-2
+# ::node	c	catch-01	3-4
+# ::node	r	Frisbee	5-6
+# ::node	f	foreground	8-9
+# ::node	c2	contrast-01	9-10
+# ::node	g	group	11-12
+# ::node	p	person	13-14
+# ::node	b	background	16-17
+# ::node	a	appear-02	17-18
+# ::node	r2	run-02	20-21
+# ::node	s	somewhere	21-22
+# ::root	c2	contrast-01
+# ::edge	catch-01	ARG0	man	c	m	
+# ::edge	catch-01	ARG1	Frisbee	c	r	
+# ::edge	catch-01	location	foreground	c	f	
+# ::edge	contrast-01	ARG1	catch-01	c2	c	
+# ::edge	person	quant	group	p	g	
+# ::edge	person	location	background	p	b	
+# ::edge	contrast-01	ARG2	appear-02	c2	a	
+# ::edge	appear-02	ARG1	run-02	a	r2	
+# ::edge	run-02	ARG0	person	r2	p	
+# ::edge	run-02	location	somewhere	r2	s	
+(c2 / contrast-01
+    :ARG1 (c / catch-01
+        :ARG0 (m / man)
+        :ARG1 (r / Frisbee)
+        :location (f / foreground))
+    :ARG2 (a / appear-02
+        :ARG1 (r2 / run-02
+            :ARG0 (p / person
+                :quant (g / group)
+                :location (b / background))
+            :location (s / somewhere))))

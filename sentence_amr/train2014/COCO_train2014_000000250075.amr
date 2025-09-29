@@ -1,0 +1,26 @@
+# ::tok The bathroom is clean and spotless ready for them to use it .
+# ::node	b	bathroom	1-2
+# ::node	c	clean-01	3-4
+# ::node	a	and	4-5
+# ::node	s	spot	5-6
+# ::node	r	ready-02	6-7
+# ::node	t	they	8-9
+# ::node	u	use-01	10-11
+# ::root	a	and
+# ::edge	clean-01	ARG1	bathroom	c	b	
+# ::edge	and	op1	clean-01	a	c	
+# ::edge	and	op2	spot	a	s	
+# ::edge	spot	domain	bathroom	s	b	
+# ::edge	and	ARG1-of	ready-02	a	r	
+# ::edge	use-01	ARG0	they	u	t	
+# ::edge	ready-02	ARG2	use-01	r	u	
+# ::edge	use-01	ARG1	bathroom	u	b	
+(a / and
+    :ARG1-of (r / ready-02
+        :ARG2 (u / use-01
+            :ARG0 (t / they)
+            :ARG1 (b / bathroom)))
+    :op1 (c / clean-01
+        :ARG1 b)
+    :op2 (s / spot
+        :domain b))

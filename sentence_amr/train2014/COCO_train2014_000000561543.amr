@@ -1,0 +1,40 @@
+# ::tok A table is set with plates with pancakes and bowls of fruit and a bottle of syrup .
+# ::node	t	table	1-2
+# ::node	s	set-01	3-4
+# ::node	p	plate	5-6
+# ::node	e	enzyme	7-8
+# ::node	c	cook-01	7-8
+# ::node	h	hurricane	7-8
+# ::node	a	and	8-9
+# ::node	p2	plate	9-10
+# ::node	f	fruit	11-12
+# ::node	0	1	13-14
+# ::node	b	bottle	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	s2	syrup	16-17
+# ::root	s	set-01
+# ::edge	set-01	ARG1	table	s	t	
+# ::edge	plate	consist-of	enzyme	p	e	
+# ::edge	enzyme	ARG1-of	cook-01	e	c	
+# ::edge	and	op1	plate	a	p	
+# ::edge	set-01	ARG2	and	s	a	
+# ::edge	and	op2	plate	a	p2	
+# ::edge	plate	consist-of	fruit	p2	f	
+# ::edge	volume-quantity	unit	bottle	v	b	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	syrup	quant	volume-quantity	s2	v	
+# ::edge	and	op3	syrup	a	s2	
+# ::edge	set-01	rel	hurricane	s	h	
+(s / set-01
+    :ARG1 (t / table)
+    :ARG2 (a / and
+        :op1 (p / plate
+            :consist-of (e / enzyme
+                :ARG1-of (c / cook-01)))
+        :op2 (p2 / plate
+            :consist-of (f / fruit))
+        :op3 (s2 / syrup
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (b / bottle))))
+    :rel (h / hurricane))

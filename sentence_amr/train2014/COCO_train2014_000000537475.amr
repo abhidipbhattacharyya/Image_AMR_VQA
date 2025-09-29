@@ -1,0 +1,28 @@
+# ::tok A subway train stopped near two mirrors adjoining a station platform .
+# ::node	s3	subway	1-2
+# ::node	t	train	2-3
+# ::node	s2	stop-01	3-4
+# ::node	n	near-02	4-5
+# ::node	0	2	5-6
+# ::node	m	mirror	6-7
+# ::node	a	adjoin-01	7-8
+# ::node	s	station	9-10
+# ::node	p	platform	10-11
+# ::root	s2	stop-01
+# ::edge	train	mod	subway	t	s3	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	stop-01	ARG1-of	near-02	s2	n	
+# ::edge	mirror	quant	2	m	0	
+# ::edge	near-02	ARG2	mirror	n	m	
+# ::edge	mirror	ARG1-of	adjoin-01	m	a	
+# ::edge	platform	mod	station	p	s	
+# ::edge	adjoin-01	ARG2	platform	a	p	
+(s2 / stop-01
+    :ARG1 (t / train
+        :mod (s3 / subway))
+    :ARG1-of (n / near-02
+        :ARG2 (m / mirror
+            :quant 2
+            :ARG1-of (a / adjoin-01
+                :ARG2 (p / platform
+                    :mod (s / station))))))

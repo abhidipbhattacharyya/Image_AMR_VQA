@@ -1,0 +1,36 @@
+# ::tok Keeper holding a soccer ball while other players walk around him .
+# ::node	p	person	0-1
+# ::node	k	keep-01	0-1
+# ::node	h	hold-01	1-2
+# ::node	s	soccer	3-4
+# ::node	b	ball	4-5
+# ::node	o	other	6-7
+# ::node	p2	person	7-8
+# ::node	p3	play-01	7-8
+# ::node	w	walk-01	8-9
+# ::node	a2	around	9-10
+# ::node	a	and	11-12
+# ::root	a	and
+# ::edge	person	ARG0-of	keep-01	p	k	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	ball	mod	soccer	b	s	
+# ::edge	hold-01	ARG1	ball	h	b	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	walk-01	ARG2	around	w	a2	
+# ::edge	around	op1	person	a2	p	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	and	op1	person	a	p	
+(a / and
+    :op1 (p / person
+        :ARG0-of (k / keep-01)
+        :ARG0-of (h / hold-01
+            :ARG1 (b / ball
+                :mod (s / soccer))))
+    :op2 (w / walk-01
+        :ARG0 (p2 / person
+            :ARG0-of (p3 / play-01)
+            :mod (o / other))
+        :ARG2 (a2 / around
+            :op1 p)))

@@ -1,0 +1,49 @@
+# ::tok A snow covered ground that has a pair of snow skis laying on it and a persons ski boots with numbers on them .
+# ::node	s3	snow	1-2
+# ::node	c	cover-02	2-3
+# ::node	g	ground	3-4
+# ::node	h	have-03	5-6
+# ::node	0	1	6-7
+# ::node	p	pair	7-8
+# ::node	s	ski-01	10-11
+# ::node	l	lay-01	11-12
+# ::node	a	and	14-15
+# ::node	p2	person	16-17
+# ::node	s2	ski-01	17-18
+# ::node	b	boot	18-19
+# ::node	h2	have-03	19-20
+# ::node	n	number	20-21
+# ::root	g	ground
+# ::edge	cover-02	ARG2	snow	c	s3	
+# ::edge	ground	ARG1-of	cover-02	g	c	
+# ::edge	ground	ARG0-of	have-03	g	h	
+# ::edge	pair	quant	1	p	0	
+# ::edge	ski-01	quant	pair	s	p	
+# ::edge	lay-01	ARG1	ground	l	g	
+# ::edge	lay-01	ARG2	ground	l	g	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	boot	mod	ski-01	b	s2	
+# ::edge	boot	poss	person	b	p2	
+# ::edge	and	op2	boot	a	b	
+# ::edge	boot	ARG0-of	have-03	b	h2	
+# ::edge	have-03	ARG1	number	h2	n	
+# ::edge	ground	rel	ski-01	g	s	
+# ::edge	ground	rel	have-03	g	h	
+(g / ground
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / lay-01
+                :ARG1 g
+                :ARG2 g)
+            :op2 (b / boot
+                :ARG0-of (h2 / have-03
+                    :ARG1 (n / number))
+                :mod (s2 / ski-01)
+                :poss (p2 / person))))
+    :ARG1-of (c / cover-02
+        :ARG2 (s3 / snow))
+    :rel (s / ski-01
+        :quant (p / pair
+            :quant 1))
+    :rel h)

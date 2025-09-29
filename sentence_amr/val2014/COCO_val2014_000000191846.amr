@@ -1,0 +1,45 @@
+# ::tok Two men and two children under a flap , and one of the men is mixing juice in a blender .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	2	2	3-4
+# ::node	c	child	4-5
+# ::node	u	under	5-6
+# ::node	f	flap	7-8
+# ::node	a2	and	9-10
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	m2	man	13-14
+# ::node	m3	mix-01	15-16
+# ::node	j	juice	16-17
+# ::node	b	blender	19-20
+# ::root	a2	and
+# ::edge	man	quant	2	m	1	
+# ::edge	and	op1	man	a	m	
+# ::edge	child	quant	2	c	2	
+# ::edge	and	op2	child	a	c	
+# ::edge	and	location	under	a	u	
+# ::edge	under	op1	flap	u	f	
+# ::edge	and	op1	and	a2	a	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	mix-01	ARG0	man	m3	m2	
+# ::edge	and	op2	mix-01	a2	m3	
+# ::edge	mix-01	ARG1	juice	m3	j	
+# ::edge	mix-01	ARG4	blender	m3	b	
+(a2 / and
+    :op1 (a / and
+        :location (u / under
+            :op1 (f / flap))
+        :op1 (m / man
+            :quant 2)
+        :op2 (c / child
+            :quant 2))
+    :op2 (m3 / mix-01
+        :ARG0 (m2 / man
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 m))
+        :ARG1 (j / juice)
+        :ARG4 (b / blender)))

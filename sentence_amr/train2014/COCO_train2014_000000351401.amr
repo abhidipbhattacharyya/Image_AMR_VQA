@@ -1,0 +1,28 @@
+# ::tok Several people in a large building that is filled with luggage tagged with yellow tags .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	l2	large	4-5
+# ::node	b	building	5-6
+# ::node	f	fill-01	8-9
+# ::node	l3	luggage	10-11
+# ::node	t	tag-01	11-12
+# ::node	y	yellow-02	13-14
+# ::node	l	label	14-15
+# ::root	p	person
+# ::edge	person	quant	several	p	s	
+# ::edge	building	mod	large	b	l2	
+# ::edge	person	location	building	p	b	
+# ::edge	building	ARG1-of	fill-01	b	f	
+# ::edge	fill-01	ARG2	luggage	f	l3	
+# ::edge	luggage	ARG1-of	tag-01	l3	t	
+# ::edge	label	ARG1-of	yellow-02	l	y	
+# ::edge	tag-01	ARG2	label	t	l	
+(p / person
+    :quant (s / several)
+    :location (b / building
+        :ARG1-of (f / fill-01
+            :ARG2 (l3 / luggage
+                :ARG1-of (t / tag-01
+                    :ARG2 (l / label
+                        :ARG1-of (y / yellow-02)))))
+        :mod (l2 / large)))

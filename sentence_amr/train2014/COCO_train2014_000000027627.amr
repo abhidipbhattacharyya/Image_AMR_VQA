@@ -1,0 +1,46 @@
+# ::tok A hand holding a half eaten donut next to a American Doughnut Kitchen vendor .
+# ::node	h2	hand	1-2
+# ::node	h3	hold-01	2-3
+# ::node	h	half	4-5
+# ::node	e	eat-01	5-6
+# ::node	d	donut	6-7
+# ::node	n3	next-to	7-8
+# ::node	c2	country	10-11
+# ::node	n	name	10-11
+# ::node	0	America	10-11
+# ::node	1	Doughnut	11-12
+# ::node	c	company	12-13
+# ::node	2	Kitchen	12-13
+# ::node	p	person	13-14
+# ::node	v	vend-01	13-14
+# ::node	n2	name	13-14
+# ::root	h3	hold-01
+# ::edge	hold-01	ARG0	hand	h3	h2	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	donut	ARG1-of	eat-01	d	e	
+# ::edge	hold-01	ARG1	donut	h3	d	
+# ::edge	hold-01	location	next-to	h3	n3	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	company	mod	country	c	c2	
+# ::edge	next-to	op1	person	n3	p	
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	vend-01	ARG2	company	v	c	
+# ::edge	name	op2	Kitchen	n2	2	
+# ::edge	company	name	name	c	n2	
+# ::edge	name	op1	Doughnut	n2	1	
+(h3 / hold-01
+    :ARG0 (h2 / hand)
+    :ARG1 (d / donut
+        :ARG1-of (e / eat-01
+            :degree (h / half)))
+    :location (n3 / next-to
+        :op1 (p / person
+            :ARG0-of (v / vend-01
+                :ARG2 (c / company
+                    :name (n2 / name
+                        :op1 "Doughnut"
+                        :op2 "Kitchen")
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "America")))))))

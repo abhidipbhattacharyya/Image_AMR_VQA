@@ -1,0 +1,19 @@
+# ::tok Six birds could be electrocuted if the wire malfunctions .
+# ::node	0	6	0-1
+# ::node	b	bird	1-2
+# ::node	p	possible-01	2-3
+# ::node	e	electrocute-01	4-5
+# ::node	w	wire	7-8
+# ::node	m	malfunction-01	8-9
+# ::root	p	possible-01
+# ::edge	bird	quant	6	b	0	
+# ::edge	possible-01	ARG1	electrocute-01	p	e	
+# ::edge	electrocute-01	ARG1	bird	e	b	
+# ::edge	malfunction-01	ARG1	wire	m	w	
+# ::edge	possible-01	condition	malfunction-01	p	m	
+(p / possible-01
+    :ARG1 (e / electrocute-01
+        :ARG1 (b / bird
+            :quant 6))
+    :condition (m / malfunction-01
+        :ARG1 (w / wire)))

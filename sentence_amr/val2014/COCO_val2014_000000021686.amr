@@ -1,0 +1,109 @@
+# ::tok It shows two restaurant booths ; a smiling woman in the one behind , in the closer one , a man holding a drink and looking down and a smiling woman looking at a table with plates , some empty , others holding food , including a slice of cake .
+# ::node	i3	it	0-1
+# ::node	s	show-01	1-2
+# ::node	0	2	2-3
+# ::node	r	restaurant	3-4
+# ::node	b2	booth	4-5
+# ::node	b3	booth	4-5
+# ::node	b4	booth	4-5
+# ::node	s3	smile-01	7-8
+# ::node	w	woman	8-9
+# ::node	b	behind	12-13
+# ::node	h2	have-degree-91	16-17
+# ::node	c2	close-10	16-17
+# ::node	m2	more	16-17
+# ::node	m	man	20-21
+# ::node	h3	hold-01	21-22
+# ::node	d2	drink	23-24
+# ::node	l	look-01	25-26
+# ::node	d	down	26-27
+# ::node	a	and	27-28
+# ::node	w2	woman	30-31
+# ::node	l2	look-01	31-32
+# ::node	t	table	34-35
+# ::node	h	have-03	35-36
+# ::node	p2	plate	36-37
+# ::node	i2	include-91	38-39
+# ::node	s4	some	38-39
+# ::node	e	empty-02	39-40
+# ::node	o	other	41-42
+# ::node	h4	hold-01	42-43
+# ::node	f	food	43-44
+# ::node	i	include-01	45-46
+# ::node	s2	slice	47-48
+# ::node	c	cake	49-50
+# ::node	p	person	50-51
+# ::root	s	show-01
+# ::edge	show-01	ARG0	it	s	i3	
+# ::edge	booth	mod	restaurant	b2	r	
+# ::edge	booth	quant	2	b2	0	
+# ::edge	show-01	ARG1	booth	s	b2	
+# ::edge	woman	ARG0-of	smile-01	w	s3	
+# ::edge	woman	location	booth	w	b3	
+# ::edge	booth	location	behind	b3	b	
+# ::edge	booth	ARG1-of	have-degree-91	b4	h2	
+# ::edge	have-degree-91	ARG2	close-10	h2	c2	
+# ::edge	close-10	ARG1	booth	c2	b3	
+# ::edge	have-degree-91	ARG3	more	h2	m2	
+# ::edge	man	ARG0-of	hold-01	m	h3	
+# ::edge	hold-01	ARG1	drink	h3	d2	
+# ::edge	man	ARG0-of	look-01	m	l	
+# ::edge	look-01	ARG1	down	l	d	
+# ::edge	and	op2	man	a	m	
+# ::edge	and	op1	booth	a	b3	
+# ::edge	booth	example	and	b2	a	
+# ::edge	and	op3	woman	a	w2	
+# ::edge	woman	ARG0-of	smile-01	w2	s3	
+# ::edge	woman	ARG0-of	look-01	w2	l2	
+# ::edge	look-01	ARG1	table	l2	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	plate	h	p2	
+# ::edge	table	ARG2-of	include-91	t	i2	
+# ::edge	hold-01	ARG0	other	h4	o	
+# ::edge	hold-01	ARG1	food	h4	f	
+# ::edge	food	ARG2-of	include-01	f	i	
+# ::edge	include-01	ARG1	slice	i	s2	
+# ::edge	slice	quant-of	cake	s2	c	
+# ::edge	person	ARG0-of	hold-01	p	h4	
+# ::edge	person	quant	some	p	s4	
+# ::edge	include-91	ARG1	person	i2	p	
+# ::edge	show-01	rel	booth	s	b4	
+# ::edge	show-01	rel	woman	s	w	
+# ::edge	show-01	rel	empty-02	s	e	
+(s / show-01
+    :ARG0 (i3 / it)
+    :ARG1 (b2 / booth
+        :quant 2
+        :example (a / and
+            :op1 (b3 / booth
+                :location (b / behind))
+            :op2 (m / man
+                :ARG0-of (h3 / hold-01
+                    :ARG1 (d2 / drink))
+                :ARG0-of (l / look-01
+                    :ARG1 (d / down)))
+            :op3 (w2 / woman
+                :ARG0-of (s3 / smile-01)
+                :ARG0-of (l2 / look-01
+                    :ARG1 (t / table
+                        :ARG0-of (h / have-03
+                            :ARG1 (p2 / plate))
+                        :ARG2-of (i2 / include-91
+                            :ARG1 (p / person
+                                :quant (s4 / some)
+                                :ARG0-of (h4 / hold-01
+                                    :ARG0 (o / other)
+                                    :ARG1 (f / food
+                                        :ARG2-of (i / include-01
+                                            :ARG1 (s2 / slice
+                                                :quant-of (c / cake)))))))))))
+        :mod (r / restaurant))
+    :rel (b4 / booth
+        :ARG1-of (h2 / have-degree-91
+            :ARG2 (c2 / close-10
+                :ARG1 b3)
+            :ARG3 (m2 / more)))
+    :rel (w / woman
+        :ARG0-of s3
+        :location b3)
+    :rel (e / empty-02))

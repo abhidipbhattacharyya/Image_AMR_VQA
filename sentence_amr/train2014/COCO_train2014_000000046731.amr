@@ -1,0 +1,63 @@
+# ::tok The keyboard and mouse are viewed from above , and a disc is sticking half way out of the disc drive , while another disc , in its sleeve , sits on the stand next to the mouse .
+# ::node	k	keyboard	1-2
+# ::node	a2	and	2-3
+# ::node	m	mouse	3-4
+# ::node	v	view-01	5-6
+# ::node	a	above	7-8
+# ::node	a3	and	9-10
+# ::node	d	disc	11-12
+# ::node	s4	stick-01	13-14
+# ::node	h	half	14-15
+# ::node	w	way	15-16
+# ::node	o	out-06	16-17
+# ::node	d2	disc	19-20
+# ::node	d4	drive	20-21
+# ::node	a4	another	23-24
+# ::node	d3	disc	24-25
+# ::node	s2	sleeve	28-29
+# ::node	s	sit-01	30-31
+# ::node	s3	stand	33-34
+# ::node	n	next-to	34-35
+# ::node	m2	mouse	37-38
+# ::root	a3	and
+# ::edge	and	op1	keyboard	a2	k	
+# ::edge	and	op2	mouse	a2	m	
+# ::edge	view-01	ARG1	and	v	a2	
+# ::edge	view-01	source	above	v	a	
+# ::edge	and	op1	view-01	a3	v	
+# ::edge	stick-01	ARG1	disc	s4	d	
+# ::edge	and	op2	stick-01	a3	s4	
+# ::edge	way	mod	half	w	h	
+# ::edge	out-06	extent	way	o	w	
+# ::edge	stick-01	ARG2	out-06	s4	o	
+# ::edge	out-06	ARG1	disc	o	d	
+# ::edge	drive	mod	disc	d4	d2	
+# ::edge	out-06	ARG2	drive	o	d4	
+# ::edge	disc	mod	another	d3	a4	
+# ::edge	disc	location	sleeve	d3	s2	
+# ::edge	sit-01	ARG1	disc	s	d3	
+# ::edge	and	op3	sit-01	a3	s	
+# ::edge	sit-01	ARG2	stand	s	s3	
+# ::edge	stand	location	next-to	s3	n	
+# ::edge	next-to	op1	mouse	n	m2	
+(a3 / and
+    :op1 (v / view-01
+        :ARG1 (a2 / and
+            :op1 (k / keyboard)
+            :op2 (m / mouse))
+        :source (a / above))
+    :op2 (s4 / stick-01
+        :ARG1 (d / disc)
+        :ARG2 (o / out-06
+            :ARG1 d
+            :ARG2 (d4 / drive
+                :mod (d2 / disc))
+            :extent (w / way
+                :mod (h / half))))
+    :op3 (s / sit-01
+        :ARG1 (d3 / disc
+            :location (s2 / sleeve)
+            :mod (a4 / another))
+        :ARG2 (s3 / stand
+            :location (n / next-to
+                :op1 (m2 / mouse)))))

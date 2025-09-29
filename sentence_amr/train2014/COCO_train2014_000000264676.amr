@@ -1,0 +1,31 @@
+# ::tok A red car carrier truck with the loading ramp down and a car being loaded .
+# ::node	r2	red-02	1-2
+# ::node	c	car	2-3
+# ::node	c3	carry-01	3-4
+# ::node	t	truck	4-5
+# ::node	l	load-01	7-8
+# ::node	r	ramp	8-9
+# ::node	d	down-01	9-10
+# ::node	a	and	10-11
+# ::node	c2	car	12-13
+# ::node	l2	load-01	14-15
+# ::root	a	and
+# ::edge	carry-01	ARG1	car	c3	c	
+# ::edge	truck	ARG0-of	carry-01	t	c3	
+# ::edge	truck	ARG1-of	red-02	t	r2	
+# ::edge	ramp	purpose	load-01	r	l	
+# ::edge	truck	prep-with	ramp	t	r	
+# ::edge	ramp	ARG1-of	down-01	r	d	
+# ::edge	and	op1	truck	a	t	
+# ::edge	load-01	ARG1	car	l2	c2	
+# ::edge	and	op2	load-01	a	l2	
+(a / and
+    :op1 (t / truck
+        :ARG0-of (c3 / carry-01
+            :ARG1 (c / car))
+        :ARG1-of (r2 / red-02)
+        :prep-with (r / ramp
+            :purpose (l / load-01)
+            :ARG1-of (d / down-01)))
+    :op2 (l2 / load-01
+        :ARG1 (c2 / car)))

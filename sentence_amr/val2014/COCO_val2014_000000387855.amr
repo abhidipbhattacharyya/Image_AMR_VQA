@@ -1,0 +1,37 @@
+# ::tok Two yellow Metro passenger trains going under a red steel bridge .
+# ::node	0	2	0-1
+# ::node	y	yellow-02	1-2
+# ::node	s	station	2-3
+# ::node	n	name	2-3
+# ::node	1	Metro	2-3
+# ::node	p	passenger	3-4
+# ::node	t	train	4-5
+# ::node	g	go-01	5-6
+# ::node	u	under	6-7
+# ::node	r	red-02	8-9
+# ::node	s2	steel	9-10
+# ::node	b	bridge	10-11
+# ::root	g	go-01
+# ::edge	station	name	name	s	n	
+# ::edge	name	op1	Metro	n	1	
+# ::edge	train	mod	passenger	t	p	
+# ::edge	train	mod	station	t	s	
+# ::edge	train	ARG1-of	yellow-02	t	y	
+# ::edge	train	quant	2	t	0	
+# ::edge	go-01	ARG1	train	g	t	
+# ::edge	go-01	ARG4	under	g	u	
+# ::edge	steel	ARG1-of	red-02	s2	r	
+# ::edge	bridge	consist-of	steel	b	s2	
+# ::edge	under	op1	bridge	u	b	
+(g / go-01
+    :ARG1 (t / train
+        :quant 2
+        :ARG1-of (y / yellow-02)
+        :mod (p / passenger)
+        :mod (s / station
+            :name (n / name
+                :op1 "Metro")))
+    :ARG4 (u / under
+        :op1 (b / bridge
+            :consist-of (s2 / steel
+                :ARG1-of (r / red-02)))))

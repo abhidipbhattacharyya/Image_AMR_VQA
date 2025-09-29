@@ -1,0 +1,31 @@
+# ::tok Several people waiting on the side of train tracks as a train with it ; s lights on comes down the track .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	wait-01	2-3
+# ::node	s2	side	5-6
+# ::node	t2	train	7-8
+# ::node	t	track	8-9
+# ::node	t3	train	11-12
+# ::node	l	light	16-17
+# ::node	c	come-01	18-19
+# ::node	d	down	19-20
+# ::root	w	wait-01
+# ::edge	person	quant	several	p	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	location	side	w	s2	
+# ::edge	track	poss	train	t	t2	
+# ::edge	side	part-of	track	s2	t	
+# ::edge	train	part	light	t3	l	
+# ::edge	come-01	ARG1	train	c	t3	
+# ::edge	wait-01	time	come-01	w	c	
+# ::edge	come-01	direction	down	c	d	
+(w / wait-01
+    :ARG1 (p / person
+        :quant (s / several))
+    :location (s2 / side
+        :part-of (t / track
+            :poss (t2 / train)))
+    :time (c / come-01
+        :ARG1 (t3 / train
+            :part (l / light))
+        :direction (d / down)))

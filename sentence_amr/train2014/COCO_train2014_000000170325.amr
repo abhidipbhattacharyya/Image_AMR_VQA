@@ -1,0 +1,28 @@
+# ::tok A small train runs on a track next to full size train cars .
+# ::node	s2	small	1-2
+# ::node	t2	train	2-3
+# ::node	r	run-01	3-4
+# ::node	t	track	6-7
+# ::node	n	next-to	7-8
+# ::node	f	full-09	9-10
+# ::node	s	size-01	10-11
+# ::node	t3	train	11-12
+# ::node	c	car	12-13
+# ::root	r	run-01
+# ::edge	train	mod	small	t2	s2	
+# ::edge	run-01	ARG1	train	r	t2	
+# ::edge	run-01	path	track	r	t	
+# ::edge	track	location	next-to	t	n	
+# ::edge	size-01	ARG1-of	full-09	s	f	
+# ::edge	car	mod	train	c	t3	
+# ::edge	car	ARG1-of	size-01	c	s	
+# ::edge	next-to	op1	car	n	c	
+(r / run-01
+    :ARG1 (t2 / train
+        :mod (s2 / small))
+    :path (t / track
+        :location (n / next-to
+            :op1 (c / car
+                :ARG1-of (s / size-01
+                    :ARG1-of (f / full-09))
+                :mod (t3 / train)))))

@@ -1,0 +1,25 @@
+# ::tok A road with different vehicles and on pavement pedestrians are walking .
+# ::node	r	road	1-2
+# ::node	h	have-03	2-3
+# ::node	d	differ-02	3-4
+# ::node	v	vehicle	4-5
+# ::node	p	pavement	7-8
+# ::node	w	walk-01	8-9
+# ::node	p2	person	9-10
+# ::node	w2	walk-01	10-11
+# ::root	w2	walk-01
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	vehicle	ARG1-of	differ-02	v	d	
+# ::edge	have-03	ARG1	vehicle	h	v	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	person	mod	pavement	p2	p	
+# ::edge	walk-01	ARG0	person	w2	p2	
+# ::edge	walk-01	location	road	w2	r	
+(w2 / walk-01
+    :ARG0 (p2 / person
+        :ARG0-of (w / walk-01)
+        :mod (p / pavement))
+    :location (r / road
+        :ARG0-of (h / have-03
+            :ARG1 (v / vehicle
+                :ARG1-of (d / differ-02)))))

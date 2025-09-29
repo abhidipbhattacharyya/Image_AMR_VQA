@@ -1,0 +1,41 @@
+# ::tok the distinguished gentleman has enjoyed a beer or two , but should remove his hat .
+# ::node	d	distinguish-01	1-2
+# ::node	g	gentleman	2-3
+# ::node	e	enjoy-01	4-5
+# ::node	0	1	5-6
+# ::node	b	beer	6-7
+# ::node	b2	beer	6-7
+# ::node	o	or	7-8
+# ::node	1	2	8-9
+# ::node	c	contrast-01	10-11
+# ::node	r	recommend-01	11-12
+# ::node	r2	remove-01	12-13
+# ::node	h	hat	14-15
+# ::root	c	contrast-01
+# ::edge	gentleman	ARG1-of	distinguish-01	g	d	
+# ::edge	enjoy-01	ARG0	gentleman	e	g	
+# ::edge	enjoy-01	ARG1	beer	e	b	
+# ::edge	or	op2	beer	o	b2	
+# ::edge	beer	quant	or	b	o	
+# ::edge	or	op1	1	o	0	
+# ::edge	beer	quant	2	b2	1	
+# ::edge	contrast-01	ARG1	enjoy-01	c	e	
+# ::edge	contrast-01	ARG2	recommend-01	c	r	
+# ::edge	recommend-01	ARG1	remove-01	r	r2	
+# ::edge	remove-01	ARG0	gentleman	r2	g	
+# ::edge	remove-01	ARG1	hat	r2	h	
+# ::edge	hat	poss	gentleman	h	g	
+(c / contrast-01
+    :ARG1 (e / enjoy-01
+        :ARG0 (g / gentleman
+            :ARG1-of (d / distinguish-01))
+        :ARG1 (b / beer
+            :quant (o / or
+                :op1 1
+                :op2 (b2 / beer
+                    :quant 2))))
+    :ARG2 (r / recommend-01
+        :ARG1 (r2 / remove-01
+            :ARG0 g
+            :ARG1 (h / hat
+                :poss g))))

@@ -1,0 +1,32 @@
+# ::tok A piece of fruit is sliced in half and displayed with several other pieces of fruit .
+# ::node	p	piece	1-2
+# ::node	f	fruit	3-4
+# ::node	s2	slice-01	5-6
+# ::node	h	half	7-8
+# ::node	a	and	8-9
+# ::node	d	display-01	9-10
+# ::node	s	several	11-12
+# ::node	o	other	12-13
+# ::node	p2	piece	13-14
+# ::root	a	and
+# ::edge	piece	part-of	fruit	p	f	
+# ::edge	slice-01	ARG1	piece	s2	p	
+# ::edge	slice-01	manner	half	s2	h	
+# ::edge	and	op1	slice-01	a	s2	
+# ::edge	and	op2	display-01	a	d	
+# ::edge	display-01	ARG1	piece	d	p	
+# ::edge	piece	mod	other	p2	o	
+# ::edge	piece	quant	several	p2	s	
+# ::edge	display-01	accompanier	piece	d	p2	
+# ::edge	fruit	part	piece	f	p2	
+(a / and
+    :op1 (s2 / slice-01
+        :ARG1 (p / piece
+            :part-of (f / fruit
+                :part (p2 / piece
+                    :quant (s / several)
+                    :mod (o / other))))
+        :manner (h / half))
+    :op2 (d / display-01
+        :ARG1 p
+        :accompanier p2))

@@ -1,0 +1,40 @@
+# ::tok messy living room with garbage covering the coffee table and pillows , blankets , and other items strewn about
+# ::node	m	messy	0-1
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	g	garbage	4-5
+# ::node	c2	cover-02	5-6
+# ::node	c	coffee	7-8
+# ::node	t	table	8-9
+# ::node	a	and	9-10
+# ::node	p	pill	10-11
+# ::node	b	blanket	12-13
+# ::node	o	other	15-16
+# ::node	i	item	16-17
+# ::node	s	strew-01	17-18
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	room	mod	messy	r	m	
+# ::edge	cover-02	ARG2	garbage	c2	g	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	cover-02	ARG1	table	c2	t	
+# ::edge	and	op1	cover-02	a	c2	
+# ::edge	room	location-of	and	r	a	
+# ::edge	and	op2	pill	a	p	
+# ::edge	and	op3	blanket	a	b	
+# ::edge	item	mod	other	i	o	
+# ::edge	and	op4	item	a	i	
+# ::edge	item	ARG1-of	strew-01	i	s	
+(r / room
+    :location-of (a / and
+        :op1 (c2 / cover-02
+            :ARG1 (t / table
+                :mod (c / coffee))
+            :ARG2 (g / garbage))
+        :op2 (p / pill)
+        :op3 (b / blanket)
+        :op4 (i / item
+            :ARG1-of (s / strew-01)
+            :mod (o / other)))
+    :mod (l / living)
+    :mod (m / messy))

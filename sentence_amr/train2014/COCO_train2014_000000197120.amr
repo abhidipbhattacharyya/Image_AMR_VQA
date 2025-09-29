@@ -1,0 +1,31 @@
+# ::tok A China Airlines airliner is parked at an airport near another jet .
+# ::node	n	name	1-2
+# ::node	1	China	1-2
+# ::node	c	company	2-3
+# ::node	0	Airlines	2-3
+# ::node	a	airliner	3-4
+# ::node	p	park-01	5-6
+# ::node	a2	airport	8-9
+# ::node	n2	near-02	9-10
+# ::node	a3	another	10-11
+# ::node	j	jet	11-12
+# ::root	p	park-01
+# ::edge	name	op1	China	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airlines	n	0	
+# ::edge	airliner	mod	company	a	c	
+# ::edge	park-01	ARG1	airliner	p	a	
+# ::edge	park-01	ARG2	airport	p	a2	
+# ::edge	airport	ARG1-of	near-02	a2	n2	
+# ::edge	jet	mod	another	j	a3	
+# ::edge	near-02	ARG2	jet	n2	j	
+(p / park-01
+    :ARG1 (a / airliner
+        :mod (c / company
+            :name (n / name
+                :op1 "China"
+                :op2 "Airlines")))
+    :ARG2 (a2 / airport
+        :ARG1-of (n2 / near-02
+            :ARG2 (j / jet
+                :mod (a3 / another)))))

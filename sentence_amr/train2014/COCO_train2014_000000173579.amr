@@ -1,0 +1,30 @@
+# ::tok A busted fire hydrant spraying water all over people standing near by .
+# ::node	b	bust-01	1-2
+# ::node	f	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	s	spray-01	4-5
+# ::node	w	water	5-6
+# ::node	a	all-over	7-8
+# ::node	p	person	8-9
+# ::node	s2	stand-01	9-10
+# ::node	n	near-02	10-11
+# ::root	s	spray-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	ARG1-of	bust-01	h	b	
+# ::edge	spray-01	ARG0	hydrant	s	h	
+# ::edge	spray-01	ARG1	water	s	w	
+# ::edge	spray-01	ARG2	all-over	s	a	
+# ::edge	all-over	op1	person	a	p	
+# ::edge	person	ARG1-of	stand-01	p	s2	
+# ::edge	stand-01	ARG1-of	near-02	s2	n	
+# ::edge	near-02	ARG2	hydrant	n	h	
+(s / spray-01
+    :ARG0 (h / hydrant
+        :ARG1-of (b / bust-01)
+        :mod (f / fire))
+    :ARG1 (w / water)
+    :ARG2 (a / all-over
+        :op1 (p / person
+            :ARG1-of (s2 / stand-01
+                :ARG1-of (n / near-02
+                    :ARG2 h)))))

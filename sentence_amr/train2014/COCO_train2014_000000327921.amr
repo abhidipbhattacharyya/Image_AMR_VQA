@@ -1,0 +1,39 @@
+# ::tok A fried fish sandwich on a hoagie roll with toppings and fries on the side .
+# ::node	f2	fry-01	1-2
+# ::node	f	fish	2-3
+# ::node	s	sandwich	3-4
+# ::node	h	hoagie	6-7
+# ::node	r	roll	7-8
+# ::node	c	continent	9-10
+# ::node	n	name	9-10
+# ::node	0	Islam	9-10
+# ::node	f3	fry-01	11-12
+# ::node	t	thing	12-13
+# ::node	a	and	13-14
+# ::node	s2	side	14-15
+# ::root	s	sandwich
+# ::edge	sandwich	mod	fish	s	f	
+# ::edge	sandwich	ARG1-of	fry-01	s	f2	
+# ::edge	roll	mod	hoagie	r	h	
+# ::edge	sandwich	location	roll	s	r	
+# ::edge	roll	mod	continent	r	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Islam	n	0	
+# ::edge	thing	ARG1-of	fry-01	t	f3	
+# ::edge	and	op2	thing	a	t	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	sandwich	accompanier	and	s	a	
+# ::edge	and	location	side	a	s2	
+(s / sandwich
+    :ARG1-of (f2 / fry-01)
+    :accompanier (a / and
+        :location (s2 / side)
+        :op1 s
+        :op2 (t / thing
+            :ARG1-of (f3 / fry-01)))
+    :location (r / roll
+        :mod (h / hoagie)
+        :mod (c / continent
+            :name (n / name
+                :op1 "Islam")))
+    :mod (f / fish))

@@ -1,0 +1,47 @@
+# ::tok A girl in a black shirt and a girl in a blue short , both wearing beads , sit next to each other .
+# ::node	g	girl	1-2
+# ::node	b	black-04	4-5
+# ::node	s2	shirt	5-6
+# ::node	a	and	6-7
+# ::node	g2	girl	8-9
+# ::node	w	wear-01	9-10
+# ::node	w2	wear-01	9-10
+# ::node	b2	blue	11-12
+# ::node	s3	short	12-13
+# ::node	b3	both	14-15
+# ::node	w3	wear-01	15-16
+# ::node	s	seed	16-17
+# ::node	s4	sit-01	18-19
+# ::node	n	next-to	19-20
+# ::root	s4	sit-01
+# ::edge	shirt	ARG1-of	black-04	s2	b	
+# ::edge	and	op1	girl	a	g	
+# ::edge	and	op2	girl	a	g2	
+# ::edge	wear-01	ARG1	girl	w	g2	
+# ::edge	girl	ARG0-of	wear-01	g	w	
+# ::edge	girl	ARG0-of	wear-01	g2	w2	
+# ::edge	short	mod	blue	s3	b2	
+# ::edge	wear-01	ARG1	short	w2	s3	
+# ::edge	and	mod	both	a	b3	
+# ::edge	both	ARG0-of	wear-01	b3	w3	
+# ::edge	wear-01	ARG1	seed	w3	s	
+# ::edge	sit-01	ARG1	and	s4	a	
+# ::edge	sit-01	ARG2	next-to	s4	n	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	sit-01	rel	shirt	s4	s2	
+(s4 / sit-01
+    :ARG1 (a / and
+        :mod (b3 / both
+            :ARG0-of (w3 / wear-01
+                :ARG1 (s / seed)))
+        :op1 (g / girl
+            :ARG0-of (w / wear-01
+                :ARG1 (g2 / girl
+                    :ARG0-of (w2 / wear-01
+                        :ARG1 (s3 / short
+                            :mod (b2 / blue))))))
+        :op2 g2)
+    :ARG2 (n / next-to
+        :op1 a)
+    :rel (s2 / shirt
+        :ARG1-of (b / black-04)))

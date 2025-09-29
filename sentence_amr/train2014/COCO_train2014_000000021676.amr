@@ -1,0 +1,33 @@
+# ::tok Two men holding up a hatchback trunk so they can take some luggage out .
+# ::node	0	2	0-1
+# ::node	m	man	1-2
+# ::node	h2	hold-up-10	2-3
+# ::node	h	hatchback	5-6
+# ::node	t2	trunk	6-7
+# ::node	p	possible-01	9-10
+# ::node	t	take-01	10-11
+# ::node	s	some	11-12
+# ::node	l	luggage	12-13
+# ::node	o	out	13-14
+# ::root	h2	hold-up-10
+# ::edge	man	quant	2	m	0	
+# ::edge	hold-up-10	ARG0	man	h2	m	
+# ::edge	trunk	mod	hatchback	t2	h	
+# ::edge	hold-up-10	ARG1	trunk	h2	t2	
+# ::edge	hold-up-10	purpose	possible-01	h2	p	
+# ::edge	possible-01	ARG1	take-01	p	t	
+# ::edge	take-01	ARG0	man	t	m	
+# ::edge	luggage	quant	some	l	s	
+# ::edge	take-01	ARG1	luggage	t	l	
+# ::edge	take-01	ARG3	out	t	o	
+(h2 / hold-up-10
+    :purpose (p / possible-01
+        :ARG1 (t / take-01
+            :ARG0 (m / man
+                :quant 2)
+            :ARG1 (l / luggage
+                :quant (s / some))
+            :ARG3 (o / out)))
+    :ARG0 m
+    :ARG1 (t2 / trunk
+        :mod (h / hatchback)))

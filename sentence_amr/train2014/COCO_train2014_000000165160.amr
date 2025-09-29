@@ -1,0 +1,22 @@
+# ::tok A traffic light on a fog filled street in the night .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	f2	fog	5-6
+# ::node	f	fill-01	6-7
+# ::node	s	street	7-8
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	fill-01	ARG2	fog	f	f2	
+# ::edge	street	ARG1-of	fill-01	s	f	
+# ::edge	light	location	street	l	s	
+# ::edge	light	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(l / light
+    :location (s / street
+        :ARG1-of (f / fill-01
+            :ARG2 (f2 / fog)))
+    :mod (t / traffic)
+    :time (d / date-entity
+        :dayperiod (n / night)))

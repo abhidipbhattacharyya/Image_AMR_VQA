@@ -1,0 +1,36 @@
+# ::tok A baseball player holding his hat with his glove tucked underneath his arm .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	h2	hold-01	3-4
+# ::node	h	hat	5-6
+# ::node	g	glove	8-9
+# ::node	t	tuck-01	9-10
+# ::node	u	underneath	10-11
+# ::node	a	arm	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	hold-01	ARG1	hat	h2	h	
+# ::edge	hat	poss	person	h	p	
+# ::edge	person	part	glove	p	g	
+# ::edge	tuck-01	ARG1	glove	t	g	
+# ::edge	hold-01	manner	tuck-01	h2	t	
+# ::edge	tuck-01	ARG0	person	t	p	
+# ::edge	tuck-01	ARG2	underneath	t	u	
+# ::edge	underneath	op1	arm	u	a	
+# ::edge	person	part	arm	p	a	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (h2 / hold-01
+        :ARG1 (h / hat
+            :poss p)
+        :manner (t / tuck-01
+            :ARG0 p
+            :ARG1 (g / glove)
+            :ARG2 (u / underneath
+                :op1 (a / arm))))
+    :part g
+    :part a)

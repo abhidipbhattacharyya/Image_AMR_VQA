@@ -1,0 +1,32 @@
+# ::tok A purse sitting on top of a table with it 's contents splayed all over it .
+# ::node	p	purse	1-2
+# ::node	s	sit-01	2-3
+# ::node	t3	top	4-5
+# ::node	t	table	7-8
+# ::node	t2	thing	11-12
+# ::node	c	contain-01	11-12
+# ::node	l	lay-01	12-13
+# ::node	a	all	13-14
+# ::node	a2	all-over	14-15
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	purse	s	p	
+# ::edge	sit-01	ARG2	top	s	t3	
+# ::edge	top	part-of	table	t3	t	
+# ::edge	thing	ARG1-of	contain-01	t2	c	
+# ::edge	contain-01	ARG0	purse	c	p	
+# ::edge	lay-01	ARG1	thing	l	t2	
+# ::edge	purse	ARG2-of	lay-01	p	l	
+# ::edge	all-over	mod	all	a2	a	
+# ::edge	lay-01	ARG2	all-over	l	a2	
+# ::edge	all-over	op1	table	a2	t	
+(s / sit-01
+    :ARG1 (p / purse
+        :ARG2-of (l / lay-01
+            :ARG1 (t2 / thing
+                :ARG1-of (c / contain-01
+                    :ARG0 p))
+            :ARG2 (a2 / all-over
+                :mod (a / all)
+                :op1 (t / table))))
+    :ARG2 (t3 / top
+        :part-of t))

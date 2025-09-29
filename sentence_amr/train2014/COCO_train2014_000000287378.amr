@@ -1,0 +1,54 @@
+# ::tok a blue sign white letters some words written in Chinese and some on English
+# ::node	b	blue	1-2
+# ::node	s	sign	2-3
+# ::node	w	white-03	3-4
+# ::node	l3	letter	4-5
+# ::node	s2	some	5-6
+# ::node	w2	word	6-7
+# ::node	w3	word	6-7
+# ::node	w4	write-01	7-8
+# ::node	w5	write-01	7-8
+# ::node	l	language	9-10
+# ::node	n	name	9-10
+# ::node	0	Chinese	9-10
+# ::node	a	and	10-11
+# ::node	s3	some	11-12
+# ::node	l2	language	13-14
+# ::node	n2	name	13-14
+# ::node	1	English	13-14
+# ::root	a	and
+# ::edge	sign	mod	blue	s	b	
+# ::edge	letter	ARG1-of	white-03	l3	w	
+# ::edge	letter	mod	sign	l3	s	
+# ::edge	word	mod	some	w2	s2	
+# ::edge	word	ARG1-of	write-01	w2	w4	
+# ::edge	word	ARG1-of	write-01	w3	w5	
+# ::edge	write-01	medium	language	w4	l	
+# ::edge	language	name	name	l	n	
+# ::edge	name	op1	Chinese	n	0	
+# ::edge	and	op2	letter	a	l3	
+# ::edge	and	op1	letter	a	l3	
+# ::edge	word	quant	some	w3	s3	
+# ::edge	write-01	medium	language	w5	l2	
+# ::edge	language	name	name	l2	n2	
+# ::edge	name	op1	English	n2	1	
+# ::edge	and	rel	word	a	w2	
+# ::edge	and	rel	word	a	w3	
+(a / and
+    :op1 (l3 / letter
+        :ARG1-of (w / white-03)
+        :mod (s / sign
+            :mod (b / blue)))
+    :op2 l3
+    :rel (w2 / word
+        :ARG1-of (w4 / write-01
+            :medium (l / language
+                :name (n / name
+                    :op1 "Chinese")))
+        :mod (s2 / some))
+    :rel (w3 / word
+        :quant (s3 / some)
+        :ARG1-of (w5 / write-01
+            :medium (l2 / language
+                :name (n2 / name
+                    :op1 "English")))))

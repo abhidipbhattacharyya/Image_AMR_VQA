@@ -1,0 +1,49 @@
+# ::tok A pile of stamps with a pair of orange handled scissors .
+# ::node	p2	pile-01	1-2
+# ::node	s2	stamp	3-4
+# ::node	p	pair	6-7
+# ::node	o	orange	8-9
+# ::node	h	handle-01	9-10
+# ::node	s	scissors	10-11
+# ::root	p2	pile-01
+# ::edge	pile-01	ARG1	stamp	p2	s2	
+# ::edge	handle-01	ARG0	orange	h	o	
+# ::edge	scissors	ARG1-of	handle-01	s	h	
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	pile-01	instrument	scissors	p2	s	
+(p2 / pile-01
+    :ARG1 (s2 / stamp)
+    :instrument (s / scissors
+        :quant (p / pair)
+        :ARG1-of (h / handle-01
+            :ARG0 (o / orange))))
+
+
+# ::tok One stamp has a picture of President Nixon .
+# ::node	0	1	0-1
+# ::node	s	stamp	1-2
+# ::node	h	have-03	2-3
+# ::node	p2	picture	4-5
+# ::node	p	person	6-7
+# ::node	h2	have-org-role-91	6-7
+# ::node	p3	president	6-7
+# ::node	n	name	7-8
+# ::node	1	Nixon	7-8
+# ::root	h	have-03
+# ::edge	stamp	quant	1	s	0	
+# ::edge	have-03	ARG0	stamp	h	s	
+# ::edge	have-03	ARG1	picture	h	p2	
+# ::edge	picture	topic	person	p2	p	
+# ::edge	person	ARG0-of	have-org-role-91	p	h2	
+# ::edge	have-org-role-91	ARG2	president	h2	p3	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Nixon	n	1	
+(h / have-03
+    :ARG0 (s / stamp
+        :quant 1)
+    :ARG1 (p2 / picture
+        :topic (p / person
+            :name (n / name
+                :op1 "Nixon")
+            :ARG0-of (h2 / have-org-role-91
+                :ARG2 (p3 / president)))))

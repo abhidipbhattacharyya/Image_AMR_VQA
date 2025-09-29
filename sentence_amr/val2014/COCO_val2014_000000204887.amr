@@ -1,0 +1,90 @@
+# ::tok A street view , left , shows a curb with a yellow fire hydrant and a big bus , holding a bicycle in front , and to the right , an island with cars moving on either side , and far off street signs , a crosswalk with pedestrians , and buildings .
+# ::node	s4	street	1-2
+# ::node	v	view-01	2-3
+# ::node	l	left-20	4-5
+# ::node	s	show-01	6-7
+# ::node	c3	curb	8-9
+# ::node	h	have-03	9-10
+# ::node	y	yellow-02	11-12
+# ::node	f2	fire	12-13
+# ::node	h3	hydrant	13-14
+# ::node	a	and	14-15
+# ::node	b2	big	16-17
+# ::node	b4	bus	17-18
+# ::node	h2	hold-01	19-20
+# ::node	b	bicycle	21-22
+# ::node	f3	front	23-24
+# ::node	r	right-04	28-29
+# ::node	i	island	31-32
+# ::node	c	car	33-34
+# ::node	m	move-01	34-35
+# ::node	e	either	36-37
+# ::node	s2	side	37-38
+# ::node	f	far	40-41
+# ::node	o	off	41-42
+# ::node	s5	street	42-43
+# ::node	s3	sign	43-44
+# ::node	c2	cross-02	46-47
+# ::node	p	person	48-49
+# ::node	w	walk-01	48-49
+# ::node	b3	building	51-52
+# ::root	s	show-01
+# ::edge	view-01	ARG1	street	v	s4	
+# ::edge	view-01	ARG1-of	left-20	v	l	
+# ::edge	show-01	ARG0	view-01	s	v	
+# ::edge	curb	ARG0-of	have-03	c3	h	
+# ::edge	hydrant	mod	fire	h3	f2	
+# ::edge	hydrant	ARG1-of	yellow-02	h3	y	
+# ::edge	and	op1	curb	a	c3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	bus	mod	big	b4	b2	
+# ::edge	and	op2	bus	a	b4	
+# ::edge	curb	ARG0-of	hold-01	c3	h2	
+# ::edge	hold-01	ARG1	bicycle	h2	b	
+# ::edge	hold-01	ARG2	front	h2	f3	
+# ::edge	island	ARG1-of	right-04	i	r	
+# ::edge	and	op2	island	a	i	
+# ::edge	car	ARG0-of	move-01	c	m	
+# ::edge	side	mod	either	s2	e	
+# ::edge	move-01	location	side	m	s2	
+# ::edge	off	degree	far	o	f	
+# ::edge	sign	mod	street	s3	s5	
+# ::edge	sign	mod	off	s3	o	
+# ::edge	and	op3	sign	a	s3	
+# ::edge	and	op4	cross-02	a	c2	
+# ::edge	cross-02	ARG0	person	c2	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op5	building	a	b3	
+# ::edge	show-01	rel	hydrant	s	h3	
+# ::edge	show-01	rel	car	s	c	
+# ::edge	show-01	rel	have-03	s	h	
+(s / show-01
+    :ARG0 (v / view-01
+        :ARG1 (s4 / street)
+        :ARG1-of (l / left-20))
+    :rel (h3 / hydrant
+        :ARG1-of (y / yellow-02)
+        :mod (f2 / fire))
+    :rel (c / car
+        :ARG0-of (m / move-01
+            :location (s2 / side
+                :mod (e / either))))
+    :rel (h / have-03
+        :ARG1 (a / and
+            :op1 (c3 / curb
+                :ARG0-of h
+                :ARG0-of (h2 / hold-01
+                    :ARG1 (b / bicycle)
+                    :ARG2 (f3 / front)))
+            :op2 (b4 / bus
+                :mod (b2 / big))
+            :op2 (i / island
+                :ARG1-of (r / right-04))
+            :op3 (s3 / sign
+                :mod (s5 / street)
+                :mod (o / off
+                    :degree (f / far)))
+            :op4 (c2 / cross-02
+                :ARG0 (p / person
+                    :ARG0-of (w / walk-01)))
+            :op5 (b3 / building))))

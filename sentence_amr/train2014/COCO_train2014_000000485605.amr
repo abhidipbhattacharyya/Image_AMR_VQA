@@ -1,0 +1,46 @@
+# ::tok A small bathroom features a painting of birch trees , a beveled mirror and a sink cabinet with multi - pane glass windows .
+# ::node	s2	small	1-2
+# ::node	b	bathroom	2-3
+# ::node	f	feature-01	3-4
+# ::node	p	paint-02	5-6
+# ::node	b3	birch	7-8
+# ::node	t	tree	8-9
+# ::node	b2	beveled	11-12
+# ::node	m	mirror	12-13
+# ::node	a	and	13-14
+# ::node	s	sink-01	15-16
+# ::node	c	cabinet	16-17
+# ::node	m2	multiple	18-19
+# ::node	p2	pane	20-21
+# ::node	g	glass	21-22
+# ::node	w	window	22-23
+# ::root	f	feature-01
+# ::edge	bathroom	mod	small	b	s2	
+# ::edge	feature-01	ARG0	bathroom	f	b	
+# ::edge	tree	mod	birch	t	b3	
+# ::edge	paint-02	ARG1	tree	p	t	
+# ::edge	mirror	mod	beveled	m	b2	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	and	op1	paint-02	a	p	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	cabinet	mod	sink-01	c	s	
+# ::edge	and	op3	cabinet	a	c	
+# ::edge	pane	quant	multiple	p2	m2	
+# ::edge	glass	consist-of	pane	g	p2	
+# ::edge	window	mod	glass	w	g	
+# ::edge	cabinet	part	window	c	w	
+(f / feature-01
+    :ARG0 (b / bathroom
+        :mod (s2 / small))
+    :ARG1 (a / and
+        :op1 (p / paint-02
+            :ARG1 (t / tree
+                :mod (b3 / birch)))
+        :op2 (m / mirror
+            :mod (b2 / beveled))
+        :op3 (c / cabinet
+            :mod (s / sink-01)
+            :part (w / window
+                :mod (g / glass
+                    :consist-of (p2 / pane
+                        :quant (m2 / multiple)))))))

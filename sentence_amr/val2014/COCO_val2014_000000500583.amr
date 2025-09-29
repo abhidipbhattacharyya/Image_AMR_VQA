@@ -1,0 +1,41 @@
+# ::tok The driver holds the reigns as a horse hauls him and two passengers down the paved roadway .
+# ::node	p3	person	1-2
+# ::node	d2	drive-01	1-2
+# ::node	h2	hold-01	2-3
+# ::node	r	reign-01	4-5
+# ::node	h3	horse	7-8
+# ::node	h	haul-01	8-9
+# ::node	a	and	10-11
+# ::node	0	2	11-12
+# ::node	p	passenger	12-13
+# ::node	d	down	13-14
+# ::node	p2	pave-01	15-16
+# ::node	r2	roadway	16-17
+# ::root	h2	hold-01
+# ::edge	person	ARG0-of	drive-01	p3	d2	
+# ::edge	hold-01	ARG0	person	h2	p3	
+# ::edge	hold-01	ARG1	reign-01	h2	r	
+# ::edge	reign-01	ARG0	person	r	p3	
+# ::edge	haul-01	ARG0	horse	h	h3	
+# ::edge	hold-01	time	haul-01	h2	h	
+# ::edge	haul-01	ARG1	and	h	a	
+# ::edge	and	op1	person	a	p3	
+# ::edge	passenger	quant	2	p	0	
+# ::edge	and	op2	passenger	a	p	
+# ::edge	haul-01	direction	down	h	d	
+# ::edge	roadway	ARG1-of	pave-01	r2	p2	
+# ::edge	haul-01	path	roadway	h	r2	
+(h2 / hold-01
+    :ARG0 (p3 / person
+        :ARG0-of (d2 / drive-01))
+    :ARG1 (r / reign-01
+        :ARG0 p3)
+    :time (h / haul-01
+        :ARG0 (h3 / horse)
+        :ARG1 (a / and
+            :op1 p3
+            :op2 (p / passenger
+                :quant 2))
+        :direction (d / down)
+        :path (r2 / roadway
+            :ARG1-of (p2 / pave-01))))

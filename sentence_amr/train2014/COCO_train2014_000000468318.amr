@@ -1,0 +1,22 @@
+# ::tok Street traffic waiting for signal to change at intersection .
+# ::node	s2	street	0-1
+# ::node	t2	traffic	1-2
+# ::node	w	wait-01	2-3
+# ::node	s	signal-07	4-5
+# ::node	t	thing	5-6
+# ::node	c	change-01	6-7
+# ::node	i	intersect-01	8-9
+# ::root	w	wait-01
+# ::edge	traffic	location	street	t2	s2	
+# ::edge	wait-01	ARG1	traffic	w	t2	
+# ::edge	thing	ARG0-of	signal-07	t	s	
+# ::edge	change-01	ARG1	thing	c	t	
+# ::edge	wait-01	ARG2	change-01	w	c	
+# ::edge	change-01	location	intersect-01	c	i	
+(w / wait-01
+    :ARG1 (t2 / traffic
+        :location (s2 / street))
+    :ARG2 (c / change-01
+        :ARG1 (t / thing
+            :ARG0-of (s / signal-07))
+        :location (i / intersect-01)))

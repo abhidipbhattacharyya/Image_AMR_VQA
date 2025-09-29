@@ -1,0 +1,40 @@
+# ::tok A man in a blue coat and gray pants stands near a blue car with a tool in his hand .
+# ::node	m	man	1-2
+# ::node	b	blue	4-5
+# ::node	c2	coat	5-6
+# ::node	a	and	6-7
+# ::node	g	gray-02	7-8
+# ::node	p	pants	8-9
+# ::node	s	stand-01	9-10
+# ::node	n	near-02	10-11
+# ::node	c	car	13-14
+# ::node	t	tool	16-17
+# ::node	h	hand	19-20
+# ::root	s	stand-01
+# ::edge	coat	mod	blue	c2	b	
+# ::edge	and	op1	coat	a	c2	
+# ::edge	man	domain	and	m	a	
+# ::edge	pants	ARG1-of	gray-02	p	g	
+# ::edge	and	op2	pants	a	p	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	near-02	ARG2	car	n	c	
+# ::edge	car	mod	blue	c	b	
+# ::edge	stand-01	instrument	tool	s	t	
+# ::edge	tool	location	hand	t	h	
+# ::edge	man	part	hand	m	h	
+(s / stand-01
+    :ARG1 (m / man
+        :domain (a / and
+            :op1 (c2 / coat
+                :mod (b / blue))
+            :op2 (p / pants
+                :ARG1-of (g / gray-02)))
+        :part (h / hand))
+    :ARG2 (n / near-02
+        :ARG1 m
+        :ARG2 (c / car
+            :mod b))
+    :instrument (t / tool
+        :location h))

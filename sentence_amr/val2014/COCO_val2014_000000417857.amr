@@ -1,0 +1,33 @@
+# ::tok A baseball player holding a bat while standing next to other players .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	h	hold-01	3-4
+# ::node	b2	bat	5-6
+# ::node	s	stand-01	7-8
+# ::node	n	next-to	8-9
+# ::node	o	other	10-11
+# ::node	p2	person	11-12
+# ::node	p4	play-01	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	bat	h	b2	
+# ::edge	person	time	stand-01	p	s	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	person	mod	other	p2	o	
+# ::edge	next-to	op1	person	n	p2	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (h / hold-01
+        :ARG1 (b2 / bat))
+    :time (s / stand-01
+        :ARG1 p
+        :ARG2 (n / next-to
+            :op1 (p2 / person
+                :ARG0-of (p4 / play-01)
+                :mod (o / other)))))

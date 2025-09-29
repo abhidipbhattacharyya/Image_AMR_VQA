@@ -1,0 +1,48 @@
+# ::tok A woman is helping herself to some of the snacks laid out on a coffee table while several other people are standing around .
+# ::node	w	woman	1-2
+# ::node	h	help-01	3-4
+# ::node	s4	some	6-7
+# ::node	i	include-91	7-8
+# ::node	s2	snack	9-10
+# ::node	s3	snack	9-10
+# ::node	l	lay-01	10-11
+# ::node	o2	out	11-12
+# ::node	c	coffee	14-15
+# ::node	t	table	15-16
+# ::node	s	several	17-18
+# ::node	o	other	18-19
+# ::node	p	person	19-20
+# ::node	s5	stand-01	21-22
+# ::node	a	around	22-23
+# ::root	h	help-01
+# ::edge	help-01	ARG1	woman	h	w	
+# ::edge	help-01	ARG0	woman	h	w	
+# ::edge	snack	ARG1-of	include-91	s2	i	
+# ::edge	snack	quant	some	s2	s4	
+# ::edge	help-01	ARG2	snack	h	s2	
+# ::edge	include-91	ARG2	snack	i	s3	
+# ::edge	snack	ARG1-of	lay-01	s3	l	
+# ::edge	lay-01	ARG2	out	l	o2	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	lay-01	ARG2	table	l	t	
+# ::edge	person	mod	other	p	o	
+# ::edge	person	quant	several	p	s	
+# ::edge	stand-01	ARG0	person	s5	p	
+# ::edge	help-01	time	stand-01	h	s5	
+# ::edge	stand-01	ARG2	around	s5	a	
+(h / help-01
+    :ARG0 (w / woman)
+    :ARG1 w
+    :ARG2 (s2 / snack
+        :quant (s4 / some)
+        :ARG1-of (i / include-91
+            :ARG2 (s3 / snack
+                :ARG1-of (l / lay-01
+                    :ARG2 (o2 / out)
+                    :ARG2 (t / table
+                        :mod (c / coffee))))))
+    :time (s5 / stand-01
+        :ARG0 (p / person
+            :quant (s / several)
+            :mod (o / other))
+        :ARG2 (a / around)))

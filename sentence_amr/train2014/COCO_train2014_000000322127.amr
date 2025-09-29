@@ -1,0 +1,32 @@
+# ::tok A drawbridge over a city waterway lifts to let sailboats pass under .
+# ::node	d	drawbridge	1-2
+# ::node	o	over	2-3
+# ::node	c	city	4-5
+# ::node	w	waterway	5-6
+# ::node	l2	lift-01	6-7
+# ::node	l	let-01	8-9
+# ::node	s	sail-01	9-10
+# ::node	p	pass-03	10-11
+# ::node	u	under	11-12
+# ::root	l2	lift-01
+# ::edge	drawbridge	location	over	d	o	
+# ::edge	waterway	mod	city	w	c	
+# ::edge	over	op1	waterway	o	w	
+# ::edge	lift-01	ARG1	drawbridge	l2	d	
+# ::edge	lift-01	purpose	let-01	l2	l	
+# ::edge	let-01	ARG0	drawbridge	l	d	
+# ::edge	pass-03	ARG1	sail-01	p	s	
+# ::edge	let-01	ARG1	pass-03	l	p	
+# ::edge	pass-03	path	under	p	u	
+# ::edge	under	op1	drawbridge	u	d	
+(l2 / lift-01
+    :purpose (l / let-01
+        :ARG0 (d / drawbridge
+            :location (o / over
+                :op1 (w / waterway
+                    :mod (c / city))))
+        :ARG1 (p / pass-03
+            :ARG1 (s / sail-01)
+            :path (u / under
+                :op1 d)))
+    :ARG1 d)

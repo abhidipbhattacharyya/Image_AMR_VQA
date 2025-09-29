@@ -1,0 +1,51 @@
+# ::tok A person sitting on bed behind an open laptop computer and a cat sitting beside and looking at the laptop screen area .
+# ::node	p	person	1-2
+# ::node	s2	sit-01	2-3
+# ::node	b	bed	4-5
+# ::node	b2	behind	5-6
+# ::node	o	open-01	7-8
+# ::node	l	laptop	8-9
+# ::node	c2	computer	9-10
+# ::node	c	cat	12-13
+# ::node	s3	sit-01	13-14
+# ::node	b3	beside	14-15
+# ::node	a	and	15-16
+# ::node	l2	look-01	16-17
+# ::node	s	screen	20-21
+# ::node	a2	area	21-22
+# ::root	a	and
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	bed	s2	b	
+# ::edge	sit-01	ARG2	behind	s2	b2	
+# ::edge	computer	mod	laptop	c2	l	
+# ::edge	computer	ARG1-of	open-01	c2	o	
+# ::edge	behind	op1	computer	b2	c2	
+# ::edge	sit-01	ARG1	cat	s3	c	
+# ::edge	sit-01	ARG2	bed	s3	b	
+# ::edge	sit-01	ARG2	beside	s3	b3	
+# ::edge	beside	op1	computer	b3	c2	
+# ::edge	and	op2	sit-01	a	s3	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op3	look-01	a	l2	
+# ::edge	look-01	ARG0	person	l2	p	
+# ::edge	laptop	part	screen	l	s	
+# ::edge	area	location-of	screen	a2	s	
+# ::edge	look-01	ARG1	area	l2	a2	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / person)
+        :ARG2 (b / bed)
+        :ARG2 (b2 / behind
+            :op1 (c2 / computer
+                :ARG1-of (o / open-01)
+                :mod (l / laptop
+                    :part (s / screen)))))
+    :op2 (s3 / sit-01
+        :ARG1 (c / cat)
+        :ARG2 b
+        :ARG2 (b3 / beside
+            :op1 c2))
+    :op3 (l2 / look-01
+        :ARG0 p
+        :ARG1 (a2 / area
+            :location-of s)))

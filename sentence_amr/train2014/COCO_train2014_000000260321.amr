@@ -1,0 +1,43 @@
+# ::tok A person cutting some food as a basket of food sits on a table next to a glass of red wine .
+# ::node	p	person	1-2
+# ::node	c	cut-01	2-3
+# ::node	s2	some	3-4
+# ::node	f	food	4-5
+# ::node	b	basket	7-8
+# ::node	f2	food	9-10
+# ::node	s	sit-01	10-11
+# ::node	t	table	13-14
+# ::node	n	next-to	14-15
+# ::node	v	volume-quantity	16-17
+# ::node	0	1	16-17
+# ::node	g	glass	17-18
+# ::node	r	red-02	19-20
+# ::node	w	wine	20-21
+# ::root	c	cut-01
+# ::edge	cut-01	ARG0	person	c	p	
+# ::edge	food	quant	some	f	s2	
+# ::edge	cut-01	ARG1	food	c	f	
+# ::edge	basket	consist-of	food	b	f2	
+# ::edge	sit-01	ARG1	basket	s	b	
+# ::edge	cut-01	time	sit-01	c	s	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	ARG1-of	red-02	w	r	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	next-to	op1	wine	n	w	
+(c / cut-01
+    :ARG0 (p / person)
+    :ARG1 (f / food
+        :quant (s2 / some))
+    :time (s / sit-01
+        :ARG1 (b / basket
+            :consist-of (f2 / food))
+        :ARG2 (t / table
+            :location-of (n / next-to
+                :op1 (w / wine
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (g / glass))
+                    :ARG1-of (r / red-02))))))

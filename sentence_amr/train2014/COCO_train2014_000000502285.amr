@@ -1,0 +1,43 @@
+# ::tok Parrots eat out of dog food bowls filled with sweet peppers and placed on a concrete ledge in an urban area .
+# ::node	p3	person	0-1
+# ::node	p	parrot-01	0-1
+# ::node	e	eat-01	1-2
+# ::node	d	dog	4-5
+# ::node	f2	food	5-6
+# ::node	p5	pound	6-7
+# ::node	f	fill-01	7-8
+# ::node	s	sweet-04	9-10
+# ::node	p2	pepper-spray	10-11
+# ::node	p4	place-01	12-13
+# ::node	c	concrete-02	15-16
+# ::node	l	ledge	16-17
+# ::node	u	urban	19-20
+# ::node	a	area	20-21
+# ::root	e	eat-01
+# ::edge	person	ARG0-of	parrot-01	p3	p	
+# ::edge	eat-01	ARG0	person	e	p3	
+# ::edge	food	mod	dog	f2	d	
+# ::edge	pound	purpose	food	p5	f2	
+# ::edge	eat-01	location	pound	e	p5	
+# ::edge	pound	ARG1-of	fill-01	p5	f	
+# ::edge	pepper-spray	ARG1-of	sweet-04	p2	s	
+# ::edge	fill-01	ARG2	pepper-spray	f	p2	
+# ::edge	pound	ARG1-of	place-01	p5	p4	
+# ::edge	ledge	ARG1-of	concrete-02	l	c	
+# ::edge	place-01	ARG2	ledge	p4	l	
+# ::edge	area	mod	urban	a	u	
+# ::edge	ledge	location	area	l	a	
+(e / eat-01
+    :ARG0 (p3 / person
+        :ARG0-of (p / parrot-01))
+    :location (p5 / pound
+        :purpose (f2 / food
+            :mod (d / dog))
+        :ARG1-of (f / fill-01
+            :ARG2 (p2 / pepper-spray
+                :ARG1-of (s / sweet-04)))
+        :ARG1-of (p4 / place-01
+            :ARG2 (l / ledge
+                :ARG1-of (c / concrete-02)
+                :location (a / area
+                    :mod (u / urban))))))

@@ -1,0 +1,33 @@
+# ::tok Street signs showing the name and pricing of the parking garage
+# ::node	s3	street	0-1
+# ::node	s2	sign	1-2
+# ::node	s	show-01	2-3
+# ::node	t	thing	3-4
+# ::node	n	name-01	4-5
+# ::node	a	and	5-6
+# ::node	t2	thing	6-7
+# ::node	p2	price-01	6-7
+# ::node	p	park-01	9-10
+# ::node	g	garage	10-11
+# ::root	s2	sign
+# ::edge	sign	location	street	s2	s3	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	and	op1	thing	a	t	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	thing	a	t2	
+# ::edge	thing	ARG2-of	price-01	t2	p2	
+# ::edge	garage	ARG2-of	park-01	g	p	
+# ::edge	price-01	ARG1	garage	p2	g	
+# ::edge	name-01	ARG1	garage	n	g	
+(s2 / sign
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (t / thing
+                :ARG2-of (n / name-01
+                    :ARG1 (g / garage
+                        :ARG2-of (p / park-01))))
+            :op2 (t2 / thing
+                :ARG2-of (p2 / price-01
+                    :ARG1 g))))
+    :location (s3 / street))

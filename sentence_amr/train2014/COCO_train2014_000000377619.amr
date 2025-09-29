@@ -1,0 +1,22 @@
+# ::tok Railroad tracks at the railroad crossing intersection with sign .
+# ::node	r2	road	0-1
+# ::node	t	track	1-2
+# ::node	r	railroad	4-5
+# ::node	c2	cross-02	5-6
+# ::node	i	intersect-01	6-7
+# ::node	c	cause-01	7-8
+# ::node	s	sign	8-9
+# ::root	t	track
+# ::edge	track	mod	road	t	r2	
+# ::edge	cross-02	ARG1	railroad	c2	r	
+# ::edge	intersect-01	ARG1	cross-02	i	c2	
+# ::edge	cause-01	ARG1	intersect-01	c	i	
+# ::edge	track	ARG0-of	cause-01	t	c	
+# ::edge	track	location-of	sign	t	s	
+(t / track
+    :ARG0-of (c / cause-01
+        :ARG1 (i / intersect-01
+            :ARG1 (c2 / cross-02
+                :ARG1 (r / railroad))))
+    :location-of (s / sign)
+    :mod (r2 / road))

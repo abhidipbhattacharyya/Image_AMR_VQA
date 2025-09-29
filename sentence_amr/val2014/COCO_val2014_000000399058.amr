@@ -1,0 +1,42 @@
+# ::tok A tanker truck driving down a road with two people riding an elephant on the side of the road behind the passing truck .
+# ::node	t	tanker	1-2
+# ::node	t2	truck	2-3
+# ::node	d2	drive-01	3-4
+# ::node	d	down	4-5
+# ::node	r2	road	6-7
+# ::node	0	2	8-9
+# ::node	p2	person	9-10
+# ::node	r	ride-01	10-11
+# ::node	e	elephant	12-13
+# ::node	s	side	15-16
+# ::node	b	behind	19-20
+# ::node	p	pass-03	21-22
+# ::node	t3	truck	22-23
+# ::root	d2	drive-01
+# ::edge	truck	mod	tanker	t2	t	
+# ::edge	drive-01	ARG0	truck	d2	t2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	path	road	d2	r2	
+# ::edge	person	quant	2	p2	0	
+# ::edge	ride-01	ARG0	person	r	p2	
+# ::edge	truck	location-of	ride-01	t2	r	
+# ::edge	ride-01	ARG1	elephant	r	e	
+# ::edge	ride-01	location	side	r	s	
+# ::edge	road	part	side	r2	s	
+# ::edge	side	location	behind	s	b	
+# ::edge	truck	ARG1-of	pass-03	t3	p	
+# ::edge	behind	op1	truck	b	t3	
+(d2 / drive-01
+    :ARG0 (t2 / truck
+        :location-of (r / ride-01
+            :ARG0 (p2 / person
+                :quant 2)
+            :ARG1 (e / elephant)
+            :location (s / side
+                :location (b / behind
+                    :op1 (t3 / truck
+                        :ARG1-of (p / pass-03)))))
+        :mod (t / tanker))
+    :direction (d / down)
+    :path (r2 / road
+        :part s))

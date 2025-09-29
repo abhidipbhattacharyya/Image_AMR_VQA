@@ -1,0 +1,39 @@
+# ::tok A boy sits on a grassy hill holding 4 cell phones as he looks out over the populated valley below .
+# ::node	b2	boy	1-2
+# ::node	s	sit-01	2-3
+# ::node	g	grass	5-6
+# ::node	h	hill	6-7
+# ::node	h2	hold-01	7-8
+# ::node	0	4	8-9
+# ::node	c	cell	9-10
+# ::node	p	phone	10-11
+# ::node	l	look-01	13-14
+# ::node	p2	populate-01	17-18
+# ::node	v	valley	18-19
+# ::node	b	below	19-20
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	boy	s	b2	
+# ::edge	hill	consist-of	grass	h	g	
+# ::edge	sit-01	ARG2	hill	s	h	
+# ::edge	boy	ARG0-of	hold-01	b2	h2	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	phone	quant	4	p	0	
+# ::edge	hold-01	ARG1	phone	h2	p	
+# ::edge	sit-01	time	look-01	s	l	
+# ::edge	look-01	ARG0	boy	l	b2	
+# ::edge	valley	ARG1-of	populate-01	v	p2	
+# ::edge	look-01	ARG1	valley	l	v	
+# ::edge	valley	location	below	v	b	
+(s / sit-01
+    :ARG1 (b2 / boy
+        :ARG0-of (h2 / hold-01
+            :ARG1 (p / phone
+                :quant 4
+                :mod (c / cell))))
+    :ARG2 (h / hill
+        :consist-of (g / grass))
+    :time (l / look-01
+        :ARG0 b2
+        :ARG1 (v / valley
+            :ARG1-of (p2 / populate-01)
+            :location (b / below))))

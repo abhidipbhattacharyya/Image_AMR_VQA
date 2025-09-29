@@ -1,0 +1,35 @@
+# ::tok A downhill skier leans into a turn at one of the gates in his run .
+# ::node	d	downhill	1-2
+# ::node	p	person	2-3
+# ::node	s	ski-01	2-3
+# ::node	l	lean-01	3-4
+# ::node	t	turn-01	6-7
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	g	gate	11-12
+# ::node	g2	gate	11-12
+# ::node	r	run-13	14-15
+# ::root	l	lean-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	ski-01	direction	downhill	s	d	
+# ::edge	lean-01	ARG1	person	l	p	
+# ::edge	lean-01	ARG2	turn-01	l	t	
+# ::edge	turn-01	ARG0	person	t	p	
+# ::edge	gate	ARG1-of	include-91	g	i	
+# ::edge	gate	quant	1	g	0	
+# ::edge	turn-01	location	gate	t	g	
+# ::edge	include-91	ARG2	gate	i	g2	
+# ::edge	gate	subevent-of	run-13	g	r	
+# ::edge	run-13	ARG0	person	r	p	
+(l / lean-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01
+            :direction (d / downhill)))
+    :ARG2 (t / turn-01
+        :ARG0 p
+        :location (g / gate
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (g2 / gate))
+            :subevent-of (r / run-13
+                :ARG0 p))))

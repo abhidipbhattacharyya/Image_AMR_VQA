@@ -1,0 +1,37 @@
+# ::tok View into a handicapped bathroom through and open door with a wheel chair ramp .
+# ::node	v	view-01	0-1
+# ::node	y	you	0-1
+# ::node	0	imperative	0-1
+# ::node	d	disable-01	3-4
+# ::node	b	bathroom	4-5
+# ::node	t	through	5-6
+# ::node	o	open-01	7-8
+# ::node	d2	door	8-9
+# ::node	h	have-03	9-10
+# ::node	w	wheel	11-12
+# ::node	c	chair	12-13
+# ::node	r	ramp	13-14
+# ::root	v	view-01
+# ::edge	view-01	ARG0	you	v	y	
+# ::edge	view-01	mode	imperative	v	0	
+# ::edge	bathroom	ARG1-of	disable-01	b	d	
+# ::edge	view-01	ARG1	bathroom	v	b	
+# ::edge	view-01	path	through	v	t	
+# ::edge	door	ARG1-of	open-01	d2	o	
+# ::edge	through	op1	door	t	d2	
+# ::edge	door	ARG0-of	have-03	d2	h	
+# ::edge	chair	mod	wheel	c	w	
+# ::edge	ramp	mod	chair	r	c	
+# ::edge	have-03	ARG1	ramp	h	r	
+(v / view-01
+    :ARG0 (y / you)
+    :ARG1 (b / bathroom
+        :ARG1-of (d / disable-01))
+    :mode imperative
+    :path (t / through
+        :op1 (d2 / door
+            :ARG0-of (h / have-03
+                :ARG1 (r / ramp
+                    :mod (c / chair
+                        :mod (w / wheel))))
+            :ARG1-of (o / open-01))))

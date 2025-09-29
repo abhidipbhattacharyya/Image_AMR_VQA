@@ -1,0 +1,43 @@
+# ::tok A pair of people dressed up as Mickey and Pooh with balloons for animals
+# ::node	p	pair	1-2
+# ::node	p2	person	3-4
+# ::node	d	dress-01	4-5
+# ::node	a2	animal	7-8
+# ::node	0	Mickey	7-8
+# ::node	a	and	8-9
+# ::node	n	name	9-10
+# ::node	b	book	9-10
+# ::node	n2	name	9-10
+# ::node	1	Pooh	9-10
+# ::node	h	have-03	10-11
+# ::node	i	inflate-01	11-12
+# ::node	a3	animal	12-13
+# ::node	a4	animal	13-14
+# ::root	p2	person
+# ::edge	person	quant	pair	p2	p	
+# ::edge	person	ARG1-of	dress-01	p2	d	
+# ::edge	and	op1	animal	a	a2	
+# ::edge	dress-01	ARG2	and	d	a	
+# ::edge	name	op1	Mickey	n	0	
+# ::edge	animal	name	name	a2	n	
+# ::edge	and	op2	book	a	b	
+# ::edge	book	name	name	b	n2	
+# ::edge	name	op1	Pooh	n2	1	
+# ::edge	person	ARG0-of	have-03	p2	h	
+# ::edge	animal	ARG1-of	inflate-01	a3	i	
+# ::edge	have-03	ARG1	animal	h	a3	
+# ::edge	animal	beneficiary	animal	a3	a4	
+(p2 / person
+    :quant (p / pair)
+    :ARG0-of (h / have-03
+        :ARG1 (a3 / animal
+            :ARG1-of (i / inflate-01)
+            :beneficiary (a4 / animal)))
+    :ARG1-of (d / dress-01
+        :ARG2 (a / and
+            :op1 (a2 / animal
+                :name (n / name
+                    :op1 "Mickey"))
+            :op2 (b / book
+                :name (n2 / name
+                    :op1 "Pooh")))))

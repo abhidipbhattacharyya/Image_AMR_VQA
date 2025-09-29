@@ -1,0 +1,40 @@
+# ::tok A baseball player preparing to hit the ball while a teammate warms up behind him .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	p4	prepare-02	3-4
+# ::node	h2	hit-01	5-6
+# ::node	b	ball	7-8
+# ::node	p2	person	10-11
+# ::node	h	have-rel-role-91	10-11
+# ::node	t	teammate	10-11
+# ::node	w	warm-01	11-12
+# ::node	b3	behind	13-14
+# ::root	p4	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	prepare-02	ARG1	person	p4	p	
+# ::edge	prepare-02	ARG2	hit-01	p4	h2	
+# ::edge	hit-01	ARG0	person	h2	p	
+# ::edge	hit-01	ARG1	ball	h2	b	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h	
+# ::edge	have-rel-role-91	ARG1	person	h	p	
+# ::edge	have-rel-role-91	ARG2	teammate	h	t	
+# ::edge	warm-01	ARG1	person	w	p2	
+# ::edge	prepare-02	time	warm-01	p4	w	
+# ::edge	warm-01	location	behind	w	b3	
+# ::edge	behind	op1	person	b3	p	
+(p4 / prepare-02
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball)))
+    :ARG2 (h2 / hit-01
+        :ARG0 p
+        :ARG1 (b / ball))
+    :time (w / warm-01
+        :ARG1 (p2 / person
+            :ARG0-of (h / have-rel-role-91
+                :ARG1 p
+                :ARG2 (t / teammate)))
+        :location (b3 / behind
+            :op1 p)))

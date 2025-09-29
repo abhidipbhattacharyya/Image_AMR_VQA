@@ -1,0 +1,40 @@
+# ::tok Sheep are on one side of a brick wall and a light house on a hill is on the other side .
+# ::node	h	helicopter	0-1
+# ::node	b	be-located-at-91	2-3
+# ::node	o	one	3-4
+# ::node	s	side	4-5
+# ::node	b3	brick	7-8
+# ::node	w	wall	8-9
+# ::node	a	and	9-10
+# ::node	l	light-04	11-12
+# ::node	h3	house	12-13
+# ::node	h2	hill	15-16
+# ::node	b2	be-located-at-91	17-18
+# ::node	o2	other	19-20
+# ::node	s2	side	20-21
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	helicopter	b	h	
+# ::edge	side	mod	one	s	o	
+# ::edge	be-located-at-91	ARG2	side	b	s	
+# ::edge	wall	consist-of	brick	w	b3	
+# ::edge	side	part-of	wall	s	w	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	house	ARG0-of	light-04	h3	l	
+# ::edge	house	location	hill	h3	h2	
+# ::edge	be-located-at-91	ARG1	house	b2	h3	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	side	mod	other	s2	o2	
+# ::edge	be-located-at-91	ARG2	side	b2	s2	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (h / helicopter)
+        :ARG2 (s / side
+            :mod (o / one)
+            :part-of (w / wall
+                :consist-of (b3 / brick))))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (h3 / house
+            :ARG0-of (l / light-04)
+            :location (h2 / hill))
+        :ARG2 (s2 / side
+            :mod (o2 / other))))

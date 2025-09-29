@@ -1,0 +1,26 @@
+# ::tok A tennis player who is leaping to hit the ball during a match .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	l	leap-03	5-6
+# ::node	h	hit-01	7-8
+# ::node	b	ball	9-10
+# ::node	m	match-03	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	leap-03	p	l	
+# ::edge	leap-03	purpose	hit-01	l	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	leap-03	time	match-03	l	m	
+# ::edge	match-03	ARG0	person	m	p	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (l / leap-03
+        :purpose (h / hit-01
+            :ARG0 p
+            :ARG1 (b / ball))
+        :time (m / match-03
+            :ARG0 p)))

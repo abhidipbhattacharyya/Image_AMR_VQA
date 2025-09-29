@@ -1,0 +1,55 @@
+# ::tok A woman is walking down a sidewalk and is carrying a cup of Starbucks coffee and rolling a suitcase behind her .
+# ::node	w2	woman	1-2
+# ::node	w	walk-01	3-4
+# ::node	d	down	4-5
+# ::node	s	sidewalk	6-7
+# ::node	a	and	7-8
+# ::node	c	carry-01	9-10
+# ::node	v	volume-quantity	10-11
+# ::node	0	1	10-11
+# ::node	c4	cup	11-12
+# ::node	c3	company	13-14
+# ::node	n	name	13-14
+# ::node	1	Starbucks	13-14
+# ::node	c2	coffee	14-15
+# ::node	r	roll-01	16-17
+# ::node	s2	suitcase	18-19
+# ::node	b	behind	19-20
+# ::root	a	and
+# ::edge	walk-01	ARG0	woman	w	w2	
+# ::edge	walk-01	direction	down	w	d	
+# ::edge	walk-01	ARG2	sidewalk	w	s	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	carry-01	a	c	
+# ::edge	carry-01	ARG0	woman	c	w2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op1	Starbucks	n	1	
+# ::edge	coffee	mod	company	c2	c3	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	carry-01	ARG1	coffee	c	c2	
+# ::edge	and	op3	roll-01	a	r	
+# ::edge	roll-01	ARG0	woman	r	w2	
+# ::edge	roll-01	ARG1	suitcase	r	s2	
+# ::edge	roll-01	ARG2	behind	r	b	
+# ::edge	behind	op1	woman	b	w2	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (w2 / woman)
+        :ARG2 (s / sidewalk)
+        :direction (d / down))
+    :op2 (c / carry-01
+        :ARG0 w2
+        :ARG1 (c2 / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c4 / cup))
+            :mod (c3 / company
+                :name (n / name
+                    :op1 "Starbucks"))))
+    :op3 (r / roll-01
+        :ARG0 w2
+        :ARG1 (s2 / suitcase)
+        :ARG2 (b / behind
+            :op1 w2)))

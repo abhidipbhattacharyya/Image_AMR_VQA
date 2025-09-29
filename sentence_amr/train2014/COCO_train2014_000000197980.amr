@@ -1,0 +1,38 @@
+# ::tok A black computer with a screen reading " Press any key to begin . "
+# ::node	b2	black-04	1-2
+# ::node	c	computer	2-3
+# ::node	s	screen	5-6
+# ::node	r	read-01	6-7
+# ::node	p	press-01	8-9
+# ::node	y	you	8-9
+# ::node	0	imperative	8-9
+# ::node	a	any	9-10
+# ::node	k	key-02	10-11
+# ::node	b	begin-01	12-13
+# ::node	m	multi-sentence	13-14
+# ::root	m	multi-sentence
+# ::edge	computer	ARG1-of	black-04	c	b2	
+# ::edge	computer	part	screen	c	s	
+# ::edge	screen	ARG0-of	read-01	s	r	
+# ::edge	read-01	ARG3	press-01	r	p	
+# ::edge	press-01	ARG0	you	p	y	
+# ::edge	press-01	mode	imperative	p	0	
+# ::edge	key-02	mod	any	k	a	
+# ::edge	press-01	ARG1	key-02	p	k	
+# ::edge	key-02	purpose	begin-01	k	b	
+# ::edge	begin-01	ARG0	computer	b	c	
+# ::edge	multi-sentence	snt2	computer	m	c	
+# ::edge	multi-sentence	snt1	computer	m	c	
+(m / multi-sentence
+    :snt1 (c / computer
+        :ARG1-of (b2 / black-04)
+        :part (s / screen
+            :ARG0-of (r / read-01
+                :ARG3 (p / press-01
+                    :ARG0 (y / you)
+                    :ARG1 (k / key-02
+                        :purpose (b / begin-01
+                            :ARG0 c)
+                        :mod (a / any))
+                    :mode imperative))))
+    :snt2 c)

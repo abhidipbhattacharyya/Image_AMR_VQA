@@ -1,0 +1,36 @@
+# ::tok A pepperoni pizza with cheese is sitting on a checkerboard table and sits next the stove .
+# ::node	p	pepperoni	1-2
+# ::node	p2	pizza	2-3
+# ::node	h	have-03	3-4
+# ::node	c2	cheese	4-5
+# ::node	s	sit-01	6-7
+# ::node	c	checkerboard	9-10
+# ::node	t	table	10-11
+# ::node	a	and	11-12
+# ::node	s2	sit-01	12-13
+# ::node	n	next	13-14
+# ::node	s3	stove	15-16
+# ::root	a	and
+# ::edge	pizza	mod	pepperoni	p2	p	
+# ::edge	pizza	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	cheese	h	c2	
+# ::edge	sit-01	ARG1	pizza	s	p2	
+# ::edge	table	mod	checkerboard	t	c	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	sit-01	a	s2	
+# ::edge	sit-01	ARG1	pizza	s2	p2	
+# ::edge	sit-01	ARG2	next	s2	n	
+# ::edge	next	op1	stove	n	s3	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p2 / pizza
+            :ARG0-of (h / have-03
+                :ARG1 (c2 / cheese))
+            :mod (p / pepperoni))
+        :ARG2 (t / table
+            :mod (c / checkerboard)))
+    :op2 (s2 / sit-01
+        :ARG1 p2
+        :ARG2 (n / next
+            :op1 (s3 / stove))))

@@ -1,0 +1,31 @@
+# ::tok Queen size bed with grey and beige linens in a room with wood flooring .
+# ::node	q	queen	0-1
+# ::node	s	size-01	1-2
+# ::node	b	bed	2-3
+# ::node	g	gray-02	4-5
+# ::node	b2	beige	6-7
+# ::node	c	carpet	7-8
+# ::node	r	room	10-11
+# ::node	h	have-03	11-12
+# ::node	w	wood	12-13
+# ::node	f	floor	13-14
+# ::root	b	bed
+# ::edge	size-01	ARG2	queen	s	q	
+# ::edge	bed	ARG1-of	size-01	b	s	
+# ::edge	carpet	mod	beige	c	b2	
+# ::edge	carpet	ARG1-of	gray-02	c	g	
+# ::edge	bed	prep-with	carpet	b	c	
+# ::edge	bed	location	room	b	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	floor	consist-of	wood	f	w	
+# ::edge	have-03	ARG1	floor	h	f	
+(b / bed
+    :ARG1-of (s / size-01
+        :ARG2 (q / queen))
+    :location (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (f / floor
+                :consist-of (w / wood))))
+    :prep-with (c / carpet
+        :ARG1-of (g / gray-02)
+        :mod (b2 / beige)))

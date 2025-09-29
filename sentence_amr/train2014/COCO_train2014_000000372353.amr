@@ -1,0 +1,33 @@
+# ::tok a person standing in front of an open oven holding a tray of pretzels inside
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	o	open-01	7-8
+# ::node	o2	oven	8-9
+# ::node	h	hold-01	9-10
+# ::node	t	tray	11-12
+# ::node	b	bomb	13-14
+# ::node	p2	pretend-01	13-14
+# ::node	i2	inside	14-15
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	oven	ARG1-of	open-01	o2	o	
+# ::edge	in-front-of	op1	oven	i	o2	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	tray	h	t	
+# ::edge	tray	consist-of	bomb	t	b	
+# ::edge	bomb	ARG1-of	pretend-01	b	p2	
+# ::edge	bomb	location	inside	b	i2	
+# ::edge	inside	op1	oven	i2	o2	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (h / hold-01
+            :ARG1 (t / tray
+                :consist-of (b / bomb
+                    :ARG1-of (p2 / pretend-01)
+                    :location (i2 / inside
+                        :op1 (o2 / oven
+                            :ARG1-of (o / open-01)))))))
+    :ARG2 (i / in-front-of
+        :op1 o2))

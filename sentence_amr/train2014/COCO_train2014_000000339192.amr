@@ -1,0 +1,25 @@
+# ::tok A street sign asks for caution for the next hundred meters .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	a	ask-02	3-4
+# ::node	c	caution-01	5-6
+# ::node	n	next	8-9
+# ::node	0	100	9-10
+# ::node	d	distance-quantity	10-11
+# ::node	m	meter	10-11
+# ::root	a	ask-02
+# ::edge	sign	mod	street	s	s2	
+# ::edge	ask-02	ARG0	sign	a	s	
+# ::edge	ask-02	ARG1	caution-01	a	c	
+# ::edge	distance-quantity	quant	100	d	0	
+# ::edge	distance-quantity	mod	next	d	n	
+# ::edge	caution-01	duration	distance-quantity	c	d	
+# ::edge	distance-quantity	unit	meter	d	m	
+(a / ask-02
+    :ARG0 (s / sign
+        :mod (s2 / street))
+    :ARG1 (c / caution-01
+        :duration (d / distance-quantity
+            :quant 100
+            :mod (n / next)
+            :unit (m / meter))))

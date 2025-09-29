@@ -1,0 +1,33 @@
+# ::tok A surfer is riding a wave while another swims to catch the next one .
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	r	ride-01	3-4
+# ::node	w	wave	5-6
+# ::node	w2	wave	5-6
+# ::node	c2	contrast-01	6-7
+# ::node	a	another	7-8
+# ::node	s2	swim-01	8-9
+# ::node	c	catch-01	10-11
+# ::node	n	next	12-13
+# ::root	c2	contrast-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	wave	r	w	
+# ::edge	contrast-01	ARG1	ride-01	c2	r	
+# ::edge	swim-01	ARG0	another	s2	a	
+# ::edge	contrast-01	ARG2	swim-01	c2	s2	
+# ::edge	swim-01	purpose	catch-01	s2	c	
+# ::edge	catch-01	ARG0	another	c	a	
+# ::edge	catch-01	ARG1	wave	c	w2	
+# ::edge	wave	mod	next	w2	n	
+(c2 / contrast-01
+    :ARG1 (r / ride-01
+        :ARG0 (p / person
+            :ARG0-of (s / surf-01))
+        :ARG1 (w / wave))
+    :ARG2 (s2 / swim-01
+        :purpose (c / catch-01
+            :ARG0 (a / another)
+            :ARG1 (w2 / wave
+                :mod (n / next)))
+        :ARG0 a))

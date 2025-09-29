@@ -1,0 +1,30 @@
+# ::tok A man stands near a gray fire hydrant that has a blue top .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	g	gray-02	5-6
+# ::node	f	fire	6-7
+# ::node	h2	hydrant	7-8
+# ::node	h	have-03	9-10
+# ::node	b	blue	11-12
+# ::node	t	top	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	gray-02	h2	g	
+# ::edge	near-02	ARG2	hydrant	n	h2	
+# ::edge	hydrant	ARG0-of	have-03	h2	h	
+# ::edge	top	mod	blue	t	b	
+# ::edge	have-03	ARG1	top	h	t	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (n / near-02
+        :ARG1 m
+        :ARG2 (h2 / hydrant
+            :ARG0-of (h / have-03
+                :ARG1 (t / top
+                    :mod (b / blue)))
+            :ARG1-of (g / gray-02)
+            :mod (f / fire))))

@@ -1,0 +1,37 @@
+# ::tok A snow covered ground with a wire fence enclosing it and a large number of sheep grazing on the field .
+# ::node	s2	snow	1-2
+# ::node	c	cover-02	2-3
+# ::node	g2	ground	3-4
+# ::node	w	wire	6-7
+# ::node	f	fence	7-8
+# ::node	e	enclose-01	8-9
+# ::node	a	and	10-11
+# ::node	l	large	12-13
+# ::node	n	number	13-14
+# ::node	s	sheep	15-16
+# ::node	g	graze-01	16-17
+# ::node	f2	field	19-20
+# ::root	c	cover-02
+# ::edge	cover-02	ARG0	snow	c	s2	
+# ::edge	cover-02	ARG1	ground	c	g2	
+# ::edge	fence	mod	wire	f	w	
+# ::edge	fence	ARG1-of	enclose-01	f	e	
+# ::edge	and	op1	fence	a	f	
+# ::edge	cover-02	ARG2	and	c	a	
+# ::edge	number	mod	large	n	l	
+# ::edge	sheep	quant	number	s	n	
+# ::edge	graze-01	ARG0	sheep	g	s	
+# ::edge	and	op2	graze-01	a	g	
+# ::edge	graze-01	ARG1	field	g	f2	
+(c / cover-02
+    :ARG0 (s2 / snow)
+    :ARG1 (g2 / ground)
+    :ARG2 (a / and
+        :op1 (f / fence
+            :ARG1-of (e / enclose-01)
+            :mod (w / wire))
+        :op2 (g / graze-01
+            :ARG0 (s / sheep
+                :quant (n / number
+                    :mod (l / large)))
+            :ARG1 (f2 / field))))

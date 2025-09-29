@@ -1,0 +1,32 @@
+# ::tok a small microwave oven that is supposed to be installed in a wall but sitting on the floor
+# ::node	s2	small	1-2
+# ::node	m	microwave	2-3
+# ::node	o	oven	3-4
+# ::node	s3	suppose-02	6-7
+# ::node	i	install-01	9-10
+# ::node	w	wall	12-13
+# ::node	c	contrast-01	13-14
+# ::node	s	sit-01	14-15
+# ::node	f	floor	17-18
+# ::root	o	oven
+# ::edge	oven	mod	microwave	o	m	
+# ::edge	oven	mod	small	o	s2	
+# ::edge	oven	ARG1-of	suppose-02	o	s3	
+# ::edge	suppose-02	ARG2	install-01	s3	i	
+# ::edge	install-01	ARG1	oven	i	o	
+# ::edge	install-01	ARG2	wall	i	w	
+# ::edge	suppose-02	ARG1-of	contrast-01	s3	c	
+# ::edge	contrast-01	ARG2	sit-01	c	s	
+# ::edge	sit-01	ARG1	oven	s	o	
+# ::edge	sit-01	ARG2	floor	s	f	
+(o / oven
+    :ARG1-of (s3 / suppose-02
+        :ARG1-of (c / contrast-01
+            :ARG2 (s / sit-01
+                :ARG1 o
+                :ARG2 (f / floor)))
+        :ARG2 (i / install-01
+            :ARG1 o
+            :ARG2 (w / wall)))
+    :mod (m / microwave)
+    :mod (s2 / small))

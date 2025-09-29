@@ -1,0 +1,36 @@
+# ::tok A New Orleans house wtih a cut tree and refrigerator in front of it
+# ::node	n	name	1-2
+# ::node	0	New	1-2
+# ::node	c	city	2-3
+# ::node	1	Orleans	2-3
+# ::node	h	house	3-4
+# ::node	c2	cut-01	6-7
+# ::node	t	tree	7-8
+# ::node	a	and	8-9
+# ::node	r	refrigerator	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	i	in-front-of	11-12
+# ::root	b	be-located-at-91
+# ::edge	name	op1	New	n	0	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op2	Orleans	n	1	
+# ::edge	house	location	city	h	c	
+# ::edge	tree	ARG1-of	cut-01	t	c2	
+# ::edge	and	op1	tree	a	t	
+# ::edge	and	op2	refrigerator	a	r	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	house	b	h	
+# ::edge	and	location	in-front-of	a	i	
+# ::edge	in-front-of	op1	house	i	h	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :location (i / in-front-of
+            :op1 (h / house
+                :location (c / city
+                    :name (n / name
+                        :op1 "New"
+                        :op2 "Orleans"))))
+        :op1 (t / tree
+            :ARG1-of (c2 / cut-01))
+        :op2 (r / refrigerator))
+    :ARG2 h)

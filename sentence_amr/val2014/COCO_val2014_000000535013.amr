@@ -1,0 +1,39 @@
+# ::tok a plastic plate with a doughnut is next to a banana and a glass of orange juice
+# ::node	p	plastic	1-2
+# ::node	p2	plate	2-3
+# ::node	d	doughnut	5-6
+# ::node	b2	be-located-at-91	7-8
+# ::node	n	next-to	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	b	banana	10-11
+# ::node	a	and	11-12
+# ::node	g	glass	13-14
+# ::node	o	orange	15-16
+# ::node	j	juice	16-17
+# ::root	b2	be-located-at-91
+# ::edge	plate	consist-of	plastic	p2	p	
+# ::edge	plate	consist-of	doughnut	p2	d	
+# ::edge	be-located-at-91	ARG1	plate	b2	p2	
+# ::edge	be-located-at-91	ARG2	next-to	b2	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	and	op1	banana	a	b	
+# ::edge	and	quant	volume-quantity	a	v	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	and	op2	juice	a	j	
+(b2 / be-located-at-91
+    :ARG1 (p2 / plate
+        :consist-of (p / plastic)
+        :consist-of (d / doughnut))
+    :ARG2 (n / next-to
+        :op1 (a / and
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :op1 (b / banana)
+            :op2 (j / juice
+                :quant v
+                :mod (o / orange)))))

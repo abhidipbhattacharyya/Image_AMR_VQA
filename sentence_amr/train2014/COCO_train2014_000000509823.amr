@@ -1,0 +1,49 @@
+# ::tok three people standing a city train platform - lady with purple umbrella and one man with camera
+# ::node	1	3	0-1
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	c2	city	4-5
+# ::node	t	train	5-6
+# ::node	p2	platform	6-7
+# ::node	m2	multi-sentence	7-8
+# ::node	l	lady	8-9
+# ::node	h	have-03	9-10
+# ::node	p3	purple-02	10-11
+# ::node	u	umbrella	11-12
+# ::node	a	and	12-13
+# ::node	0	1	13-14
+# ::node	m	man	14-15
+# ::node	h2	have-03	15-16
+# ::node	c	camera	16-17
+# ::root	m2	multi-sentence
+# ::edge	person	quant	3	p	1	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	platform	mod	train	p2	t	
+# ::edge	platform	mod	city	p2	c2	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	multi-sentence	snt1	stand-01	m2	s	
+# ::edge	lady	ARG0-of	have-03	l	h	
+# ::edge	umbrella	ARG1-of	purple-02	u	p3	
+# ::edge	have-03	ARG1	umbrella	h	u	
+# ::edge	and	op1	lady	a	l	
+# ::edge	multi-sentence	snt2	and	m2	a	
+# ::edge	man	quant	1	m	0	
+# ::edge	and	op2	man	a	m	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	have-03	ARG1	camera	h2	c	
+(m2 / multi-sentence
+    :snt1 (s / stand-01
+        :ARG1 (p / person
+            :quant 3)
+        :ARG2 (p2 / platform
+            :mod (t / train)
+            :mod (c2 / city)))
+    :snt2 (a / and
+        :op1 (l / lady
+            :ARG0-of (h / have-03
+                :ARG1 (u / umbrella
+                    :ARG1-of (p3 / purple-02))))
+        :op2 (m / man
+            :quant 1
+            :ARG0-of (h2 / have-03
+                :ARG1 (c / camera)))))

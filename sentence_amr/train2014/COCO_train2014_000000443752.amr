@@ -1,0 +1,34 @@
+# ::tok A dollar and eighty cents per donut that is light and filled with red paste .
+# ::node	m	monetary-quantity	1-2
+# ::node	d	dollar	1-2
+# ::node	a	and	2-3
+# ::node	0	80	3-4
+# ::node	c	cent	4-5
+# ::node	r	rate-entity-91	5-6
+# ::node	d2	donut	6-7
+# ::node	l	light-06	9-10
+# ::node	f	fill-01	11-12
+# ::node	r2	red-02	13-14
+# ::node	p	paste	14-15
+# ::root	r	rate-entity-91
+# ::edge	monetary-quantity	unit	dollar	m	d	
+# ::edge	and	op1	monetary-quantity	a	m	
+# ::edge	monetary-quantity	quant	80	m	0	
+# ::edge	monetary-quantity	unit	cent	m	c	
+# ::edge	rate-entity-91	ARG1	and	r	a	
+# ::edge	rate-entity-91	ARG2	donut	r	d2	
+# ::edge	donut	ARG1-of	light-06	d2	l	
+# ::edge	donut	ARG1-of	fill-01	d2	f	
+# ::edge	paste	ARG1-of	red-02	p	r2	
+# ::edge	fill-01	ARG2	paste	f	p	
+(r / rate-entity-91
+    :ARG1 (a / and
+        :op1 (m / monetary-quantity
+            :quant 80
+            :unit (d / dollar)
+            :unit (c / cent)))
+    :ARG2 (d2 / donut
+        :ARG1-of (l / light-06)
+        :ARG1-of (f / fill-01
+            :ARG2 (p / paste
+                :ARG1-of (r2 / red-02)))))

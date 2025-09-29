@@ -1,0 +1,31 @@
+# ::tok One cat in a bathroom sink and another on the counter .
+# ::node	0	1	0-1
+# ::node	c	cat	1-2
+# ::node	c2	cat	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	b	bathroom	4-5
+# ::node	s	sink	5-6
+# ::node	a	and	6-7
+# ::node	a2	another	7-8
+# ::node	b3	be-located-at-91	8-9
+# ::node	c3	counter	10-11
+# ::root	a	and
+# ::edge	cat	quant	1	c	0	
+# ::edge	be-located-at-91	ARG1	cat	b2	c	
+# ::edge	sink	location	bathroom	s	b	
+# ::edge	be-located-at-91	ARG2	sink	b2	s	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	cat	mod	another	c2	a2	
+# ::edge	and	op2	be-located-at-91	a	b3	
+# ::edge	be-located-at-91	ARG1	cat	b3	c2	
+# ::edge	be-located-at-91	ARG2	counter	b3	c3	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (c / cat
+            :quant 1)
+        :ARG2 (s / sink
+            :location (b / bathroom)))
+    :op2 (b3 / be-located-at-91
+        :ARG1 (c2 / cat
+            :mod (a2 / another))
+        :ARG2 (c3 / counter)))

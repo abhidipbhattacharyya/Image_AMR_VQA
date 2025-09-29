@@ -1,0 +1,27 @@
+# ::tok A spotless computer desk which waits for its owner to return .
+# ::node	c	clean-04	1-2
+# ::node	0	-	1-2
+# ::node	c2	computer	2-3
+# ::node	d	desk	3-4
+# ::node	w	wait-01	5-6
+# ::node	p	person	8-9
+# ::node	o	own-01	8-9
+# ::node	r	return-01	10-11
+# ::root	d	desk
+# ::edge	clean-04	polarity	-	c	0	
+# ::edge	desk	mod	computer	d	c2	
+# ::edge	desk	ARG1-of	clean-04	d	c	
+# ::edge	desk	ARG1-of	wait-01	d	w	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	desk	o	d	
+# ::edge	return-01	ARG1	person	r	p	
+# ::edge	wait-01	ARG2	return-01	w	r	
+(d / desk
+    :ARG1-of (c / clean-04
+        :polarity -)
+    :ARG1-of (w / wait-01
+        :ARG2 (r / return-01
+            :ARG1 (p / person
+                :ARG0-of (o / own-01
+                    :ARG1 d))))
+    :mod (c2 / computer))

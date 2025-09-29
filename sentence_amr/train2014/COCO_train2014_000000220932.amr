@@ -1,0 +1,36 @@
+# ::tok The 5th and 6th Avenue signs are pointing in different directions .
+# ::node	0	5th	1-2
+# ::node	a	and	2-3
+# ::node	n	name	3-4
+# ::node	1	6th	3-4
+# ::node	r	road	4-5
+# ::node	2	Avenue	4-5
+# ::node	s	sign	5-6
+# ::node	s2	sign	5-6
+# ::node	p	point-01	7-8
+# ::node	d	differ-02	9-10
+# ::node	d2	direction	10-11
+# ::root	p	point-01
+# ::edge	name	op1	5th	n	0	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	Avenue	n	2	
+# ::edge	sign	mod	road	s	r	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	mod	road	s2	r	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	point-01	ARG0	and	p	a	
+# ::edge	direction	ARG1-of	differ-02	d2	d	
+# ::edge	point-01	ARG2	direction	p	d2	
+# ::edge	point-01	rel	6th	p	1	
+(p / point-01
+    :ARG0 (a / and
+        :op1 (s / sign
+            :mod (r / road
+                :name (n / name
+                    :op1 "5th"
+                    :op2 "Avenue")))
+        :op2 (s2 / sign
+            :mod r))
+    :ARG2 (d2 / direction
+        :ARG1-of (d / differ-02))
+    :rel 6th)

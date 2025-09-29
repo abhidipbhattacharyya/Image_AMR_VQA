@@ -1,0 +1,36 @@
+# ::tok The next person dives off the boat to join those already in the water .
+# ::node	n	next	1-2
+# ::node	p	person	2-3
+# ::node	d	dive-01	3-4
+# ::node	o	off	4-5
+# ::node	b2	boat	6-7
+# ::node	j	join-01	8-9
+# ::node	p2	person	9-10
+# ::node	t	that	9-10
+# ::node	a	already	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	w	water	13-14
+# ::root	d	dive-01
+# ::edge	person	mod	next	p	n	
+# ::edge	dive-01	ARG0	person	d	p	
+# ::edge	dive-01	source	off	d	o	
+# ::edge	off	op1	boat	o	b2	
+# ::edge	dive-01	purpose	join-01	d	j	
+# ::edge	join-01	ARG1	person	j	p	
+# ::edge	join-01	ARG2	person	j	p2	
+# ::edge	person	mod	that	p2	t	
+# ::edge	be-located-at-91	time	already	b	a	
+# ::edge	person	ARG1-of	be-located-at-91	p2	b	
+# ::edge	be-located-at-91	ARG2	water	b	w	
+(d / dive-01
+    :purpose (j / join-01
+        :ARG1 (p / person
+            :mod (n / next))
+        :ARG2 (p2 / person
+            :ARG1-of (b / be-located-at-91
+                :ARG2 (w / water)
+                :time (a / already))
+            :mod (t / that)))
+    :ARG0 p
+    :source (o / off
+        :op1 (b2 / boat)))

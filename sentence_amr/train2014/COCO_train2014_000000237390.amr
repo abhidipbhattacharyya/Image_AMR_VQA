@@ -1,0 +1,22 @@
+# ::tok A multi light traffic light with two outer lights .
+# ::node	m	multiple	1-2
+# ::node	l3	light-06	2-3
+# ::node	t	traffic	3-4
+# ::node	l	light	4-5
+# ::node	0	2	6-7
+# ::node	o	outer	7-8
+# ::node	l2	light	8-9
+# ::root	l	light
+# ::edge	light-06	quant	multiple	l3	m	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	light-06	l	l3	
+# ::edge	light	mod	outer	l2	o	
+# ::edge	light	quant	2	l2	0	
+# ::edge	light	part	light	l	l2	
+(l / light
+    :ARG1-of (l3 / light-06
+        :quant (m / multiple))
+    :mod (t / traffic)
+    :part (l2 / light
+        :quant 2
+        :mod (o / outer)))

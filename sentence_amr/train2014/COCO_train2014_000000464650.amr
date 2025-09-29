@@ -1,0 +1,51 @@
+# ::tok A woman is using a ktichen tool to make something in a yellow bowl
+# ::node	w	woman	1-2
+# ::node	u	use-01	3-4
+# ::node	c	company	5-6
+# ::node	n	name	5-6
+# ::node	1	foreign	5-6
+# ::node	p	product	5-6
+# ::node	n2	name	5-6
+# ::node	2	sex	5-6
+# ::node	p2	product	5-6
+# ::node	n3	name	5-6
+# ::node	0	computer	5-6
+# ::node	t	tool	6-7
+# ::node	m	make-01	8-9
+# ::node	s	something	9-10
+# ::node	y	yellow-02	12-13
+# ::node	b	bowl	13-14
+# ::root	u	use-01
+# ::edge	use-01	ARG0	woman	u	w	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	foreign	n	1	
+# ::edge	name	op2	product	n	p	
+# ::edge	product	name	name	p	n2	
+# ::edge	name	op1	sex	n	2	
+# ::edge	name	op3	product	n2	p2	
+# ::edge	product	name	name	p2	n3	
+# ::edge	name	op2	computer	n2	0	
+# ::edge	tool	mod	company	t	c	
+# ::edge	use-01	ARG1	tool	u	t	
+# ::edge	use-01	ARG2	make-01	u	m	
+# ::edge	make-01	ARG0	woman	m	w	
+# ::edge	make-01	ARG1	something	m	s	
+# ::edge	bowl	ARG1-of	yellow-02	b	y	
+# ::edge	make-01	location	bowl	m	b	
+(u / use-01
+    :ARG0 (w / woman)
+    :ARG1 (t / tool
+        :mod (c / company
+            :name (n / name
+                :op1 "foreign"
+                :op1 "sex"
+                :op2 (p / "product"
+                    :name (n2 / name
+                        :op2 "computer"
+                        :op3 (p2 / "product"
+                            :name (n3 / name)))))))
+    :ARG2 (m / make-01
+        :ARG0 w
+        :ARG1 (s / something)
+        :location (b / bowl
+            :ARG1-of (y / yellow-02))))

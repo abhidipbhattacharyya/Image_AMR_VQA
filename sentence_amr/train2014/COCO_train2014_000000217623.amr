@@ -1,0 +1,44 @@
+# ::tok An ice bucket with champagne on a white tablecloth beside champagne flutes and a wedding cake decorated with white flowers .
+# ::node	i	ice	1-2
+# ::node	b	bucket	2-3
+# ::node	h	have-03	3-4
+# ::node	c2	champagne	4-5
+# ::node	w2	white-03	7-8
+# ::node	t	tablecloth	8-9
+# ::node	n	next-to	9-10
+# ::node	g	globe	11-12
+# ::node	a	and	12-13
+# ::node	w	wed-01	14-15
+# ::node	c	cake	15-16
+# ::node	d	decorate-01	16-17
+# ::node	f	flower	19-20
+# ::root	a	and
+# ::edge	bucket	consist-of	ice	b	i	
+# ::edge	bucket	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	champagne	h	c2	
+# ::edge	tablecloth	ARG1-of	white-03	t	w2	
+# ::edge	champagne	location	tablecloth	c2	t	
+# ::edge	tablecloth	location	next-to	t	n	
+# ::edge	next-to	op1	globe	n	g	
+# ::edge	globe	mod	champagne	g	c2	
+# ::edge	and	op1	bucket	a	b	
+# ::edge	cake	mod	wed-01	c	w	
+# ::edge	and	op2	cake	a	c	
+# ::edge	cake	ARG1-of	decorate-01	c	d	
+# ::edge	decorate-01	ARG2	flower	d	f	
+# ::edge	white-03	ARG1	flower	w2	f	
+(a / and
+    :op1 (b / bucket
+        :ARG0-of (h / have-03
+            :ARG1 (c2 / champagne
+                :location (t / tablecloth
+                    :ARG1-of (w2 / white-03
+                        :ARG1 (f / flower))
+                    :location (n / next-to
+                        :op1 (g / globe
+                            :mod c2)))))
+        :consist-of (i / ice))
+    :op2 (c / cake
+        :ARG1-of (d / decorate-01
+            :ARG2 f)
+        :mod (w / wed-01)))

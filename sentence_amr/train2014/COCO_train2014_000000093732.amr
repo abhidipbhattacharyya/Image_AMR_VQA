@@ -1,0 +1,27 @@
+# ::tok A bus is driving out of a parking lot and getting on the main road .
+# ::node	b	bus	1-2
+# ::node	d	drive-01	3-4
+# ::node	p	park-01	7-8
+# ::node	l	lot	8-9
+# ::node	g	get-05	10-11
+# ::node	m	main	13-14
+# ::node	r	road	14-15
+# ::node	a	and	15-16
+# ::root	a	and
+# ::edge	drive-01	ARG0	bus	d	b	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	drive-01	source	lot	d	l	
+# ::edge	get-05	ARG1	bus	g	b	
+# ::edge	road	mod	main	r	m	
+# ::edge	get-05	ARG2	road	g	r	
+# ::edge	and	op2	get-05	a	g	
+# ::edge	and	op1	drive-01	a	d	
+(a / and
+    :op1 (d / drive-01
+        :ARG0 (b / bus)
+        :source (l / lot
+            :ARG2-of (p / park-01)))
+    :op2 (g / get-05
+        :ARG1 b
+        :ARG2 (r / road
+            :mod (m / main))))

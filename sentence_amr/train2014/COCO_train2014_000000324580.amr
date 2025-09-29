@@ -1,0 +1,28 @@
+# ::tok A street , one way and stop sign with it saying hammer time .
+# ::node	s4	street	1-2
+# ::node	0	1	3-4
+# ::node	w	way	4-5
+# ::node	a	and	5-6
+# ::node	s3	stop-01	6-7
+# ::node	s2	signal-07	7-8
+# ::node	s	say-01	10-11
+# ::node	h	hammer-02	11-12
+# ::node	t	time	12-13
+# ::root	a	and
+# ::edge	way	quant	1	w	0	
+# ::edge	street	mod	way	s4	w	
+# ::edge	and	op1	street	a	s4	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	signal-07	ARG0-of	say-01	s2	s	
+# ::edge	time	time-of	hammer-02	t	h	
+# ::edge	say-01	ARG1	time	s	t	
+(a / and
+    :op1 (s4 / street
+        :mod (w / way
+            :quant 1))
+    :op2 (s2 / signal-07
+        :ARG0-of (s / say-01
+            :ARG1 (t / time
+                :time-of (h / hammer-02)))
+        :ARG1 (s3 / stop-01)))

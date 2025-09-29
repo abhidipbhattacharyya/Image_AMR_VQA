@@ -1,0 +1,45 @@
+# ::tok A man in a full body wet suit that is surfing on a calm body of water and spraying water up behind his board .
+# ::node	m	man	1-2
+# ::node	f	full-09	4-5
+# ::node	b3	body	5-6
+# ::node	w3	wet	6-7
+# ::node	s2	suit	7-8
+# ::node	s3	surf-01	10-11
+# ::node	c	calm-03	13-14
+# ::node	b4	body	14-15
+# ::node	w	water	16-17
+# ::node	s	spray-01	18-19
+# ::node	w2	water	19-20
+# ::node	u	up	20-21
+# ::node	b	behind	21-22
+# ::node	b2	board	23-24
+# ::root	m	man
+# ::edge	body	ARG1-of	full-09	b3	f	
+# ::edge	suit	mod	wet	s2	w3	
+# ::edge	suit	mod	body	s2	b3	
+# ::edge	man	domain	suit	m	s2	
+# ::edge	man	ARG0-of	surf-01	m	s3	
+# ::edge	body	ARG1-of	calm-03	b4	c	
+# ::edge	surf-01	ARG2	body	s3	b4	
+# ::edge	body	consist-of	water	b4	w	
+# ::edge	man	ARG0-of	spray-01	m	s	
+# ::edge	spray-01	ARG1	water	s	w2	
+# ::edge	spray-01	direction	up	s	u	
+# ::edge	spray-01	ARG2	behind	s	b	
+# ::edge	behind	op1	board	b	b2	
+# ::edge	board	poss	man	b2	m	
+(m / man
+    :ARG0-of (s3 / surf-01
+        :ARG2 (b4 / body
+            :ARG1-of (c / calm-03)
+            :consist-of (w / water)))
+    :ARG0-of (s / spray-01
+        :ARG1 (w2 / water)
+        :ARG2 (b / behind
+            :op1 (b2 / board
+                :poss m))
+        :direction (u / up))
+    :domain (s2 / suit
+        :mod (w3 / wet)
+        :mod (b3 / body
+            :ARG1-of (f / full-09))))

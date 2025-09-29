@@ -1,0 +1,28 @@
+# ::tok The Greek yogurt plastic container is full of sliced apples .
+# ::node	c2	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Greece	1-2
+# ::node	y	yogurt	2-3
+# ::node	p	plastic	3-4
+# ::node	c	container	4-5
+# ::node	f	full-09	6-7
+# ::node	s	slice-01	8-9
+# ::node	a	apple	9-10
+# ::root	f	full-09
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Greece	n	0	
+# ::edge	yogurt	source	country	y	c2	
+# ::edge	container	consist-of	plastic	c	p	
+# ::edge	container	mod	yogurt	c	y	
+# ::edge	full-09	ARG1	container	f	c	
+# ::edge	apple	ARG1-of	slice-01	a	s	
+# ::edge	full-09	ARG2	apple	f	a	
+(f / full-09
+    :ARG1 (c / container
+        :consist-of (p / plastic)
+        :mod (y / yogurt
+            :source (c2 / country
+                :name (n / name
+                    :op1 "Greece"))))
+    :ARG2 (a / apple
+        :ARG1-of (s / slice-01)))

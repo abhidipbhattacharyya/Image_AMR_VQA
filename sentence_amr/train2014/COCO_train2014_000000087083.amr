@@ -1,0 +1,37 @@
+# ::tok A bathroom with a shower curtain that looks like an error screen in a Microsoft windows program .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	shower-01	4-5
+# ::node	c2	curtain	5-6
+# ::node	l	look-02	7-8
+# ::node	e	err-01	10-11
+# ::node	s	screen	11-12
+# ::node	c	company	14-15
+# ::node	n	name	14-15
+# ::node	0	Microsoft	14-15
+# ::node	w	window	15-16
+# ::node	p	program	16-17
+# ::root	b	bathroom
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	curtain	mod	shower-01	c2	s2	
+# ::edge	have-03	ARG1	curtain	h	c2	
+# ::edge	curtain	ARG0-of	look-02	c2	l	
+# ::edge	screen	purpose	err-01	s	e	
+# ::edge	look-02	ARG1	screen	l	s	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Microsoft	n	0	
+# ::edge	program	mod	window	p	w	
+# ::edge	program	mod	company	p	c	
+# ::edge	screen	location	program	s	p	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (c2 / curtain
+            :ARG0-of (l / look-02
+                :ARG1 (s / screen
+                    :purpose (e / err-01)
+                    :location (p / program
+                        :mod (w / window)
+                        :mod (c / company
+                            :name (n / name
+                                :op1 "Microsoft")))))
+            :mod (s2 / shower-01))))

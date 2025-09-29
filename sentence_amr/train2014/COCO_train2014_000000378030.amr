@@ -1,0 +1,25 @@
+# ::tok Traffic waiting at a stop light on a busy road through a wooded area .
+# ::node	t	traffic	0-1
+# ::node	w	wait-01	1-2
+# ::node	s	stop-01	4-5
+# ::node	l	light	5-6
+# ::node	b	busy-02	8-9
+# ::node	r	road	9-10
+# ::node	w2	wood	12-13
+# ::node	a	area	13-14
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	traffic	w	t	
+# ::edge	light	mod	stop-01	l	s	
+# ::edge	wait-01	ARG2	light	w	l	
+# ::edge	road	ARG1-of	busy-02	r	b	
+# ::edge	wait-01	location	road	w	r	
+# ::edge	area	mod	wood	a	w2	
+# ::edge	road	path	area	r	a	
+(w / wait-01
+    :ARG1 (t / traffic)
+    :ARG2 (l / light
+        :mod (s / stop-01))
+    :location (r / road
+        :ARG1-of (b / busy-02)
+        :path (a / area
+            :mod (w2 / wood))))

@@ -1,0 +1,36 @@
+# ::tok A person has a burrito and a glass of beer laid out in front of them .
+# ::node	p	person	1-2
+# ::node	h	have-03	2-3
+# ::node	b2	burrito	4-5
+# ::node	a	and	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	0	1	6-7
+# ::node	g	glass	7-8
+# ::node	b	beer	9-10
+# ::node	l	lay-01	10-11
+# ::node	o	out	11-12
+# ::node	i	in-front-of	13-14
+# ::root	h	have-03
+# ::edge	have-03	ARG0	person	h	p	
+# ::edge	and	op1	burrito	a	b2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	beer	quant	volume-quantity	b	v	
+# ::edge	and	op2	beer	a	b	
+# ::edge	lay-01	ARG1	and	l	a	
+# ::edge	have-03	ARG1	lay-01	h	l	
+# ::edge	lay-01	ARG2	out	l	o	
+# ::edge	lay-01	ARG2	in-front-of	l	i	
+# ::edge	in-front-of	op1	person	i	p	
+(h / have-03
+    :ARG0 (p / person)
+    :ARG1 (l / lay-01
+        :ARG1 (a / and
+            :op1 (b2 / burrito)
+            :op2 (b / beer
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))))
+        :ARG2 (o / out)
+        :ARG2 (i / in-front-of
+            :op1 p)))

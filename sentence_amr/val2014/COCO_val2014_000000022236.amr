@@ -1,0 +1,28 @@
+# ::tok A double deck transit bus parked at a stop waiting for passengers .
+# ::node	d2	double	1-2
+# ::node	d	deck	2-3
+# ::node	t	transit-01	3-4
+# ::node	b	bus	4-5
+# ::node	p	park-01	5-6
+# ::node	l	location	7-8
+# ::node	s	stop-01	8-9
+# ::node	w	wait-01	9-10
+# ::node	p2	passenger	11-12
+# ::root	p	park-01
+# ::edge	deck	quant	double	d	d2	
+# ::edge	bus	ARG0-of	transit-01	b	t	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	park-01	ARG2	location	p	l	
+# ::edge	location	location-of	stop-01	l	s	
+# ::edge	bus	ARG1-of	wait-01	b	w	
+# ::edge	wait-01	ARG2	passenger	w	p2	
+(p / park-01
+    :ARG1 (b / bus
+        :ARG0-of (t / transit-01)
+        :ARG1-of (w / wait-01
+            :ARG2 (p2 / passenger))
+        :mod (d / deck
+            :quant (d2 / double)))
+    :ARG2 (l / location
+        :location-of (s / stop-01)))

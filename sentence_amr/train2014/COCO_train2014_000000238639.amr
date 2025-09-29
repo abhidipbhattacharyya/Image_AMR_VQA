@@ -1,0 +1,30 @@
+# ::tok A stove top oven with two large pots on top of it as food bakes inside of it .
+# ::node	t	top	2-3
+# ::node	o	oven	3-4
+# ::node	0	2	5-6
+# ::node	l	large	6-7
+# ::node	p	pot	7-8
+# ::node	t2	top	9-10
+# ::node	f	food	13-14
+# ::node	b	bake-01	14-15
+# ::node	i	inside	15-16
+# ::root	o	oven
+# ::edge	oven	part	top	o	t	
+# ::edge	pot	mod	large	p	l	
+# ::edge	pot	quant	2	p	0	
+# ::edge	top	location-of	pot	t2	p	
+# ::edge	oven	op1-of	top	o	t2	
+# ::edge	bake-01	ARG1	food	b	f	
+# ::edge	oven	time	bake-01	o	b	
+# ::edge	bake-01	location	inside	b	i	
+# ::edge	inside	op1	oven	i	o	
+(o / oven
+    :op1-of (t2 / top
+        :location-of (p / pot
+            :quant 2
+            :mod (l / large)))
+    :part (t / top)
+    :time (b / bake-01
+        :ARG1 (f / food)
+        :location (i / inside
+            :op1 o)))

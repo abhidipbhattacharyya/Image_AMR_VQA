@@ -1,0 +1,45 @@
+# ::tok Two toilets , one with a brown lid and one with a white one
+# ::node	2	2	0-1
+# ::node	t	toilet	1-2
+# ::node	t2	toilet	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	h	have-03	4-5
+# ::node	h2	have-03	4-5
+# ::node	b	brown-01	6-7
+# ::node	l	lid	7-8
+# ::node	l2	lid	7-8
+# ::node	a	and	8-9
+# ::node	w	white-03	12-13
+# ::root	a	and
+# ::edge	toilet	quant	2	t	2	
+# ::edge	toilet	ARG2-of	include-91	t	i	
+# ::edge	include-91	ARG1	toilet	i2	t2	
+# ::edge	toilet	ARG2-of	include-91	t	i2	
+# ::edge	toilet	quant	1	t2	0	
+# ::edge	toilet	quant	1	t2	1	
+# ::edge	toilet	ARG0-of	have-03	t2	h	
+# ::edge	toilet	ARG0-of	have-03	t2	h2	
+# ::edge	lid	ARG1-of	brown-01	l	b	
+# ::edge	have-03	ARG1	lid	h	l	
+# ::edge	have-03	ARG1	lid	h2	l2	
+# ::edge	and	op2	include-91	a	i2	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	lid	ARG1-of	white-03	l2	w	
+(a / and
+    :op1 (t / toilet
+        :quant 2
+        :ARG2-of (i / include-91)
+        :ARG2-of (i2 / include-91
+            :ARG1 (t2 / toilet
+                :quant 1
+                :quant 1
+                :ARG0-of (h / have-03
+                    :ARG1 (l / lid
+                        :ARG1-of (b / brown-01)))
+                :ARG0-of (h2 / have-03
+                    :ARG1 (l2 / lid
+                        :ARG1-of (w / white-03))))))
+    :op2 i2)

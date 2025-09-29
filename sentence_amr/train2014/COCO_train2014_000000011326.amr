@@ -1,0 +1,30 @@
+# ::tok Bus moving past small pond with people sitting on benches next to it
+# ::node	b2	bus	0-1
+# ::node	m	move-01	1-2
+# ::node	p	past	2-3
+# ::node	s2	small	3-4
+# ::node	p3	pond	4-5
+# ::node	p2	person	6-7
+# ::node	s	sit-01	7-8
+# ::node	b	bench	9-10
+# ::node	n	next-to	10-11
+# ::root	m	move-01
+# ::edge	move-01	ARG1	bus	m	b2	
+# ::edge	move-01	ARG2	past	m	p	
+# ::edge	pond	mod	small	p3	s2	
+# ::edge	past	op1	pond	p	p3	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	pond	location-of	sit-01	p3	s	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	bench	location	next-to	b	n	
+# ::edge	next-to	op1	pond	n	p3	
+(m / move-01
+    :ARG1 (b2 / bus)
+    :ARG2 (p / past
+        :op1 (p3 / pond
+            :location-of (s / sit-01
+                :ARG1 (p2 / person)
+                :ARG2 (b / bench
+                    :location (n / next-to
+                        :op1 p3)))
+            :mod (s2 / small))))

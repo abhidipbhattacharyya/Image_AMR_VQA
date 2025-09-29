@@ -1,0 +1,68 @@
+# ::tok Outside , people that are situated in a space that is beside a ramp and to the rear of some steps , watch as a skateboarder leaps almost as high as the top of the railing bisecting the steps .
+# ::node	o	outside	0-1
+# ::node	p	person	2-3
+# ::node	s	situate-01	5-6
+# ::node	s3	space	8-9
+# ::node	b	beside	11-12
+# ::node	r2	ramp	13-14
+# ::node	a2	and	14-15
+# ::node	r3	rear	17-18
+# ::node	s2	some	19-20
+# ::node	s4	step-01	20-21
+# ::node	w	watch-01	22-23
+# ::node	p2	person	25-26
+# ::node	b2	board-05	25-26
+# ::node	l	leap-03	26-27
+# ::node	a	almost	27-28
+# ::node	h	have-degree-91	28-29
+# ::node	e	equal	28-29
+# ::node	h2	high-02	29-30
+# ::node	t	top	32-33
+# ::node	r	railing	35-36
+# ::node	d	divide-02	36-37
+# ::root	w	watch-01
+# ::edge	person	ARG1-of	situate-01	p	s	
+# ::edge	situate-01	ARG2	space	s	s3	
+# ::edge	beside	op1	ramp	b	r2	
+# ::edge	and	op1	beside	a2	b	
+# ::edge	space	location	and	s3	a2	
+# ::edge	and	op2	rear	a2	r3	
+# ::edge	step-01	mod	some	s4	s2	
+# ::edge	rear	part-of	step-01	r3	s4	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	location	outside	w	o	
+# ::edge	person	ARG0-of	board-05	p2	b2	
+# ::edge	leap-03	ARG0	person	l	p2	
+# ::edge	watch-01	ARG1	leap-03	w	l	
+# ::edge	have-degree-91	ARG1	leap-03	h	l	
+# ::edge	have-degree-91	ARG3	equal	h	e	
+# ::edge	equal	mod	almost	e	a	
+# ::edge	high-02	ARG2-of	have-degree-91	h2	h	
+# ::edge	leap-03	ARG1-of	high-02	l	h2	
+# ::edge	have-degree-91	ARG4	top	h	t	
+# ::edge	top	part-of	railing	t	r	
+# ::edge	railing	ARG0-of	divide-02	r	d	
+# ::edge	divide-02	ARG1	step-01	d	s4	
+(w / watch-01
+    :ARG0 (p / person
+        :ARG1-of (s / situate-01
+            :ARG2 (s3 / space
+                :location (a2 / and
+                    :op1 (b / beside
+                        :op1 (r2 / ramp))
+                    :op2 (r3 / rear
+                        :part-of (s4 / step-01
+                            :mod (s2 / some)))))))
+    :ARG1 (l / leap-03
+        :ARG0 (p2 / person
+            :ARG0-of (b2 / board-05))
+        :ARG1-of (h2 / high-02
+            :ARG2-of (h / have-degree-91
+                :ARG1 l
+                :ARG3 (e / equal
+                    :mod (a / almost))
+                :ARG4 (t / top
+                    :part-of (r / railing
+                        :ARG0-of (d / divide-02
+                            :ARG1 s4))))))
+    :location (o / outside))

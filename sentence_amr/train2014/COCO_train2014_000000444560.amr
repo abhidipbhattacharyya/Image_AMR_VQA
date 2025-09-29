@@ -1,0 +1,25 @@
+# ::tok Many large motorcycles are parked on both sides of the narrow street .
+# ::node	m	many	0-1
+# ::node	l	large	1-2
+# ::node	m2	motorcycle	2-3
+# ::node	p	park-01	4-5
+# ::node	b	both	6-7
+# ::node	s	side	7-8
+# ::node	n	narrow-02	10-11
+# ::node	s2	street	11-12
+# ::root	p	park-01
+# ::edge	motorcycle	mod	large	m2	l	
+# ::edge	motorcycle	quant	many	m2	m	
+# ::edge	park-01	ARG1	motorcycle	p	m2	
+# ::edge	side	mod	both	s	b	
+# ::edge	park-01	location	side	p	s	
+# ::edge	street	ARG1-of	narrow-02	s2	n	
+# ::edge	side	part-of	street	s	s2	
+(p / park-01
+    :ARG1 (m2 / motorcycle
+        :quant (m / many)
+        :mod (l / large))
+    :location (s / side
+        :mod (b / both)
+        :part-of (s2 / street
+            :ARG1-of (n / narrow-02))))

@@ -1,0 +1,33 @@
+# ::tok A cow eating from a woman 's hand while another cow tries to get some too .
+# ::node	c	cow	1-2
+# ::node	e	eat-01	2-3
+# ::node	w	woman	5-6
+# ::node	h	hand	7-8
+# ::node	a	another	9-10
+# ::node	c2	cow	10-11
+# ::node	t2	try-01	11-12
+# ::node	g	get-01	13-14
+# ::node	s	some	14-15
+# ::node	t	too	15-16
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	cow	e	c	
+# ::edge	hand	part-of	woman	h	w	
+# ::edge	eat-01	source	hand	e	h	
+# ::edge	cow	mod	another	c2	a	
+# ::edge	try-01	ARG0	cow	t2	c2	
+# ::edge	eat-01	time	try-01	e	t2	
+# ::edge	try-01	ARG1	get-01	t2	g	
+# ::edge	get-01	ARG0	cow	g	c2	
+# ::edge	get-01	ARG1	some	g	s	
+# ::edge	get-01	mod	too	g	t	
+(e / eat-01
+    :ARG0 (c / cow)
+    :source (h / hand
+        :part-of (w / woman))
+    :time (t2 / try-01
+        :ARG0 (c2 / cow
+            :mod (a / another))
+        :ARG1 (g / get-01
+            :ARG0 c2
+            :ARG1 (s / some)
+            :mod (t / too))))

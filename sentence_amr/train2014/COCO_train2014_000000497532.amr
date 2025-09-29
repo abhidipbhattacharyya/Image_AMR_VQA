@@ -1,0 +1,31 @@
+# ::tok Baseball player on the ground at home plate while an umpire makes a call .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p4	play-01	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	g	ground	4-5
+# ::node	h	home	6-7
+# ::node	p3	plate	7-8
+# ::node	p2	person	10-11
+# ::node	u	umpire-01	10-11
+# ::node	c	call-10	13-14
+# ::root	b2	be-located-at-91
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	be-located-at-91	ARG1	person	b2	p	
+# ::edge	be-located-at-91	ARG2	ground	b2	g	
+# ::edge	plate	mod	home	p3	h	
+# ::edge	ground	location	plate	g	p3	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	call-10	ARG0	person	c	p2	
+# ::edge	be-located-at-91	time	call-10	b2	c	
+(b2 / be-located-at-91
+    :ARG1 (p / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (g / ground
+        :location (p3 / plate
+            :mod (h / home)))
+    :time (c / call-10
+        :ARG0 (p2 / person
+            :ARG0-of (u / umpire-01))))

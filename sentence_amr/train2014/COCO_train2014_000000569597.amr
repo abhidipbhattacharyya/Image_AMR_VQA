@@ -1,0 +1,26 @@
+# ::tok a tiled wall and floor with a toilet inside of it
+# ::node	t	tile-01	1-2
+# ::node	w	wall	2-3
+# ::node	a	and	3-4
+# ::node	f	floor	4-5
+# ::node	h	have-03	5-6
+# ::node	t2	toilet	7-8
+# ::node	i	inside	8-9
+# ::root	a	and
+# ::edge	wall	ARG1-of	tile-01	w	t	
+# ::edge	and	op1	wall	a	w	
+# ::edge	and	op2	floor	a	f	
+# ::edge	tile-01	ARG1	floor	t	f	
+# ::edge	and	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	toilet	h	t2	
+# ::edge	toilet	location	inside	t2	i	
+# ::edge	inside	op1	and	i	a	
+(a / and
+    :ARG0-of (h / have-03
+        :ARG1 (t2 / toilet
+            :location (i / inside
+                :op1 a)))
+    :op1 (w / wall
+        :ARG1-of (t / tile-01
+            :ARG1 (f / floor)))
+    :op2 f)

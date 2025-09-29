@@ -1,0 +1,36 @@
+# ::tok A piece of bread is spread with butter and fish pieces as it sits next to sliced tomatoes .
+# ::node	p	piece	1-2
+# ::node	b	bread	3-4
+# ::node	s3	spread-03	5-6
+# ::node	b2	butter	7-8
+# ::node	a	and	8-9
+# ::node	f	fish	9-10
+# ::node	p2	piece	10-11
+# ::node	s	sit-01	13-14
+# ::node	n	next-to	14-15
+# ::node	s2	slice-01	16-17
+# ::node	t	tomato	17-18
+# ::root	s3	spread-03
+# ::edge	piece	mod	bread	p	b	
+# ::edge	spread-03	ARG1	piece	s3	p	
+# ::edge	and	op1	butter	a	b2	
+# ::edge	spread-03	ARG2	and	s3	a	
+# ::edge	piece	mod	fish	p2	f	
+# ::edge	and	op2	piece	a	p2	
+# ::edge	spread-03	time	sit-01	s3	s	
+# ::edge	sit-01	ARG1	piece	s	p	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	tomato	ARG1-of	slice-01	t	s2	
+# ::edge	next-to	op1	tomato	n	t	
+(s3 / spread-03
+    :ARG1 (p / piece
+        :mod (b / bread))
+    :ARG2 (a / and
+        :op1 (b2 / butter)
+        :op2 (p2 / piece
+            :mod (f / fish)))
+    :time (s / sit-01
+        :ARG1 p
+        :ARG2 (n / next-to
+            :op1 (t / tomato
+                :ARG1-of (s2 / slice-01)))))

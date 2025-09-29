@@ -1,0 +1,40 @@
+# ::tok a train sits at a station next to an empty platform with some signs with Japanese characters written on them
+# ::node	t	train	1-2
+# ::node	s2	sit-01	2-3
+# ::node	s4	station	5-6
+# ::node	n2	next-to	6-7
+# ::node	e	empty-02	9-10
+# ::node	p	platform	10-11
+# ::node	s3	some	12-13
+# ::node	s	sign	13-14
+# ::node	c2	country	15-16
+# ::node	n	name	15-16
+# ::node	0	Japan	15-16
+# ::node	c	character	16-17
+# ::node	w	write-01	17-18
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	train	s2	t	
+# ::edge	sit-01	ARG2	station	s2	s4	
+# ::edge	station	location-of	next-to	s4	n2	
+# ::edge	platform	ARG1-of	empty-02	p	e	
+# ::edge	next-to	op1	platform	n2	p	
+# ::edge	sign	mod	some	s	s3	
+# ::edge	station	location-of	sign	s4	s	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Japan	n	0	
+# ::edge	character	mod	country	c	c2	
+# ::edge	write-01	ARG1	character	w	c	
+# ::edge	sign	location-of	write-01	s	w	
+(s2 / sit-01
+    :ARG1 (t / train)
+    :ARG2 (s4 / station
+        :location-of (n2 / next-to
+            :op1 (p / platform
+                :ARG1-of (e / empty-02)))
+        :location-of (s / sign
+            :location-of (w / write-01
+                :ARG1 (c / character
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "Japan"))))
+            :mod (s3 / some))))

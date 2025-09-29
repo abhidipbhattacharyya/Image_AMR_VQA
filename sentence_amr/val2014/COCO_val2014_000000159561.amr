@@ -1,0 +1,37 @@
+# ::tok Three items a box of wildflower mix , a blue book and a brown book are sitting on a display .
+# ::node	0	3	0-1
+# ::node	i	item	1-2
+# ::node	b4	box	3-4
+# ::node	w	wildflower	5-6
+# ::node	m	mix-01	6-7
+# ::node	b	blue	9-10
+# ::node	b2	book	10-11
+# ::node	a	and	11-12
+# ::node	b5	brown	13-14
+# ::node	b3	book	14-15
+# ::node	s	sit-01	16-17
+# ::node	d	display	19-20
+# ::root	s	sit-01
+# ::edge	item	quant	3	i	0	
+# ::edge	mix-01	ARG1	wildflower	m	w	
+# ::edge	box	consist-of	mix-01	b4	m	
+# ::edge	book	mod	blue	b2	b	
+# ::edge	and	op2	book	a	b2	
+# ::edge	and	op1	box	a	b4	
+# ::edge	item	domain	and	i	a	
+# ::edge	book	mod	brown	b3	b5	
+# ::edge	and	op3	book	a	b3	
+# ::edge	sit-01	ARG1	item	s	i	
+# ::edge	sit-01	ARG2	display	s	d	
+(s / sit-01
+    :ARG1 (i / item
+        :quant 3
+        :domain (a / and
+            :op1 (b4 / box
+                :consist-of (m / mix-01
+                    :ARG1 (w / wildflower)))
+            :op2 (b2 / book
+                :mod (b / blue))
+            :op3 (b3 / book
+                :mod (b5 / brown))))
+    :ARG2 (d / display))

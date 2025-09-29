@@ -1,0 +1,30 @@
+# ::tok A woman sitting at a counter pouring a glass of wine .
+# ::node	w2	woman	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	counter	5-6
+# ::node	p	pour-01	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	g	glass	8-9
+# ::node	w	wine	10-11
+# ::node	a	and	11-12
+# ::root	a	and
+# ::edge	sit-01	ARG1	woman	s	w2	
+# ::edge	sit-01	ARG2	counter	s	c	
+# ::edge	pour-01	ARG0	woman	p	w2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	pour-01	ARG1	wine	p	w	
+# ::edge	and	op2	pour-01	a	p	
+# ::edge	and	op1	sit-01	a	s	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (w2 / woman)
+        :ARG2 (c / counter))
+    :op2 (p / pour-01
+        :ARG0 w2
+        :ARG1 (w / wine
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))))

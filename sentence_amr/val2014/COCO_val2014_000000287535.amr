@@ -1,0 +1,33 @@
+# ::tok A street crossing with a street sign for Mulholland and a no - U - turn sign .
+# ::node	s3	street	1-2
+# ::node	c2	cross-02	2-3
+# ::node	s	sign	6-7
+# ::node	s2	sign	6-7
+# ::node	c	company	8-9
+# ::node	n	name	8-9
+# ::node	1	Mulholland	8-9
+# ::node	a	and	9-10
+# ::node	0	-	11-12
+# ::node	u	u-turn-00	15-16
+# ::root	c2	cross-02
+# ::edge	cross-02	ARG1	street	c2	s3	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	beneficiary	company	s	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Mulholland	n	1	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	cross-02	location-of	and	c2	a	
+# ::edge	u-turn-00	polarity	-	u	0	
+# ::edge	sign	mod	u-turn-00	s2	u	
+(c2 / cross-02
+    :ARG1 (s3 / street)
+    :location-of (a / and
+        :op1 (s / sign
+            :beneficiary (c / company
+                :name (n / name
+                    :op1 "Mulholland"))
+            :mod s3)
+        :op2 (s2 / sign
+            :mod (u / u-turn-00
+                :polarity -))))

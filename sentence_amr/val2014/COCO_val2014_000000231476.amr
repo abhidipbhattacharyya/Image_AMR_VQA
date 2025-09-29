@@ -1,0 +1,30 @@
+# ::tok A train in a modern style train station with large glass windows .
+# ::node	t	train	1-2
+# ::node	m	modern-02	4-5
+# ::node	s2	style	5-6
+# ::node	t2	train	6-7
+# ::node	s	station	7-8
+# ::node	h	have-03	8-9
+# ::node	l	large	9-10
+# ::node	g	glass	10-11
+# ::node	w	window	11-12
+# ::root	t	train
+# ::edge	style	ARG1-of	modern-02	s2	m	
+# ::edge	train	mod	train	t	t2	
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	mod	style	s	s2	
+# ::edge	train	location	station	t	s	
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	glass	mod	large	g	l	
+# ::edge	window	part	glass	w	g	
+# ::edge	have-03	ARG1	window	h	w	
+(t / train
+    :ARG0-of (h / have-03
+        :ARG1 (w / window
+            :part (g / glass
+                :mod (l / large))))
+    :location (s / station
+        :mod (t2 / train)
+        :mod (s2 / style
+            :ARG1-of (m / modern-02)))
+    :mod t2)

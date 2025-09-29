@@ -1,0 +1,25 @@
+# ::tok A yellow bus with tinted windows driving uphill down a street .
+# ::node	y	yellow-02	1-2
+# ::node	b	bus	2-3
+# ::node	t	tint-01	4-5
+# ::node	w	window	5-6
+# ::node	d2	drive-01	6-7
+# ::node	u	uphill	7-8
+# ::node	d	down	8-9
+# ::node	s	street	10-11
+# ::root	b	bus
+# ::edge	bus	ARG1-of	yellow-02	b	y	
+# ::edge	window	ARG1-of	tint-01	w	t	
+# ::edge	bus	part	window	b	w	
+# ::edge	bus	ARG0-of	drive-01	b	d2	
+# ::edge	drive-01	direction	uphill	d2	u	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	down	op1	street	d	s	
+(b / bus
+    :ARG0-of (d2 / drive-01
+        :direction (u / uphill)
+        :direction (d / down
+            :op1 (s / street)))
+    :ARG1-of (y / yellow-02)
+    :part (w / window
+        :ARG1-of (t / tint-01)))

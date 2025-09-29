@@ -1,0 +1,24 @@
+# ::tok A skier in a race squats to gain additional speed .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	r	race-02	4-5
+# ::node	s3	squat-01	5-6
+# ::node	g	gain-02	7-8
+# ::node	a	additional	8-9
+# ::node	s2	speed	9-10
+# ::root	s3	squat-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	ARG0-of	race-02	p	r	
+# ::edge	squat-01	ARG1	person	s3	p	
+# ::edge	squat-01	purpose	gain-02	s3	g	
+# ::edge	gain-02	ARG0	person	g	p	
+# ::edge	speed	mod	additional	s2	a	
+# ::edge	gain-02	ARG1	speed	g	s2	
+(s3 / squat-01
+    :purpose (g / gain-02
+        :ARG0 (p / person
+            :ARG0-of (s / ski-01)
+            :ARG0-of (r / race-02))
+        :ARG1 (s2 / speed
+            :mod (a / additional)))
+    :ARG1 p)

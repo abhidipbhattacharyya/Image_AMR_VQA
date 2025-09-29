@@ -1,0 +1,32 @@
+# ::tok Pitcher preparing to throw ball at hitter with crowd watching
+# ::node	p2	person	0-1
+# ::node	p	park	0-1
+# ::node	p4	prepare-02	1-2
+# ::node	t	throw-01	3-4
+# ::node	b	ball	4-5
+# ::node	p3	person	6-7
+# ::node	h	hit-01	6-7
+# ::node	c	crowd	8-9
+# ::node	w	watch-01	9-10
+# ::root	p4	prepare-02
+# ::edge	prepare-02	ARG1	person	p4	p2	
+# ::edge	prepare-02	ARG0	person	p4	p2	
+# ::edge	prepare-02	ARG2	throw-01	p4	t	
+# ::edge	throw-01	ARG0	person	t	p2	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	throw-01	ARG2	person	t	p3	
+# ::edge	person	ARG0-of	hit-01	p3	h	
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	prepare-02	ARG1-of	watch-01	p4	w	
+# ::edge	prepare-02	rel	park	p4	p	
+(p4 / prepare-02
+    :ARG0 (p2 / person)
+    :ARG1 p2
+    :ARG1-of (w / watch-01
+        :ARG0 (c / crowd))
+    :ARG2 (t / throw-01
+        :ARG0 p2
+        :ARG1 (b / ball)
+        :ARG2 (p3 / person
+            :ARG0-of (h / hit-01)))
+    :rel (p / park))

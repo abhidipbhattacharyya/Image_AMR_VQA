@@ -1,0 +1,40 @@
+# ::tok A wooden surface shows broccoli heads and Brussels sprouts laid on top .
+# ::node	w	wood	1-2
+# ::node	s2	surface	2-3
+# ::node	s	show-01	3-4
+# ::node	b	broccoli	4-5
+# ::node	h	head	5-6
+# ::node	a	and	6-7
+# ::node	c	city	7-8
+# ::node	n	name	7-8
+# ::node	0	Brussels	7-8
+# ::node	m	magazine	8-9
+# ::node	g	grow-03	8-9
+# ::node	l	lay-01	9-10
+# ::node	t	top	11-12
+# ::root	s	show-01
+# ::edge	surface	consist-of	wood	s2	w	
+# ::edge	show-01	ARG0	surface	s	s2	
+# ::edge	head	part-of	broccoli	h	b	
+# ::edge	and	op1	head	a	h	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Brussels	n	0	
+# ::edge	magazine	mod	city	m	c	
+# ::edge	and	op2	magazine	a	m	
+# ::edge	magazine	ARG1-of	grow-03	m	g	
+# ::edge	and	ARG1-of	lay-01	a	l	
+# ::edge	lay-01	ARG2	top	l	t	
+(s / show-01
+    :ARG0 (s2 / surface
+        :consist-of (w / wood))
+    :ARG1 (a / and
+        :ARG1-of (l / lay-01
+            :ARG2 (t / top))
+        :op1 (h / head
+            :part-of (b / broccoli))
+        :op2 (m / magazine
+            :ARG1-of (g / grow-03)
+            :mod (c / city
+                :name (n / name
+                    :op1 "Brussels")))))

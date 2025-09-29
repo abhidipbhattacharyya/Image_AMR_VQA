@@ -1,0 +1,35 @@
+# ::tok A traffic light with a red and white hazard sign sitting above it .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	h	have-03	3-4
+# ::node	r	red-02	5-6
+# ::node	a2	and	6-7
+# ::node	w	white-03	7-8
+# ::node	e	endanger-01	8-9
+# ::node	s	sign	9-10
+# ::node	s2	sit-01	10-11
+# ::node	a	above	11-12
+# ::root	s2	sit-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	and	op1	have-03	a2	h	
+# ::edge	and	op2	white-03	a2	w	
+# ::edge	sign	ARG0-of	endanger-01	s	e	
+# ::edge	sign	mod	and	s	a2	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sit-01	ARG1	light	s2	l	
+# ::edge	sit-01	ARG2	above	s2	a	
+# ::edge	above	op1	light	a	l	
+# ::edge	sit-01	rel	red-02	s2	r	
+(s2 / sit-01
+    :ARG1 (l / light
+        :ARG0-of (h / have-03
+            :ARG1 (s / sign
+                :ARG0-of (e / endanger-01)
+                :mod (a2 / and
+                    :op1 h
+                    :op2 (w / white-03))))
+        :mod (t / traffic))
+    :ARG2 (a / above
+        :op1 l)
+    :rel (r / red-02))

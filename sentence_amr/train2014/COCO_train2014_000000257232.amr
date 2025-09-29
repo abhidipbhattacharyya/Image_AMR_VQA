@@ -1,0 +1,66 @@
+# ::tok A wide building with many glass partitions has a front pavement with standing and milling people , some of whom are headed to the open door of a bus also resting on the pavement .
+# ::node	w	wide-02	1-2
+# ::node	b	building	2-3
+# ::node	m	many	4-5
+# ::node	g	glass	5-6
+# ::node	p	partition-01	6-7
+# ::node	h	have-03	7-8
+# ::node	f	front	9-10
+# ::node	p2	pavement	10-11
+# ::node	s2	stand-01	12-13
+# ::node	m2	moor-01	14-15
+# ::node	p4	person	15-16
+# ::node	a2	and	17-18
+# ::node	s	some	17-18
+# ::node	p5	person	19-20
+# ::node	h2	head-02	21-22
+# ::node	o	open-09	24-25
+# ::node	d	door	25-26
+# ::node	b2	bus	28-29
+# ::node	a	also	29-30
+# ::node	r	rest-01	30-31
+# ::node	p3	pavement	33-34
+# ::root	h	have-03
+# ::edge	building	ARG1-of	wide-02	b	w	
+# ::edge	partition-01	consist-of	glass	p	g	
+# ::edge	partition-01	quant	many	p	m	
+# ::edge	building	part	partition-01	b	p	
+# ::edge	have-03	ARG0	building	h	b	
+# ::edge	pavement	mod	front	p2	f	
+# ::edge	have-03	ARG1	pavement	h	p2	
+# ::edge	person	ARG0-of	moor-01	p4	m2	
+# ::edge	person	ARG2-of	stand-01	p4	s2	
+# ::edge	and	op1	person	a2	p4	
+# ::edge	pavement	location-of	and	p2	a2	
+# ::edge	person	quant	some	p5	s	
+# ::edge	and	op2	person	a2	p5	
+# ::edge	person	ARG0-of	head-02	p5	h2	
+# ::edge	door	ARG1-of	open-09	d	o	
+# ::edge	head-02	ARG1	door	h2	d	
+# ::edge	door	part-of	bus	d	b2	
+# ::edge	rest-01	mod	also	r	a	
+# ::edge	person	ARG1-of	rest-01	p5	r	
+# ::edge	rest-01	ARG2	pavement	r	p3	
+# ::edge	pavement	part	pavement	p3	p2	
+(h / have-03
+    :ARG0 (b / building
+        :ARG1-of (w / wide-02)
+        :part (p / partition-01
+            :quant (m / many)
+            :consist-of (g / glass)))
+    :ARG1 (p2 / pavement
+        :location-of (a2 / and
+            :op1 (p4 / person
+                :ARG0-of (m2 / moor-01)
+                :ARG2-of (s2 / stand-01))
+            :op2 (p5 / person
+                :quant (s / some)
+                :ARG0-of (h2 / head-02
+                    :ARG1 (d / door
+                        :ARG1-of (o / open-09)
+                        :part-of (b2 / bus)))
+                :ARG1-of (r / rest-01
+                    :ARG2 (p3 / pavement
+                        :part p2)
+                    :mod (a / also))))
+        :mod (f / front)))

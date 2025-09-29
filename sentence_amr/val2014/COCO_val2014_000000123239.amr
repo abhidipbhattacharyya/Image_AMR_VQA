@@ -1,0 +1,29 @@
+# ::tok A street sign shows drivers where to pay to park .
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	3-4
+# ::node	p3	person	4-5
+# ::node	d	drive-01	4-5
+# ::node	l	location	5-6
+# ::node	p2	pay-01	7-8
+# ::node	p	park-01	9-10
+# ::root	s	show-01
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	show-01	ARG2	person	s	p3	
+# ::edge	person	ARG0-of	drive-01	p3	d	
+# ::edge	show-01	ARG1	location	s	l	
+# ::edge	location	location-of	pay-01	l	p2	
+# ::edge	pay-01	ARG0	person	p2	p3	
+# ::edge	pay-01	ARG3	park-01	p2	p	
+# ::edge	park-01	ARG0	person	p	p3	
+(s / show-01
+    :ARG0 (s2 / sign
+        :mod (s3 / street))
+    :ARG1 (l / location
+        :location-of (p2 / pay-01
+            :ARG0 (p3 / person
+                :ARG0-of (d / drive-01))
+            :ARG3 (p / park-01
+                :ARG0 p3)))
+    :ARG2 p3)

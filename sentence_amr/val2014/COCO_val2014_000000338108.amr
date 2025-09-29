@@ -1,0 +1,43 @@
+# ::tok Winter scene , man dressed in dark clothes helmet and eye goggles as if on skies , with people in background skiing .
+# ::node	w	winter	0-1
+# ::node	s	scene	1-2
+# ::node	m	man	3-4
+# ::node	d2	dress-01	4-5
+# ::node	d	dark-02	6-7
+# ::node	c	clothe-01	7-8
+# ::node	h	helmet	8-9
+# ::node	a	and	9-10
+# ::node	e	eye	10-11
+# ::node	g	goggles	11-12
+# ::node	s3	sky	15-16
+# ::node	p	person	18-19
+# ::node	b	background	20-21
+# ::node	s2	ski-01	21-22
+# ::root	s	scene
+# ::edge	scene	mod	winter	s	w	
+# ::edge	man	ARG1-of	dress-01	m	d2	
+# ::edge	clothe-01	ARG1-of	dark-02	c	d	
+# ::edge	helmet	ARG1-of	clothe-01	h	c	
+# ::edge	and	op1	helmet	a	h	
+# ::edge	dress-01	ARG2	and	d2	a	
+# ::edge	goggles	mod	eye	g	e	
+# ::edge	and	op2	goggles	a	g	
+# ::edge	dress-01	manner	sky	d2	s3	
+# ::edge	ski-01	location	background	s2	b	
+# ::edge	ski-01	ARG0	person	s2	p	
+# ::edge	scene	subevent	ski-01	s	s2	
+# ::edge	scene	rel	man	s	m	
+(s / scene
+    :mod (w / winter)
+    :rel (m / man
+        :ARG1-of (d2 / dress-01
+            :ARG2 (a / and
+                :op1 (h / helmet
+                    :ARG1-of (c / clothe-01
+                        :ARG1-of (d / dark-02)))
+                :op2 (g / goggles
+                    :mod (e / eye)))
+            :manner (s3 / sky)))
+    :subevent (s2 / ski-01
+        :ARG0 (p / person)
+        :location (b / background)))

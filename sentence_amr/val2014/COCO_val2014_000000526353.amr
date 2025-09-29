@@ -1,0 +1,26 @@
+# ::tok Several people are waiting outside an airport with their luggage .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	wait-01	3-4
+# ::node	o	outside	4-5
+# ::node	a	airport	6-7
+# ::node	l	luggage	9-10
+# ::node	a2	and	10-11
+# ::root	w	wait-01
+# ::edge	person	quant	several	p	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	location	outside	w	o	
+# ::edge	outside	op1	airport	o	a	
+# ::edge	luggage	poss	person	l	p	
+# ::edge	and	op2	luggage	a2	l	
+# ::edge	wait-01	ARG2	and	w	a2	
+# ::edge	and	op1	person	a2	p	
+(w / wait-01
+    :ARG1 (p / person
+        :quant (s / several))
+    :ARG2 (a2 / and
+        :op1 p
+        :op2 (l / luggage
+            :poss p))
+    :location (o / outside
+        :op1 (a / airport)))

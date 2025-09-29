@@ -1,0 +1,31 @@
+# ::tok Electric rail cars move along a track between automobile traffic lanes .
+# ::node	e	electric	0-1
+# ::node	r	rail	1-2
+# ::node	c	car	2-3
+# ::node	m	move-01	3-4
+# ::node	a	along	4-5
+# ::node	t	track	6-7
+# ::node	b	between	7-8
+# ::node	a2	automobile	8-9
+# ::node	t2	traffic	9-10
+# ::node	l	lane	10-11
+# ::root	m	move-01
+# ::edge	car	mod	rail	c	r	
+# ::edge	car	mod	electric	c	e	
+# ::edge	move-01	ARG1	car	m	c	
+# ::edge	move-01	path	along	m	a	
+# ::edge	along	op1	track	a	t	
+# ::edge	track	location	between	t	b	
+# ::edge	traffic	mod	automobile	t2	a2	
+# ::edge	lane	purpose	traffic	l	t2	
+# ::edge	between	op1	lane	b	l	
+(m / move-01
+    :ARG1 (c / car
+        :mod (r / rail)
+        :mod (e / electric))
+    :path (a / along
+        :op1 (t / track
+            :location (b / between
+                :op1 (l / lane
+                    :purpose (t2 / traffic
+                        :mod (a2 / automobile)))))))

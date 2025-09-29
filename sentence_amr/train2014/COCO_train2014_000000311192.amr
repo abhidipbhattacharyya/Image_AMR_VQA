@@ -1,0 +1,26 @@
+# ::tok A crowd of spectators watch a man as he gets ready to hit a baseball .
+# ::node	c	crowd	1-2
+# ::node	s	spectator	3-4
+# ::node	w	watch-01	4-5
+# ::node	m	man	6-7
+# ::node	r	ready-01	10-11
+# ::node	h	hit-01	12-13
+# ::node	b	baseball	14-15
+# ::root	w	watch-01
+# ::edge	crowd	consist-of	spectator	c	s	
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	watch-01	ARG1	man	w	m	
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	watch-01	time	ready-01	w	r	
+# ::edge	ready-01	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG0	man	h	m	
+# ::edge	hit-01	ARG1	baseball	h	b	
+(w / watch-01
+    :ARG0 (c / crowd
+        :consist-of (s / spectator))
+    :ARG1 (m / man)
+    :time (r / ready-01
+        :ARG1 m
+        :ARG2 (h / hit-01
+            :ARG0 m
+            :ARG1 (b / baseball))))

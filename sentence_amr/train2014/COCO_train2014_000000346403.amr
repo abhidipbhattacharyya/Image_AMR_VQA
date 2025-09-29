@@ -1,0 +1,31 @@
+# ::tok a happy man using both a wii mote and wii balance board
+# ::node	h	happy-01	1-2
+# ::node	m	man	2-3
+# ::node	u	use-01	3-4
+# ::node	b3	both	4-5
+# ::node	n	name	6-7
+# ::node	0	W	6-7
+# ::node	m2	mote	7-8
+# ::node	a	and	8-9
+# ::node	b	balance	10-11
+# ::node	b2	board	11-12
+# ::root	m	man
+# ::edge	man	ARG1-of	happy-01	m	h	
+# ::edge	man	ARG0-of	use-01	m	u	
+# ::edge	name	op1	W	n	0	
+# ::edge	mote	name	name	m2	n	
+# ::edge	and	op1	mote	a	m2	
+# ::edge	and	mod	both	a	b3	
+# ::edge	use-01	ARG1	and	u	a	
+# ::edge	board	mod	balance	b2	b	
+# ::edge	and	op2	board	a	b2	
+(m / man
+    :ARG0-of (u / use-01
+        :ARG1 (a / and
+            :mod (b3 / both)
+            :op1 (m2 / mote
+                :name (n / name
+                    :op1 "W"))
+            :op2 (b2 / board
+                :mod (b / balance))))
+    :ARG1-of (h / happy-01))

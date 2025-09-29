@@ -1,0 +1,31 @@
+# ::tok A blue rail car , followed by a green rail car , driving in a residential neighborhood .
+# ::node	b	blue	1-2
+# ::node	r	rail	2-3
+# ::node	c	car	3-4
+# ::node	f	follow-01	5-6
+# ::node	g	green-02	8-9
+# ::node	r2	rail	9-10
+# ::node	c2	car	10-11
+# ::node	d	drive-01	12-13
+# ::node	r3	residential	15-16
+# ::node	n	neighborhood	16-17
+# ::root	d	drive-01
+# ::edge	car	mod	rail	c	r	
+# ::edge	car	mod	blue	c	b	
+# ::edge	car	ARG2-of	follow-01	c	f	
+# ::edge	car	mod	rail	c2	r2	
+# ::edge	car	ARG1-of	green-02	c2	g	
+# ::edge	follow-01	ARG1	car	f	c2	
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	neighborhood	mod	residential	n	r3	
+# ::edge	drive-01	location	neighborhood	d	n	
+(d / drive-01
+    :ARG0 (c / car
+        :ARG2-of (f / follow-01
+            :ARG1 (c2 / car
+                :ARG1-of (g / green-02)
+                :mod (r2 / rail)))
+        :mod (r / rail)
+        :mod (b / blue))
+    :location (n / neighborhood
+        :mod (r3 / residential)))

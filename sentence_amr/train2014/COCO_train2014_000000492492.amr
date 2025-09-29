@@ -1,0 +1,36 @@
+# ::tok Harbor scene , city buildings , cloudy sky during sun rise or sun set .
+# ::node	h	harbor	0-1
+# ::node	s	scene	1-2
+# ::node	c	city	3-4
+# ::node	b	building	4-5
+# ::node	a	and	5-6
+# ::node	c2	cloudy-02	6-7
+# ::node	s3	sky	7-8
+# ::node	s4	sun	9-10
+# ::node	r	rise-01	10-11
+# ::node	o	or	11-12
+# ::node	s2	set-02	13-14
+# ::root	a	and
+# ::edge	scene	mod	harbor	s	h	
+# ::edge	building	mod	city	b	c	
+# ::edge	and	op2	building	a	b	
+# ::edge	and	op1	scene	a	s	
+# ::edge	sky	ARG1-of	cloudy-02	s3	c2	
+# ::edge	and	op3	sky	a	s3	
+# ::edge	rise-01	ARG1	sun	r	s4	
+# ::edge	or	op1	rise-01	o	r	
+# ::edge	and	time	or	a	o	
+# ::edge	or	op2	set-02	o	s2	
+# ::edge	set-02	ARG1	sun	s2	s4	
+(a / and
+    :op1 (s / scene
+        :mod (h / harbor))
+    :op2 (b / building
+        :mod (c / city))
+    :op3 (s3 / sky
+        :ARG1-of (c2 / cloudy-02))
+    :time (o / or
+        :op1 (r / rise-01
+            :ARG1 (s4 / sun))
+        :op2 (s2 / set-02
+            :ARG1 s4)))

@@ -1,0 +1,28 @@
+# ::tok A train station with an Amtrak train on the middle track .
+# ::node	t2	train	1-2
+# ::node	s	station	2-3
+# ::node	h	have-03	3-4
+# ::node	c	company	5-6
+# ::node	n	name	5-6
+# ::node	0	Amtrak	5-6
+# ::node	t3	train	6-7
+# ::node	m	middle	9-10
+# ::node	t	track	10-11
+# ::root	s	station
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Amtrak	n	0	
+# ::edge	train	mod	company	t3	c	
+# ::edge	have-03	ARG1	train	h	t3	
+# ::edge	track	mod	middle	t	m	
+# ::edge	station	location	track	s	t	
+(s / station
+    :ARG0-of (h / have-03
+        :ARG1 (t3 / train
+            :mod (c / company
+                :name (n / name
+                    :op1 "Amtrak"))))
+    :location (t / track
+        :mod (m / middle))
+    :mod (t2 / train))

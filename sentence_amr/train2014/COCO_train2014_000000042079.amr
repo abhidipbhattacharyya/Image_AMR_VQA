@@ -1,0 +1,30 @@
+# ::tok A man standing behind a red pickup truck with three dogs in back .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	b2	behind	3-4
+# ::node	r	red-02	5-6
+# ::node	p	pickup	6-7
+# ::node	t	truck	7-8
+# ::node	0	3	9-10
+# ::node	d	dog	10-11
+# ::node	b	back	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	behind	s	b2	
+# ::edge	truck	mod	pickup	t	p	
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	behind	op1	truck	b2	t	
+# ::edge	dog	quant	3	d	0	
+# ::edge	truck	part	dog	t	d	
+# ::edge	dog	location	back	d	b	
+# ::edge	truck	part	back	t	b	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (b2 / behind
+        :op1 (t / truck
+            :ARG1-of (r / red-02)
+            :mod (p / pickup)
+            :part (d / dog
+                :quant 3
+                :location (b / back))
+            :part b)))

@@ -1,0 +1,35 @@
+# ::tok Several people sitting and standing in the grass which is near the ocean and a bridge .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	sit-01	2-3
+# ::node	a	and	3-4
+# ::node	s3	stand-01	4-5
+# ::node	g	grass	7-8
+# ::node	n	near-02	10-11
+# ::node	o	ocean	12-13
+# ::node	a2	and	13-14
+# ::node	b	bridge	15-16
+# ::root	a	and
+# ::edge	person	quant	several	p	s	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	grass	s3	g	
+# ::edge	sit-01	ARG2	grass	s2	g	
+# ::edge	grass	ARG1-of	near-02	g	n	
+# ::edge	and	op1	ocean	a2	o	
+# ::edge	near-02	ARG2	and	n	a2	
+# ::edge	and	op2	bridge	a2	b	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (p / person
+            :quant (s / several))
+        :ARG2 (g / grass
+            :ARG1-of (n / near-02
+                :ARG2 (a2 / and
+                    :op1 (o / ocean)
+                    :op2 (b / bridge)))))
+    :op2 (s3 / stand-01
+        :ARG1 p
+        :ARG2 g))

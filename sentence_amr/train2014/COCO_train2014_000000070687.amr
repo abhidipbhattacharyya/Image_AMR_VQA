@@ -1,0 +1,24 @@
+# ::tok A baseball game with the batter getting ready to hit the baseball .
+# ::node	b	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	b3	batter-01	5-6
+# ::node	r	ready-01	7-8
+# ::node	h	hit-01	9-10
+# ::node	b2	baseball	11-12
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b	
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	game	accompanier	ready-01	g	r	
+# ::edge	ready-01	ARG2	hit-01	r	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	baseball	h	b2	
+(g / game
+    :accompanier (r / ready-01
+        :ARG1 (p / person
+            :ARG0-of (b3 / batter-01))
+        :ARG2 (h / hit-01
+            :ARG0 p
+            :ARG1 (b2 / baseball)))
+    :mod (b / baseball))

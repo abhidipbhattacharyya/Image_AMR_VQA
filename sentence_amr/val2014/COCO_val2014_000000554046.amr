@@ -1,0 +1,25 @@
+# ::tok Covering sheep in extremely cold weather can prevent freezing .
+# ::node	c2	cover-01	0-1
+# ::node	s	sheep	1-2
+# ::node	e	extreme	3-4
+# ::node	c	cold-01	4-5
+# ::node	w	weather	5-6
+# ::node	p	possible-01	6-7
+# ::node	p2	prevent-01	7-8
+# ::node	f	freeze-01	8-9
+# ::root	p	possible-01
+# ::edge	cover-01	ARG1	sheep	c2	s	
+# ::edge	cold-01	degree	extreme	c	e	
+# ::edge	weather	ARG1-of	cold-01	w	c	
+# ::edge	cover-01	time	weather	c2	w	
+# ::edge	possible-01	ARG1	prevent-01	p	p2	
+# ::edge	prevent-01	ARG0	cover-01	p2	c2	
+# ::edge	prevent-01	ARG1	freeze-01	p2	f	
+(p / possible-01
+    :ARG1 (p2 / prevent-01
+        :ARG0 (c2 / cover-01
+            :ARG1 (s / sheep)
+            :time (w / weather
+                :ARG1-of (c / cold-01
+                    :degree (e / extreme))))
+        :ARG1 (f / freeze-01)))

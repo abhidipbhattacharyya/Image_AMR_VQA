@@ -1,0 +1,37 @@
+# ::tok A sheep on one side of a fence walks by a goat on the other .
+# ::node	s	sheep	1-2
+# ::node	o	one	3-4
+# ::node	s2	side	4-5
+# ::node	s3	side	4-5
+# ::node	f	fence	7-8
+# ::node	f2	fence	7-8
+# ::node	w	walk-01	8-9
+# ::node	b	by	9-10
+# ::node	g	goat	11-12
+# ::node	o2	other	14-15
+# ::root	w	walk-01
+# ::edge	side	mod	sheep	s2	s	
+# ::edge	sheep	location	side	s	s2	
+# ::edge	side	part-of	fence	s3	f	
+# ::edge	side	part-of	fence	s3	f2	
+# ::edge	walk-01	ARG0	side	w	s3	
+# ::edge	walk-01	ARG2	by	w	b	
+# ::edge	by	op1	side	b	s3	
+# ::edge	by	op1	goat	b	g	
+# ::edge	goat	location	side	g	s3	
+# ::edge	side	mod	other	s3	o2	
+# ::edge	walk-01	rel	sheep	w	s	
+# ::edge	walk-01	rel	one	w	o	
+(w / walk-01
+    :ARG0 (s3 / side
+        :mod (o2 / other)
+        :part-of (f / fence)
+        :part-of (f2 / fence))
+    :ARG2 (b / by
+        :op1 s3
+        :op1 (g / goat
+            :location s3))
+    :rel (s / sheep
+        :location (s2 / side
+            :mod s))
+    :rel (o / one))

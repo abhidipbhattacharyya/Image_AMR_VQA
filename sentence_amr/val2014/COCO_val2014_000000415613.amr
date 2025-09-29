@@ -1,0 +1,46 @@
+# ::tok a man contemplating why he is 25 and still making sandwiches for a living
+# ::node	m2	man	1-2
+# ::node	c2	contemplate-01	2-3
+# ::node	t2	thing	3-4
+# ::node	c	cause-01	3-4
+# ::node	a	age-01	6-7
+# ::node	t	temporal-quantity	6-7
+# ::node	y	year	6-7
+# ::node	0	25	6-7
+# ::node	a2	and	7-8
+# ::node	s2	still	8-9
+# ::node	m	make-01	9-10
+# ::node	s	sandwich	10-11
+# ::node	l	live-01	13-14
+# ::root	c2	contemplate-01
+# ::edge	contemplate-01	ARG0	man	c2	m2	
+# ::edge	contemplate-01	ARG1	thing	c2	t2	
+# ::edge	thing	ARG0-of	cause-01	t2	c	
+# ::edge	age-01	ARG1	man	a	m2	
+# ::edge	age-01	ARG2	temporal-quantity	a	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	temporal-quantity	quant	25	t	0	
+# ::edge	and	op1	age-01	a2	a	
+# ::edge	cause-01	ARG1	and	c	a2	
+# ::edge	make-01	mod	still	m	s2	
+# ::edge	and	op2	make-01	a2	m	
+# ::edge	make-01	ARG0	man	m	m2	
+# ::edge	make-01	ARG1	sandwich	m	s	
+# ::edge	make-01	purpose	live-01	m	l	
+# ::edge	live-01	ARG0	man	l	m2	
+(c2 / contemplate-01
+    :ARG0 (m2 / man)
+    :ARG1 (t2 / thing
+        :ARG0-of (c / cause-01
+            :ARG1 (a2 / and
+                :op1 (a / age-01
+                    :ARG1 m2
+                    :ARG2 (t / temporal-quantity
+                        :quant 25
+                        :unit (y / year)))
+                :op2 (m / make-01
+                    :purpose (l / live-01
+                        :ARG0 m2)
+                    :ARG0 m2
+                    :ARG1 (s / sandwich)
+                    :mod (s2 / still))))))

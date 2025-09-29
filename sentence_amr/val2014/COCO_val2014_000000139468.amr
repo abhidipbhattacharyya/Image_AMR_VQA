@@ -1,0 +1,30 @@
+# ::tok A 1960 s - era street scene with vintage cars and billboards .
+# ::node	d	date-entity	1-2
+# ::node	0	1960	1-2
+# ::node	e	era	4-5
+# ::node	s3	street	5-6
+# ::node	s	scene	6-7
+# ::node	v	vintage	8-9
+# ::node	c	car	9-10
+# ::node	a	and	10-11
+# ::node	s2	sign	11-12
+# ::root	s	scene
+# ::edge	date-entity	decade	1960	d	0	
+# ::edge	era	mod	date-entity	e	d	
+# ::edge	scene	location	street	s	s3	
+# ::edge	scene	mod	era	s	e	
+# ::edge	car	mod	vintage	c	v	
+# ::edge	and	op1	car	a	c	
+# ::edge	scene	consist-of	and	s	a	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	sign	mod	vintage	s2	v	
+(s / scene
+    :consist-of (a / and
+        :op1 (c / car
+            :mod (v / vintage))
+        :op2 (s2 / sign
+            :mod v))
+    :location (s3 / street)
+    :mod (e / era
+        :mod (d / date-entity
+            :decade 1960)))

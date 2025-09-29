@@ -1,0 +1,41 @@
+# ::tok Group of people sitting on or standing around bench all holding frisbees
+# ::node	g	group	0-1
+# ::node	p	person	2-3
+# ::node	s	sit-01	3-4
+# ::node	o	or	5-6
+# ::node	s2	stand-01	6-7
+# ::node	a	around	7-8
+# ::node	b	bench	8-9
+# ::node	h	hold-01	10-11
+# ::node	p2	protein	11-12
+# ::node	n	name	11-12
+# ::node	p3	protein	11-12
+# ::node	0	frisbees	11-12
+# ::root	o	or
+# ::edge	person	quant	group	p	g	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	or	op1	sit-01	o	s	
+# ::edge	or	op2	stand-01	o	s2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	around	s2	a	
+# ::edge	stand-01	op1	bench	s2	b	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	protein	h	p2	
+# ::edge	protein	name	name	p2	n	
+# ::edge	name	op1	frisbees	n	0	
+# ::edge	or	rel	protein	o	p3	
+(o / or
+    :op1 (s / sit-01
+        :ARG1 (g / group)
+        :ARG2 (b / bench))
+    :op2 (s2 / stand-01
+        :ARG1 (p / person
+            :quant g
+            :ARG0-of (h / hold-01
+                :ARG1 (p2 / protein
+                    :name (n / name
+                        :op1 "frisbees"))))
+        :ARG2 (a / around)
+        :op1 b)
+    :rel (p3 / protein))

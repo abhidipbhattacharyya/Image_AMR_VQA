@@ -1,0 +1,29 @@
+# ::tok A player winds up to serve a tennis ball to his opponent .
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	w	wind-up-02	2-3
+# ::node	s	serve-02	5-6
+# ::node	t	tennis	7-8
+# ::node	b	ball	8-9
+# ::node	p2	person	11-12
+# ::node	o	oppose-01	11-12
+# ::root	w	wind-up-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	wind-up-02	ARG1	person	w	p	
+# ::edge	wind-up-02	ARG2	serve-02	w	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	serve-02	ARG2	person	s	p2	
+# ::edge	person	ARG0-of	oppose-01	p2	o	
+# ::edge	oppose-01	ARG1	person	o	p	
+(w / wind-up-02
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01))
+    :ARG2 (s / serve-02
+        :ARG0 p
+        :ARG1 (b / ball
+            :mod (t / tennis))
+        :ARG2 (p2 / person
+            :ARG0-of (o / oppose-01
+                :ARG1 p))))

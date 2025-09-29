@@ -1,0 +1,37 @@
+# ::tok These platters display healthy food choices of two entrees with a side vegetable and fruit
+# ::node	t	this	0-1
+# ::node	p	plate	1-2
+# ::node	d	display-01	2-3
+# ::node	h	health	3-4
+# ::node	f	food	4-5
+# ::node	c	choose-01	5-6
+# ::node	0	2	7-8
+# ::node	v	vegetable	8-9
+# ::node	s	side	11-12
+# ::node	v2	vegetable	12-13
+# ::node	a	and	13-14
+# ::node	f2	fruit	14-15
+# ::root	d	display-01
+# ::edge	plate	mod	this	p	t	
+# ::edge	display-01	ARG0	plate	d	p	
+# ::edge	food	mod	health	f	h	
+# ::edge	choose-01	ARG1	food	c	f	
+# ::edge	display-01	ARG1	choose-01	d	c	
+# ::edge	vegetable	quant	2	v	0	
+# ::edge	choose-01	ARG4	vegetable	c	v	
+# ::edge	vegetable	mod	side	v2	s	
+# ::edge	and	op1	vegetable	a	v2	
+# ::edge	vegetable	accompanier	and	v	a	
+# ::edge	and	op2	fruit	a	f2	
+(d / display-01
+    :ARG0 (p / plate
+        :mod (t / this))
+    :ARG1 (c / choose-01
+        :ARG1 (f / food
+            :mod (h / health))
+        :ARG4 (v / vegetable
+            :quant 2
+            :accompanier (a / and
+                :op1 (v2 / vegetable
+                    :mod (s / side))
+                :op2 (f2 / fruit)))))

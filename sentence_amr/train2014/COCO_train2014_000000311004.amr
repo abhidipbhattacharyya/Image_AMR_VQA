@@ -1,0 +1,30 @@
+# ::tok A person stands in a group of sheep while a sheep herding dog crouches nearby .
+# ::node	p	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	g	group	5-6
+# ::node	s	sheep	7-8
+# ::node	c	contrast-01	8-9
+# ::node	h	herd-01	11-12
+# ::node	d	dog	12-13
+# ::node	c2	crouch-01	13-14
+# ::node	n	nearby	14-15
+# ::root	c	contrast-01
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	group	s2	g	
+# ::edge	group	consist-of	sheep	g	s	
+# ::edge	contrast-01	ARG1	stand-01	c	s2	
+# ::edge	herd-01	ARG1	sheep	h	s	
+# ::edge	dog	ARG0-of	herd-01	d	h	
+# ::edge	crouch-01	ARG0	dog	c2	d	
+# ::edge	contrast-01	ARG2	crouch-01	c	c2	
+# ::edge	crouch-01	location	nearby	c2	n	
+(c / contrast-01
+    :ARG1 (s2 / stand-01
+        :ARG1 (p / person)
+        :ARG2 (g / group
+            :consist-of (s / sheep)))
+    :ARG2 (c2 / crouch-01
+        :ARG0 (d / dog
+            :ARG0-of (h / herd-01
+                :ARG1 s))
+        :location (n / nearby)))

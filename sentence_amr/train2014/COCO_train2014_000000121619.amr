@@ -1,0 +1,32 @@
+# ::tok Without paper handy , a man writes a reminder about the parking meter on his palm .
+# ::node	p2	paper	1-2
+# ::node	h	handy-02	2-3
+# ::node	m	man	5-6
+# ::node	w	write-01	6-7
+# ::node	r	remind-01	8-9
+# ::node	p3	park-01	11-12
+# ::node	m2	meter	12-13
+# ::node	p	palm	15-16
+# ::node	0	-	15-16
+# ::root	w	write-01
+# ::edge	paper	ARG1-of	handy-02	p2	h	
+# ::edge	write-01	ARG0	man	w	m	
+# ::edge	write-01	prep-without	paper	w	p2	
+# ::edge	write-01	ARG1	remind-01	w	r	
+# ::edge	remind-01	ARG0	man	r	m	
+# ::edge	meter	purpose	park-01	m2	p3	
+# ::edge	remind-01	ARG1	meter	r	m2	
+# ::edge	write-01	location	palm	w	p	
+# ::edge	man	part	palm	m	p	
+# ::edge	handy-02	polarity	-	h	0	
+(w / write-01
+    :ARG0 (m / man
+        :part (p / palm))
+    :ARG1 (r / remind-01
+        :ARG0 m
+        :ARG1 (m2 / meter
+            :purpose (p3 / park-01)))
+    :location p
+    :prep-without (p2 / paper
+        :ARG1-of (h / handy-02
+            :polarity -)))

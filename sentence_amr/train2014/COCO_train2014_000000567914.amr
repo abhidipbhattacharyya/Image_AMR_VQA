@@ -1,0 +1,27 @@
+# ::tok A pizza is ready to be served with cheese and other toppings .
+# ::node	p	pizza	1-2
+# ::node	r	ready-02	3-4
+# ::node	s	serve-02	6-7
+# ::node	c	cheese	8-9
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	c2	continent	11-12
+# ::node	t	top-01	11-12
+# ::root	r	ready-02
+# ::edge	ready-02	ARG1	pizza	r	p	
+# ::edge	ready-02	ARG2	serve-02	r	s	
+# ::edge	serve-02	ARG1	pizza	s	p	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	serve-02	accompanier	and	s	a	
+# ::edge	continent	mod	other	c2	o	
+# ::edge	and	op2	continent	a	c2	
+# ::edge	continent	ARG2-of	top-01	c2	t	
+(r / ready-02
+    :ARG1 (p / pizza)
+    :ARG2 (s / serve-02
+        :ARG1 p
+        :accompanier (a / and
+            :op1 (c / cheese)
+            :op2 (c2 / continent
+                :ARG2-of (t / top-01)
+                :mod (o / other)))))

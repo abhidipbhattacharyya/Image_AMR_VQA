@@ -1,0 +1,51 @@
+# ::tok A man " popping a wheelie " on a blue and white motorcycle while wearing a red and white helmet .
+# ::node	m	man	1-2
+# ::node	p	pop-04	3-4
+# ::node	v	vehicle	5-6
+# ::node	n	name	5-6
+# ::node	w2	wheel	5-6
+# ::node	0	wheelie	5-6
+# ::node	b	blue	9-10
+# ::node	m2	motorcycle	12-13
+# ::node	w	wear-01	14-15
+# ::node	r	red-02	16-17
+# ::node	a	and	17-18
+# ::node	w3	white-03	18-19
+# ::node	h	helmet	19-20
+# ::node	h2	helmet	19-20
+# ::root	p	pop-04
+# ::edge	pop-04	ARG0	man	p	m	
+# ::edge	pop-04	ARG1	vehicle	p	v	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	pop-04	mod	wheel	p	w2	
+# ::edge	name	op1	wheelie	n	0	
+# ::edge	motorcycle	mod	blue	m2	b	
+# ::edge	pop-04	location	motorcycle	p	m2	
+# ::edge	pop-04	time	wear-01	p	w	
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	and	op2	motorcycle	a	m2	
+# ::edge	and	op1	motorcycle	a	m2	
+# ::edge	helmet	ARG1-of	white-03	h	w3	
+# ::edge	and	op1	helmet	a	h	
+# ::edge	helmet	ARG1-of	white-03	h2	w3	
+# ::edge	and	op2	helmet	a	h2	
+# ::edge	pop-04	rel	and	p	a	
+# ::edge	pop-04	rel	red-02	p	r	
+(p / pop-04
+    :ARG0 (m / man)
+    :ARG1 (v / vehicle
+        :name (n / name
+            :op1 "wheelie"))
+    :location (m2 / motorcycle
+        :mod (b / blue))
+    :mod (w2 / wheel)
+    :rel (a / and
+        :op1 m2
+        :op1 (h / helmet
+            :ARG1-of (w3 / white-03))
+        :op2 m2
+        :op2 (h2 / helmet
+            :ARG1-of w3))
+    :rel (r / red-02)
+    :time (w / wear-01
+        :ARG0 m))

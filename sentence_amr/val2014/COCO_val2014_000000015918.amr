@@ -1,0 +1,37 @@
+# ::tok A mirror shows the inside view of a room while a large window shows a worldly view of the terrain .
+# ::node	m	mirror	1-2
+# ::node	s	show-01	2-3
+# ::node	i	inside	4-5
+# ::node	v	view-01	5-6
+# ::node	r	room	8-9
+# ::node	c	contrast-01	9-10
+# ::node	l	large	11-12
+# ::node	w	window	12-13
+# ::node	s2	show-01	13-14
+# ::node	w2	world	15-16
+# ::node	v2	view-01	16-17
+# ::node	t	terrain	19-20
+# ::root	c	contrast-01
+# ::edge	show-01	ARG0	mirror	s	m	
+# ::edge	view-01	mod	inside	v	i	
+# ::edge	show-01	ARG1	view-01	s	v	
+# ::edge	view-01	ARG1	room	v	r	
+# ::edge	contrast-01	ARG1	show-01	c	s	
+# ::edge	window	mod	large	w	l	
+# ::edge	show-01	ARG0	window	s2	w	
+# ::edge	contrast-01	ARG2	show-01	c	s2	
+# ::edge	view-01	mod	world	v2	w2	
+# ::edge	show-01	ARG1	view-01	s2	v2	
+# ::edge	view-01	ARG1	terrain	v2	t	
+(c / contrast-01
+    :ARG1 (s / show-01
+        :ARG0 (m / mirror)
+        :ARG1 (v / view-01
+            :ARG1 (r / room)
+            :mod (i / inside)))
+    :ARG2 (s2 / show-01
+        :ARG0 (w / window
+            :mod (l / large))
+        :ARG1 (v2 / view-01
+            :ARG1 (t / terrain)
+            :mod (w2 / world))))

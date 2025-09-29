@@ -1,0 +1,29 @@
+# ::tok Player preparing to return volley during major tennis match .
+# ::node	p	person	0-1
+# ::node	p2	play-01	0-1
+# ::node	p3	prepare-02	1-2
+# ::node	r	return-01	3-4
+# ::node	v	volley	4-5
+# ::node	m	major-02	6-7
+# ::node	t	tennis	7-8
+# ::node	m2	match-03	8-9
+# ::root	p3	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	return-01	ARG0	person	r	p	
+# ::edge	volley	mod	return-01	v	r	
+# ::edge	prepare-02	ARG1	volley	p3	v	
+# ::edge	match-03	mod	tennis	m2	t	
+# ::edge	match-03	ARG1-of	major-02	m2	m	
+# ::edge	prepare-02	time	match-03	p3	m2	
+# ::edge	match-03	ARG0	person	m2	p	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01))
+    :ARG1 (v / volley
+        :mod (r / return-01
+            :ARG0 p))
+    :time (m2 / match-03
+        :ARG0 p
+        :ARG1-of (m / major-02)
+        :mod (t / tennis)))

@@ -1,0 +1,36 @@
+# ::tok This is a plane on the tarmac with a ladder leading up to the door and people walking around it .
+# ::node	t2	this	0-1
+# ::node	p2	plane	3-4
+# ::node	t	tarmac	6-7
+# ::node	h	have-03	7-8
+# ::node	l	ladder	9-10
+# ::node	l2	lead-01	10-11
+# ::node	d	door	14-15
+# ::node	a	and	15-16
+# ::node	p	person	16-17
+# ::node	w	walk-01	17-18
+# ::node	a2	around	18-19
+# ::root	a	and
+# ::edge	plane	mod	this	p2	t2	
+# ::edge	plane	location	tarmac	p2	t	
+# ::edge	plane	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	ladder	h	l	
+# ::edge	ladder	ARG0-of	lead-01	l	l2	
+# ::edge	lead-01	ARG4	door	l2	d	
+# ::edge	and	op1	plane	a	p2	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG2	around	w	a2	
+# ::edge	around	op1	plane	a2	p2	
+(a / and
+    :op1 (p2 / plane
+        :ARG0-of (h / have-03
+            :ARG1 (l / ladder
+                :ARG0-of (l2 / lead-01
+                    :ARG4 (d / door))))
+        :location (t / tarmac)
+        :mod (t2 / this))
+    :op2 (w / walk-01
+        :ARG0 (p / person)
+        :ARG2 (a2 / around
+            :op1 p2)))

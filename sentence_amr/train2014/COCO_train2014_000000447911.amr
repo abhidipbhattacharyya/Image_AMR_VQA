@@ -1,0 +1,25 @@
+# ::tok A helmet - wearing skateboarder skates down a concrete structure .
+# ::node	h	helmet	1-2
+# ::node	w	wear-01	3-4
+# ::node	p	person	4-5
+# ::node	s	skate-01	4-5
+# ::node	s2	skate-01	5-6
+# ::node	d	down	6-7
+# ::node	c	concrete	8-9
+# ::node	s3	structure	9-10
+# ::root	s2	skate-01
+# ::edge	wear-01	ARG1	helmet	w	h	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	person	ARG0-of	skate-01	p	s	
+# ::edge	skate-01	ARG0	person	s2	p	
+# ::edge	skate-01	direction	down	s2	d	
+# ::edge	structure	consist-of	concrete	s3	c	
+# ::edge	down	path	structure	d	s3	
+(s2 / skate-01
+    :ARG0 (p / person
+        :ARG0-of (w / wear-01
+            :ARG1 (h / helmet))
+        :ARG0-of (s / skate-01))
+    :direction (d / down
+        :path (s3 / structure
+            :consist-of (c / concrete))))

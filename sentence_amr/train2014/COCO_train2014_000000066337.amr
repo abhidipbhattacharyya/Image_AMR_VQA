@@ -1,0 +1,42 @@
+# ::tok two passengers on public transportation , one looking at his phone and the other looking at the cameraman
+# ::node	1	2	0-1
+# ::node	p	passenger	1-2
+# ::node	p2	passenger	1-2
+# ::node	p4	public-02	3-4
+# ::node	t	transport-01	4-5
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	l	look-01	7-8
+# ::node	h	he	9-10
+# ::node	p3	phone	10-11
+# ::node	o	other	13-14
+# ::node	l2	look-01	14-15
+# ::node	c	cameraman	17-18
+# ::root	t	transport-01
+# ::edge	passenger	quant	2	p	1	
+# ::edge	transport-01	ARG1-of	public-02	t	p4	
+# ::edge	transport-01	ARG1	passenger	t	p	
+# ::edge	include-91	ARG1	passenger	i	p	
+# ::edge	passenger	ARG2-of	include-91	p	i	
+# ::edge	passenger	quant	1	p2	0	
+# ::edge	passenger	ARG0-of	look-01	p	l	
+# ::edge	phone	poss	he	p3	h	
+# ::edge	look-01	ARG1	phone	l	p3	
+# ::edge	passenger	mod	other	p2	o	
+# ::edge	passenger	ARG0-of	look-01	p2	l2	
+# ::edge	look-01	ARG1	cameraman	l2	c	
+# ::edge	transport-01	rel	passenger	t	p2	
+(t / transport-01
+    :ARG1 (p / passenger
+        :quant 2
+        :ARG0-of (l / look-01
+            :ARG1 (p3 / phone
+                :poss (h / he)))
+        :ARG2-of (i / include-91
+            :ARG1 p))
+    :ARG1-of (p4 / public-02)
+    :rel (p2 / passenger
+        :quant 1
+        :ARG0-of (l2 / look-01
+            :ARG1 (c / cameraman))
+        :mod (o / other)))

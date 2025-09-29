@@ -1,0 +1,22 @@
+# ::tok a shopping mall with thousands of umbrellas suspended from the ceiling
+# ::node	s	shop-01	1-2
+# ::node	m	mall	2-3
+# ::node	m2	multiple	4-5
+# ::node	0	1000	4-5
+# ::node	u	umbrella	6-7
+# ::node	s2	suspend-02	7-8
+# ::node	c	ceiling	10-11
+# ::root	m	mall
+# ::edge	mall	purpose	shop-01	m	s	
+# ::edge	multiple	op1	1000	m2	0	
+# ::edge	umbrella	quant	multiple	u	m2	
+# ::edge	suspend-02	ARG1	umbrella	s2	u	
+# ::edge	mall	location-of	suspend-02	m	s2	
+# ::edge	suspend-02	ARG2	ceiling	s2	c	
+(m / mall
+    :purpose (s / shop-01)
+    :location-of (s2 / suspend-02
+        :ARG1 (u / umbrella
+            :quant (m2 / multiple
+                :op1 1000))
+        :ARG2 (c / ceiling)))

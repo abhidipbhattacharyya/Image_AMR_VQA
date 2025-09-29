@@ -1,0 +1,36 @@
+# ::tok This room has two beds and a table that has a fruit salad on top of it .
+# ::node	t2	this	0-1
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	b	bed	4-5
+# ::node	a	and	5-6
+# ::node	t	table	7-8
+# ::node	h2	have-03	9-10
+# ::node	f	fruit	11-12
+# ::node	s	salad	12-13
+# ::node	t3	top	14-15
+# ::root	h	have-03
+# ::edge	room	mod	this	r	t2	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	table	a	t	
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	salad	consist-of	fruit	s	f	
+# ::edge	have-03	ARG1	salad	h2	s	
+# ::edge	have-03	location	top	h2	t3	
+# ::edge	top	op1	and	t3	a	
+(h / have-03
+    :ARG0 (r / room
+        :mod (t2 / this))
+    :ARG1 (a / and
+        :op1 (b / bed
+            :quant 2)
+        :op2 (t / table
+            :ARG0-of (h2 / have-03
+                :ARG1 (s / salad
+                    :consist-of (f / fruit))
+                :location (t3 / top
+                    :op1 a)))))

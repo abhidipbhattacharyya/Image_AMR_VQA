@@ -1,0 +1,36 @@
+# ::tok A cow standing on a dirt mound in dirt covered area with trees an another cow in the background .
+# ::node	c2	cow	1-2
+# ::node	s	stand-01	2-3
+# ::node	d	dirt	5-6
+# ::node	m	mound	6-7
+# ::node	c	cover-02	9-10
+# ::node	a3	area	10-11
+# ::node	t	tree	12-13
+# ::node	a2	another	14-15
+# ::node	c3	cow	15-16
+# ::node	a	and	16-17
+# ::node	b	background	18-19
+# ::root	a	and
+# ::edge	stand-01	ARG1	cow	s	c2	
+# ::edge	mound	consist-of	dirt	m	d	
+# ::edge	stand-01	ARG2	mound	s	m	
+# ::edge	cover-02	ARG2	dirt	c	d	
+# ::edge	area	ARG1-of	cover-02	a3	c	
+# ::edge	mound	location	area	m	a3	
+# ::edge	area	consist-of	tree	a3	t	
+# ::edge	cow	mod	another	c3	a2	
+# ::edge	and	op2	cow	a	c3	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	cow	location	background	c3	b	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (c2 / cow)
+        :ARG2 (m / mound
+            :consist-of (d / dirt)
+            :location (a3 / area
+                :ARG1-of (c / cover-02
+                    :ARG2 d)
+                :consist-of (t / tree))))
+    :op2 (c3 / cow
+        :location (b / background)
+        :mod (a2 / another)))

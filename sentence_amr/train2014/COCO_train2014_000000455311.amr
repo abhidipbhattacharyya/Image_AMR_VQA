@@ -1,0 +1,31 @@
+# ::tok A sign asking to destroy cell phones surrounded by the remnants of broken cell phones .
+# ::node	s	sign	1-2
+# ::node	a	ask-02	2-3
+# ::node	d	destroy-01	4-5
+# ::node	c	cell	5-6
+# ::node	p	phone	6-7
+# ::node	s2	surround-01	7-8
+# ::node	r	remnant	10-11
+# ::node	b	break-01	12-13
+# ::node	c2	cell	13-14
+# ::node	p2	phone	14-15
+# ::root	s2	surround-01
+# ::edge	sign	ARG0-of	ask-02	s	a	
+# ::edge	ask-02	ARG1	destroy-01	a	d	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	destroy-01	ARG1	phone	d	p	
+# ::edge	surround-01	ARG2	sign	s2	s	
+# ::edge	surround-01	ARG1	remnant	s2	r	
+# ::edge	phone	mod	cell	p2	c2	
+# ::edge	phone	ARG1-of	break-01	p2	b	
+# ::edge	remnant	mod	phone	r	p2	
+(s2 / surround-01
+    :ARG1 (r / remnant
+        :mod (p2 / phone
+            :ARG1-of (b / break-01)
+            :mod (c2 / cell)))
+    :ARG2 (s / sign
+        :ARG0-of (a / ask-02
+            :ARG1 (d / destroy-01
+                :ARG1 (p / phone
+                    :mod (c / cell))))))

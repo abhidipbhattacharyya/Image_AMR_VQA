@@ -1,0 +1,57 @@
+# ::tok A large space is decorated with couches and up one small set of stairs is an area with a large table and chairs and rows of seating .
+# ::node	l	large	1-2
+# ::node	s4	space	2-3
+# ::node	d	decorate-01	4-5
+# ::node	c2	couch	6-7
+# ::node	u	up-03	8-9
+# ::node	0	1	9-10
+# ::node	s3	small	10-11
+# ::node	s2	set	11-12
+# ::node	s5	stair	13-14
+# ::node	a3	area	16-17
+# ::node	h	have-03	17-18
+# ::node	l2	large	19-20
+# ::node	t	table	20-21
+# ::node	a	and	21-22
+# ::node	a2	and	21-22
+# ::node	c	chair	22-23
+# ::node	r	row	24-25
+# ::node	s	seat-01	26-27
+# ::root	a	and
+# ::edge	space	mod	large	s4	l	
+# ::edge	decorate-01	ARG1	space	d	s4	
+# ::edge	decorate-01	ARG2	couch	d	c2	
+# ::edge	set	mod	small	s2	s3	
+# ::edge	set	quant	1	s2	0	
+# ::edge	up-03	ARG1	set	u	s2	
+# ::edge	set	consist-of	stair	s2	s5	
+# ::edge	area	location	up-03	a3	u	
+# ::edge	have-03	ARG0	area	h	a3	
+# ::edge	table	mod	large	t	l2	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	and	op1	decorate-01	a	d	
+# ::edge	and	op1	table	a2	t	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	chair	a2	c	
+# ::edge	chair	mod	large	c	l2	
+# ::edge	and	op3	row	a2	r	
+# ::edge	row	consist-of	seat-01	r	s	
+(a / and
+    :op1 (d / decorate-01
+        :ARG1 (s4 / space
+            :mod (l / large))
+        :ARG2 (c2 / couch))
+    :op2 (h / have-03
+        :ARG0 (a3 / area
+            :location (u / up-03
+                :ARG1 (s2 / set
+                    :quant 1
+                    :consist-of (s5 / stair)
+                    :mod (s3 / small))))
+        :ARG1 (a2 / and
+            :op1 (t / table
+                :mod (l2 / large))
+            :op2 (c / chair
+                :mod l2)
+            :op3 (r / row
+                :consist-of (s / seat-01)))))

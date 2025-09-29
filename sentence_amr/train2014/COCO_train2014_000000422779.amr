@@ -1,0 +1,36 @@
+# ::tok A bathroom vanity and suit and door open to show two beds in bedroom .
+# ::node	b	bathroom	1-2
+# ::node	v	vanity	2-3
+# ::node	a	and	3-4
+# ::node	s2	suit	4-5
+# ::node	d	door	6-7
+# ::node	o	open-09	7-8
+# ::node	c	cause-01	8-9
+# ::node	s	show-01	9-10
+# ::node	0	2	10-11
+# ::node	b2	bed	11-12
+# ::node	b3	bedroom	13-14
+# ::root	c	cause-01
+# ::edge	vanity	location	bathroom	v	b	
+# ::edge	and	op1	vanity	a	v	
+# ::edge	and	op2	suit	a	s2	
+# ::edge	and	op3	door	a	d	
+# ::edge	open-09	ARG1	and	o	a	
+# ::edge	cause-01	ARG1	open-09	c	o	
+# ::edge	cause-01	ARG0	show-01	c	s	
+# ::edge	show-01	ARG0	and	s	a	
+# ::edge	bed	quant	2	b2	0	
+# ::edge	show-01	ARG1	bed	s	b2	
+# ::edge	bed	location	bedroom	b2	b3	
+(c / cause-01
+    :ARG0 (s / show-01
+        :ARG0 (a / and
+            :op1 (v / vanity
+                :location (b / bathroom))
+            :op2 (s2 / suit)
+            :op3 (d / door))
+        :ARG1 (b2 / bed
+            :quant 2
+            :location (b3 / bedroom)))
+    :ARG1 (o / open-09
+        :ARG1 a))

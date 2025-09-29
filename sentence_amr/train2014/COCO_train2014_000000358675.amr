@@ -1,0 +1,37 @@
+# ::tok a room with a floor mat that has two animal feeding bowls on it , one for food and one for water .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	f2	floor	4-5
+# ::node	m	mat	5-6
+# ::node	h2	have-03	7-8
+# ::node	0	2	8-9
+# ::node	a2	animal	9-10
+# ::node	f	feed-01	10-11
+# ::node	b	bowl-01	11-12
+# ::node	f3	food	17-18
+# ::node	a	and	18-19
+# ::node	w	water	21-22
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	mat	mod	floor	m	f2	
+# ::edge	have-03	ARG1	mat	h	m	
+# ::edge	mat	ARG0-of	have-03	m	h2	
+# ::edge	feed-01	ARG2	animal	f	a2	
+# ::edge	bowl-01	purpose	feed-01	b	f	
+# ::edge	bowl-01	quant	2	b	0	
+# ::edge	have-03	ARG1	bowl-01	h2	b	
+# ::edge	and	op1	food	a	f3	
+# ::edge	bowl-01	example	and	b	a	
+# ::edge	and	op2	water	a	w	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (m / mat
+            :ARG0-of (h2 / have-03
+                :ARG1 (b / bowl-01
+                    :purpose (f / feed-01
+                        :ARG2 (a2 / animal))
+                    :quant 2
+                    :example (a / and
+                        :op1 (f3 / food)
+                        :op2 (w / water))))
+            :mod (f2 / floor))))

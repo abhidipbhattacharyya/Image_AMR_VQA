@@ -1,0 +1,46 @@
+# ::tok Several vehicles providing ground transportation are shown in the photo : streetcar , tourbus , classic car and family cars
+# ::node	s	several	0-1
+# ::node	v	vehicle	1-2
+# ::node	p2	provide-01	2-3
+# ::node	g	ground	3-4
+# ::node	t2	transport-01	4-5
+# ::node	s2	show-01	6-7
+# ::node	p	photo	9-10
+# ::node	s3	streetcar	11-12
+# ::node	i	include-91	12-13
+# ::node	a	and	12-13
+# ::node	t	tourbus	13-14
+# ::node	c3	classic	15-16
+# ::node	c	car	16-17
+# ::node	f	family	18-19
+# ::node	c2	car	19-20
+# ::root	s2	show-01
+# ::edge	vehicle	quant	several	v	s	
+# ::edge	vehicle	ARG0-of	provide-01	v	p2	
+# ::edge	transport-01	ARG4	ground	t2	g	
+# ::edge	provide-01	ARG1	transport-01	p2	t2	
+# ::edge	show-01	ARG1	vehicle	s2	v	
+# ::edge	show-01	medium	photo	s2	p	
+# ::edge	vehicle	ARG2-of	include-91	v	i	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op1	streetcar	a	s3	
+# ::edge	and	op2	tourbus	a	t	
+# ::edge	car	mod	classic	c	c3	
+# ::edge	and	op3	car	a	c	
+# ::edge	car	mod	family	c2	f	
+# ::edge	and	op4	car	a	c2	
+(s2 / show-01
+    :ARG1 (v / vehicle
+        :quant (s / several)
+        :ARG0-of (p2 / provide-01
+            :ARG1 (t2 / transport-01
+                :ARG4 (g / ground)))
+        :ARG2-of (i / include-91
+            :ARG1 (a / and
+                :op1 (s3 / streetcar)
+                :op2 (t / tourbus)
+                :op3 (c / car
+                    :mod (c3 / classic))
+                :op4 (c2 / car
+                    :mod (f / family)))))
+    :medium (p / photo))

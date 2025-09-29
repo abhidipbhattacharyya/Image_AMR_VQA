@@ -1,0 +1,39 @@
+# ::tok A Cottage Grove bus parked by a curb next to a rat balloon on the sidewalk .
+# ::node	n	name	1-2
+# ::node	0	Cottage	1-2
+# ::node	l	local-region	2-3
+# ::node	1	Grove	2-3
+# ::node	b2	bus	3-4
+# ::node	p	park-01	4-5
+# ::node	c	curb	7-8
+# ::node	n2	next-to	8-9
+# ::node	h	have-purpose-91	9-10
+# ::node	r	rat	11-12
+# ::node	b	balloon	12-13
+# ::node	s	sidewalk	15-16
+# ::root	p	park-01
+# ::edge	name	op1	Cottage	n	0	
+# ::edge	local-region	name	name	l	n	
+# ::edge	name	op2	Grove	n	1	
+# ::edge	bus	mod	local-region	b2	l	
+# ::edge	park-01	ARG1	bus	p	b2	
+# ::edge	next-to	location	curb	n2	c	
+# ::edge	park-01	ARG2	next-to	p	n2	
+# ::edge	have-purpose-91	ARG2	curb	h	c	
+# ::edge	park-01	ARG1-of	have-purpose-91	p	h	
+# ::edge	balloon	mod	rat	b	r	
+# ::edge	next-to	op1	balloon	n2	b	
+# ::edge	balloon	location	sidewalk	b	s	
+(p / park-01
+    :ARG1 (b2 / bus
+        :mod (l / local-region
+            :name (n / name
+                :op1 "Cottage"
+                :op2 "Grove")))
+    :ARG1-of (h / have-purpose-91
+        :ARG2 (c / curb))
+    :ARG2 (n2 / next-to
+        :location c
+        :op1 (b / balloon
+            :location (s / sidewalk)
+            :mod (r / rat))))

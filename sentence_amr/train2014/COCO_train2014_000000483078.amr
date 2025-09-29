@@ -1,0 +1,49 @@
+# ::tok A group of boys stand on a baseball diamond , all holding catcher 's mitts ( Go White Sox ! )
+# ::node	g2	group	1-2
+# ::node	b2	boy	3-4
+# ::node	s	stand-01	4-5
+# ::node	b	baseball	7-8
+# ::node	d	diamond	8-9
+# ::node	a	all	10-11
+# ::node	h	hold-01	11-12
+# ::node	p	person	12-13
+# ::node	c	catch-01	12-13
+# ::node	i	Mitt	14-15
+# ::node	m	multi-sentence	15-16
+# ::node	g	go-01	16-17
+# ::node	1	White	17-18
+# ::node	t	team	18-19
+# ::node	n	name	18-19
+# ::node	0	Sox	18-19
+# ::root	m	multi-sentence
+# ::edge	group	consist-of	boy	g2	b2	
+# ::edge	stand-01	ARG1	group	s	g2	
+# ::edge	diamond	mod	baseball	d	b	
+# ::edge	stand-01	ARG2	diamond	s	d	
+# ::edge	hold-01	mod	all	h	a	
+# ::edge	boy	ARG0-of	hold-01	b2	h	
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	Mitt	poss	person	i	p	
+# ::edge	hold-01	ARG1	Mitt	h	i	
+# ::edge	multi-sentence	snt1	stand-01	m	s	
+# ::edge	multi-sentence	snt2	go-01	m	g	
+# ::edge	go-01	ARG1	team	g	t	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	White	n	1	
+# ::edge	name	op2	Sox	n	0	
+(m / multi-sentence
+    :snt1 (s / stand-01
+        :ARG1 (g2 / group
+            :consist-of (b2 / boy
+                :ARG0-of (h / hold-01
+                    :ARG1 (i / Mitt
+                        :poss (p / person
+                            :ARG0-of (c / catch-01)))
+                    :mod (a / all))))
+        :ARG2 (d / diamond
+            :mod (b / baseball)))
+    :snt2 (g / go-01
+        :ARG1 (t / team
+            :name (n / name
+                :op1 "White"
+                :op2 "Sox"))))

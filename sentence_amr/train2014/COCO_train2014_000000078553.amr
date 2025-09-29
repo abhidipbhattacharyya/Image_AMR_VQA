@@ -1,0 +1,24 @@
+# ::tok A busy train station where passengers board and exit
+# ::node	b2	busy-02	1-2
+# ::node	t	train	2-3
+# ::node	s	station	3-4
+# ::node	p	passenger	5-6
+# ::node	b	board-01	6-7
+# ::node	a	and	7-8
+# ::node	e	exit-01	8-9
+# ::root	s	station
+# ::edge	station	mod	train	s	t	
+# ::edge	station	ARG1-of	busy-02	s	b2	
+# ::edge	board-01	ARG0	passenger	b	p	
+# ::edge	and	op1	board-01	a	b	
+# ::edge	station	location-of	and	s	a	
+# ::edge	and	op2	exit-01	a	e	
+# ::edge	exit-01	ARG0	passenger	e	p	
+(s / station
+    :ARG1-of (b2 / busy-02)
+    :location-of (a / and
+        :op1 (b / board-01
+            :ARG0 (p / passenger))
+        :op2 (e / exit-01
+            :ARG0 p))
+    :mod (t / train))

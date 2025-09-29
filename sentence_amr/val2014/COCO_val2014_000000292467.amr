@@ -1,0 +1,27 @@
+# ::tok A large building displays glittered clock decorations in its interior .
+# ::node	l	large	1-2
+# ::node	b	building	2-3
+# ::node	d	display-01	3-4
+# ::node	g	glimmer-01	4-5
+# ::node	c	clock	5-6
+# ::node	t	thing	6-7
+# ::node	d2	display-01	6-7
+# ::node	i	interior	9-10
+# ::root	g	glimmer-01
+# ::edge	building	mod	large	b	l	
+# ::edge	display-01	ARG0	building	d	b	
+# ::edge	glimmer-01	ARG1	display-01	g	d	
+# ::edge	glimmer-01	ARG3	thing	g	t	
+# ::edge	thing	ARG0-of	display-01	t	d2	
+# ::edge	display-01	ARG1	clock	d2	c	
+# ::edge	glimmer-01	location	interior	g	i	
+# ::edge	building	part	interior	b	i	
+(g / glimmer-01
+    :ARG1 (d / display-01
+        :ARG0 (b / building
+            :mod (l / large)
+            :part (i / interior)))
+    :ARG3 (t / thing
+        :ARG0-of (d2 / display-01
+            :ARG1 (c / clock)))
+    :location i)

@@ -1,0 +1,48 @@
+# ::tok Two little kids enjoy the bunk bed , one on top and one on the bottom .
+# ::node	2	2	0-1
+# ::node	l	little	1-2
+# ::node	k	kid	2-3
+# ::node	e	enjoy-01	3-4
+# ::node	b4	bunk	5-6
+# ::node	b	bed	6-7
+# ::node	b2	bed	6-7
+# ::node	i	include-91	8-9
+# ::node	i2	include-91	8-9
+# ::node	0	1	8-9
+# ::node	t2	top	10-11
+# ::node	a	and	11-12
+# ::node	1	1	12-13
+# ::node	b3	bottom	15-16
+# ::node	t	thing	16-17
+# ::root	e	enjoy-01
+# ::edge	kid	mod	little	k	l	
+# ::edge	kid	quant	2	k	2	
+# ::edge	enjoy-01	ARG0	kid	e	k	
+# ::edge	bed	mod	bunk	b	b4	
+# ::edge	enjoy-01	ARG1	bed	e	b	
+# ::edge	bed	ARG2-of	include-91	b	i	
+# ::edge	bed	ARG2-of	include-91	b2	i2	
+# ::edge	bed	quant	1	b2	0	
+# ::edge	bed	location	top	b2	t2	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op1	bed	a	b2	
+# ::edge	thing	location	bottom	t	b3	
+# ::edge	thing	quant	1	t	0	
+# ::edge	and	op2	thing	a	t	
+# ::edge	enjoy-01	rel	1	e	1	
+(e / enjoy-01
+    :ARG0 (k / kid
+        :quant 2
+        :mod (l / little))
+    :ARG1 (b / bed
+        :ARG2-of (i / include-91
+            :ARG1 (a / and
+                :op1 (b2 / bed
+                    :quant 1
+                    :ARG2-of (i2 / include-91)
+                    :location (t2 / top))
+                :op2 (t / thing
+                    :quant 1
+                    :location (b3 / bottom))))
+        :mod (b4 / bunk))
+    :rel 1)

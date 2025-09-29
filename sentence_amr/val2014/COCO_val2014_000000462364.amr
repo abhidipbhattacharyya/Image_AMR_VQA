@@ -1,0 +1,30 @@
+# ::tok A bathroom with a toilet and a bathtub and shower next to it , with a shower curtain covering the bathtub .
+# ::node	b	bathroom	1-2
+# ::node	t	toilet	4-5
+# ::node	b2	bathtub	7-8
+# ::node	a	and	8-9
+# ::node	s	shower	9-10
+# ::node	n	next-to	10-11
+# ::node	s2	shower	16-17
+# ::node	c2	curtain	17-18
+# ::node	c	cover-02	18-19
+# ::root	b	bathroom
+# ::edge	and	op2	bathtub	a	b2	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	bathroom	location-of	and	b	a	
+# ::edge	and	op3	shower	a	s	
+# ::edge	shower	location	next-to	s	n	
+# ::edge	next-to	op1	bathroom	n	b	
+# ::edge	curtain	mod	shower	c2	s2	
+# ::edge	cover-02	ARG2	curtain	c	c2	
+# ::edge	bathroom	ARG1-of	cover-02	b	c	
+(b / bathroom
+    :ARG1-of (c / cover-02
+        :ARG2 (c2 / curtain
+            :mod (s2 / shower)))
+    :location-of (a / and
+        :op1 (t / toilet)
+        :op2 (b2 / bathtub)
+        :op3 (s / shower
+            :location (n / next-to
+                :op1 b))))

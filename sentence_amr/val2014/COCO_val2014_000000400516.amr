@@ -1,0 +1,36 @@
+# ::tok Lots of people walking on a city street with Chinese stores on both sides of the street .
+# ::node	l	lot	0-1
+# ::node	p	person	2-3
+# ::node	w	walk-01	3-4
+# ::node	c	city	6-7
+# ::node	s3	street	7-8
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	China	9-10
+# ::node	s2	store	10-11
+# ::node	b	both	12-13
+# ::node	s	side	13-14
+# ::root	w	walk-01
+# ::edge	person	quant	lot	p	l	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	street	mod	city	s3	c	
+# ::edge	walk-01	ARG2	street	w	s3	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	store	mod	country	s2	c2	
+# ::edge	street	location-of	store	s3	s2	
+# ::edge	side	mod	both	s	b	
+# ::edge	store	location	side	s2	s	
+# ::edge	street	part	side	s3	s	
+(w / walk-01
+    :ARG0 (p / person
+        :quant (l / lot))
+    :ARG2 (s3 / street
+        :location-of (s2 / store
+            :location (s / side
+                :mod (b / both))
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "China")))
+        :mod (c / city)
+        :part s))

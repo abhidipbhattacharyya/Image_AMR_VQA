@@ -1,0 +1,38 @@
+# ::tok Two giraffes indoors and one of them has their head over the fence .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	i2	indoors	2-3
+# ::node	a	and	3-4
+# ::node	0	1	4-5
+# ::node	i	include-91	5-6
+# ::node	h	have-06	7-8
+# ::node	t	thing	8-9
+# ::node	h2	head	9-10
+# ::node	o	over	10-11
+# ::node	f	fence	12-13
+# ::root	a	and
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	giraffe	location	indoors	g	i2	
+# ::edge	and	op1	giraffe	a	g	
+# ::edge	include-91	ARG2	1	i	0	
+# ::edge	and	op2	have-06	a	h	
+# ::edge	thing	ARG1-of	include-91	t	i	
+# ::edge	include-91	ARG1	thing	i	t	
+# ::edge	have-06	ARG1	head	h	h2	
+# ::edge	giraffe	part	head	g	h2	
+# ::edge	head	path	over	h2	o	
+# ::edge	over	op1	fence	o	f	
+# ::edge	and	rel	include-91	a	i	
+(a / and
+    :op1 (g / giraffe
+        :quant 2
+        :location (i2 / indoors)
+        :part (h2 / head
+            :path (o / over
+                :op1 (f / fence))))
+    :op2 (h / have-06
+        :ARG1 h2)
+    :rel (i / include-91
+        :ARG1 (t / thing
+            :ARG1-of i)
+        :ARG2 1))

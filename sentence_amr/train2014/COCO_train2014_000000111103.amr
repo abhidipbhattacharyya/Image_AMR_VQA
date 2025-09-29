@@ -1,0 +1,31 @@
+# ::tok A kitchen has a stainless steel table , orange walls , and white cabinets .
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	s	stainless	4-5
+# ::node	s2	steel	5-6
+# ::node	t	table	6-7
+# ::node	o	orange	8-9
+# ::node	w	wall	9-10
+# ::node	a	and	11-12
+# ::node	w2	white-03	12-13
+# ::node	c	cabinet	13-14
+# ::root	h	have-03
+# ::edge	have-03	ARG0	kitchen	h	k	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	table	consist-of	steel	t	s2	
+# ::edge	wall	mod	orange	w	o	
+# ::edge	and	op2	wall	a	w	
+# ::edge	and	op1	table	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cabinet	ARG1-of	white-03	c	w2	
+# ::edge	and	op3	cabinet	a	c	
+(h / have-03
+    :ARG0 (k / kitchen)
+    :ARG1 (a / and
+        :op1 (t / table
+            :consist-of (s2 / steel
+                :mod (s / stainless)))
+        :op2 (w / wall
+            :mod (o / orange))
+        :op3 (c / cabinet
+            :ARG1-of (w2 / white-03))))

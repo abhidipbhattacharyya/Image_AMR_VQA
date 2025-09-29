@@ -1,0 +1,32 @@
+# ::tok Sea faring bird flapping wings while standing on wooden railing at beach .
+# ::node	s	sea	0-1
+# ::node	r2	rule-01	1-2
+# ::node	b2	bird	2-3
+# ::node	f	flap-01	3-4
+# ::node	w	wing	4-5
+# ::node	s2	stand-01	6-7
+# ::node	w2	wood	8-9
+# ::node	r	railing	9-10
+# ::node	b	beach	11-12
+# ::root	f	flap-01
+# ::edge	rule-01	location	sea	r2	s	
+# ::edge	bird	ARG0-of	rule-01	b2	r2	
+# ::edge	flap-01	ARG0	bird	f	b2	
+# ::edge	flap-01	ARG1	wing	f	w	
+# ::edge	bird	part	wing	b2	w	
+# ::edge	flap-01	time	stand-01	f	s2	
+# ::edge	stand-01	ARG1	bird	s2	b2	
+# ::edge	railing	consist-of	wood	r	w2	
+# ::edge	stand-01	ARG2	railing	s2	r	
+# ::edge	railing	location	beach	r	b	
+(f / flap-01
+    :ARG0 (b2 / bird
+        :ARG0-of (r2 / rule-01
+            :location (s / sea))
+        :part (w / wing))
+    :ARG1 w
+    :time (s2 / stand-01
+        :ARG1 b2
+        :ARG2 (r / railing
+            :consist-of (w2 / wood)
+            :location (b / beach))))

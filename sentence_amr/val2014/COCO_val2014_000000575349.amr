@@ -1,0 +1,39 @@
+# ::tok A boy in a toy fireman 's hat takes a bite out of a pastry while sitting on a counter .
+# ::node	b2	boy	1-2
+# ::node	w	wear-01	2-3
+# ::node	t2	toy	4-5
+# ::node	m	man	5-6
+# ::node	f	fight-01	5-6
+# ::node	f2	fire	5-6
+# ::node	h	hat	7-8
+# ::node	t	take-out-11	8-9
+# ::node	b	bite	10-11
+# ::node	p	pastry	14-15
+# ::node	s	sit-01	16-17
+# ::node	c	counter	19-20
+# ::root	t	take-out-11
+# ::edge	boy	ARG0-of	wear-01	b2	w	
+# ::edge	man	mod	toy	m	t2	
+# ::edge	man	ARG0-of	fight-01	m	f	
+# ::edge	fight-01	ARG1	fire	f	f2	
+# ::edge	hat	mod	man	h	m	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	take-out-11	ARG0	boy	t	b2	
+# ::edge	take-out-11	ARG1	bite	t	b	
+# ::edge	bite	source	pastry	b	p	
+# ::edge	take-out-11	time	sit-01	t	s	
+# ::edge	sit-01	ARG1	boy	s	b2	
+# ::edge	sit-01	ARG2	counter	s	c	
+(t / take-out-11
+    :ARG0 (b2 / boy
+        :ARG0-of (w / wear-01
+            :ARG1 (h / hat
+                :mod (m / man
+                    :ARG0-of (f / fight-01
+                        :ARG1 (f2 / fire))
+                    :mod (t2 / toy)))))
+    :ARG1 (b / bite
+        :source (p / pastry))
+    :time (s / sit-01
+        :ARG1 b2
+        :ARG2 (c / counter)))

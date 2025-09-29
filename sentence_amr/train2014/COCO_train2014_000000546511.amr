@@ -1,0 +1,27 @@
+# ::tok A building where wall clock is engraved and train is engraved below the clock .
+# ::node	b2	building	1-2
+# ::node	w	wall	3-4
+# ::node	c	clock	4-5
+# ::node	e	engrave-01	6-7
+# ::node	a	and	7-8
+# ::node	t	train	8-9
+# ::node	e2	engrave-01	10-11
+# ::node	b	below	11-12
+# ::root	b2	building
+# ::edge	clock	mod	wall	c	w	
+# ::edge	engrave-01	ARG1	clock	e	c	
+# ::edge	and	op1	engrave-01	a	e	
+# ::edge	building	location-of	and	b2	a	
+# ::edge	engrave-01	ARG1	train	e2	t	
+# ::edge	and	op2	engrave-01	a	e2	
+# ::edge	engrave-01	location	below	e2	b	
+# ::edge	below	op1	clock	b	c	
+(b2 / building
+    :location-of (a / and
+        :op1 (e / engrave-01
+            :ARG1 (c / clock
+                :mod (w / wall)))
+        :op2 (e2 / engrave-01
+            :ARG1 (t / train)
+            :location (b / below
+                :op1 c))))

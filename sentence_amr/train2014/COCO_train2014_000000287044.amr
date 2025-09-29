@@ -1,0 +1,42 @@
+# ::tok View of light poles and a red traffic signal in front of a building with the sun partially behind .
+# ::node	v	view-01	0-1
+# ::node	l	light-04	2-3
+# ::node	p2	pole	3-4
+# ::node	a	and	4-5
+# ::node	r	red-02	6-7
+# ::node	t	traffic	7-8
+# ::node	s	signal	8-9
+# ::node	i	in-front-of	10-11
+# ::node	b3	building	13-14
+# ::node	s2	sun	16-17
+# ::node	p	part	17-18
+# ::node	b	be-located-at-91	18-19
+# ::node	b2	behind	18-19
+# ::root	v	view-01
+# ::edge	pole	ARG0-of	light-04	p2	l	
+# ::edge	and	op1	pole	a	p2	
+# ::edge	view-01	ARG1	and	v	a	
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	signal	ARG1-of	red-02	s	r	
+# ::edge	and	op2	signal	a	s	
+# ::edge	and	location	in-front-of	a	i	
+# ::edge	in-front-of	op1	building	i	b3	
+# ::edge	be-located-at-91	ARG1	sun	b	s2	
+# ::edge	and	ARG2-of	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	degree	part	b2	p	
+# ::edge	behind	op1	building	b2	b3	
+(v / view-01
+    :ARG1 (a / and
+        :ARG2-of (b / be-located-at-91
+            :ARG1 (s2 / sun)
+            :ARG2 (b2 / behind
+                :degree (p / part)
+                :op1 (b3 / building)))
+        :location (i / in-front-of
+            :op1 b3)
+        :op1 (p2 / pole
+            :ARG0-of (l / light-04))
+        :op2 (s / signal
+            :ARG1-of (r / red-02)
+            :mod (t / traffic))))

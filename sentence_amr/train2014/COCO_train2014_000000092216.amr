@@ -1,0 +1,42 @@
+# ::tok A baseball player at home plate in a swinging motion and looking up in the air as people in the dugout look on .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	h	home	4-5
+# ::node	p3	plate	5-6
+# ::node	s	swing-01	8-9
+# ::node	m	move-01	9-10
+# ::node	l	look-01	11-12
+# ::node	u	up	12-13
+# ::node	a	air	15-16
+# ::node	p2	person	17-18
+# ::node	d	dugout	20-21
+# ::node	l2	look-01	21-22
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	plate	mod	home	p3	h	
+# ::edge	person	location	plate	p	p3	
+# ::edge	move-01	ARG1	swing-01	m	s	
+# ::edge	person	manner	move-01	p	m	
+# ::edge	move-01	ARG0	person	m	p	
+# ::edge	person	ARG0-of	look-01	p	l	
+# ::edge	look-01	ARG1	up	l	u	
+# ::edge	up	location	air	u	a	
+# ::edge	person	location	dugout	p2	d	
+# ::edge	look-01	ARG0	person	l2	p2	
+# ::edge	look-01	ARG1-of	look-01	l	l2	
+(p / person
+    :ARG0-of (p4 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (l / look-01
+        :ARG1 (u / up
+            :location (a / air))
+        :ARG1-of (l2 / look-01
+            :ARG0 (p2 / person
+                :location (d / dugout))))
+    :location (p3 / plate
+        :mod (h / home))
+    :manner (m / move-01
+        :ARG0 p
+        :ARG1 (s / swing-01)))

@@ -1,0 +1,31 @@
+# ::tok The city traffic at nights with lights on and neon signs lit .
+# ::node	c	city	1-2
+# ::node	t	traffic	2-3
+# ::node	d	date-entity	4-5
+# ::node	n2	night	4-5
+# ::node	l	light	6-7
+# ::node	o	on-01	7-8
+# ::node	a	and	8-9
+# ::node	n	neon	9-10
+# ::node	s	sign	10-11
+# ::node	l2	light-04	11-12
+# ::root	t	traffic
+# ::edge	traffic	mod	city	t	c	
+# ::edge	traffic	time	date-entity	t	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	and	op1	on-01	a	o	
+# ::edge	traffic	manner	and	t	a	
+# ::edge	sign	mod	neon	s	n	
+# ::edge	light-04	ARG1	sign	l2	s	
+# ::edge	and	op2	light-04	a	l2	
+(t / traffic
+    :manner (a / and
+        :op1 (o / on-01
+            :ARG1 (l / light))
+        :op2 (l2 / light-04
+            :ARG1 (s / sign
+                :mod (n / neon))))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

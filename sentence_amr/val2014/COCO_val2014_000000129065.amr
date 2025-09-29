@@ -1,0 +1,25 @@
+# ::tok Busy city intersection with a lot of people out at night .
+# ::node	b	busy-01	0-1
+# ::node	c	city	1-2
+# ::node	i	intersect-01	2-3
+# ::node	l	lot	5-6
+# ::node	p	person	7-8
+# ::node	o	out-06	8-9
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	city	i	c	
+# ::edge	intersect-01	ARG1-of	busy-01	i	b	
+# ::edge	person	quant	lot	p	l	
+# ::edge	intersect-01	ARG0	person	i	p	
+# ::edge	person	ARG1-of	out-06	p	o	
+# ::edge	out-06	time	date-entity	o	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(i / intersect-01
+    :ARG0 (p / person
+        :quant (l / lot)
+        :ARG1-of (o / out-06
+            :time (d / date-entity
+                :dayperiod (n / night))))
+    :ARG1 (c / city)
+    :ARG1-of (b / busy-01))

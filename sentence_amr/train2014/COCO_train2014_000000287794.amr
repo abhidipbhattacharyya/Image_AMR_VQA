@@ -1,0 +1,47 @@
+# ::tok A harcourt tennis court with a shirtless man playing tennis and with his racket at the service line .
+# ::node	l	law	1-2
+# ::node	n	name	1-2
+# ::node	1	har-har	1-2
+# ::node	t	tennis	2-3
+# ::node	c	court	3-4
+# ::node	s2	shirt	6-7
+# ::node	0	-	6-7
+# ::node	m	man	7-8
+# ::node	p	play-01	8-9
+# ::node	p2	play-01	8-9
+# ::node	t2	tennis	9-10
+# ::node	r	racket	13-14
+# ::node	s	serve-02	16-17
+# ::node	l2	line	17-18
+# ::root	c	court
+# ::edge	law	name	name	l	n	
+# ::edge	name	op1	har-har	n	1	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	court	mod	law	c	l	
+# ::edge	shirt	polarity	-	s2	0	
+# ::edge	man	part	shirt	m	s2	
+# ::edge	man	ARG0-of	play-01	m	p	
+# ::edge	play-01	ARG1	tennis	p	t	
+# ::edge	man	ARG0-of	play-01	m	p2	
+# ::edge	play-01	ARG1	tennis	p	t2	
+# ::edge	play-01	instrument	racket	p2	r	
+# ::edge	racket	poss	man	r	m	
+# ::edge	line	mod	serve-02	l2	s	
+# ::edge	play-01	location	line	p2	l2	
+# ::edge	court	rel	play-01	c	p2	
+(c / court
+    :mod (t / tennis)
+    :mod (l / law
+        :name (n / name
+            :op1 "har-har"))
+    :rel (p2 / play-01
+        :instrument (r / racket
+            :poss (m / man
+                :ARG0-of (p / play-01
+                    :ARG1 t
+                    :ARG1 (t2 / tennis))
+                :ARG0-of p2
+                :part (s2 / shirt
+                    :polarity -)))
+        :location (l2 / line
+            :mod (s / serve-02))))

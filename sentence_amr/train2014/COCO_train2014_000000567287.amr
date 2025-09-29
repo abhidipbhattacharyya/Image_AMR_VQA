@@ -1,0 +1,28 @@
+# ::tok Brightly colored umbrellas glow in the night above an outdoor crowd .
+# ::node	b	bright-02	0-1
+# ::node	c	color-01	1-2
+# ::node	u	umbrella	2-3
+# ::node	g	glow-01	3-4
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	a	above	7-8
+# ::node	o	outdoor	9-10
+# ::node	c2	crowd	10-11
+# ::root	g	glow-01
+# ::edge	color-01	ARG1-of	bright-02	c	b	
+# ::edge	umbrella	ARG1-of	color-01	u	c	
+# ::edge	glow-01	ARG0	umbrella	g	u	
+# ::edge	glow-01	time	date-entity	g	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	glow-01	location	above	g	a	
+# ::edge	crowd	location	outdoor	c2	o	
+# ::edge	above	op1	crowd	a	c2	
+(g / glow-01
+    :ARG0 (u / umbrella
+        :ARG1-of (c / color-01
+            :ARG1-of (b / bright-02)))
+    :location (a / above
+        :op1 (c2 / crowd
+            :location (o / outdoor)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,24 @@
+# ::tok A large bridge with a train caught in motion going across it .
+# ::node	l	large	1-2
+# ::node	b	bridge	2-3
+# ::node	t	train	5-6
+# ::node	c	catch-03	6-7
+# ::node	m	motion	8-9
+# ::node	g	go-02	9-10
+# ::node	a	across	10-11
+# ::root	b	bridge
+# ::edge	bridge	mod	large	b	l	
+# ::edge	catch-03	ARG1	train	c	t	
+# ::edge	bridge	location-of	catch-03	b	c	
+# ::edge	catch-03	ARG2	motion	c	m	
+# ::edge	train	ARG0-of	go-02	t	g	
+# ::edge	go-02	ARG1	across	g	a	
+# ::edge	across	op1	bridge	a	b	
+(b / bridge
+    :location-of (c / catch-03
+        :ARG1 (t / train
+            :ARG0-of (g / go-02
+                :ARG1 (a / across
+                    :op1 b)))
+        :ARG2 (m / motion))
+    :mod (l / large))

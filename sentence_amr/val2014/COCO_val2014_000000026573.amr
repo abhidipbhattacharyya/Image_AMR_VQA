@@ -1,0 +1,28 @@
+# ::tok Crowded market street filled with pedestrians holding umbrellas in the rain
+# ::node	c	crowd-01	0-1
+# ::node	m	market	1-2
+# ::node	s	street	2-3
+# ::node	f	fill-01	3-4
+# ::node	w	walk-01	5-6
+# ::node	p	person	6-7
+# ::node	h	hold-01	6-7
+# ::node	u	umbrella	7-8
+# ::node	r	rain-01	10-11
+# ::root	f	fill-01
+# ::edge	street	mod	market	s	m	
+# ::edge	street	ARG1-of	crowd-01	s	c	
+# ::edge	fill-01	ARG1	street	f	s	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	fill-01	ARG2	person	f	p	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	fill-01	time	rain-01	f	r	
+(f / fill-01
+    :ARG1 (s / street
+        :ARG1-of (c / crowd-01)
+        :mod (m / market))
+    :ARG2 (p / person
+        :ARG0-of (w / walk-01)
+        :ARG0-of (h / hold-01
+            :ARG1 (u / umbrella)))
+    :time (r / rain-01))

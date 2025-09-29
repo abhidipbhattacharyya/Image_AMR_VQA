@@ -1,0 +1,25 @@
+# ::tok Someone holding out a bag of donuts with Japanese writing on it .
+# ::node	s	someone	0-1
+# ::node	h	hold-01	1-2
+# ::node	b	bag	4-5
+# ::node	d	donut	6-7
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	Japan	8-9
+# ::node	w	write-01	9-10
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	someone	h	s	
+# ::edge	hold-01	ARG1	bag	h	b	
+# ::edge	bag	consist-of	donut	b	d	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Japan	n	0	
+# ::edge	write-01	ARG0	country	w	c	
+# ::edge	bag	ARG1-of	write-01	b	w	
+(h / hold-01
+    :ARG0 (s / someone)
+    :ARG1 (b / bag
+        :ARG1-of (w / write-01
+            :ARG0 (c / country
+                :name (n / name
+                    :op1 "Japan")))
+        :consist-of (d / donut)))

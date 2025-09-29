@@ -1,0 +1,51 @@
+# ::tok Grey Line tour signs mounted on a utility pole stand next to another utility pole that supports street signs .
+# ::node	0	Grey	0-1
+# ::node	c	company	1-2
+# ::node	1	Line	1-2
+# ::node	t	tour-01	2-3
+# ::node	s	sign	3-4
+# ::node	n	name	3-4
+# ::node	m	mount-03	4-5
+# ::node	p	pole	8-9
+# ::node	s3	stand-01	9-10
+# ::node	n2	next-to	10-11
+# ::node	a	another	12-13
+# ::node	u	utility	13-14
+# ::node	p2	pole	14-15
+# ::node	s5	support-01	16-17
+# ::node	s4	street	17-18
+# ::node	s2	sign	18-19
+# ::root	s	sign
+# ::edge	sign	purpose	tour-01	s	t	
+# ::edge	sign	mod	company	s	c	
+# ::edge	name	op2	Line	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Grey	n	0	
+# ::edge	sign	ARG1-of	mount-03	s	m	
+# ::edge	stand-01	ARG1	pole	s3	p	
+# ::edge	mount-03	ARG2	stand-01	m	s3	
+# ::edge	stand-01	ARG2	next-to	s3	n2	
+# ::edge	pole	mod	utility	p	u	
+# ::edge	pole	mod	utility	p2	u	
+# ::edge	pole	mod	another	p2	a	
+# ::edge	next-to	op1	pole	n2	p2	
+# ::edge	pole	ARG0-of	support-01	p2	s5	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	support-01	ARG1	sign	s5	s2	
+(s / sign
+    :purpose (t / tour-01)
+    :ARG1-of (m / mount-03
+        :ARG2 (s3 / stand-01
+            :ARG1 (p / pole
+                :mod (u / utility))
+            :ARG2 (n2 / next-to
+                :op1 (p2 / pole
+                    :ARG0-of (s5 / support-01
+                        :ARG1 (s2 / sign
+                            :mod (s4 / street)))
+                    :mod u
+                    :mod (a / another)))))
+    :mod (c / company
+        :name (n / name
+            :op1 "Grey"
+            :op2 "Line")))

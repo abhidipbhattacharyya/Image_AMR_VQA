@@ -1,0 +1,42 @@
+# ::tok People flying a kite in the field while others walk around and ride bikes .
+# ::node	p	person	0-1
+# ::node	f2	fly-01	1-2
+# ::node	k	kite	3-4
+# ::node	f	field	6-7
+# ::node	o	other	8-9
+# ::node	w	walk-01	9-10
+# ::node	a2	around	10-11
+# ::node	a	and	11-12
+# ::node	c	contrast-01	11-12
+# ::node	r	ride-01	12-13
+# ::node	b	bike-01	13-14
+# ::root	a	and
+# ::edge	person	ARG0-of	fly-01	p	f2	
+# ::edge	fly-01	ARG1	kite	f2	k	
+# ::edge	fly-01	location	field	f2	f	
+# ::edge	walk-01	ARG0	other	w	o	
+# ::edge	walk-01	ARG2	around	w	a2	
+# ::edge	around	op1	field	a2	f	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	contrast-01	a	c	
+# ::edge	contrast-01	ARG1	walk-01	c	w	
+# ::edge	contrast-01	ARG2	ride-01	c	r	
+# ::edge	ride-01	ARG0	other	r	o	
+# ::edge	ride-01	ARG1	bike-01	r	b	
+# ::edge	bike-01	ARG0	other	b	o	
+# ::edge	and	rel	person	a	p	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (o / other)
+        :ARG2 (a2 / around
+            :op1 (f / field)))
+    :op2 (c / contrast-01
+        :ARG1 w
+        :ARG2 (r / ride-01
+            :ARG0 o
+            :ARG1 (b / bike-01
+                :ARG0 o)))
+    :rel (p / person
+        :ARG0-of (f2 / fly-01
+            :ARG1 (k / kite)
+            :location f)))

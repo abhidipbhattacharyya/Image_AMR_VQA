@@ -1,0 +1,43 @@
+# ::tok A giraffe holds its head over a fence as a man reaches to touch it and people look on in the background .
+# ::node	g	giraffe	1-2
+# ::node	h2	hold-01	2-3
+# ::node	h	head	4-5
+# ::node	o	over	5-6
+# ::node	f	fence	7-8
+# ::node	m	man	10-11
+# ::node	r	reach-03	11-12
+# ::node	t	touch-01	13-14
+# ::node	a	and	15-16
+# ::node	p	person	16-17
+# ::node	l	look-01	17-18
+# ::node	b	background	21-22
+# ::root	h2	hold-01
+# ::edge	hold-01	ARG0	giraffe	h2	g	
+# ::edge	hold-01	ARG1	head	h2	h	
+# ::edge	giraffe	part	head	g	h	
+# ::edge	hold-01	location	over	h2	o	
+# ::edge	over	op1	fence	o	f	
+# ::edge	reach-03	ARG0	man	r	m	
+# ::edge	reach-03	ARG2	touch-01	r	t	
+# ::edge	touch-01	ARG0	man	t	m	
+# ::edge	touch-01	ARG1	giraffe	t	g	
+# ::edge	and	op1	reach-03	a	r	
+# ::edge	hold-01	time	and	h2	a	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	location	background	l	b	
+(h2 / hold-01
+    :ARG0 (g / giraffe
+        :part (h / head))
+    :ARG1 h
+    :location (o / over
+        :op1 (f / fence))
+    :time (a / and
+        :op1 (r / reach-03
+            :ARG0 (m / man)
+            :ARG2 (t / touch-01
+                :ARG0 m
+                :ARG1 g))
+        :op2 (l / look-01
+            :ARG0 (p / person)
+            :location (b / background))))

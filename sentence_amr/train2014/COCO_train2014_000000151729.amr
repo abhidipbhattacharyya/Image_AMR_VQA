@@ -1,0 +1,37 @@
+# ::tok One small child attempting to get close to another child as they are pulling away .
+# ::node	0	1	0-1
+# ::node	s	small	1-2
+# ::node	c	child	2-3
+# ::node	a2	attempt-01	3-4
+# ::node	g	get-05	5-6
+# ::node	c3	close-06	6-7
+# ::node	a	another	8-9
+# ::node	c2	child	9-10
+# ::node	p	pull-01	13-14
+# ::node	a3	away	14-15
+# ::root	a2	attempt-01
+# ::edge	child	mod	small	c	s	
+# ::edge	child	quant	1	c	0	
+# ::edge	attempt-01	ARG0	child	a2	c	
+# ::edge	attempt-01	ARG1	get-05	a2	g	
+# ::edge	get-05	ARG1	child	g	c	
+# ::edge	get-05	ARG2	close-06	g	c3	
+# ::edge	close-06	ARG1	child	c3	c	
+# ::edge	child	mod	another	c2	a	
+# ::edge	close-06	ARG2	child	c3	c2	
+# ::edge	pull-01	ARG0	child	p	c2	
+# ::edge	attempt-01	time	pull-01	a2	p	
+# ::edge	pull-01	ARG2	away	p	a3	
+(a2 / attempt-01
+    :ARG0 (c / child
+        :quant 1
+        :mod (s / small))
+    :ARG1 (g / get-05
+        :ARG1 c
+        :ARG2 (c3 / close-06
+            :ARG1 c
+            :ARG2 (c2 / child
+                :mod (a / another))))
+    :time (p / pull-01
+        :ARG0 c2
+        :ARG2 (a3 / away)))

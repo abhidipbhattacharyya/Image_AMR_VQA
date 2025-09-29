@@ -1,0 +1,37 @@
+# ::tok Twin fire plugs are planted just a few feet apart on the grassy strip
+# ::node	t	twin	0-1
+# ::node	f2	fire	1-2
+# ::node	p2	plug-04	2-3
+# ::node	p	plant-01	4-5
+# ::node	j	just	5-6
+# ::node	f	few	7-8
+# ::node	0	1	7-8
+# ::node	d	distance-quantity	8-9
+# ::node	f3	foot	8-9
+# ::node	a	apart	9-10
+# ::node	g	grass	12-13
+# ::node	s	strip	13-14
+# ::root	p	plant-01
+# ::edge	plug-04	ARG2	fire	p2	f2	
+# ::edge	plug-04	mod	twin	p2	t	
+# ::edge	plant-01	ARG1	plug-04	p	p2	
+# ::edge	few	mod	just	f	j	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	few	op1	distance-quantity	f	d	
+# ::edge	distance-quantity	unit	foot	d	f3	
+# ::edge	apart	quant	few	a	f	
+# ::edge	plant-01	location	apart	p	a	
+# ::edge	strip	consist-of	grass	s	g	
+# ::edge	plant-01	ARG2	strip	p	s	
+(p / plant-01
+    :ARG1 (p2 / plug-04
+        :ARG2 (f2 / fire)
+        :mod (t / twin))
+    :ARG2 (s / strip
+        :consist-of (g / grass))
+    :location (a / apart
+        :quant (f / few
+            :mod (j / just)
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (f3 / foot)))))

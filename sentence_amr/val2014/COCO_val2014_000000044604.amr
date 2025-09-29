@@ -1,0 +1,30 @@
+# ::tok a tiled floor with a trash can and a urinal sitting inside of it
+# ::node	t	tile-01	1-2
+# ::node	f	floor	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	trash	5-6
+# ::node	c	can	6-7
+# ::node	a	and	7-8
+# ::node	u	urinal	9-10
+# ::node	s	sit-01	10-11
+# ::node	i	inside	11-12
+# ::root	f	floor
+# ::edge	floor	ARG1-of	tile-01	f	t	
+# ::edge	floor	ARG0-of	have-03	f	h	
+# ::edge	can	mod	trash	c	t2	
+# ::edge	and	op1	can	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sit-01	ARG1	urinal	s	u	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG2	inside	s	i	
+# ::edge	inside	op1	can	i	c	
+(f / floor
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / can
+                :mod (t2 / trash))
+            :op2 (s / sit-01
+                :ARG1 (u / urinal)
+                :ARG2 (i / inside
+                    :op1 c))))
+    :ARG1-of (t / tile-01))

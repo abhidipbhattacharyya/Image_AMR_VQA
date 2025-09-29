@@ -1,0 +1,42 @@
+# ::tok Person on one end of a table that has a glass of beer , fork , bread , and sausage on it .
+# ::node	p	person	0-1
+# ::node	0	1	2-3
+# ::node	e	end	3-4
+# ::node	t	table	6-7
+# ::node	h	have-03	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	1	1	9-10
+# ::node	g	glass	10-11
+# ::node	b	beer	12-13
+# ::node	f	fork	14-15
+# ::node	b2	bread	16-17
+# ::node	a	and	18-19
+# ::node	s	sausage	19-20
+# ::root	p	person
+# ::edge	end	quant	1	e	0	
+# ::edge	person	location	end	p	e	
+# ::edge	end	part-of	table	e	t	
+# ::edge	have-03	location	table	h	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	volume-quantity	quant	1	v	1	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	and	op3	bread	a	b2	
+# ::edge	and	op2	fork	a	f	
+# ::edge	and	op1	beer	a	b	
+# ::edge	and	quant	volume-quantity	a	v	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op4	sausage	a	s	
+(p / person
+    :location (e / end
+        :quant 1
+        :part-of (t / table
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (g / glass))
+                    :op1 (b / beer)
+                    :op2 (f / fork)
+                    :op3 (b2 / bread)
+                    :op4 (s / sausage))
+                :location t))))

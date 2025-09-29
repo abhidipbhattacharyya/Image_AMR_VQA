@@ -1,0 +1,30 @@
+# ::tok a view from inside a vehicle looking a a stop sign and car in front of
+# ::node	v2	view-01	1-2
+# ::node	i2	inside	3-4
+# ::node	v	vehicle	5-6
+# ::node	l	look-02	6-7
+# ::node	s2	stop-01	9-10
+# ::node	s	signal-07	10-11
+# ::node	a	and	11-12
+# ::node	c	car	12-13
+# ::node	i	in-front-of	14-15
+# ::root	v2	view-01
+# ::edge	view-01	source	inside	v2	i2	
+# ::edge	inside	op1	vehicle	i2	v	
+# ::edge	view-01	ARG0-of	look-02	v2	l	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	look-02	ARG1	and	l	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	vehicle	i	v	
+(v2 / view-01
+    :ARG0-of (l / look-02
+        :ARG1 (a / and
+            :op1 (s / signal-07
+                :ARG1 (s2 / stop-01))
+            :op2 (c / car
+                :location (i / in-front-of
+                    :op1 (v / vehicle)))))
+    :source (i2 / inside
+        :op1 v))

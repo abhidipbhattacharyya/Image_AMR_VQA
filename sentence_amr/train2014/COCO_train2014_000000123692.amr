@@ -1,0 +1,36 @@
+# ::tok A baseball game with a batter in a swinging motion and taking a stride away from home plate .
+# ::node	b	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	b2	batter-01	5-6
+# ::node	s2	swing-01	8-9
+# ::node	m	move-01	9-10
+# ::node	a	and	10-11
+# ::node	s	stride-01	13-14
+# ::node	a2	away	14-15
+# ::node	h	home	16-17
+# ::node	p2	plate	17-18
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b	
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	move-01	ARG1	swing-01	m	s2	
+# ::edge	move-01	ARG0	person	m	p	
+# ::edge	and	op1	move-01	a	m	
+# ::edge	game	manner	and	g	a	
+# ::edge	and	op2	stride-01	a	s	
+# ::edge	stride-01	ARG0	person	s	p	
+# ::edge	stride-01	direction	away	s	a2	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	stride-01	source	plate	s	p2	
+(g / game
+    :manner (a / and
+        :op1 (m / move-01
+            :ARG0 (p / person
+                :ARG0-of (b2 / batter-01))
+            :ARG1 (s2 / swing-01))
+        :op2 (s / stride-01
+            :ARG0 p
+            :direction (a2 / away)
+            :source (p2 / plate
+                :mod (h / home))))
+    :mod (b / baseball))

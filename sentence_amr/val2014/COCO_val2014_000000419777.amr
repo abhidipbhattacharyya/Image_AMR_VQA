@@ -1,0 +1,30 @@
+# ::tok A dirt bike ride jumps on a course during a race with other riders .
+# ::node	d	dirt	1-2
+# ::node	b	bike	2-3
+# ::node	r2	ride-01	3-4
+# ::node	j	jump-03	4-5
+# ::node	c	course	7-8
+# ::node	r	race-02	10-11
+# ::node	o	other	12-13
+# ::node	p	person	13-14
+# ::node	r3	ride-01	13-14
+# ::root	j	jump-03
+# ::edge	bike	mod	dirt	b	d	
+# ::edge	ride-01	ARG1	bike	r2	b	
+# ::edge	jump-03	ARG0	ride-01	j	r2	
+# ::edge	jump-03	location	course	j	c	
+# ::edge	jump-03	time	race-02	j	r	
+# ::edge	race-02	ARG0	ride-01	r	r2	
+# ::edge	person	mod	other	p	o	
+# ::edge	race-02	accompanier	person	r	p	
+# ::edge	person	ARG0-of	ride-01	p	r3	
+(j / jump-03
+    :ARG0 (r2 / ride-01
+        :ARG1 (b / bike
+            :mod (d / dirt)))
+    :location (c / course)
+    :time (r / race-02
+        :ARG0 r2
+        :accompanier (p / person
+            :ARG0-of (r3 / ride-01)
+            :mod (o / other))))

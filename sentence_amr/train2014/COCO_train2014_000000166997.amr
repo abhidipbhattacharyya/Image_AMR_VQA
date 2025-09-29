@@ -1,0 +1,34 @@
+# ::tok A dirt bike rider is turning in the dirt and the dry dirt is blowing everywhere .
+# ::node	d	dirt	1-2
+# ::node	b	bike	2-3
+# ::node	p	person	3-4
+# ::node	r	ride-01	3-4
+# ::node	t	turn-01	5-6
+# ::node	d2	dirt	8-9
+# ::node	a	and	9-10
+# ::node	d4	dry-08	11-12
+# ::node	d3	dirt	12-13
+# ::node	b2	blow-01	14-15
+# ::node	e	everywhere	15-16
+# ::root	a	and
+# ::edge	bike	mod	dirt	b	d	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	bike	r	b	
+# ::edge	turn-01	ARG0	person	t	p	
+# ::edge	turn-01	ARG1	dirt	t	d2	
+# ::edge	and	op1	turn-01	a	t	
+# ::edge	dirt	ARG1-of	dry-08	d3	d4	
+# ::edge	blow-01	ARG1	dirt	b2	d3	
+# ::edge	and	op2	blow-01	a	b2	
+# ::edge	blow-01	ARG2	everywhere	b2	e	
+(a / and
+    :op1 (t / turn-01
+        :ARG0 (p / person
+            :ARG0-of (r / ride-01
+                :ARG1 (b / bike
+                    :mod (d / dirt))))
+        :ARG1 (d2 / dirt))
+    :op2 (b2 / blow-01
+        :ARG1 (d3 / dirt
+            :ARG1-of (d4 / dry-08))
+        :ARG2 (e / everywhere)))

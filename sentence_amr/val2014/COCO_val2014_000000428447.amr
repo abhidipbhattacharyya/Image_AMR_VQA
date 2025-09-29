@@ -1,0 +1,30 @@
+# ::tok A sign letting drivers know they ca n't park in that area .
+# ::node	s	sign	1-2
+# ::node	l	let-know-07	2-3
+# ::node	p2	person	3-4
+# ::node	d	drive-01	3-4
+# ::node	p3	possible-01	6-7
+# ::node	0	-	7-8
+# ::node	p	park-01	8-9
+# ::node	t	that	10-11
+# ::node	a	area	11-12
+# ::root	l	let-know-07
+# ::edge	let-know-07	ARG0	sign	l	s	
+# ::edge	let-know-07	ARG1	person	l	p2	
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	let-know-07	ARG2	possible-01	l	p3	
+# ::edge	possible-01	polarity	-	p3	0	
+# ::edge	possible-01	ARG1	park-01	p3	p	
+# ::edge	park-01	ARG0	person	p	p2	
+# ::edge	area	mod	that	a	t	
+# ::edge	park-01	ARG2	area	p	a	
+(l / let-know-07
+    :ARG0 (s / sign)
+    :ARG1 (p2 / person
+        :ARG0-of (d / drive-01))
+    :ARG2 (p3 / possible-01
+        :ARG1 (p / park-01
+            :ARG0 p2
+            :ARG2 (a / area
+                :mod (t / that)))
+        :polarity -))

@@ -1,0 +1,27 @@
+# ::tok A pizza sitting on top of a pizza pan with a couple of slices missing .
+# ::node	p2	pizza	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	top	4-5
+# ::node	p	pan	8-9
+# ::node	h	have-03	9-10
+# ::node	c	couple	11-12
+# ::node	s2	slice	13-14
+# ::node	m	miss-01	14-15
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	pizza	s	p2	
+# ::edge	sit-01	ARG2	top	s	t	
+# ::edge	top	part-of	pan	t	p	
+# ::edge	pan	mod	pizza	p	p2	
+# ::edge	pizza	ARG0-of	have-03	p2	h	
+# ::edge	slice	quant	couple	s2	c	
+# ::edge	miss-01	ARG1	slice	m	s2	
+# ::edge	have-03	ARG1	miss-01	h	m	
+(s / sit-01
+    :ARG1 (p2 / pizza
+        :ARG0-of (h / have-03
+            :ARG1 (m / miss-01
+                :ARG1 (s2 / slice
+                    :quant (c / couple)))))
+    :ARG2 (t / top
+        :part-of (p / pan
+            :mod p2)))

@@ -1,0 +1,27 @@
+# ::tok Two transit trains are pulled up at a station with passengers walking alongside .
+# ::node	0	2	0-1
+# ::node	t2	transit-01	1-2
+# ::node	t	train	2-3
+# ::node	p2	pull-01	4-5
+# ::node	s	station	8-9
+# ::node	p	passenger	10-11
+# ::node	w	walk-01	11-12
+# ::node	a	alongside	12-13
+# ::root	p2	pull-01
+# ::edge	train	ARG0-of	transit-01	t	t2	
+# ::edge	train	quant	2	t	0	
+# ::edge	pull-01	ARG1	train	p2	t	
+# ::edge	pull-01	location	station	p2	s	
+# ::edge	train	location-of	passenger	t	p	
+# ::edge	passenger	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	location	alongside	w	a	
+# ::edge	alongside	op1	train	a	t	
+(p2 / pull-01
+    :ARG1 (t / train
+        :quant 2
+        :ARG0-of (t2 / transit-01)
+        :location-of (p / passenger
+            :ARG0-of (w / walk-01
+                :location (a / alongside
+                    :op1 t))))
+    :location (s / station))

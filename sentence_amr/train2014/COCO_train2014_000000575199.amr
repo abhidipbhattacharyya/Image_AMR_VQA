@@ -1,0 +1,25 @@
+# ::tok A parking meter sitting next to a street filled with yellow containers .
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	s	sit-01	3-4
+# ::node	n	next-to	4-5
+# ::node	s2	street	7-8
+# ::node	f	fill-01	8-9
+# ::node	y	yellow-02	10-11
+# ::node	c	container	11-12
+# ::root	s	sit-01
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	sit-01	ARG1	meter	s	m	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	street	n	s2	
+# ::edge	street	ARG1-of	fill-01	s2	f	
+# ::edge	container	ARG1-of	yellow-02	c	y	
+# ::edge	fill-01	ARG2	container	f	c	
+(s / sit-01
+    :ARG1 (m / meter
+        :purpose (p / park-01))
+    :ARG2 (n / next-to
+        :op1 (s2 / street
+            :ARG1-of (f / fill-01
+                :ARG2 (c / container
+                    :ARG1-of (y / yellow-02))))))

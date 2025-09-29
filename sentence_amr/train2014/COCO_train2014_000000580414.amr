@@ -1,0 +1,31 @@
+# ::tok An intersection displaying a red light and do n't walk sign
+# ::node	i	intersect-01	1-2
+# ::node	d	display-01	2-3
+# ::node	r	red-02	4-5
+# ::node	l	light	5-6
+# ::node	a	and	6-7
+# ::node	y	you	7-8
+# ::node	1	imperative	7-8
+# ::node	0	-	8-9
+# ::node	w	walk-01	9-10
+# ::node	s	sign	10-11
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG0-of	display-01	i	d	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	and	op1	light	a	l	
+# ::edge	display-01	ARG1	and	d	a	
+# ::edge	walk-01	polarity	-	w	0	
+# ::edge	walk-01	mode	imperative	w	1	
+# ::edge	walk-01	ARG0	you	w	y	
+# ::edge	sign	topic	walk-01	s	w	
+# ::edge	and	op2	sign	a	s	
+(i / intersect-01
+    :ARG0-of (d / display-01
+        :ARG1 (a / and
+            :op1 (l / light
+                :ARG1-of (r / red-02))
+            :op2 (s / sign
+                :topic (w / walk-01
+                    :ARG0 (y / you)
+                    :mode imperative
+                    :polarity -)))))

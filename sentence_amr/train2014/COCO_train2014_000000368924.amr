@@ -1,0 +1,45 @@
+# ::tok Bananas on the lower part of a fruit stand on a city street , some falling to the pavement
+# ::node	b	banana	0-1
+# ::node	p3	person	0-1
+# ::node	l	low-04	3-4
+# ::node	h	have-degree-91	3-4
+# ::node	m	more	3-4
+# ::node	p	part	4-5
+# ::node	f2	fruit	7-8
+# ::node	s2	stand	8-9
+# ::node	c	city	11-12
+# ::node	s3	street	12-13
+# ::node	i	include-91	14-15
+# ::node	s	some	14-15
+# ::node	f	fall-01	15-16
+# ::node	p2	pavement	18-19
+# ::root	b	banana
+# ::edge	low-04	ARG2-of	have-degree-91	l	h	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	have-degree-91	ARG1	part	h	p	
+# ::edge	part	ARG1-of	low-04	p	l	
+# ::edge	banana	location	part	b	p	
+# ::edge	stand	mod	fruit	s2	f2	
+# ::edge	part	part-of	stand	p	s2	
+# ::edge	street	mod	city	s3	c	
+# ::edge	stand	location	street	s2	s3	
+# ::edge	include-91	ARG1	person	i	p3	
+# ::edge	banana	ARG2-of	include-91	b	i	
+# ::edge	person	mod	some	p3	s	
+# ::edge	person	ARG1-of	fall-01	p3	f	
+# ::edge	fall-01	ARG4	pavement	f	p2	
+(b / banana
+    :ARG2-of (i / include-91
+        :ARG1 (p3 / person
+            :ARG1-of (f / fall-01
+                :ARG4 (p2 / pavement))
+            :mod (s / some)))
+    :location (p / part
+        :ARG1-of (l / low-04
+            :ARG2-of (h / have-degree-91
+                :ARG1 p
+                :ARG3 (m / more)))
+        :part-of (s2 / stand
+            :location (s3 / street
+                :mod (c / city))
+            :mod (f2 / fruit))))

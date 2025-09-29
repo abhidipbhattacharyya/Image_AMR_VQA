@@ -1,0 +1,28 @@
+# ::tok A child eats food from a black container next to a carton of milk .
+# ::node	c2	child	1-2
+# ::node	e	eat-01	2-3
+# ::node	f	food	3-4
+# ::node	b	black-04	6-7
+# ::node	c4	container	7-8
+# ::node	n	next-to	8-9
+# ::node	c	carton	11-12
+# ::node	c3	contain-01	11-12
+# ::node	m	milk	13-14
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	child	e	c2	
+# ::edge	eat-01	ARG1	food	e	f	
+# ::edge	container	ARG1-of	black-04	c4	b	
+# ::edge	eat-01	source	container	e	c4	
+# ::edge	container	location	next-to	c4	n	
+# ::edge	next-to	op1	carton	n	c	
+# ::edge	carton	ARG0-of	contain-01	c	c3	
+# ::edge	contain-01	ARG1	milk	c3	m	
+(e / eat-01
+    :ARG0 (c2 / child)
+    :ARG1 (f / food)
+    :source (c4 / container
+        :ARG1-of (b / black-04)
+        :location (n / next-to
+            :op1 (c / carton
+                :ARG0-of (c3 / contain-01
+                    :ARG1 (m / milk))))))

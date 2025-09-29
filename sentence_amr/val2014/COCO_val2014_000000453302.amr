@@ -1,0 +1,37 @@
+# ::tok A workplace break room kitchenette , with refrigerator , two microwave ovens , a toaster and sink .
+# ::node	w	work-01	1-2
+# ::node	b	break	2-3
+# ::node	r2	room	3-4
+# ::node	k	kitchenette	4-5
+# ::node	h	have-03	6-7
+# ::node	r	refrigerator	7-8
+# ::node	0	2	9-10
+# ::node	m	microwave	10-11
+# ::node	o	oven	11-12
+# ::node	t	toaster	14-15
+# ::node	a	and	15-16
+# ::node	s	sink	16-17
+# ::root	k	kitchenette
+# ::edge	room	mod	break	r2	b	
+# ::edge	room	location-of	work-01	r2	w	
+# ::edge	kitchenette	mod	room	k	r2	
+# ::edge	kitchenette	ARG0-of	have-03	k	h	
+# ::edge	oven	mod	microwave	o	m	
+# ::edge	oven	quant	2	o	0	
+# ::edge	and	op3	toaster	a	t	
+# ::edge	and	op2	oven	a	o	
+# ::edge	and	op1	refrigerator	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op4	sink	a	s	
+(k / kitchenette
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (r / refrigerator)
+            :op2 (o / oven
+                :quant 2
+                :mod (m / microwave))
+            :op3 (t / toaster)
+            :op4 (s / sink)))
+    :mod (r2 / room
+        :location-of (w / work-01)
+        :mod (b / break)))

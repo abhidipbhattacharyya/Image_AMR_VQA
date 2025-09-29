@@ -1,0 +1,27 @@
+# ::tok A shower has a removable shower head and a glass door .
+# ::node	s	shower	1-2
+# ::node	h	have-03	2-3
+# ::node	r	remove-01	4-5
+# ::node	p	possible-01	4-5
+# ::node	h2	head	6-7
+# ::node	a	and	7-8
+# ::node	g	glass	9-10
+# ::node	d	door	10-11
+# ::root	h	have-03
+# ::edge	have-03	ARG0	shower	h	s	
+# ::edge	remove-01	ARG1-of	possible-01	r	p	
+# ::edge	head	ARG1-of	remove-01	h2	r	
+# ::edge	shower	part	head	s	h2	
+# ::edge	and	op1	head	a	h2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	door	consist-of	glass	d	g	
+# ::edge	and	op2	door	a	d	
+(h / have-03
+    :ARG0 (s / shower
+        :part (h2 / head
+            :ARG1-of (r / remove-01
+                :ARG1-of (p / possible-01))))
+    :ARG1 (a / and
+        :op1 h2
+        :op2 (d / door
+            :consist-of (g / glass))))

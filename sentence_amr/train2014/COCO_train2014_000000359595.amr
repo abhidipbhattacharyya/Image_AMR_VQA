@@ -1,0 +1,37 @@
+# ::tok A nighttime view of a street that shows some street lights and a red traffic light .
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	v	view-01	2-3
+# ::node	s3	street	5-6
+# ::node	s	show-01	7-8
+# ::node	s2	some	8-9
+# ::node	s4	street	9-10
+# ::node	l	light	10-11
+# ::node	a	and	11-12
+# ::node	r	red-02	13-14
+# ::node	t	traffic	14-15
+# ::node	l2	light	15-16
+# ::root	v	view-01
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	view-01	time	date-entity	v	d	
+# ::edge	view-01	ARG1	street	v	s3	
+# ::edge	street	ARG0-of	show-01	s3	s	
+# ::edge	light	mod	street	l	s4	
+# ::edge	light	quant	some	l	s2	
+# ::edge	and	op1	light	a	l	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	light	ARG1-of	red-02	l2	r	
+# ::edge	and	op2	light	a	l2	
+(v / view-01
+    :ARG1 (s3 / street
+        :ARG0-of (s / show-01
+            :ARG1 (a / and
+                :op1 (l / light
+                    :quant (s2 / some)
+                    :mod (s4 / street))
+                :op2 (l2 / light
+                    :ARG1-of (r / red-02)
+                    :mod (t / traffic)))))
+    :time (d / date-entity
+        :dayperiod (n / night)))

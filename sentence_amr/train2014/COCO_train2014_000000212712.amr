@@ -1,0 +1,41 @@
+# ::tok A black train engine with smoke coming from the lower part of the engine , parked on train tracks .
+# ::node	b	black-04	1-2
+# ::node	t2	train	2-3
+# ::node	e	engine	3-4
+# ::node	h	have-03	4-5
+# ::node	s	smoke	5-6
+# ::node	c	come-01	6-7
+# ::node	h2	have-degree-91	9-10
+# ::node	l	low-04	9-10
+# ::node	m	more	9-10
+# ::node	p2	part	10-11
+# ::node	p	park-01	15-16
+# ::node	t	track	18-19
+# ::root	e	engine
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	engine	ARG1-of	black-04	e	b	
+# ::edge	engine	ARG0-of	have-03	e	h	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	come-01	s	c	
+# ::edge	have-degree-91	ARG2	low-04	h2	l	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	part	ARG1-of	have-degree-91	p2	h2	
+# ::edge	come-01	ARG3	part	c	p2	
+# ::edge	engine	part	part	e	p2	
+# ::edge	engine	ARG1-of	park-01	e	p	
+# ::edge	park-01	ARG2	track	p	t	
+# ::edge	track	mod	train	t	t2	
+(e / engine
+    :ARG0-of (h / have-03
+        :ARG1 (s / smoke
+            :ARG1-of (c / come-01
+                :ARG3 (p2 / part
+                    :ARG1-of (h2 / have-degree-91
+                        :ARG2 (l / low-04)
+                        :ARG3 (m / more))))))
+    :ARG1-of (b / black-04)
+    :ARG1-of (p / park-01
+        :ARG2 (t / track
+            :mod (t2 / train)))
+    :part p2
+    :part-of t2)

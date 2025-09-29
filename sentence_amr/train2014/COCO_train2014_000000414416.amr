@@ -1,0 +1,28 @@
+# ::tok A pedestrian traffic crossing signal in a country other than the USA .
+# ::node	p	pedestrian	1-2
+# ::node	t	traffic	2-3
+# ::node	c3	cross-02	3-4
+# ::node	s	signal-07	4-5
+# ::node	c	country	7-8
+# ::node	c2	country	7-8
+# ::node	e	except-01	8-9
+# ::node	n	name	11-12
+# ::node	0	USA	11-12
+# ::root	s	signal-07
+# ::edge	traffic	mod	pedestrian	t	p	
+# ::edge	cross-02	ARG1	traffic	c3	t	
+# ::edge	signal-07	ARG1	cross-02	s	c3	
+# ::edge	signal-07	location	country	s	c	
+# ::edge	except-01	ARG1	country	e	c2	
+# ::edge	country	ARG2-of	except-01	c	e	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	USA	n	0	
+(s / signal-07
+    :ARG1 (c3 / cross-02
+        :ARG1 (t / traffic
+            :mod (p / pedestrian)))
+    :location (c / country
+        :ARG2-of (e / except-01
+            :ARG1 (c2 / country
+                :name (n / name
+                    :op1 "USA")))))

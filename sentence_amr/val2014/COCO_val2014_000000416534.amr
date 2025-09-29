@@ -1,0 +1,41 @@
+# ::tok A living room with wood floors , a couch , wooden chair bookshelves and coffee table .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	w	wood	4-5
+# ::node	f	floor	5-6
+# ::node	c3	couch	8-9
+# ::node	w2	wood	10-11
+# ::node	c	chair	11-12
+# ::node	b	book	12-13
+# ::node	h	help-01	12-13
+# ::node	a	and	13-14
+# ::node	c2	coffee	14-15
+# ::node	t	table	15-16
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	floor	consist-of	wood	f	w	
+# ::edge	chair	mod	wood	c	w2	
+# ::edge	book	part-of	chair	b	c	
+# ::edge	book	ARG0-of	help-01	b	h	
+# ::edge	help-01	ARG1	chair	h	c	
+# ::edge	and	op4	book	a	b	
+# ::edge	and	op3	chair	a	c	
+# ::edge	and	op2	couch	a	c3	
+# ::edge	and	op1	floor	a	f	
+# ::edge	room	part	and	r	a	
+# ::edge	table	mod	coffee	t	c2	
+# ::edge	and	op5	table	a	t	
+(r / room
+    :mod (l / living)
+    :part (a / and
+        :op1 (f / floor
+            :consist-of (w / wood))
+        :op2 (c3 / couch)
+        :op3 (c / chair
+            :mod (w2 / wood))
+        :op4 (b / book
+            :ARG0-of (h / help-01
+                :ARG1 c)
+            :part-of c)
+        :op5 (t / table
+            :mod (c2 / coffee))))

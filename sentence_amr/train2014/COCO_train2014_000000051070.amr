@@ -1,0 +1,37 @@
+# ::tok A sign with a picture of a bicycle followed by the words " stop " and " for " alond with red stoplight .
+# ::node	s	sign	1-2
+# ::node	p	picture	4-5
+# ::node	b	bicycle	7-8
+# ::node	f	follow-01	8-9
+# ::node	w	word-01	11-12
+# ::node	w2	word-01	11-12
+# ::node	s2	stop-01	13-14
+# ::node	a	and	15-16
+# ::node	f2	for	17-18
+# ::node	r2	road	19-20
+# ::node	r	red-02	21-22
+# ::node	s3	stop-01	22-23
+# ::root	s	sign
+# ::edge	sign	accompanier	picture	s	p	
+# ::edge	picture	mod	bicycle	p	b	
+# ::edge	sign	ARG2-of	follow-01	s	f	
+# ::edge	word-01	ARG1	stop-01	w	s2	
+# ::edge	and	op2	word-01	a	w2	
+# ::edge	and	op1	word-01	a	w	
+# ::edge	follow-01	ARG1	and	f	a	
+# ::edge	word-01	ARG1	for	w2	f2	
+# ::edge	word-01	location	road	w2	r2	
+# ::edge	road	ARG1-of	red-02	r2	r	
+# ::edge	road	location-of	stop-01	r2	s3	
+(s / sign
+    :ARG2-of (f / follow-01
+        :ARG1 (a / and
+            :op1 (w / word-01
+                :ARG1 (s2 / stop-01))
+            :op2 (w2 / word-01
+                :ARG1 (f2 / for)
+                :location (r2 / road
+                    :ARG1-of (r / red-02)
+                    :location-of (s3 / stop-01)))))
+    :accompanier (p / picture
+        :mod (b / bicycle)))

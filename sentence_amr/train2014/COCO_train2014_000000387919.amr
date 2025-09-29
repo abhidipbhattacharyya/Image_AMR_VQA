@@ -1,0 +1,34 @@
+# ::tok Individual pizzas on two plates sit atop a table alongside beer and seasonings .
+# ::node	i	individual	0-1
+# ::node	p	pizzeria	1-2
+# ::node	0	2	3-4
+# ::node	p2	plate	4-5
+# ::node	s2	sit-01	5-6
+# ::node	a2	atop	6-7
+# ::node	t	table	8-9
+# ::node	n	next-to	9-10
+# ::node	b	beer	10-11
+# ::node	a	and	11-12
+# ::node	s	season-01	12-13
+# ::root	s2	sit-01
+# ::edge	pizzeria	mod	individual	p	i	
+# ::edge	plate	quant	2	p2	0	
+# ::edge	pizzeria	location	plate	p	p2	
+# ::edge	sit-01	ARG1	pizzeria	s2	p	
+# ::edge	sit-01	ARG2	atop	s2	a2	
+# ::edge	atop	op1	table	a2	t	
+# ::edge	table	location	next-to	t	n	
+# ::edge	and	op1	beer	a	b	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	season-01	a	s	
+(s2 / sit-01
+    :ARG1 (p / pizzeria
+        :location (p2 / plate
+            :quant 2)
+        :mod (i / individual))
+    :ARG2 (a2 / atop
+        :op1 (t / table
+            :location (n / next-to
+                :op1 (a / and
+                    :op1 (b / beer)
+                    :op2 (s / season-01))))))

@@ -1,0 +1,32 @@
+# ::tok A bird sits perched atop a tree branch , watching its surroundings
+# ::node	b	bird	1-2
+# ::node	p	perch-01	3-4
+# ::node	a2	atop	4-5
+# ::node	t2	tree	6-7
+# ::node	b2	branch	7-8
+# ::node	a	and	8-9
+# ::node	w	watch-01	9-10
+# ::node	t	thing	11-12
+# ::node	s	surround-01	11-12
+# ::root	a	and
+# ::edge	perch-01	ARG1	bird	p	b	
+# ::edge	perch-01	ARG2	atop	p	a2	
+# ::edge	branch	part-of	tree	b2	t2	
+# ::edge	atop	op1	branch	a2	b2	
+# ::edge	and	op1	perch-01	a	p	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	ARG0	bird	w	b	
+# ::edge	watch-01	ARG1	thing	w	t	
+# ::edge	thing	ARG1-of	surround-01	t	s	
+# ::edge	surround-01	ARG2	bird	s	b	
+(a / and
+    :op1 (p / perch-01
+        :ARG1 (b / bird)
+        :ARG2 (a2 / atop
+            :op1 (b2 / branch
+                :part-of (t2 / tree))))
+    :op2 (w / watch-01
+        :ARG0 b
+        :ARG1 (t / thing
+            :ARG1-of (s / surround-01
+                :ARG2 b))))

@@ -1,0 +1,36 @@
+# ::tok A woman under covers reading a book with a black cat grooming itself beside her in the bed .
+# ::node	w	woman	1-2
+# ::node	u	under	2-3
+# ::node	c2	cover-02	3-4
+# ::node	r	read-01	4-5
+# ::node	b4	book	6-7
+# ::node	b3	black-04	9-10
+# ::node	c	cat	10-11
+# ::node	g	groom-02	11-12
+# ::node	b2	beside	13-14
+# ::node	b	bed	17-18
+# ::node	e	event	18-19
+# ::root	e	event
+# ::edge	cover-02	mod	under	c2	u	
+# ::edge	woman	ARG1-of	cover-02	w	c2	
+# ::edge	woman	ARG0-of	read-01	w	r	
+# ::edge	read-01	ARG1	book	r	b4	
+# ::edge	cat	ARG1-of	black-04	c	b3	
+# ::edge	groom-02	ARG1	cat	g	c	
+# ::edge	woman	ARG0-of	groom-02	w	g	
+# ::edge	groom-02	location	beside	g	b2	
+# ::edge	beside	op1	woman	b2	w	
+# ::edge	beside	location	bed	b2	b	
+# ::edge	event	mod	woman	e	w	
+(e / event
+    :mod (w / woman
+        :ARG0-of (r / read-01
+            :ARG1 (b4 / book))
+        :ARG0-of (g / groom-02
+            :ARG1 (c / cat
+                :ARG1-of (b3 / black-04))
+            :location (b2 / beside
+                :location (b / bed)
+                :op1 w))
+        :ARG1-of (c2 / cover-02
+            :mod (u / under))))

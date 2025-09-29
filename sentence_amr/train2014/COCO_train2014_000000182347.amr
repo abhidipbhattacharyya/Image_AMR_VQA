@@ -1,0 +1,36 @@
+# ::tok A group of people on a red carpet holding frisbees with a tent in the background .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	r	red-02	6-7
+# ::node	c	carpet	7-8
+# ::node	h2	hold-01	8-9
+# ::node	e2	exact	9-10
+# ::node	d	disc	9-10
+# ::node	h	have-03	10-11
+# ::node	t	tent	12-13
+# ::node	b	background	15-16
+# ::node	e	event	16-17
+# ::root	e	event
+# ::edge	group	consist-of	person	g	p	
+# ::edge	carpet	ARG1-of	red-02	c	r	
+# ::edge	group	location	carpet	g	c	
+# ::edge	group	ARG0-of	hold-01	g	h2	
+# ::edge	hold-01	mod	exact	h2	e2	
+# ::edge	disc	mod	exact	d	e2	
+# ::edge	hold-01	ARG1	disc	h2	d	
+# ::edge	group	ARG0-of	have-03	g	h	
+# ::edge	have-03	ARG1	tent	h	t	
+# ::edge	tent	location	background	t	b	
+# ::edge	event	mod	group	e	g	
+(e / event
+    :mod (g / group
+        :ARG0-of (h2 / hold-01
+            :ARG1 (d / disc
+                :mod (e2 / exact))
+            :mod e2)
+        :ARG0-of (h / have-03
+            :ARG1 (t / tent
+                :location (b / background)))
+        :consist-of (p / person)
+        :location (c / carpet
+            :ARG1-of (r / red-02))))

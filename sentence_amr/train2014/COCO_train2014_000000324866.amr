@@ -1,0 +1,45 @@
+# ::tok A female driver stops and waits for a camel that is in front of her vehicle , while the passenger is in the process of photographing it .
+# ::node	f	female	1-2
+# ::node	p2	person	2-3
+# ::node	d	drive-01	2-3
+# ::node	s	stop-01	3-4
+# ::node	a	and	4-5
+# ::node	w	wait-01	5-6
+# ::node	c	camel	8-9
+# ::node	i	in-front-of	12-13
+# ::node	v	vehicle	15-16
+# ::node	p	passenger	19-20
+# ::node	p4	process-02	23-24
+# ::node	p3	photograph-01	25-26
+# ::root	a	and
+# ::edge	person	mod	female	p2	f	
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	stop-01	ARG0	person	s	p2	
+# ::edge	and	op1	stop-01	a	s	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	wait-01	ARG2	camel	w	c	
+# ::edge	camel	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	vehicle	i	v	
+# ::edge	vehicle	poss	person	v	p2	
+# ::edge	process-02	ARG0	passenger	p4	p	
+# ::edge	and	time	process-02	a	p4	
+# ::edge	process-02	ARG1	photograph-01	p4	p3	
+# ::edge	photograph-01	ARG0	passenger	p3	p	
+# ::edge	photograph-01	ARG1	camel	p3	c	
+(a / and
+    :op1 (s / stop-01
+        :ARG0 (p2 / person
+            :ARG0-of (d / drive-01)
+            :mod (f / female)))
+    :op2 (w / wait-01
+        :ARG1 p2
+        :ARG2 (c / camel
+            :location (i / in-front-of
+                :op1 (v / vehicle
+                    :poss p2))))
+    :time (p4 / process-02
+        :ARG0 (p / passenger)
+        :ARG1 (p3 / photograph-01
+            :ARG0 p
+            :ARG1 c)))

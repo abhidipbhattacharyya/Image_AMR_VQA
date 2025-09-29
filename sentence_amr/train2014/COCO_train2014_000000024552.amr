@@ -1,0 +1,36 @@
+# ::tok A piece of cake is on a plate , next to a napkin with a fork and knife .
+# ::node	p	piece	1-2
+# ::node	c	cake	3-4
+# ::node	p2	plate	7-8
+# ::node	a	and	8-9
+# ::node	b	be-located-at-91	8-9
+# ::node	n2	next-to	9-10
+# ::node	h	have-purpose-91	10-11
+# ::node	n	napkin	12-13
+# ::node	f	fork	15-16
+# ::node	a2	and	16-17
+# ::node	k	knife	17-18
+# ::root	a	and
+# ::edge	piece	mod	cake	p	c	
+# ::edge	and	op1	plate	a	p2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	plate	b	p2	
+# ::edge	be-located-at-91	ARG1	piece	b	p	
+# ::edge	and	op3	next-to	a	n2	
+# ::edge	next-to	ARG2-of	have-purpose-91	n2	h	
+# ::edge	next-to	op1	napkin	n2	n	
+# ::edge	and	op1	fork	a2	f	
+# ::edge	have-purpose-91	instrument	and	h	a2	
+# ::edge	and	op2	knife	a2	k	
+(a / and
+    :op1 (p2 / plate)
+    :op2 (b / be-located-at-91
+        :ARG1 (p / piece
+            :mod (c / cake))
+        :ARG2 p2)
+    :op3 (n2 / next-to
+        :ARG2-of (h / have-purpose-91
+            :instrument (a2 / and
+                :op1 (f / fork)
+                :op2 (k / knife)))
+        :op1 (n / napkin)))

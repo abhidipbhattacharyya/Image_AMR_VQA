@@ -1,0 +1,24 @@
+# ::tok A man is using a large wrench to fix a fire hydrant .
+# ::node	m	man	1-2
+# ::node	u	use-01	3-4
+# ::node	l	large	5-6
+# ::node	w	wrench	6-7
+# ::node	f2	fix-02	8-9
+# ::node	f	fire	10-11
+# ::node	h	hydrant	11-12
+# ::root	u	use-01
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	wrench	mod	large	w	l	
+# ::edge	use-01	ARG1	wrench	u	w	
+# ::edge	use-01	ARG2	fix-02	u	f2	
+# ::edge	fix-02	ARG0	man	f2	m	
+# ::edge	hydrant	purpose	fire	h	f	
+# ::edge	fix-02	ARG1	hydrant	f2	h	
+(u / use-01
+    :ARG0 (m / man)
+    :ARG1 (w / wrench
+        :mod (l / large))
+    :ARG2 (f2 / fix-02
+        :ARG0 m
+        :ARG1 (h / hydrant
+            :purpose (f / fire))))

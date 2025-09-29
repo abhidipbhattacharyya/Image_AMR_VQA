@@ -1,0 +1,44 @@
+# ::tok A tennis player wears a backward hat and a pink shirt has he holds his red racket .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	w	wear-01	3-4
+# ::node	b	backward	5-6
+# ::node	h	hat	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	p2	pink-04	9-10
+# ::node	s	shirt	10-11
+# ::node	h2	hold-01	13-14
+# ::node	r2	red-02	15-16
+# ::node	r	racket	16-17
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	hat	mod	backward	h	b	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op1	hat	a2	h	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	shirt	ARG1-of	pink-04	s	p2	
+# ::edge	and	op2	shirt	a2	s	
+# ::edge	and	condition	hold-01	a	h2	
+# ::edge	hold-01	ARG0	person	h2	p	
+# ::edge	racket	ARG1-of	red-02	r	r2	
+# ::edge	hold-01	ARG1	racket	h2	r	
+# ::edge	racket	poss	person	r	p	
+(a / and
+    :condition (h2 / hold-01
+        :ARG0 (p / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (t / tennis)))
+        :ARG1 (r / racket
+            :ARG1-of (r2 / red-02)
+            :poss p))
+    :op1 (w / wear-01
+        :ARG0 p
+        :ARG1 (a2 / and
+            :op1 (h / hat
+                :mod (b / backward))
+            :op2 (s / shirt
+                :ARG1-of (p2 / pink-04)))))

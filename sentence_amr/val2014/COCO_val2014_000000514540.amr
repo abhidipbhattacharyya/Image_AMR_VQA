@@ -1,0 +1,40 @@
+# ::tok A city street corner with a street pole that has one way signs and a light on the top , and a building in the background .
+# ::node	c	city	1-2
+# ::node	s2	street	2-3
+# ::node	c2	corner	3-4
+# ::node	s3	street	6-7
+# ::node	p	pole	7-8
+# ::node	h	have-03	9-10
+# ::node	o	one-way	11-12
+# ::node	s	sign	12-13
+# ::node	a	and	13-14
+# ::node	l	light	15-16
+# ::node	t	top	18-19
+# ::node	b2	building	22-23
+# ::node	b	background	25-26
+# ::root	c2	corner
+# ::edge	street	mod	city	s2	c	
+# ::edge	corner	mod	street	c2	s2	
+# ::edge	pole	mod	street	p	s3	
+# ::edge	corner	prep-with	pole	c2	p	
+# ::edge	pole	ARG0-of	have-03	p	h	
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	location	top	l	t	
+# ::edge	corner	op3	building	c2	b2	
+# ::edge	building	location	background	b2	b	
+(c2 / corner
+    :mod (s2 / street
+        :mod (c / city))
+    :op3 (b2 / building
+        :location (b / background))
+    :prep-with (p / pole
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (s / sign
+                    :mod (o / one-way))
+                :op2 (l / light
+                    :location (t / top))))
+        :mod (s3 / street)))

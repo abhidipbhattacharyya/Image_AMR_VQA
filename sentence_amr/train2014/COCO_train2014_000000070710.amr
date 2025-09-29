@@ -1,0 +1,42 @@
+# ::tok A stack of cut tomatoes on a cutting board next to a glass of wine and a wine bottle .
+# ::node	s	stack-01	1-2
+# ::node	c	cut-01	3-4
+# ::node	t	tomato	4-5
+# ::node	c2	cut-01	7-8
+# ::node	b2	board	8-9
+# ::node	n	next-to	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	w	wine	14-15
+# ::node	a	and	15-16
+# ::node	b3	bottle	18-19
+# ::root	b	be-located-at-91
+# ::edge	tomato	ARG1-of	cut-01	t	c	
+# ::edge	stack-01	ARG1	tomato	s	t	
+# ::edge	board	instrument-of	cut-01	b2	c2	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	be-located-at-91	ARG1	stack-01	b	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op1	wine	a	w	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	bottle	a	b3	
+# ::edge	bottle	mod	wine	b3	w	
+# ::edge	be-located-at-91	rel	board	b	b2	
+(b / be-located-at-91
+    :ARG1 (s / stack-01
+        :ARG1 (t / tomato
+            :ARG1-of (c / cut-01)))
+    :ARG2 (n / next-to
+        :op1 (a / and
+            :op1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass)))
+            :op2 (b3 / bottle
+                :mod w)))
+    :rel (b2 / board
+        :instrument-of (c2 / cut-01)))

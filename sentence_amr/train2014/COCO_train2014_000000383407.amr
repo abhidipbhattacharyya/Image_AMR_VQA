@@ -1,0 +1,22 @@
+# ::tok Plated cooked items served at table in eating establishment .
+# ::node	p	plate	0-1
+# ::node	c	cook-01	1-2
+# ::node	i	item	2-3
+# ::node	s	serve-02	3-4
+# ::node	t	table	5-6
+# ::node	e	eat-01	7-8
+# ::node	e2	establishment	8-9
+# ::root	s	serve-02
+# ::edge	cook-01	manner	plate	c	p	
+# ::edge	item	ARG1-of	cook-01	i	c	
+# ::edge	serve-02	ARG1	item	s	i	
+# ::edge	serve-02	location	table	s	t	
+# ::edge	establishment	mod	eat-01	e2	e	
+# ::edge	serve-02	location	establishment	s	e2	
+(s / serve-02
+    :ARG1 (i / item
+        :ARG1-of (c / cook-01
+            :manner (p / plate)))
+    :location (t / table)
+    :location (e2 / establishment
+        :mod (e / eat-01)))

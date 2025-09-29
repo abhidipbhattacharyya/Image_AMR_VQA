@@ -1,0 +1,61 @@
+# ::tok A fire hydrant with a yellow top , blue with white stars in the middle and red and white at the base .
+# ::node	f	fire	1-2
+# ::node	h3	hydrant	2-3
+# ::node	y	yellow-02	5-6
+# ::node	t	top	6-7
+# ::node	b3	blue	8-9
+# ::node	h	have-03	9-10
+# ::node	h2	have-03	9-10
+# ::node	w	white-03	10-11
+# ::node	s	star	11-12
+# ::node	s2	star	11-12
+# ::node	s3	star	11-12
+# ::node	m	middle	14-15
+# ::node	a	and	15-16
+# ::node	r	red-02	16-17
+# ::node	a2	and	17-18
+# ::node	w2	white-03	18-19
+# ::node	b2	be-located-at-91	19-20
+# ::node	b	base	21-22
+# ::root	a	and
+# ::edge	hydrant	purpose	fire	h3	f	
+# ::edge	top	ARG1-of	yellow-02	t	y	
+# ::edge	hydrant	part	top	h3	t	
+# ::edge	blue	ARG0-of	have-03	b3	h	
+# ::edge	blue	ARG0-of	have-03	b3	h2	
+# ::edge	star	ARG1-of	white-03	s	w	
+# ::edge	have-03	ARG1	star	h	s	
+# ::edge	have-03	ARG1	star	h2	s2	
+# ::edge	star	location	middle	s	m	
+# ::edge	and	op2	blue	a	b3	
+# ::edge	and	op1	top	a	t	
+# ::edge	star	ARG1-of	red-02	s3	r	
+# ::edge	and	op3	star	a2	s3	
+# ::edge	and	op2	star	a2	s2	
+# ::edge	and	op1	top	a2	t	
+# ::edge	star	ARG1-of	white-03	s3	w2	
+# ::edge	be-located-at-91	ARG1	and	b2	a2	
+# ::edge	and	op4	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	base	b2	b	
+# ::edge	and	rel	hydrant	a	h3	
+(a / and
+    :op1 (t / top
+        :ARG1-of (y / yellow-02))
+    :op2 (b3 / blue
+        :ARG0-of (h / have-03
+            :ARG1 (s / star
+                :ARG1-of (w / white-03)
+                :location (m / middle)))
+        :ARG0-of (h2 / have-03
+            :ARG1 (s2 / star)))
+    :op4 (b2 / be-located-at-91
+        :ARG1 (a2 / and
+            :op1 t
+            :op2 s2
+            :op3 (s3 / star
+                :ARG1-of (r / red-02)
+                :ARG1-of (w2 / white-03)))
+        :ARG2 (b / base))
+    :rel (h3 / hydrant
+        :purpose (f / fire)
+        :part t))

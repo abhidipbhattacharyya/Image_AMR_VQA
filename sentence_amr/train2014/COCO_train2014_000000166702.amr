@@ -1,0 +1,22 @@
+# ::tok A circular clock on a brick building beneath a weather vane .
+# ::node	c	circular	1-2
+# ::node	c2	clock	2-3
+# ::node	b2	brick	5-6
+# ::node	b3	building	6-7
+# ::node	b	beneath	7-8
+# ::node	w	weather	9-10
+# ::node	v	vane	10-11
+# ::root	c2	clock
+# ::edge	clock	mod	circular	c2	c	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	clock	location	building	c2	b3	
+# ::edge	building	location	beneath	b3	b	
+# ::edge	vane	mod	weather	v	w	
+# ::edge	beneath	op1	vane	b	v	
+(c2 / clock
+    :location (b3 / building
+        :consist-of (b2 / brick)
+        :location (b / beneath
+            :op1 (v / vane
+                :mod (w / weather))))
+    :mod (c / circular))

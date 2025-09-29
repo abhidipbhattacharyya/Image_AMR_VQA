@@ -1,0 +1,51 @@
+# ::tok Two cats are laying on a bed ; one cat is in the foreground and staring at the camera while the other cat sleeps in the background .
+# ::node	1	2	0-1
+# ::node	c2	cat	1-2
+# ::node	l	lay-01	3-4
+# ::node	b3	bed	6-7
+# ::node	a	and	7-8
+# ::node	0	1	8-9
+# ::node	c3	cat	9-10
+# ::node	b2	be-located-at-91	11-12
+# ::node	f	foreground	13-14
+# ::node	a2	and	14-15
+# ::node	s2	stare-01	15-16
+# ::node	c	camera	18-19
+# ::node	o	other	21-22
+# ::node	c4	cat	22-23
+# ::node	s	sleep-01	23-24
+# ::node	b	background	26-27
+# ::root	a	and
+# ::edge	cat	quant	2	c2	1	
+# ::edge	lay-01	ARG0	cat	l	c2	
+# ::edge	lay-01	ARG2	bed	l	b3	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	cat	quant	1	c3	0	
+# ::edge	be-located-at-91	ARG1	cat	b2	c3	
+# ::edge	be-located-at-91	ARG2	foreground	b2	f	
+# ::edge	and	op1	be-located-at-91	a2	b2	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op2	stare-01	a2	s2	
+# ::edge	stare-01	ARG0	cat	s2	c3	
+# ::edge	stare-01	ARG1	camera	s2	c	
+# ::edge	cat	mod	other	c4	o	
+# ::edge	sleep-01	ARG0	cat	s	c4	
+# ::edge	and	time	sleep-01	a2	s	
+# ::edge	sleep-01	location	background	s	b	
+(a / and
+    :op1 (l / lay-01
+        :ARG0 (c2 / cat
+            :quant 2)
+        :ARG2 (b3 / bed))
+    :op2 (a2 / and
+        :op1 (b2 / be-located-at-91
+            :ARG1 (c3 / cat
+                :quant 1)
+            :ARG2 (f / foreground))
+        :op2 (s2 / stare-01
+            :ARG0 c3
+            :ARG1 (c / camera))
+        :time (s / sleep-01
+            :ARG0 (c4 / cat
+                :mod (o / other))
+            :location (b / background))))

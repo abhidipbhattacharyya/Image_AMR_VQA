@@ -1,0 +1,57 @@
+# ::tok Tow women that are standing together in a room and one of the women is holding a napkin to her mouth and food in her other hand .
+# ::node	1	10	0-1
+# ::node	w	woman	1-2
+# ::node	s	stand-01	4-5
+# ::node	t	together	5-6
+# ::node	r	room	8-9
+# ::node	0	1	10-11
+# ::node	i	include-91	11-12
+# ::node	w2	woman	13-14
+# ::node	h2	hold-01	15-16
+# ::node	n	napkin	17-18
+# ::node	m	mouth	20-21
+# ::node	a	and	21-22
+# ::node	a2	and	21-22
+# ::node	f	food	22-23
+# ::node	o	other	25-26
+# ::node	h	hand	26-27
+# ::root	a	and
+# ::edge	woman	quant	10	w	1	
+# ::edge	stand-01	ARG1	woman	s	w	
+# ::edge	stand-01	mod	together	s	t	
+# ::edge	stand-01	ARG2	room	s	r	
+# ::edge	include-91	ARG2	woman	i	w	
+# ::edge	woman	ARG1-of	include-91	w2	i	
+# ::edge	woman	quant	1	w2	0	
+# ::edge	hold-01	ARG0	woman	h2	w2	
+# ::edge	hold-01	ARG1	napkin	h2	n	
+# ::edge	hold-01	ARG2	mouth	h2	m	
+# ::edge	woman	part	mouth	w2	m	
+# ::edge	and	op1	hold-01	a	h2	
+# ::edge	and	op1	and	a2	a	
+# ::edge	and	op2	and	a	a2	
+# ::edge	hand	mod	other	h	o	
+# ::edge	hand	location-of	food	h	f	
+# ::edge	and	op2	hand	a2	h	
+# ::edge	woman	part	hand	w2	h	
+# ::edge	and	rel	stand-01	a	s	
+(a / and
+    :op1 (h2 / hold-01
+        :ARG0 (w2 / woman
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (w / woman
+                    :quant 10))
+            :part (m / mouth)
+            :part (h / hand
+                :location-of (f / food)
+                :mod (o / other)))
+        :ARG1 (n / napkin)
+        :ARG2 m)
+    :op2 (a2 / and
+        :op1 a
+        :op2 h)
+    :rel (s / stand-01
+        :ARG1 w
+        :ARG2 (r / room)
+        :mod (t / together)))

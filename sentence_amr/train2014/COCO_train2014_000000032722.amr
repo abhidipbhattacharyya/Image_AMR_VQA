@@ -1,0 +1,56 @@
+# ::tok A man strapped a cellphone to his face and text reads , " SMS Reference Services ...
+# ::node	m	man	1-2
+# ::node	s2	strap-01	2-3
+# ::node	c	cellphone	4-5
+# ::node	f	face	7-8
+# ::node	a	and	8-9
+# ::node	t	text	9-10
+# ::node	r	read-01	10-11
+# ::node	p	product	13-14
+# ::node	n	name	13-14
+# ::node	0	SMS	13-14
+# ::node	r2	refer-01	14-15
+# ::node	s	serve-01	15-16
+# ::root	a	and
+# ::edge	strap-01	ARG0	man	s2	m	
+# ::edge	strap-01	ARG1	cellphone	s2	c	
+# ::edge	strap-01	ARG2	face	s2	f	
+# ::edge	man	part	face	m	f	
+# ::edge	and	op1	strap-01	a	s2	
+# ::edge	read-01	ARG1	text	r	t	
+# ::edge	and	op2	read-01	a	r	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	SMS	n	0	
+# ::edge	refer-01	ARG2	product	r2	p	
+# ::edge	serve-01	ARG1-of	refer-01	s	r2	
+# ::edge	read-01	ARG3	serve-01	r	s	
+(a / and
+    :op1 (s2 / strap-01
+        :ARG0 (m / man
+            :part (f / face))
+        :ARG1 (c / cellphone)
+        :ARG2 f)
+    :op2 (r / read-01
+        :ARG1 (t / text)
+        :ARG3 (s / serve-01
+            :ARG1-of (r2 / refer-01
+                :ARG2 (p / product
+                    :name (n / name
+                        :op1 "SMS"))))))
+
+
+# ::tok You 're doing it wrong . "
+# ::node	y	you	0-1
+# ::node	d	do-02	2-3
+# ::node	i	it	3-4
+# ::node	w	wrong-04	4-5
+# ::root	d	do-02
+# ::edge	do-02	ARG0	you	d	y	
+# ::edge	do-02	ARG1	it	d	i	
+# ::edge	do-02	ARG2-of	wrong-04	d	w	
+# ::edge	wrong-04	ARG1	you	w	y	
+(d / do-02
+    :ARG0 (y / you)
+    :ARG1 (i / it)
+    :ARG2-of (w / wrong-04
+        :ARG1 y))

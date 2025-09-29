@@ -1,0 +1,30 @@
+# ::tok A baseball player is waiting for the pitch while standing in the batters box .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	w	wait-01	4-5
+# ::node	p3	pitch	7-8
+# ::node	s	stand-01	9-10
+# ::node	p2	person	12-13
+# ::node	b2	batter-01	12-13
+# ::node	b3	box	13-14
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	pitch	w	p3	
+# ::edge	wait-01	time	stand-01	w	s	
+# ::edge	stand-01	ARG0	person	s	p	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	box	mod	person	b3	p2	
+# ::edge	stand-01	ARG2	box	s	b3	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (p3 / pitch)
+    :time (s / stand-01
+        :ARG0 p
+        :ARG2 (b3 / box
+            :mod (p2 / person
+                :ARG0-of (b2 / batter-01)))))

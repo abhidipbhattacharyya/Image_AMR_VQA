@@ -1,0 +1,46 @@
+# ::tok A San Francisco street corner with stop sign , bike path directions and ethnic cafe
+# ::node	c2	city	1-2
+# ::node	n	name	1-2
+# ::node	1	San	1-2
+# ::node	0	Francisco	2-3
+# ::node	s3	street	3-4
+# ::node	c3	corner	4-5
+# ::node	h	have-03	5-6
+# ::node	s2	stop-01	6-7
+# ::node	s	signal-07	7-8
+# ::node	a	and	8-9
+# ::node	b	bike-01	9-10
+# ::node	p	path	10-11
+# ::node	d	direct-01	11-12
+# ::node	e	ethnic	13-14
+# ::node	c	cafe	14-15
+# ::root	c3	corner
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	San	n	1	
+# ::edge	name	op2	Francisco	n	0	
+# ::edge	corner	op1	street	c3	s3	
+# ::edge	corner	location	city	c3	c2	
+# ::edge	corner	ARG0-of	have-03	c3	h	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	path	purpose	bike-01	p	b	
+# ::edge	direct-01	ARG1	path	d	p	
+# ::edge	and	op2	direct-01	a	d	
+# ::edge	cafe	mod	ethnic	c	e	
+# ::edge	and	op3	cafe	a	c	
+(c3 / corner
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / signal-07
+                :ARG1 (s2 / stop-01))
+            :op2 (d / direct-01
+                :ARG1 (p / path
+                    :purpose (b / bike-01)))
+            :op3 (c / cafe
+                :mod (e / ethnic))))
+    :location (c2 / city
+        :name (n / name
+            :op1 "San"
+            :op2 "Francisco"))
+    :op1 (s3 / street))

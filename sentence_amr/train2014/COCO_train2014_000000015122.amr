@@ -1,0 +1,27 @@
+# ::tok A man prepares to through a baseball while another player is running .
+# ::node	m	man	1-2
+# ::node	p3	prepare-02	2-3
+# ::node	g	go-through-20	4-5
+# ::node	b	baseball	6-7
+# ::node	a	another	8-9
+# ::node	p	person	9-10
+# ::node	p2	play-01	9-10
+# ::node	r	run-02	11-12
+# ::root	p3	prepare-02
+# ::edge	prepare-02	ARG0	man	p3	m	
+# ::edge	prepare-02	ARG2	go-through-20	p3	g	
+# ::edge	go-through-20	ARG0	man	g	m	
+# ::edge	go-through-20	ARG1	baseball	g	b	
+# ::edge	person	mod	another	p	a	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	prepare-02	time	run-02	p3	r	
+(p3 / prepare-02
+    :ARG0 (m / man)
+    :ARG2 (g / go-through-20
+        :ARG0 m
+        :ARG1 (b / baseball))
+    :time (r / run-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01)
+            :mod (a / another))))

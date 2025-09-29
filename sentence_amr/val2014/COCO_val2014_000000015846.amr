@@ -1,0 +1,55 @@
+# ::tok Two people are playing frisbees and one guy picks up another one in hopes of catching the overthrown frisbees
+# ::node	1	2	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	3-4
+# ::node	f	football	4-5
+# ::node	d	disc	4-5
+# ::node	a	and	5-6
+# ::node	0	1	6-7
+# ::node	g	guy	7-8
+# ::node	p2	pick-up-04	8-9
+# ::node	a2	another	10-11
+# ::node	h	hope-01	13-14
+# ::node	c	catch-01	15-16
+# ::node	o	overthrow-01	17-18
+# ::node	n	name	18-19
+# ::node	2	navy	18-19
+# ::node	r	request-confirmation-91	18-19
+# ::root	a	and
+# ::edge	person	quant	2	p	1	
+# ::edge	play-01	ARG0	person	p3	p	
+# ::edge	play-01	ARG2	football	p3	f	
+# ::edge	and	op1	play-01	a	p3	
+# ::edge	guy	quant	1	g	0	
+# ::edge	pick-up-04	ARG0	guy	p2	g	
+# ::edge	and	op2	pick-up-04	a	p2	
+# ::edge	pick-up-04	ARG1	disc	p2	d	
+# ::edge	disc	mod	another	d	a2	
+# ::edge	pick-up-04	purpose	hope-01	p2	h	
+# ::edge	hope-01	ARG0	guy	h	g	
+# ::edge	hope-01	ARG1	catch-01	h	c	
+# ::edge	catch-01	ARG0	guy	c	g	
+# ::edge	catch-01	ARG1	disc	c	d	
+# ::edge	disc	ARG1-of	overthrow-01	d	o	
+# ::edge	football	name	name	f	n	
+# ::edge	name	op1	navy	n	2	
+# ::edge	disc	ARG1-of	request-confirmation-91	d	r	
+(a / and
+    :op1 (p3 / play-01
+        :ARG0 (p / person
+            :quant 2)
+        :ARG2 (f / football
+            :name (n / name
+                :op1 "navy")))
+    :op2 (p2 / pick-up-04
+        :purpose (h / hope-01
+            :ARG0 (g / guy
+                :quant 1)
+            :ARG1 (c / catch-01
+                :ARG0 g
+                :ARG1 (d / disc
+                    :ARG1-of (o / overthrow-01)
+                    :ARG1-of (r / request-confirmation-91)
+                    :mod (a2 / another))))
+        :ARG0 g
+        :ARG1 d))

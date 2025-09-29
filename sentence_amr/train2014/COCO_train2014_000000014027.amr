@@ -1,0 +1,35 @@
+# ::tok A street sign telling bicyclists to use the sidewalk with a stop sign at a street corner .
+# ::node	s5	street	1-2
+# ::node	s2	sign	2-3
+# ::node	t	tell-01	3-4
+# ::node	b	bicyclist	4-5
+# ::node	u	use-01	6-7
+# ::node	s	sidewalk	8-9
+# ::node	s4	stop-01	11-12
+# ::node	s3	sign	12-13
+# ::node	s6	street	15-16
+# ::node	c	corner	16-17
+# ::root	s2	sign
+# ::edge	sign	mod	street	s2	s5	
+# ::edge	sign	ARG0-of	tell-01	s2	t	
+# ::edge	tell-01	ARG2	bicyclist	t	b	
+# ::edge	use-01	ARG0	bicyclist	u	b	
+# ::edge	tell-01	ARG1	use-01	t	u	
+# ::edge	use-01	ARG1	sidewalk	u	s	
+# ::edge	stop-01	ARG0	bicyclist	s4	b	
+# ::edge	sign	purpose	stop-01	s3	s4	
+# ::edge	sign	accompanier	sign	s2	s3	
+# ::edge	corner	mod	street	c	s6	
+# ::edge	sign	location	corner	s3	c	
+(s2 / sign
+    :ARG0-of (t / tell-01
+        :ARG1 (u / use-01
+            :ARG0 (b / bicyclist)
+            :ARG1 (s / sidewalk))
+        :ARG2 b)
+    :accompanier (s3 / sign
+        :purpose (s4 / stop-01
+            :ARG0 b)
+        :location (c / corner
+            :mod (s6 / street)))
+    :mod (s5 / street))

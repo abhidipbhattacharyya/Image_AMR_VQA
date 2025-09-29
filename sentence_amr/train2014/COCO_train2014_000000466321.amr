@@ -1,0 +1,32 @@
+# ::tok A pizza sits on a white plate while a pizza cutter sits on top of it .
+# ::node	p2	pizza	1-2
+# ::node	s	sit-01	2-3
+# ::node	w	white-03	5-6
+# ::node	p3	plate	6-7
+# ::node	c	contrast-01	7-8
+# ::node	p	person	10-11
+# ::node	c2	cut-01	10-11
+# ::node	s2	sit-01	11-12
+# ::node	t	top	13-14
+# ::root	c	contrast-01
+# ::edge	sit-01	ARG1	pizza	s	p2	
+# ::edge	plate	ARG1-of	white-03	p3	w	
+# ::edge	sit-01	ARG2	plate	s	p3	
+# ::edge	contrast-01	ARG1	sit-01	c	s	
+# ::edge	person	ARG0-of	cut-01	p	c2	
+# ::edge	cut-01	ARG1	pizza	c2	p2	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	contrast-01	ARG2	sit-01	c	s2	
+# ::edge	sit-01	ARG2	top	s2	t	
+# ::edge	top	op1	plate	t	p3	
+(c / contrast-01
+    :ARG1 (s / sit-01
+        :ARG1 (p2 / pizza)
+        :ARG2 (p3 / plate
+            :ARG1-of (w / white-03)))
+    :ARG2 (s2 / sit-01
+        :ARG1 (p / person
+            :ARG0-of (c2 / cut-01
+                :ARG1 p2))
+        :ARG2 (t / top
+            :op1 p3)))

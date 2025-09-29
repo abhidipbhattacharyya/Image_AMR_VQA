@@ -1,0 +1,31 @@
+# ::tok People are standing in a kitchen with solo cups as one person pours a drink .
+# ::node	p	person	0-1
+# ::node	s2	stand-01	2-3
+# ::node	k	kitchen	5-6
+# ::node	h	have-03	6-7
+# ::node	s	solo	7-8
+# ::node	c	cup	8-9
+# ::node	0	1	10-11
+# ::node	p2	person	11-12
+# ::node	p3	pour-01	12-13
+# ::node	d	drink	14-15
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	location	kitchen	s2	k	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	cup	mod	solo	c	s	
+# ::edge	have-03	ARG1	cup	h	c	
+# ::edge	person	quant	1	p2	0	
+# ::edge	pour-01	ARG0	person	p3	p2	
+# ::edge	stand-01	time	pour-01	s2	p3	
+# ::edge	pour-01	ARG1	drink	p3	d	
+(s2 / stand-01
+    :ARG1 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (c / cup
+                :mod (s / solo))))
+    :location (k / kitchen)
+    :time (p3 / pour-01
+        :ARG0 (p2 / person
+            :quant 1)
+        :ARG1 (d / drink)))

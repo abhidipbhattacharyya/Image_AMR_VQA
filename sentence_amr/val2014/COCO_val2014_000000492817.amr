@@ -1,0 +1,25 @@
+# ::tok Elephant standing of rock ledge next to water in zoo enclosure .
+# ::node	a	animal	0-1
+# ::node	s	stand-01	1-2
+# ::node	r	rock	3-4
+# ::node	l	ledge	4-5
+# ::node	n	next-to	5-6
+# ::node	w	water	7-8
+# ::node	z	zoo	9-10
+# ::node	e	enclosure	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	animal	s	a	
+# ::edge	ledge	consist-of	rock	l	r	
+# ::edge	stand-01	consist-of	ledge	s	l	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	water	n	w	
+# ::edge	enclosure	mod	zoo	e	z	
+# ::edge	water	location	enclosure	w	e	
+(s / stand-01
+    :ARG1 (a / animal)
+    :ARG2 (n / next-to
+        :op1 (w / water
+            :location (e / enclosure
+                :mod (z / zoo))))
+    :consist-of (l / ledge
+        :consist-of (r / rock)))

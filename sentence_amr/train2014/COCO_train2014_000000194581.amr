@@ -1,0 +1,51 @@
+# ::tok Building in the distance with flags flying in the room and a smaller building with a steeple and clock in the center .
+# ::node	d	distance	3-4
+# ::node	h	have-03	4-5
+# ::node	f	flag	5-6
+# ::node	f2	fly-06	6-7
+# ::node	r	room	9-10
+# ::node	a	and	10-11
+# ::node	h3	have-degree-91	12-13
+# ::node	s	small	12-13
+# ::node	m	more	12-13
+# ::node	b	building	13-14
+# ::node	b2	building	13-14
+# ::node	h2	have-03	14-15
+# ::node	s2	steeple	16-17
+# ::node	a2	and	17-18
+# ::node	c2	clock	18-19
+# ::node	c	center	21-22
+# ::root	a	and
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	flag	ARG1-of	fly-06	f	f2	
+# ::edge	fly-06	location	room	f2	r	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	have-degree-91	ARG2	small	h3	s	
+# ::edge	have-degree-91	ARG3	more	h3	m	
+# ::edge	building	ARG1-of	have-degree-91	b	h3	
+# ::edge	and	op2	building	a	b	
+# ::edge	building	ARG1-of	have-degree-91	b2	h3	
+# ::edge	and	op3	building	a	b2	
+# ::edge	building	ARG0-of	have-03	b2	h2	
+# ::edge	and	op1	steeple	a2	s2	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op2	clock	a2	c2	
+# ::edge	and	location	center	a2	c	
+# ::edge	and	rel	distance	a	d	
+(a / and
+    :op1 (h / have-03
+        :ARG1 (f / flag
+            :ARG1-of (f2 / fly-06
+                :location (r / room))))
+    :op2 (b / building
+        :ARG1-of (h3 / have-degree-91
+            :ARG2 (s / small)
+            :ARG3 (m / more)))
+    :op3 (b2 / building
+        :ARG0-of (h2 / have-03
+            :ARG1 (a2 / and
+                :location (c / center)
+                :op1 (s2 / steeple)
+                :op2 (c2 / clock)))
+        :ARG1-of h3)
+    :rel (d / distance))

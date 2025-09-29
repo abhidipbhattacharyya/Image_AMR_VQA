@@ -1,0 +1,27 @@
+# ::tok The firetruck carried the firefighters to the fire to put the blaze out .
+# ::node	f4	firetruck	1-2
+# ::node	c	carry-01	2-3
+# ::node	p	person	4-5
+# ::node	f	fight-01	4-5
+# ::node	f2	fire	4-5
+# ::node	f3	fire	7-8
+# ::node	p2	put-out-09	9-10
+# ::node	b	blaze-01	11-12
+# ::root	c	carry-01
+# ::edge	carry-01	ARG0	firetruck	c	f4	
+# ::edge	carry-01	ARG1	person	c	p	
+# ::edge	person	ARG0-of	fight-01	p	f	
+# ::edge	fight-01	ARG1	fire	f	f2	
+# ::edge	carry-01	destination	fire	c	f3	
+# ::edge	put-out-09	ARG0	person	p2	p	
+# ::edge	carry-01	purpose	put-out-09	c	p2	
+# ::edge	put-out-09	ARG1	blaze-01	p2	b	
+(c / carry-01
+    :purpose (p2 / put-out-09
+        :ARG0 (p / person
+            :ARG0-of (f / fight-01
+                :ARG1 (f2 / fire)))
+        :ARG1 (b / blaze-01))
+    :ARG0 (f4 / firetruck)
+    :ARG1 p
+    :destination (f3 / fire))

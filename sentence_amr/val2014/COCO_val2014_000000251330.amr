@@ -1,0 +1,25 @@
+# ::tok A railroad trestle and an incomplete bridge crossing a river .
+# ::node	r	railroad	1-2
+# ::node	t	trestle	2-3
+# ::node	a	and	3-4
+# ::node	0	-	4-5
+# ::node	c	complete-02	5-6
+# ::node	b	bridge	6-7
+# ::node	c2	cross-02	7-8
+# ::node	r2	river	9-10
+# ::root	a	and
+# ::edge	trestle	mod	railroad	t	r	
+# ::edge	and	op1	trestle	a	t	
+# ::edge	complete-02	polarity	-	c	0	
+# ::edge	bridge	ARG1-of	complete-02	b	c	
+# ::edge	and	op2	bridge	a	b	
+# ::edge	and	ARG0-of	cross-02	a	c2	
+# ::edge	cross-02	ARG1	river	c2	r2	
+(a / and
+    :ARG0-of (c2 / cross-02
+        :ARG1 (r2 / river))
+    :op1 (t / trestle
+        :mod (r / railroad))
+    :op2 (b / bridge
+        :ARG1-of (c / complete-02
+            :polarity -)))

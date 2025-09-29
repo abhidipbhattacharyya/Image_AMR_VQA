@@ -1,0 +1,25 @@
+# ::tok A fire hose from a fire truck attach to a hydrant on a wet street .
+# ::node	f	fire	1-2
+# ::node	h	hose	2-3
+# ::node	f2	fire	5-6
+# ::node	t	truck	6-7
+# ::node	a	attach-01	7-8
+# ::node	h2	hydrant	10-11
+# ::node	w	wet-01	13-14
+# ::node	s	street	14-15
+# ::root	a	attach-01
+# ::edge	hose	purpose	fire	h	f	
+# ::edge	truck	mod	fire	t	f2	
+# ::edge	hose	source	truck	h	t	
+# ::edge	attach-01	ARG1	hose	a	h	
+# ::edge	attach-01	ARG2	hydrant	a	h2	
+# ::edge	street	ARG1-of	wet-01	s	w	
+# ::edge	hydrant	location	street	h2	s	
+(a / attach-01
+    :ARG1 (h / hose
+        :purpose (f / fire)
+        :source (t / truck
+            :mod (f2 / fire)))
+    :ARG2 (h2 / hydrant
+        :location (s / street
+            :ARG1-of (w / wet-01))))

@@ -1,0 +1,45 @@
+# ::tok A man is teaching a girl how to do an art project .
+# ::node	m	man	1-2
+# ::node	t	teach-01	3-4
+# ::node	g	girl	5-6
+# ::node	d	do-02	8-9
+# ::node	a	art	10-11
+# ::node	p	project	11-12
+# ::root	t	teach-01
+# ::edge	teach-01	ARG0	man	t	m	
+# ::edge	teach-01	ARG2	girl	t	g	
+# ::edge	do-02	ARG0	girl	d	g	
+# ::edge	teach-01	ARG1	do-02	t	d	
+# ::edge	project	mod	art	p	a	
+# ::edge	do-02	ARG1	project	d	p	
+(t / teach-01
+    :ARG0 (m / man)
+    :ARG1 (d / do-02
+        :ARG0 (g / girl)
+        :ARG1 (p / project
+            :mod (a / art)))
+    :ARG2 g)
+
+
+# ::tok He is holding a plate and there is a paint roller on the table .
+# ::node	h	he	0-1
+# ::node	h2	hold-01	2-3
+# ::node	p2	plate	4-5
+# ::node	a	and	5-6
+# ::node	p	paint	9-10
+# ::node	r	roll-01	10-11
+# ::node	t	table	13-14
+# ::root	a	and
+# ::edge	hold-01	ARG0	he	h2	h	
+# ::edge	hold-01	ARG1	plate	h2	p2	
+# ::edge	and	op1	hold-01	a	h2	
+# ::edge	roll-01	ARG1	paint	r	p	
+# ::edge	and	op2	roll-01	a	r	
+# ::edge	roll-01	location	table	r	t	
+(a / and
+    :op1 (h2 / hold-01
+        :ARG0 (h / he)
+        :ARG1 (p2 / plate))
+    :op2 (r / roll-01
+        :ARG1 (p / paint)
+        :location (t / table)))

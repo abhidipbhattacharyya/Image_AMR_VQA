@@ -1,0 +1,33 @@
+# ::tok A sign on the side of a road that says " Charlottesville " with directions to downtown below it .
+# ::node	s3	sign	1-2
+# ::node	s2	side	4-5
+# ::node	r	road	7-8
+# ::node	s	say-01	9-10
+# ::node	c	city	11-12
+# ::node	n	name	11-12
+# ::node	0	Charlottesville	11-12
+# ::node	d	direct-01	14-15
+# ::node	d2	downtown	16-17
+# ::node	b	below	17-18
+# ::root	s3	sign
+# ::edge	sign	location	side	s3	s2	
+# ::edge	side	part-of	road	s2	r	
+# ::edge	sign	ARG0-of	say-01	s3	s	
+# ::edge	say-01	ARG1	city	s	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Charlottesville	n	0	
+# ::edge	sign	ARG0-of	direct-01	s3	d	
+# ::edge	direct-01	ARG2	downtown	d	d2	
+# ::edge	downtown	location	below	d2	b	
+# ::edge	below	op1	city	b	c	
+(s3 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (c / city
+            :name (n / name
+                :op1 "Charlottesville")))
+    :ARG0-of (d / direct-01
+        :ARG2 (d2 / downtown
+            :location (b / below
+                :op1 c)))
+    :location (s2 / side
+        :part-of (r / road)))

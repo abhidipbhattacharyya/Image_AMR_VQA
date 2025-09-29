@@ -1,0 +1,46 @@
+# ::tok Asian man in white sleeveless undershirt and grey shorts about to throw a Frisbee .
+# ::node	c	continent	0-1
+# ::node	n	name	0-1
+# ::node	1	Asia	0-1
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	w2	white-03	3-4
+# ::node	s2	sleeve	4-5
+# ::node	0	-	4-5
+# ::node	u	undershirt	5-6
+# ::node	a2	and	6-7
+# ::node	g	gray-02	7-8
+# ::node	s	shorts	8-9
+# ::node	a	about-to	9-10
+# ::node	t	throw-01	11-12
+# ::node	f	football	13-14
+# ::root	t	throw-01
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	1	
+# ::edge	man	mod	continent	m	c	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	sleeve	polarity	-	s2	0	
+# ::edge	undershirt	part	sleeve	u	s2	
+# ::edge	undershirt	ARG1-of	white-03	u	w2	
+# ::edge	and	op1	undershirt	a2	u	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	shorts	ARG1-of	gray-02	s	g	
+# ::edge	and	op2	shorts	a2	s	
+# ::edge	throw-01	time	about-to	t	a	
+# ::edge	throw-01	ARG0	man	t	m	
+# ::edge	throw-01	ARG1	football	t	f	
+(t / throw-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a2 / and
+                :op1 (u / undershirt
+                    :ARG1-of (w2 / white-03)
+                    :part (s2 / sleeve
+                        :polarity -))
+                :op2 (s / shorts
+                    :ARG1-of (g / gray-02))))
+        :mod (c / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG1 (f / football)
+    :time (a / about-to))

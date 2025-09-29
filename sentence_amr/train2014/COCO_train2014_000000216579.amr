@@ -1,0 +1,28 @@
+# ::tok A garbage truck parked in front of a building with do n't litter .
+# ::node	g	garbage	1-2
+# ::node	t	truck	2-3
+# ::node	p	park-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	b	building	8-9
+# ::node	y	you	10-11
+# ::node	1	imperative	10-11
+# ::node	0	-	11-12
+# ::node	l	litter-01	12-13
+# ::root	p	park-01
+# ::edge	truck	mod	garbage	t	g	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	litter-01	polarity	-	l	0	
+# ::edge	litter-01	mode	imperative	l	1	
+# ::edge	litter-01	ARG0	you	l	y	
+# ::edge	truck	location-of	litter-01	t	l	
+(p / park-01
+    :ARG1 (t / truck
+        :location-of (l / litter-01
+            :ARG0 (y / you)
+            :mode imperative
+            :polarity -)
+        :mod (g / garbage))
+    :ARG2 (i / in-front-of
+        :op1 (b / building)))

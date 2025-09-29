@@ -1,0 +1,63 @@
+# ::tok A woman holds a frisbee , close by a second woman that is eying the frisbee with an arm held out , while two other players stand waiting in the background .
+# ::node	w2	woman	1-2
+# ::node	h	hold-01	2-3
+# ::node	f	frisbee	4-5
+# ::node	c	close-10	6-7
+# ::node	o	ordinal-entity	9-10
+# ::node	0	2	9-10
+# ::node	w3	woman	10-11
+# ::node	e	ebb-01	13-14
+# ::node	a2	arm	18-19
+# ::node	h2	hold-out-00	19-20
+# ::node	1	2	23-24
+# ::node	o2	other	24-25
+# ::node	p	person	25-26
+# ::node	p2	play-01	25-26
+# ::node	s	stand-01	26-27
+# ::node	w	wait-01	27-28
+# ::node	b	background	30-31
+# ::node	a	and	31-32
+# ::root	a	and
+# ::edge	hold-01	ARG0	woman	h	w2	
+# ::edge	hold-01	ARG1	frisbee	h	f	
+# ::edge	close-10	ARG1	woman	c	w2	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	woman	ord	ordinal-entity	w3	o	
+# ::edge	close-10	ARG2	woman	c	w3	
+# ::edge	woman	ARG0-of	ebb-01	w3	e	
+# ::edge	ebb-01	ARG1	frisbee	e	f	
+# ::edge	hold-out-00	ARG1	arm	h2	a2	
+# ::edge	ebb-01	manner	hold-out-00	e	h2	
+# ::edge	hold-out-00	ARG0	woman	h2	w3	
+# ::edge	person	mod	other	p	o2	
+# ::edge	person	quant	2	p	1	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	wait-01	s	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	stand-01	location	background	s	b	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	and	rel	close-10	a	c	
+(a / and
+    :op1 (h / hold-01
+        :ARG0 (w2 / woman)
+        :ARG1 (f / frisbee))
+    :op2 (s / stand-01
+        :ARG1 (p / person
+            :quant 2
+            :ARG0-of (p2 / play-01)
+            :mod (o2 / other))
+        :ARG2 (w / wait-01
+            :ARG1 p)
+        :location (b / background))
+    :rel (c / close-10
+        :ARG1 w2
+        :ARG2 (w3 / woman
+            :ARG0-of (e / ebb-01
+                :ARG1 f
+                :manner (h2 / hold-out-00
+                    :ARG0 w3
+                    :ARG1 (a2 / arm)))
+            :ord (o / ordinal-entity
+                :value 2))))

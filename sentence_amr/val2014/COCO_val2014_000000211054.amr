@@ -1,0 +1,39 @@
+# ::tok A train traveling past a factory with tons of smoke pouring out of it 's stacks .
+# ::node	t2	train	1-2
+# ::node	t3	travel-01	2-3
+# ::node	p	past	3-4
+# ::node	f	factory	5-6
+# ::node	h	have-03	6-7
+# ::node	m2	multiple	7-8
+# ::node	m	mass-quantity	7-8
+# ::node	t	ton	7-8
+# ::node	0	1	7-8
+# ::node	s	smoke	9-10
+# ::node	p2	pour-01	10-11
+# ::node	s2	stack-01	15-16
+# ::root	t2	train
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	travel-01	path	past	t3	p	
+# ::edge	past	op1	factory	p	f	
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	multiple	op1	mass-quantity	m2	m	
+# ::edge	mass-quantity	unit	ton	m	t	
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	smoke	quant	multiple	s	m2	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	pour-01	s	p2	
+# ::edge	pour-01	ARG2	stack-01	p2	s2	
+# ::edge	stack-01	ARG1	train	s2	t2	
+(t2 / train
+    :ARG0-of (t3 / travel-01
+        :path (p / past
+            :op1 (f / factory)))
+    :ARG0-of (h / have-03
+        :ARG1 (s / smoke
+            :quant (m2 / multiple
+                :op1 (m / mass-quantity
+                    :quant 1
+                    :unit (t / ton)))
+            :ARG1-of (p2 / pour-01
+                :ARG2 (s2 / stack-01
+                    :ARG1 t2)))))

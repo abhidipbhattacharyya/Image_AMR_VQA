@@ -1,0 +1,26 @@
+# ::tok Couple people standing on the platform waiting to board train
+# ::node	c	couple	0-1
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	p2	platform	5-6
+# ::node	w	wait-01	6-7
+# ::node	b	board-01	8-9
+# ::node	t	train	9-10
+# ::root	s	stand-01
+# ::edge	person	quant	couple	p	c	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	person	purpose	wait-01	p	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	board-01	ARG1	train	b	t	
+(s / stand-01
+    :ARG1 (p / person
+        :purpose (w / wait-01
+            :ARG1 p
+            :ARG2 (b / board-01
+                :ARG0 p
+                :ARG1 (t / train)))
+        :quant (c / couple))
+    :ARG2 (p2 / platform))

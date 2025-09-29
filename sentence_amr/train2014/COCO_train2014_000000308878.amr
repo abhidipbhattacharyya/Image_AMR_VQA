@@ -1,0 +1,42 @@
+# ::tok Two guys are skate boarding in a building while either people standing around talking or sitting down on bleachers
+# ::node	0	2	0-1
+# ::node	g	guy	1-2
+# ::node	s2	skate-01	3-4
+# ::node	b2	board-01	4-5
+# ::node	b3	building	7-8
+# ::node	p	person	10-11
+# ::node	s3	stand-01	11-12
+# ::node	a	around	12-13
+# ::node	t	talk-01	13-14
+# ::node	o	or	14-15
+# ::node	s	sit-down-02	15-16
+# ::node	f	field	18-19
+# ::node	b	bleach-01	18-19
+# ::root	b2	board-01
+# ::edge	guy	quant	2	g	0	
+# ::edge	board-01	instrument	skate-01	b2	s2	
+# ::edge	board-01	ARG0	guy	b2	g	
+# ::edge	board-01	location	building	b2	b3	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	around	s3	a	
+# ::edge	person	ARG0-of	talk-01	p	t	
+# ::edge	or	op1	stand-01	o	s3	
+# ::edge	board-01	time	or	b2	o	
+# ::edge	or	op2	sit-down-02	o	s	
+# ::edge	sit-down-02	ARG1	person	s	p	
+# ::edge	sit-down-02	ARG2	field	s	f	
+# ::edge	field	ARG0-of	bleach-01	f	b	
+(b2 / board-01
+    :ARG0 (g / guy
+        :quant 2)
+    :instrument (s2 / skate-01)
+    :location (b3 / building)
+    :time (o / or
+        :op1 (s3 / stand-01
+            :ARG1 (p / person
+                :ARG0-of (t / talk-01))
+            :ARG2 (a / around))
+        :op2 (s / sit-down-02
+            :ARG1 p
+            :ARG2 (f / field
+                :ARG0-of (b / bleach-01)))))

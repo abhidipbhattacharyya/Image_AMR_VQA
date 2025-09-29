@@ -1,0 +1,38 @@
+# ::tok A baseball player follows up on his swing as another player tries to catch the ball .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	f	follow-up-03	3-4
+# ::node	s	swing-02	7-8
+# ::node	a	another	9-10
+# ::node	p2	person	10-11
+# ::node	p4	play-01	10-11
+# ::node	t	try-01	11-12
+# ::node	c	catch-01	13-14
+# ::node	b	ball	15-16
+# ::root	f	follow-up-03
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	follow-up-03	ARG0	person	f	p	
+# ::edge	follow-up-03	ARG1	swing-02	f	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	person	mod	another	p2	a	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	try-01	ARG0	person	t	p2	
+# ::edge	follow-up-03	time	try-01	f	t	
+# ::edge	try-01	ARG1	catch-01	t	c	
+# ::edge	catch-01	ARG0	person	c	p2	
+# ::edge	catch-01	ARG1	ball	c	b	
+(f / follow-up-03
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball)))
+    :ARG1 (s / swing-02
+        :ARG0 p)
+    :time (t / try-01
+        :ARG0 (p2 / person
+            :ARG0-of (p4 / play-01)
+            :mod (a / another))
+        :ARG1 (c / catch-01
+            :ARG0 p2
+            :ARG1 (b / ball))))

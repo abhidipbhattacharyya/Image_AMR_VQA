@@ -1,0 +1,27 @@
+# ::tok A small plane flying through a blue sky with smoke coming out of it .
+# ::node	s2	small	1-2
+# ::node	p	plane	2-3
+# ::node	f	fly-01	3-4
+# ::node	b	blue	6-7
+# ::node	s	sky	7-8
+# ::node	h	have-03	8-9
+# ::node	s3	smoke	9-10
+# ::node	c	come-out-09	10-11
+# ::root	p	plane
+# ::edge	plane	mod	small	p	s2	
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	fly-01	path	sky	f	s	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	smoke	h	s3	
+# ::edge	smoke	ARG1-of	come-out-09	s3	c	
+# ::edge	come-out-09	ARG2	plane	c	p	
+(p / plane
+    :ARG0-of (h / have-03
+        :ARG1 (s3 / smoke
+            :ARG1-of (c / come-out-09
+                :ARG2 p)))
+    :ARG2-of (f / fly-01
+        :path (s / sky
+            :mod (b / blue)))
+    :mod (s2 / small))

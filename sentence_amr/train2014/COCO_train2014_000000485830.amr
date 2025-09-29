@@ -1,0 +1,35 @@
+# ::tok a sheep sniffs at the hand of a small child sticking its hands through the slats of a fence towards the sheep
+# ::node	s	sheep	1-2
+# ::node	s4	sniff-01	2-3
+# ::node	h	hand	5-6
+# ::node	s3	small	8-9
+# ::node	c	child	9-10
+# ::node	s5	stick-01	10-11
+# ::node	h2	hand	12-13
+# ::node	t	through	13-14
+# ::node	s2	slash	15-16
+# ::node	f	fence	18-19
+# ::root	s4	sniff-01
+# ::edge	sniff-01	ARG0	sheep	s4	s	
+# ::edge	sniff-01	ARG1	hand	s4	h	
+# ::edge	child	mod	small	c	s3	
+# ::edge	hand	part-of	child	h	c	
+# ::edge	child	ARG0-of	stick-01	c	s5	
+# ::edge	stick-01	direction	sheep	s5	s	
+# ::edge	stick-01	ARG1	hand	s5	h2	
+# ::edge	sheep	part	hand	s	h2	
+# ::edge	stick-01	ARG2	through	s5	t	
+# ::edge	through	op1	slash	t	s2	
+# ::edge	slash	part-of	fence	s2	f	
+(s4 / sniff-01
+    :ARG0 (s / sheep
+        :part (h2 / hand))
+    :ARG1 (h / hand
+        :part-of (c / child
+            :ARG0-of (s5 / stick-01
+                :ARG1 h2
+                :ARG2 (t / through
+                    :op1 (s2 / slash
+                        :part-of (f / fence)))
+                :direction s)
+            :mod (s3 / small))))

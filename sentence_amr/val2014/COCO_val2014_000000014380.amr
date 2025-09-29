@@ -1,0 +1,27 @@
+# ::tok The white bridge stretches out over the horizon as the transport train travels below it .
+# ::node	w	white-03	1-2
+# ::node	b2	bridge	2-3
+# ::node	s	stretch-01	3-4
+# ::node	h	horizon	7-8
+# ::node	t2	transport-01	10-11
+# ::node	t	train	11-12
+# ::node	t3	travel-01	12-13
+# ::node	b	below	13-14
+# ::root	s	stretch-01
+# ::edge	bridge	ARG1-of	white-03	b2	w	
+# ::edge	stretch-01	ARG1	bridge	s	b2	
+# ::edge	stretch-01	ARG2	horizon	s	h	
+# ::edge	train	ARG0-of	transport-01	t	t2	
+# ::edge	travel-01	ARG0	train	t3	t	
+# ::edge	stretch-01	time	travel-01	s	t3	
+# ::edge	travel-01	ARG1	below	t3	b	
+# ::edge	below	op1	bridge	b	b2	
+(s / stretch-01
+    :ARG1 (b2 / bridge
+        :ARG1-of (w / white-03))
+    :ARG2 (h / horizon)
+    :time (t3 / travel-01
+        :ARG0 (t / train
+            :ARG0-of (t2 / transport-01))
+        :ARG1 (b / below
+            :op1 b2)))

@@ -1,0 +1,28 @@
+# ::tok Several wine glasses placed on a glass table filled with different wines .
+# ::node	s	several	0-1
+# ::node	w	wine	1-2
+# ::node	g	glass	2-3
+# ::node	p	place-01	3-4
+# ::node	g2	glass	6-7
+# ::node	t	table	7-8
+# ::node	f	fill-01	8-9
+# ::node	d	differ-02	10-11
+# ::node	w2	wine	11-12
+# ::root	p	place-01
+# ::edge	glass	mod	wine	g	w	
+# ::edge	glass	quant	several	g	s	
+# ::edge	place-01	ARG1	glass	p	g	
+# ::edge	table	consist-of	glass	t	g2	
+# ::edge	place-01	ARG2	table	p	t	
+# ::edge	table	ARG1-of	fill-01	t	f	
+# ::edge	wine	ARG1-of	differ-02	w2	d	
+# ::edge	fill-01	ARG2	wine	f	w2	
+(p / place-01
+    :ARG1 (g / glass
+        :quant (s / several)
+        :mod (w / wine))
+    :ARG2 (t / table
+        :ARG1-of (f / fill-01
+            :ARG2 (w2 / wine
+                :ARG1-of (d / differ-02)))
+        :consist-of (g2 / glass)))

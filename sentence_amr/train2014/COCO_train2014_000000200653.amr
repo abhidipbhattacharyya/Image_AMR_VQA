@@ -1,0 +1,26 @@
+# ::tok Tennis player greet each other after a match on the tennis court .
+# ::node	t	television	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	g	greet-01	2-3
+# ::node	a	after	5-6
+# ::node	m	match-03	7-8
+# ::node	c	court	11-12
+# ::root	g	greet-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	television	p2	t	
+# ::edge	greet-01	ARG1	person	g	p	
+# ::edge	greet-01	ARG0	person	g	p	
+# ::edge	greet-01	time	after	g	a	
+# ::edge	after	op1	match-03	a	m	
+# ::edge	match-03	location	court	m	c	
+# ::edge	court	mod	television	c	t	
+(g / greet-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / television)))
+    :ARG1 p
+    :time (a / after
+        :op1 (m / match-03
+            :location (c / court
+                :mod t))))

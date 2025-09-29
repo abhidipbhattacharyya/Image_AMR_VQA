@@ -1,0 +1,42 @@
+# ::tok A man sitting in a two wheeled carriage attached to a little horse with three men standing around .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	0	2	5-6
+# ::node	w	wheel	6-7
+# ::node	c	carriage	7-8
+# ::node	a3	attach-01	8-9
+# ::node	l	little	11-12
+# ::node	h	horse	12-13
+# ::node	1	3	14-15
+# ::node	m2	man	15-16
+# ::node	s2	stand-01	16-17
+# ::node	a2	around	17-18
+# ::node	a	and	18-19
+# ::root	a	and
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	wheel	quant	2	w	0	
+# ::edge	carriage	mod	wheel	c	w	
+# ::edge	sit-01	ARG2	carriage	s	c	
+# ::edge	carriage	ARG1-of	attach-01	c	a3	
+# ::edge	horse	mod	little	h	l	
+# ::edge	attach-01	ARG2	horse	a3	h	
+# ::edge	man	quant	3	m2	1	
+# ::edge	stand-01	ARG1	man	s2	m2	
+# ::edge	stand-01	ARG2	around	s2	a2	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	rel	man	a	m	
+(a / and
+    :op1 (s / sit-01
+        :ARG2 (c / carriage
+            :ARG1-of (a3 / attach-01
+                :ARG2 (h / horse
+                    :mod (l / little)))
+            :mod (w / wheel
+                :quant 2)))
+    :op2 (s2 / stand-01
+        :ARG1 (m2 / man
+            :quant 3)
+        :ARG2 (a2 / around))
+    :rel (m / man
+        :ARG1-of s))

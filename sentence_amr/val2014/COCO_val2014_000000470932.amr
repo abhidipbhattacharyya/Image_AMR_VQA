@@ -1,0 +1,40 @@
+# ::tok An elephant is standing and raising it 's trunk on a raised wooden floor as people watch in the background .
+# ::node	e	elephant	1-2
+# ::node	s	stand-01	3-4
+# ::node	a	and	4-5
+# ::node	r	raise-01	5-6
+# ::node	t	trunk	8-9
+# ::node	r2	raise-01	11-12
+# ::node	w2	wood	12-13
+# ::node	f	floor	13-14
+# ::node	p	person	15-16
+# ::node	w	watch-01	16-17
+# ::node	b	background	19-20
+# ::root	a	and
+# ::edge	stand-01	ARG1	elephant	s	e	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	raise-01	a	r	
+# ::edge	raise-01	ARG0	elephant	r	e	
+# ::edge	raise-01	ARG1	trunk	r	t	
+# ::edge	elephant	part	trunk	e	t	
+# ::edge	floor	consist-of	wood	f	w2	
+# ::edge	floor	ARG1-of	raise-01	f	r2	
+# ::edge	and	location	floor	a	f	
+# ::edge	stand-01	ARG2	floor	s	f	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	and	concession	watch-01	a	w	
+# ::edge	watch-01	location	background	w	b	
+(a / and
+    :concession (w / watch-01
+        :ARG0 (p / person)
+        :location (b / background))
+    :location (f / floor
+        :ARG1-of (r2 / raise-01)
+        :consist-of (w2 / wood))
+    :op1 (s / stand-01
+        :ARG1 (e / elephant
+            :part (t / trunk))
+        :ARG2 f)
+    :op2 (r / raise-01
+        :ARG0 e
+        :ARG1 t))

@@ -1,0 +1,29 @@
+# ::tok The oven is broken so they are using a wooden utensil to fix it .
+# ::node	o	oven	1-2
+# ::node	b	break-01	3-4
+# ::node	c	cause-01	4-5
+# ::node	t	they	5-6
+# ::node	u	use-01	7-8
+# ::node	w	wood	9-10
+# ::node	u2	utensil	10-11
+# ::node	f	fix-02	12-13
+# ::root	c	cause-01
+# ::edge	break-01	ARG1	oven	b	o	
+# ::edge	cause-01	ARG0	break-01	c	b	
+# ::edge	use-01	ARG0	they	u	t	
+# ::edge	cause-01	ARG1	use-01	c	u	
+# ::edge	utensil	consist-of	wood	u2	w	
+# ::edge	use-01	ARG1	utensil	u	u2	
+# ::edge	use-01	ARG2	fix-02	u	f	
+# ::edge	fix-02	ARG0	they	f	t	
+# ::edge	fix-02	ARG1	oven	f	o	
+(c / cause-01
+    :ARG0 (b / break-01
+        :ARG1 (o / oven))
+    :ARG1 (u / use-01
+        :ARG0 (t / they)
+        :ARG1 (u2 / utensil
+            :consist-of (w / wood))
+        :ARG2 (f / fix-02
+            :ARG0 t
+            :ARG1 o)))

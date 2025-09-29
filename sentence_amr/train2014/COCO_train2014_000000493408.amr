@@ -1,0 +1,25 @@
+# ::tok A toilet lighted with a blue night light is shown open .
+# ::node	t	toilet	1-2
+# ::node	l2	light-04	2-3
+# ::node	b	blue	5-6
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	l	light	7-8
+# ::node	s	show-01	9-10
+# ::node	o	open-01	10-11
+# ::root	s	show-01
+# ::edge	toilet	ARG1-of	light-04	t	l2	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	time	date-entity	l	d	
+# ::edge	light	mod	blue	l	b	
+# ::edge	light-04	instrument	light	l2	l	
+# ::edge	show-01	ARG1	open-01	s	o	
+# ::edge	open-01	ARG1	toilet	o	t	
+(s / show-01
+    :ARG1 (o / open-01
+        :ARG1 (t / toilet
+            :ARG1-of (l2 / light-04
+                :instrument (l / light
+                    :mod (b / blue)
+                    :time (d / date-entity
+                        :dayperiod (n / night)))))))

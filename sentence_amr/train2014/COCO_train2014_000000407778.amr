@@ -1,0 +1,22 @@
+# ::tok a passenger train stopped at a platform while people stand around
+# ::node	p	passenger	1-2
+# ::node	t	train	2-3
+# ::node	s2	stop-01	3-4
+# ::node	p3	platform	6-7
+# ::node	p2	person	8-9
+# ::node	s	stand-01	9-10
+# ::node	a	around	10-11
+# ::root	s2	stop-01
+# ::edge	train	mod	passenger	t	p	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	stop-01	location	platform	s2	p3	
+# ::edge	stand-01	ARG1	person	s	p2	
+# ::edge	stop-01	time	stand-01	s2	s	
+# ::edge	stand-01	ARG2	around	s	a	
+(s2 / stop-01
+    :ARG1 (t / train
+        :mod (p / passenger))
+    :location (p3 / platform)
+    :time (s / stand-01
+        :ARG1 (p2 / person)
+        :ARG2 (a / around)))

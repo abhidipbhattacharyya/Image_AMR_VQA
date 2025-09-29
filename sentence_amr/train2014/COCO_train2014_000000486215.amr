@@ -1,0 +1,37 @@
+# ::tok A partially eaten homemade pizza sits on a plate beside a partially drank bottle of beverage .
+# ::node	p	part	1-2
+# ::node	e	eat-01	2-3
+# ::node	m	make-01	3-4
+# ::node	h	home	3-4
+# ::node	p3	pizza	4-5
+# ::node	s	sit-01	5-6
+# ::node	p4	plate	8-9
+# ::node	b	beside	9-10
+# ::node	p2	partial-01	11-12
+# ::node	d	drink-01	12-13
+# ::node	b3	bottle	13-14
+# ::node	b2	beverage	15-16
+# ::root	s	sit-01
+# ::edge	eat-01	degree	part	e	p	
+# ::edge	make-01	ARG1	home	m	h	
+# ::edge	pizza	ARG1-of	make-01	p3	m	
+# ::edge	pizza	ARG1-of	eat-01	p3	e	
+# ::edge	sit-01	ARG1	pizza	s	p3	
+# ::edge	sit-01	ARG2	plate	s	p4	
+# ::edge	plate	location	beside	p4	b	
+# ::edge	drink-01	ARG1-of	partial-01	d	p2	
+# ::edge	bottle	ARG1-of	drink-01	b3	d	
+# ::edge	beside	op1	bottle	b	b3	
+# ::edge	bottle	consist-of	beverage	b3	b2	
+(s / sit-01
+    :ARG1 (p3 / pizza
+        :ARG1-of (m / make-01
+            :ARG1 (h / home))
+        :ARG1-of (e / eat-01
+            :degree (p / part)))
+    :ARG2 (p4 / plate
+        :location (b / beside
+            :op1 (b3 / bottle
+                :ARG1-of (d / drink-01
+                    :ARG1-of (p2 / partial-01))
+                :consist-of (b2 / beverage)))))

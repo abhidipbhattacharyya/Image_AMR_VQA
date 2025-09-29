@@ -1,0 +1,28 @@
+# ::tok A box contains six donuts with varying types of glazes and toppings .
+# ::node	b	box	1-2
+# ::node	c	contain-01	2-3
+# ::node	0	6	3-4
+# ::node	d	donut	4-5
+# ::node	v	vary-01	6-7
+# ::node	t2	type	7-8
+# ::node	g	glaze-01	9-10
+# ::node	a	and	10-11
+# ::node	t	top-01	11-12
+# ::root	c	contain-01
+# ::edge	contain-01	ARG0	box	c	b	
+# ::edge	donut	quant	6	d	0	
+# ::edge	contain-01	ARG1	donut	c	d	
+# ::edge	type	ARG1-of	vary-01	t2	v	
+# ::edge	and	op1	glaze-01	a	g	
+# ::edge	and	mod	type	a	t2	
+# ::edge	donut	accompanier	and	d	a	
+# ::edge	and	op2	top-01	a	t	
+(c / contain-01
+    :ARG0 (b / box)
+    :ARG1 (d / donut
+        :quant 6
+        :accompanier (a / and
+            :mod (t2 / type
+                :ARG1-of (v / vary-01))
+            :op1 (g / glaze-01)
+            :op2 (t / top-01))))

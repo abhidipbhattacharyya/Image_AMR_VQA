@@ -1,0 +1,36 @@
+# ::tok A dog with booties and matching knapsack stands in front of a vehicle with an open door .
+# ::node	d	dog	1-2
+# ::node	w	wear-01	2-3
+# ::node	b	boot	3-4
+# ::node	a	and	4-5
+# ::node	m	match-01	5-6
+# ::node	k	knapsack	6-7
+# ::node	s	stand-01	7-8
+# ::node	i	in-front-of	9-10
+# ::node	v	vehicle	12-13
+# ::node	o	open-09	15-16
+# ::node	d2	door	16-17
+# ::root	s	stand-01
+# ::edge	dog	ARG0-of	wear-01	d	w	
+# ::edge	and	op1	boot	a	b	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	knapsack	ARG1-of	match-01	k	m	
+# ::edge	and	op2	knapsack	a	k	
+# ::edge	stand-01	ARG1	dog	s	d	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	vehicle	i	v	
+# ::edge	door	ARG1-of	open-09	d2	o	
+# ::edge	vehicle	part	door	v	d2	
+# ::edge	in-front-of	op1	door	i	d2	
+(s / stand-01
+    :ARG1 (d / dog
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (b / boot)
+                :op2 (k / knapsack
+                    :ARG1-of (m / match-01)))))
+    :ARG2 (i / in-front-of
+        :op1 (v / vehicle
+            :part (d2 / door
+                :ARG1-of (o / open-09)))
+        :op1 d2))

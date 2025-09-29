@@ -1,0 +1,31 @@
+# ::tok A red train traveling down rail road racks past another train .
+# ::node	r2	red-02	1-2
+# ::node	t	train	2-3
+# ::node	t3	travel-01	3-4
+# ::node	d	down	4-5
+# ::node	r	rail	5-6
+# ::node	r3	road	6-7
+# ::node	p	park-01	7-8
+# ::node	p2	past	8-9
+# ::node	a	another	9-10
+# ::node	t2	train	10-11
+# ::root	p	park-01
+# ::edge	train	ARG1-of	red-02	t	r2	
+# ::edge	train	ARG0-of	travel-01	t	t3	
+# ::edge	travel-01	direction	down	t3	d	
+# ::edge	road	mod	rail	r3	r	
+# ::edge	down	op1	road	d	r3	
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	path	past	p	p2	
+# ::edge	train	mod	another	t2	a	
+# ::edge	past	op1	train	p2	t2	
+(p / park-01
+    :ARG1 (t / train
+        :ARG0-of (t3 / travel-01
+            :direction (d / down
+                :op1 (r3 / road
+                    :mod (r / rail))))
+        :ARG1-of (r2 / red-02))
+    :path (p2 / past
+        :op1 (t2 / train
+            :mod (a / another))))

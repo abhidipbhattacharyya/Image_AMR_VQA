@@ -1,0 +1,31 @@
+# ::tok A man is using a truck mirror to take his picture with a church behind him .
+# ::node	m	man	1-2
+# ::node	u	use-01	3-4
+# ::node	t2	truck	5-6
+# ::node	m2	mirror	6-7
+# ::node	t	take-01	8-9
+# ::node	p	picture-01	10-11
+# ::node	c	church	13-14
+# ::node	b	behind	14-15
+# ::root	u	use-01
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	mirror	part-of	truck	m2	t2	
+# ::edge	use-01	ARG1	mirror	u	m2	
+# ::edge	use-01	ARG2	take-01	u	t	
+# ::edge	take-01	ARG0	man	t	m	
+# ::edge	take-01	ARG1	picture-01	t	p	
+# ::edge	picture-01	ARG1	man	p	m	
+# ::edge	picture-01	ARG2	church	p	c	
+# ::edge	church	location	behind	c	b	
+# ::edge	behind	op1	man	b	m	
+(u / use-01
+    :ARG0 (m / man)
+    :ARG1 (m2 / mirror
+        :part-of (t2 / truck))
+    :ARG2 (t / take-01
+        :ARG0 m
+        :ARG1 (p / picture-01
+            :ARG1 m
+            :ARG2 (c / church
+                :location (b / behind
+                    :op1 m)))))

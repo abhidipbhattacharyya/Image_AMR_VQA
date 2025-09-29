@@ -1,0 +1,31 @@
+# ::tok Someone holding a camera in front of a claw machine game filled with stuffed animals .
+# ::node	s	someone	0-1
+# ::node	h	hold-01	1-2
+# ::node	c	camera	3-4
+# ::node	i	in-front-of	5-6
+# ::node	c2	claw	8-9
+# ::node	m	machine	9-10
+# ::node	g	game	10-11
+# ::node	f	fill-01	11-12
+# ::node	s2	stuff-01	13-14
+# ::node	a	animal	14-15
+# ::root	s	someone
+# ::edge	someone	ARG0-of	hold-01	s	h	
+# ::edge	hold-01	ARG1	camera	h	c	
+# ::edge	hold-01	location	in-front-of	h	i	
+# ::edge	machine	mod	claw	m	c2	
+# ::edge	game	mod	machine	g	m	
+# ::edge	in-front-of	op1	game	i	g	
+# ::edge	game	ARG1-of	fill-01	g	f	
+# ::edge	animal	ARG1-of	stuff-01	a	s2	
+# ::edge	fill-01	ARG2	animal	f	a	
+(s / someone
+    :ARG0-of (h / hold-01
+        :ARG1 (c / camera)
+        :location (i / in-front-of
+            :op1 (g / game
+                :ARG1-of (f / fill-01
+                    :ARG2 (a / animal
+                        :ARG1-of (s2 / stuff-01)))
+                :mod (m / machine
+                    :mod (c2 / claw))))))

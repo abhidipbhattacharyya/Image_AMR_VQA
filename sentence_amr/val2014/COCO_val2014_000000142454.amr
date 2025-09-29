@@ -1,0 +1,71 @@
+# ::tok Two cats sit on a bathroom counter and one is white and gray with green eyes while the other is a gray and black tabby with green eyes .
+# ::node	0	2	0-1
+# ::node	c	cat	1-2
+# ::node	c2	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	b	bathroom	5-6
+# ::node	c3	counter	6-7
+# ::node	a	and	7-8
+# ::node	w	white-03	10-11
+# ::node	a2	and	11-12
+# ::node	g	gray-02	12-13
+# ::node	h	have-03	13-14
+# ::node	g3	green-02	14-15
+# ::node	e	eye	15-16
+# ::node	o	other	18-19
+# ::node	g2	gray-02	21-22
+# ::node	a3	and	22-23
+# ::node	a4	and	22-23
+# ::node	b2	black-04	23-24
+# ::node	t	tabby	24-25
+# ::node	h2	have-03	25-26
+# ::node	h3	have-03	25-26
+# ::node	e2	eye	27-28
+# ::root	a	and
+# ::edge	cat	quant	2	c	0	
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	counter	location	bathroom	c3	b	
+# ::edge	sit-01	ARG2	counter	s	c3	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op1	white-03	a2	w	
+# ::edge	and	op2	gray-02	a2	g	
+# ::edge	and	ARG0-of	have-03	a2	h	
+# ::edge	eye	ARG1-of	green-02	e	g3	
+# ::edge	have-03	ARG1	eye	h	e	
+# ::edge	and	op1	and	a3	a2	
+# ::edge	and	op2	and	a	a3	
+# ::edge	and	op1	gray-02	a4	g2	
+# ::edge	and	op2	black-04	a4	b2	
+# ::edge	tabby	mod	and	t	a4	
+# ::edge	and	op2	tabby	a3	t	
+# ::edge	tabby	ARG0-of	have-03	t	h2	
+# ::edge	have-03	ARG1	green-02	h2	g3	
+# ::edge	tabby	ARG0-of	have-03	t	h3	
+# ::edge	have-03	ARG1	eye	h3	e2	
+# ::edge	green-02	ARG1	eye	g3	e2	
+# ::edge	and	rel	other	a	o	
+# ::edge	and	rel	cat	a	c2	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (c / cat
+            :quant 2)
+        :ARG2 (c3 / counter
+            :location (b / bathroom)))
+    :op2 (a3 / and
+        :op1 (a2 / and
+            :ARG0-of (h / have-03
+                :ARG1 (e / eye
+                    :ARG1-of (g3 / green-02
+                        :ARG1 (e2 / eye))))
+            :op1 (w / white-03)
+            :op2 (g / gray-02))
+        :op2 (t / tabby
+            :ARG0-of (h2 / have-03
+                :ARG1 g3)
+            :ARG0-of (h3 / have-03
+                :ARG1 e2)
+            :mod (a4 / and
+                :op1 (g2 / gray-02)
+                :op2 (b2 / black-04))))
+    :rel (o / other)
+    :rel (c2 / cat))

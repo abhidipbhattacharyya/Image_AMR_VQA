@@ -1,0 +1,39 @@
+# ::tok Many people walk around and sit in beach chairs next to the ocean near the city .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	a2	around	3-4
+# ::node	a	and	4-5
+# ::node	s	sit-01	5-6
+# ::node	b	beach	7-8
+# ::node	c	chair	8-9
+# ::node	n2	next-to	9-10
+# ::node	o	ocean	12-13
+# ::node	n	near-02	13-14
+# ::node	c2	city	15-16
+# ::root	a	and
+# ::edge	person	quant	many	p	m	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	around	w	a2	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	chair	mod	beach	c	b	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	chair	location	next-to	c	n2	
+# ::edge	next-to	op1	ocean	n2	o	
+# ::edge	ocean	ARG1-of	near-02	o	n	
+# ::edge	near-02	ARG2	city	n	c2	
+(a / and
+    :op1 (w / walk-01
+        :ARG0 (p / person
+            :quant (m / many))
+        :direction (a2 / around))
+    :op2 (s / sit-01
+        :ARG1 p
+        :ARG2 (c / chair
+            :location (n2 / next-to
+                :op1 (o / ocean
+                    :ARG1-of (n / near-02
+                        :ARG2 (c2 / city))))
+            :mod (b / beach))))

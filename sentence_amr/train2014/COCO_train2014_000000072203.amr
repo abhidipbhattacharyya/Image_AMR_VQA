@@ -1,0 +1,39 @@
+# ::tok A woman holding a loaf of bread , a slice of bread while spreading peanut butter on it and a jar of peanut butter .
+# ::node	w	woman	1-2
+# ::node	h	hold-01	2-3
+# ::node	l	loaf	4-5
+# ::node	b	bread	6-7
+# ::node	s	slice	9-10
+# ::node	s2	spread-03	13-14
+# ::node	p	peanut	14-15
+# ::node	b2	butter	15-16
+# ::node	a	and	18-19
+# ::node	j	jar	20-21
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	woman	h	w	
+# ::edge	loaf	consist-of	bread	l	b	
+# ::edge	bread	part	slice	b	s	
+# ::edge	spread-03	ARG2	slice	s2	s	
+# ::edge	hold-01	time	spread-03	h	s2	
+# ::edge	spread-03	ARG0	woman	s2	w	
+# ::edge	butter	mod	peanut	b2	p	
+# ::edge	spread-03	ARG1	butter	s2	b2	
+# ::edge	and	op2	slice	a	s	
+# ::edge	and	op1	loaf	a	l	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	and	op3	jar	a	j	
+# ::edge	butter	consist	jar	b2	j	
+(h / hold-01
+    :ARG0 (w / woman)
+    :ARG1 (a / and
+        :op1 (l / loaf
+            :consist-of (b / bread
+                :part (s / slice)))
+        :op2 s
+        :op3 (j / jar))
+    :time (s2 / spread-03
+        :ARG0 w
+        :ARG1 (b2 / butter
+            :consist j
+            :mod (p / peanut))
+        :ARG2 s))

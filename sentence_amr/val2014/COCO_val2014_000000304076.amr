@@ -1,0 +1,25 @@
+# ::tok Bus on urban roadway with celebrity name displayed on reader .
+# ::node	b	bus	0-1
+# ::node	u	urban	2-3
+# ::node	r2	roadway	3-4
+# ::node	c	celebrity	5-6
+# ::node	n	name	6-7
+# ::node	d	display-01	7-8
+# ::node	p	person	9-10
+# ::node	r	read-01	9-10
+# ::root	b	bus
+# ::edge	roadway	mod	urban	r2	u	
+# ::edge	bus	location	roadway	b	r2	
+# ::edge	name	mod	celebrity	n	c	
+# ::edge	bus	prep-with	name	b	n	
+# ::edge	bus	ARG1-of	display-01	b	d	
+# ::edge	display-01	ARG2	person	d	p	
+# ::edge	person	ARG0-of	read-01	p	r	
+(b / bus
+    :ARG1-of (d / display-01
+        :ARG2 (p / person
+            :ARG0-of (r / read-01)))
+    :location (r2 / roadway
+        :mod (u / urban))
+    :prep-with (n / name
+        :mod (c / celebrity)))

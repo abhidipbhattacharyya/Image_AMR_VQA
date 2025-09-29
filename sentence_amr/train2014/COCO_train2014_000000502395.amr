@@ -1,0 +1,34 @@
+# ::tok Doll sitting next to plate of toast with another plate with half eaten sandwich
+# ::node	p	person	0-1
+# ::node	s2	sit-01	1-2
+# ::node	n	next-to	2-3
+# ::node	p2	plate	4-5
+# ::node	p3	plate	4-5
+# ::node	t	toast	6-7
+# ::node	a	another	8-9
+# ::node	h2	have-03	10-11
+# ::node	h	half	11-12
+# ::node	e	eat-01	12-13
+# ::node	s	sandwich	13-14
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	plate	n	p2	
+# ::edge	person	op2	plate	p	p3	
+# ::edge	plate	consist-of	toast	p2	t	
+# ::edge	plate	mod	another	p3	a	
+# ::edge	plate	ARG0-of	have-03	p3	h2	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	sandwich	ARG1-of	eat-01	s	e	
+# ::edge	have-03	ARG1	sandwich	h2	s	
+(s2 / sit-01
+    :ARG1 (p / person
+        :op2 (p3 / plate
+            :ARG0-of (h2 / have-03
+                :ARG1 (s / sandwich
+                    :ARG1-of (e / eat-01
+                        :degree (h / half))))
+            :mod (a / another)))
+    :ARG2 (n / next-to
+        :op1 (p2 / plate
+            :consist-of (t / toast))))

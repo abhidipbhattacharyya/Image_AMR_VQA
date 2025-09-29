@@ -1,0 +1,36 @@
+# ::tok a group of people standing next to each other with some of them holding video game controllers
+# ::node	g2	group	1-2
+# ::node	p	person	3-4
+# ::node	s2	stand-01	4-5
+# ::node	n	next-to	5-6
+# ::node	p2	person	10-11
+# ::node	i	include-91	10-11
+# ::node	s	some	10-11
+# ::node	h	hold-01	13-14
+# ::node	v	video	14-15
+# ::node	g	game	15-16
+# ::node	c	control-01	16-17
+# ::root	s2	stand-01
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	stand-01	ARG1	group	s2	g2	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	include-91	ARG3	some	i	s	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	stand-01	accompanier	hold-01	s2	h	
+# ::edge	game	mod	video	g	v	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	stand-01	rel	control-01	s2	c	
+(s2 / stand-01
+    :ARG1 (g2 / group
+        :consist-of (p / person))
+    :ARG2 (n / next-to)
+    :accompanier (h / hold-01
+        :ARG0 (p2 / person
+            :ARG1-of (i / include-91
+                :ARG2 p
+                :ARG3 (s / some))))
+    :rel (c / control-01
+        :ARG1 (g / game
+            :mod (v / video))))

@@ -1,0 +1,25 @@
+# ::tok A cross walk signal that has both the walk and do n't walk signs lit up .
+# ::node	c	cross-02	1-2
+# ::node	w	walk-01	2-3
+# ::node	s2	signal-07	3-4
+# ::node	w2	walk-01	8-9
+# ::node	0	-	11-12
+# ::node	w3	walk-01	12-13
+# ::node	s	sign	13-14
+# ::node	l	light-up-08	14-15
+# ::root	s2	signal-07
+# ::edge	cross-02	ARG1	walk-01	c	w	
+# ::edge	signal-07	ARG1	cross-02	s2	c	
+# ::edge	walk-01	polarity	-	w3	0	
+# ::edge	sign	topic	walk-01	s	w2	
+# ::edge	light-up-08	ARG1	sign	l	s	
+# ::edge	signal-07	ARG0-of	light-up-08	s2	l	
+# ::edge	signal-07	rel	walk-01	s2	w3	
+(s2 / signal-07
+    :ARG0-of (l / light-up-08
+        :ARG1 (s / sign
+            :topic (w2 / walk-01)))
+    :ARG1 (c / cross-02
+        :ARG1 (w / walk-01))
+    :rel (w3 / walk-01
+        :polarity -))

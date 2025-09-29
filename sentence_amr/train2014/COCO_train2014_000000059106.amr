@@ -1,0 +1,31 @@
+# ::tok A traffic light at the street corner is displaying red , which means vehicles should stop .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	s2	street	5-6
+# ::node	c	corner	6-7
+# ::node	d	display-01	8-9
+# ::node	r2	red-02	9-10
+# ::node	m	mean-01	12-13
+# ::node	v	vehicle	13-14
+# ::node	r	recommend-01	14-15
+# ::node	s	stop-01	15-16
+# ::root	d	display-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	corner	op1	street	c	s2	
+# ::edge	light	location	corner	l	c	
+# ::edge	display-01	ARG0	light	d	l	
+# ::edge	display-01	ARG1	red-02	d	r2	
+# ::edge	display-01	ARG1-of	mean-01	d	m	
+# ::edge	mean-01	ARG2	recommend-01	m	r	
+# ::edge	recommend-01	ARG1	stop-01	r	s	
+# ::edge	stop-01	ARG0	vehicle	s	v	
+(d / display-01
+    :ARG0 (l / light
+        :location (c / corner
+            :op1 (s2 / street))
+        :mod (t / traffic))
+    :ARG1 (r2 / red-02)
+    :ARG1-of (m / mean-01
+        :ARG2 (r / recommend-01
+            :ARG1 (s / stop-01
+                :ARG0 (v / vehicle)))))

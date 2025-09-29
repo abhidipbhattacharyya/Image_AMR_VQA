@@ -1,0 +1,54 @@
+# ::tok A bag lays flat on a table with the contents of it next to it , including an umbrella , change , an ipod , books and other things .
+# ::node	b	bag	1-2
+# ::node	l	lay-01	2-3
+# ::node	f	flat	3-4
+# ::node	t	table	6-7
+# ::node	t2	thing	9-10
+# ::node	c2	contain-01	9-10
+# ::node	n2	next-to	12-13
+# ::node	i	include-01	16-17
+# ::node	u	umbrella	18-19
+# ::node	a	and	19-20
+# ::node	c	change	20-21
+# ::node	p	product	23-24
+# ::node	n	name	23-24
+# ::node	0	ipod	23-24
+# ::node	b2	book	25-26
+# ::node	o	other	27-28
+# ::node	t3	thing	28-29
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	bag	l	b	
+# ::edge	lay-01	manner	flat	l	f	
+# ::edge	lay-01	ARG2	table	l	t	
+# ::edge	thing	ARG1-of	contain-01	t2	c2	
+# ::edge	contain-01	ARG0	bag	c2	b	
+# ::edge	next-to	location-of	thing	n2	t2	
+# ::edge	lay-01	op1-of	next-to	l	n2	
+# ::edge	thing	ARG2-of	include-01	t2	i	
+# ::edge	and	op1	umbrella	a	u	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	change	a	c	
+# ::edge	and	op3	product	a	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	ipod	n	0	
+# ::edge	and	op4	book	a	b2	
+# ::edge	thing	mod	other	t3	o	
+# ::edge	and	op5	thing	a	t3	
+(l / lay-01
+    :ARG1 (b / bag)
+    :ARG2 (t / table)
+    :manner (f / flat)
+    :op1-of (n2 / next-to
+        :location-of (t2 / thing
+            :ARG1-of (c2 / contain-01
+                :ARG0 b)
+            :ARG2-of (i / include-01
+                :ARG1 (a / and
+                    :op1 (u / umbrella)
+                    :op2 (c / change)
+                    :op3 (p / product
+                        :name (n / name
+                            :op1 "ipod"))
+                    :op4 (b2 / book)
+                    :op5 (t3 / thing
+                        :mod (o / other)))))))

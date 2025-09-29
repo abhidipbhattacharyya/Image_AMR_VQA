@@ -1,0 +1,28 @@
+# ::tok Ground level view of wide street intersection with line of waiting cars .
+# ::node	g	ground	0-1
+# ::node	l	level	1-2
+# ::node	v	view-01	2-3
+# ::node	w2	wide-02	4-5
+# ::node	s	street	5-6
+# ::node	i	intersect-01	6-7
+# ::node	l2	line	8-9
+# ::node	w	wait-01	10-11
+# ::node	c	car	11-12
+# ::root	v	view-01
+# ::edge	level	mod	ground	l	g	
+# ::edge	view-01	location	level	v	l	
+# ::edge	street	ARG1-of	wide-02	s	w2	
+# ::edge	intersect-01	ARG1	street	i	s	
+# ::edge	view-01	ARG1	intersect-01	v	i	
+# ::edge	intersect-01	location-of	line	i	l2	
+# ::edge	car	ARG2-of	wait-01	c	w	
+# ::edge	line	consist-of	car	l2	c	
+(v / view-01
+    :ARG1 (i / intersect-01
+        :ARG1 (s / street
+            :ARG1-of (w2 / wide-02))
+        :location-of (l2 / line
+            :consist-of (c / car
+                :ARG2-of (w / wait-01))))
+    :location (l / level
+        :mod (g / ground)))

@@ -1,0 +1,31 @@
+# ::tok A child 's hands hover over a small uncooked pizza sitting on a tabletop .
+# ::node	c	child	1-2
+# ::node	h	hand	3-4
+# ::node	h2	hover-01	4-5
+# ::node	o	over	5-6
+# ::node	s2	small	7-8
+# ::node	c2	cook-01	8-9
+# ::node	0	-	8-9
+# ::node	p	pizza	9-10
+# ::node	s	sit-01	10-11
+# ::node	t	tabletop	13-14
+# ::root	h2	hover-01
+# ::edge	hand	part-of	child	h	c	
+# ::edge	hover-01	ARG1	hand	h2	h	
+# ::edge	hover-01	ARG2	over	h2	o	
+# ::edge	cook-01	polarity	-	c2	0	
+# ::edge	pizza	ARG1-of	cook-01	p	c2	
+# ::edge	pizza	mod	small	p	s2	
+# ::edge	over	op1	pizza	o	p	
+# ::edge	pizza	ARG1-of	sit-01	p	s	
+# ::edge	sit-01	ARG2	tabletop	s	t	
+(h2 / hover-01
+    :ARG1 (h / hand
+        :part-of (c / child))
+    :ARG2 (o / over
+        :op1 (p / pizza
+            :ARG1-of (c2 / cook-01
+                :polarity -)
+            :ARG1-of (s / sit-01
+                :ARG2 (t / tabletop))
+            :mod (s2 / small))))

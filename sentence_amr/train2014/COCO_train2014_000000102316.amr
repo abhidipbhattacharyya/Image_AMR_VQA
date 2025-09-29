@@ -1,0 +1,45 @@
+# ::tok A street sign which reads , " Excellent St. " with a sign under it which reads , " Historic Cemetery " .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	r	read-01	4-5
+# ::node	1	Excellent	7-8
+# ::node	n	name	8-9
+# ::node	3	St.	8-9
+# ::node	a	and	10-11
+# ::node	s2	sign	12-13
+# ::node	u	under	13-14
+# ::node	r2	read-01	16-17
+# ::node	2	Historic	19-20
+# ::node	f	facility	20-21
+# ::node	n2	name	20-21
+# ::node	0	Cemetery	20-21
+# ::root	a	and
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	name	op1	Excellent	n	1	
+# ::edge	name	op2	St.	n	3	
+# ::edge	and	op1	sign	a	s	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	sign	location	under	s2	u	
+# ::edge	under	op1	sign	u	s	
+# ::edge	sign	ARG1-of	read-01	s2	r2	
+# ::edge	read-01	ARG3	facility	r2	f	
+# ::edge	facility	name	name	f	n2	
+# ::edge	name	op1	Historic	n2	2	
+# ::edge	name	op2	Cemetery	n2	0	
+# ::edge	and	rel	name	a	n	
+(a / and
+    :op1 (s / sign
+        :ARG1-of (r / read-01)
+        :mod (s3 / street))
+    :op2 (s2 / sign
+        :ARG1-of (r2 / read-01
+            :ARG3 (f / facility
+                :name (n2 / name
+                    :op1 "Historic"
+                    :op2 "Cemetery")))
+        :location (u / under
+            :op1 s))
+    :rel (n / name
+        :op1 "Excellent"
+        :op2 "St."))

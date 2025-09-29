@@ -1,0 +1,40 @@
+# ::tok A red truck that says , " Forest Fire Service " on the side in yellow and green .
+# ::node	r	red-02	1-2
+# ::node	t	truck	2-3
+# ::node	s	say-01	4-5
+# ::node	n	name	7-8
+# ::node	1	Forest	7-8
+# ::node	0	Fire	8-9
+# ::node	o	organization	9-10
+# ::node	2	Service	9-10
+# ::node	s2	side	13-14
+# ::node	y	yellow-02	15-16
+# ::node	a	and	16-17
+# ::node	g	green-02	17-18
+# ::node	m	mean-01	18-19
+# ::root	t	truck
+# ::edge	truck	ARG1-of	red-02	t	r	
+# ::edge	truck	ARG0-of	say-01	t	s	
+# ::edge	name	op1	Forest	n	1	
+# ::edge	name	op2	Fire	n	0	
+# ::edge	organization	name	name	o	n	
+# ::edge	say-01	ARG1	organization	s	o	
+# ::edge	name	op3	Service	n	2	
+# ::edge	truck	location	side	t	s2	
+# ::edge	and	op1	yellow-02	a	y	
+# ::edge	and	op2	green-02	a	g	
+# ::edge	mean-01	ARG2	and	m	a	
+# ::edge	truck	ARG1-of	mean-01	t	m	
+(t / truck
+    :ARG0-of (s / say-01
+        :ARG1 (o / organization
+            :name (n / name
+                :op1 "Forest"
+                :op2 "Fire"
+                :op3 "Service")))
+    :ARG1-of (r / red-02)
+    :ARG1-of (m / mean-01
+        :ARG2 (a / and
+            :op1 (y / yellow-02)
+            :op2 (g / green-02)))
+    :location (s2 / side))

@@ -1,0 +1,42 @@
+# ::tok Some pancakes with bananas strawberries and blueberries on the plate .
+# ::node	s	some	0-1
+# ::node	e	enzyme	1-2
+# ::node	c2	cook-01	1-2
+# ::node	h	have-03	2-3
+# ::node	b	banana	3-4
+# ::node	e2	enzyme	4-5
+# ::node	c	continent	4-5
+# ::node	n	name	4-5
+# ::node	m	mountain	4-5
+# ::node	0	Democrat	4-5
+# ::node	a	and	5-6
+# ::node	l	Blue	6-7
+# ::node	p	plate	9-10
+# ::root	h	have-03
+# ::edge	enzyme	quant	some	e	s	
+# ::edge	enzyme	ARG0-of	cook-01	e	c2	
+# ::edge	have-03	ARG0	enzyme	h	e	
+# ::edge	enzyme	mod	banana	e2	b	
+# ::edge	enzyme	mod	continent	e2	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	banana	mod	mountain	b	m	
+# ::edge	name	op1	Democrat	n	0	
+# ::edge	and	op2	enzyme	a	e2	
+# ::edge	and	op1	banana	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	Blue	a	l	
+# ::edge	have-03	location	plate	h	p	
+(h / have-03
+    :ARG0 (e / enzyme
+        :quant (s / some)
+        :ARG0-of (c2 / cook-01))
+    :ARG1 (a / and
+        :op1 (b / banana
+            :mod (m / mountain))
+        :op2 (e2 / enzyme
+            :mod b
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Democrat")))
+        :op3 (l / Blue))
+    :location (p / plate))

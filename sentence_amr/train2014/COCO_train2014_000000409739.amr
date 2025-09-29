@@ -1,0 +1,46 @@
+# ::tok Some people sit in chairs at tables outside while others stand near and under a tent .
+# ::node	s2	some	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	chair	4-5
+# ::node	t	table	6-7
+# ::node	o2	outside	7-8
+# ::node	c2	contrast-01	8-9
+# ::node	o	other	9-10
+# ::node	s3	stand-01	10-11
+# ::node	n	near-02	11-12
+# ::node	a	and	12-13
+# ::node	u	under	13-14
+# ::node	t2	tent	15-16
+# ::root	c2	contrast-01
+# ::edge	person	mod	some	p	s2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	sit-01	location	table	s	t	
+# ::edge	table	location	outside	t	o2	
+# ::edge	contrast-01	ARG1	sit-01	c2	s	
+# ::edge	stand-01	ARG1	other	s3	o	
+# ::edge	contrast-01	ARG2	stand-01	c2	s3	
+# ::edge	near-02	ARG2	stand-01	n	s3	
+# ::edge	and	op1	near-02	a	n	
+# ::edge	stand-01	ARG2	and	s3	a	
+# ::edge	and	op2	under	a	u	
+# ::edge	stand-01	ARG2	under	s3	u	
+# ::edge	under	op1	tent	u	t2	
+# ::edge	near-02	ARG2	tent	n	t2	
+(c2 / contrast-01
+    :ARG1 (s / sit-01
+        :ARG1 (p / person
+            :mod (s2 / some))
+        :ARG2 (c / chair)
+        :location (t / table
+            :location (o2 / outside)))
+    :ARG2 (s3 / stand-01
+        :ARG1 (o / other)
+        :ARG2 (a / and
+            :op1 (n / near-02
+                :ARG2 s3
+                :ARG2 (t2 / tent))
+            :op2 (u / under
+                :op1 t2))
+        :ARG2 u))

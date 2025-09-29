@@ -1,0 +1,36 @@
+# ::tok A Washington D.C. police officer rides his motorcycle through the street .
+# ::node	n	name	1-2
+# ::node	1	Washington	1-2
+# ::node	c	city	2-3
+# ::node	0	D.C.	2-3
+# ::node	p2	police	3-4
+# ::node	p	person	4-5
+# ::node	h	have-org-role-91	4-5
+# ::node	o	officer	4-5
+# ::node	r	ride-01	5-6
+# ::node	m	motorcycle	7-8
+# ::node	s	street	10-11
+# ::root	r	ride-01
+# ::edge	name	op1	Washington	n	1	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op2	D.C.	n	0	
+# ::edge	police	mod	city	p2	c	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	police	h	p2	
+# ::edge	have-org-role-91	ARG2	officer	h	o	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	motorcycle	r	m	
+# ::edge	motorcycle	poss	person	m	p	
+# ::edge	ride-01	path	street	r	s	
+(r / ride-01
+    :ARG0 (p / person
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (p2 / police
+                :mod (c / city
+                    :name (n / name
+                        :op1 "Washington"
+                        :op2 "D.C.")))
+            :ARG2 (o / officer)))
+    :ARG1 (m / motorcycle
+        :poss p)
+    :path (s / street))

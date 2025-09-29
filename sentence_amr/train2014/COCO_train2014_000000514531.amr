@@ -1,0 +1,36 @@
+# ::tok A stop sign that has a sign below it clarifying there is no stopping between certain times .
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	h	have-03	4-5
+# ::node	s	sign	6-7
+# ::node	b	below	7-8
+# ::node	c2	clarify-10	9-10
+# ::node	0	-	12-13
+# ::node	s4	stop-01	13-14
+# ::node	b2	between	14-15
+# ::node	c	certain	15-16
+# ::node	t	time	16-17
+# ::root	s2	signal-07
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	signal-07	ARG0-of	have-03	s2	h	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	location	below	s	b	
+# ::edge	below	op1	signal-07	b	s2	
+# ::edge	sign	ARG0-of	clarify-10	s	c2	
+# ::edge	stop-01	polarity	-	s4	0	
+# ::edge	clarify-10	ARG1	stop-01	c2	s4	
+# ::edge	stop-01	time	between	s4	b2	
+# ::edge	time	mod	certain	t	c	
+# ::edge	between	op1	time	b2	t	
+(s2 / signal-07
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :ARG0-of (c2 / clarify-10
+                :ARG1 (s4 / stop-01
+                    :polarity -
+                    :time (b2 / between
+                        :op1 (t / time
+                            :mod (c / certain)))))
+            :location (b / below
+                :op1 s2)))
+    :ARG1 (s3 / stop-01))

@@ -1,0 +1,25 @@
+# ::tok A plane wing next to other planes in airport docking area .
+# ::node	p	plane	1-2
+# ::node	w	wing	2-3
+# ::node	n	next-to	3-4
+# ::node	o	other	5-6
+# ::node	p2	plane	6-7
+# ::node	a	airport	8-9
+# ::node	d	dock-01	9-10
+# ::node	a2	area	10-11
+# ::root	w	wing
+# ::edge	wing	part-of	plane	w	p	
+# ::edge	wing	location	next-to	w	n	
+# ::edge	plane	mod	other	p2	o	
+# ::edge	next-to	op1	plane	n	p2	
+# ::edge	dock-01	location	airport	d	a	
+# ::edge	area	location-of	dock-01	a2	d	
+# ::edge	wing	location	area	w	a2	
+(w / wing
+    :location (n / next-to
+        :op1 (p2 / plane
+            :mod (o / other)))
+    :location (a2 / area
+        :location-of (d / dock-01
+            :location (a / airport)))
+    :part-of (p / plane))

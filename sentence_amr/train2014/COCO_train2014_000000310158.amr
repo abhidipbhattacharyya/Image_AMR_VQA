@@ -1,0 +1,36 @@
+# ::tok Elephant with young rider standing next to adult elephant near parking area .
+# ::node	a2	animal	0-1
+# ::node	y	young	2-3
+# ::node	p2	person	3-4
+# ::node	r	ride-01	3-4
+# ::node	s	stand-01	4-5
+# ::node	n2	next-to	5-6
+# ::node	a	adult	7-8
+# ::node	e	elephant	8-9
+# ::node	n	near-02	9-10
+# ::node	p	park-01	10-11
+# ::node	a3	area	11-12
+# ::root	s	stand-01
+# ::edge	person	mod	young	p2	y	
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	ride-01	ARG1	animal	r	a2	
+# ::edge	stand-01	ARG1	animal	s	a2	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	elephant	mod	adult	e	a	
+# ::edge	next-to	op1	elephant	n2	e	
+# ::edge	elephant	ARG1-of	near-02	e	n	
+# ::edge	area	location-of	park-01	a3	p	
+# ::edge	near-02	ARG2	area	n	a3	
+# ::edge	stand-01	rel	person	s	p2	
+(s / stand-01
+    :ARG1 (a2 / animal)
+    :ARG2 (n2 / next-to
+        :op1 (e / elephant
+            :ARG1-of (n / near-02
+                :ARG2 (a3 / area
+                    :location-of (p / park-01)))
+            :mod (a / adult)))
+    :rel (p2 / person
+        :ARG0-of (r / ride-01
+            :ARG1 a2)
+        :mod (y / young)))

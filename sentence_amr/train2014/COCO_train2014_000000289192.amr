@@ -1,0 +1,22 @@
+# ::tok A sign by trolley tracks prohibiting walking or turning .
+# ::node	s	signal-07	1-2
+# ::node	t2	trolley	3-4
+# ::node	t	track	4-5
+# ::node	p	prohibit-01	5-6
+# ::node	w	walk-01	6-7
+# ::node	o	or	7-8
+# ::node	t3	turn-01	8-9
+# ::root	s	signal-07
+# ::edge	track	mod	trolley	t	t2	
+# ::edge	signal-07	location	track	s	t	
+# ::edge	signal-07	ARG0-of	prohibit-01	s	p	
+# ::edge	or	op1	walk-01	o	w	
+# ::edge	prohibit-01	ARG1	or	p	o	
+# ::edge	or	op2	turn-01	o	t3	
+(s / signal-07
+    :ARG0-of (p / prohibit-01
+        :ARG1 (o / or
+            :op1 (w / walk-01)
+            :op2 (t3 / turn-01)))
+    :location (t / track
+        :mod (t2 / trolley)))

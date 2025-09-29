@@ -1,0 +1,54 @@
+# ::tok An aerial shot shows tropical foliage , surrounding an upscale home , a sea inlet and a train rushing under a tunnel that goes beneath the foliage .
+# ::node	a	aerial	1-2
+# ::node	s2	shot	2-3
+# ::node	s3	show-01	3-4
+# ::node	t2	tropic	4-5
+# ::node	f	foliage	5-6
+# ::node	s4	surround-01	7-8
+# ::node	u2	upscale	9-10
+# ::node	h	home	10-11
+# ::node	s	sea	13-14
+# ::node	i	inlet	14-15
+# ::node	a2	and	15-16
+# ::node	t	train	17-18
+# ::node	r	rush-01	18-19
+# ::node	u	under	19-20
+# ::node	t3	tunnel	21-22
+# ::node	g	go-01	23-24
+# ::node	b	beneath	24-25
+# ::root	s3	show-01
+# ::edge	shot	source	aerial	s2	a	
+# ::edge	show-01	ARG0	shot	s3	s2	
+# ::edge	foliage	mod	tropic	f	t2	
+# ::edge	foliage	ARG1-of	surround-01	f	s4	
+# ::edge	home	mod	upscale	h	u2	
+# ::edge	inlet	mod	sea	i	s	
+# ::edge	and	op2	inlet	a2	i	
+# ::edge	and	op1	home	a2	h	
+# ::edge	surround-01	ARG2	and	s4	a2	
+# ::edge	rush-01	ARG1	train	r	t	
+# ::edge	and	op3	rush-01	a2	r	
+# ::edge	rush-01	ARG2	under	r	u	
+# ::edge	under	op1	tunnel	u	t3	
+# ::edge	tunnel	ARG1-of	go-01	t3	g	
+# ::edge	go-01	ARG4	beneath	g	b	
+# ::edge	beneath	op1	foliage	b	f	
+# ::edge	show-01	rel	surround-01	s3	s4	
+(s3 / show-01
+    :ARG0 (s2 / shot
+        :source (a / aerial))
+    :rel (s4 / surround-01
+        :ARG2 (a2 / and
+            :op1 (h / home
+                :mod (u2 / upscale))
+            :op2 (i / inlet
+                :mod (s / sea))
+            :op3 (r / rush-01
+                :ARG1 (t / train)
+                :ARG2 (u / under
+                    :op1 (t3 / tunnel
+                        :ARG1-of (g / go-01
+                            :ARG4 (b / beneath
+                                :op1 (f / foliage
+                                    :ARG1-of s4
+                                    :mod (t2 / tropic))))))))))

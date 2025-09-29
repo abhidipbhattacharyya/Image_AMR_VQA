@@ -1,0 +1,31 @@
+# ::tok A double decker bus is coming down a narrow road with buildings and parked cars .
+# ::node	d	double-decker	2-3
+# ::node	b2	bus	3-4
+# ::node	c2	come-01	5-6
+# ::node	d2	down	6-7
+# ::node	n	narrow-02	8-9
+# ::node	r	road	9-10
+# ::node	b	building	11-12
+# ::node	a	and	12-13
+# ::node	p	park-01	13-14
+# ::node	c	car	14-15
+# ::root	c2	come-01
+# ::edge	bus	mod	double-decker	b2	d	
+# ::edge	come-01	ARG1	bus	c2	b2	
+# ::edge	come-01	direction	down	c2	d2	
+# ::edge	road	ARG1-of	narrow-02	r	n	
+# ::edge	come-01	ARG4	road	c2	r	
+# ::edge	and	op1	building	a	b	
+# ::edge	road	consist-of	and	r	a	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	and	op2	car	a	c	
+(c2 / come-01
+    :ARG1 (b2 / bus
+        :mod (d / double-decker))
+    :ARG4 (r / road
+        :ARG1-of (n / narrow-02)
+        :consist-of (a / and
+            :op1 (b / building)
+            :op2 (c / car
+                :ARG1-of (p / park-01))))
+    :direction (d2 / down))

@@ -1,0 +1,28 @@
+# ::tok a truck carrying a large load down a tightly packed one way street
+# ::node	t2	truck	1-2
+# ::node	c	carry-01	2-3
+# ::node	l	large	4-5
+# ::node	l2	load	5-6
+# ::node	d	down	6-7
+# ::node	t	tight-05	8-9
+# ::node	p	pack-01	9-10
+# ::node	o	one-way	11-12
+# ::node	s	street	12-13
+# ::root	t2	truck
+# ::edge	truck	ARG0-of	carry-01	t2	c	
+# ::edge	load	mod	large	l2	l	
+# ::edge	carry-01	ARG1	load	c	l2	
+# ::edge	carry-01	direction	down	c	d	
+# ::edge	pack-01	ARG1-of	tight-05	p	t	
+# ::edge	street	mod	one-way	s	o	
+# ::edge	street	ARG1-of	pack-01	s	p	
+# ::edge	down	op1	street	d	s	
+(t2 / truck
+    :ARG0-of (c / carry-01
+        :ARG1 (l2 / load
+            :mod (l / large))
+        :direction (d / down
+            :op1 (s / street
+                :ARG1-of (p / pack-01
+                    :ARG1-of (t / tight-05))
+                :mod (o / one-way)))))

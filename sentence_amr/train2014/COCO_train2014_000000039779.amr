@@ -1,0 +1,31 @@
+# ::tok Neon signs , skyscraper windows , and cars light up a city at night .
+# ::node	n	night	0-1
+# ::node	s	sign	1-2
+# ::node	s2	skyscraper	3-4
+# ::node	w	window	4-5
+# ::node	a	and	6-7
+# ::node	c	car	7-8
+# ::node	l	light-up-08	8-9
+# ::node	c2	city	11-12
+# ::node	d	date-entity	13-14
+# ::node	n2	night	13-14
+# ::root	l	light-up-08
+# ::edge	sign	mod	night	s	n	
+# ::edge	window	part-of	skyscraper	w	s2	
+# ::edge	and	op2	window	a	w	
+# ::edge	and	op1	sign	a	s	
+# ::edge	and	op3	car	a	c	
+# ::edge	light-up-08	ARG0	and	l	a	
+# ::edge	light-up-08	ARG1	city	l	c2	
+# ::edge	light-up-08	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(l / light-up-08
+    :ARG0 (a / and
+        :op1 (s / sign
+            :mod (n / night))
+        :op2 (w / window
+            :part-of (s2 / skyscraper))
+        :op3 (c / car))
+    :ARG1 (c2 / city)
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

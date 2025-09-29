@@ -1,0 +1,34 @@
+# ::tok This shows two street signs that say ninth street and detour
+# ::node	t	this	0-1
+# ::node	s2	show-01	1-2
+# ::node	0	2	2-3
+# ::node	s4	street	3-4
+# ::node	s3	sign	4-5
+# ::node	s	say-01	6-7
+# ::node	o	ordinal-entity	7-8
+# ::node	1	9	7-8
+# ::node	s5	street	8-9
+# ::node	a	and	9-10
+# ::node	d	detain-01	10-11
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	this	s2	t	
+# ::edge	sign	mod	street	s3	s4	
+# ::edge	sign	quant	2	s3	0	
+# ::edge	show-01	ARG1	sign	s2	s3	
+# ::edge	sign	ARG0-of	say-01	s3	s	
+# ::edge	ordinal-entity	value	9	o	1	
+# ::edge	street	ord	ordinal-entity	s5	o	
+# ::edge	and	op1	street	a	s5	
+# ::edge	say-01	ARG1	and	s	a	
+# ::edge	and	op2	detain-01	a	d	
+(s2 / show-01
+    :ARG0 (t / this)
+    :ARG1 (s3 / sign
+        :quant 2
+        :ARG0-of (s / say-01
+            :ARG1 (a / and
+                :op1 (s5 / street
+                    :ord (o / ordinal-entity
+                        :value 9))
+                :op2 (d / detain-01)))
+        :mod (s4 / street)))

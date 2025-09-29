@@ -1,0 +1,23 @@
+# ::tok A sign for bicyclists to press a button to cross the road .
+# ::node	s	signal-07	1-2
+# ::node	b	bicyclist	3-4
+# ::node	p	press-01	5-6
+# ::node	b2	button	7-8
+# ::node	c	cross-02	9-10
+# ::node	r	road	11-12
+# ::root	s	signal-07
+# ::edge	signal-07	ARG2	bicyclist	s	b	
+# ::edge	press-01	ARG0	bicyclist	p	b	
+# ::edge	signal-07	ARG1	press-01	s	p	
+# ::edge	press-01	ARG1	button	p	b2	
+# ::edge	press-01	purpose	cross-02	p	c	
+# ::edge	cross-02	ARG0	bicyclist	c	b	
+# ::edge	cross-02	ARG1	road	c	r	
+(s / signal-07
+    :ARG1 (p / press-01
+        :purpose (c / cross-02
+            :ARG0 (b / bicyclist)
+            :ARG1 (r / road))
+        :ARG0 b
+        :ARG1 (b2 / button))
+    :ARG2 b)

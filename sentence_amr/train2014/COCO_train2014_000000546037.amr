@@ -1,0 +1,43 @@
+# ::tok One of the Frisbee teams wears blue as the other wears green .
+# ::node	0	1	0-1
+# ::node	i	include-91	1-2
+# ::node	g	game	3-4
+# ::node	n	name	3-4
+# ::node	1	Frisbee	3-4
+# ::node	t	team	4-5
+# ::node	t2	team	4-5
+# ::node	t3	team	4-5
+# ::node	w	wear-01	5-6
+# ::node	b	blue	6-7
+# ::node	a	and	7-8
+# ::node	o	other	9-10
+# ::node	w2	wear-01	10-11
+# ::node	g2	green-02	11-12
+# ::root	a	and
+# ::edge	game	name	name	g	n	
+# ::edge	name	op1	Frisbee	n	1	
+# ::edge	team	ARG1-of	include-91	t	i	
+# ::edge	team	quant	1	t	0	
+# ::edge	include-91	ARG0	team	i	t2	
+# ::edge	wear-01	ARG0	team	w	t	
+# ::edge	wear-01	ARG1	blue	w	b	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	team	mod	other	t3	o	
+# ::edge	and	op2	wear-01	a	w2	
+# ::edge	wear-01	ARG0	team	w2	t3	
+# ::edge	wear-01	ARG1	green-02	w2	g2	
+# ::edge	and	rel	game	a	g	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (t / team
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG0 (t2 / team)))
+        :ARG1 (b / blue))
+    :op2 (w2 / wear-01
+        :ARG0 (t3 / team
+            :mod (o / other))
+        :ARG1 (g2 / green-02))
+    :rel (g / game
+        :name (n / name
+            :op1 "Frisbee")))

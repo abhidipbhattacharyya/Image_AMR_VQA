@@ -1,0 +1,37 @@
+# ::tok The small bathroom with toilet and shower stall is visible through the open doorway .
+# ::node	s3	small	1-2
+# ::node	b	bathroom	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	toilet	4-5
+# ::node	a	and	5-6
+# ::node	s2	shower-01	6-7
+# ::node	s4	stall	7-8
+# ::node	p	possible-01	9-10
+# ::node	s	see-01	9-10
+# ::node	t	through	10-11
+# ::node	o	open-09	12-13
+# ::node	d	doorway	13-14
+# ::root	p	possible-01
+# ::edge	bathroom	mod	small	b	s3	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	and	op1	toilet	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	stall	mod	shower-01	s4	s2	
+# ::edge	and	op2	stall	a	s4	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	bathroom	s	b	
+# ::edge	see-01	path	through	s	t	
+# ::edge	doorway	ARG1-of	open-09	d	o	
+# ::edge	through	op1	doorway	t	d	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (b / bathroom
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (t2 / toilet)
+                    :op2 (s4 / stall
+                        :mod (s2 / shower-01))))
+            :mod (s3 / small))
+        :path (t / through
+            :op1 (d / doorway
+                :ARG1-of (o / open-09)))))

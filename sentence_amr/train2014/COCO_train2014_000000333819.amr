@@ -1,0 +1,31 @@
+# ::tok A plant in a container is sitting on a floor while an animal licks one of the leaves .
+# ::node	p	plant	1-2
+# ::node	c	container	4-5
+# ::node	s	sit-01	6-7
+# ::node	f	floor	9-10
+# ::node	a	animal	12-13
+# ::node	l3	lick-01	13-14
+# ::node	0	1	14-15
+# ::node	i	include-91	15-16
+# ::node	l	leaf	17-18
+# ::node	l2	leave-15	17-18
+# ::root	s	sit-01
+# ::edge	plant	location	container	p	c	
+# ::edge	sit-01	ARG1	plant	s	p	
+# ::edge	sit-01	ARG2	floor	s	f	
+# ::edge	lick-01	ARG0	animal	l3	a	
+# ::edge	sit-01	time	lick-01	s	l3	
+# ::edge	leaf	ARG1-of	include-91	l	i	
+# ::edge	leaf	quant	1	l	0	
+# ::edge	lick-01	ARG1	leaf	l3	l	
+# ::edge	include-91	ARG2	leave-15	i	l2	
+(s / sit-01
+    :ARG1 (p / plant
+        :location (c / container))
+    :ARG2 (f / floor)
+    :time (l3 / lick-01
+        :ARG0 (a / animal)
+        :ARG1 (l / leaf
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (l2 / leave-15)))))

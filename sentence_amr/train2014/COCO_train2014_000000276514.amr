@@ -1,0 +1,73 @@
+# ::tok A cat is dressed in St Patrick 's day tie and puts its face into a Guinness glass with beads and shamrocks around it .
+# ::node	c	cat	1-2
+# ::node	d	dress-01	3-4
+# ::node	f2	festival	5-6
+# ::node	n	name	5-6
+# ::node	3	St	5-6
+# ::node	2	John's	6-7
+# ::node	0	Day	8-9
+# ::node	t	tie	9-10
+# ::node	a	and	10-11
+# ::node	p	put-01	11-12
+# ::node	f	face	13-14
+# ::node	c2	company	16-17
+# ::node	n2	name	16-17
+# ::node	1	Guinness	16-17
+# ::node	g	glass	17-18
+# ::node	h	have-03	18-19
+# ::node	b	beads	19-20
+# ::node	a2	and	20-21
+# ::node	b2	bomb	21-22
+# ::node	n3	name	21-22
+# ::node	4	gallon	21-22
+# ::node	a3	around	22-23
+# ::root	a	and
+# ::edge	dress-01	ARG1	cat	d	c	
+# ::edge	festival	name	name	f2	n	
+# ::edge	name	op1	St	n	3	
+# ::edge	name	op2	John's	n	2	
+# ::edge	name	op3	Day	n	0	
+# ::edge	tie	mod	festival	t	f2	
+# ::edge	dress-01	ARG2	tie	d	t	
+# ::edge	and	op1	dress-01	a	d	
+# ::edge	and	op2	put-01	a	p	
+# ::edge	put-01	ARG0	cat	p	c	
+# ::edge	put-01	ARG1	face	p	f	
+# ::edge	cat	part	face	c	f	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	Guinness	n2	1	
+# ::edge	glass	mod	company	g	c2	
+# ::edge	put-01	ARG2	glass	p	g	
+# ::edge	glass	ARG0-of	have-03	g	h	
+# ::edge	and	op1	beads	a2	b	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	bomb	a2	b2	
+# ::edge	bomb	name	name	b2	n3	
+# ::edge	name	op1	gallon	n3	4	
+# ::edge	and	location	around	a2	a3	
+# ::edge	around	op1	glass	a3	g	
+(a / and
+    :op1 (d / dress-01
+        :ARG1 (c / cat
+            :part (f / face))
+        :ARG2 (t / tie
+            :mod (f2 / festival
+                :name (n / name
+                    :op1 "St"
+                    :op2 "John's"
+                    :op3 "Day"))))
+    :op2 (p / put-01
+        :ARG0 c
+        :ARG1 f
+        :ARG2 (g / glass
+            :ARG0-of (h / have-03
+                :ARG1 (a2 / and
+                    :location (a3 / around
+                        :op1 g)
+                    :op1 (b / beads)
+                    :op2 (b2 / bomb
+                        :name (n3 / name
+                            :op1 "gallon"))))
+            :mod (c2 / company
+                :name (n2 / name
+                    :op1 "Guinness")))))

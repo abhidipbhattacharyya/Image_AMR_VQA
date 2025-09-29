@@ -1,0 +1,30 @@
+# ::tok A large group watches a skate boarder prepare to do a stunt
+# ::node	l	large	1-2
+# ::node	g	group	2-3
+# ::node	w	watch-01	3-4
+# ::node	s	skate-01	5-6
+# ::node	p	person	6-7
+# ::node	b	board-05	6-7
+# ::node	p2	prepare-02	7-8
+# ::node	d	do-02	9-10
+# ::node	s2	stunt	11-12
+# ::root	w	watch-01
+# ::edge	group	mod	large	g	l	
+# ::edge	watch-01	ARG0	group	w	g	
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	board-05	ARG1	skate-01	b	s	
+# ::edge	prepare-02	ARG0	person	p2	p	
+# ::edge	watch-01	ARG1	prepare-02	w	p2	
+# ::edge	prepare-02	ARG2	do-02	p2	d	
+# ::edge	do-02	ARG0	person	d	p	
+# ::edge	do-02	ARG1	stunt	d	s2	
+(w / watch-01
+    :ARG0 (g / group
+        :mod (l / large))
+    :ARG1 (p2 / prepare-02
+        :ARG0 (p / person
+            :ARG0-of (b / board-05
+                :ARG1 (s / skate-01)))
+        :ARG2 (d / do-02
+            :ARG0 p
+            :ARG1 (s2 / stunt))))

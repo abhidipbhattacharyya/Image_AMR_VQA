@@ -1,0 +1,37 @@
+# ::tok A vase holding a lovely green plant with several American flags in place
+# ::node	v	vase	1-2
+# ::node	h	hold-01	2-3
+# ::node	l	lovely	4-5
+# ::node	g	green-02	5-6
+# ::node	p	plant	6-7
+# ::node	s	several	8-9
+# ::node	c	country	9-10
+# ::node	n	name	9-10
+# ::node	1	United	9-10
+# ::node	0	States	9-10
+# ::node	f	flag	10-11
+# ::node	i	in-place	12-13
+# ::root	v	vase
+# ::edge	vase	ARG0-of	hold-01	v	h	
+# ::edge	plant	ARG1-of	green-02	p	g	
+# ::edge	plant	mod	lovely	p	l	
+# ::edge	hold-01	ARG1	plant	h	p	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	United	n	1	
+# ::edge	name	op2	States	n	0	
+# ::edge	flag	mod	country	f	c	
+# ::edge	flag	quant	several	f	s	
+# ::edge	in-place	domain	flag	i	f	
+# ::edge	plant	ARG1-of	in-place	p	i	
+(v / vase
+    :ARG0-of (h / hold-01
+        :ARG1 (p / plant
+            :ARG1-of (g / green-02)
+            :ARG1-of (i / in-place
+                :domain (f / flag
+                    :quant (s / several)
+                    :mod (c / country
+                        :name (n / name
+                            :op1 "United"
+                            :op2 "States"))))
+            :mod (l / lovely))))

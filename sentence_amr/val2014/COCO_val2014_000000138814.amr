@@ -1,0 +1,28 @@
+# ::tok Tennis player looks as though he is beginning his serve .
+# ::node	m	multi-sentence	0-1
+# ::node	t	telecommunication	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	l	look-02	2-3
+# ::node	b	begin-01	7-8
+# ::node	s	serve-02	9-10
+# ::root	l	look-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	telecommunication	p2	t	
+# ::edge	look-02	ARG0	person	l	p	
+# ::edge	multi-sentence	snt1	look-02	m	l	
+# ::edge	look-02	ARG1	begin-01	l	b	
+# ::edge	begin-01	ARG0	person	b	p	
+# ::edge	begin-01	ARG1	serve-02	b	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	look-02	rel	multi-sentence	l	m	
+(l / look-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / telecommunication)))
+    :ARG1 (b / begin-01
+        :ARG0 p
+        :ARG1 (s / serve-02
+            :ARG0 p))
+    :rel (m / multi-sentence
+        :snt1 l))

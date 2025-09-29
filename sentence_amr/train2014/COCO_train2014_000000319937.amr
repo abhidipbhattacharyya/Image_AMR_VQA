@@ -1,0 +1,25 @@
+# ::tok Someone clicking on a remote control button in front of a television that is on .
+# ::node	s	someone	0-1
+# ::node	c	click-01	1-2
+# ::node	r	remote	4-5
+# ::node	c2	control-01	5-6
+# ::node	b	button	6-7
+# ::node	i	in-front-of	8-9
+# ::node	t	television	11-12
+# ::node	o	on-01	14-15
+# ::root	c	click-01
+# ::edge	click-01	ARG0	someone	c	s	
+# ::edge	control-01	mod	remote	c2	r	
+# ::edge	button	mod	control-01	b	c2	
+# ::edge	click-01	ARG1	button	c	b	
+# ::edge	click-01	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	television	i	t	
+# ::edge	television	ARG1-of	on-01	t	o	
+(c / click-01
+    :ARG0 (s / someone)
+    :ARG1 (b / button
+        :mod (c2 / control-01
+            :mod (r / remote)))
+    :location (i / in-front-of
+        :op1 (t / television
+            :ARG1-of (o / on-01))))

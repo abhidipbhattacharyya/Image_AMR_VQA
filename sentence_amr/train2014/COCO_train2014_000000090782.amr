@@ -1,0 +1,39 @@
+# ::tok There refrigerator 's French doors are opened to reveal a large supply of several kinds of beverages .
+# ::node	r	refrigerator	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	France	3-4
+# ::node	d	door	4-5
+# ::node	o	open-01	6-7
+# ::node	r2	reveal-01	8-9
+# ::node	l	large	10-11
+# ::node	s2	supply-01	11-12
+# ::node	s	several	13-14
+# ::node	k	kind	14-15
+# ::node	b	beverage	16-17
+# ::root	o	open-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	door	mod	country	d	c	
+# ::edge	door	part-of	refrigerator	d	r	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	open-01	purpose	reveal-01	o	r2	
+# ::edge	reveal-01	ARG0	door	r2	d	
+# ::edge	supply-01	mod	large	s2	l	
+# ::edge	reveal-01	ARG1	supply-01	r2	s2	
+# ::edge	kind	quant	several	k	s	
+# ::edge	beverage	mod	kind	b	k	
+# ::edge	supply-01	ARG1	beverage	s2	b	
+(o / open-01
+    :purpose (r2 / reveal-01
+        :ARG0 (d / door
+            :mod (c / country
+                :name (n / name
+                    :op1 "France"))
+            :part-of (r / refrigerator))
+        :ARG1 (s2 / supply-01
+            :ARG1 (b / beverage
+                :mod (k / kind
+                    :quant (s / several)))
+            :mod (l / large)))
+    :ARG1 d)

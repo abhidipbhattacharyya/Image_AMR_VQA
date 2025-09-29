@@ -1,0 +1,49 @@
+# ::tok A man and woman watch a woman holding a Wii controller in a living room decorated for Christmas .
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	w2	woman	3-4
+# ::node	w	watch-01	4-5
+# ::node	w3	woman	6-7
+# ::node	h	hold-01	7-8
+# ::node	p	product	9-10
+# ::node	n	name	9-10
+# ::node	1	Wii	9-10
+# ::node	c	controller	10-11
+# ::node	l	living	13-14
+# ::node	r	room	14-15
+# ::node	d	decorate-01	15-16
+# ::node	f	festival	17-18
+# ::node	n2	name	17-18
+# ::node	0	Christmas	17-18
+# ::root	w	watch-01
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	watch-01	ARG0	and	w	a	
+# ::edge	watch-01	ARG1	woman	w	w3	
+# ::edge	woman	ARG0-of	hold-01	w3	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	1	
+# ::edge	controller	mod	product	c	p	
+# ::edge	hold-01	ARG1	controller	h	c	
+# ::edge	room	mod	living	r	l	
+# ::edge	watch-01	location	room	w	r	
+# ::edge	room	ARG1-of	decorate-01	r	d	
+# ::edge	decorate-01	ARG2	festival	d	f	
+# ::edge	festival	name	name	f	n2	
+# ::edge	name	op1	Christmas	n2	0	
+(w / watch-01
+    :ARG0 (a / and
+        :op1 (m / man)
+        :op2 (w2 / woman))
+    :ARG1 (w3 / woman
+        :ARG0-of (h / hold-01
+            :ARG1 (c / controller
+                :mod (p / product
+                    :name (n / name
+                        :op1 "Wii")))))
+    :location (r / room
+        :ARG1-of (d / decorate-01
+            :ARG2 (f / festival
+                :name (n2 / name
+                    :op1 "Christmas")))
+        :mod (l / living)))

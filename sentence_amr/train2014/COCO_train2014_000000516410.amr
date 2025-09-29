@@ -1,0 +1,46 @@
+# ::tok Sheep gated in but one of them is sticking its head through a space trying to reach the grass .
+# ::node	h2	helicopter	0-1
+# ::node	g	gate-01	1-2
+# ::node	c	contrast-01	3-4
+# ::node	0	1	4-5
+# ::node	i	include-91	5-6
+# ::node	s2	stick-01	8-9
+# ::node	t	thing	9-10
+# ::node	h	head	10-11
+# ::node	t2	through	11-12
+# ::node	s	space	13-14
+# ::node	t3	try-01	14-15
+# ::node	r	reach-01	16-17
+# ::node	g2	grass	18-19
+# ::root	c	contrast-01
+# ::edge	gate-01	ARG1	helicopter	g	h2	
+# ::edge	contrast-01	ARG1	gate-01	c	g	
+# ::edge	include-91	ARG2	helicopter	i	h2	
+# ::edge	contrast-01	ARG2	stick-01	c	s2	
+# ::edge	stick-01	ARG0	thing	s2	t	
+# ::edge	thing	ARG1-of	include-91	t	i	
+# ::edge	thing	quant	1	t	0	
+# ::edge	thing	ARG1	head	t	h	
+# ::edge	thing	part	head	t	h	
+# ::edge	stick-01	ARG2	through	s2	t2	
+# ::edge	through	op1	space	t2	s	
+# ::edge	thing	ARG0-of	try-01	t	t3	
+# ::edge	try-01	ARG1	reach-01	t3	r	
+# ::edge	reach-01	ARG0	thing	r	t	
+# ::edge	reach-01	ARG1	grass	r	g2	
+(c / contrast-01
+    :ARG1 (g / gate-01
+        :ARG1 (h2 / helicopter))
+    :ARG2 (s2 / stick-01
+        :ARG0 (t / thing
+            :quant 1
+            :ARG0-of (t3 / try-01
+                :ARG1 (r / reach-01
+                    :ARG0 t
+                    :ARG1 (g2 / grass)))
+            :ARG1 (h / head)
+            :ARG1-of (i / include-91
+                :ARG2 h2)
+            :part h)
+        :ARG2 (t2 / through
+            :op1 (s / space))))

@@ -1,0 +1,34 @@
+# ::tok A scene at night ; a plane alone on a runway with lit - up city buildings on the horizon .
+# ::node	s	scene	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	p	plane	6-7
+# ::node	a	alone	7-8
+# ::node	r	runway	10-11
+# ::node	h	have-03	11-12
+# ::node	l	light-up-08	12-13
+# ::node	c	city	15-16
+# ::node	b	building	16-17
+# ::node	h2	horizon	19-20
+# ::root	s	scene
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	plane	mod	alone	p	a	
+# ::edge	plane	location	runway	p	r	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	building	mod	city	b	c	
+# ::edge	building	ARG1-of	light-up-08	b	l	
+# ::edge	have-03	ARG1	building	h	b	
+# ::edge	building	location	horizon	b	h2	
+# ::edge	scene	rel	plane	s	p	
+(s / scene
+    :rel (p / plane
+        :ARG0-of (h / have-03
+            :ARG1 (b / building
+                :ARG1-of (l / light-up-08)
+                :location (h2 / horizon)
+                :mod (c / city)))
+        :location (r / runway)
+        :mod (a / alone))
+    :time (d / date-entity
+        :dayperiod (n / night)))

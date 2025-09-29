@@ -1,0 +1,31 @@
+# ::tok An old tunnel is vacant of motorists due to a red traffic light .
+# ::node	o	old	1-2
+# ::node	t2	tunnel	2-3
+# ::node	e	empty-02	4-5
+# ::node	p	person	6-7
+# ::node	d	drive-01	6-7
+# ::node	a	automobile	6-7
+# ::node	c	cause-01	7-8
+# ::node	r	red-02	10-11
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	e	empty-02
+# ::edge	tunnel	mod	old	t2	o	
+# ::edge	empty-02	ARG1	tunnel	e	t2	
+# ::edge	empty-02	ARG2	person	e	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	drive-01	ARG1	automobile	d	a	
+# ::edge	empty-02	ARG1-of	cause-01	e	c	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	cause-01	ARG0	light	c	l	
+(e / empty-02
+    :ARG1 (t2 / tunnel
+        :mod (o / old))
+    :ARG1-of (c / cause-01
+        :ARG0 (l / light
+            :ARG1-of (r / red-02)
+            :mod (t / traffic)))
+    :ARG2 (p / person
+        :ARG0-of (d / drive-01
+            :ARG1 (a / automobile))))

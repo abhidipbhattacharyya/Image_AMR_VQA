@@ -1,0 +1,30 @@
+# ::tok A batter swings at a wild ball while the opposing team watches from their dugout .
+# ::node	p	person	1-2
+# ::node	b2	bat	1-2
+# ::node	s	swing-02	2-3
+# ::node	w2	wild	5-6
+# ::node	b	ball	6-7
+# ::node	o	oppose-01	9-10
+# ::node	t	team	10-11
+# ::node	w	watch-01	11-12
+# ::node	d	dugout	14-15
+# ::root	s	swing-02
+# ::edge	person	mod	bat	p	b2	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	ball	mod	wild	b	w2	
+# ::edge	swing-02	ARG1	ball	s	b	
+# ::edge	team	ARG0-of	oppose-01	t	o	
+# ::edge	watch-01	ARG0	team	w	t	
+# ::edge	swing-02	time	watch-01	s	w	
+# ::edge	watch-01	location	dugout	w	d	
+# ::edge	dugout	poss	team	d	t	
+(s / swing-02
+    :ARG0 (p / person
+        :mod (b2 / bat))
+    :ARG1 (b / ball
+        :mod (w2 / wild))
+    :time (w / watch-01
+        :ARG0 (t / team
+            :ARG0-of (o / oppose-01))
+        :location (d / dugout
+            :poss t)))

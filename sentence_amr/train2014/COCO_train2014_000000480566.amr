@@ -1,0 +1,34 @@
+# ::tok A cat sleeping on a couch near some blankets , pillows , and a laptop computer .
+# ::node	c	cat	1-2
+# ::node	s	sleep-01	2-3
+# ::node	c3	couch	5-6
+# ::node	n	near-02	6-7
+# ::node	s2	some	7-8
+# ::node	s3	some	7-8
+# ::node	b	blanket	8-9
+# ::node	a	and	9-10
+# ::node	p	pill	10-11
+# ::node	l	laptop	14-15
+# ::node	c2	computer	15-16
+# ::root	s	sleep-01
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	sleep-01	location	couch	s	c3	
+# ::edge	couch	ARG1-of	near-02	c3	n	
+# ::edge	blanket	quant	some	b	s2	
+# ::edge	and	op1	blanket	a	b	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	and	op2	pill	a	p	
+# ::edge	pill	quant	some	p	s3	
+# ::edge	computer	mod	laptop	c2	l	
+# ::edge	and	op3	computer	a	c2	
+(s / sleep-01
+    :ARG0 (c / cat)
+    :location (c3 / couch
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (b / blanket
+                    :quant (s2 / some))
+                :op2 (p / pill
+                    :quant (s3 / some))
+                :op3 (c2 / computer
+                    :mod (l / laptop))))))

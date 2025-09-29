@@ -1,0 +1,33 @@
+# ::tok People carry colorfully lit umbrellas while watching fireworks on a TV at night .
+# ::node	p	person	0-1
+# ::node	c	carry-01	1-2
+# ::node	c2	color-01	2-3
+# ::node	l	light-04	3-4
+# ::node	u	umbrella	4-5
+# ::node	w	watch-01	6-7
+# ::node	f	firework	7-8
+# ::node	t	television	10-11
+# ::node	d	date-entity	12-13
+# ::node	n	night	12-13
+# ::root	c	carry-01
+# ::edge	carry-01	ARG0	person	c	p	
+# ::edge	light-04	ARG1-of	color-01	l	c2	
+# ::edge	umbrella	ARG1-of	light-04	u	l	
+# ::edge	carry-01	ARG1	umbrella	c	u	
+# ::edge	carry-01	time	watch-01	c	w	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	ARG1	firework	w	f	
+# ::edge	watch-01	medium	television	w	t	
+# ::edge	firework	time	date-entity	f	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(c / carry-01
+    :ARG0 (p / person)
+    :ARG1 (u / umbrella
+        :ARG1-of (l / light-04
+            :ARG1-of (c2 / color-01)))
+    :time (w / watch-01
+        :ARG0 p
+        :ARG1 (f / firework
+            :time (d / date-entity
+                :dayperiod (n / night)))
+        :medium (t / television)))

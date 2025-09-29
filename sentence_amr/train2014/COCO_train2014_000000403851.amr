@@ -1,0 +1,38 @@
+# ::tok A sign that has been vandalized to look like it says stop for me it 's the claw .
+# ::node	s2	sign	1-2
+# ::node	v	vandalize-01	5-6
+# ::node	l	look-02	7-8
+# ::node	r	resemble-01	8-9
+# ::node	s	say-01	10-11
+# ::node	s3	stop-01	11-12
+# ::node	y	you	11-12
+# ::node	0	imperative	11-12
+# ::node	i	i	13-14
+# ::node	c	claw	17-18
+# ::node	m	multi-sentence	18-19
+# ::root	m	multi-sentence
+# ::edge	sign	ARG1-of	vandalize-01	s2	v	
+# ::edge	vandalize-01	purpose	look-02	v	l	
+# ::edge	look-02	ARG0	sign	l	s2	
+# ::edge	look-02	ARG1	resemble-01	l	r	
+# ::edge	resemble-01	ARG2	say-01	r	s	
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	say-01	ARG1	stop-01	s	s3	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	stop-01	mode	imperative	s3	0	
+# ::edge	stop-01	beneficiary	i	s3	i	
+# ::edge	multi-sentence	snt2	claw	m	c	
+# ::edge	multi-sentence	snt1	sign	m	s2	
+(m / multi-sentence
+    :snt1 (s2 / sign
+        :ARG1-of (v / vandalize-01
+            :purpose (l / look-02
+                :ARG0 s2
+                :ARG1 (r / resemble-01
+                    :ARG2 (s / say-01
+                        :ARG0 s2
+                        :ARG1 (s3 / stop-01
+                            :ARG0 (y / you)
+                            :beneficiary (i / i)
+                            :mode imperative))))))
+    :snt2 (c / claw))

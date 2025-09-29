@@ -1,0 +1,38 @@
+# ::tok Many unattractive neckties hang on display waiting for tasteless consumers to purchase them .
+# ::node	m	many	0-1
+# ::node	a	attract-01	1-2
+# ::node	h2	hoodie	2-3
+# ::node	h	hang-01	3-4
+# ::node	d	display-01	5-6
+# ::node	w	wait-01	6-7
+# ::node	t	tasteless	8-9
+# ::node	0	-	8-9
+# ::node	p	person	9-10
+# ::node	c	consume-01	9-10
+# ::node	p2	purchase-01	11-12
+# ::root	h	hang-01
+# ::edge	hoodie	ARG1-of	attract-01	h2	a	
+# ::edge	hoodie	quant	many	h2	m	
+# ::edge	hang-01	ARG1	hoodie	h	h2	
+# ::edge	hang-01	ARG2	display-01	h	d	
+# ::edge	display-01	ARG1	hoodie	d	h2	
+# ::edge	hang-01	ARG1-of	wait-01	h	w	
+# ::edge	attract-01	polarity	-	a	0	
+# ::edge	person	mod	tasteless	p	t	
+# ::edge	person	ARG0-of	consume-01	p	c	
+# ::edge	purchase-01	ARG0	person	p2	p	
+# ::edge	wait-01	ARG2	purchase-01	w	p2	
+# ::edge	purchase-01	ARG1	hoodie	p2	h2	
+(h / hang-01
+    :ARG1 (h2 / hoodie
+        :quant (m / many)
+        :ARG1-of (a / attract-01
+            :polarity -))
+    :ARG1-of (w / wait-01
+        :ARG2 (p2 / purchase-01
+            :ARG0 (p / person
+                :ARG0-of (c / consume-01)
+                :mod (t / tasteless))
+            :ARG1 h2))
+    :ARG2 (d / display-01
+        :ARG1 h2))

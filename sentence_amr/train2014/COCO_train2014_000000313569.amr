@@ -1,0 +1,48 @@
+# ::tok two males one in a sailor suit and the other in an orange and blue shirt
+# ::node	1	2	0-1
+# ::node	m	male	1-2
+# ::node	0	1	2-3
+# ::node	w	wear-01	3-4
+# ::node	w2	wear-01	3-4
+# ::node	p	person	5-6
+# ::node	s	sail-01	5-6
+# ::node	s4	suit	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	o2	other	9-10
+# ::node	o	orange	12-13
+# ::node	b	blue	14-15
+# ::node	s2	shirt	15-16
+# ::node	s3	shirt	15-16
+# ::root	a	and
+# ::edge	male	quant	2	m	1	
+# ::edge	wear-01	ARG0	1	w	0	
+# ::edge	wear-01	ARG0	male	w2	m	
+# ::edge	person	ARG0-of	sail-01	p	s	
+# ::edge	suit	mod	person	s4	p	
+# ::edge	wear-01	ARG1	suit	w	s4	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	wear-01	a2	w2	
+# ::edge	and	quant	1	a2	0	
+# ::edge	wear-01	ARG0	other	w2	o2	
+# ::edge	shirt	mod	orange	s2	o	
+# ::edge	wear-01	ARG1	shirt	w2	s2	
+# ::edge	shirt	mod	blue	s3	b	
+# ::edge	wear-01	op2	shirt	w2	s3	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 1
+        :ARG1 (s4 / suit
+            :mod (p / person
+                :ARG0-of (s / sail-01))))
+    :op2 (a2 / and
+        :quant 1
+        :op1 (w2 / wear-01
+            :ARG0 (m / male
+                :quant 2)
+            :ARG0 (o2 / other)
+            :ARG1 (s2 / shirt
+                :mod (o / orange))
+            :op2 (s3 / shirt
+                :mod (b / blue)))))

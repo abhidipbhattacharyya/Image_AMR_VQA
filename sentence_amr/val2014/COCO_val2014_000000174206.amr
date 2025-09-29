@@ -1,0 +1,28 @@
+# ::tok A plate with two pieces of sandwich ans a cup of coffee .
+# ::node	p2	plate	1-2
+# ::node	1	2	3-4
+# ::node	p	piece	4-5
+# ::node	s	sandwich	6-7
+# ::node	a	and	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	c2	cup	9-10
+# ::node	c	coffee	11-12
+# ::root	p2	plate
+# ::edge	piece	quant	2	p	1	
+# ::edge	piece	consist-of	sandwich	p	s	
+# ::edge	and	op1	piece	a	p	
+# ::edge	plate	consist-of	and	p2	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op2	coffee	a	c	
+(p2 / plate
+    :consist-of (a / and
+        :op1 (p / piece
+            :quant 2
+            :consist-of (s / sandwich))
+        :op2 (c / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c2 / cup)))))

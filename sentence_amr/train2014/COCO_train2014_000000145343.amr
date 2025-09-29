@@ -1,0 +1,27 @@
+# ::tok A red bus is inside a garage with a table in front
+# ::node	r	red-02	1-2
+# ::node	b2	bus	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	i2	inside	4-5
+# ::node	g	garage	6-7
+# ::node	a	and	7-8
+# ::node	t	table	9-10
+# ::node	i	in-front-of	11-12
+# ::root	a	and
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	be-located-at-91	ARG1	bus	b	b2	
+# ::edge	be-located-at-91	ARG2	inside	b	i2	
+# ::edge	inside	op1	garage	i2	g	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	table	a	t	
+# ::edge	table	location	in-front-of	t	i	
+# ::edge	in-front-of	op1	garage	i	g	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (b2 / bus
+            :ARG1-of (r / red-02))
+        :ARG2 (i2 / inside
+            :op1 (g / garage)))
+    :op2 (t / table
+        :location (i / in-front-of
+            :op1 g)))

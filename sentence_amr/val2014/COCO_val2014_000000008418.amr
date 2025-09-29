@@ -1,0 +1,41 @@
+# ::tok Toothpaste , toothbrush , mouth rinse , tongue cleaner and other mouth cleaning things are kept .
+# ::node	t4	tooth	0-1
+# ::node	t5	toothbrush	2-3
+# ::node	m	mouth	4-5
+# ::node	r	rinse-01	5-6
+# ::node	t3	tongue	7-8
+# ::node	t	thing	8-9
+# ::node	c	clean-01	8-9
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	c2	clean-01	12-13
+# ::node	t2	thing	13-14
+# ::node	k	keep-01	15-16
+# ::root	k	keep-01
+# ::edge	rinse-01	ARG2	mouth	r	m	
+# ::edge	thing	ARG0-of	rinse-01	t	r	
+# ::edge	thing	ARG0-of	clean-01	t	c	
+# ::edge	clean-01	ARG1	tongue	c	t3	
+# ::edge	and	op4	thing	a	t	
+# ::edge	and	op3	rinse-01	a	r	
+# ::edge	and	op2	toothbrush	a	t5	
+# ::edge	and	op1	tooth	a	t4	
+# ::edge	clean-01	ARG1	mouth	c2	m	
+# ::edge	thing	ARG0-of	clean-01	t2	c2	
+# ::edge	thing	mod	other	t2	o	
+# ::edge	and	op5	thing	a	t2	
+# ::edge	keep-01	ARG1	and	k	a	
+(k / keep-01
+    :ARG1 (a / and
+        :op1 (t4 / tooth)
+        :op2 (t5 / toothbrush)
+        :op3 (r / rinse-01
+            :ARG2 (m / mouth))
+        :op4 (t / thing
+            :ARG0-of r
+            :ARG0-of (c / clean-01
+                :ARG1 (t3 / tongue)))
+        :op5 (t2 / thing
+            :ARG0-of (c2 / clean-01
+                :ARG1 m)
+            :mod (o / other))))

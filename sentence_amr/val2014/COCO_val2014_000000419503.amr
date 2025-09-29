@@ -1,0 +1,28 @@
+# ::tok A buffet styled restaurant without self service but a server .
+# ::node	b	buffet	1-2
+# ::node	s4	style-01	2-3
+# ::node	r	restaurant	3-4
+# ::node	s	self	5-6
+# ::node	s2	serve-01	6-7
+# ::node	0	-	6-7
+# ::node	c	contrast-01	7-8
+# ::node	p	person	9-10
+# ::node	s3	serve-01	9-10
+# ::root	r	restaurant
+# ::edge	style-01	ARG2	buffet	s4	b	
+# ::edge	restaurant	ARG1-of	style-01	r	s4	
+# ::edge	serve-01	ARG0	self	s2	s	
+# ::edge	serve-01	polarity	-	s2	0	
+# ::edge	contrast-01	ARG1	serve-01	c	s2	
+# ::edge	restaurant	ARG2-of	contrast-01	r	c	
+# ::edge	serve-01	ARG1	person	s2	p	
+# ::edge	person	ARG0-of	serve-01	p	s3	
+(r / restaurant
+    :ARG1-of (s4 / style-01
+        :ARG2 (b / buffet))
+    :ARG2-of (c / contrast-01
+        :ARG1 (s2 / serve-01
+            :ARG0 (s / self)
+            :ARG1 (p / person
+                :ARG0-of (s3 / serve-01))
+            :polarity -)))

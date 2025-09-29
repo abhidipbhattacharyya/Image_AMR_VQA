@@ -1,0 +1,27 @@
+# ::tok Cows are scattered through a rocky pasture with a body of water ahead of them .
+# ::node	c	cow	0-1
+# ::node	s	scatter-01	2-3
+# ::node	m	mountain	5-6
+# ::node	p	pasture	6-7
+# ::node	h	have-03	7-8
+# ::node	b	body	9-10
+# ::node	w	water	11-12
+# ::node	a	ahead	12-13
+# ::root	s	scatter-01
+# ::edge	scatter-01	ARG1	cow	s	c	
+# ::edge	pasture	mod	mountain	p	m	
+# ::edge	scatter-01	location	pasture	s	p	
+# ::edge	pasture	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	body	h	b	
+# ::edge	body	consist-of	water	b	w	
+# ::edge	body	location	ahead	b	a	
+# ::edge	ahead	op1	cow	a	c	
+(s / scatter-01
+    :ARG1 (c / cow)
+    :location (p / pasture
+        :ARG0-of (h / have-03
+            :ARG1 (b / body
+                :consist-of (w / water)
+                :location (a / ahead
+                    :op1 c)))
+        :mod (m / mountain)))

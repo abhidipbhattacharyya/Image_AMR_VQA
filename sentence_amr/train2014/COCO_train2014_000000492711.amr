@@ -1,0 +1,26 @@
+# ::tok A group of planes with smoke trailing behind them as they fly
+# ::node	g	group	1-2
+# ::node	p	plane	3-4
+# ::node	h	have-03	4-5
+# ::node	s	smoke	5-6
+# ::node	f2	follow-01	6-7
+# ::node	b	behind	7-8
+# ::node	f	fly-01	11-12
+# ::root	h	have-03
+# ::edge	plane	quant	group	p	g	
+# ::edge	have-03	ARG0	plane	h	p	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	follow-01	s	f2	
+# ::edge	follow-01	ARG2	behind	f2	b	
+# ::edge	behind	op1	plane	b	p	
+# ::edge	follow-01	time	fly-01	f2	f	
+# ::edge	fly-01	ARG0	plane	f	p	
+(h / have-03
+    :ARG0 (p / plane
+        :quant (g / group))
+    :ARG1 (s / smoke
+        :ARG1-of (f2 / follow-01
+            :ARG2 (b / behind
+                :op1 p)
+            :time (f / fly-01
+                :ARG0 p))))

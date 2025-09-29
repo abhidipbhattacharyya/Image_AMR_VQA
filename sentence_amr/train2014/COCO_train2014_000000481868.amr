@@ -1,0 +1,33 @@
+# ::tok Somebody made a triangle wreath with pine needles and apples at each corner of the triangle .
+# ::node	s	somebody	0-1
+# ::node	m	make-01	1-2
+# ::node	t	triangle	3-4
+# ::node	w	wreath	4-5
+# ::node	p	pine	6-7
+# ::node	n	needle	7-8
+# ::node	a	and	8-9
+# ::node	a2	apple	9-10
+# ::node	e	each	11-12
+# ::node	c	corner	12-13
+# ::root	m	make-01
+# ::edge	make-01	ARG0	somebody	m	s	
+# ::edge	wreath	mod	triangle	w	t	
+# ::edge	make-01	ARG1	wreath	m	w	
+# ::edge	needle	consist-of	pine	n	p	
+# ::edge	and	op1	needle	a	n	
+# ::edge	make-01	instrument	and	m	a	
+# ::edge	and	op2	apple	a	a2	
+# ::edge	corner	mod	each	c	e	
+# ::edge	make-01	location	corner	m	c	
+# ::edge	triangle	part	corner	t	c	
+(m / make-01
+    :ARG0 (s / somebody)
+    :ARG1 (w / wreath
+        :mod (t / triangle
+            :part (c / corner
+                :mod (e / each))))
+    :instrument (a / and
+        :op1 (n / needle
+            :consist-of (p / pine))
+        :op2 (a2 / apple))
+    :location c)

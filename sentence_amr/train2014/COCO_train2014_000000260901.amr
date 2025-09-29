@@ -1,0 +1,28 @@
+# ::tok A complete train set , with tracks , buildings , and three piece train .
+# ::node	c	complete-02	1-2
+# ::node	t2	train	2-3
+# ::node	s	set	3-4
+# ::node	t	track	6-7
+# ::node	b	building	8-9
+# ::node	a	and	10-11
+# ::node	0	3	11-12
+# ::node	p	piece	12-13
+# ::node	t3	train	13-14
+# ::root	s	set
+# ::edge	set	mod	train	s	t2	
+# ::edge	set	ARG1-of	complete-02	s	c	
+# ::edge	and	op2	building	a	b	
+# ::edge	and	op1	track	a	t	
+# ::edge	set	consist-of	and	s	a	
+# ::edge	piece	quant	3	p	0	
+# ::edge	train	consist-of	piece	t3	p	
+# ::edge	and	op3	train	a	t3	
+(s / set
+    :ARG1-of (c / complete-02)
+    :consist-of (a / and
+        :op1 (t / track)
+        :op2 (b / building)
+        :op3 (t3 / train
+            :consist-of (p / piece
+                :quant 3)))
+    :mod (t2 / train))

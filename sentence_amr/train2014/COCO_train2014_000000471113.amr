@@ -1,0 +1,25 @@
+# ::tok Baseball team players are sitting on a bench watching the game .
+# ::node	b	baseball	0-1
+# ::node	t	team	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	sit-01	4-5
+# ::node	b2	bench	7-8
+# ::node	w	watch-01	8-9
+# ::node	g	game	10-11
+# ::root	s	sit-01
+# ::edge	team	mod	baseball	t	b	
+# ::edge	person	part-of	team	p	t	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	bench	s	b2	
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG1	game	w	g	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01)
+        :ARG0-of (w / watch-01
+            :ARG1 (g / game))
+        :part-of (t / team
+            :mod (b / baseball)))
+    :ARG2 (b2 / bench))

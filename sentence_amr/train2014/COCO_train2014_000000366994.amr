@@ -1,0 +1,39 @@
+# ::tok British flags fly overhead as double - decker buses and taxis move along below .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	Britain	0-1
+# ::node	f	flag	1-2
+# ::node	f2	fly-01	2-3
+# ::node	o	overhead	3-4
+# ::node	d	double-decker	7-8
+# ::node	b2	bus	8-9
+# ::node	a	and	9-10
+# ::node	t	taxi	10-11
+# ::node	m	move-01	11-12
+# ::node	b	below	13-14
+# ::root	f2	fly-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Britain	n	0	
+# ::edge	flag	mod	country	f	c	
+# ::edge	fly-01	ARG1	flag	f2	f	
+# ::edge	fly-01	location	overhead	f2	o	
+# ::edge	bus	mod	double-decker	b2	d	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	and	op2	taxi	a	t	
+# ::edge	taxi	mod	double-decker	t	d	
+# ::edge	move-01	ARG1	and	m	a	
+# ::edge	fly-01	time	move-01	f2	m	
+# ::edge	move-01	location	below	m	b	
+(f2 / fly-01
+    :ARG1 (f / flag
+        :mod (c / country
+            :name (n / name
+                :op1 "Britain")))
+    :location (o / overhead)
+    :time (m / move-01
+        :ARG1 (a / and
+            :op1 (b2 / bus
+                :mod (d / double-decker))
+            :op2 (t / taxi
+                :mod d))
+        :location (b / below)))

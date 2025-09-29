@@ -1,0 +1,33 @@
+# ::tok A view from behind the goalie at a soccer game as he watches a player pass the ball .
+# ::node	v	view-01	1-2
+# ::node	b2	behind	3-4
+# ::node	g2	goalie	5-6
+# ::node	s	soccer	8-9
+# ::node	g	game	9-10
+# ::node	w	watch-01	12-13
+# ::node	p2	person	14-15
+# ::node	p3	play-01	14-15
+# ::node	p	pass-05	15-16
+# ::node	b	ball	17-18
+# ::root	v	view-01
+# ::edge	view-01	source	behind	v	b2	
+# ::edge	behind	op1	goalie	b2	g2	
+# ::edge	game	mod	soccer	g	s	
+# ::edge	view-01	subevent-of	game	v	g	
+# ::edge	watch-01	ARG0	goalie	w	g2	
+# ::edge	view-01	ARG1	watch-01	v	w	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	pass-05	ARG0	person	p	p2	
+# ::edge	watch-01	ARG1	pass-05	w	p	
+# ::edge	pass-05	ARG1	ball	p	b	
+(v / view-01
+    :ARG1 (w / watch-01
+        :ARG0 (g2 / goalie)
+        :ARG1 (p / pass-05
+            :ARG0 (p2 / person
+                :ARG0-of (p3 / play-01))
+            :ARG1 (b / ball)))
+    :source (b2 / behind
+        :op1 g2)
+    :subevent-of (g / game
+        :mod (s / soccer)))

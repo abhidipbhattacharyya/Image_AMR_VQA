@@ -1,0 +1,36 @@
+# ::tok Two guys are eating slices of pizza , while one holds a beer .
+# ::node	1	2	0-1
+# ::node	g	guy	1-2
+# ::node	g2	guy	1-2
+# ::node	e	eat-01	3-4
+# ::node	s	slice	4-5
+# ::node	p	pizza	6-7
+# ::node	a	and	7-8
+# ::node	i	include-91	9-10
+# ::node	0	1	9-10
+# ::node	h	hold-01	10-11
+# ::node	b	beer	12-13
+# ::root	a	and
+# ::edge	guy	quant	2	g	1	
+# ::edge	eat-01	ARG0	guy	e	g	
+# ::edge	eat-01	ARG1	slice	e	s	
+# ::edge	slice	mod	pizza	s	p	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	guy	ARG1-of	include-91	g2	i	
+# ::edge	include-91	ARG2	guy	i	g	
+# ::edge	guy	quant	1	g2	0	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	guy	h	g2	
+# ::edge	hold-01	ARG1	beer	h	b	
+(a / and
+    :op1 (e / eat-01
+        :ARG0 (g / guy
+            :quant 2)
+        :ARG1 (s / slice
+            :mod (p / pizza)))
+    :op2 (h / hold-01
+        :ARG0 (g2 / guy
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 g))
+        :ARG1 (b / beer)))

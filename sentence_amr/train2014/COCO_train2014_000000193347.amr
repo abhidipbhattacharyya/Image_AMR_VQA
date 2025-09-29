@@ -1,0 +1,58 @@
+# ::tok A tray with breakfast plate of three baked goods including a doughnut in a paper holder and a coffee cup with coffee on a saucer with a spoon .
+# ::node	t	tray	1-2
+# ::node	h	have-03	2-3
+# ::node	b2	breakfast-01	3-4
+# ::node	p2	plate	4-5
+# ::node	0	3	6-7
+# ::node	b	bake-01	7-8
+# ::node	g	good	8-9
+# ::node	i	include-01	9-10
+# ::node	d	doughnut	11-12
+# ::node	p	paper	14-15
+# ::node	h3	holder	15-16
+# ::node	a	and	16-17
+# ::node	a2	and	16-17
+# ::node	c	coffee	18-19
+# ::node	c3	cup	19-20
+# ::node	h2	have-03	20-21
+# ::node	c2	coffee	21-22
+# ::node	s	saucer	24-25
+# ::node	s2	spoon	27-28
+# ::root	a	and
+# ::edge	tray	ARG0-of	have-03	t	h	
+# ::edge	plate	mod	breakfast-01	p2	b2	
+# ::edge	have-03	ARG1	plate	h	p2	
+# ::edge	good	ARG1-of	bake-01	g	b	
+# ::edge	good	quant	3	g	0	
+# ::edge	plate	consist-of	good	p2	g	
+# ::edge	good	ARG2-of	include-01	g	i	
+# ::edge	holder	consist-of	paper	h3	p	
+# ::edge	doughnut	location	holder	d	h3	
+# ::edge	and	op1	tray	a	t	
+# ::edge	and	op1	doughnut	a2	d	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	cup	mod	coffee	c3	c	
+# ::edge	and	op2	cup	a2	c3	
+# ::edge	cup	ARG0-of	have-03	c3	h2	
+# ::edge	have-03	ARG1	coffee	h2	c2	
+# ::edge	coffee	location	saucer	c2	s	
+# ::edge	have-03	instrument	spoon	h2	s2	
+(a / and
+    :op1 (t / tray
+        :ARG0-of (h / have-03
+            :ARG1 (p2 / plate
+                :consist-of (g / good
+                    :quant 3
+                    :ARG1-of (b / bake-01)
+                    :ARG2-of (i / include-01
+                        :ARG1 (a2 / and
+                            :op1 (d / doughnut
+                                :location (h3 / holder
+                                    :consist-of (p / paper)))
+                            :op2 (c3 / cup
+                                :ARG0-of (h2 / have-03
+                                    :ARG1 (c2 / coffee
+                                        :location (s / saucer))
+                                    :instrument (s2 / spoon))
+                                :mod (c / coffee)))))
+                :mod (b2 / breakfast-01)))))

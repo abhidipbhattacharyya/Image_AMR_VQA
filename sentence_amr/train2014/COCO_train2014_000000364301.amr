@@ -1,0 +1,31 @@
+# ::tok A monitor placed next to some drawers , displays a computer desktop home screen
+# ::node	m	monitor	1-2
+# ::node	p	place-01	2-3
+# ::node	n	next-to	3-4
+# ::node	s2	some	5-6
+# ::node	c	cabinet	6-7
+# ::node	d2	display-01	8-9
+# ::node	c2	computer	10-11
+# ::node	d	desktop	11-12
+# ::node	h	home	12-13
+# ::node	s	screen	13-14
+# ::root	d2	display-01
+# ::edge	monitor	ARG1-of	place-01	m	p	
+# ::edge	place-01	ARG2	next-to	p	n	
+# ::edge	cabinet	mod	some	c	s2	
+# ::edge	next-to	op1	cabinet	n	c	
+# ::edge	display-01	ARG0	monitor	d2	m	
+# ::edge	desktop	mod	computer	d	c2	
+# ::edge	screen	mod	home	s	h	
+# ::edge	screen	mod	desktop	s	d	
+# ::edge	display-01	ARG1	screen	d2	s	
+(d2 / display-01
+    :ARG0 (m / monitor
+        :ARG1-of (p / place-01
+            :ARG2 (n / next-to
+                :op1 (c / cabinet
+                    :mod (s2 / some)))))
+    :ARG1 (s / screen
+        :mod (h / home)
+        :mod (d / desktop
+            :mod (c2 / computer))))

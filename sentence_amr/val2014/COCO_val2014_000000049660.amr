@@ -1,0 +1,41 @@
+# ::tok A male tennis player jumping in the air to serve a ball on a clay court with spectators looking on .
+# ::node	m	male	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	j	jump-03	4-5
+# ::node	a	air	7-8
+# ::node	s	serve-01	9-10
+# ::node	b	ball	11-12
+# ::node	c	clay	14-15
+# ::node	c2	court	15-16
+# ::node	s2	spectator	17-18
+# ::node	l	look-01	18-19
+# ::root	j	jump-03
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	jump-03	destination	air	j	a	
+# ::edge	jump-03	purpose	serve-01	j	s	
+# ::edge	serve-01	ARG0	person	s	p	
+# ::edge	serve-01	ARG1	ball	s	b	
+# ::edge	court	mod	clay	c2	c	
+# ::edge	serve-01	location	court	s	c2	
+# ::edge	person	accompanier	spectator	p	s2	
+# ::edge	spectator	ARG0-of	look-01	s2	l	
+# ::edge	look-01	ARG1	serve-01	l	s	
+(j / jump-03
+    :purpose (s / serve-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))
+            :accompanier (s2 / spectator
+                :ARG0-of (l / look-01
+                    :ARG1 s))
+            :mod (m / male))
+        :ARG1 (b / ball)
+        :location (c2 / court
+            :mod (c / clay)))
+    :ARG0 p
+    :destination (a / air))

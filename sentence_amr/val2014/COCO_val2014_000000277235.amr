@@ -1,0 +1,29 @@
+# ::tok a small kitten is looking in the mirror where you can see its reflection
+# ::node	s2	small	1-2
+# ::node	k	kitten	2-3
+# ::node	l	look-01	4-5
+# ::node	m	mirror	7-8
+# ::node	y	you	9-10
+# ::node	p	possible-01	10-11
+# ::node	s	see-01	11-12
+# ::node	r	reflect-01	13-14
+# ::root	l	look-01
+# ::edge	kitten	mod	small	k	s2	
+# ::edge	look-01	ARG0	kitten	l	k	
+# ::edge	look-01	ARG1	mirror	l	m	
+# ::edge	mirror	location-of	possible-01	m	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	see-01	ARG1	reflect-01	s	r	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	reflect-01	ARG1	kitten	r	k	
+(l / look-01
+    :ARG0 (k / kitten
+        :mod (s2 / small))
+    :ARG1 (m / mirror
+        :location-of (p / possible-01
+            :ARG1 (s / see-01
+                :ARG0 (y / you)
+                :ARG1 (r / reflect-01
+                    :ARG1 k
+                    :ARG2 m)))))

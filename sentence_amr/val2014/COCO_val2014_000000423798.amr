@@ -1,0 +1,49 @@
+# ::tok An empty street at night with bright lights shining from the light poles , and one very bight light reflecting off the pavement .
+# ::node	e	empty-02	1-2
+# ::node	s2	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	n2	night	4-5
+# ::node	b	bright-02	6-7
+# ::node	l	light	7-8
+# ::node	s	shine-01	8-9
+# ::node	l2	light	11-12
+# ::node	p2	pole	12-13
+# ::node	a	and	14-15
+# ::node	0	1	15-16
+# ::node	v	very	16-17
+# ::node	n	navy	17-18
+# ::node	l3	light	18-19
+# ::node	r	reflect-01	19-20
+# ::node	p	pavement	22-23
+# ::root	s2	street
+# ::edge	street	ARG1-of	empty-02	s2	e	
+# ::edge	street	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	light	ARG1-of	bright-02	l	b	
+# ::edge	shine-01	ARG1	light	s	l	
+# ::edge	pole	mod	light	p2	l2	
+# ::edge	shine-01	ARG2	pole	s	p2	
+# ::edge	and	op1	shine-01	a	s	
+# ::edge	street	location-of	and	s2	a	
+# ::edge	navy	degree	very	n	v	
+# ::edge	light	mod	navy	l3	n	
+# ::edge	light	quant	1	l3	0	
+# ::edge	reflect-01	ARG1	light	r	l3	
+# ::edge	and	op2	reflect-01	a	r	
+# ::edge	reflect-01	ARG2	pavement	r	p	
+(s2 / street
+    :ARG1-of (e / empty-02)
+    :location-of (a / and
+        :op1 (s / shine-01
+            :ARG1 (l / light
+                :ARG1-of (b / bright-02))
+            :ARG2 (p2 / pole
+                :mod (l2 / light)))
+        :op2 (r / reflect-01
+            :ARG1 (l3 / light
+                :quant 1
+                :mod (n / navy
+                    :degree (v / very)))
+            :ARG2 (p / pavement)))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

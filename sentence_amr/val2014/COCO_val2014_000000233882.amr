@@ -1,0 +1,24 @@
+# ::tok A light propeller aircraft is prepared for flight on a rural runway
+# ::node	l	light-06	1-2
+# ::node	p2	propeller	2-3
+# ::node	a	aircraft	3-4
+# ::node	p	prepare-02	5-6
+# ::node	f	fly-01	7-8
+# ::node	r2	rural	10-11
+# ::node	r	runway	11-12
+# ::root	p	prepare-02
+# ::edge	propeller	ARG1-of	light-06	p2	l	
+# ::edge	aircraft	mod	propeller	a	p2	
+# ::edge	prepare-02	ARG1	aircraft	p	a	
+# ::edge	prepare-02	ARG2	fly-01	p	f	
+# ::edge	fly-01	ARG1	aircraft	f	a	
+# ::edge	runway	mod	rural	r	r2	
+# ::edge	fly-01	location	runway	f	r	
+(p / prepare-02
+    :ARG1 (a / aircraft
+        :mod (p2 / propeller
+            :ARG1-of (l / light-06)))
+    :ARG2 (f / fly-01
+        :ARG1 a
+        :location (r / runway
+            :mod (r2 / rural))))

@@ -1,0 +1,31 @@
+# ::tok A street sign directing visitors on the types of beverage containers allowed on the street .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	d	direct-01	3-4
+# ::node	p	person	4-5
+# ::node	v	visit-01	4-5
+# ::node	t	type	7-8
+# ::node	b	beverage	9-10
+# ::node	c	container	10-11
+# ::node	a	allow-01	11-12
+# ::node	s3	street	14-15
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG0-of	direct-01	s	d	
+# ::edge	direct-01	ARG1	person	d	p	
+# ::edge	person	ARG0-of	visit-01	p	v	
+# ::edge	container	mod	beverage	c	b	
+# ::edge	container	mod	type	c	t	
+# ::edge	allow-01	ARG1	container	a	c	
+# ::edge	direct-01	ARG2	allow-01	d	a	
+# ::edge	allow-01	location	street	a	s3	
+(s / sign
+    :ARG0-of (d / direct-01
+        :ARG1 (p / person
+            :ARG0-of (v / visit-01))
+        :ARG2 (a / allow-01
+            :ARG1 (c / container
+                :mod (b / beverage)
+                :mod (t / type))
+            :location (s3 / street)))
+    :mod (s2 / street))

@@ -1,0 +1,38 @@
+# ::tok A guy starting to run to first base after hitting the ball in a baseball game .
+# ::node	g2	guy	1-2
+# ::node	s	start-01	2-3
+# ::node	r	run-02	4-5
+# ::node	o	ordinal-entity	6-7
+# ::node	0	1	6-7
+# ::node	b2	base	7-8
+# ::node	a	after	8-9
+# ::node	h	hit-01	9-10
+# ::node	b	ball	11-12
+# ::node	b3	baseball	14-15
+# ::node	g	game	15-16
+# ::root	s	start-01
+# ::edge	start-01	ARG0	guy	s	g2	
+# ::edge	start-01	ARG1	run-02	s	r	
+# ::edge	run-02	ARG0	guy	r	g2	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	run-02	destination	base	r	b2	
+# ::edge	start-01	time	after	s	a	
+# ::edge	after	op1	hit-01	a	h	
+# ::edge	hit-01	ARG0	guy	h	g2	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	game	mod	baseball	g	b3	
+# ::edge	hit-01	time	game	h	g	
+(s / start-01
+    :ARG0 (g2 / guy)
+    :ARG1 (r / run-02
+        :ARG0 g2
+        :destination (b2 / base
+            :ord (o / ordinal-entity
+                :value 1)))
+    :time (a / after
+        :op1 (h / hit-01
+            :ARG0 g2
+            :ARG1 (b / ball)
+            :time (g / game
+                :mod (b3 / baseball)))))

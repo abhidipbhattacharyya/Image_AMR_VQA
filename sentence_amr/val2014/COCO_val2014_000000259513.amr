@@ -1,0 +1,27 @@
+# ::tok Man using shear to remove wool from sheep in outdoor courtyard .
+# ::node	m	man	0-1
+# ::node	u	use-01	1-2
+# ::node	s	shear	2-3
+# ::node	r	remove-01	4-5
+# ::node	w	wool	5-6
+# ::node	s2	sheep	7-8
+# ::node	o	outdoor	9-10
+# ::node	c	courtyard	10-11
+# ::root	u	use-01
+# ::edge	use-01	ARG0	man	u	m	
+# ::edge	use-01	ARG1	shear	u	s	
+# ::edge	use-01	ARG2	remove-01	u	r	
+# ::edge	remove-01	ARG0	man	r	m	
+# ::edge	remove-01	ARG1	wool	r	w	
+# ::edge	remove-01	ARG2	sheep	r	s2	
+# ::edge	courtyard	location	outdoor	c	o	
+# ::edge	use-01	location	courtyard	u	c	
+(u / use-01
+    :ARG0 (m / man)
+    :ARG1 (s / shear)
+    :ARG2 (r / remove-01
+        :ARG0 m
+        :ARG1 (w / wool)
+        :ARG2 (s2 / sheep))
+    :location (c / courtyard
+        :location (o / outdoor)))

@@ -1,0 +1,34 @@
+# ::tok Brick lined street that has a horse pulling a carriage and others on bikes
+# ::node	c2	construct-01	0-1
+# ::node	l	line-01	1-2
+# ::node	s	street	2-3
+# ::node	h	have-03	4-5
+# ::node	h2	horse	6-7
+# ::node	p2	pull-01	7-8
+# ::node	c	carriage	9-10
+# ::node	a	and	10-11
+# ::node	p	person	11-12
+# ::node	o	other	11-12
+# ::node	b	bike-01	13-14
+# ::root	s	street
+# ::edge	line-01	ARG1-of	construct-01	l	c2	
+# ::edge	street	ARG1-of	line-01	s	l	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	horse	ARG0-of	pull-01	h2	p2	
+# ::edge	pull-01	ARG1	carriage	p2	c	
+# ::edge	and	op1	horse	a	h2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	mod	other	p	o	
+# ::edge	person	ARG0-of	bike-01	p	b	
+(s / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (h2 / horse
+                :ARG0-of (p2 / pull-01
+                    :ARG1 (c / carriage)))
+            :op2 (p / person
+                :ARG0-of (b / bike-01)
+                :mod (o / other))))
+    :ARG1-of (l / line-01
+        :ARG1-of (c2 / construct-01)))

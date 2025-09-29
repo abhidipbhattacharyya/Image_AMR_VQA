@@ -1,0 +1,28 @@
+# ::tok A traffic light and sign point drivers in the right direction
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	a	and	3-4
+# ::node	s	signal-07	4-5
+# ::node	p2	point-01	5-6
+# ::node	p	person	6-7
+# ::node	d2	drive-01	6-7
+# ::node	r	right-06	9-10
+# ::node	d	direction	10-11
+# ::root	p2	point-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	op2	signal-07	a	s	
+# ::edge	point-01	ARG0	and	p2	a	
+# ::edge	point-01	ARG1	person	p2	p	
+# ::edge	person	ARG0-of	drive-01	p	d2	
+# ::edge	direction	ARG1-of	right-06	d	r	
+# ::edge	point-01	ARG2	direction	p2	d	
+(p2 / point-01
+    :ARG0 (a / and
+        :op1 (l / light
+            :mod (t / traffic))
+        :op2 (s / signal-07))
+    :ARG1 (p / person
+        :ARG0-of (d2 / drive-01))
+    :ARG2 (d / direction
+        :ARG1-of (r / right-06)))

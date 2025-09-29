@@ -1,0 +1,34 @@
+# ::tok A bathtub sitting under a chandelier and next to a pair of windows and a mirror in a bathroom .
+# ::node	b2	bathtub	1-2
+# ::node	s	sit-01	2-3
+# ::node	u	under	3-4
+# ::node	c	chandelier	5-6
+# ::node	n	next-to	7-8
+# ::node	0	1	9-10
+# ::node	p	pair	10-11
+# ::node	w	window	12-13
+# ::node	a	and	13-14
+# ::node	m	mirror	15-16
+# ::node	b	bathroom	18-19
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	bathtub	s	b2	
+# ::edge	sit-01	ARG2	under	s	u	
+# ::edge	under	op1	chandelier	u	c	
+# ::edge	sit-01	location	next-to	s	n	
+# ::edge	pair	quant	1	p	0	
+# ::edge	window	quant	pair	w	p	
+# ::edge	and	op1	window	a	w	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	mirror	location	bathroom	m	b	
+(s / sit-01
+    :ARG1 (b2 / bathtub)
+    :ARG2 (u / under
+        :op1 (c / chandelier))
+    :location (n / next-to
+        :op1 (a / and
+            :op1 (w / window
+                :quant (p / pair
+                    :quant 1))
+            :op2 (m / mirror
+                :location (b / bathroom)))))

@@ -1,0 +1,19 @@
+# ::tok a scale that takes money for you to park in a spot
+# ::node	s	scale	1-2
+# ::node	t	take-10	3-4
+# ::node	m	money	4-5
+# ::node	y	you	6-7
+# ::node	p	park-01	8-9
+# ::node	s2	spot	11-12
+# ::root	s	scale
+# ::edge	scale	ARG0-of	take-10	s	t	
+# ::edge	take-10	ARG1	money	t	m	
+# ::edge	park-01	ARG0	you	p	y	
+# ::edge	take-10	ARG0	park-01	t	p	
+# ::edge	park-01	ARG2	spot	p	s2	
+(s / scale
+    :ARG0-of (t / take-10
+        :ARG0 (p / park-01
+            :ARG0 (y / you)
+            :ARG2 (s2 / spot))
+        :ARG1 (m / money)))

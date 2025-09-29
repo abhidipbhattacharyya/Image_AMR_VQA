@@ -1,0 +1,43 @@
+# ::tok A meal set out on a plate with a glass of orange juice and a cup of coffee .
+# ::node	m	meal	1-2
+# ::node	s	set-01	2-3
+# ::node	o2	out	3-4
+# ::node	p	plate	6-7
+# ::node	v	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	g	glass	9-10
+# ::node	o	orange	11-12
+# ::node	j	juice	12-13
+# ::node	a	and	13-14
+# ::node	v2	volume-quantity	15-16
+# ::node	c2	cup	15-16
+# ::node	1	1	15-16
+# ::node	c	coffee	17-18
+# ::root	s	set-01
+# ::edge	set-01	ARG1	meal	s	m	
+# ::edge	set-01	ARG2	out	s	o2	
+# ::edge	set-01	location	plate	s	p	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	source	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	and	op1	juice	a	j	
+# ::edge	meal	accompanier	and	m	a	
+# ::edge	volume-quantity	unit	cup	v2	c2	
+# ::edge	volume-quantity	quant	1	v2	1	
+# ::edge	coffee	quant	volume-quantity	c	v2	
+# ::edge	and	op2	coffee	a	c	
+(s / set-01
+    :ARG1 (m / meal
+        :accompanier (a / and
+            :op1 (j / juice
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))
+                :source (o / orange))
+            :op2 (c / coffee
+                :quant (v2 / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup)))))
+    :ARG2 (o2 / out)
+    :location (p / plate))

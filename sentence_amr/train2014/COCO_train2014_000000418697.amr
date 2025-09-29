@@ -1,0 +1,32 @@
+# ::tok people buying oranges and other produce for sale at an outdoor market
+# ::node	p	person	0-1
+# ::node	b	buy-01	1-2
+# ::node	o	orange	2-3
+# ::node	a	and	3-4
+# ::node	o2	other	4-5
+# ::node	p2	produce	5-6
+# ::node	s	sell-01	7-8
+# ::node	o3	outdoor	10-11
+# ::node	m	market	11-12
+# ::root	b	buy-01
+# ::edge	buy-01	ARG0	person	b	p	
+# ::edge	and	op1	orange	a	o	
+# ::edge	buy-01	ARG1	and	b	a	
+# ::edge	produce	mod	other	p2	o2	
+# ::edge	and	op2	produce	a	p2	
+# ::edge	sell-01	ARG1	and	s	a	
+# ::edge	buy-01	purpose	sell-01	b	s	
+# ::edge	sell-01	ARG0	person	s	p	
+# ::edge	market	location	outdoor	m	o3	
+# ::edge	sell-01	location	market	s	m	
+(b / buy-01
+    :purpose (s / sell-01
+        :ARG0 (p / person)
+        :ARG1 (a / and
+            :op1 (o / orange)
+            :op2 (p2 / produce
+                :mod (o2 / other)))
+        :location (m / market
+            :location (o3 / outdoor)))
+    :ARG0 p
+    :ARG1 a)

@@ -1,0 +1,48 @@
+# ::tok A few crestless sandwhich stacked on top of one another on a plate with a glass of wine and water
+# ::node	f	few	1-2
+# ::node	f2	flat	2-3
+# ::node	0	-	2-3
+# ::node	s	sandwhich	3-4
+# ::node	s2	stack-01	4-5
+# ::node	t	top	6-7
+# ::node	o	one	8-9
+# ::node	a2	another	9-10
+# ::node	v	volume-quantity	11-12
+# ::node	1	1	11-12
+# ::node	p	plate	12-13
+# ::node	g	glass	15-16
+# ::node	w2	wine	17-18
+# ::node	a	and	18-19
+# ::node	w	water	19-20
+# ::root	s2	stack-01
+# ::edge	flat	polarity	-	f2	0	
+# ::edge	sandwhich	mod	flat	s	f2	
+# ::edge	sandwhich	quant	few	s	f	
+# ::edge	stack-01	ARG1	sandwhich	s2	s	
+# ::edge	stack-01	ARG2	top	s2	t	
+# ::edge	another	mod	one	a2	o	
+# ::edge	top	op1	another	t	a2	
+# ::edge	volume-quantity	quant	1	v	1	
+# ::edge	volume-quantity	location	plate	v	p	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	and	op1	wine	a	w2	
+# ::edge	and	quant	volume-quantity	a	v	
+# ::edge	plate	accompanier	and	p	a	
+# ::edge	and	op2	water	a	w	
+# ::edge	stack-01	rel	plate	s2	p	
+(s2 / stack-01
+    :ARG1 (s / sandwhich
+        :quant (f / few)
+        :mod (f2 / flat
+            :polarity -))
+    :ARG2 (t / top
+        :op1 (a2 / another
+            :mod (o / one)))
+    :rel (p / plate
+        :accompanier (a / and
+            :quant (v / volume-quantity
+                :quant 1
+                :location p
+                :unit (g / glass))
+            :op1 (w2 / wine)
+            :op2 (w / water))))

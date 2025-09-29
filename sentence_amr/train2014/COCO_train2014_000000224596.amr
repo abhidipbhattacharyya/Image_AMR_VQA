@@ -1,0 +1,31 @@
+# ::tok A baseball player swinging at his pitch with the catcher trying to catch it .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	swing-02	3-4
+# ::node	p2	pitch	6-7
+# ::node	c2	catcher	9-10
+# ::node	t	try-01	10-11
+# ::node	c	catch-03	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	person	ARG0-of	swing-02	p	s	
+# ::edge	swing-02	ARG2	pitch	s	p2	
+# ::edge	pitch	poss	person	p2	p	
+# ::edge	swing-02	accompanier	catcher	s	c2	
+# ::edge	catcher	ARG0-of	try-01	c2	t	
+# ::edge	try-01	ARG1	catch-03	t	c	
+# ::edge	catch-03	ARG0	catcher	c	c2	
+# ::edge	catch-03	ARG1	pitch	c	p2	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (s / swing-02
+        :ARG2 (p2 / pitch
+            :poss p)
+        :accompanier (c2 / catcher
+            :ARG0-of (t / try-01
+                :ARG1 (c / catch-03
+                    :ARG0 c2
+                    :ARG1 p2)))))

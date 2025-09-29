@@ -1,0 +1,49 @@
+# ::tok A Wii remote and Wii nunchuck attachment sitting next to each other on a black table .
+# ::node	p	product	1-2
+# ::node	n	name	1-2
+# ::node	0	Wii	1-2
+# ::node	r	remote	2-3
+# ::node	a	and	3-4
+# ::node	p2	product	4-5
+# ::node	n2	name	4-5
+# ::node	1	Wii	4-5
+# ::node	n4	nunchuck	5-6
+# ::node	a2	attachment	6-7
+# ::node	s	sit-01	7-8
+# ::node	n3	next-to	8-9
+# ::node	e	each	10-11
+# ::node	o	other	11-12
+# ::node	b	black-04	14-15
+# ::node	t	table	15-16
+# ::root	s	sit-01
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	remote	mod	product	r	p	
+# ::edge	and	op1	remote	a	r	
+# ::edge	product	name	name	p2	n2	
+# ::edge	name	op1	Wii	n2	1	
+# ::edge	attachment	mod	nunchuck	a2	n4	
+# ::edge	attachment	mod	product	a2	p2	
+# ::edge	and	op2	attachment	a	a2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	next-to	s	n3	
+# ::edge	next-to	op1	each	n3	e	
+# ::edge	each	mod	other	e	o	
+# ::edge	table	ARG1-of	black-04	t	b	
+# ::edge	sit-01	location	table	s	t	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (r / remote
+            :mod (p / product
+                :name (n / name
+                    :op1 "Wii")))
+        :op2 (a2 / attachment
+            :mod (n4 / nunchuck)
+            :mod (p2 / product
+                :name (n2 / name
+                    :op1 "Wii"))))
+    :ARG2 (n3 / next-to
+        :op1 (e / each
+            :mod (o / other)))
+    :location (t / table
+        :ARG1-of (b / black-04)))

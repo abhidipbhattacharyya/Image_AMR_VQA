@@ -1,0 +1,39 @@
+# ::tok A driver holds the wheel of the vehicle with one hand while text messaging on a mobile phone with the other .
+# ::node	p	person	1-2
+# ::node	d	drive-01	1-2
+# ::node	h3	hold-01	2-3
+# ::node	w	wheel	4-5
+# ::node	v	vehicle	7-8
+# ::node	0	1	9-10
+# ::node	h	hand	10-11
+# ::node	h2	hand	10-11
+# ::node	m	message-01	13-14
+# ::node	m2	mobile-02	16-17
+# ::node	p2	phone	17-18
+# ::node	o	other	20-21
+# ::root	h3	hold-01
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	hold-01	ARG0	person	h3	p	
+# ::edge	hold-01	ARG1	wheel	h3	w	
+# ::edge	wheel	part-of	vehicle	w	v	
+# ::edge	hand	quant	1	h	0	
+# ::edge	hold-01	instrument	hand	h3	h	
+# ::edge	message-01	instrument	hand	m	h2	
+# ::edge	hold-01	time	message-01	h3	m	
+# ::edge	message-01	ARG0	person	m	p	
+# ::edge	phone	ARG1-of	mobile-02	p2	m2	
+# ::edge	message-01	instrument	phone	m	p2	
+# ::edge	hand	mod	other	h2	o	
+(h3 / hold-01
+    :ARG0 (p / person
+        :ARG0-of (d / drive-01))
+    :ARG1 (w / wheel
+        :part-of (v / vehicle))
+    :instrument (h / hand
+        :quant 1)
+    :time (m / message-01
+        :ARG0 p
+        :instrument (h2 / hand
+            :mod (o / other))
+        :instrument (p2 / phone
+            :ARG1-of (m2 / mobile-02))))

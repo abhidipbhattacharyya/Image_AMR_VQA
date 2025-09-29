@@ -1,0 +1,53 @@
+# ::tok This kitchen consists of white cabinets and cupboards , a metal refrigerator , oven , and exhaust hood , and a checkered ceramic floor .
+# ::node	t	this	0-1
+# ::node	k	kitchen	1-2
+# ::node	c4	consist-01	2-3
+# ::node	w	white-03	4-5
+# ::node	c	cabinet	5-6
+# ::node	a	and	6-7
+# ::node	c2	cabinet	7-8
+# ::node	m	metal	10-11
+# ::node	r	refrigerator	11-12
+# ::node	o	oven	13-14
+# ::node	e	exhaust	16-17
+# ::node	h	hood	17-18
+# ::node	d	date-entity	21-22
+# ::node	f	federal	21-22
+# ::node	c3	ceramic	22-23
+# ::node	f2	floor	23-24
+# ::root	c4	consist-01
+# ::edge	kitchen	mod	this	k	t	
+# ::edge	consist-01	ARG1	kitchen	c4	k	
+# ::edge	cabinet	ARG1-of	white-03	c	w	
+# ::edge	and	op1	consist-01	a	c4	
+# ::edge	consist-01	ARG2	and	c4	a	
+# ::edge	and	op2	cabinet	a	c2	
+# ::edge	white-03	ARG1	cabinet	w	c2	
+# ::edge	refrigerator	mod	metal	r	m	
+# ::edge	and	op3	refrigerator	a	r	
+# ::edge	and	op4	oven	a	o	
+# ::edge	hood	mod	exhaust	h	e	
+# ::edge	and	op5	hood	a	h	
+# ::edge	date-entity	mod	federal	d	f	
+# ::edge	floor	mod	ceramic	f2	c3	
+# ::edge	floor	time	date-entity	f2	d	
+# ::edge	and	op6	floor	a	f2	
+# ::edge	consist-01	rel	cabinet	c4	c	
+(c4 / consist-01
+    :ARG1 (k / kitchen
+        :mod (t / this))
+    :ARG2 (a / and
+        :op1 c4
+        :op2 (c2 / cabinet)
+        :op3 (r / refrigerator
+            :mod (m / metal))
+        :op4 (o / oven)
+        :op5 (h / hood
+            :mod (e / exhaust))
+        :op6 (f2 / floor
+            :mod (c3 / ceramic)
+            :time (d / date-entity
+                :mod (f / federal))))
+    :rel (c / cabinet
+        :ARG1-of (w / white-03
+            :ARG1 c2)))

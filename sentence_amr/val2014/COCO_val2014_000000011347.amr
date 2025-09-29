@@ -1,0 +1,21 @@
+# ::tok Passenger airliner at the end of a runway waiting to take off .
+# ::node	p	passenger	0-1
+# ::node	a	airliner	1-2
+# ::node	e	end-01	4-5
+# ::node	r	runway	7-8
+# ::node	w	wait-01	8-9
+# ::node	t	take-off-19	10-11
+# ::root	w	wait-01
+# ::edge	airliner	mod	passenger	a	p	
+# ::edge	end-01	ARG1	runway	e	r	
+# ::edge	wait-01	ARG1-of	end-01	w	e	
+# ::edge	wait-01	ARG1	airliner	w	a	
+# ::edge	wait-01	ARG2	take-off-19	w	t	
+# ::edge	take-off-19	ARG1	airliner	t	a	
+(w / wait-01
+    :ARG1 (a / airliner
+        :mod (p / passenger))
+    :ARG1-of (e / end-01
+        :ARG1 (r / runway))
+    :ARG2 (t / take-off-19
+        :ARG1 a))

@@ -1,0 +1,75 @@
+# ::tok Outside , a small fence separates a road bordered by green land from a space where young people are playing , three of whom are turned away form the picture taker , while the center person , a guy , is leaping to grab a frisbee .
+# ::node	o	outside	0-1
+# ::node	s2	small	3-4
+# ::node	f	fence	4-5
+# ::node	s	separate-01	5-6
+# ::node	r	road	7-8
+# ::node	b	border-01	8-9
+# ::node	g2	green-02	10-11
+# ::node	l	land	11-12
+# ::node	s3	space	14-15
+# ::node	y	young	16-17
+# ::node	p	person	17-18
+# ::node	p5	play-01	19-20
+# ::node	i	include-91	21-22
+# ::node	0	3	21-22
+# ::node	t2	turn-away-04	25-26
+# ::node	p4	picture	29-30
+# ::node	p2	person	30-31
+# ::node	p3	person	30-31
+# ::node	t	take-01	30-31
+# ::node	c	center-02	34-35
+# ::node	g3	guy	38-39
+# ::node	l2	leap-03	41-42
+# ::node	g	grab-01	43-44
+# ::node	f2	frisbee	45-46
+# ::root	s	separate-01
+# ::edge	fence	mod	small	f	s2	
+# ::edge	separate-01	ARG0	fence	s	f	
+# ::edge	separate-01	location	outside	s	o	
+# ::edge	separate-01	ARG1	road	s	r	
+# ::edge	road	ARG1-of	border-01	r	b	
+# ::edge	land	ARG1-of	green-02	l	g2	
+# ::edge	border-01	ARG2	land	b	l	
+# ::edge	separate-01	ARG2	space	s	s3	
+# ::edge	person	mod	young	p	y	
+# ::edge	play-01	ARG0	person	p5	p	
+# ::edge	space	location-of	play-01	s3	p5	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	ARG1-of	turn-away-04	p2	t2	
+# ::edge	person	quant	3	p2	0	
+# ::edge	include-91	ARG1	person	i	p2	
+# ::edge	turn-away-04	ARG0	person	t2	p3	
+# ::edge	person	ARG0-of	take-01	p3	t	
+# ::edge	take-01	ARG1	picture	t	p4	
+# ::edge	guy	ARG1-of	center-02	g3	c	
+# ::edge	leap-03	ARG0	guy	l2	g3	
+# ::edge	separate-01	time	leap-03	s	l2	
+# ::edge	leap-03	purpose	grab-01	l2	g	
+# ::edge	grab-01	ARG0	guy	g	g3	
+# ::edge	grab-01	ARG1	frisbee	g	f2	
+(s / separate-01
+    :ARG0 (f / fence
+        :mod (s2 / small))
+    :ARG1 (r / road
+        :ARG1-of (b / border-01
+            :ARG2 (l / land
+                :ARG1-of (g2 / green-02))))
+    :ARG2 (s3 / space
+        :location-of (p5 / play-01
+            :ARG0 (p / person
+                :ARG2-of (i / include-91
+                    :ARG1 (p2 / person
+                        :quant 3
+                        :ARG1-of (t2 / turn-away-04
+                            :ARG0 (p3 / person
+                                :ARG0-of (t / take-01
+                                    :ARG1 (p4 / picture))))))
+                :mod (y / young))))
+    :location (o / outside)
+    :time (l2 / leap-03
+        :purpose (g / grab-01
+            :ARG0 (g3 / guy
+                :ARG1-of (c / center-02))
+            :ARG1 (f2 / frisbee))
+        :ARG0 g3))

@@ -1,0 +1,40 @@
+# ::tok some train platform cars that are not attached to a train sit on some tracks next to a wooded area
+# ::node	s2	some	0-1
+# ::node	t2	train	1-2
+# ::node	p	platform	2-3
+# ::node	c	car	3-4
+# ::node	0	-	6-7
+# ::node	a2	attach-01	7-8
+# ::node	t3	train	10-11
+# ::node	s	sit-01	11-12
+# ::node	s3	some	13-14
+# ::node	t	track	14-15
+# ::node	n	next-to	15-16
+# ::node	w	wood	18-19
+# ::node	a	area	19-20
+# ::root	s	sit-01
+# ::edge	platform	mod	train	p	t2	
+# ::edge	car	mod	platform	c	p	
+# ::edge	car	quant	some	c	s2	
+# ::edge	attach-01	polarity	-	a2	0	
+# ::edge	car	ARG1-of	attach-01	c	a2	
+# ::edge	attach-01	ARG2	train	a2	t3	
+# ::edge	sit-01	ARG1	car	s	c	
+# ::edge	track	mod	some	t	s3	
+# ::edge	sit-01	ARG2	track	s	t	
+# ::edge	track	location	next-to	t	n	
+# ::edge	area	mod	wood	a	w	
+# ::edge	next-to	op1	area	n	a	
+(s / sit-01
+    :ARG1 (c / car
+        :quant (s2 / some)
+        :ARG1-of (a2 / attach-01
+            :ARG2 (t3 / train)
+            :polarity -)
+        :mod (p / platform
+            :mod (t2 / train)))
+    :ARG2 (t / track
+        :location (n / next-to
+            :op1 (a / area
+                :mod (w / wood)))
+        :mod (s3 / some)))

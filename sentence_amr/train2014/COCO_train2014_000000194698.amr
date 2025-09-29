@@ -1,0 +1,36 @@
+# ::tok A small dog cradled in his loving owner 's arm as he falls asleep .
+# ::node	s2	small	1-2
+# ::node	d	dog	2-3
+# ::node	l	lie-07	3-4
+# ::node	l2	love-01	6-7
+# ::node	p	person	7-8
+# ::node	o	own-01	7-8
+# ::node	a	arm	9-10
+# ::node	f	fall-07	12-13
+# ::node	s	sleep-01	13-14
+# ::root	l	lie-07
+# ::edge	dog	mod	small	d	s2	
+# ::edge	lie-07	ARG1	dog	l	d	
+# ::edge	love-01	ARG1	dog	l2	d	
+# ::edge	person	ARG0-of	love-01	p	l2	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	dog	o	d	
+# ::edge	arm	part-of	person	a	p	
+# ::edge	lie-07	ARG2	arm	l	a	
+# ::edge	fall-07	ARG1	person	f	p	
+# ::edge	lie-07	time	fall-07	l	f	
+# ::edge	fall-07	ARG2	sleep-01	f	s	
+# ::edge	sleep-01	ARG0	person	s	p	
+(l / lie-07
+    :ARG1 (d / dog
+        :mod (s2 / small))
+    :ARG2 (a / arm
+        :part-of (p / person
+            :ARG0-of (l2 / love-01
+                :ARG1 d)
+            :ARG0-of (o / own-01
+                :ARG1 d)))
+    :time (f / fall-07
+        :ARG1 p
+        :ARG2 (s / sleep-01
+            :ARG0 p)))

@@ -1,0 +1,34 @@
+# ::tok All of the fruits and vegetables are in black and white except for the cluster of bananas two the right .
+# ::node	a	all	0-1
+# ::node	f	fruit	3-4
+# ::node	a2	and	4-5
+# ::node	v	vegetable	5-6
+# ::node	b2	black-and-white	8-9
+# ::node	a3	and	9-10
+# ::node	e	except-01	11-12
+# ::node	c	cluster	14-15
+# ::node	b	banana	16-17
+# ::node	0	2	17-18
+# ::node	r	right-04	19-20
+# ::root	a3	and
+# ::edge	and	op1	fruit	a2	f	
+# ::edge	and	mod	all	a2	a	
+# ::edge	and	op2	vegetable	a2	v	
+# ::edge	black-and-white	domain	and	b2	a2	
+# ::edge	and	op1	black-and-white	a3	b2	
+# ::edge	and	ARG2-of	except-01	a2	e	
+# ::edge	except-01	ARG1	cluster	e	c	
+# ::edge	cluster	consist-of	banana	c	b	
+# ::edge	right-04	ARG2	2	r	0	
+# ::edge	and	op2	right-04	a3	r	
+(a3 / and
+    :op1 (b2 / black-and-white
+        :domain (a2 / and
+            :ARG2-of (e / except-01
+                :ARG1 (c / cluster
+                    :consist-of (b / banana)))
+            :mod (a / all)
+            :op1 (f / fruit)
+            :op2 (v / vegetable)))
+    :op2 (r / right-04
+        :ARG2 2))

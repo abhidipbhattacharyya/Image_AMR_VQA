@@ -1,0 +1,42 @@
+# ::tok A white and black street sign giving a warning that there is no exit between midnight and 7AM .
+# ::node	w2	white-03	1-2
+# ::node	a	and	2-3
+# ::node	b2	black-04	3-4
+# ::node	s3	street	4-5
+# ::node	s	sign	5-6
+# ::node	s2	sign	5-6
+# ::node	w	warn-01	8-9
+# ::node	0	-	12-13
+# ::node	e	exit-01	13-14
+# ::node	b	between	14-15
+# ::node	m	midnight	15-16
+# ::node	d	date-entity	17-18
+# ::node	1	19:00	17-18
+# ::root	a	and
+# ::edge	sign	mod	street	s	s3	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	ARG1-of	white-03	s	w2	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	ARG1-of	black-04	s2	b2	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	ARG0-of	warn-01	a	w	
+# ::edge	exit-01	polarity	-	e	0	
+# ::edge	warn-01	ARG1	exit-01	w	e	
+# ::edge	exit-01	time	between	e	b	
+# ::edge	between	op1	midnight	b	m	
+# ::edge	between	op2	date-entity	b	d	
+# ::edge	date-entity	time	19:00	d	1	
+(a / and
+    :ARG0-of (w / warn-01
+        :ARG1 (e / exit-01
+            :polarity -
+            :time (b / between
+                :op1 (m / midnight)
+                :op2 (d / date-entity
+                    :time "19:00"))))
+    :op1 (s / sign
+        :ARG1-of (w2 / white-03)
+        :mod (s3 / street))
+    :op2 (s2 / sign
+        :ARG1-of (b2 / black-04)
+        :mod s3))

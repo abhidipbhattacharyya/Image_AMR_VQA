@@ -1,0 +1,33 @@
+# ::tok Dog laying on front seat of car looking to driver side
+# ::node	d	dog	0-1
+# ::node	l	lay-01	1-2
+# ::node	f	front	3-4
+# ::node	s	seat	4-5
+# ::node	c	car	6-7
+# ::node	l2	look-01	7-8
+# ::node	a	and	8-9
+# ::node	p	person	9-10
+# ::node	d2	drive-01	9-10
+# ::node	s2	side	10-11
+# ::root	a	and
+# ::edge	dog	ARG1-of	lay-01	d	l	
+# ::edge	seat	mod	front	s	f	
+# ::edge	lay-01	ARG2	seat	l	s	
+# ::edge	seat	part-of	car	s	c	
+# ::edge	look-01	ARG0	dog	l2	d	
+# ::edge	and	op2	look-01	a	l2	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	person	ARG0-of	drive-01	p	d2	
+# ::edge	side	part-of	person	s2	p	
+# ::edge	look-01	ARG1	side	l2	s2	
+(a / and
+    :op1 (l / lay-01
+        :ARG2 (s / seat
+            :mod (f / front)
+            :part-of (c / car)))
+    :op2 (l2 / look-01
+        :ARG0 (d / dog
+            :ARG1-of l)
+        :ARG1 (s2 / side
+            :part-of (p / person
+                :ARG0-of (d2 / drive-01)))))

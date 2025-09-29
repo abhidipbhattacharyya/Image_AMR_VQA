@@ -1,0 +1,33 @@
+# ::tok A stop sign is standing at an intersection with a white fence with a lot of houses behind it .
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	s2	stand-01	4-5
+# ::node	i	intersect-01	7-8
+# ::node	a	and	8-9
+# ::node	w	white-03	10-11
+# ::node	f	fence	11-12
+# ::node	l	lot	14-15
+# ::node	h	house	16-17
+# ::node	b	behind	17-18
+# ::root	s2	stand-01
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	stand-01	ARG1	sign	s2	s	
+# ::edge	stand-01	ARG2	intersect-01	s2	i	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	fence	ARG1-of	white-03	f	w	
+# ::edge	and	op1	fence	a	f	
+# ::edge	house	quant	lot	h	l	
+# ::edge	and	op2	house	a	h	
+# ::edge	house	location	behind	h	b	
+# ::edge	behind	op1	and	b	a	
+(s2 / stand-01
+    :ARG1 (s / sign
+        :purpose (s3 / stop-01))
+    :ARG2 (i / intersect-01
+        :ARG1 (a / and
+            :op1 (f / fence
+                :ARG1-of (w / white-03))
+            :op2 (h / house
+                :quant (l / lot)
+                :location (b / behind
+                    :op1 a)))))

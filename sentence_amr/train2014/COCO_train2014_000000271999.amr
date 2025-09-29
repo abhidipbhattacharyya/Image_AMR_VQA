@@ -1,0 +1,22 @@
+# ::tok A locomotive with two passenger cars waits at a train station .
+# ::node	l	locomotive	1-2
+# ::node	0	2	3-4
+# ::node	p	passenger	4-5
+# ::node	c	car	5-6
+# ::node	w	wait-01	6-7
+# ::node	t	train	9-10
+# ::node	s	station	10-11
+# ::root	w	wait-01
+# ::edge	car	mod	passenger	c	p	
+# ::edge	car	quant	2	c	0	
+# ::edge	locomotive	part	car	l	c	
+# ::edge	wait-01	ARG1	locomotive	w	l	
+# ::edge	station	mod	train	s	t	
+# ::edge	wait-01	ARG2	station	w	s	
+(w / wait-01
+    :ARG1 (l / locomotive
+        :part (c / car
+            :quant 2
+            :mod (p / passenger)))
+    :ARG2 (s / station
+        :mod (t / train)))

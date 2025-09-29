@@ -1,0 +1,24 @@
+# ::tok crowd of people waiting with their suitcases in a train waiting room
+# ::node	c	crowd	0-1
+# ::node	p	person	2-3
+# ::node	w	wait-01	3-4
+# ::node	s	suitcase	6-7
+# ::node	t	train	9-10
+# ::node	w2	wait-01	10-11
+# ::node	r	room	11-12
+# ::root	c	crowd
+# ::edge	crowd	consist-of	person	c	p	
+# ::edge	crowd	ARG1-of	wait-01	c	w	
+# ::edge	wait-01	accompanier	suitcase	w	s	
+# ::edge	suitcase	poss	person	s	p	
+# ::edge	wait-01	ARG1	train	w2	t	
+# ::edge	room	purpose	wait-01	r	w2	
+# ::edge	wait-01	location	room	w	r	
+(c / crowd
+    :ARG1-of (w / wait-01
+        :accompanier (s / suitcase
+            :poss (p / person))
+        :location (r / room
+            :purpose (w2 / wait-01
+                :ARG1 (t / train))))
+    :consist-of p)

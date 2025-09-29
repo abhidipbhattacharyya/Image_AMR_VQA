@@ -1,0 +1,42 @@
+# ::tok A commuter train on tracks is at a train station with only one of its two lights on
+# ::node	c	commute-01	1-2
+# ::node	t2	train	2-3
+# ::node	t	track	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	t3	train	8-9
+# ::node	s	station	9-10
+# ::node	o2	only	11-12
+# ::node	0	1	12-13
+# ::node	i	include-91	13-14
+# ::node	1	2	15-16
+# ::node	l	light	16-17
+# ::node	l2	light	16-17
+# ::node	o	on-01	17-18
+# ::root	b	be-located-at-91
+# ::edge	train	ARG0-of	commute-01	t2	c	
+# ::edge	train	location	track	t2	t	
+# ::edge	be-located-at-91	ARG1	train	b	t2	
+# ::edge	station	mod	train	s	t3	
+# ::edge	be-located-at-91	ARG2	station	b	s	
+# ::edge	light	ARG1-of	include-91	l	i	
+# ::edge	light	quant	1	l	0	
+# ::edge	light	mod	only	l	o2	
+# ::edge	light	quant	2	l2	1	
+# ::edge	include-91	ARG2	light	i	l2	
+# ::edge	light	poss	train	l2	t2	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	be-located-at-91	manner	on-01	b	o	
+(b / be-located-at-91
+    :ARG1 (t2 / train
+        :ARG0-of (c / commute-01)
+        :location (t / track))
+    :ARG2 (s / station
+        :mod (t3 / train))
+    :manner (o / on-01
+        :ARG1 (l / light
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (l2 / light
+                    :quant 2
+                    :poss t2))
+            :mod (o2 / only))))

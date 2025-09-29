@@ -1,0 +1,25 @@
+# ::tok Intersection at night with a red traffic light and buildings
+# ::node	i	intersect-01	0-1
+# ::node	d	date-entity	2-3
+# ::node	n	night	2-3
+# ::node	r	red-02	5-6
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	a	and	8-9
+# ::node	b	building	9-10
+# ::root	i	intersect-01
+# ::edge	intersect-01	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	and	op1	light	a	l	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	and	op2	building	a	b	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (l / light
+            :ARG1-of (r / red-02)
+            :mod (t / traffic))
+        :op2 (b / building))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,36 @@
+# ::tok A small room cluttered with piles of books , a portable TV , and stereo equipment .
+# ::node	s	small	1-2
+# ::node	r	room	2-3
+# ::node	l	literal	3-4
+# ::node	p	pile-01	5-6
+# ::node	b	book	7-8
+# ::node	p2	portable	10-11
+# ::node	t	television	11-12
+# ::node	a	and	13-14
+# ::node	a2	and	13-14
+# ::node	s2	stereo	14-15
+# ::node	e	equipment	15-16
+# ::root	a	and
+# ::edge	room	mod	small	r	s	
+# ::edge	pile-01	ARG1	book	p	b	
+# ::edge	television	mod	portable	t	p2	
+# ::edge	and	op2	pile-01	a	p	
+# ::edge	and	mod	literal	a	l	
+# ::edge	and	op1	room	a	r	
+# ::edge	and	op2	television	a2	t	
+# ::edge	and	op1	pile-01	a2	p	
+# ::edge	pile-01	ARG2	and	p	a2	
+# ::edge	equipment	mod	stereo	e	s2	
+# ::edge	and	op3	equipment	a2	e	
+(a / and
+    :mod (l / literal)
+    :op1 (r / room
+        :mod (s / small))
+    :op2 (p / pile-01
+        :ARG1 (b / book)
+        :ARG2 (a2 / and
+            :op1 p
+            :op2 (t / television
+                :mod (p2 / portable))
+            :op3 (e / equipment
+                :mod (s2 / stereo)))))

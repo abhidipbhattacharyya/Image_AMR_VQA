@@ -1,0 +1,30 @@
+# ::tok multiple cups stacked on top of each other with foliage coming out of them .
+# ::node	m	multiple	0-1
+# ::node	c2	cup	1-2
+# ::node	s	stack-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	e	each	6-7
+# ::node	o	other	7-8
+# ::node	h	have-03	8-9
+# ::node	f	foliage	9-10
+# ::node	c	come-out-09	10-11
+# ::root	s	stack-01
+# ::edge	cup	quant	multiple	c2	m	
+# ::edge	stack-01	ARG1	cup	s	c2	
+# ::edge	stack-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	each	i	e	
+# ::edge	each	op2	other	e	o	
+# ::edge	cup	ARG0-of	have-03	c2	h	
+# ::edge	have-03	ARG1	foliage	h	f	
+# ::edge	foliage	ARG1-of	come-out-09	f	c	
+# ::edge	come-out-09	source	cup	c	c2	
+(s / stack-01
+    :ARG1 (c2 / cup
+        :quant (m / multiple)
+        :ARG0-of (h / have-03
+            :ARG1 (f / foliage
+                :ARG1-of (c / come-out-09
+                    :source c2))))
+    :ARG2 (i / in-front-of
+        :op1 (e / each
+            :op2 (o / other))))

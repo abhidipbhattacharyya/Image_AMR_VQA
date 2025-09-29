@@ -1,0 +1,43 @@
+# ::tok Various slices of leftover homemade pizzas sit on the stove with a partially7 drank glass of red wine .
+# ::node	v	various	0-1
+# ::node	s2	slice	1-2
+# ::node	l	leave-over-08	3-4
+# ::node	m	make-01	4-5
+# ::node	h	home	4-5
+# ::node	p	pizzeria	5-6
+# ::node	s	sit-01	6-7
+# ::node	s3	stove	9-10
+# ::node	v2	volume-quantity	12-13
+# ::node	0	7	12-13
+# ::node	d	drink-01	13-14
+# ::node	g	glass	14-15
+# ::node	r	red-02	16-17
+# ::node	w	wine	17-18
+# ::root	s	sit-01
+# ::edge	slice	mod	various	s2	v	
+# ::edge	make-01	location	home	m	h	
+# ::edge	pizzeria	ARG1-of	make-01	p	m	
+# ::edge	pizzeria	ARG1-of	leave-over-08	p	l	
+# ::edge	slice	mod	pizzeria	s2	p	
+# ::edge	sit-01	ARG1	slice	s	s2	
+# ::edge	sit-01	ARG2	stove	s	s3	
+# ::edge	volume-quantity	quant	7	v2	0	
+# ::edge	glass	ARG1-of	drink-01	g	d	
+# ::edge	glass	quant	volume-quantity	g	v2	
+# ::edge	wine	ARG1-of	red-02	w	r	
+# ::edge	wine	consist-of	glass	w	g	
+# ::edge	sit-01	accompanier	wine	s	w	
+(s / sit-01
+    :ARG1 (s2 / slice
+        :mod (v / various)
+        :mod (p / pizzeria
+            :ARG1-of (m / make-01
+                :location (h / home))
+            :ARG1-of (l / leave-over-08)))
+    :ARG2 (s3 / stove)
+    :accompanier (w / wine
+        :ARG1-of (r / red-02)
+        :consist-of (g / glass
+            :quant (v2 / volume-quantity
+                :quant 7)
+            :ARG1-of (d / drink-01))))

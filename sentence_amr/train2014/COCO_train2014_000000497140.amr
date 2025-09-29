@@ -1,0 +1,26 @@
+# ::tok A room that could either be a museum or just decorated with antiques
+# ::node	r	room	1-2
+# ::node	p	possible-01	3-4
+# ::node	m	museum	7-8
+# ::node	o	or	8-9
+# ::node	j	just	9-10
+# ::node	d	decorate-01	10-11
+# ::node	a	antiquity	12-13
+# ::root	r	room
+# ::edge	museum	domain	room	m	r	
+# ::edge	or	op1	museum	o	m	
+# ::edge	or	ARG1-of	possible-01	o	p	
+# ::edge	room	location-of	or	r	o	
+# ::edge	decorate-01	mod	just	d	j	
+# ::edge	or	op2	decorate-01	o	d	
+# ::edge	decorate-01	ARG1	room	d	r	
+# ::edge	decorate-01	ARG2	antiquity	d	a	
+(r / room
+    :location-of (o / or
+        :ARG1-of (p / possible-01)
+        :op1 (m / museum
+            :domain r)
+        :op2 (d / decorate-01
+            :ARG1 r
+            :ARG2 (a / antiquity)
+            :mod (j / just))))

@@ -1,0 +1,39 @@
+# ::tok Three people playing baseball , one with a bat while others waiting to catch the ball .
+# ::node	1	3	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	2-3
+# ::node	b2	baseball	3-4
+# ::node	i	include-91	5-6
+# ::node	0	1	5-6
+# ::node	p2	person	6-7
+# ::node	b3	bat	8-9
+# ::node	o	other	10-11
+# ::node	w	wait-01	11-12
+# ::node	c	catch-01	13-14
+# ::node	b	ball	15-16
+# ::root	p3	play-01
+# ::edge	person	quant	3	p	1	
+# ::edge	play-01	ARG0	person	p3	p	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	person	quant	1	p2	0	
+# ::edge	include-91	ARG1	person	i	p2	
+# ::edge	person	instrument	bat	p2	b3	
+# ::edge	wait-01	ARG1	other	w	o	
+# ::edge	play-01	time	wait-01	p3	w	
+# ::edge	wait-01	ARG2	catch-01	w	c	
+# ::edge	catch-01	ARG0	other	c	o	
+# ::edge	catch-01	ARG1	ball	c	b	
+(p3 / play-01
+    :ARG0 (p / person
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1 (p2 / person
+                :quant 1
+                :instrument (b3 / bat))))
+    :ARG1 (b2 / baseball)
+    :time (w / wait-01
+        :ARG1 (o / other)
+        :ARG2 (c / catch-01
+            :ARG0 o
+            :ARG1 (b / ball))))

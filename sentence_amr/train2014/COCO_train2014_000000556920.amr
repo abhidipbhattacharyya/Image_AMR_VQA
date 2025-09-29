@@ -1,0 +1,30 @@
+# ::tok A train pulling several carts and changing tracks in a rail yard .
+# ::node	t2	train	1-2
+# ::node	p	pull-01	2-3
+# ::node	s	several	3-4
+# ::node	c	cart	4-5
+# ::node	c2	change-01	6-7
+# ::node	t	track	7-8
+# ::node	a	and	8-9
+# ::node	r	rail	10-11
+# ::node	y	yard	11-12
+# ::root	a	and
+# ::edge	pull-01	ARG0	train	p	t2	
+# ::edge	cart	quant	several	c	s	
+# ::edge	pull-01	ARG1	cart	p	c	
+# ::edge	change-01	ARG0	train	c2	t2	
+# ::edge	change-01	ARG1	track	c2	t	
+# ::edge	and	op2	change-01	a	c2	
+# ::edge	and	op1	pull-01	a	p	
+# ::edge	yard	mod	rail	y	r	
+# ::edge	and	location	yard	a	y	
+(a / and
+    :location (y / yard
+        :mod (r / rail))
+    :op1 (p / pull-01
+        :ARG0 (t2 / train)
+        :ARG1 (c / cart
+            :quant (s / several)))
+    :op2 (c2 / change-01
+        :ARG0 t2
+        :ARG1 (t / track)))

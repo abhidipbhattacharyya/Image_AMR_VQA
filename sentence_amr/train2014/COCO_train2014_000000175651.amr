@@ -1,0 +1,33 @@
+# ::tok A person with a ring on their thumb , holding an open Wii video game box .
+# ::node	p	person	1-2
+# ::node	r	ring	4-5
+# ::node	t	thumb	7-8
+# ::node	h	hold-01	9-10
+# ::node	o	open-01	11-12
+# ::node	n	name	12-13
+# ::node	0	Wii	12-13
+# ::node	v	video	13-14
+# ::node	g	game	14-15
+# ::node	b	box	15-16
+# ::root	p	person
+# ::edge	ring	location	thumb	r	t	
+# ::edge	person	part	thumb	p	t	
+# ::edge	hold-01	ARG1	ring	h	r	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	game	mod	video	g	v	
+# ::edge	game	name	name	g	n	
+# ::edge	box	mod	game	b	g	
+# ::edge	box	ARG1-of	open-01	b	o	
+# ::edge	hold-01	ARG1	box	h	b	
+(p / person
+    :ARG0-of (h / hold-01
+        :ARG1 (r / ring
+            :location (t / thumb))
+        :ARG1 (b / box
+            :ARG1-of (o / open-01)
+            :mod (g / game
+                :name (n / name
+                    :op1 "Wii")
+                :mod (v / video))))
+    :part t)

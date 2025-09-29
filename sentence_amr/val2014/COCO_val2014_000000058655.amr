@@ -1,0 +1,37 @@
+# ::tok A pole has a large clock on top next to a tall building with stairs that lead up to a doorway .
+# ::node	p	pole	1-2
+# ::node	h	have-03	2-3
+# ::node	l	large	4-5
+# ::node	c	clock	5-6
+# ::node	t2	top	7-8
+# ::node	n	next-to	8-9
+# ::node	t	tall	11-12
+# ::node	b	building	12-13
+# ::node	h2	have-03	13-14
+# ::node	s	stair	14-15
+# ::node	l2	lead-01	16-17
+# ::node	d	doorway	20-21
+# ::root	h	have-03
+# ::edge	have-03	ARG0	pole	h	p	
+# ::edge	clock	mod	large	c	l	
+# ::edge	have-03	ARG1	clock	h	c	
+# ::edge	clock	location	top	c	t2	
+# ::edge	clock	location	next-to	c	n	
+# ::edge	building	mod	tall	b	t	
+# ::edge	next-to	op1	building	n	b	
+# ::edge	building	ARG0-of	have-03	b	h2	
+# ::edge	have-03	ARG1	stair	h2	s	
+# ::edge	stair	ARG0-of	lead-01	s	l2	
+# ::edge	lead-01	ARG4	doorway	l2	d	
+(h / have-03
+    :ARG0 (p / pole)
+    :ARG1 (c / clock
+        :location (t2 / top)
+        :location (n / next-to
+            :op1 (b / building
+                :ARG0-of (h2 / have-03
+                    :ARG1 (s / stair
+                        :ARG0-of (l2 / lead-01
+                            :ARG4 (d / doorway))))
+                :mod (t / tall)))
+        :mod (l / large)))

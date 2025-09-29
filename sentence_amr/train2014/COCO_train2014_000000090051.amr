@@ -1,0 +1,34 @@
+# ::tok A river area that has cows next to the water and others in the grass field .
+# ::node	r	river	1-2
+# ::node	a2	area	2-3
+# ::node	h	have-03	4-5
+# ::node	c	cow	5-6
+# ::node	c2	cow	5-6
+# ::node	n	next-to	6-7
+# ::node	w	water	9-10
+# ::node	a	and	10-11
+# ::node	o	other	11-12
+# ::node	g	grass	14-15
+# ::node	f	field	15-16
+# ::root	a2	area
+# ::edge	area	mod	river	a2	r	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	cow	location	next-to	c	n	
+# ::edge	next-to	op1	water	n	w	
+# ::edge	and	op2	cow	a	c2	
+# ::edge	and	op1	cow	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	cow	mod	other	c2	o	
+# ::edge	field	mod	grass	f	g	
+# ::edge	cow	location	field	c2	f	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / cow
+                :location (n / next-to
+                    :op1 (w / water)))
+            :op2 (c2 / cow
+                :location (f / field
+                    :mod (g / grass))
+                :mod (o / other))))
+    :mod (r / river))

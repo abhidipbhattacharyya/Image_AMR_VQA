@@ -1,0 +1,70 @@
+# ::tok A zebra stands in a grassy field while surrounded by many deer , some with antlers and some without .
+# ::node	z	zebra	1-2
+# ::node	s3	stand-01	2-3
+# ::node	g	grass	5-6
+# ::node	f	field	6-7
+# ::node	s4	surround-01	8-9
+# ::node	m	many	10-11
+# ::node	d	deer	11-12
+# ::node	d2	deer	11-12
+# ::node	i	include-91	13-14
+# ::node	s	some	13-14
+# ::node	h	have-03	14-15
+# ::node	p	province	15-16
+# ::node	n	name	15-16
+# ::node	c	continent	15-16
+# ::node	n2	name	15-16
+# ::node	1	Europe	15-16
+# ::node	a	and	16-17
+# ::node	a2	and	16-17
+# ::node	s2	some	17-18
+# ::node	h2	have-03	18-19
+# ::node	0	-	18-19
+# ::root	s3	stand-01
+# ::edge	stand-01	ARG1	zebra	s3	z	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	stand-01	location	field	s3	f	
+# ::edge	stand-01	time-of	surround-01	s3	s4	
+# ::edge	surround-01	ARG2	zebra	s4	z	
+# ::edge	deer	quant	many	d	m	
+# ::edge	surround-01	ARG1	deer	s4	d	
+# ::edge	deer	ARG2-of	include-91	d	i	
+# ::edge	have-03	ARG1	province	h	p	
+# ::edge	province	name	name	p	n	
+# ::edge	continent	name	name	c	n2	
+# ::edge	name	op1	Europe	n	1	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op2	deer	a	d2	
+# ::edge	and	op1	deer	a	d2	
+# ::edge	and	op1	some	a2	s	
+# ::edge	include-91	ARG1	and	i	a2	
+# ::edge	have-03	ARG0	some	h2	s2	
+# ::edge	and	op2	have-03	a2	h2	
+# ::edge	have-03	ARG1	deer	h2	d2	
+# ::edge	have-03	polarity	-	h2	0	
+# ::edge	stand-01	rel	have-03	s3	h	
+# ::edge	stand-01	rel	continent	s3	c	
+(s3 / stand-01
+    :ARG1 (z / zebra)
+    :location (f / field
+        :consist-of (g / grass))
+    :rel (h / have-03
+        :ARG1 (p / province
+            :name (n / name
+                :op1 "Europe")))
+    :rel (c / continent
+        :name (n2 / name))
+    :time-of (s4 / surround-01
+        :ARG1 (d / deer
+            :quant (m / many)
+            :ARG2-of (i / include-91
+                :ARG1 (a / and
+                    :op1 (d2 / deer)
+                    :op2 d2)
+                :ARG1 (a2 / and
+                    :op1 (s / some)
+                    :op2 (h2 / have-03
+                        :ARG0 (s2 / some)
+                        :ARG1 d2
+                        :polarity -))))
+        :ARG2 z))

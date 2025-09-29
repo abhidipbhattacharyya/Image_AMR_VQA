@@ -1,0 +1,34 @@
+# ::tok A white truck is parked in a parking lot near traffic cones and power lines .
+# ::node	w	white-03	1-2
+# ::node	t2	truck	2-3
+# ::node	p	park-01	4-5
+# ::node	p2	park-01	7-8
+# ::node	l2	lot	8-9
+# ::node	n	near-02	9-10
+# ::node	t	traffic	10-11
+# ::node	c	cone	11-12
+# ::node	a	and	12-13
+# ::node	p3	power-01	13-14
+# ::node	l	line	14-15
+# ::root	p	park-01
+# ::edge	truck	ARG1-of	white-03	t2	w	
+# ::edge	park-01	ARG1	truck	p	t2	
+# ::edge	lot	purpose	park-01	l2	p2	
+# ::edge	park-01	ARG2	lot	p	l2	
+# ::edge	lot	ARG1-of	near-02	l2	n	
+# ::edge	cone	mod	traffic	c	t	
+# ::edge	and	op1	cone	a	c	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	line	ARG0-of	power-01	l	p3	
+# ::edge	and	op2	line	a	l	
+(p / park-01
+    :ARG1 (t2 / truck
+        :ARG1-of (w / white-03))
+    :ARG2 (l2 / lot
+        :purpose (p2 / park-01)
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (c / cone
+                    :mod (t / traffic))
+                :op2 (l / line
+                    :ARG0-of (p3 / power-01))))))

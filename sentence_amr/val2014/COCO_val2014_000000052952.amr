@@ -1,0 +1,28 @@
+# ::tok A bus heading to Mission Ferry Plaza waiting for passengers .
+# ::node	b	bus	1-2
+# ::node	h	head-02	2-3
+# ::node	n	name	4-5
+# ::node	1	Mission	4-5
+# ::node	0	Ferry	5-6
+# ::node	f	facility	6-7
+# ::node	2	Plaza	6-7
+# ::node	w	wait-01	7-8
+# ::node	p	passenger	9-10
+# ::root	w	wait-01
+# ::edge	bus	ARG0-of	head-02	b	h	
+# ::edge	name	op1	Mission	n	1	
+# ::edge	name	op2	Ferry	n	0	
+# ::edge	facility	name	name	f	n	
+# ::edge	head-02	ARG1	facility	h	f	
+# ::edge	name	op3	Plaza	n	2	
+# ::edge	wait-01	ARG1	bus	w	b	
+# ::edge	wait-01	ARG2	passenger	w	p	
+(w / wait-01
+    :ARG1 (b / bus
+        :ARG0-of (h / head-02
+            :ARG1 (f / facility
+                :name (n / name
+                    :op1 "Mission"
+                    :op2 "Ferry"
+                    :op3 "Plaza"))))
+    :ARG2 (p / passenger))

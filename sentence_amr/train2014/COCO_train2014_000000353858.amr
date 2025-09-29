@@ -1,0 +1,33 @@
+# ::tok A dog peeking around a corner to which we can see a mirrored image of his head .
+# ::node	d	dog	1-2
+# ::node	p	peek-01	2-3
+# ::node	a	around	3-4
+# ::node	c	corner	5-6
+# ::node	w	we	8-9
+# ::node	p2	possible-01	9-10
+# ::node	s	see-01	10-11
+# ::node	r	reflect-01	12-13
+# ::node	i	image	13-14
+# ::node	h	head	16-17
+# ::root	p	peek-01
+# ::edge	peek-01	ARG0	dog	p	d	
+# ::edge	peek-01	location	around	p	a	
+# ::edge	around	op1	corner	a	c	
+# ::edge	see-01	ARG1-of	possible-01	s	p2	
+# ::edge	see-01	ARG0	we	s	w	
+# ::edge	corner	location-of	see-01	c	s	
+# ::edge	image	ARG1-of	reflect-01	i	r	
+# ::edge	see-01	ARG1	image	s	i	
+# ::edge	image	ARG2	head	i	h	
+# ::edge	dog	part	head	d	h	
+(p / peek-01
+    :ARG0 (d / dog
+        :part (h / head))
+    :location (a / around
+        :op1 (c / corner
+            :location-of (s / see-01
+                :ARG0 (w / we)
+                :ARG1 (i / image
+                    :ARG1-of (r / reflect-01)
+                    :ARG2 h)
+                :ARG1-of (p2 / possible-01)))))

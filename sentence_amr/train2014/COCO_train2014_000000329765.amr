@@ -1,0 +1,34 @@
+# ::tok A mesh bag of apples marked " Farm Fresh Apples " sits in grass
+# ::node	m2	mesh	1-2
+# ::node	b	bag	2-3
+# ::node	a	apple	4-5
+# ::node	m	mark-02	5-6
+# ::node	c	company	7-8
+# ::node	n	name	7-8
+# ::node	1	Farm	7-8
+# ::node	2	Fresh	8-9
+# ::node	0	Apples	9-10
+# ::node	s	sit-01	11-12
+# ::node	g	grass	13-14
+# ::root	s	sit-01
+# ::edge	bag	mod	mesh	b	m2	
+# ::edge	bag	consist-of	apple	b	a	
+# ::edge	bag	ARG1-of	mark-02	b	m	
+# ::edge	mark-02	ARG0	company	m	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Farm	n	1	
+# ::edge	name	op2	Fresh	n	2	
+# ::edge	name	op3	Apples	n	0	
+# ::edge	sit-01	ARG1	bag	s	b	
+# ::edge	sit-01	ARG2	grass	s	g	
+(s / sit-01
+    :ARG1 (b / bag
+        :ARG1-of (m / mark-02
+            :ARG0 (c / company
+                :name (n / name
+                    :op1 "Farm"
+                    :op2 "Fresh"
+                    :op3 "Apples")))
+        :consist-of (a / apple)
+        :mod (m2 / mesh))
+    :ARG2 (g / grass))

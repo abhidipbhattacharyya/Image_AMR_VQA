@@ -1,0 +1,31 @@
+# ::tok A pizza setting on a table with a couple slices missing near plates and drinks .
+# ::node	p	pizza	1-2
+# ::node	s	set-01	2-3
+# ::node	t	table	5-6
+# ::node	c	couple	8-9
+# ::node	s2	slice	9-10
+# ::node	m	miss-01	10-11
+# ::node	n	near-02	11-12
+# ::node	p2	plate	12-13
+# ::node	a	and	13-14
+# ::node	d	drink-01	14-15
+# ::root	s	set-01
+# ::edge	set-01	ARG1	pizza	s	p	
+# ::edge	set-01	ARG2	table	s	t	
+# ::edge	slice	quant	couple	s2	c	
+# ::edge	miss-01	ARG1	slice	m	s2	
+# ::edge	table	location-of	miss-01	t	m	
+# ::edge	table	ARG1-of	near-02	t	n	
+# ::edge	and	op1	plate	a	p2	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	and	op2	drink-01	a	d	
+(s / set-01
+    :ARG1 (p / pizza)
+    :ARG2 (t / table
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (p2 / plate)
+                :op2 (d / drink-01)))
+        :location-of (m / miss-01
+            :ARG1 (s2 / slice
+                :quant (c / couple)))))

@@ -1,0 +1,32 @@
+# ::tok Scene of people and vehicles out and about with a train on the overpass
+# ::node	s	scene	0-1
+# ::node	p	person	2-3
+# ::node	v	vehicle	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	a	and	6-7
+# ::node	b2	be-located-at-91	7-8
+# ::node	o	out-06	7-8
+# ::node	t	train	10-11
+# ::node	o2	overpass	13-14
+# ::root	s	scene
+# ::edge	be-located-at-91	ARG1	vehicle	b	v	
+# ::edge	scene	mod	be-located-at-91	s	b	
+# ::edge	be-located-at-91	ARG2	and	b	a	
+# ::edge	and	op2	vehicle	a	v	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	ARG1-of	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	out-06	b2	o	
+# ::edge	out-06	ARG1	and	o	a	
+# ::edge	be-located-at-91	accompanier	train	b2	t	
+# ::edge	be-located-at-91	location	overpass	b2	o2	
+(s / scene
+    :mod (b / be-located-at-91
+        :ARG1 (v / vehicle)
+        :ARG2 (a / and
+            :ARG1-of (b2 / be-located-at-91
+                :ARG2 (o / out-06
+                    :ARG1 a)
+                :accompanier (t / train)
+                :location (o2 / overpass))
+            :op1 (p / person)
+            :op2 v)))

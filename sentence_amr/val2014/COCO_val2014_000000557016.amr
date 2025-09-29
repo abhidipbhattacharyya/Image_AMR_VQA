@@ -1,0 +1,29 @@
+# ::tok A car driving up the road and in front of it is several cows in the road .
+# ::node	c	car	1-2
+# ::node	d	drive-01	2-3
+# ::node	u	up	3-4
+# ::node	a	and	6-7
+# ::node	i	in-front-of	8-9
+# ::node	s	several	12-13
+# ::node	c2	cow	13-14
+# ::node	r	road	16-17
+# ::root	a	and
+# ::edge	car	ARG1-of	drive-01	c	d	
+# ::edge	car	direction	up	c	u	
+# ::edge	and	op1	car	a	c	
+# ::edge	in-front-of	op1	car	i	c	
+# ::edge	cow	quant	several	c2	s	
+# ::edge	cow	location	in-front-of	c2	i	
+# ::edge	and	op2	cow	a	c2	
+# ::edge	cow	location	road	c2	r	
+# ::edge	drive-01	location	road	d	r	
+(a / and
+    :op1 (c / car
+        :ARG1-of (d / drive-01
+            :location (r / road))
+        :direction (u / up))
+    :op2 (c2 / cow
+        :quant (s / several)
+        :location (i / in-front-of
+            :op1 c)
+        :location r))

@@ -1,0 +1,44 @@
+# ::tok A man standing on a snowy mountain wearing skis and a red jacket holding his arms as if he was cold .
+# ::node	m	man	1-2
+# ::node	s3	stand-01	2-3
+# ::node	s2	snowy-02	5-6
+# ::node	m2	mountain	6-7
+# ::node	w	wear-01	7-8
+# ::node	s	ski-01	8-9
+# ::node	a	and	9-10
+# ::node	r	red-02	11-12
+# ::node	j	jacket	12-13
+# ::node	h	hold-01	13-14
+# ::node	a2	arm	15-16
+# ::node	r2	resemble-01	16-17
+# ::node	c	cold-01	20-21
+# ::root	m	man
+# ::edge	man	ARG1-of	stand-01	m	s3	
+# ::edge	mountain	ARG1-of	snowy-02	m2	s2	
+# ::edge	stand-01	ARG2	mountain	s3	m2	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	and	op1	ski-01	a	s	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	jacket	ARG1-of	red-02	j	r	
+# ::edge	and	op2	jacket	a	j	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	ARG1	arm	h	a2	
+# ::edge	man	part	arm	m	a2	
+# ::edge	hold-01	ARG1-of	resemble-01	h	r2	
+# ::edge	resemble-01	ARG2	cold-01	r2	c	
+# ::edge	cold-01	ARG1	man	c	m	
+(m / man
+    :ARG0-of (w / wear-01
+        :ARG1 (a / and
+            :op1 (s / ski-01)
+            :op2 (j / jacket
+                :ARG1-of (r / red-02))))
+    :ARG0-of (h / hold-01
+        :ARG1 (a2 / arm)
+        :ARG1-of (r2 / resemble-01
+            :ARG2 (c / cold-01
+                :ARG1 m)))
+    :ARG1-of (s3 / stand-01
+        :ARG2 (m2 / mountain
+            :ARG1-of (s2 / snowy-02)))
+    :part a2)

@@ -1,0 +1,24 @@
+# ::tok The homemade pizza on the counter is ready to be eaten .
+# ::node	m	make-01	1-2
+# ::node	h	home	1-2
+# ::node	p	pizza	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	c	counter	5-6
+# ::node	r	ready-02	7-8
+# ::node	e	eat-01	10-11
+# ::root	r	ready-02
+# ::edge	make-01	ARG1	home	m	h	
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	be-located-at-91	ARG1	pizza	b	p	
+# ::edge	be-located-at-91	ARG2	counter	b	c	
+# ::edge	ready-02	ARG1	be-located-at-91	r	b	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	pizza	e	p	
+(r / ready-02
+    :ARG1 (b / be-located-at-91
+        :ARG1 (p / pizza
+            :ARG1-of (m / make-01
+                :ARG1 (h / home)))
+        :ARG2 (c / counter))
+    :ARG2 (e / eat-01
+        :ARG1 p))

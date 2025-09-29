@@ -1,0 +1,26 @@
+# ::tok A bot standing near a traffic sign looking up at it .
+# ::node	b	bot	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	t	traffic	5-6
+# ::node	s	sign	6-7
+# ::node	l	look-01	7-8
+# ::node	u	up	8-9
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	bot	s2	b	
+# ::edge	stand-01	ARG2	near-02	s2	n	
+# ::edge	near-02	ARG1	bot	n	b	
+# ::edge	sign	topic	traffic	s	t	
+# ::edge	near-02	ARG2	sign	n	s	
+# ::edge	look-01	ARG1	sign	l	s	
+# ::edge	bot	ARG0-of	look-01	b	l	
+# ::edge	look-01	direction	up	l	u	
+(s2 / stand-01
+    :ARG1 (b / bot
+        :ARG0-of (l / look-01
+            :ARG1 (s / sign
+                :topic (t / traffic))
+            :direction (u / up)))
+    :ARG2 (n / near-02
+        :ARG1 b
+        :ARG2 s))

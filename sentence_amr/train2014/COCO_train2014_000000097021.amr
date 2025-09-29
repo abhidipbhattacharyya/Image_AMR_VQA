@@ -1,0 +1,36 @@
+# ::tok Several bicycles are parked next to the window of a brown brick building that has flower boxes on the window .
+# ::node	s	several	0-1
+# ::node	b	bicycle	1-2
+# ::node	p	park-01	3-4
+# ::node	n	next-to	4-5
+# ::node	w	window	7-8
+# ::node	b4	brown-01	10-11
+# ::node	b3	brick	11-12
+# ::node	b5	building	12-13
+# ::node	h	have-03	14-15
+# ::node	f	flower	15-16
+# ::node	b2	box	16-17
+# ::root	p	park-01
+# ::edge	bicycle	quant	several	b	s	
+# ::edge	park-01	ARG1	bicycle	p	b	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	window	n	w	
+# ::edge	brick	ARG1-of	brown-01	b3	b4	
+# ::edge	building	consist-of	brick	b5	b3	
+# ::edge	window	part-of	building	w	b5	
+# ::edge	building	ARG0-of	have-03	b5	h	
+# ::edge	box	mod	flower	b2	f	
+# ::edge	have-03	ARG1	box	h	b2	
+# ::edge	box	location	building	b2	b5	
+(p / park-01
+    :ARG1 (b / bicycle
+        :quant (s / several))
+    :ARG2 (n / next-to
+        :op1 (w / window
+            :part-of (b5 / building
+                :ARG0-of (h / have-03
+                    :ARG1 (b2 / box
+                        :location b5
+                        :mod (f / flower)))
+                :consist-of (b3 / brick
+                    :ARG1-of (b4 / brown-01))))))

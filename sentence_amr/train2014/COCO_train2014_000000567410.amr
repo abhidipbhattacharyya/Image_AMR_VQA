@@ -1,0 +1,33 @@
+# ::tok The wii controller remote is turned on and has one light showing .
+# ::node	p	product	1-2
+# ::node	n	name	1-2
+# ::node	1	W	1-2
+# ::node	c	control-01	2-3
+# ::node	r	remote	3-4
+# ::node	t	turn-on-13	5-6
+# ::node	a	and	7-8
+# ::node	0	1	9-10
+# ::node	l	light	10-11
+# ::node	s	show-01	11-12
+# ::root	a	and
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	W	n	1	
+# ::edge	control-01	ARG1	product	c	p	
+# ::edge	remote	ARG0-of	control-01	r	c	
+# ::edge	turn-on-13	ARG1	remote	t	r	
+# ::edge	and	op1	turn-on-13	a	t	
+# ::edge	light	quant	1	l	0	
+# ::edge	show-01	ARG1	light	s	l	
+# ::edge	and	op2	show-01	a	s	
+# ::edge	show-01	ARG0	remote	s	r	
+(a / and
+    :op1 (t / turn-on-13
+        :ARG1 (r / remote
+            :ARG0-of (c / control-01
+                :ARG1 (p / product
+                    :name (n / name
+                        :op1 "W")))))
+    :op2 (s / show-01
+        :ARG0 r
+        :ARG1 (l / light
+            :quant 1)))

@@ -1,0 +1,24 @@
+# ::tok A wooden toilet seat is sitting next to a duplicate one .
+# ::node	w	wood	1-2
+# ::node	t	toilet	2-3
+# ::node	s	seat	3-4
+# ::node	s2	seat	3-4
+# ::node	s3	sit-01	5-6
+# ::node	n	next-to	6-7
+# ::node	c	copy-01	9-10
+# ::root	s3	sit-01
+# ::edge	seat	mod	toilet	s	t	
+# ::edge	seat	mod	wood	s	w	
+# ::edge	sit-01	ARG1	seat	s3	s	
+# ::edge	sit-01	ARG2	next-to	s3	n	
+# ::edge	next-to	op2	seat	n	s2	
+# ::edge	next-to	op1	seat	n	s	
+# ::edge	seat	ARG1-of	copy-01	s2	c	
+(s3 / sit-01
+    :ARG1 (s / seat
+        :mod (t / toilet)
+        :mod (w / wood))
+    :ARG2 (n / next-to
+        :op1 s
+        :op2 (s2 / seat
+            :ARG1-of (c / copy-01))))

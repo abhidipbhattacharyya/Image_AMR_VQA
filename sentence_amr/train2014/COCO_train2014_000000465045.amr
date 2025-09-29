@@ -1,0 +1,30 @@
+# ::tok Train engine on track with other trains and tracks in background
+# ::node	t3	train	0-1
+# ::node	e	engine	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	t	track	3-4
+# ::node	o	other	5-6
+# ::node	t4	train	6-7
+# ::node	a	and	7-8
+# ::node	t2	track	8-9
+# ::node	b	background	10-11
+# ::root	b2	be-located-at-91
+# ::edge	engine	part-of	train	e	t3	
+# ::edge	be-located-at-91	ARG1	engine	b2	e	
+# ::edge	be-located-at-91	ARG2	track	b2	t	
+# ::edge	train	mod	other	t4	o	
+# ::edge	and	op1	train	a	t4	
+# ::edge	track	accompanier	and	t	a	
+# ::edge	and	op2	track	a	t2	
+# ::edge	track	mod	other	t2	o	
+# ::edge	and	location	background	a	b	
+(b2 / be-located-at-91
+    :ARG1 (e / engine
+        :part-of (t3 / train))
+    :ARG2 (t / track
+        :accompanier (a / and
+            :location (b / background)
+            :op1 (t4 / train
+                :mod (o / other))
+            :op2 (t2 / track
+                :mod o))))

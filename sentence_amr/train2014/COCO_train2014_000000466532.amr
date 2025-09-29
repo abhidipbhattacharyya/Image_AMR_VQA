@@ -1,0 +1,33 @@
+# ::tok Several bunches of green and yellow bananas hanging around outside .
+# ::node	s	several	0-1
+# ::node	m	multiple	1-2
+# ::node	b3	bunch	1-2
+# ::node	g	green-02	3-4
+# ::node	a	and	4-5
+# ::node	y	yellow-02	5-6
+# ::node	b	banana	6-7
+# ::node	b2	banana	6-7
+# ::node	h	hang-02	7-8
+# ::node	o	outside	9-10
+# ::root	h	hang-02
+# ::edge	multiple	quant	several	m	s	
+# ::edge	multiple	op1	bunch	m	b3	
+# ::edge	and	quant	bunch	a	b3	
+# ::edge	and	op1	banana	a	b	
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	banana	ARG1-of	yellow-02	b2	y	
+# ::edge	and	op2	banana	a	b2	
+# ::edge	hang-02	ARG1	and	h	a	
+# ::edge	hang-02	ARG2	outside	h	o	
+# ::edge	hang-02	rel	multiple	h	m	
+(h / hang-02
+    :ARG1 (a / and
+        :quant (b3 / bunch)
+        :op1 (b / banana
+            :ARG1-of (g / green-02))
+        :op2 (b2 / banana
+            :ARG1-of (y / yellow-02)))
+    :ARG2 (o / outside)
+    :rel (m / multiple
+        :quant (s / several)
+        :op1 b3))

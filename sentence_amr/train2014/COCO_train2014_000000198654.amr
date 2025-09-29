@@ -1,0 +1,27 @@
+# ::tok A catcher reaching out to catch a ball while the batter is swinging .
+# ::node	p	person	1-2
+# ::node	c	catch-01	1-2
+# ::node	r	reach-03	2-3
+# ::node	c2	catch-01	5-6
+# ::node	b	ball	7-8
+# ::node	p2	person	10-11
+# ::node	b2	batter-01	10-11
+# ::node	s	swing-02	12-13
+# ::root	r	reach-03
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	reach-03	purpose	catch-01	r	c2	
+# ::edge	catch-01	ARG0	person	c2	p	
+# ::edge	catch-01	ARG1	ball	c2	b	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	swing-02	ARG0	person	s	p2	
+# ::edge	catch-01	time	swing-02	c2	s	
+(r / reach-03
+    :purpose (c2 / catch-01
+        :ARG0 (p / person
+            :ARG0-of (c / catch-01))
+        :ARG1 (b / ball)
+        :time (s / swing-02
+            :ARG0 (p2 / person
+                :ARG0-of (b2 / batter-01))))
+    :ARG0 p)

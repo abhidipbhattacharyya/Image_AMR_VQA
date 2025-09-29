@@ -1,0 +1,51 @@
+# ::tok Small bowl of dip surrounded by cheese , broccoli , peppers and other items on the plate .
+# ::node	s	small	0-1
+# ::node	b	bowl	1-2
+# ::node	d	dip	3-4
+# ::node	s2	surround-01	4-5
+# ::node	c	cheese	6-7
+# ::node	a	and	7-8
+# ::node	b2	broccoli	8-9
+# ::node	p	plant	10-11
+# ::node	n	name	10-11
+# ::node	v	variable	10-11
+# ::node	n2	name	10-11
+# ::node	v2	variable	10-11
+# ::node	0	Europe	10-11
+# ::node	o	other	12-13
+# ::node	i	item	13-14
+# ::node	p2	plate	16-17
+# ::root	s2	surround-01
+# ::edge	bowl	mod	small	b	s	
+# ::edge	bowl	consist-of	dip	b	d	
+# ::edge	surround-01	ARG2	bowl	s2	b	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	surround-01	ARG1	and	s2	a	
+# ::edge	and	op2	broccoli	a	b2	
+# ::edge	and	op3	plant	a	p	
+# ::edge	plant	name	name	p	n	
+# ::edge	broccoli	mod	variable	b2	v	
+# ::edge	variable	name	name	v	n2	
+# ::edge	variable	name	name	v2	n2	
+# ::edge	bowl	mod	variable	b	v2	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	item	mod	other	i	o	
+# ::edge	and	op4	item	a	i	
+# ::edge	item	location	plate	i	p2	
+(s2 / surround-01
+    :ARG1 (a / and
+        :op1 (c / cheese)
+        :op2 (b2 / broccoli
+            :mod (v / variable
+                :name (n2 / name)))
+        :op3 (p / plant
+            :name (n / name
+                :op1 "Europe"))
+        :op4 (i / item
+            :location (p2 / plate)
+            :mod (o / other)))
+    :ARG2 (b / bowl
+        :consist-of (d / dip)
+        :mod (s / small)
+        :mod (v2 / variable
+            :name n2)))

@@ -1,0 +1,28 @@
+# ::tok Bathroom with vaulted ceiling and toilet paper rolls mounted in a decorative manner .
+# ::node	r2	room	0-1
+# ::node	w	wall-off-01	2-3
+# ::node	c	ceiling	3-4
+# ::node	a	and	4-5
+# ::node	t	toilet	5-6
+# ::node	p	paper	6-7
+# ::node	r	roll	7-8
+# ::node	m	mount-03	8-9
+# ::node	d	decorative	11-12
+# ::root	r2	room
+# ::edge	ceiling	ARG1-of	wall-off-01	c	w	
+# ::edge	and	op1	ceiling	a	c	
+# ::edge	room	part	and	r2	a	
+# ::edge	paper	mod	toilet	p	t	
+# ::edge	roll	consist-of	paper	r	p	
+# ::edge	mount-03	ARG1	roll	m	r	
+# ::edge	and	op2	mount-03	a	m	
+# ::edge	mount-03	manner	decorative	m	d	
+(r2 / room
+    :part (a / and
+        :op1 (c / ceiling
+            :ARG1-of (w / wall-off-01))
+        :op2 (m / mount-03
+            :ARG1 (r / roll
+                :consist-of (p / paper
+                    :mod (t / toilet)))
+            :manner (d / decorative))))

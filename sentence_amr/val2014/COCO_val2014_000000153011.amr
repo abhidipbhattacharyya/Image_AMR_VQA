@@ -1,0 +1,41 @@
+# ::tok A couple of dining trucks are in a parking lot while some people stand or sit in chairs .
+# ::node	c2	couple	1-2
+# ::node	d	dine-01	3-4
+# ::node	t	truck	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	p	park-01	8-9
+# ::node	l	lot	9-10
+# ::node	s2	some	11-12
+# ::node	p2	person	12-13
+# ::node	s3	stand-01	13-14
+# ::node	o	or	14-15
+# ::node	s	sit-01	15-16
+# ::node	c	chair	17-18
+# ::root	b	be-located-at-91
+# ::edge	truck	mod	dine-01	t	d	
+# ::edge	truck	quant	couple	t	c2	
+# ::edge	be-located-at-91	ARG1	truck	b	t	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	be-located-at-91	ARG2	lot	b	l	
+# ::edge	person	quant	some	p2	s2	
+# ::edge	stand-01	ARG1	person	s3	p2	
+# ::edge	or	op1	stand-01	o	s3	
+# ::edge	be-located-at-91	time	or	b	o	
+# ::edge	or	op2	sit-01	o	s	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	stand-01	ARG2	chair	s3	c	
+(b / be-located-at-91
+    :ARG1 (t / truck
+        :quant (c2 / couple)
+        :mod (d / dine-01))
+    :ARG2 (l / lot
+        :ARG2-of (p / park-01))
+    :time (o / or
+        :op1 (s3 / stand-01
+            :ARG1 (p2 / person
+                :quant (s2 / some))
+            :ARG2 (c / chair))
+        :op2 (s / sit-01
+            :ARG1 p2
+            :ARG2 c)))

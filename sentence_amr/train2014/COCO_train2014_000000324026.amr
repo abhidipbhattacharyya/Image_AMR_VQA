@@ -1,0 +1,34 @@
+# ::tok Patrons dining in an outdoor patio area with a staff member by the entrance .
+# ::node	p3	person	0-1
+# ::node	p	patient	0-1
+# ::node	d	dine-01	1-2
+# ::node	o	outdoor	4-5
+# ::node	p2	patio	5-6
+# ::node	a	area	6-7
+# ::node	s	staff-01	9-10
+# ::node	p4	person	10-11
+# ::node	h	have-org-role-91	10-11
+# ::node	m	member	10-11
+# ::node	e	entrance	13-14
+# ::root	d	dine-01
+# ::edge	person	mod	patient	p3	p	
+# ::edge	dine-01	ARG0	person	d	p3	
+# ::edge	area	mod	patio	a	p2	
+# ::edge	area	location	outdoor	a	o	
+# ::edge	dine-01	location	area	d	a	
+# ::edge	dine-01	accompanier	person	d	p4	
+# ::edge	person	ARG0-of	have-org-role-91	p4	h	
+# ::edge	have-org-role-91	ARG2	member	h	m	
+# ::edge	member	ARG0-of	staff-01	m	s	
+# ::edge	area	location	entrance	a	e	
+(d / dine-01
+    :ARG0 (p3 / person
+        :mod (p / patient))
+    :accompanier (p4 / person
+        :ARG0-of (h / have-org-role-91
+            :ARG2 (m / member
+                :ARG0-of (s / staff-01))))
+    :location (a / area
+        :location (o / outdoor)
+        :location (e / entrance)
+        :mod (p2 / patio)))

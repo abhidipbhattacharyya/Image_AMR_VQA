@@ -1,0 +1,37 @@
+# ::tok A person kicking a soccer ball and another person trying to steal it , in a soccer game .
+# ::node	p	person	1-2
+# ::node	k	kick-01	2-3
+# ::node	s	soccer	4-5
+# ::node	b	ball	5-6
+# ::node	a	and	6-7
+# ::node	a2	another	7-8
+# ::node	p2	person	8-9
+# ::node	t	try-01	9-10
+# ::node	s2	steal-01	11-12
+# ::node	g	game	17-18
+# ::root	a	and
+# ::edge	kick-01	ARG0	person	k	p	
+# ::edge	ball	mod	soccer	b	s	
+# ::edge	kick-01	ARG1	ball	k	b	
+# ::edge	and	op1	kick-01	a	k	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	try-01	ARG0	person	t	p2	
+# ::edge	and	op2	try-01	a	t	
+# ::edge	try-01	ARG1	steal-01	t	s2	
+# ::edge	steal-01	ARG0	person	s2	p2	
+# ::edge	steal-01	ARG1	ball	s2	b	
+# ::edge	and	subevent-of	game	a	g	
+# ::edge	game	mod	soccer	g	s	
+(a / and
+    :op1 (k / kick-01
+        :ARG0 (p / person)
+        :ARG1 (b / ball
+            :mod (s / soccer)))
+    :op2 (t / try-01
+        :ARG0 (p2 / person
+            :mod (a2 / another))
+        :ARG1 (s2 / steal-01
+            :ARG0 p2
+            :ARG1 b))
+    :subevent-of (g / game
+        :mod s))

@@ -1,0 +1,55 @@
+# ::tok A glass with floating lemon slices , a banana and a blurry item that might be an iPod are the only visible items on a tabletop .
+# ::node	g	glass	1-2
+# ::node	h	have-03	2-3
+# ::node	f	float-01	3-4
+# ::node	l	lemon	4-5
+# ::node	s2	slice	5-6
+# ::node	b	banana	8-9
+# ::node	a	and	9-10
+# ::node	b2	blur-01	11-12
+# ::node	i	item	12-13
+# ::node	p	possible-01	14-15
+# ::node	p3	product	17-18
+# ::node	n	name	17-18
+# ::node	0	iPod	17-18
+# ::node	o	only	20-21
+# ::node	p2	possible-01	21-22
+# ::node	s	see-01	21-22
+# ::node	i2	item	22-23
+# ::node	t	tabletop	25-26
+# ::root	p2	possible-01
+# ::edge	glass	ARG0-of	have-03	g	h	
+# ::edge	slice	consist-of	lemon	s2	l	
+# ::edge	slice	ARG1-of	float-01	s2	f	
+# ::edge	and	op2	banana	a	b	
+# ::edge	and	op1	slice	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	item	ARG1-of	blur-01	i	b2	
+# ::edge	and	op3	item	a	i	
+# ::edge	product	ARG1-of	possible-01	p3	p	
+# ::edge	item	domain	product	i	p3	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	iPod	n	0	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	mod	only	s	o	
+# ::edge	see-01	ARG1	item	s	i2	
+# ::edge	item	domain	glass	i2	g	
+# ::edge	see-01	location	tabletop	s	t	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (i2 / item
+            :domain (g / glass
+                :ARG0-of (h / have-03
+                    :ARG1 (a / and
+                        :op1 (s2 / slice
+                            :ARG1-of (f / float-01)
+                            :consist-of (l / lemon))
+                        :op2 (b / banana)
+                        :op3 (i / item
+                            :ARG1-of (b2 / blur-01)
+                            :domain (p3 / product
+                                :name (n / name
+                                    :op1 "iPod")
+                                :ARG1-of (p / possible-01)))))))
+        :location (t / tabletop)
+        :mod (o / only)))

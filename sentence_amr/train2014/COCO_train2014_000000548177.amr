@@ -1,0 +1,26 @@
+# ::tok A player is in motion as he reaches back to throw the ball .
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	m	move-01	4-5
+# ::node	r	reach-03	7-8
+# ::node	b	back	8-9
+# ::node	t	throw-01	10-11
+# ::node	b2	ball	12-13
+# ::root	m	move-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	move-01	ARG1	person	m	p	
+# ::edge	move-01	time	reach-03	m	r	
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	reach-03	ARG2	back	r	b	
+# ::edge	reach-03	purpose	throw-01	r	t	
+# ::edge	throw-01	ARG0	person	t	p	
+# ::edge	throw-01	ARG1	ball	t	b2	
+(m / move-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01))
+    :time (r / reach-03
+        :purpose (t / throw-01
+            :ARG0 p
+            :ARG1 (b2 / ball))
+        :ARG0 p
+        :ARG2 (b / back)))

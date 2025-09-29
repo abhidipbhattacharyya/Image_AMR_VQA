@@ -1,0 +1,36 @@
+# ::tok A dog with its front paws on a coffee table with two pizzas and chicken wings on it .
+# ::node	d	dog	1-2
+# ::node	f	front	4-5
+# ::node	c2	claw	5-6
+# ::node	c3	coffee	8-9
+# ::node	t	table	9-10
+# ::node	h	have-03	10-11
+# ::node	0	2	11-12
+# ::node	p	pizzeria	12-13
+# ::node	a	and	13-14
+# ::node	c	chicken	14-15
+# ::node	w	wing	15-16
+# ::root	d	dog
+# ::edge	claw	mod	front	c2	f	
+# ::edge	dog	part	claw	d	c2	
+# ::edge	table	mod	coffee	t	c3	
+# ::edge	dog	location	table	d	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	pizzeria	quant	2	p	0	
+# ::edge	and	op1	pizzeria	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	location	table	a	t	
+# ::edge	wing	part-of	chicken	w	c	
+# ::edge	and	op2	wing	a	w	
+(d / dog
+    :location (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :location t
+                :op1 (p / pizzeria
+                    :quant 2)
+                :op2 (w / wing
+                    :part-of (c / chicken))))
+        :mod (c3 / coffee))
+    :part (c2 / claw
+        :mod (f / front)))

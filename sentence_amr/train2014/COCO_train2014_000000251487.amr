@@ -1,0 +1,22 @@
+# ::tok Flares set off in the middle of the street causing a lot of smoke .
+# ::node	f	flare-02	0-1
+# ::node	s	set-off-05	1-2
+# ::node	m	middle	5-6
+# ::node	s3	street	8-9
+# ::node	c	cause-01	9-10
+# ::node	l	lot	11-12
+# ::node	s2	smoke	13-14
+# ::root	s	set-off-05
+# ::edge	set-off-05	ARG1	flare-02	s	f	
+# ::edge	set-off-05	location	middle	s	m	
+# ::edge	middle	part-of	street	m	s3	
+# ::edge	set-off-05	ARG0-of	cause-01	s	c	
+# ::edge	smoke	quant	lot	s2	l	
+# ::edge	cause-01	ARG1	smoke	c	s2	
+(s / set-off-05
+    :ARG0-of (c / cause-01
+        :ARG1 (s2 / smoke
+            :quant (l / lot)))
+    :ARG1 (f / flare-02)
+    :location (m / middle
+        :part-of (s3 / street)))

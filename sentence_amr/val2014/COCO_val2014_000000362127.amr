@@ -1,0 +1,36 @@
+# ::tok A bathroom with modern fixtures including a garden style bathtub near a window that has it 's shades closed .
+# ::node	b	bathroom	1-2
+# ::node	m	modern-02	3-4
+# ::node	f	fixture	4-5
+# ::node	i	include-01	5-6
+# ::node	g	garden	7-8
+# ::node	s2	style	8-9
+# ::node	b2	bathtub	9-10
+# ::node	n	near-02	10-11
+# ::node	w	window	12-13
+# ::node	s	shade	17-18
+# ::node	c	close-01	18-19
+# ::root	b	bathroom
+# ::edge	fixture	ARG1-of	modern-02	f	m	
+# ::edge	bathroom	part	fixture	b	f	
+# ::edge	fixture	ARG2-of	include-01	f	i	
+# ::edge	style	mod	garden	s2	g	
+# ::edge	bathtub	mod	style	b2	s2	
+# ::edge	include-01	ARG1	bathtub	i	b2	
+# ::edge	bathroom	ARG1-of	near-02	b	n	
+# ::edge	near-02	ARG2	window	n	w	
+# ::edge	shade	poss	window	s	w	
+# ::edge	close-01	ARG1	shade	c	s	
+# ::edge	window	ARG0-of	close-01	w	c	
+(b / bathroom
+    :ARG1-of (n / near-02
+        :ARG2 (w / window
+            :ARG0-of (c / close-01
+                :ARG1 (s / shade
+                    :poss w))))
+    :part (f / fixture
+        :ARG1-of (m / modern-02)
+        :ARG2-of (i / include-01
+            :ARG1 (b2 / bathtub
+                :mod (s2 / style
+                    :mod (g / garden))))))

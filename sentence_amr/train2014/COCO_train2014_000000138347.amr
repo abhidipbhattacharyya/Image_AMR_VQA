@@ -1,0 +1,40 @@
+# ::tok A large grass field with a parking lot and several tethered animal balloons floating .
+# ::node	l	large	1-2
+# ::node	g	grass	2-3
+# ::node	f	field	3-4
+# ::node	h	have-03	4-5
+# ::node	p	park-01	6-7
+# ::node	l2	lot	7-8
+# ::node	a	and	8-9
+# ::node	s	several	9-10
+# ::node	s2	string-entity	10-11
+# ::node	t	tie-01	10-11
+# ::node	a2	animal	11-12
+# ::node	i	inflate-01	12-13
+# ::node	f2	float-01	13-14
+# ::root	f	field
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	field	mod	large	f	l	
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	lot	ARG2-of	park-01	l2	p	
+# ::edge	and	op1	lot	a	l2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	inflate-01	ARG1	animal	i	a2	
+# ::edge	inflate-01	ARG1-of	tie-01	i	t	
+# ::edge	inflate-01	quant	several	i	s	
+# ::edge	and	op2	inflate-01	a	i	
+# ::edge	field	ARG1-of	float-01	f	f2	
+# ::edge	field	rel	string-entity	f	s2	
+(f / field
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l2 / lot
+                :ARG2-of (p / park-01))
+            :op2 (i / inflate-01
+                :quant (s / several)
+                :ARG1 (a2 / animal)
+                :ARG1-of (t / tie-01))))
+    :ARG1-of (f2 / float-01)
+    :consist-of (g / grass)
+    :mod (l / large)
+    :rel (s2 / string-entity))

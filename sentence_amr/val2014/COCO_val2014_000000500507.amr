@@ -1,0 +1,39 @@
+# ::tok Three dogs are in a pen and two are at a standoff while another trots away .
+# ::node	1	3	0-1
+# ::node	d	dog	1-2
+# ::node	d2	dog	1-2
+# ::node	d3	dog	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	p	pen	5-6
+# ::node	a	and	6-7
+# ::node	0	2	7-8
+# ::node	s	standoff	11-12
+# ::node	a2	another	13-14
+# ::node	c	charge-01	14-15
+# ::node	a3	away	15-16
+# ::root	a	and
+# ::edge	dog	quant	3	d	1	
+# ::edge	be-located-at-91	ARG1	dog	b	d	
+# ::edge	be-located-at-91	ARG2	pen	b	p	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	dog	quant	2	d2	0	
+# ::edge	and	op2	standoff	a	s	
+# ::edge	standoff	domain	dog	s	d3	
+# ::edge	dog	mod	another	d3	a2	
+# ::edge	and	op3	charge-01	a	c	
+# ::edge	charge-01	ARG0	dog	c	d3	
+# ::edge	charge-01	ARG2	away	c	a3	
+# ::edge	and	rel	dog	a	d2	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (d / dog
+            :quant 3)
+        :ARG2 (p / pen))
+    :op2 (s / standoff
+        :domain (d3 / dog
+            :mod (a2 / another)))
+    :op3 (c / charge-01
+        :ARG0 d3
+        :ARG2 (a3 / away))
+    :rel (d2 / dog
+        :quant 2))

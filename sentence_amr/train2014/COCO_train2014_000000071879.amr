@@ -1,0 +1,36 @@
+# ::tok A small black box with a roof on top of it next to a street sign warning about cross roads .
+# ::node	s2	small	1-2
+# ::node	b	black-04	2-3
+# ::node	b2	box	3-4
+# ::node	r2	roof	6-7
+# ::node	t	top	8-9
+# ::node	n	next-to	11-12
+# ::node	s3	street	14-15
+# ::node	s	sign	15-16
+# ::node	w	warn-01	16-17
+# ::node	c	cross-02	18-19
+# ::node	r	road	19-20
+# ::root	b2	box
+# ::edge	box	ARG1-of	black-04	b2	b	
+# ::edge	box	mod	small	b2	s2	
+# ::edge	box	part	roof	b2	r2	
+# ::edge	top	location-of	roof	t	r2	
+# ::edge	box	op1-of	top	b2	t	
+# ::edge	box	location	next-to	b2	n	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	next-to	op1	sign	n	s	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	warn-01	ARG1	cross-02	w	c	
+# ::edge	cross-02	ARG1	road	c	r	
+(b2 / box
+    :ARG1-of (b / black-04)
+    :location (n / next-to
+        :op1 (s / sign
+            :ARG0-of (w / warn-01
+                :ARG1 (c / cross-02
+                    :ARG1 (r / road)))
+            :mod (s3 / street)))
+    :mod (s2 / small)
+    :op1-of (t / top
+        :location-of (r2 / roof))
+    :part r2)

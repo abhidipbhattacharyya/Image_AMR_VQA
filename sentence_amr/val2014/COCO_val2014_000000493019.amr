@@ -1,0 +1,30 @@
+# ::tok A group of zebras are bending down and eating a box full of grass .
+# ::node	g2	group	1-2
+# ::node	e2	elephant	3-4
+# ::node	b	bend-01	5-6
+# ::node	d	down	6-7
+# ::node	a	and	7-8
+# ::node	e	eat-01	8-9
+# ::node	b2	box	10-11
+# ::node	f	full-09	11-12
+# ::node	g	grass	13-14
+# ::root	a	and
+# ::edge	group	consist-of	elephant	g2	e2	
+# ::edge	bend-01	ARG0	group	b	g2	
+# ::edge	bend-01	direction	down	b	d	
+# ::edge	and	op1	bend-01	a	b	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG0	group	e	g2	
+# ::edge	eat-01	ARG1	box	e	b2	
+# ::edge	box	ARG1-of	full-09	b2	f	
+# ::edge	full-09	ARG2	grass	f	g	
+(a / and
+    :op1 (b / bend-01
+        :ARG0 (g2 / group
+            :consist-of (e2 / elephant))
+        :direction (d / down))
+    :op2 (e / eat-01
+        :ARG0 g2
+        :ARG1 (b2 / box
+            :ARG1-of (f / full-09
+                :ARG2 (g / grass)))))

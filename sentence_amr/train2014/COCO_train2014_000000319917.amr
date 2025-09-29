@@ -1,0 +1,41 @@
+# ::tok Small items laid out on a bed ready to be packed including pens , cords and gloves .
+# ::node	s2	small	0-1
+# ::node	i2	item	1-2
+# ::node	l	lay-01	2-3
+# ::node	o	out	3-4
+# ::node	b	bed	6-7
+# ::node	r	ready-01	7-8
+# ::node	p	pack-01	10-11
+# ::node	i	include-01	11-12
+# ::node	p2	pin	12-13
+# ::node	a	and	13-14
+# ::node	s	slash	14-15
+# ::node	g	glove	16-17
+# ::root	l	lay-01
+# ::edge	item	mod	small	i2	s2	
+# ::edge	lay-01	ARG1	item	l	i2	
+# ::edge	lay-01	direction	out	l	o	
+# ::edge	lay-01	ARG2	bed	l	b	
+# ::edge	item	ARG1-of	ready-01	i2	r	
+# ::edge	ready-01	ARG2	pack-01	r	p	
+# ::edge	pack-01	ARG1	item	p	i2	
+# ::edge	item	ARG2-of	include-01	i2	i	
+# ::edge	and	op1	pin	a	p2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	slash	a	s	
+# ::edge	slash	op1	pin	s	p2	
+# ::edge	slash	op3	glove	s	g	
+(l / lay-01
+    :ARG1 (i2 / item
+        :ARG1-of (r / ready-01
+            :ARG2 (p / pack-01
+                :ARG1 i2))
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (p2 / pin)
+                :op2 (s / slash
+                    :op1 p2
+                    :op3 (g / glove))))
+        :mod (s2 / small))
+    :ARG2 (b / bed)
+    :direction (o / out))

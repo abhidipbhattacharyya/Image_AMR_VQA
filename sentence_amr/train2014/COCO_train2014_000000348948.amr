@@ -1,0 +1,34 @@
+# ::tok A plate sitting on top of a table topped with a salad next to a glass of wine .
+# ::node	p	plate	1-2
+# ::node	s2	sit-01	2-3
+# ::node	t2	top	4-5
+# ::node	t	table	7-8
+# ::node	t3	top-01	8-9
+# ::node	s	salad	11-12
+# ::node	n	next-to	12-13
+# ::node	v	volume-quantity	14-15
+# ::node	0	1	14-15
+# ::node	g	glass	15-16
+# ::node	w	wine	17-18
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	plate	s2	p	
+# ::edge	sit-01	ARG2	top	s2	t2	
+# ::edge	top	part-of	table	t2	t	
+# ::edge	table	ARG1-of	top-01	t	t3	
+# ::edge	top-01	ARG2	salad	t3	s	
+# ::edge	plate	location	next-to	p	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	next-to	op1	wine	n	w	
+(s2 / sit-01
+    :ARG1 (p / plate
+        :location (n / next-to
+            :op1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass)))))
+    :ARG2 (t2 / top
+        :part-of (t / table
+            :ARG1-of (t3 / top-01
+                :ARG2 (s / salad)))))

@@ -1,0 +1,37 @@
+# ::tok A street sign under a bridge that reads Martin Luther King Jr . drive
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	u	under	3-4
+# ::node	b	bridge	5-6
+# ::node	r	read-01	7-8
+# ::node	3	Martin	8-9
+# ::node	2	Luther	9-10
+# ::node	1	King	10-11
+# ::node	p	person	11-12
+# ::node	n	name	11-12
+# ::node	0	Jr.	11-12
+# ::node	d	drive-01	13-14
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	location	under	s	u	
+# ::edge	under	op1	bridge	u	b	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	read-01	ARG3	person	r	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op3	King	n	1	
+# ::edge	name	op2	Luther	n	2	
+# ::edge	name	op1	Martin	n	3	
+# ::edge	name	op4	Jr.	n	0	
+# ::edge	sign	ARG0-of	drive-01	s	d	
+(s / sign
+    :ARG0-of (d / drive-01)
+    :ARG1-of (r / read-01
+        :ARG3 (p / person
+            :name (n / name
+                :op1 "Martin"
+                :op2 "Luther"
+                :op3 "King"
+                :op4 "Jr.")))
+    :location (u / under
+        :op1 (b / bridge))
+    :mod (s2 / street))

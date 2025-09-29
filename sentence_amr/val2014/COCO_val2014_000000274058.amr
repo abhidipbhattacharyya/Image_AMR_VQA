@@ -1,0 +1,40 @@
+# ::tok A man puts his hand out the back of a truck where a dog is resting with his head above the truck bed .
+# ::node	m	man	1-2
+# ::node	p	put-01	2-3
+# ::node	h	hand	4-5
+# ::node	o	out-06	5-6
+# ::node	b	back	7-8
+# ::node	t	truck	10-11
+# ::node	d	dog	13-14
+# ::node	r	rest-01	15-16
+# ::node	h2	head	18-19
+# ::node	a	above	19-20
+# ::node	b2	bed	22-23
+# ::root	p	put-01
+# ::edge	put-01	ARG0	man	p	m	
+# ::edge	put-01	ARG1	hand	p	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	put-01	ARG2	out-06	p	o	
+# ::edge	out-06	ARG2	back	o	b	
+# ::edge	back	part-of	truck	b	t	
+# ::edge	rest-01	ARG1	dog	r	d	
+# ::edge	back	location-of	rest-01	b	r	
+# ::edge	dog	part	head	d	h2	
+# ::edge	above	location-of	head	a	h2	
+# ::edge	rest-01	manner	above	r	a	
+# ::edge	above	op1	bed	a	b2	
+# ::edge	truck	part	bed	t	b2	
+(p / put-01
+    :ARG0 (m / man
+        :part (h / hand))
+    :ARG1 h
+    :ARG2 (o / out-06
+        :ARG2 (b / back
+            :location-of (r / rest-01
+                :ARG1 (d / dog
+                    :part (h2 / head))
+                :manner (a / above
+                    :location-of h2
+                    :op1 (b2 / bed)))
+            :part-of (t / truck
+                :part b2))))

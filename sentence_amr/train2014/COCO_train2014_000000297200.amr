@@ -1,0 +1,37 @@
+# ::tok Maintenance trucks are sitting alongside a traffic signal while an electrical worker works overhead via a hoist .
+# ::node	m	maintain-01	0-1
+# ::node	t2	truck	1-2
+# ::node	s2	sit-01	3-4
+# ::node	a	alongside	4-5
+# ::node	t	traffic	6-7
+# ::node	s	signal	7-8
+# ::node	e	electricity	10-11
+# ::node	p	person	11-12
+# ::node	w	work-01	11-12
+# ::node	w2	work-01	12-13
+# ::node	o	overhead	13-14
+# ::node	h	hoist	16-17
+# ::root	s2	sit-01
+# ::edge	truck	ARG0-of	maintain-01	t2	m	
+# ::edge	sit-01	ARG1	truck	s2	t2	
+# ::edge	sit-01	ARG2	alongside	s2	a	
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	alongside	op1	signal	a	s	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	electricity	w	e	
+# ::edge	work-01	ARG0	person	w2	p	
+# ::edge	sit-01	time	work-01	s2	w2	
+# ::edge	work-01	location	overhead	w2	o	
+# ::edge	work-01	instrument	hoist	w2	h	
+(s2 / sit-01
+    :ARG1 (t2 / truck
+        :ARG0-of (m / maintain-01))
+    :ARG2 (a / alongside
+        :op1 (s / signal
+            :mod (t / traffic)))
+    :time (w2 / work-01
+        :ARG0 (p / person
+            :ARG0-of (w / work-01
+                :ARG1 (e / electricity)))
+        :instrument (h / hoist)
+        :location (o / overhead)))

@@ -1,0 +1,32 @@
+# ::tok A person decorated a road sign to make it look like a person is carrying an object .
+# ::node	p	person	1-2
+# ::node	d	decorate-01	2-3
+# ::node	r	road	4-5
+# ::node	s	sign	5-6
+# ::node	m	make-02	7-8
+# ::node	l	look-02	9-10
+# ::node	p2	person	12-13
+# ::node	c	carry-01	14-15
+# ::node	o	object	16-17
+# ::root	d	decorate-01
+# ::edge	decorate-01	ARG0	person	d	p	
+# ::edge	sign	mod	road	s	r	
+# ::edge	decorate-01	ARG1	sign	d	s	
+# ::edge	decorate-01	purpose	make-02	d	m	
+# ::edge	make-02	ARG0	person	m	p	
+# ::edge	make-02	ARG1	look-02	m	l	
+# ::edge	look-02	ARG0	sign	l	s	
+# ::edge	carry-01	ARG0	person	c	p2	
+# ::edge	look-02	ARG1	carry-01	l	c	
+# ::edge	carry-01	ARG1	object	c	o	
+(d / decorate-01
+    :purpose (m / make-02
+        :ARG0 (p / person)
+        :ARG1 (l / look-02
+            :ARG0 (s / sign
+                :mod (r / road))
+            :ARG1 (c / carry-01
+                :ARG0 (p2 / person)
+                :ARG1 (o / object))))
+    :ARG0 p
+    :ARG1 s)

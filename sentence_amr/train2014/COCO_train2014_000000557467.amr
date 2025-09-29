@@ -1,0 +1,37 @@
+# ::tok A man walking down a busy bench - lined street on a rainy day carrying a colorful umbrella .
+# ::node	m	man	1-2
+# ::node	w	walk-01	2-3
+# ::node	d2	down	3-4
+# ::node	b2	busy-01	5-6
+# ::node	b	bench	6-7
+# ::node	l	line-01	8-9
+# ::node	s	street	9-10
+# ::node	r	rain-01	12-13
+# ::node	d	day	13-14
+# ::node	c	carry-01	14-15
+# ::node	c2	colorful	16-17
+# ::node	u	umbrella	17-18
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	direction	down	w	d2	
+# ::edge	line-01	ARG2	bench	l	b	
+# ::edge	street	ARG1-of	line-01	s	l	
+# ::edge	street	ARG1-of	busy-01	s	b2	
+# ::edge	walk-01	ARG2	street	w	s	
+# ::edge	day	mod	rain-01	d	r	
+# ::edge	walk-01	time	day	w	d	
+# ::edge	man	ARG0-of	carry-01	m	c	
+# ::edge	umbrella	mod	colorful	u	c2	
+# ::edge	carry-01	ARG1	umbrella	c	u	
+(w / walk-01
+    :ARG0 (m / man
+        :ARG0-of (c / carry-01
+            :ARG1 (u / umbrella
+                :mod (c2 / colorful))))
+    :ARG2 (s / street
+        :ARG1-of (l / line-01
+            :ARG2 (b / bench))
+        :ARG1-of (b2 / busy-01))
+    :direction (d2 / down)
+    :time (d / day
+        :mod (r / rain-01)))

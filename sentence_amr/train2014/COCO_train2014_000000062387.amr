@@ -1,0 +1,45 @@
+# ::tok A row of cars waits for pedestrians who are in the process of crossing the street while the traffic lights are green , on a busy street in the city .
+# ::node	r	row	1-2
+# ::node	c	car	3-4
+# ::node	w	wait-01	4-5
+# ::node	p	person	6-7
+# ::node	w2	walk-01	6-7
+# ::node	p2	process-02	11-12
+# ::node	c3	cross-02	13-14
+# ::node	s	street	15-16
+# ::node	t	traffic	18-19
+# ::node	l	light	19-20
+# ::node	g	green-02	21-22
+# ::node	b	busy-02	25-26
+# ::node	s2	street	26-27
+# ::node	c2	city	29-30
+# ::root	w	wait-01
+# ::edge	row	consist-of	car	r	c	
+# ::edge	wait-01	ARG1	row	w	r	
+# ::edge	wait-01	ARG2	person	w	p	
+# ::edge	person	ARG0-of	walk-01	p	w2	
+# ::edge	person	ARG0-of	process-02	p	p2	
+# ::edge	process-02	ARG1	cross-02	p2	c3	
+# ::edge	cross-02	ARG0	person	c3	p	
+# ::edge	cross-02	ARG1	street	c3	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	green-02	ARG1	light	g	l	
+# ::edge	cross-02	time	green-02	c3	g	
+# ::edge	street	ARG1-of	busy-02	s2	b	
+# ::edge	cross-02	location	street	c3	s2	
+# ::edge	street	location	city	s2	c2	
+(w / wait-01
+    :ARG1 (r / row
+        :consist-of (c / car))
+    :ARG2 (p / person
+        :ARG0-of (w2 / walk-01)
+        :ARG0-of (p2 / process-02
+            :ARG1 (c3 / cross-02
+                :ARG0 p
+                :ARG1 (s / street)
+                :location (s2 / street
+                    :ARG1-of (b / busy-02)
+                    :location (c2 / city))
+                :time (g / green-02
+                    :ARG1 (l / light
+                        :mod (t / traffic)))))))

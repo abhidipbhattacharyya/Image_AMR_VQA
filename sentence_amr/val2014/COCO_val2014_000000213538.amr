@@ -1,0 +1,40 @@
+# ::tok On a natural wood table , with a red curtain as backdrop , sit two computer monitors and keyboard .
+# ::node	n	natural-03	2-3
+# ::node	w	wood	3-4
+# ::node	t	table	4-5
+# ::node	h	have-03	6-7
+# ::node	r	red-02	8-9
+# ::node	c2	curtain	9-10
+# ::node	b	backdrop	11-12
+# ::node	s	sit-01	13-14
+# ::node	0	2	14-15
+# ::node	c	computer	15-16
+# ::node	m	monitor	16-17
+# ::node	a	and	17-18
+# ::node	k	keyboard	18-19
+# ::root	s	sit-01
+# ::edge	wood	ARG1-of	natural-03	w	n	
+# ::edge	table	part	wood	t	w	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	curtain	ARG1-of	red-02	c2	r	
+# ::edge	have-03	ARG1	curtain	h	c2	
+# ::edge	curtain	prep-as	backdrop	c2	b	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	monitor	quant	2	m	0	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	and	op2	keyboard	a	k	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (m / monitor
+            :quant 2
+            :mod (c / computer))
+        :op2 (k / keyboard))
+    :ARG2 (t / table
+        :ARG0-of (h / have-03
+            :ARG1 (c2 / curtain
+                :ARG1-of (r / red-02)
+                :prep-as (b / backdrop)))
+        :part (w / wood
+            :ARG1-of (n / natural-03))))

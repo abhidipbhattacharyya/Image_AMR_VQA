@@ -1,0 +1,30 @@
+# ::tok A SUV filled with lots of bags of luggage sitting in the back of it .
+# ::node	v	vehicle	1-2
+# ::node	n	name	1-2
+# ::node	0	SUV	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	b2	bag	6-7
+# ::node	l2	luggage	8-9
+# ::node	s	sit-01	9-10
+# ::node	b	back	12-13
+# ::root	s	sit-01
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	SUV	n	0	
+# ::edge	vehicle	ARG1-of	fill-01	v	f	
+# ::edge	bag	quant	lot	b2	l	
+# ::edge	fill-01	ARG2	bag	f	b2	
+# ::edge	bag	consist-of	luggage	b2	l2	
+# ::edge	sit-01	ARG1	vehicle	s	v	
+# ::edge	sit-01	ARG2	back	s	b	
+# ::edge	vehicle	part	back	v	b	
+(s / sit-01
+    :ARG1 (v / vehicle
+        :name (n / name
+            :op1 "SUV")
+        :ARG1-of (f / fill-01
+            :ARG2 (b2 / bag
+                :quant (l / lot)
+                :consist-of (l2 / luggage)))
+        :part (b / back))
+    :ARG2 b)

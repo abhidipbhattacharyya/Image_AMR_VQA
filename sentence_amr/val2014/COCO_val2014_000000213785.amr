@@ -1,0 +1,27 @@
+# ::tok A person diving for a frisbee while another tries to block the catch .
+# ::node	p	person	1-2
+# ::node	p2	person	1-2
+# ::node	d	dive-01	2-3
+# ::node	f	frisbee	5-6
+# ::node	a	another	7-8
+# ::node	t	try-01	8-9
+# ::node	b	block-01	10-11
+# ::node	c	catch-01	12-13
+# ::root	d	dive-01
+# ::edge	dive-01	ARG0	person	d	p	
+# ::edge	dive-01	purpose	frisbee	d	f	
+# ::edge	person	mod	another	p2	a	
+# ::edge	person	ARG0-of	try-01	p2	t	
+# ::edge	try-01	ARG1	block-01	t	b	
+# ::edge	block-01	ARG0	person	b	p2	
+# ::edge	block-01	ARG1	catch-01	b	c	
+# ::edge	dive-01	rel	try-01	d	t	
+(d / dive-01
+    :purpose (f / frisbee)
+    :ARG0 (p / person)
+    :rel (t / try-01
+        :ARG1 (b / block-01
+            :ARG0 (p2 / person
+                :ARG0-of t
+                :mod (a / another))
+            :ARG1 (c / catch-01))))

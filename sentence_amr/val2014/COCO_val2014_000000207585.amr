@@ -1,0 +1,54 @@
+# ::tok Four stuffed animals , a leopard and three teddy bears , in a row sitting on a stone ledge with grass and trees behind .
+# ::node	1	4	0-1
+# ::node	s3	stuff-01	1-2
+# ::node	a3	animal	2-3
+# ::node	l2	leopard	5-6
+# ::node	a	and	6-7
+# ::node	0	3	7-8
+# ::node	t	teddy	8-9
+# ::node	b	bear	9-10
+# ::node	r	row	13-14
+# ::node	s	sit-01	14-15
+# ::node	s2	stone	17-18
+# ::node	l	ledge	18-19
+# ::node	h	have-03	19-20
+# ::node	g	grass	20-21
+# ::node	a2	and	21-22
+# ::node	t2	tree	22-23
+# ::node	b2	behind	23-24
+# ::root	s	sit-01
+# ::edge	animal	ARG1-of	stuff-01	a3	s3	
+# ::edge	animal	quant	4	a3	1	
+# ::edge	and	op1	leopard	a	l2	
+# ::edge	animal	domain	and	a3	a	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	bear	quant	3	b	0	
+# ::edge	and	op2	bear	a	b	
+# ::edge	animal	mod	row	a3	r	
+# ::edge	sit-01	ARG1	animal	s	a3	
+# ::edge	ledge	consist-of	stone	l	s2	
+# ::edge	sit-01	ARG2	ledge	s	l	
+# ::edge	ledge	ARG0-of	have-03	l	h	
+# ::edge	and	op1	grass	a2	g	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	tree	a2	t2	
+# ::edge	and	location	behind	a2	b2	
+# ::edge	behind	op1	ledge	b2	l	
+(s / sit-01
+    :ARG1 (a3 / animal
+        :quant 4
+        :ARG1-of (s3 / stuff-01)
+        :domain (a / and
+            :op1 (l2 / leopard)
+            :op2 (b / bear
+                :quant 3
+                :mod (t / teddy)))
+        :mod (r / row))
+    :ARG2 (l / ledge
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :location (b2 / behind
+                    :op1 l)
+                :op1 (g / grass)
+                :op2 (t2 / tree)))
+        :consist-of (s2 / stone)))

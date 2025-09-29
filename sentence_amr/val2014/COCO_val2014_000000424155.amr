@@ -1,0 +1,37 @@
+# ::tok Two trolley cars drive down a street with a McDonald 's and people in the background .
+# ::node	0	2	0-1
+# ::node	t	trolley	1-2
+# ::node	c	car	2-3
+# ::node	d2	drive-01	3-4
+# ::node	d	down	4-5
+# ::node	s	street	6-7
+# ::node	c2	company	9-10
+# ::node	n	name	9-10
+# ::node	1	McDonald's	9-10
+# ::node	a	and	11-12
+# ::node	p	person	12-13
+# ::node	b	background	15-16
+# ::root	d2	drive-01
+# ::edge	car	mod	trolley	c	t	
+# ::edge	car	quant	2	c	0	
+# ::edge	drive-01	ARG0	car	d2	c	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	path	street	d2	s	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	McDonald's	n	1	
+# ::edge	and	op1	company	a	c2	
+# ::edge	street	location-of	and	s	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	and	location	background	a	b	
+(d2 / drive-01
+    :ARG0 (c / car
+        :quant 2
+        :mod (t / trolley))
+    :direction (d / down)
+    :path (s / street
+        :location-of (a / and
+            :location (b / background)
+            :op1 (c2 / company
+                :name (n / name
+                    :op1 "McDonald's"))
+            :op2 (p / person))))

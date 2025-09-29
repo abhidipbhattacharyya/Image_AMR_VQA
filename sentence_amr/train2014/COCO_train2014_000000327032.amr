@@ -1,0 +1,36 @@
+# ::tok Everyone is watching to see his next move in the Nintendo Wii game .
+# ::node	e	everyone	0-1
+# ::node	w	watch-01	2-3
+# ::node	s	see-01	4-5
+# ::node	h	he	5-6
+# ::node	n2	next	6-7
+# ::node	m	move-02	7-8
+# ::node	n	name	10-11
+# ::node	0	Nintendo	10-11
+# ::node	p	product	11-12
+# ::node	1	Wii	11-12
+# ::node	g	game	12-13
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	everyone	w	e	
+# ::edge	watch-01	purpose	see-01	w	s	
+# ::edge	see-01	ARG0	everyone	s	e	
+# ::edge	move-02	mod	next	m	n2	
+# ::edge	move-02	ARG0	he	m	h	
+# ::edge	see-01	ARG1	move-02	s	m	
+# ::edge	name	op1	Nintendo	n	0	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op2	Wii	n	1	
+# ::edge	game	mod	product	g	p	
+# ::edge	move-02	location	game	m	g	
+(w / watch-01
+    :purpose (s / see-01
+        :ARG0 (e / everyone)
+        :ARG1 (m / move-02
+            :ARG0 (h / he)
+            :location (g / game
+                :mod (p / product
+                    :name (n / name
+                        :op1 "Nintendo"
+                        :op2 "Wii")))
+            :mod (n2 / next)))
+    :ARG0 e)

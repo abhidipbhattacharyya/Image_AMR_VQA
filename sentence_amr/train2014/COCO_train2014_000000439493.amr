@@ -1,0 +1,31 @@
+# ::tok A car stereo displays radio information above a clock and air vents .
+# ::node	c	car	1-2
+# ::node	s	stereo	2-3
+# ::node	d	display-01	3-4
+# ::node	r	radio	4-5
+# ::node	i	information	5-6
+# ::node	a	above	6-7
+# ::node	c2	clock	8-9
+# ::node	a3	and	9-10
+# ::node	a2	air	10-11
+# ::node	v	vent	11-12
+# ::root	d	display-01
+# ::edge	stereo	mod	car	s	c	
+# ::edge	display-01	ARG0	stereo	d	s	
+# ::edge	information	mod	radio	i	r	
+# ::edge	display-01	ARG1	information	d	i	
+# ::edge	display-01	location	above	d	a	
+# ::edge	and	op1	clock	a3	c2	
+# ::edge	above	op1	and	a	a3	
+# ::edge	vent	mod	air	v	a2	
+# ::edge	and	op2	vent	a3	v	
+(d / display-01
+    :ARG0 (s / stereo
+        :mod (c / car))
+    :ARG1 (i / information
+        :mod (r / radio))
+    :location (a / above
+        :op1 (a3 / and
+            :op1 (c2 / clock)
+            :op2 (v / vent
+                :mod (a2 / air)))))

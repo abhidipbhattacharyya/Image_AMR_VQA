@@ -1,0 +1,31 @@
+# ::tok A small room with two beds pushed together and small furnishings .
+# ::node	s	small	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	b	bed	5-6
+# ::node	p	push-01	6-7
+# ::node	t	together	7-8
+# ::node	a	and	8-9
+# ::node	s2	small	9-10
+# ::node	f	furnish-01	10-11
+# ::root	r	room
+# ::edge	room	mod	small	r	s	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	quant	2	b	0	
+# ::edge	push-01	ARG1	bed	p	b	
+# ::edge	push-01	ARG2	together	p	t	
+# ::edge	and	op1	push-01	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	furnish-01	mod	small	f	s2	
+# ::edge	and	op2	furnish-01	a	f	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p / push-01
+                :ARG1 (b / bed
+                    :quant 2)
+                :ARG2 (t / together))
+            :op2 (f / furnish-01
+                :mod (s2 / small))))
+    :mod (s / small))

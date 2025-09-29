@@ -1,0 +1,34 @@
+# ::tok Bushels of bananas hanging from hooks at a farmers market .
+# ::node	m2	multiple	0-1
+# ::node	v	volume-quantity	0-1
+# ::node	b2	bushel	0-1
+# ::node	0	1	0-1
+# ::node	b	banana	2-3
+# ::node	h	hang-01	3-4
+# ::node	t	thing	5-6
+# ::node	h2	hook-01	5-6
+# ::node	p	person	8-9
+# ::node	f	farm-01	8-9
+# ::node	m	market	9-10
+# ::root	h	hang-01
+# ::edge	multiple	op1	volume-quantity	m2	v	
+# ::edge	volume-quantity	unit	bushel	v	b2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	banana	quant	multiple	b	m2	
+# ::edge	hang-01	ARG1	banana	h	b	
+# ::edge	hang-01	ARG2	thing	h	t	
+# ::edge	thing	ARG2-of	hook-01	t	h2	
+# ::edge	person	ARG0-of	farm-01	p	f	
+# ::edge	market	mod	person	m	p	
+# ::edge	hang-01	location	market	h	m	
+(h / hang-01
+    :ARG1 (b / banana
+        :quant (m2 / multiple
+            :op1 (v / volume-quantity
+                :quant 1
+                :unit (b2 / bushel))))
+    :ARG2 (t / thing
+        :ARG2-of (h2 / hook-01))
+    :location (m / market
+        :mod (p / person
+            :ARG0-of (f / farm-01))))

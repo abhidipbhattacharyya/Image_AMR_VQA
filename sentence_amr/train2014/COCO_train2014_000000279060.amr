@@ -1,0 +1,39 @@
+# ::tok GE microwave oven sitting on its packing box in front of home entry stairs .
+# ::node	c	company	0-1
+# ::node	n	name	0-1
+# ::node	0	GE	0-1
+# ::node	m	microwave	1-2
+# ::node	o	oven	2-3
+# ::node	s	sit-01	3-4
+# ::node	p	pack-01	6-7
+# ::node	b	box	7-8
+# ::node	i	in-front-of	9-10
+# ::node	h	home	11-12
+# ::node	e	enter-01	12-13
+# ::node	s2	stair	13-14
+# ::root	s	sit-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	GE	n	0	
+# ::edge	oven	mod	microwave	o	m	
+# ::edge	oven	mod	company	o	c	
+# ::edge	sit-01	ARG1	oven	s	o	
+# ::edge	box	ARG3-of	pack-01	b	p	
+# ::edge	sit-01	ARG2	box	s	b	
+# ::edge	box	poss	oven	b	o	
+# ::edge	sit-01	location	in-front-of	s	i	
+# ::edge	enter-01	ARG0	home	e	h	
+# ::edge	stair	location	enter-01	s2	e	
+# ::edge	in-front-of	op1	stair	i	s2	
+(s / sit-01
+    :ARG1 (o / oven
+        :mod (m / microwave)
+        :mod (c / company
+            :name (n / name
+                :op1 "GE")))
+    :ARG2 (b / box
+        :ARG3-of (p / pack-01)
+        :poss o)
+    :location (i / in-front-of
+        :op1 (s2 / stair
+            :location (e / enter-01
+                :ARG0 (h / home)))))

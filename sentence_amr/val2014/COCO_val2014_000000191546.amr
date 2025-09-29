@@ -1,0 +1,28 @@
+# ::tok A large river with the Big Ben clock tower next to it .
+# ::node	l	large	1-2
+# ::node	r	river	2-3
+# ::node	1	Big	5-6
+# ::node	p	person	6-7
+# ::node	n	name	6-7
+# ::node	0	Ben	6-7
+# ::node	c	clock	7-8
+# ::node	t	tower	8-9
+# ::node	n2	next-to	9-10
+# ::root	r	river
+# ::edge	river	mod	large	r	l	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Big	n	1	
+# ::edge	name	op2	Ben	n	0	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	mod	person	t	p	
+# ::edge	next-to	location	tower	n2	t	
+# ::edge	river	location	next-to	r	n2	
+(r / river
+    :location (n2 / next-to
+        :location (t / tower
+            :mod (c / clock)
+            :mod (p / person
+                :name (n / name
+                    :op1 "Big"
+                    :op2 "Ben"))))
+    :mod (l / large))

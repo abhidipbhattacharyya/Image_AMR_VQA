@@ -1,0 +1,33 @@
+# ::tok A family on Christmas day , with the children eating and a Christmas tree in the corner .
+# ::node	f	family	1-2
+# ::node	f2	festival	3-4
+# ::node	n	name	3-4
+# ::node	0	Christmas	3-4
+# ::node	d	day	4-5
+# ::node	c	child	8-9
+# ::node	e	eat-01	9-10
+# ::node	a	and	10-11
+# ::node	t	tree	13-14
+# ::node	c2	corner	16-17
+# ::root	f	family
+# ::edge	festival	name	name	f2	n	
+# ::edge	name	op1	Christmas	n	0	
+# ::edge	day	mod	festival	d	f2	
+# ::edge	family	time	day	f	d	
+# ::edge	eat-01	ARG0	child	e	c	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	family	accompanier	and	f	a	
+# ::edge	and	op2	tree	a	t	
+# ::edge	tree	mod	festival	t	f2	
+# ::edge	tree	location	corner	t	c2	
+(f / family
+    :accompanier (a / and
+        :op1 (e / eat-01
+            :ARG0 (c / child))
+        :op2 (t / tree
+            :location (c2 / corner)
+            :mod (f2 / festival
+                :name (n / name
+                    :op1 "Christmas"))))
+    :time (d / day
+        :mod f2))

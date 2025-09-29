@@ -1,0 +1,36 @@
+# ::tok It 's not a double sink , only a mirror that includes a finger and thumb .
+# ::node	i2	it	0-1
+# ::node	0	-	2-3
+# ::node	d	double	4-5
+# ::node	s	sink-01	5-6
+# ::node	c	contrast-01	6-7
+# ::node	o	only	7-8
+# ::node	m	mirror	9-10
+# ::node	i	include-01	11-12
+# ::node	f	finger	13-14
+# ::node	a	and	14-15
+# ::node	t	thumb	15-16
+# ::root	c	contrast-01
+# ::edge	sink-01	mod	double	s	d	
+# ::edge	sink-01	polarity	-	s	0	
+# ::edge	sink-01	domain	it	s	i2	
+# ::edge	contrast-01	ARG1	sink-01	c	s	
+# ::edge	mirror	mod	only	m	o	
+# ::edge	contrast-01	ARG2	mirror	c	m	
+# ::edge	mirror	domain	it	m	i2	
+# ::edge	mirror	ARG2-of	include-01	m	i	
+# ::edge	and	op1	finger	a	f	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	thumb	a	t	
+(c / contrast-01
+    :ARG1 (s / sink-01
+        :domain (i2 / it)
+        :mod (d / double)
+        :polarity -)
+    :ARG2 (m / mirror
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (f / finger)
+                :op2 (t / thumb)))
+        :domain i2
+        :mod (o / only)))

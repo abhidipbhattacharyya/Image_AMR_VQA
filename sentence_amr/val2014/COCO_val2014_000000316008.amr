@@ -1,0 +1,54 @@
+# ::tok An eye level counter - view shows blue tile , a faucet , dish scrubbers , bowls , a squirt bottle and similar kitchen items .
+# ::node	e	eye	1-2
+# ::node	l	level	2-3
+# ::node	c	counter	3-4
+# ::node	v	view-01	5-6
+# ::node	s	show-01	6-7
+# ::node	b	blue	7-8
+# ::node	t	tile	8-9
+# ::node	a	and	9-10
+# ::node	f	faucet	11-12
+# ::node	d	dish	13-14
+# ::node	b4	brush	14-15
+# ::node	b3	bowl-01	16-17
+# ::node	s2	squirt	19-20
+# ::node	b2	bottle	20-21
+# ::node	r	resemble-01	22-23
+# ::node	k	kitchen	23-24
+# ::node	i	item	24-25
+# ::root	s	show-01
+# ::edge	level	mod	eye	l	e	
+# ::edge	view-01	ARG1	counter	v	c	
+# ::edge	view-01	mod	level	v	l	
+# ::edge	show-01	ARG0	view-01	s	v	
+# ::edge	tile	mod	blue	t	b	
+# ::edge	and	op1	tile	a	t	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	faucet	a	f	
+# ::edge	brush	mod	dish	b4	d	
+# ::edge	and	op3	brush	a	b4	
+# ::edge	and	op4	bowl-01	a	b3	
+# ::edge	bottle	mod	squirt	b2	s2	
+# ::edge	and	op5	bottle	a	b2	
+# ::edge	resemble-01	ARG2	and	r	a	
+# ::edge	item	mod	kitchen	i	k	
+# ::edge	item	ARG1-of	resemble-01	i	r	
+# ::edge	and	op6	item	a	i	
+(s / show-01
+    :ARG0 (v / view-01
+        :ARG1 (c / counter)
+        :mod (l / level
+            :mod (e / eye)))
+    :ARG1 (a / and
+        :op1 (t / tile
+            :mod (b / blue))
+        :op2 (f / faucet)
+        :op3 (b4 / brush
+            :mod (d / dish))
+        :op4 (b3 / bowl-01)
+        :op5 (b2 / bottle
+            :mod (s2 / squirt))
+        :op6 (i / item
+            :ARG1-of (r / resemble-01
+                :ARG2 a)
+            :mod (k / kitchen))))

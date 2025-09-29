@@ -1,0 +1,33 @@
+# ::tok A tall sign indicates a name of a shopping center and the businesses it contains .
+# ::node	t	tall	1-2
+# ::node	s2	sign	2-3
+# ::node	i	indicate-01	3-4
+# ::node	t2	thing	4-5
+# ::node	n	name-01	5-6
+# ::node	s	shop-01	8-9
+# ::node	c	center	9-10
+# ::node	a	and	10-11
+# ::node	b	business	12-13
+# ::node	c2	contain-01	14-15
+# ::root	i	indicate-01
+# ::edge	sign	mod	tall	s2	t	
+# ::edge	indicate-01	ARG0	sign	i	s2	
+# ::edge	thing	ARG2-of	name-01	t2	n	
+# ::edge	center	mod	shop-01	c	s	
+# ::edge	name-01	ARG1	center	n	c	
+# ::edge	and	op1	thing	a	t2	
+# ::edge	indicate-01	ARG1	and	i	a	
+# ::edge	and	op2	business	a	b	
+# ::edge	business	ARG1-of	contain-01	b	c2	
+# ::edge	contain-01	ARG0	center	c2	c	
+(i / indicate-01
+    :ARG0 (s2 / sign
+        :mod (t / tall))
+    :ARG1 (a / and
+        :op1 (t2 / thing
+            :ARG2-of (n / name-01
+                :ARG1 (c / center
+                    :mod (s / shop-01))))
+        :op2 (b / business
+            :ARG1-of (c2 / contain-01
+                :ARG0 c))))

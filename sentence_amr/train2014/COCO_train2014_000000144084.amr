@@ -1,0 +1,24 @@
+# ::tok A plane sitting across from another plane with its propellers spinning .
+# ::node	p	plane	1-2
+# ::node	s	sit-01	2-3
+# ::node	a	across	3-4
+# ::node	a2	another	5-6
+# ::node	p2	plane	6-7
+# ::node	r	rotor	9-10
+# ::node	s2	spin-01	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	across	s	a	
+# ::edge	plane	mod	another	p2	a2	
+# ::edge	across	op1	plane	a	p2	
+# ::edge	plane	part	rotor	p2	r	
+# ::edge	spin-01	ARG0	rotor	s2	r	
+# ::edge	plane	ARG1-of	spin-01	p	s2	
+(s / sit-01
+    :ARG1 (p / plane
+        :ARG1-of (s2 / spin-01
+            :ARG0 (r / rotor)))
+    :ARG2 (a / across
+        :op1 (p2 / plane
+            :mod (a2 / another)
+            :part r)))

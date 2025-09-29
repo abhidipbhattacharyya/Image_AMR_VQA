@@ -1,0 +1,80 @@
+# ::tok A wooden surface holds an opened beverage can , an open book , a meal and plastic fork on a glass plate , used and unused napkins , and most importantly a laptop , not on .
+# ::node	w2	wood	1-2
+# ::node	s	surface	2-3
+# ::node	h2	hold-01	3-4
+# ::node	o3	open-01	5-6
+# ::node	b	beverage	6-7
+# ::node	c	can	7-8
+# ::node	o4	open-01	10-11
+# ::node	b2	book	11-12
+# ::node	m	meal	14-15
+# ::node	a	and	15-16
+# ::node	p	plastic	16-17
+# ::node	f	fork	17-18
+# ::node	g	glass	20-21
+# ::node	p2	plate	21-22
+# ::node	u	use-01	23-24
+# ::node	a2	and	24-25
+# ::node	u2	use-01	25-26
+# ::node	w	wipe-01	26-27
+# ::node	o	John	26-27
+# ::node	h	have-degree-91	29-30
+# ::node	m2	most	29-30
+# ::node	i	important-01	30-31
+# ::node	l	laptop	32-33
+# ::node	0	-	34-35
+# ::node	o2	on-01	35-36
+# ::root	h2	hold-01
+# ::edge	surface	consist-of	wood	s	w2	
+# ::edge	hold-01	ARG0	surface	h2	s	
+# ::edge	can	mod	beverage	c	b	
+# ::edge	can	ARG1-of	open-01	c	o3	
+# ::edge	book	ARG1-of	open-01	b2	o4	
+# ::edge	and	op2	book	a	b2	
+# ::edge	and	op1	can	a	c	
+# ::edge	hold-01	ARG1	and	h2	a	
+# ::edge	fork	mod	plastic	f	p	
+# ::edge	and	op3	fork	a	f	
+# ::edge	plate	consist-of	glass	p2	g	
+# ::edge	fork	location	plate	f	p2	
+# ::edge	and	op4	and	a	a2	
+# ::edge	and	op1	wipe-01	a2	w	
+# ::edge	wipe-01	ARG1-of	use-01	w	u	
+# ::edge	wipe-01	ARG2	John	w	o	
+# ::edge	John	ARG1-of	use-01	o	u2	
+# ::edge	have-degree-91	ARG3	most	h	m2	
+# ::edge	important-01	ARG2-of	have-degree-91	i	h	
+# ::edge	laptop	ARG1-of	important-01	l	i	
+# ::edge	have-degree-91	ARG1	laptop	h	l	
+# ::edge	and	op5	laptop	a	l	
+# ::edge	use-01	polarity	-	u2	0	
+# ::edge	on-01	ARG1	laptop	o2	l	
+# ::edge	have-degree-91	ARG6	on-01	h	o2	
+# ::edge	hold-01	rel	meal	h2	m	
+(h2 / hold-01
+    :ARG0 (s / surface
+        :consist-of (w2 / wood))
+    :ARG1 (a / and
+        :op1 (c / can
+            :ARG1-of (o3 / open-01)
+            :mod (b / beverage))
+        :op2 (b2 / book
+            :ARG1-of (o4 / open-01))
+        :op3 (f / fork
+            :location (p2 / plate
+                :consist-of (g / glass))
+            :mod (p / plastic))
+        :op4 (a2 / and
+            :op1 (w / wipe-01
+                :ARG1-of (u / use-01)
+                :ARG2 (o / John
+                    :ARG1-of (u2 / use-01
+                        :polarity -))))
+        :op5 (l / laptop
+            :ARG1-of (i / important-01
+                :ARG2-of (h / have-degree-91
+                    :ARG1 l
+                    :ARG3 (m2 / most)
+                    :ARG6 (o2 / on-01
+                        :ARG1 l)))))
+    :rel (m / meal))

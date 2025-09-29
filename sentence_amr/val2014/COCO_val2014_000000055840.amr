@@ -1,0 +1,63 @@
+# ::tok A painting of a large black cat with glowing green eyes sits against a wooden background and towers over a bottle and single serve teapot with cup .
+# ::node	p	paint-02	1-2
+# ::node	l	large	4-5
+# ::node	b2	black-04	5-6
+# ::node	c	cat	6-7
+# ::node	g	glow-01	8-9
+# ::node	g2	green-02	9-10
+# ::node	e	eye	10-11
+# ::node	s3	sit-01	11-12
+# ::node	a	against	12-13
+# ::node	w	wood	14-15
+# ::node	b	background	15-16
+# ::node	a2	and	16-17
+# ::node	t2	tower	17-18
+# ::node	o	over	18-19
+# ::node	b3	bottle	20-21
+# ::node	a3	and	21-22
+# ::node	s2	single-02	22-23
+# ::node	s	serve-02	23-24
+# ::node	t	teapot	24-25
+# ::node	c2	cup	26-27
+# ::root	a2	and
+# ::edge	cat	ARG1-of	black-04	c	b2	
+# ::edge	cat	mod	large	c	l	
+# ::edge	paint-02	ARG1	cat	p	c	
+# ::edge	eye	ARG1-of	green-02	e	g2	
+# ::edge	eye	ARG0-of	glow-01	e	g	
+# ::edge	cat	part	eye	c	e	
+# ::edge	sit-01	ARG1	paint-02	s3	p	
+# ::edge	sit-01	ARG2	against	s3	a	
+# ::edge	background	consist-of	wood	b	w	
+# ::edge	against	op1	background	a	b	
+# ::edge	and	op1	sit-01	a2	s3	
+# ::edge	and	op2	tower	a2	t2	
+# ::edge	tower	domain	paint-02	t2	p	
+# ::edge	tower	location	over	t2	o	
+# ::edge	and	op1	bottle	a3	b3	
+# ::edge	over	op1	and	o	a3	
+# ::edge	serve-02	ARG1-of	single-02	s	s2	
+# ::edge	teapot	ARG1-of	serve-02	t	s	
+# ::edge	and	op2	teapot	a3	t	
+# ::edge	teapot	prep-with	cup	t	c2	
+(a2 / and
+    :op1 (s3 / sit-01
+        :ARG1 (p / paint-02
+            :ARG1 (c / cat
+                :ARG1-of (b2 / black-04)
+                :mod (l / large)
+                :part (e / eye
+                    :ARG0-of (g / glow-01)
+                    :ARG1-of (g2 / green-02))))
+        :ARG2 (a / against
+            :op1 (b / background
+                :consist-of (w / wood))))
+    :op2 (t2 / tower
+        :domain p
+        :location (o / over
+            :op1 (a3 / and
+                :op1 (b3 / bottle)
+                :op2 (t / teapot
+                    :ARG1-of (s / serve-02
+                        :ARG1-of (s2 / single-02))
+                    :prep-with (c2 / cup))))))

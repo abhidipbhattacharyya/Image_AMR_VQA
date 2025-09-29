@@ -1,0 +1,31 @@
+# ::tok Several people standing outside in the evening , some carrying umbrellas .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s3	stand-01	2-3
+# ::node	o	outside	3-4
+# ::node	d	date-entity	6-7
+# ::node	e	evening	6-7
+# ::node	i	include-91	8-9
+# ::node	s2	some	8-9
+# ::node	c	carry-01	9-10
+# ::node	u	umbrella	10-11
+# ::root	s3	stand-01
+# ::edge	person	quant	several	p	s	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	outside	s3	o	
+# ::edge	stand-01	time	date-entity	s3	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	include-91	ARG1	some	i	s2	
+# ::edge	some	ARG0-of	carry-01	s2	c	
+# ::edge	carry-01	ARG1	umbrella	c	u	
+(s3 / stand-01
+    :ARG1 (p / person
+        :quant (s / several)
+        :ARG2-of (i / include-91
+            :ARG1 (s2 / some
+                :ARG0-of (c / carry-01
+                    :ARG1 (u / umbrella)))))
+    :ARG2 (o / outside)
+    :time (d / date-entity
+        :dayperiod (e / evening)))

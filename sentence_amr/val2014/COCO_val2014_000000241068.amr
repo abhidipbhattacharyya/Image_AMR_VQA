@@ -1,0 +1,37 @@
+# ::tok Two bed - like structures in some room and one of them with a blanket on top .
+# ::node	1	2	0-1
+# ::node	b	bed	1-2
+# ::node	r	resemble-01	3-4
+# ::node	s2	structure	4-5
+# ::node	s3	structure	4-5
+# ::node	s	some	6-7
+# ::node	r2	room	7-8
+# ::node	a	and	8-9
+# ::node	i	include-91	9-10
+# ::node	0	1	9-10
+# ::node	b2	blanket	14-15
+# ::node	t	top	16-17
+# ::root	a	and
+# ::edge	resemble-01	ARG2	bed	r	b	
+# ::edge	structure	ARG1-of	resemble-01	s2	r	
+# ::edge	structure	quant	2	s2	1	
+# ::edge	room	mod	some	r2	s	
+# ::edge	structure	location	room	s2	r2	
+# ::edge	and	op1	structure	a	s2	
+# ::edge	include-91	ARG1	structure	i	s3	
+# ::edge	structure	ARG2-of	include-91	s2	i	
+# ::edge	structure	quant	1	s3	0	
+# ::edge	structure	prep-with	blanket	s3	b2	
+# ::edge	blanket	location	top	b2	t	
+(a / and
+    :op1 (s2 / structure
+        :quant 2
+        :ARG1-of (r / resemble-01
+            :ARG2 (b / bed))
+        :ARG2-of (i / include-91
+            :ARG1 (s3 / structure
+                :quant 1
+                :prep-with (b2 / blanket
+                    :location (t / top))))
+        :location (r2 / room
+            :mod (s / some))))

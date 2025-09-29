@@ -1,0 +1,34 @@
+# ::tok One zebra is grazing in one direction as the other stands facing the opposite direction .
+# ::node	0	1	0-1
+# ::node	z	zebra	1-2
+# ::node	z2	zebra	1-2
+# ::node	g	graze-01	3-4
+# ::node	o	one	5-6
+# ::node	d	direction	6-7
+# ::node	o3	other	9-10
+# ::node	s	stand-01	10-11
+# ::node	f	face-01	11-12
+# ::node	o2	opposite-01	13-14
+# ::node	d2	direction	14-15
+# ::root	g	graze-01
+# ::edge	zebra	quant	1	z	0	
+# ::edge	graze-01	ARG0	zebra	g	z	
+# ::edge	direction	direction	one	d	o	
+# ::edge	graze-01	direction	direction	g	d	
+# ::edge	zebra	mod	other	z2	o3	
+# ::edge	zebra	ARG1-of	stand-01	z2	s	
+# ::edge	stand-01	ARG0-of	face-01	s	f	
+# ::edge	direction	ARG1-of	opposite-01	d2	o2	
+# ::edge	face-01	ARG1	direction	f	d2	
+# ::edge	graze-01	rel	zebra	g	z2	
+(g / graze-01
+    :ARG0 (z / zebra
+        :quant 1)
+    :direction (d / direction
+        :direction (o / one))
+    :rel (z2 / zebra
+        :ARG1-of (s / stand-01
+            :ARG0-of (f / face-01
+                :ARG1 (d2 / direction
+                    :ARG1-of (o2 / opposite-01))))
+        :mod (o3 / other)))

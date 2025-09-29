@@ -1,0 +1,45 @@
+# ::tok Three males playing soccer , two of which are on the same team while the third male opposes them .
+# ::node	1	3	0-1
+# ::node	m	male	1-2
+# ::node	p	play-01	2-3
+# ::node	s2	soccer	3-4
+# ::node	0	2	5-6
+# ::node	i	include-91	6-7
+# ::node	h	have-org-role-91	9-10
+# ::node	s	same-01	11-12
+# ::node	t	team	12-13
+# ::node	m3	member	12-13
+# ::node	o2	ordinal-entity	15-16
+# ::node	2	3	15-16
+# ::node	m2	male	16-17
+# ::node	o	oppose-01	17-18
+# ::root	p	play-01
+# ::edge	male	quant	3	m	1	
+# ::edge	play-01	ARG0	male	p	m	
+# ::edge	play-01	ARG1	soccer	p	s2	
+# ::edge	male	ARG2-of	include-91	m	i	
+# ::edge	team	ARG1-of	same-01	t	s	
+# ::edge	have-org-role-91	ARG1	team	h	t	
+# ::edge	have-org-role-91	ARG2	member	h	m3	
+# ::edge	ordinal-entity	value	3	o2	2	
+# ::edge	male	ord	ordinal-entity	m2	o2	
+# ::edge	male	ARG0-of	have-org-role-91	m2	h	
+# ::edge	male	quant	2	m2	0	
+# ::edge	oppose-01	ARG0	male	o	m2	
+# ::edge	play-01	time	oppose-01	p	o	
+# ::edge	oppose-01	ARG1	male	o	m	
+(p / play-01
+    :ARG0 (m / male
+        :quant 3
+        :ARG2-of (i / include-91))
+    :ARG1 (s2 / soccer)
+    :time (o / oppose-01
+        :ARG0 (m2 / male
+            :quant 2
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (t / team
+                    :ARG1-of (s / same-01))
+                :ARG2 (m3 / member))
+            :ord (o2 / ordinal-entity
+                :value 3))
+        :ARG1 m))

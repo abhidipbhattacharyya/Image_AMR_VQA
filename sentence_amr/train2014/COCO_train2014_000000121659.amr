@@ -1,0 +1,34 @@
+# ::tok A plate with some chicken wrapped in bacon and some broccoli with bread and soup .
+# ::node	p	plate	1-2
+# ::node	s	some	3-4
+# ::node	c	chicken	4-5
+# ::node	w	wrap-01	5-6
+# ::node	b	bacon	7-8
+# ::node	a	and	8-9
+# ::node	s2	some	9-10
+# ::node	b3	broccoli	10-11
+# ::node	b2	bread	12-13
+# ::node	a2	and	13-14
+# ::node	s3	soup	14-15
+# ::root	p	plate
+# ::edge	chicken	quant	some	c	s	
+# ::edge	chicken	ARG1-of	wrap-01	c	w	
+# ::edge	wrap-01	ARG2	bacon	w	b	
+# ::edge	and	op1	chicken	a	c	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	broccoli	quant	some	b3	s2	
+# ::edge	and	op2	broccoli	a	b3	
+# ::edge	and	op1	bread	a2	b2	
+# ::edge	broccoli	accompanier	and	b3	a2	
+# ::edge	and	op2	soup	a2	s3	
+(p / plate
+    :consist-of (a / and
+        :op1 (c / chicken
+            :quant (s / some)
+            :ARG1-of (w / wrap-01
+                :ARG2 (b / bacon)))
+        :op2 (b3 / broccoli
+            :quant (s2 / some)
+            :accompanier (a2 / and
+                :op1 (b2 / bread)
+                :op2 (s3 / soup)))))

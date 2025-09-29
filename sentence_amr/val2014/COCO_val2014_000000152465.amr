@@ -1,0 +1,43 @@
+# ::tok A rusted red fire hydrant encircled by an old tire stands in the bare earth beside a chain link fence .
+# ::node	r2	rust-01	1-2
+# ::node	r	red-02	2-3
+# ::node	f2	fire	3-4
+# ::node	h	hydrant	4-5
+# ::node	e2	encircle-01	5-6
+# ::node	o	old	8-9
+# ::node	t	tire	9-10
+# ::node	s	stand-01	10-11
+# ::node	b	bare-02	13-14
+# ::node	e	earth	14-15
+# ::node	n	next-to	15-16
+# ::node	c	chain	17-18
+# ::node	l	link-01	18-19
+# ::node	f	fence	19-20
+# ::root	s	stand-01
+# ::edge	hydrant	mod	fire	h	f2	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	hydrant	ARG1-of	rust-01	h	r2	
+# ::edge	hydrant	ARG1-of	encircle-01	h	e2	
+# ::edge	tire	mod	old	t	o	
+# ::edge	encircle-01	ARG2	tire	e2	t	
+# ::edge	stand-01	ARG1	hydrant	s	h	
+# ::edge	earth	ARG1-of	bare-02	e	b	
+# ::edge	stand-01	ARG2	earth	s	e	
+# ::edge	earth	location	next-to	e	n	
+# ::edge	link-01	ARG2	chain	l	c	
+# ::edge	fence	ARG3-of	link-01	f	l	
+# ::edge	next-to	op1	fence	n	f	
+(s / stand-01
+    :ARG1 (h / hydrant
+        :ARG1-of (r / red-02)
+        :ARG1-of (r2 / rust-01)
+        :ARG1-of (e2 / encircle-01
+            :ARG2 (t / tire
+                :mod (o / old)))
+        :mod (f2 / fire))
+    :ARG2 (e / earth
+        :ARG1-of (b / bare-02)
+        :location (n / next-to
+            :op1 (f / fence
+                :ARG3-of (l / link-01
+                    :ARG2 (c / chain))))))

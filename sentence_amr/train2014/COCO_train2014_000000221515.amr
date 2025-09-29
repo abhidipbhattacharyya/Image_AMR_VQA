@@ -1,0 +1,37 @@
+# ::tok A hotel suite with a twin size mattresses next to each other to make a double bed effect .
+# ::node	h2	hotel	1-2
+# ::node	s2	suite	2-3
+# ::node	h	have-03	3-4
+# ::node	t	twin	5-6
+# ::node	s	size	6-7
+# ::node	b	bed	7-8
+# ::node	n	next-to	8-9
+# ::node	e	each	10-11
+# ::node	m	make-01	13-14
+# ::node	d	double-01	15-16
+# ::node	b2	bed	16-17
+# ::node	e2	effect-03	17-18
+# ::root	h	have-03
+# ::edge	suite	mod	hotel	s2	h2	
+# ::edge	have-03	ARG0	suite	h	s2	
+# ::edge	size	mod	twin	s	t	
+# ::edge	bed	mod	size	b	s	
+# ::edge	have-03	ARG1	bed	h	b	
+# ::edge	bed	location	next-to	b	n	
+# ::edge	next-to	op1	each	n	e	
+# ::edge	bed	ARG2-of	make-01	b	m	
+# ::edge	bed	ARG1-of	double-01	b2	d	
+# ::edge	effect-03	ARG1	bed	e2	b2	
+# ::edge	make-01	ARG1	effect-03	m	e2	
+(h / have-03
+    :ARG0 (s2 / suite
+        :mod (h2 / hotel))
+    :ARG1 (b / bed
+        :ARG2-of (m / make-01
+            :ARG1 (e2 / effect-03
+                :ARG1 (b2 / bed
+                    :ARG1-of (d / double-01))))
+        :location (n / next-to
+            :op1 (e / each))
+        :mod (s / size
+            :mod (t / twin))))

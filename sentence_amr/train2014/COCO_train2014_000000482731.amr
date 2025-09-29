@@ -1,0 +1,46 @@
+# ::tok Two baseball players during a game , one running to a base while the other looks to catch the ball .
+# ::node	0	2	0-1
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	g	game	5-6
+# ::node	a	and	6-7
+# ::node	i	include-91	7-8
+# ::node	r	run-02	8-9
+# ::node	b2	base	11-12
+# ::node	o	other	14-15
+# ::node	l	look-01	15-16
+# ::node	c	catch-01	17-18
+# ::node	b	ball	19-20
+# ::root	a	and
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b3	
+# ::edge	and	time	game	a	g	
+# ::edge	and	op1	person	a	p	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	run-02	ARG0	include-91	r	i	
+# ::edge	and	op2	run-02	a	r	
+# ::edge	run-02	direction	base	r	b2	
+# ::edge	other	ARG1-of	include-91	o	i	
+# ::edge	look-01	ARG0	other	l	o	
+# ::edge	and	op3	look-01	a	l	
+# ::edge	look-01	ARG1	catch-01	l	c	
+# ::edge	catch-01	ARG0	other	c	o	
+# ::edge	catch-01	ARG1	ball	c	b	
+(a / and
+    :op1 (p / person
+        :quant 2
+        :ARG0-of (p2 / play-01
+            :ARG1 (b3 / baseball)))
+    :op2 (r / run-02
+        :ARG0 (i / include-91
+            :ARG2 p)
+        :direction (b2 / base))
+    :op3 (l / look-01
+        :ARG0 (o / other
+            :ARG1-of i)
+        :ARG1 (c / catch-01
+            :ARG0 o
+            :ARG1 (b / ball)))
+    :time (g / game))

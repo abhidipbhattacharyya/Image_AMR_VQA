@@ -1,0 +1,25 @@
+# ::tok A speed limit sign and a caution sign are attached to a pole .
+# ::node	s3	speed-01	1-2
+# ::node	l	limit-01	2-3
+# ::node	s	sign	3-4
+# ::node	a	and	4-5
+# ::node	c	caution-01	6-7
+# ::node	s2	sign	7-8
+# ::node	a2	attach-01	9-10
+# ::node	p	pole	12-13
+# ::root	a2	attach-01
+# ::edge	limit-01	ARG2	speed-01	l	s3	
+# ::edge	sign	ARG0-of	limit-01	s	l	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	purpose	caution-01	s2	c	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	attach-01	ARG1	and	a2	a	
+# ::edge	attach-01	ARG2	pole	a2	p	
+(a2 / attach-01
+    :ARG1 (a / and
+        :op1 (s / sign
+            :ARG0-of (l / limit-01
+                :ARG2 (s3 / speed-01)))
+        :op2 (s2 / sign
+            :purpose (c / caution-01)))
+    :ARG2 (p / pole))

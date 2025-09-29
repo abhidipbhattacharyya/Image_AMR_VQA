@@ -1,0 +1,26 @@
+# ::tok A player that is getting ready to go up to bat at a baseball game .
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	r	ready-01	5-6
+# ::node	g2	go-02	7-8
+# ::node	b2	bat-01	10-11
+# ::node	b	baseball	13-14
+# ::node	g	game	14-15
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	ARG1-of	ready-01	p	r	
+# ::edge	ready-01	ARG2	go-02	r	g2	
+# ::edge	go-02	ARG0	person	g2	p	
+# ::edge	go-02	ARG4	bat-01	g2	b2	
+# ::edge	bat-01	ARG0	person	b2	p	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	bat-01	location	game	b2	g	
+(p / person
+    :ARG0-of (p2 / play-01)
+    :ARG1-of (r / ready-01
+        :ARG2 (g2 / go-02
+            :ARG0 p
+            :ARG4 (b2 / bat-01
+                :ARG0 p
+                :location (g / game
+                    :mod (b / baseball))))))

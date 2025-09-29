@@ -1,0 +1,43 @@
+# ::tok There is a Yield sign shown underneath the road signs for Congress and Barnard .
+# ::node	n	name	3-4
+# ::node	2	Yield	3-4
+# ::node	s2	sign	4-5
+# ::node	s	show-01	5-6
+# ::node	u	underneath	6-7
+# ::node	r	road	8-9
+# ::node	s3	sign	9-10
+# ::node	g	government-organization	11-12
+# ::node	n2	name	11-12
+# ::node	g2	government-organization	11-12
+# ::node	1	Congress	11-12
+# ::node	a	and	12-13
+# ::node	n3	name	13-14
+# ::node	0	Barnard	13-14
+# ::root	s	show-01
+# ::edge	name	op1	Yield	n	2	
+# ::edge	sign	name	name	s2	n	
+# ::edge	show-01	ARG1	sign	s	s2	
+# ::edge	show-01	location	underneath	s	u	
+# ::edge	sign	mod	road	s3	r	
+# ::edge	underneath	op1	sign	u	s3	
+# ::edge	government-organization	name	name	g	n2	
+# ::edge	name	op1	Congress	n2	1	
+# ::edge	and	op2	government-organization	a	g2	
+# ::edge	and	op1	government-organization	a	g	
+# ::edge	sign	beneficiary	and	s3	a	
+# ::edge	government-organization	name	name	g2	n3	
+# ::edge	name	op1	Barnard	n3	0	
+(s / show-01
+    :ARG1 (s2 / sign
+        :name (n / name
+            :op1 "Yield"))
+    :location (u / underneath
+        :op1 (s3 / sign
+            :beneficiary (a / and
+                :op1 (g / government-organization
+                    :name (n2 / name
+                        :op1 "Congress"))
+                :op2 (g2 / government-organization
+                    :name (n3 / name
+                        :op1 "Barnard")))
+            :mod (r / road))))

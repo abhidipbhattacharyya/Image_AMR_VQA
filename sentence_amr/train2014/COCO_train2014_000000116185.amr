@@ -1,0 +1,36 @@
+# ::tok A large jetliner parked on a tarmac with the words " Star Alliance " painted on it 's side .
+# ::node	l	large	1-2
+# ::node	j	jetliner	2-3
+# ::node	p2	park-01	3-4
+# ::node	t	tarmac	6-7
+# ::node	w	word-01	9-10
+# ::node	1	Star	11-12
+# ::node	o	organization	12-13
+# ::node	n	name	12-13
+# ::node	0	Alliance	12-13
+# ::node	p	paint-01	14-15
+# ::node	s	side	18-19
+# ::root	p2	park-01
+# ::edge	jetliner	mod	large	j	l	
+# ::edge	park-01	ARG1	jetliner	p2	j	
+# ::edge	park-01	ARG2	tarmac	p2	t	
+# ::edge	word-01	ARG1	organization	w	o	
+# ::edge	organization	name	name	o	n	
+# ::edge	name	op1	Star	n	1	
+# ::edge	name	op2	Alliance	n	0	
+# ::edge	paint-01	ARG1	word-01	p	w	
+# ::edge	jetliner	ARG2-of	paint-01	j	p	
+# ::edge	jetliner	location	side	j	s	
+# ::edge	jetliner	part	side	j	s	
+(p2 / park-01
+    :ARG1 (j / jetliner
+        :ARG2-of (p / paint-01
+            :ARG1 (w / word-01
+                :ARG1 (o / organization
+                    :name (n / name
+                        :op1 "Star"
+                        :op2 "Alliance"))))
+        :location (s / side)
+        :mod (l / large)
+        :part s)
+    :ARG2 (t / tarmac))

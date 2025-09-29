@@ -1,0 +1,42 @@
+# ::tok some buildings streets and one light blue and black steeple has a clock
+# ::node	s	some	0-1
+# ::node	b3	building	1-2
+# ::node	s4	street	2-3
+# ::node	a	and	3-4
+# ::node	0	1	4-5
+# ::node	l	light-07	5-6
+# ::node	b2	blue	6-7
+# ::node	a2	and	7-8
+# ::node	b	black-04	8-9
+# ::node	s2	steeple	9-10
+# ::node	s3	steeple	9-10
+# ::node	h	have-03	10-11
+# ::node	c	clock	12-13
+# ::root	h	have-03
+# ::edge	building	quant	some	b3	s	
+# ::edge	street	mod	building	s4	b3	
+# ::edge	and	op1	street	a	s4	
+# ::edge	blue	ARG1-of	light-07	b2	l	
+# ::edge	and	op1	steeple	a2	s2	
+# ::edge	steeple	mod	blue	s2	b2	
+# ::edge	steeple	quant	1	s2	0	
+# ::edge	steeple	ARG1-of	black-04	s3	b	
+# ::edge	and	op2	steeple	a2	s3	
+# ::edge	steeple	quant	light-07	s3	l	
+# ::edge	have-03	ARG0	and	h	a	
+# ::edge	have-03	ARG1	clock	h	c	
+# ::edge	have-03	rel	and	h	a2	
+(h / have-03
+    :ARG0 (a / and
+        :op1 (s4 / street
+            :mod (b3 / building
+                :quant (s / some))))
+    :ARG1 (c / clock)
+    :rel (a2 / and
+        :op1 (s2 / steeple
+            :quant 1
+            :mod (b2 / blue
+                :ARG1-of (l / light-07)))
+        :op2 (s3 / steeple
+            :quant l
+            :ARG1-of (b / black-04))))

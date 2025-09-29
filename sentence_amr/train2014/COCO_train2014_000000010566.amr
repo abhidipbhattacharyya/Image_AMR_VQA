@@ -1,0 +1,53 @@
+# ::tok Street signs saying " Do n't even think of parking here " and " No stopping anytime " with city background
+# ::node	s4	street	0-1
+# ::node	s2	sign	1-2
+# ::node	s	say-01	2-3
+# ::node	y	you	4-5
+# ::node	2	imperative	4-5
+# ::node	0	-	5-6
+# ::node	e	even	6-7
+# ::node	t	think-01	7-8
+# ::node	p	park-01	9-10
+# ::node	h	here	10-11
+# ::node	a	and	12-13
+# ::node	1	-	14-15
+# ::node	s3	stop-01	15-16
+# ::node	a2	anytime	16-17
+# ::node	c	city	19-20
+# ::node	b	background	20-21
+# ::root	s2	sign
+# ::edge	sign	location	street	s2	s4	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	think-01	mod	even	t	e	
+# ::edge	think-01	polarity	-	t	0	
+# ::edge	think-01	mode	imperative	t	2	
+# ::edge	think-01	ARG0	you	t	y	
+# ::edge	think-01	ARG1	park-01	t	p	
+# ::edge	park-01	ARG0	you	p	y	
+# ::edge	park-01	ARG2	here	p	h	
+# ::edge	and	op1	think-01	a	t	
+# ::edge	say-01	ARG1	and	s	a	
+# ::edge	stop-01	polarity	-	s3	1	
+# ::edge	and	op2	stop-01	a	s3	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	stop-01	time	anytime	s3	a2	
+# ::edge	background	mod	city	b	c	
+# ::edge	sign	mod	background	s2	b	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (a / and
+            :op1 (t / think-01
+                :ARG0 (y / you)
+                :ARG1 (p / park-01
+                    :ARG0 y
+                    :ARG2 (h / here))
+                :mod (e / even)
+                :mode imperative
+                :polarity -)
+            :op2 (s3 / stop-01
+                :ARG0 y
+                :polarity -
+                :time (a2 / anytime))))
+    :location (s4 / street)
+    :mod (b / background
+        :mod (c / city)))

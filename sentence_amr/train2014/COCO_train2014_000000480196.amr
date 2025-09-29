@@ -1,0 +1,49 @@
+# ::tok A group of four people , two men and two women are standing and staring ahead in the middle of the living room .
+# ::node	g	group	1-2
+# ::node	1	4	3-4
+# ::node	p	person	4-5
+# ::node	m	man	7-8
+# ::node	a2	and	8-9
+# ::node	0	2	9-10
+# ::node	w	woman	10-11
+# ::node	s	stand-01	12-13
+# ::node	a3	and	13-14
+# ::node	s2	stare-01	14-15
+# ::node	a	ahead	15-16
+# ::node	m2	middle	18-19
+# ::node	l	living	21-22
+# ::node	r	room	22-23
+# ::root	a3	and
+# ::edge	person	quant	4	p	1	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	and	op2	man	a2	m	
+# ::edge	person	consist-of	and	p	a2	
+# ::edge	and	op1	person	a2	p	
+# ::edge	woman	quant	2	w	0	
+# ::edge	and	op3	woman	a2	w	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	and	op1	stand-01	a3	s	
+# ::edge	and	op2	stare-01	a3	s2	
+# ::edge	stare-01	ARG0	group	s2	g	
+# ::edge	stare-01	direction	ahead	s2	a	
+# ::edge	ahead	location	middle	a	m2	
+# ::edge	stand-01	ARG2	middle	s	m2	
+# ::edge	room	mod	living	r	l	
+# ::edge	middle	part-of	room	m2	r	
+(a3 / and
+    :op1 (s / stand-01
+        :ARG1 (g / group
+            :consist-of (p / person
+                :quant 4
+                :consist-of (a2 / and
+                    :op1 p
+                    :op2 (m / man)
+                    :op3 (w / woman
+                        :quant 2))))
+        :ARG2 (m2 / middle
+            :part-of (r / room
+                :mod (l / living))))
+    :op2 (s2 / stare-01
+        :ARG0 g
+        :direction (a / ahead
+            :location m2)))

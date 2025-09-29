@@ -1,0 +1,34 @@
+# ::tok An intersection inside a city , with two buildings , one with a large clock
+# ::node	i3	intersect-01	1-2
+# ::node	i2	inside	2-3
+# ::node	c	city	4-5
+# ::node	1	2	7-8
+# ::node	b	building	8-9
+# ::node	b2	building	8-9
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	h	have-03	11-12
+# ::node	l	large	13-14
+# ::node	c2	clock	14-15
+# ::root	i3	intersect-01
+# ::edge	intersect-01	location	inside	i3	i2	
+# ::edge	inside	op1	city	i2	c	
+# ::edge	building	quant	2	b	1	
+# ::edge	intersect-01	consist-of	building	i3	b	
+# ::edge	include-91	ARG1	building	i	b2	
+# ::edge	building	ARG2-of	include-91	b	i	
+# ::edge	building	quant	1	b2	0	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	clock	mod	large	c2	l	
+# ::edge	have-03	ARG1	clock	h	c2	
+(i3 / intersect-01
+    :consist-of (b / building
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (b2 / building
+                :quant 1
+                :ARG0-of (h / have-03
+                    :ARG1 (c2 / clock
+                        :mod (l / large))))))
+    :location (i2 / inside
+        :op1 (c / city)))

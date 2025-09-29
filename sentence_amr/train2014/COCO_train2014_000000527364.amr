@@ -1,0 +1,31 @@
+# ::tok The subway train rolls along the tracks beneath the cables and beams overhead .
+# ::node	s	subway	1-2
+# ::node	t2	train	2-3
+# ::node	r	roll-01	3-4
+# ::node	a	along	4-5
+# ::node	t	track	6-7
+# ::node	b2	beneath	7-8
+# ::node	w	wire	9-10
+# ::node	a2	and	10-11
+# ::node	b	beam	11-12
+# ::node	o	overhead	12-13
+# ::root	r	roll-01
+# ::edge	train	mod	subway	t2	s	
+# ::edge	roll-01	ARG1	train	r	t2	
+# ::edge	roll-01	path	along	r	a	
+# ::edge	along	op1	track	a	t	
+# ::edge	track	location	beneath	t	b2	
+# ::edge	and	op1	wire	a2	w	
+# ::edge	beneath	op1	and	b2	a2	
+# ::edge	and	op2	beam	a2	b	
+# ::edge	and	location	overhead	a2	o	
+(r / roll-01
+    :ARG1 (t2 / train
+        :mod (s / subway))
+    :path (a / along
+        :op1 (t / track
+            :location (b2 / beneath
+                :op1 (a2 / and
+                    :location (o / overhead)
+                    :op1 (w / wire)
+                    :op2 (b / beam))))))

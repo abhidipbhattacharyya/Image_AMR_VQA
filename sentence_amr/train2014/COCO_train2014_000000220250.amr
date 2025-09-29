@@ -1,0 +1,34 @@
+# ::tok A tray with a coffee cup , utensils and the use of a phone on docking station with a portable keyboard .
+# ::node	t	tray	1-2
+# ::node	c	coffee	4-5
+# ::node	c2	cup	5-6
+# ::node	a	Pan	7-8
+# ::node	a2	and	8-9
+# ::node	u	use-01	10-11
+# ::node	p	phone	13-14
+# ::node	d	dock-01	15-16
+# ::node	s	station	16-17
+# ::node	p2	portable	19-20
+# ::node	k	keyboard	20-21
+# ::root	a2	and
+# ::edge	cup	mod	coffee	c2	c	
+# ::edge	and	op2	Pan	a2	a	
+# ::edge	and	op1	cup	a2	c2	
+# ::edge	and	op3	use-01	a2	u	
+# ::edge	use-01	ARG1	phone	u	p	
+# ::edge	station	ARG2-of	dock-01	s	d	
+# ::edge	use-01	location	station	u	s	
+# ::edge	keyboard	mod	portable	k	p2	
+# ::edge	dock-01	instrument	keyboard	d	k	
+# ::edge	and	rel	tray	a2	t	
+(a2 / and
+    :op1 (c2 / cup
+        :mod (c / coffee))
+    :op2 (a / Pan)
+    :op3 (u / use-01
+        :ARG1 (p / phone)
+        :location (s / station
+            :ARG2-of (d / dock-01
+                :instrument (k / keyboard
+                    :mod (p2 / portable)))))
+    :rel (t / tray))

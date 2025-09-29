@@ -1,0 +1,33 @@
+# ::tok A room showing a bed behind a short wall with tear drops cut out of the wall
+# ::node	r	room	1-2
+# ::node	s2	show-01	2-3
+# ::node	b	bed	4-5
+# ::node	b2	behind	5-6
+# ::node	s	short-07	7-8
+# ::node	w	wall	8-9
+# ::node	h	have-03	9-10
+# ::node	t	tear	10-11
+# ::node	d	drop-01	11-12
+# ::node	c	cut-out-06	12-13
+# ::root	s2	show-01
+# ::edge	show-01	ARG0	room	s2	r	
+# ::edge	show-01	ARG1	bed	s2	b	
+# ::edge	bed	location	behind	b	b2	
+# ::edge	wall	ARG1-of	short-07	w	s	
+# ::edge	behind	op1	wall	b2	w	
+# ::edge	bed	ARG0-of	have-03	b	h	
+# ::edge	drop-01	ARG1	tear	d	t	
+# ::edge	cut-out-06	ARG1	drop-01	c	d	
+# ::edge	have-03	ARG1	cut-out-06	h	c	
+# ::edge	cut-out-06	ARG2	wall	c	w	
+(s2 / show-01
+    :ARG0 (r / room)
+    :ARG1 (b / bed
+        :ARG0-of (h / have-03
+            :ARG1 (c / cut-out-06
+                :ARG1 (d / drop-01
+                    :ARG1 (t / tear))
+                :ARG2 (w / wall
+                    :ARG1-of (s / short-07))))
+        :location (b2 / behind
+            :op1 w)))

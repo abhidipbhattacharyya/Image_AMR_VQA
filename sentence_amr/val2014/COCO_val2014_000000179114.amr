@@ -1,0 +1,44 @@
+# ::tok A group of people on elephants , riding in seats that are fastened to the elephants backs and crossing a river that has people on a raft travelling down it .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	e	elephant	5-6
+# ::node	r2	ride-01	7-8
+# ::node	s	seat	9-10
+# ::node	f	fasten-01	12-13
+# ::node	b	back	16-17
+# ::node	c	cross-02	18-19
+# ::node	r3	river	20-21
+# ::node	p2	person	23-24
+# ::node	r	raft	26-27
+# ::node	t	travel-01	27-28
+# ::node	d	down	28-29
+# ::root	c	cross-02
+# ::edge	group	consist-of	person	g	p	
+# ::edge	ride-01	ARG1	elephant	r2	e	
+# ::edge	person	ARG0-of	ride-01	p	r2	
+# ::edge	ride-01	ARG2	seat	r2	s	
+# ::edge	seat	ARG1-of	fasten-01	s	f	
+# ::edge	fasten-01	ARG2	back	f	b	
+# ::edge	elephant	part	back	e	b	
+# ::edge	cross-02	ARG0	group	c	g	
+# ::edge	cross-02	ARG1	river	c	r3	
+# ::edge	travel-01	ARG1	raft	t	r	
+# ::edge	person	ARG0-of	travel-01	p2	t	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	down	op1	river	d	r3	
+# ::edge	cross-02	rel	person	c	p2	
+(c / cross-02
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (r2 / ride-01
+                :ARG1 (e / elephant
+                    :part (b / back))
+                :ARG2 (s / seat
+                    :ARG1-of (f / fasten-01
+                        :ARG2 b)))))
+    :ARG1 (r3 / river)
+    :rel (p2 / person
+        :ARG0-of (t / travel-01
+            :ARG1 (r / raft)
+            :direction (d / down
+                :op1 r3))))

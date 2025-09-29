@@ -1,0 +1,37 @@
+# ::tok A desk chair sits before a desk with computer , laptop , and gaming systems all attached .
+# ::node	d	desk	1-2
+# ::node	c	chair	2-3
+# ::node	s	sit-01	3-4
+# ::node	b	before	4-5
+# ::node	d2	desk	6-7
+# ::node	c2	computer	8-9
+# ::node	l	laptop	10-11
+# ::node	a2	and	12-13
+# ::node	p	play-01	13-14
+# ::node	s2	system	14-15
+# ::node	a	all	15-16
+# ::node	a3	attach-01	16-17
+# ::root	s	sit-01
+# ::edge	chair	mod	desk	c	d	
+# ::edge	sit-01	ARG1	chair	s	c	
+# ::edge	sit-01	ARG2	before	s	b	
+# ::edge	before	op1	desk	b	d2	
+# ::edge	and	op2	laptop	a2	l	
+# ::edge	and	op1	computer	a2	c2	
+# ::edge	system	purpose	play-01	s2	p	
+# ::edge	and	op3	system	a2	s2	
+# ::edge	attach-01	mod	all	a3	a	
+# ::edge	attach-01	ARG1	and	a3	a2	
+# ::edge	desk	ARG2-of	attach-01	d2	a3	
+(s / sit-01
+    :ARG1 (c / chair
+        :mod (d / desk))
+    :ARG2 (b / before
+        :op1 (d2 / desk
+            :ARG2-of (a3 / attach-01
+                :ARG1 (a2 / and
+                    :op1 (c2 / computer)
+                    :op2 (l / laptop)
+                    :op3 (s2 / system
+                        :purpose (p / play-01)))
+                :mod (a / all)))))

@@ -1,0 +1,37 @@
+# ::tok A small old biplane sitting next to another aircraft next to some barns .
+# ::node	s2	small	1-2
+# ::node	o	old	2-3
+# ::node	b	biplane	3-4
+# ::node	s	sit-01	4-5
+# ::node	n2	next-to	5-6
+# ::node	a2	another	7-8
+# ::node	a	aircraft	8-9
+# ::node	n3	next-to	9-10
+# ::node	s3	some	11-12
+# ::node	b2	building	12-13
+# ::node	n	name	12-13
+# ::node	0	Barnes	12-13
+# ::root	s	sit-01
+# ::edge	biplane	mod	old	b	o	
+# ::edge	biplane	mod	small	b	s2	
+# ::edge	sit-01	ARG1	biplane	s	b	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	aircraft	mod	another	a	a2	
+# ::edge	next-to	op1	aircraft	n2	a	
+# ::edge	aircraft	location	next-to	a	n3	
+# ::edge	building	quant	some	b2	s3	
+# ::edge	next-to	op1	building	n3	b2	
+# ::edge	building	name	name	b2	n	
+# ::edge	name	op1	Barnes	n	0	
+(s / sit-01
+    :ARG1 (b / biplane
+        :mod (o / old)
+        :mod (s2 / small))
+    :ARG2 (n2 / next-to
+        :op1 (a / aircraft
+            :location (n3 / next-to
+                :op1 (b2 / building
+                    :name (n / name
+                        :op1 "Barnes")
+                    :quant (s3 / some)))
+            :mod (a2 / another))))

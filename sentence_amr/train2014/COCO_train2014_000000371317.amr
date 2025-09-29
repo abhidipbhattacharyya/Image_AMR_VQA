@@ -1,0 +1,38 @@
+# ::tok Tennis player just swung his racket to serve the ball back to the other side
+# ::node	c	court	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	j	just	2-3
+# ::node	s3	swing-02	3-4
+# ::node	r	racket	5-6
+# ::node	s	serve-02	7-8
+# ::node	b2	ball	9-10
+# ::node	b	back	10-11
+# ::node	o	other	13-14
+# ::node	s2	side	14-15
+# ::root	s3	swing-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	court	p2	c	
+# ::edge	swing-02	mod	just	s3	j	
+# ::edge	swing-02	ARG0	person	s3	p	
+# ::edge	swing-02	ARG1	racket	s3	r	
+# ::edge	racket	poss	person	r	p	
+# ::edge	swing-02	purpose	serve-02	s3	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b2	
+# ::edge	serve-02	direction	back	s	b	
+# ::edge	side	mod	other	s2	o	
+# ::edge	serve-02	ARG2	side	s	s2	
+(s3 / swing-02
+    :purpose (s / serve-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (c / court)))
+        :ARG1 (b2 / ball)
+        :ARG2 (s2 / side
+            :mod (o / other))
+        :direction (b / back))
+    :ARG0 p
+    :ARG1 (r / racket
+        :poss p)
+    :mod (j / just))

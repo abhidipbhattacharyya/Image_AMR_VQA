@@ -1,0 +1,25 @@
+# ::tok A box or suitcase of old tie or bits of material .
+# ::node	b2	box	1-2
+# ::node	o2	or	2-3
+# ::node	s	suitcase	3-4
+# ::node	o	old	5-6
+# ::node	t	tie	6-7
+# ::node	o3	or	7-8
+# ::node	b	bit	8-9
+# ::node	m	material	10-11
+# ::root	o2	or
+# ::edge	or	op1	box	o2	b2	
+# ::edge	or	op2	suitcase	o2	s	
+# ::edge	tie	mod	old	t	o	
+# ::edge	or	op1	tie	o3	t	
+# ::edge	or	consist-of	or	o2	o3	
+# ::edge	or	op2	bit	o3	b	
+# ::edge	bit	part-of	material	b	m	
+(o2 / or
+    :consist-of (o3 / or
+        :op1 (t / tie
+            :mod (o / old))
+        :op2 (b / bit
+            :part-of (m / material)))
+    :op1 (b2 / box)
+    :op2 (s / suitcase))

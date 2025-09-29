@@ -1,0 +1,46 @@
+# ::tok A sign indicating Florida Avenue and another one stating the speed limit is 35 .
+# ::node	s	sign	1-2
+# ::node	s2	sign	1-2
+# ::node	i	indicate-01	2-3
+# ::node	n	name	3-4
+# ::node	2	Florida	3-4
+# ::node	r	road	4-5
+# ::node	1	Avenue	4-5
+# ::node	a	and	5-6
+# ::node	a2	another	6-7
+# ::node	s4	state-01	8-9
+# ::node	s3	speed-01	10-11
+# ::node	l	limit-01	11-12
+# ::node	t	temporal-quantity	13-14
+# ::node	y	year	13-14
+# ::node	0	35	13-14
+# ::root	a	and
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	name	op1	Florida	n	2	
+# ::edge	road	name	name	r	n	
+# ::edge	indicate-01	ARG1	road	i	r	
+# ::edge	name	op2	Avenue	n	1	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	sign	mod	another	s2	a2	
+# ::edge	sign	ARG0-of	state-01	s2	s4	
+# ::edge	limit-01	ARG2	speed-01	l	s3	
+# ::edge	state-01	ARG1	limit-01	s4	l	
+# ::edge	limit-01	ARG2	temporal-quantity	l	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	temporal-quantity	quant	35	t	0	
+(a / and
+    :op1 (s / sign
+        :ARG0-of (i / indicate-01
+            :ARG1 (r / road
+                :name (n / name
+                    :op1 "Florida"
+                    :op2 "Avenue"))))
+    :op2 (s2 / sign
+        :ARG0-of (s4 / state-01
+            :ARG1 (l / limit-01
+                :ARG2 (s3 / speed-01)
+                :ARG2 (t / temporal-quantity
+                    :quant 35
+                    :unit (y / year))))
+        :mod (a2 / another)))

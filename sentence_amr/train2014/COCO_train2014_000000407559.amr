@@ -1,0 +1,28 @@
+# ::tok City lights shine while a car rear view mirror reflects a building .
+# ::node	c2	city	0-1
+# ::node	l	light	1-2
+# ::node	s	shine-01	2-3
+# ::node	c3	contrast-01	3-4
+# ::node	c	car	5-6
+# ::node	r	rearview	7-8
+# ::node	m	mirror	8-9
+# ::node	r2	reflect-01	9-10
+# ::node	b	building	11-12
+# ::root	c3	contrast-01
+# ::edge	light	mod	city	l	c2	
+# ::edge	shine-01	ARG1	light	s	l	
+# ::edge	contrast-01	ARG1	shine-01	c3	s	
+# ::edge	mirror	mod	rearview	m	r	
+# ::edge	mirror	poss	car	m	c	
+# ::edge	reflect-01	ARG1	mirror	r2	m	
+# ::edge	contrast-01	ARG2	reflect-01	c3	r2	
+# ::edge	reflect-01	ARG2	building	r2	b	
+(c3 / contrast-01
+    :ARG1 (s / shine-01
+        :ARG1 (l / light
+            :mod (c2 / city)))
+    :ARG2 (r2 / reflect-01
+        :ARG1 (m / mirror
+            :mod (r / rearview)
+            :poss (c / car))
+        :ARG2 (b / building)))

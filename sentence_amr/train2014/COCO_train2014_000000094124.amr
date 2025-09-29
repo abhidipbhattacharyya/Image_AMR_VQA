@@ -1,0 +1,33 @@
+# ::tok A few loafs of bread shapped to look like animals and hearts .
+# ::node	f	few	1-2
+# ::node	0	1	1-2
+# ::node	m	mass-quantity	2-3
+# ::node	b2	bushel	2-3
+# ::node	b	bread	4-5
+# ::node	s	shape-01	5-6
+# ::node	l	look-02	7-8
+# ::node	a2	animal	9-10
+# ::node	a	and	10-11
+# ::node	h	heart	11-12
+# ::root	s	shape-01
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	few	op1	mass-quantity	f	m	
+# ::edge	mass-quantity	unit	bushel	m	b2	
+# ::edge	bread	quant	few	b	f	
+# ::edge	shape-01	ARG1	bread	s	b	
+# ::edge	shape-01	ARG2	look-02	s	l	
+# ::edge	look-02	ARG0	bread	l	b	
+# ::edge	and	op1	animal	a	a2	
+# ::edge	look-02	ARG1	and	l	a	
+# ::edge	and	op2	heart	a	h	
+(s / shape-01
+    :ARG1 (b / bread
+        :quant (f / few
+            :op1 (m / mass-quantity
+                :quant 1
+                :unit (b2 / bushel))))
+    :ARG2 (l / look-02
+        :ARG0 b
+        :ARG1 (a / and
+            :op1 (a2 / animal)
+            :op2 (h / heart))))

@@ -1,0 +1,28 @@
+# ::tok A train on train tracks that run parallel to many other train tracks .
+# ::node	t3	train	1-2
+# ::node	t4	train	3-4
+# ::node	t	track	4-5
+# ::node	r	run-04	6-7
+# ::node	p	parallel	7-8
+# ::node	m	many	9-10
+# ::node	o	other	10-11
+# ::node	t5	train	11-12
+# ::node	t2	track	12-13
+# ::root	t3	train
+# ::edge	track	purpose	train	t	t4	
+# ::edge	train	location	track	t3	t	
+# ::edge	track	ARG1-of	run-04	t	r	
+# ::edge	run-04	manner	parallel	r	p	
+# ::edge	track	purpose	train	t2	t5	
+# ::edge	track	mod	other	t2	o	
+# ::edge	track	quant	many	t2	m	
+# ::edge	run-04	ARG2	track	r	t2	
+(t3 / train
+    :location (t / track
+        :purpose (t4 / train)
+        :ARG1-of (r / run-04
+            :ARG2 (t2 / track
+                :purpose (t5 / train)
+                :quant (m / many)
+                :mod (o / other))
+            :manner (p / parallel))))

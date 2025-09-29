@@ -1,0 +1,25 @@
+# ::tok Used book prices are listed next to the books on a table .
+# ::node	u	use-01	0-1
+# ::node	b	book	1-2
+# ::node	t2	thing	2-3
+# ::node	p	price-01	2-3
+# ::node	l	list-01	4-5
+# ::node	n	next-to	5-6
+# ::node	b2	book	8-9
+# ::node	t	table	11-12
+# ::root	l	list-01
+# ::edge	book	ARG1-of	use-01	b	u	
+# ::edge	thing	ARG2-of	price-01	t2	p	
+# ::edge	price-01	ARG1	book	p	b	
+# ::edge	list-01	ARG1	thing	l	t2	
+# ::edge	list-01	location	next-to	l	n	
+# ::edge	next-to	op1	book	n	b2	
+# ::edge	book	location	table	b2	t	
+(l / list-01
+    :ARG1 (t2 / thing
+        :ARG2-of (p / price-01
+            :ARG1 (b / book
+                :ARG1-of (u / use-01))))
+    :location (n / next-to
+        :op1 (b2 / book
+            :location (t / table))))

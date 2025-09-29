@@ -1,0 +1,40 @@
+# ::tok Two dogs , one wearing a hat , rest in the tall grass by the edge of the woods in the background .
+# ::node	1	2	0-1
+# ::node	d	dog	1-2
+# ::node	d2	dog	1-2
+# ::node	i	include-91	3-4
+# ::node	0	1	3-4
+# ::node	w	wear-01	4-5
+# ::node	h	hat	6-7
+# ::node	r	rest-01	8-9
+# ::node	t	tall	11-12
+# ::node	g	grass	12-13
+# ::node	e	edge	15-16
+# ::node	w2	woods	18-19
+# ::node	b	background	21-22
+# ::root	r	rest-01
+# ::edge	dog	quant	2	d	1	
+# ::edge	include-91	ARG1	dog	i	d2	
+# ::edge	dog	ARG2-of	include-91	d	i	
+# ::edge	dog	quant	1	d2	0	
+# ::edge	dog	ARG0-of	wear-01	d2	w	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	rest-01	ARG1	dog	r	d	
+# ::edge	grass	mod	tall	g	t	
+# ::edge	rest-01	ARG2	grass	r	g	
+# ::edge	grass	location	edge	g	e	
+# ::edge	edge	part-of	woods	e	w2	
+# ::edge	woods	location	background	w2	b	
+(r / rest-01
+    :ARG1 (d / dog
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (d2 / dog
+                :quant 1
+                :ARG0-of (w / wear-01
+                    :ARG1 (h / hat)))))
+    :ARG2 (g / grass
+        :location (e / edge
+            :part-of (w2 / woods
+                :location (b / background)))
+        :mod (t / tall)))

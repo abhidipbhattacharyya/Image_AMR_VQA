@@ -1,0 +1,34 @@
+# ::tok A pitcher throws a pitch in a night baseball game as a fielder watches .
+# ::node	p	person	1-2
+# ::node	p4	pitcher	1-2
+# ::node	t	throw-01	2-3
+# ::node	p3	pitch	4-5
+# ::node	d	date-entity	7-8
+# ::node	n	night	7-8
+# ::node	b	baseball	8-9
+# ::node	g	game	9-10
+# ::node	p2	person	12-13
+# ::node	f	field-01	12-13
+# ::node	w	watch-01	13-14
+# ::root	t	throw-01
+# ::edge	person	mod	pitcher	p	p4	
+# ::edge	throw-01	ARG0	person	t	p	
+# ::edge	throw-01	ARG1	pitch	t	p3	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	time	date-entity	g	d	
+# ::edge	throw-01	time	game	t	g	
+# ::edge	person	ARG0-of	field-01	p2	f	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	throw-01	ARG1-of	watch-01	t	w	
+(t / throw-01
+    :ARG0 (p / person
+        :mod (p4 / pitcher))
+    :ARG1 (p3 / pitch)
+    :ARG1-of (w / watch-01
+        :ARG0 (p2 / person
+            :ARG0-of (f / field-01)))
+    :time (g / game
+        :mod (b / baseball)
+        :time (d / date-entity
+            :dayperiod (n / night))))

@@ -1,0 +1,34 @@
+# ::tok Pedestrian and car traffic on a street corner in a Canadian city
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	a	and	1-2
+# ::node	c	car	2-3
+# ::node	t	traffic	3-4
+# ::node	s	street	6-7
+# ::node	c3	corner	7-8
+# ::node	c4	country	10-11
+# ::node	n	name	10-11
+# ::node	0	Canada	10-11
+# ::node	c2	city	11-12
+# ::root	t	traffic
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op2	car	a	c	
+# ::edge	traffic	mod	and	t	a	
+# ::edge	corner	mod	street	c3	s	
+# ::edge	traffic	location	corner	t	c3	
+# ::edge	country	name	name	c4	n	
+# ::edge	name	op1	Canada	n	0	
+# ::edge	city	location	country	c2	c4	
+# ::edge	corner	location	city	c3	c2	
+# ::edge	traffic	rel	person	t	p	
+(t / traffic
+    :location (c3 / corner
+        :location (c2 / city
+            :location (c4 / country
+                :name (n / name
+                    :op1 "Canada")))
+        :mod (s / street))
+    :mod (a / and
+        :op2 (c / car))
+    :rel (p / person
+        :ARG0-of (w / walk-01)))

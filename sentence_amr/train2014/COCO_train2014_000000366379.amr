@@ -1,0 +1,33 @@
+# ::tok Snowboarder in mid air following jump in inverted upside down position .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	m	middle	2-3
+# ::node	a	air	3-4
+# ::node	f	follow-01	4-5
+# ::node	j	jump-03	5-6
+# ::node	i	inverted	7-8
+# ::node	u	upside	8-9
+# ::node	d	down-03	9-10
+# ::node	p2	position	10-11
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	air	mod	middle	a	m	
+# ::edge	person	location	air	p	a	
+# ::edge	person	ARG1-of	follow-01	p	f	
+# ::edge	follow-01	ARG2	jump-03	f	j	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	upside	op1	down-03	u	d	
+# ::edge	position	direction	upside	p2	u	
+# ::edge	position	mod	inverted	p2	i	
+# ::edge	jump-03	manner	position	j	p2	
+(p / person
+    :ARG0-of (s / ski-01)
+    :ARG1-of (f / follow-01
+        :ARG2 (j / jump-03
+            :ARG0 p
+            :manner (p2 / position
+                :direction (u / upside
+                    :op1 (d / down-03))
+                :mod (i / inverted))))
+    :location (a / air
+        :mod (m / middle)))

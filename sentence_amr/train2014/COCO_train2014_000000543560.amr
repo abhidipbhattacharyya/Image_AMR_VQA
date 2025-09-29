@@ -1,0 +1,21 @@
+# ::tok Twin engine propeller plane approaching for the landing
+# ::node	t	twin	0-1
+# ::node	e	engine	1-2
+# ::node	p2	propeller	2-3
+# ::node	p	plane	3-4
+# ::node	a	approach-01	4-5
+# ::node	l	land-01	7-8
+# ::root	a	approach-01
+# ::edge	engine	mod	twin	e	t	
+# ::edge	plane	part	propeller	p	p2	
+# ::edge	plane	part	engine	p	e	
+# ::edge	approach-01	ARG1	plane	a	p	
+# ::edge	approach-01	ARG2	land-01	a	l	
+# ::edge	land-01	ARG1	plane	l	p	
+(a / approach-01
+    :ARG1 (p / plane
+        :part (p2 / propeller)
+        :part (e / engine
+            :mod (t / twin)))
+    :ARG2 (l / land-01
+        :ARG1 p))

@@ -1,0 +1,28 @@
+# ::tok an unfinished set of rooms in a house with construction materials on the floor
+# ::node	0	-	0-1
+# ::node	f	finish-01	1-2
+# ::node	s	set	2-3
+# ::node	r	room	4-5
+# ::node	h2	house	7-8
+# ::node	h	have-03	8-9
+# ::node	c	construct-01	9-10
+# ::node	m	material	10-11
+# ::node	f2	floor	13-14
+# ::root	s	set
+# ::edge	finish-01	polarity	-	f	0	
+# ::edge	set	ARG1-of	finish-01	s	f	
+# ::edge	set	consist-of	room	s	r	
+# ::edge	room	location	house	r	h2	
+# ::edge	house	ARG0-of	have-03	h2	h	
+# ::edge	material	ARG2-of	construct-01	m	c	
+# ::edge	have-03	ARG1	material	h	m	
+# ::edge	material	location	floor	m	f2	
+(s / set
+    :ARG1-of (f / finish-01
+        :polarity -)
+    :consist-of (r / room
+        :location (h2 / house
+            :ARG0-of (h / have-03
+                :ARG1 (m / material
+                    :ARG2-of (c / construct-01)
+                    :location (f2 / floor))))))

@@ -1,0 +1,31 @@
+# ::tok Cars are at a stop light with extreme sun glare blazing though the windows .
+# ::node	c	car	0-1
+# ::node	b	be-located-at-91	2-3
+# ::node	s2	stop-01	4-5
+# ::node	l	light	5-6
+# ::node	e	extreme	7-8
+# ::node	s3	sun	8-9
+# ::node	s	shine-01	9-10
+# ::node	b2	blaze-01	10-11
+# ::node	t	though	11-12
+# ::node	w	window	13-14
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	car	b	c	
+# ::edge	light	mod	stop-01	l	s2	
+# ::edge	be-located-at-91	ARG2	light	b	l	
+# ::edge	shine-01	ARG0	sun	s	s3	
+# ::edge	shine-01	degree	extreme	s	e	
+# ::edge	blaze-01	ARG1	shine-01	b2	s	
+# ::edge	car	time-of	blaze-01	c	b2	
+# ::edge	blaze-01	direction	though	b2	t	
+# ::edge	though	op1	window	t	w	
+(b / be-located-at-91
+    :ARG1 (c / car
+        :time-of (b2 / blaze-01
+            :ARG1 (s / shine-01
+                :ARG0 (s3 / sun)
+                :degree (e / extreme))
+            :direction (t / though
+                :op1 (w / window))))
+    :ARG2 (l / light
+        :mod (s2 / stop-01)))

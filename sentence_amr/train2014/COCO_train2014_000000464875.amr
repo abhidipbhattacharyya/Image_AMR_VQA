@@ -1,0 +1,28 @@
+# ::tok A traffic light with a red light and an arrow pointing to the right .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	h	have-03	3-4
+# ::node	r	red-02	5-6
+# ::node	l2	light	6-7
+# ::node	a	and	7-8
+# ::node	a2	arrow	9-10
+# ::node	p	point-01	10-11
+# ::node	r2	right-04	13-14
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	light	ARG1-of	red-02	l2	r	
+# ::edge	and	op1	light	a	l2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	arrow	a	a2	
+# ::edge	arrow	ARG0-of	point-01	a2	p	
+# ::edge	point-01	ARG2	right-04	p	r2	
+(l / light
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l2 / light
+                :ARG1-of (r / red-02))
+            :op2 (a2 / arrow
+                :ARG0-of (p / point-01
+                    :ARG2 (r2 / right-04)))))
+    :mod (t / traffic))

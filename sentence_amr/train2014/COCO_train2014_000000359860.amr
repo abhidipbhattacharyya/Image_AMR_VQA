@@ -1,0 +1,24 @@
+# ::tok A set of stairs lowered to allow people to board a plane
+# ::node	s	set	1-2
+# ::node	s2	stair	3-4
+# ::node	l	lower-05	4-5
+# ::node	a	allow-01	6-7
+# ::node	p	person	7-8
+# ::node	b	board-01	9-10
+# ::node	p2	plane	11-12
+# ::root	l	lower-05
+# ::edge	set	consist-of	stair	s	s2	
+# ::edge	lower-05	ARG1	set	l	s	
+# ::edge	lower-05	purpose	allow-01	l	a	
+# ::edge	allow-01	ARG0	set	a	s	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	allow-01	ARG1	board-01	a	b	
+# ::edge	board-01	ARG1	plane	b	p2	
+(l / lower-05
+    :purpose (a / allow-01
+        :ARG0 (s / set
+            :consist-of (s2 / stair))
+        :ARG1 (b / board-01
+            :ARG0 (p / person)
+            :ARG1 (p2 / plane)))
+    :ARG1 s)

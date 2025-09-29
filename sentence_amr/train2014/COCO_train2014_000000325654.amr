@@ -1,0 +1,34 @@
+# ::tok A basket of chicken with a fork in it next to a bottle of Doctor Pepper .
+# ::node	b	basket	1-2
+# ::node	c	chicken	3-4
+# ::node	f	fork	6-7
+# ::node	n2	next-to	9-10
+# ::node	b2	be-located-at-91	10-11
+# ::node	b3	bottle	12-13
+# ::node	c2	contain-01	12-13
+# ::node	n	name	14-15
+# ::node	0	Doctor	14-15
+# ::node	p	product	15-16
+# ::node	1	Pepper	15-16
+# ::root	b2	be-located-at-91
+# ::edge	basket	consist-of	chicken	b	c	
+# ::edge	basket	part	fork	b	f	
+# ::edge	be-located-at-91	ARG2	next-to	b2	n2	
+# ::edge	be-located-at-91	ARG1	basket	b2	b	
+# ::edge	next-to	op1	bottle	n2	b3	
+# ::edge	bottle	ARG0-of	contain-01	b3	c2	
+# ::edge	name	op1	Doctor	n	0	
+# ::edge	product	name	name	p	n	
+# ::edge	contain-01	ARG1	product	c2	p	
+# ::edge	name	op2	Pepper	n	1	
+(b2 / be-located-at-91
+    :ARG1 (b / basket
+        :consist-of (c / chicken)
+        :part (f / fork))
+    :ARG2 (n2 / next-to
+        :op1 (b3 / bottle
+            :ARG0-of (c2 / contain-01
+                :ARG1 (p / product
+                    :name (n / name
+                        :op1 "Doctor"
+                        :op2 "Pepper"))))))

@@ -1,0 +1,37 @@
+# ::tok A gray tiered building features hundreds of windows and a clock high up near the top .
+# ::node	g	gray-02	1-2
+# ::node	t	tier	2-3
+# ::node	b	building	3-4
+# ::node	f	feature-01	4-5
+# ::node	m	multiple	5-6
+# ::node	0	100	5-6
+# ::node	w	window	7-8
+# ::node	a	and	8-9
+# ::node	c	clock	10-11
+# ::node	h	high-02	11-12
+# ::node	n	near-02	13-14
+# ::node	t2	top	15-16
+# ::root	f	feature-01
+# ::edge	tier	ARG1-of	gray-02	t	g	
+# ::edge	building	part	tier	b	t	
+# ::edge	feature-01	ARG2	building	f	b	
+# ::edge	multiple	op1	100	m	0	
+# ::edge	window	quant	multiple	w	m	
+# ::edge	and	op1	window	a	w	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	and	op2	clock	a	c	
+# ::edge	clock	ARG1-of	high-02	c	h	
+# ::edge	high-02	ARG1-of	near-02	h	n	
+# ::edge	near-02	ARG2	top	n	t2	
+(f / feature-01
+    :ARG1 (a / and
+        :op1 (w / window
+            :quant (m / multiple
+                :op1 100))
+        :op2 (c / clock
+            :ARG1-of (h / high-02
+                :ARG1-of (n / near-02
+                    :ARG2 (t2 / top)))))
+    :ARG2 (b / building
+        :part (t / tier
+            :ARG1-of (g / gray-02))))

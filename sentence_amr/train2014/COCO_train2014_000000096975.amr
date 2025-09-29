@@ -1,0 +1,48 @@
+# ::tok A suitcase stands against the wall , its front flap is open , revealing a cardboard setup with some electronic device attached .
+# ::node	s4	suitcase	1-2
+# ::node	s3	stand-01	2-3
+# ::node	a	against	3-4
+# ::node	w	wall	5-6
+# ::node	a2	and	6-7
+# ::node	f2	front	8-9
+# ::node	f	flap	9-10
+# ::node	o	open-01	11-12
+# ::node	r	reveal-01	13-14
+# ::node	c	cardboard	15-16
+# ::node	s	setup	16-17
+# ::node	s2	some	18-19
+# ::node	e	electronic	19-20
+# ::node	d	device	20-21
+# ::node	a3	attach-01	21-22
+# ::root	a2	and
+# ::edge	stand-01	ARG1	suitcase	s3	s4	
+# ::edge	stand-01	ARG2	against	s3	a	
+# ::edge	against	op1	wall	a	w	
+# ::edge	and	op1	stand-01	a2	s3	
+# ::edge	flap	mod	front	f	f2	
+# ::edge	suitcase	part	flap	s4	f	
+# ::edge	open-01	ARG1	flap	o	f	
+# ::edge	and	op2	open-01	a2	o	
+# ::edge	open-01	ARG0-of	reveal-01	o	r	
+# ::edge	setup	consist-of	cardboard	s	c	
+# ::edge	reveal-01	ARG1	setup	r	s	
+# ::edge	device	mod	electronic	d	e	
+# ::edge	device	mod	some	d	s2	
+# ::edge	attach-01	ARG1	device	a3	d	
+# ::edge	setup	ARG2-of	attach-01	s	a3	
+(a2 / and
+    :op1 (s3 / stand-01
+        :ARG1 (s4 / suitcase
+            :part (f / flap
+                :mod (f2 / front)))
+        :ARG2 (a / against
+            :op1 (w / wall)))
+    :op2 (o / open-01
+        :ARG0-of (r / reveal-01
+            :ARG1 (s / setup
+                :ARG2-of (a3 / attach-01
+                    :ARG1 (d / device
+                        :mod (e / electronic)
+                        :mod (s2 / some)))
+                :consist-of (c / cardboard)))
+        :ARG1 f))

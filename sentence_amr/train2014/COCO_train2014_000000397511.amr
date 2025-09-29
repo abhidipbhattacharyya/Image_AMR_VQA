@@ -1,0 +1,19 @@
+# ::tok A train is shown at a transit center loading passengers .
+# ::node	t	train	1-2
+# ::node	s	show-01	3-4
+# ::node	t2	transit-01	6-7
+# ::node	c	center	7-8
+# ::node	l	load-01	8-9
+# ::node	p	passenger	9-10
+# ::root	s	show-01
+# ::edge	show-01	ARG1	train	s	t	
+# ::edge	center	ARG2-of	transit-01	c	t2	
+# ::edge	show-01	location	center	s	c	
+# ::edge	train	ARG0-of	load-01	t	l	
+# ::edge	load-01	ARG1	passenger	l	p	
+(s / show-01
+    :ARG1 (t / train
+        :ARG0-of (l / load-01
+            :ARG1 (p / passenger)))
+    :location (c / center
+        :ARG2-of (t2 / transit-01)))

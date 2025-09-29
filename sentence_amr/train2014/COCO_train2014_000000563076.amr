@@ -1,0 +1,22 @@
+# ::tok An orange sign that says the right lane is closed ahead .
+# ::node	o	orange	1-2
+# ::node	s2	sign	2-3
+# ::node	s	say-01	4-5
+# ::node	r	right-04	6-7
+# ::node	l	lane	7-8
+# ::node	c	close-01	9-10
+# ::node	a	ahead	10-11
+# ::root	s2	sign
+# ::edge	sign	mod	orange	s2	o	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	lane	ARG1-of	right-04	l	r	
+# ::edge	close-01	ARG1	lane	c	l	
+# ::edge	say-01	ARG1	close-01	s	c	
+# ::edge	close-01	location	ahead	c	a	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (c / close-01
+            :ARG1 (l / lane
+                :ARG1-of (r / right-04))
+            :location (a / ahead)))
+    :mod (o / orange))

@@ -1,0 +1,30 @@
+# ::tok A bed and table made entirely from shipping boxes and envelopes .
+# ::node	b	bed	1-2
+# ::node	a	and	2-3
+# ::node	t	table	3-4
+# ::node	m	make-01	4-5
+# ::node	e	entire	5-6
+# ::node	s	ship-01	7-8
+# ::node	b2	box	8-9
+# ::node	a2	and	9-10
+# ::node	e2	envelope	10-11
+# ::root	a	and
+# ::edge	and	op1	bed	a	b	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	ARG1-of	make-01	a	m	
+# ::edge	make-01	mod	entire	m	e	
+# ::edge	box	mod	ship-01	b2	s	
+# ::edge	and	op1	box	a2	b2	
+# ::edge	make-01	ARG2	and	m	a2	
+# ::edge	and	op2	envelope	a2	e2	
+# ::edge	envelope	mod	ship-01	e2	s	
+(a / and
+    :ARG1-of (m / make-01
+        :ARG2 (a2 / and
+            :op1 (b2 / box
+                :mod (s / ship-01))
+            :op2 (e2 / envelope
+                :mod s))
+        :mod (e / entire))
+    :op1 (b / bed)
+    :op2 (t / table))

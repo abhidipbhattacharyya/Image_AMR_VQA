@@ -1,0 +1,34 @@
+# ::tok Kitchen area with lots of storage and dark tiles near sliding glass door .
+# ::node	c	cook-01	0-1
+# ::node	a2	area	1-2
+# ::node	l	lot	3-4
+# ::node	s2	store-01	5-6
+# ::node	a	and	6-7
+# ::node	d	dark-02	7-8
+# ::node	t	tile	8-9
+# ::node	n	near-02	9-10
+# ::node	s	slide-01	10-11
+# ::node	g	glass	11-12
+# ::node	d2	door	12-13
+# ::root	a2	area
+# ::edge	area	location-of	cook-01	a2	c	
+# ::edge	store-01	quant	lot	s2	l	
+# ::edge	and	op1	store-01	a	s2	
+# ::edge	area	location-of	and	a2	a	
+# ::edge	tile	ARG1-of	dark-02	t	d	
+# ::edge	and	op2	tile	a	t	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	glass	ARG1-of	slide-01	g	s	
+# ::edge	door	mod	glass	d2	g	
+# ::edge	near-02	ARG2	door	n	d2	
+(a2 / area
+    :location-of (c / cook-01)
+    :location-of (a / and
+        :ARG1-of (n / near-02
+            :ARG2 (d2 / door
+                :mod (g / glass
+                    :ARG1-of (s / slide-01))))
+        :op1 (s2 / store-01
+            :quant (l / lot))
+        :op2 (t / tile
+            :ARG1-of (d / dark-02))))

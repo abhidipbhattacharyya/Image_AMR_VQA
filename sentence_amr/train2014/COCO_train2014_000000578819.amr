@@ -1,0 +1,43 @@
+# ::tok A street sign for Williams Road , Selwyn Road , and Backpackers .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	n	name	4-5
+# ::node	4	Williams	4-5
+# ::node	r	road	5-6
+# ::node	1	Road	5-6
+# ::node	n2	name	7-8
+# ::node	3	Selwyn	7-8
+# ::node	r2	road	8-9
+# ::node	2	Road	8-9
+# ::node	a	and	10-11
+# ::node	c	company	11-12
+# ::node	n3	name	11-12
+# ::node	0	Backpackers	11-12
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	name	op1	Williams	n	4	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op2	Road	n	1	
+# ::edge	name	op1	Selwyn	n2	3	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op2	Road	n2	2	
+# ::edge	and	op2	road	a	r2	
+# ::edge	and	op1	road	a	r	
+# ::edge	sign	beneficiary	and	s	a	
+# ::edge	and	op3	company	a	c	
+# ::edge	company	name	name	c	n3	
+# ::edge	name	op1	Backpackers	n3	0	
+(s / sign
+    :beneficiary (a / and
+        :op1 (r / road
+            :name (n / name
+                :op1 "Williams"
+                :op2 "Road"))
+        :op2 (r2 / road
+            :name (n2 / name
+                :op1 "Selwyn"
+                :op2 "Road"))
+        :op3 (c / company
+            :name (n3 / name
+                :op1 "Backpackers")))
+    :mod (s2 / street))

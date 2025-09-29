@@ -1,0 +1,40 @@
+# ::tok A cat sitting on a table next to plants and a dog outside of a sliding glass door , looking in .
+# ::node	c	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	n	next-to	6-7
+# ::node	p	plant	8-9
+# ::node	a	and	9-10
+# ::node	d	dog	11-12
+# ::node	o	outside	12-13
+# ::node	s2	slide-01	15-16
+# ::node	g	glass	16-17
+# ::node	d2	door	17-18
+# ::node	l	look-01	19-20
+# ::node	i	inside	20-21
+# ::root	l	look-01
+# ::edge	cat	ARG1-of	sit-01	c	s	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location	next-to	t	n	
+# ::edge	next-to	op1	plant	n	p	
+# ::edge	and	op1	cat	a	c	
+# ::edge	and	op2	dog	a	d	
+# ::edge	dog	location	outside	d	o	
+# ::edge	glass	ARG1-of	slide-01	g	s2	
+# ::edge	door	mod	glass	d2	g	
+# ::edge	outside	op1	door	o	d2	
+# ::edge	look-01	ARG0	and	l	a	
+# ::edge	look-01	ARG1	inside	l	i	
+(l / look-01
+    :ARG0 (a / and
+        :op1 (c / cat
+            :ARG1-of (s / sit-01
+                :ARG2 (t / table
+                    :location (n / next-to
+                        :op1 (p / plant)))))
+        :op2 (d / dog
+            :location (o / outside
+                :op1 (d2 / door
+                    :mod (g / glass
+                        :ARG1-of (s2 / slide-01))))))
+    :ARG1 (i / inside))

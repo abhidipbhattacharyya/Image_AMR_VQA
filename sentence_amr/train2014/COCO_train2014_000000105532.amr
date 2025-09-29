@@ -1,0 +1,32 @@
+# ::tok A group of people snowboard and skiing down a snow covered slope .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	ski-01	4-5
+# ::node	a	and	5-6
+# ::node	s2	ski-01	6-7
+# ::node	d	down	7-8
+# ::node	s4	snow	9-10
+# ::node	c	cover-02	10-11
+# ::node	s3	slope	11-12
+# ::root	a	and
+# ::edge	group	consist-of	person	g	p	
+# ::edge	ski-01	ARG0	group	s	g	
+# ::edge	and	op1	ski-01	a	s	
+# ::edge	and	op2	ski-01	a	s2	
+# ::edge	ski-01	ARG0	group	s2	g	
+# ::edge	ski-01	direction	down	s2	d	
+# ::edge	cover-02	ARG2	snow	c	s4	
+# ::edge	slope	ARG1-of	cover-02	s3	c	
+# ::edge	down	op1	slope	d	s3	
+# ::edge	ski-01	ARG1	slope	s	s3	
+(a / and
+    :op1 (s / ski-01
+        :ARG0 (g / group
+            :consist-of (p / person))
+        :ARG1 (s3 / slope
+            :ARG1-of (c / cover-02
+                :ARG2 (s4 / snow))))
+    :op2 (s2 / ski-01
+        :ARG0 g
+        :direction (d / down
+            :op1 s3)))

@@ -1,0 +1,31 @@
+# ::tok Silver scissors inside a pouch with two spools of thread nearby .
+# ::node	g	gold	0-1
+# ::node	n2	needle	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	i	inside	2-3
+# ::node	p	pouch	4-5
+# ::node	h	have-03	5-6
+# ::node	0	2	6-7
+# ::node	s	spool-01	7-8
+# ::node	t	thread	9-10
+# ::node	n	nearby	10-11
+# ::root	b	be-located-at-91
+# ::edge	needle	consist-of	gold	n2	g	
+# ::edge	be-located-at-91	ARG1	needle	b	n2	
+# ::edge	be-located-at-91	ARG2	inside	b	i	
+# ::edge	inside	op1	pouch	i	p	
+# ::edge	pouch	ARG0-of	have-03	p	h	
+# ::edge	spool-01	quant	2	s	0	
+# ::edge	thread	ARG2-of	spool-01	t	s	
+# ::edge	have-03	ARG1	thread	h	t	
+# ::edge	have-03	location	nearby	h	n	
+(b / be-located-at-91
+    :ARG1 (n2 / needle
+        :consist-of (g / gold))
+    :ARG2 (i / inside
+        :op1 (p / pouch
+            :ARG0-of (h / have-03
+                :ARG1 (t / thread
+                    :ARG2-of (s / spool-01
+                        :quant 2))
+                :location (n / nearby)))))

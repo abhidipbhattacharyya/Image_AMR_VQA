@@ -1,0 +1,31 @@
+# ::tok A city street with a public bus riding on the street at night , and a building in the background .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	p	public-02	5-6
+# ::node	b3	bus	6-7
+# ::node	r	ride-01	7-8
+# ::node	d	date-entity	12-13
+# ::node	n	night	12-13
+# ::node	a	and	14-15
+# ::node	b2	building	16-17
+# ::node	b	background	19-20
+# ::root	a	and
+# ::edge	street	mod	city	s	c	
+# ::edge	bus	ARG1-of	public-02	b3	p	
+# ::edge	ride-01	ARG0	bus	r	b3	
+# ::edge	ride-01	location	street	r	s	
+# ::edge	ride-01	time	date-entity	r	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	and	op1	ride-01	a	r	
+# ::edge	and	op2	building	a	b2	
+# ::edge	building	location	background	b2	b	
+(a / and
+    :op1 (r / ride-01
+        :ARG0 (b3 / bus
+            :ARG1-of (p / public-02))
+        :location (s / street
+            :mod (c / city))
+        :time (d / date-entity
+            :dayperiod (n / night)))
+    :op2 (b2 / building
+        :location (b / background)))

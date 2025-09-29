@@ -1,0 +1,58 @@
+# ::tok One pickup rests in the center of a fenced in area ringed with mounds of snow while a second and matching pickup careens down a mound of dirty snow .
+# ::node	0	1	0-1
+# ::node	p	pickup	1-2
+# ::node	r	rest-01	2-3
+# ::node	c2	center	5-6
+# ::node	c3	chain-01	8-9
+# ::node	a	area	10-11
+# ::node	r2	ring-01	11-12
+# ::node	m2	mound	13-14
+# ::node	s	snow	15-16
+# ::node	c4	contrast-01	16-17
+# ::node	o	ordinal-entity	18-19
+# ::node	1	2	18-19
+# ::node	m	match-01	20-21
+# ::node	p2	pickup	21-22
+# ::node	c	care-01	22-23
+# ::node	d2	down	23-24
+# ::node	m3	mound	25-26
+# ::node	d	dirty-02	27-28
+# ::node	s2	snow	28-29
+# ::root	c4	contrast-01
+# ::edge	pickup	quant	1	p	0	
+# ::edge	rest-01	ARG1	pickup	r	p	
+# ::edge	rest-01	location	center	r	c2	
+# ::edge	area	ARG1-of	chain-01	a	c3	
+# ::edge	center	part-of	area	c2	a	
+# ::edge	area	ARG1-of	ring-01	a	r2	
+# ::edge	ring-01	ARG2	mound	r2	m2	
+# ::edge	mound	consist-of	snow	m2	s	
+# ::edge	contrast-01	ARG1	rest-01	c4	r	
+# ::edge	ordinal-entity	value	2	o	1	
+# ::edge	pickup	ARG1-of	match-01	p2	m	
+# ::edge	pickup	ord	ordinal-entity	p2	o	
+# ::edge	care-01	ARG0	pickup	c	p2	
+# ::edge	contrast-01	ARG2	care-01	c4	c	
+# ::edge	care-01	direction	down	c	d2	
+# ::edge	care-01	ARG1	mound	c	m3	
+# ::edge	snow	ARG1-of	dirty-02	s2	d	
+# ::edge	mound	consist-of	snow	m3	s2	
+(c4 / contrast-01
+    :ARG1 (r / rest-01
+        :ARG1 (p / pickup
+            :quant 1)
+        :location (c2 / center
+            :part-of (a / area
+                :ARG1-of (c3 / chain-01)
+                :ARG1-of (r2 / ring-01
+                    :ARG2 (m2 / mound
+                        :consist-of (s / snow))))))
+    :ARG2 (c / care-01
+        :ARG0 (p2 / pickup
+            :ARG1-of (m / match-01)
+            :ord (o / ordinal-entity
+                :value 2))
+        :ARG1 (m3 / mound
+            :consist-of (s2 / snow
+                :ARG1-of (d / dirty-02)))
+        :direction (d2 / down)))

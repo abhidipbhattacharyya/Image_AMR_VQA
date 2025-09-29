@@ -1,0 +1,28 @@
+# ::tok A train station with people on the platform and two trains on the tracks .
+# ::node	t2	train	1-2
+# ::node	s	station	2-3
+# ::node	p	person	4-5
+# ::node	p2	platform	7-8
+# ::node	a	and	8-9
+# ::node	0	2	9-10
+# ::node	t3	train	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	t	track	13-14
+# ::root	s	station
+# ::edge	station	mod	train	s	t2	
+# ::edge	person	location	platform	p	p2	
+# ::edge	and	op1	person	a	p	
+# ::edge	station	location-of	and	s	a	
+# ::edge	train	quant	2	t3	0	
+# ::edge	be-located-at-91	ARG1	train	b	t3	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	track	b	t	
+(s / station
+    :location-of (a / and
+        :op1 (p / person
+            :location (p2 / platform))
+        :op2 (b / be-located-at-91
+            :ARG1 (t3 / train
+                :quant 2)
+            :ARG2 (t / track)))
+    :mod (t2 / train))

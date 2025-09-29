@@ -1,0 +1,30 @@
+# ::tok Two pepperoni pizzas rest on the counter after coming out of the oven .
+# ::node	0	2	0-1
+# ::node	p	pepperoni	1-2
+# ::node	p2	pizzeria	2-3
+# ::node	r	rest-01	3-4
+# ::node	c2	counter	6-7
+# ::node	a	after	7-8
+# ::node	c	come-01	8-9
+# ::node	o	out-of	9-10
+# ::node	o2	oven	12-13
+# ::root	r	rest-01
+# ::edge	pizzeria	mod	pepperoni	p2	p	
+# ::edge	pizzeria	quant	2	p2	0	
+# ::edge	rest-01	ARG1	pizzeria	r	p2	
+# ::edge	rest-01	ARG2	counter	r	c2	
+# ::edge	rest-01	time	after	r	a	
+# ::edge	after	op1	come-01	a	c	
+# ::edge	come-01	ARG1	pizzeria	c	p2	
+# ::edge	come-01	direction	out-of	c	o	
+# ::edge	out-of	op1	oven	o	o2	
+(r / rest-01
+    :ARG1 (p2 / pizzeria
+        :quant 2
+        :mod (p / pepperoni))
+    :ARG2 (c2 / counter)
+    :time (a / after
+        :op1 (c / come-01
+            :ARG1 p2
+            :direction (o / out-of
+                :op1 (o2 / oven)))))

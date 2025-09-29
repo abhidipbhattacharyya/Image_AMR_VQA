@@ -1,0 +1,42 @@
+# ::tok A passenger airplane with it 's landing gear extended , flying in the sky over a green wooded area and mountains are in the distance .
+# ::node	p	passenger	1-2
+# ::node	a	airplane	2-3
+# ::node	l	land-01	6-7
+# ::node	g	gear	7-8
+# ::node	e	extend-01	8-9
+# ::node	f	fly-01	10-11
+# ::node	s	sky	13-14
+# ::node	o	over	14-15
+# ::node	g2	green-02	16-17
+# ::node	w	wood	17-18
+# ::node	a2	area	18-19
+# ::node	m	mountain	20-21
+# ::node	d	distance	24-25
+# ::root	f	fly-01
+# ::edge	airplane	mod	passenger	a	p	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	airplane	part	gear	a	g	
+# ::edge	extend-01	ARG1	gear	e	g	
+# ::edge	fly-01	ARG2	extend-01	f	e	
+# ::edge	fly-01	location	sky	f	s	
+# ::edge	fly-01	location	over	f	o	
+# ::edge	area	mod	wood	a2	w	
+# ::edge	area	ARG1-of	green-02	a2	g2	
+# ::edge	over	op1	area	o	a2	
+# ::edge	over	op2	mountain	o	m	
+# ::edge	mountain	location	distance	m	d	
+# ::edge	fly-01	rel	airplane	f	a	
+(f / fly-01
+    :ARG2 (e / extend-01
+        :ARG1 (g / gear
+            :ARG1-of (l / land-01)))
+    :location (s / sky)
+    :location (o / over
+        :op1 (a2 / area
+            :ARG1-of (g2 / green-02)
+            :mod (w / wood))
+        :op2 (m / mountain
+            :location (d / distance)))
+    :rel (a / airplane
+        :mod (p / passenger)
+        :part g))

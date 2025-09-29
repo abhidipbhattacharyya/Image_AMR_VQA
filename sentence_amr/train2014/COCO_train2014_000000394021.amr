@@ -1,0 +1,48 @@
+# ::tok A four lane highway in the country with traffic and a train running along side of it on one side and water on the other side
+# ::node	0	4	1-2
+# ::node	l	lane	2-3
+# ::node	h	highway	3-4
+# ::node	c	country	6-7
+# ::node	t	traffic	8-9
+# ::node	a2	and	9-10
+# ::node	t2	train	11-12
+# ::node	r	run-02	12-13
+# ::node	a	along	13-14
+# ::node	s	side	14-15
+# ::node	o	one	18-19
+# ::node	s2	side	19-20
+# ::node	w	water	21-22
+# ::node	o2	other	24-25
+# ::node	s3	side	25-26
+# ::root	h	highway
+# ::edge	lane	quant	4	l	0	
+# ::edge	highway	mod	lane	h	l	
+# ::edge	highway	location	country	h	c	
+# ::edge	and	op1	traffic	a2	t	
+# ::edge	highway	location-of	and	h	a2	
+# ::edge	and	op2	train	a2	t2	
+# ::edge	train	ARG0-of	run-02	t2	r	
+# ::edge	run-02	path	along	r	a	
+# ::edge	run-02	op1	side	r	s	
+# ::edge	highway	part	side	h	s	
+# ::edge	side	mod	one	s2	o	
+# ::edge	side	location	side	s	s2	
+# ::edge	and	op2	water	a2	w	
+# ::edge	side	mod	other	s3	o2	
+# ::edge	water	location	side	w	s3	
+(h / highway
+    :location (c / country)
+    :location-of (a2 / and
+        :op1 (t / traffic)
+        :op2 (t2 / train
+            :ARG0-of (r / run-02
+                :op1 (s / side
+                    :location (s2 / side
+                        :mod (o / one)))
+                :path (a / along)))
+        :op2 (w / water
+            :location (s3 / side
+                :mod (o2 / other))))
+    :mod (l / lane
+        :quant 4)
+    :part s)

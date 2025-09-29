@@ -1,0 +1,19 @@
+# ::tok Cargo train running on the tracks during daytime .
+# ::node	c	carry-01	0-1
+# ::node	t2	train	1-2
+# ::node	r	run-01	2-3
+# ::node	t	track	5-6
+# ::node	d	date-entity	7-8
+# ::node	d2	daytime	7-8
+# ::root	r	run-01
+# ::edge	train	ARG0-of	carry-01	t2	c	
+# ::edge	run-01	ARG1	train	r	t2	
+# ::edge	run-01	location	track	r	t	
+# ::edge	run-01	time	date-entity	r	d	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+(r / run-01
+    :ARG1 (t2 / train
+        :ARG0-of (c / carry-01))
+    :location (t / track)
+    :time (d / date-entity
+        :dayperiod (d2 / daytime)))

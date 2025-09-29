@@ -1,0 +1,45 @@
+# ::tok A bedroom with two beds placed next to one another with a desk to one side and a small window on the opposite side .
+# ::node	b2	bedroom	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	b	bed	4-5
+# ::node	p	place-01	5-6
+# ::node	n	next-to	6-7
+# ::node	d	desk	12-13
+# ::node	o	one	14-15
+# ::node	s	side	15-16
+# ::node	a	and	16-17
+# ::node	s3	small	18-19
+# ::node	w	window	19-20
+# ::node	o2	opposite-01	22-23
+# ::node	s2	side	23-24
+# ::root	b2	bedroom
+# ::edge	bedroom	ARG0-of	have-03	b2	h	
+# ::edge	bed	quant	2	b	0	
+# ::edge	place-01	ARG1	bed	p	b	
+# ::edge	bedroom	ARG1	place-01	b2	p	
+# ::edge	place-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	bed	n	b	
+# ::edge	side	mod	one	s	o	
+# ::edge	desk	location	side	d	s	
+# ::edge	and	op1	desk	a	d	
+# ::edge	bedroom	accompanier	and	b2	a	
+# ::edge	window	mod	small	w	s3	
+# ::edge	and	op2	window	a	w	
+# ::edge	side	ARG1-of	opposite-01	s2	o2	
+# ::edge	window	location	side	w	s2	
+(b2 / bedroom
+    :ARG0-of (h / have-03)
+    :ARG1 (p / place-01
+        :ARG1 (b / bed
+            :quant 2)
+        :ARG2 (n / next-to
+            :op1 b))
+    :accompanier (a / and
+        :op1 (d / desk
+            :location (s / side
+                :mod (o / one)))
+        :op2 (w / window
+            :location (s2 / side
+                :ARG1-of (o2 / opposite-01))
+            :mod (s3 / small))))

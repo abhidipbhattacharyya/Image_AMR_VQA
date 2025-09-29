@@ -1,0 +1,39 @@
+# ::tok A man walks by a parking meter and an old building with letters from what it is missing .
+# ::node	m	man	1-2
+# ::node	w	walk-01	2-3
+# ::node	b2	by	3-4
+# ::node	p	park-01	5-6
+# ::node	m2	meter	6-7
+# ::node	a	and	7-8
+# ::node	o	old	9-10
+# ::node	b	building	10-11
+# ::node	h	have-03	11-12
+# ::node	l	letter	12-13
+# ::node	t	thing	14-15
+# ::node	m3	miss-01	17-18
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	ARG2	by	w	b2	
+# ::edge	meter	mod	park-01	m2	p	
+# ::edge	and	op1	meter	a	m2	
+# ::edge	by	op1	and	b2	a	
+# ::edge	building	mod	old	b	o	
+# ::edge	and	op2	building	a	b	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	letter	h	l	
+# ::edge	letter	source	thing	l	t	
+# ::edge	thing	ARG1-of	miss-01	t	m3	
+# ::edge	miss-01	ARG0	building	m3	b	
+(w / walk-01
+    :ARG0 (m / man)
+    :ARG2 (b2 / by
+        :op1 (a / and
+            :op1 (m2 / meter
+                :mod (p / park-01))
+            :op2 (b / building
+                :ARG0-of (h / have-03
+                    :ARG1 (l / letter
+                        :source (t / thing
+                            :ARG1-of (m3 / miss-01
+                                :ARG0 b))))
+                :mod (o / old)))))

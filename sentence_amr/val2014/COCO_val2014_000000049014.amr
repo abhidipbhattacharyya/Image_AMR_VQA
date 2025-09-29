@@ -1,0 +1,34 @@
+# ::tok Very large TWA plane sitting on the runway with passengers milling about
+# ::node	v	very	0-1
+# ::node	l	large	1-2
+# ::node	c	company	2-3
+# ::node	n	name	2-3
+# ::node	0	TWA	2-3
+# ::node	p2	plane	3-4
+# ::node	s	sit-01	4-5
+# ::node	r	runway	7-8
+# ::node	p	passenger	9-10
+# ::node	c2	concern-02	10-11
+# ::node	a	about	11-12
+# ::root	c2	concern-02
+# ::edge	large	degree	very	l	v	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	TWA	n	0	
+# ::edge	plane	mod	company	p2	c	
+# ::edge	plane	mod	large	p2	l	
+# ::edge	plane	ARG1-of	sit-01	p2	s	
+# ::edge	sit-01	ARG2	runway	s	r	
+# ::edge	concern-02	ARG0	passenger	c2	p	
+# ::edge	concern-02	ARG1	plane	c2	p2	
+# ::edge	concern-02	direction	about	c2	a	
+(c2 / concern-02
+    :ARG0 (p / passenger)
+    :ARG1 (p2 / plane
+        :ARG1-of (s / sit-01
+            :ARG2 (r / runway))
+        :mod (c / company
+            :name (n / name
+                :op1 "TWA"))
+        :mod (l / large
+            :degree (v / very)))
+    :direction (a / about))

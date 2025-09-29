@@ -1,0 +1,33 @@
+# ::tok A nice bathroom , with the tub and shower area separated from the rest of the bathroom by a glass wall .
+# ::node	n	nice-01	1-2
+# ::node	b	bathroom	2-3
+# ::node	t	tub	6-7
+# ::node	a	and	7-8
+# ::node	s2	shower	8-9
+# ::node	a2	area	9-10
+# ::node	s	separate-01	10-11
+# ::node	r	rest	13-14
+# ::node	g	glass	19-20
+# ::node	w	wall	20-21
+# ::root	b	bathroom
+# ::edge	bathroom	ARG1-of	nice-01	b	n	
+# ::edge	and	op1	tub	a	t	
+# ::edge	and	op2	shower	a	s2	
+# ::edge	area	consist-of	and	a2	a	
+# ::edge	separate-01	ARG1	area	s	a2	
+# ::edge	bathroom	prep-with	separate-01	b	s	
+# ::edge	separate-01	ARG2	rest	s	r	
+# ::edge	bathroom	part	rest	b	r	
+# ::edge	wall	consist-of	glass	w	g	
+# ::edge	separate-01	instrument	wall	s	w	
+(b / bathroom
+    :ARG1-of (n / nice-01)
+    :part (r / rest)
+    :prep-with (s / separate-01
+        :ARG1 (a2 / area
+            :consist-of (a / and
+                :op1 (t / tub)
+                :op2 (s2 / shower)))
+        :ARG2 r
+        :instrument (w / wall
+            :consist-of (g / glass))))

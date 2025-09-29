@@ -1,0 +1,42 @@
+# ::tok A baseball player by the name of Braun holding a baseball bat in front of a crowd of people in the stands .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	n2	name-01	5-6
+# ::node	p2	person	7-8
+# ::node	n	name	7-8
+# ::node	0	Braun	7-8
+# ::node	h	hold-01	8-9
+# ::node	b2	bat	11-12
+# ::node	i	in-front-of	13-14
+# ::node	c	crowd	16-17
+# ::node	p3	person	18-19
+# ::node	s	stand	21-22
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b	
+# ::edge	person	ARG1-of	name-01	p	n2	
+# ::edge	name-01	ARG2	person	n2	p2	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Braun	n	0	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	bat	h	b2	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	hold-01	location	in-front-of	h	i	
+# ::edge	in-front-of	op1	crowd	i	c	
+# ::edge	crowd	consist-of	person	c	p3	
+# ::edge	crowd	location	stand	c	s	
+(p / person
+    :ARG0-of (p4 / play-01
+        :ARG1 (b / baseball))
+    :ARG0-of (h / hold-01
+        :ARG1 (b2 / bat
+            :mod b)
+        :location (i / in-front-of
+            :op1 (c / crowd
+                :consist-of (p3 / person)
+                :location (s / stand))))
+    :ARG1-of (n2 / name-01
+        :ARG2 (p2 / person
+            :name (n / name
+                :op1 "Braun"))))

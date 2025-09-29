@@ -1,0 +1,36 @@
+# ::tok A man sitting at a table with a burrito and a cup of coffee in front of him .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	h	have-03	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	b	burrito	8-9
+# ::node	a	and	9-10
+# ::node	c2	cup	11-12
+# ::node	c	coffee	13-14
+# ::node	i	in-front-of	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	burrito	quant	volume-quantity	b	v	
+# ::edge	and	op1	burrito	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	coffee	quant	cup	c	c2	
+# ::edge	and	op2	coffee	a	c	
+# ::edge	and	location	in-front-of	a	i	
+# ::edge	in-front-of	op1	man	i	m	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :location (i / in-front-of
+                    :op1 m)
+                :op1 (b / burrito
+                    :quant (v / volume-quantity
+                        :quant 1))
+                :op2 (c / coffee
+                    :quant (c2 / cup)))))
+    :ARG2 (t / table))

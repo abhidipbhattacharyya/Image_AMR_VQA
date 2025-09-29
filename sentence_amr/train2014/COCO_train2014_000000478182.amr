@@ -1,0 +1,42 @@
+# ::tok two buses are parked into the bay ofthe station with one filled with passengers and the driver in his seat
+# ::node	0	2	0-1
+# ::node	b3	bus	1-2
+# ::node	b4	bus	1-2
+# ::node	p	park-01	3-4
+# ::node	b	bay	6-7
+# ::node	s2	station	8-9
+# ::node	o	one	10-11
+# ::node	f	fill-01	11-12
+# ::node	p2	passenger	13-14
+# ::node	p3	person	16-17
+# ::node	d	drive-01	16-17
+# ::node	b2	be-located-at-91	17-18
+# ::node	s	seat	19-20
+# ::root	p	park-01
+# ::edge	bus	quant	2	b3	0	
+# ::edge	park-01	ARG1	bus	p	b3	
+# ::edge	park-01	location	bay	p	b	
+# ::edge	bay	part-of	station	b	s2	
+# ::edge	bus	quant	one	b4	o	
+# ::edge	bus	ARG1-of	fill-01	b4	f	
+# ::edge	fill-01	ARG2	passenger	f	p2	
+# ::edge	person	ARG0-of	drive-01	p3	d	
+# ::edge	be-located-at-91	ARG1	person	b2	p3	
+# ::edge	bus	ARG2-of	be-located-at-91	b4	b2	
+# ::edge	be-located-at-91	ARG2	seat	b2	s	
+# ::edge	seat	poss	person	s	p3	
+# ::edge	park-01	rel	bus	p	b4	
+(p / park-01
+    :ARG1 (b3 / bus
+        :quant 2)
+    :location (b / bay
+        :part-of (s2 / station))
+    :rel (b4 / bus
+        :quant (o / one)
+        :ARG1-of (f / fill-01
+            :ARG2 (p2 / passenger))
+        :ARG2-of (b2 / be-located-at-91
+            :ARG1 (p3 / person
+                :ARG0-of (d / drive-01))
+            :ARG2 (s / seat
+                :poss p3))))

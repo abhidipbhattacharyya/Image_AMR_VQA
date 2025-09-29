@@ -1,0 +1,30 @@
+# ::tok A stop sign tells people and horses not to cross the street .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	t	tell-01	3-4
+# ::node	p	person	4-5
+# ::node	a	and	5-6
+# ::node	h	horse	6-7
+# ::node	0	-	7-8
+# ::node	c	cross-02	9-10
+# ::node	s3	street	11-12
+# ::root	t	tell-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	tell-01	ARG0	signal-07	t	s	
+# ::edge	and	op1	person	a	p	
+# ::edge	tell-01	ARG2	and	t	a	
+# ::edge	and	op2	horse	a	h	
+# ::edge	cross-02	polarity	-	c	0	
+# ::edge	cross-02	ARG0	and	c	a	
+# ::edge	tell-01	ARG1	cross-02	t	c	
+# ::edge	cross-02	ARG1	street	c	s3	
+(t / tell-01
+    :ARG0 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG1 (c / cross-02
+        :ARG0 (a / and
+            :op1 (p / person)
+            :op2 (h / horse))
+        :ARG1 (s3 / street)
+        :polarity -)
+    :ARG2 a)

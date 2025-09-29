@@ -1,0 +1,35 @@
+# ::tok Interior scene of wood cabin with wooden floors and American furniture .
+# ::node	i	interior	0-1
+# ::node	s	scene	1-2
+# ::node	w	wood	3-4
+# ::node	c	cabin	4-5
+# ::node	f	floor	7-8
+# ::node	a	and	8-9
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	America	9-10
+# ::node	f2	furniture	10-11
+# ::root	s	scene
+# ::edge	scene	mod	interior	s	i	
+# ::edge	cabin	consist-of	wood	c	w	
+# ::edge	scene	consist-of	cabin	s	c	
+# ::edge	floor	consist-of	wood	f	w	
+# ::edge	and	op2	floor	a	f	
+# ::edge	and	op1	cabin	a	c	
+# ::edge	cabin	consist-of	and	c	a	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	furniture	mod	country	f2	c2	
+# ::edge	and	op3	furniture	a	f2	
+(s / scene
+    :consist-of (c / cabin
+        :consist-of (w / wood)
+        :consist-of (a / and
+            :op1 c
+            :op2 (f / floor
+                :consist-of w)
+            :op3 (f2 / furniture
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "America")))))
+    :mod (i / interior))

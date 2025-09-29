@@ -1,0 +1,22 @@
+# ::tok A busy street with lots of cars driving through it at night .
+# ::node	b	busy-02	1-2
+# ::node	s	street	2-3
+# ::node	l	lot	4-5
+# ::node	c	car	6-7
+# ::node	d2	drive-01	7-8
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	s	street
+# ::edge	street	ARG1-of	busy-02	s	b	
+# ::edge	car	quant	lot	c	l	
+# ::edge	drive-01	ARG1	car	d2	c	
+# ::edge	street	location-of	drive-01	s	d2	
+# ::edge	drive-01	time	date-entity	d2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s / street
+    :ARG1-of (b / busy-02)
+    :location-of (d2 / drive-01
+        :ARG1 (c / car
+            :quant (l / lot))
+        :time (d / date-entity
+            :dayperiod (n / night))))

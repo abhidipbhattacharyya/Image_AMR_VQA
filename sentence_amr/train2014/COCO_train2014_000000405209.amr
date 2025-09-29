@@ -1,0 +1,25 @@
+# ::tok A warning sign in the middle of water with a fire hydrant in the foreground .
+# ::node	w	warn-01	1-2
+# ::node	s	sign	2-3
+# ::node	m	middle	5-6
+# ::node	w2	water	7-8
+# ::node	h	have-03	8-9
+# ::node	f	fire	10-11
+# ::node	h2	hydrant	11-12
+# ::node	f2	foreground	14-15
+# ::root	s	sign
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	sign	location	middle	s	m	
+# ::edge	middle	op1	water	m	w2	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	have-03	ARG1	hydrant	h	h2	
+# ::edge	hydrant	location	foreground	h2	f2	
+(s / sign
+    :ARG0-of (w / warn-01)
+    :ARG0-of (h / have-03
+        :ARG1 (h2 / hydrant
+            :location (f2 / foreground)
+            :mod (f / fire)))
+    :location (m / middle
+        :op1 (w2 / water)))

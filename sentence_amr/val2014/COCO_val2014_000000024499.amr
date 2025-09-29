@@ -1,0 +1,34 @@
+# ::tok This sign is a parking meter sign that indicates a time limit of 30 minutes .
+# ::node	t2	this	0-1
+# ::node	s	sign	1-2
+# ::node	p	park-01	4-5
+# ::node	m	meter	5-6
+# ::node	s2	sign	6-7
+# ::node	i	indicate-01	8-9
+# ::node	t3	time	10-11
+# ::node	l	limit-01	11-12
+# ::node	0	30	13-14
+# ::node	t	temporal-quantity	14-15
+# ::node	m2	minute	14-15
+# ::root	s2	sign
+# ::edge	sign	mod	this	s	t2	
+# ::edge	meter	mod	park-01	m	p	
+# ::edge	sign	mod	meter	s2	m	
+# ::edge	sign	domain	sign	s2	s	
+# ::edge	sign	ARG0-of	indicate-01	s2	i	
+# ::edge	limit-01	ARG1	time	l	t3	
+# ::edge	indicate-01	ARG1	limit-01	i	l	
+# ::edge	temporal-quantity	quant	30	t	0	
+# ::edge	limit-01	ARG2	temporal-quantity	l	t	
+# ::edge	temporal-quantity	unit	minute	t	m2	
+(s2 / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (l / limit-01
+            :ARG1 (t3 / time)
+            :ARG2 (t / temporal-quantity
+                :quant 30
+                :unit (m2 / minute))))
+    :domain (s / sign
+        :mod (t2 / this))
+    :mod (m / meter
+        :mod (p / park-01)))

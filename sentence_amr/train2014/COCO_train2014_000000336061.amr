@@ -1,0 +1,31 @@
+# ::tok Plane with landing gear on tarmac and words " Air Austral "
+# ::node	p	plane	0-1
+# ::node	l	land-01	2-3
+# ::node	g	gear	3-4
+# ::node	t	tarmac	5-6
+# ::node	a	and	6-7
+# ::node	w	word-01	7-8
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	0	Air	9-10
+# ::node	1	Austral	10-11
+# ::root	p	plane
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	gear	location	tarmac	g	t	
+# ::edge	and	op1	gear	a	g	
+# ::edge	plane	part	and	p	a	
+# ::edge	and	op2	word-01	a	w	
+# ::edge	word-01	ARG1	company	w	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Air	n	0	
+# ::edge	name	op2	Austral	n	1	
+(p / plane
+    :part (a / and
+        :op1 (g / gear
+            :ARG1-of (l / land-01)
+            :location (t / tarmac))
+        :op2 (w / word-01
+            :ARG1 (c / company
+                :name (n / name
+                    :op1 "Air"
+                    :op2 "Austral")))))

@@ -1,0 +1,34 @@
+# ::tok A person in jeans and two toned shoes sits on the back of a bench .
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	j	jeans	3-4
+# ::node	a	and	4-5
+# ::node	0	2	5-6
+# ::node	m	mass-quantity	6-7
+# ::node	t	ton	6-7
+# ::node	s	shoe	7-8
+# ::node	s2	sit-01	8-9
+# ::node	b	back	11-12
+# ::node	b2	bench	14-15
+# ::root	s2	sit-01
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	and	op1	jeans	a	j	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	mass-quantity	quant	2	m	0	
+# ::edge	mass-quantity	unit	ton	m	t	
+# ::edge	shoe	mod	mass-quantity	s	m	
+# ::edge	and	op2	shoe	a	s	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	back	s2	b	
+# ::edge	back	part-of	bench	b	b2	
+(s2 / sit-01
+    :ARG1 (p / person
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (j / jeans)
+                :op2 (s / shoe
+                    :mod (m / mass-quantity
+                        :quant 2
+                        :unit (t / ton))))))
+    :ARG2 (b / back
+        :part-of (b2 / bench)))

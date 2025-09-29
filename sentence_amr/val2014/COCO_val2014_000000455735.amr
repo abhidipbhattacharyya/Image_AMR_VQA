@@ -1,0 +1,53 @@
+# ::tok a man in a suit stands in a dining room with a glass of wine in his hand while people sitting at dining tables covered with empty wine glasses watch him
+# ::node	m	man	1-2
+# ::node	s3	suit	4-5
+# ::node	s2	stand-01	5-6
+# ::node	d	dine-01	8-9
+# ::node	r	room	9-10
+# ::node	g	glass	12-13
+# ::node	w2	wine	14-15
+# ::node	h	hand	17-18
+# ::node	p	person	19-20
+# ::node	s	sit-01	20-21
+# ::node	t	table	23-24
+# ::node	c	cover-02	24-25
+# ::node	e	empty-02	26-27
+# ::node	w3	wine	27-28
+# ::node	g2	glass	28-29
+# ::node	w	watch-01	29-30
+# ::root	w	watch-01
+# ::edge	man	mod	suit	m	s3	
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	room	mod	dine-01	r	d	
+# ::edge	stand-01	ARG2	room	s2	r	
+# ::edge	wine	quant	glass	w2	g	
+# ::edge	wine	location	hand	w2	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	person	ARG1-of	sit-01	p	s	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	mod	dine-01	t	d	
+# ::edge	table	ARG1-of	cover-02	t	c	
+# ::edge	glass	mod	wine	g2	w3	
+# ::edge	glass	ARG1-of	empty-02	g2	e	
+# ::edge	cover-02	ARG2	glass	c	g2	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	ARG1	stand-01	w	s2	
+# ::edge	watch-01	rel	wine	w	w2	
+(w / watch-01
+    :ARG0 (p / person
+        :ARG1-of (s / sit-01
+            :ARG2 (t / table
+                :ARG1-of (c / cover-02
+                    :ARG2 (g2 / glass
+                        :ARG1-of (e / empty-02)
+                        :mod (w3 / wine)))
+                :mod (d / dine-01))))
+    :ARG1 (s2 / stand-01
+        :ARG1 (m / man
+            :mod (s3 / suit)
+            :part (h / hand))
+        :ARG2 (r / room
+            :mod d))
+    :rel (w2 / wine
+        :quant (g / glass)
+        :location h))

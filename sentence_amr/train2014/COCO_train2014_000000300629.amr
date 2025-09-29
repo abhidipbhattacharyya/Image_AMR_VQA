@@ -1,0 +1,37 @@
+# ::tok Two boxes of pizza on a counter and stove while someone holds a plate containing a couple slices .
+# ::node	0	2	0-1
+# ::node	b	box	1-2
+# ::node	p	pizza	3-4
+# ::node	c2	counter	6-7
+# ::node	a	and	7-8
+# ::node	s3	stove	8-9
+# ::node	s2	someone	10-11
+# ::node	h	hold-01	11-12
+# ::node	p2	plate	13-14
+# ::node	c	contain-01	14-15
+# ::node	c3	couple	16-17
+# ::node	s	slice	17-18
+# ::root	h	hold-01
+# ::edge	box	quant	2	b	0	
+# ::edge	box	consist-of	pizza	b	p	
+# ::edge	and	op1	counter	a	c2	
+# ::edge	box	location	and	b	a	
+# ::edge	and	op2	stove	a	s3	
+# ::edge	hold-01	ARG0	someone	h	s2	
+# ::edge	hold-01	ARG1	box	h	b	
+# ::edge	hold-01	ARG1	plate	h	p2	
+# ::edge	plate	ARG0-of	contain-01	p2	c	
+# ::edge	slice	quant	couple	s	c3	
+# ::edge	contain-01	ARG1	slice	c	s	
+(h / hold-01
+    :ARG0 (s2 / someone)
+    :ARG1 (b / box
+        :quant 2
+        :consist-of (p / pizza)
+        :location (a / and
+            :op1 (c2 / counter)
+            :op2 (s3 / stove)))
+    :ARG1 (p2 / plate
+        :ARG0-of (c / contain-01
+            :ARG1 (s / slice
+                :quant (c3 / couple)))))

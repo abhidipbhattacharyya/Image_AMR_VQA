@@ -1,0 +1,31 @@
+# ::tok Several police are lined up some on horses and some on Motorcycles .
+# ::node	s	several	0-1
+# ::node	p	police	1-2
+# ::node	p2	police	1-2
+# ::node	l	line-up-02	3-4
+# ::node	s2	some	5-6
+# ::node	h	horse	7-8
+# ::node	a	and	8-9
+# ::node	i	include-91	9-10
+# ::node	s3	some	9-10
+# ::node	m	motorcycle	11-12
+# ::root	l	line-up-02
+# ::edge	police	quant	several	p	s	
+# ::edge	line-up-02	ARG1	police	l	p	
+# ::edge	police	quant	some	p2	s2	
+# ::edge	and	op1	horse	a	h	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	police	ARG2-of	include-91	p	i	
+# ::edge	police	quant	some	p2	s3	
+# ::edge	and	op2	motorcycle	a	m	
+# ::edge	line-up-02	rel	police	l	p2	
+(l / line-up-02
+    :ARG1 (p / police
+        :quant (s / several)
+        :ARG2-of (i / include-91
+            :ARG1 (a / and
+                :op1 (h / horse)
+                :op2 (m / motorcycle))))
+    :rel (p2 / police
+        :quant (s2 / some)
+        :quant (s3 / some)))

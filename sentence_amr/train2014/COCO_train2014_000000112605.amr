@@ -1,0 +1,28 @@
+# ::tok A sign is posted outside a multistory building somewhere in Asia .
+# ::node	s	sign	1-2
+# ::node	p	post-01	3-4
+# ::node	o	outside	4-5
+# ::node	m	multiple	6-7
+# ::node	b	building	7-8
+# ::node	s2	somewhere	8-9
+# ::node	c	continent	10-11
+# ::node	n	name	10-11
+# ::node	0	Asia	10-11
+# ::root	p	post-01
+# ::edge	post-01	ARG1	sign	p	s	
+# ::edge	post-01	ARG2	outside	p	o	
+# ::edge	building	mod	multiple	b	m	
+# ::edge	outside	op1	building	o	b	
+# ::edge	building	location	somewhere	b	s2	
+# ::edge	somewhere	location	continent	s2	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+(p / post-01
+    :ARG1 (s / sign)
+    :ARG2 (o / outside
+        :op1 (b / building
+            :location (s2 / somewhere
+                :location (c / continent
+                    :name (n / name
+                        :op1 "Asia")))
+            :mod (m / multiple))))

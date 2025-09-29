@@ -1,0 +1,45 @@
+# ::tok A girl sits on a chestnut horse in English riding clothes as a woman in a green suit dress holds the horse .
+# ::node	g	girl	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	chestnut	5-6
+# ::node	h2	horse	6-7
+# ::node	c3	country	8-9
+# ::node	n	name	8-9
+# ::node	0	England	8-9
+# ::node	r	ride-01	9-10
+# ::node	c2	clothes	10-11
+# ::node	w	woman	13-14
+# ::node	g2	green-02	16-17
+# ::node	s2	suit	17-18
+# ::node	d	dress	18-19
+# ::node	h	hold-01	19-20
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	girl	s	g	
+# ::edge	horse	mod	chestnut	h2	c	
+# ::edge	sit-01	ARG2	horse	s	h2	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	England	n	0	
+# ::edge	clothes	mod	ride-01	c2	r	
+# ::edge	clothes	mod	country	c2	c3	
+# ::edge	girl	mod	clothes	g	c2	
+# ::edge	suit	ARG1-of	green-02	s2	g2	
+# ::edge	dress	mod	suit	d	s2	
+# ::edge	woman	domain	dress	w	d	
+# ::edge	hold-01	ARG0	woman	h	w	
+# ::edge	hold-01	ARG1	horse	h	h2	
+# ::edge	sit-01	time	hold-01	s	h	
+(s / sit-01
+    :ARG1 (g / girl
+        :mod (c2 / clothes
+            :mod (r / ride-01)
+            :mod (c3 / country
+                :name (n / name
+                    :op1 "England"))))
+    :ARG2 (h2 / horse
+        :mod (c / chestnut))
+    :time (h / hold-01
+        :ARG0 (w / woman
+            :domain (d / dress
+                :mod (s2 / suit
+                    :ARG1-of (g2 / green-02))))
+        :ARG1 h2))

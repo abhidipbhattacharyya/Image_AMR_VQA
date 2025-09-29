@@ -1,0 +1,29 @@
+# ::tok A bus sitting parked near other cars with its door open .
+# ::node	b	bus	1-2
+# ::node	s	sit-01	2-3
+# ::node	p	park-01	3-4
+# ::node	n	near-02	4-5
+# ::node	o2	other	5-6
+# ::node	c	car	6-7
+# ::node	d	door	9-10
+# ::node	o	open-09	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	sit-01	ARG2	park-01	s	p	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	car	mod	other	c	o2	
+# ::edge	near-02	ARG2	car	n	c	
+# ::edge	bus	part	door	b	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	bus	ARG0-of	open-09	b	o	
+(s / sit-01
+    :ARG1 (b / bus
+        :ARG0-of (o / open-09
+            :ARG1 (d / door))
+        :part d)
+    :ARG2 (p / park-01
+        :ARG1 b
+        :ARG1-of (n / near-02
+            :ARG2 (c / car
+                :mod (o2 / other)))))

@@ -1,0 +1,24 @@
+# ::tok Many people are either rollerblading or skateboarding down the street .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	s	skate-01	4-5
+# ::node	o	or	5-6
+# ::node	s2	skate-01	6-7
+# ::node	d	down	7-8
+# ::node	s3	street	9-10
+# ::root	o	or
+# ::edge	person	quant	many	p	m	
+# ::edge	skate-01	ARG0	person	s	p	
+# ::edge	or	op1	skate-01	o	s	
+# ::edge	or	op2	skate-01	o	s2	
+# ::edge	skate-01	ARG0	person	s2	p	
+# ::edge	or	direction	down	o	d	
+# ::edge	down	op1	street	d	s3	
+(o / or
+    :direction (d / down
+        :op1 (s3 / street))
+    :op1 (s / skate-01
+        :ARG0 (p / person
+            :quant (m / many)))
+    :op2 (s2 / skate-01
+        :ARG0 p))

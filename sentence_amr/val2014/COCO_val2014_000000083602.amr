@@ -1,0 +1,20 @@
+# ::tok A train is either coming or going to a trainstop .
+# ::node	t	train	1-2
+# ::node	c	come-01	4-5
+# ::node	o	or	5-6
+# ::node	g	go-02	6-7
+# ::node	s	stop-01	9-10
+# ::root	o	or
+# ::edge	come-01	ARG1	train	c	t	
+# ::edge	or	op1	come-01	o	c	
+# ::edge	or	op2	go-02	o	g	
+# ::edge	go-02	ARG0	train	g	t	
+# ::edge	go-02	ARG4	stop-01	g	s	
+# ::edge	stop-01	ARG1	train	s	t	
+(o / or
+    :op1 (c / come-01
+        :ARG1 (t / train))
+    :op2 (g / go-02
+        :ARG0 t
+        :ARG4 (s / stop-01
+            :ARG1 t)))

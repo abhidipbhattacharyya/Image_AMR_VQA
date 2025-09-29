@@ -1,0 +1,25 @@
+# ::tok A cat sleeping on a small rug on a tile floor next to a scale .
+# ::node	c	cat	1-2
+# ::node	s2	sleep-01	2-3
+# ::node	s3	small	5-6
+# ::node	r	rug	6-7
+# ::node	t	tile	9-10
+# ::node	f	floor	10-11
+# ::node	n	next-to	11-12
+# ::node	s	scale	14-15
+# ::root	s2	sleep-01
+# ::edge	sleep-01	ARG0	cat	s2	c	
+# ::edge	rug	mod	small	r	s3	
+# ::edge	sleep-01	location	rug	s2	r	
+# ::edge	floor	consist-of	tile	f	t	
+# ::edge	rug	location	floor	r	f	
+# ::edge	floor	location	next-to	f	n	
+# ::edge	next-to	op1	scale	n	s	
+(s2 / sleep-01
+    :ARG0 (c / cat)
+    :location (r / rug
+        :location (f / floor
+            :consist-of (t / tile)
+            :location (n / next-to
+                :op1 (s / scale)))
+        :mod (s3 / small)))

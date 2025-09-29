@@ -1,0 +1,90 @@
+# ::tok A city highway with exit signs above that say " Exit 7 E23 St 3/4 mile " and " Exit 8 495 Midtown Tun E34 St " .
+# ::node	c	city	1-2
+# ::node	h2	highway	2-3
+# ::node	h	have-03	3-4
+# ::node	e	exit	4-5
+# ::node	s2	sign	5-6
+# ::node	a	above	6-7
+# ::node	s	say-01	8-9
+# ::node	e2	exit-01	10-11
+# ::node	2	7	11-12
+# ::node	4	E23	12-13
+# ::node	r2	road	13-14
+# ::node	n	name	13-14
+# ::node	7	St	13-14
+# ::node	r	relative-position	14-15
+# ::node	d	distance-quantity	14-15
+# ::node	0	3	14-15
+# ::node	m	mile	15-16
+# ::node	a2	and	17-18
+# ::node	e3	exit-01	19-20
+# ::node	10	expressive	19-20
+# ::node	3	8	20-21
+# ::node	1	495	21-22
+# ::node	6	Midtown	22-23
+# ::node	9	Tun	23-24
+# ::node	n2	name	24-25
+# ::node	5	E34	24-25
+# ::node	r3	road	25-26
+# ::node	8	St	25-26
+# ::node	m2	multi-sentence	27-28
+# ::root	m2	multi-sentence
+# ::edge	highway	mod	city	h2	c	
+# ::edge	highway	ARG0-of	have-03	h2	h	
+# ::edge	sign	mod	exit	s2	e	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	above	s2	a	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	exit-01	mod	7	e2	2	
+# ::edge	exit-01	location	road	e2	r2	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op1	E23	n	4	
+# ::edge	name	op2	St	n	7	
+# ::edge	exit-01	location	relative-position	e2	r	
+# ::edge	relative-position	quant	distance-quantity	r	d	
+# ::edge	distance-quantity	quant	3	d	0	
+# ::edge	distance-quantity	unit	mile	d	m	
+# ::edge	and	op1	exit-01	a2	e2	
+# ::edge	say-01	ARG1	and	s	a2	
+# ::edge	and	op2	exit-01	a2	e3	
+# ::edge	exit-01	mode	expressive	e3	10	
+# ::edge	exit-01	mod	8	e3	3	
+# ::edge	name	op2	Tun	n2	9	
+# ::edge	name	op1	Midtown	n2	6	
+# ::edge	name	op3	E34	n2	5	
+# ::edge	road	name	name	r3	n2	
+# ::edge	road	quant	495	r3	1	
+# ::edge	exit-01	location	road	e3	r3	
+# ::edge	name	op4	St	n2	8	
+# ::edge	multi-sentence	snt1	and	m2	a2	
+# ::edge	multi-sentence	rel	highway	m2	h2	
+(m2 / multi-sentence
+    :rel (h2 / highway
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / sign
+                :ARG0-of (s / say-01
+                    :ARG1 (a2 / and
+                        :op1 (e2 / exit-01
+                            :location (r2 / road
+                                :name (n / name
+                                    :op1 "E23"
+                                    :op2 "St"))
+                            :location (r / relative-position
+                                :quant (d / distance-quantity
+                                    :quant 3
+                                    :unit (m / mile)))
+                            :mod 7)
+                        :op2 (e3 / exit-01
+                            :location (r3 / road
+                                :name (n2 / name
+                                    :op1 "Midtown"
+                                    :op2 "Tun"
+                                    :op3 "E34"
+                                    :op4 "St")
+                                :quant 495)
+                            :mod 8
+                            :mode expressive)))
+                :location (a / above)
+                :mod (e / exit)))
+        :mod (c / city))
+    :snt1 a2)

@@ -1,0 +1,24 @@
+# ::tok A train engine on the tracks with a side rail beside it .
+# ::node	t2	train	1-2
+# ::node	e	engine	2-3
+# ::node	t	track	5-6
+# ::node	s	side	8-9
+# ::node	r	rail	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	b2	beside	10-11
+# ::root	e	engine
+# ::edge	engine	mod	train	e	t2	
+# ::edge	engine	location	track	e	t	
+# ::edge	rail	mod	side	r	s	
+# ::edge	be-located-at-91	ARG1	rail	b	r	
+# ::edge	engine	ARG2-of	be-located-at-91	e	b	
+# ::edge	be-located-at-91	ARG2	beside	b	b2	
+# ::edge	beside	op1	engine	b2	e	
+(e / engine
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (r / rail
+            :mod (s / side))
+        :ARG2 (b2 / beside
+            :op1 e))
+    :location (t / track)
+    :mod (t2 / train))

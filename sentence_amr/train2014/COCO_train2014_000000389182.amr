@@ -1,0 +1,25 @@
+# ::tok A city bus drives past a bridge abutment at night .
+# ::node	c	city	1-2
+# ::node	b2	bus	2-3
+# ::node	d2	drive-01	3-4
+# ::node	p	past	4-5
+# ::node	b	bridge	6-7
+# ::node	a	abutment	7-8
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::root	d2	drive-01
+# ::edge	bus	mod	city	b2	c	
+# ::edge	drive-01	ARG1	bus	d2	b2	
+# ::edge	drive-01	path	past	d2	p	
+# ::edge	abutment	part-of	bridge	a	b	
+# ::edge	past	op1	abutment	p	a	
+# ::edge	drive-01	time	date-entity	d2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(d2 / drive-01
+    :ARG1 (b2 / bus
+        :mod (c / city))
+    :path (p / past
+        :op1 (a / abutment
+            :part-of (b / bridge)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

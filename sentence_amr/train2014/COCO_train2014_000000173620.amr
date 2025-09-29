@@ -1,0 +1,34 @@
+# ::tok A pepperoni pizza is on a pizza pan and covered in Parmesan cheese .
+# ::node	p2	pepperoni	1-2
+# ::node	p3	pizza	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	p	pan	7-8
+# ::node	a2	and	8-9
+# ::node	c2	cover-02	9-10
+# ::node	a	Parmesan	11-12
+# ::node	c	cheese	12-13
+# ::node	n	name	12-13
+# ::root	a2	and
+# ::edge	pizza	mod	pepperoni	p3	p2	
+# ::edge	be-located-at-91	ARG1	pizza	b	p3	
+# ::edge	be-located-at-91	ARG2	pan	b	p	
+# ::edge	pan	mod	pizza	p	p3	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	and	op2	cover-02	a2	c2	
+# ::edge	cover-02	ARG1	pizza	c2	p3	
+# ::edge	Parmesan	ARG2	cheese	a	c	
+# ::edge	cheese	name	name	c	n	
+# ::edge	name	op1	Parmesan	n	a	
+# ::edge	and	rel	cheese	a2	c	
+(a2 / and
+    :op1 (b / be-located-at-91
+        :ARG1 (p3 / pizza
+            :mod (p2 / pepperoni))
+        :ARG2 (p / pan
+            :mod p3))
+    :op2 (c2 / cover-02
+        :ARG1 p3)
+    :rel (c / cheese
+        :name (n / name
+            :op1 (a / "Parmesan"
+                :ARG2 c))))

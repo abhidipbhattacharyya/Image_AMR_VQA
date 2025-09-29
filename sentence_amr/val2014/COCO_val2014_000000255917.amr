@@ -1,0 +1,24 @@
+# ::tok Traffic stopped at an intersection waiting for the light to turn green .
+# ::node	t	traffic	0-1
+# ::node	s	stop-01	1-2
+# ::node	i	intersect-01	4-5
+# ::node	w	wait-01	5-6
+# ::node	l	light	8-9
+# ::node	t2	turn-01	10-11
+# ::node	g	green-02	11-12
+# ::root	s	stop-01
+# ::edge	stop-01	ARG1	traffic	s	t	
+# ::edge	stop-01	location	intersect-01	s	i	
+# ::edge	stop-01	time-of	wait-01	s	w	
+# ::edge	wait-01	ARG1	traffic	w	t	
+# ::edge	turn-01	ARG1	light	t2	l	
+# ::edge	wait-01	ARG2	turn-01	w	t2	
+# ::edge	turn-01	ARG1-of	green-02	t2	g	
+(s / stop-01
+    :ARG1 (t / traffic)
+    :location (i / intersect-01)
+    :time-of (w / wait-01
+        :ARG1 t
+        :ARG2 (t2 / turn-01
+            :ARG1 (l / light)
+            :ARG1-of (g / green-02))))

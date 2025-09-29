@@ -1,0 +1,27 @@
+# ::tok a sign with clock announcing the times and place for upcoming trains
+# ::node	s	sign	1-2
+# ::node	c	clock	3-4
+# ::node	a2	announce-01	4-5
+# ::node	t	time	6-7
+# ::node	a	and	7-8
+# ::node	p	place	8-9
+# ::node	u	upcoming	10-11
+# ::node	t2	train	11-12
+# ::root	s	sign
+# ::edge	sign	accompanier	clock	s	c	
+# ::edge	sign	ARG0-of	announce-01	s	a2	
+# ::edge	and	op1	time	a	t	
+# ::edge	announce-01	ARG1	and	a2	a	
+# ::edge	and	op2	place	a	p	
+# ::edge	train	mod	upcoming	t2	u	
+# ::edge	place	location-of	train	p	t2	
+# ::edge	time	time-of	train	t	t2	
+(s / sign
+    :ARG0-of (a2 / announce-01
+        :ARG1 (a / and
+            :op1 (t / time
+                :time-of (t2 / train
+                    :mod (u / upcoming)))
+            :op2 (p / place
+                :location-of t2)))
+    :accompanier (c / clock))

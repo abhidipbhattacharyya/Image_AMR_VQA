@@ -1,0 +1,28 @@
+# ::tok A set of street signs in front of a store on the corner of a busy street .
+# ::node	s	set	1-2
+# ::node	s4	street	3-4
+# ::node	s2	sign	4-5
+# ::node	i	in-front-of	6-7
+# ::node	s3	store	9-10
+# ::node	c	corner	12-13
+# ::node	b	busy-02	15-16
+# ::node	s5	street	16-17
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	set	consist-of	sign	s	s2	
+# ::edge	sign	location	in-front-of	s2	i	
+# ::edge	in-front-of	op1	store	i	s3	
+# ::edge	store	location	corner	s3	c	
+# ::edge	street	ARG1-of	busy-02	s5	b	
+# ::edge	corner	part-of	street	c	s5	
+# ::edge	event	mod	set	e	s	
+(e / event
+    :mod (s / set
+        :consist-of (s2 / sign
+            :location (i / in-front-of
+                :op1 (s3 / store
+                    :location (c / corner
+                        :part-of (s5 / street
+                            :ARG1-of (b / busy-02)))))
+            :mod (s4 / street))))

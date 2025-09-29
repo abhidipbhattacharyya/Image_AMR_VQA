@@ -1,0 +1,50 @@
+# ::tok A stop sign next to a sign on the building wall next to it that is written in an Asian language and in another language .
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	n2	next-to	3-4
+# ::node	s2	sign	6-7
+# ::node	b	building	9-10
+# ::node	w	wall	10-11
+# ::node	n3	next-to	11-12
+# ::node	w2	write-01	16-17
+# ::node	n	name	19-20
+# ::node	0	Asia	19-20
+# ::node	l	language	20-21
+# ::node	l2	language	20-21
+# ::node	a	and	21-22
+# ::node	a3	another	23-24
+# ::node	a2	and	25-26
+# ::root	a2	and
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	sign	location	next-to	s	n2	
+# ::edge	next-to	op1	sign	n2	s2	
+# ::edge	wall	mod	building	w	b	
+# ::edge	sign	location	wall	s2	w	
+# ::edge	wall	location	next-to	w	n3	
+# ::edge	next-to	op1	sign	n3	s	
+# ::edge	sign	ARG1-of	write-01	s2	w2	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	language	name	name	l	n	
+# ::edge	and	op2	language	a	l2	
+# ::edge	and	op1	language	a	l	
+# ::edge	write-01	medium	and	w2	a	
+# ::edge	language	mod	another	l2	a3	
+# ::edge	and	op2	sign	a2	s	
+# ::edge	and	op1	sign	a2	s	
+(a2 / and
+    :op1 (s / sign
+        :purpose (s3 / stop-01)
+        :location (n2 / next-to
+            :op1 (s2 / sign
+                :ARG1-of (w2 / write-01
+                    :medium (a / and
+                        :op1 (l / language
+                            :name (n / name
+                                :op1 "Asia"))
+                        :op2 (l2 / language
+                            :mod (a3 / another))))
+                :location (w / wall
+                    :location (n3 / next-to
+                        :op1 s)
+                    :mod (b / building)))))
+    :op2 s)

@@ -1,0 +1,40 @@
+# ::tok A kitchen renovation includes stainless steel appliances with a white counter against unstately green cabinets .
+# ::node	k	kitchen	1-2
+# ::node	r	renovate-01	2-3
+# ::node	i	include-01	3-4
+# ::node	s	stainless	4-5
+# ::node	s3	steel	5-6
+# ::node	a2	appliance	6-7
+# ::node	w	white-03	9-10
+# ::node	c2	counter	10-11
+# ::node	a	against	11-12
+# ::node	s2	steady	12-13
+# ::node	0	-	12-13
+# ::node	g	green-02	13-14
+# ::node	c	cabinet	14-15
+# ::root	i	include-01
+# ::edge	renovate-01	ARG1	kitchen	r	k	
+# ::edge	include-01	ARG2	renovate-01	i	r	
+# ::edge	steel	consist-of	stainless	s3	s	
+# ::edge	appliance	mod	steel	a2	s3	
+# ::edge	include-01	ARG1	appliance	i	a2	
+# ::edge	counter	ARG1-of	white-03	c2	w	
+# ::edge	appliance	prep-with	counter	a2	c2	
+# ::edge	counter	mod	against	c2	a	
+# ::edge	steady	polarity	-	s2	0	
+# ::edge	green-02	mod	steady	g	s2	
+# ::edge	cabinet	ARG1-of	green-02	c	g	
+# ::edge	against	op1	cabinet	a	c	
+(i / include-01
+    :ARG1 (a2 / appliance
+        :mod (s3 / steel
+            :consist-of (s / stainless))
+        :prep-with (c2 / counter
+            :ARG1-of (w / white-03)
+            :mod (a / against
+                :op1 (c / cabinet
+                    :ARG1-of (g / green-02
+                        :mod (s2 / steady
+                            :polarity -))))))
+    :ARG2 (r / renovate-01
+        :ARG1 (k / kitchen)))

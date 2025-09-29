@@ -1,0 +1,26 @@
+# ::tok Many people wearing ski accessories while on the ski slope .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	s	ski-01	3-4
+# ::node	a	accessory	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	s2	slope	9-10
+# ::root	w	wear-01
+# ::edge	person	quant	many	p	m	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	accessory	mod	ski-01	a	s	
+# ::edge	wear-01	ARG1	accessory	w	a	
+# ::edge	wear-01	time	be-located-at-91	w	b	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	slope	b	s2	
+# ::edge	slope	mod	ski-01	s2	s	
+(w / wear-01
+    :ARG0 (p / person
+        :quant (m / many))
+    :ARG1 (a / accessory
+        :mod (s / ski-01))
+    :time (b / be-located-at-91
+        :ARG1 p
+        :ARG2 (s2 / slope
+            :mod s)))

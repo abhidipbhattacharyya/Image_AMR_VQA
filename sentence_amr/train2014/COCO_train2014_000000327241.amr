@@ -1,0 +1,28 @@
+# ::tok A red two level bus with front damage to it being towed down a street .
+# ::node	r	red-02	1-2
+# ::node	0	2	2-3
+# ::node	l	level	3-4
+# ::node	b	bus	4-5
+# ::node	f	front	6-7
+# ::node	d	damage-01	7-8
+# ::node	t	tow-01	11-12
+# ::node	d2	down	12-13
+# ::node	s	street	14-15
+# ::root	t	tow-01
+# ::edge	level	quant	2	l	0	
+# ::edge	bus	mod	level	b	l	
+# ::edge	bus	ARG1-of	red-02	b	r	
+# ::edge	damage-01	mod	front	d	f	
+# ::edge	bus	ARG1-of	damage-01	b	d	
+# ::edge	tow-01	ARG1	bus	t	b	
+# ::edge	tow-01	direction	down	t	d2	
+# ::edge	tow-01	ARG2	street	t	s	
+(t / tow-01
+    :ARG1 (b / bus
+        :ARG1-of (r / red-02)
+        :ARG1-of (d / damage-01
+            :mod (f / front))
+        :mod (l / level
+            :quant 2))
+    :ARG2 (s / street)
+    :direction (d2 / down))

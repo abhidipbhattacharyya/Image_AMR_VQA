@@ -1,0 +1,39 @@
+# ::tok Skiers in snow suits on , wearing skis during the winter in the snow .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	s3	snow	2-3
+# ::node	s5	suit	3-4
+# ::node	o	on	4-5
+# ::node	a	and	5-6
+# ::node	w	wear-01	6-7
+# ::node	s2	ski-01	7-8
+# ::node	d	date-entity	10-11
+# ::node	w2	winter	10-11
+# ::node	p2	person	11-12
+# ::node	s4	snow	13-14
+# ::root	a	and
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	suit	mod	snow	s5	s3	
+# ::edge	on	domain	suit	o	s5	
+# ::edge	and	op1	on	a	o	
+# ::edge	and	op2	wear-01	a	w	
+# ::edge	wear-01	time	date-entity	w	d	
+# ::edge	date-entity	season	winter	d	w2	
+# ::edge	person	ARG0-of	ski-01	p2	s2	
+# ::edge	wear-01	ARG1	person	w	p2	
+# ::edge	person	mod	snow	p2	s3	
+# ::edge	wear-01	location	snow	w	s4	
+# ::edge	and	rel	person	a	p	
+(a / and
+    :op1 (o / on
+        :domain (s5 / suit
+            :mod (s3 / snow)))
+    :op2 (w / wear-01
+        :ARG1 (p2 / person
+            :ARG0-of (s2 / ski-01)
+            :mod s3)
+        :location (s4 / snow)
+        :time (d / date-entity
+            :season (w2 / winter)))
+    :rel (p / person
+        :ARG0-of (s / ski-01)))

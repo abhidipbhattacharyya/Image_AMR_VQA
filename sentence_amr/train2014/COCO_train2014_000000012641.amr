@@ -1,0 +1,46 @@
+# ::tok Close up of metal post with a walk signal and a Do Not Enter sign with profane graffiti with building behind .
+# ::node	c	close-10	0-1
+# ::node	m	metal	3-4
+# ::node	p	post	4-5
+# ::node	w	walk-01	7-8
+# ::node	s2	signal-07	8-9
+# ::node	a	and	9-10
+# ::node	y	you	11-12
+# ::node	1	imperative	11-12
+# ::node	0	-	12-13
+# ::node	e	enter-01	13-14
+# ::node	s	sign	14-15
+# ::node	p2	profane	16-17
+# ::node	g	graffiti-01	17-18
+# ::node	b2	building	19-20
+# ::node	b	behind	20-21
+# ::root	c	close-10
+# ::edge	post	mod	metal	p	m	
+# ::edge	close-10	ARG1	post	c	p	
+# ::edge	signal-07	ARG1	walk-01	s2	w	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	post	location-of	and	p	a	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	mode	imperative	e	1	
+# ::edge	enter-01	ARG0	you	e	y	
+# ::edge	sign	topic	enter-01	s	e	
+# ::edge	and	op2	sign	a	s	
+# ::edge	graffiti-01	mod	profane	g	p2	
+# ::edge	sign	ARG2-of	graffiti-01	s	g	
+# ::edge	behind	op1	building	b	b2	
+# ::edge	post	location	behind	p	b	
+(c / close-10
+    :ARG1 (p / post
+        :location (b / behind
+            :op1 (b2 / building))
+        :location-of (a / and
+            :op1 (s2 / signal-07
+                :ARG1 (w / walk-01))
+            :op2 (s / sign
+                :ARG2-of (g / graffiti-01
+                    :mod (p2 / profane))
+                :topic (e / enter-01
+                    :ARG0 (y / you)
+                    :mode imperative
+                    :polarity -)))
+        :mod (m / metal)))

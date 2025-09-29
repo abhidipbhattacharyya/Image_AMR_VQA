@@ -1,0 +1,28 @@
+# ::tok a " use crosswalk " sign on a post in front of a rain - covered street
+# ::node	s	say-01	1-2
+# ::node	u	use-01	2-3
+# ::node	w	walk-01	3-4
+# ::node	s2	sign	5-6
+# ::node	p	post	8-9
+# ::node	i	in-front-of	10-11
+# ::node	r	rain-01	13-14
+# ::node	c	cover-02	15-16
+# ::node	s3	street	16-17
+# ::root	s2	sign
+# ::edge	say-01	ARG1	use-01	s	u	
+# ::edge	use-01	ARG1	walk-01	u	w	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	sign	location	post	s2	p	
+# ::edge	post	location	in-front-of	p	i	
+# ::edge	cover-02	ARG0	rain-01	c	r	
+# ::edge	street	ARG1-of	cover-02	s3	c	
+# ::edge	in-front-of	op1	street	i	s3	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (u / use-01
+            :ARG1 (w / walk-01)))
+    :location (p / post
+        :location (i / in-front-of
+            :op1 (s3 / street
+                :ARG1-of (c / cover-02
+                    :ARG0 (r / rain-01))))))

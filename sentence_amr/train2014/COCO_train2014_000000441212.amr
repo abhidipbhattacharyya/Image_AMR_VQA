@@ -1,0 +1,64 @@
+# ::tok Between pavement and the brick portion of a building facade is a colorful curb with a wood - chip strewn area housing a line of different sized and colorfully painted fire hydrants .
+# ::node	b	between	0-1
+# ::node	p2	pavement	1-2
+# ::node	b2	brick	4-5
+# ::node	p3	portion	5-6
+# ::node	b3	building	8-9
+# ::node	f	facade	9-10
+# ::node	c3	colorful	12-13
+# ::node	c4	curb	13-14
+# ::node	w	wood	16-17
+# ::node	c	chip	18-19
+# ::node	s2	strew-01	19-20
+# ::node	a	area	20-21
+# ::node	h2	house-01	21-22
+# ::node	l	line	23-24
+# ::node	d	differ-02	25-26
+# ::node	s	size-01	26-27
+# ::node	c2	color-01	28-29
+# ::node	p	paint-01	29-30
+# ::node	f2	fire	30-31
+# ::node	t	thing	31-32
+# ::node	h	hose-01	31-32
+# ::root	c4	curb
+# ::edge	between	op1	pavement	b	p2	
+# ::edge	portion	mod	brick	p3	b2	
+# ::edge	between	op2	portion	b	p3	
+# ::edge	facade	part-of	building	f	b3	
+# ::edge	portion	part-of	facade	p3	f	
+# ::edge	curb	mod	colorful	c4	c3	
+# ::edge	curb	location	between	c4	b	
+# ::edge	chip	consist-of	wood	c	w	
+# ::edge	strew-01	ARG2	chip	s2	c	
+# ::edge	area	ARG1-of	strew-01	a	s2	
+# ::edge	curb	location-of	area	c4	a	
+# ::edge	area	ARG0-of	house-01	a	h2	
+# ::edge	house-01	ARG1	line	h2	l	
+# ::edge	size-01	ARG1-of	differ-02	s	d	
+# ::edge	paint-01	ARG1-of	color-01	p	c2	
+# ::edge	thing	ARG1-of	paint-01	t	p	
+# ::edge	thing	ARG1-of	size-01	t	s	
+# ::edge	line	consist-of	thing	l	t	
+# ::edge	thing	ARG2-of	hose-01	t	h	
+# ::edge	hose-01	purpose	fire	h	f2	
+(c4 / curb
+    :location (b / between
+        :op1 (p2 / pavement)
+        :op2 (p3 / portion
+            :mod (b2 / brick)
+            :part-of (f / facade
+                :part-of (b3 / building))))
+    :location-of (a / area
+        :ARG0-of (h2 / house-01
+            :ARG1 (l / line
+                :consist-of (t / thing
+                    :ARG1-of (p / paint-01
+                        :ARG1-of (c2 / color-01))
+                    :ARG1-of (s / size-01
+                        :ARG1-of (d / differ-02))
+                    :ARG2-of (h / hose-01
+                        :purpose (f2 / fire)))))
+        :ARG1-of (s2 / strew-01
+            :ARG2 (c / chip
+                :consist-of (w / wood))))
+    :mod (c3 / colorful))

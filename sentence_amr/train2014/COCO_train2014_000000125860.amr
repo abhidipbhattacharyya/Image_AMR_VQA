@@ -1,0 +1,23 @@
+# ::tok A bus pulls up to a bus stop while people wait for it .
+# ::node	b	bus	1-2
+# ::node	p2	pull-01	2-3
+# ::node	l	location	5-6
+# ::node	s	stop-01	7-8
+# ::node	p	person	9-10
+# ::node	w	wait-01	10-11
+# ::root	p2	pull-01
+# ::edge	pull-01	ARG1	bus	p2	b	
+# ::edge	pull-01	ARG2	location	p2	l	
+# ::edge	location	location-of	stop-01	l	s	
+# ::edge	stop-01	ARG1	bus	s	b	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	pull-01	time-of	wait-01	p2	w	
+# ::edge	wait-01	ARG2	bus	w	b	
+(p2 / pull-01
+    :ARG1 (b / bus)
+    :ARG2 (l / location
+        :location-of (s / stop-01
+            :ARG1 b))
+    :time-of (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 b))

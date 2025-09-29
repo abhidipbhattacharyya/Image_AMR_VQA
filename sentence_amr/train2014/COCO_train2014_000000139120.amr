@@ -1,0 +1,32 @@
+# ::tok A man selecting a slice of pizza from one of two pizzas in pizza boxes .
+# ::node	m	man	1-2
+# ::node	s	select-01	2-3
+# ::node	s2	slice	4-5
+# ::node	p	pizza	6-7
+# ::node	p2	pizza	6-7
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	1	2	10-11
+# ::node	b	box	14-15
+# ::root	s	select-01
+# ::edge	select-01	ARG0	man	s	m	
+# ::edge	select-01	ARG1	slice	s	s2	
+# ::edge	slice	mod	pizza	s2	p	
+# ::edge	pizza	quant	1	p2	0	
+# ::edge	include-91	ARG2	pizza	i	p2	
+# ::edge	pizza	ARG1-of	include-91	p2	i	
+# ::edge	pizza	quant	2	p2	1	
+# ::edge	pizza	location	box	p2	b	
+# ::edge	box	mod	pizza	b	p	
+# ::edge	select-01	rel	pizza	s	p2	
+(s / select-01
+    :ARG0 (m / man)
+    :ARG1 (s2 / slice
+        :mod (p / pizza))
+    :rel (p2 / pizza
+        :quant 1
+        :quant 2
+        :ARG1-of (i / include-91
+            :ARG2 p2)
+        :location (b / box
+            :mod p)))

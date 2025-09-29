@@ -1,0 +1,22 @@
+# ::tok Electronic parking fee machine with cars on the side of a road
+# ::node	e	electronic	0-1
+# ::node	p	park-01	1-2
+# ::node	f	fee	2-3
+# ::node	m	machine	3-4
+# ::node	c	car	5-6
+# ::node	s	side	8-9
+# ::node	r	road	11-12
+# ::root	m	machine
+# ::edge	fee	purpose	park-01	f	p	
+# ::edge	machine	purpose	fee	m	f	
+# ::edge	machine	mod	electronic	m	e	
+# ::edge	machine	prep-with	car	m	c	
+# ::edge	car	location	side	c	s	
+# ::edge	side	part-of	road	s	r	
+(m / machine
+    :purpose (f / fee
+        :purpose (p / park-01))
+    :mod (e / electronic)
+    :prep-with (c / car
+        :location (s / side
+            :part-of (r / road))))

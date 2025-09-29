@@ -1,0 +1,34 @@
+# ::tok A single bed sits on a wood floor surrounded by partially - filled bottles of colored liquid .
+# ::node	s	single-02	1-2
+# ::node	b	bed	2-3
+# ::node	s2	sit-01	3-4
+# ::node	w	wood	6-7
+# ::node	f2	floor	7-8
+# ::node	s3	surround-01	8-9
+# ::node	p	part	10-11
+# ::node	f	fill-01	12-13
+# ::node	b2	bottle	13-14
+# ::node	c	color-01	15-16
+# ::node	l	liquid	16-17
+# ::root	s2	sit-01
+# ::edge	bed	ARG1-of	single-02	b	s	
+# ::edge	sit-01	ARG1	bed	s2	b	
+# ::edge	floor	consist-of	wood	f2	w	
+# ::edge	sit-01	ARG2	floor	s2	f2	
+# ::edge	bed	ARG2-of	surround-01	b	s3	
+# ::edge	fill-01	degree	part	f	p	
+# ::edge	bottle	ARG1-of	fill-01	b2	f	
+# ::edge	surround-01	ARG1	bottle	s3	b2	
+# ::edge	liquid	ARG1-of	color-01	l	c	
+# ::edge	bottle	consist-of	liquid	b2	l	
+(s2 / sit-01
+    :ARG1 (b / bed
+        :ARG1-of (s / single-02)
+        :ARG2-of (s3 / surround-01
+            :ARG1 (b2 / bottle
+                :ARG1-of (f / fill-01
+                    :degree (p / part))
+                :consist-of (l / liquid
+                    :ARG1-of (c / color-01)))))
+    :ARG2 (f2 / floor
+        :consist-of (w / wood)))

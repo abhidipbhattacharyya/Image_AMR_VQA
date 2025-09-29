@@ -1,0 +1,56 @@
+# ::tok Any people standing and sitting in a grassy park with line of trees , street with cars , airplane in air , and building ,
+# ::node	a4	any	0-1
+# ::node	p2	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	a3	and	3-4
+# ::node	s	sit-01	4-5
+# ::node	g	grass	7-8
+# ::node	p	park	8-9
+# ::node	h	have-03	9-10
+# ::node	l	line	10-11
+# ::node	t	tree	12-13
+# ::node	s3	street	14-15
+# ::node	h2	have-03	15-16
+# ::node	h3	have-03	15-16
+# ::node	c	car	16-17
+# ::node	a2	airplane	18-19
+# ::node	a	air	20-21
+# ::node	b	building	23-24
+# ::root	a3	and
+# ::edge	person	mod	any	p2	a4	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	and	op1	stand-01	a3	s2	
+# ::edge	and	op2	sit-01	a3	s	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	park	consist-of	grass	p	g	
+# ::edge	sit-01	ARG2	park	s	p	
+# ::edge	stand-01	ARG2	park	s2	p	
+# ::edge	park	ARG0-of	have-03	p	h	
+# ::edge	line	consist-of	tree	l	t	
+# ::edge	have-03	ARG1	street	h2	s3	
+# ::edge	park	ARG0-of	have-03	p	h2	
+# ::edge	park	ARG0-of	have-03	p	h3	
+# ::edge	have-03	ARG1	car	h3	c	
+# ::edge	have-03	ARG1	airplane	h3	a2	
+# ::edge	airplane	location	air	a2	a	
+# ::edge	park	op3	building	p	b	
+# ::edge	and	rel	line	a3	l	
+(a3 / and
+    :op1 (s2 / stand-01
+        :ARG1 (p2 / person
+            :mod (a4 / any))
+        :ARG2 (p / park
+            :ARG0-of (h / have-03)
+            :ARG0-of (h2 / have-03
+                :ARG1 (s3 / street))
+            :ARG0-of (h3 / have-03
+                :ARG1 (c / car)
+                :ARG1 (a2 / airplane
+                    :location (a / air)))
+            :consist-of (g / grass)
+            :op3 (b / building)))
+    :op2 (s / sit-01
+        :ARG1 p2
+        :ARG2 p)
+    :rel (l / line
+        :consist-of (t / tree)))

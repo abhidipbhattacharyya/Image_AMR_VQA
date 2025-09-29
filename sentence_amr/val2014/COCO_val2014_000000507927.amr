@@ -1,0 +1,34 @@
+# ::tok A group of motorcycles , half with male riders in the street at a city intersection .
+# ::node	g	group-01	1-2
+# ::node	m2	motorcycle	3-4
+# ::node	m3	motorcycle	3-4
+# ::node	i	include-91	5-6
+# ::node	h	half	5-6
+# ::node	m	male	7-8
+# ::node	p	person	8-9
+# ::node	r	ride-01	8-9
+# ::node	s	street	11-12
+# ::node	c	city	14-15
+# ::node	i2	intersect-01	15-16
+# ::root	g	group-01
+# ::edge	group-01	ARG1	motorcycle	g	m2	
+# ::edge	include-91	ARG1	motorcycle	i	m3	
+# ::edge	motorcycle	ARG2-of	include-91	m2	i	
+# ::edge	motorcycle	mod	half	m3	h	
+# ::edge	person	mod	male	p	m	
+# ::edge	motorcycle	accompanier	person	m3	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	group-01	location	street	g	s	
+# ::edge	intersect-01	ARG0	city	i2	c	
+# ::edge	street	ARG1-of	intersect-01	s	i2	
+(g / group-01
+    :ARG1 (m2 / motorcycle
+        :ARG2-of (i / include-91
+            :ARG1 (m3 / motorcycle
+                :accompanier (p / person
+                    :ARG0-of (r / ride-01)
+                    :mod (m / male))
+                :mod (h / half))))
+    :location (s / street
+        :ARG1-of (i2 / intersect-01
+            :ARG0 (c / city))))

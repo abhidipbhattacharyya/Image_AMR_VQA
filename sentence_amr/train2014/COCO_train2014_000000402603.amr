@@ -1,0 +1,35 @@
+# ::tok A pair of chopsticks picking up food from a bowl of broccoli and noodles .
+# ::node	p	pair	1-2
+# ::node	s	spoon	3-4
+# ::node	d	dish	3-4
+# ::node	p2	pick-up-04	4-5
+# ::node	f	food	6-7
+# ::node	b	bowl	9-10
+# ::node	c	contain-01	9-10
+# ::node	b2	broccoli	11-12
+# ::node	a	and	12-13
+# ::node	n	noodle	13-14
+# ::root	p2	pick-up-04
+# ::edge	spoon	quant	pair	s	p	
+# ::edge	pick-up-04	ARG1	spoon	p2	s	
+# ::edge	pick-up-04	ARG0	spoon	p2	s	
+# ::edge	dish	ARG1	food	d	f	
+# ::edge	dish	source	bowl	d	b	
+# ::edge	bowl	ARG0-of	contain-01	b	c	
+# ::edge	and	op1	broccoli	a	b2	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	and	op2	dish	a	d	
+# ::edge	dish	op2	noodle	d	n	
+# ::edge	pick-up-04	rel	bowl	p2	b	
+(p2 / pick-up-04
+    :ARG0 (s / spoon
+        :quant (p / pair))
+    :ARG1 s
+    :rel (b / bowl
+        :ARG0-of (c / contain-01
+            :ARG1 (a / and
+                :op1 (b2 / broccoli)
+                :op2 (d / dish
+                    :ARG1 (f / food)
+                    :op2 (n / noodle)
+                    :source b)))))

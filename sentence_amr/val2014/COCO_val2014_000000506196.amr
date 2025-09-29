@@ -1,0 +1,22 @@
+# ::tok black bullet train waiting at the station in outside terminal
+# ::node	b	black-04	0-1
+# ::node	b2	bullet	1-2
+# ::node	t2	train	2-3
+# ::node	w	wait-01	3-4
+# ::node	s	station	6-7
+# ::node	o	outside	8-9
+# ::node	t	terminal	9-10
+# ::root	w	wait-01
+# ::edge	train	mod	bullet	t2	b2	
+# ::edge	train	ARG1-of	black-04	t2	b	
+# ::edge	wait-01	ARG1	train	w	t2	
+# ::edge	wait-01	ARG2	station	w	s	
+# ::edge	station	location	outside	s	o	
+# ::edge	outside	op1	terminal	o	t	
+(w / wait-01
+    :ARG1 (t2 / train
+        :ARG1-of (b / black-04)
+        :mod (b2 / bullet))
+    :ARG2 (s / station
+        :location (o / outside
+            :op1 (t / terminal))))

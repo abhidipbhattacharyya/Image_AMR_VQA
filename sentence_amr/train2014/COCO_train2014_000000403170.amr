@@ -1,0 +1,57 @@
+# ::tok One motorcycle witha large One motorcycle among many on which there is a large US flag at an Air Force runway .
+# ::node	0	1	0-1
+# ::node	m3	motorcycle	1-2
+# ::node	m4	motorcycle	1-2
+# ::node	h	have-03	2-3
+# ::node	l	large	3-4
+# ::node	i	include-91	6-7
+# ::node	m	many	7-8
+# ::node	l2	large	13-14
+# ::node	c	country	14-15
+# ::node	n	name	14-15
+# ::node	4	United	14-15
+# ::node	3	States	14-15
+# ::node	f	flag	15-16
+# ::node	1	Air	18-19
+# ::node	m2	military	19-20
+# ::node	n2	name	19-20
+# ::node	2	Force	19-20
+# ::node	r	runway	20-21
+# ::root	i	include-91
+# ::edge	motorcycle	quant	1	m3	0	
+# ::edge	have-03	ARG1	motorcycle	h	m3	
+# ::edge	motorcycle	ARG0-of	have-03	m3	h	
+# ::edge	motorcycle	mod	large	m4	l	
+# ::edge	include-91	ARG2	motorcycle	i	m4	
+# ::edge	include-91	ARG1	motorcycle	i	m3	
+# ::edge	motorcycle	quant	many	m4	m	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	United	n	4	
+# ::edge	name	op2	States	n	3	
+# ::edge	flag	mod	country	f	c	
+# ::edge	flag	mod	large	f	l2	
+# ::edge	motorcycle	location-of	flag	m4	f	
+# ::edge	military	name	name	m2	n2	
+# ::edge	name	op1	Air	n2	1	
+# ::edge	name	op2	Force	n2	2	
+# ::edge	runway	poss	military	r	m2	
+# ::edge	flag	location	runway	f	r	
+(i / include-91
+    :ARG1 (m3 / motorcycle
+        :quant 1
+        :ARG0-of (h / have-03
+            :ARG1 m3))
+    :ARG2 (m4 / motorcycle
+        :quant (m / many)
+        :location-of (f / flag
+            :location (r / runway
+                :poss (m2 / military
+                    :name (n2 / name
+                        :op1 "Air"
+                        :op2 "Force")))
+            :mod (c / country
+                :name (n / name
+                    :op1 "United"
+                    :op2 "States"))
+            :mod (l2 / large))
+        :mod (l / large)))

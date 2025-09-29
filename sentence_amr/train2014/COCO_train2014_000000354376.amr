@@ -1,0 +1,43 @@
+# ::tok Another delicious , artisan pizza fresh out of the oven , made with spinach , mushrooms , onions , and mozzarella cheese .
+# ::node	a2	another	0-1
+# ::node	d	delicious	1-2
+# ::node	a3	artisan	3-4
+# ::node	p	pizza	4-5
+# ::node	f	fresh-04	5-6
+# ::node	o	out-of	6-7
+# ::node	o2	oven	9-10
+# ::node	m	make-01	11-12
+# ::node	s	spinach	13-14
+# ::node	a	and	14-15
+# ::node	m3	mushroom	15-16
+# ::node	m4	mushroom	17-18
+# ::node	m2	mozzarella	20-21
+# ::node	c	cheese	21-22
+# ::root	p	pizza
+# ::edge	pizza	mod	artisan	p	a3	
+# ::edge	pizza	mod	delicious	p	d	
+# ::edge	pizza	mod	another	p	a2	
+# ::edge	pizza	ARG1-of	fresh-04	p	f	
+# ::edge	fresh-04	ARG3	out-of	f	o	
+# ::edge	out-of	op1	oven	o	o2	
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	and	op1	spinach	a	s	
+# ::edge	make-01	ARG2	and	m	a	
+# ::edge	and	op2	mushroom	a	m3	
+# ::edge	and	op3	mushroom	a	m4	
+# ::edge	cheese	mod	mozzarella	c	m2	
+# ::edge	and	op4	cheese	a	c	
+(p / pizza
+    :ARG1-of (f / fresh-04
+        :ARG3 (o / out-of
+            :op1 (o2 / oven)))
+    :ARG1-of (m / make-01
+        :ARG2 (a / and
+            :op1 (s / spinach)
+            :op2 (m3 / mushroom)
+            :op3 (m4 / mushroom)
+            :op4 (c / cheese
+                :mod (m2 / mozzarella))))
+    :mod (a3 / artisan)
+    :mod (d / delicious)
+    :mod (a2 / another))

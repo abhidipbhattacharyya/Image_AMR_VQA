@@ -1,0 +1,33 @@
+# ::tok A US Coast Guard boat on a lake with a turret on the front .
+# ::node	n	name	1-2
+# ::node	2	US	1-2
+# ::node	0	Coast	2-3
+# ::node	m	military	3-4
+# ::node	1	Guard	3-4
+# ::node	b	boat	4-5
+# ::node	l	lake	7-8
+# ::node	h	have-03	8-9
+# ::node	t	turret	10-11
+# ::node	f	front	13-14
+# ::root	b	boat
+# ::edge	name	op1	US	n	2	
+# ::edge	name	op2	Coast	n	0	
+# ::edge	military	name	name	m	n	
+# ::edge	name	op3	Guard	n	1	
+# ::edge	boat	mod	military	b	m	
+# ::edge	boat	location	lake	b	l	
+# ::edge	boat	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	turret	h	t	
+# ::edge	turret	location	front	t	f	
+# ::edge	lake	part	front	l	f	
+(b / boat
+    :ARG0-of (h / have-03
+        :ARG1 (t / turret
+            :location (f / front)))
+    :location (l / lake
+        :part f)
+    :mod (m / military
+        :name (n / name
+            :op1 "US"
+            :op2 "Coast"
+            :op3 "Guard")))

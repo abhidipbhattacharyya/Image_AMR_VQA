@@ -1,0 +1,63 @@
+# ::tok A black plane with gold - and - black checkerboard stripes around its nose behind its propeller and decorating a small section of its tail fin .
+# ::node	b2	black-04	1-2
+# ::node	p	plane	2-3
+# ::node	h	have-03	3-4
+# ::node	g	gold	4-5
+# ::node	a	and	6-7
+# ::node	b3	black-04	8-9
+# ::node	c	checkerboard	9-10
+# ::node	s3	stripe	10-11
+# ::node	s4	stripe	10-11
+# ::node	a2	around	11-12
+# ::node	n	nose	13-14
+# ::node	b	behind	14-15
+# ::node	p2	propeller	16-17
+# ::node	d	decorate-01	18-19
+# ::node	s2	small	20-21
+# ::node	s	section	21-22
+# ::node	t	tail	24-25
+# ::node	f	fin	25-26
+# ::root	p	plane
+# ::edge	plane	ARG1-of	black-04	p	b2	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	stripe	mod	checkerboard	s3	c	
+# ::edge	and	op1	stripe	a	s3	
+# ::edge	stripe	mod	gold	s3	g	
+# ::edge	stripe	mod	checkerboard	s4	c	
+# ::edge	stripe	ARG1-of	black-04	s4	b3	
+# ::edge	and	op2	stripe	a	s4	
+# ::edge	plane	location	around	p	a2	
+# ::edge	around	op1	nose	a2	n	
+# ::edge	plane	part	nose	p	n	
+# ::edge	around	location	behind	a2	b	
+# ::edge	behind	op1	propeller	b	p2	
+# ::edge	plane	part	propeller	p	p2	
+# ::edge	plane	ARG2-of	decorate-01	p	d	
+# ::edge	section	mod	small	s	s2	
+# ::edge	decorate-01	ARG1	section	d	s	
+# ::edge	fin	part-of	tail	f	t	
+# ::edge	section	part-of	fin	s	f	
+# ::edge	plane	part	fin	p	f	
+(p / plane
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s3 / stripe
+                :mod (c / checkerboard)
+                :mod (g / gold))
+            :op2 (s4 / stripe
+                :ARG1-of (b3 / black-04)
+                :mod c)))
+    :ARG1-of (b2 / black-04)
+    :ARG2-of (d / decorate-01
+        :ARG1 (s / section
+            :mod (s2 / small)
+            :part-of (f / fin
+                :part-of (t / tail))))
+    :location (a2 / around
+        :location (b / behind
+            :op1 (p2 / propeller))
+        :op1 (n / nose))
+    :part n
+    :part p2
+    :part f)

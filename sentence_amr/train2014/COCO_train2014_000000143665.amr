@@ -1,0 +1,31 @@
+# ::tok A crowded subway car with passengers standing and holding safety straps .
+# ::node	c2	crowd-01	1-2
+# ::node	s4	subway	2-3
+# ::node	c	car	3-4
+# ::node	p	passenger	5-6
+# ::node	p2	passenger	5-6
+# ::node	s2	stand-01	6-7
+# ::node	a	and	7-8
+# ::node	h	hold-01	8-9
+# ::node	s	safe-01	9-10
+# ::node	s3	strap-01	10-11
+# ::root	c	car
+# ::edge	car	mod	subway	c	s4	
+# ::edge	car	ARG1-of	crowd-01	c	c2	
+# ::edge	stand-01	ARG1	passenger	s2	p	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	car	location-of	and	c	a	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	passenger	h	p2	
+# ::edge	strap-01	purpose	safe-01	s3	s	
+# ::edge	hold-01	ARG1	strap-01	h	s3	
+(c / car
+    :ARG1-of (c2 / crowd-01)
+    :location-of (a / and
+        :op1 (s2 / stand-01
+            :ARG1 (p / passenger))
+        :op2 (h / hold-01
+            :ARG0 (p2 / passenger)
+            :ARG1 (s3 / strap-01
+                :purpose (s / safe-01))))
+    :mod (s4 / subway))

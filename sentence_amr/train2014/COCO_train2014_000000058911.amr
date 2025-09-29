@@ -1,0 +1,55 @@
+# ::tok A room with wooden floors a red couch with a jacket on it , a bookshelf and a man sitting in a chair that has a coat sitting on the back of it ..
+# ::node	r2	room	1-2
+# ::node	h	have-03	2-3
+# ::node	w	wood	3-4
+# ::node	f	floor	4-5
+# ::node	r	red-02	6-7
+# ::node	c3	couch	7-8
+# ::node	j	jacket	10-11
+# ::node	b2	bookshelf	15-16
+# ::node	a	and	16-17
+# ::node	m	man	18-19
+# ::node	s	sit-01	19-20
+# ::node	c	chair	22-23
+# ::node	h2	have-03	24-25
+# ::node	c2	coat	26-27
+# ::node	s2	sit-01	27-28
+# ::node	b	back	30-31
+# ::root	r2	room
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	floor	mod	wood	f	w	
+# ::edge	have-03	ARG1	floor	h	f	
+# ::edge	couch	ARG1-of	red-02	c3	r	
+# ::edge	couch	part	jacket	c3	j	
+# ::edge	room	part	bookshelf	r2	b2	
+# ::edge	and	op3	bookshelf	a	b2	
+# ::edge	and	op2	couch	a	c3	
+# ::edge	and	op1	couch	a	c3	
+# ::edge	room	part	and	r2	a	
+# ::edge	and	op4	man	a	m	
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	chair	ARG0-of	have-03	c	h2	
+# ::edge	have-03	ARG1	coat	h2	c2	
+# ::edge	coat	ARG1-of	sit-01	c2	s2	
+# ::edge	sit-01	ARG2	back	s2	b	
+# ::edge	chair	part	back	c	b	
+(r2 / room
+    :ARG0-of (h / have-03
+        :ARG1 (f / floor
+            :mod (w / wood)))
+    :part (b2 / bookshelf)
+    :part (a / and
+        :op1 (c3 / couch
+            :ARG1-of (r / red-02)
+            :part (j / jacket))
+        :op2 c3
+        :op3 b2
+        :op4 (m / man
+            :ARG1-of (s / sit-01
+                :ARG2 (c / chair
+                    :ARG0-of (h2 / have-03
+                        :ARG1 (c2 / coat
+                            :ARG1-of (s2 / sit-01
+                                :ARG2 (b / back))))
+                    :part b)))))

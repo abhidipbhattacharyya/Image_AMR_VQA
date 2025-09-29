@@ -1,0 +1,34 @@
+# ::tok A large number of law enforcement officers gathering around a crod of people in a public square .
+# ::node	l	large	1-2
+# ::node	n	number	2-3
+# ::node	l2	law	4-5
+# ::node	e	enforce-01	5-6
+# ::node	o	officer	6-7
+# ::node	g	gather-03	7-8
+# ::node	a	around	8-9
+# ::node	c	crod	10-11
+# ::node	p	person	12-13
+# ::node	p2	public-02	15-16
+# ::node	s	square	16-17
+# ::root	g	gather-03
+# ::edge	number	mod	large	n	l	
+# ::edge	enforce-01	ARG1	law	e	l2	
+# ::edge	officer	ARG0-of	enforce-01	o	e	
+# ::edge	officer	quant	number	o	n	
+# ::edge	gather-03	ARG0	officer	g	o	
+# ::edge	gather-03	location	around	g	a	
+# ::edge	around	op1	crod	a	c	
+# ::edge	crod	consist-of	person	c	p	
+# ::edge	square	ARG1-of	public-02	s	p2	
+# ::edge	gather-03	location	square	g	s	
+(g / gather-03
+    :ARG0 (o / officer
+        :quant (n / number
+            :mod (l / large))
+        :ARG0-of (e / enforce-01
+            :ARG1 (l2 / law)))
+    :location (a / around
+        :op1 (c / crod
+            :consist-of (p / person)))
+    :location (s / square
+        :ARG1-of (p2 / public-02)))

@@ -1,0 +1,40 @@
+# ::tok Many bags are lumped together on the floor , including a shopping bag , a duffel bag and a black suitcase .
+# ::node	m	many	0-1
+# ::node	b	bag	1-2
+# ::node	l	lump-01	3-4
+# ::node	t	together	4-5
+# ::node	f	floor	7-8
+# ::node	i	include-01	9-10
+# ::node	s	shop-01	11-12
+# ::node	b2	bag	12-13
+# ::node	d	duffel	15-16
+# ::node	b3	bag	16-17
+# ::node	a	and	17-18
+# ::node	b4	black-04	19-20
+# ::node	s2	suitcase	20-21
+# ::root	l	lump-01
+# ::edge	bag	quant	many	b	m	
+# ::edge	lump-01	ARG1	bag	l	b	
+# ::edge	lump-01	mod	together	l	t	
+# ::edge	lump-01	location	floor	l	f	
+# ::edge	bag	ARG2-of	include-01	b	i	
+# ::edge	bag	purpose	shop-01	b2	s	
+# ::edge	bag	mod	duffel	b3	d	
+# ::edge	and	op2	bag	a	b3	
+# ::edge	and	op1	bag	a	b2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	suitcase	ARG1-of	black-04	s2	b4	
+# ::edge	and	op3	suitcase	a	s2	
+(l / lump-01
+    :ARG1 (b / bag
+        :quant (m / many)
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (b2 / bag
+                    :purpose (s / shop-01))
+                :op2 (b3 / bag
+                    :mod (d / duffel))
+                :op3 (s2 / suitcase
+                    :ARG1-of (b4 / black-04)))))
+    :location (f / floor)
+    :mod (t / together))

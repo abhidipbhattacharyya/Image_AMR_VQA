@@ -1,0 +1,25 @@
+# ::tok A group of women wait for a train to arrive at a train station platform .
+# ::node	g	group	1-2
+# ::node	w2	woman	3-4
+# ::node	w	wait-01	4-5
+# ::node	t	train	7-8
+# ::node	a	arrive-01	9-10
+# ::node	t2	train	12-13
+# ::node	s	station	13-14
+# ::node	p	platform	14-15
+# ::root	w	wait-01
+# ::edge	group	consist-of	woman	g	w2	
+# ::edge	wait-01	ARG1	group	w	g	
+# ::edge	arrive-01	ARG1	train	a	t	
+# ::edge	wait-01	ARG2	arrive-01	w	a	
+# ::edge	station	mod	train	s	t2	
+# ::edge	platform	purpose	station	p	s	
+# ::edge	arrive-01	ARG4	platform	a	p	
+(w / wait-01
+    :ARG1 (g / group
+        :consist-of (w2 / woman))
+    :ARG2 (a / arrive-01
+        :ARG1 (t / train)
+        :ARG4 (p / platform
+            :purpose (s / station
+                :mod (t2 / train)))))

@@ -1,0 +1,46 @@
+# ::tok A two level yellow bus parked on the side of a field with snow on the ground and people on the inside of the fence area .
+# ::node	0	2	1-2
+# ::node	l	level	2-3
+# ::node	y	yellow	3-4
+# ::node	b	bus	4-5
+# ::node	p	park-01	5-6
+# ::node	s	side	8-9
+# ::node	f2	field	11-12
+# ::node	h	have-03	12-13
+# ::node	s2	snow	13-14
+# ::node	g	ground	16-17
+# ::node	a	and	17-18
+# ::node	p2	person	18-19
+# ::node	i	inside	21-22
+# ::node	f	fence	24-25
+# ::node	a2	area	25-26
+# ::root	a	and
+# ::edge	level	quant	2	l	0	
+# ::edge	bus	mod	yellow	b	y	
+# ::edge	bus	mod	level	b	l	
+# ::edge	bus	ARG1-of	park-01	b	p	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	field	s	f2	
+# ::edge	bus	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	snow	h	s2	
+# ::edge	snow	location	ground	s2	g	
+# ::edge	and	op1	bus	a	b	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	location	inside	p2	i	
+# ::edge	area	location-of	fence	a2	f	
+# ::edge	inside	op1	area	i	a2	
+(a / and
+    :op1 (b / bus
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / snow
+                :location (g / ground)))
+        :ARG1-of (p / park-01
+            :ARG2 (s / side
+                :part-of (f2 / field)))
+        :mod (y / yellow)
+        :mod (l / level
+            :quant 2))
+    :op2 (p2 / person
+        :location (i / inside
+            :op1 (a2 / area
+                :location-of (f / fence)))))

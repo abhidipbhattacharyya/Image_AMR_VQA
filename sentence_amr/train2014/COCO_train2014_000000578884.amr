@@ -1,0 +1,28 @@
+# ::tok A person standing at a buss stop on a narrow road as several vehicles pass by .
+# ::node	p2	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	b	buss	5-6
+# ::node	s3	stop-01	6-7
+# ::node	n	narrow-02	9-10
+# ::node	r	road	10-11
+# ::node	s	several	12-13
+# ::node	v	vehicle	13-14
+# ::node	p	pass-by-17	14-15
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	stop-01	ARG1	buss	s3	b	
+# ::edge	stand-01	ARG2	stop-01	s2	s3	
+# ::edge	road	ARG1-of	narrow-02	r	n	
+# ::edge	stop-01	location	road	s3	r	
+# ::edge	vehicle	quant	several	v	s	
+# ::edge	pass-by-17	ARG0	vehicle	p	v	
+# ::edge	stand-01	time	pass-by-17	s2	p	
+(s2 / stand-01
+    :ARG1 (p2 / person)
+    :ARG2 (s3 / stop-01
+        :ARG1 (b / buss)
+        :location (r / road
+            :ARG1-of (n / narrow-02)))
+    :time (p / pass-by-17
+        :ARG0 (v / vehicle
+            :quant (s / several))))

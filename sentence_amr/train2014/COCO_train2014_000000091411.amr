@@ -1,0 +1,34 @@
+# ::tok This meal includes a well garnished hot dog and French fries .
+# ::node	t	this	0-1
+# ::node	m	meal	1-2
+# ::node	i	include-01	2-3
+# ::node	w	well-09	4-5
+# ::node	f	fry-01	5-6
+# ::node	h	hot-dog	7-8
+# ::node	a	and	8-9
+# ::node	c	country	9-10
+# ::node	n	name	9-10
+# ::node	0	France	9-10
+# ::node	f2	fry-01	10-11
+# ::root	i	include-01
+# ::edge	meal	mod	this	m	t	
+# ::edge	include-01	ARG2	meal	i	m	
+# ::edge	fry-01	ARG1-of	well-09	f	w	
+# ::edge	hot-dog	ARG1-of	fry-01	h	f	
+# ::edge	and	op1	hot-dog	a	h	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	ARG0	country	f2	c	
+# ::edge	and	op2	fry-01	a	f2	
+(i / include-01
+    :ARG1 (a / and
+        :op1 (h / hot-dog
+            :ARG1-of (f / fry-01
+                :ARG1-of (w / well-09)))
+        :op2 (f2 / fry-01
+            :ARG0 (c / country
+                :name (n / name
+                    :op1 "France"))))
+    :ARG2 (m / meal
+        :mod (t / this)))

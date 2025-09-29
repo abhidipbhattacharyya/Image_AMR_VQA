@@ -1,0 +1,34 @@
+# ::tok Mercedes Benz semi trailer truck parked on the corner of a city street
+# ::node	n	name	0-1
+# ::node	1	Mercedes	0-1
+# ::node	c	car-make	1-2
+# ::node	0	Benz	1-2
+# ::node	s	semi	2-3
+# ::node	t	trailer	3-4
+# ::node	t2	truck	4-5
+# ::node	p	park-01	5-6
+# ::node	c3	corner	8-9
+# ::node	c2	city	11-12
+# ::node	s2	street	12-13
+# ::root	t2	truck
+# ::edge	name	op1	Mercedes	n	1	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op2	Benz	n	0	
+# ::edge	trailer	mod	semi	t	s	
+# ::edge	truck	mod	trailer	t2	t	
+# ::edge	truck	mod	car-make	t2	c	
+# ::edge	truck	ARG1-of	park-01	t2	p	
+# ::edge	park-01	ARG2	corner	p	c3	
+# ::edge	street	mod	city	s2	c2	
+# ::edge	corner	part-of	street	c3	s2	
+(t2 / truck
+    :ARG1-of (p / park-01
+        :ARG2 (c3 / corner
+            :part-of (s2 / street
+                :mod (c2 / city))))
+    :mod (t / trailer
+        :mod (s / semi))
+    :mod (c / car-make
+        :name (n / name
+            :op1 "Mercedes"
+            :op2 "Benz")))

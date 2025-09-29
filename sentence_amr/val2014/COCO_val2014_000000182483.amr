@@ -1,0 +1,42 @@
+# ::tok This tall clock tower is inviting tourists to explore the stone balcony and interior chamber .
+# ::node	t2	this	0-1
+# ::node	t	tall	1-2
+# ::node	c2	clock	2-3
+# ::node	t4	tower	3-4
+# ::node	i2	invite-01	5-6
+# ::node	p	person	6-7
+# ::node	t3	tour-01	6-7
+# ::node	e	explore-01	8-9
+# ::node	s	stone	10-11
+# ::node	b	balcony	11-12
+# ::node	a	and	12-13
+# ::node	i	interior	13-14
+# ::node	c	chamber	14-15
+# ::root	i2	invite-01
+# ::edge	tower	mod	clock	t4	c2	
+# ::edge	tower	mod	tall	t4	t	
+# ::edge	tower	mod	this	t4	t2	
+# ::edge	invite-01	ARG0	tower	i2	t4	
+# ::edge	invite-01	ARG1	person	i2	p	
+# ::edge	person	ARG0-of	tour-01	p	t3	
+# ::edge	explore-01	ARG0	person	e	p	
+# ::edge	invite-01	ARG2	explore-01	i2	e	
+# ::edge	balcony	consist-of	stone	b	s	
+# ::edge	and	op1	balcony	a	b	
+# ::edge	explore-01	ARG1	and	e	a	
+# ::edge	chamber	mod	interior	c	i	
+# ::edge	and	op2	chamber	a	c	
+(i2 / invite-01
+    :ARG0 (t4 / tower
+        :mod (c2 / clock)
+        :mod (t / tall)
+        :mod (t2 / this))
+    :ARG1 (p / person
+        :ARG0-of (t3 / tour-01))
+    :ARG2 (e / explore-01
+        :ARG0 p
+        :ARG1 (a / and
+            :op1 (b / balcony
+                :consist-of (s / stone))
+            :op2 (c / chamber
+                :mod (i / interior)))))

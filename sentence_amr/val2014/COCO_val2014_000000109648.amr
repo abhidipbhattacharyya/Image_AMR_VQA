@@ -1,0 +1,40 @@
+# ::tok A very dirty bathroom with four not operating urinals on the wall and blue tile walls .
+# ::node	v	very	1-2
+# ::node	d	dirty-02	2-3
+# ::node	b	bathroom	3-4
+# ::node	h	have-03	4-5
+# ::node	1	4	5-6
+# ::node	0	-	6-7
+# ::node	o	operate-01	7-8
+# ::node	u	urinal	8-9
+# ::node	w	wall	11-12
+# ::node	a	and	12-13
+# ::node	b2	blue	13-14
+# ::node	t	tile	14-15
+# ::node	w2	wall	15-16
+# ::root	b	bathroom
+# ::edge	dirty-02	degree	very	d	v	
+# ::edge	bathroom	ARG1-of	dirty-02	b	d	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	operate-01	polarity	-	o	0	
+# ::edge	urinal	ARG1-of	operate-01	u	o	
+# ::edge	urinal	quant	4	u	1	
+# ::edge	urinal	location	wall	u	w	
+# ::edge	and	op1	urinal	a	u	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	tile	mod	blue	t	b2	
+# ::edge	wall	part	tile	w2	t	
+# ::edge	and	op2	wall	a	w2	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (u / urinal
+                :quant 4
+                :ARG1-of (o / operate-01
+                    :polarity -)
+                :location (w / wall))
+            :op2 (w2 / wall
+                :part (t / tile
+                    :mod (b2 / blue)))))
+    :ARG1-of (d / dirty-02
+        :degree (v / very)))

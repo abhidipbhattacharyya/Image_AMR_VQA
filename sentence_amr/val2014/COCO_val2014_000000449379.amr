@@ -1,0 +1,24 @@
+# ::tok Cats curled up and asleep on a bed during the day
+# ::node	c	cat	0-1
+# ::node	c2	curl-up-02	1-2
+# ::node	a	and	3-4
+# ::node	s	sleep-01	4-5
+# ::node	b	bed	7-8
+# ::node	d	date-entity	10-11
+# ::node	d2	day	10-11
+# ::root	a	and
+# ::edge	curl-up-02	ARG1	cat	c2	c	
+# ::edge	and	op1	curl-up-02	a	c2	
+# ::edge	and	op2	sleep-01	a	s	
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	sleep-01	location	bed	s	b	
+# ::edge	and	time	date-entity	a	d	
+# ::edge	date-entity	dayperiod	day	d	d2	
+(a / and
+    :op1 (c2 / curl-up-02
+        :ARG1 (c / cat))
+    :op2 (s / sleep-01
+        :ARG0 c
+        :location (b / bed))
+    :time (d / date-entity
+        :dayperiod (d2 / day)))

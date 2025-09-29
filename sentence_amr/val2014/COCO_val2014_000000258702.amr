@@ -1,0 +1,28 @@
+# ::tok people walking near two double deckered busses with buildings in the background
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	n	near-02	2-3
+# ::node	0	2	3-4
+# ::node	d2	double-01	4-5
+# ::node	d	decide-01	5-6
+# ::node	b3	bus	6-7
+# ::node	b2	building	8-9
+# ::node	b	background	11-12
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	ARG1-of	near-02	w	n	
+# ::edge	decide-01	ARG1-of	double-01	d	d2	
+# ::edge	bus	ARG0-of	decide-01	b3	d	
+# ::edge	bus	quant	2	b3	0	
+# ::edge	near-02	ARG2	bus	n	b3	
+# ::edge	bus	prep-with	building	b3	b2	
+# ::edge	building	location	background	b2	b	
+(w / walk-01
+    :ARG0 (p / person)
+    :ARG1-of (n / near-02
+        :ARG2 (b3 / bus
+            :quant 2
+            :ARG0-of (d / decide-01
+                :ARG1-of (d2 / double-01))
+            :prep-with (b2 / building
+                :location (b / background)))))

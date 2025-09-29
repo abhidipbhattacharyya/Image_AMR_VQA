@@ -1,0 +1,19 @@
+# ::tok A machine that dispenses tickets for some mode of transportation .
+# ::node	m	machine	1-2
+# ::node	d	dispatch-01	3-4
+# ::node	t	ticket	4-5
+# ::node	s	some	6-7
+# ::node	m2	mode	7-8
+# ::node	t2	transport-01	9-10
+# ::root	m	machine
+# ::edge	machine	ARG0-of	dispatch-01	m	d	
+# ::edge	dispatch-01	ARG1	ticket	d	t	
+# ::edge	mode	mod	some	m2	s	
+# ::edge	transport-01	mod	mode	t2	m2	
+# ::edge	dispatch-01	purpose	transport-01	d	t2	
+(m / machine
+    :ARG0-of (d / dispatch-01
+        :purpose (t2 / transport-01
+            :mod (m2 / mode
+                :mod (s / some)))
+        :ARG1 (t / ticket)))

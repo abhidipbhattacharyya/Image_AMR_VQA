@@ -1,0 +1,27 @@
+# ::tok Truck with side pulled up for a carnival stand with rides set up behind .
+# ::node	t	truck	0-1
+# ::node	s2	side	2-3
+# ::node	p	pull-01	3-4
+# ::node	c	carnival	7-8
+# ::node	s3	stand	8-9
+# ::node	r	ride-01	10-11
+# ::node	s	set-up-03	11-12
+# ::node	b	behind	13-14
+# ::root	p	pull-01
+# ::edge	truck	part	side	t	s2	
+# ::edge	pull-01	ARG1	truck	p	t	
+# ::edge	stand	mod	carnival	s3	c	
+# ::edge	pull-01	purpose	stand	p	s3	
+# ::edge	set-up-03	ARG1	ride-01	s	r	
+# ::edge	stand	location-of	set-up-03	s3	s	
+# ::edge	set-up-03	location	behind	s	b	
+# ::edge	behind	op1	stand	b	s3	
+(p / pull-01
+    :purpose (s3 / stand
+        :location-of (s / set-up-03
+            :ARG1 (r / ride-01)
+            :location (b / behind
+                :op1 s3))
+        :mod (c / carnival))
+    :ARG1 (t / truck
+        :part (s2 / side)))

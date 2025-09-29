@@ -1,0 +1,40 @@
+# ::tok Approximately a dozen animals graze in a field ; kind of animal is hard to tell , photo is blurry .
+# ::node	a4	approximately	0-1
+# ::node	0	12	2-3
+# ::node	a2	animal	3-4
+# ::node	g	graze-01	4-5
+# ::node	f	field	7-8
+# ::node	m	multi-sentence	8-9
+# ::node	k	kind	9-10
+# ::node	a3	animal	11-12
+# ::node	h	hard-02	13-14
+# ::node	t	tell-02	15-16
+# ::node	a	and	16-17
+# ::node	p	photo	17-18
+# ::node	b	blur-01	19-20
+# ::root	m	multi-sentence
+# ::edge	approximately	op1	12	a4	0	
+# ::edge	animal	quant	approximately	a2	a4	
+# ::edge	graze-01	ARG0	animal	g	a2	
+# ::edge	graze-01	ARG1	field	g	f	
+# ::edge	multi-sentence	snt1	graze-01	m	g	
+# ::edge	animal	mod	kind	a3	k	
+# ::edge	hard-02	ARG1	tell-02	h	t	
+# ::edge	tell-02	ARG1	animal	t	a3	
+# ::edge	and	op1	hard-02	a	h	
+# ::edge	multi-sentence	snt2	and	m	a	
+# ::edge	blur-01	ARG1	photo	b	p	
+# ::edge	and	op2	blur-01	a	b	
+(m / multi-sentence
+    :snt1 (g / graze-01
+        :ARG0 (a2 / animal
+            :quant (a4 / approximately
+                :op1 12))
+        :ARG1 (f / field))
+    :snt2 (a / and
+        :op1 (h / hard-02
+            :ARG1 (t / tell-02
+                :ARG1 (a3 / animal
+                    :mod (k / kind))))
+        :op2 (b / blur-01
+            :ARG1 (p / photo))))

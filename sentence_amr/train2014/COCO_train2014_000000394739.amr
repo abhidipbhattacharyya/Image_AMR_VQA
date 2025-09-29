@@ -1,0 +1,37 @@
+# ::tok An elaborate modern walk / dont walk traffic sign stands in front of a large building .
+# ::node	e	elaborate	1-2
+# ::node	m	modern-02	2-3
+# ::node	w	walk-01	3-4
+# ::node	s2	slash	4-5
+# ::node	0	-	5-6
+# ::node	w2	walk-01	6-7
+# ::node	t	traffic	7-8
+# ::node	s	sign	8-9
+# ::node	s3	stand-01	9-10
+# ::node	i	in-front-of	11-12
+# ::node	l	large	14-15
+# ::node	b	building	15-16
+# ::root	s3	stand-01
+# ::edge	slash	op1	walk-01	s2	w	
+# ::edge	walk-01	polarity	-	w2	0	
+# ::edge	slash	op2	walk-01	s2	w2	
+# ::edge	traffic	topic	slash	t	s2	
+# ::edge	sign	topic	traffic	s	t	
+# ::edge	sign	ARG1-of	modern-02	s	m	
+# ::edge	sign	mod	elaborate	s	e	
+# ::edge	stand-01	ARG1	sign	s3	s	
+# ::edge	stand-01	ARG2	in-front-of	s3	i	
+# ::edge	building	mod	large	b	l	
+# ::edge	in-front-of	op1	building	i	b	
+(s3 / stand-01
+    :ARG1 (s / sign
+        :ARG1-of (m / modern-02)
+        :mod (e / elaborate)
+        :topic (t / traffic
+            :topic (s2 / slash
+                :op1 (w / walk-01)
+                :op2 (w2 / walk-01
+                    :polarity -))))
+    :ARG2 (i / in-front-of
+        :op1 (b / building
+            :mod (l / large))))

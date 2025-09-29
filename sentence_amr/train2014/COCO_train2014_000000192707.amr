@@ -1,0 +1,73 @@
+# ::tok The inside of a train cabin room with curved sides with four padded armchairs and two captain style wood chairs , on at a desk with control panel , a door and windows .
+# ::node	i	inside	1-2
+# ::node	t	train	4-5
+# ::node	c	cabin	5-6
+# ::node	r	room	6-7
+# ::node	s2	straight-04	8-9
+# ::node	s	side	9-10
+# ::node	h	have-03	10-11
+# ::node	1	4	11-12
+# ::node	a4	arm-01	12-13
+# ::node	a3	arm	13-14
+# ::node	a	and	14-15
+# ::node	0	2	15-16
+# ::node	c2	captain	16-17
+# ::node	s3	style	17-18
+# ::node	w2	wood	18-19
+# ::node	c3	chair	19-20
+# ::node	b	be-located-at-91	21-22
+# ::node	d	desk	24-25
+# ::node	h2	have-03	25-26
+# ::node	c4	control-01	26-27
+# ::node	p	panel	27-28
+# ::node	d2	door	30-31
+# ::node	a2	and	31-32
+# ::node	w	window	32-33
+# ::root	b	be-located-at-91
+# ::edge	cabin	mod	train	c	t	
+# ::edge	room	part-of	cabin	r	c	
+# ::edge	inside	part-of	room	i	r	
+# ::edge	side	ARG1-of	straight-04	s	s2	
+# ::edge	room	part	side	r	s	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	arm	ARG1-of	arm-01	a3	a4	
+# ::edge	arm	quant	4	a3	1	
+# ::edge	and	op1	arm	a	a3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	style	mod	captain	s3	c2	
+# ::edge	chair	consist-of	wood	c3	w2	
+# ::edge	chair	mod	style	c3	s3	
+# ::edge	chair	quant	2	c3	0	
+# ::edge	and	op2	chair	a	c3	
+# ::edge	be-located-at-91	ARG1	inside	b	i	
+# ::edge	be-located-at-91	ARG2	desk	b	d	
+# ::edge	desk	ARG0-of	have-03	d	h2	
+# ::edge	panel	ARG2-of	control-01	p	c4	
+# ::edge	and	op2	door	a2	d2	
+# ::edge	and	op1	panel	a2	p	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op3	window	a2	w	
+(b / be-located-at-91
+    :ARG1 (i / inside
+        :part-of (r / room
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (a3 / arm
+                        :quant 4
+                        :ARG1-of (a4 / arm-01))
+                    :op2 (c3 / chair
+                        :quant 2
+                        :consist-of (w2 / wood)
+                        :mod (s3 / style
+                            :mod (c2 / captain)))))
+            :part (s / side
+                :ARG1-of (s2 / straight-04))
+            :part-of (c / cabin
+                :mod (t / train))))
+    :ARG2 (d / desk
+        :ARG0-of (h2 / have-03
+            :ARG1 (a2 / and
+                :op1 (p / panel
+                    :ARG2-of (c4 / control-01))
+                :op2 (d2 / door)
+                :op3 (w / window)))))

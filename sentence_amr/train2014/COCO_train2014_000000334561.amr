@@ -1,0 +1,34 @@
+# ::tok Cars parked at night along an urban street with a hotel , restaurant , and casino .
+# ::node	c	car	0-1
+# ::node	p	park-01	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	a	along	4-5
+# ::node	u	urban	6-7
+# ::node	s	street	7-8
+# ::node	h	hotel	10-11
+# ::node	r	restaurant	12-13
+# ::node	a2	and	14-15
+# ::node	c2	casino	15-16
+# ::root	p	park-01
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	park-01	location	along	p	a	
+# ::edge	street	mod	urban	s	u	
+# ::edge	along	op1	street	a	s	
+# ::edge	and	op2	restaurant	a2	r	
+# ::edge	and	op1	hotel	a2	h	
+# ::edge	street	location-of	and	s	a2	
+# ::edge	and	op3	casino	a2	c2	
+(p / park-01
+    :ARG1 (c / car)
+    :location (a / along
+        :op1 (s / street
+            :location-of (a2 / and
+                :op1 (h / hotel)
+                :op2 (r / restaurant)
+                :op3 (c2 / casino))
+            :mod (u / urban)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

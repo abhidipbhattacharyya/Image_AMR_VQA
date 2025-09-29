@@ -1,0 +1,22 @@
+# ::tok Crates of oranges and boxes of blueberries are being sold at a market .
+# ::node	r	rate	0-1
+# ::node	o	orange	2-3
+# ::node	a	and	3-4
+# ::node	b	box	4-5
+# ::node	l	Blue	6-7
+# ::node	s	sell-01	9-10
+# ::node	m	market	12-13
+# ::root	s	sell-01
+# ::edge	rate	consist-of	orange	r	o	
+# ::edge	and	op1	rate	a	r	
+# ::edge	and	op2	box	a	b	
+# ::edge	box	mod	Blue	b	l	
+# ::edge	sell-01	ARG1	and	s	a	
+# ::edge	sell-01	location	market	s	m	
+(s / sell-01
+    :ARG1 (a / and
+        :op1 (r / rate
+            :consist-of (o / orange))
+        :op2 (b / box
+            :mod (l / Blue)))
+    :location (m / market))

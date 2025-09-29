@@ -1,0 +1,33 @@
+# ::tok The bus is leaving this residential section of town and traveling across a viaduct .
+# ::node	b	bus	1-2
+# ::node	l	leave-11	3-4
+# ::node	t	this	4-5
+# ::node	r	residential	5-6
+# ::node	s	section	6-7
+# ::node	t2	town	8-9
+# ::node	a2	and	9-10
+# ::node	t3	travel-01	10-11
+# ::node	a	across	11-12
+# ::node	v	viaduct	13-14
+# ::root	a2	and
+# ::edge	leave-11	ARG0	bus	l	b	
+# ::edge	section	mod	residential	s	r	
+# ::edge	section	mod	this	s	t	
+# ::edge	leave-11	ARG1	section	l	s	
+# ::edge	section	part-of	town	s	t2	
+# ::edge	and	op1	leave-11	a2	l	
+# ::edge	and	op2	travel-01	a2	t3	
+# ::edge	travel-01	ARG0	bus	t3	b	
+# ::edge	travel-01	ARG1	across	t3	a	
+# ::edge	across	op1	viaduct	a	v	
+(a2 / and
+    :op1 (l / leave-11
+        :ARG0 (b / bus)
+        :ARG1 (s / section
+            :mod (r / residential)
+            :mod (t / this)
+            :part-of (t2 / town)))
+    :op2 (t3 / travel-01
+        :ARG0 b
+        :ARG1 (a / across
+            :op1 (v / viaduct))))

@@ -1,0 +1,41 @@
+# ::tok A circular pizza crust with spinach and eggs on top , set on a steel pizza peel .
+# ::node	c	circular	1-2
+# ::node	p2	pizza	2-3
+# ::node	c2	crust	3-4
+# ::node	h	have-03	4-5
+# ::node	s2	spinach	5-6
+# ::node	a	and	6-7
+# ::node	e	egg	7-8
+# ::node	t	top	9-10
+# ::node	a2	and	10-11
+# ::node	s	set-01	11-12
+# ::node	s3	steel	14-15
+# ::node	p	peel	16-17
+# ::root	a2	and
+# ::edge	crust	consist-of	pizza	c2	p2	
+# ::edge	crust	mod	circular	c2	c	
+# ::edge	crust	ARG0-of	have-03	c2	h	
+# ::edge	and	op1	spinach	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	egg	a	e	
+# ::edge	and	location	top	a	t	
+# ::edge	and	op1	crust	a2	c2	
+# ::edge	and	op2	set-01	a2	s	
+# ::edge	set-01	ARG1	crust	s	c2	
+# ::edge	peel	consist-of	steel	p	s3	
+# ::edge	set-01	ARG2	peel	s	p	
+# ::edge	pizza	consist	peel	p2	p	
+(a2 / and
+    :op1 (c2 / crust
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :location (t / top)
+                :op1 (s2 / spinach)
+                :op2 (e / egg)))
+        :consist-of (p2 / pizza
+            :consist (p / peel
+                :consist-of (s3 / steel)))
+        :mod (c / circular))
+    :op2 (s / set-01
+        :ARG1 c2
+        :ARG2 p))

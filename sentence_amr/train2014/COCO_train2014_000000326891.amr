@@ -1,0 +1,28 @@
+# ::tok Fire truck in heavy traffic on a bridge crossing another highway .
+# ::node	f	fire-03	0-1
+# ::node	t2	truck	1-2
+# ::node	h	heavy	3-4
+# ::node	t	traffic	4-5
+# ::node	b	bridge	7-8
+# ::node	c	cross-02	8-9
+# ::node	a	another	9-10
+# ::node	h2	highway	10-11
+# ::node	e	event	11-12
+# ::root	e	event
+# ::edge	truck	ARG0-of	fire-03	t2	f	
+# ::edge	traffic	mod	heavy	t	h	
+# ::edge	truck	location	traffic	t2	t	
+# ::edge	traffic	location	bridge	t	b	
+# ::edge	bridge	ARG0-of	cross-02	b	c	
+# ::edge	highway	mod	another	h2	a	
+# ::edge	cross-02	ARG1	highway	c	h2	
+# ::edge	event	mod	truck	e	t2	
+(e / event
+    :mod (t2 / truck
+        :ARG0-of (f / fire-03)
+        :location (t / traffic
+            :location (b / bridge
+                :ARG0-of (c / cross-02
+                    :ARG1 (h2 / highway
+                        :mod (a / another))))
+            :mod (h / heavy))))

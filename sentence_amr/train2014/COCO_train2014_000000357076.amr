@@ -1,0 +1,34 @@
+# ::tok Man sits atop a Yamaha motorcycle that is parked at the curb next to other cycles .
+# ::node	m	man	0-1
+# ::node	s	sit-01	1-2
+# ::node	a	atop	2-3
+# ::node	n	name	4-5
+# ::node	0	Yamaha	4-5
+# ::node	m2	motorcycle	5-6
+# ::node	p	park-01	8-9
+# ::node	c	curb	11-12
+# ::node	n2	next-to	12-13
+# ::node	o	other	14-15
+# ::node	m3	motorcycle	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	atop	s	a	
+# ::edge	name	op1	Yamaha	n	0	
+# ::edge	motorcycle	name	name	m2	n	
+# ::edge	atop	op1	motorcycle	a	m2	
+# ::edge	motorcycle	ARG1-of	park-01	m2	p	
+# ::edge	park-01	ARG2	curb	p	c	
+# ::edge	park-01	location	next-to	p	n2	
+# ::edge	motorcycle	mod	other	m3	o	
+# ::edge	next-to	op1	motorcycle	n2	m3	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (a / atop
+        :op1 (m2 / motorcycle
+            :name (n / name
+                :op1 "Yamaha")
+            :ARG1-of (p / park-01
+                :ARG2 (c / curb)
+                :location (n2 / next-to
+                    :op1 (m3 / motorcycle
+                        :mod (o / other)))))))

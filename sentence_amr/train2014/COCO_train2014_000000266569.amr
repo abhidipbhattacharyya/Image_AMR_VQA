@@ -1,0 +1,42 @@
+# ::tok An three way intersection with a stop sign and a a road sign across the intersection pointing the direction for two highways .
+# ::node	1	3	1-2
+# ::node	w	way	2-3
+# ::node	i	intersect-01	3-4
+# ::node	s3	stop-01	6-7
+# ::node	s	signal-07	7-8
+# ::node	a2	and	8-9
+# ::node	r	road	11-12
+# ::node	s2	signal-07	12-13
+# ::node	a	across	13-14
+# ::node	p	point-01	16-17
+# ::node	d	direction	18-19
+# ::node	0	2	20-21
+# ::node	h	highway	21-22
+# ::root	i	intersect-01
+# ::edge	way	quant	3	w	1	
+# ::edge	intersect-01	mod	way	i	w	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	and	op1	signal-07	a2	s	
+# ::edge	intersect-01	ARG1	and	i	a2	
+# ::edge	signal-07	ARG1	road	s2	r	
+# ::edge	and	op2	signal-07	a2	s2	
+# ::edge	signal-07	location	across	s2	a	
+# ::edge	across	op1	intersect-01	a	i	
+# ::edge	and	ARG0-of	point-01	a2	p	
+# ::edge	point-01	ARG1	direction	p	d	
+# ::edge	highway	quant	2	h	0	
+# ::edge	direction	mod	highway	d	h	
+(i / intersect-01
+    :ARG1 (a2 / and
+        :ARG0-of (p / point-01
+            :ARG1 (d / direction
+                :mod (h / highway
+                    :quant 2)))
+        :op1 (s / signal-07
+            :ARG1 (s3 / stop-01))
+        :op2 (s2 / signal-07
+            :ARG1 (r / road)
+            :location (a / across
+                :op1 i)))
+    :mod (w / way
+        :quant 3))

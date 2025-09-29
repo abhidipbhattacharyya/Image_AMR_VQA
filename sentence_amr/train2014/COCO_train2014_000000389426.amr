@@ -1,0 +1,32 @@
+# ::tok A desk with a chair pulled away from it and two suit cases stowed under it .
+# ::node	d	desk	1-2
+# ::node	c2	chair	4-5
+# ::node	p	pull-01	5-6
+# ::node	a	away	6-7
+# ::node	0	2	10-11
+# ::node	s2	suit	11-12
+# ::node	c	case	12-13
+# ::node	s	stash-01	13-14
+# ::node	u	under	14-15
+# ::root	d	desk
+# ::edge	pull-01	ARG1	chair	p	c2	
+# ::edge	desk	part	pull-01	d	p	
+# ::edge	pull-01	ARG2	away	p	a	
+# ::edge	away	op1	desk	a	d	
+# ::edge	case	mod	suit	c	s2	
+# ::edge	case	quant	2	c	0	
+# ::edge	stash-01	ARG1	case	s	c	
+# ::edge	desk	ARG0-of	stash-01	d	s	
+# ::edge	stash-01	ARG2	under	s	u	
+# ::edge	under	op1	desk	u	d	
+(d / desk
+    :ARG0-of (s / stash-01
+        :ARG1 (c / case
+            :quant 2
+            :mod (s2 / suit))
+        :ARG2 (u / under
+            :op1 d))
+    :part (p / pull-01
+        :ARG1 (c2 / chair)
+        :ARG2 (a / away
+            :op1 d)))

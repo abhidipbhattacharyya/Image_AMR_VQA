@@ -1,0 +1,31 @@
+# ::tok A residential building sits behind electric cables , a streetlight , and a traffic light .
+# ::node	r	reside-01	1-2
+# ::node	b2	building	2-3
+# ::node	s	sit-01	3-4
+# ::node	b	behind	4-5
+# ::node	e	electric	5-6
+# ::node	w	wire	6-7
+# ::node	s2	streetlight	9-10
+# ::node	a	and	11-12
+# ::node	t	traffic	13-14
+# ::node	l	light	14-15
+# ::root	s	sit-01
+# ::edge	building	ARG1-of	reside-01	b2	r	
+# ::edge	sit-01	ARG1	building	s	b2	
+# ::edge	sit-01	ARG2	behind	s	b	
+# ::edge	wire	mod	electric	w	e	
+# ::edge	and	op2	streetlight	a	s2	
+# ::edge	and	op1	wire	a	w	
+# ::edge	behind	op1	and	b	a	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op3	light	a	l	
+(s / sit-01
+    :ARG1 (b2 / building
+        :ARG1-of (r / reside-01))
+    :ARG2 (b / behind
+        :op1 (a / and
+            :op1 (w / wire
+                :mod (e / electric))
+            :op2 (s2 / streetlight)
+            :op3 (l / light
+                :mod (t / traffic)))))

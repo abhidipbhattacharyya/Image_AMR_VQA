@@ -1,0 +1,45 @@
+# ::tok A girl sits at a dining table set for three with food on the plates and cups and a candle on the table .
+# ::node	g	girl	1-2
+# ::node	s2	sit-01	2-3
+# ::node	d	dine-01	5-6
+# ::node	t	table	6-7
+# ::node	s	set-08	7-8
+# ::node	p	person	9-10
+# ::node	0	3	9-10
+# ::node	h	have-03	10-11
+# ::node	f	food	11-12
+# ::node	p2	plate	14-15
+# ::node	a	and	15-16
+# ::node	c2	cup	16-17
+# ::node	a2	and	17-18
+# ::node	c	candle	19-20
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	girl	s2	g	
+# ::edge	table	mod	dine-01	t	d	
+# ::edge	sit-01	ARG2	table	s2	t	
+# ::edge	table	ARG1-of	set-08	t	s	
+# ::edge	set-08	ARG2	person	s	p	
+# ::edge	person	quant	3	p	0	
+# ::edge	girl	ARG0-of	have-03	g	h	
+# ::edge	and	op1	food	a	f	
+# ::edge	and	op2	cup	a	c2	
+# ::edge	and	op1	and	a2	a	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	candle	a2	c	
+# ::edge	candle	location	table	c	t	
+# ::edge	sit-01	rel	plate	s2	p2	
+(s2 / sit-01
+    :ARG1 (g / girl
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (a / and
+                    :op1 (f / food)
+                    :op2 (c2 / cup))
+                :op2 (c / candle
+                    :location (t / table
+                        :ARG1-of (s / set-08
+                            :ARG2 (p / person
+                                :quant 3))
+                        :mod (d / dine-01))))))
+    :ARG2 t
+    :rel (p2 / plate))

@@ -1,0 +1,35 @@
+# ::tok Snowboarder in mid air after going off of tall jump on snowy mountain .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	m	middle	2-3
+# ::node	a2	air	3-4
+# ::node	a	after	4-5
+# ::node	g	go-02	5-6
+# ::node	t	tall	8-9
+# ::node	j	jump-03	9-10
+# ::node	s2	snowy-02	11-12
+# ::node	m2	mountain	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	air	mod	middle	a2	m	
+# ::edge	person	location	air	p	a2	
+# ::edge	person	time	after	p	a	
+# ::edge	after	op1	go-02	a	g	
+# ::edge	go-02	ARG0	person	g	p	
+# ::edge	jump-03	mod	tall	j	t	
+# ::edge	go-02	ARG4	jump-03	g	j	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	mountain	ARG2-of	snowy-02	m2	s2	
+# ::edge	go-02	location	mountain	g	m2	
+(p / person
+    :ARG0-of (s / ski-01)
+    :location (a2 / air
+        :mod (m / middle))
+    :time (a / after
+        :op1 (g / go-02
+            :ARG0 p
+            :ARG4 (j / jump-03
+                :ARG0 p
+                :mod (t / tall))
+            :location (m2 / mountain
+                :ARG2-of (s2 / snowy-02)))))

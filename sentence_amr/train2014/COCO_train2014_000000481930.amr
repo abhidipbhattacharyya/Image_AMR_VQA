@@ -1,0 +1,36 @@
+# ::tok A two level bus driving down the street with two people on bicycles riding on the side of the bus .
+# ::node	0	2	1-2
+# ::node	l	level	2-3
+# ::node	b2	bus	3-4
+# ::node	d2	drive-01	4-5
+# ::node	d	down	5-6
+# ::node	s2	street	7-8
+# ::node	1	2	9-10
+# ::node	p	person	10-11
+# ::node	b	bicycle	12-13
+# ::node	r	ride-01	13-14
+# ::node	s	side	16-17
+# ::root	d2	drive-01
+# ::edge	level	quant	2	l	0	
+# ::edge	bus	mod	level	b2	l	
+# ::edge	drive-01	ARG0	bus	d2	b2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	op1	street	d2	s2	
+# ::edge	person	quant	2	p	1	
+# ::edge	person	mod	bicycle	p	b	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	drive-01	accompanier	ride-01	d2	r	
+# ::edge	ride-01	ARG1	side	r	s	
+# ::edge	bus	part	side	b2	s	
+(d2 / drive-01
+    :ARG0 (b2 / bus
+        :mod (l / level
+            :quant 2)
+        :part (s / side))
+    :accompanier (r / ride-01
+        :ARG0 (p / person
+            :quant 2
+            :mod (b / bicycle))
+        :ARG1 s)
+    :direction (d / down)
+    :op1 (s2 / street))

@@ -1,0 +1,39 @@
+# ::tok A vase filled with pens with fake sunflowers attached on a desk that says " Visitors must sign in " .
+# ::node	v	vase	1-2
+# ::node	f2	fill-01	2-3
+# ::node	s3	station	4-5
+# ::node	f	fake-02	6-7
+# ::node	s4	sunflower	7-8
+# ::node	a	attach-01	8-9
+# ::node	d	desk	11-12
+# ::node	s	say-01	13-14
+# ::node	p	person	15-16
+# ::node	v2	visit-01	15-16
+# ::node	o	obligate-01	16-17
+# ::node	s2	sign-01	17-18
+# ::root	v	vase
+# ::edge	vase	ARG1-of	fill-01	v	f2	
+# ::edge	fill-01	ARG2	station	f2	s3	
+# ::edge	sunflower	ARG1-of	fake-02	s4	f	
+# ::edge	station	consist-of	sunflower	s3	s4	
+# ::edge	vase	ARG1-of	attach-01	v	a	
+# ::edge	attach-01	ARG2	desk	a	d	
+# ::edge	desk	ARG0-of	say-01	d	s	
+# ::edge	person	ARG0-of	visit-01	p	v2	
+# ::edge	obligate-01	ARG1	person	o	p	
+# ::edge	say-01	ARG1	obligate-01	s	o	
+# ::edge	obligate-01	ARG2	sign-01	o	s2	
+# ::edge	sign-01	ARG0	person	s2	p	
+(v / vase
+    :ARG1-of (f2 / fill-01
+        :ARG2 (s3 / station
+            :consist-of (s4 / sunflower
+                :ARG1-of (f / fake-02))))
+    :ARG1-of (a / attach-01
+        :ARG2 (d / desk
+            :ARG0-of (s / say-01
+                :ARG1 (o / obligate-01
+                    :ARG1 (p / person
+                        :ARG0-of (v2 / visit-01))
+                    :ARG2 (s2 / sign-01
+                        :ARG0 p))))))

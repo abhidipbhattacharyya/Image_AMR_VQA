@@ -1,0 +1,40 @@
+# ::tok A blue and white bus that says " Subway Shuttle " driving through a tight city street .
+# ::node	b	blue	1-2
+# ::node	a	and	2-3
+# ::node	w	white-03	3-4
+# ::node	b2	bus	4-5
+# ::node	s	say-01	6-7
+# ::node	n	name	8-9
+# ::node	1	Subway	8-9
+# ::node	s2	spaceship	9-10
+# ::node	0	Shuttle	9-10
+# ::node	d	drive-01	11-12
+# ::node	t	tight-05	14-15
+# ::node	c	city	15-16
+# ::node	s3	street	16-17
+# ::root	b2	bus
+# ::edge	and	op1	blue	a	b	
+# ::edge	and	op2	white-03	a	w	
+# ::edge	bus	mod	and	b2	a	
+# ::edge	bus	ARG0-of	say-01	b2	s	
+# ::edge	name	op1	Subway	n	1	
+# ::edge	spaceship	name	name	s2	n	
+# ::edge	say-01	ARG1	spaceship	s	s2	
+# ::edge	name	op2	Shuttle	n	0	
+# ::edge	bus	ARG0-of	drive-01	b2	d	
+# ::edge	street	mod	city	s3	c	
+# ::edge	street	ARG1-of	tight-05	s3	t	
+# ::edge	drive-01	path	street	d	s3	
+(b2 / bus
+    :ARG0-of (s / say-01
+        :ARG1 (s2 / spaceship
+            :name (n / name
+                :op1 "Subway"
+                :op2 "Shuttle")))
+    :ARG0-of (d / drive-01
+        :path (s3 / street
+            :ARG1-of (t / tight-05)
+            :mod (c / city)))
+    :mod (a / and
+        :op1 (b / blue)
+        :op2 (w / white-03)))

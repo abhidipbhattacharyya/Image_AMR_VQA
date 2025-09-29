@@ -1,0 +1,20 @@
+# ::tok There is a plane getting ready for boarding or exiting .
+# ::node	p	plane	3-4
+# ::node	r	ready-01	5-6
+# ::node	b	board-01	7-8
+# ::node	o	or	8-9
+# ::node	e	exit-01	9-10
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	plane	r	p	
+# ::edge	board-01	ARG1	plane	b	p	
+# ::edge	or	op1	board-01	o	b	
+# ::edge	ready-01	ARG2	or	r	o	
+# ::edge	or	op2	exit-01	o	e	
+# ::edge	exit-01	ARG1	plane	e	p	
+(r / ready-01
+    :ARG1 (p / plane)
+    :ARG2 (o / or
+        :op1 (b / board-01
+            :ARG1 p)
+        :op2 (e / exit-01
+            :ARG1 p)))

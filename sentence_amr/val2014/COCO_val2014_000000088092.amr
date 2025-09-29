@@ -1,0 +1,38 @@
+# ::tok A male standing up with a Wii remote control strapped on his hand .
+# ::node	m	male	1-2
+# ::node	s	stand-01	2-3
+# ::node	u	up	3-4
+# ::node	p	product	6-7
+# ::node	n	name	6-7
+# ::node	0	Wii	6-7
+# ::node	r	remote	7-8
+# ::node	c	control	8-9
+# ::node	s2	strap-01	9-10
+# ::node	h2	have-03	9-10
+# ::node	h	hand	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	male	s	m	
+# ::edge	stand-01	ARG2	up	s	u	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	control	mod	remote	c	r	
+# ::edge	control	mod	product	c	p	
+# ::edge	strap-01	ARG1	control	s2	c	
+# ::edge	have-03	ARG1	control	h2	c	
+# ::edge	male	ARG0-of	have-03	m	h2	
+# ::edge	strap-01	ARG2	hand	s2	h	
+# ::edge	male	part	hand	m	h	
+# ::edge	stand-01	rel	strap-01	s	s2	
+(s / stand-01
+    :ARG1 (m / male
+        :ARG0-of (h2 / have-03
+            :ARG1 (c / control
+                :mod (r / remote)
+                :mod (p / product
+                    :name (n / name
+                        :op1 "Wii"))))
+        :part (h / hand))
+    :ARG2 (u / up)
+    :rel (s2 / strap-01
+        :ARG1 c
+        :ARG2 h))

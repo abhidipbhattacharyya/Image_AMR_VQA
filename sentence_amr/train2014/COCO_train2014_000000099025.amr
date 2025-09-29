@@ -1,0 +1,25 @@
+# ::tok Bus like vehicle on roadway in rural area on cloudy day .
+# ::node	b	bus	0-1
+# ::node	r	resemble-01	1-2
+# ::node	v	vehicle	2-3
+# ::node	r2	roadway	4-5
+# ::node	r3	rural	6-7
+# ::node	a	area	7-8
+# ::node	c	cloudy-02	9-10
+# ::node	d	day	10-11
+# ::root	r	resemble-01
+# ::edge	resemble-01	ARG1	bus	r	b	
+# ::edge	resemble-01	ARG2	vehicle	r	v	
+# ::edge	vehicle	location	roadway	v	r2	
+# ::edge	area	mod	rural	a	r3	
+# ::edge	roadway	location	area	r2	a	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	resemble-01	time	day	r	d	
+(r / resemble-01
+    :ARG1 (b / bus)
+    :ARG2 (v / vehicle
+        :location (r2 / roadway
+            :location (a / area
+                :mod (r3 / rural))))
+    :time (d / day
+        :ARG1-of (c / cloudy-02)))

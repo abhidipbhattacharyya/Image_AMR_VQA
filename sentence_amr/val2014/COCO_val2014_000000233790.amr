@@ -1,0 +1,33 @@
+# ::tok Just in case the crust is tough , two knives are better than one .
+# ::node	j	just	0-1
+# ::node	c	crust	4-5
+# ::node	t	tough-04	6-7
+# ::node	1	2	8-9
+# ::node	k	knife	9-10
+# ::node	k2	knife	9-10
+# ::node	g	good-02	11-12
+# ::node	h	have-degree-91	11-12
+# ::node	m	more	11-12
+# ::node	0	1	13-14
+# ::root	g	good-02
+# ::edge	tough-04	ARG1	crust	t	c	
+# ::edge	tough-04	mod	just	t	j	
+# ::edge	knife	quant	2	k	1	
+# ::edge	good-02	ARG1	knife	g	k	
+# ::edge	good-02	condition	tough-04	g	t	
+# ::edge	good-02	ARG2-of	have-degree-91	g	h	
+# ::edge	have-degree-91	ARG4	knife	h	k2	
+# ::edge	have-degree-91	ARG1	knife	h	k	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	knife	quant	1	k2	0	
+(g / good-02
+    :ARG1 (k / knife
+        :quant 2)
+    :ARG2-of (h / have-degree-91
+        :ARG1 k
+        :ARG3 (m / more)
+        :ARG4 (k2 / knife
+            :quant 1))
+    :condition (t / tough-04
+        :ARG1 (c / crust)
+        :mod (j / just)))

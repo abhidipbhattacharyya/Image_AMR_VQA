@@ -1,0 +1,47 @@
+# ::tok One cooking kettle with legs on a pedestal next to another kettle with legs that is sitting on the floor .
+# ::node	o	one	0-1
+# ::node	c2	cook-01	1-2
+# ::node	k	kettle	2-3
+# ::node	p	pedestal	7-8
+# ::node	n	next-to	8-9
+# ::node	a	another	10-11
+# ::node	k2	kettle	11-12
+# ::node	h	have-03	12-13
+# ::node	h2	have-03	12-13
+# ::node	l	leg	13-14
+# ::node	l2	leg	13-14
+# ::node	s	sit-01	16-17
+# ::node	f	floor	19-20
+# ::node	c	contrast-01	20-21
+# ::root	c	contrast-01
+# ::edge	kettle	ARG0-of	cook-01	k	c2	
+# ::edge	kettle	mod	one	k	o	
+# ::edge	kettle	location	pedestal	k	p	
+# ::edge	kettle	location	next-to	k	n	
+# ::edge	kettle	mod	another	k2	a	
+# ::edge	next-to	op1	kettle	n	k2	
+# ::edge	kettle	ARG0-of	have-03	k2	h	
+# ::edge	have-03	ARG1	cook-01	h	c2	
+# ::edge	kettle	ARG0-of	have-03	k2	h2	
+# ::edge	have-03	ARG1	leg	h	l	
+# ::edge	kettle	part	leg	k	l	
+# ::edge	have-03	ARG1	leg	h2	l2	
+# ::edge	kettle	ARG1-of	sit-01	k2	s	
+# ::edge	sit-01	ARG2	floor	s	f	
+# ::edge	contrast-01	ARG2	kettle	c	k	
+(c / contrast-01
+    :ARG2 (k / kettle
+        :ARG0-of (c2 / cook-01)
+        :location (p / pedestal)
+        :location (n / next-to
+            :op1 (k2 / kettle
+                :ARG0-of (h / have-03
+                    :ARG1 c2
+                    :ARG1 (l / leg))
+                :ARG0-of (h2 / have-03
+                    :ARG1 (l2 / leg))
+                :ARG1-of (s / sit-01
+                    :ARG2 (f / floor))
+                :mod (a / another)))
+        :mod (o / one)
+        :part l))

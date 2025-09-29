@@ -1,0 +1,37 @@
+# ::tok Workers making smoothies to serve to customers at a smoothie shop .
+# ::node	p	person	0-1
+# ::node	w	work-01	0-1
+# ::node	m	make-01	1-2
+# ::node	s3	smooth-04	2-3
+# ::node	t	thing	3-4
+# ::node	s	serve-02	4-5
+# ::node	p2	person	6-7
+# ::node	h	have-rel-role-91	6-7
+# ::node	c	customer	6-7
+# ::node	s2	shop	10-11
+# ::root	m	make-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	thing	ARG1-of	smooth-04	t	s3	
+# ::edge	make-01	ARG1	thing	m	t	
+# ::edge	serve-02	ARG1	thing	s	t	
+# ::edge	make-01	purpose	serve-02	m	s	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG2	person	s	p2	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h	
+# ::edge	have-rel-role-91	ARG1	person	h	p	
+# ::edge	have-rel-role-91	ARG2	customer	h	c	
+# ::edge	make-01	location	shop	m	s2	
+(m / make-01
+    :purpose (s / serve-02
+        :ARG0 (p / person
+            :ARG0-of (w / work-01))
+        :ARG1 (t / thing
+            :ARG1-of (s3 / smooth-04))
+        :ARG2 (p2 / person
+            :ARG0-of (h / have-rel-role-91
+                :ARG1 p
+                :ARG2 (c / customer))))
+    :ARG0 p
+    :ARG1 t
+    :location (s2 / shop))

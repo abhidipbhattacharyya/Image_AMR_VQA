@@ -1,0 +1,37 @@
+# ::tok A timer clock on a paint peeling wall above tiled area , beside a window with bars .
+# ::node	t2	time-01	1-2
+# ::node	c	clock	2-3
+# ::node	p	paint	5-6
+# ::node	p2	peep	6-7
+# ::node	w	wall	7-8
+# ::node	a	above	8-9
+# ::node	t	tile-01	9-10
+# ::node	a2	area	10-11
+# ::node	b2	beside	12-13
+# ::node	w2	window	14-15
+# ::node	h	have-03	15-16
+# ::node	b	bar	16-17
+# ::root	c	clock
+# ::edge	clock	purpose	time-01	c	t2	
+# ::edge	peep	ARG1	paint	p2	p	
+# ::edge	wall	mod	peep	w	p2	
+# ::edge	clock	location	wall	c	w	
+# ::edge	wall	location	above	w	a	
+# ::edge	area	ARG1-of	tile-01	a2	t	
+# ::edge	above	op1	area	a	a2	
+# ::edge	wall	location	beside	w	b2	
+# ::edge	beside	op1	window	b2	w2	
+# ::edge	window	ARG0-of	have-03	w2	h	
+# ::edge	have-03	ARG1	bar	h	b	
+(c / clock
+    :purpose (t2 / time-01)
+    :location (w / wall
+        :location (a / above
+            :op1 (a2 / area
+                :ARG1-of (t / tile-01)))
+        :location (b2 / beside
+            :op1 (w2 / window
+                :ARG0-of (h / have-03
+                    :ARG1 (b / bar))))
+        :mod (p2 / peep
+            :ARG1 (p / paint))))

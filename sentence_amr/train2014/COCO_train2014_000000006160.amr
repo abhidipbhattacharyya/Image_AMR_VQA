@@ -1,0 +1,25 @@
+# ::tok Contemporary analog clock mounted to wall in sterile white environment .
+# ::node	m	modern-02	0-1
+# ::node	a	analog	1-2
+# ::node	c	clock	2-3
+# ::node	m2	mount-03	3-4
+# ::node	w	wall	5-6
+# ::node	s	sterile-02	7-8
+# ::node	w2	white-03	8-9
+# ::node	e	environment	9-10
+# ::root	c	clock
+# ::edge	clock	mod	analog	c	a	
+# ::edge	clock	ARG1-of	modern-02	c	m	
+# ::edge	clock	ARG1-of	mount-03	c	m2	
+# ::edge	mount-03	location	wall	m2	w	
+# ::edge	environment	ARG1-of	white-03	e	w2	
+# ::edge	environment	ARG1-of	sterile-02	e	s	
+# ::edge	mount-03	location	environment	m2	e	
+(c / clock
+    :ARG1-of (m / modern-02)
+    :ARG1-of (m2 / mount-03
+        :location (w / wall)
+        :location (e / environment
+            :ARG1-of (w2 / white-03)
+            :ARG1-of (s / sterile-02)))
+    :mod (a / analog))

@@ -1,0 +1,23 @@
+# ::tok A bear is approaching a fence , possibly looking for an escape .
+# ::node	b	bear	1-2
+# ::node	a	approach-01	3-4
+# ::node	f	fence	5-6
+# ::node	p	possible-01	7-8
+# ::node	l	look-01	8-9
+# ::node	e	escape-01	11-12
+# ::root	a	approach-01
+# ::edge	approach-01	ARG1	bear	a	b	
+# ::edge	approach-01	ARG2	fence	a	f	
+# ::edge	look-01	ARG1-of	possible-01	l	p	
+# ::edge	bear	purpose	look-01	b	l	
+# ::edge	look-01	ARG0	bear	l	b	
+# ::edge	look-01	ARG1	escape-01	l	e	
+# ::edge	escape-01	ARG0	bear	e	b	
+(a / approach-01
+    :ARG1 (b / bear
+        :purpose (l / look-01
+            :ARG0 b
+            :ARG1 (e / escape-01
+                :ARG0 b)
+            :ARG1-of (p / possible-01)))
+    :ARG2 (f / fence))

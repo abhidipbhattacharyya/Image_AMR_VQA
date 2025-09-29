@@ -1,0 +1,45 @@
+# ::tok Oriental food consisting of a sushi box , two soups , and a fish meal .
+# ::node	e	ethnic-group	0-1
+# ::node	n	name	0-1
+# ::node	2	Oriental	0-1
+# ::node	f2	food	1-2
+# ::node	c	consist-01	2-3
+# ::node	s	sushi	5-6
+# ::node	b	box	6-7
+# ::node	0	2	8-9
+# ::node	p	program	9-10
+# ::node	n2	name	9-10
+# ::node	1	Mac	9-10
+# ::node	a	and	11-12
+# ::node	f	fish	13-14
+# ::node	m	meal	14-15
+# ::root	f2	food
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Oriental	n	2	
+# ::edge	food	mod	ethnic-group	f2	e	
+# ::edge	food	ARG1-of	consist-01	f2	c	
+# ::edge	box	mod	sushi	b	s	
+# ::edge	program	consist-of	box	p	b	
+# ::edge	program	name	name	p	n2	
+# ::edge	name	op1	Mac	n2	1	
+# ::edge	and	op2	program	a	p	
+# ::edge	and	op1	box	a	b	
+# ::edge	consist-01	ARG2	and	c	a	
+# ::edge	meal	mod	fish	m	f	
+# ::edge	and	op3	meal	a	m	
+# ::edge	food	rel	2	f2	0	
+(f2 / food
+    :ARG1-of (c / consist-01
+        :ARG2 (a / and
+            :op1 (b / box
+                :mod (s / sushi))
+            :op2 (p / program
+                :name (n2 / name
+                    :op1 "Mac")
+                :consist-of b)
+            :op3 (m / meal
+                :mod (f / fish))))
+    :mod (e / ethnic-group
+        :name (n / name
+            :op1 "Oriental"))
+    :rel 2)

@@ -1,0 +1,35 @@
+# ::tok A restroom with vanity , and stainless steel towel dispenser .
+# ::node	r	restroom	1-2
+# ::node	h	have-03	2-3
+# ::node	v	vanity	3-4
+# ::node	a	and	5-6
+# ::node	a2	and	5-6
+# ::node	s	stainless	6-7
+# ::node	s2	steel	7-8
+# ::node	t2	towel	8-9
+# ::node	t	thing	9-10
+# ::node	w	wipe-01	9-10
+# ::root	a	and
+# ::edge	restroom	ARG0-of	have-03	r	h	
+# ::edge	and	op1	vanity	a	v	
+# ::edge	and	op2	vanity	a2	v	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op1	vanity	a2	v	
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	thing	consist-of	steel	t	s2	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG2-of	wipe-01	t	w	
+# ::edge	wipe-01	ARG1	towel	w	t2	
+# ::edge	and	rel	restroom	a	r	
+(a / and
+    :op1 (v / vanity)
+    :op3 (t / thing
+        :ARG2-of (w / wipe-01
+            :ARG1 (t2 / towel))
+        :consist-of (s2 / steel
+            :mod (s / stainless)))
+    :rel (r / restroom
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 v
+                :op2 v))))

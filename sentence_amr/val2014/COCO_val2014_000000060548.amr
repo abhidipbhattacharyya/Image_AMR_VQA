@@ -1,0 +1,40 @@
+# ::tok Man sitting in an efficiency or dorm room with different color paper birds on the walls .
+# ::node	m	man	0-1
+# ::node	s	sit-01	1-2
+# ::node	e	efficiency	4-5
+# ::node	o	or	5-6
+# ::node	d2	dorm	6-7
+# ::node	r	room	7-8
+# ::node	r2	room	7-8
+# ::node	h	have-03	8-9
+# ::node	d	differ-02	9-10
+# ::node	c	color-01	10-11
+# ::node	p	paper	11-12
+# ::node	b	bird	12-13
+# ::node	w	wall	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	or	s	o	
+# ::edge	or	op1	room	o	r	
+# ::edge	room	mod	efficiency	r	e	
+# ::edge	room	mod	dorm	r2	d2	
+# ::edge	or	op2	room	o	r2	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	color-01	ARG1-of	differ-02	c	d	
+# ::edge	bird	consist-of	paper	b	p	
+# ::edge	bird	ARG1-of	color-01	b	c	
+# ::edge	have-03	ARG1	bird	h	b	
+# ::edge	bird	location	wall	b	w	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (b / bird
+                :ARG1-of (c / color-01
+                    :ARG1-of (d / differ-02))
+                :consist-of (p / paper)
+                :location (w / wall))))
+    :ARG2 (o / or
+        :op1 (r / room
+            :mod (e / efficiency))
+        :op2 (r2 / room
+            :mod (d2 / dorm))))

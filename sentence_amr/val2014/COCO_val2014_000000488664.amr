@@ -1,0 +1,30 @@
+# ::tok The blue train engine emits black smoke as it speeds down the track .
+# ::node	b2	blue	1-2
+# ::node	t2	train	2-3
+# ::node	e2	engine	3-4
+# ::node	e	emit-01	4-5
+# ::node	b	black-04	5-6
+# ::node	s	smoke	6-7
+# ::node	s2	speed-01	9-10
+# ::node	d	down	10-11
+# ::node	t	track	12-13
+# ::root	e	emit-01
+# ::edge	engine	part-of	train	e2	t2	
+# ::edge	engine	mod	blue	e2	b2	
+# ::edge	emit-01	ARG0	engine	e	e2	
+# ::edge	smoke	ARG1-of	black-04	s	b	
+# ::edge	emit-01	ARG1	smoke	e	s	
+# ::edge	emit-01	time	speed-01	e	s2	
+# ::edge	speed-01	ARG0	train	s2	t2	
+# ::edge	speed-01	direction	down	s2	d	
+# ::edge	speed-01	ARG1	track	s2	t	
+(e / emit-01
+    :ARG0 (e2 / engine
+        :mod (b2 / blue)
+        :part-of (t2 / train))
+    :ARG1 (s / smoke
+        :ARG1-of (b / black-04))
+    :time (s2 / speed-01
+        :ARG0 t2
+        :ARG1 (t / track)
+        :direction (d / down)))

@@ -1,0 +1,31 @@
+# ::tok Very large JAL jet taxiing on the runway at airport in urban environment
+# ::node	v	very	0-1
+# ::node	l	large	1-2
+# ::node	n	name	2-3
+# ::node	0	JAL	2-3
+# ::node	j	jet	3-4
+# ::node	t	tax-01	4-5
+# ::node	r	runway	7-8
+# ::node	a	airport	9-10
+# ::node	u	urban	11-12
+# ::node	e	environment	12-13
+# ::root	t	tax-01
+# ::edge	large	degree	very	l	v	
+# ::edge	name	op1	JAL	n	0	
+# ::edge	jet	name	name	j	n	
+# ::edge	jet	mod	large	j	l	
+# ::edge	tax-01	ARG1	jet	t	j	
+# ::edge	tax-01	location	runway	t	r	
+# ::edge	runway	location	airport	r	a	
+# ::edge	environment	mod	urban	e	u	
+# ::edge	airport	location	environment	a	e	
+(t / tax-01
+    :ARG1 (j / jet
+        :name (n / name
+            :op1 "JAL")
+        :mod (l / large
+            :degree (v / very)))
+    :location (r / runway
+        :location (a / airport
+            :location (e / environment
+                :mod (u / urban)))))

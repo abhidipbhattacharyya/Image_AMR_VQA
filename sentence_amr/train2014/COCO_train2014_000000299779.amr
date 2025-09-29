@@ -1,0 +1,61 @@
+# ::tok A table at a restaurant with two pizzas and a group of young girls seated and eating pizza with a Christmas tree behind them .
+# ::node	t	table	1-2
+# ::node	r	restaurant	4-5
+# ::node	h	have-03	5-6
+# ::node	0	2	6-7
+# ::node	m	multi-sentence	7-8
+# ::node	p	pizzeria	7-8
+# ::node	a	and	8-9
+# ::node	g2	group	10-11
+# ::node	y	young	12-13
+# ::node	g	girl	13-14
+# ::node	s	seat-01	14-15
+# ::node	e	eat-01	16-17
+# ::node	f	festival	20-21
+# ::node	n	name	20-21
+# ::node	1	Christmas	20-21
+# ::node	t2	tree	21-22
+# ::node	b	be-located-at-91	22-23
+# ::node	b2	behind	22-23
+# ::root	t	table
+# ::edge	table	location	restaurant	t	r	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	multi-sentence	snt1	table	m	t	
+# ::edge	pizzeria	quant	2	p	0	
+# ::edge	and	op1	pizzeria	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	group	a	g2	
+# ::edge	girl	mod	young	g	y	
+# ::edge	group	consist-of	girl	g2	g	
+# ::edge	group	ARG1-of	seat-01	g2	s	
+# ::edge	group	ARG0-of	eat-01	g2	e	
+# ::edge	eat-01	ARG1	pizzeria	e	p	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	1	
+# ::edge	tree	mod	festival	t2	f	
+# ::edge	be-located-at-91	ARG1	tree	b	t2	
+# ::edge	and	ARG2-of	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	group	b2	g2	
+# ::edge	table	rel	multi-sentence	t	m	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG2-of (b / be-located-at-91
+                :ARG1 (t2 / tree
+                    :mod (f / festival
+                        :name (n / name
+                            :op1 "Christmas")))
+                :ARG2 (b2 / behind
+                    :op1 (g2 / group
+                        :ARG0-of (e / eat-01
+                            :ARG1 (p / pizzeria
+                                :quant 2))
+                        :ARG1-of (s / seat-01)
+                        :consist-of (g / girl
+                            :mod (y / young)))))
+            :op1 p
+            :op2 g2))
+    :location (r / restaurant)
+    :rel (m / multi-sentence
+        :snt1 t))

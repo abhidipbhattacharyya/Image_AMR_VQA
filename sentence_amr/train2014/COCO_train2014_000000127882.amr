@@ -1,0 +1,33 @@
+# ::tok A lunch consisting of two hot dogs with fixings seasoned french fries and soda
+# ::node	l	lunch	1-2
+# ::node	0	2	4-5
+# ::node	h	hot-dog	6-7
+# ::node	f	fix-02	8-9
+# ::node	s	season-01	9-10
+# ::node	f2	french	10-11
+# ::node	f3	fry-01	11-12
+# ::node	a	and	12-13
+# ::node	a2	and	12-13
+# ::node	s2	soda	13-14
+# ::root	l	lunch
+# ::edge	hot-dog	quant	2	h	0	
+# ::edge	fry-01	mod	french	f3	f2	
+# ::edge	fry-01	ARG1-of	season-01	f3	s	
+# ::edge	and	op1	fry-01	a	f3	
+# ::edge	lunch	consist-of	and	l	a	
+# ::edge	and	op1	fry-01	a2	f3	
+# ::edge	fix-02	ARG2	and	f	a2	
+# ::edge	and	op2	soda	a2	s2	
+# ::edge	lunch	rel	hot-dog	l	h	
+# ::edge	lunch	rel	fix-02	l	f	
+(l / lunch
+    :consist-of (a / and
+        :op1 (f3 / fry-01
+            :ARG1-of (s / season-01)
+            :mod (f2 / french)))
+    :rel (h / hot-dog
+        :quant 2)
+    :rel (f / fix-02
+        :ARG2 (a2 / and
+            :op1 f3
+            :op2 (s2 / soda))))

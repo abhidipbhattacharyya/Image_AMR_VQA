@@ -1,0 +1,45 @@
+# ::tok A grass yard area that has several open umbrellas laid on the grass and various people around the roadway area .
+# ::node	y	yard	2-3
+# ::node	a2	area	3-4
+# ::node	h	have-03	5-6
+# ::node	s	several	6-7
+# ::node	o	open-01	7-8
+# ::node	u	umbrella	8-9
+# ::node	l	lay-01	9-10
+# ::node	g	grass	12-13
+# ::node	a	and	13-14
+# ::node	v	various	14-15
+# ::node	p	person	15-16
+# ::node	a4	around	16-17
+# ::node	r	roadway	18-19
+# ::node	a3	area	19-20
+# ::root	a2	area
+# ::edge	area	mod	yard	a2	y	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	umbrella	ARG1-of	open-01	u	o	
+# ::edge	umbrella	quant	several	u	s	
+# ::edge	lay-01	ARG1	umbrella	l	u	
+# ::edge	lay-01	ARG2	grass	l	g	
+# ::edge	area	mod	grass	a2	g	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	person	mod	various	p	v	
+# ::edge	around	location-of	person	a4	p	
+# ::edge	and	op2	around	a	a4	
+# ::edge	area	mod	roadway	a3	r	
+# ::edge	around	op1	area	a4	a3	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (l / lay-01
+                :ARG1 (u / umbrella
+                    :quant (s / several)
+                    :ARG1-of (o / open-01))
+                :ARG2 (g / grass))
+            :op2 (a4 / around
+                :location-of (p / person
+                    :mod (v / various))
+                :op1 (a3 / area
+                    :mod (r / roadway)))))
+    :mod (y / yard)
+    :mod g)

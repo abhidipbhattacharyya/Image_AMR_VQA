@@ -1,0 +1,55 @@
+# ::tok a living room with a couch , coffee table and two chairs near sliding glass doors with vertical blinds and a dog on the back porch
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	c3	couch	5-6
+# ::node	c2	coffee	7-8
+# ::node	t	table	8-9
+# ::node	a	and	9-10
+# ::node	0	2	10-11
+# ::node	c	chair	11-12
+# ::node	n	near-02	12-13
+# ::node	s	slide-01	13-14
+# ::node	g	glass	14-15
+# ::node	d2	door	15-16
+# ::node	v	vertical	17-18
+# ::node	b2	blind	18-19
+# ::node	d	dog	21-22
+# ::node	b	back	24-25
+# ::node	p	porch	25-26
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	table	mod	coffee	t	c2	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	op1	couch	a	c3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	chair	quant	2	c	0	
+# ::edge	and	op3	chair	a	c	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	glass	ARG1-of	slide-01	g	s	
+# ::edge	door	mod	glass	d2	g	
+# ::edge	near-02	ARG2	door	n	d2	
+# ::edge	blind	mod	vertical	b2	v	
+# ::edge	door	part	blind	d2	b2	
+# ::edge	and	op4	dog	a	d	
+# ::edge	porch	mod	back	p	b	
+# ::edge	dog	location	porch	d	p	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG1-of (n / near-02
+                :ARG2 (d2 / door
+                    :mod (g / glass
+                        :ARG1-of (s / slide-01))
+                    :part (b2 / blind
+                        :mod (v / vertical))))
+            :op1 (c3 / couch)
+            :op2 (t / table
+                :mod (c2 / coffee))
+            :op3 (c / chair
+                :quant 2)
+            :op4 (d / dog
+                :location (p / porch
+                    :mod (b / back)))))
+    :mod (l / living))

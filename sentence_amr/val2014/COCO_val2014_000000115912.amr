@@ -1,0 +1,42 @@
+# ::tok A man being pulled along in the ocean on a small boat with a German shepherd running beside him .
+# ::node	m	man	1-2
+# ::node	p2	pull-01	3-4
+# ::node	a	along	4-5
+# ::node	o	ocean	7-8
+# ::node	s2	small	10-11
+# ::node	b2	boat	11-12
+# ::node	c	country	14-15
+# ::node	n	name	14-15
+# ::node	0	Germany	14-15
+# ::node	p	person	15-16
+# ::node	s	shepherd-01	15-16
+# ::node	r	run-02	16-17
+# ::node	b	beside	17-18
+# ::root	p2	pull-01
+# ::edge	pull-01	ARG1	man	p2	m	
+# ::edge	pull-01	path	along	p2	a	
+# ::edge	along	op1	ocean	a	o	
+# ::edge	boat	mod	small	b2	s2	
+# ::edge	pull-01	instrument	boat	p2	b2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Germany	n	0	
+# ::edge	person	mod	country	p	c	
+# ::edge	person	ARG0-of	shepherd-01	p	s	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	pull-01	accompanier	run-02	p2	r	
+# ::edge	run-02	location	beside	r	b	
+# ::edge	beside	op1	man	b	m	
+(p2 / pull-01
+    :ARG1 (m / man)
+    :accompanier (r / run-02
+        :ARG0 (p / person
+            :ARG0-of (s / shepherd-01)
+            :mod (c / country
+                :name (n / name
+                    :op1 "Germany")))
+        :location (b / beside
+            :op1 m))
+    :instrument (b2 / boat
+        :mod (s2 / small))
+    :path (a / along
+        :op1 (o / ocean)))

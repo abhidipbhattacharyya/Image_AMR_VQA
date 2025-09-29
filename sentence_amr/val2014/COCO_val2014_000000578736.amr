@@ -1,0 +1,33 @@
+# ::tok A woman in a two piece bathing suit carrying a surf board over her head .
+# ::node	w	woman	1-2
+# ::node	0	2	4-5
+# ::node	p	piece	5-6
+# ::node	b	bathing	6-7
+# ::node	s	suit	7-8
+# ::node	c	carry-01	8-9
+# ::node	s2	surf-01	10-11
+# ::node	b2	board	11-12
+# ::node	o	over	12-13
+# ::node	h	head	14-15
+# ::root	w	woman
+# ::edge	piece	quant	2	p	0	
+# ::edge	suit	mod	bathing	s	b	
+# ::edge	suit	consist-of	piece	s	p	
+# ::edge	carry-01	ARG1	suit	c	s	
+# ::edge	woman	ARG0-of	carry-01	w	c	
+# ::edge	board	mod	surf-01	b2	s2	
+# ::edge	carry-01	ARG1	board	c	b2	
+# ::edge	carry-01	location	over	c	o	
+# ::edge	over	op1	head	o	h	
+# ::edge	woman	part	head	w	h	
+(w / woman
+    :ARG0-of (c / carry-01
+        :ARG1 (s / suit
+            :consist-of (p / piece
+                :quant 2)
+            :mod (b / bathing))
+        :ARG1 (b2 / board
+            :mod (s2 / surf-01))
+        :location (o / over
+            :op1 (h / head)))
+    :part h)

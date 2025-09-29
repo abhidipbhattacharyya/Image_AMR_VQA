@@ -1,0 +1,30 @@
+# ::tok Crowd of people with backpacks line up on the runway to enter the plane
+# ::node	c2	crowd	0-1
+# ::node	p	person	2-3
+# ::node	b2	book	4-5
+# ::node	c	carry-01	4-5
+# ::node	b	back	4-5
+# ::node	l	line-up-02	5-6
+# ::node	r	runway	9-10
+# ::node	e	enter-01	11-12
+# ::node	p2	plane	13-14
+# ::root	l	line-up-02
+# ::edge	crowd	consist-of	person	c2	p	
+# ::edge	crowd	part	book	c2	b2	
+# ::edge	book	ARG0-of	carry-01	b2	c	
+# ::edge	carry-01	ARG1	back	c	b	
+# ::edge	line-up-02	ARG1	crowd	l	c2	
+# ::edge	line-up-02	location	runway	l	r	
+# ::edge	line-up-02	purpose	enter-01	l	e	
+# ::edge	enter-01	ARG0	crowd	e	c2	
+# ::edge	enter-01	ARG1	plane	e	p2	
+(l / line-up-02
+    :purpose (e / enter-01
+        :ARG0 (c2 / crowd
+            :consist-of (p / person)
+            :part (b2 / book
+                :ARG0-of (c / carry-01
+                    :ARG1 (b / back))))
+        :ARG1 (p2 / plane))
+    :ARG1 c2
+    :location (r / runway))

@@ -1,0 +1,21 @@
+# ::tok The player who is up to bat next is getting ready for his turn .
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	b	bat-01	6-7
+# ::node	n	next	7-8
+# ::node	r	ready-01	10-11
+# ::node	t	turn-01	13-14
+# ::root	r	ready-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	ARG0-of	bat-01	p	b	
+# ::edge	bat-01	time	next	b	n	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	turn-01	r	t	
+# ::edge	turn-01	ARG1	person	t	p	
+(r / ready-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01)
+        :ARG0-of (b / bat-01
+            :time (n / next)))
+    :ARG2 (t / turn-01
+        :ARG1 p))

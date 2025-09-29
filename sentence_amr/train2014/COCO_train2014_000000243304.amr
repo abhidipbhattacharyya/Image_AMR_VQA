@@ -1,0 +1,35 @@
+# ::tok A man baking a chicken in the oven checks on whether it is done or not .
+# ::node	m	man	1-2
+# ::node	b	bake-01	2-3
+# ::node	c2	chicken	4-5
+# ::node	o2	oven	7-8
+# ::node	c	check-01	8-9
+# ::node	t	truth-value	10-11
+# ::node	b2	be-done-08	13-14
+# ::node	b3	be-done-08	13-14
+# ::node	o	or	14-15
+# ::node	0	-	15-16
+# ::root	c	check-01
+# ::edge	man	ARG0-of	bake-01	m	b	
+# ::edge	bake-01	ARG1	chicken	b	c2	
+# ::edge	bake-01	location	oven	b	o2	
+# ::edge	check-01	ARG0	man	c	m	
+# ::edge	check-01	ARG1	truth-value	c	t	
+# ::edge	be-done-08	ARG1	chicken	b2	c2	
+# ::edge	be-done-08	ARG1	chicken	b3	c2	
+# ::edge	or	op2	be-done-08	o	b3	
+# ::edge	or	op1	be-done-08	o	b2	
+# ::edge	truth-value	polarity-of	or	t	o	
+# ::edge	be-done-08	polarity	-	b3	0	
+(c / check-01
+    :ARG0 (m / man
+        :ARG0-of (b / bake-01
+            :ARG1 (c2 / chicken)
+            :location (o2 / oven)))
+    :ARG1 (t / truth-value
+        :polarity-of (o / or
+            :op1 (b2 / be-done-08
+                :ARG1 c2)
+            :op2 (b3 / be-done-08
+                :ARG1 c2
+                :polarity -))))

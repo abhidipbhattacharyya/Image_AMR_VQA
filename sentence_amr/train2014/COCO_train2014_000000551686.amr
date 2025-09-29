@@ -1,0 +1,27 @@
+# ::tok A baggage carousel full of baggage with people waiting around it at an airport .
+# ::node	b	baggage	1-2
+# ::node	c	carousel	2-3
+# ::node	f	fill-01	3-4
+# ::node	b2	baggage	5-6
+# ::node	p	person	7-8
+# ::node	w	wait-01	8-9
+# ::node	a2	around	9-10
+# ::node	a	airport	13-14
+# ::root	c	carousel
+# ::edge	carousel	mod	baggage	c	b	
+# ::edge	carousel	ARG1-of	fill-01	c	f	
+# ::edge	fill-01	ARG2	baggage	f	b2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	carousel	ARG2-of	wait-01	c	w	
+# ::edge	wait-01	location	around	w	a2	
+# ::edge	around	op1	carousel	a2	c	
+# ::edge	wait-01	location	airport	w	a	
+(c / carousel
+    :ARG1-of (f / fill-01
+        :ARG2 (b2 / baggage))
+    :ARG2-of (w / wait-01
+        :ARG1 (p / person)
+        :location (a2 / around
+            :op1 c)
+        :location (a / airport))
+    :mod (b / baggage))

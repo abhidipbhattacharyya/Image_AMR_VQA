@@ -1,0 +1,40 @@
+# ::tok A dirtbike with the number 22 on the front being driven by a person in a helmet and safety gear on a dirt course .
+# ::node	d2	dirtbike	1-2
+# ::node	n	number	4-5
+# ::node	0	22	5-6
+# ::node	f	front	8-9
+# ::node	d3	drive-01	10-11
+# ::node	p	person	13-14
+# ::node	w	wear-01	14-15
+# ::node	h	helmet	16-17
+# ::node	a	and	17-18
+# ::node	s	safe-01	18-19
+# ::node	g	gear	19-20
+# ::node	d	dirt	22-23
+# ::node	c	course	23-24
+# ::root	d2	dirtbike
+# ::edge	dirtbike	mod	number	d2	n	
+# ::edge	number	value	22	n	0	
+# ::edge	dirtbike	location	front	d2	f	
+# ::edge	dirtbike	ARG1-of	drive-01	d2	d3	
+# ::edge	drive-01	ARG0	person	d3	p	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	and	op1	helmet	a	h	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	gear	purpose	safe-01	g	s	
+# ::edge	and	op2	gear	a	g	
+# ::edge	course	mod	dirt	c	d	
+# ::edge	drive-01	location	course	d3	c	
+(d2 / dirtbike
+    :ARG1-of (d3 / drive-01
+        :ARG0 (p / person
+            :ARG0-of (w / wear-01
+                :ARG1 (a / and
+                    :op1 (h / helmet)
+                    :op2 (g / gear
+                        :purpose (s / safe-01)))))
+        :location (c / course
+            :mod (d / dirt)))
+    :location (f / front)
+    :mod (n / number
+        :value 22))

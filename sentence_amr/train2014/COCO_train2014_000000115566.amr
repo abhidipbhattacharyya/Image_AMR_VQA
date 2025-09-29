@@ -1,0 +1,53 @@
+# ::tok A street sign that says " Little Bastards " on it with a wood fence behind it and green grass and trees around the street next to it .
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	s	say-01	4-5
+# ::node	l	little	6-7
+# ::node	b	bastard	7-8
+# ::node	h	have-03	11-12
+# ::node	w	wood	13-14
+# ::node	f	fence	14-15
+# ::node	b2	behind	15-16
+# ::node	g2	green-02	18-19
+# ::node	g	grass	19-20
+# ::node	a	and	20-21
+# ::node	t	tree	21-22
+# ::node	a2	around	22-23
+# ::node	s4	street	24-25
+# ::node	n	next-to	25-26
+# ::root	s2	sign
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	bastard	mod	little	b	l	
+# ::edge	say-01	ARG1	bastard	s	b	
+# ::edge	sign	ARG0-of	have-03	s2	h	
+# ::edge	fence	consist-of	wood	f	w	
+# ::edge	fence	location	behind	f	b2	
+# ::edge	behind	op1	sign	b2	s2	
+# ::edge	grass	ARG1-of	green-02	g	g2	
+# ::edge	and	op2	grass	a	g	
+# ::edge	and	op1	fence	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	tree	a	t	
+# ::edge	and	location	around	a	a2	
+# ::edge	around	op1	street	a2	s4	
+# ::edge	street	location	next-to	s4	n	
+# ::edge	next-to	op1	sign	n	s2	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (b / bastard
+            :mod (l / little)))
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (a2 / around
+                :op1 (s4 / street
+                    :location (n / next-to
+                        :op1 s2)))
+            :op1 (f / fence
+                :consist-of (w / wood)
+                :location (b2 / behind
+                    :op1 s2))
+            :op2 (g / grass
+                :ARG1-of (g2 / green-02))
+            :op3 (t / tree)))
+    :mod (s3 / street))

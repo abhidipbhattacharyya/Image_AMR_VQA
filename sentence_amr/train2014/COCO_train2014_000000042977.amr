@@ -1,0 +1,33 @@
+# ::tok While the airplane is on the runway , some people are seated in folding chairs in the shadow of its wing .
+# ::node	a	airplane	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	r	runway	6-7
+# ::node	s3	some	8-9
+# ::node	p	person	9-10
+# ::node	s	seat-01	11-12
+# ::node	f	fold-03	13-14
+# ::node	c	chair	14-15
+# ::node	s2	shadow-02	17-18
+# ::node	w	wing	20-21
+# ::root	s	seat-01
+# ::edge	be-located-at-91	ARG1	airplane	b	a	
+# ::edge	be-located-at-91	ARG2	runway	b	r	
+# ::edge	person	quant	some	p	s3	
+# ::edge	seat-01	ARG1	person	s	p	
+# ::edge	seat-01	time	be-located-at-91	s	b	
+# ::edge	chair	ARG1-of	fold-03	c	f	
+# ::edge	seat-01	ARG2	chair	s	c	
+# ::edge	seat-01	ARG1-of	shadow-02	s	s2	
+# ::edge	shadow-02	ARG0	wing	s2	w	
+# ::edge	airplane	part	wing	a	w	
+(s / seat-01
+    :ARG1 (p / person
+        :quant (s3 / some))
+    :ARG1-of (s2 / shadow-02
+        :ARG0 (w / wing))
+    :ARG2 (c / chair
+        :ARG1-of (f / fold-03))
+    :time (b / be-located-at-91
+        :ARG1 (a / airplane
+            :part w)
+        :ARG2 (r / runway)))

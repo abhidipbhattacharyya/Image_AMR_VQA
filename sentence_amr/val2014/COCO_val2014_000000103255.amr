@@ -1,0 +1,36 @@
+# ::tok Commuter train stopped on tracks at red light , green light further up the track .
+# ::node	c	commute-01	0-1
+# ::node	t2	train	1-2
+# ::node	s	stop-01	2-3
+# ::node	t	track	4-5
+# ::node	r	red-02	6-7
+# ::node	l	light	7-8
+# ::node	a	and	8-9
+# ::node	g	green-02	9-10
+# ::node	l2	light	10-11
+# ::node	f	further	11-12
+# ::node	u	up-03	12-13
+# ::root	s	stop-01
+# ::edge	train	ARG0-of	commute-01	t2	c	
+# ::edge	stop-01	ARG1	train	s	t2	
+# ::edge	stop-01	location	track	s	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	and	op1	light	a	l	
+# ::edge	stop-01	location	and	s	a	
+# ::edge	light	ARG1-of	green-02	l2	g	
+# ::edge	and	op2	light	a	l2	
+# ::edge	up-03	extent	further	u	f	
+# ::edge	light	location	up-03	l2	u	
+# ::edge	up-03	ARG1	track	u	t	
+(s / stop-01
+    :ARG1 (t2 / train
+        :ARG0-of (c / commute-01))
+    :location (t / track)
+    :location (a / and
+        :op1 (l / light
+            :ARG1-of (r / red-02))
+        :op2 (l2 / light
+            :ARG1-of (g / green-02)
+            :location (u / up-03
+                :ARG1 t
+                :extent (f / further)))))

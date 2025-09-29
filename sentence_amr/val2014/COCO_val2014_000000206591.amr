@@ -1,0 +1,33 @@
+# ::tok A man dressed in a long sleeve tshirt and tie with a hat to the side .
+# ::node	m	man	1-2
+# ::node	d	dress-01	2-3
+# ::node	l	long-03	5-6
+# ::node	s2	sleeve	6-7
+# ::node	t2	tshirt	7-8
+# ::node	a	and	8-9
+# ::node	t	tie	9-10
+# ::node	h2	have-03	10-11
+# ::node	h	hat	12-13
+# ::node	s	side	15-16
+# ::root	m	man
+# ::edge	man	ARG1-of	dress-01	m	d	
+# ::edge	sleeve	ARG1-of	long-03	s2	l	
+# ::edge	tshirt	mod	sleeve	t2	s2	
+# ::edge	and	op1	tshirt	a	t2	
+# ::edge	dress-01	ARG2	and	d	a	
+# ::edge	and	op2	tie	a	t	
+# ::edge	tie	mod	sleeve	t	s2	
+# ::edge	man	ARG0-of	have-03	m	h2	
+# ::edge	have-03	ARG1	hat	h2	h	
+# ::edge	hat	location	side	h	s	
+(m / man
+    :ARG0-of (h2 / have-03
+        :ARG1 (h / hat
+            :location (s / side)))
+    :ARG1-of (d / dress-01
+        :ARG2 (a / and
+            :op1 (t2 / tshirt
+                :mod (s2 / sleeve
+                    :ARG1-of (l / long-03)))
+            :op2 (t / tie
+                :mod s2))))

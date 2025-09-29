@@ -1,0 +1,27 @@
+# ::tok A large plane sits on a runway that appears to have a roadway underneath it .
+# ::node	l	large	1-2
+# ::node	p	plane	2-3
+# ::node	s	sit-01	3-4
+# ::node	r2	runway	6-7
+# ::node	a	appear-02	8-9
+# ::node	h	have-03	10-11
+# ::node	r	roadway	12-13
+# ::node	u	underneath	13-14
+# ::root	s	sit-01
+# ::edge	plane	mod	large	p	l	
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	runway	s	r2	
+# ::edge	have-03	ARG1-of	appear-02	h	a	
+# ::edge	runway	ARG0-of	have-03	r2	h	
+# ::edge	have-03	ARG1	roadway	h	r	
+# ::edge	roadway	location	underneath	r	u	
+# ::edge	underneath	op1	plane	u	p	
+(s / sit-01
+    :ARG1 (p / plane
+        :mod (l / large))
+    :ARG2 (r2 / runway
+        :ARG0-of (h / have-03
+            :ARG1 (r / roadway
+                :location (u / underneath
+                    :op1 p))
+            :ARG1-of (a / appear-02))))

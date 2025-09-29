@@ -1,0 +1,32 @@
+# ::tok A horse jockey on a horse with two people guiding the horse as they walk beside it .
+# ::node	h	horse	1-2
+# ::node	p	person	2-3
+# ::node	r	ride-01	2-3
+# ::node	h2	horse	5-6
+# ::node	0	2	7-8
+# ::node	p2	person	8-9
+# ::node	g	guide-01	9-10
+# ::node	w	walk-01	14-15
+# ::node	b	beside	15-16
+# ::root	p	person
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	horse	r	h	
+# ::edge	person	location	horse	p	h2	
+# ::edge	person	quant	2	p2	0	
+# ::edge	guide-01	ARG0	person	g	p2	
+# ::edge	horse	ARG1-of	guide-01	h2	g	
+# ::edge	guide-01	time	walk-01	g	w	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	ARG2	beside	w	b	
+# ::edge	beside	op1	horse	b	h2	
+(p / person
+    :ARG0-of (r / ride-01
+        :ARG1 (h / horse))
+    :location (h2 / horse
+        :ARG1-of (g / guide-01
+            :ARG0 (p2 / person
+                :quant 2)
+            :time (w / walk-01
+                :ARG0 p
+                :ARG2 (b / beside
+                    :op1 h2)))))

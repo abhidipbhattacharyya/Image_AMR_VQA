@@ -1,0 +1,22 @@
+# ::tok Large number of sailboats anchored in bay during daytime .
+# ::node	l	large	0-1
+# ::node	n	number	1-2
+# ::node	s	sail-01	3-4
+# ::node	a	anchor-01	4-5
+# ::node	b	bay	6-7
+# ::node	d	date-entity	8-9
+# ::node	d2	daytime	8-9
+# ::root	a	anchor-01
+# ::edge	number	mod	large	n	l	
+# ::edge	sail-01	quant	number	s	n	
+# ::edge	anchor-01	ARG1	sail-01	a	s	
+# ::edge	anchor-01	ARG2	bay	a	b	
+# ::edge	anchor-01	time	date-entity	a	d	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+(a / anchor-01
+    :ARG1 (s / sail-01
+        :quant (n / number
+            :mod (l / large)))
+    :ARG2 (b / bay)
+    :time (d / date-entity
+        :dayperiod (d2 / daytime)))

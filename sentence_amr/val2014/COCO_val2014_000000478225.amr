@@ -1,0 +1,33 @@
+# ::tok Old blue train with other train parts sitting around it on a station .
+# ::node	o	old	0-1
+# ::node	b	blue	1-2
+# ::node	t	train	2-3
+# ::node	o2	other	4-5
+# ::node	t2	train	5-6
+# ::node	p	part	6-7
+# ::node	s	sit-01	7-8
+# ::node	c	cause-01	8-9
+# ::node	a	around	8-9
+# ::node	s2	station	12-13
+# ::root	t	train
+# ::edge	train	mod	blue	t	b	
+# ::edge	train	mod	old	t	o	
+# ::edge	part	part-of	train	p	t2	
+# ::edge	part	mod	other	p	o2	
+# ::edge	sit-01	ARG1	part	s	p	
+# ::edge	cause-01	ARG1	sit-01	c	s	
+# ::edge	train	ARG0-of	cause-01	t	c	
+# ::edge	sit-01	ARG2	around	s	a	
+# ::edge	around	op1	train	a	t	
+# ::edge	sit-01	location	station	s	s2	
+(t / train
+    :ARG0-of (c / cause-01
+        :ARG1 (s / sit-01
+            :ARG1 (p / part
+                :mod (o2 / other)
+                :part-of (t2 / train))
+            :ARG2 (a / around
+                :op1 t)
+            :location (s2 / station)))
+    :mod (b / blue)
+    :mod (o / old))

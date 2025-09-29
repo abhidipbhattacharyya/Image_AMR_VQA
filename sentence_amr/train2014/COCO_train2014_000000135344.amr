@@ -1,0 +1,40 @@
+# ::tok Outside of the baggage claim area of an airport with some passengers waiting and a row of carts stacked with luggage .
+# ::node	o	outside	0-1
+# ::node	b	baggage	3-4
+# ::node	c2	claim-02	4-5
+# ::node	a3	area	5-6
+# ::node	a	airport	8-9
+# ::node	s	some	10-11
+# ::node	p	passenger	11-12
+# ::node	w	wait-01	12-13
+# ::node	a2	and	13-14
+# ::node	r	row	15-16
+# ::node	c	cart	17-18
+# ::node	s2	stack-01	18-19
+# ::node	l	luggage	20-21
+# ::root	o	outside
+# ::edge	claim-02	ARG1	baggage	c2	b	
+# ::edge	area	location-of	claim-02	a3	c2	
+# ::edge	outside	op1	area	o	a3	
+# ::edge	area	part-of	airport	a3	a	
+# ::edge	passenger	quant	some	p	s	
+# ::edge	wait-01	ARG1	passenger	w	p	
+# ::edge	and	op1	wait-01	a2	w	
+# ::edge	area	location-of	and	a3	a2	
+# ::edge	and	op2	row	a2	r	
+# ::edge	row	consist-of	cart	r	c	
+# ::edge	row	ARG1-of	stack-01	r	s2	
+# ::edge	stack-01	ARG2	luggage	s2	l	
+(o / outside
+    :op1 (a3 / area
+        :location-of (c2 / claim-02
+            :ARG1 (b / baggage))
+        :location-of (a2 / and
+            :op1 (w / wait-01
+                :ARG1 (p / passenger
+                    :quant (s / some)))
+            :op2 (r / row
+                :ARG1-of (s2 / stack-01
+                    :ARG2 (l / luggage))
+                :consist-of (c / cart)))
+        :part-of (a / airport)))

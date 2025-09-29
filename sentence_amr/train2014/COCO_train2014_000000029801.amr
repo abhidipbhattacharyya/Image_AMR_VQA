@@ -1,0 +1,66 @@
+# ::tok A man is sitting in front of a bowl of food at a table with utensils and two glasses of orange juice with two people in the background siting next to palm trees
+# ::node	m	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	b2	bowl	8-9
+# ::node	f	food	10-11
+# ::node	t	table	13-14
+# ::node	h	have-03	14-15
+# ::node	2	expressive	15-16
+# ::node	a	and	16-17
+# ::node	0	2	17-18
+# ::node	v	volume-quantity	18-19
+# ::node	g	glasses	18-19
+# ::node	o	orange	20-21
+# ::node	j	juice	21-22
+# ::node	1	2	23-24
+# ::node	p2	person	24-25
+# ::node	b	background	27-28
+# ::node	s2	sit-01	28-29
+# ::node	n	next-to	29-30
+# ::node	p	palm	31-32
+# ::node	t2	tree	32-33
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	food	quant	bowl	f	b2	
+# ::edge	in-front-of	op1	food	i	f	
+# ::edge	sit-01	location	table	s	t	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	sit-01	mode	expressive	s	2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	bowl	a	b2	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	glasses	v	g	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	and	op2	juice	a	j	
+# ::edge	person	quant	2	p2	1	
+# ::edge	sit-01	location	background	s2	b	
+# ::edge	sit-01	ARG1	person	s2	p2	
+# ::edge	table	accompanier	sit-01	t	s2	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	tree	mod	palm	t2	p	
+# ::edge	next-to	op1	tree	n	t2	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b2 / bowl)
+                :op2 (j / juice
+                    :quant (v / volume-quantity
+                        :quant 2
+                        :unit (g / glasses))
+                    :mod (o / orange)))))
+    :ARG2 (i / in-front-of
+        :op1 (f / food
+            :quant b2))
+    :location (t / table
+        :accompanier (s2 / sit-01
+            :ARG1 (p2 / person
+                :quant 2)
+            :ARG2 (n / next-to
+                :op1 (t2 / tree
+                    :mod (p / palm)))
+            :location (b / background)))
+    :mode expressive)

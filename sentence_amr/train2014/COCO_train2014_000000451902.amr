@@ -1,0 +1,43 @@
+# ::tok Two men in a tent area , cutting a cake together while people in the background look on and take photos .
+# ::node	0	2	0-1
+# ::node	m	man	1-2
+# ::node	t	tent	4-5
+# ::node	a2	area	5-6
+# ::node	c2	cut-01	7-8
+# ::node	c	cake	9-10
+# ::node	t2	together	10-11
+# ::node	p	person	12-13
+# ::node	b	background	15-16
+# ::node	l	look-01	16-17
+# ::node	a	and	18-19
+# ::node	p2	photograph-01	20-21
+# ::root	c2	cut-01
+# ::edge	man	quant	2	m	0	
+# ::edge	area	mod	tent	a2	t	
+# ::edge	man	location	area	m	a2	
+# ::edge	cut-01	ARG0	man	c2	m	
+# ::edge	cut-01	ARG1	cake	c2	c	
+# ::edge	cut-01	mod	together	c2	t2	
+# ::edge	person	location	background	p	b	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	look-01	ARG1	cut-01	l	c2	
+# ::edge	and	op1	look-01	a	l	
+# ::edge	cut-01	time	and	c2	a	
+# ::edge	and	op2	photograph-01	a	p2	
+# ::edge	photograph-01	ARG0	person	p2	p	
+# ::edge	photograph-01	ARG1	cut-01	p2	c2	
+(c2 / cut-01
+    :ARG0 (m / man
+        :quant 2
+        :location (a2 / area
+            :mod (t / tent)))
+    :ARG1 (c / cake)
+    :mod (t2 / together)
+    :time (a / and
+        :op1 (l / look-01
+            :ARG0 (p / person
+                :location (b / background))
+            :ARG1 c2)
+        :op2 (p2 / photograph-01
+            :ARG0 p
+            :ARG1 c2)))

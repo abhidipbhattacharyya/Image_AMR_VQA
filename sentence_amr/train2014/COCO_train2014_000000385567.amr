@@ -1,0 +1,28 @@
+# ::tok Dozens of bicycles secured in a covered double level bike rack .
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	b	bicycle	2-3
+# ::node	s	secure-01	3-4
+# ::node	c	cover-02	6-7
+# ::node	d	double	7-8
+# ::node	l	level	8-9
+# ::node	b2	bike	9-10
+# ::node	r	rack	10-11
+# ::root	s	secure-01
+# ::edge	multiple	op1	12	m	0	
+# ::edge	bicycle	quant	multiple	b	m	
+# ::edge	secure-01	ARG1	bicycle	s	b	
+# ::edge	level	mod	double	l	d	
+# ::edge	rack	mod	bike	r	b2	
+# ::edge	rack	mod	level	r	l	
+# ::edge	rack	ARG1-of	cover-02	r	c	
+# ::edge	secure-01	ARG2	rack	s	r	
+(s / secure-01
+    :ARG1 (b / bicycle
+        :quant (m / multiple
+            :op1 12))
+    :ARG2 (r / rack
+        :ARG1-of (c / cover-02)
+        :mod (b2 / bike)
+        :mod (l / level
+            :mod (d / double))))

@@ -1,0 +1,42 @@
+# ::tok a stuffed animal in the shape of a cat with a label on its collar saying " kitty cat bear award "
+# ::node	s3	stuff-01	1-2
+# ::node	a	animal	2-3
+# ::node	s2	shape-01	5-6
+# ::node	c	cat	8-9
+# ::node	l	label-01	11-12
+# ::node	c2	collar	14-15
+# ::node	s	say-01	15-16
+# ::node	n	name	17-18
+# ::node	1	cat	17-18
+# ::node	2	cat	18-19
+# ::node	0	bear	19-20
+# ::node	a3	award-01	20-21
+# ::node	a2	award	20-21
+# ::root	a	animal
+# ::edge	animal	ARG1-of	stuff-01	a	s3	
+# ::edge	animal	ARG1-of	shape-01	a	s2	
+# ::edge	shape-01	ARG2	cat	s2	c	
+# ::edge	animal	ARG1-of	label-01	a	l	
+# ::edge	label-01	location	collar	l	c2	
+# ::edge	animal	part	collar	a	c2	
+# ::edge	label-01	ARG0-of	say-01	l	s	
+# ::edge	name	op1	cat	n	1	
+# ::edge	name	op2	cat	n	2	
+# ::edge	name	op3	bear	n	0	
+# ::edge	say-01	ARG1	award-01	s	a3	
+# ::edge	award-01	ARG1	award	a3	a2	
+# ::edge	award	name	name	a2	n	
+(a / animal
+    :ARG1-of (s3 / stuff-01)
+    :ARG1-of (s2 / shape-01
+        :ARG2 (c / cat))
+    :ARG1-of (l / label-01
+        :ARG0-of (s / say-01
+            :ARG1 (a3 / award-01
+                :ARG1 (a2 / award
+                    :name (n / name
+                        :op1 "cat"
+                        :op2 "cat"
+                        :op3 "bear"))))
+        :location (c2 / collar))
+    :part c2)

@@ -1,0 +1,29 @@
+# ::tok A man getting ready to return a hit in a mens double tennis game
+# ::node	m	man	1-2
+# ::node	r	ready-01	3-4
+# ::node	r2	return-02	5-6
+# ::node	h	hit-01	7-8
+# ::node	m2	man	10-11
+# ::node	d	double	11-12
+# ::node	t	tennis	12-13
+# ::node	g	game	13-14
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	return-02	r	r2	
+# ::edge	return-02	ARG0	man	r2	m	
+# ::edge	return-02	ARG1	hit-01	r2	h	
+# ::edge	tennis	mod	double	t	d	
+# ::edge	game	mod	tennis	g	t	
+# ::edge	game	mod	man	g	m2	
+# ::edge	hit-01	subevent-of	game	h	g	
+(r / ready-01
+    :ARG0 (m / man)
+    :ARG1 m
+    :ARG2 (r2 / return-02
+        :ARG0 m
+        :ARG1 (h / hit-01
+            :subevent-of (g / game
+                :mod (t / tennis
+                    :mod (d / double))
+                :mod (m2 / man)))))

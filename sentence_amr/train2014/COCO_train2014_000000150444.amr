@@ -1,0 +1,33 @@
+# ::tok A kitchen with both oven doors open and some bake ware in the oven .
+# ::node	k	kitchen	1-2
+# ::node	b3	both	3-4
+# ::node	o2	oven	4-5
+# ::node	d	door	5-6
+# ::node	o	open-09	6-7
+# ::node	a	and	7-8
+# ::node	s	some	8-9
+# ::node	b	bake-01	9-10
+# ::node	w	ware	10-11
+# ::node	b2	be-located-at-91	11-12
+# ::root	k	kitchen
+# ::edge	door	mod	oven	d	o2	
+# ::edge	door	mod	both	d	b3	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	and	op1	open-09	a	o	
+# ::edge	kitchen	location-of	and	k	a	
+# ::edge	ware	mod	bake-01	w	b	
+# ::edge	ware	quant	some	w	s	
+# ::edge	be-located-at-91	ARG1	ware	b2	w	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG2	oven	b2	o2	
+(k / kitchen
+    :location-of (a / and
+        :op1 (o / open-09
+            :ARG1 (d / door
+                :mod (o2 / oven)
+                :mod (b3 / both)))
+        :op2 (b2 / be-located-at-91
+            :ARG1 (w / ware
+                :quant (s / some)
+                :mod (b / bake-01))
+            :ARG2 o2)))

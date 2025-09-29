@@ -1,0 +1,28 @@
+# ::tok There is a person in a hospital bed with two others looking over him .
+# ::node	p	person	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	h	hospital	6-7
+# ::node	b2	bed	7-8
+# ::node	0	2	9-10
+# ::node	p2	person	10-11
+# ::node	o	other	10-11
+# ::node	l	look-01	11-12
+# ::node	o2	over	12-13
+# ::root	o2	over
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	bed	mod	hospital	b2	h	
+# ::edge	be-located-at-91	ARG2	bed	b	b2	
+# ::edge	person	quant	2	p2	0	
+# ::edge	person	mod	other	p2	o	
+# ::edge	look-01	ARG0	person	l	p2	
+# ::edge	over	op1	look-01	o2	l	
+# ::edge	over	condition	be-located-at-91	o2	b	
+(o2 / over
+    :condition (b / be-located-at-91
+        :ARG1 (p / person)
+        :ARG2 (b2 / bed
+            :mod (h / hospital)))
+    :op1 (l / look-01
+        :ARG0 (p2 / person
+            :quant 2
+            :mod (o / other))))

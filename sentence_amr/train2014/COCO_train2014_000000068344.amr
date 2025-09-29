@@ -1,0 +1,46 @@
+# ::tok A place setting with a cup of coffee and a cake decorated for Halloween with a ghost on top of the chocolate frosting
+# ::node	p	place	1-2
+# ::node	s	set-01	2-3
+# ::node	c4	cup	5-6
+# ::node	c3	coffee	7-8
+# ::node	a	and	8-9
+# ::node	c	cake	10-11
+# ::node	d	decorate-01	11-12
+# ::node	f	festival	13-14
+# ::node	n	name	13-14
+# ::node	0	Halloween	13-14
+# ::node	h	have-03	14-15
+# ::node	g	ghost	16-17
+# ::node	t	top-01	18-19
+# ::node	c2	chocolate	21-22
+# ::node	i	ice	22-23
+# ::root	p	place
+# ::edge	place	ARG1-of	set-01	p	s	
+# ::edge	coffee	quant	cup	c3	c4	
+# ::edge	and	op1	coffee	a	c3	
+# ::edge	set-01	ARG2	and	s	a	
+# ::edge	and	op2	cake	a	c	
+# ::edge	cake	ARG1-of	decorate-01	c	d	
+# ::edge	decorate-01	time	festival	d	f	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Halloween	n	0	
+# ::edge	cake	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	ghost	h	g	
+# ::edge	cake	ARG2-of	top-01	c	t	
+# ::edge	ice	consist-of	chocolate	i	c2	
+# ::edge	top-01	ARG1	ice	t	i	
+(p / place
+    :ARG1-of (s / set-01
+        :ARG2 (a / and
+            :op1 (c3 / coffee
+                :quant (c4 / cup))
+            :op2 (c / cake
+                :ARG0-of (h / have-03
+                    :ARG1 (g / ghost))
+                :ARG1-of (d / decorate-01
+                    :time (f / festival
+                        :name (n / name
+                            :op1 "Halloween")))
+                :ARG2-of (t / top-01
+                    :ARG1 (i / ice
+                        :consist-of (c2 / chocolate)))))))

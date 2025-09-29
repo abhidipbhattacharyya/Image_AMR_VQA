@@ -1,0 +1,42 @@
+# ::tok people gathered around standing and sitting on a yellow and blue looking box
+# ::node	p	person	0-1
+# ::node	g	gather-03	1-2
+# ::node	a3	around	2-3
+# ::node	s2	stand-01	3-4
+# ::node	a	and	4-5
+# ::node	s	sit-01	5-6
+# ::node	y	yellow-02	8-9
+# ::node	a2	and	9-10
+# ::node	b	blue	10-11
+# ::node	l	look-02	11-12
+# ::node	b2	box	12-13
+# ::root	g	gather-03
+# ::edge	gather-03	ARG0	person	g	p	
+# ::edge	gather-03	location	around	g	a3	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	gather-03	ARG1	and	g	a	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	and	op2	blue	a2	b	
+# ::edge	look-02	ARG1	and	l	a2	
+# ::edge	box	ARG0-of	look-02	b2	l	
+# ::edge	sit-01	ARG2	box	s	b2	
+# ::edge	stand-01	ARG2	box	s2	b2	
+# ::edge	gather-03	rel	yellow-02	g	y	
+(g / gather-03
+    :ARG0 (p / person)
+    :ARG1 (a / and
+        :op1 (s2 / stand-01
+            :ARG1 p
+            :ARG2 (b2 / box
+                :ARG0-of (l / look-02
+                    :ARG1 (a2 / and
+                        :op1 (s / sit-01
+                            :ARG1 p
+                            :ARG2 b2)
+                        :op2 (b / blue)))))
+        :op2 s)
+    :location (a3 / around)
+    :rel (y / yellow-02))

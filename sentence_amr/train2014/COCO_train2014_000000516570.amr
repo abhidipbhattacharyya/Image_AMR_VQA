@@ -1,0 +1,45 @@
+# ::tok A woman at bat with at home plate and in a swinging motion with a softball bat , as a yellow softball is near the ground behind her .
+# ::node	w	woman	1-2
+# ::node	b2	bat-01	3-4
+# ::node	h	home	6-7
+# ::node	p	plate	7-8
+# ::node	s3	swing-01	11-12
+# ::node	m	motion	12-13
+# ::node	s	softball	15-16
+# ::node	b	bat	16-17
+# ::node	c	cause-01	18-19
+# ::node	y	yellow-02	20-21
+# ::node	s2	softball	21-22
+# ::node	n	near-02	23-24
+# ::node	g	ground	25-26
+# ::node	b3	behind	26-27
+# ::root	w	woman
+# ::edge	woman	ARG0-of	bat-01	w	b2	
+# ::edge	plate	mod	home	p	h	
+# ::edge	woman	location	plate	w	p	
+# ::edge	motion	manner-of	swing-01	m	s3	
+# ::edge	woman	manner	motion	w	m	
+# ::edge	bat	mod	softball	b	s	
+# ::edge	swing-01	instrument	bat	s3	b	
+# ::edge	woman	ARG1-of	cause-01	w	c	
+# ::edge	softball	ARG1-of	yellow-02	s2	y	
+# ::edge	near-02	ARG1	softball	n	s2	
+# ::edge	cause-01	ARG0	near-02	c	n	
+# ::edge	near-02	ARG2	ground	n	g	
+# ::edge	ground	location	behind	g	b3	
+# ::edge	behind	op1	woman	b3	w	
+(w / woman
+    :ARG0-of (b2 / bat-01)
+    :ARG1-of (c / cause-01
+        :ARG0 (n / near-02
+            :ARG1 (s2 / softball
+                :ARG1-of (y / yellow-02))
+            :ARG2 (g / ground
+                :location (b3 / behind
+                    :op1 w))))
+    :location (p / plate
+        :mod (h / home))
+    :manner (m / motion
+        :manner-of (s3 / swing-01
+            :instrument (b / bat
+                :mod (s / softball)))))

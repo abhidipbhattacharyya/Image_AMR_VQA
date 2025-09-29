@@ -1,0 +1,34 @@
+# ::tok A plate with a grilled cheese sandwich , french fries , tomatoes , and pickles .
+# ::node	p2	plate	1-2
+# ::node	b	broil-01	4-5
+# ::node	c	cheese	5-6
+# ::node	s	sandwich	6-7
+# ::node	c2	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	t	tomato	11-12
+# ::node	a	and	13-14
+# ::node	p	pickle	14-15
+# ::root	p2	plate
+# ::edge	sandwich	mod	cheese	s	c	
+# ::edge	sandwich	ARG1-of	broil-01	s	b	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c2	
+# ::edge	and	op3	tomato	a	t	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	plate	accompanier	and	p2	a	
+# ::edge	and	op4	pickle	a	p	
+(p2 / plate
+    :accompanier (a / and
+        :op1 (s / sandwich
+            :ARG1-of (b / broil-01)
+            :mod (c / cheese))
+        :op2 (f / fry-01
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "France")))
+        :op3 (t / tomato)
+        :op4 (p / pickle)))

@@ -1,0 +1,40 @@
+# ::tok A train station with a red , white yellow and blue train pulling in on the tracks
+# ::node	t2	train	1-2
+# ::node	s	station	2-3
+# ::node	h	have-03	3-4
+# ::node	r	red-02	5-6
+# ::node	w	white-03	7-8
+# ::node	y	yellow-02	8-9
+# ::node	a	and	9-10
+# ::node	b	blue	10-11
+# ::node	t3	train	11-12
+# ::node	t4	train	11-12
+# ::node	t5	train	11-12
+# ::node	p	pull-01	12-13
+# ::node	t	track	16-17
+# ::root	s	station
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	train	a	t3	
+# ::edge	train	ARG1-of	red-02	t3	r	
+# ::edge	and	op2	train	a	t4	
+# ::edge	train	ARG1-of	yellow-02	t4	y	
+# ::edge	train	mod	blue	t5	b	
+# ::edge	and	op3	train	a	t5	
+# ::edge	and	ARG1-of	pull-01	a	p	
+# ::edge	pull-01	ARG2	track	p	t	
+# ::edge	station	rel	white-03	s	w	
+(s / station
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG1-of (p / pull-01
+                :ARG2 (t / track))
+            :op1 (t3 / train
+                :ARG1-of (r / red-02))
+            :op2 (t4 / train
+                :ARG1-of (y / yellow-02))
+            :op3 (t5 / train
+                :mod (b / blue))))
+    :mod (t2 / train)
+    :rel (w / white-03))

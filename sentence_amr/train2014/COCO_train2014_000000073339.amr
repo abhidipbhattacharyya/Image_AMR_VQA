@@ -1,0 +1,31 @@
+# ::tok A bike rider riding down a sidewalk as a line of buses wait for passengers .
+# ::node	b	bike	1-2
+# ::node	p2	person	2-3
+# ::node	r	ride-01	2-3
+# ::node	r2	ride-01	3-4
+# ::node	d	down	4-5
+# ::node	s	sidewalk	6-7
+# ::node	l	line	9-10
+# ::node	b2	bus	11-12
+# ::node	w	wait-01	12-13
+# ::node	p	passenger	14-15
+# ::root	r2	ride-01
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	ride-01	ARG1	bike	r	b	
+# ::edge	ride-01	ARG0	person	r2	p2	
+# ::edge	ride-01	direction	down	r2	d	
+# ::edge	ride-01	ARG1	sidewalk	r2	s	
+# ::edge	line	consist-of	bus	l	b2	
+# ::edge	wait-01	ARG1	line	w	l	
+# ::edge	ride-01	time	wait-01	r2	w	
+# ::edge	wait-01	ARG2	passenger	w	p	
+(r2 / ride-01
+    :ARG0 (p2 / person
+        :ARG0-of (r / ride-01
+            :ARG1 (b / bike)))
+    :ARG1 (s / sidewalk)
+    :direction (d / down)
+    :time (w / wait-01
+        :ARG1 (l / line
+            :consist-of (b2 / bus))
+        :ARG2 (p / passenger)))

@@ -1,0 +1,29 @@
+# ::tok Airplane parked at the airport terminal either loading or unloading passengers
+# ::node	a	airplane	0-1
+# ::node	p	park-01	1-2
+# ::node	a2	airport	4-5
+# ::node	t	terminal	5-6
+# ::node	l	load-01	7-8
+# ::node	o	or	8-9
+# ::node	u	unload-02	9-10
+# ::node	p2	passenger	10-11
+# ::root	o	or
+# ::edge	airplane	ARG1-of	park-01	a	p	
+# ::edge	terminal	mod	airport	t	a2	
+# ::edge	park-01	ARG2	terminal	p	t	
+# ::edge	load-01	ARG1	airplane	l	a	
+# ::edge	or	op1	load-01	o	l	
+# ::edge	or	op2	unload-02	o	u	
+# ::edge	unload-02	ARG1	airplane	u	a	
+# ::edge	unload-02	ARG2	passenger	u	p2	
+# ::edge	load-01	ARG2	passenger	l	p2	
+(o / or
+    :op1 (l / load-01
+        :ARG1 (a / airplane
+            :ARG1-of (p / park-01
+                :ARG2 (t / terminal
+                    :mod (a2 / airport))))
+        :ARG2 (p2 / passenger))
+    :op2 (u / unload-02
+        :ARG1 a
+        :ARG2 p2))

@@ -1,0 +1,35 @@
+# ::tok A pizza is cooked with lots of toppings and is ready to eat .
+# ::node	p	pizza	1-2
+# ::node	c2	cook-01	3-4
+# ::node	l	lot	5-6
+# ::node	c	continent	7-8
+# ::node	n	name	7-8
+# ::node	h	health	7-8
+# ::node	t	toppings	7-8
+# ::node	a	and	8-9
+# ::node	r	ready-02	10-11
+# ::node	e	eat-01	12-13
+# ::root	a	and
+# ::edge	cook-01	ARG1	pizza	c2	p	
+# ::edge	continent	name	name	c	n	
+# ::edge	continent	mod	health	c	h	
+# ::edge	toppings	mod	continent	t	c	
+# ::edge	cook-01	accompanier	toppings	c2	t	
+# ::edge	and	op1	cook-01	a	c2	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	pizza	r	p	
+# ::edge	ready-02	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG1	pizza	e	p	
+# ::edge	and	rel	lot	a	l	
+(a / and
+    :op1 (c2 / cook-01
+        :ARG1 (p / pizza)
+        :accompanier (t / toppings
+            :mod (c / continent
+                :name (n / name)
+                :mod (h / health))))
+    :op2 (r / ready-02
+        :ARG1 p
+        :ARG2 (e / eat-01
+            :ARG1 p))
+    :rel (l / lot))

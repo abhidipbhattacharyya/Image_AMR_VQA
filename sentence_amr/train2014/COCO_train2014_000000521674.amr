@@ -1,0 +1,68 @@
+# ::tok new Cananda Donut with white frosting and red candy pieces sitting next to a vanilla dip donut with white and red sprinkles on a metal tray
+# ::node	n2	new-01	0-1
+# ::node	n	name	1-2
+# ::node	0	Cananda	1-2
+# ::node	1	Donut	2-3
+# ::node	w	white-03	4-5
+# ::node	i	ice	5-6
+# ::node	a	and	6-7
+# ::node	r	red-02	7-8
+# ::node	c	candy	8-9
+# ::node	p	piece	9-10
+# ::node	s	sit-01	10-11
+# ::node	n3	next-to	11-12
+# ::node	v	vanilla	14-15
+# ::node	d	dip	15-16
+# ::node	d2	donut	16-17
+# ::node	h	have-03	17-18
+# ::node	w2	white-03	18-19
+# ::node	a2	and	19-20
+# ::node	s2	sprinkle-01	21-22
+# ::node	m	metal	24-25
+# ::node	t	tray	25-26
+# ::root	s	sit-01
+# ::edge	name	op1	Cananda	n	0	
+# ::edge	name	op2	Donut	n	1	
+# ::edge	ice	ARG1-of	white-03	i	w	
+# ::edge	and	op1	ice	a	i	
+# ::edge	candy	ARG1-of	red-02	c	r	
+# ::edge	piece	mod	candy	p	c	
+# ::edge	and	op2	piece	a	p	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG1-of	new-01	s	n2	
+# ::edge	sit-01	ARG2	next-to	s	n3	
+# ::edge	dip	mod	vanilla	d	v	
+# ::edge	donut	mod	dip	d2	d	
+# ::edge	next-to	op1	donut	n3	d2	
+# ::edge	donut	ARG0-of	have-03	d2	h	
+# ::edge	have-03	ARG1	ice	h	i	
+# ::edge	and	op1	white-03	a2	w2	
+# ::edge	and	op2	sprinkle-01	a2	s2	
+# ::edge	sprinkle-01	ARG1-of	white-03	s2	w2	
+# ::edge	tray	consist-of	metal	t	m	
+# ::edge	and	location	tray	a2	t	
+# ::edge	sit-01	rel	name	s	n	
+# ::edge	sit-01	rel	and	s	a2	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (i / ice
+            :ARG1-of (w / white-03))
+        :op2 (p / piece
+            :mod (c / candy
+                :ARG1-of (r / red-02))))
+    :ARG1-of (n2 / new-01)
+    :ARG2 (n3 / next-to
+        :op1 (d2 / donut
+            :ARG0-of (h / have-03
+                :ARG1 i)
+            :mod (d / dip
+                :mod (v / vanilla))))
+    :rel (n / name
+        :op1 "Cananda"
+        :op2 "Donut")
+    :rel (a2 / and
+        :location (t / tray
+            :consist-of (m / metal))
+        :op1 (w2 / white-03)
+        :op2 (s2 / sprinkle-01
+            :ARG1-of w2)))

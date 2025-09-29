@@ -1,0 +1,40 @@
+# ::tok A donut on its rap , a cup of coffee , some change , and three checkbooks .
+# ::node	d	donut	1-2
+# ::node	r	rap	4-5
+# ::node	v	volume-quantity	6-7
+# ::node	0	1	6-7
+# ::node	c4	cup	7-8
+# ::node	c3	coffee	9-10
+# ::node	s	some	11-12
+# ::node	c	change	12-13
+# ::node	a	and	14-15
+# ::node	1	3	15-16
+# ::node	b	book	16-17
+# ::node	w	write-01	16-17
+# ::node	c2	check-01	16-17
+# ::root	a	and
+# ::edge	donut	location	rap	d	r	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	coffee	quant	volume-quantity	c3	v	
+# ::edge	change	quant	some	c	s	
+# ::edge	and	op3	change	a	c	
+# ::edge	and	op2	coffee	a	c3	
+# ::edge	and	op1	donut	a	d	
+# ::edge	book	quant	3	b	1	
+# ::edge	and	op4	book	a	b	
+# ::edge	book	ARG0-of	write-01	b	w	
+# ::edge	write-01	purpose	check-01	w	c2	
+(a / and
+    :op1 (d / donut
+        :location (r / rap))
+    :op2 (c3 / coffee
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c4 / cup)))
+    :op3 (c / change
+        :quant (s / some))
+    :op4 (b / book
+        :quant 3
+        :ARG0-of (w / write-01
+            :purpose (c2 / check-01))))

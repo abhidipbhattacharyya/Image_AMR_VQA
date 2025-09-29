@@ -1,0 +1,31 @@
+# ::tok A skier walks up a slope as a snowboarder is falling into the snow .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	w	walk-01	2-3
+# ::node	u	up	3-4
+# ::node	s2	slope	5-6
+# ::node	p2	person	8-9
+# ::node	b	board-05	8-9
+# ::node	s3	snow	8-9
+# ::node	f	fall-01	10-11
+# ::node	s4	snow	13-14
+# ::root	w	walk-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	up	w	u	
+# ::edge	walk-01	ARG2	slope	w	s2	
+# ::edge	person	ARG0-of	board-05	p2	b	
+# ::edge	board-05	ARG1	snow	b	s3	
+# ::edge	fall-01	ARG1	person	f	p2	
+# ::edge	walk-01	time	fall-01	w	f	
+# ::edge	fall-01	ARG4	snow	f	s4	
+(w / walk-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01))
+    :ARG2 (s2 / slope)
+    :direction (u / up)
+    :time (f / fall-01
+        :ARG1 (p2 / person
+            :ARG0-of (b / board-05
+                :ARG1 (s3 / snow)))
+        :ARG4 (s4 / snow)))

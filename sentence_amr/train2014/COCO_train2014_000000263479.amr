@@ -1,0 +1,32 @@
+# ::tok Two lanes of traffic with a large dividing construction area in between .
+# ::node	0	2	0-1
+# ::node	l	lane	1-2
+# ::node	t	traffic	3-4
+# ::node	h	have-03	4-5
+# ::node	l2	large	6-7
+# ::node	d	divide-02	7-8
+# ::node	c	construct-01	8-9
+# ::node	a	area	9-10
+# ::node	b	between	11-12
+# ::root	h	have-03
+# ::edge	lane	quant	2	l	0	
+# ::edge	lane	consist-of	traffic	l	t	
+# ::edge	have-03	ARG0	lane	h	l	
+# ::edge	area	location-of	construct-01	a	c	
+# ::edge	area	ARG0-of	divide-02	a	d	
+# ::edge	area	mod	large	a	l2	
+# ::edge	have-03	ARG1	area	h	a	
+# ::edge	area	location	between	a	b	
+# ::edge	between	op2	construct-01	b	c	
+# ::edge	between	op1	lane	b	l	
+(h / have-03
+    :ARG0 (l / lane
+        :quant 2
+        :consist-of (t / traffic))
+    :ARG1 (a / area
+        :ARG0-of (d / divide-02)
+        :location (b / between
+            :op1 l
+            :op2 (c / construct-01))
+        :location-of c
+        :mod (l2 / large)))

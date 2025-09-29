@@ -1,0 +1,36 @@
+# ::tok Two blue chairs are sitting diagonally one in front of the other instead of being positioned around the table .
+# ::node	0	2	0-1
+# ::node	b	blue	1-2
+# ::node	c	chair	2-3
+# ::node	s	sit-01	4-5
+# ::node	s2	straight-04	5-6
+# ::node	i	in-front-of	8-9
+# ::node	o	other	11-12
+# ::node	i2	instead-of-91	12-13
+# ::node	p	position-01	15-16
+# ::node	a	around	16-17
+# ::node	t	table	18-19
+# ::root	s	sit-01
+# ::edge	chair	mod	blue	c	b	
+# ::edge	chair	quant	2	c	0	
+# ::edge	sit-01	ARG1	chair	s	c	
+# ::edge	sit-01	ARG1-of	straight-04	s	s2	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	other	i	o	
+# ::edge	sit-01	ARG1-of	instead-of-91	s	i2	
+# ::edge	instead-of-91	ARG2	position-01	i2	p	
+# ::edge	position-01	ARG1	chair	p	c	
+# ::edge	position-01	ARG2	around	p	a	
+# ::edge	around	op1	table	a	t	
+(s / sit-01
+    :ARG1 (c / chair
+        :quant 2
+        :mod (b / blue))
+    :ARG1-of (s2 / straight-04)
+    :ARG1-of (i2 / instead-of-91
+        :ARG2 (p / position-01
+            :ARG1 c
+            :ARG2 (a / around
+                :op1 (t / table))))
+    :ARG2 (i / in-front-of
+        :op1 (o / other)))

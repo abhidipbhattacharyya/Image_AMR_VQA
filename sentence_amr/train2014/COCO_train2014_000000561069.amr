@@ -1,0 +1,38 @@
+# ::tok Skate boarder getting serious air time during stunt where he grabs board with his hand
+# ::node	s2	skate-01	0-1
+# ::node	p	person	1-2
+# ::node	b2	board-05	1-2
+# ::node	g	get-01	2-3
+# ::node	s	serious-01	3-4
+# ::node	a	air-01	4-5
+# ::node	t	time	5-6
+# ::node	s3	stunt	7-8
+# ::node	g2	grab-01	10-11
+# ::node	b	board	11-12
+# ::node	h	hand	14-15
+# ::root	g	get-01
+# ::edge	person	ARG0-of	board-05	p	b2	
+# ::edge	board-05	ARG1	skate-01	b2	s2	
+# ::edge	get-01	ARG0	person	g	p	
+# ::edge	time	mod	air-01	t	a	
+# ::edge	time	ARG1-of	serious-01	t	s	
+# ::edge	get-01	ARG1	time	g	t	
+# ::edge	get-01	time	stunt	g	s3	
+# ::edge	stunt	subevent	grab-01	s3	g2	
+# ::edge	grab-01	ARG0	person	g2	p	
+# ::edge	grab-01	ARG1	board	g2	b	
+# ::edge	grab-01	instrument	hand	g2	h	
+# ::edge	person	part	hand	p	h	
+(g / get-01
+    :ARG0 (p / person
+        :ARG0-of (b2 / board-05
+            :ARG1 (s2 / skate-01))
+        :part (h / hand))
+    :ARG1 (t / time
+        :ARG1-of (s / serious-01)
+        :mod (a / air-01))
+    :time (s3 / stunt
+        :subevent (g2 / grab-01
+            :ARG0 p
+            :ARG1 (b / board)
+            :instrument h)))

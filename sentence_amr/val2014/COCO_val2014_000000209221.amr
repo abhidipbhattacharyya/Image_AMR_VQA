@@ -1,0 +1,34 @@
+# ::tok Freightliner train passing passenger pickup area with no on at station .
+# ::node	c	company	0-1
+# ::node	n	name	0-1
+# ::node	0	Freightliner	0-1
+# ::node	t	train	1-2
+# ::node	p	pass-03	2-3
+# ::node	p2	passenger	3-4
+# ::node	p3	pick-up-04	4-5
+# ::node	a	area	5-6
+# ::node	h	have-03	6-7
+# ::node	n2	no-one	7-8
+# ::node	s	station	10-11
+# ::root	p	pass-03
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Freightliner	n	0	
+# ::edge	train	mod	company	t	c	
+# ::edge	pass-03	ARG1	train	p	t	
+# ::edge	pick-up-04	ARG1	passenger	p3	p2	
+# ::edge	area	location-of	pick-up-04	a	p3	
+# ::edge	pass-03	path	area	p	a	
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	no-one	h	n2	
+# ::edge	have-03	location	station	h	s	
+(p / pass-03
+    :ARG1 (t / train
+        :ARG0-of (h / have-03
+            :ARG1 (n2 / no-one)
+            :location (s / station))
+        :mod (c / company
+            :name (n / name
+                :op1 "Freightliner")))
+    :path (a / area
+        :location-of (p3 / pick-up-04
+            :ARG1 (p2 / passenger))))

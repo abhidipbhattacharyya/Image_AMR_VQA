@@ -1,0 +1,33 @@
+# ::tok A broadcast editing room with numerous video monitors and audio mixing stations .
+# ::node	b	broadcast-01	1-2
+# ::node	e	edit-01	2-3
+# ::node	r	room	3-4
+# ::node	n	numerous	5-6
+# ::node	v	video	6-7
+# ::node	m2	monitor	7-8
+# ::node	a	and	8-9
+# ::node	a2	audio	9-10
+# ::node	m	mix-01	10-11
+# ::node	s	station	11-12
+# ::root	r	room
+# ::edge	room	location-of	edit-01	r	e	
+# ::edge	room	ARG1-of	broadcast-01	r	b	
+# ::edge	monitor	mod	video	m2	v	
+# ::edge	monitor	quant	numerous	m2	n	
+# ::edge	and	op1	monitor	a	m2	
+# ::edge	room	part	and	r	a	
+# ::edge	mix-01	ARG1	audio	m	a2	
+# ::edge	station	ARG0-of	mix-01	s	m	
+# ::edge	and	op2	station	a	s	
+# ::edge	station	quant	numerous	s	n	
+(r / room
+    :ARG1-of (b / broadcast-01)
+    :location-of (e / edit-01)
+    :part (a / and
+        :op1 (m2 / monitor
+            :quant (n / numerous)
+            :mod (v / video))
+        :op2 (s / station
+            :quant n
+            :ARG0-of (m / mix-01
+                :ARG1 (a2 / audio)))))

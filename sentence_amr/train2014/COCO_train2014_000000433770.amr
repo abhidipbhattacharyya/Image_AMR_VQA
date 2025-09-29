@@ -1,0 +1,27 @@
+# ::tok A desk with a laptop and monitor are powered on as they sit on a desk .
+# ::node	d	desk	1-2
+# ::node	h	have-03	2-3
+# ::node	l	laptop	4-5
+# ::node	a	and	5-6
+# ::node	m	monitor	6-7
+# ::node	p	power-01	8-9
+# ::node	s	sit-01	12-13
+# ::node	d2	desk	15-16
+# ::root	p	power-01
+# ::edge	desk	ARG0-of	have-03	d	h	
+# ::edge	and	op1	laptop	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	monitor	a	m	
+# ::edge	power-01	ARG1	desk	p	d	
+# ::edge	power-01	time	sit-01	p	s	
+# ::edge	sit-01	ARG1	desk	s	d	
+# ::edge	sit-01	ARG2	desk	s	d2	
+(p / power-01
+    :ARG1 (d / desk
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (l / laptop)
+                :op2 (m / monitor))))
+    :time (s / sit-01
+        :ARG1 d
+        :ARG2 (d2 / desk)))

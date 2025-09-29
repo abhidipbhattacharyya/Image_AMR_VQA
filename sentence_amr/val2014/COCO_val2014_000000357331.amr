@@ -1,0 +1,28 @@
+# ::tok a blue train driving on a train track below multiple power lines .
+# ::node	b2	blue	1-2
+# ::node	t2	train	2-3
+# ::node	d	drive-01	3-4
+# ::node	t3	train	6-7
+# ::node	t	track	7-8
+# ::node	b	below	8-9
+# ::node	m	multiple	9-10
+# ::node	p	power-01	10-11
+# ::node	l	line	11-12
+# ::root	d	drive-01
+# ::edge	train	mod	blue	t2	b2	
+# ::edge	drive-01	ARG0	train	d	t2	
+# ::edge	track	mod	train	t	t3	
+# ::edge	drive-01	ARG1	track	d	t	
+# ::edge	drive-01	location	below	d	b	
+# ::edge	line	ARG0-of	power-01	l	p	
+# ::edge	line	quant	multiple	l	m	
+# ::edge	below	op1	line	b	l	
+(d / drive-01
+    :ARG0 (t2 / train
+        :mod (b2 / blue))
+    :ARG1 (t / track
+        :mod (t3 / train))
+    :location (b / below
+        :op1 (l / line
+            :quant (m / multiple)
+            :ARG0-of (p / power-01))))

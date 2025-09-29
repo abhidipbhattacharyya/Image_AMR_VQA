@@ -1,0 +1,30 @@
+# ::tok Emergency vehicles and gurney next to motorcycle laying on side .
+# ::node	e	emergency	0-1
+# ::node	v	vehicle	1-2
+# ::node	a	and	2-3
+# ::node	g	gurney	3-4
+# ::node	n	next-to	4-5
+# ::node	m	motorcycle	6-7
+# ::node	l	lay-01	7-8
+# ::node	s	side	9-10
+# ::node	e2	event	10-11
+# ::root	e2	event
+# ::edge	vehicle	mod	emergency	v	e	
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	and	op2	gurney	a	g	
+# ::edge	gurney	mod	emergency	g	e	
+# ::edge	and	location	next-to	a	n	
+# ::edge	next-to	op1	motorcycle	n	m	
+# ::edge	motorcycle	ARG1-of	lay-01	m	l	
+# ::edge	lay-01	ARG2	side	l	s	
+# ::edge	event	mod	and	e2	a	
+(e2 / event
+    :mod (a / and
+        :location (n / next-to
+            :op1 (m / motorcycle
+                :ARG1-of (l / lay-01
+                    :ARG2 (s / side))))
+        :op1 (v / vehicle
+            :mod (e / emergency))
+        :op2 (g / gurney
+            :mod e)))

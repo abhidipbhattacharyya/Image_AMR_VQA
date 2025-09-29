@@ -1,0 +1,30 @@
+# ::tok A mirror hangs above a white sink that has personal hygiene products on it .
+# ::node	m	mirror	1-2
+# ::node	h	hang-01	2-3
+# ::node	a	above	3-4
+# ::node	w	white-03	5-6
+# ::node	s	sink	6-7
+# ::node	h2	have-03	8-9
+# ::node	p	personal-02	9-10
+# ::node	h3	hygiene	10-11
+# ::node	p2	product	11-12
+# ::root	h	hang-01
+# ::edge	hang-01	ARG1	mirror	h	m	
+# ::edge	hang-01	ARG2	above	h	a	
+# ::edge	sink	ARG1-of	white-03	s	w	
+# ::edge	above	op1	sink	a	s	
+# ::edge	sink	ARG0-of	have-03	s	h2	
+# ::edge	hygiene	ARG1-of	personal-02	h3	p	
+# ::edge	product	mod	hygiene	p2	h3	
+# ::edge	have-03	ARG1	product	h2	p2	
+# ::edge	product	location	sink	p2	s	
+(h / hang-01
+    :ARG1 (m / mirror)
+    :ARG2 (a / above
+        :op1 (s / sink
+            :ARG0-of (h2 / have-03
+                :ARG1 (p2 / product
+                    :location s
+                    :mod (h3 / hygiene
+                        :ARG1-of (p / personal-02))))
+            :ARG1-of (w / white-03))))

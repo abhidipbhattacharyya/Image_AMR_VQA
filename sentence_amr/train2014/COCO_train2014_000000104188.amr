@@ -1,0 +1,35 @@
+# ::tok A family playing and watching others play video games in the living room .
+# ::node	f	family	1-2
+# ::node	p	play-01	2-3
+# ::node	a	and	3-4
+# ::node	w	watch-01	4-5
+# ::node	o	other	5-6
+# ::node	p2	play-01	6-7
+# ::node	v	video	7-8
+# ::node	g	game	8-9
+# ::node	l	living	11-12
+# ::node	r	room	12-13
+# ::root	a	and
+# ::edge	play-01	ARG0	family	p	f	
+# ::edge	and	op1	play-01	a	p	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	ARG0	family	w	f	
+# ::edge	play-01	ARG0	other	p2	o	
+# ::edge	watch-01	ARG1	play-01	w	p2	
+# ::edge	play-01	ARG1	play-01	p	p2	
+# ::edge	game	mod	video	g	v	
+# ::edge	play-01	ARG1	game	p2	g	
+# ::edge	room	mod	living	r	l	
+# ::edge	and	location	room	a	r	
+(a / and
+    :location (r / room
+        :mod (l / living))
+    :op1 (p / play-01
+        :ARG0 (f / family)
+        :ARG1 (p2 / play-01
+            :ARG0 (o / other)
+            :ARG1 (g / game
+                :mod (v / video))))
+    :op2 (w / watch-01
+        :ARG0 f
+        :ARG1 p2))

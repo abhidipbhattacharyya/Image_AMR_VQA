@@ -1,0 +1,34 @@
+# ::tok A traffic officer on a road near a detour sign and traffic cone .
+# ::node	t	traffic	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	o	officer	2-3
+# ::node	r	road	5-6
+# ::node	n	near-02	6-7
+# ::node	d	detain-01	8-9
+# ::node	s	sign	9-10
+# ::node	a	and	10-11
+# ::node	t2	traffic	11-12
+# ::node	c	cone	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG2	officer	h	o	
+# ::edge	officer	topic	traffic	o	t	
+# ::edge	person	location	road	p	r	
+# ::edge	road	ARG1-of	near-02	r	n	
+# ::edge	sign	purpose	detain-01	s	d	
+# ::edge	and	op1	sign	a	s	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	cone	mod	traffic	c	t2	
+# ::edge	and	op2	cone	a	c	
+(p / person
+    :ARG0-of (h / have-org-role-91
+        :ARG2 (o / officer
+            :topic (t / traffic)))
+    :location (r / road
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (s / sign
+                    :purpose (d / detain-01))
+                :op2 (c / cone
+                    :mod (t2 / traffic))))))

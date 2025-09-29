@@ -1,0 +1,22 @@
+# ::tok Warning sign displayed in wooded lane on sunny day .
+# ::node	w	warn-01	0-1
+# ::node	s	sign	1-2
+# ::node	d2	display-01	2-3
+# ::node	w2	wood	4-5
+# ::node	l	lane	5-6
+# ::node	s2	sunny	7-8
+# ::node	d	day	8-9
+# ::root	d2	display-01
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	display-01	ARG1	sign	d2	s	
+# ::edge	lane	mod	wood	l	w2	
+# ::edge	display-01	ARG2	lane	d2	l	
+# ::edge	day	mod	sunny	d	s2	
+# ::edge	display-01	time	day	d2	d	
+(d2 / display-01
+    :ARG1 (s / sign
+        :ARG0-of (w / warn-01))
+    :ARG2 (l / lane
+        :mod (w2 / wood))
+    :time (d / day
+        :mod (s2 / sunny)))

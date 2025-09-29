@@ -1,0 +1,25 @@
+# ::tok Buses and trucks use a busy road while construction is underway .
+# ::node	b	bus	0-1
+# ::node	a	and	1-2
+# ::node	t	truck	2-3
+# ::node	u2	use-01	3-4
+# ::node	b2	busy-02	5-6
+# ::node	r	road	6-7
+# ::node	c	construct-01	8-9
+# ::node	u	underway	10-11
+# ::root	u2	use-01
+# ::edge	and	op1	bus	a	b	
+# ::edge	and	op2	truck	a	t	
+# ::edge	use-01	ARG0	and	u2	a	
+# ::edge	road	ARG1-of	busy-02	r	b2	
+# ::edge	use-01	ARG1	road	u2	r	
+# ::edge	underway	domain	construct-01	u	c	
+# ::edge	use-01	time	underway	u2	u	
+(u2 / use-01
+    :ARG0 (a / and
+        :op1 (b / bus)
+        :op2 (t / truck))
+    :ARG1 (r / road
+        :ARG1-of (b2 / busy-02))
+    :time (u / underway
+        :domain (c / construct-01)))

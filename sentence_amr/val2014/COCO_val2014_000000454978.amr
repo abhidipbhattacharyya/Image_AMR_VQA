@@ -1,0 +1,51 @@
+# ::tok A rural road with trees , road signs of a squiggly arrow and of 55 MPH , and motorcycle parked beside it .
+# ::node	r4	rural	1-2
+# ::node	r2	road	2-3
+# ::node	h	have-03	3-4
+# ::node	t	tree	4-5
+# ::node	r3	road	6-7
+# ::node	s	sign	7-8
+# ::node	r	resemble-01	10-11
+# ::node	s3	string-entity	10-11
+# ::node	a2	arrow	11-12
+# ::node	0	55	14-15
+# ::node	s2	speed-quantity	15-16
+# ::node	m	mile-per-hour	15-16
+# ::node	a	and	17-18
+# ::node	m2	motorcycle	18-19
+# ::node	p	park-01	19-20
+# ::node	b	beside	20-21
+# ::root	r2	road
+# ::edge	road	mod	rural	r2	r4	
+# ::edge	road	ARG0-of	have-03	r2	h	
+# ::edge	sign	mod	road	s	r3	
+# ::edge	resemble-01	ARG2	string-entity	r	s3	
+# ::edge	arrow	ARG1-of	resemble-01	a2	r	
+# ::edge	sign	mod	arrow	s	a2	
+# ::edge	speed-quantity	quant	55	s2	0	
+# ::edge	sign	mod	speed-quantity	s	s2	
+# ::edge	speed-quantity	unit	mile-per-hour	s2	m	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	op1	tree	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	motorcycle	a	m2	
+# ::edge	motorcycle	ARG1-of	park-01	m2	p	
+# ::edge	park-01	location	beside	p	b	
+# ::edge	beside	op1	road	b	r2	
+(r2 / road
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / tree)
+            :op2 (s / sign
+                :mod (r3 / road)
+                :mod (a2 / arrow
+                    :ARG1-of (r / resemble-01
+                        :ARG2 (s3 / string-entity)))
+                :mod (s2 / speed-quantity
+                    :quant 55
+                    :unit (m / mile-per-hour)))
+            :op3 (m2 / motorcycle
+                :ARG1-of (p / park-01
+                    :location (b / beside
+                        :op1 r2)))))
+    :mod (r4 / rural))

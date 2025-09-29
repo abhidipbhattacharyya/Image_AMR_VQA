@@ -1,0 +1,31 @@
+# ::tok A man sitting at a table with plates and a slice of pizza on each plate .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	h	have-03	6-7
+# ::node	p2	plate	7-8
+# ::node	a	and	8-9
+# ::node	s2	slice	10-11
+# ::node	p	pizza	12-13
+# ::node	e	each	14-15
+# ::node	p3	plate	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	and	op1	plate	a	p2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	slice	a	s2	
+# ::edge	slice	consist-of	pizza	s2	p	
+# ::edge	plate	mod	each	p2	e	
+# ::edge	each	op1	plate	e	p3	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (p2 / plate
+                    :mod (e / each
+                        :op1 (p3 / plate)))
+                :op2 (s2 / slice
+                    :consist-of (p / pizza)))))
+    :ARG2 (t / table))

@@ -1,0 +1,37 @@
+# ::tok Two sheep walking one one side of a road while several runners approach from the other
+# ::node	0	2	0-1
+# ::node	s2	sheep	1-2
+# ::node	w	walk-01	2-3
+# ::node	s3	side	5-6
+# ::node	s4	side	5-6
+# ::node	r	road	8-9
+# ::node	r2	road	8-9
+# ::node	s	several	10-11
+# ::node	p	person	11-12
+# ::node	r3	run-02	11-12
+# ::node	a	approach-01	12-13
+# ::node	o	other	15-16
+# ::root	w	walk-01
+# ::edge	sheep	quant	2	s2	0	
+# ::edge	walk-01	ARG0	sheep	w	s2	
+# ::edge	road	part	side	r	s4	
+# ::edge	walk-01	part-of	road	w	r	
+# ::edge	side	part-of	road	s4	r2	
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	run-02	p	r3	
+# ::edge	approach-01	ARG2	person	a	p	
+# ::edge	approach-01	ARG1	side	a	s3	
+# ::edge	walk-01	time	approach-01	w	a	
+# ::edge	side	mod	other	s3	o	
+(w / walk-01
+    :ARG0 (s2 / sheep
+        :quant 2)
+    :part-of (r / road
+        :part (s4 / side
+            :part-of (r2 / road)))
+    :time (a / approach-01
+        :ARG1 (s3 / side
+            :mod (o / other))
+        :ARG2 (p / person
+            :quant (s / several)
+            :ARG0-of (r3 / run-02))))

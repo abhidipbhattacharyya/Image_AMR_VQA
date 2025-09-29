@@ -1,0 +1,39 @@
+# ::tok Flag flying on left with tall building with clock in the middle and another building to the right .
+# ::node	f	flag	0-1
+# ::node	f2	fly-01	1-2
+# ::node	l	left-20	3-4
+# ::node	t	tall	5-6
+# ::node	b	building	6-7
+# ::node	h	have-03	7-8
+# ::node	c	clock	8-9
+# ::node	r	relative-position	10-11
+# ::node	m	middle	11-12
+# ::node	a	another	13-14
+# ::node	b2	building	14-15
+# ::node	r2	right-04	17-18
+# ::root	f2	fly-01
+# ::edge	fly-01	ARG1	flag	f2	f	
+# ::edge	building	mod	tall	b	t	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	clock	h	c	
+# ::edge	relative-position	direction	building	r	b	
+# ::edge	relative-position	ARG1-of	fly-01	r	f2	
+# ::edge	fly-01	location	relative-position	f2	r	
+# ::edge	clock	location	middle	c	m	
+# ::edge	building	mod	another	b2	a	
+# ::edge	relative-position	op2	building	r	b2	
+# ::edge	building	ARG1-of	right-04	b2	r2	
+# ::edge	fly-01	rel	left-20	f2	l	
+(f2 / fly-01
+    :ARG1 (f / flag)
+    :location (r / relative-position
+        :ARG1-of f2
+        :direction (b / building
+            :ARG0-of (h / have-03
+                :ARG1 (c / clock
+                    :location (m / middle)))
+            :mod (t / tall))
+        :op2 (b2 / building
+            :ARG1-of (r2 / right-04)
+            :mod (a / another)))
+    :rel (l / left-20))

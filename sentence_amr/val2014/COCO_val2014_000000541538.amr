@@ -1,0 +1,49 @@
+# ::tok A table is set with three mugs of beer , a slice of pie , a donut with a segment cut out , and few other objects .
+# ::node	t	table	1-2
+# ::node	s2	set-01	3-4
+# ::node	0	3	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	m	meter	6-7
+# ::node	b	beer	8-9
+# ::node	a	and	9-10
+# ::node	s3	slice	11-12
+# ::node	p	pie	13-14
+# ::node	d	donut	16-17
+# ::node	h	have-03	17-18
+# ::node	s	segment	19-20
+# ::node	c	cut-out-06	20-21
+# ::node	f	few	24-25
+# ::node	o2	other	25-26
+# ::node	o	object	26-27
+# ::root	s2	set-01
+# ::edge	set-01	ARG1	table	s2	t	
+# ::edge	volume-quantity	quant	3	v	0	
+# ::edge	volume-quantity	unit	meter	v	m	
+# ::edge	beer	quant	volume-quantity	b	v	
+# ::edge	and	op1	beer	a	b	
+# ::edge	set-01	ARG2	and	s2	a	
+# ::edge	and	op2	slice	a	s3	
+# ::edge	slice	part-of	pie	s3	p	
+# ::edge	and	op3	donut	a	d	
+# ::edge	donut	ARG0-of	have-03	d	h	
+# ::edge	have-03	ARG1	segment	h	s	
+# ::edge	segment	ARG1-of	cut-out-06	s	c	
+# ::edge	object	mod	other	o	o2	
+# ::edge	object	quant	few	o	f	
+# ::edge	and	op4	object	a	o	
+(s2 / set-01
+    :ARG1 (t / table)
+    :ARG2 (a / and
+        :op1 (b / beer
+            :quant (v / volume-quantity
+                :quant 3
+                :unit (m / meter)))
+        :op2 (s3 / slice
+            :part-of (p / pie))
+        :op3 (d / donut
+            :ARG0-of (h / have-03
+                :ARG1 (s / segment
+                    :ARG1-of (c / cut-out-06))))
+        :op4 (o / object
+            :quant (f / few)
+            :mod (o2 / other))))

@@ -1,0 +1,33 @@
+# ::tok A tennis player on an indoor court pauses to raise three fingers in the air .
+# ::node	t	tennis	1-2
+# ::node	p2	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	i	indoor	5-6
+# ::node	c	court	6-7
+# ::node	p	pause-01	7-8
+# ::node	r	raise-01	9-10
+# ::node	0	3	10-11
+# ::node	f	finger	11-12
+# ::node	a	air	14-15
+# ::root	p	pause-01
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	court	location	indoor	c	i	
+# ::edge	person	location	court	p2	c	
+# ::edge	pause-01	ARG0	person	p	p2	
+# ::edge	pause-01	purpose	raise-01	p	r	
+# ::edge	raise-01	ARG0	person	r	p2	
+# ::edge	finger	quant	3	f	0	
+# ::edge	raise-01	ARG1	finger	r	f	
+# ::edge	raise-01	ARG5	air	r	a	
+(p / pause-01
+    :purpose (r / raise-01
+        :ARG0 (p2 / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (t / tennis))
+            :location (c / court
+                :location (i / indoor)))
+        :ARG1 (f / finger
+            :quant 3)
+        :ARG5 (a / air))
+    :ARG0 p2)

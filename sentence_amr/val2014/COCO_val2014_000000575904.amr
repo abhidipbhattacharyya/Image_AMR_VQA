@@ -1,0 +1,24 @@
+# ::tok some people walking across a crosswalk with a car parked by it
+# ::node	s	some	0-1
+# ::node	p2	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	a	across	3-4
+# ::node	w2	walk-01	5-6
+# ::node	c	car	8-9
+# ::node	p	park-01	9-10
+# ::root	w	walk-01
+# ::edge	person	quant	some	p2	s	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	walk-01	ARG2	across	w	a	
+# ::edge	across	op1	walk-01	a	w2	
+# ::edge	walk-01	prep-with	car	w2	c	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	ARG2	walk-01	p	w2	
+(w / walk-01
+    :ARG0 (p2 / person
+        :quant (s / some))
+    :ARG2 (a / across
+        :op1 (w2 / walk-01
+            :prep-with (c / car
+                :ARG1-of (p / park-01
+                    :ARG2 w2)))))

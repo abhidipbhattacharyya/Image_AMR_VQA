@@ -1,0 +1,28 @@
+# ::tok Stop sign and other street signs with a building in the background
+# ::node	s3	stop-01	0-1
+# ::node	s2	signal-07	1-2
+# ::node	a	and	2-3
+# ::node	o	other	3-4
+# ::node	s4	street	4-5
+# ::node	s	sign	5-6
+# ::node	h	have-03	6-7
+# ::node	b2	building	8-9
+# ::node	b	background	11-12
+# ::root	a	and
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	sign	purpose	street	s	s4	
+# ::edge	sign	mod	other	s	o	
+# ::edge	and	op2	sign	a	s	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	background	b2	b	
+(a / and
+    :op1 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :op2 (s / sign
+        :purpose (s4 / street)
+        :ARG0-of (h / have-03
+            :ARG1 (b2 / building
+                :location (b / background)))
+        :mod (o / other)))

@@ -1,0 +1,26 @@
+# ::tok A zebra turns toward the camera as it stands near another zebra .
+# ::node	z	zebra	1-2
+# ::node	t	turn-01	2-3
+# ::node	c	camera	5-6
+# ::node	s	stand-01	8-9
+# ::node	n	near-02	9-10
+# ::node	a	another	10-11
+# ::node	z2	zebra	11-12
+# ::root	t	turn-01
+# ::edge	turn-01	ARG1	zebra	t	z	
+# ::edge	turn-01	direction	camera	t	c	
+# ::edge	turn-01	time	stand-01	t	s	
+# ::edge	stand-01	ARG1	zebra	s	z	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	zebra	n	z	
+# ::edge	zebra	mod	another	z2	a	
+# ::edge	near-02	ARG2	zebra	n	z2	
+(t / turn-01
+    :ARG1 (z / zebra)
+    :direction (c / camera)
+    :time (s / stand-01
+        :ARG1 z
+        :ARG2 (n / near-02
+            :ARG1 z
+            :ARG2 (z2 / zebra
+                :mod (a / another)))))

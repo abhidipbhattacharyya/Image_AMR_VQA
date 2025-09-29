@@ -1,0 +1,27 @@
+# ::tok A couple getting ready to eat two different doughnuts from a vendor .
+# ::node	c2	couple	1-2
+# ::node	r	ready-01	3-4
+# ::node	e	eat-01	5-6
+# ::node	0	2	6-7
+# ::node	d	differ-02	7-8
+# ::node	d2	donut	8-9
+# ::node	c	company	11-12
+# ::node	v	vend-01	11-12
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	couple	r	c2	
+# ::edge	ready-01	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG0	couple	e	c2	
+# ::edge	donut	ARG1-of	differ-02	d2	d	
+# ::edge	donut	quant	2	d2	0	
+# ::edge	eat-01	ARG1	donut	e	d2	
+# ::edge	donut	source	company	d2	c	
+# ::edge	company	ARG0-of	vend-01	c	v	
+(r / ready-01
+    :ARG1 (c2 / couple)
+    :ARG2 (e / eat-01
+        :ARG0 c2
+        :ARG1 (d2 / donut
+            :quant 2
+            :ARG1-of (d / differ-02)
+            :source (c / company
+                :ARG0-of (v / vend-01)))))

@@ -1,0 +1,22 @@
+# ::tok Several trains are parked next to a platform underneath a ceiling .
+# ::node	s	several	0-1
+# ::node	t	train	1-2
+# ::node	p	park-01	3-4
+# ::node	n	next-to	4-5
+# ::node	p2	platform	7-8
+# ::node	u	underneath	8-9
+# ::node	c	ceiling	10-11
+# ::root	p	park-01
+# ::edge	train	quant	several	t	s	
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	platform	n	p2	
+# ::edge	platform	location	underneath	p2	u	
+# ::edge	underneath	op1	ceiling	u	c	
+(p / park-01
+    :ARG1 (t / train
+        :quant (s / several))
+    :ARG2 (n / next-to
+        :op1 (p2 / platform
+            :location (u / underneath
+                :op1 (c / ceiling)))))

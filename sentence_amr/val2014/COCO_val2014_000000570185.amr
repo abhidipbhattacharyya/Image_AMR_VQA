@@ -1,0 +1,34 @@
+# ::tok A Wii system , controllers , steering wheel , handheld trigger mouses , and cabling .
+# ::node	n	name	1-2
+# ::node	0	Wii	1-2
+# ::node	s2	system	2-3
+# ::node	a	and	3-4
+# ::node	c	control-01	4-5
+# ::node	s	steer-01	6-7
+# ::node	w	wheel	7-8
+# ::node	h	handheld	9-10
+# ::node	t	trigger-01	10-11
+# ::node	m	meter	11-12
+# ::node	w2	wire-02	14-15
+# ::root	a	and
+# ::edge	name	op1	Wii	n	0	
+# ::edge	system	name	name	s2	n	
+# ::edge	and	op1	system	a	s2	
+# ::edge	and	op2	control-01	a	c	
+# ::edge	wheel	instrument-of	steer-01	w	s	
+# ::edge	and	op3	wheel	a	w	
+# ::edge	meter	instrument-of	trigger-01	m	t	
+# ::edge	meter	mod	handheld	m	h	
+# ::edge	and	op4	meter	a	m	
+# ::edge	and	op5	wire-02	a	w2	
+(a / and
+    :op1 (s2 / system
+        :name (n / name
+            :op1 "Wii"))
+    :op2 (c / control-01)
+    :op3 (w / wheel
+        :instrument-of (s / steer-01))
+    :op4 (m / meter
+        :instrument-of (t / trigger-01)
+        :mod (h / handheld))
+    :op5 (w2 / wire-02))

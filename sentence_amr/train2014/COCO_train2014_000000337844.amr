@@ -1,0 +1,31 @@
+# ::tok A tiny Lego model of a bench photographed in front of an actual bench
+# ::node	t	tiny	1-2
+# ::node	c	company	2-3
+# ::node	n	name	2-3
+# ::node	0	Lego	2-3
+# ::node	m	model-01	3-4
+# ::node	b	bench	6-7
+# ::node	p	photograph-01	7-8
+# ::node	i	in-front-of	9-10
+# ::node	a	actual-02	12-13
+# ::node	b2	bench	13-14
+# ::root	m	model-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Lego	n	0	
+# ::edge	model-01	mod	company	m	c	
+# ::edge	model-01	mod	tiny	m	t	
+# ::edge	model-01	ARG1	bench	m	b	
+# ::edge	model-01	ARG1-of	photograph-01	m	p	
+# ::edge	photograph-01	location	in-front-of	p	i	
+# ::edge	bench	ARG1-of	actual-02	b2	a	
+# ::edge	in-front-of	op1	bench	i	b2	
+(m / model-01
+    :ARG1 (b / bench)
+    :ARG1-of (p / photograph-01
+        :location (i / in-front-of
+            :op1 (b2 / bench
+                :ARG1-of (a / actual-02))))
+    :mod (c / company
+        :name (n / name
+            :op1 "Lego"))
+    :mod (t / tiny))

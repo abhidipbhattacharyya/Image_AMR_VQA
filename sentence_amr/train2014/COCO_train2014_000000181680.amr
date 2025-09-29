@@ -1,0 +1,31 @@
+# ::tok A roman numeral clock mounted on a wall below a stone tower .
+# ::node	c2	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Rome	1-2
+# ::node	n2	numeral	2-3
+# ::node	c	clock	3-4
+# ::node	m	mount-03	4-5
+# ::node	w	wall	7-8
+# ::node	b	below	8-9
+# ::node	s	stone	10-11
+# ::node	t	tower	11-12
+# ::root	m	mount-03
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Rome	n	0	
+# ::edge	clock	mod	numeral	c	n2	
+# ::edge	clock	mod	country	c	c2	
+# ::edge	mount-03	ARG1	clock	m	c	
+# ::edge	mount-03	location	wall	m	w	
+# ::edge	wall	location	below	w	b	
+# ::edge	tower	consist-of	stone	t	s	
+# ::edge	below	op1	tower	b	t	
+(m / mount-03
+    :ARG1 (c / clock
+        :mod (n2 / numeral)
+        :mod (c2 / country
+            :name (n / name
+                :op1 "Rome")))
+    :location (w / wall
+        :location (b / below
+            :op1 (t / tower
+                :consist-of (s / stone)))))

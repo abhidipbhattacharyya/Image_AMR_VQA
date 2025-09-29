@@ -1,0 +1,27 @@
+# ::tok A maintenance worker is utilizing a stair cart to clean the windshield of an aircraft .
+# ::node	m	maintain-01	1-2
+# ::node	p	person	2-3
+# ::node	w2	work-01	2-3
+# ::node	u	utilize-01	4-5
+# ::node	c	cart	7-8
+# ::node	c2	clean-01	9-10
+# ::node	w	windshield	11-12
+# ::node	a	aircraft	14-15
+# ::root	u	utilize-01
+# ::edge	person	ARG0-of	work-01	p	w2	
+# ::edge	work-01	ARG1	maintain-01	w2	m	
+# ::edge	utilize-01	ARG0	person	u	p	
+# ::edge	utilize-01	ARG1	cart	u	c	
+# ::edge	utilize-01	purpose	clean-01	u	c2	
+# ::edge	clean-01	ARG0	person	c2	p	
+# ::edge	clean-01	ARG1	windshield	c2	w	
+# ::edge	windshield	part-of	aircraft	w	a	
+(u / utilize-01
+    :purpose (c2 / clean-01
+        :ARG0 (p / person
+            :ARG0-of (w2 / work-01
+                :ARG1 (m / maintain-01)))
+        :ARG1 (w / windshield
+            :part-of (a / aircraft)))
+    :ARG0 p
+    :ARG1 (c / cart))

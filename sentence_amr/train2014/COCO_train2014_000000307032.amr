@@ -1,0 +1,36 @@
+# ::tok A firefighter rests his arm on a parking meter as another walks past .
+# ::node	p3	person	1-2
+# ::node	f	fight-01	1-2
+# ::node	f2	fire	1-2
+# ::node	r	rest-01	2-3
+# ::node	a2	arm	4-5
+# ::node	p	park-01	7-8
+# ::node	m	meter	8-9
+# ::node	p4	person	10-11
+# ::node	a	another	10-11
+# ::node	w	walk-01	11-12
+# ::node	p2	past	12-13
+# ::root	r	rest-01
+# ::edge	person	ARG0-of	fight-01	p3	f	
+# ::edge	fight-01	ARG1	fire	f	f2	
+# ::edge	rest-01	ARG0	person	r	p3	
+# ::edge	rest-01	ARG1	arm	r	a2	
+# ::edge	person	part	arm	p3	a2	
+# ::edge	meter	mod	park-01	m	p	
+# ::edge	rest-01	ARG2	meter	r	m	
+# ::edge	person	mod	another	p4	a	
+# ::edge	walk-01	ARG0	person	w	p4	
+# ::edge	rest-01	time	walk-01	r	w	
+# ::edge	walk-01	ARG2	past	w	p2	
+(r / rest-01
+    :ARG0 (p3 / person
+        :ARG0-of (f / fight-01
+            :ARG1 (f2 / fire))
+        :part (a2 / arm))
+    :ARG1 a2
+    :ARG2 (m / meter
+        :mod (p / park-01))
+    :time (w / walk-01
+        :ARG0 (p4 / person
+            :mod (a / another))
+        :ARG2 (p2 / past)))

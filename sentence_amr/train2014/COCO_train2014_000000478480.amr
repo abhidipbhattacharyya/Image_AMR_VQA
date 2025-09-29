@@ -1,0 +1,39 @@
+# ::tok One giraffe is standing bent legged while another is stretched over eating from a bush .
+# ::node	0	1	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	s	stand-01	3-4
+# ::node	b	bend-01	4-5
+# ::node	l	leg	5-6
+# ::node	c	contrast-01	6-7
+# ::node	a	another	7-8
+# ::node	s2	stretch-01	9-10
+# ::node	o	over	10-11
+# ::node	e	eat-01	11-12
+# ::node	b2	bush	14-15
+# ::root	c	contrast-01
+# ::edge	giraffe	quant	1	g	0	
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	manner	bend-01	s	b	
+# ::edge	bend-01	ARG1	leg	b	l	
+# ::edge	giraffe	part	leg	g	l	
+# ::edge	contrast-01	ARG1	stand-01	c	s	
+# ::edge	giraffe	mod	another	g2	a	
+# ::edge	contrast-01	ARG2	stretch-01	c	s2	
+# ::edge	stretch-01	ARG1	giraffe	s2	g2	
+# ::edge	stretch-01	mod	over	s2	o	
+# ::edge	giraffe	ARG0-of	eat-01	g2	e	
+# ::edge	eat-01	ARG2	bush	e	b2	
+(c / contrast-01
+    :ARG1 (s / stand-01
+        :ARG1 (g / giraffe
+            :quant 1
+            :part (l / leg))
+        :manner (b / bend-01
+            :ARG1 l))
+    :ARG2 (s2 / stretch-01
+        :ARG1 (g2 / giraffe
+            :ARG0-of (e / eat-01
+                :ARG2 (b2 / bush))
+            :mod (a / another))
+        :mod (o / over)))

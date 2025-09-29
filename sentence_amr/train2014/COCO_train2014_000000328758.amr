@@ -1,0 +1,32 @@
+# ::tok A lone hiker with poles stops to check himself on a snowy mountain .
+# ::node	l	lone	1-2
+# ::node	p	person	2-3
+# ::node	h2	hike-01	2-3
+# ::node	h	have-03	3-4
+# ::node	p2	pole	4-5
+# ::node	s2	stop-01	5-6
+# ::node	c	check-01	7-8
+# ::node	s	snowy-02	11-12
+# ::node	m	mountain	12-13
+# ::root	s2	stop-01
+# ::edge	person	mod	lone	p	l	
+# ::edge	person	ARG0-of	hike-01	p	h2	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	pole	h	p2	
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	stop-01	purpose	check-01	s2	c	
+# ::edge	check-01	ARG1	person	c	p	
+# ::edge	check-01	ARG0	person	c	p	
+# ::edge	mountain	ARG1-of	snowy-02	m	s	
+# ::edge	check-01	location	mountain	c	m	
+(s2 / stop-01
+    :purpose (c / check-01
+        :ARG0 (p / person
+            :ARG0-of (h2 / hike-01)
+            :ARG0-of (h / have-03
+                :ARG1 (p2 / pole))
+            :mod (l / lone))
+        :ARG1 p
+        :location (m / mountain
+            :ARG1-of (s / snowy-02)))
+    :ARG0 p)

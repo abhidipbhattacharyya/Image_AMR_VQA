@@ -1,0 +1,40 @@
+# ::tok A 1950 's image of a freight train passing a wooden frame building near people on a wooded track .
+# ::node	d	date-entity	1-2
+# ::node	0	1950	1-2
+# ::node	i	image	3-4
+# ::node	f2	freight	6-7
+# ::node	t2	train	7-8
+# ::node	p	pass-03	8-9
+# ::node	w	wood	10-11
+# ::node	f	frame	11-12
+# ::node	b	building	12-13
+# ::node	n	near-02	13-14
+# ::node	p2	person	14-15
+# ::node	w2	wood	17-18
+# ::node	t	track	18-19
+# ::root	i	image
+# ::edge	date-entity	year	1950	d	0	
+# ::edge	image	time	date-entity	i	d	
+# ::edge	train	mod	freight	t2	f2	
+# ::edge	pass-03	ARG1	train	p	t2	
+# ::edge	image	mod	pass-03	i	p	
+# ::edge	frame	consist-of	wood	f	w	
+# ::edge	building	consist-of	frame	b	f	
+# ::edge	pass-03	path	building	p	b	
+# ::edge	building	ARG1-of	near-02	b	n	
+# ::edge	near-02	ARG2	person	n	p2	
+# ::edge	track	mod	wood	t	w2	
+# ::edge	pass-03	location	track	p	t	
+(i / image
+    :mod (p / pass-03
+        :ARG1 (t2 / train
+            :mod (f2 / freight))
+        :location (t / track
+            :mod (w2 / wood))
+        :path (b / building
+            :ARG1-of (n / near-02
+                :ARG2 (p2 / person))
+            :consist-of (f / frame
+                :consist-of (w / wood))))
+    :time (d / date-entity
+        :year 1950))

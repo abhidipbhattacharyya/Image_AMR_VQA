@@ -1,0 +1,38 @@
+# ::tok A person with glasses on her head , with a french fry in her mouth .
+# ::node	p	person	1-2
+# ::node	g	glasses	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	h	head	6-7
+# ::node	c	country	10-11
+# ::node	n	name	10-11
+# ::node	0	France	10-11
+# ::node	f	fry-01	11-12
+# ::node	b2	be-located-at-91	12-13
+# ::node	m	mouth	14-15
+# ::node	a	and	15-16
+# ::root	p	person
+# ::edge	be-located-at-91	ARG1	glasses	b	g	
+# ::edge	be-located-at-91	ARG2	head	b	h	
+# ::edge	person	part	head	p	h	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	be-located-at-91	ARG1	fry-01	b2	f	
+# ::edge	be-located-at-91	ARG2	mouth	b2	m	
+# ::edge	person	part	mouth	p	m	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	person	mod	and	p	a	
+(p / person
+    :mod (a / and
+        :op1 (b / be-located-at-91
+            :ARG1 (g / glasses)
+            :ARG2 (h / head))
+        :op2 (b2 / be-located-at-91
+            :ARG1 (f / fry-01
+                :mod (c / country
+                    :name (n / name
+                        :op1 "France")))
+            :ARG2 (m / mouth)))
+    :part h
+    :part m)

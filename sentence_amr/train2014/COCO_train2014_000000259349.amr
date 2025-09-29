@@ -1,0 +1,37 @@
+# ::tok a train sits at a mostly empty station with lots of signs covered with Asian characters
+# ::node	t	train	1-2
+# ::node	s2	sit-01	2-3
+# ::node	m	most	5-6
+# ::node	e	empty-02	6-7
+# ::node	s3	station	7-8
+# ::node	l	lot	9-10
+# ::node	s	sign	11-12
+# ::node	c3	cover-02	12-13
+# ::node	c2	continent	14-15
+# ::node	n	name	14-15
+# ::node	0	Asia	14-15
+# ::node	c	character	15-16
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	train	s2	t	
+# ::edge	empty-02	mod	most	e	m	
+# ::edge	station	ARG1-of	empty-02	s3	e	
+# ::edge	sit-01	ARG2	station	s2	s3	
+# ::edge	sign	quant	lot	s	l	
+# ::edge	station	part	sign	s3	s	
+# ::edge	sign	ARG1-of	cover-02	s	c3	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	character	mod	continent	c	c2	
+# ::edge	cover-02	ARG2	character	c3	c	
+(s2 / sit-01
+    :ARG1 (t / train)
+    :ARG2 (s3 / station
+        :ARG1-of (e / empty-02
+            :mod (m / most))
+        :part (s / sign
+            :quant (l / lot)
+            :ARG1-of (c3 / cover-02
+                :ARG2 (c / character
+                    :mod (c2 / continent
+                        :name (n / name
+                            :op1 "Asia")))))))

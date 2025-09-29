@@ -1,0 +1,40 @@
+# ::tok PIzza slices topped with mushroom and olives served with a greek style salad .
+# ::node	c	country-region	0-1
+# ::node	n	name	0-1
+# ::node	0	Italy	0-1
+# ::node	s3	slice	1-2
+# ::node	t	top-01	2-3
+# ::node	m	mushroom	4-5
+# ::node	a	and	5-6
+# ::node	l	Olive	6-7
+# ::node	s2	serve-02	7-8
+# ::node	g	greek	10-11
+# ::node	s4	style	11-12
+# ::node	s	salad	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	country-region	name	name	c	n	
+# ::edge	name	op1	Italy	n	0	
+# ::edge	slice	mod	country-region	s3	c	
+# ::edge	slice	ARG1-of	top-01	s3	t	
+# ::edge	and	op1	mushroom	a	m	
+# ::edge	top-01	ARG2	and	t	a	
+# ::edge	and	op2	Olive	a	l	
+# ::edge	slice	ARG1-of	serve-02	s3	s2	
+# ::edge	style	mod	greek	s4	g	
+# ::edge	salad	mod	style	s	s4	
+# ::edge	serve-02	accompanier	salad	s2	s	
+# ::edge	event	mod	slice	e	s3	
+(e / event
+    :mod (s3 / slice
+        :ARG1-of (t / top-01
+            :ARG2 (a / and
+                :op1 (m / mushroom)
+                :op2 (l / Olive)))
+        :ARG1-of (s2 / serve-02
+            :accompanier (s / salad
+                :mod (s4 / style
+                    :mod (g / greek))))
+        :mod (c / country-region
+            :name (n / name
+                :op1 "Italy"))))

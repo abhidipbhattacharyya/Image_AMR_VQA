@@ -1,0 +1,25 @@
+# ::tok A man sits in front of a large pizza with one slice missing .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	l	large	7-8
+# ::node	p	pizza	8-9
+# ::node	0	1	10-11
+# ::node	s2	slice	11-12
+# ::node	m2	miss-01	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	pizza	mod	large	p	l	
+# ::edge	in-front-of	op1	pizza	i	p	
+# ::edge	slice	quant	1	s2	0	
+# ::edge	miss-01	ARG1	slice	m2	s2	
+# ::edge	pizza	ARG0-of	miss-01	p	m2	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (i / in-front-of
+        :op1 (p / pizza
+            :ARG0-of (m2 / miss-01
+                :ARG1 (s2 / slice
+                    :quant 1))
+            :mod (l / large))))

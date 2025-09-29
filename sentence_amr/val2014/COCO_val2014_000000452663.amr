@@ -1,0 +1,54 @@
+# ::tok A clock with hands , on a pole showing 11:25 , against bricked city walkway with pedestrians and several storied building behind .
+# ::node	c2	clock	1-2
+# ::node	h	hand	3-4
+# ::node	p2	pole	7-8
+# ::node	s2	show-01	8-9
+# ::node	d	date-entity	9-10
+# ::node	0	11:25	9-10
+# ::node	o	oppose-01	11-12
+# ::node	t	traffic-01	12-13
+# ::node	c	city	13-14
+# ::node	w2	walkway	14-15
+# ::node	p	person	16-17
+# ::node	w	walk-01	16-17
+# ::node	a	and	17-18
+# ::node	s	several	18-19
+# ::node	s3	storied	19-20
+# ::node	b2	building	20-21
+# ::node	b	behind	21-22
+# ::root	o	oppose-01
+# ::edge	clock	part	hand	c2	h	
+# ::edge	clock	location	pole	c2	p2	
+# ::edge	clock	ARG0-of	show-01	c2	s2	
+# ::edge	show-01	ARG1	date-entity	s2	d	
+# ::edge	date-entity	time	11:25	d	0	
+# ::edge	oppose-01	ARG0	clock	o	c2	
+# ::edge	walkway	mod	city	w2	c	
+# ::edge	walkway	ARG1-of	traffic-01	w2	t	
+# ::edge	oppose-01	ARG1	walkway	o	w2	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op1	person	a	p	
+# ::edge	walkway	location-of	and	w2	a	
+# ::edge	building	mod	storied	b2	s3	
+# ::edge	building	quant	several	b2	s	
+# ::edge	and	op2	building	a	b2	
+# ::edge	building	location	behind	b2	b	
+# ::edge	behind	op1	walkway	b	w2	
+(o / oppose-01
+    :ARG0 (c2 / clock
+        :ARG0-of (s2 / show-01
+            :ARG1 (d / date-entity
+                :time "11:25"))
+        :location (p2 / pole)
+        :part (h / hand))
+    :ARG1 (w2 / walkway
+        :ARG1-of (t / traffic-01)
+        :location-of (a / and
+            :op1 (p / person
+                :ARG0-of (w / walk-01))
+            :op2 (b2 / building
+                :quant (s / several)
+                :location (b / behind
+                    :op1 w2)
+                :mod (s3 / storied)))
+        :mod (c / city)))

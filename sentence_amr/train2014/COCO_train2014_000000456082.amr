@@ -1,0 +1,85 @@
+# ::tok Several people in black red and green are on a field as one person wears white shorts and two people have their arms up toward a white Frisbee .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	b2	black-04	3-4
+# ::node	b3	black-04	3-4
+# ::node	r	red-02	4-5
+# ::node	a	and	5-6
+# ::node	g	green-02	6-7
+# ::node	b	be-located-at-91	8-9
+# ::node	f	field	10-11
+# ::node	0	1	12-13
+# ::node	p2	person	13-14
+# ::node	w2	wear-01	14-15
+# ::node	w3	white-03	15-16
+# ::node	s2	shorts	16-17
+# ::node	a2	and	17-18
+# ::node	1	2	18-19
+# ::node	p3	person	19-20
+# ::node	h	have-06	20-21
+# ::node	a3	arm	22-23
+# ::node	u	up-03	23-24
+# ::node	t2	toward	24-25
+# ::node	f2	football	27-28
+# ::node	t	team	27-28
+# ::node	n	name	27-28
+# ::node	2	Frisbee	27-28
+# ::root	b	be-located-at-91
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	red-02	ARG1	and	r	a	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	field	b	f	
+# ::edge	field	ARG1-of	black-04	f	b3	
+# ::edge	person	quant	1	p2	0	
+# ::edge	wear-01	ARG0	person	w2	p2	
+# ::edge	shorts	ARG1-of	white-03	s2	w3	
+# ::edge	wear-01	ARG1	shorts	w2	s2	
+# ::edge	and	op1	wear-01	a2	w2	
+# ::edge	be-located-at-91	prep-as	and	b	a2	
+# ::edge	person	quant	2	p3	1	
+# ::edge	have-06	ARG0	person	h	p3	
+# ::edge	and	op2	have-06	a2	h	
+# ::edge	person	part	arm	p3	a3	
+# ::edge	up-03	ARG1	arm	u	a3	
+# ::edge	have-06	ARG1	up-03	h	u	
+# ::edge	up-03	direction	toward	u	t2	
+# ::edge	toward	op1	football	t2	f2	
+# ::edge	football	ARG1-of	white-03	f2	w3	
+# ::edge	green-02	op2	team	g	t	
+# ::edge	team	ARG1-of	black-04	t	b3	
+# ::edge	team	ARG1-of	black-04	t	b2	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Frisbee	n	2	
+# ::edge	be-located-at-91	rel	red-02	b	r	
+# ::edge	be-located-at-91	rel	green-02	b	g	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :quant (s / several)
+        :ARG0-of (w / wear-01))
+    :ARG2 (f / field
+        :ARG1-of (b3 / black-04))
+    :prep-as (a2 / and
+        :op1 (w2 / wear-01
+            :ARG0 (p2 / person
+                :quant 1)
+            :ARG1 (s2 / shorts
+                :ARG1-of (w3 / white-03)))
+        :op2 (h / have-06
+            :ARG0 (p3 / person
+                :quant 2
+                :part (a3 / arm))
+            :ARG1 (u / up-03
+                :ARG1 a3
+                :direction (t2 / toward
+                    :op1 (f2 / football
+                        :ARG1-of w3)))))
+    :rel (r / red-02
+        :ARG1 (a / and))
+    :rel (g / green-02
+        :op2 (t / team
+            :name (n / name
+                :op1 "Frisbee")
+            :ARG1-of b3
+            :ARG1-of (b2 / black-04))))

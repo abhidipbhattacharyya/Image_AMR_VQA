@@ -1,0 +1,29 @@
+# ::tok A purse on its side with all its assorted contents on the floor in front of it
+# ::node	p	purse	1-2
+# ::node	s	side	4-5
+# ::node	a	all	6-7
+# ::node	a2	assorted	8-9
+# ::node	t	thing	9-10
+# ::node	c	contain-01	9-10
+# ::node	f	floor	12-13
+# ::node	i	in-front-of	14-15
+# ::root	p	purse
+# ::edge	purse	location	side	p	s	
+# ::edge	thing	mod	assorted	t	a2	
+# ::edge	thing	mod	all	t	a	
+# ::edge	purse	part	thing	p	t	
+# ::edge	thing	ARG1-of	contain-01	t	c	
+# ::edge	contain-01	ARG0	purse	c	p	
+# ::edge	purse	location	floor	p	f	
+# ::edge	floor	location	in-front-of	f	i	
+# ::edge	in-front-of	op1	purse	i	p	
+(p / purse
+    :location (s / side)
+    :location (f / floor
+        :location (i / in-front-of
+            :op1 p))
+    :part (t / thing
+        :ARG1-of (c / contain-01
+            :ARG0 p)
+        :mod (a2 / assorted)
+        :mod (a / all)))

@@ -1,0 +1,32 @@
+# ::tok Person touching their television remote to operate tv or cable device .
+# ::node	p	person	0-1
+# ::node	t3	touch-01	1-2
+# ::node	t	television	3-4
+# ::node	r	remote	4-5
+# ::node	o	operate-01	6-7
+# ::node	t2	television	7-8
+# ::node	o2	or	8-9
+# ::node	c	cable	9-10
+# ::node	d	device	10-11
+# ::root	t3	touch-01
+# ::edge	touch-01	ARG0	person	t3	p	
+# ::edge	remote	mod	television	r	t	
+# ::edge	touch-01	ARG1	remote	t3	r	
+# ::edge	remote	poss	person	r	p	
+# ::edge	touch-01	purpose	operate-01	t3	o	
+# ::edge	operate-01	ARG0	person	o	p	
+# ::edge	or	op1	television	o2	t2	
+# ::edge	operate-01	ARG1	or	o	o2	
+# ::edge	device	mod	cable	d	c	
+# ::edge	or	op2	device	o2	d	
+(t3 / touch-01
+    :purpose (o / operate-01
+        :ARG0 (p / person)
+        :ARG1 (o2 / or
+            :op1 (t2 / television)
+            :op2 (d / device
+                :mod (c / cable))))
+    :ARG0 p
+    :ARG1 (r / remote
+        :mod (t / television)
+        :poss p))

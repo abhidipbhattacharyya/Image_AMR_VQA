@@ -1,0 +1,57 @@
+# ::tok A grilled beef , onion and mushroom burger with a onion bun on top of a blue and white plate .
+# ::node	c	country-region	1-2
+# ::node	n	name	1-2
+# ::node	r	region	1-2
+# ::node	c2	country-region	1-2
+# ::node	0	North	1-2
+# ::node	b	beef	2-3
+# ::node	o	onion	4-5
+# ::node	a	and	5-6
+# ::node	m	mushroom	6-7
+# ::node	b4	burger	7-8
+# ::node	b5	burger	7-8
+# ::node	b3	bun	11-12
+# ::node	t	top-01	13-14
+# ::node	b2	blue	16-17
+# ::node	a2	and	17-18
+# ::node	w	white-03	18-19
+# ::node	p	plate	19-20
+# ::node	p2	plate	19-20
+# ::root	a	and
+# ::edge	country-region	name	name	c	n	
+# ::edge	name	op1	North	n	0	
+# ::edge	beef	mod	country-region	b	c	
+# ::edge	and	op1	beef	a	b	
+# ::edge	and	op2	burger	a	b4	
+# ::edge	burger	mod	onion	b4	o	
+# ::edge	burger	mod	mushroom	b5	m	
+# ::edge	and	op3	burger	a	b5	
+# ::edge	burger	mod	country-region	b5	c2	
+# ::edge	bun	consist-of	onion	b3	o	
+# ::edge	and	op4	bun	a	b3	
+# ::edge	and	ARG2-of	top-01	a	t	
+# ::edge	top-01	ARG1	and	t	a2	
+# ::edge	and	op1	plate	a2	p	
+# ::edge	plate	mod	blue	p	b2	
+# ::edge	plate	ARG1-of	white-03	p2	w	
+# ::edge	and	op2	plate	a2	p2	
+# ::edge	and	rel	region	a	r	
+(a / and
+    :ARG2-of (t / top-01
+        :ARG1 (a2 / and
+            :op1 (p / plate
+                :mod (b2 / blue))
+            :op2 (p2 / plate
+                :ARG1-of (w / white-03))))
+    :op1 (b / beef
+        :mod (c / country-region
+            :name (n / name
+                :op1 "North")))
+    :op2 (b4 / burger
+        :mod (o / onion))
+    :op3 (b5 / burger
+        :mod (m / mushroom)
+        :mod (c2 / country-region))
+    :op4 (b3 / bun
+        :consist-of o)
+    :rel (r / region))

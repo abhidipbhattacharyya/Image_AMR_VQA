@@ -1,0 +1,39 @@
+# ::tok A light pole with a stop sign , a street sign and a pair of shoes hanging on it .
+# ::node	l	light	1-2
+# ::node	p2	pole	2-3
+# ::node	h2	have-03	3-4
+# ::node	s4	stop-01	5-6
+# ::node	s2	signal-07	6-7
+# ::node	s5	street	9-10
+# ::node	s3	signal-07	10-11
+# ::node	a	and	11-12
+# ::node	p	pair-01	13-14
+# ::node	0	1	13-14
+# ::node	s	shoe	15-16
+# ::node	h	hang-01	16-17
+# ::root	p2	pole
+# ::edge	pole	mod	light	p2	l	
+# ::edge	pole	ARG0-of	have-03	p2	h2	
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	signal-07	ARG1	street	s3	s5	
+# ::edge	and	op2	signal-07	a	s3	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	pair-01	quant	1	p	0	
+# ::edge	shoe	quant	pair-01	s	p	
+# ::edge	and	op3	shoe	a	s	
+# ::edge	and	ARG1-of	hang-01	a	h	
+# ::edge	hang-01	ARG2	pole	h	p2	
+(p2 / pole
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :ARG1-of (h / hang-01
+                :ARG2 p2)
+            :op1 (s2 / signal-07
+                :ARG1 (s4 / stop-01))
+            :op2 (s3 / signal-07
+                :ARG1 (s5 / street))
+            :op3 (s / shoe
+                :quant (p / pair-01
+                    :quant 1))))
+    :mod (l / light))

@@ -1,0 +1,33 @@
+# ::tok A truck filling up at a gas station and a convieniant shop with cars parked next to it .
+# ::node	t	truck	1-2
+# ::node	f	fill-up-02	2-3
+# ::node	g	gas	6-7
+# ::node	s2	station	7-8
+# ::node	a	and	8-9
+# ::node	c2	convene-01	10-11
+# ::node	s	shop	11-12
+# ::node	c	car	13-14
+# ::node	p	park-01	14-15
+# ::node	n	next-to	15-16
+# ::root	a	and
+# ::edge	fill-up-02	ARG0	truck	f	t	
+# ::edge	station	mod	gas	s2	g	
+# ::edge	fill-up-02	location	station	f	s2	
+# ::edge	and	op1	fill-up-02	a	f	
+# ::edge	shop	ARG1-of	convene-01	s	c2	
+# ::edge	and	op2	shop	a	s	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	next-to	location-of	park-01	n	p	
+# ::edge	shop	location-of	next-to	s	n	
+# ::edge	next-to	op1	station	n	s2	
+(a / and
+    :op1 (f / fill-up-02
+        :ARG0 (t / truck)
+        :location (s2 / station
+            :mod (g / gas)))
+    :op2 (s / shop
+        :ARG1-of (c2 / convene-01)
+        :location-of (n / next-to
+            :location-of (p / park-01
+                :ARG1 (c / car))
+            :op1 s2)))

@@ -1,0 +1,31 @@
+# ::tok An Amtrak train parked at the train stop with people passing by .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Amtrak	1-2
+# ::node	t	train	2-3
+# ::node	p	park-01	3-4
+# ::node	f	facility	5-6
+# ::node	t2	train	6-7
+# ::node	s	stop-01	7-8
+# ::node	p3	person	9-10
+# ::node	p2	pass-by-17	10-11
+# ::root	p	park-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Amtrak	n	0	
+# ::edge	train	mod	company	t	c	
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	facility	p	f	
+# ::edge	stop-01	ARG1	train	s	t2	
+# ::edge	facility	location-of	stop-01	f	s	
+# ::edge	pass-by-17	ARG0	person	p2	p3	
+# ::edge	train	ARG1-of	pass-by-17	t	p2	
+(p / park-01
+    :ARG1 (t / train
+        :ARG1-of (p2 / pass-by-17
+            :ARG0 (p3 / person))
+        :mod (c / company
+            :name (n / name
+                :op1 "Amtrak")))
+    :ARG2 (f / facility
+        :location-of (s / stop-01
+            :ARG1 (t2 / train))))

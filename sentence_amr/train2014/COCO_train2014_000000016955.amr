@@ -1,0 +1,28 @@
+# ::tok A large clock mounted in the center of a train station with no numbers .
+# ::node	l	large	1-2
+# ::node	c2	clock	2-3
+# ::node	m	mount-03	3-4
+# ::node	c	center	6-7
+# ::node	t	train	9-10
+# ::node	s	station	10-11
+# ::node	h	have-03	11-12
+# ::node	0	-	12-13
+# ::node	n	number	13-14
+# ::root	c2	clock
+# ::edge	clock	mod	large	c2	l	
+# ::edge	clock	ARG1-of	mount-03	c2	m	
+# ::edge	mount-03	location	center	m	c	
+# ::edge	station	mod	train	s	t	
+# ::edge	center	part-of	station	c	s	
+# ::edge	clock	ARG0-of	have-03	c2	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	number	h	n	
+(c2 / clock
+    :ARG0-of (h / have-03
+        :ARG1 (n / number)
+        :polarity -)
+    :ARG1-of (m / mount-03
+        :location (c / center
+            :part-of (s / station
+                :mod (t / train))))
+    :mod (l / large))

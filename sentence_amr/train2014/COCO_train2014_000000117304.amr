@@ -1,0 +1,37 @@
+# ::tok The batter stands ready at the plate as the umpire crouches down behind the catcher .
+# ::node	p	person	1-2
+# ::node	b	batter-01	1-2
+# ::node	s	stand-01	2-3
+# ::node	r	ready-02	3-4
+# ::node	p4	plate	6-7
+# ::node	p2	person	9-10
+# ::node	u	umpire-01	9-10
+# ::node	c2	crouch-01	10-11
+# ::node	d	down	11-12
+# ::node	b2	behind	12-13
+# ::node	p3	person	14-15
+# ::node	c	catch-01	14-15
+# ::root	s	stand-01
+# ::edge	person	ARG2-of	batter-01	p	b	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG1-of	ready-02	s	r	
+# ::edge	ready-02	ARG2	plate	r	p4	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	crouch-01	ARG0	person	c2	p2	
+# ::edge	stand-01	time	crouch-01	s	c2	
+# ::edge	crouch-01	mod	down	c2	d	
+# ::edge	crouch-01	location	behind	c2	b2	
+# ::edge	behind	op1	person	b2	p3	
+# ::edge	person	ARG0-of	catch-01	p3	c	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG2-of (b / batter-01))
+    :ARG1-of (r / ready-02
+        :ARG2 (p4 / plate))
+    :time (c2 / crouch-01
+        :ARG0 (p2 / person
+            :ARG0-of (u / umpire-01))
+        :location (b2 / behind
+            :op1 (p3 / person
+                :ARG0-of (c / catch-01)))
+        :mod (d / down)))

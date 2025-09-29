@@ -1,0 +1,28 @@
+# ::tok A Berkeley Police car parked in front of a fire hydrant
+# ::node	c2	city	1-2
+# ::node	n	name	1-2
+# ::node	0	Berkeley	1-2
+# ::node	p2	police	2-3
+# ::node	c	car	3-4
+# ::node	p	park-01	4-5
+# ::node	i	in-front-of	6-7
+# ::node	f	fire	9-10
+# ::node	h	hydrant	10-11
+# ::root	p	park-01
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Berkeley	n	0	
+# ::edge	police	mod	city	p2	c2	
+# ::edge	car	mod	police	c	p2	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	in-front-of	op1	hydrant	i	h	
+(p / park-01
+    :ARG1 (c / car
+        :mod (p2 / police
+            :mod (c2 / city
+                :name (n / name
+                    :op1 "Berkeley"))))
+    :ARG2 (i / in-front-of
+        :op1 (h / hydrant
+            :mod (f / fire))))

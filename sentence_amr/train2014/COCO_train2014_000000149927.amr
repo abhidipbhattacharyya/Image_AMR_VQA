@@ -1,0 +1,31 @@
+# ::tok A view of two sets of train tracks , with two trains visible in the distance
+# ::node	v	view-01	1-2
+# ::node	0	2	3-4
+# ::node	s2	set	4-5
+# ::node	t2	train	6-7
+# ::node	t	track	7-8
+# ::node	h	have-03	9-10
+# ::node	1	2	10-11
+# ::node	t3	train	11-12
+# ::node	s	see-01	12-13
+# ::node	d	distance	15-16
+# ::root	v	view-01
+# ::edge	set	quant	2	s2	0	
+# ::edge	track	mod	train	t	t2	
+# ::edge	track	consist-of	set	t	s2	
+# ::edge	view-01	ARG1	track	v	t	
+# ::edge	view-01	ARG0-of	have-03	v	h	
+# ::edge	train	quant	2	t3	1	
+# ::edge	have-03	ARG1	train	h	t3	
+# ::edge	train	ARG1-of	see-01	t3	s	
+# ::edge	see-01	location	distance	s	d	
+(v / view-01
+    :ARG0-of (h / have-03
+        :ARG1 (t3 / train
+            :quant 2
+            :ARG1-of (s / see-01
+                :location (d / distance))))
+    :ARG1 (t / track
+        :consist-of (s2 / set
+            :quant 2)
+        :mod (t2 / train)))

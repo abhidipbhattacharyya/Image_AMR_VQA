@@ -1,0 +1,33 @@
+# ::tok A clock tower has a balcony , bells and two swinging windows in front .
+# ::node	c	clock	1-2
+# ::node	t	tower	2-3
+# ::node	h	have-03	3-4
+# ::node	b	balcony	5-6
+# ::node	b2	bell	7-8
+# ::node	a	and	8-9
+# ::node	0	2	9-10
+# ::node	s	swing-01	10-11
+# ::node	w	window	11-12
+# ::node	i	in-front-of	13-14
+# ::root	h	have-03
+# ::edge	tower	mod	clock	t	c	
+# ::edge	have-03	ARG0	tower	h	t	
+# ::edge	and	op2	bell	a	b2	
+# ::edge	and	op1	balcony	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	window	ARG1-of	swing-01	w	s	
+# ::edge	window	quant	2	w	0	
+# ::edge	and	op3	window	a	w	
+# ::edge	and	location	in-front-of	a	i	
+# ::edge	in-front-of	op1	tower	i	t	
+(h / have-03
+    :ARG0 (t / tower
+        :mod (c / clock))
+    :ARG1 (a / and
+        :location (i / in-front-of
+            :op1 t)
+        :op1 (b / balcony)
+        :op2 (b2 / bell)
+        :op3 (w / window
+            :quant 2
+            :ARG1-of (s / swing-01))))

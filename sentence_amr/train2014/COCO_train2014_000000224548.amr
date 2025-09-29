@@ -1,0 +1,25 @@
+# ::tok A green traffic light at night time with traffic coming by .
+# ::node	g	green-02	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	d	date-entity	5-6
+# ::node	n	night	5-6
+# ::node	t2	traffic	8-9
+# ::node	c	come-01	9-10
+# ::node	b	by	10-11
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	green-02	l	g	
+# ::edge	light	time	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	come-01	ARG1	traffic	c	t2	
+# ::edge	light	time-of	come-01	l	c	
+# ::edge	come-01	direction	by	c	b	
+(l / light
+    :ARG1-of (g / green-02)
+    :mod (t / traffic)
+    :time (d / date-entity
+        :dayperiod (n / night))
+    :time-of (c / come-01
+        :ARG1 (t2 / traffic)
+        :direction (b / by)))

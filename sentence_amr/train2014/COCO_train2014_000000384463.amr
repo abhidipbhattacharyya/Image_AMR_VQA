@@ -1,0 +1,31 @@
+# ::tok A sliced hot dog on a bun with french fries and a packet of relish .
+# ::node	s	slice-01	1-2
+# ::node	h	hot-dog	2-3
+# ::node	b	bun	6-7
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	a	and	10-11
+# ::node	p	packet	12-13
+# ::node	r	relish	14-15
+# ::root	h	hot-dog
+# ::edge	hot-dog	ARG1-of	slice-01	h	s	
+# ::edge	hot-dog	prep-on	bun	h	b	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	and	op1	fry-01	a	f	
+# ::edge	hot-dog	accompanier	and	h	a	
+# ::edge	and	op2	packet	a	p	
+# ::edge	packet	consist-of	relish	p	r	
+(h / hot-dog
+    :ARG1-of (s / slice-01)
+    :accompanier (a / and
+        :op1 (f / fry-01
+            :mod (c / country
+                :name (n / name
+                    :op1 "France")))
+        :op2 (p / packet
+            :consist-of (r / relish)))
+    :prep-on (b / bun))

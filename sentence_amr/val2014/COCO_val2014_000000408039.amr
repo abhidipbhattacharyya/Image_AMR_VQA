@@ -1,0 +1,31 @@
+# ::tok A child holds a cylindrical object in front of other seated people in a large room .
+# ::node	c	child	1-2
+# ::node	h	hold-01	2-3
+# ::node	c2	cubic-meter	4-5
+# ::node	o	object	5-6
+# ::node	i	in-front-of	7-8
+# ::node	o2	other	9-10
+# ::node	s	seat-01	10-11
+# ::node	p	person	11-12
+# ::node	l	large	14-15
+# ::node	r	room	15-16
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	child	h	c	
+# ::edge	object	mod	cubic-meter	o	c2	
+# ::edge	hold-01	ARG1	object	h	o	
+# ::edge	hold-01	location	in-front-of	h	i	
+# ::edge	person	ARG1-of	seat-01	p	s	
+# ::edge	person	mod	other	p	o2	
+# ::edge	in-front-of	op1	person	i	p	
+# ::edge	room	mod	large	r	l	
+# ::edge	person	location	room	p	r	
+(h / hold-01
+    :ARG0 (c / child)
+    :ARG1 (o / object
+        :mod (c2 / cubic-meter))
+    :location (i / in-front-of
+        :op1 (p / person
+            :ARG1-of (s / seat-01)
+            :location (r / room
+                :mod (l / large))
+            :mod (o2 / other))))

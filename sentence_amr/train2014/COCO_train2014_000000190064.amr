@@ -1,0 +1,33 @@
+# ::tok small bus providing bus service with Spanish signs in the window
+# ::node	s3	small	0-1
+# ::node	b	bus	1-2
+# ::node	p	provide-01	2-3
+# ::node	b2	bus	3-4
+# ::node	s	serve-01	4-5
+# ::node	c	country	6-7
+# ::node	n	name	6-7
+# ::node	0	Spain	6-7
+# ::node	s2	sign	7-8
+# ::node	w	window	10-11
+# ::root	p	provide-01
+# ::edge	bus	mod	small	b	s3	
+# ::edge	provide-01	ARG0	bus	p	b	
+# ::edge	serve-01	ARG1	bus	s	b2	
+# ::edge	provide-01	ARG1	serve-01	p	s	
+# ::edge	serve-01	ARG0	bus	s	b	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Spain	n	0	
+# ::edge	sign	mod	country	s2	c	
+# ::edge	provide-01	accompanier	sign	p	s2	
+# ::edge	sign	location	window	s2	w	
+(p / provide-01
+    :ARG0 (b / bus
+        :mod (s3 / small))
+    :ARG1 (s / serve-01
+        :ARG0 b
+        :ARG1 (b2 / bus))
+    :accompanier (s2 / sign
+        :location (w / window)
+        :mod (c / country
+            :name (n / name
+                :op1 "Spain"))))

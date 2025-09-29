@@ -1,0 +1,40 @@
+# ::tok An intersection with a street light , a do not enter sign , and a Minneapolis sign .
+# ::node	i	intersect-01	1-2
+# ::node	s3	street	4-5
+# ::node	l	light	5-6
+# ::node	y	you	8-9
+# ::node	2	imperative	8-9
+# ::node	0	-	9-10
+# ::node	e	enter-01	10-11
+# ::node	s	sign	11-12
+# ::node	a	and	13-14
+# ::node	c	city	15-16
+# ::node	n	name	15-16
+# ::node	1	Minneapolis	15-16
+# ::node	s2	sign	16-17
+# ::root	i	intersect-01
+# ::edge	light	mod	street	l	s3	
+# ::edge	enter-01	polarity	-	e	0	
+# ::edge	enter-01	mode	imperative	e	2	
+# ::edge	enter-01	ARG0	you	e	y	
+# ::edge	sign	topic	enter-01	s	e	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	op1	light	a	l	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Minneapolis	n	1	
+# ::edge	sign	location	city	s2	c	
+# ::edge	and	op3	sign	a	s2	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (l / light
+            :mod (s3 / street))
+        :op2 (s / sign
+            :topic (e / enter-01
+                :ARG0 (y / you)
+                :mode imperative
+                :polarity -))
+        :op3 (s2 / sign
+            :location (c / city
+                :name (n / name
+                    :op1 "Minneapolis")))))

@@ -1,0 +1,25 @@
+# ::tok A clock that reads 8:29 with a street lamp in the background .
+# ::node	c	clock	1-2
+# ::node	r	read-01	3-4
+# ::node	d	date-entity	4-5
+# ::node	0	8:29	4-5
+# ::node	s	street	7-8
+# ::node	l	lamp	8-9
+# ::node	b2	be-located-at-91	9-10
+# ::node	b	background	11-12
+# ::root	c	clock
+# ::edge	clock	ARG3-of	read-01	c	r	
+# ::edge	read-01	time	date-entity	r	d	
+# ::edge	date-entity	time	8:29	d	0	
+# ::edge	lamp	mod	street	l	s	
+# ::edge	be-located-at-91	ARG2	lamp	b2	l	
+# ::edge	clock	ARG1-of	be-located-at-91	c	b2	
+# ::edge	be-located-at-91	location	background	b2	b	
+(c / clock
+    :ARG1-of (b2 / be-located-at-91
+        :ARG2 (l / lamp
+            :mod (s / street))
+        :location (b / background))
+    :ARG3-of (r / read-01
+        :time (d / date-entity
+            :time "8:29")))

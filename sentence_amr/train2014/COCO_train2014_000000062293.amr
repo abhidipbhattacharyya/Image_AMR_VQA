@@ -1,0 +1,27 @@
+# ::tok A group of pedestrians walking past a subway train at a subway station .
+# ::node	g	group-01	1-2
+# ::node	w	walk-01	3-4
+# ::node	w2	walk-01	4-5
+# ::node	p	past	5-6
+# ::node	p2	person	6-7
+# ::node	t	train	8-9
+# ::node	s2	subway	11-12
+# ::node	s	station	12-13
+# ::root	w2	walk-01
+# ::edge	walk-01	ARG2	past	w2	p	
+# ::edge	walk-01	ARG0	person	w2	p2	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	person	ARG1-of	group-01	p2	g	
+# ::edge	past	op1	train	p	t	
+# ::edge	train	mod	subway	t	s2	
+# ::edge	station	mod	subway	s	s2	
+# ::edge	walk-01	location	station	w2	s	
+(w2 / walk-01
+    :ARG0 (p2 / person
+        :ARG0-of (w / walk-01)
+        :ARG1-of (g / group-01))
+    :ARG2 (p / past
+        :op1 (t / train
+            :mod (s2 / subway)))
+    :location (s / station
+        :mod s2))

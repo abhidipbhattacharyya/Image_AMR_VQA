@@ -1,0 +1,40 @@
+# ::tok A lap top sits on a desk in front of a monitor while two other monitors are set up on the other side of the room .
+# ::node	l	lap	1-2
+# ::node	t	top	2-3
+# ::node	s3	sit-01	3-4
+# ::node	d	desk	6-7
+# ::node	i	in-front-of	8-9
+# ::node	m	monitor	11-12
+# ::node	0	2	13-14
+# ::node	o	other	14-15
+# ::node	m2	monitor	15-16
+# ::node	s	set-up-03	17-18
+# ::node	o2	other	21-22
+# ::node	s2	side	22-23
+# ::node	r	room	25-26
+# ::root	s3	sit-01
+# ::edge	top	mod	lap	t	l	
+# ::edge	sit-01	ARG1	top	s3	t	
+# ::edge	sit-01	ARG2	desk	s3	d	
+# ::edge	desk	location	in-front-of	d	i	
+# ::edge	in-front-of	op1	monitor	i	m	
+# ::edge	monitor	mod	other	m2	o	
+# ::edge	monitor	quant	2	m2	0	
+# ::edge	set-up-03	ARG1	monitor	s	m2	
+# ::edge	sit-01	time	set-up-03	s3	s	
+# ::edge	side	mod	other	s2	o2	
+# ::edge	set-up-03	location	side	s	s2	
+# ::edge	side	part-of	room	s2	r	
+(s3 / sit-01
+    :ARG1 (t / top
+        :mod (l / lap))
+    :ARG2 (d / desk
+        :location (i / in-front-of
+            :op1 (m / monitor)))
+    :time (s / set-up-03
+        :ARG1 (m2 / monitor
+            :quant 2
+            :mod (o / other))
+        :location (s2 / side
+            :mod (o2 / other)
+            :part-of (r / room))))

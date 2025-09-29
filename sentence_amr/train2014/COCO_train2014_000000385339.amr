@@ -1,0 +1,28 @@
+# ::tok Electrical clips are connected to two forks inserted into opposite ends of a hot dog .
+# ::node	e	electronic	0-1
+# ::node	c	clip	1-2
+# ::node	c2	connect-01	3-4
+# ::node	0	2	5-6
+# ::node	p	pitchfork	6-7
+# ::node	i	insert-01	7-8
+# ::node	o	opposite-01	9-10
+# ::node	e2	end	10-11
+# ::node	h	hot-dog	13-14
+# ::root	c2	connect-01
+# ::edge	clip	mod	electronic	c	e	
+# ::edge	connect-01	ARG1	clip	c2	c	
+# ::edge	pitchfork	quant	2	p	0	
+# ::edge	connect-01	ARG2	pitchfork	c2	p	
+# ::edge	pitchfork	ARG1-of	insert-01	p	i	
+# ::edge	end	ARG1-of	opposite-01	e2	o	
+# ::edge	insert-01	ARG2	end	i	e2	
+# ::edge	end	part-of	hot-dog	e2	h	
+(c2 / connect-01
+    :ARG1 (c / clip
+        :mod (e / electronic))
+    :ARG2 (p / pitchfork
+        :quant 2
+        :ARG1-of (i / insert-01
+            :ARG2 (e2 / end
+                :ARG1-of (o / opposite-01)
+                :part-of (h / hot-dog)))))

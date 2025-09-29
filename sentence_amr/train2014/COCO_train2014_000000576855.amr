@@ -1,0 +1,29 @@
+# ::tok The dog stands at attention on the park bench shared by its owner .
+# ::node	d	dog	1-2
+# ::node	s2	stand-01	2-3
+# ::node	a	attend-02	4-5
+# ::node	p	park	7-8
+# ::node	b	bench	8-9
+# ::node	s	share-01	9-10
+# ::node	p2	person	12-13
+# ::node	o	own-01	12-13
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	dog	s2	d	
+# ::edge	stand-01	manner	attend-02	s2	a	
+# ::edge	attend-02	ARG0	dog	a	d	
+# ::edge	bench	location	park	b	p	
+# ::edge	attend-02	location	bench	a	b	
+# ::edge	bench	ARG1-of	share-01	b	s	
+# ::edge	share-01	ARG0	person	s	p2	
+# ::edge	person	ARG0-of	own-01	p2	o	
+# ::edge	own-01	ARG1	dog	o	d	
+(s2 / stand-01
+    :ARG1 (d / dog)
+    :manner (a / attend-02
+        :ARG0 d
+        :location (b / bench
+            :ARG1-of (s / share-01
+                :ARG0 (p2 / person
+                    :ARG0-of (o / own-01
+                        :ARG1 d)))
+            :location (p / park))))

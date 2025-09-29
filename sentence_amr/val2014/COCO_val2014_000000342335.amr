@@ -1,0 +1,22 @@
+# ::tok A sign next to a stone wall stating the road name .
+# ::node	s	sign	1-2
+# ::node	n2	next-to	2-3
+# ::node	s3	stone	5-6
+# ::node	w	wall	6-7
+# ::node	s2	state-01	7-8
+# ::node	r	road	9-10
+# ::node	n	name	10-11
+# ::root	s	sign
+# ::edge	sign	location	next-to	s	n2	
+# ::edge	wall	consist-of	stone	w	s3	
+# ::edge	next-to	op1	wall	n2	w	
+# ::edge	sign	ARG0-of	state-01	s	s2	
+# ::edge	name	mod	road	n	r	
+# ::edge	state-01	ARG1	name	s2	n	
+(s / sign
+    :ARG0-of (s2 / state-01
+        :ARG1 (n / name
+            :mod (r / road)))
+    :location (n2 / next-to
+        :op1 (w / wall
+            :consist-of (s3 / stone))))

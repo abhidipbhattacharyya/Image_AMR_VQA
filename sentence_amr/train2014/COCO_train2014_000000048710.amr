@@ -1,0 +1,31 @@
+# ::tok A motel room with twin beds and a table with two chairs .
+# ::node	m	motel	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	twin	4-5
+# ::node	b	bed	5-6
+# ::node	a	and	6-7
+# ::node	t	table	8-9
+# ::node	h2	have-03	9-10
+# ::node	0	2	10-11
+# ::node	c	chair	11-12
+# ::root	r	room
+# ::edge	room	mod	motel	r	m	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	mod	twin	b	t2	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	table	a	t	
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	chair	quant	2	c	0	
+# ::edge	have-03	ARG1	chair	h2	c	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bed
+                :mod (t2 / twin))
+            :op2 (t / table
+                :ARG0-of (h2 / have-03
+                    :ARG1 (c / chair
+                        :quant 2)))))
+    :mod (m / motel))

@@ -1,0 +1,34 @@
+# ::tok A clock tower stands tall while people walk by a clothing vendor .
+# ::node	c	clock	1-2
+# ::node	t3	tower	2-3
+# ::node	s	stand-01	3-4
+# ::node	t	tall	4-5
+# ::node	p	person	6-7
+# ::node	w	walk-01	7-8
+# ::node	b	by	8-9
+# ::node	t2	thing	9-10
+# ::node	c2	clothe-01	10-11
+# ::node	p2	person	11-12
+# ::node	v	vend-01	11-12
+# ::root	s	stand-01
+# ::edge	tower	mod	clock	t3	c	
+# ::edge	stand-01	ARG1	tower	s	t3	
+# ::edge	stand-01	manner	tall	s	t	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	stand-01	time	walk-01	s	w	
+# ::edge	walk-01	ARG2	by	w	b	
+# ::edge	thing	ARG2-of	clothe-01	t2	c2	
+# ::edge	by	op1	person	b	p2	
+# ::edge	person	ARG0-of	vend-01	p2	v	
+# ::edge	vend-01	ARG1	thing	v	t2	
+(s / stand-01
+    :ARG1 (t3 / tower
+        :mod (c / clock))
+    :manner (t / tall)
+    :time (w / walk-01
+        :ARG0 (p / person)
+        :ARG2 (b / by
+            :op1 (p2 / person
+                :ARG0-of (v / vend-01
+                    :ARG1 (t2 / thing
+                        :ARG2-of (c2 / clothe-01)))))))

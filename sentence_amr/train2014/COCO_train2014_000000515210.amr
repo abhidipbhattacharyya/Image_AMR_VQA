@@ -1,0 +1,49 @@
+# ::tok A dog laying by the kitchen sink , a lady leaning on a counter and a girl drinking a glass of water in the kitchen .
+# ::node	d	dog	1-2
+# ::node	l2	lay-01	2-3
+# ::node	b	by	3-4
+# ::node	k	kitchen	5-6
+# ::node	s	sink	6-7
+# ::node	l	lady	9-10
+# ::node	l3	lean-01	10-11
+# ::node	c	counter	13-14
+# ::node	a	and	14-15
+# ::node	g	girl	16-17
+# ::node	d2	drink-01	17-18
+# ::node	v	volume-quantity	18-19
+# ::node	0	1	18-19
+# ::node	g2	glass	19-20
+# ::node	w	water	21-22
+# ::node	k2	kitchen	24-25
+# ::root	a	and
+# ::edge	lay-01	ARG1	dog	l2	d	
+# ::edge	lay-01	ARG2	by	l2	b	
+# ::edge	sink	mod	kitchen	s	k	
+# ::edge	by	op1	sink	b	s	
+# ::edge	lean-01	ARG1	lady	l3	l	
+# ::edge	lean-01	ARG2	counter	l3	c	
+# ::edge	and	op2	lean-01	a	l3	
+# ::edge	and	op1	lay-01	a	l2	
+# ::edge	and	op3	girl	a	g	
+# ::edge	girl	ARG0-of	drink-01	g	d2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g2	
+# ::edge	water	quant	volume-quantity	w	v	
+# ::edge	drink-01	ARG1	water	d2	w	
+# ::edge	drink-01	location	kitchen	d2	k2	
+(a / and
+    :op1 (l2 / lay-01
+        :ARG1 (d / dog)
+        :ARG2 (b / by
+            :op1 (s / sink
+                :mod (k / kitchen))))
+    :op2 (l3 / lean-01
+        :ARG1 (l / lady)
+        :ARG2 (c / counter))
+    :op3 (g / girl
+        :ARG0-of (d2 / drink-01
+            :ARG1 (w / water
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g2 / glass)))
+            :location (k2 / kitchen))))

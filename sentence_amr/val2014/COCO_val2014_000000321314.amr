@@ -1,0 +1,40 @@
+# ::tok a table with a bunch of vases , with one filled with flowers and another with sand
+# ::node	t	table	1-2
+# ::node	h	have-03	2-3
+# ::node	b	bunch	4-5
+# ::node	p	plant	6-7
+# ::node	p2	plant	6-7
+# ::node	p3	plant	6-7
+# ::node	o	one	9-10
+# ::node	f	fill-01	10-11
+# ::node	f2	fill-01	10-11
+# ::node	f3	flower	12-13
+# ::node	a	and	13-14
+# ::node	a2	another	14-15
+# ::node	s	sand	16-17
+# ::root	t	table
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	plant	quant	bunch	p	b	
+# ::edge	have-03	ARG1	plant	h	p	
+# ::edge	plant	quant	one	p2	o	
+# ::edge	one	ARG1-of	fill-01	o	f	
+# ::edge	plant	ARG1-of	fill-01	p3	f2	
+# ::edge	fill-01	ARG2	flower	f	f3	
+# ::edge	and	op2	plant	a	p3	
+# ::edge	and	op1	plant	a	p2	
+# ::edge	plant	part	and	p	a	
+# ::edge	plant	mod	another	p3	a2	
+# ::edge	fill-01	ARG2	sand	f2	s	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (p / plant
+            :quant (b / bunch)
+            :part (a / and
+                :op1 (p2 / plant
+                    :quant (o / one
+                        :ARG1-of (f / fill-01
+                            :ARG2 (f3 / flower))))
+                :op2 (p3 / plant
+                    :ARG1-of (f2 / fill-01
+                        :ARG2 (s / sand))
+                    :mod (a2 / another))))))

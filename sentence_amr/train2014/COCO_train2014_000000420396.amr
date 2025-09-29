@@ -1,0 +1,33 @@
+# ::tok Kitchen worker busy decorating baked pastry items with green icing .
+# ::node	h	hunger-01	0-1
+# ::node	p2	person	1-2
+# ::node	w	work-01	1-2
+# ::node	b2	busy-01	2-3
+# ::node	d	decorate-01	3-4
+# ::node	b	bake-01	4-5
+# ::node	p	pastry	5-6
+# ::node	i2	item	6-7
+# ::node	g	green-02	8-9
+# ::node	i	icing	9-10
+# ::root	b2	busy-01
+# ::edge	person	ARG0-of	work-01	p2	w	
+# ::edge	work-01	ARG1	hunger-01	w	h	
+# ::edge	busy-01	ARG1	person	b2	p2	
+# ::edge	busy-01	ARG2	decorate-01	b2	d	
+# ::edge	decorate-01	ARG0	person	d	p2	
+# ::edge	pastry	ARG1-of	bake-01	p	b	
+# ::edge	item	mod	pastry	i2	p	
+# ::edge	decorate-01	ARG1	item	d	i2	
+# ::edge	icing	ARG1-of	green-02	i	g	
+# ::edge	decorate-01	ARG2	icing	d	i	
+(b2 / busy-01
+    :ARG1 (p2 / person
+        :ARG0-of (w / work-01
+            :ARG1 (h / hunger-01)))
+    :ARG2 (d / decorate-01
+        :ARG0 p2
+        :ARG1 (i2 / item
+            :mod (p / pastry
+                :ARG1-of (b / bake-01)))
+        :ARG2 (i / icing
+            :ARG1-of (g / green-02))))

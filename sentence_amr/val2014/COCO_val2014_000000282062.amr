@@ -1,0 +1,36 @@
+# ::tok Frisbee thrower being blocked by opposing player in frisbee - based game on playing field .
+# ::node	i	insure-02	0-1
+# ::node	t	throw-01	1-2
+# ::node	b2	block-01	3-4
+# ::node	o	oppose-01	5-6
+# ::node	p	person	6-7
+# ::node	p2	play-01	6-7
+# ::node	f2	frisbee	8-9
+# ::node	b	base-02	10-11
+# ::node	g	game	11-12
+# ::node	p3	play-01	13-14
+# ::node	f	field	14-15
+# ::root	b2	block-01
+# ::edge	throw-01	ARG1	insure-02	t	i	
+# ::edge	block-01	ARG1	throw-01	b2	t	
+# ::edge	person	ARG0-of	oppose-01	p	o	
+# ::edge	block-01	ARG0	person	b2	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	insure-02	ARG0	frisbee	i	f2	
+# ::edge	base-02	ARG2	frisbee	b	f2	
+# ::edge	game	ARG1-of	base-02	g	b	
+# ::edge	block-01	subevent-of	game	b2	g	
+# ::edge	field	location-of	play-01	f	p3	
+# ::edge	game	location	field	g	f	
+(b2 / block-01
+    :ARG0 (p / person
+        :ARG0-of (o / oppose-01)
+        :ARG0-of (p2 / play-01))
+    :ARG1 (t / throw-01
+        :ARG1 (i / insure-02
+            :ARG0 (f2 / frisbee)))
+    :subevent-of (g / game
+        :ARG1-of (b / base-02
+            :ARG2 f2)
+        :location (f / field
+            :location-of (p3 / play-01))))

@@ -1,0 +1,35 @@
+# ::tok A city street with a city bus on the road and a church and stores on the opposite side of the street .
+# ::node	c2	city	1-2
+# ::node	s3	street	2-3
+# ::node	h	have-03	3-4
+# ::node	b	bus	6-7
+# ::node	r	road	9-10
+# ::node	a	and	10-11
+# ::node	c	church	12-13
+# ::node	s2	store	14-15
+# ::node	o	opposite-01	17-18
+# ::node	s	side	18-19
+# ::root	s3	street
+# ::edge	street	mod	city	s3	c2	
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	bus	mod	city	b	c2	
+# ::edge	bus	location	road	b	r	
+# ::edge	and	op1	bus	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	church	a	c	
+# ::edge	and	op3	store	a	s2	
+# ::edge	side	ARG1-of	opposite-01	s	o	
+# ::edge	store	location	side	s2	s	
+# ::edge	street	part	side	s3	s	
+(s3 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bus
+                :location (r / road)
+                :mod (c2 / city))
+            :op2 (c / church)
+            :op3 (s2 / store
+                :location (s / side
+                    :ARG1-of (o / opposite-01)))))
+    :mod c2
+    :part s)

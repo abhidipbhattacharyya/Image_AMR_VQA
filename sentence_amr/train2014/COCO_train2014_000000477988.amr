@@ -1,0 +1,29 @@
+# ::tok A toddler pulls a rolling suitcase followed by an adult with a rolling suitcase .
+# ::node	t	toddler	1-2
+# ::node	p	pull-01	2-3
+# ::node	r	roll-01	4-5
+# ::node	s	suitcase	5-6
+# ::node	f	follow-01	6-7
+# ::node	a	adult	9-10
+# ::node	h	have-03	10-11
+# ::node	a2	and	14-15
+# ::root	a2	and
+# ::edge	pull-01	ARG0	toddler	p	t	
+# ::edge	suitcase	ARG1-of	roll-01	s	r	
+# ::edge	pull-01	ARG1	suitcase	p	s	
+# ::edge	suitcase	ARG2-of	follow-01	s	f	
+# ::edge	follow-01	ARG1	adult	f	a	
+# ::edge	adult	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	suitcase	h	s	
+# ::edge	and	op2	follow-01	a2	f	
+# ::edge	and	op1	pull-01	a2	p	
+(a2 / and
+    :op1 (p / pull-01
+        :ARG0 (t / toddler)
+        :ARG1 (s / suitcase
+            :ARG1-of (r / roll-01)
+            :ARG2-of (f / follow-01
+                :ARG1 (a / adult
+                    :ARG0-of (h / have-03
+                        :ARG1 s)))))
+    :op2 f)

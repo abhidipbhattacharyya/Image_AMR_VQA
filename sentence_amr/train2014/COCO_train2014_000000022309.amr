@@ -1,0 +1,28 @@
+# ::tok Traffic signals hang amid power lines on a commercial street corner .
+# ::node	t	traffic	0-1
+# ::node	s	signal-07	1-2
+# ::node	h	hang-01	2-3
+# ::node	a	amid	3-4
+# ::node	p	power	4-5
+# ::node	l	line	5-6
+# ::node	c	commerce	8-9
+# ::node	s2	street	9-10
+# ::node	c2	corner	10-11
+# ::root	h	hang-01
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	hang-01	ARG1	signal-07	h	s	
+# ::edge	hang-01	location	amid	h	a	
+# ::edge	line	mod	power	l	p	
+# ::edge	amid	op1	line	a	l	
+# ::edge	street	mod	commerce	s2	c	
+# ::edge	corner	op1	street	c2	s2	
+# ::edge	hang-01	location	corner	h	c2	
+(h / hang-01
+    :ARG1 (s / signal-07
+        :ARG1 (t / traffic))
+    :location (a / amid
+        :op1 (l / line
+            :mod (p / power)))
+    :location (c2 / corner
+        :op1 (s2 / street
+            :mod (c / commerce))))

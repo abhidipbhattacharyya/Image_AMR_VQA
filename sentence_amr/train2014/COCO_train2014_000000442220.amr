@@ -1,0 +1,34 @@
+# ::tok A faded sign shows a zone ends and another points to the bus lane
+# ::node	f	fade-01	1-2
+# ::node	s2	sign	2-3
+# ::node	s3	sign	2-3
+# ::node	s	show-01	3-4
+# ::node	z	zone	5-6
+# ::node	e	end-01	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	p	point-01	9-10
+# ::node	b	bus	12-13
+# ::node	l	lane	13-14
+# ::root	a	and
+# ::edge	sign	ARG1-of	fade-01	s2	f	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	end-01	ARG1	zone	e	z	
+# ::edge	show-01	ARG1	end-01	s	e	
+# ::edge	and	op1	show-01	a	s	
+# ::edge	sign	mod	another	s3	a2	
+# ::edge	and	op2	point-01	a	p	
+# ::edge	point-01	ARG0	sign	p	s3	
+# ::edge	lane	purpose	bus	l	b	
+# ::edge	point-01	ARG2	lane	p	l	
+(a / and
+    :op1 (s / show-01
+        :ARG0 (s2 / sign
+            :ARG1-of (f / fade-01))
+        :ARG1 (e / end-01
+            :ARG1 (z / zone)))
+    :op2 (p / point-01
+        :ARG0 (s3 / sign
+            :mod (a2 / another))
+        :ARG2 (l / lane
+            :purpose (b / bus))))

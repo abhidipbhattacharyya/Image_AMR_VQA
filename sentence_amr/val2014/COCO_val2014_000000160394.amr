@@ -1,0 +1,22 @@
+# ::tok a train is driving across the rails during daytime hours
+# ::node	t2	train	1-2
+# ::node	d3	drive-01	3-4
+# ::node	a	across	4-5
+# ::node	t	track	6-7
+# ::node	d	date-entity	8-9
+# ::node	d2	daytime	8-9
+# ::node	h	hour	9-10
+# ::root	d3	drive-01
+# ::edge	drive-01	ARG0	train	d3	t2	
+# ::edge	drive-01	path	across	d3	a	
+# ::edge	across	op1	track	a	t	
+# ::edge	date-entity	dayperiod	daytime	d	d2	
+# ::edge	hour	mod	date-entity	h	d	
+# ::edge	drive-01	time	hour	d3	h	
+(d3 / drive-01
+    :ARG0 (t2 / train)
+    :path (a / across
+        :op1 (t / track))
+    :time (h / hour
+        :mod (d / date-entity
+            :dayperiod (d2 / daytime))))

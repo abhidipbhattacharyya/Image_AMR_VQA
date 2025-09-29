@@ -1,0 +1,29 @@
+# ::tok A bathroom has a shower with no curtain to separate it from the rest of the bathroom .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	shower-01	4-5
+# ::node	h2	have-03	5-6
+# ::node	0	-	6-7
+# ::node	c	curtain	7-8
+# ::node	s	separate-01	9-10
+# ::node	r	rest	13-14
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	have-03	ARG1	shower-01	h	s2	
+# ::edge	shower-01	ARG0-of	have-03	s2	h2	
+# ::edge	curtain	polarity	-	c	0	
+# ::edge	have-03	ARG1	curtain	h2	c	
+# ::edge	curtain	ARG0-of	separate-01	c	s	
+# ::edge	separate-01	ARG1	shower-01	s	s2	
+# ::edge	separate-01	ARG2	rest	s	r	
+# ::edge	bathroom	part	rest	b	r	
+(h / have-03
+    :ARG0 (b / bathroom
+        :part (r / rest))
+    :ARG1 (s2 / shower-01
+        :ARG0-of (h2 / have-03
+            :ARG1 (c / curtain
+                :ARG0-of (s / separate-01
+                    :ARG1 s2
+                    :ARG2 r)
+                :polarity -))))

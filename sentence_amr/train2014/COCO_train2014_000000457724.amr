@@ -1,0 +1,25 @@
+# ::tok Continental Connection commuter plane with passengers boarding on the tarmac .
+# ::node	1	Continental	0-1
+# ::node	0	Connection	1-2
+# ::node	c	commute-01	2-3
+# ::node	p2	plane	3-4
+# ::node	n	name	3-4
+# ::node	p	passenger	5-6
+# ::node	b	board-01	6-7
+# ::node	t	tarmac	9-10
+# ::root	p2	plane
+# ::edge	plane	ARG0-of	commute-01	p2	c	
+# ::edge	plane	name	name	p2	n	
+# ::edge	name	op2	Connection	n	0	
+# ::edge	name	op1	Continental	n	1	
+# ::edge	plane	consist-of	passenger	p2	p	
+# ::edge	plane	ARG0-of	board-01	p2	b	
+# ::edge	board-01	location	tarmac	b	t	
+(p2 / plane
+    :name (n / name
+        :op1 "Continental"
+        :op2 "Connection")
+    :ARG0-of (c / commute-01)
+    :ARG0-of (b / board-01
+        :location (t / tarmac))
+    :consist-of (p / passenger))

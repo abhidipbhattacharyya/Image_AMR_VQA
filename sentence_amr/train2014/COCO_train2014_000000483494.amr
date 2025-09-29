@@ -1,0 +1,31 @@
+# ::tok Luggage on the floor of a hotel room , traveller relaxing on the bed
+# ::node	b	baggage	0-1
+# ::node	b2	be-located-at-91	1-2
+# ::node	f	floor	3-4
+# ::node	h	hotel	6-7
+# ::node	r2	room	7-8
+# ::node	a	and	8-9
+# ::node	p	person	9-10
+# ::node	t	travel-01	9-10
+# ::node	r	relax-01	10-11
+# ::node	b3	bed	13-14
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	baggage	b2	b	
+# ::edge	be-located-at-91	ARG2	floor	b2	f	
+# ::edge	room	location	hotel	r2	h	
+# ::edge	floor	part-of	room	f	r2	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	person	ARG0-of	travel-01	p	t	
+# ::edge	relax-01	ARG1	person	r	p	
+# ::edge	and	op2	relax-01	a	r	
+# ::edge	relax-01	location	bed	r	b3	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (b / baggage)
+        :ARG2 (f / floor
+            :part-of (r2 / room
+                :location (h / hotel))))
+    :op2 (r / relax-01
+        :ARG1 (p / person
+            :ARG0-of (t / travel-01))
+        :location (b3 / bed)))

@@ -1,0 +1,33 @@
+# ::tok A couple standing together holding Wii controllers next to a building .
+# ::node	c2	couple	1-2
+# ::node	s	stand-01	2-3
+# ::node	t	together	3-4
+# ::node	h	hold-01	4-5
+# ::node	p	product	5-6
+# ::node	n	name	5-6
+# ::node	0	Wii	5-6
+# ::node	c	control-01	6-7
+# ::node	n2	next-to	7-8
+# ::node	b	building	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	couple	s	c2	
+# ::edge	stand-01	mod	together	s	t	
+# ::edge	couple	ARG0-of	hold-01	c2	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	control-01	ARG1	product	c	p	
+# ::edge	hold-01	ARG1	control-01	h	c	
+# ::edge	control-01	ARG0	couple	c	c2	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	next-to	op1	building	n2	b	
+(s / stand-01
+    :ARG1 (c2 / couple
+        :ARG0-of (h / hold-01
+            :ARG1 (c / control-01
+                :ARG0 c2
+                :ARG1 (p / product
+                    :name (n / name
+                        :op1 "Wii")))))
+    :ARG2 (n2 / next-to
+        :op1 (b / building))
+    :mod (t / together))

@@ -1,0 +1,33 @@
+# ::tok Several oranges sitting next to each other with a green apple on top .
+# ::node	s	several	0-1
+# ::node	o	orange	1-2
+# ::node	s2	sit-01	2-3
+# ::node	n	next-to	3-4
+# ::node	o2	other	6-7
+# ::node	g	green-02	9-10
+# ::node	a2	apple	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	t	top	12-13
+# ::node	a	and	13-14
+# ::root	a	and
+# ::edge	orange	quant	several	o	s	
+# ::edge	sit-01	ARG1	orange	s2	o	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	other	n	o2	
+# ::edge	apple	ARG1-of	green-02	a2	g	
+# ::edge	be-located-at-91	ARG1	apple	b	a2	
+# ::edge	top	ARG2-of	be-located-at-91	t	b	
+# ::edge	orange	accompanier	top	o	t	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	and	op1	sit-01	a	s2	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (o / orange
+            :quant (s / several)
+            :accompanier (t / top
+                :ARG2-of (b / be-located-at-91
+                    :ARG1 (a2 / apple
+                        :ARG1-of (g / green-02)))))
+        :ARG2 (n / next-to
+            :op1 (o2 / other)))
+    :op2 b)

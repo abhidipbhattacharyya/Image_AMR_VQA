@@ -1,0 +1,29 @@
+# ::tok A train pulling into a train station pulling a line of train cars behind it .
+# ::node	t	train	1-2
+# ::node	p	pull-01	2-3
+# ::node	t2	train	5-6
+# ::node	s	station	6-7
+# ::node	p2	pull-01	7-8
+# ::node	l	line	9-10
+# ::node	c	car	12-13
+# ::node	b	behind	13-14
+# ::root	p	pull-01
+# ::edge	pull-01	ARG1	train	p	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	pull-01	ARG2	station	p	s	
+# ::edge	train	ARG0-of	pull-01	t	p2	
+# ::edge	pull-01	ARG1	line	p2	l	
+# ::edge	line	consist-of	car	l	c	
+# ::edge	car	mod	train	c	t2	
+# ::edge	pull-01	ARG2	behind	p2	b	
+# ::edge	behind	op1	train	b	t	
+(p / pull-01
+    :ARG1 (t / train
+        :ARG0-of (p2 / pull-01
+            :ARG1 (l / line
+                :consist-of (c / car
+                    :mod (t2 / train)))
+            :ARG2 (b / behind
+                :op1 t)))
+    :ARG2 (s / station
+        :mod t2))

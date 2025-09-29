@@ -1,0 +1,23 @@
+# ::tok a subway train is either leaving or pulling into the station
+# ::node	s2	subway	1-2
+# ::node	t	train	2-3
+# ::node	l	leave-11	5-6
+# ::node	o	or	6-7
+# ::node	p	pull-01	7-8
+# ::node	s	station	10-11
+# ::root	o	or
+# ::edge	train	mod	subway	t	s2	
+# ::edge	leave-11	ARG0	train	l	t	
+# ::edge	or	op1	leave-11	o	l	
+# ::edge	or	op2	pull-01	o	p	
+# ::edge	pull-01	ARG1	train	p	t	
+# ::edge	pull-01	ARG2	station	p	s	
+# ::edge	leave-11	ARG1	station	l	s	
+(o / or
+    :op1 (l / leave-11
+        :ARG0 (t / train
+            :mod (s2 / subway))
+        :ARG1 (s / station))
+    :op2 (p / pull-01
+        :ARG1 t
+        :ARG2 s))

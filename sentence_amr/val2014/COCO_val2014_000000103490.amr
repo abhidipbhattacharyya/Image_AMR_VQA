@@ -1,0 +1,37 @@
+# ::tok A person is holding a spoon of peanut butter next to a glass of milk and a banana .
+# ::node	p2	person	1-2
+# ::node	h	hold-01	3-4
+# ::node	s	spoon	5-6
+# ::node	p	peanut	7-8
+# ::node	b2	butter	8-9
+# ::node	n	next-to	9-10
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	m	milk	14-15
+# ::node	a	and	15-16
+# ::node	b	banana	17-18
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	butter	mod	peanut	b2	p	
+# ::edge	butter	quant	spoon	b2	s	
+# ::edge	hold-01	location	next-to	h	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	milk	quant	volume-quantity	m	v	
+# ::edge	and	op2	milk	a	m	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op1	butter	a	b2	
+# ::edge	and	op3	banana	a	b	
+(h / hold-01
+    :ARG0 (p2 / person)
+    :location (n / next-to
+        :op1 (a / and
+            :op1 (b2 / butter
+                :quant (s / spoon)
+                :mod (p / peanut))
+            :op2 (m / milk
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass)))
+            :op3 (b / banana))))

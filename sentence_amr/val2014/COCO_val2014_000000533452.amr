@@ -1,0 +1,28 @@
+# ::tok A person putting a roasting tin containing turkey or chicken into an oven
+# ::node	p	person	1-2
+# ::node	p2	put-01	2-3
+# ::node	r	roast-01	4-5
+# ::node	t	tin	5-6
+# ::node	c2	contain-01	6-7
+# ::node	t2	turkey	7-8
+# ::node	o	or	8-9
+# ::node	c	chicken	9-10
+# ::node	o2	oven	12-13
+# ::root	p2	put-01
+# ::edge	put-01	ARG0	person	p2	p	
+# ::edge	tin	ARG2-of	roast-01	t	r	
+# ::edge	put-01	ARG1	tin	p2	t	
+# ::edge	tin	ARG0-of	contain-01	t	c2	
+# ::edge	or	op1	turkey	o	t2	
+# ::edge	contain-01	ARG1	or	c2	o	
+# ::edge	or	op2	chicken	o	c	
+# ::edge	put-01	ARG2	oven	p2	o2	
+(p2 / put-01
+    :ARG0 (p / person)
+    :ARG1 (t / tin
+        :ARG0-of (c2 / contain-01
+            :ARG1 (o / or
+                :op1 (t2 / turkey)
+                :op2 (c / chicken)))
+        :ARG2-of (r / roast-01))
+    :ARG2 (o2 / oven))

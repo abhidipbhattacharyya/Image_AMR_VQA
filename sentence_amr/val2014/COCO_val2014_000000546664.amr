@@ -1,0 +1,29 @@
+# ::tok A man surfs on a river as others watch and wait their turns
+# ::node	m	man	1-2
+# ::node	s	surf-01	2-3
+# ::node	r	river	5-6
+# ::node	o	other	7-8
+# ::node	w2	watch-01	8-9
+# ::node	a	and	9-10
+# ::node	w	wait-01	10-11
+# ::node	t	turn	12-13
+# ::root	s	surf-01
+# ::edge	surf-01	ARG0	man	s	m	
+# ::edge	surf-01	ARG1	river	s	r	
+# ::edge	watch-01	ARG0	other	w2	o	
+# ::edge	and	op1	watch-01	a	w2	
+# ::edge	surf-01	time	and	s	a	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG1	other	w	o	
+# ::edge	wait-01	ARG2	turn	w	t	
+# ::edge	turn	poss	other	t	o	
+(s / surf-01
+    :ARG0 (m / man)
+    :ARG1 (r / river)
+    :time (a / and
+        :op1 (w2 / watch-01
+            :ARG0 (o / other))
+        :op2 (w / wait-01
+            :ARG1 o
+            :ARG2 (t / turn
+                :poss o))))

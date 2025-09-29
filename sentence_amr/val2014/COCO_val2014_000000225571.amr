@@ -1,0 +1,48 @@
+# ::tok A near - empty apartment shows a standing pole , wooden floors and full - length windows with a skyline behind them .
+# ::node	n	near-02	1-2
+# ::node	e	empty-02	3-4
+# ::node	a2	apartment	4-5
+# ::node	s	show-01	5-6
+# ::node	s3	stand-01	7-8
+# ::node	p	pole	8-9
+# ::node	w2	wood	10-11
+# ::node	f	floor	11-12
+# ::node	a	and	12-13
+# ::node	f2	full-09	13-14
+# ::node	l	long-03	15-16
+# ::node	w	window	16-17
+# ::node	h	have-03	17-18
+# ::node	s2	skyline	19-20
+# ::node	b	behind	20-21
+# ::root	s	show-01
+# ::edge	empty-02	ARG1-of	near-02	e	n	
+# ::edge	apartment	ARG1-of	empty-02	a2	e	
+# ::edge	show-01	ARG0	apartment	s	a2	
+# ::edge	pole	purpose	stand-01	p	s3	
+# ::edge	floor	consist-of	wood	f	w2	
+# ::edge	and	op2	floor	a	f	
+# ::edge	and	op1	pole	a	p	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	long-03	ARG1-of	full-09	l	f2	
+# ::edge	window	ARG1-of	long-03	w	l	
+# ::edge	and	op3	window	a	w	
+# ::edge	window	ARG0-of	have-03	w	h	
+# ::edge	have-03	ARG1	skyline	h	s2	
+# ::edge	skyline	location	behind	s2	b	
+# ::edge	behind	op1	and	b	a	
+(s / show-01
+    :ARG0 (a2 / apartment
+        :ARG1-of (e / empty-02
+            :ARG1-of (n / near-02)))
+    :ARG1 (a / and
+        :op1 (p / pole
+            :purpose (s3 / stand-01))
+        :op2 (f / floor
+            :consist-of (w2 / wood))
+        :op3 (w / window
+            :ARG0-of (h / have-03
+                :ARG1 (s2 / skyline
+                    :location (b / behind
+                        :op1 a)))
+            :ARG1-of (l / long-03
+                :ARG1-of (f2 / full-09)))))

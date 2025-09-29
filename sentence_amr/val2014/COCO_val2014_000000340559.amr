@@ -1,0 +1,27 @@
+# ::tok Two very metallic sinks are shown as well as the mirrors above them .
+# ::node	0	2	0-1
+# ::node	v	very	1-2
+# ::node	m	metallic	2-3
+# ::node	s2	sink-01	3-4
+# ::node	s	show-01	5-6
+# ::node	a2	and	6-7
+# ::node	m2	mirror	10-11
+# ::node	a	above	11-12
+# ::root	s	show-01
+# ::edge	metallic	degree	very	m	v	
+# ::edge	sink-01	mod	metallic	s2	m	
+# ::edge	sink-01	quant	2	s2	0	
+# ::edge	show-01	ARG1	and	s	a2	
+# ::edge	and	op1	sink-01	a2	s2	
+# ::edge	and	op2	mirror	a2	m2	
+# ::edge	mirror	location	above	m2	a	
+# ::edge	above	op1	sink-01	a	s2	
+(s / show-01
+    :ARG1 (a2 / and
+        :op1 (s2 / sink-01
+            :quant 2
+            :mod (m / metallic
+                :degree (v / very)))
+        :op2 (m2 / mirror
+            :location (a / above
+                :op1 s2))))

@@ -1,0 +1,36 @@
+# ::tok A specialized brand bicycle parked in front of a brick wall with a large crate on the back of the bicycle .
+# ::node	s	specialize-01	1-2
+# ::node	b3	brand	2-3
+# ::node	b2	bicycle	3-4
+# ::node	p	park-01	4-5
+# ::node	i	in-front-of	6-7
+# ::node	b4	brick	9-10
+# ::node	w	wall	10-11
+# ::node	h	have-03	11-12
+# ::node	l	large	13-14
+# ::node	c	crate	14-15
+# ::node	b	back	17-18
+# ::root	p	park-01
+# ::edge	brand	ARG1-of	specialize-01	b3	s	
+# ::edge	bicycle	mod	brand	b2	b3	
+# ::edge	park-01	ARG1	bicycle	p	b2	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	wall	consist-of	brick	w	b4	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	bicycle	ARG0-of	have-03	b2	h	
+# ::edge	crate	mod	large	c	l	
+# ::edge	have-03	ARG1	crate	h	c	
+# ::edge	crate	location	back	c	b	
+# ::edge	bicycle	part	back	b2	b	
+(p / park-01
+    :ARG1 (b2 / bicycle
+        :ARG0-of (h / have-03
+            :ARG1 (c / crate
+                :location (b / back)
+                :mod (l / large)))
+        :mod (b3 / brand
+            :ARG1-of (s / specialize-01))
+        :part b)
+    :ARG2 (i / in-front-of
+        :op1 (w / wall
+            :consist-of (b4 / brick))))

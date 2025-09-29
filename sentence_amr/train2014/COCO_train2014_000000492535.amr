@@ -1,0 +1,35 @@
+# ::tok A barefoot person is waiting to catch a white frisbee in the dark while making weird face .
+# ::node	b	barefoot	1-2
+# ::node	p	person	2-3
+# ::node	w	wait-01	4-5
+# ::node	c	catch-01	6-7
+# ::node	w3	white-03	8-9
+# ::node	f2	frisbee	9-10
+# ::node	d	dark	12-13
+# ::node	m	make-01	14-15
+# ::node	w2	weird	15-16
+# ::node	f	face	16-17
+# ::root	w	wait-01
+# ::edge	person	mod	barefoot	p	b	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	catch-01	w	c	
+# ::edge	catch-01	ARG0	person	c	p	
+# ::edge	frisbee	ARG1-of	white-03	f2	w3	
+# ::edge	catch-01	ARG1	frisbee	c	f2	
+# ::edge	catch-01	location	dark	c	d	
+# ::edge	catch-01	time	make-01	c	m	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	face	mod	weird	f	w2	
+# ::edge	make-01	ARG1	face	m	f	
+(w / wait-01
+    :ARG1 (p / person
+        :mod (b / barefoot))
+    :ARG2 (c / catch-01
+        :ARG0 p
+        :ARG1 (f2 / frisbee
+            :ARG1-of (w3 / white-03))
+        :location (d / dark)
+        :time (m / make-01
+            :ARG0 p
+            :ARG1 (f / face
+                :mod (w2 / weird)))))

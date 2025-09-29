@@ -1,0 +1,37 @@
+# ::tok Red traffic light on cement post that includes street names and parking rules .
+# ::node	r	red-02	0-1
+# ::node	t2	traffic	1-2
+# ::node	l	light	2-3
+# ::node	c	cement	4-5
+# ::node	p2	post	5-6
+# ::node	i	include-01	7-8
+# ::node	s	street	8-9
+# ::node	t	thing	9-10
+# ::node	n	name-01	9-10
+# ::node	a	and	10-11
+# ::node	p	park-01	11-12
+# ::node	r2	rule	12-13
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	post	mod	cement	p2	c	
+# ::edge	light	location	post	l	p2	
+# ::edge	light	ARG2-of	include-01	l	i	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	name-01	ARG1	street	n	s	
+# ::edge	and	op1	thing	a	t	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	rule	topic	park-01	r2	p	
+# ::edge	and	op2	rule	a	r2	
+(l / light
+    :ARG1-of (r / red-02)
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (t / thing
+                :ARG2-of (n / name-01
+                    :ARG1 (s / street)))
+            :op2 (r2 / rule
+                :topic (p / park-01))))
+    :location (p2 / post
+        :mod (c / cement))
+    :mod (t2 / traffic))

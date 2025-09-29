@@ -1,0 +1,31 @@
+# ::tok A Virgin Atlantic airplane is parked on the runway near other planes .
+# ::node	n	name	1-2
+# ::node	1	Virgin	1-2
+# ::node	c	company	2-3
+# ::node	0	Atlantic	2-3
+# ::node	a	airplane	3-4
+# ::node	p	park-01	5-6
+# ::node	r	runway	8-9
+# ::node	n2	near-02	9-10
+# ::node	o	other	10-11
+# ::node	p2	plane	11-12
+# ::root	p	park-01
+# ::edge	name	op1	Virgin	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Atlantic	n	0	
+# ::edge	airplane	mod	company	a	c	
+# ::edge	park-01	ARG1	airplane	p	a	
+# ::edge	park-01	ARG2	runway	p	r	
+# ::edge	runway	ARG1-of	near-02	r	n2	
+# ::edge	plane	mod	other	p2	o	
+# ::edge	near-02	ARG2	plane	n2	p2	
+(p / park-01
+    :ARG1 (a / airplane
+        :mod (c / company
+            :name (n / name
+                :op1 "Virgin"
+                :op2 "Atlantic")))
+    :ARG2 (r / runway
+        :ARG1-of (n2 / near-02
+            :ARG2 (p2 / plane
+                :mod (o / other)))))

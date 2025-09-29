@@ -1,0 +1,31 @@
+# ::tok A red fire hydrant with the paint chipping off , next to a wire cable fence .
+# ::node	r	red-02	1-2
+# ::node	f2	fire	2-3
+# ::node	h	hydrant	3-4
+# ::node	p	paint	6-7
+# ::node	c2	chip-in-02	7-8
+# ::node	n	next-to	10-11
+# ::node	w	wire	13-14
+# ::node	c	cable	14-15
+# ::node	f	fence	15-16
+# ::node	e	event	16-17
+# ::root	e	event
+# ::edge	hydrant	mod	fire	h	f2	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	chip-in-02	ARG0	paint	c2	p	
+# ::edge	hydrant	ARG1-of	chip-in-02	h	c2	
+# ::edge	hydrant	location	next-to	h	n	
+# ::edge	fence	mod	cable	f	c	
+# ::edge	fence	mod	wire	f	w	
+# ::edge	next-to	op1	fence	n	f	
+# ::edge	event	mod	hydrant	e	h	
+(e / event
+    :mod (h / hydrant
+        :ARG1-of (r / red-02)
+        :ARG1-of (c2 / chip-in-02
+            :ARG0 (p / paint))
+        :location (n / next-to
+            :op1 (f / fence
+                :mod (c / cable)
+                :mod (w / wire)))
+        :mod (f2 / fire)))

@@ -1,0 +1,54 @@
+# ::tok A kitchen has a stainless steel gas stove and hood next to an empty shelf with blue and yellow walls .
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	stainless	4-5
+# ::node	s3	steel	5-6
+# ::node	g	gas	6-7
+# ::node	s4	stove	7-8
+# ::node	a	and	8-9
+# ::node	h3	hood	9-10
+# ::node	n	next-to	10-11
+# ::node	e	empty-02	13-14
+# ::node	s	shelf	14-15
+# ::node	h2	have-03	15-16
+# ::node	b	blue	16-17
+# ::node	a2	and	17-18
+# ::node	y	yellow	18-19
+# ::node	w	wall	19-20
+# ::node	w2	wall	19-20
+# ::root	h	have-03
+# ::edge	have-03	ARG0	kitchen	h	k	
+# ::edge	steel	mod	stainless	s3	s2	
+# ::edge	stove	mod	gas	s4	g	
+# ::edge	stove	consist-of	steel	s4	s3	
+# ::edge	and	op1	stove	a	s4	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	hood	a	h3	
+# ::edge	hood	part	steel	h3	s3	
+# ::edge	and	location	next-to	a	n	
+# ::edge	shelf	ARG1-of	empty-02	s	e	
+# ::edge	next-to	op1	shelf	n	s	
+# ::edge	shelf	ARG0-of	have-03	s	h2	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op1	wall	a2	w	
+# ::edge	wall	mod	blue	w	b	
+# ::edge	wall	mod	yellow	w2	y	
+# ::edge	and	op2	wall	a2	w2	
+(h / have-03
+    :ARG0 (k / kitchen)
+    :ARG1 (a / and
+        :location (n / next-to
+            :op1 (s / shelf
+                :ARG0-of (h2 / have-03
+                    :ARG1 (a2 / and
+                        :op1 (w / wall
+                            :mod (b / blue))
+                        :op2 (w2 / wall
+                            :mod (y / yellow))))
+                :ARG1-of (e / empty-02)))
+        :op1 (s4 / stove
+            :consist-of (s3 / steel
+                :mod (s2 / stainless))
+            :mod (g / gas))
+        :op2 (h3 / hood
+            :part s3)))

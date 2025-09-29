@@ -1,0 +1,57 @@
+# ::tok Personal and commuter vehicles ( buses ) in a European country where drivers use the left side of the road for driving .
+# ::node	p2	personal-02	0-1
+# ::node	a	and	1-2
+# ::node	c	commute-01	2-3
+# ::node	v	vehicle	3-4
+# ::node	v2	vehicle	3-4
+# ::node	m	mean-01	4-5
+# ::node	b	bus	5-6
+# ::node	c2	continent	9-10
+# ::node	n	name	9-10
+# ::node	0	Europe	9-10
+# ::node	c3	country	10-11
+# ::node	p	person	12-13
+# ::node	d	drive-01	12-13
+# ::node	u	use-01	13-14
+# ::node	l	left-20	15-16
+# ::node	s	side	16-17
+# ::node	r	road	19-20
+# ::node	d2	drive-01	21-22
+# ::root	a	and
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	vehicle	ARG1-of	personal-02	v	p2	
+# ::edge	vehicle	ARG0-of	commute-01	v2	c	
+# ::edge	and	op2	vehicle	a	v2	
+# ::edge	vehicle	ARG1-of	mean-01	v2	m	
+# ::edge	mean-01	ARG2	bus	m	b	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	country	location	continent	c3	c2	
+# ::edge	and	location	country	a	c3	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	country	location-of	use-01	c3	u	
+# ::edge	side	ARG1-of	left-20	s	l	
+# ::edge	use-01	ARG1	side	u	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	use-01	ARG2	drive-01	u	d2	
+# ::edge	drive-01	ARG0	person	d2	p	
+(a / and
+    :location (c3 / country
+        :location (c2 / continent
+            :name (n / name
+                :op1 "Europe"))
+        :location-of (u / use-01
+            :ARG0 (p / person
+                :ARG0-of (d / drive-01))
+            :ARG1 (s / side
+                :ARG1-of (l / left-20)
+                :part-of (r / road))
+            :ARG2 (d2 / drive-01
+                :ARG0 p)))
+    :op1 (v / vehicle
+        :ARG1-of (p2 / personal-02))
+    :op2 (v2 / vehicle
+        :ARG0-of (c / commute-01)
+        :ARG1-of (m / mean-01
+            :ARG2 (b / bus))))

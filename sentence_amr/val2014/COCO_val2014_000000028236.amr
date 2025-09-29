@@ -1,0 +1,42 @@
+# ::tok Three parallel railroad tracks split into six separate tracks with a train on one of them .
+# ::node	0	3	0-1
+# ::node	p	parallel-01	1-2
+# ::node	r	railroad	2-3
+# ::node	t	track	3-4
+# ::node	s2	split-01	4-5
+# ::node	1	6	6-7
+# ::node	s	separate-02	7-8
+# ::node	t2	track	8-9
+# ::node	t3	track	8-9
+# ::node	h	have-03	9-10
+# ::node	t4	train	11-12
+# ::node	o	one	13-14
+# ::node	i	include-91	14-15
+# ::root	s2	split-01
+# ::edge	track	purpose	railroad	t	r	
+# ::edge	track	ARG0-of	parallel-01	t	p	
+# ::edge	track	quant	3	t	0	
+# ::edge	split-01	ARG1	track	s2	t	
+# ::edge	track	ARG1-of	separate-02	t2	s	
+# ::edge	track	quant	6	t2	1	
+# ::edge	split-01	ARG2	track	s2	t2	
+# ::edge	have-03	location	track	h	t3	
+# ::edge	track	ARG0-of	have-03	t2	h	
+# ::edge	have-03	ARG1	train	h	t4	
+# ::edge	track	quant	one	t3	o	
+# ::edge	track	ARG1-of	include-91	t3	i	
+# ::edge	include-91	ARG2	track	i	t	
+(s2 / split-01
+    :ARG1 (t / track
+        :purpose (r / railroad)
+        :quant 3
+        :ARG0-of (p / parallel-01))
+    :ARG2 (t2 / track
+        :quant 6
+        :ARG0-of (h / have-03
+            :ARG1 (t4 / train)
+            :location (t3 / track
+                :quant (o / one)
+                :ARG1-of (i / include-91
+                    :ARG2 t)))
+        :ARG1-of (s / separate-02)))

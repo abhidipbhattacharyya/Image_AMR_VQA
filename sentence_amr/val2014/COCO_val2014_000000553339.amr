@@ -1,0 +1,22 @@
+# ::tok A sign that gives directions to drivers driving down the road
+# ::node	s	sign	1-2
+# ::node	d	direct-01	4-5
+# ::node	p	person	6-7
+# ::node	d3	drive-01	6-7
+# ::node	d4	drive-01	7-8
+# ::node	d2	down	8-9
+# ::node	r	road	10-11
+# ::root	s	sign
+# ::edge	sign	ARG0-of	direct-01	s	d	
+# ::edge	direct-01	ARG2	person	d	p	
+# ::edge	person	ARG0-of	drive-01	p	d3	
+# ::edge	person	ARG0-of	drive-01	p	d4	
+# ::edge	drive-01	direction	down	d4	d2	
+# ::edge	drive-01	ARG1	road	d4	r	
+(s / sign
+    :ARG0-of (d / direct-01
+        :ARG2 (p / person
+            :ARG0-of (d3 / drive-01)
+            :ARG0-of (d4 / drive-01
+                :ARG1 (r / road)
+                :direction (d2 / down)))))

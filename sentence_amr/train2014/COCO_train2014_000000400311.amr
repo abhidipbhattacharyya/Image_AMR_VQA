@@ -1,0 +1,30 @@
+# ::tok A bathroom stall with a toilet and a large toilet paper dispenser .
+# ::node	b	bathroom	1-2
+# ::node	s	stall	2-3
+# ::node	h	have-03	3-4
+# ::node	t2	toilet	5-6
+# ::node	a2	and	6-7
+# ::node	l	large	8-9
+# ::node	p	paper	10-11
+# ::node	t	thing	11-12
+# ::node	a	administer-01	11-12
+# ::root	s	stall
+# ::edge	stall	location	bathroom	s	b	
+# ::edge	stall	ARG0-of	have-03	s	h	
+# ::edge	and	op1	toilet	a2	t2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	paper	mod	toilet	p	t2	
+# ::edge	thing	mod	large	t	l	
+# ::edge	and	op2	thing	a2	t	
+# ::edge	thing	ARG0-of	administer-01	t	a	
+# ::edge	administer-01	ARG1	paper	a	p	
+(s / stall
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (t2 / toilet)
+            :op2 (t / thing
+                :ARG0-of (a / administer-01
+                    :ARG1 (p / paper
+                        :mod t2))
+                :mod (l / large))))
+    :location (b / bathroom))

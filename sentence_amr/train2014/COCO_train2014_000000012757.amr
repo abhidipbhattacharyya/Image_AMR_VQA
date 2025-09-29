@@ -1,0 +1,28 @@
+# ::tok A tennis player serving the ball on the courts as spectators watch from the stands .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	serve-02	3-4
+# ::node	b	ball	5-6
+# ::node	c	court	8-9
+# ::node	s2	spectator	10-11
+# ::node	w	watch-01	11-12
+# ::node	s3	stand	14-15
+# ::root	s	serve-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	serve-02	location	court	s	c	
+# ::edge	watch-01	ARG0	spectator	w	s2	
+# ::edge	serve-02	ARG1-of	watch-01	s	w	
+# ::edge	watch-01	source	stand	w	s3	
+(s / serve-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis)))
+    :ARG1 (b / ball)
+    :ARG1-of (w / watch-01
+        :ARG0 (s2 / spectator)
+        :source (s3 / stand))
+    :location (c / court))

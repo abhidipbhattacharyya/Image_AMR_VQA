@@ -1,0 +1,27 @@
+# ::tok A train traveling past a train station with multiple railroad tracks .
+# ::node	t2	train	1-2
+# ::node	t3	travel-01	2-3
+# ::node	p	past	3-4
+# ::node	s	station	6-7
+# ::node	h	have-03	7-8
+# ::node	m	multiple	8-9
+# ::node	r	railroad	9-10
+# ::node	t	track	10-11
+# ::root	t3	travel-01
+# ::edge	travel-01	ARG0	train	t3	t2	
+# ::edge	travel-01	path	past	t3	p	
+# ::edge	past	op1	station	p	s	
+# ::edge	station	mod	train	s	t2	
+# ::edge	station	ARG0-of	have-03	s	h	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	track	quant	multiple	t	m	
+# ::edge	have-03	ARG1	track	h	t	
+(t3 / travel-01
+    :ARG0 (t2 / train)
+    :path (p / past
+        :op1 (s / station
+            :ARG0-of (h / have-03
+                :ARG1 (t / track
+                    :quant (m / multiple)
+                    :mod (r / railroad)))
+            :mod t2)))

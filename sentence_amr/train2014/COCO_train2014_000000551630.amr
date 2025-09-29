@@ -1,0 +1,22 @@
+# ::tok a traffic light at a city intersection with a sky background
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	c	city	5-6
+# ::node	i	intersect-01	6-7
+# ::node	h	have-03	7-8
+# ::node	s	sky	9-10
+# ::node	b	background	10-11
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	intersect-01	location	city	i	c	
+# ::edge	light	location	intersect-01	l	i	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	background	mod	sky	b	s	
+# ::edge	have-03	ARG1	background	h	b	
+(l / light
+    :ARG0-of (h / have-03
+        :ARG1 (b / background
+            :mod (s / sky)))
+    :location (i / intersect-01
+        :location (c / city))
+    :mod (t / traffic))

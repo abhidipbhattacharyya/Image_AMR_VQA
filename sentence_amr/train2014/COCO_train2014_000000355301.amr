@@ -1,0 +1,35 @@
+# ::tok A baseball player swings a baseball bat behind him as he runs away from the plate .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	swing-02	3-4
+# ::node	b2	bat	6-7
+# ::node	b3	behind	7-8
+# ::node	h	he	8-9
+# ::node	r	run-02	11-12
+# ::node	a	away	12-13
+# ::node	p2	plate	15-16
+# ::root	s	swing-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	swing-02	ARG4	behind	s	b3	
+# ::edge	behind	op1	he	b3	h	
+# ::edge	run-02	ARG0	he	r	h	
+# ::edge	swing-02	time	run-02	s	r	
+# ::edge	run-02	direction	away	r	a	
+# ::edge	run-02	source	plate	r	p2	
+(s / swing-02
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG1 (b2 / bat
+        :mod b)
+    :ARG4 (b3 / behind
+        :op1 (h / he))
+    :time (r / run-02
+        :ARG0 h
+        :direction (a / away)
+        :source (p2 / plate)))

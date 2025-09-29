@@ -1,0 +1,28 @@
+# ::tok Several people walk up a slope as others are coming down at an intersect .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	u	up-03	3-4
+# ::node	s2	slope	5-6
+# ::node	o	other	7-8
+# ::node	c	come-01	9-10
+# ::node	d	down	10-11
+# ::node	i	intersect-01	13-14
+# ::root	w	walk-01
+# ::edge	person	quant	several	p	s	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	direction	up-03	w	u	
+# ::edge	up-03	ARG2	slope	u	s2	
+# ::edge	come-01	ARG1	other	c	o	
+# ::edge	walk-01	time	come-01	w	c	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	come-01	location	intersect-01	c	i	
+(w / walk-01
+    :ARG0 (p / person
+        :quant (s / several))
+    :direction (u / up-03
+        :ARG2 (s2 / slope))
+    :time (c / come-01
+        :ARG1 (o / other)
+        :direction (d / down)
+        :location (i / intersect-01)))

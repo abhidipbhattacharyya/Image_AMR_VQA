@@ -1,0 +1,31 @@
+# ::tok Several motorcycles are parked at a red light in the road in a city with tall buildings .
+# ::node	s	several	0-1
+# ::node	m	motorcycle	1-2
+# ::node	p	park-01	3-4
+# ::node	r	red-02	6-7
+# ::node	l	light	7-8
+# ::node	r2	road	10-11
+# ::node	c	city	13-14
+# ::node	h	have-03	14-15
+# ::node	t	tall	15-16
+# ::node	b	building	16-17
+# ::root	p	park-01
+# ::edge	motorcycle	quant	several	m	s	
+# ::edge	park-01	ARG1	motorcycle	p	m	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	park-01	ARG2	light	p	l	
+# ::edge	light	location	road	l	r2	
+# ::edge	road	location	city	r2	c	
+# ::edge	city	ARG0-of	have-03	c	h	
+# ::edge	building	mod	tall	b	t	
+# ::edge	have-03	ARG1	building	h	b	
+(p / park-01
+    :ARG1 (m / motorcycle
+        :quant (s / several))
+    :ARG2 (l / light
+        :ARG1-of (r / red-02)
+        :location (r2 / road
+            :location (c / city
+                :ARG0-of (h / have-03
+                    :ARG1 (b / building
+                        :mod (t / tall)))))))

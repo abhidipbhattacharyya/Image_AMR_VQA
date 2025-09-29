@@ -1,0 +1,40 @@
+# ::tok A carriage drawn by Clydesdales is driven by men in top hats and fancy coats .
+# ::node	c	carriage	1-2
+# ::node	d	draw-02	2-3
+# ::node	c3	company	4-5
+# ::node	n	name	4-5
+# ::node	0	Clydesdales	4-5
+# ::node	d2	drive-01	6-7
+# ::node	m	man	8-9
+# ::node	w	wear-01	9-10
+# ::node	t	top	10-11
+# ::node	h	hat	11-12
+# ::node	a	and	12-13
+# ::node	f	fancy	13-14
+# ::node	c2	coat-01	14-15
+# ::root	d2	drive-01
+# ::edge	carriage	ARG1-of	draw-02	c	d	
+# ::edge	draw-02	ARG0	company	d	c3	
+# ::edge	company	name	name	c3	n	
+# ::edge	name	op1	Clydesdales	n	0	
+# ::edge	drive-01	ARG1	carriage	d2	c	
+# ::edge	drive-01	ARG0	man	d2	m	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	hat	mod	top	h	t	
+# ::edge	and	op1	hat	a	h	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	coat-01	mod	fancy	c2	f	
+# ::edge	and	op2	coat-01	a	c2	
+(d2 / drive-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (h / hat
+                    :mod (t / top))
+                :op2 (c2 / coat-01
+                    :mod (f / fancy)))))
+    :ARG1 (c / carriage
+        :ARG1-of (d / draw-02
+            :ARG0 (c3 / company
+                :name (n / name
+                    :op1 "Clydesdales")))))

@@ -1,0 +1,43 @@
+# ::tok The Asian place setting features a platter of sugared doughnuts , water , tea , and a rubber doll
+# ::node	c	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	p	place	2-3
+# ::node	s	setting	3-4
+# ::node	f	feature-01	4-5
+# ::node	p2	platter	6-7
+# ::node	s2	sugared	8-9
+# ::node	c2	cookie	9-10
+# ::node	a	and	10-11
+# ::node	w	water	11-12
+# ::node	t	tea	13-14
+# ::node	r	rubber	17-18
+# ::node	d	doll	18-19
+# ::root	f	feature-01
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	setting	mod	place	s	p	
+# ::edge	setting	mod	continent	s	c	
+# ::edge	feature-01	ARG0	setting	f	s	
+# ::edge	feature-01	ARG1	platter	f	p2	
+# ::edge	cookie	mod	sugared	c2	s2	
+# ::edge	and	op1	cookie	a	c2	
+# ::edge	platter	consist-of	and	p2	a	
+# ::edge	and	op2	water	a	w	
+# ::edge	and	op3	tea	a	t	
+# ::edge	doll	consist-of	rubber	d	r	
+# ::edge	and	op4	doll	a	d	
+(f / feature-01
+    :ARG0 (s / setting
+        :mod (p / place)
+        :mod (c / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG1 (p2 / platter
+        :consist-of (a / and
+            :op1 (c2 / cookie
+                :mod (s2 / sugared))
+            :op2 (w / water)
+            :op3 (t / tea)
+            :op4 (d / doll
+                :consist-of (r / rubber)))))

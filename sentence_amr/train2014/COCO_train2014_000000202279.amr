@@ -1,0 +1,32 @@
+# ::tok Various ingredients sit on a kitchen table top as if being prepared to be cooked .
+# ::node	v	various	0-1
+# ::node	i	ingredient	1-2
+# ::node	s	sit-01	2-3
+# ::node	k	kitchen	5-6
+# ::node	t	table	6-7
+# ::node	t2	top	7-8
+# ::node	r	resemble-01	8-9
+# ::node	p	prepare-02	11-12
+# ::node	c	cook-01	14-15
+# ::root	s	sit-01
+# ::edge	ingredient	mod	various	i	v	
+# ::edge	sit-01	ARG1	ingredient	s	i	
+# ::edge	table	mod	kitchen	t	k	
+# ::edge	top	part-of	table	t2	t	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	sit-01	ARG1-of	resemble-01	s	r	
+# ::edge	resemble-01	ARG2	prepare-02	r	p	
+# ::edge	prepare-02	ARG1	ingredient	p	i	
+# ::edge	prepare-02	ARG2	cook-01	p	c	
+# ::edge	cook-01	ARG1	ingredient	c	i	
+(s / sit-01
+    :ARG1 (i / ingredient
+        :mod (v / various))
+    :ARG1-of (r / resemble-01
+        :ARG2 (p / prepare-02
+            :ARG1 i
+            :ARG2 (c / cook-01
+                :ARG1 i)))
+    :ARG2 (t2 / top
+        :part-of (t / table
+            :mod (k / kitchen))))

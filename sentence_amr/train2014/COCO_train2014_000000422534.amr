@@ -1,0 +1,40 @@
+# ::tok A bottle of Coca - Cola is adjacent to a keyboard and Cola - Cola logo keychains are on top of the keyboard .
+# ::node	b3	bottle	1-2
+# ::node	n	name	3-4
+# ::node	c	company	5-6
+# ::node	0	et-cetera	5-6
+# ::node	b2	border-01	7-8
+# ::node	k2	keyboard	10-11
+# ::node	a	and	11-12
+# ::node	l	logo	15-16
+# ::node	k	key	16-17
+# ::node	b	be-located-at-91	18-19
+# ::node	t	top	19-20
+# ::root	n	name
+# ::edge	company	name	name	c	n	
+# ::edge	bottle	quant-of	company	b3	c	
+# ::edge	name	op1	et-cetera	n	0	
+# ::edge	border-01	ARG1	bottle	b2	b3	
+# ::edge	border-01	ARG2	keyboard	b2	k2	
+# ::edge	and	op1	border-01	a	b2	
+# ::edge	logo	poss	company	l	c	
+# ::edge	key	mod	logo	k	l	
+# ::edge	be-located-at-91	ARG1	key	b	k	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	top	b	t	
+# ::edge	top	op1	keyboard	t	k2	
+# ::edge	name	rel	and	n	a	
+(n / name
+    :op1 "et-cetera"
+    :rel (a / "and"
+        :op1 (b2 / border-01
+            :ARG1 (b3 / bottle
+                :quant-of (c / company
+                    :name n))
+            :ARG2 (k2 / keyboard))
+        :op2 (b / be-located-at-91
+            :ARG1 (k / key
+                :mod (l / logo
+                    :poss c))
+            :ARG2 (t / top
+                :op1 k2))))

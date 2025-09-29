@@ -1,0 +1,43 @@
+# ::tok A road with two towers on both sides and a traffic direction indicator is traveled on by some cars .
+# ::node	r	road	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	t2	tower	4-5
+# ::node	b	both	6-7
+# ::node	s	side	7-8
+# ::node	a	and	8-9
+# ::node	t3	traffic	10-11
+# ::node	d	direct-01	11-12
+# ::node	t	thing	12-13
+# ::node	i	indicate-01	12-13
+# ::node	t4	travel-01	14-15
+# ::node	s2	some	17-18
+# ::node	c	car	18-19
+# ::root	t4	travel-01
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	tower	quant	2	t2	0	
+# ::edge	side	mod	both	s	b	
+# ::edge	tower	location	side	t2	s	
+# ::edge	and	op1	tower	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	direct-01	ARG1	traffic	d	t3	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG0-of	indicate-01	t	i	
+# ::edge	indicate-01	ARG1	direct-01	i	d	
+# ::edge	travel-01	ARG1	road	t4	r	
+# ::edge	car	quant	some	c	s2	
+# ::edge	travel-01	ARG0	car	t4	c	
+(t4 / travel-01
+    :ARG0 (c / car
+        :quant (s2 / some))
+    :ARG1 (r / road
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (t2 / tower
+                    :quant 2
+                    :location (s / side
+                        :mod (b / both)))
+                :op2 (t / thing
+                    :ARG0-of (i / indicate-01
+                        :ARG1 (d / direct-01
+                            :ARG1 (t3 / traffic))))))))

@@ -1,0 +1,32 @@
+# ::tok A kitchen with a fridge door swung open showing its contents .
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	f	fridge	4-5
+# ::node	d	door	5-6
+# ::node	s2	swing-01	6-7
+# ::node	o	open-01	7-8
+# ::node	s	show-01	8-9
+# ::node	t	thing	10-11
+# ::node	c	contain-01	10-11
+# ::root	s2	swing-01
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	door	part-of	fridge	d	f	
+# ::edge	have-03	ARG1	door	h	d	
+# ::edge	swing-01	ARG1	kitchen	s2	k	
+# ::edge	swing-01	ARG4	open-01	s2	o	
+# ::edge	open-01	ARG1	kitchen	o	k	
+# ::edge	swing-01	ARG0-of	show-01	s2	s	
+# ::edge	show-01	ARG1	thing	s	t	
+# ::edge	thing	ARG1-of	contain-01	t	c	
+# ::edge	contain-01	ARG0	kitchen	c	k	
+(s2 / swing-01
+    :ARG0-of (s / show-01
+        :ARG1 (t / thing
+            :ARG1-of (c / contain-01
+                :ARG0 (k / kitchen
+                    :ARG0-of (h / have-03
+                        :ARG1 (d / door
+                            :part-of (f / fridge)))))))
+    :ARG1 k
+    :ARG4 (o / open-01
+        :ARG1 k))

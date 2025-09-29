@@ -1,0 +1,30 @@
+# ::tok Building on opposite side of street to fire hydrant with cars parked in front .
+# ::node	b	build-01	0-1
+# ::node	o	opposite-01	2-3
+# ::node	s	side	3-4
+# ::node	s2	street	5-6
+# ::node	f	fire	7-8
+# ::node	h	hydrant	8-9
+# ::node	c	car	10-11
+# ::node	p	park-01	11-12
+# ::node	i	in-front-of	13-14
+# ::root	b	build-01
+# ::edge	side	ARG1-of	opposite-01	s	o	
+# ::edge	build-01	location	side	b	s	
+# ::edge	side	ARG2	street	s	s2	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	build-01	purpose	hydrant	b	h	
+# ::edge	hydrant	prep-with	car	h	c	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	in-front-of	op1	hydrant	i	h	
+(b / build-01
+    :purpose (h / hydrant
+        :mod (f / fire)
+        :prep-with (c / car
+            :ARG1-of (p / park-01
+                :ARG2 (i / in-front-of
+                    :op1 h))))
+    :location (s / side
+        :ARG1-of (o / opposite-01)
+        :ARG2 (s2 / street)))

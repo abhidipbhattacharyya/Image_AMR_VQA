@@ -1,0 +1,61 @@
+# ::tok root vegetables including carrots , potatoes , leeks , beets and yams next to some green vegetables sitting on a table
+# ::node	r	root	0-1
+# ::node	v	vegetable	1-2
+# ::node	i	include-01	2-3
+# ::node	c	carrot	3-4
+# ::node	a	and	4-5
+# ::node	p	potato	5-6
+# ::node	m	market-sector	7-8
+# ::node	n	name	7-8
+# ::node	m2	market-sector	7-8
+# ::node	0	Green	7-8
+# ::node	b	be-located-at-91	9-10
+# ::node	b2	be-located-at-91	9-10
+# ::node	b3	be-located-at-91	9-10
+# ::node	y	yay	11-12
+# ::node	n2	next-to	12-13
+# ::node	s2	some	14-15
+# ::node	g	green-02	15-16
+# ::node	v2	vegetable	16-17
+# ::node	s	sit-01	17-18
+# ::node	t	table	20-21
+# ::root	v	vegetable
+# ::edge	vegetable	mod	root	v	r	
+# ::edge	vegetable	ARG2-of	include-01	v	i	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	potato	a	p	
+# ::edge	and	op3	market-sector	a	m	
+# ::edge	market-sector	name	name	m	n	
+# ::edge	and	op4	market-sector	a	m2	
+# ::edge	name	op1	Green	n	0	
+# ::edge	and	ARG1-of	be-located-at-91	a	b	
+# ::edge	vegetable	ARG1-of	be-located-at-91	v	b2	
+# ::edge	vegetable	ARG1-of	be-located-at-91	v	b3	
+# ::edge	be-located-at-91	ARG2	yay	b2	y	
+# ::edge	be-located-at-91	ARG2	next-to	b	n2	
+# ::edge	vegetable	ARG1-of	green-02	v2	g	
+# ::edge	vegetable	quant	some	v2	s2	
+# ::edge	next-to	op1	vegetable	n2	v2	
+# ::edge	vegetable	ARG1-of	sit-01	v2	s	
+# ::edge	sit-01	ARG2	table	s	t	
+(v / vegetable
+    :ARG1-of (b2 / be-located-at-91
+        :ARG2 (y / yay))
+    :ARG1-of (b3 / be-located-at-91)
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :ARG1-of (b / be-located-at-91
+                :ARG2 (n2 / next-to
+                    :op1 (v2 / vegetable
+                        :quant (s2 / some)
+                        :ARG1-of (g / green-02)
+                        :ARG1-of (s / sit-01
+                            :ARG2 (t / table)))))
+            :op1 (c / carrot)
+            :op2 (p / potato)
+            :op3 (m / market-sector
+                :name (n / name
+                    :op1 "Green"))
+            :op4 (m2 / market-sector)))
+    :mod (r / root))

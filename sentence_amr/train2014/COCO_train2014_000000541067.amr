@@ -1,0 +1,42 @@
+# ::tok a blond lab dog sitting on a brown carpet next to a dog grooming tool and pile of dog hair .
+# ::node	b	blonde	1-2
+# ::node	l	lab	2-3
+# ::node	d	dog	3-4
+# ::node	s	sit-01	4-5
+# ::node	b2	brown-01	7-8
+# ::node	c	carpet	8-9
+# ::node	n	next-to	9-10
+# ::node	d2	dog	12-13
+# ::node	g	groom-02	13-14
+# ::node	t	tool	14-15
+# ::node	a	and	15-16
+# ::node	p	pile-01	16-17
+# ::node	h	hair	19-20
+# ::root	s	sit-01
+# ::edge	dog	mod	lab	d	l	
+# ::edge	dog	mod	blonde	d	b	
+# ::edge	sit-01	ARG1	dog	s	d	
+# ::edge	carpet	ARG1-of	brown-01	c	b2	
+# ::edge	sit-01	ARG2	carpet	s	c	
+# ::edge	carpet	location	next-to	c	n	
+# ::edge	groom-02	ARG1	dog	g	d2	
+# ::edge	tool	instrument-of	groom-02	t	g	
+# ::edge	and	op1	tool	a	t	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	pile-01	a	p	
+# ::edge	pile-01	ARG1	hair	p	h	
+# ::edge	dog	part	hair	d2	h	
+(s / sit-01
+    :ARG1 (d / dog
+        :mod (l / lab)
+        :mod (b / blonde))
+    :ARG2 (c / carpet
+        :ARG1-of (b2 / brown-01)
+        :location (n / next-to
+            :op1 (a / and
+                :op1 (t / tool
+                    :instrument-of (g / groom-02
+                        :ARG1 (d2 / dog
+                            :part (h / hair))))
+                :op2 (p / pile-01
+                    :ARG1 h)))))

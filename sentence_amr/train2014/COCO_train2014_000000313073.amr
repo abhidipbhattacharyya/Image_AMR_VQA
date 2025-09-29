@@ -1,0 +1,36 @@
+# ::tok People in a living room playing Wii video games with handheld controllers .
+# ::node	p	person	0-1
+# ::node	l	living	3-4
+# ::node	r	room	4-5
+# ::node	p2	play-01	5-6
+# ::node	p3	product	6-7
+# ::node	n	name	6-7
+# ::node	0	Wii	6-7
+# ::node	v	video	7-8
+# ::node	g	game	8-9
+# ::node	h	handheld	10-11
+# ::node	c	control-01	11-12
+# ::root	p2	play-01
+# ::edge	room	mod	living	r	l	
+# ::edge	person	location	room	p	r	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	game	mod	video	g	v	
+# ::edge	game	mod	product	g	p3	
+# ::edge	play-01	ARG1	game	p2	g	
+# ::edge	control-01	instrument	handheld	c	h	
+# ::edge	play-01	instrument	control-01	p2	c	
+# ::edge	control-01	ARG0	person	c	p	
+(p2 / play-01
+    :ARG0 (p / person
+        :location (r / room
+            :mod (l / living)))
+    :ARG1 (g / game
+        :mod (v / video)
+        :mod (p3 / product
+            :name (n / name
+                :op1 "Wii")))
+    :instrument (c / control-01
+        :ARG0 p
+        :instrument (h / handheld)))

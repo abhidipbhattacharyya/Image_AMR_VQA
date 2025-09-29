@@ -1,0 +1,28 @@
+# ::tok A pedestrian traffic light is under directional signs on a street corner .
+# ::node	p	pedestrian	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	b	be-located-at-91	5-6
+# ::node	u	under	5-6
+# ::node	d	direct-01	6-7
+# ::node	s	sign	7-8
+# ::node	s2	street	10-11
+# ::node	c	corner	11-12
+# ::root	b	be-located-at-91
+# ::edge	traffic	mod	pedestrian	t	p	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	be-located-at-91	ARG1	light	b	l	
+# ::edge	be-located-at-91	ARG2	under	b	u	
+# ::edge	sign	ARG0-of	direct-01	s	d	
+# ::edge	under	op1	sign	u	s	
+# ::edge	corner	mod	street	c	s2	
+# ::edge	sign	location	corner	s	c	
+(b / be-located-at-91
+    :ARG1 (l / light
+        :mod (t / traffic
+            :mod (p / pedestrian)))
+    :ARG2 (u / under
+        :op1 (s / sign
+            :ARG0-of (d / direct-01)
+            :location (c / corner
+                :mod (s2 / street)))))

@@ -1,0 +1,36 @@
+# ::tok Several motor scooters parked next to each other , a cow is walking by them .
+# ::node	s	several	0-1
+# ::node	m	motor	1-2
+# ::node	m2	motorcycle	2-3
+# ::node	p	park-01	3-4
+# ::node	n	next-to	4-5
+# ::node	e	each	6-7
+# ::node	o	other	7-8
+# ::node	a	and	8-9
+# ::node	c	cow	10-11
+# ::node	w	walk-01	12-13
+# ::node	b	by	13-14
+# ::root	a	and
+# ::edge	motorcycle	mod	motor	m2	m	
+# ::edge	motorcycle	quant	several	m2	s	
+# ::edge	park-01	ARG1	motorcycle	p	m2	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	each	n	e	
+# ::edge	each	mod	other	e	o	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	walk-01	ARG0	cow	w	c	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG2	by	w	b	
+# ::edge	by	op1	motorcycle	b	m2	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (m2 / motorcycle
+            :quant (s / several)
+            :mod (m / motor))
+        :ARG2 (n / next-to
+            :op1 (e / each
+                :mod (o / other))))
+    :op2 (w / walk-01
+        :ARG0 (c / cow)
+        :ARG2 (b / by
+            :op1 m2)))

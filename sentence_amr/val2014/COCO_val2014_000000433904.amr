@@ -1,0 +1,28 @@
+# ::tok Several cars parked in front of houses with a series of stop signs arranged in front of them .
+# ::node	s2	several	0-1
+# ::node	c	car	1-2
+# ::node	p	park-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	h	house	6-7
+# ::node	s	series	9-10
+# ::node	s4	stop-01	11-12
+# ::node	s3	sign	12-13
+# ::node	a	arrange-01	13-14
+# ::root	p	park-01
+# ::edge	car	quant	several	c	s2	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	in-front-of	op1	house	i	h	
+# ::edge	sign	purpose	stop-01	s3	s4	
+# ::edge	sign	quant	series	s3	s	
+# ::edge	arrange-01	ARG1	sign	a	s3	
+# ::edge	car	location-of	arrange-01	c	a	
+(p / park-01
+    :ARG1 (c / car
+        :quant (s2 / several)
+        :location-of (a / arrange-01
+            :ARG1 (s3 / sign
+                :purpose (s4 / stop-01)
+                :quant (s / series))))
+    :ARG2 (i / in-front-of
+        :op1 (h / house)))

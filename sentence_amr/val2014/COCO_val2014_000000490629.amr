@@ -1,0 +1,31 @@
+# ::tok Pedestrians and people on motor bikes travel down a busy street .
+# ::node	p	person	0-1
+# ::node	w	walk-01	0-1
+# ::node	a	and	1-2
+# ::node	p2	person	2-3
+# ::node	m	motor	4-5
+# ::node	b	bike-01	5-6
+# ::node	t	travel-01	6-7
+# ::node	d	down	7-8
+# ::node	b2	busy-02	9-10
+# ::node	s	street	10-11
+# ::root	t	travel-01
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	bike-01	mod	motor	b	m	
+# ::edge	person	ARG0-of	bike-01	p2	b	
+# ::edge	travel-01	ARG0	and	t	a	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	travel-01	ARG1	street	t	s	
+(t / travel-01
+    :ARG0 (a / and
+        :op1 (p / person
+            :ARG0-of (w / walk-01))
+        :op2 (p2 / person
+            :ARG0-of (b / bike-01
+                :mod (m / motor))))
+    :ARG1 (s / street
+        :ARG1-of (b2 / busy-02))
+    :direction (d / down))

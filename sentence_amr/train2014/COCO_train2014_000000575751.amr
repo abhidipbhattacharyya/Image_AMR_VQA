@@ -1,0 +1,36 @@
+# ::tok A room filled with an old fashioned stove and a bear skin rug mounted on it 's wall .
+# ::node	r	room	1-2
+# ::node	f2	fill-01	2-3
+# ::node	o	old	5-6
+# ::node	f	fashion	6-7
+# ::node	s2	stove	7-8
+# ::node	a	and	8-9
+# ::node	b	bear	10-11
+# ::node	s	skin	11-12
+# ::node	r2	rug	12-13
+# ::node	m	mount-03	13-14
+# ::node	w	wall	17-18
+# ::root	r	room
+# ::edge	room	ARG1-of	fill-01	r	f2	
+# ::edge	fashion	mod	old	f	o	
+# ::edge	stove	mod	fashion	s2	f	
+# ::edge	and	op1	stove	a	s2	
+# ::edge	fill-01	ARG2	and	f2	a	
+# ::edge	skin	part-of	bear	s	b	
+# ::edge	rug	mod	skin	r2	s	
+# ::edge	and	op2	rug	a	r2	
+# ::edge	rug	ARG1-of	mount-03	r2	m	
+# ::edge	mount-03	location	wall	m	w	
+# ::edge	room	part	wall	r	w	
+(r / room
+    :ARG1-of (f2 / fill-01
+        :ARG2 (a / and
+            :op1 (s2 / stove
+                :mod (f / fashion
+                    :mod (o / old)))
+            :op2 (r2 / rug
+                :ARG1-of (m / mount-03
+                    :location (w / wall))
+                :mod (s / skin
+                    :part-of (b / bear)))))
+    :part w)

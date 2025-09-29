@@ -1,0 +1,42 @@
+# ::tok Four differently colored squares containing apple , orange , lemon and kiwi fruit images
+# ::node	0	4	0-1
+# ::node	d	differ-02	1-2
+# ::node	c	color-01	2-3
+# ::node	s	square	3-4
+# ::node	c2	contain-01	4-5
+# ::node	a2	apple	5-6
+# ::node	a	and	6-7
+# ::node	o	orange	7-8
+# ::node	l	lemon	9-10
+# ::node	k	kiwi	11-12
+# ::node	f	fruit	12-13
+# ::node	f2	fruit	12-13
+# ::node	i	image	13-14
+# ::root	c2	contain-01
+# ::edge	color-01	ARG1-of	differ-02	c	d	
+# ::edge	square	ARG1-of	color-01	s	c	
+# ::edge	square	quant	4	s	0	
+# ::edge	contain-01	ARG0	square	c2	s	
+# ::edge	and	op1	apple	a	a2	
+# ::edge	and	op2	orange	a	o	
+# ::edge	and	op3	lemon	a	l	
+# ::edge	fruit	mod	and	f	a	
+# ::edge	and	op4	fruit	a	f	
+# ::edge	fruit	mod	kiwi	f2	k	
+# ::edge	and	op5	fruit	a	f2	
+# ::edge	image	mod	and	i	a	
+# ::edge	contain-01	ARG1	image	c2	i	
+(c2 / contain-01
+    :ARG0 (s / square
+        :quant 4
+        :ARG1-of (c / color-01
+            :ARG1-of (d / differ-02)))
+    :ARG1 (i / image
+        :mod (a / and
+            :op1 (a2 / apple)
+            :op2 (o / orange)
+            :op3 (l / lemon)
+            :op4 (f / fruit
+                :mod a)
+            :op5 (f2 / fruit
+                :mod (k / kiwi)))))

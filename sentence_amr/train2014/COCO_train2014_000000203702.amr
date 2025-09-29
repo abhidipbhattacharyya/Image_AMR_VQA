@@ -1,0 +1,35 @@
+# ::tok Several zebras standing nearby cars , as people have their hands reached out to pet it .
+# ::node	s	several	0-1
+# ::node	e	elephant	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	nearby	3-4
+# ::node	c	car	4-5
+# ::node	p	person	7-8
+# ::node	h	hand	10-11
+# ::node	r	reach-03	11-12
+# ::node	o	out	12-13
+# ::node	p2	pet	14-15
+# ::root	s2	stand-01
+# ::edge	elephant	quant	several	e	s	
+# ::edge	stand-01	ARG1	elephant	s2	e	
+# ::edge	stand-01	ARG2	nearby	s2	n	
+# ::edge	nearby	op1	car	n	c	
+# ::edge	hand	part-of	person	h	p	
+# ::edge	reach-03	ARG0	hand	r	h	
+# ::edge	stand-01	time	reach-03	s2	r	
+# ::edge	reach-03	direction	out	r	o	
+# ::edge	reach-03	purpose	pet	r	p2	
+# ::edge	pet	ARG0	person	p2	p	
+# ::edge	pet	ARG1	elephant	p2	e	
+(s2 / stand-01
+    :ARG1 (e / elephant
+        :quant (s / several))
+    :ARG2 (n / nearby
+        :op1 (c / car))
+    :time (r / reach-03
+        :purpose (p2 / pet
+            :ARG0 (p / person)
+            :ARG1 e)
+        :ARG0 (h / hand
+            :part-of p)
+        :direction (o / out)))

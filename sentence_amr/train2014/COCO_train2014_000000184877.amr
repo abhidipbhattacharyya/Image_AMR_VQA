@@ -1,0 +1,47 @@
+# ::tok Base ball player batting a ball while the catcher kneels behind him and the umpire stands behind the catcher .
+# ::node	b3	base-02	0-1
+# ::node	b	ball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	b4	bat-01	3-4
+# ::node	b2	ball	5-6
+# ::node	p2	person	8-9
+# ::node	c	catch-01	8-9
+# ::node	k	kneel-01	9-10
+# ::node	b5	behind	10-11
+# ::node	a	and	12-13
+# ::node	p3	person	14-15
+# ::node	u	umpire-01	14-15
+# ::node	s	stand-01	15-16
+# ::root	b4	bat-01
+# ::edge	ball	ARG1-of	base-02	b	b3	
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	ball	p4	b	
+# ::edge	bat-01	ARG0	person	b4	p	
+# ::edge	bat-01	ARG1	ball	b4	b2	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	kneel-01	ARG0	person	k	p2	
+# ::edge	kneel-01	ARG2	behind	k	b5	
+# ::edge	behind	op1	person	b5	p	
+# ::edge	and	op1	kneel-01	a	k	
+# ::edge	bat-01	time	and	b4	a	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+# ::edge	stand-01	ARG1	person	s	p3	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG2	behind	s	b5	
+(b4 / bat-01
+    :ARG0 (p / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (b / ball
+                :ARG1-of (b3 / base-02))))
+    :ARG1 (b2 / ball)
+    :time (a / and
+        :op1 (k / kneel-01
+            :ARG0 (p2 / person
+                :ARG0-of (c / catch-01))
+            :ARG2 (b5 / behind
+                :op1 p))
+        :op2 (s / stand-01
+            :ARG1 (p3 / person
+                :ARG0-of (u / umpire-01))
+            :ARG2 b5)))

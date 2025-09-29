@@ -1,0 +1,34 @@
+# ::tok A road sign warning of a curve ahead above a sign warning of stops ahead .
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	w	warn-01	3-4
+# ::node	c	curve	6-7
+# ::node	a2	ahead	7-8
+# ::node	a	above	8-9
+# ::node	s2	sign	10-11
+# ::node	w2	warn-01	11-12
+# ::node	s3	stop-01	13-14
+# ::node	a3	ahead	14-15
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	sign	mod	road	s	r	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	warn-01	ARG1	curve	w	c	
+# ::edge	curve	location	ahead	c	a2	
+# ::edge	sign	location	above	s	a	
+# ::edge	above	op1	sign	a	s2	
+# ::edge	sign	ARG0-of	warn-01	s2	w2	
+# ::edge	warn-01	ARG1	stop-01	w2	s3	
+# ::edge	stop-01	location	ahead	s3	a3	
+# ::edge	event	mod	sign	e	s	
+(e / event
+    :mod (s / sign
+        :ARG0-of (w / warn-01
+            :ARG1 (c / curve
+                :location (a2 / ahead)))
+        :location (a / above
+            :op1 (s2 / sign
+                :ARG0-of (w2 / warn-01
+                    :ARG1 (s3 / stop-01
+                        :location (a3 / ahead)))))
+        :mod (r / road)))

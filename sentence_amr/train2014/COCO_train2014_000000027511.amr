@@ -1,0 +1,43 @@
+# ::tok A Lancashire United bus parked outside old buildings in a commercial district in England .
+# ::node	c2	company	1-2
+# ::node	n	name	1-2
+# ::node	1	Lancashire	1-2
+# ::node	2	United	2-3
+# ::node	b2	bus	3-4
+# ::node	p	park-01	4-5
+# ::node	o2	outside	5-6
+# ::node	o	old	6-7
+# ::node	b	building	7-8
+# ::node	c	commerce	10-11
+# ::node	d	district	11-12
+# ::node	c3	country	13-14
+# ::node	n2	name	13-14
+# ::node	0	England	13-14
+# ::root	p	park-01
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Lancashire	n	1	
+# ::edge	name	op2	United	n	2	
+# ::edge	bus	mod	company	b2	c2	
+# ::edge	park-01	ARG1	bus	p	b2	
+# ::edge	park-01	ARG2	outside	p	o2	
+# ::edge	building	mod	old	b	o	
+# ::edge	outside	op1	building	o2	b	
+# ::edge	district	mod	commerce	d	c	
+# ::edge	building	location	district	b	d	
+# ::edge	district	location	country	d	c3	
+# ::edge	country	name	name	c3	n2	
+# ::edge	name	op1	England	n2	0	
+(p / park-01
+    :ARG1 (b2 / bus
+        :mod (c2 / company
+            :name (n / name
+                :op1 "Lancashire"
+                :op2 "United")))
+    :ARG2 (o2 / outside
+        :op1 (b / building
+            :location (d / district
+                :location (c3 / country
+                    :name (n2 / name
+                        :op1 "England"))
+                :mod (c / commerce))
+            :mod (o / old))))

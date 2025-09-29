@@ -1,0 +1,36 @@
+# ::tok This bathroom has a full size bathtub and a sink with a mirror above it .
+# ::node	t	this	0-1
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	f	full	4-5
+# ::node	s2	size-01	5-6
+# ::node	b2	bathtub	6-7
+# ::node	a2	and	7-8
+# ::node	s	sink	9-10
+# ::node	h2	have-03	10-11
+# ::node	m	mirror	12-13
+# ::node	a	above	13-14
+# ::root	h	have-03
+# ::edge	bathroom	mod	this	b	t	
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	size-01	ARG2	full	s2	f	
+# ::edge	bathtub	ARG1-of	size-01	b2	s2	
+# ::edge	and	op1	bathtub	a2	b2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	sink	a2	s	
+# ::edge	sink	ARG0-of	have-03	s	h2	
+# ::edge	have-03	ARG1	mirror	h2	m	
+# ::edge	mirror	location	above	m	a	
+# ::edge	above	op1	bathtub	a	b2	
+(h / have-03
+    :ARG0 (b / bathroom
+        :mod (t / this))
+    :ARG1 (a2 / and
+        :op1 (b2 / bathtub
+            :ARG1-of (s2 / size-01
+                :ARG2 (f / full)))
+        :op2 (s / sink
+            :ARG0-of (h2 / have-03
+                :ARG1 (m / mirror
+                    :location (a / above
+                        :op1 b2))))))

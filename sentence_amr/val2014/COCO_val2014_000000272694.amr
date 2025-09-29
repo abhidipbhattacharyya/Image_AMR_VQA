@@ -1,0 +1,36 @@
+# ::tok A Starbucks cup of coffer , a muffin , and a banana sit on top of a table .
+# ::node	c2	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Starbucks	1-2
+# ::node	c3	cup	2-3
+# ::node	c	coffer	4-5
+# ::node	m	muffin	7-8
+# ::node	a	and	9-10
+# ::node	b	banana	11-12
+# ::node	s	sit-01	12-13
+# ::node	t2	top	14-15
+# ::node	t	table	17-18
+# ::root	s	sit-01
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Starbucks	n	0	
+# ::edge	cup	mod	company	c3	c2	
+# ::edge	coffer	quant	cup	c	c3	
+# ::edge	and	op2	muffin	a	m	
+# ::edge	and	op1	cup	a	c3	
+# ::edge	and	op3	banana	a	b	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	top	part-of	table	t2	t	
+# ::edge	sit-01	rel	coffer	s	c	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (c3 / cup
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "Starbucks")))
+        :op2 (m / muffin)
+        :op3 (b / banana))
+    :ARG2 (t2 / top
+        :part-of (t / table))
+    :rel (c / coffer
+        :quant c3))

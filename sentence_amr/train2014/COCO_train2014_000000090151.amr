@@ -1,0 +1,25 @@
+# ::tok Slices of pepperoni style pizza sitting on serving tray .
+# ::node	m	multiple	0-1
+# ::node	0	1	0-1
+# ::node	p	pepperoni	2-3
+# ::node	s3	style	3-4
+# ::node	p2	pizza	4-5
+# ::node	s2	sit-01	5-6
+# ::node	s	serve-02	7-8
+# ::node	t	tray	8-9
+# ::root	s2	sit-01
+# ::edge	multiple	op1	1	m	0	
+# ::edge	style	mod	pepperoni	s3	p	
+# ::edge	pizza	mod	style	p2	s3	
+# ::edge	pizza	quant	multiple	p2	m	
+# ::edge	sit-01	ARG1	pizza	s2	p2	
+# ::edge	tray	ARG2-of	serve-02	t	s	
+# ::edge	sit-01	ARG2	tray	s2	t	
+(s2 / sit-01
+    :ARG1 (p2 / pizza
+        :quant (m / multiple
+            :op1 1)
+        :mod (s3 / style
+            :mod (p / pepperoni)))
+    :ARG2 (t / tray
+        :ARG2-of (s / serve-02)))

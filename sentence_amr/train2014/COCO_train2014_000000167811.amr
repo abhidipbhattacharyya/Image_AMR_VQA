@@ -1,0 +1,36 @@
+# ::tok Adult sheep sit and graze while two lambs investigate the fence around a tree .
+# ::node	a	adult	0-1
+# ::node	s	sheep	1-2
+# ::node	s2	sit-01	2-3
+# ::node	a2	and	3-4
+# ::node	g	graze-01	4-5
+# ::node	0	2	6-7
+# ::node	l	lamb	7-8
+# ::node	i	investigate-01	8-9
+# ::node	f	fence	10-11
+# ::node	a3	around	11-12
+# ::node	t	tree	13-14
+# ::root	a2	and
+# ::edge	sheep	mod	adult	s	a	
+# ::edge	sit-01	ARG1	sheep	s2	s	
+# ::edge	and	op1	sit-01	a2	s2	
+# ::edge	and	op2	graze-01	a2	g	
+# ::edge	graze-01	ARG0	sheep	g	s	
+# ::edge	lamb	quant	2	l	0	
+# ::edge	investigate-01	ARG0	lamb	i	l	
+# ::edge	and	time	investigate-01	a2	i	
+# ::edge	investigate-01	ARG1	fence	i	f	
+# ::edge	fence	location	around	f	a3	
+# ::edge	around	op1	tree	a3	t	
+(a2 / and
+    :op1 (s2 / sit-01
+        :ARG1 (s / sheep
+            :mod (a / adult)))
+    :op2 (g / graze-01
+        :ARG0 s)
+    :time (i / investigate-01
+        :ARG0 (l / lamb
+            :quant 2)
+        :ARG1 (f / fence
+            :location (a3 / around
+                :op1 (t / tree)))))

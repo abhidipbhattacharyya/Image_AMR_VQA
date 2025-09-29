@@ -1,0 +1,44 @@
+# ::tok A large calico cat with a blue . green collar is sitting down getting ready to scratch .
+# ::node	l	large	1-2
+# ::node	c	calico	2-3
+# ::node	c2	cat	3-4
+# ::node	b	blue	6-7
+# ::node	a	and	7-8
+# ::node	g	green-02	8-9
+# ::node	c3	collar	9-10
+# ::node	c4	collar	9-10
+# ::node	s2	sit-down-02	11-12
+# ::node	r	ready-01	14-15
+# ::node	s	scratch-02	16-17
+# ::root	a	and
+# ::edge	cat	mod	calico	c2	c	
+# ::edge	cat	mod	large	c2	l	
+# ::edge	collar	ARG1-of	green-02	c3	g	
+# ::edge	blue	op1	collar	b	c3	
+# ::edge	collar	mod	blue	c3	b	
+# ::edge	cat	part	collar	c2	c3	
+# ::edge	collar	ARG1-of	green-02	c4	g	
+# ::edge	and	op2	collar	a	c4	
+# ::edge	collar	mod	blue	c4	b	
+# ::edge	and	op1	sit-down-02	a	s2	
+# ::edge	sit-down-02	ARG1	cat	s2	c2	
+# ::edge	and	op2	ready-01	a	r	
+# ::edge	ready-01	ARG0	cat	r	c2	
+# ::edge	ready-01	ARG2	scratch-02	r	s	
+# ::edge	scratch-02	ARG0	cat	s	c2	
+(a / and
+    :op1 (s2 / sit-down-02
+        :ARG1 (c2 / cat
+            :mod (c / calico)
+            :mod (l / large)
+            :part (c3 / collar
+                :ARG1-of (g / green-02)
+                :mod (b / blue
+                    :op1 c3))))
+    :op2 (c4 / collar
+        :ARG1-of g
+        :mod b)
+    :op2 (r / ready-01
+        :ARG0 c2
+        :ARG2 (s / scratch-02
+            :ARG0 c2)))

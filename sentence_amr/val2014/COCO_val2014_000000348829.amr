@@ -1,0 +1,28 @@
+# ::tok A stop sign is the focal point of an intersection that is covered in snow during the winter .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	f	focus-01	5-6
+# ::node	p	point	6-7
+# ::node	i	intersect-01	9-10
+# ::node	c	cover-01	12-13
+# ::node	s2	snow	14-15
+# ::node	d	date-entity	17-18
+# ::node	w	winter	17-18
+# ::root	p	point
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	point	ARG2-of	focus-01	p	f	
+# ::edge	point	domain	signal-07	p	s	
+# ::edge	focus-01	ARG1	intersect-01	f	i	
+# ::edge	intersect-01	ARG1-of	cover-01	i	c	
+# ::edge	cover-01	ARG2	snow	c	s2	
+# ::edge	cover-01	time	date-entity	c	d	
+# ::edge	date-entity	season	winter	d	w	
+(p / point
+    :ARG2-of (f / focus-01
+        :ARG1 (i / intersect-01
+            :ARG1-of (c / cover-01
+                :ARG2 (s2 / snow)
+                :time (d / date-entity
+                    :season (w / winter)))))
+    :domain (s / signal-07
+        :ARG1 (s3 / stop-01)))

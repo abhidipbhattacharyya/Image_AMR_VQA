@@ -1,0 +1,36 @@
+# ::tok A pick up truck is loaded with two ATV 's in the bed and is towing a camper trailer .
+# ::node	p	pick-up-04	1-2
+# ::node	t3	truck	3-4
+# ::node	l	load-01	5-6
+# ::node	0	2	7-8
+# ::node	v	vehicle	8-9
+# ::node	u	utility	8-9
+# ::node	b	bed	12-13
+# ::node	a	and	13-14
+# ::node	t	tow-01	15-16
+# ::node	c	camp-02	17-18
+# ::node	t2	trailer	18-19
+# ::root	a	and
+# ::edge	truck	ARG1-of	pick-up-04	t3	p	
+# ::edge	load-01	ARG1	truck	l	t3	
+# ::edge	vehicle	quant	2	v	0	
+# ::edge	load-01	ARG2	vehicle	l	v	
+# ::edge	vehicle	mod	utility	v	u	
+# ::edge	load-01	location	bed	l	b	
+# ::edge	and	op1	load-01	a	l	
+# ::edge	and	op2	tow-01	a	t	
+# ::edge	tow-01	ARG0	truck	t	t3	
+# ::edge	trailer	purpose	camp-02	t2	c	
+# ::edge	tow-01	ARG1	trailer	t	t2	
+(a / and
+    :op1 (l / load-01
+        :ARG1 (t3 / truck
+            :ARG1-of (p / pick-up-04))
+        :ARG2 (v / vehicle
+            :quant 2
+            :mod (u / utility))
+        :location (b / bed))
+    :op2 (t / tow-01
+        :ARG0 t3
+        :ARG1 (t2 / trailer
+            :purpose (c / camp-02))))

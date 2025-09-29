@@ -1,0 +1,27 @@
+# ::tok a bowl with a mixture of fruit and vegetables mixed and stacked together
+# ::node	b	bowl	1-2
+# ::node	m	mix-01	4-5
+# ::node	f	fruit	6-7
+# ::node	v	vegetable	8-9
+# ::node	m2	mix-01	9-10
+# ::node	a	and	10-11
+# ::node	s	stack-01	11-12
+# ::node	t	together	12-13
+# ::root	b	bowl
+# ::edge	mix-01	ARG1	fruit	m	f	
+# ::edge	mix-01	ARG2	vegetable	m	v	
+# ::edge	mix-01	ARG1	mix-01	m2	m	
+# ::edge	and	op1	mix-01	a	m2	
+# ::edge	bowl	location-of	and	b	a	
+# ::edge	and	op2	stack-01	a	s	
+# ::edge	stack-01	ARG1	mix-01	s	m	
+# ::edge	stack-01	manner	together	s	t	
+(b / bowl
+    :location-of (a / and
+        :op1 (m2 / mix-01
+            :ARG1 (m / mix-01
+                :ARG1 (f / fruit)
+                :ARG2 (v / vegetable)))
+        :op2 (s / stack-01
+            :ARG1 m
+            :manner (t / together))))

@@ -1,0 +1,39 @@
+# ::tok Two men can be seen out in the water and one is on a surf board .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	p	possible-01	2-3
+# ::node	s	see-01	4-5
+# ::node	o	out	5-6
+# ::node	w	water	8-9
+# ::node	a	and	9-10
+# ::node	i	include-91	10-11
+# ::node	0	1	10-11
+# ::node	s2	surf-01	14-15
+# ::node	b	board	15-16
+# ::root	p	possible-01
+# ::edge	man	quant	2	m	1	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	direction	out	s	o	
+# ::edge	see-01	op1	water	s	w	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	and	op2	man	a	m2	
+# ::edge	and	op1	man	a	m	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	quant	1	m2	0	
+# ::edge	board	purpose	surf-01	b	s2	
+# ::edge	man	location	board	m2	b	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (a / and
+            :op1 (m / man
+                :quant 2)
+            :op2 (m2 / man
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 m)
+                :location (b / board
+                    :purpose (s2 / surf-01))))
+        :direction (o / out)
+        :op1 (w / water)))

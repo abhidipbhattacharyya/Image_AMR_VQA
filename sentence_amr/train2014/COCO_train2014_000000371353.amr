@@ -1,0 +1,37 @@
+# ::tok A plate of food with potatoes , some sort of sausage , and some pancakes with jelly .
+# ::node	p	plate	1-2
+# ::node	f	food	3-4
+# ::node	h	have-03	4-5
+# ::node	p2	potato	5-6
+# ::node	s2	some	7-8
+# ::node	s4	sort	8-9
+# ::node	s	sausage	10-11
+# ::node	a	and	12-13
+# ::node	s3	some	13-14
+# ::node	e	egg	14-15
+# ::node	p3	protein	14-15
+# ::node	j	jelly	16-17
+# ::root	p	plate
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	food	ARG0-of	have-03	f	h	
+# ::edge	sort	mod	some	s4	s2	
+# ::edge	sausage	mod	sort	s	s4	
+# ::edge	and	op2	sausage	a	s	
+# ::edge	and	op1	potato	a	p2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	egg	quant	some	e	s3	
+# ::edge	and	op3	egg	a	e	
+# ::edge	and	op4	protein	a	p3	
+# ::edge	protein	consist-of	jelly	p3	j	
+(p / plate
+    :consist-of (f / food
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (p2 / potato)
+                :op2 (s / sausage
+                    :mod (s4 / sort
+                        :mod (s2 / some)))
+                :op3 (e / egg
+                    :quant (s3 / some))
+                :op4 (p3 / protein
+                    :consist-of (j / jelly))))))

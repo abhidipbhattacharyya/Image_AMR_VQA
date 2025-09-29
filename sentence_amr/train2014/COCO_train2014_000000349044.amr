@@ -1,0 +1,28 @@
+# ::tok A coffee maker on a stainless Steele table in a restaurant .
+# ::node	c	coffee	1-2
+# ::node	p	person	2-3
+# ::node	m	make-01	2-3
+# ::node	s	stainless	5-6
+# ::node	p2	person	6-7
+# ::node	n	name	6-7
+# ::node	0	Steele	6-7
+# ::node	t	table	7-8
+# ::node	r	restaurant	10-11
+# ::root	p	person
+# ::edge	person	ARG0-of	make-01	p	m	
+# ::edge	make-01	ARG1	coffee	m	c	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Steele	n	0	
+# ::edge	table	mod	person	t	p2	
+# ::edge	table	mod	stainless	t	s	
+# ::edge	person	location	table	p	t	
+# ::edge	table	location	restaurant	t	r	
+(p / person
+    :ARG0-of (m / make-01
+        :ARG1 (c / coffee))
+    :location (t / table
+        :location (r / restaurant)
+        :mod (p2 / person
+            :name (n / name
+                :op1 "Steele"))
+        :mod (s / stainless)))

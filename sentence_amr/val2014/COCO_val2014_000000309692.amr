@@ -1,0 +1,28 @@
+# ::tok A cart stacked with several pieces of packaged items at a pickup location of a store .
+# ::node	c	cart	1-2
+# ::node	s2	stack-01	2-3
+# ::node	s	several	4-5
+# ::node	p3	piece	5-6
+# ::node	p	package-01	7-8
+# ::node	i	item	8-9
+# ::node	p2	pick-up-04	11-12
+# ::node	l	location	12-13
+# ::node	s3	store	15-16
+# ::root	s2	stack-01
+# ::edge	stack-01	ARG1	cart	s2	c	
+# ::edge	piece	quant	several	p3	s	
+# ::edge	stack-01	ARG2	piece	s2	p3	
+# ::edge	item	ARG1-of	package-01	i	p	
+# ::edge	piece	consist-of	item	p3	i	
+# ::edge	location	location-of	pick-up-04	l	p2	
+# ::edge	stack-01	location	location	s2	l	
+# ::edge	pick-up-04	ARG0	store	p2	s3	
+(s2 / stack-01
+    :ARG1 (c / cart)
+    :ARG2 (p3 / piece
+        :quant (s / several)
+        :consist-of (i / item
+            :ARG1-of (p / package-01)))
+    :location (l / location
+        :location-of (p2 / pick-up-04
+            :ARG0 (s3 / store))))

@@ -1,0 +1,28 @@
+# ::tok A set of three red double decker buses parked next to each other .
+# ::node	s	set	1-2
+# ::node	0	3	3-4
+# ::node	r	red-02	4-5
+# ::node	d2	double	5-6
+# ::node	d	decker	6-7
+# ::node	b	bus	7-8
+# ::node	p	park-01	8-9
+# ::node	n	next-to	9-10
+# ::node	e	each	11-12
+# ::root	p	park-01
+# ::edge	decker	mod	double	d	d2	
+# ::edge	bus	mod	decker	b	d	
+# ::edge	bus	ARG1-of	red-02	b	r	
+# ::edge	bus	quant	3	b	0	
+# ::edge	set	consist-of	bus	s	b	
+# ::edge	park-01	ARG1	set	p	s	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	each	n	e	
+(p / park-01
+    :ARG1 (s / set
+        :consist-of (b / bus
+            :quant 3
+            :ARG1-of (r / red-02)
+            :mod (d / decker
+                :mod (d2 / double))))
+    :ARG2 (n / next-to
+        :op1 (e / each)))

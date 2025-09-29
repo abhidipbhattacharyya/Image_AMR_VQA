@@ -1,0 +1,49 @@
+# ::tok A bowl of Chinese vegetables in broth , french fries on the side and a bottle of water .
+# ::node	b2	bowl	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	1	China	3-4
+# ::node	v	vegetable	4-5
+# ::node	b3	broth	6-7
+# ::node	a	and	7-8
+# ::node	c2	country	8-9
+# ::node	n2	name	8-9
+# ::node	2	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	s	side	12-13
+# ::node	0	1	14-15
+# ::node	b	bottle	15-16
+# ::node	v2	volume-quantity	16-17
+# ::node	w	water	17-18
+# ::root	a	and
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	1	
+# ::edge	vegetable	mod	country	v	c	
+# ::edge	vegetable	quant	bowl	v	b2	
+# ::edge	vegetable	consist-of	broth	v	b3	
+# ::edge	and	op1	vegetable	a	v	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	France	n2	2	
+# ::edge	fry-01	mod	country	f	c2	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	fry-01	mod	side	f	s	
+# ::edge	volume-quantity	unit	bottle	v2	b	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	water	quant	volume-quantity	w	v2	
+# ::edge	and	op3	water	a	w	
+(a / and
+    :op1 (v / vegetable
+        :quant (b2 / bowl)
+        :consist-of (b3 / broth)
+        :mod (c / country
+            :name (n / name
+                :op1 "China")))
+    :op2 (f / fry-01
+        :mod (c2 / country
+            :name (n2 / name
+                :op1 "France"))
+        :mod (s / side))
+    :op3 (w / water
+        :quant (v2 / volume-quantity
+            :quant 1
+            :unit (b / bottle))))

@@ -1,0 +1,52 @@
+# ::tok Pedestrian crosswalk at city intersection with one white car stopped for light while four pedestrians cross the street where multiple newspaper boxes are on the corner .
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	c2	city	3-4
+# ::node	i	intersect-01	4-5
+# ::node	0	1	6-7
+# ::node	w2	white-03	7-8
+# ::node	c	car	8-9
+# ::node	s	stop-01	9-10
+# ::node	l	light	11-12
+# ::node	1	4	13-14
+# ::node	c4	cross-02	15-16
+# ::node	s2	street	17-18
+# ::node	m	multiple	19-20
+# ::node	n	newspaper	20-21
+# ::node	b2	box	21-22
+# ::node	b	be-located-at-91	22-23
+# ::node	c3	corner	25-26
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	intersect-01	mod	city	i	c2	
+# ::edge	walk-01	location	intersect-01	w	i	
+# ::edge	car	ARG1-of	white-03	c	w2	
+# ::edge	car	quant	1	c	0	
+# ::edge	stop-01	ARG1	car	s	c	
+# ::edge	intersect-01	location-of	stop-01	i	s	
+# ::edge	stop-01	purpose	light	s	l	
+# ::edge	person	quant	4	p	1	
+# ::edge	walk-01	ARG0-of	cross-02	w	c4	
+# ::edge	cross-02	ARG1	street	c4	s2	
+# ::edge	box	mod	newspaper	b2	n	
+# ::edge	box	quant	multiple	b2	m	
+# ::edge	be-located-at-91	ARG1	box	b	b2	
+# ::edge	street	location-of	be-located-at-91	s2	b	
+# ::edge	be-located-at-91	ARG2	corner	b	c3	
+(w / walk-01
+    :ARG0 (p / person
+        :quant 4)
+    :ARG0-of (c4 / cross-02
+        :ARG1 (s2 / street
+            :location-of (b / be-located-at-91
+                :ARG1 (b2 / box
+                    :quant (m / multiple)
+                    :mod (n / newspaper))
+                :ARG2 (c3 / corner))))
+    :location (i / intersect-01
+        :location-of (s / stop-01
+            :purpose (l / light)
+            :ARG1 (c / car
+                :quant 1
+                :ARG1-of (w2 / white-03)))
+        :mod (c2 / city)))

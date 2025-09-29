@@ -1,0 +1,55 @@
+# ::tok Two planes are flying by one another and one is putting off pink smoke while another puts off blue .
+# ::node	1	2	0-1
+# ::node	p2	plane	1-2
+# ::node	p3	plane	1-2
+# ::node	f	fly-01	3-4
+# ::node	a	and	7-8
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	p4	put-01	10-11
+# ::node	p5	put-01	10-11
+# ::node	o	off	11-12
+# ::node	p	pink-04	12-13
+# ::node	s	smoke	13-14
+# ::node	s2	smoke	13-14
+# ::node	c	contrast-01	14-15
+# ::node	a2	another	15-16
+# ::node	b	blue	18-19
+# ::root	a	and
+# ::edge	plane	quant	2	p2	1	
+# ::edge	fly-01	ARG2	plane	f	p2	
+# ::edge	fly-01	ARG1	plane	f	p2	
+# ::edge	and	op1	fly-01	a	f	
+# ::edge	plane	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	plane	i	p2	
+# ::edge	plane	quant	1	p3	0	
+# ::edge	put-01	ARG0	plane	p4	p3	
+# ::edge	and	op2	put-01	a	p4	
+# ::edge	put-01	ARG0	plane	p5	p3	
+# ::edge	put-01	ARG2	off	p4	o	
+# ::edge	smoke	ARG1-of	pink-04	s	p	
+# ::edge	put-01	ARG1	smoke	p4	s	
+# ::edge	put-01	ARG1	smoke	p5	s2	
+# ::edge	contrast-01	ARG2	put-01	c	p5	
+# ::edge	put-01	ARG1-of	contrast-01	p4	c	
+# ::edge	plane	mod	another	p3	a2	
+# ::edge	smoke	mod	blue	s2	b	
+(a / and
+    :op1 (f / fly-01
+        :ARG1 (p2 / plane
+            :quant 2
+            :ARG1-of (i / include-91
+                :ARG2 p2))
+        :ARG2 p2)
+    :op2 (p4 / put-01
+        :ARG0 (p3 / plane
+            :quant 1
+            :mod (a2 / another))
+        :ARG1 (s / smoke
+            :ARG1-of (p / pink-04))
+        :ARG1-of (c / contrast-01
+            :ARG2 (p5 / put-01
+                :ARG0 p3
+                :ARG1 (s2 / smoke
+                    :mod (b / blue))))
+        :ARG2 (o / off)))

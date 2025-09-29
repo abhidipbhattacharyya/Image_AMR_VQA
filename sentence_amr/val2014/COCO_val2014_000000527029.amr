@@ -1,0 +1,32 @@
+# ::tok A man covering his eyes while standing next to multiple boxes filled with bananas .
+# ::node	m	man	1-2
+# ::node	c	cover-01	2-3
+# ::node	e	eye	4-5
+# ::node	s	stand-01	6-7
+# ::node	n	next-to	7-8
+# ::node	m2	multiple	9-10
+# ::node	b2	box	10-11
+# ::node	f	fill-01	11-12
+# ::node	b	banana	13-14
+# ::root	c	cover-01
+# ::edge	cover-01	ARG0	man	c	m	
+# ::edge	cover-01	ARG1	eye	c	e	
+# ::edge	man	part	eye	m	e	
+# ::edge	cover-01	time	stand-01	c	s	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	box	quant	multiple	b2	m2	
+# ::edge	next-to	op1	box	n	b2	
+# ::edge	box	ARG1-of	fill-01	b2	f	
+# ::edge	fill-01	ARG2	banana	f	b	
+(c / cover-01
+    :ARG0 (m / man
+        :part (e / eye))
+    :ARG1 e
+    :time (s / stand-01
+        :ARG1 m
+        :ARG2 (n / next-to
+            :op1 (b2 / box
+                :quant (m2 / multiple)
+                :ARG1-of (f / fill-01
+                    :ARG2 (b / banana))))))

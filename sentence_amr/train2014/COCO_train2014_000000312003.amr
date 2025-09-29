@@ -1,0 +1,27 @@
+# ::tok A man standing in front of a parking meter about to put money in it .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	p	park-01	7-8
+# ::node	m2	meter	8-9
+# ::node	a	about-to	9-10
+# ::node	p2	put-01	11-12
+# ::node	m3	money	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	meter	purpose	park-01	m2	p	
+# ::edge	in-front-of	op1	meter	i	m2	
+# ::edge	put-01	time	about-to	p2	a	
+# ::edge	put-01	ARG2	meter	p2	m2	
+# ::edge	man	ARG0-of	put-01	m	p2	
+# ::edge	put-01	ARG1	money	p2	m3	
+(s / stand-01
+    :ARG1 (m / man
+        :ARG0-of (p2 / put-01
+            :ARG1 (m3 / money)
+            :ARG2 (m2 / meter
+                :purpose (p / park-01))
+            :time (a / about-to)))
+    :ARG2 (i / in-front-of
+        :op1 m2))

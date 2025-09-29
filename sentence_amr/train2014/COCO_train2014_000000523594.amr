@@ -1,0 +1,41 @@
+# ::tok Two dogs , one black and one brown , standing next to each other
+# ::node	d	dog	1-2
+# ::node	d2	dog	1-2
+# ::node	d3	dog	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	b	black-04	4-5
+# ::node	a	and	5-6
+# ::node	g	green-02	7-8
+# ::node	s	stand-01	9-10
+# ::node	n	next-to	10-11
+# ::root	s	stand-01
+# ::edge	dog	ARG2-of	include-91	d	i	
+# ::edge	include-91	ARG1	dog	i2	d3	
+# ::edge	dog	ARG2-of	include-91	d	i2	
+# ::edge	dog	quant	1	d	0	
+# ::edge	dog	quant	1	d3	1	
+# ::edge	dog	ARG1-of	black-04	d2	b	
+# ::edge	include-91	ARG1	and	i2	a	
+# ::edge	and	op2	dog	a	d3	
+# ::edge	and	op1	dog	a	d2	
+# ::edge	dog	ARG1-of	green-02	d3	g	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	dog	n	d	
+(s / stand-01
+    :ARG1 (a / and
+        :op1 (d2 / dog
+            :ARG1-of (b / black-04))
+        :op2 (d3 / dog
+            :quant 1
+            :ARG1-of (g / green-02)))
+    :ARG2 (n / next-to
+        :op1 (d / dog
+            :quant 1
+            :ARG2-of (i / include-91)
+            :ARG2-of (i2 / include-91
+                :ARG1 d3
+                :ARG1 a))))

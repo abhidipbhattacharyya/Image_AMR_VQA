@@ -1,0 +1,33 @@
+# ::tok A man working on ski bindings with other ski gear around in a living area
+# ::node	m	man	1-2
+# ::node	w	work-01	2-3
+# ::node	s	ski-01	4-5
+# ::node	b	bind-01	5-6
+# ::node	h	have-03	6-7
+# ::node	o	other	7-8
+# ::node	g	gear	9-10
+# ::node	a2	around	10-11
+# ::node	l	living	13-14
+# ::node	a	area	14-15
+# ::root	m	man
+# ::edge	man	ARG0-of	work-01	m	w	
+# ::edge	have-03	ARG1	man	h	m	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	gear	mod	other	g	o	
+# ::edge	have-03	ARG1	gear	h	g	
+# ::edge	gear	mod	ski-01	g	s	
+# ::edge	work-01	location	around	w	a2	
+# ::edge	area	mod	living	a	l	
+# ::edge	work-01	location	area	w	a	
+# ::edge	man	rel	bind-01	m	b	
+(m / man
+    :ARG0-of (w / work-01
+        :location (a2 / around)
+        :location (a / area
+            :mod (l / living)))
+    :ARG0-of (h / have-03
+        :ARG1 m
+        :ARG1 (g / gear
+            :mod (o / other)
+            :mod (s / ski-01)))
+    :rel (b / bind-01))

@@ -1,0 +1,37 @@
+# ::tok Female tennis player delivering or preparing for contact with ball during match .
+# ::node	f	female	0-1
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	d	deliver-01	3-4
+# ::node	o	or	4-5
+# ::node	p3	prepare-02	5-6
+# ::node	c	contact-01	7-8
+# ::node	b	ball	9-10
+# ::node	m	match-03	11-12
+# ::root	o	or
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	deliver-01	ARG0	person	d	p	
+# ::edge	or	op1	deliver-01	o	d	
+# ::edge	or	op2	prepare-02	o	p3	
+# ::edge	prepare-02	ARG1	person	p3	p	
+# ::edge	prepare-02	ARG2	contact-01	p3	c	
+# ::edge	deliver-01	ARG2	contact-01	d	c	
+# ::edge	contact-01	ARG0	person	c	p	
+# ::edge	contact-01	ARG1	ball	c	b	
+# ::edge	contact-01	time	match-03	c	m	
+(o / or
+    :op1 (d / deliver-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))
+            :mod (f / female))
+        :ARG2 (c / contact-01
+            :ARG0 p
+            :ARG1 (b / ball)
+            :time (m / match-03)))
+    :op2 (p3 / prepare-02
+        :ARG1 p
+        :ARG2 c))

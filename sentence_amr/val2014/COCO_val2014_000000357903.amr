@@ -1,0 +1,43 @@
+# ::tok A fried egg with a runny yolk tops a mini whole wheat pizza made with melted cheese and spinach .
+# ::node	f	fry-01	1-2
+# ::node	e	egg	2-3
+# ::node	r	runny	5-6
+# ::node	y	yolk	6-7
+# ::node	t	top-01	7-8
+# ::node	m3	mini	9-10
+# ::node	w2	whole	10-11
+# ::node	w	wheat	11-12
+# ::node	p	pizza	12-13
+# ::node	m	make-01	13-14
+# ::node	m2	melt-01	15-16
+# ::node	c	cheese	16-17
+# ::node	a	and	17-18
+# ::node	s	spinach	18-19
+# ::root	t	top-01
+# ::edge	egg	ARG1-of	fry-01	e	f	
+# ::edge	yolk	mod	runny	y	r	
+# ::edge	egg	part	yolk	e	y	
+# ::edge	top-01	ARG2	egg	t	e	
+# ::edge	wheat	mod	whole	w	w2	
+# ::edge	pizza	mod	wheat	p	w	
+# ::edge	pizza	mod	mini	p	m3	
+# ::edge	top-01	ARG1	pizza	t	p	
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	cheese	ARG1-of	melt-01	c	m2	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	make-01	ARG2	and	m	a	
+# ::edge	and	op2	spinach	a	s	
+(t / top-01
+    :ARG1 (p / pizza
+        :ARG1-of (m / make-01
+            :ARG2 (a / and
+                :op1 (c / cheese
+                    :ARG1-of (m2 / melt-01))
+                :op2 (s / spinach)))
+        :mod (w / wheat
+            :mod (w2 / whole))
+        :mod (m3 / mini))
+    :ARG2 (e / egg
+        :ARG1-of (f / fry-01)
+        :part (y / yolk
+            :mod (r / runny))))

@@ -1,0 +1,24 @@
+# ::tok A passenger train at the train station with passenger and baggage boarding .
+# ::node	p	passenger	1-2
+# ::node	t	train	2-3
+# ::node	t2	train	5-6
+# ::node	s	station	6-7
+# ::node	a	and	9-10
+# ::node	b	baggage	10-11
+# ::node	b2	board-01	11-12
+# ::root	t	train
+# ::edge	train	mod	passenger	t	p	
+# ::edge	station	mod	train	s	t2	
+# ::edge	train	location	station	t	s	
+# ::edge	and	op1	passenger	a	p	
+# ::edge	and	op2	baggage	a	b	
+# ::edge	board-01	ARG1	and	b2	a	
+# ::edge	train	location-of	board-01	t	b2	
+(t / train
+    :location (s / station
+        :mod (t2 / train))
+    :location-of (b2 / board-01
+        :ARG1 (a / and
+            :op1 (p / passenger)
+            :op2 (b / baggage)))
+    :mod p)

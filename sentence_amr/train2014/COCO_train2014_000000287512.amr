@@ -1,0 +1,32 @@
+# ::tok The hotdog is cooked , toppings have been added , and it 's ready to be eaten .
+# ::node	h	hotdog	1-2
+# ::node	c2	cook-01	3-4
+# ::node	c	continent	5-6
+# ::node	n	name	5-6
+# ::node	e	Health	5-6
+# ::node	a	add-02	8-9
+# ::node	a2	and	10-11
+# ::node	r	ready-02	13-14
+# ::node	e2	eat-01	16-17
+# ::root	a2	and
+# ::edge	cook-01	ARG1	hotdog	c2	h	
+# ::edge	continent	name	name	c	n	
+# ::edge	continent	mod	Health	c	e	
+# ::edge	add-02	ARG2	continent	a	c	
+# ::edge	and	op2	add-02	a2	a	
+# ::edge	and	op1	cook-01	a2	c2	
+# ::edge	and	op3	ready-02	a2	r	
+# ::edge	ready-02	ARG1	hotdog	r	h	
+# ::edge	ready-02	ARG2	eat-01	r	e2	
+# ::edge	eat-01	ARG1	hotdog	e2	h	
+(a2 / and
+    :op1 (c2 / cook-01
+        :ARG1 (h / hotdog))
+    :op2 (a / add-02
+        :ARG2 (c / continent
+            :name (n / name)
+            :mod (e / Health)))
+    :op3 (r / ready-02
+        :ARG1 h
+        :ARG2 (e2 / eat-01
+            :ARG1 h)))

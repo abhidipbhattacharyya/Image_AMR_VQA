@@ -1,0 +1,41 @@
+# ::tok A group of sheep walking down a path with a few stopping to eat grass along the side .
+# ::node	g2	group	1-2
+# ::node	s	sheep	3-4
+# ::node	s2	sheep	3-4
+# ::node	w	walk-01	4-5
+# ::node	d	down	5-6
+# ::node	p	path	7-8
+# ::node	f	few	10-11
+# ::node	s4	stop-01	11-12
+# ::node	e	eat-01	13-14
+# ::node	g	grass	14-15
+# ::node	a	along	15-16
+# ::node	s3	side	17-18
+# ::root	w	walk-01
+# ::edge	group	consist-of	sheep	g2	s	
+# ::edge	walk-01	ARG0	group	w	g2	
+# ::edge	walk-01	direction	down	w	d	
+# ::edge	walk-01	ARG2	path	w	p	
+# ::edge	sheep	quant	few	s2	f	
+# ::edge	sheep	ARG1-of	stop-01	s2	s4	
+# ::edge	stop-01	purpose	eat-01	s4	e	
+# ::edge	eat-01	ARG0	sheep	e	s2	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	grass	location	along	g	a	
+# ::edge	along	op1	side	a	s3	
+# ::edge	path	part	side	p	s3	
+# ::edge	walk-01	rel	stop-01	w	s4	
+(w / walk-01
+    :ARG0 (g2 / group
+        :consist-of (s / sheep))
+    :ARG2 (p / path
+        :part (s3 / side))
+    :direction (d / down)
+    :rel (s4 / stop-01
+        :purpose (e / eat-01
+            :ARG0 (s2 / sheep
+                :quant (f / few)
+                :ARG1-of s4)
+            :ARG1 (g / grass
+                :location (a / along
+                    :op1 s3)))))

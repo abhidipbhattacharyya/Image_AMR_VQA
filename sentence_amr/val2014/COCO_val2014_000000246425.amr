@@ -1,0 +1,33 @@
+# ::tok Two airplanes flying through a blue sky with smoke pouring out of their rear ends .
+# ::node	0	2	0-1
+# ::node	a	airplane	1-2
+# ::node	f	fly-01	2-3
+# ::node	b	blue	5-6
+# ::node	s2	sky	6-7
+# ::node	s3	smoke	8-9
+# ::node	p	pour-01	9-10
+# ::node	o	out	10-11
+# ::node	s	side	13-14
+# ::node	e	end	14-15
+# ::root	f	fly-01
+# ::edge	airplane	quant	2	a	0	
+# ::edge	fly-01	ARG2	airplane	f	a	
+# ::edge	sky	mod	blue	s2	b	
+# ::edge	fly-01	path	sky	f	s2	
+# ::edge	pour-01	ARG1	smoke	p	s3	
+# ::edge	airplane	time-of	pour-01	a	p	
+# ::edge	pour-01	direction	out	p	o	
+# ::edge	end	mod	side	e	s	
+# ::edge	out	op1	end	o	e	
+# ::edge	airplane	part	end	a	e	
+(f / fly-01
+    :ARG2 (a / airplane
+        :quant 2
+        :part (e / end
+            :mod (s / side))
+        :time-of (p / pour-01
+            :ARG1 (s3 / smoke)
+            :direction (o / out
+                :op1 e)))
+    :path (s2 / sky
+        :mod (b / blue)))

@@ -1,0 +1,27 @@
+# ::tok Baked bread pastries set aside to cool on a cutting board .
+# ::node	b	bake-01	0-1
+# ::node	b3	bread	1-2
+# ::node	c	cookie	2-3
+# ::node	s	set-01	3-4
+# ::node	a	aside	4-5
+# ::node	c2	cool-01	6-7
+# ::node	c3	cut-01	9-10
+# ::node	b2	board	10-11
+# ::root	s	set-01
+# ::edge	cookie	mod	bread	c	b3	
+# ::edge	cookie	ARG1-of	bake-01	c	b	
+# ::edge	set-01	ARG1	cookie	s	c	
+# ::edge	set-01	ARG2	aside	s	a	
+# ::edge	set-01	purpose	cool-01	s	c2	
+# ::edge	cool-01	ARG1	cookie	c2	c	
+# ::edge	board	purpose	cut-01	b2	c3	
+# ::edge	cool-01	location	board	c2	b2	
+(s / set-01
+    :purpose (c2 / cool-01
+        :ARG1 (c / cookie
+            :ARG1-of (b / bake-01)
+            :mod (b3 / bread))
+        :location (b2 / board
+            :purpose (c3 / cut-01)))
+    :ARG1 c
+    :ARG2 (a / aside))

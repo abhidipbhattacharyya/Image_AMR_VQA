@@ -1,0 +1,25 @@
+# ::tok Person slicing up a large thin crust pizza into several pieces
+# ::node	p	person	0-1
+# ::node	s2	slice-01	1-2
+# ::node	l	large	4-5
+# ::node	t	thin-03	5-6
+# ::node	c	crust	6-7
+# ::node	p3	pizza	7-8
+# ::node	s	several	9-10
+# ::node	p2	piece	10-11
+# ::root	s2	slice-01
+# ::edge	slice-01	ARG0	person	s2	p	
+# ::edge	crust	ARG1-of	thin-03	c	t	
+# ::edge	pizza	mod	crust	p3	c	
+# ::edge	pizza	mod	large	p3	l	
+# ::edge	slice-01	ARG1	pizza	s2	p3	
+# ::edge	piece	quant	several	p2	s	
+# ::edge	slice-01	ARG2	piece	s2	p2	
+(s2 / slice-01
+    :ARG0 (p / person)
+    :ARG1 (p3 / pizza
+        :mod (c / crust
+            :ARG1-of (t / thin-03))
+        :mod (l / large))
+    :ARG2 (p2 / piece
+        :quant (s / several)))

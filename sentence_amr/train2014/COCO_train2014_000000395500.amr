@@ -1,0 +1,27 @@
+# ::tok A yellow train is approaching on a track as people are waiting on a the platform on the side .
+# ::node	y	yellow-02	1-2
+# ::node	t2	train	2-3
+# ::node	a	approach-01	4-5
+# ::node	t	track	7-8
+# ::node	p	person	9-10
+# ::node	w	wait-01	11-12
+# ::node	p2	platform	15-16
+# ::node	s	side	18-19
+# ::root	a	approach-01
+# ::edge	train	ARG1-of	yellow-02	t2	y	
+# ::edge	approach-01	ARG1	train	a	t2	
+# ::edge	approach-01	location	track	a	t	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	approach-01	time	wait-01	a	w	
+# ::edge	wait-01	ARG2	platform	w	p2	
+# ::edge	platform	location	side	p2	s	
+# ::edge	track	part	side	t	s	
+(a / approach-01
+    :ARG1 (t2 / train
+        :ARG1-of (y / yellow-02))
+    :location (t / track
+        :part (s / side))
+    :time (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 (p2 / platform
+            :location s)))

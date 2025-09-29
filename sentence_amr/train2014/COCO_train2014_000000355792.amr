@@ -1,0 +1,48 @@
+# ::tok A street sign marks three streets and indicates a one way section at the traffic lights in front of a sky scraper in the city .
+# ::node	s5	street	1-2
+# ::node	s3	sign	2-3
+# ::node	m	mark-01	3-4
+# ::node	0	3	4-5
+# ::node	s6	street	5-6
+# ::node	a	and	6-7
+# ::node	i2	indicate-01	7-8
+# ::node	o	one-way	10-11
+# ::node	s2	section	11-12
+# ::node	t	traffic	14-15
+# ::node	l	light	15-16
+# ::node	i	in-front-of	17-18
+# ::node	s4	sky	20-21
+# ::node	s	scrapper	21-22
+# ::node	c	city	24-25
+# ::root	a	and
+# ::edge	sign	mod	street	s3	s5	
+# ::edge	mark-01	ARG0	sign	m	s3	
+# ::edge	street	quant	3	s6	0	
+# ::edge	mark-01	ARG1	street	m	s6	
+# ::edge	and	op1	mark-01	a	m	
+# ::edge	and	op2	indicate-01	a	i2	
+# ::edge	indicate-01	ARG0	sign	i2	s3	
+# ::edge	section	mod	one-way	s2	o	
+# ::edge	indicate-01	ARG1	section	i2	s2	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	section	location	light	s2	l	
+# ::edge	section	location	in-front-of	s2	i	
+# ::edge	scrapper	purpose	sky	s	s4	
+# ::edge	in-front-of	op1	scrapper	i	s	
+# ::edge	scrapper	location	city	s	c	
+(a / and
+    :op1 (m / mark-01
+        :ARG0 (s3 / sign
+            :mod (s5 / street))
+        :ARG1 (s6 / street
+            :quant 3))
+    :op2 (i2 / indicate-01
+        :ARG0 s3
+        :ARG1 (s2 / section
+            :location (l / light
+                :mod (t / traffic))
+            :location (i / in-front-of
+                :op1 (s / scrapper
+                    :purpose (s4 / sky)
+                    :location (c / city)))
+            :mod (o / one-way))))

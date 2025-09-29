@@ -1,0 +1,32 @@
+# ::tok A house cat sits on an oven door , sniffing the oven racks inside .
+# ::node	h	house	1-2
+# ::node	c	cat	2-3
+# ::node	s2	sit-01	3-4
+# ::node	o	oven	6-7
+# ::node	d	door	7-8
+# ::node	a	and	8-9
+# ::node	s3	sniff-01	9-10
+# ::node	o2	oven	11-12
+# ::node	s	shelf	12-13
+# ::root	a	and
+# ::edge	cat	mod	house	c	h	
+# ::edge	sit-01	ARG1	cat	s2	c	
+# ::edge	door	part-of	oven	d	o	
+# ::edge	sit-01	ARG2	door	s2	d	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	sniff-01	a	s3	
+# ::edge	sniff-01	ARG0	cat	s3	c	
+# ::edge	shelf	mod	oven	s	o2	
+# ::edge	sniff-01	ARG1	shelf	s3	s	
+# ::edge	oven	part	shelf	o	s	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (c / cat
+            :mod (h / house))
+        :ARG2 (d / door
+            :part-of (o / oven
+                :part (s / shelf
+                    :mod (o2 / oven)))))
+    :op2 (s3 / sniff-01
+        :ARG0 c
+        :ARG1 s))

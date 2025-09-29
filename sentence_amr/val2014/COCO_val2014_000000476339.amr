@@ -1,0 +1,42 @@
+# ::tok A rainy street scene has a yellow line with a car moving by it , and in the foreground , a parking meter .
+# ::node	r	rain-01	1-2
+# ::node	s2	street	2-3
+# ::node	s	scene	3-4
+# ::node	h	have-03	4-5
+# ::node	y	yellow-02	6-7
+# ::node	l	line	7-8
+# ::node	a	and	8-9
+# ::node	c	car	10-11
+# ::node	m2	move-01	11-12
+# ::node	a2	and	15-16
+# ::node	f	foreground	18-19
+# ::node	p	park-01	21-22
+# ::node	m	meter	22-23
+# ::root	a2	and
+# ::edge	street	mod	rain-01	s2	r	
+# ::edge	scene	mod	street	s	s2	
+# ::edge	have-03	ARG0	scene	h	s	
+# ::edge	line	ARG1-of	yellow-02	l	y	
+# ::edge	and	op1	line	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	move-01	ARG1	car	m2	c	
+# ::edge	line	location-of	move-01	l	m2	
+# ::edge	move-01	ARG0	scene	m2	s	
+# ::edge	and	op1	have-03	a2	h	
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	location	foreground	m	f	
+# ::edge	and	op2	meter	a	m	
+(a2 / and
+    :op1 (h / have-03
+        :ARG0 (s / scene
+            :mod (s2 / street
+                :mod (r / rain-01)))
+        :ARG1 (a / and
+            :op1 (l / line
+                :ARG1-of (y / yellow-02)
+                :location-of (m2 / move-01
+                    :ARG0 s
+                    :ARG1 (c / car)))
+            :op2 (m / meter
+                :purpose (p / park-01)
+                :location (f / foreground)))))

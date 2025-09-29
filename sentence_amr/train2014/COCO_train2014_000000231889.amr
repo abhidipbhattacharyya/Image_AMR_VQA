@@ -1,0 +1,33 @@
+# ::tok a car mirror reflecting a row of cars and a train passing bye in front
+# ::node	c	car	1-2
+# ::node	m	mirror	2-3
+# ::node	r	reflect-01	3-4
+# ::node	r2	row	5-6
+# ::node	c2	car	7-8
+# ::node	a	and	8-9
+# ::node	t	train	10-11
+# ::node	p	pass-03	11-12
+# ::node	b	bye	12-13
+# ::node	i	in-front-of	14-15
+# ::root	r	reflect-01
+# ::edge	mirror	mod	car	m	c	
+# ::edge	reflect-01	ARG1	mirror	r	m	
+# ::edge	row	consist-of	car	r2	c2	
+# ::edge	and	op1	row	a	r2	
+# ::edge	reflect-01	ARG2	and	r	a	
+# ::edge	and	op2	train	a	t	
+# ::edge	train	ARG1-of	pass-03	t	p	
+# ::edge	pass-03	manner	bye	p	b	
+# ::edge	pass-03	location	in-front-of	p	i	
+# ::edge	in-front-of	op1	car	i	c	
+(r / reflect-01
+    :ARG1 (m / mirror
+        :mod (c / car))
+    :ARG2 (a / and
+        :op1 (r2 / row
+            :consist-of (c2 / car))
+        :op2 (t / train
+            :ARG1-of (p / pass-03
+                :location (i / in-front-of
+                    :op1 c)
+                :manner (b / bye)))))

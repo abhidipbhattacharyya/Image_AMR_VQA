@@ -1,0 +1,27 @@
+# ::tok Travelers are waiting for their luggage on the baggage claim conveyor belt .
+# ::node	p	person	0-1
+# ::node	t	travel-01	0-1
+# ::node	w	wait-01	2-3
+# ::node	l	luggage	5-6
+# ::node	b	baggage	8-9
+# ::node	c	claim-02	9-10
+# ::node	c2	conveyor	10-11
+# ::node	b2	belt	11-12
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	travel-01	p	t	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	luggage	w	l	
+# ::edge	luggage	poss	person	l	p	
+# ::edge	claim-02	ARG1	baggage	c	b	
+# ::edge	belt	mod	conveyor	b2	c2	
+# ::edge	belt	instrument-of	claim-02	b2	c	
+# ::edge	luggage	location	belt	l	b2	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (t / travel-01))
+    :ARG2 (l / luggage
+        :location (b2 / belt
+            :instrument-of (c / claim-02
+                :ARG1 (b / baggage))
+            :mod (c2 / conveyor))
+        :poss p))

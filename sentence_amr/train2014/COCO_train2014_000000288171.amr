@@ -1,0 +1,46 @@
+# ::tok A tidy room has a white sofa , monitor , window and a coffee table with a glass of wine on it .
+# ::node	t2	tidy	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	w	white-03	5-6
+# ::node	s	sofa	6-7
+# ::node	m	monitor	8-9
+# ::node	w2	window	10-11
+# ::node	a	and	11-12
+# ::node	c	coffee	13-14
+# ::node	t	table	14-15
+# ::node	h2	have-03	15-16
+# ::node	v	volume-quantity	16-17
+# ::node	0	1	16-17
+# ::node	g	glass	17-18
+# ::node	w3	wine	19-20
+# ::root	h	have-03
+# ::edge	room	mod	tidy	r	t2	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	and	op3	window	a	w2	
+# ::edge	and	op2	monitor	a	m	
+# ::edge	and	op1	sofa	a	s	
+# ::edge	and	ARG1-of	white-03	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	table	mod	coffee	t	c	
+# ::edge	and	op4	table	a	t	
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w3	v	
+# ::edge	have-03	ARG1	wine	h2	w3	
+(h / have-03
+    :ARG0 (r / room
+        :mod (t2 / tidy))
+    :ARG1 (a / and
+        :ARG1-of (w / white-03)
+        :op1 (s / sofa)
+        :op2 (m / monitor)
+        :op3 (w2 / window)
+        :op4 (t / table
+            :ARG0-of (h2 / have-03
+                :ARG1 (w3 / wine
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (g / glass))))
+            :mod (c / coffee))))

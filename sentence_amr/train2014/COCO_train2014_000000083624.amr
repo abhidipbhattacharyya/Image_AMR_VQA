@@ -1,0 +1,34 @@
+# ::tok Someone riding a small moped alone near many parked bikes .
+# ::node	s2	someone	0-1
+# ::node	r	ride-01	1-2
+# ::node	s	small	3-4
+# ::node	c	car-make	4-5
+# ::node	n	name	4-5
+# ::node	0	M	4-5
+# ::node	a	alone	5-6
+# ::node	n2	near-02	6-7
+# ::node	m	many	7-8
+# ::node	p	park-01	8-9
+# ::node	b	bike-01	9-10
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	someone	r	s2	
+# ::edge	car-make	mod	small	c	s	
+# ::edge	ride-01	ARG1	car-make	r	c	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	M	n	0	
+# ::edge	ride-01	mod	alone	r	a	
+# ::edge	ride-01	ARG1-of	near-02	r	n2	
+# ::edge	bike-01	ARG1-of	park-01	b	p	
+# ::edge	bike-01	quant	many	b	m	
+# ::edge	near-02	ARG2	bike-01	n2	b	
+(r / ride-01
+    :ARG0 (s2 / someone)
+    :ARG1 (c / car-make
+        :name (n / name
+            :op1 "M")
+        :mod (s / small))
+    :ARG1-of (n2 / near-02
+        :ARG2 (b / bike-01
+            :quant (m / many)
+            :ARG1-of (p / park-01)))
+    :mod (a / alone))

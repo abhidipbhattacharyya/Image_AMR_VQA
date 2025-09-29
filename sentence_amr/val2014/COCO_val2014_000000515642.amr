@@ -1,0 +1,25 @@
+# ::tok Book next to remote controller displayed on tiled surface .
+# ::node	b	book	0-1
+# ::node	n	next-to	1-2
+# ::node	r	remote	3-4
+# ::node	t	thing	4-5
+# ::node	c	control-01	4-5
+# ::node	d	display-01	5-6
+# ::node	t2	tile-01	7-8
+# ::node	s	surface	8-9
+# ::root	b	book
+# ::edge	book	location	next-to	b	n	
+# ::edge	thing	mod	remote	t	r	
+# ::edge	next-to	op1	thing	n	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	thing	ARG1-of	display-01	t	d	
+# ::edge	surface	ARG1-of	tile-01	s	t2	
+# ::edge	display-01	ARG2	surface	d	s	
+(b / book
+    :location (n / next-to
+        :op1 (t / thing
+            :ARG0-of (c / control-01)
+            :ARG1-of (d / display-01
+                :ARG2 (s / surface
+                    :ARG1-of (t2 / tile-01)))
+            :mod (r / remote))))

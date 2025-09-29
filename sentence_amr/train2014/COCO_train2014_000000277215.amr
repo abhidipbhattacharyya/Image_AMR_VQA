@@ -1,0 +1,34 @@
+# ::tok Black and white image of a cyclist on a Japanese street at night .
+# ::node	b	black-05	0-1
+# ::node	w	white-03	2-3
+# ::node	i	image	3-4
+# ::node	p	person	6-7
+# ::node	c2	cycle-01	6-7
+# ::node	c	country	9-10
+# ::node	n	name	9-10
+# ::node	0	Japan	9-10
+# ::node	s	street	10-11
+# ::node	d	date-entity	12-13
+# ::node	n2	night	12-13
+# ::root	i	image
+# ::edge	image	ARG1-of	white-03	i	w	
+# ::edge	image	ARG1-of	black-05	i	b	
+# ::edge	image	topic	person	i	p	
+# ::edge	person	ARG0-of	cycle-01	p	c2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Japan	n	0	
+# ::edge	street	location	country	s	c	
+# ::edge	person	location	street	p	s	
+# ::edge	image	time	date-entity	i	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(i / image
+    :ARG1-of (w / white-03)
+    :ARG1-of (b / black-05)
+    :time (d / date-entity
+        :dayperiod (n2 / night))
+    :topic (p / person
+        :ARG0-of (c2 / cycle-01)
+        :location (s / street
+            :location (c / country
+                :name (n / name
+                    :op1 "Japan")))))

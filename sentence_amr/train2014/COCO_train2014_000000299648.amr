@@ -1,0 +1,46 @@
+# ::tok The concert audience is composed of many young Indian men , some taking pictures of the performer .
+# ::node	c2	concert	1-2
+# ::node	a	audience	2-3
+# ::node	c	compose-01	4-5
+# ::node	m3	many	6-7
+# ::node	y	young	7-8
+# ::node	c3	country	8-9
+# ::node	n	name	8-9
+# ::node	0	India	8-9
+# ::node	m	man	9-10
+# ::node	m2	man	9-10
+# ::node	i	include-91	11-12
+# ::node	s	some	11-12
+# ::node	p3	photograph-01	13-14
+# ::node	p2	person	16-17
+# ::node	p	perform-01	16-17
+# ::root	c	compose-01
+# ::edge	audience	mod	concert	a	c2	
+# ::edge	compose-01	ARG1	audience	c	a	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	India	n	0	
+# ::edge	man	mod	country	m	c3	
+# ::edge	man	mod	young	m	y	
+# ::edge	man	quant	many	m	m3	
+# ::edge	compose-01	ARG2	man	c	m	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	man	ARG2-of	include-91	m	i	
+# ::edge	man	mod	some	m2	s	
+# ::edge	man	ARG0-of	photograph-01	m2	p3	
+# ::edge	photograph-01	ARG1	person	p3	p2	
+# ::edge	person	ARG0-of	perform-01	p2	p	
+(c / compose-01
+    :ARG1 (a / audience
+        :mod (c2 / concert))
+    :ARG2 (m / man
+        :quant (m3 / many)
+        :ARG2-of (i / include-91
+            :ARG1 (m2 / man
+                :ARG0-of (p3 / photograph-01
+                    :ARG1 (p2 / person
+                        :ARG0-of (p / perform-01)))
+                :mod (s / some)))
+        :mod (c3 / country
+            :name (n / name
+                :op1 "India"))
+        :mod (y / young)))

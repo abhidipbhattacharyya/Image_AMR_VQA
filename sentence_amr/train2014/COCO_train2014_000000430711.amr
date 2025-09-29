@@ -1,0 +1,28 @@
+# ::tok freshly pulverized red food fills the container of a food processor .
+# ::node	f4	fresh-04	0-1
+# ::node	p3	pulverize-01	1-2
+# ::node	r	red-02	2-3
+# ::node	f2	food	3-4
+# ::node	f	fill-01	4-5
+# ::node	c	container	6-7
+# ::node	f3	food	9-10
+# ::node	p	person	10-11
+# ::node	p2	process-01	10-11
+# ::root	f	fill-01
+# ::edge	pulverize-01	ARG1-of	fresh-04	p3	f4	
+# ::edge	food	ARG1-of	red-02	f2	r	
+# ::edge	food	ARG1-of	pulverize-01	f2	p3	
+# ::edge	fill-01	ARG2	food	f	f2	
+# ::edge	fill-01	ARG1	container	f	c	
+# ::edge	container	part-of	person	c	p	
+# ::edge	person	ARG0-of	process-01	p	p2	
+# ::edge	process-01	ARG1	food	p2	f3	
+(f / fill-01
+    :ARG1 (c / container
+        :part-of (p / person
+            :ARG0-of (p2 / process-01
+                :ARG1 (f3 / food))))
+    :ARG2 (f2 / food
+        :ARG1-of (r / red-02)
+        :ARG1-of (p3 / pulverize-01
+            :ARG1-of (f4 / fresh-04))))

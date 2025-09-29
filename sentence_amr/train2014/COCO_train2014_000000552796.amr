@@ -1,0 +1,62 @@
+# ::tok The room consist of a computer screen and key board on a cabinet by a heater radiator with two plaster bins on top of the radiator and two file cabinets on the side of the radiator .
+# ::node	r2	room	1-2
+# ::node	c4	consist-01	2-3
+# ::node	c3	computer	5-6
+# ::node	s	screen	6-7
+# ::node	a	and	7-8
+# ::node	k	key-02	8-9
+# ::node	b	board	9-10
+# ::node	c	cabinet	12-13
+# ::node	h	heat-01	15-16
+# ::node	r	radiator	16-17
+# ::node	0	2	18-19
+# ::node	p	plaster	19-20
+# ::node	i	Bin	20-21
+# ::node	t	top	22-23
+# ::node	a2	and	26-27
+# ::node	1	2	27-28
+# ::node	f	file	28-29
+# ::node	c2	cabinet	29-30
+# ::node	s2	side	32-33
+# ::root	c4	consist-01
+# ::edge	consist-01	ARG1	room	c4	r2	
+# ::edge	screen	mod	computer	s	c3	
+# ::edge	and	op1	screen	a	s	
+# ::edge	consist-01	ARG2	and	c4	a	
+# ::edge	board	ARG1-of	key-02	b	k	
+# ::edge	and	op2	board	a	b	
+# ::edge	and	location	cabinet	a	c	
+# ::edge	radiator	ARG0-of	heat-01	r	h	
+# ::edge	cabinet	prep-by	radiator	c	r	
+# ::edge	Bin	consist-of	plaster	i	p	
+# ::edge	Bin	quant	2	i	0	
+# ::edge	Bin	location	top	i	t	
+# ::edge	radiator	part	top	r	t	
+# ::edge	and	op1	Bin	a2	i	
+# ::edge	radiator	part	and	r	a2	
+# ::edge	cabinet	mod	file	c2	f	
+# ::edge	cabinet	quant	2	c2	1	
+# ::edge	and	op2	cabinet	a2	c2	
+# ::edge	cabinet	location	side	c2	s2	
+# ::edge	side	op1	radiator	s2	r	
+(c4 / consist-01
+    :ARG1 (r2 / room)
+    :ARG2 (a / and
+        :location (c / cabinet
+            :prep-by (r / radiator
+                :ARG0-of (h / heat-01)
+                :part (t / top)
+                :part (a2 / and
+                    :op1 (i / Bin
+                        :quant 2
+                        :consist-of (p / plaster)
+                        :location t)
+                    :op2 (c2 / cabinet
+                        :quant 2
+                        :location (s2 / side
+                            :op1 r)
+                        :mod (f / file)))))
+        :op1 (s / screen
+            :mod (c3 / computer))
+        :op2 (b / board
+            :ARG1-of (k / key-02))))

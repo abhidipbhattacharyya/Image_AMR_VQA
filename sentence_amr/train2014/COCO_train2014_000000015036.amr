@@ -1,0 +1,34 @@
+# ::tok Two rectangular trays and one circular tray of unbaked cheese pizza .
+# ::node	2	2	0-1
+# ::node	r	rectangular	1-2
+# ::node	b2	box	2-3
+# ::node	a	and	3-4
+# ::node	1	1	4-5
+# ::node	c2	circular	5-6
+# ::node	t	tray	6-7
+# ::node	b	bake-01	8-9
+# ::node	0	-	8-9
+# ::node	c	cheese	9-10
+# ::node	p	pizza	10-11
+# ::root	a	and
+# ::edge	box	mod	rectangular	b2	r	
+# ::edge	box	quant	2	b2	2	
+# ::edge	and	op1	box	a	b2	
+# ::edge	tray	mod	circular	t	c2	
+# ::edge	tray	quant	1	t	1	
+# ::edge	and	op2	tray	a	t	
+# ::edge	bake-01	polarity	-	b	0	
+# ::edge	pizza	mod	cheese	p	c	
+# ::edge	pizza	ARG1-of	bake-01	p	b	
+# ::edge	tray	consist-of	pizza	t	p	
+(a / and
+    :op1 (b2 / box
+        :quant 2
+        :mod (r / rectangular))
+    :op2 (t / tray
+        :quant 1
+        :consist-of (p / pizza
+            :ARG1-of (b / bake-01
+                :polarity -)
+            :mod (c / cheese))
+        :mod (c2 / circular)))

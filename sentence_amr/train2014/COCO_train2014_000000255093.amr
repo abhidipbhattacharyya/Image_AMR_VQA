@@ -1,0 +1,32 @@
+# ::tok A man is carrying bunches of bananas on each side with a stick on his back to help him .
+# ::node	m	man	1-2
+# ::node	c	carry-01	3-4
+# ::node	m2	multiple	4-5
+# ::node	b2	banana	6-7
+# ::node	e	each	8-9
+# ::node	s	side	9-10
+# ::node	s2	stick	12-13
+# ::node	b	back	15-16
+# ::node	h	help-01	17-18
+# ::root	c	carry-01
+# ::edge	carry-01	ARG0	man	c	m	
+# ::edge	banana	quant	multiple	b2	m2	
+# ::edge	carry-01	ARG1	banana	c	b2	
+# ::edge	side	mod	each	s	e	
+# ::edge	carry-01	location	side	c	s	
+# ::edge	carry-01	instrument	stick	c	s2	
+# ::edge	stick	location	back	s2	b	
+# ::edge	man	part	back	m	b	
+# ::edge	carry-01	purpose	help-01	c	h	
+# ::edge	help-01	ARG2	man	h	m	
+(c / carry-01
+    :purpose (h / help-01
+        :ARG2 (m / man
+            :part (b / back)))
+    :ARG0 m
+    :ARG1 (b2 / banana
+        :quant (m2 / multiple))
+    :instrument (s2 / stick
+        :location b)
+    :location (s / side
+        :mod (e / each)))

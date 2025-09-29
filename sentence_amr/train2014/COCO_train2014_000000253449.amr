@@ -1,0 +1,26 @@
+# ::tok A person who is covering their face as they sit next to some luggage .
+# ::node	p	person	1-2
+# ::node	c	cover-01	4-5
+# ::node	f	face	6-7
+# ::node	s	sit-01	9-10
+# ::node	n	next-to	10-11
+# ::node	s2	some	12-13
+# ::node	l	luggage	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	cover-01	p	c	
+# ::edge	cover-01	ARG1	face	c	f	
+# ::edge	person	part	face	p	f	
+# ::edge	cover-01	time	sit-01	c	s	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	luggage	mod	some	l	s2	
+# ::edge	next-to	op1	luggage	n	l	
+(p / person
+    :ARG0-of (c / cover-01
+        :ARG1 (f / face)
+        :time (s / sit-01
+            :ARG1 p
+            :ARG2 (n / next-to
+                :op1 (l / luggage
+                    :mod (s2 / some)))))
+    :part f)

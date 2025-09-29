@@ -1,0 +1,38 @@
+# ::tok A motorcycle driver faces forward with a covered passenger riding side saddle .
+# ::node	m	motorcycle	1-2
+# ::node	p2	person	2-3
+# ::node	d	drive-01	2-3
+# ::node	f	face-01	3-4
+# ::node	f2	forward	4-5
+# ::node	c2	cover-02	7-8
+# ::node	p	passenger	8-9
+# ::node	r	ride-01	9-10
+# ::node	s2	side	10-11
+# ::node	s	saddle	11-12
+# ::node	c	cause-01	12-13
+# ::root	f	face-01
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	drive-01	ARG1	motorcycle	d	m	
+# ::edge	face-01	ARG0	person	f	p2	
+# ::edge	face-01	direction	forward	f	f2	
+# ::edge	passenger	ARG1-of	cover-02	p	c2	
+# ::edge	passenger	ARG0-of	ride-01	p	r	
+# ::edge	saddle	location	side	s	s2	
+# ::edge	ride-01	ARG1	saddle	r	s	
+# ::edge	face-01	ARG1-of	cause-01	f	c	
+# ::edge	cause-01	ARG0	face-01	c	f	
+# ::edge	face-01	rel	passenger	f	p	
+# ::edge	face-01	rel	cause-01	f	c	
+(f / face-01
+    :ARG0 (p2 / person
+        :ARG0-of (d / drive-01
+            :ARG1 (m / motorcycle)))
+    :ARG1-of (c / cause-01
+        :ARG0 f)
+    :direction (f2 / forward)
+    :rel (p / passenger
+        :ARG0-of (r / ride-01
+            :ARG1 (s / saddle
+                :location (s2 / side)))
+        :ARG1-of (c2 / cover-02))
+    :rel c)

@@ -1,0 +1,31 @@
+# ::tok at night the shop showing lights inside and cars outside parked
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	s	shop	3-4
+# ::node	s2	show-01	4-5
+# ::node	l	light	5-6
+# ::node	i	inside	6-7
+# ::node	a	and	7-8
+# ::node	c	car	8-9
+# ::node	o	outside	9-10
+# ::node	p	park-01	10-11
+# ::root	s2	show-01
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	show-01	ARG0	shop	s2	s	
+# ::edge	show-01	time	date-entity	s2	d	
+# ::edge	light	location	inside	l	i	
+# ::edge	and	op1	light	a	l	
+# ::edge	show-01	ARG1	and	s2	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	location	outside	c	o	
+# ::edge	car	ARG1-of	park-01	c	p	
+(s2 / show-01
+    :ARG0 (s / shop)
+    :ARG1 (a / and
+        :op1 (l / light
+            :location (i / inside))
+        :op2 (c / car
+            :ARG1-of (p / park-01)
+            :location (o / outside)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

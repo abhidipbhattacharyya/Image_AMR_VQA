@@ -1,0 +1,58 @@
+# ::tok A group of people are sitting at a table with a white and red checkered table cloth and there are many glasses of wine sitting on the table .
+# ::node	g2	group	1-2
+# ::node	p2	person	3-4
+# ::node	s	sit-01	5-6
+# ::node	t	table	8-9
+# ::node	w	white-03	11-12
+# ::node	a	and	12-13
+# ::node	r	red-02	13-14
+# ::node	p	pattern	14-15
+# ::node	c3	crap-01	14-15
+# ::node	t2	table	15-16
+# ::node	c	cloth	16-17
+# ::node	c2	cloth	16-17
+# ::node	a2	and	17-18
+# ::node	m	many	20-21
+# ::node	g	glasses	21-22
+# ::node	w2	wine	23-24
+# ::node	s2	sit-01	24-25
+# ::root	a2	and
+# ::edge	group	consist-of	person	g2	p2	
+# ::edge	sit-01	ARG1	group	s	g2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location-of	and	t	a	
+# ::edge	and	op1	pattern	a	p	
+# ::edge	pattern	ARG1-of	white-03	p	w	
+# ::edge	cloth	mod	table	c	t2	
+# ::edge	cloth	mod	pattern	c	p	
+# ::edge	and	op1	cloth	a	c	
+# ::edge	cloth	mod	table	c2	t2	
+# ::edge	cloth	ARG1-of	crap-01	c2	c3	
+# ::edge	and	op2	cloth	a	c2	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	glasses	quant	many	g	m	
+# ::edge	wine	quant	glasses	w2	g	
+# ::edge	sit-01	ARG1	wine	s2	w2	
+# ::edge	and	op2	sit-01	a2	s2	
+# ::edge	sit-01	ARG2	table	s2	t	
+# ::edge	and	rel	red-02	a2	r	
+(a2 / and
+    :op1 (s / sit-01
+        :ARG1 (g2 / group
+            :consist-of (p2 / person))
+        :ARG2 (t / table
+            :location-of (a / and
+                :op1 (p / pattern
+                    :ARG1-of (w / white-03))
+                :op1 (c / cloth
+                    :mod (t2 / table)
+                    :mod p)
+                :op2 (c2 / cloth
+                    :ARG1-of (c3 / crap-01)
+                    :mod t2))))
+    :op2 (s2 / sit-01
+        :ARG1 (w2 / wine
+            :quant (g / glasses
+                :quant (m / many)))
+        :ARG2 t)
+    :rel (r / red-02))

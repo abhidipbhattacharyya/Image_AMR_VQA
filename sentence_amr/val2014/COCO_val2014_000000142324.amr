@@ -1,0 +1,47 @@
+# ::tok A man rides with a child on a motorcycle down a busy street with other pedestrians and bicyclists
+# ::node	m	man	1-2
+# ::node	r	ride-01	2-3
+# ::node	c	child	5-6
+# ::node	a	and	6-7
+# ::node	m2	motorcycle	8-9
+# ::node	d	down	9-10
+# ::node	b2	busy-02	11-12
+# ::node	s	street	12-13
+# ::node	o	other	14-15
+# ::node	p	person	15-16
+# ::node	w	walk-01	15-16
+# ::node	a2	and	16-17
+# ::node	p2	person	17-18
+# ::node	b	bicycle-01	17-18
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	and	op2	child	a	c	
+# ::edge	ride-01	ARG0	and	r	a	
+# ::edge	and	op1	man	a	m	
+# ::edge	ride-01	ARG1	motorcycle	r	m2	
+# ::edge	ride-01	direction	down	r	d	
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	down	op1	street	d	s	
+# ::edge	person	mod	other	p	o	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	and	op1	person	a2	p	
+# ::edge	ride-01	accompanier	and	r	a2	
+# ::edge	and	op2	person	a2	p2	
+# ::edge	person	mod	other	p2	o	
+# ::edge	person	ARG0-of	bicycle-01	p2	b	
+(r / ride-01
+    :ARG0 (m / man)
+    :ARG0 (a / and
+        :op1 m
+        :op2 (c / child))
+    :ARG1 (m2 / motorcycle)
+    :accompanier (a2 / and
+        :op1 (p / person
+            :ARG0-of (w / walk-01)
+            :mod (o / other))
+        :op2 (p2 / person
+            :ARG0-of (b / bicycle-01)
+            :mod o))
+    :direction (d / down
+        :op1 (s / street
+            :ARG1-of (b2 / busy-02))))

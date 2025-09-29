@@ -1,0 +1,22 @@
+# ::tok Several buses pulled into a bus depot with passengers loading .
+# ::node	s	several	0-1
+# ::node	b	bus	1-2
+# ::node	p2	pull-01	2-3
+# ::node	b2	bus	5-6
+# ::node	d	depot	6-7
+# ::node	p	passenger	8-9
+# ::node	l	load-01	9-10
+# ::root	p2	pull-01
+# ::edge	bus	quant	several	b	s	
+# ::edge	pull-01	ARG1	bus	p2	b	
+# ::edge	depot	mod	bus	d	b2	
+# ::edge	pull-01	ARG2	depot	p2	d	
+# ::edge	load-01	ARG2	passenger	l	p	
+# ::edge	bus	ARG1-of	load-01	b	l	
+(p2 / pull-01
+    :ARG1 (b / bus
+        :quant (s / several)
+        :ARG1-of (l / load-01
+            :ARG2 (p / passenger)))
+    :ARG2 (d / depot
+        :mod (b2 / bus)))

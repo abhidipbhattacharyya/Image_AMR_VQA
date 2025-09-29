@@ -1,0 +1,19 @@
+# ::tok A traffic signal showing that it is safe for horses to cross .
+# ::node	t	traffic	1-2
+# ::node	s3	signal	2-3
+# ::node	s2	show-01	3-4
+# ::node	s	safe-01	7-8
+# ::node	h	horse	9-10
+# ::node	c	cross-02	11-12
+# ::root	s2	show-01
+# ::edge	signal	mod	traffic	s3	t	
+# ::edge	show-01	ARG0	signal	s2	s3	
+# ::edge	show-01	ARG1	safe-01	s2	s	
+# ::edge	cross-02	ARG0	horse	c	h	
+# ::edge	safe-01	ARG1	cross-02	s	c	
+(s2 / show-01
+    :ARG0 (s3 / signal
+        :mod (t / traffic))
+    :ARG1 (s / safe-01
+        :ARG1 (c / cross-02
+            :ARG0 (h / horse))))

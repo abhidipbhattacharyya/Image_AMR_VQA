@@ -1,0 +1,27 @@
+# ::tok A bunch of people are standing at a cross walk waiting for the light to change .
+# ::node	b	bunch	1-2
+# ::node	p	person	3-4
+# ::node	s	stand-01	5-6
+# ::node	c2	cross-02	8-9
+# ::node	w2	walk-01	9-10
+# ::node	w	wait-01	10-11
+# ::node	l	light	13-14
+# ::node	c	change-01	15-16
+# ::root	s	stand-01
+# ::edge	person	quant	bunch	p	b	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	walk-01	ARG0-of	cross-02	w2	c2	
+# ::edge	stand-01	ARG2	walk-01	s	w2	
+# ::edge	stand-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	change-01	ARG1	light	c	l	
+# ::edge	wait-01	ARG2	change-01	w	c	
+(s / stand-01
+    :purpose (w / wait-01
+        :ARG1 (p / person
+            :quant (b / bunch))
+        :ARG2 (c / change-01
+            :ARG1 (l / light)))
+    :ARG1 p
+    :ARG2 (w2 / walk-01
+        :ARG0-of (c2 / cross-02)))

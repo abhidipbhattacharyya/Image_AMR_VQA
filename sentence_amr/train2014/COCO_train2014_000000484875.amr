@@ -1,0 +1,31 @@
+# ::tok Several people in dress clothing , including one wearing a gas mask .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	d	dress	3-4
+# ::node	c	clothe-01	4-5
+# ::node	i	include-01	6-7
+# ::node	p2	person	7-8
+# ::node	0	1	7-8
+# ::node	w	wear-01	8-9
+# ::node	g	gas	10-11
+# ::node	m	mask	11-12
+# ::root	i	include-01
+# ::edge	person	quant	several	p	s	
+# ::edge	clothe-01	ARG2	dress	c	d	
+# ::edge	clothe-01	ARG1	person	c	p	
+# ::edge	include-01	ARG2	clothe-01	i	c	
+# ::edge	include-01	ARG1	person	i	p2	
+# ::edge	person	quant	1	p2	0	
+# ::edge	person	ARG0-of	wear-01	p2	w	
+# ::edge	mask	mod	gas	m	g	
+# ::edge	wear-01	ARG1	mask	w	m	
+(i / include-01
+    :ARG1 (p2 / person
+        :quant 1
+        :ARG0-of (w / wear-01
+            :ARG1 (m / mask
+                :mod (g / gas))))
+    :ARG2 (c / clothe-01
+        :ARG1 (p / person
+            :quant (s / several))
+        :ARG2 (d / dress)))

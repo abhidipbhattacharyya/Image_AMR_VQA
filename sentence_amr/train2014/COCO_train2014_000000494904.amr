@@ -1,0 +1,25 @@
+# ::tok baseball player preparing for the next pitch in the batting cage
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	p4	prepare-02	2-3
+# ::node	n	next	5-6
+# ::node	p2	pitch	6-7
+# ::node	b2	bat-01	9-10
+# ::node	c	cage	10-11
+# ::root	p4	prepare-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	prepare-02	ARG1	person	p4	p	
+# ::edge	pitch	mod	next	p2	n	
+# ::edge	prepare-02	ARG2	pitch	p4	p2	
+# ::edge	cage	location-of	bat-01	c	b2	
+# ::edge	pitch	location	cage	p2	c	
+(p4 / prepare-02
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :ARG2 (p2 / pitch
+        :location (c / cage
+            :location-of (b2 / bat-01))
+        :mod (n / next)))

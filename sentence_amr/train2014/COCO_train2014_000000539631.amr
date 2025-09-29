@@ -1,0 +1,46 @@
+# ::tok US President Barak Obama and staff making a presentation at a press conference .
+# ::node	c2	country	0-1
+# ::node	n	name	0-1
+# ::node	2	US	0-1
+# ::node	h	have-org-role-91	1-2
+# ::node	p4	president	1-2
+# ::node	n2	name	2-3
+# ::node	0	Barak	2-3
+# ::node	p	person	3-4
+# ::node	1	Obama	3-4
+# ::node	a	and	4-5
+# ::node	p2	person	5-6
+# ::node	s	staff-01	5-6
+# ::node	p3	present-01	8-9
+# ::node	p5	press	11-12
+# ::node	c	conference	12-13
+# ::root	p3	present-01
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	US	n	2	
+# ::edge	have-org-role-91	ARG1	country	h	c2	
+# ::edge	have-org-role-91	ARG2	president	h	p4	
+# ::edge	name	op1	Barak	n2	0	
+# ::edge	person	name	name	p	n2	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	name	op2	Obama	n2	1	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG2-of	staff-01	p2	s	
+# ::edge	present-01	ARG0	and	p3	a	
+# ::edge	conference	mod	press	c	p5	
+# ::edge	present-01	location	conference	p3	c	
+(p3 / present-01
+    :ARG0 (a / and
+        :op1 (p / person
+            :name (n2 / name
+                :op1 "Barak"
+                :op2 "Obama")
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (c2 / country
+                    :name (n / name
+                        :op1 "US"))
+                :ARG2 (p4 / president)))
+        :op2 (p2 / person
+            :ARG2-of (s / staff-01)))
+    :location (c / conference
+        :mod (p5 / press)))

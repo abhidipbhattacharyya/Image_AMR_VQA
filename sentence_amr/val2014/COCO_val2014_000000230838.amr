@@ -1,0 +1,28 @@
+# ::tok Some animals in a desert area with dry looking trees in the background
+# ::node	s	some	0-1
+# ::node	a	animal	1-2
+# ::node	d	desert	4-5
+# ::node	a2	area	5-6
+# ::node	d2	dry-08	7-8
+# ::node	l	look-02	8-9
+# ::node	t	tree	9-10
+# ::node	b2	be-located-at-91	10-11
+# ::node	b	background	12-13
+# ::root	a	animal
+# ::edge	animal	quant	some	a	s	
+# ::edge	area	mod	desert	a2	d	
+# ::edge	animal	location	area	a	a2	
+# ::edge	look-02	ARG1	dry-08	l	d2	
+# ::edge	tree	ARG0-of	look-02	t	l	
+# ::edge	be-located-at-91	ARG1	tree	b2	t	
+# ::edge	area	ARG2-of	be-located-at-91	a2	b2	
+# ::edge	be-located-at-91	location	background	b2	b	
+(a / animal
+    :quant (s / some)
+    :location (a2 / area
+        :ARG2-of (b2 / be-located-at-91
+            :ARG1 (t / tree
+                :ARG0-of (l / look-02
+                    :ARG1 (d2 / dry-08)))
+            :location (b / background))
+        :mod (d / desert)))

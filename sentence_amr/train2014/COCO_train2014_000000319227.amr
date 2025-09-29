@@ -1,0 +1,31 @@
+# ::tok A bus traveling down a busy city street with old red brick buildings .
+# ::node	b3	bus	1-2
+# ::node	t	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	b4	busy-02	5-6
+# ::node	c	city	6-7
+# ::node	s	street	7-8
+# ::node	o	old	9-10
+# ::node	r	red-02	10-11
+# ::node	b	brick	11-12
+# ::node	b2	building	12-13
+# ::root	b3	bus
+# ::edge	bus	ARG0-of	travel-01	b3	t	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG1-of	busy-02	s	b4	
+# ::edge	travel-01	ARG1	street	t	s	
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	building	mod	old	b2	o	
+# ::edge	bus	part	building	b3	b2	
+(b3 / bus
+    :ARG0-of (t / travel-01
+        :ARG1 (s / street
+            :ARG1-of (b4 / busy-02)
+            :mod (c / city))
+        :direction (d / down))
+    :part (b2 / building
+        :consist-of (b / brick
+            :ARG1-of (r / red-02))
+        :mod (o / old)))

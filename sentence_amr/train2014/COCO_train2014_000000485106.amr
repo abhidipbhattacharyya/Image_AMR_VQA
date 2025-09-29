@@ -1,0 +1,46 @@
+# ::tok A girl in a grass field with a brown horse reaching its head over a barbed wire fence to eat from the girls hand .
+# ::node	g	girl	1-2
+# ::node	g2	grass	4-5
+# ::node	f2	field	5-6
+# ::node	r	Brown	8-9
+# ::node	h3	horse	9-10
+# ::node	r2	reach-03	10-11
+# ::node	h2	head	12-13
+# ::node	o	over	13-14
+# ::node	b	barb-01	15-16
+# ::node	w	wire	16-17
+# ::node	f	fence	17-18
+# ::node	e	eat-01	19-20
+# ::node	h	hand	23-24
+# ::root	g	girl
+# ::edge	field	mod	grass	f2	g2	
+# ::edge	girl	location	field	g	f2	
+# ::edge	horse	mod	Brown	h3	r	
+# ::edge	reach-03	ARG0	horse	r2	h3	
+# ::edge	girl	location-of	reach-03	g	r2	
+# ::edge	reach-03	ARG1	head	r2	h2	
+# ::edge	horse	part	head	h3	h2	
+# ::edge	reach-03	path	over	r2	o	
+# ::edge	wire	ARG1-of	barb-01	w	b	
+# ::edge	fence	consist-of	wire	f	w	
+# ::edge	over	op1	fence	o	f	
+# ::edge	reach-03	purpose	eat-01	r2	e	
+# ::edge	eat-01	ARG0	horse	e	h3	
+# ::edge	eat-01	source	hand	e	h	
+# ::edge	girl	part	hand	g	h	
+(g / girl
+    :location (f2 / field
+        :mod (g2 / grass))
+    :location-of (r2 / reach-03
+        :purpose (e / eat-01
+            :ARG0 (h3 / horse
+                :mod (r / Brown)
+                :part (h2 / head))
+            :source (h / hand))
+        :ARG0 h3
+        :ARG1 h2
+        :path (o / over
+            :op1 (f / fence
+                :consist-of (w / wire
+                    :ARG1-of (b / barb-01)))))
+    :part h)

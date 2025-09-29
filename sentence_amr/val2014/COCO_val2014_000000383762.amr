@@ -1,0 +1,36 @@
+# ::tok several bunches of ripe bananas int the front and green bananas behind them
+# ::node	s	several	0-1
+# ::node	l	load	1-2
+# ::node	l2	load	1-2
+# ::node	r	ripe-02	3-4
+# ::node	b	banana	4-5
+# ::node	i	inside	5-6
+# ::node	f	front	7-8
+# ::node	a	and	8-9
+# ::node	g	green-02	9-10
+# ::node	b2	banana	10-11
+# ::node	b3	behind	11-12
+# ::root	a	and
+# ::edge	load	quant	several	l	s	
+# ::edge	banana	ARG1-of	ripe-02	b	r	
+# ::edge	load	consist-of	banana	l	b	
+# ::edge	banana	location	inside	b	i	
+# ::edge	inside	op1	front	i	f	
+# ::edge	and	op2	load	a	l2	
+# ::edge	and	op1	load	a	l	
+# ::edge	banana	ARG1-of	green-02	b2	g	
+# ::edge	load	consist-of	banana	l2	b2	
+# ::edge	banana	location	behind	b2	b3	
+# ::edge	behind	op1	front	b3	f	
+(a / and
+    :op1 (l / load
+        :quant (s / several)
+        :consist-of (b / banana
+            :ARG1-of (r / ripe-02)
+            :location (i / inside
+                :op1 (f / front))))
+    :op2 (l2 / load
+        :consist-of (b2 / banana
+            :ARG1-of (g / green-02)
+            :location (b3 / behind
+                :op1 f))))

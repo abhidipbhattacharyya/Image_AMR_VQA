@@ -1,0 +1,72 @@
+# ::tok A Boston Red Sox pitcher stands , holding the ball in his glove at his waist , prepares to pitch to an Oakland A 's batter .
+# ::node	n	name	1-2
+# ::node	1	Boston	1-2
+# ::node	3	Red	2-3
+# ::node	t	team	3-4
+# ::node	4	Sox	3-4
+# ::node	p	person	4-5
+# ::node	t3	throw-01	4-5
+# ::node	s	stand-01	5-6
+# ::node	h	hold-01	7-8
+# ::node	b	ball	9-10
+# ::node	g	glove	12-13
+# ::node	w	waist	15-16
+# ::node	p4	prepare-02	17-18
+# ::node	p3	pitch-04	19-20
+# ::node	2	Oakland	22-23
+# ::node	t2	team	23-24
+# ::node	n2	name	23-24
+# ::node	0	A	23-24
+# ::node	p2	person	25-26
+# ::node	b2	batter-01	25-26
+# ::node	a	and	26-27
+# ::root	a	and
+# ::edge	name	op1	Boston	n	1	
+# ::edge	name	op2	Red	n	3	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op3	Sox	n	4	
+# ::edge	person	part-of	team	p	t	
+# ::edge	person	ARG0-of	throw-01	p	t3	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	ball	h	b	
+# ::edge	hold-01	location	glove	h	g	
+# ::edge	person	part	glove	p	g	
+# ::edge	hold-01	location	waist	h	w	
+# ::edge	person	part	waist	p	w	
+# ::edge	prepare-02	ARG0	person	p4	p	
+# ::edge	prepare-02	ARG1	pitch-04	p4	p3	
+# ::edge	pitch-04	ARG0	person	p3	p	
+# ::edge	team	name	name	t2	n2	
+# ::edge	name	op1	Oakland	n2	2	
+# ::edge	name	op2	A	n2	0	
+# ::edge	person	mod	team	p2	t2	
+# ::edge	pitch-04	ARG2	person	p3	p2	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	and	op2	prepare-02	a	p4	
+# ::edge	and	op1	stand-01	a	s	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (p / person
+            :ARG0-of (t3 / throw-01)
+            :ARG0-of (h / hold-01
+                :ARG1 (b / ball)
+                :location (g / glove)
+                :location (w / waist))
+            :part g
+            :part w
+            :part-of (t / team
+                :name (n / name
+                    :op1 "Boston"
+                    :op2 "Red"
+                    :op3 "Sox"))))
+    :op2 (p4 / prepare-02
+        :ARG0 p
+        :ARG1 (p3 / pitch-04
+            :ARG0 p
+            :ARG2 (p2 / person
+                :ARG0-of (b2 / batter-01)
+                :mod (t2 / team
+                    :name (n2 / name
+                        :op1 "Oakland"
+                        :op2 "A"))))))

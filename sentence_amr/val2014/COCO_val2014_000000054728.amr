@@ -1,0 +1,59 @@
+# ::tok Three elephants , one a baby appearing to be holding it 's mother 's tail , in wet land , but arid hill in background .
+# ::node	1	3	0-1
+# ::node	e	elephant	1-2
+# ::node	i	include-91	3-4
+# ::node	0	1	3-4
+# ::node	b	baby	5-6
+# ::node	a	appear-02	6-7
+# ::node	h3	hold-01	9-10
+# ::node	p	person	12-13
+# ::node	h	have-rel-role-91	12-13
+# ::node	m	mother	12-13
+# ::node	t	tail	14-15
+# ::node	w	wet-01	17-18
+# ::node	l	land	18-19
+# ::node	c	contrast-01	20-21
+# ::node	a2	arid	21-22
+# ::node	h2	hill	22-23
+# ::node	b2	background	24-25
+# ::node	m2	multi-sentence	25-26
+# ::root	m2	multi-sentence
+# ::edge	elephant	quant	3	e	1	
+# ::edge	elephant	ARG2-of	include-91	e	i	
+# ::edge	baby	quant	1	b	0	
+# ::edge	include-91	ARG1	baby	i	b	
+# ::edge	hold-01	ARG1-of	appear-02	h3	a	
+# ::edge	baby	ARG0-of	hold-01	b	h3	
+# ::edge	person	ARG0-of	have-rel-role-91	p	h	
+# ::edge	have-rel-role-91	ARG1	baby	h	b	
+# ::edge	have-rel-role-91	ARG2	mother	h	m	
+# ::edge	tail	part-of	person	t	p	
+# ::edge	hold-01	ARG1	tail	h3	t	
+# ::edge	land	ARG1-of	wet-01	l	w	
+# ::edge	elephant	location	land	e	l	
+# ::edge	land	ARG1-of	contrast-01	l	c	
+# ::edge	hill	mod	arid	h2	a2	
+# ::edge	contrast-01	ARG2	hill	c	h2	
+# ::edge	hill	location	background	h2	b2	
+# ::edge	multi-sentence	snt2	include-91	m2	i	
+# ::edge	multi-sentence	snt1	elephant	m2	e	
+(m2 / multi-sentence
+    :snt1 (e / elephant
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1 (b / baby
+                :quant 1
+                :ARG0-of (h3 / hold-01
+                    :ARG1 (t / tail
+                        :part-of (p / person
+                            :ARG0-of (h / have-rel-role-91
+                                :ARG1 b
+                                :ARG2 (m / mother))))
+                    :ARG1-of (a / appear-02))))
+        :location (l / land
+            :ARG1-of (w / wet-01)
+            :ARG1-of (c / contrast-01
+                :ARG2 (h2 / hill
+                    :location (b2 / background)
+                    :mod (a2 / arid)))))
+    :snt2 i)

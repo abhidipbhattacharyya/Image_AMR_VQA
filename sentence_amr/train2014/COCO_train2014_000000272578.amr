@@ -1,0 +1,27 @@
+# ::tok A baseball player slides into the plate as another jumps above him .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	slide-01	3-4
+# ::node	p2	plate	6-7
+# ::node	a2	another	8-9
+# ::node	j	jump-03	9-10
+# ::node	a	above	10-11
+# ::root	s	slide-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	slide-01	ARG1	person	s	p	
+# ::edge	slide-01	destination	plate	s	p2	
+# ::edge	jump-03	ARG0	another	j	a2	
+# ::edge	slide-01	time	jump-03	s	j	
+# ::edge	jump-03	location	above	j	a	
+# ::edge	above	op1	person	a	p	
+(s / slide-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)))
+    :destination (p2 / plate)
+    :time (j / jump-03
+        :ARG0 (a2 / another)
+        :location (a / above
+            :op1 p)))

@@ -1,0 +1,30 @@
+# ::tok A bull and two calves block a vehicle from going down a road .
+# ::node	b2	bull	1-2
+# ::node	a	and	2-3
+# ::node	0	2	3-4
+# ::node	c	cow	4-5
+# ::node	b	block-01	5-6
+# ::node	v	vehicle	7-8
+# ::node	g	go-02	9-10
+# ::node	d	down	10-11
+# ::node	r	road	12-13
+# ::root	b	block-01
+# ::edge	and	op1	bull	a	b2	
+# ::edge	cow	quant	2	c	0	
+# ::edge	and	op2	cow	a	c	
+# ::edge	block-01	ARG0	and	b	a	
+# ::edge	block-01	ARG1	vehicle	b	v	
+# ::edge	go-02	ARG0	vehicle	g	v	
+# ::edge	block-01	ARG2	go-02	b	g	
+# ::edge	go-02	direction	down	g	d	
+# ::edge	go-02	ARG1	road	g	r	
+(b / block-01
+    :ARG0 (a / and
+        :op1 (b2 / bull)
+        :op2 (c / cow
+            :quant 2))
+    :ARG1 (v / vehicle)
+    :ARG2 (g / go-02
+        :ARG0 v
+        :ARG1 (r / road)
+        :direction (d / down)))

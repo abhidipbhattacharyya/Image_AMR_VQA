@@ -1,0 +1,34 @@
+# ::tok An old Dodgers baseball game with a player sliding into home plate .
+# ::node	o	old	1-2
+# ::node	t	team	2-3
+# ::node	n	name	2-3
+# ::node	0	Dodgers	2-3
+# ::node	b	baseball	3-4
+# ::node	g	game	4-5
+# ::node	p	person	7-8
+# ::node	p3	play-01	7-8
+# ::node	s	slide-01	8-9
+# ::node	h	home	10-11
+# ::node	p2	plate	11-12
+# ::root	g	game
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Dodgers	n	0	
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	mod	team	g	t	
+# ::edge	game	mod	old	g	o	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	slide-01	ARG1	person	s	p	
+# ::edge	game	time-of	slide-01	g	s	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	slide-01	destination	plate	s	p2	
+(g / game
+    :mod (b / baseball)
+    :mod (t / team
+        :name (n / name
+            :op1 "Dodgers"))
+    :mod (o / old)
+    :time-of (s / slide-01
+        :ARG1 (p / person
+            :ARG0-of (p3 / play-01))
+        :destination (p2 / plate
+            :mod (h / home))))

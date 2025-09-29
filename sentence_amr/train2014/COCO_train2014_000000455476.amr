@@ -1,0 +1,35 @@
+# ::tok The goats sit around in a pile of goats dreaming of eating tin cans and fiberglass .
+# ::node	g	goat	1-2
+# ::node	s	sit-01	2-3
+# ::node	a2	around	3-4
+# ::node	p	pile	6-7
+# ::node	d	dream-01	9-10
+# ::node	e	eat-01	11-12
+# ::node	t	tin	12-13
+# ::node	c	can	13-14
+# ::node	a	and	14-15
+# ::node	f	fiberglass	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	goat	s	g	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	sit-01	location	pile	s	p	
+# ::edge	goat	consist	pile	g	p	
+# ::edge	goat	ARG0-of	dream-01	g	d	
+# ::edge	dream-01	ARG1	eat-01	d	e	
+# ::edge	eat-01	ARG0	goat	e	g	
+# ::edge	can	consist-of	tin	c	t	
+# ::edge	and	op1	can	a	c	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	and	op2	fiberglass	a	f	
+(s / sit-01
+    :ARG1 (g / goat
+        :ARG0-of (d / dream-01
+            :ARG1 (e / eat-01
+                :ARG0 g
+                :ARG1 (a / and
+                    :op1 (c / can
+                        :consist-of (t / tin))
+                    :op2 (f / fiberglass))))
+        :consist (p / pile))
+    :ARG2 (a2 / around)
+    :location p)

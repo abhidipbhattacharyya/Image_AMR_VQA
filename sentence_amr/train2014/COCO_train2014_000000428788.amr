@@ -1,0 +1,31 @@
+# ::tok A model of a street with cars and highway patrol police vehicles on the road .
+# ::node	m	model-01	1-2
+# ::node	s	street	4-5
+# ::node	h	have-03	5-6
+# ::node	c	car	6-7
+# ::node	a	and	7-8
+# ::node	h2	highway	8-9
+# ::node	p	patrol	9-10
+# ::node	p2	police	10-11
+# ::node	v	vehicle	11-12
+# ::node	r	road	14-15
+# ::root	m	model-01
+# ::edge	model-01	ARG1	street	m	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	and	op1	car	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	patrol	mod	highway	p	h2	
+# ::edge	vehicle	mod	police	v	p2	
+# ::edge	vehicle	mod	patrol	v	p	
+# ::edge	and	op2	vehicle	a	v	
+# ::edge	and	location	road	a	r	
+(m / model-01
+    :ARG1 (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :location (r / road)
+                :op1 (c / car)
+                :op2 (v / vehicle
+                    :mod (p2 / police)
+                    :mod (p / patrol
+                        :mod (h2 / highway)))))))

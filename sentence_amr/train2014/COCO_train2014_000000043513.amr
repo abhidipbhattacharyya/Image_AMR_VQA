@@ -1,0 +1,33 @@
+# ::tok a business where they install side cars on a motorcycle with men standing by their bikes
+# ::node	b2	business	1-2
+# ::node	t	they	3-4
+# ::node	i	install-01	4-5
+# ::node	s	side	5-6
+# ::node	c	car	6-7
+# ::node	m2	motorcycle	9-10
+# ::node	m	man	11-12
+# ::node	s2	stand-01	12-13
+# ::node	b3	by	13-14
+# ::node	b	bike-01	15-16
+# ::root	b2	business
+# ::edge	install-01	ARG0	they	i	t	
+# ::edge	business	location-of	install-01	b2	i	
+# ::edge	car	mod	side	c	s	
+# ::edge	install-01	ARG1	car	i	c	
+# ::edge	install-01	ARG2	motorcycle	i	m2	
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	business	ARG2-of	stand-01	b2	s2	
+# ::edge	stand-01	location	by	s2	b3	
+# ::edge	by	op1	bike-01	b3	b	
+# ::edge	bike-01	ARG0	man	b	m	
+(b2 / business
+    :ARG2-of (s2 / stand-01
+        :ARG1 (m / man)
+        :location (b3 / by
+            :op1 (b / bike-01
+                :ARG0 m)))
+    :location-of (i / install-01
+        :ARG0 (t / they)
+        :ARG1 (c / car
+            :mod (s / side))
+        :ARG2 (m2 / motorcycle)))

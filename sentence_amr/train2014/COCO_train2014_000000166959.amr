@@ -1,0 +1,28 @@
+# ::tok A set dinner table where a gentleman is pouring drinks for other guests .
+# ::node	s	set-02	1-2
+# ::node	d	dinner	2-3
+# ::node	t	table	3-4
+# ::node	g	gentleman	6-7
+# ::node	p	pour-01	8-9
+# ::node	t2	thing	9-10
+# ::node	d2	drink-01	9-10
+# ::node	o	other	11-12
+# ::node	g2	guest	12-13
+# ::root	t	table
+# ::edge	table	mod	dinner	t	d	
+# ::edge	table	ARG1-of	set-02	t	s	
+# ::edge	pour-01	ARG0	gentleman	p	g	
+# ::edge	table	location-of	pour-01	t	p	
+# ::edge	pour-01	ARG1	thing	p	t2	
+# ::edge	thing	ARG1-of	drink-01	t2	d2	
+# ::edge	guest	mod	other	g2	o	
+# ::edge	pour-01	beneficiary	guest	p	g2	
+(t / table
+    :ARG1-of (s / set-02)
+    :location-of (p / pour-01
+        :ARG0 (g / gentleman)
+        :ARG1 (t2 / thing
+            :ARG1-of (d2 / drink-01))
+        :beneficiary (g2 / guest
+            :mod (o / other)))
+    :mod (d / dinner))

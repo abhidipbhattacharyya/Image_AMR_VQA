@@ -1,0 +1,25 @@
+# ::tok A batter that just swung at a pitch just thrown and struck out .
+# ::node	p	person	1-2
+# ::node	b	batter-01	1-2
+# ::node	j	just	3-4
+# ::node	s2	swing-02	4-5
+# ::node	p2	pitch	7-8
+# ::node	j2	just	8-9
+# ::node	t	throw-01	9-10
+# ::node	s	strike-01	11-12
+# ::root	s	strike-01
+# ::edge	person	ARG2-of	batter-01	p	b	
+# ::edge	swing-02	mod	just	s2	j	
+# ::edge	person	ARG0-of	swing-02	p	s2	
+# ::edge	swing-02	ARG1	pitch	s2	p2	
+# ::edge	throw-01	mod	just	t	j2	
+# ::edge	pitch	ARG1-of	throw-01	p2	t	
+# ::edge	strike-01	ARG0	person	s	p	
+(s / strike-01
+    :ARG0 (p / person
+        :ARG0-of (s2 / swing-02
+            :ARG1 (p2 / pitch
+                :ARG1-of (t / throw-01
+                    :mod (j2 / just)))
+            :mod (j / just))
+        :ARG2-of (b / batter-01)))

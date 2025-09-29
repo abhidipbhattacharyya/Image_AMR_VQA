@@ -1,0 +1,33 @@
+# ::tok Dirt bikes with lights on riding along a street with people watching from the side walk .
+# ::node	a	air	0-1
+# ::node	b	bike-01	1-2
+# ::node	l	light	3-4
+# ::node	r	ride-01	5-6
+# ::node	a2	along	6-7
+# ::node	s2	street	8-9
+# ::node	p	person	10-11
+# ::node	w2	watch-01	11-12
+# ::node	s	side	14-15
+# ::node	w	walk-01	15-16
+# ::root	b	bike-01
+# ::edge	bike-01	mod	air	b	a	
+# ::edge	ride-01	ARG1	bike-01	r	b	
+# ::edge	bike-01	ARG0-of	ride-01	b	r	
+# ::edge	ride-01	path	along	r	a2	
+# ::edge	along	op1	street	a2	s2	
+# ::edge	watch-01	ARG0	person	w2	p	
+# ::edge	bike-01	ARG1-of	watch-01	b	w2	
+# ::edge	walk-01	location	side	w	s	
+# ::edge	watch-01	source	walk-01	w2	w	
+# ::edge	bike-01	rel	light	b	l	
+(b / bike-01
+    :ARG0-of (r / ride-01
+        :ARG1 b
+        :path (a2 / along
+            :op1 (s2 / street)))
+    :ARG1-of (w2 / watch-01
+        :ARG0 (p / person)
+        :source (w / walk-01
+            :location (s / side)))
+    :mod (a / air)
+    :rel (l / light))

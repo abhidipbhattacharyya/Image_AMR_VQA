@@ -1,0 +1,77 @@
+# ::tok A female looking at a baby that is attached to an endotracheal tube and a breathing circuit in addition to two ventilators in the background ; a Sensor Medics Oscillator and a Drager Babylog ventilator .
+# ::node	f	female	1-2
+# ::node	l	look-01	2-3
+# ::node	b	baby	5-6
+# ::node	a4	attach-01	8-9
+# ::node	e	endothelium	11-12
+# ::node	t2	tube	12-13
+# ::node	a2	and	13-14
+# ::node	b3	breathe-01	15-16
+# ::node	c	circuit	16-17
+# ::node	a	add-02	18-19
+# ::node	0	2	20-21
+# ::node	v	vent-01	21-22
+# ::node	b2	background	24-25
+# ::node	5	Sensor	27-28
+# ::node	3	Medics	28-29
+# ::node	t	thing	29-30
+# ::node	n	name	29-30
+# ::node	4	Oscillator	29-30
+# ::node	a3	and	30-31
+# ::node	n2	name	32-33
+# ::node	2	Drager	32-33
+# ::node	1	Babylog	33-34
+# ::node	v2	ventilator	34-35
+# ::node	v3	ventilator	34-35
+# ::root	l	look-01
+# ::edge	look-01	ARG0	female	l	f	
+# ::edge	look-01	ARG1	baby	l	b	
+# ::edge	baby	ARG1-of	attach-01	b	a4	
+# ::edge	tube	mod	endothelium	t2	e	
+# ::edge	and	op1	tube	a2	t2	
+# ::edge	attach-01	ARG2	and	a4	a2	
+# ::edge	circuit	mod	breathe-01	c	b3	
+# ::edge	and	op2	circuit	a2	c	
+# ::edge	and	ARG2-of	add-02	a2	a	
+# ::edge	vent-01	location	background	v	b2	
+# ::edge	thing	ARG0-of	vent-01	t	v	
+# ::edge	thing	name	name	t	n	
+# ::edge	name	op2	Medics	n	3	
+# ::edge	name	op1	Sensor	n	5	
+# ::edge	name	op3	Oscillator	n	4	
+# ::edge	and	op1	thing	a3	t	
+# ::edge	vent-01	ARG1	and	v	a3	
+# ::edge	name	op1	Drager	n2	2	
+# ::edge	name	op2	Babylog	n2	1	
+# ::edge	and	op2	ventilator	a3	v2	
+# ::edge	ventilator	instrument-of	vent-01	v2	v	
+# ::edge	ventilator	quant	2	v2	0	
+# ::edge	ventilator	name	name	v3	n2	
+# ::edge	and	op3	ventilator	a3	v3	
+# ::edge	look-01	rel	thing	l	t	
+(l / look-01
+    :ARG0 (f / female)
+    :ARG1 (b / baby
+        :ARG1-of (a4 / attach-01
+            :ARG2 (a2 / and
+                :ARG2-of (a / add-02)
+                :op1 (t2 / tube
+                    :mod (e / endothelium))
+                :op2 (c / circuit
+                    :mod (b3 / breathe-01)))))
+    :rel (t / thing
+        :name (n / name
+            :op1 "Sensor"
+            :op2 "Medics"
+            :op3 "Oscillator")
+        :ARG0-of (v / vent-01
+            :ARG1 (a3 / and
+                :op1 t
+                :op2 (v2 / ventilator
+                    :quant 2
+                    :instrument-of v)
+                :op3 (v3 / ventilator
+                    :name (n2 / name
+                        :op1 "Drager"
+                        :op2 "Babylog")))
+            :location (b2 / background))))

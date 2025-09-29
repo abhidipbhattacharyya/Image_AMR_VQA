@@ -1,0 +1,45 @@
+# ::tok This pizza crust has sauce and spices but no cheese or toppings .
+# ::node	t	this	0-1
+# ::node	p	pizza	1-2
+# ::node	c3	crust	2-3
+# ::node	h	have-03	3-4
+# ::node	h2	have-03	3-4
+# ::node	s	sauce	4-5
+# ::node	a	and	5-6
+# ::node	n	nut	6-7
+# ::node	c2	contrast-01	7-8
+# ::node	0	-	8-9
+# ::node	c	cheese	9-10
+# ::node	o	or	10-11
+# ::node	p2	protein	11-12
+# ::node	t2	top-01	11-12
+# ::root	c2	contrast-01
+# ::edge	crust	mod	pizza	c3	p	
+# ::edge	crust	mod	this	c3	t	
+# ::edge	have-03	ARG0	crust	h	c3	
+# ::edge	have-03	ARG0	crust	h2	c3	
+# ::edge	and	op1	sauce	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	nut	a	n	
+# ::edge	contrast-01	ARG2	have-03	c2	h2	
+# ::edge	contrast-01	ARG1	have-03	c2	h	
+# ::edge	have-03	polarity	-	h2	0	
+# ::edge	or	op1	cheese	o	c	
+# ::edge	have-03	ARG1	or	h2	o	
+# ::edge	or	op2	protein	o	p2	
+# ::edge	protein	ARG2-of	top-01	p2	t2	
+(c2 / contrast-01
+    :ARG1 (h / have-03
+        :ARG0 (c3 / crust
+            :mod (p / pizza)
+            :mod (t / this))
+        :ARG1 (a / and
+            :op1 (s / sauce)
+            :op2 (n / nut)))
+    :ARG2 (h2 / have-03
+        :ARG0 c3
+        :ARG1 (o / or
+            :op1 (c / cheese)
+            :op2 (p2 / protein
+                :ARG2-of (t2 / top-01)))
+        :polarity -))

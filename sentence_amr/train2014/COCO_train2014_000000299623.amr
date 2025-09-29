@@ -1,0 +1,39 @@
+# ::tok A man rides a horse down a city street while people stand on the sidewalks watching something behind him .
+# ::node	m	man	1-2
+# ::node	r	ride-01	2-3
+# ::node	h	horse	4-5
+# ::node	d	down	5-6
+# ::node	c	city	7-8
+# ::node	s4	street	8-9
+# ::node	p	person	10-11
+# ::node	s3	stand-01	11-12
+# ::node	s	sidewalk	14-15
+# ::node	w	watch-01	15-16
+# ::node	s2	something	16-17
+# ::node	b	behind	17-18
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	ride-01	ARG1	horse	r	h	
+# ::edge	ride-01	direction	down	r	d	
+# ::edge	street	mod	city	s4	c	
+# ::edge	down	op1	street	d	s4	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	ride-01	time	stand-01	r	s3	
+# ::edge	stand-01	ARG2	sidewalk	s3	s	
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG1	something	w	s2	
+# ::edge	something	location	behind	s2	b	
+# ::edge	behind	op1	man	b	m	
+(r / ride-01
+    :ARG0 (m / man)
+    :ARG1 (h / horse)
+    :direction (d / down
+        :op1 (s4 / street
+            :mod (c / city)))
+    :time (s3 / stand-01
+        :ARG1 (p / person
+            :ARG0-of (w / watch-01
+                :ARG1 (s2 / something
+                    :location (b / behind
+                        :op1 m))))
+        :ARG2 (s / sidewalk)))

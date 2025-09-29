@@ -1,0 +1,25 @@
+# ::tok A thermometer stuck inside an orange registers 40 degrees Fahrenheit .
+# ::node	t2	thermometer	1-2
+# ::node	s	stick-01	2-3
+# ::node	i	inside	3-4
+# ::node	o	orange	5-6
+# ::node	r	register-01	6-7
+# ::node	t	temperature-quantity	7-8
+# ::node	c	celsius	7-8
+# ::node	0	40	7-8
+# ::root	r	register-01
+# ::edge	thermometer	ARG1-of	stick-01	t2	s	
+# ::edge	stick-01	ARG2	inside	s	i	
+# ::edge	inside	op1	orange	i	o	
+# ::edge	register-01	ARG1	thermometer	r	t2	
+# ::edge	register-01	ARG3	temperature-quantity	r	t	
+# ::edge	temperature-quantity	scale	celsius	t	c	
+# ::edge	temperature-quantity	quant	40	t	0	
+(r / register-01
+    :ARG1 (t2 / thermometer
+        :ARG1-of (s / stick-01
+            :ARG2 (i / inside
+                :op1 (o / orange))))
+    :ARG3 (t / temperature-quantity
+        :quant 40
+        :scale (c / celsius)))

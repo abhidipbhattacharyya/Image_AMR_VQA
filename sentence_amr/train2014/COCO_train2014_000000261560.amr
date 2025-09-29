@@ -1,0 +1,38 @@
+# ::tok A baseball player sliding to base while another baseball player waits to catch the ball .
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	slide-01	3-4
+# ::node	b2	base	5-6
+# ::node	a	another	7-8
+# ::node	p2	person	9-10
+# ::node	p4	play-01	9-10
+# ::node	w	wait-01	10-11
+# ::node	c	catch-01	12-13
+# ::node	b	ball	14-15
+# ::root	s	slide-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b3	
+# ::edge	slide-01	ARG1	person	s	p	
+# ::edge	slide-01	destination	base	s	b2	
+# ::edge	person	mod	another	p2	a	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	play-01	ARG1	baseball	p4	b3	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	slide-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG2	catch-01	w	c	
+# ::edge	catch-01	ARG0	person	c	p2	
+# ::edge	catch-01	ARG1	ball	c	b	
+(s / slide-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b3 / baseball)))
+    :destination (b2 / base)
+    :time (w / wait-01
+        :ARG1 (p2 / person
+            :ARG0-of (p4 / play-01
+                :ARG1 b3)
+            :mod (a / another))
+        :ARG2 (c / catch-01
+            :ARG0 p2
+            :ARG1 (b / ball))))

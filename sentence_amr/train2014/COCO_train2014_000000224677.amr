@@ -1,0 +1,46 @@
+# ::tok Several people are in a living room as a boy wearing brown and black holds a remote control .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	l	living	5-6
+# ::node	r2	room	6-7
+# ::node	b3	boy	9-10
+# ::node	w	wear-01	10-11
+# ::node	p2	person	11-12
+# ::node	b4	brown	11-12
+# ::node	a	and	12-13
+# ::node	p3	person	13-14
+# ::node	b2	black-04	13-14
+# ::node	h	hold-01	14-15
+# ::node	r	remote	16-17
+# ::node	c	control	17-18
+# ::root	b	be-located-at-91
+# ::edge	person	quant	several	p	s	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	room	mod	living	r2	l	
+# ::edge	be-located-at-91	ARG2	room	b	r2	
+# ::edge	boy	ARG0-of	wear-01	b3	w	
+# ::edge	person	mod	brown	p2	b4	
+# ::edge	and	op1	person	a	p2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG1-of	black-04	p3	b2	
+# ::edge	hold-01	ARG0	boy	h	b3	
+# ::edge	be-located-at-91	time	hold-01	b	h	
+# ::edge	control	mod	remote	c	r	
+# ::edge	hold-01	ARG1	control	h	c	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :quant (s / several))
+    :ARG2 (r2 / room
+        :mod (l / living))
+    :time (h / hold-01
+        :ARG0 (b3 / boy
+            :ARG0-of (w / wear-01
+                :ARG1 (a / and
+                    :op1 (p2 / person
+                        :mod (b4 / brown))
+                    :op2 (p3 / person
+                        :ARG1-of (b2 / black-04)))))
+        :ARG1 (c / control
+            :mod (r / remote))))

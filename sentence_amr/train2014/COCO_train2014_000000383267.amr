@@ -1,0 +1,35 @@
+# ::tok A woman in a bathroom looking in the mirror with what appears to be blood on her face and arm .
+# ::node	w	woman	1-2
+# ::node	b	bathroom	4-5
+# ::node	l	look-01	5-6
+# ::node	m	mirror	8-9
+# ::node	h	have-03	9-10
+# ::node	a2	appear-02	11-12
+# ::node	b2	blood	14-15
+# ::node	f	face	17-18
+# ::node	a	and	18-19
+# ::node	a3	arm	19-20
+# ::root	w	woman
+# ::edge	woman	location	bathroom	w	b	
+# ::edge	woman	ARG0-of	look-01	w	l	
+# ::edge	look-01	ARG1	mirror	l	m	
+# ::edge	woman	ARG0-of	have-03	w	h	
+# ::edge	blood	ARG1-of	appear-02	b2	a2	
+# ::edge	have-03	ARG1	blood	h	b2	
+# ::edge	woman	part	face	w	f	
+# ::edge	and	op1	face	a	f	
+# ::edge	blood	location	and	b2	a	
+# ::edge	and	op2	arm	a	a3	
+# ::edge	woman	part	arm	w	a3	
+(w / woman
+    :ARG0-of (l / look-01
+        :ARG1 (m / mirror))
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / blood
+            :ARG1-of (a2 / appear-02)
+            :location (a / and
+                :op1 (f / face)
+                :op2 (a3 / arm))))
+    :location (b / bathroom)
+    :part f
+    :part a3)

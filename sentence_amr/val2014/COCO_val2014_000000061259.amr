@@ -1,0 +1,34 @@
+# ::tok an airport with one plane flying away and the other sitting on the runway
+# ::node	a	airport	1-2
+# ::node	h	have-03	2-3
+# ::node	o	one	3-4
+# ::node	p	plane	4-5
+# ::node	p2	plane	4-5
+# ::node	f	fly-01	5-6
+# ::node	a3	away	6-7
+# ::node	a2	and	7-8
+# ::node	o2	other	9-10
+# ::node	s	sit-01	10-11
+# ::node	r	runway	13-14
+# ::root	a	airport
+# ::edge	airport	ARG0-of	have-03	a	h	
+# ::edge	plane	mod	one	p	o	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	fly-01	direction	away	f	a3	
+# ::edge	and	op1	fly-01	a2	f	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	plane	mod	other	p2	o2	
+# ::edge	and	op2	sit-01	a2	s	
+# ::edge	sit-01	ARG1	plane	s	p2	
+# ::edge	sit-01	ARG2	runway	s	r	
+(a / airport
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (f / fly-01
+                :ARG2 (p / plane
+                    :mod (o / one))
+                :direction (a3 / away))
+            :op2 (s / sit-01
+                :ARG1 (p2 / plane
+                    :mod (o2 / other))
+                :ARG2 (r / runway)))))

@@ -1,0 +1,27 @@
+# ::tok A Chinese dinner is waiting on a table for someone to eat it .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	China	1-2
+# ::node	d	dinner	2-3
+# ::node	w	wait-01	4-5
+# ::node	t	table	7-8
+# ::node	s	someone	9-10
+# ::node	e	eat-01	11-12
+# ::root	w	wait-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	dinner	mod	country	d	c	
+# ::edge	wait-01	ARG1	dinner	w	d	
+# ::edge	wait-01	ARG2	table	w	t	
+# ::edge	eat-01	ARG0	someone	e	s	
+# ::edge	wait-01	ARG2	eat-01	w	e	
+# ::edge	eat-01	ARG1	dinner	e	d	
+(w / wait-01
+    :ARG1 (d / dinner
+        :mod (c / country
+            :name (n / name
+                :op1 "China")))
+    :ARG2 (t / table)
+    :ARG2 (e / eat-01
+        :ARG0 (s / someone)
+        :ARG1 d))

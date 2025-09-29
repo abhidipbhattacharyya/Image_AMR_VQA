@@ -1,0 +1,28 @@
+# ::tok Two different colored trains pulling into a train station at the same time .
+# ::node	0	2	0-1
+# ::node	d	differ-02	1-2
+# ::node	c	color-01	2-3
+# ::node	t2	train	3-4
+# ::node	p	pull-01	4-5
+# ::node	t3	train	7-8
+# ::node	s2	station	8-9
+# ::node	s	same-01	11-12
+# ::node	t	time	12-13
+# ::root	p	pull-01
+# ::edge	train	ARG1-of	color-01	t2	c	
+# ::edge	train	ARG1-of	differ-02	t2	d	
+# ::edge	train	quant	2	t2	0	
+# ::edge	pull-01	ARG1	train	p	t2	
+# ::edge	station	mod	train	s2	t3	
+# ::edge	pull-01	ARG2	station	p	s2	
+# ::edge	time	ARG1-of	same-01	t	s	
+# ::edge	pull-01	time	time	p	t	
+(p / pull-01
+    :ARG1 (t2 / train
+        :quant 2
+        :ARG1-of (c / color-01)
+        :ARG1-of (d / differ-02))
+    :ARG2 (s2 / station
+        :mod (t3 / train))
+    :time (t / time
+        :ARG1-of (s / same-01)))

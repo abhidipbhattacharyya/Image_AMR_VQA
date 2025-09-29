@@ -1,0 +1,22 @@
+# ::tok A busy street with a lot of people walking while a bus makes a turn .
+# ::node	b2	busy-02	1-2
+# ::node	s	street	2-3
+# ::node	l	lot	5-6
+# ::node	p	person	7-8
+# ::node	w	walk-01	8-9
+# ::node	b	bus	11-12
+# ::node	t	turn-01	14-15
+# ::root	s	street
+# ::edge	street	ARG1-of	busy-02	s	b2	
+# ::edge	person	quant	lot	p	l	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	street	location-of	walk-01	s	w	
+# ::edge	turn-01	ARG0	bus	t	b	
+# ::edge	walk-01	time	turn-01	w	t	
+(s / street
+    :ARG1-of (b2 / busy-02)
+    :location-of (w / walk-01
+        :ARG0 (p / person
+            :quant (l / lot))
+        :time (t / turn-01
+            :ARG0 (b / bus))))

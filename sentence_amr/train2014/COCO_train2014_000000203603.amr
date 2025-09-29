@@ -1,0 +1,56 @@
+# ::tok White vertical blinds hang in the windows of a white room with wood flooring , with a bed , a lamp , and a bookshelf with a small television on top of it .
+# ::node	w	white-02	0-1
+# ::node	v	vertical	1-2
+# ::node	b2	blind	2-3
+# ::node	h	hang-01	3-4
+# ::node	w2	window	6-7
+# ::node	r	room	10-11
+# ::node	h2	have-03	11-12
+# ::node	w3	wood	12-13
+# ::node	f	floor	13-14
+# ::node	b	bed	17-18
+# ::node	l	lamp	20-21
+# ::node	a	and	22-23
+# ::node	b3	bookshelf	24-25
+# ::node	h3	have-03	25-26
+# ::node	s	small	27-28
+# ::node	t	television	28-29
+# ::node	t2	top	30-31
+# ::root	h	hang-01
+# ::edge	blind	mod	vertical	b2	v	
+# ::edge	blind	ARG1-of	white-02	b2	w	
+# ::edge	hang-01	ARG1	blind	h	b2	
+# ::edge	hang-01	ARG2	window	h	w2	
+# ::edge	window	part-of	room	w2	r	
+# ::edge	white-02	ARG1	room	w	r	
+# ::edge	room	ARG0-of	have-03	r	h2	
+# ::edge	floor	consist-of	wood	f	w3	
+# ::edge	have-03	ARG1	floor	h2	f	
+# ::edge	and	op2	lamp	a	l	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op3	bookshelf	a	b3	
+# ::edge	bookshelf	ARG0-of	have-03	b3	h3	
+# ::edge	television	mod	small	t	s	
+# ::edge	have-03	ARG1	television	h3	t	
+# ::edge	television	location	top	t	t2	
+# ::edge	top	op1	and	t2	a	
+(h / hang-01
+    :ARG1 (b2 / blind
+        :ARG1-of (w / white-02
+            :ARG1 (r / room
+                :ARG0-of (h2 / have-03
+                    :ARG1 (f / floor
+                        :consist-of (w3 / wood))
+                    :ARG1 (a / and
+                        :op1 (b / bed)
+                        :op2 (l / lamp)
+                        :op3 (b3 / bookshelf
+                            :ARG0-of (h3 / have-03
+                                :ARG1 (t / television
+                                    :location (t2 / top
+                                        :op1 a)
+                                    :mod (s / small))))))))
+        :mod (v / vertical))
+    :ARG2 (w2 / window
+        :part-of r))

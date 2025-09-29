@@ -1,0 +1,43 @@
+# ::tok A city street with many signs including street signs , no parking signs and traffic lights .
+# ::node	c	city	1-2
+# ::node	s4	street	2-3
+# ::node	h	have-03	3-4
+# ::node	m	many	4-5
+# ::node	s	sign	5-6
+# ::node	i	include-01	6-7
+# ::node	s5	street	7-8
+# ::node	s2	sign	8-9
+# ::node	0	-	10-11
+# ::node	p	park-01	11-12
+# ::node	s3	sign	12-13
+# ::node	a	and	13-14
+# ::node	t	traffic	14-15
+# ::node	l	light	15-16
+# ::root	s4	street
+# ::edge	street	mod	city	s4	c	
+# ::edge	street	ARG0-of	have-03	s4	h	
+# ::edge	sign	quant	many	s	m	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	ARG2-of	include-01	s	i	
+# ::edge	sign	mod	street	s2	s5	
+# ::edge	sign	topic	park-01	s3	p	
+# ::edge	sign	polarity	-	s3	0	
+# ::edge	and	op2	sign	a	s3	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op3	light	a	l	
+(s4 / street
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :quant (m / many)
+            :ARG2-of (i / include-01
+                :ARG1 (a / and
+                    :op1 (s2 / sign
+                        :mod (s5 / street))
+                    :op2 (s3 / sign
+                        :polarity -
+                        :topic (p / park-01))
+                    :op3 (l / light
+                        :mod (t / traffic))))))
+    :mod (c / city))

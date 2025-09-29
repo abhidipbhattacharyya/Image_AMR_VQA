@@ -1,0 +1,22 @@
+# ::tok Red Light at a street intersection with people present on the corner
+# ::node	r	red-02	0-1
+# ::node	l	light	1-2
+# ::node	s	street	4-5
+# ::node	i	intersect-01	5-6
+# ::node	p	person	7-8
+# ::node	p2	present-02	8-9
+# ::node	c	corner	11-12
+# ::root	l	light
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	intersect-01	ARG1	street	i	s	
+# ::edge	light	location	intersect-01	l	i	
+# ::edge	present-02	ARG1	person	p2	p	
+# ::edge	light	location-of	present-02	l	p2	
+# ::edge	present-02	ARG2	corner	p2	c	
+(l / light
+    :ARG1-of (r / red-02)
+    :location (i / intersect-01
+        :ARG1 (s / street))
+    :location-of (p2 / present-02
+        :ARG1 (p / person)
+        :ARG2 (c / corner)))

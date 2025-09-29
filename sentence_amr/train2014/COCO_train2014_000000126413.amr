@@ -1,0 +1,24 @@
+# ::tok Airplane coming in to land underneath a full moon at dawn
+# ::node	a	airplane	0-1
+# ::node	c	come-in-07	1-2
+# ::node	l	land-01	4-5
+# ::node	u	underneath	5-6
+# ::node	f	full-09	7-8
+# ::node	m	moon	8-9
+# ::node	d	dawn-02	10-11
+# ::root	c	come-in-07
+# ::edge	come-in-07	ARG1	airplane	c	a	
+# ::edge	come-in-07	ARG2	land-01	c	l	
+# ::edge	land-01	ARG1	airplane	l	a	
+# ::edge	land-01	location	underneath	l	u	
+# ::edge	moon	ARG1-of	full-09	m	f	
+# ::edge	underneath	op1	moon	u	m	
+# ::edge	come-in-07	time	dawn-02	c	d	
+(c / come-in-07
+    :ARG1 (a / airplane)
+    :ARG2 (l / land-01
+        :ARG1 a
+        :location (u / underneath
+            :op1 (m / moon
+                :ARG1-of (f / full-09))))
+    :time (d / dawn-02))

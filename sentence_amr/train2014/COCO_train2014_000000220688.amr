@@ -1,0 +1,42 @@
+# ::tok A living room with two chairs , a coffee table and an end table with a lamp atop it
+# ::node	l2	living	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	c	chair	5-6
+# ::node	c2	coffee	8-9
+# ::node	t	table	9-10
+# ::node	a	and	10-11
+# ::node	e	end	12-13
+# ::node	t2	table	13-14
+# ::node	h2	have-03	14-15
+# ::node	l	lamp	16-17
+# ::node	a2	atop	17-18
+# ::root	r	room
+# ::edge	room	mod	living	r	l2	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	chair	quant	2	c	0	
+# ::edge	table	mod	coffee	t	c2	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	op1	chair	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	table	mod	end	t2	e	
+# ::edge	and	op3	table	a	t2	
+# ::edge	table	ARG0-of	have-03	t2	h2	
+# ::edge	have-03	ARG1	lamp	h2	l	
+# ::edge	lamp	location	atop	l	a2	
+# ::edge	atop	op1	table	a2	t2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / chair
+                :quant 2)
+            :op2 (t / table
+                :mod (c2 / coffee))
+            :op3 (t2 / table
+                :ARG0-of (h2 / have-03
+                    :ARG1 (l / lamp
+                        :location (a2 / atop
+                            :op1 t2)))
+                :mod (e / end))))
+    :mod (l2 / living))

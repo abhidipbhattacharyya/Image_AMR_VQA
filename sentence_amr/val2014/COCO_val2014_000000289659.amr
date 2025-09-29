@@ -1,0 +1,30 @@
+# ::tok A giraffe stands in a rocky area , larger rocks behind him .
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	m2	mountain	5-6
+# ::node	a	area	6-7
+# ::node	h	have-degree-91	8-9
+# ::node	l	large	8-9
+# ::node	m	more	8-9
+# ::node	r	rock	9-10
+# ::node	b	behind	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	area	mod	mountain	a	m2	
+# ::edge	stand-01	ARG2	area	s	a	
+# ::edge	have-degree-91	ARG2	large	h	l	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	rock	ARG1-of	have-degree-91	r	h	
+# ::edge	behind	location-of	rock	b	r	
+# ::edge	stand-01	location	behind	s	b	
+# ::edge	behind	op1	giraffe	b	g	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (a / area
+        :mod (m2 / mountain))
+    :location (b / behind
+        :location-of (r / rock
+            :ARG1-of (h / have-degree-91
+                :ARG2 (l / large)
+                :ARG3 (m / more)))
+        :op1 g))

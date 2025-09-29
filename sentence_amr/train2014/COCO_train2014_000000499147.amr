@@ -1,0 +1,42 @@
+# ::tok A room with tight fitting bed and side desk with a flat screen television in front of it .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	t2	tight-05	3-4
+# ::node	f	fit-01	4-5
+# ::node	b	bed	5-6
+# ::node	a	and	6-7
+# ::node	s2	side	7-8
+# ::node	d	desk	8-9
+# ::node	h2	have-03	9-10
+# ::node	f2	flat-06	11-12
+# ::node	s	screen	12-13
+# ::node	t	television	13-14
+# ::node	i	in-front-of	15-16
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	fit-01	ARG1-of	tight-05	f	t2	
+# ::edge	bed	ARG1-of	fit-01	b	f	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	desk	mod	side	d	s2	
+# ::edge	and	op2	desk	a	d	
+# ::edge	desk	ARG0-of	have-03	d	h2	
+# ::edge	screen	ARG1-of	flat-06	s	f2	
+# ::edge	television	mod	screen	t	s	
+# ::edge	have-03	ARG1	television	h2	t	
+# ::edge	television	location	in-front-of	t	i	
+# ::edge	in-front-of	op1	bed	i	b	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bed
+                :ARG1-of (f / fit-01
+                    :ARG1-of (t2 / tight-05)))
+            :op2 (d / desk
+                :ARG0-of (h2 / have-03
+                    :ARG1 (t / television
+                        :location (i / in-front-of
+                            :op1 b)
+                        :mod (s / screen
+                            :ARG1-of (f2 / flat-06))))
+                :mod (s2 / side)))))

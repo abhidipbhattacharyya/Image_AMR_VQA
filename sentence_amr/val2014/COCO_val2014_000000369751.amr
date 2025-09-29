@@ -1,0 +1,25 @@
+# ::tok a row of parking meters line a street in front of a stop sign
+# ::node	r	row	1-2
+# ::node	p	park-01	3-4
+# ::node	m	meter	4-5
+# ::node	l	line-01	5-6
+# ::node	s3	street	7-8
+# ::node	i	in-front-of	9-10
+# ::node	s2	stop-01	12-13
+# ::node	s	signal-07	13-14
+# ::root	l	line-01
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	row	consist-of	meter	r	m	
+# ::edge	line-01	ARG1	row	l	r	
+# ::edge	line-01	ARG2	street	l	s3	
+# ::edge	street	location	in-front-of	s3	i	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	in-front-of	op1	signal-07	i	s	
+(l / line-01
+    :ARG1 (r / row
+        :consist-of (m / meter
+            :purpose (p / park-01)))
+    :ARG2 (s3 / street
+        :location (i / in-front-of
+            :op1 (s / signal-07
+                :ARG1 (s2 / stop-01)))))

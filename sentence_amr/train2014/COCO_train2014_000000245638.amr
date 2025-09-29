@@ -1,0 +1,34 @@
+# ::tok A school bus is stopped with flashing lights and the door open at the sidewalk of a fire lane .
+# ::node	s	school	1-2
+# ::node	b	bus	2-3
+# ::node	s3	stop-01	4-5
+# ::node	f2	flash-01	6-7
+# ::node	l2	light	7-8
+# ::node	a	and	8-9
+# ::node	d	door	10-11
+# ::node	o	open-01	11-12
+# ::node	s2	sidewalk	14-15
+# ::node	f	fire	17-18
+# ::node	l	lane	18-19
+# ::root	a	and
+# ::edge	bus	mod	school	b	s	
+# ::edge	stop-01	ARG1	bus	s3	b	
+# ::edge	light	ARG1-of	flash-01	l2	f2	
+# ::edge	stop-01	instrument	light	s3	l2	
+# ::edge	and	op1	stop-01	a	s3	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	and	op2	open-01	a	o	
+# ::edge	open-01	location	sidewalk	o	s2	
+# ::edge	lane	purpose	fire	l	f	
+# ::edge	sidewalk	poss	lane	s2	l	
+(a / and
+    :op1 (s3 / stop-01
+        :ARG1 (b / bus
+            :mod (s / school))
+        :instrument (l2 / light
+            :ARG1-of (f2 / flash-01)))
+    :op2 (o / open-01
+        :ARG1 (d / door)
+        :location (s2 / sidewalk
+            :poss (l / lane
+                :purpose (f / fire)))))

@@ -1,0 +1,22 @@
+# ::tok Cars move through an intersection in front of large city buildings .
+# ::node	c	car	0-1
+# ::node	m	move-01	1-2
+# ::node	i2	intersect-01	4-5
+# ::node	i	in-front-of	6-7
+# ::node	l	large	8-9
+# ::node	c2	city	9-10
+# ::node	b	building	10-11
+# ::root	m	move-01
+# ::edge	move-01	ARG1	car	m	c	
+# ::edge	move-01	path	intersect-01	m	i2	
+# ::edge	intersect-01	location	in-front-of	i2	i	
+# ::edge	building	mod	city	b	c2	
+# ::edge	building	mod	large	b	l	
+# ::edge	in-front-of	op1	building	i	b	
+(m / move-01
+    :ARG1 (c / car)
+    :path (i2 / intersect-01
+        :location (i / in-front-of
+            :op1 (b / building
+                :mod (c2 / city)
+                :mod (l / large)))))

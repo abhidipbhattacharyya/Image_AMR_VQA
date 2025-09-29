@@ -1,0 +1,36 @@
+# ::tok A silver passenger train with an aids walk poster on it 's side .
+# ::node	s2	silver	1-2
+# ::node	p	passenger	2-3
+# ::node	t	train	3-4
+# ::node	h	have-03	4-5
+# ::node	d	disease	6-7
+# ::node	n	name	6-7
+# ::node	0	AIDS	6-7
+# ::node	w	walk-01	7-8
+# ::node	p2	person	8-9
+# ::node	p3	post-01	8-9
+# ::node	s	side	12-13
+# ::root	t	train
+# ::edge	train	mod	passenger	t	p	
+# ::edge	train	mod	silver	t	s2	
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	disease	name	name	d	n	
+# ::edge	name	op1	AIDS	n	0	
+# ::edge	walk-01	ARG2	disease	w	d	
+# ::edge	have-03	ARG1	person	h	p2	
+# ::edge	person	ARG0-of	post-01	p2	p3	
+# ::edge	post-01	ARG1	walk-01	p3	w	
+# ::edge	train	location	side	t	s	
+# ::edge	train	part	side	t	s	
+(t / train
+    :ARG0-of (h / have-03
+        :ARG1 (p2 / person
+            :ARG0-of (p3 / post-01
+                :ARG1 (w / walk-01
+                    :ARG2 (d / disease
+                        :name (n / name
+                            :op1 "AIDS"))))))
+    :location (s / side)
+    :mod (p / passenger)
+    :mod (s2 / silver)
+    :part s)

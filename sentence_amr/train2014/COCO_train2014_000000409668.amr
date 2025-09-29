@@ -1,0 +1,26 @@
+# ::tok traffic on the road looking real blurry and and smeary
+# ::node	t	traffic	0-1
+# ::node	r2	road	3-4
+# ::node	l	look-02	4-5
+# ::node	r	really	5-6
+# ::node	b	blur-01	6-7
+# ::node	a	and	7-8
+# ::node	s	smear-02	9-10
+# ::root	l	look-02
+# ::edge	traffic	location	road	t	r2	
+# ::edge	look-02	ARG0	traffic	l	t	
+# ::edge	blur-01	ARG1	traffic	b	t	
+# ::edge	and	op1	blur-01	a	b	
+# ::edge	and	degree	really	a	r	
+# ::edge	look-02	ARG1	and	l	a	
+# ::edge	and	op2	smear-02	a	s	
+# ::edge	smear-02	ARG1	traffic	s	t	
+(l / look-02
+    :ARG0 (t / traffic
+        :location (r2 / road))
+    :ARG1 (a / and
+        :degree (r / really)
+        :op1 (b / blur-01
+            :ARG1 t)
+        :op2 (s / smear-02
+            :ARG1 t)))

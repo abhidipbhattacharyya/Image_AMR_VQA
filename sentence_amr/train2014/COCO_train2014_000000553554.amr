@@ -1,0 +1,49 @@
+# ::tok A cutting board topped with two grape fruit and oranges next to a juicer and a cup of juice .
+# ::node	c2	cut-01	1-2
+# ::node	b	board	2-3
+# ::node	t	top-01	3-4
+# ::node	1	2	5-6
+# ::node	g	grape	6-7
+# ::node	f	fruit	7-8
+# ::node	a	and	8-9
+# ::node	o	orange	9-10
+# ::node	n	next-to	10-11
+# ::node	v	volume-quantity	12-13
+# ::node	0	1	12-13
+# ::node	j2	juicer	13-14
+# ::node	a2	and	14-15
+# ::node	c	cup	16-17
+# ::node	j	juice	18-19
+# ::node	e	event	19-20
+# ::root	e	event
+# ::edge	board	purpose	cut-01	b	c2	
+# ::edge	board	ARG1-of	top-01	b	t	
+# ::edge	fruit	mod	grape	f	g	
+# ::edge	fruit	quant	2	f	1	
+# ::edge	and	op1	fruit	a	f	
+# ::edge	top-01	ARG2	and	t	a	
+# ::edge	and	op2	orange	a	o	
+# ::edge	board	location	next-to	b	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	juicer	quant	volume-quantity	j2	v	
+# ::edge	and	op1	juicer	a2	j2	
+# ::edge	next-to	op1	and	n	a2	
+# ::edge	juice	quant	cup	j	c	
+# ::edge	and	op2	juice	a2	j	
+# ::edge	event	mod	board	e	b	
+(e / event
+    :mod (b / board
+        :purpose (c2 / cut-01)
+        :ARG1-of (t / top-01
+            :ARG2 (a / and
+                :op1 (f / fruit
+                    :quant 2
+                    :mod (g / grape))
+                :op2 (o / orange)))
+        :location (n / next-to
+            :op1 (a2 / and
+                :op1 (j2 / juicer
+                    :quant (v / volume-quantity
+                        :quant 1))
+                :op2 (j / juice
+                    :quant (c / cup))))))

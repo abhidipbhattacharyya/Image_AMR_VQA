@@ -1,0 +1,27 @@
+# ::tok Somebody tore in half a sandwhich exposing the contents inside .
+# ::node	s2	somebody	0-1
+# ::node	t	tear-01	1-2
+# ::node	h	half	3-4
+# ::node	s	sand	5-6
+# ::node	e	expose-01	6-7
+# ::node	t2	thing	8-9
+# ::node	c	contain-01	8-9
+# ::node	i	inside	9-10
+# ::root	t	tear-01
+# ::edge	tear-01	ARG0	somebody	t	s2	
+# ::edge	sand	quant	half	s	h	
+# ::edge	tear-01	ARG1	sand	t	s	
+# ::edge	tear-01	ARG0-of	expose-01	t	e	
+# ::edge	expose-01	ARG1	thing	e	t2	
+# ::edge	thing	ARG1-of	contain-01	t2	c	
+# ::edge	contain-01	location	inside	c	i	
+# ::edge	inside	op1	sand	i	s	
+(t / tear-01
+    :ARG0 (s2 / somebody)
+    :ARG0-of (e / expose-01
+        :ARG1 (t2 / thing
+            :ARG1-of (c / contain-01
+                :location (i / inside
+                    :op1 (s / sand
+                        :quant (h / half))))))
+    :ARG1 s)

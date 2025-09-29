@@ -1,0 +1,42 @@
+# ::tok A red white and blue fire hydrant next to a street filled with vehicles at night .
+# ::node	r	red-02	1-2
+# ::node	w	white-03	2-3
+# ::node	a	and	3-4
+# ::node	b	blue	4-5
+# ::node	f2	fire	5-6
+# ::node	h	hydrant	6-7
+# ::node	h2	hydrant	6-7
+# ::node	n	next-to	7-8
+# ::node	s	street	10-11
+# ::node	f	fill-01	11-12
+# ::node	v	vehicle	13-14
+# ::node	d	date-entity	15-16
+# ::node	n2	night	15-16
+# ::root	a	and
+# ::edge	hydrant	mod	fire	h	f2	
+# ::edge	and	op1	hydrant	a	h	
+# ::edge	hydrant	ARG1-of	red-02	h	r	
+# ::edge	hydrant	mod	fire	h2	f2	
+# ::edge	hydrant	mod	blue	h2	b	
+# ::edge	and	op2	hydrant	a	h2	
+# ::edge	and	location	next-to	a	n	
+# ::edge	next-to	op1	street	n	s	
+# ::edge	street	ARG1-of	fill-01	s	f	
+# ::edge	fill-01	ARG2	vehicle	f	v	
+# ::edge	fill-01	time	date-entity	f	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	and	rel	white-03	a	w	
+(a / and
+    :location (n / next-to
+        :op1 (s / street
+            :ARG1-of (f / fill-01
+                :ARG2 (v / vehicle)
+                :time (d / date-entity
+                    :dayperiod (n2 / night)))))
+    :op1 (h / hydrant
+        :ARG1-of (r / red-02)
+        :mod (f2 / fire))
+    :op2 (h2 / hydrant
+        :mod f2
+        :mod (b / blue))
+    :rel (w / white-03))

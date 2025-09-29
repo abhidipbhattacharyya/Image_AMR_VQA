@@ -1,0 +1,43 @@
+# ::tok A Chinese sign with an image of a parent and child and a bicycle .
+# ::node	c2	country	1-2
+# ::node	n	name	1-2
+# ::node	0	China	1-2
+# ::node	s	sign	2-3
+# ::node	h	have-03	3-4
+# ::node	i	image	5-6
+# ::node	p2	person	8-9
+# ::node	h2	have-rel-role-91	8-9
+# ::node	p	parent	8-9
+# ::node	a	and	9-10
+# ::node	p3	person	10-11
+# ::node	h3	have-rel-role-91	10-11
+# ::node	c	child	10-11
+# ::node	b	bicycle	13-14
+# ::root	s	sign
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	sign	mod	country	s	c2	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	image	h	i	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h2	
+# ::edge	have-rel-role-91	ARG2	parent	h2	p	
+# ::edge	and	op1	person	a	p2	
+# ::edge	image	topic	and	i	a	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	have-rel-role-91	p3	h3	
+# ::edge	have-rel-role-91	ARG2	child	h3	c	
+# ::edge	and	op3	bicycle	a	b	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (i / image
+            :topic (a / and
+                :op1 (p2 / person
+                    :ARG0-of (h2 / have-rel-role-91
+                        :ARG2 (p / parent)))
+                :op2 (p3 / person
+                    :ARG0-of (h3 / have-rel-role-91
+                        :ARG2 (c / child)))
+                :op3 (b / bicycle))))
+    :mod (c2 / country
+        :name (n / name
+            :op1 "China")))

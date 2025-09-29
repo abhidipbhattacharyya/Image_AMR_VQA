@@ -1,0 +1,41 @@
+# ::tok Adult indoor volleyball game , with the ball in mid air as player prepares to receive it .
+# ::node	a	adult	0-1
+# ::node	i	indoor	1-2
+# ::node	v	volleyball	2-3
+# ::node	g	game	3-4
+# ::node	b	ball	7-8
+# ::node	b2	be-located-at-91	8-9
+# ::node	m	middle	9-10
+# ::node	a2	air	10-11
+# ::node	p	person	12-13
+# ::node	p2	play-01	12-13
+# ::node	p3	prepare-02	13-14
+# ::node	r	receive-01	15-16
+# ::root	g	game
+# ::edge	game	mod	volleyball	g	v	
+# ::edge	game	location	indoor	g	i	
+# ::edge	game	mod	adult	g	a	
+# ::edge	game	instrument	ball	g	b	
+# ::edge	ball	ARG1-of	be-located-at-91	b	b2	
+# ::edge	air	mod	middle	a2	m	
+# ::edge	be-located-at-91	ARG2	air	b2	a2	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	game	time	prepare-02	g	p3	
+# ::edge	prepare-02	ARG2	receive-01	p3	r	
+# ::edge	receive-01	ARG0	person	r	p	
+# ::edge	receive-01	ARG1	ball	r	b	
+(g / game
+    :instrument (b / ball
+        :ARG1-of (b2 / be-located-at-91
+            :ARG2 (a2 / air
+                :mod (m / middle))))
+    :location (i / indoor)
+    :mod (v / volleyball)
+    :mod (a / adult)
+    :time (p3 / prepare-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01))
+        :ARG2 (r / receive-01
+            :ARG0 p
+            :ARG1 b)))

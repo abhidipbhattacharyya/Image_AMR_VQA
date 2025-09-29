@@ -1,0 +1,63 @@
+# ::tok Old photo postcard of people in old fashioned attire in a row boat , with the caption " River Crossing , Brownsville , Texas "
+# ::node	o	old	0-1
+# ::node	p2	photo	1-2
+# ::node	p3	postcard	2-3
+# ::node	p	person	4-5
+# ::node	f	fashion	7-8
+# ::node	a2	attire-01	8-9
+# ::node	r2	row	11-12
+# ::node	b	boat	12-13
+# ::node	t	title-01	16-17
+# ::node	r	river	18-19
+# ::node	n	name	18-19
+# ::node	2	River	18-19
+# ::node	1	Crossing	19-20
+# ::node	a	and	20-21
+# ::node	c	city	21-22
+# ::node	n2	name	21-22
+# ::node	0	Brownsville	21-22
+# ::node	s	state	23-24
+# ::node	n3	name	23-24
+# ::node	3	Texas	23-24
+# ::root	p3	postcard
+# ::edge	postcard	mod	photo	p3	p2	
+# ::edge	postcard	mod	old	p3	o	
+# ::edge	postcard	topic	person	p3	p	
+# ::edge	fashion	mod	old	f	o	
+# ::edge	attire-01	ARG2	fashion	a2	f	
+# ::edge	person	ARG1-of	attire-01	p	a2	
+# ::edge	boat	mod	row	b	r2	
+# ::edge	person	prep-in	boat	p	b	
+# ::edge	postcard	ARG1-of	title-01	p3	t	
+# ::edge	river	name	name	r	n	
+# ::edge	name	op1	River	n	2	
+# ::edge	name	op2	Crossing	n	1	
+# ::edge	and	op1	river	a	r	
+# ::edge	title-01	ARG2	and	t	a	
+# ::edge	and	op2	city	a	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	Brownsville	n2	0	
+# ::edge	city	location	state	c	s	
+# ::edge	state	name	name	s	n3	
+# ::edge	name	op1	Texas	n3	3	
+(p3 / postcard
+    :ARG1-of (t / title-01
+        :ARG2 (a / and
+            :op1 (r / river
+                :name (n / name
+                    :op1 "River"
+                    :op2 "Crossing"))
+            :op2 (c / city
+                :name (n2 / name
+                    :op1 "Brownsville")
+                :location (s / state
+                    :name (n3 / name
+                        :op1 "Texas")))))
+    :mod (p2 / photo)
+    :mod (o / old)
+    :topic (p / person
+        :ARG1-of (a2 / attire-01
+            :ARG2 (f / fashion
+                :mod o))
+        :prep-in (b / boat
+            :mod (r2 / row))))

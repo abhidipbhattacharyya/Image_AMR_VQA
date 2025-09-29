@@ -1,0 +1,47 @@
+# ::tok Waiting in a station for the all aboard message .
+# ::node	w	wait-01	0-1
+# ::node	s	station	3-4
+# ::node	a2	all	6-7
+# ::node	a	aboard	7-8
+# ::node	m	message-01	8-9
+# ::root	w	wait-01
+# ::edge	wait-01	location	station	w	s	
+# ::edge	all	location	aboard	a2	a	
+# ::edge	message-01	ARG0	all	m	a2	
+# ::edge	wait-01	ARG2	message-01	w	m	
+(w / wait-01
+    :ARG2 (m / message-01
+        :ARG0 (a2 / all
+            :location (a / aboard)))
+    :location (s / station))
+
+
+# ::tok One girl taking a picture of her boyfriend with her cell phone .
+# ::node	0	1	0-1
+# ::node	g	girl	1-2
+# ::node	p3	photograph-01	4-5
+# ::node	p	person	7-8
+# ::node	h	have-rel-role-91	7-8
+# ::node	b	boyfriend	7-8
+# ::node	c	cell	10-11
+# ::node	p2	phone	11-12
+# ::root	p3	photograph-01
+# ::edge	girl	quant	1	g	0	
+# ::edge	photograph-01	ARG0	girl	p3	g	
+# ::edge	photograph-01	ARG1	person	p3	p	
+# ::edge	person	ARG0-of	have-rel-role-91	p	h	
+# ::edge	have-rel-role-91	ARG1	girl	h	g	
+# ::edge	have-rel-role-91	ARG2	boyfriend	h	b	
+# ::edge	phone	mod	cell	p2	c	
+# ::edge	photograph-01	instrument	phone	p3	p2	
+# ::edge	phone	poss	girl	p2	g	
+(p3 / photograph-01
+    :ARG0 (g / girl
+        :quant 1)
+    :ARG1 (p / person
+        :ARG0-of (h / have-rel-role-91
+            :ARG1 g
+            :ARG2 (b / boyfriend)))
+    :instrument (p2 / phone
+        :mod (c / cell)
+        :poss g))

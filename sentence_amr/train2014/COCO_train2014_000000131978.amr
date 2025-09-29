@@ -1,0 +1,28 @@
+# ::tok An old train is moving along train tracks below a power line .
+# ::node	o	old	1-2
+# ::node	t2	train	2-3
+# ::node	m	move-01	4-5
+# ::node	a	along	5-6
+# ::node	t3	train	6-7
+# ::node	t	track	7-8
+# ::node	b	below	8-9
+# ::node	p	power-01	10-11
+# ::node	l	line	11-12
+# ::root	m	move-01
+# ::edge	train	mod	old	t2	o	
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	move-01	path	along	m	a	
+# ::edge	track	mod	train	t	t3	
+# ::edge	along	op1	track	a	t	
+# ::edge	move-01	location	below	m	b	
+# ::edge	line	ARG0-of	power-01	l	p	
+# ::edge	below	op1	line	b	l	
+(m / move-01
+    :ARG1 (t2 / train
+        :mod (o / old))
+    :location (b / below
+        :op1 (l / line
+            :ARG0-of (p / power-01)))
+    :path (a / along
+        :op1 (t / track
+            :mod (t3 / train))))

@@ -1,0 +1,36 @@
+# ::tok A technician holds sound gear over a fence as a tennis player walks by .
+# ::node	t	technician	1-2
+# ::node	h	hold-01	2-3
+# ::node	s	sound	3-4
+# ::node	g	gear	4-5
+# ::node	o	over	5-6
+# ::node	f	fence	7-8
+# ::node	t2	tennis	10-11
+# ::node	p	person	11-12
+# ::node	p2	play-01	11-12
+# ::node	w	walk-01	12-13
+# ::node	b	by	13-14
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	technician	h	t	
+# ::edge	gear	mod	sound	g	s	
+# ::edge	hold-01	ARG1	gear	h	g	
+# ::edge	hold-01	location	over	h	o	
+# ::edge	over	op1	fence	o	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t2	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	hold-01	time	walk-01	h	w	
+# ::edge	walk-01	ARG2	by	w	b	
+# ::edge	by	op1	fence	b	f	
+(h / hold-01
+    :ARG0 (t / technician)
+    :ARG1 (g / gear
+        :mod (s / sound))
+    :location (o / over
+        :op1 (f / fence))
+    :time (w / walk-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t2 / tennis)))
+        :ARG2 (b / by
+            :op1 f)))

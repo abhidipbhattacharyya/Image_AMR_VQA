@@ -1,0 +1,25 @@
+# ::tok A zebra standing next to two giraffe near a wire fence .
+# ::node	z	zebra	1-2
+# ::node	s	stand-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	0	2	5-6
+# ::node	g	giraffe	6-7
+# ::node	n	near-02	7-8
+# ::node	w	wire	9-10
+# ::node	f	fence	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	zebra	s	z	
+# ::edge	stand-01	ARG2	next-to	s	n2	
+# ::edge	giraffe	quant	2	g	0	
+# ::edge	next-to	op1	giraffe	n2	g	
+# ::edge	giraffe	ARG1-of	near-02	g	n	
+# ::edge	fence	consist-of	wire	f	w	
+# ::edge	near-02	ARG2	fence	n	f	
+(s / stand-01
+    :ARG1 (z / zebra)
+    :ARG2 (n2 / next-to
+        :op1 (g / giraffe
+            :quant 2
+            :ARG1-of (n / near-02
+                :ARG2 (f / fence
+                    :consist-of (w / wire))))))

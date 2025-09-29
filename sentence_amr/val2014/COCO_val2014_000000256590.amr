@@ -1,0 +1,27 @@
+# ::tok A store with a wire gate in front of it next to a wall mounted clock .
+# ::node	s	store	1-2
+# ::node	w2	wire	4-5
+# ::node	g	gate	5-6
+# ::node	i	in-front-of	7-8
+# ::node	n	next-to	10-11
+# ::node	w	wall	13-14
+# ::node	m	mount-03	14-15
+# ::node	c	clock	15-16
+# ::root	s	store
+# ::edge	gate	mod	wire	g	w2	
+# ::edge	gate	location	in-front-of	g	i	
+# ::edge	in-front-of	op1	store	i	s	
+# ::edge	gate	location	next-to	g	n	
+# ::edge	mount-03	location	wall	m	w	
+# ::edge	clock	ARG1-of	mount-03	c	m	
+# ::edge	next-to	op1	clock	n	c	
+# ::edge	store	rel	gate	s	g	
+(s / store
+    :rel (g / gate
+        :location (i / in-front-of
+            :op1 s)
+        :location (n / next-to
+            :op1 (c / clock
+                :ARG1-of (m / mount-03
+                    :location (w / wall))))
+        :mod (w2 / wire)))

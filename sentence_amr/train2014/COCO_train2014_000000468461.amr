@@ -1,0 +1,35 @@
+# ::tok A man with swim trunks on , surfing on a board with water splashing behind him and in front of him .
+# ::node	m	man	1-2
+# ::node	s4	swim-01	3-4
+# ::node	s2	suit	4-5
+# ::node	s3	surf-01	7-8
+# ::node	b2	board	10-11
+# ::node	w	water	12-13
+# ::node	s	splash-01	13-14
+# ::node	b	behind	14-15
+# ::node	a	and	16-17
+# ::node	i	in-front-of	18-19
+# ::root	m	man
+# ::edge	suit	mod	swim-01	s2	s4	
+# ::edge	surf-01	instrument	suit	s3	s2	
+# ::edge	man	ARG0-of	surf-01	m	s3	
+# ::edge	surf-01	ARG1	board	s3	b2	
+# ::edge	splash-01	ARG1	water	s	w	
+# ::edge	man	ARG0-of	splash-01	m	s	
+# ::edge	behind	op1	man	b	m	
+# ::edge	and	op1	behind	a	b	
+# ::edge	splash-01	ARG2	and	s	a	
+# ::edge	and	op2	in-front-of	a	i	
+# ::edge	in-front-of	op1	man	i	m	
+(m / man
+    :ARG0-of (s3 / surf-01
+        :ARG1 (b2 / board)
+        :instrument (s2 / suit
+            :mod (s4 / swim-01)))
+    :ARG0-of (s / splash-01
+        :ARG1 (w / water)
+        :ARG2 (a / and
+            :op1 (b / behind
+                :op1 m)
+            :op2 (i / in-front-of
+                :op1 m))))

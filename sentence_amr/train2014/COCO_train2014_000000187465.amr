@@ -1,0 +1,36 @@
+# ::tok A far shot of a room with an oven , and a door with an " EXIT " sign above it .
+# ::node	f	far	1-2
+# ::node	s	shot	2-3
+# ::node	r	room	5-6
+# ::node	h	have-03	6-7
+# ::node	o	oven	8-9
+# ::node	a2	and	10-11
+# ::node	d	door	12-13
+# ::node	h2	have-03	13-14
+# ::node	e	exit-01	16-17
+# ::node	s2	sign	18-19
+# ::node	a	above	19-20
+# ::root	s	shot
+# ::edge	shot	extent	far	s	f	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	have-03	ARG1	oven	h	o	
+# ::edge	and	op1	room	a2	r	
+# ::edge	shot	topic	and	s	a2	
+# ::edge	and	op2	door	a2	d	
+# ::edge	door	ARG0-of	have-03	d	h2	
+# ::edge	sign	mod	exit-01	s2	e	
+# ::edge	have-03	ARG1	sign	h2	s2	
+# ::edge	sign	location	above	s2	a	
+# ::edge	above	op1	door	a	d	
+(s / shot
+    :extent (f / far)
+    :topic (a2 / and
+        :op1 (r / room
+            :ARG0-of (h / have-03
+                :ARG1 (o / oven)))
+        :op2 (d / door
+            :ARG0-of (h2 / have-03
+                :ARG1 (s2 / sign
+                    :location (a / above
+                        :op1 d)
+                    :mod (e / exit-01))))))

@@ -1,0 +1,25 @@
+# ::tok Cars stopped at the traffic light while cross traffic moves along .
+# ::node	c	car	0-1
+# ::node	s	stop-01	1-2
+# ::node	t	traffic	4-5
+# ::node	l	light	5-6
+# ::node	c2	cross-02	7-8
+# ::node	t2	traffic	8-9
+# ::node	m	move-01	9-10
+# ::node	a	along	10-11
+# ::root	s	stop-01
+# ::edge	stop-01	ARG0	car	s	c	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	stop-01	location	light	s	l	
+# ::edge	traffic	ARG0-of	cross-02	t2	c2	
+# ::edge	move-01	ARG1	traffic	m	t2	
+# ::edge	stop-01	time	move-01	s	m	
+# ::edge	move-01	ARG2	along	m	a	
+(s / stop-01
+    :ARG0 (c / car)
+    :location (l / light
+        :mod (t / traffic))
+    :time (m / move-01
+        :ARG1 (t2 / traffic
+            :ARG0-of (c2 / cross-02))
+        :ARG2 (a / along)))

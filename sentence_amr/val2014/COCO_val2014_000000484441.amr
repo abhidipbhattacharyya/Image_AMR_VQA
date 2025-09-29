@@ -1,0 +1,30 @@
+# ::tok A catcher is ready to get the ball after the batter misses .
+# ::node	p	person	1-2
+# ::node	c	catch-01	1-2
+# ::node	r	ready-02	3-4
+# ::node	g	get-01	5-6
+# ::node	b	ball	7-8
+# ::node	a	after	8-9
+# ::node	p2	person	10-11
+# ::node	b2	batter-01	10-11
+# ::node	m	miss-02	11-12
+# ::root	r	ready-02
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	ready-02	ARG1	person	r	p	
+# ::edge	ready-02	ARG2	get-01	r	g	
+# ::edge	get-01	ARG0	person	g	p	
+# ::edge	get-01	ARG1	ball	g	b	
+# ::edge	get-01	time	after	g	a	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	miss-02	ARG0	person	m	p2	
+# ::edge	after	op1	miss-02	a	m	
+(r / ready-02
+    :ARG1 (p / person
+        :ARG0-of (c / catch-01))
+    :ARG2 (g / get-01
+        :ARG0 p
+        :ARG1 (b / ball)
+        :time (a / after
+            :op1 (m / miss-02
+                :ARG0 (p2 / person
+                    :ARG0-of (b2 / batter-01))))))

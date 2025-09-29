@@ -1,0 +1,28 @@
+# ::tok A person in a kitchen with cluttered counters , cutting vegetables in a bowl .
+# ::node	p	person	1-2
+# ::node	k	kitchen	4-5
+# ::node	h	have-03	5-6
+# ::node	l	literal	6-7
+# ::node	c	counter-01	7-8
+# ::node	c2	counter-01	7-8
+# ::node	c3	cut-01	9-10
+# ::node	v	vegetable	10-11
+# ::node	b	bowl	13-14
+# ::root	p	person
+# ::edge	person	location	kitchen	p	k	
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	counter-01	mod	literal	c	l	
+# ::edge	have-03	ARG1	counter-01	h	c	
+# ::edge	person	ARG0-of	counter-01	p	c2	
+# ::edge	person	ARG0-of	cut-01	p	c3	
+# ::edge	cut-01	ARG1	vegetable	c3	v	
+# ::edge	cut-01	location	bowl	c3	b	
+(p / person
+    :ARG0-of (c2 / counter-01)
+    :ARG0-of (c3 / cut-01
+        :ARG1 (v / vegetable)
+        :location (b / bowl))
+    :location (k / kitchen
+        :ARG0-of (h / have-03
+            :ARG1 (c / counter-01
+                :mod (l / literal)))))

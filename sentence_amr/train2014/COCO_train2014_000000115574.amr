@@ -1,0 +1,32 @@
+# ::tok Before jetways were used , you had to walk onto the tarmac to board a plane
+# ::node	b	before	0-1
+# ::node	a	airport	1-2
+# ::node	u	use-01	3-4
+# ::node	y	you	5-6
+# ::node	o	obligate-01	6-7
+# ::node	w	walk-01	8-9
+# ::node	t	tarmac	11-12
+# ::node	b2	board-01	13-14
+# ::node	p	plane	15-16
+# ::root	o	obligate-01
+# ::edge	use-01	ARG1	airport	u	a	
+# ::edge	before	op1	use-01	b	u	
+# ::edge	obligate-01	ARG1	you	o	y	
+# ::edge	obligate-01	time	before	o	b	
+# ::edge	obligate-01	ARG2	walk-01	o	w	
+# ::edge	walk-01	ARG0	you	w	y	
+# ::edge	walk-01	destination	tarmac	w	t	
+# ::edge	walk-01	purpose	board-01	w	b2	
+# ::edge	board-01	ARG0	you	b2	y	
+# ::edge	board-01	ARG1	plane	b2	p	
+(o / obligate-01
+    :ARG1 (y / you)
+    :ARG2 (w / walk-01
+        :purpose (b2 / board-01
+            :ARG0 y
+            :ARG1 (p / plane))
+        :ARG0 y
+        :destination (t / tarmac))
+    :time (b / before
+        :op1 (u / use-01
+            :ARG1 (a / airport))))

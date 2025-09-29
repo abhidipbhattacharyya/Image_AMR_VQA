@@ -1,0 +1,46 @@
+# ::tok Produce sold at the farmer 's market , including broccoli , carrots and a wide range of other fruits and vegetables .
+# ::node	p2	produce-01	0-1
+# ::node	s	sell-01	1-2
+# ::node	p	person	4-5
+# ::node	f	farm-01	4-5
+# ::node	m	market	6-7
+# ::node	i	include-01	8-9
+# ::node	b	broccoli	9-10
+# ::node	a	and	10-11
+# ::node	c	carrot	11-12
+# ::node	w	wide-02	14-15
+# ::node	r	range	15-16
+# ::node	o	other	17-18
+# ::node	f2	fruit	18-19
+# ::node	a2	and	19-20
+# ::node	v	vegetable	20-21
+# ::root	s	sell-01
+# ::edge	sell-01	ARG1	produce-01	s	p2	
+# ::edge	person	ARG0-of	farm-01	p	f	
+# ::edge	market	poss	person	m	p	
+# ::edge	sell-01	location	market	s	m	
+# ::edge	produce-01	ARG2-of	include-01	p2	i	
+# ::edge	and	op1	broccoli	a	b	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	carrot	a	c	
+# ::edge	range	ARG1-of	wide-02	r	w	
+# ::edge	and	op3	range	a	r	
+# ::edge	and	op1	fruit	a2	f2	
+# ::edge	and	mod	other	a2	o	
+# ::edge	range	mod	and	r	a2	
+# ::edge	and	op2	vegetable	a2	v	
+(s / sell-01
+    :ARG1 (p2 / produce-01
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (b / broccoli)
+                :op2 (c / carrot)
+                :op3 (r / range
+                    :ARG1-of (w / wide-02)
+                    :mod (a2 / and
+                        :mod (o / other)
+                        :op1 (f2 / fruit)
+                        :op2 (v / vegetable))))))
+    :location (m / market
+        :poss (p / person
+            :ARG0-of (f / farm-01))))

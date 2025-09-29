@@ -1,0 +1,45 @@
+# ::tok Ornate lidded vase with handles and feet , front - lit against dark out - of - focus background .
+# ::node	o	or	0-1
+# ::node	s	sex	1-2
+# ::node	v	vase	2-3
+# ::node	h	handle-01	4-5
+# ::node	h2	handle-01	4-5
+# ::node	a2	and	5-6
+# ::node	f2	foot	6-7
+# ::node	f3	front	8-9
+# ::node	l	light-04	10-11
+# ::node	a	against	11-12
+# ::node	d	dark-02	12-13
+# ::node	o2	out-06	13-14
+# ::node	f	focus-01	17-18
+# ::node	b	background	18-19
+# ::root	v	vase
+# ::edge	vase	mod	sex	v	s	
+# ::edge	vase	mod	or	v	o	
+# ::edge	vase	ARG0-of	handle-01	v	h	
+# ::edge	and	op1	handle-01	a2	h	
+# ::edge	handle-01	ARG1	and	h	a2	
+# ::edge	and	op2	foot	a2	f2	
+# ::edge	foot	ARG0-of	handle-01	f2	h2	
+# ::edge	light-04	mod	front	l	f3	
+# ::edge	vase	ARG1-of	light-04	v	l	
+# ::edge	light-04	direction	against	l	a	
+# ::edge	out-06	ARG2	focus-01	o2	f	
+# ::edge	background	ARG1-of	out-06	b	o2	
+# ::edge	background	ARG1-of	dark-02	b	d	
+# ::edge	against	op1	background	a	b	
+(v / vase
+    :ARG0-of (h / handle-01
+        :ARG1 (a2 / and
+            :op1 h
+            :op2 (f2 / foot
+                :ARG0-of (h2 / handle-01))))
+    :ARG1-of (l / light-04
+        :direction (a / against
+            :op1 (b / background
+                :ARG1-of (o2 / out-06
+                    :ARG2 (f / focus-01))
+                :ARG1-of (d / dark-02)))
+        :mod (f3 / front))
+    :mod (s / sex)
+    :mod (o / or))

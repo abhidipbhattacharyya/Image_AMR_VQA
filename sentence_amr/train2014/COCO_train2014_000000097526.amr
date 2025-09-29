@@ -1,0 +1,37 @@
+# ::tok A groups of signs being held up in front of a building with one sign that says " Stop Harper " .
+# ::node	g	group	1-2
+# ::node	s2	sign	3-4
+# ::node	h	hold-up-10	5-6
+# ::node	i	in-front-of	8-9
+# ::node	b	building	11-12
+# ::node	0	1	13-14
+# ::node	s3	sign	14-15
+# ::node	s	say-01	16-17
+# ::node	s4	stop-01	18-19
+# ::node	p	person	19-20
+# ::node	n	name	19-20
+# ::node	1	Harper	19-20
+# ::root	h	hold-up-10
+# ::edge	group	consist-of	sign	g	s2	
+# ::edge	hold-up-10	ARG1	group	h	g	
+# ::edge	hold-up-10	location	in-front-of	h	i	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	sign	quant	1	s3	0	
+# ::edge	sign	consist-of	sign	s2	s3	
+# ::edge	sign	ARG0-of	say-01	s3	s	
+# ::edge	say-01	ARG1	stop-01	s	s4	
+# ::edge	stop-01	ARG1	person	s4	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Harper	n	1	
+(h / hold-up-10
+    :ARG1 (g / group
+        :consist-of (s2 / sign
+            :consist-of (s3 / sign
+                :quant 1
+                :ARG0-of (s / say-01
+                    :ARG1 (s4 / stop-01
+                        :ARG1 (p / person
+                            :name (n / name
+                                :op1 "Harper")))))))
+    :location (i / in-front-of
+        :op1 (b / building)))

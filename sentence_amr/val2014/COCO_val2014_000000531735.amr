@@ -1,0 +1,33 @@
+# ::tok Five motorcycles parked and a man standing next to one of them .
+# ::node	1	5	0-1
+# ::node	m2	motorcycle	1-2
+# ::node	m3	motorcycle	1-2
+# ::node	p	park-01	2-3
+# ::node	a	and	3-4
+# ::node	m	man	5-6
+# ::node	s	stand-01	6-7
+# ::node	n	next-to	7-8
+# ::node	0	1	9-10
+# ::node	i	include-91	10-11
+# ::root	a	and
+# ::edge	motorcycle	quant	5	m2	1	
+# ::edge	park-01	ARG1	motorcycle	p	m2	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	motorcycle	n	m3	
+# ::edge	motorcycle	quant	1	m3	0	
+# ::edge	motorcycle	ARG1-of	include-91	m3	i	
+# ::edge	include-91	ARG2	motorcycle	i	m2	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (m2 / motorcycle
+            :quant 5))
+    :op2 (s / stand-01
+        :ARG1 (m / man)
+        :ARG2 (n / next-to
+            :op1 (m3 / motorcycle
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 m2)))))

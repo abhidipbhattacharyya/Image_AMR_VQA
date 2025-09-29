@@ -1,0 +1,27 @@
+# ::tok The surfer remains on the board despite being thrown by the wave into an odd angle .
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	r	remain-01	2-3
+# ::node	b	board	5-6
+# ::node	t	throw-01	8-9
+# ::node	w	wave	11-12
+# ::node	o	odd	14-15
+# ::node	a	angle	15-16
+# ::root	r	remain-01
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	remain-01	ARG1	person	r	p	
+# ::edge	remain-01	location	board	r	b	
+# ::edge	remain-01	concession	throw-01	r	t	
+# ::edge	throw-01	ARG1	person	t	p	
+# ::edge	throw-01	ARG0	wave	t	w	
+# ::edge	angle	mod	odd	a	o	
+# ::edge	throw-01	ARG2	angle	t	a	
+(r / remain-01
+    :ARG1 (p / person
+        :ARG0-of (s / surf-01))
+    :concession (t / throw-01
+        :ARG0 (w / wave)
+        :ARG1 p
+        :ARG2 (a / angle
+            :mod (o / odd)))
+    :location (b / board))

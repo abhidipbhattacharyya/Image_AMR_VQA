@@ -1,0 +1,21 @@
+# ::tok A large plane is used to deliver packages all over .
+# ::node	l	large	1-2
+# ::node	p2	plane	2-3
+# ::node	u	use-01	4-5
+# ::node	d	deliver-01	6-7
+# ::node	p	package	7-8
+# ::node	a	all-over	9-10
+# ::root	u	use-01
+# ::edge	plane	mod	large	p2	l	
+# ::edge	use-01	ARG1	plane	u	p2	
+# ::edge	use-01	ARG2	deliver-01	u	d	
+# ::edge	deliver-01	ARG0	plane	d	p2	
+# ::edge	deliver-01	ARG1	package	d	p	
+# ::edge	deliver-01	location	all-over	d	a	
+(u / use-01
+    :ARG1 (p2 / plane
+        :mod (l / large))
+    :ARG2 (d / deliver-01
+        :ARG0 p2
+        :ARG1 (p / package)
+        :location (a / all-over)))

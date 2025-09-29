@@ -1,0 +1,28 @@
+# ::tok Sidewalk next to brick wall shown at night with street lighting .
+# ::node	f	foot	0-1
+# ::node	n	next-to	1-2
+# ::node	b	brick	3-4
+# ::node	w	wall	4-5
+# ::node	s	show-01	5-6
+# ::node	d	date-entity	7-8
+# ::node	n2	night	7-8
+# ::node	s2	street	9-10
+# ::node	l	light-04	10-11
+# ::root	f	foot
+# ::edge	foot	location	next-to	f	n	
+# ::edge	wall	consist-of	brick	w	b	
+# ::edge	next-to	op1	wall	n	w	
+# ::edge	wall	ARG1-of	show-01	w	s	
+# ::edge	show-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	light-04	ARG0	street	l	s2	
+# ::edge	show-01	accompanier	light-04	s	l	
+(f / foot
+    :location (n / next-to
+        :op1 (w / wall
+            :ARG1-of (s / show-01
+                :accompanier (l / light-04
+                    :ARG0 (s2 / street))
+                :time (d / date-entity
+                    :dayperiod (n2 / night)))
+            :consist-of (b / brick))))

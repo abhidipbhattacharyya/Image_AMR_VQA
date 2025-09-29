@@ -1,0 +1,25 @@
+# ::tok A large amount of vehicle traffic next to a tall brick wall .
+# ::node	l	large	1-2
+# ::node	a	amount	2-3
+# ::node	v	vehicle	4-5
+# ::node	t2	traffic	5-6
+# ::node	n	next-to	6-7
+# ::node	t	tall	9-10
+# ::node	b	brick	10-11
+# ::node	w	wall	11-12
+# ::root	t2	traffic
+# ::edge	amount	mod	large	a	l	
+# ::edge	traffic	mod	vehicle	t2	v	
+# ::edge	traffic	quant	amount	t2	a	
+# ::edge	traffic	location	next-to	t2	n	
+# ::edge	wall	consist-of	brick	w	b	
+# ::edge	wall	mod	tall	w	t	
+# ::edge	next-to	op1	wall	n	w	
+(t2 / traffic
+    :quant (a / amount
+        :mod (l / large))
+    :location (n / next-to
+        :op1 (w / wall
+            :consist-of (b / brick)
+            :mod (t / tall)))
+    :mod (v / vehicle))

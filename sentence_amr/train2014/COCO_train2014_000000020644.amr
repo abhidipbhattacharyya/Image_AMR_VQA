@@ -1,0 +1,45 @@
+# ::tok A baseball game on a baseball field with a batter at home plate swinging the bat and a scoreboard behind the outfield fence .
+# ::node	b	baseball	1-2
+# ::node	g	game	2-3
+# ::node	f2	field	6-7
+# ::node	p	person	9-10
+# ::node	b3	batter-01	9-10
+# ::node	h	home	11-12
+# ::node	p2	plate	12-13
+# ::node	s2	swing-02	13-14
+# ::node	b2	bat	15-16
+# ::node	a	and	16-17
+# ::node	s	scoreboard	18-19
+# ::node	b4	behind	19-20
+# ::node	o	outfield	21-22
+# ::node	f	fence	22-23
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b	
+# ::edge	game	location	field	g	f2	
+# ::edge	field	mod	baseball	f2	b	
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	person	location	plate	p	p2	
+# ::edge	person	ARG0-of	swing-02	p	s2	
+# ::edge	swing-02	ARG1	bat	s2	b2	
+# ::edge	and	op1	person	a	p	
+# ::edge	game	accompanier	and	g	a	
+# ::edge	and	op2	scoreboard	a	s	
+# ::edge	scoreboard	location	behind	s	b4	
+# ::edge	fence	mod	outfield	f	o	
+# ::edge	behind	op1	fence	b4	f	
+(g / game
+    :accompanier (a / and
+        :op1 (p / person
+            :ARG0-of (b3 / batter-01)
+            :ARG0-of (s2 / swing-02
+                :ARG1 (b2 / bat))
+            :location (p2 / plate
+                :mod (h / home)))
+        :op2 (s / scoreboard
+            :location (b4 / behind
+                :op1 (f / fence
+                    :mod (o / outfield)))))
+    :location (f2 / field
+        :mod (b / baseball))
+    :mod b)

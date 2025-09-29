@@ -1,0 +1,54 @@
+# ::tok the sign says , " dont eat us , we 're music ! "
+# ::node	s2	sign	1-2
+# ::node	s	say-01	2-3
+# ::node	y	you	5-6
+# ::node	1	imperative	5-6
+# ::node	0	-	5-6
+# ::node	e	eat-01	6-7
+# ::node	c	cause-01	8-9
+# ::node	w	we	9-10
+# ::node	m	music	11-12
+# ::root	s	say-01
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	eat-01	polarity	-	e	0	
+# ::edge	eat-01	mode	imperative	e	1	
+# ::edge	eat-01	ARG0	you	e	y	
+# ::edge	say-01	ARG1	eat-01	s	e	
+# ::edge	eat-01	ARG1-of	cause-01	e	c	
+# ::edge	eat-01	ARG1	we	e	w	
+# ::edge	music	domain	we	m	w	
+# ::edge	cause-01	ARG0	music	c	m	
+(s / say-01
+    :ARG0 (s2 / sign)
+    :ARG1 (e / eat-01
+        :ARG0 (y / you)
+        :ARG1 (w / we)
+        :ARG1-of (c / cause-01
+            :ARG0 (m / music
+                :domain w))
+        :mode imperative
+        :polarity -))
+
+
+# ::tok in reference to the orange and apple sitting next to it .
+# ::node	r	refer-01	1-2
+# ::node	o	orange	4-5
+# ::node	a	and	5-6
+# ::node	a2	apple	6-7
+# ::node	s	sit-01	7-8
+# ::node	n	next-to	8-9
+# ::node	i	it	10-11
+# ::root	r	refer-01
+# ::edge	and	op1	orange	a	o	
+# ::edge	and	op2	apple	a	a2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	refer-01	ARG1	sit-01	r	s	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	it	n	i	
+(r / refer-01
+    :ARG1 (s / sit-01
+        :ARG1 (a / and
+            :op1 (o / orange)
+            :op2 (a2 / apple))
+        :ARG2 (n / next-to
+            :op1 (i / it))))

@@ -1,0 +1,34 @@
+# ::tok Roadside traffic sign that posting the speed limit and the direction of upcoming curve direction .
+# ::node	r	road	0-1
+# ::node	t	traffic	1-2
+# ::node	s	signal-07	2-3
+# ::node	p	post-01	4-5
+# ::node	s2	speed-01	6-7
+# ::node	l	limit	7-8
+# ::node	a	and	8-9
+# ::node	d	direction	10-11
+# ::node	u	upcoming	12-13
+# ::node	c	curve-01	13-14
+# ::node	d2	direction	14-15
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	signal-07	location	road	s	r	
+# ::edge	signal-07	ARG0	post-01	s	p	
+# ::edge	limit	mod	speed-01	l	s2	
+# ::edge	and	op1	limit	a	l	
+# ::edge	post-01	ARG1	and	p	a	
+# ::edge	and	op2	direction	a	d	
+# ::edge	direction	direction	curve-01	d2	c	
+# ::edge	direction	time	upcoming	d2	u	
+# ::edge	direction	mod	direction	d	d2	
+(s / signal-07
+    :ARG0 (p / post-01
+        :ARG1 (a / and
+            :op1 (l / limit
+                :mod (s2 / speed-01))
+            :op2 (d / direction
+                :mod (d2 / direction
+                    :direction (c / curve-01)
+                    :time (u / upcoming)))))
+    :ARG1 (t / traffic)
+    :location (r / road))

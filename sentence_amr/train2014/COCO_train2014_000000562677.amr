@@ -1,0 +1,25 @@
+# ::tok A tractor trailer rig stuck under a bridge holding up traffic .
+# ::node	t	tractor	1-2
+# ::node	t3	trailer	2-3
+# ::node	r	rig	3-4
+# ::node	s	stick-01	4-5
+# ::node	u	under	5-6
+# ::node	b	bridge	7-8
+# ::node	h	hold-01	8-9
+# ::node	t2	traffic	10-11
+# ::root	s	stick-01
+# ::edge	trailer	mod	tractor	t3	t	
+# ::edge	rig	mod	trailer	r	t3	
+# ::edge	stick-01	ARG1	rig	s	r	
+# ::edge	stick-01	ARG2	under	s	u	
+# ::edge	under	op1	bridge	u	b	
+# ::edge	rig	ARG0-of	hold-01	r	h	
+# ::edge	hold-01	ARG1	traffic	h	t2	
+(s / stick-01
+    :ARG1 (r / rig
+        :ARG0-of (h / hold-01
+            :ARG1 (t2 / traffic))
+        :mod (t3 / trailer
+            :mod (t / tractor)))
+    :ARG2 (u / under
+        :op1 (b / bridge)))

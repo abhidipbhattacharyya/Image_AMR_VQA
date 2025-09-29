@@ -1,0 +1,35 @@
+# ::tok A cat is standing on its back legs to reach a person 's hand holding an apple core .
+# ::node	c	cat	1-2
+# ::node	s	stand-01	3-4
+# ::node	b	back	6-7
+# ::node	l	leg	7-8
+# ::node	r	reach-01	9-10
+# ::node	p	person	11-12
+# ::node	h	hand	13-14
+# ::node	h2	hold-01	14-15
+# ::node	a	apple	16-17
+# ::node	c2	core	17-18
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	cat	s	c	
+# ::edge	leg	mod	back	l	b	
+# ::edge	stand-01	manner	leg	s	l	
+# ::edge	cat	part	leg	c	l	
+# ::edge	stand-01	purpose	reach-01	s	r	
+# ::edge	reach-01	ARG0	cat	r	c	
+# ::edge	hand	part-of	person	h	p	
+# ::edge	reach-01	ARG1	hand	r	h	
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	core	part-of	apple	c2	a	
+# ::edge	hold-01	ARG1	core	h2	c2	
+(s / stand-01
+    :purpose (r / reach-01
+        :ARG0 (c / cat
+            :part (l / leg
+                :mod (b / back)))
+        :ARG1 (h / hand
+            :part-of (p / person
+                :ARG0-of (h2 / hold-01
+                    :ARG1 (c2 / core
+                        :part-of (a / apple))))))
+    :ARG1 c
+    :manner l)

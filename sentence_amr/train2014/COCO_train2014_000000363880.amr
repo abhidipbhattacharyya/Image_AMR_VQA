@@ -1,0 +1,37 @@
+# ::tok A pizza with all multiple veggie toppings missing several slices sits on a table .
+# ::node	p	pizza	1-2
+# ::node	h	have-03	2-3
+# ::node	a	all	3-4
+# ::node	m2	multiple	4-5
+# ::node	v	vegetable	5-6
+# ::node	l	letter	6-7
+# ::node	t2	top-01	6-7
+# ::node	m	miss-01	7-8
+# ::node	s	several	8-9
+# ::node	s3	slice	9-10
+# ::node	s2	sit-01	10-11
+# ::node	t	table	13-14
+# ::root	s2	sit-01
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	letter	mod	vegetable	l	v	
+# ::edge	letter	quant	multiple	l	m2	
+# ::edge	letter	mod	all	l	a	
+# ::edge	have-03	ARG1	letter	h	l	
+# ::edge	letter	ARG2-of	top-01	l	t2	
+# ::edge	letter	ARG0-of	miss-01	l	m	
+# ::edge	slice	quant	several	s3	s	
+# ::edge	miss-01	ARG1	slice	m	s3	
+# ::edge	sit-01	ARG1	pizza	s2	p	
+# ::edge	sit-01	ARG2	table	s2	t	
+(s2 / sit-01
+    :ARG1 (p / pizza
+        :ARG0-of (h / have-03
+            :ARG1 (l / letter
+                :quant (m2 / multiple)
+                :ARG0-of (m / miss-01
+                    :ARG1 (s3 / slice
+                        :quant (s / several)))
+                :ARG2-of (t2 / top-01)
+                :mod (v / vegetable)
+                :mod (a / all))))
+    :ARG2 (t / table))

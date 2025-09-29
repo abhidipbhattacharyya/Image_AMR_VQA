@@ -1,0 +1,57 @@
+# ::tok This is four people posing for the camera .
+# ::node	t	this	0-1
+# ::node	0	4	2-3
+# ::node	p	person	3-4
+# ::node	p2	pose-01	4-5
+# ::node	c	camera	7-8
+# ::root	p2	pose-01
+# ::edge	person	quant	4	p	0	
+# ::edge	pose-01	ARG0	person	p2	p	
+# ::edge	pose-01	domain	this	p2	t	
+# ::edge	pose-01	ARG2	camera	p2	c	
+(p2 / pose-01
+    :ARG0 (p / person
+        :quant 4)
+    :ARG2 (c / camera)
+    :domain (t / this))
+
+
+# ::tok One in a suit , the others in western type outfits .
+# ::node	o	one	0-1
+# ::node	s	suit	3-4
+# ::node	a	and	4-5
+# ::node	a2	and	4-5
+# ::node	o2	other	6-7
+# ::node	w	wear-01	7-8
+# ::node	w2	wear-01	7-8
+# ::node	w3	world-region	8-9
+# ::node	n	name	8-9
+# ::node	0	West	8-9
+# ::node	t	type	9-10
+# ::node	o3	outfit	10-11
+# ::root	a	and
+# ::edge	and	op1	and	a	a2	
+# ::edge	and	op1	suit	a2	s	
+# ::edge	and	op2	other	a2	o2	
+# ::edge	and	ARG0-of	wear-01	a2	w	
+# ::edge	wear-01	ARG1	suit	w	s	
+# ::edge	other	ARG0-of	wear-01	o2	w2	
+# ::edge	world-region	name	name	w3	n	
+# ::edge	name	op1	West	n	0	
+# ::edge	type	mod	world-region	t	w3	
+# ::edge	outfit	mod	type	o3	t	
+# ::edge	wear-01	ARG1	outfit	w2	o3	
+# ::edge	and	rel	one	a	o	
+(a / and
+    :op1 (a2 / and
+        :ARG0-of (w / wear-01
+            :ARG1 (s / suit))
+        :op1 s
+        :op2 (o2 / other
+            :ARG0-of (w2 / wear-01
+                :ARG1 (o3 / outfit
+                    :mod (t / type
+                        :mod (w3 / world-region
+                            :name (n / name
+                                :op1 "West")))))))
+    :rel (o / one))

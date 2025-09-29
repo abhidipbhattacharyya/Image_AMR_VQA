@@ -1,0 +1,63 @@
+# ::tok A large , old fashioned kitchen shows lots of pans hanging on the wall , a double sink , and lots of wood counters and cabinets while a ceiling fan hangs on the ceiling .
+# ::node	l	large	1-2
+# ::node	o	old	3-4
+# ::node	f2	fashion	4-5
+# ::node	k	kitchen	5-6
+# ::node	s	show-01	6-7
+# ::node	l2	lot	7-8
+# ::node	a	Pan	9-10
+# ::node	h	hang-01	10-11
+# ::node	w	wall	13-14
+# ::node	d	double	16-17
+# ::node	s2	sink	17-18
+# ::node	a2	and	19-20
+# ::node	w2	wood	22-23
+# ::node	c4	counter-01	23-24
+# ::node	a3	and	24-25
+# ::node	c	cabinet	25-26
+# ::node	c2	ceiling	28-29
+# ::node	f	fan	29-30
+# ::node	h2	hang-01	30-31
+# ::node	c3	ceiling	33-34
+# ::root	s	show-01
+# ::edge	fashion	mod	old	f2	o	
+# ::edge	kitchen	mod	fashion	k	f2	
+# ::edge	kitchen	mod	large	k	l	
+# ::edge	show-01	ARG0	kitchen	s	k	
+# ::edge	Pan	quant	lot	a	l2	
+# ::edge	Pan	ARG1-of	hang-01	a	h	
+# ::edge	hang-01	ARG2	wall	h	w	
+# ::edge	sink	mod	double	s2	d	
+# ::edge	and	op2	sink	a2	s2	
+# ::edge	and	op1	Pan	a2	a	
+# ::edge	show-01	ARG1	and	s	a2	
+# ::edge	and	op1	counter-01	a3	c4	
+# ::edge	and	mod	wood	a3	w2	
+# ::edge	and	op3	and	a2	a3	
+# ::edge	and	quant	lot	a3	l2	
+# ::edge	and	op2	cabinet	a3	c	
+# ::edge	fan	mod	ceiling	f	c2	
+# ::edge	hang-01	ARG1	fan	h2	f	
+# ::edge	show-01	time	hang-01	s	h2	
+# ::edge	hang-01	location	ceiling	h2	c3	
+(s / show-01
+    :ARG0 (k / kitchen
+        :mod (f2 / fashion
+            :mod (o / old))
+        :mod (l / large))
+    :ARG1 (a2 / and
+        :op1 (a / Pan
+            :quant (l2 / lot)
+            :ARG1-of (h / hang-01
+                :ARG2 (w / wall)))
+        :op2 (s2 / sink
+            :mod (d / double))
+        :op3 (a3 / and
+            :quant l2
+            :mod (w2 / wood)
+            :op1 (c4 / counter-01)
+            :op2 (c / cabinet)))
+    :time (h2 / hang-01
+        :ARG1 (f / fan
+            :mod (c2 / ceiling))
+        :location (c3 / ceiling)))

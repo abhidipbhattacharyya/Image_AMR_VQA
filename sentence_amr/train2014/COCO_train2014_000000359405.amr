@@ -1,0 +1,42 @@
+# ::tok A mans urinal with with a person standing you can only see his shoes , with a waste basket in the room .
+# ::node	m	man	1-2
+# ::node	u	urinal	2-3
+# ::node	p	person	6-7
+# ::node	s3	stand-01	7-8
+# ::node	y	you	8-9
+# ::node	p2	possible-01	9-10
+# ::node	o	only	10-11
+# ::node	s	see-01	11-12
+# ::node	s2	shoe	13-14
+# ::node	h	have-03	15-16
+# ::node	w	waste-01	17-18
+# ::node	b	basket	18-19
+# ::node	r	room	21-22
+# ::root	p2	possible-01
+# ::edge	urinal	poss	man	u	m	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	see-01	mod	only	s	o	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	see-01	condition	stand-01	s	s3	
+# ::edge	see-01	location	urinal	s	u	
+# ::edge	see-01	ARG1	shoe	s	s2	
+# ::edge	shoe	poss	man	s2	m	
+# ::edge	shoe	ARG0-of	have-03	s2	h	
+# ::edge	basket	purpose	waste-01	b	w	
+# ::edge	have-03	ARG1	basket	h	b	
+# ::edge	basket	location	room	b	r	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG0 (y / you)
+        :ARG1 (s2 / shoe
+            :ARG0-of (h / have-03
+                :ARG1 (b / basket
+                    :purpose (w / waste-01)
+                    :location (r / room)))
+            :poss (m / man))
+        :condition (s3 / stand-01
+            :ARG1 (p / person))
+        :location (u / urinal
+            :poss m)
+        :mod (o / only)))

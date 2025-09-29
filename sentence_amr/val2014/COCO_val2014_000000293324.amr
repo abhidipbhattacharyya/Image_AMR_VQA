@@ -1,0 +1,31 @@
+# ::tok Three Finnair planes are parked at the gates on this side of the terminal .
+# ::node	0	3	0-1
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	1	Finnair	1-2
+# ::node	p2	plane	2-3
+# ::node	p	park-01	4-5
+# ::node	g	gate	7-8
+# ::node	t2	this	9-10
+# ::node	s	side	10-11
+# ::node	t	terminal	13-14
+# ::root	p	park-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Finnair	n	1	
+# ::edge	plane	mod	company	p2	c	
+# ::edge	plane	quant	3	p2	0	
+# ::edge	park-01	ARG1	plane	p	p2	
+# ::edge	park-01	ARG2	gate	p	g	
+# ::edge	side	mod	this	s	t2	
+# ::edge	gate	location	side	g	s	
+# ::edge	side	part-of	terminal	s	t	
+(p / park-01
+    :ARG1 (p2 / plane
+        :quant 3
+        :mod (c / company
+            :name (n / name
+                :op1 "Finnair")))
+    :ARG2 (g / gate
+        :location (s / side
+            :mod (t2 / this)
+            :part-of (t / terminal))))

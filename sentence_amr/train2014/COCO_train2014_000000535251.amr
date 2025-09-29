@@ -1,0 +1,27 @@
+# ::tok A skateboarder wearing an oddly shaped helmet crouches while in motion .
+# ::node	p	person	1-2
+# ::node	b	board-05	1-2
+# ::node	w	wear-01	2-3
+# ::node	o	odd	4-5
+# ::node	s	shape-01	5-6
+# ::node	h	helmet	6-7
+# ::node	c	crouch-01	7-8
+# ::node	m	move-01	10-11
+# ::root	c	crouch-01
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	shape-01	mod	odd	s	o	
+# ::edge	helmet	ARG1-of	shape-01	h	s	
+# ::edge	wear-01	ARG1	helmet	w	h	
+# ::edge	crouch-01	ARG0	person	c	p	
+# ::edge	crouch-01	time	move-01	c	m	
+# ::edge	move-01	ARG0	person	m	p	
+(c / crouch-01
+    :ARG0 (p / person
+        :ARG0-of (b / board-05)
+        :ARG0-of (w / wear-01
+            :ARG1 (h / helmet
+                :ARG1-of (s / shape-01
+                    :mod (o / odd)))))
+    :time (m / move-01
+        :ARG0 p))

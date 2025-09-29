@@ -1,0 +1,32 @@
+# ::tok Commuters boarding and un - boarding a commuter train at a train station .
+# ::node	p	person	0-1
+# ::node	b	board-01	1-2
+# ::node	a	and	2-3
+# ::node	0	-	3-4
+# ::node	b2	board-01	5-6
+# ::node	c	commute-01	7-8
+# ::node	t	train	8-9
+# ::node	t2	train	11-12
+# ::node	s	station	12-13
+# ::root	a	and
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	and	op1	board-01	a	b	
+# ::edge	board-01	polarity	-	b2	0	
+# ::edge	and	op2	board-01	a	b2	
+# ::edge	board-01	ARG0	person	b2	p	
+# ::edge	person	ARG0-of	commute-01	p	c	
+# ::edge	commute-01	ARG1	train	c	t	
+# ::edge	board-01	ARG1	train	b	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	and	location	station	a	s	
+(a / and
+    :location (s / station
+        :mod (t2 / train))
+    :op1 (b / board-01
+        :ARG0 (p / person
+            :ARG0-of (c / commute-01
+                :ARG1 (t / train)))
+        :ARG1 t)
+    :op2 (b2 / board-01
+        :ARG0 p
+        :polarity -))

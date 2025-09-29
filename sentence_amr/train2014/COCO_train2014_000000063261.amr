@@ -1,0 +1,43 @@
+# ::tok In the foreground of a forest - like area with tall trees , a giraffe stands on short grass , straddling a stretch of wire cable .
+# ::node	f	foreground	2-3
+# ::node	f2	forest	5-6
+# ::node	r	resemble-01	7-8
+# ::node	a	area	8-9
+# ::node	t	tall	10-11
+# ::node	t2	tree	11-12
+# ::node	g	giraffe	14-15
+# ::node	s2	stand-01	15-16
+# ::node	s	short-07	17-18
+# ::node	g2	grass	18-19
+# ::node	s3	straddle-01	20-21
+# ::node	s4	stretch-01	22-23
+# ::node	w	wire	24-25
+# ::node	c	cable	25-26
+# ::root	s2	stand-01
+# ::edge	resemble-01	ARG2	forest	r	f2	
+# ::edge	area	ARG1-of	resemble-01	a	r	
+# ::edge	foreground	part-of	area	f	a	
+# ::edge	tree	mod	tall	t2	t	
+# ::edge	area	consist-of	tree	a	t2	
+# ::edge	stand-01	ARG1	giraffe	s2	g	
+# ::edge	stand-01	location	foreground	s2	f	
+# ::edge	grass	ARG1-of	short-07	g2	s	
+# ::edge	stand-01	ARG2	grass	s2	g2	
+# ::edge	giraffe	ARG0-of	straddle-01	g	s3	
+# ::edge	straddle-01	ARG1	stretch-01	s3	s4	
+# ::edge	cable	mod	wire	c	w	
+# ::edge	stretch-01	ARG1	cable	s4	c	
+(s2 / stand-01
+    :ARG1 (g / giraffe
+        :ARG0-of (s3 / straddle-01
+            :ARG1 (s4 / stretch-01
+                :ARG1 (c / cable
+                    :mod (w / wire)))))
+    :ARG2 (g2 / grass
+        :ARG1-of (s / short-07))
+    :location (f / foreground
+        :part-of (a / area
+            :ARG1-of (r / resemble-01
+                :ARG2 (f2 / forest))
+            :consist-of (t2 / tree
+                :mod (t / tall)))))

@@ -1,0 +1,25 @@
+# ::tok Many buses driving down the street in a city with buildings .
+# ::node	m	many	0-1
+# ::node	b2	bus	1-2
+# ::node	d2	drive-01	2-3
+# ::node	d	down	3-4
+# ::node	s	street	5-6
+# ::node	c	city	8-9
+# ::node	h	have-03	9-10
+# ::node	b	building	10-11
+# ::root	d2	drive-01
+# ::edge	bus	quant	many	b2	m	
+# ::edge	drive-01	ARG1	bus	d2	b2	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	drive-01	path	street	d2	s	
+# ::edge	drive-01	location	city	d2	c	
+# ::edge	city	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	building	h	b	
+(d2 / drive-01
+    :ARG1 (b2 / bus
+        :quant (m / many))
+    :direction (d / down)
+    :location (c / city
+        :ARG0-of (h / have-03
+            :ARG1 (b / building)))
+    :path (s / street))

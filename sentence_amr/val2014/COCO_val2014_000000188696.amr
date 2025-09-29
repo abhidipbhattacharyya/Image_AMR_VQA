@@ -1,0 +1,22 @@
+# ::tok A meter reader pulls behind a meter on the curb .
+# ::node	m	meter	1-2
+# ::node	p	person	2-3
+# ::node	r	read-01	2-3
+# ::node	p2	pull-01	3-4
+# ::node	b	behind	4-5
+# ::node	m2	meter	6-7
+# ::node	c	curb	9-10
+# ::root	p2	pull-01
+# ::edge	person	ARG0-of	read-01	p	r	
+# ::edge	read-01	ARG1	meter	r	m	
+# ::edge	pull-01	ARG0	person	p2	p	
+# ::edge	pull-01	ARG2	behind	p2	b	
+# ::edge	behind	op1	meter	b	m2	
+# ::edge	meter	location	curb	m2	c	
+(p2 / pull-01
+    :ARG0 (p / person
+        :ARG0-of (r / read-01
+            :ARG1 (m / meter)))
+    :ARG2 (b / behind
+        :op1 (m2 / meter
+            :location (c / curb))))

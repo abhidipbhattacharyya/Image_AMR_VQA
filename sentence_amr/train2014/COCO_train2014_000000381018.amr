@@ -1,0 +1,37 @@
+# ::tok Siegel flying above railing next ocean with horse The one
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Siegel	0-1
+# ::node	f	fly-01	1-2
+# ::node	a	above	2-3
+# ::node	r	railing	3-4
+# ::node	n2	next	4-5
+# ::node	o	ocean	5-6
+# ::node	h	have-03	6-7
+# ::node	h2	horse	7-8
+# ::node	m	multi-sentence	8-9
+# ::node	o2	one	9-10
+# ::root	m	multi-sentence
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Siegel	n	0	
+# ::edge	fly-01	ARG1	person	f	p	
+# ::edge	fly-01	path	above	f	a	
+# ::edge	above	op1	railing	a	r	
+# ::edge	ocean	mod	next	o	n2	
+# ::edge	railing	location	ocean	r	o	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	horse	h	h2	
+# ::edge	multi-sentence	snt1	fly-01	m	f	
+# ::edge	multi-sentence	snt2	one	m	o2	
+(m / multi-sentence
+    :snt1 (f / fly-01
+        :ARG1 (p / person
+            :name (n / name
+                :op1 "Siegel")
+            :ARG0-of (h / have-03
+                :ARG1 (h2 / horse)))
+        :path (a / above
+            :op1 (r / railing
+                :location (o / ocean
+                    :mod (n2 / next)))))
+    :snt2 (o2 / one))

@@ -1,0 +1,36 @@
+# ::tok The meter still has one hour and 13 minutes left , before expiring .
+# ::node	m	meter	1-2
+# ::node	s	still	2-3
+# ::node	h	have-03	3-4
+# ::node	t	temporal-quantity	5-6
+# ::node	h2	hour	5-6
+# ::node	a	and	6-7
+# ::node	0	13	7-8
+# ::node	m2	minute	8-9
+# ::node	l	leave-17	9-10
+# ::node	b	before	11-12
+# ::node	e	expire-01	12-13
+# ::root	h	have-03
+# ::edge	have-03	mod	still	h	s	
+# ::edge	have-03	ARG0	meter	h	m	
+# ::edge	temporal-quantity	unit	hour	t	h2	
+# ::edge	and	op1	temporal-quantity	a	t	
+# ::edge	temporal-quantity	quant	13	t	0	
+# ::edge	temporal-quantity	unit	minute	t	m2	
+# ::edge	leave-17	ARG1	and	l	a	
+# ::edge	have-03	ARG1	leave-17	h	l	
+# ::edge	have-03	time	before	h	b	
+# ::edge	before	op1	expire-01	b	e	
+# ::edge	expire-01	ARG1	meter	e	m	
+(h / have-03
+    :ARG0 (m / meter)
+    :ARG1 (l / leave-17
+        :ARG1 (a / and
+            :op1 (t / temporal-quantity
+                :quant 13
+                :unit (h2 / hour)
+                :unit (m2 / minute))))
+    :mod (s / still)
+    :time (b / before
+        :op1 (e / expire-01
+            :ARG1 m)))

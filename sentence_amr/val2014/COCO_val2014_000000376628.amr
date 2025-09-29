@@ -1,0 +1,37 @@
+# ::tok A busy street with cars parked down one side and motorcycles parked on the other .
+# ::node	b	busy-02	1-2
+# ::node	s3	street	2-3
+# ::node	c	car	4-5
+# ::node	p	park-01	5-6
+# ::node	d	down	6-7
+# ::node	o	one	7-8
+# ::node	s	side	8-9
+# ::node	s2	side	8-9
+# ::node	a	and	9-10
+# ::node	m	motorcycle	10-11
+# ::node	p2	park-01	11-12
+# ::node	o2	other	14-15
+# ::root	s3	street
+# ::edge	street	ARG1-of	busy-02	s3	b	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	direction	down	p	d	
+# ::edge	side	mod	one	s	o	
+# ::edge	park-01	op1	side	p	s	
+# ::edge	and	op1	car	a	c	
+# ::edge	street	location-of	and	s3	a	
+# ::edge	and	op2	motorcycle	a	m	
+# ::edge	motorcycle	ARG1-of	park-01	m	p2	
+# ::edge	park-01	location	side	p2	s2	
+# ::edge	side	mod	other	s2	o2	
+(s3 / street
+    :ARG1-of (b / busy-02)
+    :location-of (a / and
+        :op1 (c / car
+            :ARG1-of (p / park-01
+                :direction (d / down)
+                :op1 (s / side
+                    :mod (o / one))))
+        :op2 (m / motorcycle
+            :ARG1-of (p2 / park-01
+                :location (s2 / side
+                    :mod (o2 / other))))))

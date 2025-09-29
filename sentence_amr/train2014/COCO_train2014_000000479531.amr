@@ -1,0 +1,41 @@
+# ::tok Several signs stand at a railroad crossing , urging drivers to stop and look for trains .
+# ::node	s	several	0-1
+# ::node	s2	sign	1-2
+# ::node	s3	stand-01	2-3
+# ::node	r	railroad	5-6
+# ::node	c	cross-02	6-7
+# ::node	u	urge-01	8-9
+# ::node	p	person	9-10
+# ::node	d	drive-01	9-10
+# ::node	s4	stop-01	11-12
+# ::node	a	and	12-13
+# ::node	l	look-01	13-14
+# ::node	t	train	15-16
+# ::root	s3	stand-01
+# ::edge	sign	quant	several	s2	s	
+# ::edge	stand-01	ARG1	sign	s3	s2	
+# ::edge	cross-02	ARG1	railroad	c	r	
+# ::edge	stand-01	ARG2	cross-02	s3	c	
+# ::edge	sign	ARG0-of	urge-01	s2	u	
+# ::edge	urge-01	ARG1	person	u	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	stop-01	ARG0	person	s4	p	
+# ::edge	and	op1	stop-01	a	s4	
+# ::edge	urge-01	ARG2	and	u	a	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	look-01	ARG1	train	l	t	
+(s3 / stand-01
+    :ARG1 (s2 / sign
+        :quant (s / several)
+        :ARG0-of (u / urge-01
+            :ARG1 (p / person
+                :ARG0-of (d / drive-01))
+            :ARG2 (a / and
+                :op1 (s4 / stop-01
+                    :ARG0 p)
+                :op2 (l / look-01
+                    :ARG0 p
+                    :ARG1 (t / train)))))
+    :ARG2 (c / cross-02
+        :ARG1 (r / railroad)))

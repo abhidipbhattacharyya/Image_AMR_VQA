@@ -1,0 +1,77 @@
+# ::tok Gypsy or belly dancer wearing traditional dance clothing with metal discs and performance make up covered with pink oriental umbrella .
+# ::node	e	ethnic-group	0-1
+# ::node	n	name	0-1
+# ::node	0	Gypsy	0-1
+# ::node	o	or	1-2
+# ::node	b	belly	2-3
+# ::node	p2	person	3-4
+# ::node	d	dance-01	3-4
+# ::node	p3	person	3-4
+# ::node	d2	dance-01	3-4
+# ::node	w	wear-01	4-5
+# ::node	t	tradition	5-6
+# ::node	d3	dance-01	6-7
+# ::node	c	clothing	7-8
+# ::node	m2	metal	9-10
+# ::node	d4	disc	10-11
+# ::node	a	and	11-12
+# ::node	p	perform-01	12-13
+# ::node	m	makeup	13-14
+# ::node	c2	cover-02	15-16
+# ::node	p4	pink-04	17-18
+# ::node	e2	ethnic-group	18-19
+# ::node	n2	name	18-19
+# ::node	1	Orient	18-19
+# ::node	u	umbrella	19-20
+# ::root	w	wear-01
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Gypsy	n	0	
+# ::edge	or	op1	person	o	p2	
+# ::edge	person	mod	ethnic-group	p2	e	
+# ::edge	person	ARG0-of	dance-01	p2	d	
+# ::edge	dance-01	mod	belly	d	b	
+# ::edge	or	op2	person	o	p3	
+# ::edge	person	mod	ethnic-group	p3	e	
+# ::edge	person	ARG0-of	dance-01	p3	d2	
+# ::edge	wear-01	ARG0	or	w	o	
+# ::edge	dance-01	mod	tradition	d3	t	
+# ::edge	dance-01	ARG0	person	d3	p3	
+# ::edge	clothing	mod	dance-01	c	d3	
+# ::edge	wear-01	ARG1	clothing	w	c	
+# ::edge	disc	consist-of	metal	d4	m2	
+# ::edge	and	op1	disc	a	d4	
+# ::edge	clothing	accompanier	and	c	a	
+# ::edge	makeup	mod	perform-01	m	p	
+# ::edge	and	op2	makeup	a	m	
+# ::edge	makeup	ARG1-of	cover-02	m	c2	
+# ::edge	ethnic-group	name	name	e2	n2	
+# ::edge	name	op1	Orient	n2	1	
+# ::edge	umbrella	mod	ethnic-group	u	e2	
+# ::edge	umbrella	ARG1-of	pink-04	u	p4	
+# ::edge	cover-02	ARG2	umbrella	c2	u	
+(w / wear-01
+    :ARG0 (o / or
+        :op1 (p2 / person
+            :ARG0-of (d / dance-01
+                :mod (b / belly))
+            :mod (e / ethnic-group
+                :name (n / name
+                    :op1 "Gypsy")))
+        :op2 (p3 / person
+            :ARG0-of (d2 / dance-01)
+            :mod e))
+    :ARG1 (c / clothing
+        :accompanier (a / and
+            :op1 (d4 / disc
+                :consist-of (m2 / metal))
+            :op2 (m / makeup
+                :ARG1-of (c2 / cover-02
+                    :ARG2 (u / umbrella
+                        :ARG1-of (p4 / pink-04)
+                        :mod (e2 / ethnic-group
+                            :name (n2 / name
+                                :op1 "Orient"))))
+                :mod (p / perform-01)))
+        :mod (d3 / dance-01
+            :ARG0 p3
+            :mod (t / tradition))))

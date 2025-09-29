@@ -1,0 +1,50 @@
+# ::tok two empty beach chairs one blue and one pink with an umbrella
+# ::node	2	2	0-1
+# ::node	e	empty-02	1-2
+# ::node	b	beach	2-3
+# ::node	c	chair	3-4
+# ::node	c2	chair	3-4
+# ::node	c3	chair	3-4
+# ::node	i	include-91	4-5
+# ::node	i2	include-91	4-5
+# ::node	b2	blue	5-6
+# ::node	a	and	6-7
+# ::node	0	1	7-8
+# ::node	1	1	7-8
+# ::node	p	pink-04	8-9
+# ::node	h	have-03	9-10
+# ::node	u	umbrella	11-12
+# ::root	a	and
+# ::edge	chair	mod	beach	c	b	
+# ::edge	chair	ARG1-of	empty-02	c	e	
+# ::edge	chair	quant	2	c	2	
+# ::edge	chair	ARG2-of	include-91	c	i	
+# ::edge	include-91	ARG1	chair	i	c	
+# ::edge	include-91	ARG1	chair	i2	c3	
+# ::edge	chair	ARG2-of	include-91	c	i2	
+# ::edge	chair	mod	blue	c2	b2	
+# ::edge	and	op2	chair	a	c3	
+# ::edge	and	op1	chair	a	c	
+# ::edge	chair	quant	1	c2	0	
+# ::edge	chair	quant	1	c3	1	
+# ::edge	chair	ARG1-of	pink-04	c3	p	
+# ::edge	chair	ARG0-of	have-03	c3	h	
+# ::edge	have-03	ARG1	umbrella	h	u	
+# ::edge	and	rel	chair	a	c2	
+(a / and
+    :op1 (c / chair
+        :quant 2
+        :ARG1-of (e / empty-02)
+        :ARG2-of (i / include-91
+            :ARG1 c)
+        :ARG2-of (i2 / include-91
+            :ARG1 (c3 / chair
+                :quant 1
+                :ARG0-of (h / have-03
+                    :ARG1 (u / umbrella))
+                :ARG1-of (p / pink-04)))
+        :mod (b / beach))
+    :op2 c3
+    :rel (c2 / chair
+        :quant 1
+        :mod (b2 / blue)))

@@ -1,0 +1,41 @@
+# ::tok A kitchen sink is under a window and cabinets , with an oven off to the side of the kitchen .
+# ::node	k	kitchen	1-2
+# ::node	s2	sink	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	u	under	4-5
+# ::node	w	window	6-7
+# ::node	a	and	7-8
+# ::node	c	cabinet	8-9
+# ::node	a2	and	9-10
+# ::node	h	have-03	10-11
+# ::node	o2	oven	12-13
+# ::node	o	off	13-14
+# ::node	s	side	16-17
+# ::root	a2	and
+# ::edge	sink	mod	kitchen	s2	k	
+# ::edge	be-located-at-91	ARG1	sink	b	s2	
+# ::edge	be-located-at-91	ARG2	under	b	u	
+# ::edge	and	op1	window	a	w	
+# ::edge	under	op1	and	u	a	
+# ::edge	and	op2	cabinet	a	c	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG0	sink	h	s2	
+# ::edge	have-03	ARG1	oven	h	o2	
+# ::edge	oven	mod	off	o2	o	
+# ::edge	off	location	side	o	s	
+# ::edge	kitchen	part	side	k	s	
+(a2 / and
+    :op1 (b / be-located-at-91
+        :ARG1 (s2 / sink
+            :mod (k / kitchen
+                :part (s / side)))
+        :ARG2 (u / under
+            :op1 (a / and
+                :op1 (w / window)
+                :op2 (c / cabinet))))
+    :op2 (h / have-03
+        :ARG0 s2
+        :ARG1 (o2 / oven
+            :mod (o / off
+                :location s))))

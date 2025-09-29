@@ -1,0 +1,90 @@
+# ::tok Cyclist riding dressed for cold weather in down jacket and long pants next to shipping and receiving yard with 10 - foot fence and line of delivery rigs under street lamps lit for evening .
+# ::node	p2	person	0-1
+# ::node	c2	cycle-01	0-1
+# ::node	r2	ride-01	1-2
+# ::node	d5	dress-01	2-3
+# ::node	c	cold-01	4-5
+# ::node	w	weather	5-6
+# ::node	d4	down	7-8
+# ::node	j	jacket	8-9
+# ::node	a	and	9-10
+# ::node	l4	long-03	10-11
+# ::node	p	pants	11-12
+# ::node	n	next-to	12-13
+# ::node	s	ship-01	14-15
+# ::node	r	receive-01	16-17
+# ::node	y	yard	17-18
+# ::node	y2	yard	17-18
+# ::node	d3	distance-quantity	19-20
+# ::node	0	10	19-20
+# ::node	f2	foot	21-22
+# ::node	f	fence	22-23
+# ::node	l3	line	24-25
+# ::node	d2	deliver-01	26-27
+# ::node	r3	rig	27-28
+# ::node	u	under	28-29
+# ::node	s2	street	29-30
+# ::node	l	light	30-31
+# ::node	l2	light-04	31-32
+# ::node	d	date-entity	33-34
+# ::node	e	evening	33-34
+# ::root	r2	ride-01
+# ::edge	person	ARG0-of	cycle-01	p2	c2	
+# ::edge	ride-01	ARG0	person	r2	p2	
+# ::edge	person	ARG1-of	dress-01	p2	d5	
+# ::edge	weather	ARG1-of	cold-01	w	c	
+# ::edge	dress-01	time	weather	d5	w	
+# ::edge	jacket	mod	down	j	d4	
+# ::edge	and	op1	jacket	a	j	
+# ::edge	dress-01	ARG2	and	d5	a	
+# ::edge	pants	ARG1-of	long-03	p	l4	
+# ::edge	and	op2	pants	a	p	
+# ::edge	ride-01	location	next-to	r2	n	
+# ::edge	yard	ARG1-of	receive-01	y	r	
+# ::edge	yard	ARG2-of	ship-01	y	s	
+# ::edge	next-to	op1	yard	n	y	
+# ::edge	yard	mod	receive-01	y2	r	
+# ::edge	ship-01	op2	yard	s	y2	
+# ::edge	distance-quantity	quant	10	d3	0	
+# ::edge	distance-quantity	unit	foot	d3	f2	
+# ::edge	fence	quant	distance-quantity	f	d3	
+# ::edge	yard	prep-with	fence	y	f	
+# ::edge	yard	prep-with	line	y	l3	
+# ::edge	rig	mod	deliver-01	r3	d2	
+# ::edge	line	consist-of	rig	l3	r3	
+# ::edge	line	location	under	l3	u	
+# ::edge	light	mod	street	l	s2	
+# ::edge	under	op1	light	u	l	
+# ::edge	light	ARG1-of	light-04	l	l2	
+# ::edge	light-04	time	date-entity	l2	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+(r2 / ride-01
+    :ARG0 (p2 / person
+        :ARG0-of (c2 / cycle-01)
+        :ARG1-of (d5 / dress-01
+            :ARG2 (a / and
+                :op1 (j / jacket
+                    :mod (d4 / down))
+                :op2 (p / pants
+                    :ARG1-of (l4 / long-03)))
+            :time (w / weather
+                :ARG1-of (c / cold-01))))
+    :location (n / next-to
+        :op1 (y / yard
+            :ARG1-of (r / receive-01)
+            :ARG2-of (s / ship-01
+                :op2 (y2 / yard
+                    :mod r))
+            :prep-with (f / fence
+                :quant (d3 / distance-quantity
+                    :quant 10
+                    :unit (f2 / foot)))
+            :prep-with (l3 / line
+                :consist-of (r3 / rig
+                    :mod (d2 / deliver-01))
+                :location (u / under
+                    :op1 (l / light
+                        :ARG1-of (l2 / light-04
+                            :time (d / date-entity
+                                :dayperiod (e / evening)))
+                        :mod (s2 / street)))))))

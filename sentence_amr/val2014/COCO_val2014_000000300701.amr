@@ -1,0 +1,38 @@
+# ::tok A person flies a kite on the edge of a coastal cliff while another person stands and watches .
+# ::node	p	person	1-2
+# ::node	f	fly-01	2-3
+# ::node	k	kite	4-5
+# ::node	e	edge	7-8
+# ::node	s	seashore	10-11
+# ::node	c	cliff	11-12
+# ::node	a2	another	13-14
+# ::node	p2	person	14-15
+# ::node	s2	stand-01	15-16
+# ::node	a	and	16-17
+# ::node	w	watch-01	17-18
+# ::root	f	fly-01
+# ::edge	fly-01	ARG0	person	f	p	
+# ::edge	fly-01	ARG1	kite	f	k	
+# ::edge	fly-01	location	edge	f	e	
+# ::edge	cliff	mod	seashore	c	s	
+# ::edge	edge	part-of	cliff	e	c	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	fly-01	time	and	f	a	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	watch-01	ARG1	fly-01	w	f	
+(f / fly-01
+    :ARG0 (p / person)
+    :ARG1 (k / kite)
+    :location (e / edge
+        :part-of (c / cliff
+            :mod (s / seashore)))
+    :time (a / and
+        :op1 (s2 / stand-01
+            :ARG1 (p2 / person
+                :mod (a2 / another)))
+        :op2 (w / watch-01
+            :ARG0 p2
+            :ARG1 f)))

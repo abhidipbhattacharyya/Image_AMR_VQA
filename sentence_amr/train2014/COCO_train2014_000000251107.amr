@@ -1,0 +1,28 @@
+# ::tok some signs on the road showing direction and the names of the street
+# ::node	s3	some	0-1
+# ::node	s2	sign	1-2
+# ::node	r	road	4-5
+# ::node	s	show-01	5-6
+# ::node	d	direction	6-7
+# ::node	a	and	7-8
+# ::node	t	thing	9-10
+# ::node	n	name-01	9-10
+# ::node	s4	street	12-13
+# ::root	s2	sign
+# ::edge	sign	quant	some	s2	s3	
+# ::edge	sign	location	road	s2	r	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	and	op1	direction	a	d	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	name-01	ARG1	street	n	s4	
+(s2 / sign
+    :quant (s3 / some)
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (d / direction)
+            :op2 (t / thing
+                :ARG2-of (n / name-01
+                    :ARG1 (s4 / street)))))
+    :location (r / road))

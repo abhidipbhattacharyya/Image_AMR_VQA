@@ -1,0 +1,22 @@
+# ::tok Plane ascending into atmosphere from mountains and town below
+# ::node	p	plane	0-1
+# ::node	c	climb-01	1-2
+# ::node	a2	atmosphere	3-4
+# ::node	m	mountain	5-6
+# ::node	a	and	6-7
+# ::node	t	town	7-8
+# ::node	b	below	8-9
+# ::root	c	climb-01
+# ::edge	climb-01	ARG1	plane	c	p	
+# ::edge	climb-01	destination	atmosphere	c	a2	
+# ::edge	and	op1	mountain	a	m	
+# ::edge	climb-01	source	and	c	a	
+# ::edge	and	op2	town	a	t	
+# ::edge	town	location	below	t	b	
+(c / climb-01
+    :ARG1 (p / plane)
+    :destination (a2 / atmosphere)
+    :source (a / and
+        :op1 (m / mountain)
+        :op2 (t / town
+            :location (b / below))))

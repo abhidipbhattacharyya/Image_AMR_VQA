@@ -1,0 +1,28 @@
+# ::tok Several types of donuts including cake , glazed and an apple fritter .
+# ::node	s	several	0-1
+# ::node	t	type	1-2
+# ::node	d	donut	3-4
+# ::node	i	include-01	4-5
+# ::node	c	cake	5-6
+# ::node	g	glaze-01	7-8
+# ::node	a	and	8-9
+# ::node	a2	apple	10-11
+# ::node	f	fritter	11-12
+# ::root	i	include-01
+# ::edge	type	mod	several	t	s	
+# ::edge	donut	mod	type	d	t	
+# ::edge	include-01	ARG2	donut	i	d	
+# ::edge	and	op2	glaze-01	a	g	
+# ::edge	and	op1	cake	a	c	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	fritter	mod	apple	f	a2	
+# ::edge	and	op3	fritter	a	f	
+(i / include-01
+    :ARG1 (a / and
+        :op1 (c / cake)
+        :op2 (g / glaze-01)
+        :op3 (f / fritter
+            :mod (a2 / apple)))
+    :ARG2 (d / donut
+        :mod (t / type
+            :mod (s / several))))

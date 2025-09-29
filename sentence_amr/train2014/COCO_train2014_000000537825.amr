@@ -1,0 +1,36 @@
+# ::tok Two cups of cappuccino and two separate dessert treats set out for sharing .
+# ::node	0	2	0-1
+# ::node	v	volume-quantity	1-2
+# ::node	c2	cup	1-2
+# ::node	c	cappuccino	3-4
+# ::node	a	and	4-5
+# ::node	1	2	5-6
+# ::node	s	separate-02	6-7
+# ::node	d	dessert	7-8
+# ::node	t	treat-03	8-9
+# ::node	s2	set-01	9-10
+# ::node	s3	share-01	12-13
+# ::root	s2	set-01
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	cappuccino	quant	volume-quantity	c	v	
+# ::edge	and	op1	cappuccino	a	c	
+# ::edge	treat-03	mod	dessert	t	d	
+# ::edge	treat-03	ARG1-of	separate-02	t	s	
+# ::edge	treat-03	quant	2	t	1	
+# ::edge	and	op2	treat-03	a	t	
+# ::edge	set-01	ARG1	and	s2	a	
+# ::edge	set-01	ARG2	share-01	s2	s3	
+# ::edge	share-01	ARG1	and	s3	a	
+(s2 / set-01
+    :ARG1 (a / and
+        :op1 (c / cappuccino
+            :quant (v / volume-quantity
+                :quant 2
+                :unit (c2 / cup)))
+        :op2 (t / treat-03
+            :quant 2
+            :ARG1-of (s / separate-02)
+            :mod (d / dessert)))
+    :ARG2 (s3 / share-01
+        :ARG1 a))

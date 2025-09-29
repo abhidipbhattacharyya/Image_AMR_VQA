@@ -1,0 +1,33 @@
+# ::tok A plane has a set of steps so that the passengers may exit and return to the ground
+# ::node	p2	plane	1-2
+# ::node	h	have-03	2-3
+# ::node	s	set	4-5
+# ::node	s2	step-01	6-7
+# ::node	p	passenger	10-11
+# ::node	p3	possible-01	11-12
+# ::node	e	exit-01	12-13
+# ::node	a	and	13-14
+# ::node	r	return-01	14-15
+# ::node	g	ground	17-18
+# ::root	h	have-03
+# ::edge	have-03	ARG0	plane	h	p2	
+# ::edge	have-03	ARG1	set	h	s	
+# ::edge	set	consist-of	step-01	s	s2	
+# ::edge	have-03	purpose	possible-01	h	p3	
+# ::edge	exit-01	ARG0	passenger	e	p	
+# ::edge	and	op1	exit-01	a	e	
+# ::edge	possible-01	ARG1	and	p3	a	
+# ::edge	and	op2	return-01	a	r	
+# ::edge	return-01	ARG1	passenger	r	p	
+# ::edge	return-01	ARG4	ground	r	g	
+(h / have-03
+    :purpose (p3 / possible-01
+        :ARG1 (a / and
+            :op1 (e / exit-01
+                :ARG0 (p / passenger))
+            :op2 (r / return-01
+                :ARG1 p
+                :ARG4 (g / ground))))
+    :ARG0 (p2 / plane)
+    :ARG1 (s / set
+        :consist-of (s2 / step-01)))

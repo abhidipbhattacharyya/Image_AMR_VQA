@@ -1,0 +1,33 @@
+# ::tok A sign lit up in the city that says Tokyo Station with symbols .
+# ::node	s2	sign	1-2
+# ::node	l	light-up-08	2-3
+# ::node	c	city	6-7
+# ::node	n	name	6-7
+# ::node	s	say-01	8-9
+# ::node	1	Tokyo	9-10
+# ::node	s3	station	10-11
+# ::node	0	Station	10-11
+# ::node	t	thing	12-13
+# ::node	s4	symbolize-01	12-13
+# ::root	l	light-up-08
+# ::edge	light-up-08	ARG1	sign	l	s2	
+# ::edge	light-up-08	location	city	l	c	
+# ::edge	city	name	name	c	n	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	name	op1	Tokyo	n	1	
+# ::edge	say-01	ARG1	station	s	s3	
+# ::edge	station	name	name	s3	n	
+# ::edge	name	op2	Station	n	0	
+# ::edge	station	consist-of	thing	s3	t	
+# ::edge	thing	ARG1-of	symbolize-01	t	s4	
+(l / light-up-08
+    :ARG1 (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (s3 / station
+                :name (n / name
+                    :op1 "Tokyo"
+                    :op2 "Station")
+                :consist-of (t / thing
+                    :ARG1-of (s4 / symbolize-01)))))
+    :location (c / city
+        :name n))

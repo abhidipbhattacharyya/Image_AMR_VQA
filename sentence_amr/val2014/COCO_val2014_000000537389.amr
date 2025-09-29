@@ -1,0 +1,27 @@
+# ::tok There is a stop sign where one road ends and intersects another .
+# ::node	s2	stop-01	3-4
+# ::node	s	signal-07	4-5
+# ::node	r	road	7-8
+# ::node	r2	road	7-8
+# ::node	e	end-01	8-9
+# ::node	a	and	9-10
+# ::node	i	intersect-01	10-11
+# ::node	a2	another	11-12
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	end-01	ARG1	road	e	r	
+# ::edge	and	op1	end-01	a	e	
+# ::edge	signal-07	location	and	s	a	
+# ::edge	and	op2	intersect-01	a	i	
+# ::edge	intersect-01	ARG1	road	i	r2	
+# ::edge	intersect-01	ARG0	road	i	r	
+# ::edge	road	mod	another	r2	a2	
+(s / signal-07
+    :ARG1 (s2 / stop-01)
+    :location (a / and
+        :op1 (e / end-01
+            :ARG1 (r / road))
+        :op2 (i / intersect-01
+            :ARG0 r
+            :ARG1 (r2 / road
+                :mod (a2 / another)))))

@@ -1,0 +1,106 @@
+# ::tok An oval mirror with wood frame reflects a white room , small bright window , clutter , hanging items on clothes pegs .
+# ::node	o	oval	1-2
+# ::node	m	mirror	2-3
+# ::node	w3	wood	4-5
+# ::node	f	frame	5-6
+# ::node	r	reflect-01	6-7
+# ::node	w	white-03	8-9
+# ::node	r2	room	9-10
+# ::node	a	and	10-11
+# ::node	s	small	11-12
+# ::node	b	bright-02	12-13
+# ::node	w2	window	13-14
+# ::node	c2	clutter	15-16
+# ::node	h	hang-01	17-18
+# ::node	i	item	18-19
+# ::node	c	clothes	20-21
+# ::node	p	peg-01	21-22
+# ::root	r	reflect-01
+# ::edge	mirror	mod	oval	m	o	
+# ::edge	frame	consist-of	wood	f	w3	
+# ::edge	mirror	part	frame	m	f	
+# ::edge	reflect-01	ARG1	mirror	r	m	
+# ::edge	room	ARG1-of	white-03	r2	w	
+# ::edge	and	op1	room	a	r2	
+# ::edge	reflect-01	ARG2	and	r	a	
+# ::edge	window	ARG1-of	bright-02	w2	b	
+# ::edge	window	mod	small	w2	s	
+# ::edge	and	op2	window	a	w2	
+# ::edge	and	op3	clutter	a	c2	
+# ::edge	and	op4	hang-01	a	h	
+# ::edge	hang-01	ARG1	item	h	i	
+# ::edge	peg-01	ARG1	clothes	p	c	
+# ::edge	hang-01	ARG2	peg-01	h	p	
+(r / reflect-01
+    :ARG1 (m / mirror
+        :mod (o / oval)
+        :part (f / frame
+            :consist-of (w3 / wood)))
+    :ARG2 (a / and
+        :op1 (r2 / room
+            :ARG1-of (w / white-03))
+        :op2 (w2 / window
+            :ARG1-of (b / bright-02)
+            :mod (s / small))
+        :op3 (c2 / clutter)
+        :op4 (h / hang-01
+            :ARG1 (i / item)
+            :ARG2 (p / peg-01
+                :ARG1 (c / clothes)))))
+
+
+# ::tok and a camera close to the mirror with a toy bear posed to appear to work it , and a second bear , its face pressed to the glass .
+# ::node	a	and	0-1
+# ::node	c	camera	2-3
+# ::node	c2	close-10	3-4
+# ::node	m	mirror	6-7
+# ::node	t	toy	9-10
+# ::node	b	bear	10-11
+# ::node	p	pose-01	11-12
+# ::node	a3	appear-02	13-14
+# ::node	w	work-01	15-16
+# ::node	a2	and	18-19
+# ::node	o	ordinal-entity	20-21
+# ::node	0	2	20-21
+# ::node	b2	bear	21-22
+# ::node	f	face	24-25
+# ::node	p2	press-01	25-26
+# ::node	g	glass	28-29
+# ::root	a	and
+# ::edge	camera	ARG1-of	close-10	c	c2	
+# ::edge	close-10	ARG2	mirror	c2	m	
+# ::edge	bear	mod	toy	b	t	
+# ::edge	pose-01	ARG1	appear-02	p	a3	
+# ::edge	appear-02	ARG1	work-01	a3	w	
+# ::edge	work-01	ARG0	bear	w	b	
+# ::edge	work-01	ARG1	mirror	w	m	
+# ::edge	and	op2	camera	a2	c	
+# ::edge	and	op1	camera	a2	c	
+# ::edge	and	op2	and	a	a2	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	bear	ord	ordinal-entity	b2	o	
+# ::edge	and	op3	bear	a2	b2	
+# ::edge	bear	part	face	b2	f	
+# ::edge	press-01	ARG1	face	p2	f	
+# ::edge	bear	ARG0-of	press-01	b2	p2	
+# ::edge	press-01	ARG2	glass	p2	g	
+# ::edge	and	rel	pose-01	a	p	
+(a / and
+    :op2 (a2 / and
+        :op1 (c / camera
+            :ARG1-of (c2 / close-10
+                :ARG2 (m / mirror)))
+        :op2 c
+        :op3 (b2 / bear
+            :ARG0-of (p2 / press-01
+                :ARG1 (f / face)
+                :ARG2 (g / glass))
+            :ord (o / ordinal-entity
+                :value 2)
+            :part f))
+    :rel (p / pose-01
+        :ARG1 (a3 / appear-02
+            :ARG1 (w / work-01
+                :ARG0 (b / bear
+                    :mod (t / toy))
+                :ARG1 m))))

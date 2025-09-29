@@ -1,0 +1,50 @@
+# ::tok U.S. military men and women of various ranks , in their service dress , are gathered for a birthday celebration .
+# ::node	c2	country	0-1
+# ::node	n	name	0-1
+# ::node	0	U.S.	0-1
+# ::node	m2	military	1-2
+# ::node	m	man	2-3
+# ::node	a	and	3-4
+# ::node	w2	woman	4-5
+# ::node	v	various	6-7
+# ::node	r	rank	7-8
+# ::node	w	wear-01	9-10
+# ::node	s	service	11-12
+# ::node	d	dress	12-13
+# ::node	g	gather-03	15-16
+# ::node	b	birthday	18-19
+# ::node	c	celebrate-02	19-20
+# ::root	g	gather-03
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	U.S.	n	0	
+# ::edge	military	mod	country	m2	c2	
+# ::edge	man	mod	military	m	m2	
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	woman	mod	military	w2	m2	
+# ::edge	rank	mod	various	r	v	
+# ::edge	and	mod	rank	a	r	
+# ::edge	and	ARG0-of	wear-01	a	w	
+# ::edge	dress	mod	service	d	s	
+# ::edge	wear-01	ARG1	dress	w	d	
+# ::edge	dress	poss	and	d	a	
+# ::edge	gather-03	ARG0	and	g	a	
+# ::edge	celebrate-02	ARG1	birthday	c	b	
+# ::edge	gather-03	purpose	celebrate-02	g	c	
+(g / gather-03
+    :purpose (c / celebrate-02
+        :ARG1 (b / birthday))
+    :ARG0 (a / and
+        :ARG0-of (w / wear-01
+            :ARG1 (d / dress
+                :mod (s / service)
+                :poss a))
+        :mod (r / rank
+            :mod (v / various))
+        :op1 (m / man
+            :mod (m2 / military
+                :mod (c2 / country
+                    :name (n / name
+                        :op1 "U.S."))))
+        :op2 (w2 / woman
+            :mod m2)))

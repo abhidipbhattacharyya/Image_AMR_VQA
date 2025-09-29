@@ -1,0 +1,22 @@
+# ::tok a mirror reflecting all the objects on the other side of the room
+# ::node	m	mirror	1-2
+# ::node	r	reflect-01	2-3
+# ::node	a	all	3-4
+# ::node	o	object	5-6
+# ::node	o2	other	8-9
+# ::node	s	side	9-10
+# ::node	r2	room	12-13
+# ::root	r	reflect-01
+# ::edge	reflect-01	ARG1	mirror	r	m	
+# ::edge	object	mod	all	o	a	
+# ::edge	reflect-01	ARG2	object	r	o	
+# ::edge	side	mod	other	s	o2	
+# ::edge	object	location	side	o	s	
+# ::edge	side	part-of	room	s	r2	
+(r / reflect-01
+    :ARG1 (m / mirror)
+    :ARG2 (o / object
+        :location (s / side
+            :mod (o2 / other)
+            :part-of (r2 / room))
+        :mod (a / all)))

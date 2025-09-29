@@ -1,0 +1,25 @@
+# ::tok Street sign indicating time to stop and street name .
+# ::node	s3	street	0-1
+# ::node	s	sign	1-2
+# ::node	i	indicate-01	2-3
+# ::node	t	time	3-4
+# ::node	s2	stop-01	5-6
+# ::node	a	and	6-7
+# ::node	s4	street	7-8
+# ::node	n	name-01	8-9
+# ::root	s	sign
+# ::edge	sign	location	street	s	s3	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	time	time-of	stop-01	t	s2	
+# ::edge	and	op1	time	a	t	
+# ::edge	indicate-01	ARG1	and	i	a	
+# ::edge	name-01	ARG2	street	n	s4	
+# ::edge	and	op2	name-01	a	n	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (a / and
+            :op1 (t / time
+                :time-of (s2 / stop-01))
+            :op2 (n / name-01
+                :ARG2 (s4 / street))))
+    :location (s3 / street))

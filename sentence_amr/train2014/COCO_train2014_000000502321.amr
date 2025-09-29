@@ -1,0 +1,36 @@
+# ::tok A restaurant with many people seated at tables talking and eating while the waiters work .
+# ::node	r	restaurant	1-2
+# ::node	m	many	3-4
+# ::node	p	person	4-5
+# ::node	s	seat-01	5-6
+# ::node	t	table	7-8
+# ::node	t2	talk-01	8-9
+# ::node	a	and	9-10
+# ::node	e	eat-01	10-11
+# ::node	p2	person	13-14
+# ::node	w	wait-01	13-14
+# ::node	w2	work-01	14-15
+# ::root	r	restaurant
+# ::edge	person	quant	many	p	m	
+# ::edge	seat-01	ARG1	person	s	p	
+# ::edge	seat-01	ARG2	table	s	t	
+# ::edge	person	ARG0-of	talk-01	p	t2	
+# ::edge	and	op1	seat-01	a	s	
+# ::edge	restaurant	location-of	and	r	a	
+# ::edge	and	op2	eat-01	a	e	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	person	ARG0-of	wait-01	p2	w	
+# ::edge	work-01	ARG0	person	w2	p2	
+# ::edge	and	time	work-01	a	w2	
+(r / restaurant
+    :location-of (a / and
+        :op1 (s / seat-01
+            :ARG1 (p / person
+                :quant (m / many)
+                :ARG0-of (t2 / talk-01))
+            :ARG2 (t / table))
+        :op2 (e / eat-01
+            :ARG0 p)
+        :time (w2 / work-01
+            :ARG0 (p2 / person
+                :ARG0-of (w / wait-01)))))

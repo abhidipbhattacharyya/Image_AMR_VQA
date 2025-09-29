@@ -1,0 +1,36 @@
+# ::tok A man sitting in a room that has shelves full of books and he has a remote control in his hand .
+# ::node	m	man	1-2
+# ::node	s2	sit-01	2-3
+# ::node	r2	room	5-6
+# ::node	h2	have-03	7-8
+# ::node	s	shelf	8-9
+# ::node	f	fill-01	9-10
+# ::node	b	book	11-12
+# ::node	a	and	12-13
+# ::node	r	remote	16-17
+# ::node	c	control	17-18
+# ::node	h	hand	20-21
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	room	s2	r2	
+# ::edge	room	ARG0-of	have-03	r2	h2	
+# ::edge	have-03	ARG1	shelf	h2	s	
+# ::edge	shelf	ARG1-of	fill-01	s	f	
+# ::edge	fill-01	ARG2	book	f	b	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	control	mod	remote	c	r	
+# ::edge	control	location	hand	c	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	and	rel	control	a	c	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (m / man
+            :part (h / hand))
+        :ARG2 (r2 / room
+            :ARG0-of (h2 / have-03
+                :ARG1 (s / shelf
+                    :ARG1-of (f / fill-01
+                        :ARG2 (b / book))))))
+    :rel (c / control
+        :location h
+        :mod (r / remote)))

@@ -1,0 +1,24 @@
+# ::tok a train parked next to railway platform with people walking on the platform .
+# ::node	t	train	1-2
+# ::node	p	park-01	2-3
+# ::node	n	next-to	3-4
+# ::node	r	railway	5-6
+# ::node	p3	platform	6-7
+# ::node	p2	person	8-9
+# ::node	w	walk-01	9-10
+# ::root	p	park-01
+# ::edge	park-01	ARG1	train	p	t	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	platform	mod	railway	p3	r	
+# ::edge	next-to	op1	platform	n	p3	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	walk-01	ARG2	platform	w	p3	
+# ::edge	train	location-of	walk-01	t	w	
+(p / park-01
+    :ARG1 (t / train
+        :location-of (w / walk-01
+            :ARG0 (p2 / person)
+            :ARG2 (p3 / platform
+                :mod (r / railway))))
+    :ARG2 (n / next-to
+        :op1 p3))

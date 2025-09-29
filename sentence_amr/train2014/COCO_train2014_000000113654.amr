@@ -1,0 +1,30 @@
+# ::tok Banana stuck in ground as if someone was trying to grow a banana tree .
+# ::node	b	ban-01	0-1
+# ::node	s2	stick-01	1-2
+# ::node	g	ground	3-4
+# ::node	r	resemble-01	4-5
+# ::node	s	someone	6-7
+# ::node	t2	try-01	8-9
+# ::node	g2	grow-03	10-11
+# ::node	b2	banana	12-13
+# ::node	t	tree	13-14
+# ::root	s2	stick-01
+# ::edge	stick-01	ARG1	ban-01	s2	b	
+# ::edge	stick-01	ARG2	ground	s2	g	
+# ::edge	stick-01	ARG1-of	resemble-01	s2	r	
+# ::edge	try-01	ARG0	someone	t2	s	
+# ::edge	resemble-01	ARG2	try-01	r	t2	
+# ::edge	try-01	ARG1	grow-03	t2	g2	
+# ::edge	grow-03	ARG0	someone	g2	s	
+# ::edge	tree	mod	banana	t	b2	
+# ::edge	grow-03	ARG1	tree	g2	t	
+(s2 / stick-01
+    :ARG1 (b / ban-01)
+    :ARG1-of (r / resemble-01
+        :ARG2 (t2 / try-01
+            :ARG0 (s / someone)
+            :ARG1 (g2 / grow-03
+                :ARG0 s
+                :ARG1 (t / tree
+                    :mod (b2 / banana)))))
+    :ARG2 (g / ground))

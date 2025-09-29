@@ -1,0 +1,40 @@
+# ::tok A street pole with a street sign on it that says B 86 Street , and a lamp post in the distance .
+# ::node	s3	street	1-2
+# ::node	p	pole	2-3
+# ::node	s4	street	5-6
+# ::node	s2	sign	6-7
+# ::node	s	say-01	10-11
+# ::node	s6	string-entity	11-12
+# ::node	1	B	11-12
+# ::node	0	86	12-13
+# ::node	s5	street	13-14
+# ::node	a	and	15-16
+# ::node	l	lamp	17-18
+# ::node	p2	post	18-19
+# ::node	d	distance	21-22
+# ::root	a	and
+# ::edge	pole	mod	street	p	s3	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	pole	location-of	sign	p	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	string-entity	s	s6	
+# ::edge	string-entity	value	B	s6	1	
+# ::edge	string-entity	value	86	s6	0	
+# ::edge	string-entity	part-of	street	s6	s5	
+# ::edge	and	op1	pole	a	p	
+# ::edge	post	mod	lamp	p2	l	
+# ::edge	and	op2	post	a	p2	
+# ::edge	post	location	distance	p2	d	
+(a / and
+    :op1 (p / pole
+        :location-of (s2 / sign
+            :ARG0-of (s / say-01
+                :ARG1 (s6 / string-entity
+                    :part-of (s5 / street)
+                    :value "B"
+                    :value 86))
+            :mod (s4 / street))
+        :mod (s3 / street))
+    :op2 (p2 / post
+        :location (d / distance)
+        :mod (l / lamp)))

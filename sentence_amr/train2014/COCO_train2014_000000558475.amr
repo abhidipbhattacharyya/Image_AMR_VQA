@@ -1,0 +1,30 @@
+# ::tok Traffic sign on a street corner that indicates cyclists must stop .
+# ::node	t	traffic	0-1
+# ::node	s	signal-07	1-2
+# ::node	s3	street	4-5
+# ::node	c	corner	5-6
+# ::node	i	indicate-01	7-8
+# ::node	p	person	8-9
+# ::node	c2	cycle-01	8-9
+# ::node	o	obligate-01	9-10
+# ::node	s2	stop-01	10-11
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	traffic	s	t	
+# ::edge	corner	op1	street	c	s3	
+# ::edge	signal-07	location	corner	s	c	
+# ::edge	signal-07	ARG0-of	indicate-01	s	i	
+# ::edge	person	ARG0-of	cycle-01	p	c2	
+# ::edge	obligate-01	ARG1	person	o	p	
+# ::edge	indicate-01	ARG1	obligate-01	i	o	
+# ::edge	obligate-01	ARG2	stop-01	o	s2	
+# ::edge	stop-01	ARG0	person	s2	p	
+(s / signal-07
+    :ARG0-of (i / indicate-01
+        :ARG1 (o / obligate-01
+            :ARG1 (p / person
+                :ARG0-of (c2 / cycle-01))
+            :ARG2 (s2 / stop-01
+                :ARG0 p)))
+    :ARG1 (t / traffic)
+    :location (c / corner
+        :op1 (s3 / street)))

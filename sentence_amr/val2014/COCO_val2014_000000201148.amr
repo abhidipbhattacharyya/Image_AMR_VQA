@@ -1,0 +1,25 @@
+# ::tok A train is approaching a train signal in an area with several tracks .
+# ::node	t2	train	1-2
+# ::node	a	approach-01	3-4
+# ::node	t3	train	5-6
+# ::node	s2	signal-07	6-7
+# ::node	a2	area	9-10
+# ::node	h	have-03	10-11
+# ::node	s	several	11-12
+# ::node	t	track	12-13
+# ::root	a	approach-01
+# ::edge	approach-01	ARG1	train	a	t2	
+# ::edge	signal-07	ARG1	train	s2	t3	
+# ::edge	approach-01	ARG2	signal-07	a	s2	
+# ::edge	approach-01	location	area	a	a2	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	track	quant	several	t	s	
+# ::edge	have-03	ARG1	track	h	t	
+(a / approach-01
+    :ARG1 (t2 / train)
+    :ARG2 (s2 / signal-07
+        :ARG1 (t3 / train))
+    :location (a2 / area
+        :ARG0-of (h / have-03
+            :ARG1 (t / track
+                :quant (s / several)))))

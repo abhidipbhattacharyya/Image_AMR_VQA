@@ -1,0 +1,28 @@
+# ::tok The monkey is climbing the rope going toward the vase while the bird holds a bowl of fruit .
+# ::node	m	monkey	1-2
+# ::node	c	climb-01	3-4
+# ::node	r	rope	5-6
+# ::node	g	go-01	6-7
+# ::node	v	vase	9-10
+# ::node	b	bird	12-13
+# ::node	h	hold-01	13-14
+# ::node	b2	bowl	15-16
+# ::node	f	fruit	17-18
+# ::root	c	climb-01
+# ::edge	climb-01	ARG0	monkey	c	m	
+# ::edge	climb-01	ARG1	rope	c	r	
+# ::edge	rope	ARG1-of	go-01	r	g	
+# ::edge	go-01	ARG4	vase	g	v	
+# ::edge	hold-01	ARG0	bird	h	b	
+# ::edge	climb-01	time	hold-01	c	h	
+# ::edge	hold-01	ARG1	bowl	h	b2	
+# ::edge	bowl	consist-of	fruit	b2	f	
+(c / climb-01
+    :ARG0 (m / monkey)
+    :ARG1 (r / rope
+        :ARG1-of (g / go-01
+            :ARG4 (v / vase)))
+    :time (h / hold-01
+        :ARG0 (b / bird)
+        :ARG1 (b2 / bowl
+            :consist-of (f / fruit))))

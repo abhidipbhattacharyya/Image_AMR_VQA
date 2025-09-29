@@ -1,0 +1,41 @@
+# ::tok Sheep with red and blue areas on their coats sit near a rock wall .
+# ::node	l	lamb	0-1
+# ::node	h	have-03	1-2
+# ::node	r	red-02	2-3
+# ::node	a	and	3-4
+# ::node	b	blue	4-5
+# ::node	a2	area	5-6
+# ::node	a3	area	5-6
+# ::node	c	coat-01	8-9
+# ::node	s	sit-01	9-10
+# ::node	n	near-01	10-11
+# ::node	r2	rock	12-13
+# ::node	w	wall	13-14
+# ::root	s	sit-01
+# ::edge	lamb	ARG0-of	have-03	l	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	area	a	a2	
+# ::edge	area	ARG1-of	red-02	a2	r	
+# ::edge	area	mod	blue	a3	b	
+# ::edge	and	op2	area	a	a3	
+# ::edge	and	location	coat-01	a	c	
+# ::edge	coat-01	ARG1	lamb	c	l	
+# ::edge	sit-01	ARG1	lamb	s	l	
+# ::edge	sit-01	ARG2	near-01	s	n	
+# ::edge	near-01	ARG1	lamb	n	l	
+# ::edge	wall	consist-of	rock	w	r2	
+# ::edge	near-01	ARG2	wall	n	w	
+(s / sit-01
+    :ARG1 (l / lamb
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :location (c / coat-01
+                    :ARG1 l)
+                :op1 (a2 / area
+                    :ARG1-of (r / red-02))
+                :op2 (a3 / area
+                    :mod (b / blue)))))
+    :ARG2 (n / near-01
+        :ARG1 l
+        :ARG2 (w / wall
+            :consist-of (r2 / rock))))

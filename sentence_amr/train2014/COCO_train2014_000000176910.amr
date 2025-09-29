@@ -1,0 +1,33 @@
+# ::tok Crowd looks on as hitter and catcher prepare to receive the pitch
+# ::node	c2	crowd	0-1
+# ::node	l	look-01	1-2
+# ::node	p	person	4-5
+# ::node	h	hit-01	4-5
+# ::node	a	and	5-6
+# ::node	p2	person	6-7
+# ::node	c	catch-01	6-7
+# ::node	p4	prepare-02	7-8
+# ::node	r	receive-01	9-10
+# ::node	p3	pitch	11-12
+# ::root	l	look-01
+# ::edge	look-01	ARG0	crowd	l	c2	
+# ::edge	person	ARG0-of	hit-01	p	h	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	prepare-02	ARG0	and	p4	a	
+# ::edge	look-01	ARG1	prepare-02	l	p4	
+# ::edge	prepare-02	ARG2	receive-01	p4	r	
+# ::edge	receive-01	ARG0	and	r	a	
+# ::edge	receive-01	ARG1	pitch	r	p3	
+(l / look-01
+    :ARG0 (c2 / crowd)
+    :ARG1 (p4 / prepare-02
+        :ARG0 (a / and
+            :op1 (p / person
+                :ARG0-of (h / hit-01))
+            :op2 (p2 / person
+                :ARG0-of (c / catch-01)))
+        :ARG2 (r / receive-01
+            :ARG0 a
+            :ARG1 (p3 / pitch))))

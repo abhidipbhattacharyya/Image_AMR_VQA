@@ -1,0 +1,45 @@
+# ::tok A street in an Asian city at night time , with signs on the store fronts all written in Asian characters .
+# ::node	s3	street	1-2
+# ::node	c3	continent	4-5
+# ::node	n	name	4-5
+# ::node	0	Asia	4-5
+# ::node	c2	city	5-6
+# ::node	d	date-entity	7-8
+# ::node	n2	night	7-8
+# ::node	h	have-03	10-11
+# ::node	s	sign	11-12
+# ::node	s2	store	14-15
+# ::node	f	front	15-16
+# ::node	a	all	16-17
+# ::node	w	write-01	17-18
+# ::node	c	character	20-21
+# ::root	s3	street
+# ::edge	continent	name	name	c3	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	city	mod	continent	c2	c3	
+# ::edge	street	location	city	s3	c2	
+# ::edge	street	time	date-entity	s3	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	front	part-of	store	f	s2	
+# ::edge	sign	location	front	s	f	
+# ::edge	sign	mod	all	s	a	
+# ::edge	sign	ARG1-of	write-01	s	w	
+# ::edge	write-01	medium	character	w	c	
+# ::edge	character	mod	continent	c	c3	
+(s3 / street
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :ARG1-of (w / write-01
+                :medium (c / character
+                    :mod (c3 / continent
+                        :name (n / name
+                            :op1 "Asia"))))
+            :location (f / front
+                :part-of (s2 / store))
+            :mod (a / all)))
+    :location (c2 / city
+        :mod c3)
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

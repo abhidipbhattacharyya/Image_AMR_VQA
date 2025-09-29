@@ -1,0 +1,44 @@
+# ::tok A group of people gather in front of a television while other sit and stand at a dining room table .
+# ::node	g2	group	1-2
+# ::node	p	person	3-4
+# ::node	g	gather-03	4-5
+# ::node	i	in-front-of	6-7
+# ::node	t2	television	9-10
+# ::node	o	other	11-12
+# ::node	s	sit-01	12-13
+# ::node	a	and	13-14
+# ::node	a2	and	13-14
+# ::node	s2	stand-01	14-15
+# ::node	d	dine-01	17-18
+# ::node	r	room	18-19
+# ::node	t	table	19-20
+# ::root	a	and
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	gather-03	ARG0	group	g	g2	
+# ::edge	gather-03	location	in-front-of	g	i	
+# ::edge	in-front-of	op1	television	i	t2	
+# ::edge	sit-01	ARG1	other	s	o	
+# ::edge	and	op1	gather-03	a	g	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	and	op2	stand-01	a2	s2	
+# ::edge	stand-01	ARG1	other	s2	o	
+# ::edge	room	mod	dine-01	r	d	
+# ::edge	table	location	room	t	r	
+# ::edge	stand-01	ARG2	table	s2	t	
+# ::edge	sit-01	ARG2	table	s	t	
+(a / and
+    :op1 (g / gather-03
+        :ARG0 (g2 / group
+            :consist-of (p / person))
+        :location (i / in-front-of
+            :op1 (t2 / television)))
+    :op2 (a2 / and
+        :op1 (s / sit-01
+            :ARG1 (o / other)
+            :ARG2 (t / table
+                :location (r / room
+                    :mod (d / dine-01))))
+        :op2 (s2 / stand-01
+            :ARG1 o
+            :ARG2 t)))

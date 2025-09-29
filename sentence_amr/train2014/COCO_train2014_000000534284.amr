@@ -1,0 +1,33 @@
+# ::tok Three mosaic glass windows with an urn in front of one of them .
+# ::node	1	3	0-1
+# ::node	m	mosaic	1-2
+# ::node	g	glass	2-3
+# ::node	w	window	3-4
+# ::node	w2	window	3-4
+# ::node	h	have-03	4-5
+# ::node	u	urn	6-7
+# ::node	i	in-front-of	8-9
+# ::node	0	1	10-11
+# ::node	i2	include-91	11-12
+# ::root	h	have-03
+# ::edge	glass	mod	mosaic	g	m	
+# ::edge	window	mod	glass	w	g	
+# ::edge	window	quant	3	w	1	
+# ::edge	have-03	ARG0	window	h	w	
+# ::edge	have-03	ARG1	urn	h	u	
+# ::edge	urn	location	in-front-of	u	i	
+# ::edge	in-front-of	op1	window	i	w2	
+# ::edge	window	quant	1	w2	0	
+# ::edge	window	ARG1-of	include-91	w2	i2	
+# ::edge	include-91	ARG2	window	i2	w	
+(h / have-03
+    :ARG0 (w / window
+        :quant 3
+        :mod (g / glass
+            :mod (m / mosaic)))
+    :ARG1 (u / urn
+        :location (i / in-front-of
+            :op1 (w2 / window
+                :quant 1
+                :ARG1-of (i2 / include-91
+                    :ARG2 w)))))

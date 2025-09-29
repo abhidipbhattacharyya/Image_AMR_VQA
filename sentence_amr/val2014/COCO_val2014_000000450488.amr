@@ -1,0 +1,43 @@
+# ::tok A big bed sits in a living area with a ceiling fan , dresser , television set and wastepaper basket .
+# ::node	b3	big	1-2
+# ::node	b2	bed	2-3
+# ::node	s2	sit-01	3-4
+# ::node	l	living	6-7
+# ::node	a2	area	7-8
+# ::node	c	ceiling	10-11
+# ::node	f	fan	11-12
+# ::node	d	dresser	13-14
+# ::node	t	television	15-16
+# ::node	s	set	16-17
+# ::node	a	and	17-18
+# ::node	p	paper	18-19
+# ::node	w	waste-01	18-19
+# ::node	b	basket	19-20
+# ::root	s2	sit-01
+# ::edge	bed	mod	big	b2	b3	
+# ::edge	sit-01	ARG1	bed	s2	b2	
+# ::edge	area	mod	living	a2	l	
+# ::edge	sit-01	ARG2	area	s2	a2	
+# ::edge	fan	mod	ceiling	f	c	
+# ::edge	set	mod	television	s	t	
+# ::edge	and	op3	set	a	s	
+# ::edge	and	op2	dresser	a	d	
+# ::edge	and	op1	fan	a	f	
+# ::edge	area	accompanier	and	a2	a	
+# ::edge	paper	ARG1-of	waste-01	p	w	
+# ::edge	basket	purpose	paper	b	p	
+# ::edge	and	op4	basket	a	b	
+(s2 / sit-01
+    :ARG1 (b2 / bed
+        :mod (b3 / big))
+    :ARG2 (a2 / area
+        :accompanier (a / and
+            :op1 (f / fan
+                :mod (c / ceiling))
+            :op2 (d / dresser)
+            :op3 (s / set
+                :mod (t / television))
+            :op4 (b / basket
+                :purpose (p / paper
+                    :ARG1-of (w / waste-01))))
+        :mod (l / living)))

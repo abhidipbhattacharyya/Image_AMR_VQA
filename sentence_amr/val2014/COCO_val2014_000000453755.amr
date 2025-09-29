@@ -1,0 +1,38 @@
+# ::tok All kinds of silverware , dishes , cups , and other things completely covering the table .
+# ::node	a	all	0-1
+# ::node	k	kind	1-2
+# ::node	s	silverware	3-4
+# ::node	d	dish	5-6
+# ::node	c3	cup	7-8
+# ::node	a2	and	9-10
+# ::node	o	other	10-11
+# ::node	t2	thing	11-12
+# ::node	c	complete-02	12-13
+# ::node	c2	cover-02	13-14
+# ::node	t	table	15-16
+# ::root	c2	cover-02
+# ::edge	kind	mod	all	k	a	
+# ::edge	silverware	mod	kind	s	k	
+# ::edge	dish	mod	kind	d	k	
+# ::edge	cup	mod	kind	c3	k	
+# ::edge	and	op3	cup	a2	c3	
+# ::edge	and	op2	dish	a2	d	
+# ::edge	and	op1	silverware	a2	s	
+# ::edge	thing	mod	other	t2	o	
+# ::edge	and	op4	thing	a2	t2	
+# ::edge	cover-02	ARG1-of	complete-02	c2	c	
+# ::edge	cover-02	ARG2	and	c2	a2	
+# ::edge	cover-02	ARG1	table	c2	t	
+(c2 / cover-02
+    :ARG1 (t / table)
+    :ARG1-of (c / complete-02)
+    :ARG2 (a2 / and
+        :op1 (s / silverware
+            :mod (k / kind
+                :mod (a / all)))
+        :op2 (d / dish
+            :mod k)
+        :op3 (c3 / cup
+            :mod k)
+        :op4 (t2 / thing
+            :mod (o / other))))

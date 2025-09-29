@@ -1,0 +1,37 @@
+# ::tok a baseball player running to first base with a the defensive player catching the ball
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	r	run-02	3-4
+# ::node	o	ordinal-entity	5-6
+# ::node	0	1	5-6
+# ::node	b2	base	6-7
+# ::node	d	defend-01	10-11
+# ::node	p2	person	11-12
+# ::node	p4	play-01	11-12
+# ::node	c	catch-01	12-13
+# ::node	b	ball	14-15
+# ::root	r	run-02
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b3	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b2	o	
+# ::edge	run-02	destination	base	r	b2	
+# ::edge	person	ARG0-of	defend-01	p2	d	
+# ::edge	run-02	accompanier	person	r	p2	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	catch-01	ARG1	ball	c	b	
+(r / run-02
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b3 / baseball)))
+    :accompanier (p2 / person
+        :ARG0-of (d / defend-01)
+        :ARG0-of (p4 / play-01)
+        :ARG0-of (c / catch-01
+            :ARG1 (b / ball)))
+    :destination (b2 / base
+        :ord (o / ordinal-entity
+            :value 1)))

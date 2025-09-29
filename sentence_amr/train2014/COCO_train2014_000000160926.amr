@@ -1,0 +1,37 @@
+# ::tok A couple pieces of french toast and a cup of maple syrup .
+# ::node	c2	couple	1-2
+# ::node	p	piece	2-3
+# ::node	c	country	4-5
+# ::node	n	name	4-5
+# ::node	1	France	4-5
+# ::node	t	toast	5-6
+# ::node	a	and	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	c3	cup	8-9
+# ::node	m	maple	10-11
+# ::node	s	syrup	11-12
+# ::root	a	and
+# ::edge	piece	quant	couple	p	c2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	1	
+# ::edge	toast	mod	country	t	c	
+# ::edge	piece	consist-of	toast	p	t	
+# ::edge	and	op1	piece	a	p	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	syrup	mod	maple	s	m	
+# ::edge	syrup	quant	volume-quantity	s	v	
+# ::edge	and	op2	syrup	a	s	
+(a / and
+    :op1 (p / piece
+        :quant (c2 / couple)
+        :consist-of (t / toast
+            :mod (c / country
+                :name (n / name
+                    :op1 "France"))))
+    :op2 (s / syrup
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c3 / cup))
+        :mod (m / maple)))

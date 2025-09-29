@@ -1,0 +1,37 @@
+# ::tok Dinner table with three pizzas with various toppings , a salad and drinks .
+# ::node	d	date-entity	0-1
+# ::node	n	night	0-1
+# ::node	t	table	1-2
+# ::node	0	3	3-4
+# ::node	p	pizzeria	4-5
+# ::node	v	various	6-7
+# ::node	f	food-dish	7-8
+# ::node	t3	top-01	7-8
+# ::node	s	salad	10-11
+# ::node	a	and	11-12
+# ::node	t2	thing	12-13
+# ::node	d2	drink-01	12-13
+# ::root	t	table
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	table	time	date-entity	t	d	
+# ::edge	pizzeria	quant	3	p	0	
+# ::edge	food-dish	mod	various	f	v	
+# ::edge	pizzeria	mod	food-dish	p	f	
+# ::edge	food-dish	ARG2-of	top-01	f	t3	
+# ::edge	and	op2	salad	a	s	
+# ::edge	and	op1	pizzeria	a	p	
+# ::edge	table	accompanier	and	t	a	
+# ::edge	and	op3	thing	a	t2	
+# ::edge	thing	ARG1-of	drink-01	t2	d2	
+(t / table
+    :accompanier (a / and
+        :op1 (p / pizzeria
+            :quant 3
+            :mod (f / food-dish
+                :ARG2-of (t3 / top-01)
+                :mod (v / various)))
+        :op2 (s / salad)
+        :op3 (t2 / thing
+            :ARG1-of (d2 / drink-01)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

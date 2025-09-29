@@ -1,0 +1,22 @@
+# ::tok Commuter bus near bus stop with passengers waiting .
+# ::node	c	commute-01	0-1
+# ::node	b	bus	1-2
+# ::node	n	near-02	2-3
+# ::node	b2	bus	3-4
+# ::node	s	stop-01	4-5
+# ::node	p	passenger	6-7
+# ::node	w	wait-01	7-8
+# ::root	b	bus
+# ::edge	bus	ARG0-of	commute-01	b	c	
+# ::edge	bus	ARG1-of	near-02	b	n	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	near-02	ARG2	stop-01	n	s	
+# ::edge	wait-01	ARG1	passenger	w	p	
+# ::edge	bus	ARG2-of	wait-01	b	w	
+(b / bus
+    :ARG0-of (c / commute-01)
+    :ARG1-of (n / near-02
+        :ARG2 (s / stop-01
+            :ARG1 (b2 / bus)))
+    :ARG2-of (w / wait-01
+        :ARG1 (p / passenger)))

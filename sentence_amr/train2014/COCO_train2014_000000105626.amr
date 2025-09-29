@@ -1,0 +1,27 @@
+# ::tok A wall mount clock with a wall street sign on the front of a building .
+# ::node	w	wall	1-2
+# ::node	m	mount-03	2-3
+# ::node	c	clock	3-4
+# ::node	h	have-03	4-5
+# ::node	s2	street	7-8
+# ::node	s	sign	8-9
+# ::node	f	front	11-12
+# ::node	b	building	14-15
+# ::root	c	clock
+# ::edge	mount-03	ARG2	wall	m	w	
+# ::edge	clock	ARG1-of	mount-03	c	m	
+# ::edge	clock	ARG0-of	have-03	c	h	
+# ::edge	sign	mod	street	s	s2	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	mod	wall	s	w	
+# ::edge	clock	location	front	c	f	
+# ::edge	front	part-of	building	f	b	
+(c / clock
+    :ARG0-of (h / have-03
+        :ARG1 (s / sign
+            :mod (s2 / street)
+            :mod (w / wall)))
+    :ARG1-of (m / mount-03
+        :ARG2 w)
+    :location (f / front
+        :part-of (b / building)))

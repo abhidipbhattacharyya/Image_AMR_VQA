@@ -1,0 +1,33 @@
+# ::tok Little league baseball game with batter ready to strike incoming ball .
+# ::node	l2	little	0-1
+# ::node	l	league	1-2
+# ::node	b2	baseball	2-3
+# ::node	g	game	3-4
+# ::node	p	person	5-6
+# ::node	b3	batter-01	5-6
+# ::node	r	ready-02	6-7
+# ::node	s	strike-01	8-9
+# ::node	i	incoming	9-10
+# ::node	b	ball	10-11
+# ::root	g	game
+# ::edge	league	mod	little	l	l2	
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	game	mod	league	g	l	
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	ready-02	ARG1	person	r	p	
+# ::edge	game	location-of	ready-02	g	r	
+# ::edge	ready-02	ARG2	strike-01	r	s	
+# ::edge	strike-01	ARG0	person	s	p	
+# ::edge	ball	mod	incoming	b	i	
+# ::edge	strike-01	ARG1	ball	s	b	
+(g / game
+    :location-of (r / ready-02
+        :ARG1 (p / person
+            :ARG0-of (b3 / batter-01))
+        :ARG2 (s / strike-01
+            :ARG0 p
+            :ARG1 (b / ball
+                :mod (i / incoming))))
+    :mod (b2 / baseball)
+    :mod (l / league
+        :mod (l2 / little)))

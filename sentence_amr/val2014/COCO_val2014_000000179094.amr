@@ -1,0 +1,25 @@
+# ::tok Many umbrellas waiting for any downpour from the next storm .
+# ::node	m	many	0-1
+# ::node	u	umbrella	1-2
+# ::node	w	wait-01	2-3
+# ::node	a	any	4-5
+# ::node	p	pour-02	5-6
+# ::node	d	down	5-6
+# ::node	n	next	8-9
+# ::node	s	storm	9-10
+# ::root	w	wait-01
+# ::edge	umbrella	quant	many	u	m	
+# ::edge	wait-01	ARG1	umbrella	w	u	
+# ::edge	pour-02	mod	any	p	a	
+# ::edge	wait-01	ARG2	pour-02	w	p	
+# ::edge	pour-02	direction	down	p	d	
+# ::edge	storm	mod	next	s	n	
+# ::edge	pour-02	ARG1	storm	p	s	
+(w / wait-01
+    :ARG1 (u / umbrella
+        :quant (m / many))
+    :ARG2 (p / pour-02
+        :ARG1 (s / storm
+            :mod (n / next))
+        :direction (d / down)
+        :mod (a / any)))

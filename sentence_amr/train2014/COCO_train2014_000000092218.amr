@@ -1,0 +1,41 @@
+# ::tok A person walking near a black door holds a board under his arm and carries a backpack .
+# ::node	p	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	n	near-02	3-4
+# ::node	b2	black-04	5-6
+# ::node	d	door	6-7
+# ::node	h	hold-01	7-8
+# ::node	b3	board	9-10
+# ::node	u	under	10-11
+# ::node	a2	arm	12-13
+# ::node	a	and	13-14
+# ::node	c	carry-01	14-15
+# ::node	b	backpack	16-17
+# ::root	a	and
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	ARG1-of	near-02	w	n	
+# ::edge	door	ARG1-of	black-04	d	b2	
+# ::edge	near-02	ARG2	door	n	d	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	board	h	b3	
+# ::edge	hold-01	location	under	h	u	
+# ::edge	under	op1	arm	u	a2	
+# ::edge	person	part	arm	p	a2	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	and	op2	carry-01	a	c	
+# ::edge	carry-01	ARG0	person	c	p	
+# ::edge	carry-01	ARG1	backpack	c	b	
+(a / and
+    :op1 (h / hold-01
+        :ARG0 (p / person
+            :ARG0-of (w / walk-01
+                :ARG1-of (n / near-02
+                    :ARG2 (d / door
+                        :ARG1-of (b2 / black-04))))
+            :part (a2 / arm))
+        :ARG1 (b3 / board)
+        :location (u / under
+            :op1 a2))
+    :op2 (c / carry-01
+        :ARG0 p
+        :ARG1 (b / backpack)))

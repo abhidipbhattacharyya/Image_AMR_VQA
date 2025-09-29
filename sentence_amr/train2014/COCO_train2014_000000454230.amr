@@ -1,0 +1,42 @@
+# ::tok Traffic sign showing ahead and to the right on Boulevard Saint - Laurent .
+# ::node	t	traffic	0-1
+# ::node	s2	sign	1-2
+# ::node	s	show-01	2-3
+# ::node	a	ahead	3-4
+# ::node	a2	and	4-5
+# ::node	r	right-04	7-8
+# ::node	r2	road	9-10
+# ::node	n	name	9-10
+# ::node	0	Boulevard	9-10
+# ::node	p	province	10-11
+# ::node	2	Saint	10-11
+# ::node	n2	name	12-13
+# ::node	1	Laurent	12-13
+# ::root	s	show-01
+# ::edge	sign	topic	traffic	s2	t	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	and	op1	ahead	a2	a	
+# ::edge	show-01	ARG1	and	s	a2	
+# ::edge	and	op2	right-04	a2	r	
+# ::edge	and	location	road	a2	r2	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op1	Boulevard	n	0	
+# ::edge	road	mod	province	r2	p	
+# ::edge	name	op2	Saint	n	2	
+# ::edge	name	op1	province	n2	p	
+# ::edge	province	name	name	p	n2	
+# ::edge	name	op3	Laurent	n	1	
+(s / show-01
+    :ARG0 (s2 / sign
+        :topic (t / traffic))
+    :ARG1 (a2 / and
+        :location (r2 / road
+            :name (n / name
+                :op1 "Boulevard"
+                :op2 "Saint"
+                :op3 "Laurent")
+            :mod (p / "province"
+                :name (n2 / name
+                    :op1 p)))
+        :op1 (a / ahead)
+        :op2 (r / right-04)))

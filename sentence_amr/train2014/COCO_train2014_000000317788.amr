@@ -1,0 +1,25 @@
+# ::tok An airport lobby with travelers transporting luggage and backpacks .
+# ::node	a	airport	1-2
+# ::node	l	lobby-01	2-3
+# ::node	p	person	4-5
+# ::node	t2	travel-01	4-5
+# ::node	t	transport-01	5-6
+# ::node	l2	luggage	6-7
+# ::node	a2	and	7-8
+# ::node	b	back	8-9
+# ::root	l	lobby-01
+# ::edge	lobby-01	location	airport	l	a	
+# ::edge	lobby-01	ARG0	person	l	p	
+# ::edge	person	ARG0-of	travel-01	p	t2	
+# ::edge	person	ARG0-of	transport-01	p	t	
+# ::edge	and	op1	luggage	a2	l2	
+# ::edge	transport-01	ARG1	and	t	a2	
+# ::edge	and	op2	back	a2	b	
+(l / lobby-01
+    :ARG0 (p / person
+        :ARG0-of (t2 / travel-01)
+        :ARG0-of (t / transport-01
+            :ARG1 (a2 / and
+                :op1 (l2 / luggage)
+                :op2 (b / back))))
+    :location (a / airport))

@@ -1,0 +1,24 @@
+# ::tok A blue bus is crossing the intersection with various vehicles behind it .
+# ::node	b2	blue	1-2
+# ::node	b3	bus	2-3
+# ::node	c	cross-02	4-5
+# ::node	i	intersect-01	6-7
+# ::node	v	various	8-9
+# ::node	v2	vehicle	9-10
+# ::node	b	behind	10-11
+# ::root	c	cross-02
+# ::edge	bus	mod	blue	b3	b2	
+# ::edge	cross-02	ARG0	bus	c	b3	
+# ::edge	cross-02	ARG1	intersect-01	c	i	
+# ::edge	vehicle	mod	various	v2	v	
+# ::edge	behind	location-of	vehicle	b	v2	
+# ::edge	cross-02	location	behind	c	b	
+# ::edge	behind	op1	bus	b	b3	
+(c / cross-02
+    :ARG0 (b3 / bus
+        :mod (b2 / blue))
+    :ARG1 (i / intersect-01)
+    :location (b / behind
+        :location-of (v2 / vehicle
+            :mod (v / various))
+        :op1 b3))

@@ -1,0 +1,28 @@
+# ::tok There are two time clocks and three weather related meters on display .
+# ::node	0	2	2-3
+# ::node	t	time	3-4
+# ::node	s	sign	4-5
+# ::node	a	and	5-6
+# ::node	1	3	6-7
+# ::node	w	weather	7-8
+# ::node	r	relate-01	8-9
+# ::node	m	meter	9-10
+# ::node	d	display-01	11-12
+# ::root	d	display-01
+# ::edge	sign	mod	time	s	t	
+# ::edge	sign	quant	2	s	0	
+# ::edge	and	op1	sign	a	s	
+# ::edge	relate-01	ARG2	weather	r	w	
+# ::edge	meter	ARG1-of	relate-01	m	r	
+# ::edge	meter	quant	3	m	1	
+# ::edge	and	op2	meter	a	m	
+# ::edge	display-01	ARG1	and	d	a	
+(d / display-01
+    :ARG1 (a / and
+        :op1 (s / sign
+            :quant 2
+            :mod (t / time))
+        :op2 (m / meter
+            :quant 3
+            :ARG1-of (r / relate-01
+                :ARG2 (w / weather)))))

@@ -1,0 +1,30 @@
+# ::tok A billboard showing zebras on a bridge and cars in a traffic jam below it
+# ::node	b2	billboard	1-2
+# ::node	s	show-01	2-3
+# ::node	g	giraffe	3-4
+# ::node	b3	bridge	6-7
+# ::node	a	and	7-8
+# ::node	c	car	8-9
+# ::node	t	traffic	11-12
+# ::node	j	jam-01	12-13
+# ::node	b	below	13-14
+# ::root	s	show-01
+# ::edge	show-01	ARG0	billboard	s	b2	
+# ::edge	giraffe	location	bridge	g	b3	
+# ::edge	and	op1	giraffe	a	g	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	jam-01	ARG1	traffic	j	t	
+# ::edge	car	location	jam-01	c	j	
+# ::edge	jam-01	location	below	j	b	
+# ::edge	below	op1	bridge	b	b3	
+(s / show-01
+    :ARG0 (b2 / billboard)
+    :ARG1 (a / and
+        :op1 (g / giraffe
+            :location (b3 / bridge))
+        :op2 (c / car
+            :location (j / jam-01
+                :ARG1 (t / traffic)
+                :location (b / below
+                    :op1 b3)))))

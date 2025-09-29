@@ -1,0 +1,37 @@
+# ::tok The fresh produce market has tons of bananas and fresh fruits .
+# ::node	f	fresh-04	1-2
+# ::node	p	produce	2-3
+# ::node	m	market	3-4
+# ::node	h	have-03	4-5
+# ::node	m3	multiple	5-6
+# ::node	m2	mass-quantity	5-6
+# ::node	t	ton	5-6
+# ::node	0	1	5-6
+# ::node	b	banana	7-8
+# ::node	a	and	8-9
+# ::node	f2	fresh-04	9-10
+# ::node	f3	fruit	10-11
+# ::root	h	have-03
+# ::edge	produce	ARG1-of	fresh-04	p	f	
+# ::edge	market	mod	produce	m	p	
+# ::edge	have-03	ARG0	market	h	m	
+# ::edge	multiple	op1	mass-quantity	m3	m2	
+# ::edge	mass-quantity	unit	ton	m2	t	
+# ::edge	mass-quantity	quant	1	m2	0	
+# ::edge	and	op1	banana	a	b	
+# ::edge	and	quant	multiple	a	m3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	fruit	ARG1-of	fresh-04	f3	f2	
+# ::edge	and	op2	fruit	a	f3	
+(h / have-03
+    :ARG0 (m / market
+        :mod (p / produce
+            :ARG1-of (f / fresh-04)))
+    :ARG1 (a / and
+        :quant (m3 / multiple
+            :op1 (m2 / mass-quantity
+                :quant 1
+                :unit (t / ton)))
+        :op1 (b / banana)
+        :op2 (f3 / fruit
+            :ARG1-of (f2 / fresh-04))))

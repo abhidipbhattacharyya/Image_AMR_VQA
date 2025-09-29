@@ -1,0 +1,34 @@
+# ::tok People inside a glass building at the bottom of a ski slope watch others snow ski .
+# ::node	p	person	0-1
+# ::node	i	inside	1-2
+# ::node	g	glass	3-4
+# ::node	b2	building	4-5
+# ::node	b	bottom	7-8
+# ::node	s	ski-01	10-11
+# ::node	s3	slope	11-12
+# ::node	w	watch-01	12-13
+# ::node	o	other	13-14
+# ::node	s4	snow	14-15
+# ::node	s2	ski-01	15-16
+# ::root	w	watch-01
+# ::edge	person	location	inside	p	i	
+# ::edge	building	consist-of	glass	b2	g	
+# ::edge	inside	op1	building	i	b2	
+# ::edge	building	location	bottom	b2	b	
+# ::edge	slope	mod	ski-01	s3	s	
+# ::edge	bottom	part-of	slope	b	s3	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	ski-01	mod	snow	s2	s4	
+# ::edge	ski-01	ARG0	other	s2	o	
+# ::edge	watch-01	ARG1	ski-01	w	s2	
+(w / watch-01
+    :ARG0 (p / person
+        :location (i / inside
+            :op1 (b2 / building
+                :consist-of (g / glass)
+                :location (b / bottom
+                    :part-of (s3 / slope
+                        :mod (s / ski-01))))))
+    :ARG1 (s2 / ski-01
+        :ARG0 (o / other)
+        :mod (s4 / snow)))

@@ -1,0 +1,30 @@
+# ::tok The large passenger jet was still flying in the air , but it 's wheels were down .
+# ::node	l	large	1-2
+# ::node	p	passenger	2-3
+# ::node	j	jet	3-4
+# ::node	s	still	5-6
+# ::node	f	fly-01	6-7
+# ::node	a	air	9-10
+# ::node	h	have-concession-91	11-12
+# ::node	w	wheel	14-15
+# ::node	d	down-03	16-17
+# ::root	h	have-concession-91
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	mod	large	j	l	
+# ::edge	fly-01	mod	still	f	s	
+# ::edge	fly-01	ARG2	jet	f	j	
+# ::edge	fly-01	destination	air	f	a	
+# ::edge	have-concession-91	ARG2	fly-01	h	f	
+# ::edge	jet	part	wheel	j	w	
+# ::edge	down-03	ARG1	wheel	d	w	
+# ::edge	have-concession-91	ARG1	down-03	h	d	
+(h / have-concession-91
+    :ARG1 (d / down-03
+        :ARG1 (w / wheel))
+    :ARG2 (f / fly-01
+        :ARG2 (j / jet
+            :mod (p / passenger)
+            :mod (l / large)
+            :part w)
+        :destination (a / air)
+        :mod (s / still)))

@@ -1,0 +1,33 @@
+# ::tok An oven mounted in a wall with two knobs and a small window .
+# ::node	o	oven	1-2
+# ::node	m	mount-03	2-3
+# ::node	w	wall	5-6
+# ::node	h	have-03	6-7
+# ::node	0	2	7-8
+# ::node	c	counter-01	8-9
+# ::node	c2	counter-01	8-9
+# ::node	a	and	9-10
+# ::node	s	small	11-12
+# ::node	w2	window	12-13
+# ::root	m	mount-03
+# ::edge	mount-03	ARG1	oven	m	o	
+# ::edge	mount-03	location	wall	m	w	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	oven	ARG0-of	counter-01	o	c	
+# ::edge	counter-01	quant	2	c2	0	
+# ::edge	and	op1	counter-01	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	window	mod	small	w2	s	
+# ::edge	and	op2	window	a	w2	
+# ::edge	mount-03	rel	counter-01	m	c2	
+(m / mount-03
+    :ARG1 (o / oven
+        :ARG0-of (c / counter-01))
+    :location (w / wall
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 c
+                :op2 (w2 / window
+                    :mod (s / small)))))
+    :rel (c2 / counter-01
+        :quant 2))

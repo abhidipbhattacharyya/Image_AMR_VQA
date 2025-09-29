@@ -1,0 +1,56 @@
+# ::tok A male on one team is trying to kick a soccer ball .
+# ::node	m	male	1-2
+# ::node	0	1	3-4
+# ::node	h	have-org-role-91	4-5
+# ::node	t	team	4-5
+# ::node	m2	member	4-5
+# ::node	t2	try-01	6-7
+# ::node	k	kick-01	8-9
+# ::node	s	soccer	10-11
+# ::node	b	ball	11-12
+# ::root	t2	try-01
+# ::edge	male	ARG0-of	have-org-role-91	m	h	
+# ::edge	have-org-role-91	ARG1	team	h	t	
+# ::edge	team	quant	1	t	0	
+# ::edge	have-org-role-91	ARG2	member	h	m2	
+# ::edge	try-01	ARG0	male	t2	m	
+# ::edge	try-01	ARG1	kick-01	t2	k	
+# ::edge	kick-01	ARG0	male	k	m	
+# ::edge	ball	mod	soccer	b	s	
+# ::edge	kick-01	ARG1	ball	k	b	
+(t2 / try-01
+    :ARG0 (m / male
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (t / team
+                :quant 1)
+            :ARG2 (m2 / member)))
+    :ARG1 (k / kick-01
+        :ARG0 m
+        :ARG1 (b / ball
+            :mod (s / soccer))))
+
+
+# ::tok A male on another team is trying to stop him .
+# ::node	m	male	1-2
+# ::node	a	another	3-4
+# ::node	h	have-org-role-91	4-5
+# ::node	t	team	4-5
+# ::node	t2	try-01	6-7
+# ::node	s	stop-01	8-9
+# ::node	h2	he	9-10
+# ::root	t2	try-01
+# ::edge	male	ARG0-of	have-org-role-91	m	h	
+# ::edge	have-org-role-91	ARG1	team	h	t	
+# ::edge	team	mod	another	t	a	
+# ::edge	try-01	ARG0	male	t2	m	
+# ::edge	try-01	ARG1	stop-01	t2	s	
+# ::edge	stop-01	ARG0	male	s	m	
+# ::edge	stop-01	ARG1	he	s	h2	
+(t2 / try-01
+    :ARG0 (m / male
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (t / team
+                :mod (a / another))))
+    :ARG1 (s / stop-01
+        :ARG0 m
+        :ARG1 (h2 / he)))

@@ -1,0 +1,31 @@
+# ::tok A trains with both passenger and freight cars moving along a train track .
+# ::node	t2	train	1-2
+# ::node	p	passenger	4-5
+# ::node	a2	and	5-6
+# ::node	f	freight	6-7
+# ::node	c	car	7-8
+# ::node	c2	car	7-8
+# ::node	m	move-01	8-9
+# ::node	a	along	9-10
+# ::node	t3	train	11-12
+# ::node	t	track	12-13
+# ::root	t2	train
+# ::edge	train	consist-of	and	t2	a2	
+# ::edge	and	op1	car	a2	c	
+# ::edge	car	mod	passenger	c	p	
+# ::edge	car	mod	freight	c2	f	
+# ::edge	and	op2	car	a2	c2	
+# ::edge	train	ARG0-of	move-01	t2	m	
+# ::edge	move-01	path	along	m	a	
+# ::edge	track	mod	train	t	t3	
+# ::edge	along	op1	track	a	t	
+(t2 / train
+    :ARG0-of (m / move-01
+        :path (a / along
+            :op1 (t / track
+                :mod (t3 / train))))
+    :consist-of (a2 / and
+        :op1 (c / car
+            :mod (p / passenger))
+        :op2 (c2 / car
+            :mod (f / freight))))

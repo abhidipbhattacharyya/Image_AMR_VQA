@@ -1,0 +1,46 @@
+# ::tok A group of people viewing a house with a double bed with a Crucifix hanging in a room .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	v	view-01	4-5
+# ::node	h4	house	6-7
+# ::node	h2	have-03	7-8
+# ::node	d	double	9-10
+# ::node	b	bed	10-11
+# ::node	h3	have-03	11-12
+# ::node	r	religious-group	13-14
+# ::node	n	name	13-14
+# ::node	1	nucleus	13-14
+# ::node	0	Church	13-14
+# ::node	h	hang-01	14-15
+# ::node	t	thing	16-17
+# ::node	r2	room	17-18
+# ::root	v	view-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	view-01	ARG0	group	v	g	
+# ::edge	view-01	ARG1	house	v	h4	
+# ::edge	house	ARG0-of	have-03	h4	h2	
+# ::edge	bed	mod	double	b	d	
+# ::edge	have-03	ARG1	bed	h2	b	
+# ::edge	bed	ARG0-of	have-03	b	h3	
+# ::edge	religious-group	name	name	r	n	
+# ::edge	name	op1	nucleus	n	1	
+# ::edge	name	op2	Church	n	0	
+# ::edge	thing	ARG1-of	hang-01	t	h	
+# ::edge	thing	mod	religious-group	t	r	
+# ::edge	have-03	ARG1	thing	h3	t	
+# ::edge	hang-01	location	room	h	r2	
+(v / view-01
+    :ARG0 (g / group
+        :consist-of (p / person))
+    :ARG1 (h4 / house
+        :ARG0-of (h2 / have-03
+            :ARG1 (b / bed
+                :ARG0-of (h3 / have-03
+                    :ARG1 (t / thing
+                        :ARG1-of (h / hang-01
+                            :location (r2 / room))
+                        :mod (r / religious-group
+                            :name (n / name
+                                :op1 "nucleus"
+                                :op2 "Church"))))
+                :mod (d / double)))))

@@ -1,0 +1,32 @@
+# ::tok A batter is holding his bat , waiting for a pitched ball to cross the plate .
+# ::node	p	person	1-2
+# ::node	b3	batter-01	1-2
+# ::node	h	hold-01	3-4
+# ::node	b2	bat	5-6
+# ::node	w	wait-01	7-8
+# ::node	p2	pitch-04	10-11
+# ::node	b	ball	11-12
+# ::node	c	cross-02	13-14
+# ::node	p3	plate	15-16
+# ::root	h	hold-01
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	bat	h	b2	
+# ::edge	bat	poss	person	b2	p	
+# ::edge	hold-01	purpose	wait-01	h	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	ball	ARG1-of	pitch-04	b	p2	
+# ::edge	cross-02	ARG0	ball	c	b	
+# ::edge	wait-01	ARG2	cross-02	w	c	
+# ::edge	cross-02	ARG1	plate	c	p3	
+(h / hold-01
+    :purpose (w / wait-01
+        :ARG1 (p / person
+            :ARG0-of (b3 / batter-01))
+        :ARG2 (c / cross-02
+            :ARG0 (b / ball
+                :ARG1-of (p2 / pitch-04))
+            :ARG1 (p3 / plate)))
+    :ARG0 p
+    :ARG1 (b2 / bat
+        :poss p))

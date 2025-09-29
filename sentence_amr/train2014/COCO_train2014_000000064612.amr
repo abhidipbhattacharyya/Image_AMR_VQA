@@ -1,0 +1,30 @@
+# ::tok A ski slope at night with a very bright light shining above it .
+# ::node	s2	ski-01	1-2
+# ::node	s3	slope	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	v	very	7-8
+# ::node	b	bright-02	8-9
+# ::node	l	light	9-10
+# ::node	s	shine-01	10-11
+# ::node	a	above	11-12
+# ::root	s3	slope
+# ::edge	slope	ARG1-of	ski-01	s3	s2	
+# ::edge	slope	time	date-entity	s3	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	bright-02	degree	very	b	v	
+# ::edge	light	ARG1-of	bright-02	l	b	
+# ::edge	shine-01	ARG0	light	s	l	
+# ::edge	slope	ARG1-of	shine-01	s3	s	
+# ::edge	shine-01	location	above	s	a	
+# ::edge	above	op1	slope	a	s3	
+(s3 / slope
+    :ARG1-of (s2 / ski-01)
+    :ARG1-of (s / shine-01
+        :ARG0 (l / light
+            :ARG1-of (b / bright-02
+                :degree (v / very)))
+        :location (a / above
+            :op1 s3))
+    :time (d / date-entity
+        :dayperiod (n / night)))

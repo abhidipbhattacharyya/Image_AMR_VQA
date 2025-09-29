@@ -1,0 +1,37 @@
+# ::tok A bathroom with two sinks a bathtub and a shower with lots of lighting from the windows
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	s2	sink-01	4-5
+# ::node	b2	bathtub	6-7
+# ::node	a	and	7-8
+# ::node	s	shower	9-10
+# ::node	h2	have-03	10-11
+# ::node	l2	lot	11-12
+# ::node	t	thing	12-13
+# ::node	l	light-04	13-14
+# ::node	w	window	16-17
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	sink-01	quant	2	s2	0	
+# ::edge	and	op2	bathtub	a	b2	
+# ::edge	and	op1	sink-01	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	shower	a	s	
+# ::edge	shower	ARG0-of	have-03	s	h2	
+# ::edge	thing	quant	lot	t	l2	
+# ::edge	have-03	ARG1	thing	h2	t	
+# ::edge	thing	ARG0-of	light-04	t	l	
+# ::edge	light-04	source	window	l	w	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :ARG1 (a / and
+        :op1 (s2 / sink-01
+            :quant 2)
+        :op2 (b2 / bathtub)
+        :op3 (s / shower
+            :ARG0-of (h2 / have-03
+                :ARG1 (t / thing
+                    :quant (l2 / lot)
+                    :ARG0-of (l / light-04
+                        :source (w / window)))))))

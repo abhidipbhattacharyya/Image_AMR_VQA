@@ -1,0 +1,38 @@
+# ::tok A train on the train tracks with several tracks to the side of the train and a fence on the other side .
+# ::node	t3	train	1-2
+# ::node	t4	train	4-5
+# ::node	t	track	5-6
+# ::node	h	have-03	6-7
+# ::node	s	several	7-8
+# ::node	t2	track	8-9
+# ::node	s2	side	11-12
+# ::node	a	and	15-16
+# ::node	f	fence	17-18
+# ::node	o	other	20-21
+# ::node	s3	side	21-22
+# ::root	t3	train
+# ::edge	track	mod	train	t	t4	
+# ::edge	train	location	track	t3	t	
+# ::edge	train	ARG0-of	have-03	t3	h	
+# ::edge	track	quant	several	t2	s	
+# ::edge	track	location	side	t2	s2	
+# ::edge	train	part	side	t3	s2	
+# ::edge	and	op1	track	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	fence	a	f	
+# ::edge	side	mod	other	s3	o	
+# ::edge	fence	location	side	f	s3	
+# ::edge	side	part	side	s2	s3	
+(t3 / train
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t2 / track
+                :quant (s / several)
+                :location (s2 / side
+                    :part (s3 / side
+                        :mod (o / other))))
+            :op2 (f / fence
+                :location s3)))
+    :location (t / track
+        :mod (t4 / train))
+    :part s2)

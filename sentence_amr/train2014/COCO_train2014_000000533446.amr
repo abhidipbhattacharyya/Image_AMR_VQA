@@ -1,0 +1,33 @@
+# ::tok A bear rests on some grass with its forepaws stretching over what appears to be a concrete barricade .
+# ::node	b2	bear	1-2
+# ::node	r	rest-01	2-3
+# ::node	s	some	4-5
+# ::node	g	grass	5-6
+# ::node	f	forearm	8-9
+# ::node	s2	stretch-01	9-10
+# ::node	t	thing	11-12
+# ::node	a	appear-02	12-13
+# ::node	c	concrete-02	16-17
+# ::node	b	barricade	17-18
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	bear	r	b2	
+# ::edge	grass	mod	some	g	s	
+# ::edge	rest-01	ARG2	grass	r	g	
+# ::edge	bear	part	forearm	b2	f	
+# ::edge	stretch-01	ARG1	forearm	s2	f	
+# ::edge	rest-01	manner	stretch-01	r	s2	
+# ::edge	stretch-01	ARG2	thing	s2	t	
+# ::edge	thing	ARG1-of	appear-02	t	a	
+# ::edge	barricade	ARG1-of	concrete-02	b	c	
+# ::edge	thing	domain	barricade	t	b	
+(r / rest-01
+    :ARG1 (b2 / bear
+        :part (f / forearm))
+    :ARG2 (g / grass
+        :mod (s / some))
+    :manner (s2 / stretch-01
+        :ARG1 f
+        :ARG2 (t / thing
+            :ARG1-of (a / appear-02)
+            :domain (b / barricade
+                :ARG1-of (c / concrete-02)))))

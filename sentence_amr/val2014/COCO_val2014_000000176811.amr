@@ -1,0 +1,43 @@
+# ::tok Spherical brass clock indicating the time to be 3:32 against a backdrop of large , barred windows .
+# ::node	t	temporal-quantity	0-1
+# ::node	p	pound	0-1
+# ::node	0	3	0-1
+# ::node	b3	brass	1-2
+# ::node	c	clock	2-3
+# ::node	i	indicate-01	3-4
+# ::node	t2	time	5-6
+# ::node	d	date-entity	8-9
+# ::node	1	3:32	8-9
+# ::node	a	against	9-10
+# ::node	b	backdrop	11-12
+# ::node	l	large	13-14
+# ::node	b2	bar-01	15-16
+# ::node	w	window	16-17
+# ::root	c	clock
+# ::edge	temporal-quantity	unit	pound	t	p	
+# ::edge	temporal-quantity	quant	3	t	0	
+# ::edge	clock	consist-of	brass	c	b3	
+# ::edge	clock	mod	temporal-quantity	c	t	
+# ::edge	clock	ARG0-of	indicate-01	c	i	
+# ::edge	indicate-01	ARG1	time	i	t2	
+# ::edge	time	time	date-entity	t2	d	
+# ::edge	date-entity	time	3:32	d	1	
+# ::edge	clock	ARG1-of	against	c	a	
+# ::edge	against	op1	backdrop	a	b	
+# ::edge	window	ARG1-of	bar-01	w	b2	
+# ::edge	window	mod	large	w	l	
+# ::edge	backdrop	consist-of	window	b	w	
+(c / clock
+    :ARG0-of (i / indicate-01
+        :ARG1 (t2 / time
+            :time (d / date-entity
+                :time "3:32")))
+    :ARG1-of (a / against
+        :op1 (b / backdrop
+            :consist-of (w / window
+                :ARG1-of (b2 / bar-01)
+                :mod (l / large))))
+    :consist-of (b3 / brass)
+    :mod (t / temporal-quantity
+        :quant 3
+        :unit (p / pound)))

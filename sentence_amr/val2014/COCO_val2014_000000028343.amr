@@ -1,0 +1,33 @@
+# ::tok A doughnut sitting on top of a napkin next to a cut of coffee on top of a doughnut table cloth .
+# ::node	d	doughnut	1-2
+# ::node	s	sit-01	2-3
+# ::node	t2	top	4-5
+# ::node	t3	top	4-5
+# ::node	n	napkin	7-8
+# ::node	n2	next-to	8-9
+# ::node	c3	cut-01	11-12
+# ::node	c2	coffee	13-14
+# ::node	t	table	19-20
+# ::node	c	cloth	20-21
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	doughnut	s	d	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	top	part-of	napkin	t2	n	
+# ::edge	next-to	op1	top	n2	t3	
+# ::edge	sit-01	location	next-to	s	n2	
+# ::edge	top	op1	cut-01	t3	c3	
+# ::edge	cut-01	ARG1	coffee	c3	c2	
+# ::edge	cloth	mod	table	c	t	
+# ::edge	top	part-of	cloth	t3	c	
+# ::edge	cloth	mod	doughnut	c	d	
+(s / sit-01
+    :ARG1 (d / doughnut)
+    :ARG2 (t2 / top
+        :part-of (n / napkin))
+    :location (n2 / next-to
+        :op1 (t3 / top
+            :op1 (c3 / cut-01
+                :ARG1 (c2 / coffee))
+            :part-of (c / cloth
+                :mod (t / table)
+                :mod d))))

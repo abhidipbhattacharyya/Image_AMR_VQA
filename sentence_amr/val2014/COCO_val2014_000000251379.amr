@@ -1,0 +1,34 @@
+# ::tok A double parking meter has a clear glass semicircle on the top half of each meter .
+# ::node	d	double	1-2
+# ::node	p	park-01	2-3
+# ::node	m	meter	3-4
+# ::node	h2	have-03	4-5
+# ::node	c	clear-08	6-7
+# ::node	g	glass	7-8
+# ::node	s	semicircle	8-9
+# ::node	t	top	11-12
+# ::node	h	half	12-13
+# ::node	e	each	14-15
+# ::node	m2	meter	15-16
+# ::root	h2	have-03
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	mod	double	m	d	
+# ::edge	have-03	ARG0	meter	h2	m	
+# ::edge	glass	ARG1-of	clear-08	g	c	
+# ::edge	semicircle	consist-of	glass	s	g	
+# ::edge	have-03	ARG1	semicircle	h2	s	
+# ::edge	semicircle	location	top	s	t	
+# ::edge	top	part-of	half	t	h	
+# ::edge	meter	mod	each	m2	e	
+# ::edge	half	part-of	meter	h	m2	
+(h2 / have-03
+    :ARG0 (m / meter
+        :purpose (p / park-01)
+        :mod (d / double))
+    :ARG1 (s / semicircle
+        :consist-of (g / glass
+            :ARG1-of (c / clear-08))
+        :location (t / top
+            :part-of (h / half
+                :part-of (m2 / meter
+                    :mod (e / each))))))

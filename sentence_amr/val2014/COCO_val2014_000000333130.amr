@@ -1,0 +1,25 @@
+# ::tok Two old trains on a train track heading in opposite directions .
+# ::node	0	2	0-1
+# ::node	o	old	1-2
+# ::node	t2	train	2-3
+# ::node	t3	train	5-6
+# ::node	t	track	6-7
+# ::node	h	head-02	7-8
+# ::node	o2	opposite-01	9-10
+# ::node	d	direction	10-11
+# ::root	t2	train
+# ::edge	train	mod	old	t2	o	
+# ::edge	train	quant	2	t2	0	
+# ::edge	track	mod	train	t	t3	
+# ::edge	train	location	track	t2	t	
+# ::edge	train	ARG0-of	head-02	t2	h	
+# ::edge	direction	ARG1-of	opposite-01	d	o2	
+# ::edge	head-02	ARG1	direction	h	d	
+(t2 / train
+    :quant 2
+    :ARG0-of (h / head-02
+        :ARG1 (d / direction
+            :ARG1-of (o2 / opposite-01)))
+    :location (t / track
+        :mod (t3 / train))
+    :mod (o / old))

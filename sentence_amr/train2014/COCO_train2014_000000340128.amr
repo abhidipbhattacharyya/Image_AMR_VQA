@@ -1,0 +1,25 @@
+# ::tok A parking meter stands next to a broken one in the snow at curbside .
+# ::node	p	park-01	1-2
+# ::node	m	meter	2-3
+# ::node	m2	meter	2-3
+# ::node	s2	stand-01	3-4
+# ::node	n	next-to	4-5
+# ::node	b	break-01	7-8
+# ::node	s	snow	11-12
+# ::node	c	curb-01	13-14
+# ::root	s2	stand-01
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	stand-01	ARG1	meter	s2	m	
+# ::edge	stand-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	meter	n	m2	
+# ::edge	meter	ARG1-of	break-01	m2	b	
+# ::edge	meter	location	snow	m2	s	
+# ::edge	stand-01	location	curb-01	s2	c	
+(s2 / stand-01
+    :ARG1 (m / meter
+        :purpose (p / park-01))
+    :ARG2 (n / next-to
+        :op1 (m2 / meter
+            :ARG1-of (b / break-01)
+            :location (s / snow)))
+    :location (c / curb-01))

@@ -1,0 +1,33 @@
+# ::tok Some beautiful zebras are in the water and drinking on the sunny day .
+# ::node	s	some	0-1
+# ::node	b2	beautiful-02	1-2
+# ::node	e	elephant	2-3
+# ::node	r	reserve	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	w	water	6-7
+# ::node	a	and	7-8
+# ::node	d2	drink-01	8-9
+# ::node	s2	sunny	11-12
+# ::node	d	day	12-13
+# ::root	a	and
+# ::edge	elephant	ARG1-of	beautiful-02	e	b2	
+# ::edge	elephant	quant	some	e	s	
+# ::edge	elephant	mod	reserve	e	r	
+# ::edge	be-located-at-91	ARG1	elephant	b	e	
+# ::edge	be-located-at-91	ARG2	water	b	w	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	drink-01	a	d2	
+# ::edge	drink-01	ARG0	elephant	d2	e	
+# ::edge	day	mod	sunny	d	s2	
+# ::edge	and	time	day	a	d	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (e / elephant
+            :quant (s / some)
+            :ARG1-of (b2 / beautiful-02)
+            :mod (r / reserve))
+        :ARG2 (w / water))
+    :op2 (d2 / drink-01
+        :ARG0 e)
+    :time (d / day
+        :mod (s2 / sunny)))

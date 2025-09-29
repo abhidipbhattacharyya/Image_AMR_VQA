@@ -1,0 +1,31 @@
+# ::tok A tall building with lots of lights on and a public transportation bus out front .
+# ::node	t	tall	1-2
+# ::node	b	building	2-3
+# ::node	l2	lot	4-5
+# ::node	l	light	6-7
+# ::node	o	on-01	7-8
+# ::node	a	and	8-9
+# ::node	p	public-02	10-11
+# ::node	t2	transport-01	11-12
+# ::node	b2	bus	12-13
+# ::node	f	front	14-15
+# ::root	b	building
+# ::edge	building	mod	tall	b	t	
+# ::edge	light	quant	lot	l	l2	
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	and	op1	on-01	a	o	
+# ::edge	building	location-of	and	b	a	
+# ::edge	bus	ARG0-of	transport-01	b2	t2	
+# ::edge	bus	ARG1-of	public-02	b2	p	
+# ::edge	and	op2	bus	a	b2	
+# ::edge	building	location	front	b	f	
+(b / building
+    :location (f / front)
+    :location-of (a / and
+        :op1 (o / on-01
+            :ARG1 (l / light
+                :quant (l2 / lot)))
+        :op2 (b2 / bus
+            :ARG0-of (t2 / transport-01)
+            :ARG1-of (p / public-02)))
+    :mod (t / tall))

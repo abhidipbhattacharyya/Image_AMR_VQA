@@ -1,0 +1,41 @@
+# ::tok A family room with a computer and couch with one blind half open .
+# ::node	f	family	1-2
+# ::node	r	room	2-3
+# ::node	h2	have-03	3-4
+# ::node	c	computer	5-6
+# ::node	a	and	6-7
+# ::node	c2	couch	7-8
+# ::node	p	person	9-10
+# ::node	i	include-91	9-10
+# ::node	0	1	9-10
+# ::node	b	blind-02	10-11
+# ::node	h	half	11-12
+# ::node	o	open-01	12-13
+# ::root	r	room
+# ::edge	room	mod	family	r	f	
+# ::edge	room	ARG0-of	have-03	r	h2	
+# ::edge	and	op1	computer	a	c	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op2	couch	a	c2	
+# ::edge	person	ARG1-of	include-91	p	i	
+# ::edge	include-91	ARG2	room	i	r	
+# ::edge	person	quant	1	p	0	
+# ::edge	blind-02	ARG1	person	b	p	
+# ::edge	open-01	degree	half	o	h	
+# ::edge	open-01	ARG1	person	o	p	
+# ::edge	and	op3	open-01	a	o	
+# ::edge	room	rel	blind-02	r	b	
+(r / room
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (c / computer)
+            :op2 (c2 / couch)
+            :op3 (o / open-01
+                :ARG1 (p / person
+                    :quant 1
+                    :ARG1-of (i / include-91
+                        :ARG2 r))
+                :degree (h / half))))
+    :mod (f / family)
+    :rel (b / blind-02
+        :ARG1 p))

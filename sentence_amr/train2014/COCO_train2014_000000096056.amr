@@ -1,0 +1,39 @@
+# ::tok The cats are in the bathroom with one inside the sink and the other at the edge of the bathtub .
+# ::node	c	cat	1-2
+# ::node	c2	cat	1-2
+# ::node	b3	be-located-at-91	3-4
+# ::node	b	bathroom	5-6
+# ::node	b4	be-located-at-91	8-9
+# ::node	i	inside	8-9
+# ::node	s	sink	10-11
+# ::node	a	and	11-12
+# ::node	o	other	13-14
+# ::node	b5	be-located-at-91	14-15
+# ::node	e	edge	16-17
+# ::node	b2	bathtub	19-20
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	cat	b3	c	
+# ::edge	be-located-at-91	ARG2	bathroom	b3	b	
+# ::edge	be-located-at-91	ARG1	cat	b4	c	
+# ::edge	be-located-at-91	ARG2	inside	b4	i	
+# ::edge	inside	op1	sink	i	s	
+# ::edge	and	op2	be-located-at-91	a	b4	
+# ::edge	and	op1	be-located-at-91	a	b3	
+# ::edge	cat	mod	other	c2	o	
+# ::edge	cat	ARG1-of	be-located-at-91	c2	b5	
+# ::edge	be-located-at-91	ARG2	edge	b5	e	
+# ::edge	edge	part-of	bathtub	e	b2	
+# ::edge	and	rel	cat	a	c2	
+(a / and
+    :op1 (b3 / be-located-at-91
+        :ARG1 (c / cat)
+        :ARG2 (b / bathroom))
+    :op2 (b4 / be-located-at-91
+        :ARG1 c
+        :ARG2 (i / inside
+            :op1 (s / sink)))
+    :rel (c2 / cat
+        :ARG1-of (b5 / be-located-at-91
+            :ARG2 (e / edge
+                :part-of (b2 / bathtub)))
+        :mod (o / other)))

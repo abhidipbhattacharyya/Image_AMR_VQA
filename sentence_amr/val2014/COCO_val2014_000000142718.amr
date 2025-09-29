@@ -1,0 +1,42 @@
+# ::tok A red motorcycle riding down one side of the street and a cow walking down the other side of the street .
+# ::node	r	red-02	1-2
+# ::node	m	motorcycle	2-3
+# ::node	r2	ride-01	3-4
+# ::node	d	down	4-5
+# ::node	0	1	5-6
+# ::node	s	side	6-7
+# ::node	s3	street	9-10
+# ::node	a	and	10-11
+# ::node	c	cow	12-13
+# ::node	w	walk-01	13-14
+# ::node	d2	down	14-15
+# ::node	o	other	16-17
+# ::node	s2	side	17-18
+# ::root	a	and
+# ::edge	motorcycle	ARG1-of	red-02	m	r	
+# ::edge	ride-01	ARG0	motorcycle	r2	m	
+# ::edge	ride-01	direction	down	r2	d	
+# ::edge	side	quant	1	s	0	
+# ::edge	ride-01	op1	side	r2	s	
+# ::edge	side	part-of	street	s	s3	
+# ::edge	and	op1	ride-01	a	r2	
+# ::edge	walk-01	ARG0	cow	w	c	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	direction	down	w	d2	
+# ::edge	side	mod	other	s2	o	
+# ::edge	walk-01	op1	side	w	s2	
+# ::edge	street	part	side	s3	s2	
+(a / and
+    :op1 (r2 / ride-01
+        :ARG0 (m / motorcycle
+            :ARG1-of (r / red-02))
+        :direction (d / down)
+        :op1 (s / side
+            :quant 1
+            :part-of (s3 / street
+                :part (s2 / side
+                    :mod (o / other)))))
+    :op2 (w / walk-01
+        :ARG0 (c / cow)
+        :direction (d2 / down)
+        :op1 s2))

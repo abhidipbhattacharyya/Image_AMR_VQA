@@ -1,0 +1,32 @@
+# ::tok Many people with winter clothes and skis packed into a bus .
+# ::node	m	many	0-1
+# ::node	p2	person	1-2
+# ::node	h	have-03	2-3
+# ::node	w	winter	3-4
+# ::node	c	clothe-01	4-5
+# ::node	a	and	5-6
+# ::node	s	ski-01	6-7
+# ::node	p	pack-01	7-8
+# ::node	b	bus	10-11
+# ::root	p	pack-01
+# ::edge	person	quant	many	p2	m	
+# ::edge	person	ARG0-of	have-03	p2	h	
+# ::edge	clothe-01	ARG2	winter	c	w	
+# ::edge	clothe-01	ARG1	person	c	p2	
+# ::edge	and	op1	clothe-01	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	ski-01	a	s	
+# ::edge	ski-01	ARG0	person	s	p2	
+# ::edge	pack-01	ARG1	person	p	p2	
+# ::edge	pack-01	ARG2	bus	p	b	
+(p / pack-01
+    :ARG1 (p2 / person
+        :quant (m / many)
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (c / clothe-01
+                    :ARG1 p2
+                    :ARG2 (w / winter))
+                :op2 (s / ski-01
+                    :ARG0 p2))))
+    :ARG2 (b / bus))

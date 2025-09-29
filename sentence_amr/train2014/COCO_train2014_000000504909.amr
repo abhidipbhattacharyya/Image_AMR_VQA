@@ -1,0 +1,31 @@
+# ::tok Wind surfers riding waves on a partly cloudy grey looking day .
+# ::node	w2	wind	0-1
+# ::node	p2	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	r	ride-01	2-3
+# ::node	w	wave	3-4
+# ::node	p	part	6-7
+# ::node	c	cloudy-02	7-8
+# ::node	g	gray-02	8-9
+# ::node	l	look-02	9-10
+# ::node	d	day	10-11
+# ::root	r	ride-01
+# ::edge	person	ARG0-of	surf-01	p2	s	
+# ::edge	surf-01	ARG1	wind	s	w2	
+# ::edge	ride-01	ARG0	person	r	p2	
+# ::edge	ride-01	ARG1	wave	r	w	
+# ::edge	cloudy-02	degree	part	c	p	
+# ::edge	look-02	ARG1	gray-02	l	g	
+# ::edge	day	ARG0-of	look-02	d	l	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	ride-01	time	day	r	d	
+(r / ride-01
+    :ARG0 (p2 / person
+        :ARG0-of (s / surf-01
+            :ARG1 (w2 / wind)))
+    :ARG1 (w / wave)
+    :time (d / day
+        :ARG0-of (l / look-02
+            :ARG1 (g / gray-02))
+        :ARG1-of (c / cloudy-02
+            :degree (p / part))))

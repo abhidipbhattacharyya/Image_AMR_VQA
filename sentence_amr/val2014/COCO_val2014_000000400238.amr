@@ -1,0 +1,42 @@
+# ::tok A group of people standing around with two of them holding the Nintendo Wii remote .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	stand-01	4-5
+# ::node	a	around	5-6
+# ::node	p2	person	7-8
+# ::node	0	2	7-8
+# ::node	i	include-91	8-9
+# ::node	h	hold-01	10-11
+# ::node	1	Nintendo	12-13
+# ::node	p3	product	13-14
+# ::node	n	name	13-14
+# ::node	2	Wii	13-14
+# ::node	r	remote	14-15
+# ::root	s	stand-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	stand-01	ARG2	around	s	a	
+# ::edge	person	quant	2	p2	0	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	person	ARG0-of	hold-01	p2	h	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Nintendo	n	1	
+# ::edge	name	op2	Wii	n	2	
+# ::edge	remote	mod	product	r	p3	
+# ::edge	hold-01	ARG1	remote	h	r	
+# ::edge	stand-01	rel	person	s	p2	
+(s / stand-01
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (a / around)
+    :rel (p2 / person
+        :quant 2
+        :ARG0-of (h / hold-01
+            :ARG1 (r / remote
+                :mod (p3 / product
+                    :name (n / name
+                        :op1 "Nintendo"
+                        :op2 "Wii"))))
+        :ARG1-of (i / include-91
+            :ARG2 p)))

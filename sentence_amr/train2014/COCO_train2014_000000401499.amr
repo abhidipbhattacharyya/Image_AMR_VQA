@@ -1,0 +1,30 @@
+# ::tok A person performing a deathly dangerous stunt on a man made ice slope .
+# ::node	p3	person	1-2
+# ::node	p	perform-01	2-3
+# ::node	d	die-01	4-5
+# ::node	e	endanger-01	5-6
+# ::node	p2	perform-01	6-7
+# ::node	m2	man	9-10
+# ::node	m	make-01	10-11
+# ::node	i	ice	11-12
+# ::node	s	slope	12-13
+# ::root	p	perform-01
+# ::edge	perform-01	ARG0	person	p	p3	
+# ::edge	endanger-01	degree	die-01	e	d	
+# ::edge	perform-01	ARG0-of	endanger-01	p2	e	
+# ::edge	perform-01	ARG1	perform-01	p	p2	
+# ::edge	perform-01	ARG0	person	p2	p3	
+# ::edge	make-01	ARG0	man	m	m2	
+# ::edge	slope	consist-of	ice	s	i	
+# ::edge	slope	ARG1-of	make-01	s	m	
+# ::edge	perform-01	location	slope	p2	s	
+(p / perform-01
+    :ARG0 (p3 / person)
+    :ARG1 (p2 / perform-01
+        :ARG0 p3
+        :ARG0-of (e / endanger-01
+            :degree (d / die-01))
+        :location (s / slope
+            :ARG1-of (m / make-01
+                :ARG0 (m2 / man))
+            :consist-of (i / ice))))

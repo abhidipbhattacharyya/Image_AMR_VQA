@@ -1,0 +1,43 @@
+# ::tok A toilet with the seat up is in the mulch bed around a tree with a BMW parked on the street .
+# ::node	t	toilet	1-2
+# ::node	s	seat	4-5
+# ::node	u	up-03	5-6
+# ::node	b	be-located-at-91	7-8
+# ::node	m	mulch	9-10
+# ::node	b2	bed	10-11
+# ::node	a	around	11-12
+# ::node	t2	tree	13-14
+# ::node	h	have-03	14-15
+# ::node	c	car-make	16-17
+# ::node	n	name	16-17
+# ::node	0	BMW	16-17
+# ::node	p	park-01	17-18
+# ::node	s2	street	20-21
+# ::root	b	be-located-at-91
+# ::edge	toilet	part	seat	t	s	
+# ::edge	seat	ARG1-of	up-03	s	u	
+# ::edge	be-located-at-91	ARG1	toilet	b	t	
+# ::edge	bed	consist-of	mulch	b2	m	
+# ::edge	be-located-at-91	ARG2	bed	b	b2	
+# ::edge	bed	location	around	b2	a	
+# ::edge	around	op1	tree	a	t2	
+# ::edge	bed	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	car-make	h	c	
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	BMW	n	0	
+# ::edge	car-make	ARG1-of	park-01	c	p	
+# ::edge	park-01	location	street	p	s2	
+(b / be-located-at-91
+    :ARG1 (t / toilet
+        :part (s / seat
+            :ARG1-of (u / up-03)))
+    :ARG2 (b2 / bed
+        :ARG0-of (h / have-03
+            :ARG1 (c / car-make
+                :name (n / name
+                    :op1 "BMW")
+                :ARG1-of (p / park-01
+                    :location (s2 / street))))
+        :consist-of (m / mulch)
+        :location (a / around
+            :op1 (t2 / tree))))

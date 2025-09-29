@@ -1,0 +1,40 @@
+# ::tok Person running with scissors which your mother always told you not to do .
+# ::node	p	person	0-1
+# ::node	r	run-02	1-2
+# ::node	s	scissors	3-4
+# ::node	y	you	5-6
+# ::node	p2	person	6-7
+# ::node	h	have-rel-role-91	6-7
+# ::node	m	mother	6-7
+# ::node	a	always	7-8
+# ::node	t	tell-01	8-9
+# ::node	0	-	10-11
+# ::node	d	do-02	12-13
+# ::root	r	run-02
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	run-02	instrument	scissors	r	s	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h	
+# ::edge	have-rel-role-91	ARG1	you	h	y	
+# ::edge	have-rel-role-91	ARG2	mother	h	m	
+# ::edge	tell-01	time	always	t	a	
+# ::edge	tell-01	ARG0	person	t	p2	
+# ::edge	tell-01	ARG2	you	t	y	
+# ::edge	do-02	polarity	-	d	0	
+# ::edge	do-02	ARG1-of	tell-01	d	t	
+# ::edge	you	ARG1-of	do-02	y	d	
+# ::edge	do-02	ARG0	person	d	p	
+# ::edge	run-02	rel	have-rel-role-91	r	h	
+(r / run-02
+    :ARG0 (p / person)
+    :instrument (s / scissors)
+    :rel (h / have-rel-role-91
+        :ARG1 (y / you
+            :ARG1-of (d / do-02
+                :ARG0 p
+                :ARG1-of (t / tell-01
+                    :ARG0 (p2 / person
+                        :ARG0-of h)
+                    :ARG2 y
+                    :time (a / always))
+                :polarity -))
+        :ARG2 (m / mother)))

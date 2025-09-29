@@ -1,0 +1,44 @@
+# ::tok Three giraffes , one large and two small , walk through a grassy area .
+# ::node	1	3	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	g3	giraffe	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	l	large	4-5
+# ::node	a	and	5-6
+# ::node	0	2	6-7
+# ::node	s	small	7-8
+# ::node	w	walk-01	9-10
+# ::node	g4	grass	12-13
+# ::node	a2	area	13-14
+# ::root	w	walk-01
+# ::edge	giraffe	quant	3	g	1	
+# ::edge	include-91	ARG1	giraffe	i	g	
+# ::edge	giraffe	ARG2-of	include-91	g	i	
+# ::edge	include-91	ARG1	giraffe	i2	g3	
+# ::edge	giraffe	ARG2-of	include-91	g	i2	
+# ::edge	giraffe	mod	large	g2	l	
+# ::edge	and	op2	giraffe	a	g3	
+# ::edge	and	op1	giraffe	a	g2	
+# ::edge	giraffe	quant	2	g3	0	
+# ::edge	giraffe	mod	small	g3	s	
+# ::edge	walk-01	ARG0	giraffe	w	g	
+# ::edge	area	consist-of	grass	a2	g4	
+# ::edge	walk-01	ARG2	area	w	a2	
+# ::edge	walk-01	rel	and	w	a	
+(w / walk-01
+    :ARG0 (g / giraffe
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1 g)
+        :ARG2-of (i2 / include-91
+            :ARG1 (g3 / giraffe
+                :quant 2
+                :mod (s / small))))
+    :ARG2 (a2 / area
+        :consist-of (g4 / grass))
+    :rel (a / and
+        :op1 (g2 / giraffe
+            :mod (l / large))
+        :op2 g3))

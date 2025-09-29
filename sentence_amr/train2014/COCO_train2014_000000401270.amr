@@ -1,0 +1,35 @@
+# ::tok Old style military olive green plane coming in for a landing , wheels down .
+# ::node	o	old	0-1
+# ::node	s	style	1-2
+# ::node	m	military	2-3
+# ::node	g	gray-02	3-4
+# ::node	g2	green-02	4-5
+# ::node	p	plane	5-6
+# ::node	c	come-01	6-7
+# ::node	l	land-01	10-11
+# ::node	w	wheel	12-13
+# ::node	d	down-03	13-14
+# ::root	c	come-01
+# ::edge	style	mod	old	s	o	
+# ::edge	plane	ARG1-of	green-02	p	g2	
+# ::edge	plane	ARG1-of	gray-02	p	g	
+# ::edge	plane	mod	military	p	m	
+# ::edge	plane	mod	style	p	s	
+# ::edge	come-01	ARG1	plane	c	p	
+# ::edge	come-01	ARG4	land-01	c	l	
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	plane	part	wheel	p	w	
+# ::edge	down-03	ARG1	wheel	d	w	
+# ::edge	come-01	manner	down-03	c	d	
+(c / come-01
+    :ARG1 (p / plane
+        :ARG1-of (g2 / green-02)
+        :ARG1-of (g / gray-02)
+        :mod (m / military)
+        :mod (s / style
+            :mod (o / old))
+        :part (w / wheel))
+    :ARG4 (l / land-01
+        :ARG1 p)
+    :manner (d / down-03
+        :ARG1 w))

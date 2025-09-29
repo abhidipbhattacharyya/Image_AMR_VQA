@@ -1,0 +1,21 @@
+# ::tok A group of jetliners lined up on a runway ready for take off .
+# ::node	g	group	1-2
+# ::node	a	airliner	3-4
+# ::node	l	line-up-02	4-5
+# ::node	r2	runway	8-9
+# ::node	r	ready-02	9-10
+# ::node	t	take-off-19	11-12
+# ::root	l	line-up-02
+# ::edge	airliner	quant	group	a	g	
+# ::edge	line-up-02	ARG1	airliner	l	a	
+# ::edge	line-up-02	location	runway	l	r2	
+# ::edge	airliner	ARG1-of	ready-02	a	r	
+# ::edge	ready-02	ARG2	take-off-19	r	t	
+# ::edge	take-off-19	ARG1	airliner	t	a	
+(l / line-up-02
+    :ARG1 (a / airliner
+        :quant (g / group)
+        :ARG1-of (r / ready-02
+            :ARG2 (t / take-off-19
+                :ARG1 a)))
+    :location (r2 / runway))

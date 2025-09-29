@@ -1,0 +1,33 @@
+# ::tok A group of people wearing cold weather attire , backpacks and skies , follow eachother .
+# ::node	g	group	1-2
+# ::node	p2	person	3-4
+# ::node	w	wear-01	4-5
+# ::node	c	cold-01	5-6
+# ::node	w2	weather	6-7
+# ::node	a2	attire	7-8
+# ::node	a	and	8-9
+# ::node	p	pack	9-10
+# ::node	s	sky	11-12
+# ::node	f	follow-01	13-14
+# ::root	f	follow-01
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	person	ARG0-of	wear-01	p2	w	
+# ::edge	weather	ARG1-of	cold-01	w2	c	
+# ::edge	attire	mod	weather	a2	w2	
+# ::edge	and	op1	attire	a	a2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	pack	a	p	
+# ::edge	and	op3	sky	a	s	
+# ::edge	follow-01	ARG1	group	f	g	
+# ::edge	follow-01	ARG0	group	f	g	
+(f / follow-01
+    :ARG0 (g / group
+        :consist-of (p2 / person
+            :ARG0-of (w / wear-01
+                :ARG1 (a / and
+                    :op1 (a2 / attire
+                        :mod (w2 / weather
+                            :ARG1-of (c / cold-01)))
+                    :op2 (p / pack)
+                    :op3 (s / sky)))))
+    :ARG1 g)

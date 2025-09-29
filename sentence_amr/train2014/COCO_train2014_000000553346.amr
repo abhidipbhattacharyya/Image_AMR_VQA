@@ -1,0 +1,38 @@
+# ::tok A tall man is holding a shirt and tie next to a suit to see if it matches .
+# ::node	t	tall	1-2
+# ::node	m	man	2-3
+# ::node	h	hold-01	4-5
+# ::node	s2	shirt	6-7
+# ::node	a	and	7-8
+# ::node	t2	tie	8-9
+# ::node	n	next-to	9-10
+# ::node	s3	suit	12-13
+# ::node	s	see-01	14-15
+# ::node	t3	truth-value	15-16
+# ::node	m2	match-01	17-18
+# ::root	h	hold-01
+# ::edge	man	mod	tall	m	t	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	and	op1	shirt	a	s2	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	and	op2	tie	a	t2	
+# ::edge	hold-01	location	next-to	h	n	
+# ::edge	next-to	op1	suit	n	s3	
+# ::edge	hold-01	purpose	see-01	h	s	
+# ::edge	see-01	ARG0	man	s	m	
+# ::edge	see-01	ARG1	truth-value	s	t3	
+# ::edge	truth-value	polarity-of	match-01	t3	m2	
+# ::edge	match-01	ARG1	and	m2	a	
+(h / hold-01
+    :purpose (s / see-01
+        :ARG0 (m / man
+            :mod (t / tall))
+        :ARG1 (t3 / truth-value
+            :polarity-of (m2 / match-01
+                :ARG1 (a / and
+                    :op1 (s2 / shirt)
+                    :op2 (t2 / tie)))))
+    :ARG0 m
+    :ARG1 a
+    :location (n / next-to
+        :op1 (s3 / suit)))

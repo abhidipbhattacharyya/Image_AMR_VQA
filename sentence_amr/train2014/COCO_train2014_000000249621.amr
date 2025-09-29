@@ -1,0 +1,25 @@
+# ::tok Passengers board the transit bus from the station at the loading zone .
+# ::node	p2	person	0-1
+# ::node	p	passenger	0-1
+# ::node	b	board-01	1-2
+# ::node	t	transit-01	3-4
+# ::node	b2	bus	4-5
+# ::node	s	station	7-8
+# ::node	l	load-01	10-11
+# ::node	z	zone	11-12
+# ::root	b	board-01
+# ::edge	person	mod	passenger	p2	p	
+# ::edge	board-01	ARG0	person	b	p2	
+# ::edge	bus	ARG0-of	transit-01	b2	t	
+# ::edge	board-01	ARG1	bus	b	b2	
+# ::edge	board-01	source	station	b	s	
+# ::edge	zone	location-of	load-01	z	l	
+# ::edge	station	location	zone	s	z	
+(b / board-01
+    :ARG0 (p2 / person
+        :mod (p / passenger))
+    :ARG1 (b2 / bus
+        :ARG0-of (t / transit-01))
+    :source (s / station
+        :location (z / zone
+            :location-of (l / load-01))))

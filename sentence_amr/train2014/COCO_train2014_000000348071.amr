@@ -1,0 +1,28 @@
+# ::tok A street scene with a stop sign in the foreground and cars in the background .
+# ::node	s4	street	1-2
+# ::node	s	scene	2-3
+# ::node	h	have-03	3-4
+# ::node	s3	stop-01	5-6
+# ::node	s2	signal-07	6-7
+# ::node	f	foreground	9-10
+# ::node	a	and	10-11
+# ::node	c	car	11-12
+# ::node	b	background	14-15
+# ::root	s	scene
+# ::edge	scene	mod	street	s	s4	
+# ::edge	scene	ARG0-of	have-03	s	h	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	signal-07	location	foreground	s2	f	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	car	a	c	
+# ::edge	car	location	background	c	b	
+(s / scene
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s2 / signal-07
+                :ARG1 (s3 / stop-01)
+                :location (f / foreground))
+            :op2 (c / car
+                :location (b / background))))
+    :mod (s4 / street))

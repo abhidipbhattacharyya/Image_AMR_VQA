@@ -1,0 +1,34 @@
+# ::tok This Southern National passenger bus is bound for Ashburton .
+# ::node	t	this	0-1
+# ::node	n	name	1-2
+# ::node	2	Southern	1-2
+# ::node	c2	company	2-3
+# ::node	1	National	2-3
+# ::node	p	passenger	3-4
+# ::node	b2	bus	4-5
+# ::node	b	bind-03	6-7
+# ::node	c	city	8-9
+# ::node	n2	name	8-9
+# ::node	0	Ashburton	8-9
+# ::root	b	bind-03
+# ::edge	name	op1	Southern	n	2	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op2	National	n	1	
+# ::edge	bus	mod	passenger	b2	p	
+# ::edge	bus	mod	company	b2	c2	
+# ::edge	bus	mod	this	b2	t	
+# ::edge	bind-03	ARG1	bus	b	b2	
+# ::edge	bind-03	ARG2	city	b	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	Ashburton	n2	0	
+(b / bind-03
+    :ARG1 (b2 / bus
+        :mod (p / passenger)
+        :mod (c2 / company
+            :name (n / name
+                :op1 "Southern"
+                :op2 "National"))
+        :mod (t / this))
+    :ARG2 (c / city
+        :name (n2 / name
+            :op1 "Ashburton")))

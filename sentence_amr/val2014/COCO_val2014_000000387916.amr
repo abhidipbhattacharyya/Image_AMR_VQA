@@ -1,0 +1,30 @@
+# ::tok People walking and holding ski boards on snow covered ski slopes .
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	a	and	2-3
+# ::node	h	hold-01	3-4
+# ::node	s	ski-01	4-5
+# ::node	b	board	5-6
+# ::node	s3	snow	7-8
+# ::node	c	cover-02	8-9
+# ::node	s2	slope	10-11
+# ::root	a	and
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	board	purpose	ski-01	b	s	
+# ::edge	hold-01	ARG1	board	h	b	
+# ::edge	cover-02	ARG2	snow	c	s3	
+# ::edge	slope	ARG1-of	cover-02	s2	c	
+# ::edge	and	location	slope	a	s2	
+(a / and
+    :location (s2 / slope
+        :ARG1-of (c / cover-02
+            :ARG2 (s3 / snow)))
+    :op1 (w / walk-01
+        :ARG0 (p / person))
+    :op2 (h / hold-01
+        :ARG0 p
+        :ARG1 (b / board
+            :purpose (s / ski-01))))

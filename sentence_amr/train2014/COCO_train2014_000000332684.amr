@@ -1,0 +1,31 @@
+# ::tok A gray train with a red stripe , and number 3 is stopped at the station .
+# ::node	g	gray-02	1-2
+# ::node	t	train	2-3
+# ::node	t2	train	2-3
+# ::node	r	red-02	5-6
+# ::node	s3	stripe	6-7
+# ::node	a	and	8-9
+# ::node	o	ordinal-entity	10-11
+# ::node	0	3	10-11
+# ::node	s2	stop-01	12-13
+# ::node	s	station	15-16
+# ::root	s2	stop-01
+# ::edge	train	ARG1-of	gray-02	t	g	
+# ::edge	stripe	ARG1-of	red-02	s3	r	
+# ::edge	train	part	stripe	t	s3	
+# ::edge	and	op2	train	a	t2	
+# ::edge	and	op1	train	a	t	
+# ::edge	train	ord	ordinal-entity	t2	o	
+# ::edge	ordinal-entity	value	3	o	0	
+# ::edge	stop-01	ARG1	and	s2	a	
+# ::edge	stop-01	location	station	s2	s	
+(s2 / stop-01
+    :ARG1 (a / and
+        :op1 (t / train
+            :ARG1-of (g / gray-02)
+            :part (s3 / stripe
+                :ARG1-of (r / red-02)))
+        :op2 (t2 / train
+            :ord (o / ordinal-entity
+                :value 3)))
+    :location (s / station))

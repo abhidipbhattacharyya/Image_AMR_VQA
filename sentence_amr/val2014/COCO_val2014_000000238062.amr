@@ -1,0 +1,45 @@
+# ::tok Several chunks of breat on a cutting board and a plate with a lemon , some vegetables and a grater on it .
+# ::node	s	several	0-1
+# ::node	c	chunk-01	1-2
+# ::node	b2	breathe-01	3-4
+# ::node	c2	cut-01	6-7
+# ::node	b	board	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	p	plate	10-11
+# ::node	h	have-03	11-12
+# ::node	l	lemon	13-14
+# ::node	s2	some	15-16
+# ::node	v	vegetable	16-17
+# ::node	a3	and	17-18
+# ::node	g	grater	19-20
+# ::root	a	and
+# ::edge	chunk-01	quant	several	c	s	
+# ::edge	breathe-01	quant	chunk-01	b2	c	
+# ::edge	board	purpose	cut-01	b	c2	
+# ::edge	and	op1	board	a	b	
+# ::edge	and	op1	board	a2	b	
+# ::edge	chunk-01	location	and	c	a2	
+# ::edge	and	op2	plate	a2	p	
+# ::edge	plate	ARG0-of	have-03	p	h	
+# ::edge	vegetable	mod	some	v	s2	
+# ::edge	and	op2	vegetable	a3	v	
+# ::edge	and	op1	lemon	a3	l	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	and	op3	grater	a3	g	
+# ::edge	and	rel	breathe-01	a	b2	
+(a / and
+    :op1 (b / board
+        :purpose (c2 / cut-01))
+    :rel (b2 / breathe-01
+        :quant (c / chunk-01
+            :quant (s / several)
+            :location (a2 / and
+                :op1 b
+                :op2 (p / plate
+                    :ARG0-of (h / have-03
+                        :ARG1 (a3 / and
+                            :op1 (l / lemon)
+                            :op2 (v / vegetable
+                                :mod (s2 / some))
+                            :op3 (g / grater))))))))

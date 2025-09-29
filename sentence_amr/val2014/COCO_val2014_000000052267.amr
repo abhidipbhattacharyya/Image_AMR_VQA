@@ -1,0 +1,26 @@
+# ::tok A child uses skis to move over the snowy ground .
+# ::node	c	child	1-2
+# ::node	u	use-01	2-3
+# ::node	s	ski-01	3-4
+# ::node	m	move-01	5-6
+# ::node	o	over	6-7
+# ::node	s2	snowy-02	8-9
+# ::node	g	ground	9-10
+# ::root	u	use-01
+# ::edge	use-01	ARG0	child	u	c	
+# ::edge	use-01	ARG1	ski-01	u	s	
+# ::edge	ski-01	ARG0	child	s	c	
+# ::edge	use-01	ARG2	move-01	u	m	
+# ::edge	move-01	ARG0	child	m	c	
+# ::edge	move-01	ARG2	over	m	o	
+# ::edge	ground	ARG2-of	snowy-02	g	s2	
+# ::edge	over	op1	ground	o	g	
+(u / use-01
+    :ARG0 (c / child)
+    :ARG1 (s / ski-01
+        :ARG0 c)
+    :ARG2 (m / move-01
+        :ARG0 c
+        :ARG2 (o / over
+            :op1 (g / ground
+                :ARG2-of (s2 / snowy-02)))))

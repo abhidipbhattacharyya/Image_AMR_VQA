@@ -1,0 +1,28 @@
+# ::tok A small bus waits outside a building as three people walk by
+# ::node	s	small	1-2
+# ::node	b2	bus	2-3
+# ::node	w	wait-01	3-4
+# ::node	o	outside	4-5
+# ::node	b	building	6-7
+# ::node	0	3	8-9
+# ::node	p	person	9-10
+# ::node	w2	walk-01	10-11
+# ::node	b3	by	11-12
+# ::root	w	wait-01
+# ::edge	bus	mod	small	b2	s	
+# ::edge	wait-01	ARG1	bus	w	b2	
+# ::edge	wait-01	ARG2	outside	w	o	
+# ::edge	outside	op1	building	o	b	
+# ::edge	person	quant	3	p	0	
+# ::edge	walk-01	ARG0	person	w2	p	
+# ::edge	wait-01	time	walk-01	w	w2	
+# ::edge	walk-01	direction	by	w2	b3	
+(w / wait-01
+    :ARG1 (b2 / bus
+        :mod (s / small))
+    :ARG2 (o / outside
+        :op1 (b / building))
+    :time (w2 / walk-01
+        :ARG0 (p / person
+            :quant 3)
+        :direction (b3 / by)))

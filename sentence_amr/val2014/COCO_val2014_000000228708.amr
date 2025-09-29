@@ -1,0 +1,51 @@
+# ::tok Tennis court with two men playing on one side of the net , one man about to hit the ball back .
+# ::node	c	court	0-1
+# ::node	c2	court	1-2
+# ::node	2	2	3-4
+# ::node	m	man	4-5
+# ::node	p	play-01	5-6
+# ::node	0	1	7-8
+# ::node	s	side	8-9
+# ::node	n	net	11-12
+# ::node	a2	and	12-13
+# ::node	i	include-91	13-14
+# ::node	1	1	13-14
+# ::node	m2	man	14-15
+# ::node	a	about-to	15-16
+# ::node	h	hit-01	17-18
+# ::node	b2	ball	19-20
+# ::node	b	back	20-21
+# ::root	c2	court
+# ::edge	court	location-of	court	c2	c	
+# ::edge	man	quant	2	m	2	
+# ::edge	play-01	ARG0	man	p	m	
+# ::edge	side	quant	1	s	0	
+# ::edge	play-01	location	side	p	s	
+# ::edge	side	part-of	net	s	n	
+# ::edge	and	op1	play-01	a2	p	
+# ::edge	court	location-of	and	c2	a2	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	quant	1	m2	1	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	hit-01	time	about-to	h	a	
+# ::edge	hit-01	ARG0	man	h	m2	
+# ::edge	and	op2	hit-01	a2	h	
+# ::edge	hit-01	ARG1	ball	h	b2	
+# ::edge	hit-01	direction	back	h	b	
+(c2 / court
+    :location-of (c / court)
+    :location-of (a2 / and
+        :op1 (p / play-01
+            :ARG0 (m / man
+                :quant 2)
+            :location (s / side
+                :quant 1
+                :part-of (n / net)))
+        :op2 (h / hit-01
+            :ARG0 (m2 / man
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 m))
+            :ARG1 (b2 / ball)
+            :direction (b / back)
+            :time (a / about-to))))

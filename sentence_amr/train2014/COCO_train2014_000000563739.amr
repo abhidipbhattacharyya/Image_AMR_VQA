@@ -1,0 +1,31 @@
+# ::tok An old five ton truck approaches a ramp as opposite traffic is backed up .
+# ::node	o	old	1-2
+# ::node	0	5	2-3
+# ::node	m	mass-quantity	3-4
+# ::node	t	ton	3-4
+# ::node	t3	truck	4-5
+# ::node	a	approach-01	5-6
+# ::node	r	ramp	7-8
+# ::node	o2	opposite-01	9-10
+# ::node	t2	traffic	10-11
+# ::node	b	back-up-04	12-13
+# ::root	a	approach-01
+# ::edge	mass-quantity	quant	5	m	0	
+# ::edge	mass-quantity	unit	ton	m	t	
+# ::edge	truck	mod	mass-quantity	t3	m	
+# ::edge	truck	mod	old	t3	o	
+# ::edge	approach-01	ARG1	truck	a	t3	
+# ::edge	approach-01	ARG2	ramp	a	r	
+# ::edge	traffic	ARG1-of	opposite-01	t2	o2	
+# ::edge	back-up-04	ARG1	traffic	b	t2	
+# ::edge	approach-01	time	back-up-04	a	b	
+(a / approach-01
+    :ARG1 (t3 / truck
+        :mod (m / mass-quantity
+            :quant 5
+            :unit (t / ton))
+        :mod (o / old))
+    :ARG2 (r / ramp)
+    :time (b / back-up-04
+        :ARG1 (t2 / traffic
+            :ARG1-of (o2 / opposite-01))))

@@ -1,0 +1,25 @@
+# ::tok A steam powered locomotive blowing smoke and moving down a track .
+# ::node	s2	steam	1-2
+# ::node	p	power-01	2-3
+# ::node	l	locomotive	3-4
+# ::node	b	blow-01	4-5
+# ::node	s	smoke	5-6
+# ::node	m	move-01	7-8
+# ::node	d	down	8-9
+# ::node	t	track	10-11
+# ::root	l	locomotive
+# ::edge	power-01	ARG0	steam	p	s2	
+# ::edge	locomotive	ARG1-of	power-01	l	p	
+# ::edge	locomotive	ARG0-of	blow-01	l	b	
+# ::edge	blow-01	ARG1	smoke	b	s	
+# ::edge	locomotive	ARG0-of	move-01	l	m	
+# ::edge	move-01	direction	down	m	d	
+# ::edge	move-01	ARG1	track	m	t	
+(l / locomotive
+    :ARG0-of (b / blow-01
+        :ARG1 (s / smoke))
+    :ARG0-of (m / move-01
+        :ARG1 (t / track)
+        :direction (d / down))
+    :ARG1-of (p / power-01
+        :ARG0 (s2 / steam)))

@@ -1,0 +1,28 @@
+# ::tok Skier , in full professional gear , in the middle of a downhill speed race .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	f	full-09	3-4
+# ::node	p2	professional	4-5
+# ::node	g	gear	5-6
+# ::node	m	middle	9-10
+# ::node	d	downhill	12-13
+# ::node	s2	speed	13-14
+# ::node	r	race-02	14-15
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	gear	mod	professional	g	p2	
+# ::edge	gear	ARG1-of	full-09	g	f	
+# ::edge	person	mod	gear	p	g	
+# ::edge	person	location	middle	p	m	
+# ::edge	speed	direction	downhill	s2	d	
+# ::edge	race-02	ARG3	speed	r	s2	
+# ::edge	middle	op1	race-02	m	r	
+(p / person
+    :ARG0-of (s / ski-01)
+    :location (m / middle
+        :op1 (r / race-02
+            :ARG3 (s2 / speed
+                :direction (d / downhill))))
+    :mod (g / gear
+        :ARG1-of (f / full-09)
+        :mod (p2 / professional)))

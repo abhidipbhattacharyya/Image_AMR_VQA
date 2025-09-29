@@ -1,0 +1,34 @@
+# ::tok A bathroom with two sinks , two mirrors and a paper towel holder .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	s	sink-01	4-5
+# ::node	1	2	6-7
+# ::node	m	mirror	7-8
+# ::node	a	and	8-9
+# ::node	p	paper	10-11
+# ::node	t2	towel	11-12
+# ::node	t	thing	12-13
+# ::node	h2	hold-01	12-13
+# ::root	b	bathroom
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	sink-01	quant	2	s	0	
+# ::edge	mirror	quant	2	m	1	
+# ::edge	and	op2	mirror	a	m	
+# ::edge	and	op1	sink-01	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	towel	consist-of	paper	t2	p	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG0-of	hold-01	t	h2	
+# ::edge	hold-01	ARG1	towel	h2	t2	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sink-01
+                :quant 2)
+            :op2 (m / mirror
+                :quant 2)
+            :op3 (t / thing
+                :ARG0-of (h2 / hold-01
+                    :ARG1 (t2 / towel
+                        :consist-of (p / paper)))))))

@@ -1,0 +1,39 @@
+# ::tok Shot inside a plain bathroom from entrance with toilet nearest door .
+# ::node	s	shoot-01	0-1
+# ::node	i	inside	1-2
+# ::node	p	plain	3-4
+# ::node	b	bathroom	4-5
+# ::node	r	relative-position	5-6
+# ::node	e	enter-01	6-7
+# ::node	h	have-03	7-8
+# ::node	t	toilet	8-9
+# ::node	n	near-02	9-10
+# ::node	h2	have-degree-91	9-10
+# ::node	m	most	9-10
+# ::node	d	door	10-11
+# ::root	s	shoot-01
+# ::edge	shoot-01	location	inside	s	i	
+# ::edge	bathroom	mod	plain	b	p	
+# ::edge	inside	op1	bathroom	i	b	
+# ::edge	bathroom	location	relative-position	b	r	
+# ::edge	relative-position	op1	enter-01	r	e	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	toilet	h	t	
+# ::edge	toilet	ARG1-of	near-02	t	n	
+# ::edge	near-02	ARG2-of	have-degree-91	n	h2	
+# ::edge	have-degree-91	ARG1	toilet	h2	t	
+# ::edge	have-degree-91	ARG3	most	h2	m	
+# ::edge	near-02	ARG2	door	n	d	
+(s / shoot-01
+    :location (i / inside
+        :op1 (b / bathroom
+            :ARG0-of (h / have-03
+                :ARG1 (t / toilet
+                    :ARG1-of (n / near-02
+                        :ARG2 (d / door)
+                        :ARG2-of (h2 / have-degree-91
+                            :ARG1 t
+                            :ARG3 (m / most)))))
+            :location (r / relative-position
+                :op1 (e / enter-01))
+            :mod (p / plain))))

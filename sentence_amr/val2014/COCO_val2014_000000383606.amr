@@ -1,0 +1,40 @@
+# ::tok A man holding a camera reflected in a bathroom mirror that sits above a sink and next to a door .
+# ::node	m	man	1-2
+# ::node	h	hold-01	2-3
+# ::node	c	camera	4-5
+# ::node	r	reflect-01	5-6
+# ::node	b	bathroom	8-9
+# ::node	m2	mirror	9-10
+# ::node	s2	sit-01	11-12
+# ::node	a	above	12-13
+# ::node	s	sink	14-15
+# ::node	a2	and	15-16
+# ::node	n	next-to	16-17
+# ::node	d	door	19-20
+# ::node	e	event	20-21
+# ::root	e	event
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	ARG1	camera	h	c	
+# ::edge	camera	ARG1-of	reflect-01	c	r	
+# ::edge	mirror	location	bathroom	m2	b	
+# ::edge	reflect-01	ARG2	mirror	r	m2	
+# ::edge	mirror	ARG1-of	sit-01	m2	s2	
+# ::edge	above	op1	sink	a	s	
+# ::edge	and	op1	above	a2	a	
+# ::edge	sit-01	ARG2	and	s2	a2	
+# ::edge	and	op2	next-to	a2	n	
+# ::edge	next-to	op1	door	n	d	
+# ::edge	event	mod	man	e	m	
+(e / event
+    :mod (m / man
+        :ARG0-of (h / hold-01
+            :ARG1 (c / camera
+                :ARG1-of (r / reflect-01
+                    :ARG2 (m2 / mirror
+                        :ARG1-of (s2 / sit-01
+                            :ARG2 (a2 / and
+                                :op1 (a / above
+                                    :op1 (s / sink))
+                                :op2 (n / next-to
+                                    :op1 (d / door))))
+                        :location (b / bathroom)))))))

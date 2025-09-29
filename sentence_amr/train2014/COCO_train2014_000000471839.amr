@@ -1,0 +1,25 @@
+# ::tok A pizza has been prepared and is ready to go into the pizza oven .
+# ::node	p	pizza	1-2
+# ::node	p2	prepare-01	4-5
+# ::node	a	and	5-6
+# ::node	r	ready-02	7-8
+# ::node	g	go-01	9-10
+# ::node	o	oven	13-14
+# ::root	a	and
+# ::edge	prepare-01	ARG1	pizza	p2	p	
+# ::edge	and	op1	prepare-01	a	p2	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	pizza	r	p	
+# ::edge	ready-02	ARG2	go-01	r	g	
+# ::edge	go-01	ARG1	pizza	g	p	
+# ::edge	go-01	ARG4	oven	g	o	
+# ::edge	oven	mod	pizza	o	p	
+(a / and
+    :op1 (p2 / prepare-01
+        :ARG1 (p / pizza))
+    :op2 (r / ready-02
+        :ARG1 p
+        :ARG2 (g / go-01
+            :ARG1 p
+            :ARG4 (o / oven
+                :mod p))))

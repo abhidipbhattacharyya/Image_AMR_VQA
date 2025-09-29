@@ -1,0 +1,34 @@
+# ::tok Several men are seen riding horses while people are standing nearby on foot behind barriers .
+# ::node	s2	several	0-1
+# ::node	m	man	1-2
+# ::node	s	see-01	3-4
+# ::node	r	ride-01	4-5
+# ::node	h	horse	5-6
+# ::node	p	person	7-8
+# ::node	s3	stand-01	9-10
+# ::node	n	nearby	10-11
+# ::node	f	foot	12-13
+# ::node	b2	behind	13-14
+# ::node	b	barrier	14-15
+# ::root	s	see-01
+# ::edge	man	quant	several	m	s2	
+# ::edge	see-01	ARG1	ride-01	s	r	
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	ride-01	ARG1	horse	r	h	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	see-01	time	stand-01	s	s3	
+# ::edge	stand-01	ARG2	nearby	s3	n	
+# ::edge	stand-01	manner	foot	s3	f	
+# ::edge	nearby	location	behind	n	b2	
+# ::edge	behind	op1	barrier	b2	b	
+(s / see-01
+    :ARG1 (r / ride-01
+        :ARG0 (m / man
+            :quant (s2 / several))
+        :ARG1 (h / horse))
+    :time (s3 / stand-01
+        :ARG1 (p / person)
+        :ARG2 (n / nearby
+            :location (b2 / behind
+                :op1 (b / barrier)))
+        :manner (f / foot)))

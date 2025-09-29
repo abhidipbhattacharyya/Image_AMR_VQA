@@ -1,0 +1,42 @@
+# ::tok Two rows of motorcycles line both sides of the street for as far as the eye can see .
+# ::node	0	2	0-1
+# ::node	r	row	1-2
+# ::node	m	motorcycle	3-4
+# ::node	l	line-01	4-5
+# ::node	b	both	5-6
+# ::node	s2	side	6-7
+# ::node	s3	street	9-10
+# ::node	h	have-degree-91	11-12
+# ::node	e	equal	11-12
+# ::node	f	far	12-13
+# ::node	e2	eye	15-16
+# ::node	p	possible-01	16-17
+# ::node	s	see-01	17-18
+# ::root	l	line-01
+# ::edge	row	quant	2	r	0	
+# ::edge	motorcycle	quant	row	m	r	
+# ::edge	line-01	ARG2	motorcycle	l	m	
+# ::edge	side	mod	both	s2	b	
+# ::edge	line-01	ARG1	side	l	s2	
+# ::edge	side	part-of	street	s2	s3	
+# ::edge	have-degree-91	ARG1	line-01	h	l	
+# ::edge	have-degree-91	ARG3	equal	h	e	
+# ::edge	far	ARG2-of	have-degree-91	f	h	
+# ::edge	line-01	extent	far	l	f	
+# ::edge	see-01	ARG1-of	possible-01	s	p	
+# ::edge	see-01	ARG0	eye	s	e2	
+# ::edge	have-degree-91	ARG4	see-01	h	s	
+(l / line-01
+    :ARG1 (s2 / side
+        :mod (b / both)
+        :part-of (s3 / street))
+    :ARG2 (m / motorcycle
+        :quant (r / row
+            :quant 2))
+    :extent (f / far
+        :ARG2-of (h / have-degree-91
+            :ARG1 l
+            :ARG3 (e / equal)
+            :ARG4 (s / see-01
+                :ARG0 (e2 / eye)
+                :ARG1-of (p / possible-01)))))

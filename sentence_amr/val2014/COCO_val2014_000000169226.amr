@@ -1,0 +1,28 @@
+# ::tok Gorgeous night scene with streaming lights leading to a clock tower .
+# ::node	e	George	0-1
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	s	scene	2-3
+# ::node	s2	stream-01	4-5
+# ::node	l2	light	5-6
+# ::node	l	lead-01	6-7
+# ::node	c	clock	9-10
+# ::node	t	tower	10-11
+# ::root	s	scene
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	scene	mod	George	s	e	
+# ::edge	light	ARG1-of	stream-01	l2	s2	
+# ::edge	lead-01	ARG0	light	l	l2	
+# ::edge	scene	location-of	lead-01	s	l	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	lead-01	ARG4	tower	l	t	
+(s / scene
+    :location-of (l / lead-01
+        :ARG0 (l2 / light
+            :ARG1-of (s2 / stream-01))
+        :ARG4 (t / tower
+            :mod (c / clock)))
+    :mod (e / George)
+    :time (d / date-entity
+        :dayperiod (n / night)))

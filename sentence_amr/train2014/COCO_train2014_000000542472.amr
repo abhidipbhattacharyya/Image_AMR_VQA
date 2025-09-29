@@ -1,0 +1,31 @@
+# ::tok A salad and a glass of orange juice is resting on a wooden table .
+# ::node	s	salad	1-2
+# ::node	a	and	2-3
+# ::node	v	volume-quantity	3-4
+# ::node	0	1	3-4
+# ::node	g	glass	4-5
+# ::node	o	orange	6-7
+# ::node	j	juice	7-8
+# ::node	r	rest-01	9-10
+# ::node	w	wood	12-13
+# ::node	t	table	13-14
+# ::root	r	rest-01
+# ::edge	and	op1	salad	a	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	and	op2	juice	a	j	
+# ::edge	rest-01	ARG1	and	r	a	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	rest-01	ARG2	table	r	t	
+(r / rest-01
+    :ARG1 (a / and
+        :op1 (s / salad)
+        :op2 (j / juice
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass))
+            :mod (o / orange)))
+    :ARG2 (t / table
+        :consist-of (w / wood)))

@@ -1,0 +1,36 @@
+# ::tok A store clerk gathering oranges from a shopping cart to fill a display box .
+# ::node	s2	store	1-2
+# ::node	p	person	2-3
+# ::node	h	have-org-role-91	2-3
+# ::node	c2	clerk	2-3
+# ::node	g	gather-01	3-4
+# ::node	o	orange	4-5
+# ::node	s	shop-01	7-8
+# ::node	c	cart	8-9
+# ::node	f	fill-01	10-11
+# ::node	d	display-01	12-13
+# ::node	b	box	13-14
+# ::root	g	gather-01
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	store	h	s2	
+# ::edge	have-org-role-91	ARG2	clerk	h	c2	
+# ::edge	gather-01	ARG0	person	g	p	
+# ::edge	gather-01	ARG1	orange	g	o	
+# ::edge	cart	purpose	shop-01	c	s	
+# ::edge	gather-01	source	cart	g	c	
+# ::edge	gather-01	purpose	fill-01	g	f	
+# ::edge	fill-01	ARG0	person	f	p	
+# ::edge	box	mod	display-01	b	d	
+# ::edge	fill-01	ARG1	box	f	b	
+(g / gather-01
+    :purpose (f / fill-01
+        :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                :ARG1 (s2 / store)
+                :ARG2 (c2 / clerk)))
+        :ARG1 (b / box
+            :mod (d / display-01)))
+    :ARG0 p
+    :ARG1 (o / orange)
+    :source (c / cart
+        :purpose (s / shop-01)))

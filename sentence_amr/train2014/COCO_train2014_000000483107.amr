@@ -1,0 +1,25 @@
+# ::tok A divided highway sign alerts traffic to what appears to be nothing .
+# ::node	d	divide-02	1-2
+# ::node	h	highway	2-3
+# ::node	s	sign	3-4
+# ::node	a	alert-01	4-5
+# ::node	t2	traffic	5-6
+# ::node	t	thing	7-8
+# ::node	a2	appear-02	8-9
+# ::node	n	nothing	11-12
+# ::root	a	alert-01
+# ::edge	highway	ARG1-of	divide-02	h	d	
+# ::edge	sign	mod	highway	s	h	
+# ::edge	alert-01	ARG0	sign	a	s	
+# ::edge	alert-01	ARG1	traffic	a	t2	
+# ::edge	alert-01	ARG2	thing	a	t	
+# ::edge	thing	ARG1-of	appear-02	t	a2	
+# ::edge	appear-02	ARG2	nothing	a2	n	
+(a / alert-01
+    :ARG0 (s / sign
+        :mod (h / highway
+            :ARG1-of (d / divide-02)))
+    :ARG1 (t2 / traffic)
+    :ARG2 (t / thing
+        :ARG1-of (a2 / appear-02
+            :ARG2 (n / nothing))))

@@ -1,0 +1,47 @@
+# ::tok Several umbrellas and seats are on a beach as a woman stands near a chair some people are out in the surf .
+# ::node	s2	several	0-1
+# ::node	u	umbrella	1-2
+# ::node	a	and	2-3
+# ::node	s	seat	3-4
+# ::node	b	beach	7-8
+# ::node	w	woman	10-11
+# ::node	s4	stand-01	11-12
+# ::node	n	near-02	12-13
+# ::node	c	chair	14-15
+# ::node	s3	some	15-16
+# ::node	p	person	16-17
+# ::node	o	out-06	18-19
+# ::node	s5	surf-01	21-22
+# ::node	m	multi-sentence	22-23
+# ::root	m	multi-sentence
+# ::edge	umbrella	quant	several	u	s2	
+# ::edge	and	op1	umbrella	a	u	
+# ::edge	and	op2	seat	a	s	
+# ::edge	seat	quant	several	s	s2	
+# ::edge	and	location	beach	a	b	
+# ::edge	stand-01	ARG1	woman	s4	w	
+# ::edge	stand-01	ARG2	near-02	s4	n	
+# ::edge	near-02	ARG1	woman	n	w	
+# ::edge	near-02	ARG2	chair	n	c	
+# ::edge	person	quant	some	p	s3	
+# ::edge	out-06	ARG1	person	o	p	
+# ::edge	out-06	ARG2	surf-01	o	s5	
+# ::edge	multi-sentence	snt2	out-06	m	o	
+# ::edge	multi-sentence	snt1	and	m	a	
+# ::edge	multi-sentence	rel	stand-01	m	s4	
+(m / multi-sentence
+    :rel (s4 / stand-01
+        :ARG1 (w / woman)
+        :ARG2 (n / near-02
+            :ARG1 w
+            :ARG2 (c / chair)))
+    :snt1 (a / and
+        :location (b / beach)
+        :op1 (u / umbrella
+            :quant (s2 / several))
+        :op2 (s / seat
+            :quant s2))
+    :snt2 (o / out-06
+        :ARG1 (p / person
+            :quant (s3 / some))
+        :ARG2 (s5 / surf-01)))

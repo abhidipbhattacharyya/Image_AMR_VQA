@@ -1,0 +1,43 @@
+# ::tok A woman in a blue dress with no shoes , seated with her legs crossed on a chair in the middle of a room .
+# ::node	w	woman	1-2
+# ::node	b	blue	4-5
+# ::node	d	dress	5-6
+# ::node	0	-	7-8
+# ::node	s2	shoe-01	8-9
+# ::node	s	seat-01	10-11
+# ::node	l	leg	13-14
+# ::node	c2	cross-01	14-15
+# ::node	h	have-03	15-16
+# ::node	c	chair	17-18
+# ::node	m	middle	20-21
+# ::node	r	room	23-24
+# ::root	w	woman
+# ::edge	dress	mod	blue	d	b	
+# ::edge	shoe-01	polarity	-	s2	0	
+# ::edge	woman	ARG1-of	seat-01	w	s	
+# ::edge	woman	part	leg	w	l	
+# ::edge	cross-01	ARG1	leg	c2	l	
+# ::edge	seat-01	manner	cross-01	s	c2	
+# ::edge	cross-01	ARG0	woman	c2	w	
+# ::edge	have-03	ARG1	shoe-01	h	s2	
+# ::edge	woman	ARG0-of	have-03	w	h	
+# ::edge	seat-01	ARG2	chair	s	c	
+# ::edge	chair	location	middle	c	m	
+# ::edge	middle	part-of	room	m	r	
+# ::edge	woman	rel	dress	w	d	
+# ::edge	woman	rel	seat-01	w	s	
+(w / woman
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / shoe-01
+            :polarity -))
+    :ARG1-of (s / seat-01
+        :ARG2 (c / chair
+            :location (m / middle
+                :part-of (r / room)))
+        :manner (c2 / cross-01
+            :ARG0 w
+            :ARG1 (l / leg)))
+    :part l
+    :rel (d / dress
+        :mod (b / blue))
+    :rel s)

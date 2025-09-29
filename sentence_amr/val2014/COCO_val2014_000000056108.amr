@@ -1,0 +1,40 @@
+# ::tok A table with chairs , a dresser drawer , a clock and a couch chair are all in the same room .
+# ::node	t	table	1-2
+# ::node	h	have-03	2-3
+# ::node	c	chair	3-4
+# ::node	d2	dresser	6-7
+# ::node	d	drawer	7-8
+# ::node	c3	clock	10-11
+# ::node	a2	and	11-12
+# ::node	c4	couch	13-14
+# ::node	c2	chair	14-15
+# ::node	a	all	16-17
+# ::node	b	be-located-at-91	17-18
+# ::node	s	same-01	19-20
+# ::node	r	room	20-21
+# ::root	b	be-located-at-91
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	chair	h	c	
+# ::edge	drawer	mod	dresser	d	d2	
+# ::edge	and	op3	clock	a2	c3	
+# ::edge	and	op2	drawer	a2	d	
+# ::edge	and	op1	table	a2	t	
+# ::edge	chair	location	couch	c2	c4	
+# ::edge	and	op4	chair	a2	c2	
+# ::edge	and	mod	all	a2	a	
+# ::edge	be-located-at-91	ARG1	and	b	a2	
+# ::edge	room	ARG1-of	same-01	r	s	
+# ::edge	be-located-at-91	ARG2	room	b	r	
+(b / be-located-at-91
+    :ARG1 (a2 / and
+        :mod (a / all)
+        :op1 (t / table
+            :ARG0-of (h / have-03
+                :ARG1 (c / chair)))
+        :op2 (d / drawer
+            :mod (d2 / dresser))
+        :op3 (c3 / clock)
+        :op4 (c2 / chair
+            :location (c4 / couch)))
+    :ARG2 (r / room
+        :ARG1-of (s / same-01)))

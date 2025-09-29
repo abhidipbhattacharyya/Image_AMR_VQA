@@ -1,0 +1,48 @@
+# ::tok A Virgin airlines plane sits on the tarmac with a JetBlue and a Qantas plane .
+# ::node	n	name	1-2
+# ::node	2	Virgin	1-2
+# ::node	c	company	2-3
+# ::node	a	airline	2-3
+# ::node	p	plane	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	tarmac	7-8
+# ::node	c2	company	10-11
+# ::node	n2	name	10-11
+# ::node	0	JetBlue	10-11
+# ::node	a2	and	11-12
+# ::node	c3	company	13-14
+# ::node	n3	name	13-14
+# ::node	1	Qantas	13-14
+# ::node	p2	plane	14-15
+# ::root	s	sit-01
+# ::edge	name	op1	Virgin	n	2	
+# ::edge	company	name	name	c	n	
+# ::edge	plane	poss	company	p	c	
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	JetBlue	n2	0	
+# ::edge	and	op2	company	a2	c2	
+# ::edge	company	name	name	c3	n3	
+# ::edge	name	op1	Qantas	n3	1	
+# ::edge	plane	poss	and	p2	a2	
+# ::edge	and	op3	plane	a2	p2	
+# ::edge	sit-01	rel	company	s	c3	
+# ::edge	sit-01	rel	and	s	a2	
+# ::edge	sit-01	rel	airline	s	a	
+(s / sit-01
+    :ARG1 (p / plane
+        :poss (c / company
+            :name (n / name
+                :op1 "Virgin")))
+    :ARG2 (t / tarmac)
+    :rel (c3 / company
+        :name (n3 / name
+            :op1 "Qantas"))
+    :rel (a2 / and
+        :op2 (c2 / company
+            :name (n2 / name
+                :op1 "JetBlue"))
+        :op3 (p2 / plane
+            :poss a2))
+    :rel (a / airline))

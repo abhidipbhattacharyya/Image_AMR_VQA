@@ -1,0 +1,60 @@
+# ::tok Snow - dusted evergreens and rolling hills mark the distance , while in the foreground a hunched over skier moves through a dip between two snow - packed slopes .
+# ::node	s4	snow	0-1
+# ::node	d3	dust-01	2-3
+# ::node	t	tree	3-4
+# ::node	a	and	4-5
+# ::node	r	roll-01	5-6
+# ::node	h	hill	6-7
+# ::node	m	mark-01	7-8
+# ::node	d2	distance	9-10
+# ::node	c	contrast-01	11-12
+# ::node	f	foreground	14-15
+# ::node	s3	slump-01	16-17
+# ::node	p2	person	18-19
+# ::node	s	ski-01	18-19
+# ::node	m2	move-01	19-20
+# ::node	d	dip-01	22-23
+# ::node	b	between	23-24
+# ::node	0	2	24-25
+# ::node	p	pack-01	27-28
+# ::node	s2	slope	28-29
+# ::root	c	contrast-01
+# ::edge	dust-01	ARG2	snow	d3	s4	
+# ::edge	tree	ARG1-of	dust-01	t	d3	
+# ::edge	and	op1	tree	a	t	
+# ::edge	hill	ARG1-of	roll-01	h	r	
+# ::edge	and	op2	hill	a	h	
+# ::edge	mark-01	ARG0	and	m	a	
+# ::edge	mark-01	ARG1	distance	m	d2	
+# ::edge	contrast-01	ARG1	mark-01	c	m	
+# ::edge	person	ARG1-of	slump-01	p2	s3	
+# ::edge	person	ARG0-of	ski-01	p2	s	
+# ::edge	move-01	ARG0	person	m2	p2	
+# ::edge	move-01	location	foreground	m2	f	
+# ::edge	contrast-01	ARG2	move-01	c	m2	
+# ::edge	move-01	path	dip-01	m2	d	
+# ::edge	dip-01	ARG2	between	d	b	
+# ::edge	pack-01	ARG2	snow	p	s4	
+# ::edge	slope	ARG1-of	pack-01	s2	p	
+# ::edge	slope	quant	2	s2	0	
+# ::edge	between	op1	slope	b	s2	
+(c / contrast-01
+    :ARG1 (m / mark-01
+        :ARG0 (a / and
+            :op1 (t / tree
+                :ARG1-of (d3 / dust-01
+                    :ARG2 (s4 / snow)))
+            :op2 (h / hill
+                :ARG1-of (r / roll-01)))
+        :ARG1 (d2 / distance))
+    :ARG2 (m2 / move-01
+        :ARG0 (p2 / person
+            :ARG0-of (s / ski-01)
+            :ARG1-of (s3 / slump-01))
+        :location (f / foreground)
+        :path (d / dip-01
+            :ARG2 (b / between
+                :op1 (s2 / slope
+                    :quant 2
+                    :ARG1-of (p / pack-01
+                        :ARG2 s4))))))

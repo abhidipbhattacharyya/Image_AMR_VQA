@@ -1,0 +1,42 @@
+# ::tok A stove with a yellow and blue mitten on top of it next to a counter with two toaster - ovens .
+# ::node	s	stove	1-2
+# ::node	y	yellow-02	4-5
+# ::node	a	and	5-6
+# ::node	b	blue	6-7
+# ::node	m	mitten	7-8
+# ::node	m2	mitten	7-8
+# ::node	t2	top	9-10
+# ::node	n	next-to	12-13
+# ::node	c	counter	15-16
+# ::node	h	have-03	16-17
+# ::node	0	2	17-18
+# ::node	t	toaster	18-19
+# ::node	o	oven	20-21
+# ::root	s	stove
+# ::edge	and	op1	mitten	a	m	
+# ::edge	mitten	ARG1-of	yellow-02	m	y	
+# ::edge	mitten	mod	blue	m2	b	
+# ::edge	and	op2	mitten	a	m2	
+# ::edge	and	location	top	a	t2	
+# ::edge	stove	part	top	s	t2	
+# ::edge	stove	location	next-to	s	n	
+# ::edge	next-to	op1	counter	n	c	
+# ::edge	counter	ARG0-of	have-03	c	h	
+# ::edge	oven	mod	toaster	o	t	
+# ::edge	oven	quant	2	o	0	
+# ::edge	have-03	ARG1	oven	h	o	
+# ::edge	stove	rel	and	s	a	
+(s / stove
+    :location (n / next-to
+        :op1 (c / counter
+            :ARG0-of (h / have-03
+                :ARG1 (o / oven
+                    :quant 2
+                    :mod (t / toaster)))))
+    :part (t2 / top)
+    :rel (a / and
+        :location t2
+        :op1 (m / mitten
+            :ARG1-of (y / yellow-02))
+        :op2 (m2 / mitten
+            :mod (b / blue))))

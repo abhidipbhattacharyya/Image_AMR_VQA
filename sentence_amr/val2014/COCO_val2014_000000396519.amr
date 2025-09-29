@@ -1,0 +1,29 @@
+# ::tok Athletes colliding on playing field trying to catch flying disc .
+# ::node	a	athlete	0-1
+# ::node	c2	collide-01	1-2
+# ::node	p	play-01	3-4
+# ::node	f	field	4-5
+# ::node	t	try-01	5-6
+# ::node	c	catch-01	7-8
+# ::node	f2	fly-01	8-9
+# ::node	d	disc	9-10
+# ::root	c2	collide-01
+# ::edge	collide-01	ARG0	athlete	c2	a	
+# ::edge	field	location-of	play-01	f	p	
+# ::edge	collide-01	location	field	c2	f	
+# ::edge	collide-01	purpose	try-01	c2	t	
+# ::edge	try-01	ARG0	athlete	t	a	
+# ::edge	try-01	ARG1	catch-01	t	c	
+# ::edge	catch-01	ARG0	athlete	c	a	
+# ::edge	disc	ARG1-of	fly-01	d	f2	
+# ::edge	catch-01	ARG1	disc	c	d	
+(c2 / collide-01
+    :purpose (t / try-01
+        :ARG0 (a / athlete)
+        :ARG1 (c / catch-01
+            :ARG0 a
+            :ARG1 (d / disc
+                :ARG1-of (f2 / fly-01))))
+    :ARG0 a
+    :location (f / field
+        :location-of (p / play-01)))

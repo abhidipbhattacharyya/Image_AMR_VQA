@@ -1,0 +1,42 @@
+# ::tok A yellow building has a red door , and a brick sidewalk alongside of it , with a silver fire hydrant .
+# ::node	y	yellow-02	1-2
+# ::node	b2	building	2-3
+# ::node	h	have-03	3-4
+# ::node	r	red-02	5-6
+# ::node	d	door	6-7
+# ::node	a2	and	8-9
+# ::node	b	brick	10-11
+# ::node	s	sidewalk	11-12
+# ::node	a	alongside	12-13
+# ::node	h2	have-03	16-17
+# ::node	s2	silver	18-19
+# ::node	f	fire	19-20
+# ::node	h3	hydrant	20-21
+# ::root	h	have-03
+# ::edge	building	ARG1-of	yellow-02	b2	y	
+# ::edge	have-03	ARG0	building	h	b2	
+# ::edge	door	ARG1-of	red-02	d	r	
+# ::edge	and	op1	door	a2	d	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	sidewalk	consist-of	brick	s	b	
+# ::edge	and	op2	sidewalk	a2	s	
+# ::edge	sidewalk	location	alongside	s	a	
+# ::edge	alongside	op1	building	a	b2	
+# ::edge	sidewalk	ARG0-of	have-03	s	h2	
+# ::edge	hydrant	mod	fire	h3	f	
+# ::edge	hydrant	mod	silver	h3	s2	
+# ::edge	have-03	ARG1	hydrant	h2	h3	
+(h / have-03
+    :ARG0 (b2 / building
+        :ARG1-of (y / yellow-02))
+    :ARG1 (a2 / and
+        :op1 (d / door
+            :ARG1-of (r / red-02))
+        :op2 (s / sidewalk
+            :ARG0-of (h2 / have-03
+                :ARG1 (h3 / hydrant
+                    :mod (f / fire)
+                    :mod (s2 / silver)))
+            :consist-of (b / brick)
+            :location (a / alongside
+                :op1 b2))))

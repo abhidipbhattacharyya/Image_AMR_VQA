@@ -1,0 +1,46 @@
+# ::tok A sleigh style bed frame with blanket and sheets pulled down on one side and the other side is made .
+# ::node	s4	sleigh	1-2
+# ::node	s5	style	2-3
+# ::node	b	bed	3-4
+# ::node	f	frame	4-5
+# ::node	b2	blanket	6-7
+# ::node	a	and	7-8
+# ::node	s	sheet	8-9
+# ::node	p	pull-01	9-10
+# ::node	d	down	10-11
+# ::node	o	one	12-13
+# ::node	s2	side	13-14
+# ::node	a2	and	14-15
+# ::node	o2	other	16-17
+# ::node	s3	side	17-18
+# ::node	m	make-01	19-20
+# ::root	a2	and
+# ::edge	style	mod	sleigh	s5	s4	
+# ::edge	frame	mod	bed	f	b	
+# ::edge	frame	mod	style	f	s5	
+# ::edge	and	op1	blanket	a	b2	
+# ::edge	frame	consist-of	and	f	a	
+# ::edge	and	op2	sheet	a	s	
+# ::edge	and	ARG1-of	pull-01	a	p	
+# ::edge	pull-01	ARG2	down	p	d	
+# ::edge	side	mod	one	s2	o	
+# ::edge	pull-01	location	side	p	s2	
+# ::edge	and	op1	frame	a2	f	
+# ::edge	side	mod	other	s3	o2	
+# ::edge	make-01	ARG1	side	m	s3	
+# ::edge	and	op2	make-01	a2	m	
+(a2 / and
+    :op1 (f / frame
+        :consist-of (a / and
+            :ARG1-of (p / pull-01
+                :ARG2 (d / down)
+                :location (s2 / side
+                    :mod (o / one)))
+            :op1 (b2 / blanket)
+            :op2 (s / sheet))
+        :mod (b / bed)
+        :mod (s5 / style
+            :mod (s4 / sleigh)))
+    :op2 (m / make-01
+        :ARG1 (s3 / side
+            :mod (o2 / other))))

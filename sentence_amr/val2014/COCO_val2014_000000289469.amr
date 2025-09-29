@@ -1,0 +1,34 @@
+# ::tok A dish of macaroni and cheese , french fries and broccoli are sitting on the table .
+# ::node	d	dish	1-2
+# ::node	m	macaroni	3-4
+# ::node	a	and	4-5
+# ::node	c	cheese	5-6
+# ::node	c2	country	7-8
+# ::node	n	name	7-8
+# ::node	0	France	7-8
+# ::node	f	fry-01	8-9
+# ::node	b	broccoli	10-11
+# ::node	s	sit-01	12-13
+# ::node	t	table	15-16
+# ::root	s	sit-01
+# ::edge	and	op1	macaroni	a	m	
+# ::edge	dish	consist-of	and	d	a	
+# ::edge	and	op2	cheese	a	c	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c2	
+# ::edge	broccoli	ARG1-of	fry-01	b	f	
+# ::edge	and	op3	broccoli	a	b	
+# ::edge	sit-01	ARG1	dish	s	d	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (d / dish
+        :consist-of (a / and
+            :op1 (m / macaroni)
+            :op2 (c / cheese)
+            :op3 (b / broccoli
+                :ARG1-of (f / fry-01
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "France"))))))
+    :ARG2 (t / table))

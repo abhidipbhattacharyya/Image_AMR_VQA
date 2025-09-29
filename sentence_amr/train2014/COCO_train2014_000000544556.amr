@@ -1,0 +1,39 @@
+# ::tok A kitchen counter that has a mixing bowel , pans , paper towels , and many other things on it .
+# ::node	k	kitchen	1-2
+# ::node	c	counter	2-3
+# ::node	h	have-03	4-5
+# ::node	m2	mix-01	6-7
+# ::node	b	bowel	7-8
+# ::node	a2	and	8-9
+# ::node	a	Pan	9-10
+# ::node	p	paper	11-12
+# ::node	p2	paper	12-13
+# ::node	m	many	15-16
+# ::node	o	other	16-17
+# ::node	t	thing	17-18
+# ::root	c	counter
+# ::edge	counter	location	kitchen	c	k	
+# ::edge	counter	ARG0-of	have-03	c	h	
+# ::edge	bowel	ARG0-of	mix-01	b	m2	
+# ::edge	and	op1	bowel	a2	b	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	Pan	a2	a	
+# ::edge	paper	consist-of	paper	p2	p	
+# ::edge	and	op3	paper	a2	p2	
+# ::edge	thing	mod	other	t	o	
+# ::edge	thing	quant	many	t	m	
+# ::edge	and	op4	thing	a2	t	
+# ::edge	thing	location	counter	t	c	
+(c / counter
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (b / bowel
+                :ARG0-of (m2 / mix-01))
+            :op2 (a / Pan)
+            :op3 (p2 / paper
+                :consist-of (p / paper))
+            :op4 (t / thing
+                :quant (m / many)
+                :location c
+                :mod (o / other))))
+    :location (k / kitchen))

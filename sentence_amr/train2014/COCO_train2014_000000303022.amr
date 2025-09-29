@@ -1,0 +1,31 @@
+# ::tok A bus with a Yahoo ! advertisement picking people up at a bus stop .
+# ::node	b	bus	1-2
+# ::node	h	have-03	2-3
+# ::node	c	company	4-5
+# ::node	n	name	4-5
+# ::node	0	Yahoo	4-5
+# ::node	a	advertise-01	6-7
+# ::node	p2	pick-up-04	7-8
+# ::node	p	person	8-9
+# ::node	b2	bus	12-13
+# ::node	s	stop-01	13-14
+# ::root	p2	pick-up-04
+# ::edge	bus	ARG0-of	have-03	b	h	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Yahoo	n	0	
+# ::edge	advertise-01	ARG0	company	a	c	
+# ::edge	have-03	ARG1	advertise-01	h	a	
+# ::edge	pick-up-04	ARG0	bus	p2	b	
+# ::edge	pick-up-04	ARG1	person	p2	p	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	pick-up-04	location	stop-01	p2	s	
+(p2 / pick-up-04
+    :ARG0 (b / bus
+        :ARG0-of (h / have-03
+            :ARG1 (a / advertise-01
+                :ARG0 (c / company
+                    :name (n / name
+                        :op1 "Yahoo")))))
+    :ARG1 (p / person)
+    :location (s / stop-01
+        :ARG1 (b2 / bus)))

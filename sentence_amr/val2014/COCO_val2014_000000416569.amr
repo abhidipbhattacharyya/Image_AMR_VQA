@@ -1,0 +1,39 @@
+# ::tok A glass display case contains wooden boxes and trinkets like flasks and pocket knives .
+# ::node	g	glass	1-2
+# ::node	d	display-01	2-3
+# ::node	c	case	3-4
+# ::node	c2	contain-01	4-5
+# ::node	w	wood	5-6
+# ::node	b	box	6-7
+# ::node	a	and	7-8
+# ::node	t	truffle	8-9
+# ::node	g2	glass	10-11
+# ::node	a2	and	11-12
+# ::node	p	pocket	12-13
+# ::node	k	knife	13-14
+# ::root	c2	contain-01
+# ::edge	display-01	ARG2	glass	d	g	
+# ::edge	case	ARG1-of	display-01	c	d	
+# ::edge	contain-01	ARG0	case	c2	c	
+# ::edge	box	mod	wood	b	w	
+# ::edge	and	op1	box	a	b	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	and	op2	truffle	a	t	
+# ::edge	truffle	mod	wood	t	w	
+# ::edge	and	op1	glass	a2	g2	
+# ::edge	and	example	and	a	a2	
+# ::edge	knife	mod	pocket	k	p	
+# ::edge	and	op2	knife	a2	k	
+(c2 / contain-01
+    :ARG0 (c / case
+        :ARG1-of (d / display-01
+            :ARG2 (g / glass)))
+    :ARG1 (a / and
+        :example (a2 / and
+            :op1 (g2 / glass)
+            :op2 (k / knife
+                :mod (p / pocket)))
+        :op1 (b / box
+            :mod (w / wood))
+        :op2 (t / truffle
+            :mod w)))

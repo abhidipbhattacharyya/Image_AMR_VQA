@@ -1,0 +1,40 @@
+# ::tok A street sign that shows Broadway and two different Wall Streets .
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	s	show-01	4-5
+# ::node	r	road	5-6
+# ::node	n	name	5-6
+# ::node	r2	road	5-6
+# ::node	1	Broadway	5-6
+# ::node	a	and	6-7
+# ::node	0	2	7-8
+# ::node	d	differ-02	8-9
+# ::node	n2	name	9-10
+# ::node	3	Wall	9-10
+# ::node	2	Street	10-11
+# ::root	s2	sign
+# ::edge	sign	location	street	s2	s3	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op1	Broadway	n	1	
+# ::edge	and	op2	road	a	r2	
+# ::edge	and	op1	road	a	r	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	road	quant	2	r2	0	
+# ::edge	road	ARG1-of	differ-02	r2	d	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op1	Wall	n2	3	
+# ::edge	name	op2	Street	n2	2	
+(s2 / sign
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (r / road
+                :name (n / name
+                    :op1 "Broadway"))
+            :op2 (r2 / road
+                :name (n2 / name
+                    :op1 "Wall"
+                    :op2 "Street")
+                :quant 2
+                :ARG1-of (d / differ-02))))
+    :location (s3 / street))

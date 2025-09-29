@@ -1,0 +1,22 @@
+# ::tok Many various sized bottles of apple cider are on the table .
+# ::node	m	many	0-1
+# ::node	v	vary-01	1-2
+# ::node	s	size-01	2-3
+# ::node	b	bottle	3-4
+# ::node	a	apple	5-6
+# ::node	c	cider	6-7
+# ::node	t	table-01	10-11
+# ::root	t	table-01
+# ::edge	size-01	ARG1-of	vary-01	s	v	
+# ::edge	bottle	ARG1-of	size-01	b	s	
+# ::edge	bottle	quant	many	b	m	
+# ::edge	cider	mod	apple	c	a	
+# ::edge	bottle	quant-of	cider	b	c	
+# ::edge	table-01	ARG1	bottle	t	b	
+(t / table-01
+    :ARG1 (b / bottle
+        :quant (m / many)
+        :ARG1-of (s / size-01
+            :ARG1-of (v / vary-01))
+        :quant-of (c / cider
+            :mod (a / apple))))

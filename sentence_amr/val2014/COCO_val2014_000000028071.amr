@@ -1,0 +1,34 @@
+# ::tok A stop sign is on the corner near a shopping cart with a large store in the background .
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	b2	be-located-at-91	4-5
+# ::node	c2	corner	6-7
+# ::node	n	near-02	7-8
+# ::node	s	shop-01	9-10
+# ::node	c	cart	10-11
+# ::node	h	have-03	11-12
+# ::node	l	large	13-14
+# ::node	s4	store	14-15
+# ::node	b	background	17-18
+# ::root	b2	be-located-at-91
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	be-located-at-91	ARG1	signal-07	b2	s2	
+# ::edge	be-located-at-91	ARG2	corner	b2	c2	
+# ::edge	corner	ARG1-of	near-02	c2	n	
+# ::edge	cart	purpose	shop-01	c	s	
+# ::edge	near-02	ARG2	cart	n	c	
+# ::edge	cart	ARG0-of	have-03	c	h	
+# ::edge	store	mod	large	s4	l	
+# ::edge	have-03	ARG1	store	h	s4	
+# ::edge	store	location	background	s4	b	
+(b2 / be-located-at-91
+    :ARG1 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG2 (c2 / corner
+        :ARG1-of (n / near-02
+            :ARG2 (c / cart
+                :purpose (s / shop-01)
+                :ARG0-of (h / have-03
+                    :ARG1 (s4 / store
+                        :location (b / background)
+                        :mod (l / large)))))))

@@ -1,0 +1,23 @@
+# ::tok Many motorboats are ready and waiting for passengers .
+# ::node	m	many	0-1
+# ::node	m2	motor	1-2
+# ::node	r	ready-02	3-4
+# ::node	a	and	4-5
+# ::node	w	wait-01	5-6
+# ::node	p	passenger	7-8
+# ::root	a	and
+# ::edge	motor	quant	many	m2	m	
+# ::edge	ready-02	ARG1	motor	r	m2	
+# ::edge	and	op1	ready-02	a	r	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG1	motor	w	m2	
+# ::edge	wait-01	ARG2	passenger	w	p	
+# ::edge	ready-02	ARG2	passenger	r	p	
+(a / and
+    :op1 (r / ready-02
+        :ARG1 (m2 / motor
+            :quant (m / many))
+        :ARG2 (p / passenger))
+    :op2 (w / wait-01
+        :ARG1 m2
+        :ARG2 p))

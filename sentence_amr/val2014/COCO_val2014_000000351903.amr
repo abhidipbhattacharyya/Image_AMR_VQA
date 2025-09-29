@@ -1,0 +1,28 @@
+# ::tok A giraffe stands near another giraffe near a fallen tree branch .
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	a	another	4-5
+# ::node	g2	giraffe	5-6
+# ::node	n2	near-02	6-7
+# ::node	f	fall-01	8-9
+# ::node	t	tree	9-10
+# ::node	b	branch	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	ARG1-of	near-02	s	n	
+# ::edge	giraffe	mod	another	g2	a	
+# ::edge	near-02	ARG2	giraffe	n	g2	
+# ::edge	giraffe	ARG1-of	near-02	g2	n2	
+# ::edge	branch	part-of	tree	b	t	
+# ::edge	branch	ARG1-of	fall-01	b	f	
+# ::edge	near-02	ARG2	branch	n2	b	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG1-of (n / near-02
+        :ARG2 (g2 / giraffe
+            :ARG1-of (n2 / near-02
+                :ARG2 (b / branch
+                    :ARG1-of (f / fall-01)
+                    :part-of (t / tree)))
+            :mod (a / another))))

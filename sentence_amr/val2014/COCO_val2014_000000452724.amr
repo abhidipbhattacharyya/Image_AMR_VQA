@@ -1,0 +1,43 @@
+# ::tok A large room with a room divider , showing a bedroom on one side and a sitting area on the other .
+# ::node	l	large	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	r2	room	5-6
+# ::node	d	divide-02	6-7
+# ::node	s	show-01	8-9
+# ::node	b	bedroom	10-11
+# ::node	o	one	12-13
+# ::node	s2	side	13-14
+# ::node	s3	side	13-14
+# ::node	a	and	14-15
+# ::node	s4	sit-01	16-17
+# ::node	a2	area	17-18
+# ::node	o2	other	20-21
+# ::root	r	room
+# ::edge	room	mod	large	r	l	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	divide-02	ARG1	room	d	r2	
+# ::edge	have-03	ARG1	divide-02	h	d	
+# ::edge	room	ARG0-of	show-01	r	s	
+# ::edge	side	mod	one	s2	o	
+# ::edge	bedroom	location	side	b	s2	
+# ::edge	and	op1	bedroom	a	b	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	area	purpose	sit-01	a2	s4	
+# ::edge	and	op2	area	a	a2	
+# ::edge	area	location	side	a2	s3	
+# ::edge	side	mod	other	s3	o2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (d / divide-02
+            :ARG1 (r2 / room)))
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (b / bedroom
+                :location (s2 / side
+                    :mod (o / one)))
+            :op2 (a2 / area
+                :purpose (s4 / sit-01)
+                :location (s3 / side
+                    :mod (o2 / other)))))
+    :mod (l / large))

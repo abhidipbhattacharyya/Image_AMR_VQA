@@ -1,0 +1,46 @@
+# ::tok A group of children sit around a Husky dog while two people with two dogs in the background watch .
+# ::node	g	group	1-2
+# ::node	c	child	3-4
+# ::node	s	sit-01	4-5
+# ::node	a2	around	5-6
+# ::node	n	name	7-8
+# ::node	2	Husky	7-8
+# ::node	d	dog	8-9
+# ::node	0	2	10-11
+# ::node	p	person	11-12
+# ::node	h	have-03	12-13
+# ::node	1	2	13-14
+# ::node	d2	dog	14-15
+# ::node	b	background	17-18
+# ::node	w	watch-01	18-19
+# ::node	a	and	19-20
+# ::root	a	and
+# ::edge	group	consist-of	child	g	c	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	name	op1	Husky	n	2	
+# ::edge	dog	name	name	d	n	
+# ::edge	around	op1	dog	a2	d	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	dog	quant	2	d2	1	
+# ::edge	have-03	ARG1	dog	h	d2	
+# ::edge	person	location	background	p	b	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	and	op1	sit-01	a	s	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (g / group
+            :consist-of (c / child))
+        :ARG2 (a2 / around
+            :op1 (d / dog
+                :name (n / name
+                    :op1 "Husky"))))
+    :op2 (w / watch-01
+        :ARG0 (p / person
+            :quant 2
+            :ARG0-of (h / have-03
+                :ARG1 (d2 / dog
+                    :quant 2))
+            :location (b / background))))

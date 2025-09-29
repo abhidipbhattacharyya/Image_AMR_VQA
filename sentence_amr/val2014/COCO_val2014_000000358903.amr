@@ -1,0 +1,29 @@
+# ::tok Water skiers perform stunts as they are pulled behind boats .
+# ::node	w	water	0-1
+# ::node	p2	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	p	perform-01	2-3
+# ::node	a	act-01	3-4
+# ::node	p3	pull-01	7-8
+# ::node	b	behind	8-9
+# ::node	b2	boat	9-10
+# ::root	p	perform-01
+# ::edge	person	ARG0-of	ski-01	p2	s	
+# ::edge	ski-01	ARG1	water	s	w	
+# ::edge	perform-01	ARG0	person	p	p2	
+# ::edge	perform-01	ARG1	act-01	p	a	
+# ::edge	act-01	ARG0	person	a	p2	
+# ::edge	perform-01	time	pull-01	p	p3	
+# ::edge	pull-01	ARG1	person	p3	p2	
+# ::edge	pull-01	ARG2	behind	p3	b	
+# ::edge	behind	op1	boat	b	b2	
+(p / perform-01
+    :ARG0 (p2 / person
+        :ARG0-of (s / ski-01
+            :ARG1 (w / water)))
+    :ARG1 (a / act-01
+        :ARG0 p2)
+    :time (p3 / pull-01
+        :ARG1 p2
+        :ARG2 (b / behind
+            :op1 (b2 / boat))))

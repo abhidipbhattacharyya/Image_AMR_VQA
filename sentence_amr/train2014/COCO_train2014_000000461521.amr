@@ -1,0 +1,47 @@
+# ::tok A huge amount of sheep , some smaller , some big , are walking on .
+# ::node	h2	huge	1-2
+# ::node	a	amount	2-3
+# ::node	s	sheep	4-5
+# ::node	s2	sheep	4-5
+# ::node	i	include-91	6-7
+# ::node	s4	some	6-7
+# ::node	h	have-degree-91	7-8
+# ::node	s3	small	7-8
+# ::node	m	more	7-8
+# ::node	a2	and	8-9
+# ::node	s5	some	9-10
+# ::node	b	big	10-11
+# ::node	a3	animal	11-12
+# ::node	w	walk-01	13-14
+# ::root	a2	and
+# ::edge	amount	mod	huge	a	h2	
+# ::edge	sheep	quant	amount	s	a	
+# ::edge	include-91	ARG1	sheep	i	s2	
+# ::edge	sheep	ARG2-of	include-91	s	i	
+# ::edge	sheep	quant	some	s2	s4	
+# ::edge	sheep	ARG1-of	have-degree-91	s2	h	
+# ::edge	have-degree-91	ARG2	small	h	s3	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	and	op1	amount	a2	a	
+# ::edge	animal	mod	big	a3	b	
+# ::edge	animal	quant	some	a3	s5	
+# ::edge	and	op2	animal	a2	a3	
+# ::edge	animal	mod	sheep	a3	s2	
+# ::edge	and	op2	walk-01	a2	w	
+# ::edge	walk-01	ARG0	sheep	w	s	
+(a2 / and
+    :op1 (a / amount
+        :mod (h2 / huge))
+    :op2 (a3 / animal
+        :quant (s5 / some)
+        :mod (b / big)
+        :mod (s2 / sheep
+            :quant (s4 / some)
+            :ARG1-of (h / have-degree-91
+                :ARG2 (s3 / small)
+                :ARG3 (m / more))))
+    :op2 (w / walk-01
+        :ARG0 (s / sheep
+            :quant a
+            :ARG2-of (i / include-91
+                :ARG1 s2))))

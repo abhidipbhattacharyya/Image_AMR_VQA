@@ -1,0 +1,39 @@
+# ::tok some people standing in a large room while playing a video game with wii motes
+# ::node	s	some	0-1
+# ::node	p	person	1-2
+# ::node	s2	stand-01	2-3
+# ::node	l	large	5-6
+# ::node	r	room	6-7
+# ::node	p2	play-01	8-9
+# ::node	v	video	10-11
+# ::node	g	game	11-12
+# ::node	c	company	13-14
+# ::node	n	name	13-14
+# ::node	0	W	13-14
+# ::node	1	race	14-15
+# ::root	s2	stand-01
+# ::edge	person	quant	some	p	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	room	mod	large	r	l	
+# ::edge	stand-01	ARG2	room	s2	r	
+# ::edge	stand-01	time	play-01	s2	p2	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	game	mod	video	g	v	
+# ::edge	play-01	ARG1	game	p2	g	
+# ::edge	play-01	ARG2	company	p2	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	W	n	0	
+# ::edge	name	op2	race	n	1	
+(s2 / stand-01
+    :ARG1 (p / person
+        :quant (s / some))
+    :ARG2 (r / room
+        :mod (l / large))
+    :time (p2 / play-01
+        :ARG0 p
+        :ARG1 (g / game
+            :mod (v / video))
+        :ARG2 (c / company
+            :name (n / name
+                :op1 "W"
+                :op2 "race"))))

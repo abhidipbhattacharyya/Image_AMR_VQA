@@ -1,0 +1,28 @@
+# ::tok A neat living room where you can see the dining room in the background .
+# ::node	n	neat	1-2
+# ::node	l	living	2-3
+# ::node	r	room	3-4
+# ::node	y	you	5-6
+# ::node	p	possible-01	6-7
+# ::node	s	see-01	7-8
+# ::node	d	dine-01	9-10
+# ::node	r2	room	10-11
+# ::node	b	background	13-14
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	room	mod	neat	r	n	
+# ::edge	room	location-of	possible-01	r	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	room	mod	dine-01	r2	d	
+# ::edge	see-01	ARG1	room	s	r2	
+# ::edge	room	location	background	r2	b	
+(r / room
+    :location-of (p / possible-01
+        :ARG1 (s / see-01
+            :ARG0 (y / you)
+            :ARG1 (r2 / room
+                :location (b / background)
+                :mod (d / dine-01))))
+    :mod (l / living)
+    :mod (n / neat))

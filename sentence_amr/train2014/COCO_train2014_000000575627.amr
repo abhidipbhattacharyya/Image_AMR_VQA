@@ -1,0 +1,30 @@
+# ::tok Happy children eat pizza at a table while adults eat at the table behind them .
+# ::node	h	happy-01	0-1
+# ::node	c	child	1-2
+# ::node	e	eat-01	2-3
+# ::node	p	pizza	3-4
+# ::node	t	table	6-7
+# ::node	a	adult	8-9
+# ::node	e2	eat-01	9-10
+# ::node	t2	table	12-13
+# ::node	b	behind	13-14
+# ::root	e	eat-01
+# ::edge	child	ARG1-of	happy-01	c	h	
+# ::edge	eat-01	ARG0	child	e	c	
+# ::edge	eat-01	ARG1	pizza	e	p	
+# ::edge	eat-01	location	table	e	t	
+# ::edge	eat-01	ARG0	adult	e2	a	
+# ::edge	eat-01	time	eat-01	e	e2	
+# ::edge	eat-01	location	table	e2	t2	
+# ::edge	table	location	behind	t2	b	
+# ::edge	behind	op1	child	b	c	
+(e / eat-01
+    :ARG0 (c / child
+        :ARG1-of (h / happy-01))
+    :ARG1 (p / pizza)
+    :location (t / table)
+    :time (e2 / eat-01
+        :ARG0 (a / adult)
+        :location (t2 / table
+            :location (b / behind
+                :op1 c))))

@@ -1,0 +1,34 @@
+# ::tok A giant cruise ship next to another giant cruise ship next to a long pier .
+# ::node	g	giant	1-2
+# ::node	c	cruise-01	2-3
+# ::node	s	ship	3-4
+# ::node	n	next-to	4-5
+# ::node	a	another	6-7
+# ::node	g2	giant	7-8
+# ::node	s2	ship	9-10
+# ::node	n2	next-to	10-11
+# ::node	l	long-03	13-14
+# ::node	p	pier	14-15
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	ship	ARG0-of	cruise-01	s	c	
+# ::edge	ship	mod	giant	s	g	
+# ::edge	ship	location	next-to	s	n	
+# ::edge	ship	mod	giant	s2	g2	
+# ::edge	ship	mod	another	s2	a	
+# ::edge	next-to	op1	ship	n	s2	
+# ::edge	ship	location	next-to	s2	n2	
+# ::edge	pier	ARG1-of	long-03	p	l	
+# ::edge	next-to	op1	pier	n2	p	
+# ::edge	event	mod	ship	e	s	
+(e / event
+    :mod (s / ship
+        :ARG0-of (c / cruise-01)
+        :location (n / next-to
+            :op1 (s2 / ship
+                :location (n2 / next-to
+                    :op1 (p / pier
+                        :ARG1-of (l / long-03)))
+                :mod (g2 / giant)
+                :mod (a / another)))
+        :mod (g / giant)))

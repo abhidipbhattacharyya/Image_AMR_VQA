@@ -1,0 +1,37 @@
+# ::tok A small red passenger train that is on a set of tracks and going through a grass covered hill area .
+# ::node	s2	small	1-2
+# ::node	r	red-02	2-3
+# ::node	p	passenger	3-4
+# ::node	t3	train	4-5
+# ::node	s	set	9-10
+# ::node	t2	track	11-12
+# ::node	g	go-01	13-14
+# ::node	t	through	14-15
+# ::node	g2	grass	16-17
+# ::node	c	cover-02	17-18
+# ::node	h	hill	18-19
+# ::node	a	area	19-20
+# ::root	t3	train
+# ::edge	train	mod	passenger	t3	p	
+# ::edge	train	ARG1-of	red-02	t3	r	
+# ::edge	train	mod	small	t3	s2	
+# ::edge	train	location	set	t3	s	
+# ::edge	set	consist-of	track	s	t2	
+# ::edge	train	ARG1-of	go-01	t3	g	
+# ::edge	go-01	path	through	g	t	
+# ::edge	cover-02	ARG2	grass	c	g2	
+# ::edge	area	mod	hill	a	h	
+# ::edge	area	ARG1-of	cover-02	a	c	
+# ::edge	through	op1	area	t	a	
+(t3 / train
+    :ARG1-of (r / red-02)
+    :ARG1-of (g / go-01
+        :path (t / through
+            :op1 (a / area
+                :ARG1-of (c / cover-02
+                    :ARG2 (g2 / grass))
+                :mod (h / hill))))
+    :location (s / set
+        :consist-of (t2 / track))
+    :mod (p / passenger)
+    :mod (s2 / small))

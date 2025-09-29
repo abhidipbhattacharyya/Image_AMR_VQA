@@ -1,0 +1,22 @@
+# ::tok Planes lined up at the airport arrival gates on a snowy tarmac .
+# ::node	p	plane	0-1
+# ::node	l	line-up-02	1-2
+# ::node	a	airport	5-6
+# ::node	a2	arrive-01	6-7
+# ::node	g	gate	7-8
+# ::node	s	snowy-02	10-11
+# ::node	t	tarmac	11-12
+# ::root	l	line-up-02
+# ::edge	line-up-02	ARG1	plane	l	p	
+# ::edge	arrive-01	ARG4	airport	a2	a	
+# ::edge	gate	location-of	arrive-01	g	a2	
+# ::edge	line-up-02	location	gate	l	g	
+# ::edge	tarmac	ARG1-of	snowy-02	t	s	
+# ::edge	gate	location	tarmac	g	t	
+(l / line-up-02
+    :ARG1 (p / plane)
+    :location (g / gate
+        :location (t / tarmac
+            :ARG1-of (s / snowy-02))
+        :location-of (a2 / arrive-01
+            :ARG4 (a / airport))))

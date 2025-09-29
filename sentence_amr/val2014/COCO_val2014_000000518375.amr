@@ -1,0 +1,59 @@
+# ::tok People reach for a pizza - like dish , cut into 8 slices that rests on a plate atop a red and white table cloth .
+# ::node	p	person	0-1
+# ::node	r	reach-03	1-2
+# ::node	p2	pizza	4-5
+# ::node	r3	resemble-01	6-7
+# ::node	d	dish	7-8
+# ::node	a	and	8-9
+# ::node	c3	cut-01	9-10
+# ::node	0	8	11-12
+# ::node	s	slice	12-13
+# ::node	r4	rest-01	14-15
+# ::node	p3	plate	17-18
+# ::node	a3	atop	18-19
+# ::node	r2	red-02	20-21
+# ::node	a2	and	21-22
+# ::node	w	white-03	22-23
+# ::node	t	table	23-24
+# ::node	c	cloth	24-25
+# ::node	c2	cloth	24-25
+# ::root	a	and
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	resemble-01	ARG2	pizza	r3	p2	
+# ::edge	dish	ARG1-of	resemble-01	d	r3	
+# ::edge	reach-03	ARG1	dish	r	d	
+# ::edge	and	op1	reach-03	a	r	
+# ::edge	and	op2	cut-01	a	c3	
+# ::edge	cut-01	ARG1	dish	c3	d	
+# ::edge	slice	quant	8	s	0	
+# ::edge	cut-01	ARG2	slice	c3	s	
+# ::edge	slice	ARG1-of	rest-01	s	r4	
+# ::edge	rest-01	ARG2	plate	r4	p3	
+# ::edge	plate	location	atop	p3	a3	
+# ::edge	atop	op1	and	a3	a2	
+# ::edge	cloth	mod	table	c	t	
+# ::edge	and	op1	cloth	a2	c	
+# ::edge	cloth	ARG1-of	red-02	c	r2	
+# ::edge	cloth	mod	white-03	c2	w	
+# ::edge	cloth	ARG1-of	white-03	c2	w	
+# ::edge	and	op2	cloth	a2	c2	
+(a / and
+    :op1 (r / reach-03
+        :ARG0 (p / person)
+        :ARG1 (d / dish
+            :ARG1-of (r3 / resemble-01
+                :ARG2 (p2 / pizza))))
+    :op2 (c3 / cut-01
+        :ARG1 d
+        :ARG2 (s / slice
+            :quant 8
+            :ARG1-of (r4 / rest-01
+                :ARG2 (p3 / plate
+                    :location (a3 / atop
+                        :op1 (a2 / and
+                            :op1 (c / cloth
+                                :ARG1-of (r2 / red-02)
+                                :mod (t / table))
+                            :op2 (c2 / cloth
+                                :ARG1-of (w / white-03)
+                                :mod w))))))))

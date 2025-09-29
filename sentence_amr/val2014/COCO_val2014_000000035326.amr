@@ -1,0 +1,28 @@
+# ::tok A spice rack next to an oven that is next to oven mittens hanging .
+# ::node	s	spice	1-2
+# ::node	r	rack	2-3
+# ::node	n	next-to	3-4
+# ::node	o	oven	6-7
+# ::node	n2	next-to	9-10
+# ::node	o2	oven	11-12
+# ::node	g	glove	12-13
+# ::node	h	hang-01	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	rack	mod	spice	r	s	
+# ::edge	rack	location	next-to	r	n	
+# ::edge	next-to	op1	oven	n	o	
+# ::edge	oven	location	next-to	o	n2	
+# ::edge	glove	mod	oven	g	o2	
+# ::edge	hang-01	ARG1	glove	h	g	
+# ::edge	next-to	op1	hang-01	n2	h	
+# ::edge	event	mod	rack	e	r	
+(e / event
+    :mod (r / rack
+        :location (n / next-to
+            :op1 (o / oven
+                :location (n2 / next-to
+                    :op1 (h / hang-01
+                        :ARG1 (g / glove
+                            :mod (o2 / oven))))))
+        :mod (s / spice)))

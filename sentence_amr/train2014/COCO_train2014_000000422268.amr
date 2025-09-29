@@ -1,0 +1,45 @@
+# ::tok A large outdoor clock with roman numeral and a sign atop reading ' uncle bills ' .
+# ::node	l	large	1-2
+# ::node	o	outdoor	2-3
+# ::node	c	clock	3-4
+# ::node	s2	string-entity	5-6
+# ::node	0	roman	5-6
+# ::node	n	numeral	6-7
+# ::node	a	and	7-8
+# ::node	s	sign	9-10
+# ::node	a2	atop	10-11
+# ::node	r	read-01	11-12
+# ::node	p	person	13-14
+# ::node	h	have-rel-role-91	13-14
+# ::node	u	uncle	13-14
+# ::node	b	bill	14-15
+# ::root	a	and
+# ::edge	clock	location	outdoor	c	o	
+# ::edge	clock	mod	large	c	l	
+# ::edge	string-entity	value	roman	s2	0	
+# ::edge	numeral	mod	string-entity	n	s2	
+# ::edge	clock	mod	numeral	c	n	
+# ::edge	and	op1	clock	a	c	
+# ::edge	and	op2	sign	a	s	
+# ::edge	sign	location	atop	s	a2	
+# ::edge	atop	op1	clock	a2	c	
+# ::edge	sign	ARG0-of	read-01	s	r	
+# ::edge	person	ARG0-of	have-rel-role-91	p	h	
+# ::edge	have-rel-role-91	ARG2	uncle	h	u	
+# ::edge	bill	topic	person	b	p	
+# ::edge	read-01	ARG3	bill	r	b	
+(a / and
+    :op1 (c / clock
+        :location (o / outdoor)
+        :mod (l / large)
+        :mod (n / numeral
+            :mod (s2 / string-entity
+                :value "roman")))
+    :op2 (s / sign
+        :ARG0-of (r / read-01
+            :ARG3 (b / bill
+                :topic (p / person
+                    :ARG0-of (h / have-rel-role-91
+                        :ARG2 (u / uncle)))))
+        :location (a2 / atop
+            :op1 c)))

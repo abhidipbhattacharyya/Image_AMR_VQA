@@ -1,0 +1,89 @@
+# ::tok Four women , two holding open umbrellas ; one up and one down , one clapping and one with two fingers up , and one man standing in a row posing for camera on a brick street with shop behind .
+# ::node	3	4	0-1
+# ::node	w	woman	1-2
+# ::node	1	2	3-4
+# ::node	h3	hold-01	4-5
+# ::node	o	open-01	5-6
+# ::node	u	umbrella	6-7
+# ::node	u2	up-03	9-10
+# ::node	a	and	10-11
+# ::node	d	down-03	12-13
+# ::node	s2	slap-01	15-16
+# ::node	a2	and	16-17
+# ::node	c2	contrast-01	16-17
+# ::node	h	have-03	18-19
+# ::node	2	2	19-20
+# ::node	f	finger	20-21
+# ::node	u3	up-03	21-22
+# ::node	0	1	24-25
+# ::node	m	man	25-26
+# ::node	m2	man	25-26
+# ::node	s3	stand-01	26-27
+# ::node	r	row	29-30
+# ::node	p	pose-01	30-31
+# ::node	c	camera	32-33
+# ::node	b2	brick	35-36
+# ::node	s4	street	36-37
+# ::node	h2	have-03	37-38
+# ::node	s	shop	38-39
+# ::node	b	behind	39-40
+# ::root	a2	and
+# ::edge	woman	quant	4	w	3	
+# ::edge	woman	ARG0-of	hold-01	w	h3	
+# ::edge	umbrella	ARG1-of	open-01	u	o	
+# ::edge	hold-01	ARG1	umbrella	h3	u	
+# ::edge	umbrella	ARG1-of	up-03	u	u2	
+# ::edge	and	op1	woman	a	w	
+# ::edge	and	ARG1-of	down-03	a	d	
+# ::edge	and	op1	contrast-01	a2	c2	
+# ::edge	contrast-01	ARG2	slap-01	c2	s2	
+# ::edge	contrast-01	ARG1	and	c2	a	
+# ::edge	finger	quant	2	f	2	
+# ::edge	have-03	ARG1	finger	h	f	
+# ::edge	finger	direction	up-03	f	u3	
+# ::edge	man	quant	1	m	0	
+# ::edge	and	op2	man	a2	m	
+# ::edge	man	quant	and	m2	a2	
+# ::edge	and	op3	man	a2	m2	
+# ::edge	man	ARG1-of	stand-01	m	s3	
+# ::edge	stand-01	ARG2	row	s3	r	
+# ::edge	man	ARG0-of	pose-01	m	p	
+# ::edge	pose-01	ARG2	camera	p	c	
+# ::edge	street	mod	brick	s4	b2	
+# ::edge	pose-01	location	street	p	s4	
+# ::edge	street	ARG0-of	have-03	s4	h2	
+# ::edge	have-03	ARG1	shop	h2	s	
+# ::edge	shop	location	behind	s	b	
+# ::edge	behind	op1	street	b	s4	
+# ::edge	and	rel	have-03	a2	h	
+# ::edge	and	rel	2	a2	1	
+(a2 / and
+    :op1 (c2 / contrast-01
+        :ARG1 (a / and
+            :ARG1-of (d / down-03)
+            :op1 (w / woman
+                :quant 4
+                :ARG0-of (h3 / hold-01
+                    :ARG1 (u / umbrella
+                        :ARG1-of (o / open-01)
+                        :ARG1-of (u2 / up-03)))))
+        :ARG2 (s2 / slap-01))
+    :op2 (m / man
+        :quant 1
+        :ARG0-of (p / pose-01
+            :ARG2 (c / camera)
+            :location (s4 / street
+                :ARG0-of (h2 / have-03
+                    :ARG1 (s / shop
+                        :location (b / behind
+                            :op1 s4)))
+                :mod (b2 / brick)))
+        :ARG1-of (s3 / stand-01
+            :ARG2 (r / row)))
+    :op3 (m2 / man
+        :quant a2)
+    :rel (h / have-03
+        :ARG1 (f / finger
+            :quant 2
+            :direction (u3 / up-03)))
+    :rel 2)

@@ -1,0 +1,40 @@
+# ::tok A double decker transit bus rounds the corner of a street running between brick buildings in an old section of a town .
+# ::node	d	deck	2-3
+# ::node	t2	transit-01	3-4
+# ::node	b4	bus	4-5
+# ::node	r	round-03	5-6
+# ::node	c	corner	7-8
+# ::node	s2	street	10-11
+# ::node	r2	run-04	11-12
+# ::node	b	between	12-13
+# ::node	b2	brick	13-14
+# ::node	b3	building	14-15
+# ::node	o	old	17-18
+# ::node	s	section	18-19
+# ::node	t	town	21-22
+# ::root	r	round-03
+# ::edge	bus	ARG0-of	transit-01	b4	t2	
+# ::edge	bus	mod	deck	b4	d	
+# ::edge	round-03	ARG1	bus	r	b4	
+# ::edge	round-03	ARG2	corner	r	c	
+# ::edge	corner	part-of	street	c	s2	
+# ::edge	street	ARG1-of	run-04	s2	r2	
+# ::edge	run-04	ARG2	between	r2	b	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	between	op1	building	b	b3	
+# ::edge	section	mod	old	s	o	
+# ::edge	building	location	section	b3	s	
+# ::edge	section	part-of	town	s	t	
+(r / round-03
+    :ARG1 (b4 / bus
+        :ARG0-of (t2 / transit-01)
+        :mod (d / deck))
+    :ARG2 (c / corner
+        :part-of (s2 / street
+            :ARG1-of (r2 / run-04
+                :ARG2 (b / between
+                    :op1 (b3 / building
+                        :consist-of (b2 / brick)
+                        :location (s / section
+                            :mod (o / old)
+                            :part-of (t / town))))))))

@@ -1,0 +1,30 @@
+# ::tok A coal powered engine blows smoke as it travels down a mountainside track .
+# ::node	c	coal	1-2
+# ::node	p	power-01	2-3
+# ::node	e	engine	3-4
+# ::node	b	blow-01	4-5
+# ::node	s	smoke	5-6
+# ::node	t2	travel-01	8-9
+# ::node	d	down	9-10
+# ::node	m	mountainside	11-12
+# ::node	t	track	12-13
+# ::root	b	blow-01
+# ::edge	power-01	ARG2	coal	p	c	
+# ::edge	engine	ARG1-of	power-01	e	p	
+# ::edge	blow-01	ARG0	engine	b	e	
+# ::edge	blow-01	ARG1	smoke	b	s	
+# ::edge	blow-01	time	travel-01	b	t2	
+# ::edge	travel-01	ARG0	engine	t2	e	
+# ::edge	travel-01	direction	down	t2	d	
+# ::edge	track	mod	mountainside	t	m	
+# ::edge	travel-01	ARG1	track	t2	t	
+(b / blow-01
+    :ARG0 (e / engine
+        :ARG1-of (p / power-01
+            :ARG2 (c / coal)))
+    :ARG1 (s / smoke)
+    :time (t2 / travel-01
+        :ARG0 e
+        :ARG1 (t / track
+            :mod (m / mountainside))
+        :direction (d / down)))

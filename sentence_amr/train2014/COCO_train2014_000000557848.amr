@@ -1,0 +1,43 @@
+# ::tok A sidewalk that is lined with park benches and trash cans along with two red phone booths in the late evening .
+# ::node	s	sidewalk	1-2
+# ::node	l2	line-01	4-5
+# ::node	p	park	6-7
+# ::node	b	bench	7-8
+# ::node	a	and	8-9
+# ::node	t	trash	9-10
+# ::node	c	can	10-11
+# ::node	0	2	13-14
+# ::node	r	red-02	14-15
+# ::node	p2	phone	15-16
+# ::node	b2	booth	16-17
+# ::node	l	late	19-20
+# ::node	d	date-entity	20-21
+# ::node	e	evening	20-21
+# ::root	s	sidewalk
+# ::edge	sidewalk	ARG1-of	line-01	s	l2	
+# ::edge	bench	mod	park	b	p	
+# ::edge	and	op1	bench	a	b	
+# ::edge	line-01	ARG2	and	l2	a	
+# ::edge	can	mod	trash	c	t	
+# ::edge	and	op2	can	a	c	
+# ::edge	booth	mod	phone	b2	p2	
+# ::edge	booth	ARG1-of	red-02	b2	r	
+# ::edge	booth	quant	2	b2	0	
+# ::edge	and	op3	booth	a	b2	
+# ::edge	date-entity	mod	late	d	l	
+# ::edge	booth	time	date-entity	b2	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+(s / sidewalk
+    :ARG1-of (l2 / line-01
+        :ARG2 (a / and
+            :op1 (b / bench
+                :mod (p / park))
+            :op2 (c / can
+                :mod (t / trash))
+            :op3 (b2 / booth
+                :quant 2
+                :ARG1-of (r / red-02)
+                :mod (p2 / phone)
+                :time (d / date-entity
+                    :dayperiod (e / evening)
+                    :mod (l / late))))))

@@ -1,0 +1,28 @@
+# ::tok Three groups of drums all with game controllers for different sounds of drumming .
+# ::node	0	3	0-1
+# ::node	g2	group	1-2
+# ::node	d2	drum	3-4
+# ::node	g	game	6-7
+# ::node	t	thing	7-8
+# ::node	c	control-01	7-8
+# ::node	d	differ-02	9-10
+# ::node	s	sound-02	10-11
+# ::node	d3	drum-02	12-13
+# ::root	g2	group
+# ::edge	group	quant	3	g2	0	
+# ::edge	group	consist-of	drum	g2	d2	
+# ::edge	group	instrument	thing	g2	t	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	sound-02	ARG1-of	differ-02	s	d	
+# ::edge	drum	purpose	sound-02	d2	s	
+# ::edge	sound-02	ARG1	drum-02	s	d3	
+(g2 / group
+    :quant 3
+    :consist-of (d2 / drum
+        :purpose (s / sound-02
+            :ARG1 (d3 / drum-02)
+            :ARG1-of (d / differ-02)))
+    :instrument (t / thing
+        :ARG0-of (c / control-01
+            :ARG1 (g / game))))

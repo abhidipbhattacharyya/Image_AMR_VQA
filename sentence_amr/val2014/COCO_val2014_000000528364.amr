@@ -1,0 +1,30 @@
+# ::tok A train traveling down tracks with a tent piece of metal attached to the front of it .
+# ::node	t3	train	1-2
+# ::node	t4	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	t2	track	4-5
+# ::node	t	tent	7-8
+# ::node	p	piece	8-9
+# ::node	m	metal	10-11
+# ::node	a	attach-01	11-12
+# ::node	f	front	14-15
+# ::root	t3	train
+# ::edge	train	ARG0-of	travel-01	t3	t4	
+# ::edge	travel-01	direction	down	t4	d	
+# ::edge	travel-01	path	track	t4	t2	
+# ::edge	piece	mod	tent	p	t	
+# ::edge	piece	consist-of	metal	p	m	
+# ::edge	attach-01	ARG1	piece	a	p	
+# ::edge	train	prep-with	attach-01	t3	a	
+# ::edge	attach-01	ARG2	front	a	f	
+# ::edge	train	part	front	t3	f	
+(t3 / train
+    :ARG0-of (t4 / travel-01
+        :direction (d / down)
+        :path (t2 / track))
+    :part (f / front)
+    :prep-with (a / attach-01
+        :ARG1 (p / piece
+            :consist-of (m / metal)
+            :mod (t / tent))
+        :ARG2 f))

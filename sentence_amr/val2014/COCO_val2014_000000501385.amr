@@ -1,0 +1,31 @@
+# ::tok Giraffes entering and exiting a building and grazing in a fenced area
+# ::node	g	giraffe	0-1
+# ::node	e	enter-01	1-2
+# ::node	a	and	2-3
+# ::node	e2	exit-01	3-4
+# ::node	b	building	5-6
+# ::node	g2	graze-01	7-8
+# ::node	f	fence	10-11
+# ::node	a2	area	11-12
+# ::root	a	and
+# ::edge	enter-01	ARG0	giraffe	e	g	
+# ::edge	and	op1	enter-01	a	e	
+# ::edge	and	op2	exit-01	a	e2	
+# ::edge	exit-01	ARG0	giraffe	e2	g	
+# ::edge	exit-01	ARG1	building	e2	b	
+# ::edge	enter-01	ARG1	building	e	b	
+# ::edge	and	op3	graze-01	a	g2	
+# ::edge	graze-01	ARG0	giraffe	g2	g	
+# ::edge	area	location-of	fence	a2	f	
+# ::edge	graze-01	location	area	g2	a2	
+(a / and
+    :op1 (e / enter-01
+        :ARG0 (g / giraffe)
+        :ARG1 (b / building))
+    :op2 (e2 / exit-01
+        :ARG0 g
+        :ARG1 b)
+    :op3 (g2 / graze-01
+        :ARG0 g
+        :location (a2 / area
+            :location-of (f / fence))))

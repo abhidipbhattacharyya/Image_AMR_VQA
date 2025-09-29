@@ -1,0 +1,22 @@
+# ::tok The vehicles are stopped at a traffic light outside of shop buildings .
+# ::node	v	vehicle	1-2
+# ::node	s2	stop-01	3-4
+# ::node	t	traffic	6-7
+# ::node	l	light	7-8
+# ::node	o	outside	8-9
+# ::node	s	shop	10-11
+# ::node	b	building	11-12
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG1	vehicle	s2	v	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	stop-01	location	light	s2	l	
+# ::edge	light	location	outside	l	o	
+# ::edge	building	mod	shop	b	s	
+# ::edge	outside	op1	building	o	b	
+(s2 / stop-01
+    :ARG1 (v / vehicle)
+    :location (l / light
+        :location (o / outside
+            :op1 (b / building
+                :mod (s / shop)))
+        :mod (t / traffic)))

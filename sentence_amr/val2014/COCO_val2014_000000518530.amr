@@ -1,0 +1,25 @@
+# ::tok A stop sign set on the inner curve of a curving dirt road .
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	s	set-01	3-4
+# ::node	i	inner	6-7
+# ::node	c	curve-01	7-8
+# ::node	b	bend-01	10-11
+# ::node	d	dirt	11-12
+# ::node	r	road	12-13
+# ::root	s	set-01
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	set-01	ARG1	signal-07	s	s2	
+# ::edge	curve-01	mod	inner	c	i	
+# ::edge	set-01	ARG2	curve-01	s	c	
+# ::edge	road	mod	dirt	r	d	
+# ::edge	road	ARG1-of	bend-01	r	b	
+# ::edge	curve-01	ARG1	road	c	r	
+(s / set-01
+    :ARG1 (s2 / signal-07
+        :ARG1 (s3 / stop-01))
+    :ARG2 (c / curve-01
+        :ARG1 (r / road
+            :ARG1-of (b / bend-01)
+            :mod (d / dirt))
+        :mod (i / inner)))

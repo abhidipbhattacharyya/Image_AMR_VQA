@@ -1,0 +1,34 @@
+# ::tok A busy street filled with traffic as storefront signs are hanging over the sidewalk nearby .
+# ::node	b	busy-01	1-2
+# ::node	s4	street	2-3
+# ::node	f	fill-01	3-4
+# ::node	t	traffic	5-6
+# ::node	c	cause-01	6-7
+# ::node	s3	storefront	7-8
+# ::node	s2	sign	8-9
+# ::node	h	hang-01	10-11
+# ::node	o	over	11-12
+# ::node	s	sidewalk	13-14
+# ::node	n	nearby	14-15
+# ::root	c	cause-01
+# ::edge	street	ARG1-of	busy-01	s4	b	
+# ::edge	fill-01	ARG1	street	f	s4	
+# ::edge	fill-01	ARG2	traffic	f	t	
+# ::edge	cause-01	ARG1	fill-01	c	f	
+# ::edge	sign	mod	storefront	s2	s3	
+# ::edge	hang-01	ARG1	sign	h	s2	
+# ::edge	cause-01	ARG0	hang-01	c	h	
+# ::edge	hang-01	ARG2	over	h	o	
+# ::edge	over	op1	sidewalk	o	s	
+# ::edge	sidewalk	location	nearby	s	n	
+(c / cause-01
+    :ARG0 (h / hang-01
+        :ARG1 (s2 / sign
+            :mod (s3 / storefront))
+        :ARG2 (o / over
+            :op1 (s / sidewalk
+                :location (n / nearby))))
+    :ARG1 (f / fill-01
+        :ARG1 (s4 / street
+            :ARG1-of (b / busy-01))
+        :ARG2 (t / traffic)))

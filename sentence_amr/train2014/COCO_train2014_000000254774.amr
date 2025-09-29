@@ -1,0 +1,33 @@
+# ::tok A time lapse shot of a skier going over a jump and doing a rollover
+# ::node	t	time	1-2
+# ::node	l	lapse	2-3
+# ::node	s	shoot-03	3-4
+# ::node	p	person	6-7
+# ::node	s2	ski-01	6-7
+# ::node	g	go-02	7-8
+# ::node	o	over	8-9
+# ::node	j	jump	10-11
+# ::node	a	and	11-12
+# ::node	r	roll-01	14-15
+# ::root	s	shoot-03
+# ::edge	lapse	mod	time	l	t	
+# ::edge	shoot-03	mod	lapse	s	l	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	go-02	ARG0	person	g	p	
+# ::edge	go-02	ARG4	over	g	o	
+# ::edge	over	op1	jump	o	j	
+# ::edge	and	op1	go-02	a	g	
+# ::edge	shoot-03	ARG1	and	s	a	
+# ::edge	and	op2	roll-01	a	r	
+# ::edge	roll-01	ARG0	person	r	p	
+(s / shoot-03
+    :ARG1 (a / and
+        :op1 (g / go-02
+            :ARG0 (p / person
+                :ARG0-of (s2 / ski-01))
+            :ARG4 (o / over
+                :op1 (j / jump)))
+        :op2 (r / roll-01
+            :ARG0 p))
+    :mod (l / lapse
+        :mod (t / time)))

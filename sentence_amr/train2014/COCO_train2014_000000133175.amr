@@ -1,0 +1,25 @@
+# ::tok Towels can be seen in the reflection of a bathroom mirror near a sink .
+# ::node	t	tax	0-1
+# ::node	p	possible-01	1-2
+# ::node	s	see-01	3-4
+# ::node	r	reflect-01	6-7
+# ::node	b	bathroom	9-10
+# ::node	m	mirror	10-11
+# ::node	n	near-02	11-12
+# ::node	s2	sink	13-14
+# ::root	p	possible-01
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	tax	s	t	
+# ::edge	see-01	location	reflect-01	s	r	
+# ::edge	mirror	location	bathroom	m	b	
+# ::edge	reflect-01	ARG1	mirror	r	m	
+# ::edge	mirror	ARG1-of	near-02	m	n	
+# ::edge	near-02	ARG2	sink	n	s2	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (t / tax)
+        :location (r / reflect-01
+            :ARG1 (m / mirror
+                :ARG1-of (n / near-02
+                    :ARG2 (s2 / sink))
+                :location (b / bathroom)))))

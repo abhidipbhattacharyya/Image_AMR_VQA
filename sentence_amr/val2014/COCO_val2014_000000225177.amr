@@ -1,0 +1,25 @@
+# ::tok Bus moving under a raised pedestrian sidewalk over traffic
+# ::node	b	bus	0-1
+# ::node	m	move-01	1-2
+# ::node	u	under	2-3
+# ::node	r	raise-01	4-5
+# ::node	p	person	5-6
+# ::node	w	walk-01	5-6
+# ::node	s	sidewalk	6-7
+# ::node	t	traffic	8-9
+# ::root	m	move-01
+# ::edge	move-01	ARG1	bus	m	b	
+# ::edge	move-01	ARG2	under	m	u	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	sidewalk	mod	person	s	p	
+# ::edge	sidewalk	ARG1-of	raise-01	s	r	
+# ::edge	under	op1	sidewalk	u	s	
+# ::edge	raise-01	ARG2	traffic	r	t	
+(m / move-01
+    :ARG1 (b / bus)
+    :ARG2 (u / under
+        :op1 (s / sidewalk
+            :ARG1-of (r / raise-01
+                :ARG2 (t / traffic))
+            :mod (p / person
+                :ARG0-of (w / walk-01)))))

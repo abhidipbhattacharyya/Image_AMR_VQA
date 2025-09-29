@@ -1,0 +1,36 @@
+# ::tok a man in a blue shirt wears beads while standing next to a woman who holds a wine glass .
+# ::node	m	man	1-2
+# ::node	b	blue	4-5
+# ::node	s2	shirt	5-6
+# ::node	w	wear-01	6-7
+# ::node	s	seed	7-8
+# ::node	s3	stand-01	9-10
+# ::node	n	next-to	10-11
+# ::node	w3	woman	13-14
+# ::node	h	hold-01	15-16
+# ::node	w2	wine	17-18
+# ::node	g	glass	18-19
+# ::root	w	wear-01
+# ::edge	shirt	mod	blue	s2	b	
+# ::edge	man	mod	shirt	m	s2	
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	wear-01	ARG1	seed	w	s	
+# ::edge	wear-01	time	stand-01	w	s3	
+# ::edge	stand-01	ARG1	man	s3	m	
+# ::edge	stand-01	ARG2	next-to	s3	n	
+# ::edge	next-to	op1	woman	n	w3	
+# ::edge	woman	ARG0-of	hold-01	w3	h	
+# ::edge	glass	consist-of	wine	g	w2	
+# ::edge	hold-01	ARG1	glass	h	g	
+(w / wear-01
+    :ARG0 (m / man
+        :mod (s2 / shirt
+            :mod (b / blue)))
+    :ARG1 (s / seed)
+    :time (s3 / stand-01
+        :ARG1 m
+        :ARG2 (n / next-to
+            :op1 (w3 / woman
+                :ARG0-of (h / hold-01
+                    :ARG1 (g / glass
+                        :consist-of (w2 / wine)))))))

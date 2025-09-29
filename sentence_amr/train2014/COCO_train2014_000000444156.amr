@@ -1,0 +1,48 @@
+# ::tok This plate has a bowl of soup and two scoops of crab salad with tomatoes on top .
+# ::node	t	this	0-1
+# ::node	p	plate	1-2
+# ::node	h	have-03	2-3
+# ::node	b	bowl	4-5
+# ::node	s2	soup	6-7
+# ::node	a	and	7-8
+# ::node	0	2	8-9
+# ::node	m	magazine	9-10
+# ::node	n	name	9-10
+# ::node	m2	mass-quantity	9-10
+# ::node	i	inch	9-10
+# ::node	c	crab	11-12
+# ::node	s	salad	12-13
+# ::node	t2	tomato	14-15
+# ::node	t3	top	16-17
+# ::root	h	have-03
+# ::edge	plate	mod	this	p	t	
+# ::edge	have-03	ARG0	plate	h	p	
+# ::edge	soup	quant	bowl	s2	b	
+# ::edge	and	op1	soup	a	s2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	magazine	name	name	m	n	
+# ::edge	mass-quantity	quant	2	m2	0	
+# ::edge	mass-quantity	unit	inch	m2	i	
+# ::edge	salad	mod	crab	s	c	
+# ::edge	salad	consist-of	mass-quantity	s	m2	
+# ::edge	salad	quant	2	s	0	
+# ::edge	and	op2	salad	a	s	
+# ::edge	salad	accompanier	tomato	s	t2	
+# ::edge	salad	location	top	s	t3	
+# ::edge	have-03	rel	magazine	h	m	
+(h / have-03
+    :ARG0 (p / plate
+        :mod (t / this))
+    :ARG1 (a / and
+        :op1 (s2 / soup
+            :quant (b / bowl))
+        :op2 (s / salad
+            :quant 2
+            :accompanier (t2 / tomato)
+            :consist-of (m2 / mass-quantity
+                :quant 2
+                :unit (i / inch))
+            :location (t3 / top)
+            :mod (c / crab)))
+    :rel (m / magazine
+        :name (n / name)))

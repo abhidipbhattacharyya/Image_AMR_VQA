@@ -1,0 +1,94 @@
+# ::tok outside , big sky with birds over mountains and a large body of water make a panoramic view , while in the foreground several large multicolored objects with Asian lettering that might be banners , or kites . are spread out on dark sand .
+# ::node	o4	outside	0-1
+# ::node	b2	big	2-3
+# ::node	s3	sky	3-4
+# ::node	b3	bird	5-6
+# ::node	o5	over	6-7
+# ::node	m2	mountain	7-8
+# ::node	a	and	8-9
+# ::node	l	large	10-11
+# ::node	b4	body	11-12
+# ::node	w	water	13-14
+# ::node	m	make-01	14-15
+# ::node	p	panorama	16-17
+# ::node	v	view-01	17-18
+# ::node	c2	contrast-01	19-20
+# ::node	f	foreground	22-23
+# ::node	s2	several	23-24
+# ::node	l2	large	24-25
+# ::node	m3	multicolored	25-26
+# ::node	o2	object	26-27
+# ::node	h	have-03	27-28
+# ::node	c	continent	28-29
+# ::node	n	name	28-29
+# ::node	0	Asia	28-29
+# ::node	l3	letter	29-30
+# ::node	p2	possible-01	31-32
+# ::node	b	banner	33-34
+# ::node	o3	or	35-36
+# ::node	o	Korea	36-37
+# ::node	s4	spread-out-04	39-40
+# ::node	d	dark-02	42-43
+# ::node	s	sand	43-44
+# ::root	c2	contrast-01
+# ::edge	sky	mod	big	s3	b2	
+# ::edge	bird	location	over	b3	o5	
+# ::edge	over	op1	mountain	o5	m2	
+# ::edge	and	op1	bird	a	b3	
+# ::edge	sky	consist-of	and	s3	a	
+# ::edge	body	mod	large	b4	l	
+# ::edge	and	op2	body	a	b4	
+# ::edge	body	consist-of	water	b4	w	
+# ::edge	make-01	ARG0	sky	m	s3	
+# ::edge	make-01	location	outside	m	o4	
+# ::edge	view-01	mod	panorama	v	p	
+# ::edge	make-01	ARG1	view-01	m	v	
+# ::edge	contrast-01	ARG1	make-01	c2	m	
+# ::edge	object	mod	multicolored	o2	m3	
+# ::edge	object	mod	large	o2	l2	
+# ::edge	object	quant	several	o2	s2	
+# ::edge	object	ARG0-of	have-03	o2	h	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	letter	mod	continent	l3	c	
+# ::edge	have-03	ARG1	letter	h	l3	
+# ::edge	or	op1	banner	o3	b	
+# ::edge	or	ARG1-of	possible-01	o3	p2	
+# ::edge	object	domain	or	o2	o3	
+# ::edge	or	op2	Korea	o3	o	
+# ::edge	spread-out-04	ARG1	object	s4	o2	
+# ::edge	spread-out-04	location	foreground	s4	f	
+# ::edge	contrast-01	ARG2	spread-out-04	c2	s4	
+# ::edge	sand	ARG1-of	dark-02	s	d	
+# ::edge	spread-out-04	ARG2	sand	s4	s	
+(c2 / contrast-01
+    :ARG1 (m / make-01
+        :ARG0 (s3 / sky
+            :consist-of (a / and
+                :op1 (b3 / bird
+                    :location (o5 / over
+                        :op1 (m2 / mountain)))
+                :op2 (b4 / body
+                    :consist-of (w / water)
+                    :mod (l / large)))
+            :mod (b2 / big))
+        :ARG1 (v / view-01
+            :mod (p / panorama))
+        :location (o4 / outside))
+    :ARG2 (s4 / spread-out-04
+        :ARG1 (o2 / object
+            :quant (s2 / several)
+            :ARG0-of (h / have-03
+                :ARG1 (l3 / letter
+                    :mod (c / continent
+                        :name (n / name
+                            :op1 "Asia"))))
+            :domain (o3 / or
+                :ARG1-of (p2 / possible-01)
+                :op1 (b / banner)
+                :op2 (o / Korea))
+            :mod (m3 / multicolored)
+            :mod (l2 / large))
+        :ARG2 (s / sand
+            :ARG1-of (d / dark-02))
+        :location (f / foreground)))

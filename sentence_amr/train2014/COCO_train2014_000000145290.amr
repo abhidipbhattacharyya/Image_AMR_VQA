@@ -1,0 +1,50 @@
+# ::tok A sand area that has various sets of vehicle tire tracks on it and one beach umbrella open and set up in the sand .
+# ::node	s	sand	1-2
+# ::node	a3	area	2-3
+# ::node	h	have-03	4-5
+# ::node	v	various	5-6
+# ::node	s2	set	6-7
+# ::node	v2	vehicle	8-9
+# ::node	t	tire	9-10
+# ::node	t2	track	10-11
+# ::node	a	and	13-14
+# ::node	0	1	14-15
+# ::node	b	beach	15-16
+# ::node	u	umbrella	16-17
+# ::node	o	open-01	17-18
+# ::node	a2	and	18-19
+# ::node	s3	set-up-03	19-20
+# ::root	a3	area
+# ::edge	area	mod	sand	a3	s	
+# ::edge	area	ARG0-of	have-03	a3	h	
+# ::edge	set	mod	various	s2	v	
+# ::edge	tire	part-of	vehicle	t	v2	
+# ::edge	track	mod	tire	t2	t	
+# ::edge	track	mod	set	t2	s2	
+# ::edge	and	op1	track	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	umbrella	mod	beach	u	b	
+# ::edge	umbrella	quant	1	u	0	
+# ::edge	open-01	ARG1	umbrella	o	u	
+# ::edge	and	op1	open-01	a2	o	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op2	set-up-03	a2	s3	
+# ::edge	set-up-03	ARG1	umbrella	s3	u	
+# ::edge	set-up-03	location	area	s3	a3	
+(a3 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t2 / track
+                :mod (t / tire
+                    :part-of (v2 / vehicle))
+                :mod (s2 / set
+                    :mod (v / various)))
+            :op2 (a2 / and
+                :op1 (o / open-01
+                    :ARG1 (u / umbrella
+                        :quant 1
+                        :mod (b / beach)))
+                :op2 (s3 / set-up-03
+                    :ARG1 u
+                    :location a3))))
+    :mod (s / sand))

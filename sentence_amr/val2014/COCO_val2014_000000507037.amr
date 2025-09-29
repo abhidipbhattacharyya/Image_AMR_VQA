@@ -1,0 +1,43 @@
+# ::tok Individauls gathered outside a building and an American flag at half mast .
+# ::node	p	person	0-1
+# ::node	e	ethnic-group	0-1
+# ::node	n	name	0-1
+# ::node	1	Congress	0-1
+# ::node	g	gather-03	1-2
+# ::node	o	outside	2-3
+# ::node	b2	building	4-5
+# ::node	c	country	7-8
+# ::node	n2	name	7-8
+# ::node	0	America	7-8
+# ::node	f	flag	8-9
+# ::node	b	be-located-at-91	9-10
+# ::node	h	half	10-11
+# ::node	m	mast	11-12
+# ::root	g	gather-03
+# ::edge	person	mod	ethnic-group	p	e	
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Congress	n	1	
+# ::edge	gather-03	ARG0	person	g	p	
+# ::edge	gather-03	location	outside	g	o	
+# ::edge	outside	op1	building	o	b2	
+# ::edge	country	name	name	c	n2	
+# ::edge	name	op1	America	n2	0	
+# ::edge	flag	mod	country	f	c	
+# ::edge	be-located-at-91	ARG1	flag	b	f	
+# ::edge	gather-03	location-of	be-located-at-91	g	b	
+# ::edge	mast	mod	half	m	h	
+# ::edge	be-located-at-91	ARG2	mast	b	m	
+(g / gather-03
+    :ARG0 (p / person
+        :mod (e / ethnic-group
+            :name (n / name
+                :op1 "Congress")))
+    :location (o / outside
+        :op1 (b2 / building))
+    :location-of (b / be-located-at-91
+        :ARG1 (f / flag
+            :mod (c / country
+                :name (n2 / name
+                    :op1 "America")))
+        :ARG2 (m / mast
+            :mod (h / half))))

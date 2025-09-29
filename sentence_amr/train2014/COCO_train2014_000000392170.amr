@@ -1,0 +1,19 @@
+# ::tok The large pot of potatoes will take time to cook .
+# ::node	l	large	1-2
+# ::node	p	pot	2-3
+# ::node	p2	potato	4-5
+# ::node	t	take-10	6-7
+# ::node	t2	time	7-8
+# ::node	c	cook-01	9-10
+# ::root	t	take-10
+# ::edge	pot	mod	large	p	l	
+# ::edge	pot	consist-of	potato	p	p2	
+# ::edge	take-10	ARG1	time	t	t2	
+# ::edge	take-10	ARG0	cook-01	t	c	
+# ::edge	cook-01	ARG1	pot	c	p	
+(t / take-10
+    :ARG0 (c / cook-01
+        :ARG1 (p / pot
+            :consist-of (p2 / potato)
+            :mod (l / large)))
+    :ARG1 (t2 / time))

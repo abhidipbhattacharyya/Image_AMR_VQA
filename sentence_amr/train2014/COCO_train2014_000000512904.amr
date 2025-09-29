@@ -1,0 +1,48 @@
+# ::tok Two giraffes in a fenced enclosure one looking at the camera and the other with head bent the other way .
+# ::node	0	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	f	free-04	4-5
+# ::node	e	enclosure	5-6
+# ::node	l	look-01	7-8
+# ::node	l2	look-01	7-8
+# ::node	c	camera	10-11
+# ::node	c2	camera	10-11
+# ::node	h	head	15-16
+# ::node	h2	head	15-16
+# ::node	b2	bend-01	16-17
+# ::node	o	other	18-19
+# ::node	w	way	19-20
+# ::root	b	be-located-at-91
+# ::edge	giraffe	quant	2	g	0	
+# ::edge	be-located-at-91	ARG1	giraffe	b	g	
+# ::edge	enclosure	ARG1-of	free-04	e	f	
+# ::edge	be-located-at-91	ARG2	enclosure	b	e	
+# ::edge	giraffe	ARG0-of	look-01	g	l	
+# ::edge	giraffe	ARG0-of	look-01	g2	l2	
+# ::edge	look-01	ARG1	camera	l	c	
+# ::edge	look-01	ARG1	camera	l2	c2	
+# ::edge	giraffe	part	head	g2	h	
+# ::edge	giraffe	part	head	g2	h2	
+# ::edge	bend-01	ARG1	head	b2	h	
+# ::edge	look-01	ARG0-of	bend-01	l2	b2	
+# ::edge	way	mod	other	w	o	
+# ::edge	bend-01	direction	way	b2	w	
+# ::edge	be-located-at-91	rel	giraffe	b	g2	
+(b / be-located-at-91
+    :ARG1 (g / giraffe
+        :quant 2
+        :ARG0-of (l / look-01
+            :ARG1 (c / camera)))
+    :ARG2 (e / enclosure
+        :ARG1-of (f / free-04))
+    :rel (g2 / giraffe
+        :ARG0-of (l2 / look-01
+            :ARG0-of (b2 / bend-01
+                :ARG1 (h / head)
+                :direction (w / way
+                    :mod (o / other)))
+            :ARG1 (c2 / camera))
+        :part h
+        :part (h2 / head)))

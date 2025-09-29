@@ -1,0 +1,52 @@
+# ::tok A baseball player in a blue and white uniform is near a ball that hovers near the air while the catcher in white , stands nearby .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	b3	blue	5-6
+# ::node	a2	and	6-7
+# ::node	w	white-03	7-8
+# ::node	u	uniform	8-9
+# ::node	n	near-02	10-11
+# ::node	b	ball	12-13
+# ::node	h	hover-01	14-15
+# ::node	n2	near-02	15-16
+# ::node	a	air	17-18
+# ::node	p2	person	20-21
+# ::node	c	catch-01	20-21
+# ::node	w2	white-03	22-23
+# ::node	s	stand-01	24-25
+# ::node	n3	nearby	25-26
+# ::root	n3	nearby
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	and	op1	blue	a2	b3	
+# ::edge	and	op2	white-03	a2	w	
+# ::edge	uniform	consist-of	and	u	a2	
+# ::edge	person	domain	uniform	p	u	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	ball	n	b	
+# ::edge	ball	ARG1-of	hover-01	b	h	
+# ::edge	hover-01	ARG2	near-02	h	n2	
+# ::edge	near-02	ARG2	air	n2	a	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	person	ARG1-of	white-03	p2	w2	
+# ::edge	stand-01	ARG1	person	s	p2	
+# ::edge	nearby	ARG2-of	stand-01	n3	s	
+# ::edge	nearby	op1	near-02	n3	n	
+(n3 / nearby
+    :ARG2-of (s / stand-01
+        :ARG1 (p2 / person
+            :ARG0-of (c / catch-01)
+            :ARG1-of (w2 / white-03)))
+    :op1 (n / near-02
+        :ARG1 (p / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (b2 / baseball))
+            :domain (u / uniform
+                :consist-of (a2 / and
+                    :op1 (b3 / blue)
+                    :op2 (w / white-03))))
+        :ARG2 (b / ball
+            :ARG1-of (h / hover-01
+                :ARG2 (n2 / near-02
+                    :ARG2 (a / air))))))

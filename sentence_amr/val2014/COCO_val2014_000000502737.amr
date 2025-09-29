@@ -1,0 +1,33 @@
+# ::tok A person holding a cookie with icing that has one of it 's arms bitten off .
+# ::node	p	person	1-2
+# ::node	h2	hold-01	2-3
+# ::node	c	cookie	4-5
+# ::node	h	have-03	5-6
+# ::node	i	icing	6-7
+# ::node	0	1	9-10
+# ::node	i2	include-91	10-11
+# ::node	a	arm	13-14
+# ::node	a2	arm	13-14
+# ::node	b	bite-01	14-15
+# ::root	p	person
+# ::edge	person	ARG0-of	hold-01	p	h2	
+# ::edge	hold-01	ARG1	cookie	h2	c	
+# ::edge	cookie	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	icing	h	i	
+# ::edge	include-91	ARG2	arm	i2	a	
+# ::edge	person	part	arm	p	a	
+# ::edge	arm	ARG1-of	include-91	a2	i2	
+# ::edge	arm	quant	1	a2	0	
+# ::edge	bite-01	ARG1	arm	b	a2	
+# ::edge	cookie	ARG0-of	bite-01	c	b	
+(p / person
+    :ARG0-of (h2 / hold-01
+        :ARG1 (c / cookie
+            :ARG0-of (h / have-03
+                :ARG1 (i / icing))
+            :ARG0-of (b / bite-01
+                :ARG1 (a2 / arm
+                    :quant 1
+                    :ARG1-of (i2 / include-91
+                        :ARG2 (a / arm))))))
+    :part a)

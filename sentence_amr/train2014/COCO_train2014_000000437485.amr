@@ -1,0 +1,40 @@
+# ::tok A photo of an outdoor place where people are able to charge their phones and read a magazine while waiting .
+# ::node	p3	photo	1-2
+# ::node	o	outdoor	4-5
+# ::node	p4	place	5-6
+# ::node	p	person	7-8
+# ::node	p5	possible-01	9-10
+# ::node	c	charge-03	11-12
+# ::node	p2	phone	13-14
+# ::node	a	and	14-15
+# ::node	r	read-01	15-16
+# ::node	m	magazine	17-18
+# ::node	w	wait-01	19-20
+# ::root	p3	photo
+# ::edge	place	location	outdoor	p4	o	
+# ::edge	photo	topic	place	p3	p4	
+# ::edge	place	location-of	possible-01	p4	p5	
+# ::edge	charge-03	ARG0	person	c	p	
+# ::edge	charge-03	ARG1	phone	c	p2	
+# ::edge	phone	poss	person	p2	p	
+# ::edge	and	op1	charge-03	a	c	
+# ::edge	possible-01	ARG1	and	p5	a	
+# ::edge	and	op2	read-01	a	r	
+# ::edge	read-01	ARG0	person	r	p	
+# ::edge	read-01	ARG1	magazine	r	m	
+# ::edge	read-01	time	wait-01	r	w	
+# ::edge	wait-01	ARG1	person	w	p	
+(p3 / photo
+    :topic (p4 / place
+        :location (o / outdoor)
+        :location-of (p5 / possible-01
+            :ARG1 (a / and
+                :op1 (c / charge-03
+                    :ARG0 (p / person)
+                    :ARG1 (p2 / phone
+                        :poss p))
+                :op2 (r / read-01
+                    :ARG0 p
+                    :ARG1 (m / magazine)
+                    :time (w / wait-01
+                        :ARG1 p))))))

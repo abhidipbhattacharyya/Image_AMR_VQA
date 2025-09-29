@@ -1,0 +1,37 @@
+# ::tok A large crowd of people gathered around law enforcement officers at a public event .
+# ::node	l	large	1-2
+# ::node	c	crowd	2-3
+# ::node	p	person	4-5
+# ::node	g	gather-03	5-6
+# ::node	a	around	6-7
+# ::node	l2	law	7-8
+# ::node	e	enforce-01	8-9
+# ::node	p2	person	9-10
+# ::node	h	have-org-role-91	9-10
+# ::node	o	officer	9-10
+# ::node	p3	public-02	12-13
+# ::node	e2	event	13-14
+# ::root	g	gather-03
+# ::edge	crowd	mod	large	c	l	
+# ::edge	crowd	consist-of	person	c	p	
+# ::edge	gather-03	ARG0	crowd	g	c	
+# ::edge	gather-03	location	around	g	a	
+# ::edge	enforce-01	ARG1	law	e	l2	
+# ::edge	around	op1	person	a	p2	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h	
+# ::edge	have-org-role-91	ARG2	officer	h	o	
+# ::edge	officer	ARG0-of	enforce-01	o	e	
+# ::edge	event	ARG1-of	public-02	e2	p3	
+# ::edge	gather-03	location	event	g	e2	
+(g / gather-03
+    :ARG0 (c / crowd
+        :consist-of (p / person)
+        :mod (l / large))
+    :location (a / around
+        :op1 (p2 / person
+            :ARG0-of (h / have-org-role-91
+                :ARG2 (o / officer
+                    :ARG0-of (e / enforce-01
+                        :ARG1 (l2 / law))))))
+    :location (e2 / event
+        :ARG1-of (p3 / public-02)))

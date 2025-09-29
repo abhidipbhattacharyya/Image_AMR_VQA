@@ -1,0 +1,24 @@
+# ::tok A commercial airliner parked at the gate loading up for its next flight .
+# ::node	c	commerce	1-2
+# ::node	a	airliner	2-3
+# ::node	p	park-01	3-4
+# ::node	g	gate	6-7
+# ::node	l	load-01	7-8
+# ::node	n	next	11-12
+# ::node	f	fly-01	12-13
+# ::root	p	park-01
+# ::edge	airliner	mod	commerce	a	c	
+# ::edge	park-01	ARG1	airliner	p	a	
+# ::edge	park-01	ARG2	gate	p	g	
+# ::edge	airliner	ARG2-of	load-01	a	l	
+# ::edge	fly-01	mod	next	f	n	
+# ::edge	load-01	purpose	fly-01	l	f	
+# ::edge	fly-01	ARG2	airliner	f	a	
+(p / park-01
+    :ARG1 (a / airliner
+        :ARG2-of (l / load-01
+            :purpose (f / fly-01
+                :ARG2 a
+                :mod (n / next)))
+        :mod (c / commerce))
+    :ARG2 (g / gate))

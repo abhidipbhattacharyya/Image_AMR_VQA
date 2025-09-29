@@ -1,0 +1,34 @@
+# ::tok A man kneeling down before a parked car to worship it as his God .
+# ::node	m	man	1-2
+# ::node	k	kneel-01	2-3
+# ::node	b	before	4-5
+# ::node	p	park-01	6-7
+# ::node	c	car	7-8
+# ::node	w	worship-01	9-10
+# ::node	p2	person	13-14
+# ::node	n	name	13-14
+# ::node	0	God	13-14
+# ::root	m	man
+# ::edge	man	ARG0-of	kneel-01	m	k	
+# ::edge	kneel-01	location	before	k	b	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	before	op1	car	b	c	
+# ::edge	worship-01	ARG1	car	w	c	
+# ::edge	kneel-01	purpose	worship-01	k	w	
+# ::edge	worship-01	ARG0	man	w	m	
+# ::edge	worship-01	prep-as	person	w	p2	
+# ::edge	person	poss	man	p2	m	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	God	n	0	
+(m / man
+    :ARG0-of (k / kneel-01
+        :purpose (w / worship-01
+            :ARG0 m
+            :ARG1 (c / car
+                :ARG1-of (p / park-01))
+            :prep-as (p2 / person
+                :name (n / name
+                    :op1 "God")
+                :poss m))
+        :location (b / before
+            :op1 c)))

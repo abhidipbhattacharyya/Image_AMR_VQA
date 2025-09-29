@@ -1,0 +1,39 @@
+# ::tok Passengers stand in front of a tour bus outfitted for travel over snow and ice .
+# ::node	p2	person	0-1
+# ::node	p	passenger	0-1
+# ::node	s2	stand-01	1-2
+# ::node	i2	in-front-of	3-4
+# ::node	t	tour-01	6-7
+# ::node	b	bus	7-8
+# ::node	e	equip-01	8-9
+# ::node	t2	travel-01	10-11
+# ::node	o	over	11-12
+# ::node	s	snow	12-13
+# ::node	a	and	13-14
+# ::node	i	ice	14-15
+# ::root	s2	stand-01
+# ::edge	person	mod	passenger	p2	p	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	stand-01	ARG2	in-front-of	s2	i2	
+# ::edge	bus	ARG0-of	tour-01	b	t	
+# ::edge	in-front-of	op1	bus	i2	b	
+# ::edge	bus	ARG1-of	equip-01	b	e	
+# ::edge	equip-01	ARG2	travel-01	e	t2	
+# ::edge	travel-01	ARG0	bus	t2	b	
+# ::edge	travel-01	ARG1	over	t2	o	
+# ::edge	and	op1	snow	a	s	
+# ::edge	over	op1	and	o	a	
+# ::edge	and	op2	ice	a	i	
+(s2 / stand-01
+    :ARG1 (p2 / person
+        :mod (p / passenger))
+    :ARG2 (i2 / in-front-of
+        :op1 (b / bus
+            :ARG0-of (t / tour-01)
+            :ARG1-of (e / equip-01
+                :ARG2 (t2 / travel-01
+                    :ARG0 b
+                    :ARG1 (o / over
+                        :op1 (a / and
+                            :op1 (s / snow)
+                            :op2 (i / ice))))))))

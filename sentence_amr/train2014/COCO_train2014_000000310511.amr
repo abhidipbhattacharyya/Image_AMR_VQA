@@ -1,0 +1,51 @@
+# ::tok A person wearing a spiderman whole - head mask , sitting on a bench with his foot on his knee and holding a cell phone in hand .
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	p2	person	4-5
+# ::node	n	name	4-5
+# ::node	0	Batman	4-5
+# ::node	w2	whole	5-6
+# ::node	h2	head	7-8
+# ::node	m	mask	8-9
+# ::node	s	sit-01	10-11
+# ::node	b	bench	13-14
+# ::node	f	foot	16-17
+# ::node	k	knee	19-20
+# ::node	h3	hold-01	21-22
+# ::node	c	cell	23-24
+# ::node	p3	phone	24-25
+# ::node	h	hand	26-27
+# ::root	p	person
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Batman	n	0	
+# ::edge	head	mod	whole	h2	w2	
+# ::edge	mask	mod	head	m	h2	
+# ::edge	mask	mod	person	m	p2	
+# ::edge	wear-01	ARG1	mask	w	m	
+# ::edge	person	ARG1-of	sit-01	p	s	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	person	part	foot	p	f	
+# ::edge	foot	location	knee	f	k	
+# ::edge	person	part	knee	p	k	
+# ::edge	person	ARG0-of	hold-01	p	h3	
+# ::edge	phone	mod	cell	p3	c	
+# ::edge	hold-01	ARG1	phone	h3	p3	
+# ::edge	phone	location	hand	p3	h	
+(p / person
+    :ARG0-of (w / wear-01
+        :ARG1 (m / mask
+            :mod (h2 / head
+                :mod (w2 / whole))
+            :mod (p2 / person
+                :name (n / name
+                    :op1 "Batman"))))
+    :ARG0-of (h3 / hold-01
+        :ARG1 (p3 / phone
+            :location (h / hand)
+            :mod (c / cell)))
+    :ARG1-of (s / sit-01
+        :ARG2 (b / bench))
+    :part (f / foot
+        :location (k / knee))
+    :part k)

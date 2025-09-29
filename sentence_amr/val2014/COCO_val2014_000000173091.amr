@@ -1,0 +1,31 @@
+# ::tok A sandwich , a piece if fruit and a Starbucks drink sits on the counter .
+# ::node	s	sandwich	1-2
+# ::node	p	piece	4-5
+# ::node	f	fruit	6-7
+# ::node	a	and	7-8
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	0	Starbucks	9-10
+# ::node	d	drink	10-11
+# ::node	s2	sit-01	11-12
+# ::node	c2	counter	14-15
+# ::root	s2	sit-01
+# ::edge	piece	mod	fruit	p	f	
+# ::edge	and	op2	piece	a	p	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Starbucks	n	0	
+# ::edge	drink	source	company	d	c	
+# ::edge	and	op3	drink	a	d	
+# ::edge	sit-01	ARG1	and	s2	a	
+# ::edge	sit-01	ARG2	counter	s2	c2	
+(s2 / sit-01
+    :ARG1 (a / and
+        :op1 (s / sandwich)
+        :op2 (p / piece
+            :mod (f / fruit))
+        :op3 (d / drink
+            :source (c / company
+                :name (n / name
+                    :op1 "Starbucks"))))
+    :ARG2 (c2 / counter))

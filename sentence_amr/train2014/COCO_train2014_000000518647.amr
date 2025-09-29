@@ -1,0 +1,41 @@
+# ::tok A man in a suit spotted with fake blood wearing white makeup with fake blood around his mouth .
+# ::node	m2	man	1-2
+# ::node	s2	suit	4-5
+# ::node	s	spot-01	5-6
+# ::node	f	fake-02	7-8
+# ::node	b	blood	8-9
+# ::node	w	wear-01	9-10
+# ::node	w2	white-03	10-11
+# ::node	m	makeup	11-12
+# ::node	a	and	12-13
+# ::node	h	have-03	12-13
+# ::node	a2	around	15-16
+# ::node	m3	mouth	17-18
+# ::root	s	spot-01
+# ::edge	man	mod	suit	m2	s2	
+# ::edge	spot-01	ARG1	man	s	m2	
+# ::edge	blood	ARG1-of	fake-02	b	f	
+# ::edge	wear-01	ARG1	blood	w	b	
+# ::edge	man	ARG0-of	wear-01	m2	w	
+# ::edge	makeup	ARG1-of	white-03	m	w2	
+# ::edge	and	op2	makeup	a	m	
+# ::edge	and	op1	makeup	a	m	
+# ::edge	spot-01	ARG1	and	s	a	
+# ::edge	makeup	ARG0-of	have-03	m	h	
+# ::edge	have-03	ARG1	around	h	a2	
+# ::edge	around	op1	mouth	a2	m3	
+# ::edge	man	part	mouth	m2	m3	
+(s / spot-01
+    :ARG1 (m2 / man
+        :ARG0-of (w / wear-01
+            :ARG1 (b / blood
+                :ARG1-of (f / fake-02)))
+        :mod (s2 / suit)
+        :part (m3 / mouth))
+    :ARG1 (a / and
+        :op1 (m / makeup
+            :ARG0-of (h / have-03
+                :ARG1 (a2 / around
+                    :op1 m3))
+            :ARG1-of (w2 / white-03))
+        :op2 m))

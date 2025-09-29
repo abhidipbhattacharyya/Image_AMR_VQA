@@ -1,0 +1,32 @@
+# ::tok Birthday cakes in store preprepared and ready to be bought and eaten .
+# ::node	b	birthday	0-1
+# ::node	c	cake	1-2
+# ::node	s	store	3-4
+# ::node	p	prepare-01	4-5
+# ::node	r	ready-02	6-7
+# ::node	b2	buy-01	9-10
+# ::node	a	and	10-11
+# ::node	a2	and	10-11
+# ::node	e	eat-01	11-12
+# ::root	a	and
+# ::edge	cake	mod	birthday	c	b	
+# ::edge	cake	location	store	c	s	
+# ::edge	cake	ARG1-of	prepare-01	c	p	
+# ::edge	cake	ARG1-of	ready-02	c	r	
+# ::edge	buy-01	ARG1	cake	b2	c	
+# ::edge	and	op1	buy-01	a	b2	
+# ::edge	and	op1	buy-01	a2	b2	
+# ::edge	ready-02	ARG2	and	r	a2	
+# ::edge	and	op2	eat-01	a2	e	
+# ::edge	eat-01	ARG1	cake	e	c	
+(a / and
+    :op1 (b2 / buy-01
+        :ARG1 (c / cake
+            :ARG1-of (p / prepare-01)
+            :ARG1-of (r / ready-02
+                :ARG2 (a2 / and
+                    :op1 b2
+                    :op2 (e / eat-01
+                        :ARG1 c)))
+            :location (s / store)
+            :mod (b / birthday))))

@@ -1,0 +1,30 @@
+# ::tok The rocket launcher zooms up towards the outer atmosphere before releasing the rocket .
+# ::node	r2	rocket	1-2
+# ::node	t	thing	2-3
+# ::node	l	launch-01	2-3
+# ::node	z	zoom-01	3-4
+# ::node	u	up	4-5
+# ::node	o	outer	7-8
+# ::node	a	atmosphere	8-9
+# ::node	b	before	9-10
+# ::node	r	release-01	10-11
+# ::root	z	zoom-01
+# ::edge	thing	ARG0-of	launch-01	t	l	
+# ::edge	launch-01	ARG1	rocket	l	r2	
+# ::edge	zoom-01	ARG1	thing	z	t	
+# ::edge	zoom-01	direction	up	z	u	
+# ::edge	atmosphere	mod	outer	a	o	
+# ::edge	zoom-01	direction	atmosphere	z	a	
+# ::edge	zoom-01	time	before	z	b	
+# ::edge	before	op1	release-01	b	r	
+# ::edge	release-01	ARG1	rocket	r	r2	
+(z / zoom-01
+    :ARG1 (t / thing
+        :ARG0-of (l / launch-01
+            :ARG1 (r2 / rocket)))
+    :direction (u / up)
+    :direction (a / atmosphere
+        :mod (o / outer))
+    :time (b / before
+        :op1 (r / release-01
+            :ARG1 r2)))

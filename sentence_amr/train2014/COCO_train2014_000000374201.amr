@@ -1,0 +1,73 @@
+# ::tok A painted clay vase with detailing , with purple pansy , two hot pink roses , and few autumn leaves , on surface with three reddish leaves , with out of focus yard with tree in background .
+# ::node	p	paint-01	1-2
+# ::node	c	clay	2-3
+# ::node	v	vase	3-4
+# ::node	d2	detail	5-6
+# ::node	p4	purple-02	8-9
+# ::node	p2	pansy	9-10
+# ::node	0	2	11-12
+# ::node	h	hot-05	12-13
+# ::node	p3	pink-04	13-14
+# ::node	r2	rose	14-15
+# ::node	a	and	16-17
+# ::node	f	few	17-18
+# ::node	d	date-entity	18-19
+# ::node	a2	autumn	18-19
+# ::node	l	leaf	19-20
+# ::node	s	surface	22-23
+# ::node	1	3	24-25
+# ::node	r	red-02	25-26
+# ::node	l2	leaf	26-27
+# ::node	o	out-06	29-30
+# ::node	f2	focus-01	31-32
+# ::node	y	yard	32-33
+# ::node	t	tree	34-35
+# ::node	b	background	36-37
+# ::root	v	vase
+# ::edge	vase	consist-of	clay	v	c	
+# ::edge	vase	ARG1-of	paint-01	v	p	
+# ::edge	vase	mod	detail	v	d2	
+# ::edge	pansy	ARG1-of	purple-02	p2	p4	
+# ::edge	rose	ARG1-of	pink-04	r2	p3	
+# ::edge	rose	ARG1-of	hot-05	r2	h	
+# ::edge	rose	quant	2	r2	0	
+# ::edge	and	op2	rose	a	r2	
+# ::edge	and	op1	pansy	a	p2	
+# ::edge	vase	accompanier	and	v	a	
+# ::edge	date-entity	season	autumn	d	a2	
+# ::edge	leaf	time	date-entity	l	d	
+# ::edge	leaf	quant	few	l	f	
+# ::edge	and	op3	leaf	a	l	
+# ::edge	vase	location	surface	v	s	
+# ::edge	leaf	ARG1-of	red-02	l2	r	
+# ::edge	leaf	quant	3	l2	1	
+# ::edge	surface	prep-with	leaf	s	l2	
+# ::edge	out-06	ARG2	focus-01	o	f2	
+# ::edge	yard	ARG1-of	out-06	y	o	
+# ::edge	vase	accompanier	yard	v	y	
+# ::edge	background	location-of	tree	b	t	
+# ::edge	yard	location	background	y	b	
+(v / vase
+    :ARG1-of (p / paint-01)
+    :accompanier (a / and
+        :op1 (p2 / pansy
+            :ARG1-of (p4 / purple-02))
+        :op2 (r2 / rose
+            :quant 2
+            :ARG1-of (p3 / pink-04)
+            :ARG1-of (h / hot-05))
+        :op3 (l / leaf
+            :quant (f / few)
+            :time (d / date-entity
+                :season (a2 / autumn))))
+    :accompanier (y / yard
+        :ARG1-of (o / out-06
+            :ARG2 (f2 / focus-01))
+        :location (b / background
+            :location-of (t / tree)))
+    :consist-of (c / clay)
+    :location (s / surface
+        :prep-with (l2 / leaf
+            :quant 3
+            :ARG1-of (r / red-02)))
+    :mod (d2 / detail))

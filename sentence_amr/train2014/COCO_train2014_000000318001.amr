@@ -1,0 +1,48 @@
+# ::tok an Ultimate Frisbee player tries to pass the Frisbee while another player tries to block him
+# ::node	u	ultimate	1-2
+# ::node	g	game	2-3
+# ::node	n	name	2-3
+# ::node	0	Frisbee	2-3
+# ::node	p2	person	3-4
+# ::node	p4	play-01	3-4
+# ::node	t	try-01	4-5
+# ::node	p	pass-05	6-7
+# ::node	a	another	10-11
+# ::node	p3	person	11-12
+# ::node	p5	play-01	11-12
+# ::node	t2	try-01	12-13
+# ::node	b	block-01	14-15
+# ::root	t	try-01
+# ::edge	game	mod	ultimate	g	u	
+# ::edge	game	name	name	g	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	play-01	ARG1	game	p4	g	
+# ::edge	try-01	ARG0	person	t	p2	
+# ::edge	try-01	ARG1	pass-05	t	p	
+# ::edge	pass-05	ARG0	person	p	p2	
+# ::edge	pass-05	ARG1	game	p	g	
+# ::edge	person	mod	another	p3	a	
+# ::edge	person	ARG0-of	play-01	p3	p5	
+# ::edge	try-01	ARG0	person	t2	p3	
+# ::edge	try-01	time	try-01	t	t2	
+# ::edge	try-01	ARG1	block-01	t2	b	
+# ::edge	block-01	ARG0	person	b	p3	
+# ::edge	block-01	ARG1	person	b	p2	
+(t / try-01
+    :ARG0 (p2 / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (g / game
+                :name (n / name
+                    :op1 "Frisbee")
+                :mod (u / ultimate))))
+    :ARG1 (p / pass-05
+        :ARG0 p2
+        :ARG1 g)
+    :time (t2 / try-01
+        :ARG0 (p3 / person
+            :ARG0-of (p5 / play-01)
+            :mod (a / another))
+        :ARG1 (b / block-01
+            :ARG0 p3
+            :ARG1 p2)))

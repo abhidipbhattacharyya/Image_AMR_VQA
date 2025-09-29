@@ -1,0 +1,39 @@
+# ::tok An elephant carrying backpacks and people walks ahead of the rider of another elephant behind it .
+# ::node	e	elephant	1-2
+# ::node	c	carry-01	2-3
+# ::node	p	pack	3-4
+# ::node	a2	and	4-5
+# ::node	p2	person	5-6
+# ::node	w	walk-01	6-7
+# ::node	a	ahead	7-8
+# ::node	p3	person	10-11
+# ::node	r	ride-01	10-11
+# ::node	a3	another	12-13
+# ::node	e2	elephant	13-14
+# ::node	b	behind	14-15
+# ::root	w	walk-01
+# ::edge	elephant	ARG0-of	carry-01	e	c	
+# ::edge	and	op1	pack	a2	p	
+# ::edge	carry-01	ARG1	and	c	a2	
+# ::edge	and	op2	person	a2	p2	
+# ::edge	walk-01	ARG0	elephant	w	e	
+# ::edge	walk-01	ARG2	ahead	w	a	
+# ::edge	ahead	op1	person	a	p3	
+# ::edge	person	ARG0-of	ride-01	p3	r	
+# ::edge	elephant	mod	another	e2	a3	
+# ::edge	ride-01	ARG1	elephant	r	e2	
+# ::edge	elephant	location	behind	e2	b	
+# ::edge	behind	op1	elephant	b	e	
+(w / walk-01
+    :ARG0 (e / elephant
+        :ARG0-of (c / carry-01
+            :ARG1 (a2 / and
+                :op1 (p / pack)
+                :op2 (p2 / person))))
+    :ARG2 (a / ahead
+        :op1 (p3 / person
+            :ARG0-of (r / ride-01
+                :ARG1 (e2 / elephant
+                    :location (b / behind
+                        :op1 e)
+                    :mod (a3 / another))))))

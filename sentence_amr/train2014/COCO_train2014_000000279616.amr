@@ -1,0 +1,28 @@
+# ::tok A train full of dead bodies and soldiers is moving down tracks .
+# ::node	t2	train	1-2
+# ::node	f	full-09	2-3
+# ::node	d	die-01	4-5
+# ::node	b	body	5-6
+# ::node	a	and	6-7
+# ::node	s	soldier	7-8
+# ::node	m	move-01	9-10
+# ::node	d2	down	10-11
+# ::node	t	track	11-12
+# ::root	m	move-01
+# ::edge	train	ARG1-of	full-09	t2	f	
+# ::edge	body	ARG1-of	die-01	b	d	
+# ::edge	and	op1	body	a	b	
+# ::edge	full-09	ARG2	and	f	a	
+# ::edge	and	op2	soldier	a	s	
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	move-01	direction	down	m	d2	
+# ::edge	move-01	path	track	m	t	
+(m / move-01
+    :ARG1 (t2 / train
+        :ARG1-of (f / full-09
+            :ARG2 (a / and
+                :op1 (b / body
+                    :ARG1-of (d / die-01))
+                :op2 (s / soldier))))
+    :direction (d2 / down)
+    :path (t / track))

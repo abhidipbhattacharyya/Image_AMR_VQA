@@ -1,0 +1,55 @@
+# ::tok A large Continental commercial airliner is on a runway near some buildings and large mountains in the background .
+# ::node	l	large	1-2
+# ::node	c2	company	2-3
+# ::node	n	name	2-3
+# ::node	c3	continent	2-3
+# ::node	n2	name	2-3
+# ::node	1	Continental	2-3
+# ::node	0	America	2-3
+# ::node	c	commerce	3-4
+# ::node	a	airliner	4-5
+# ::node	b2	be-located-at-91	6-7
+# ::node	r	runway	8-9
+# ::node	n3	near-02	9-10
+# ::node	s	some	10-11
+# ::node	b3	building	11-12
+# ::node	a2	and	12-13
+# ::node	l2	large	13-14
+# ::node	m	mountain	14-15
+# ::node	b	background	17-18
+# ::root	b2	be-located-at-91
+# ::edge	company	name	name	c2	n	
+# ::edge	continent	name	name	c3	n2	
+# ::edge	name	op1	Continental	n	1	
+# ::edge	name	op1	America	n2	0	
+# ::edge	airliner	mod	commerce	a	c	
+# ::edge	airliner	mod	continent	a	c3	
+# ::edge	airliner	mod	large	a	l	
+# ::edge	be-located-at-91	ARG1	airliner	b2	a	
+# ::edge	be-located-at-91	ARG2	runway	b2	r	
+# ::edge	runway	ARG1-of	near-02	r	n3	
+# ::edge	building	mod	some	b3	s	
+# ::edge	and	op1	building	a2	b3	
+# ::edge	near-02	ARG2	and	n3	a2	
+# ::edge	mountain	mod	large	m	l2	
+# ::edge	and	op2	mountain	a2	m	
+# ::edge	mountain	location	background	m	b	
+# ::edge	be-located-at-91	rel	company	b2	c2	
+(b2 / be-located-at-91
+    :ARG1 (a / airliner
+        :mod (c / commerce)
+        :mod (c3 / continent
+            :name (n2 / name
+                :op1 "America"))
+        :mod (l / large))
+    :ARG2 (r / runway
+        :ARG1-of (n3 / near-02
+            :ARG2 (a2 / and
+                :op1 (b3 / building
+                    :mod (s / some))
+                :op2 (m / mountain
+                    :location (b / background)
+                    :mod (l2 / large)))))
+    :rel (c2 / company
+        :name (n / name
+            :op1 "Continental")))

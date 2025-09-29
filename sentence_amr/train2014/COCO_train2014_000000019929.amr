@@ -1,0 +1,36 @@
+# ::tok Two twin size beds are in disarray and separated by a small cluttered night stand .
+# ::node	0	2	0-1
+# ::node	t	twin	1-2
+# ::node	s2	size	2-3
+# ::node	b	bed	3-4
+# ::node	d	disarray	6-7
+# ::node	a	and	7-8
+# ::node	s	separate-01	8-9
+# ::node	s3	small	11-12
+# ::node	c	clutch-01	12-13
+# ::node	n	night	13-14
+# ::node	s4	stand	14-15
+# ::root	a	and
+# ::edge	size	mod	twin	s2	t	
+# ::edge	bed	mod	size	b	s2	
+# ::edge	bed	quant	2	b	0	
+# ::edge	disarray	domain	bed	d	b	
+# ::edge	and	op1	disarray	a	d	
+# ::edge	and	op2	separate-01	a	s	
+# ::edge	separate-01	ARG1	bed	s	b	
+# ::edge	stand	mod	night	s4	n	
+# ::edge	stand	ARG1-of	clutch-01	s4	c	
+# ::edge	stand	mod	small	s4	s3	
+# ::edge	separate-01	ARG0	stand	s	s4	
+(a / and
+    :op1 (d / disarray
+        :domain (b / bed
+            :quant 2
+            :mod (s2 / size
+                :mod (t / twin))))
+    :op2 (s / separate-01
+        :ARG0 (s4 / stand
+            :ARG1-of (c / clutch-01)
+            :mod (n / night)
+            :mod (s3 / small))
+        :ARG1 b))

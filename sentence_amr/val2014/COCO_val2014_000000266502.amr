@@ -1,0 +1,34 @@
+# ::tok A single propellor aircraft that is parked on an airport apron with vehicles and another plane in the background .
+# ::node	s	single-02	1-2
+# ::node	p3	propellor	2-3
+# ::node	a	aircraft	3-4
+# ::node	p	park-01	6-7
+# ::node	a2	airport	9-10
+# ::node	a5	apron	10-11
+# ::node	v	vehicle	12-13
+# ::node	a3	and	13-14
+# ::node	a4	another	14-15
+# ::node	p2	plane	15-16
+# ::node	b	background	18-19
+# ::root	a	aircraft
+# ::edge	aircraft	part	propellor	a	p3	
+# ::edge	aircraft	ARG1-of	single-02	a	s	
+# ::edge	aircraft	ARG1-of	park-01	a	p	
+# ::edge	apron	mod	airport	a5	a2	
+# ::edge	park-01	ARG2	apron	p	a5	
+# ::edge	and	op1	vehicle	a3	v	
+# ::edge	aircraft	accompanier	and	a	a3	
+# ::edge	plane	mod	another	p2	a4	
+# ::edge	and	op2	plane	a3	p2	
+# ::edge	plane	location	background	p2	b	
+(a / aircraft
+    :ARG1-of (s / single-02)
+    :ARG1-of (p / park-01
+        :ARG2 (a5 / apron
+            :mod (a2 / airport)))
+    :accompanier (a3 / and
+        :op1 (v / vehicle)
+        :op2 (p2 / plane
+            :location (b / background)
+            :mod (a4 / another)))
+    :part (p3 / propellor))

@@ -1,0 +1,29 @@
+# ::tok Alarm clock with white face and hammer ready to strike it .
+# ::node	a	alarm-01	0-1
+# ::node	c	clock	1-2
+# ::node	w	white-03	3-4
+# ::node	f	face	4-5
+# ::node	a2	and	5-6
+# ::node	h	hammer	6-7
+# ::node	r	ready-02	7-8
+# ::node	s	strike-01	9-10
+# ::root	c	clock
+# ::edge	clock	ARG0-of	alarm-01	c	a	
+# ::edge	face	ARG1-of	white-03	f	w	
+# ::edge	and	op1	face	a2	f	
+# ::edge	clock	time-of	and	c	a2	
+# ::edge	and	op2	hammer	a2	h	
+# ::edge	and	ARG1-of	ready-02	a2	r	
+# ::edge	ready-02	ARG2	strike-01	r	s	
+# ::edge	strike-01	ARG2	and	s	a2	
+# ::edge	strike-01	ARG0	and	s	a2	
+(c / clock
+    :ARG0-of (a / alarm-01)
+    :time-of (a2 / and
+        :ARG1-of (r / ready-02
+            :ARG2 (s / strike-01
+                :ARG0 a2
+                :ARG2 a2))
+        :op1 (f / face
+            :ARG1-of (w / white-03))
+        :op2 (h / hammer)))

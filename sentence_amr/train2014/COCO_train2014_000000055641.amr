@@ -1,0 +1,28 @@
+# ::tok Several busses line up on a rainy street as a safety worker looks on .
+# ::node	s2	several	0-1
+# ::node	b	bus	1-2
+# ::node	l	line-up-02	2-3
+# ::node	r	rain-01	6-7
+# ::node	s3	street	7-8
+# ::node	s	safe-01	10-11
+# ::node	p	person	11-12
+# ::node	w	work-01	11-12
+# ::node	l2	look-01	12-13
+# ::root	l	line-up-02
+# ::edge	bus	quant	several	b	s2	
+# ::edge	line-up-02	ARG1	bus	l	b	
+# ::edge	street	mod	rain-01	s3	r	
+# ::edge	line-up-02	location	street	l	s3	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	safe-01	w	s	
+# ::edge	look-01	ARG0	person	l2	p	
+# ::edge	line-up-02	ARG1-of	look-01	l	l2	
+(l / line-up-02
+    :ARG1 (b / bus
+        :quant (s2 / several))
+    :ARG1-of (l2 / look-01
+        :ARG0 (p / person
+            :ARG0-of (w / work-01
+                :ARG1 (s / safe-01))))
+    :location (s3 / street
+        :mod (r / rain-01)))

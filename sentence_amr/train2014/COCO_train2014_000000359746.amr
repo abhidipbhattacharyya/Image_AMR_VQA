@@ -1,0 +1,63 @@
+# ::tok A professional baseball game with a runner on third base next to the third base coach and the third baseman next to the bag .
+# ::node	p4	professional	1-2
+# ::node	b4	baseball	2-3
+# ::node	g	game	3-4
+# ::node	p	person	6-7
+# ::node	r	run-02	6-7
+# ::node	b2	base	9-10
+# ::node	n	next-to	10-11
+# ::node	o	ordinal-entity	13-14
+# ::node	0	3	13-14
+# ::node	b3	base	14-15
+# ::node	p2	person	15-16
+# ::node	c	coach-01	15-16
+# ::node	a	and	16-17
+# ::node	o2	ordinal-entity	18-19
+# ::node	1	3	18-19
+# ::node	p3	person	19-20
+# ::node	h	have-org-role-91	19-20
+# ::node	b5	baseman	19-20
+# ::node	n2	next-to	20-21
+# ::node	b	bag	23-24
+# ::root	g	game
+# ::edge	baseball	mod	professional	b4	p4	
+# ::edge	game	mod	baseball	g	b4	
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	person	location	base	p	b2	
+# ::edge	person	location	next-to	p	n	
+# ::edge	ordinal-entity	value	3	o	0	
+# ::edge	base	ord	ordinal-entity	b3	o	
+# ::edge	next-to	op1	person	n	p2	
+# ::edge	person	ARG0-of	coach-01	p2	c	
+# ::edge	coach-01	ARG2	base	c	b3	
+# ::edge	and	op1	person	a	p	
+# ::edge	game	accompanier	and	g	a	
+# ::edge	ordinal-entity	value	3	o2	1	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	have-org-role-91	p3	h	
+# ::edge	have-org-role-91	ARG1	base	h	b3	
+# ::edge	have-org-role-91	ARG2	baseman	h	b5	
+# ::edge	baseman	ord	ordinal-entity	b5	o2	
+# ::edge	person	location	next-to	p3	n2	
+# ::edge	next-to	op1	bag	n2	b	
+(g / game
+    :accompanier (a / and
+        :op1 (p / person
+            :ARG0-of (r / run-02)
+            :location (b2 / base)
+            :location (n / next-to
+                :op1 (p2 / person
+                    :ARG0-of (c / coach-01
+                        :ARG2 (b3 / base
+                            :ord (o / ordinal-entity
+                                :value 3))))))
+        :op2 (p3 / person
+            :ARG0-of (h / have-org-role-91
+                :ARG1 b3
+                :ARG2 (b5 / baseman
+                    :ord (o2 / ordinal-entity
+                        :value 3)))
+            :location (n2 / next-to
+                :op1 (b / bag))))
+    :mod (b4 / baseball
+        :mod (p4 / professional)))

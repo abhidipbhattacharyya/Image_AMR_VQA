@@ -1,0 +1,31 @@
+# ::tok A crowd of people shopping at a farmers market filled with fruit and vegetables .
+# ::node	c	crowd	1-2
+# ::node	p	person	3-4
+# ::node	s	shop-01	4-5
+# ::node	p2	person	7-8
+# ::node	f	farm-01	7-8
+# ::node	m	market	8-9
+# ::node	f2	fill-01	9-10
+# ::node	f3	fruit	11-12
+# ::node	a	and	12-13
+# ::node	v	vegetable	13-14
+# ::root	c	crowd
+# ::edge	crowd	consist-of	person	c	p	
+# ::edge	crowd	ARG0-of	shop-01	c	s	
+# ::edge	person	ARG0-of	farm-01	p2	f	
+# ::edge	market	mod	person	m	p2	
+# ::edge	shop-01	location	market	s	m	
+# ::edge	market	ARG1-of	fill-01	m	f2	
+# ::edge	and	op1	fruit	a	f3	
+# ::edge	fill-01	ARG2	and	f2	a	
+# ::edge	and	op2	vegetable	a	v	
+(c / crowd
+    :ARG0-of (s / shop-01
+        :location (m / market
+            :ARG1-of (f2 / fill-01
+                :ARG2 (a / and
+                    :op1 (f3 / fruit)
+                    :op2 (v / vegetable)))
+            :mod (p2 / person
+                :ARG0-of (f / farm-01))))
+    :consist-of (p / person))

@@ -1,0 +1,25 @@
+# ::tok Those look like plantains or bananas that are not yet ripe .
+# ::node	t	that	0-1
+# ::node	l	look-02	1-2
+# ::node	b	banana	3-4
+# ::node	o	or	4-5
+# ::node	b2	banana	5-6
+# ::node	0	-	8-9
+# ::node	y	yet	9-10
+# ::node	r	ripe-02	10-11
+# ::root	l	look-02
+# ::edge	look-02	ARG0	that	l	t	
+# ::edge	or	op1	banana	o	b	
+# ::edge	look-02	ARG1	or	l	o	
+# ::edge	or	op2	banana	o	b2	
+# ::edge	ripe-02	time	yet	r	y	
+# ::edge	ripe-02	polarity	-	r	0	
+# ::edge	or	ARG1-of	ripe-02	o	r	
+(l / look-02
+    :ARG0 (t / that)
+    :ARG1 (o / or
+        :ARG1-of (r / ripe-02
+            :polarity -
+            :time (y / yet))
+        :op1 (b / banana)
+        :op2 (b2 / banana)))

@@ -1,0 +1,61 @@
+# ::tok A man in a baseball outfit is wearing a hard hat and is swinging his bat while the catcher has his mitt out ready to catch it .
+# ::node	m	man	1-2
+# ::node	b	baseball	4-5
+# ::node	o2	outfit	5-6
+# ::node	w	wear-01	7-8
+# ::node	h	hard-04	9-10
+# ::node	h2	hat	10-11
+# ::node	a	and	11-12
+# ::node	s	swing-02	13-14
+# ::node	b2	bat	15-16
+# ::node	p	person	18-19
+# ::node	c	catch-01	18-19
+# ::node	h3	have-03	19-20
+# ::node	m2	mitt	21-22
+# ::node	o	out	22-23
+# ::node	r	ready-02	23-24
+# ::node	c2	catch-01	25-26
+# ::root	a	and
+# ::edge	outfit	mod	baseball	o2	b	
+# ::edge	man	mod	outfit	m	o2	
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	hat	ARG1-of	hard-04	h2	h	
+# ::edge	wear-01	ARG1	hat	w	h2	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op2	swing-02	a	s	
+# ::edge	swing-02	ARG0	man	s	m	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	bat	poss	man	b2	m	
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	have-03	ARG0	person	h3	p	
+# ::edge	and	time	have-03	a	h3	
+# ::edge	have-03	ARG1	mitt	h3	m2	
+# ::edge	mitt	poss	person	m2	p	
+# ::edge	have-03	direction	out	h3	o	
+# ::edge	have-03	ARG1-of	ready-02	h3	r	
+# ::edge	ready-02	ARG0	person	r	p	
+# ::edge	ready-02	ARG2	catch-01	r	c2	
+# ::edge	catch-01	ARG1	mitt	c2	m2	
+# ::edge	catch-01	ARG0	person	c2	p	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (m / man
+            :mod (o2 / outfit
+                :mod (b / baseball)))
+        :ARG1 (h2 / hat
+            :ARG1-of (h / hard-04)))
+    :op2 (s / swing-02
+        :ARG0 m
+        :ARG1 (b2 / bat
+            :poss m))
+    :time (h3 / have-03
+        :ARG0 (p / person
+            :ARG0-of (c / catch-01))
+        :ARG1 (m2 / mitt
+            :poss p)
+        :ARG1-of (r / ready-02
+            :ARG0 p
+            :ARG2 (c2 / catch-01
+                :ARG0 p
+                :ARG1 m2))
+        :direction (o / out)))

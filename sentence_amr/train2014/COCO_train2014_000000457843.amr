@@ -1,0 +1,32 @@
+# ::tok Pictures showing carrots in various stages such as cut , boiled , etc.
+# ::node	p	picture	0-1
+# ::node	s	show-01	1-2
+# ::node	c	carrot	2-3
+# ::node	v	various	4-5
+# ::node	s2	stage	5-6
+# ::node	c2	cut-01	8-9
+# ::node	a	and	9-10
+# ::node	b	boil-01	10-11
+# ::node	e	et-cetera	12-13
+# ::root	s	show-01
+# ::edge	show-01	ARG0	picture	s	p	
+# ::edge	show-01	ARG1	carrot	s	c	
+# ::edge	stage	mod	various	s2	v	
+# ::edge	carrot	mod	stage	c	s2	
+# ::edge	cut-01	ARG1	carrot	c2	c	
+# ::edge	and	op1	cut-01	a	c2	
+# ::edge	stage	example	and	s2	a	
+# ::edge	and	op2	boil-01	a	b	
+# ::edge	boil-01	ARG1	carrot	b	c	
+# ::edge	and	op3	et-cetera	a	e	
+(s / show-01
+    :ARG0 (p / picture)
+    :ARG1 (c / carrot
+        :mod (s2 / stage
+            :example (a / and
+                :op1 (c2 / cut-01
+                    :ARG1 c)
+                :op2 (b / boil-01
+                    :ARG1 c)
+                :op3 (e / et-cetera))
+            :mod (v / various))))

@@ -1,0 +1,81 @@
+# ::tok What looks like a giant kite , featuring trailing ribbons and a death 's head , sits with one end buried in a park - like area , surrounded by groups of milling and sitting people , enjoying the spectacle .
+# ::node	t	thing	0-1
+# ::node	l	look-02	1-2
+# ::node	g	giant	4-5
+# ::node	k	kite	5-6
+# ::node	f	feature-01	7-8
+# ::node	f2	follow-01	8-9
+# ::node	r2	ribbon	9-10
+# ::node	a	and	10-11
+# ::node	d	die-01	12-13
+# ::node	h	head	14-15
+# ::node	s	sit-01	16-17
+# ::node	0	1	18-19
+# ::node	e	end	19-20
+# ::node	b	bury-01	20-21
+# ::node	p	park	23-24
+# ::node	r	resemble-01	25-26
+# ::node	a3	area	26-27
+# ::node	s4	surround-01	28-29
+# ::node	g2	group	30-31
+# ::node	m	mass-01	32-33
+# ::node	a2	and	33-34
+# ::node	s2	sit-01	34-35
+# ::node	p2	person	35-36
+# ::node	p3	person	35-36
+# ::node	e2	enjoy-01	37-38
+# ::node	s3	spectacle	39-40
+# ::root	s	sit-01
+# ::edge	thing	ARG0-of	look-02	t	l	
+# ::edge	kite	mod	giant	k	g	
+# ::edge	look-02	ARG1	kite	l	k	
+# ::edge	kite	ARG2-of	feature-01	k	f	
+# ::edge	ribbon	ARG1-of	follow-01	r2	f2	
+# ::edge	and	op1	ribbon	a	r2	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	head	part-of	die-01	h	d	
+# ::edge	and	op2	head	a	h	
+# ::edge	sit-01	ARG1	thing	s	t	
+# ::edge	end	quant	1	e	0	
+# ::edge	bury-01	ARG1	end	b	e	
+# ::edge	sit-01	manner	bury-01	s	b	
+# ::edge	bury-01	ARG0	thing	b	t	
+# ::edge	resemble-01	ARG2	park	r	p	
+# ::edge	area	ARG1-of	resemble-01	a3	r	
+# ::edge	bury-01	ARG2	area	b	a3	
+# ::edge	thing	ARG2-of	surround-01	t	s4	
+# ::edge	surround-01	ARG1	group	s4	g2	
+# ::edge	group	consist-of	and	g2	a2	
+# ::edge	and	op1	person	a2	p2	
+# ::edge	person	ARG0-of	mass-01	p2	m	
+# ::edge	person	ARG1-of	sit-01	p3	s2	
+# ::edge	and	op2	person	a2	p3	
+# ::edge	and	ARG0-of	enjoy-01	a2	e2	
+# ::edge	enjoy-01	ARG1	spectacle	e2	s3	
+(s / sit-01
+    :ARG1 (t / thing
+        :ARG0-of (l / look-02
+            :ARG1 (k / kite
+                :ARG2-of (f / feature-01
+                    :ARG1 (a / and
+                        :op1 (r2 / ribbon
+                            :ARG1-of (f2 / follow-01))
+                        :op2 (h / head
+                            :part-of (d / die-01))))
+                :mod (g / giant)))
+        :ARG2-of (s4 / surround-01
+            :ARG1 (g2 / group
+                :consist-of (a2 / and
+                    :ARG0-of (e2 / enjoy-01
+                        :ARG1 (s3 / spectacle))
+                    :op1 (p2 / person
+                        :ARG0-of (m / mass-01))
+                    :op2 (p3 / person
+                        :ARG1-of (s2 / sit-01))))))
+    :manner (b / bury-01
+        :ARG0 t
+        :ARG1 (e / end
+            :quant 1)
+        :ARG2 (a3 / area
+            :ARG1-of (r / resemble-01
+                :ARG2 (p / park)))))

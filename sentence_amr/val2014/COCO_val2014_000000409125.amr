@@ -1,0 +1,40 @@
+# ::tok Bathroom with white toilet , vanity sink , tub and oak door with outside window .
+# ::node	r	room	0-1
+# ::node	h	have-03	1-2
+# ::node	w	white-03	2-3
+# ::node	t	toilet	3-4
+# ::node	v	vanity	5-6
+# ::node	s	sink	6-7
+# ::node	t2	tub	8-9
+# ::node	a	and	9-10
+# ::node	o	oak	10-11
+# ::node	d	door	11-12
+# ::node	h2	have-03	12-13
+# ::node	o2	outside	13-14
+# ::node	w2	window	14-15
+# ::root	h	have-03
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	toilet	ARG1-of	white-03	t	w	
+# ::edge	sink	mod	vanity	s	v	
+# ::edge	and	op3	tub	a	t2	
+# ::edge	and	op2	sink	a	s	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	door	mod	oak	d	o	
+# ::edge	and	op4	door	a	d	
+# ::edge	door	ARG0-of	have-03	d	h2	
+# ::edge	window	location	outside	w2	o2	
+# ::edge	have-03	ARG1	window	h2	w2	
+(h / have-03
+    :ARG0 (r / room)
+    :ARG1 (a / and
+        :op1 (t / toilet
+            :ARG1-of (w / white-03))
+        :op2 (s / sink
+            :mod (v / vanity))
+        :op3 (t2 / tub)
+        :op4 (d / door
+            :ARG0-of (h2 / have-03
+                :ARG1 (w2 / window
+                    :location (o2 / outside)))
+            :mod (o / oak))))

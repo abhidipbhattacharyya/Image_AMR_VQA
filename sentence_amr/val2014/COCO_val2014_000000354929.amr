@@ -1,0 +1,34 @@
+# ::tok At night on a street with a group of a bicycle riders riding down the road together .
+# ::node	d	date-entity	1-2
+# ::node	n	night	1-2
+# ::node	s	street	4-5
+# ::node	g	group	7-8
+# ::node	b	bicycle	10-11
+# ::node	p	person	11-12
+# ::node	r	ride-01	11-12
+# ::node	r2	ride-01	12-13
+# ::node	d2	down	13-14
+# ::node	r3	road	15-16
+# ::node	t	together	16-17
+# ::root	r2	ride-01
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	bicycle	r	b	
+# ::edge	ride-01	ARG0	group	r2	g	
+# ::edge	ride-01	location	street	r2	s	
+# ::edge	ride-01	time	date-entity	r2	d	
+# ::edge	ride-01	direction	down	r2	d2	
+# ::edge	ride-01	ARG1	road	r2	r3	
+# ::edge	ride-01	mod	together	r2	t	
+(r2 / ride-01
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (r / ride-01
+                :ARG1 (b / bicycle))))
+    :ARG1 (r3 / road)
+    :direction (d2 / down)
+    :location (s / street)
+    :mod (t / together)
+    :time (d / date-entity
+        :dayperiod (n / night)))

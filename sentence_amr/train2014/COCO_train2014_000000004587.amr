@@ -1,0 +1,25 @@
+# ::tok Military personnel are serving people in a buffet line .
+# ::node	m	military	0-1
+# ::node	p	person	1-2
+# ::node	h	have-org-role-91	1-2
+# ::node	p3	personnel	1-2
+# ::node	s	serve-02	3-4
+# ::node	p2	person	4-5
+# ::node	b	buffet	7-8
+# ::node	l	line	8-9
+# ::root	s	serve-02
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG1	military	h	m	
+# ::edge	have-org-role-91	ARG2	personnel	h	p3	
+# ::edge	serve-02	ARG0	person	s	p	
+# ::edge	serve-02	ARG2	person	s	p2	
+# ::edge	line	mod	buffet	l	b	
+# ::edge	serve-02	subevent-of	line	s	l	
+(s / serve-02
+    :ARG0 (p / person
+        :ARG0-of (h / have-org-role-91
+            :ARG1 (m / military)
+            :ARG2 (p3 / personnel)))
+    :ARG2 (p2 / person)
+    :subevent-of (l / line
+        :mod (b / buffet)))

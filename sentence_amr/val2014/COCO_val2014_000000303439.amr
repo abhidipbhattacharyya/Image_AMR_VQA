@@ -1,0 +1,34 @@
+# ::tok Several kinds of birds on snow covered pavement and in the water , near city buildings .
+# ::node	s	several	0-1
+# ::node	k	kind	1-2
+# ::node	b	bird	3-4
+# ::node	s2	snow	5-6
+# ::node	c2	cover-02	6-7
+# ::node	p	pavement	7-8
+# ::node	a	and	8-9
+# ::node	w	water	11-12
+# ::node	n	near-02	13-14
+# ::node	c	city	14-15
+# ::node	b2	building	15-16
+# ::root	b	bird
+# ::edge	kind	quant	several	k	s	
+# ::edge	bird	mod	kind	b	k	
+# ::edge	cover-02	ARG2	snow	c2	s2	
+# ::edge	pavement	ARG1-of	cover-02	p	c2	
+# ::edge	and	op1	pavement	a	p	
+# ::edge	bird	location	and	b	a	
+# ::edge	and	op2	water	a	w	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	building	mod	city	b2	c	
+# ::edge	near-02	ARG2	building	n	b2	
+(b / bird
+    :location (a / and
+        :ARG1-of (n / near-02
+            :ARG2 (b2 / building
+                :mod (c / city)))
+        :op1 (p / pavement
+            :ARG1-of (c2 / cover-02
+                :ARG2 (s2 / snow)))
+        :op2 (w / water))
+    :mod (k / kind
+        :quant (s / several)))

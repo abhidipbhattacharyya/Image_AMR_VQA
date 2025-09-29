@@ -1,0 +1,34 @@
+# ::tok Train pulling cars on multiple track area with many electrical wires overhead .
+# ::node	t2	train	0-1
+# ::node	p	pull-01	1-2
+# ::node	c	car	2-3
+# ::node	m2	multiple	4-5
+# ::node	t	track	5-6
+# ::node	a	area	6-7
+# ::node	h	have-03	7-8
+# ::node	m	many	8-9
+# ::node	e	electricity	9-10
+# ::node	w	wire	10-11
+# ::node	o	overhead	11-12
+# ::root	p	pull-01
+# ::edge	pull-01	ARG0	train	p	t2	
+# ::edge	pull-01	ARG1	car	p	c	
+# ::edge	track	quant	multiple	t	m2	
+# ::edge	area	mod	track	a	t	
+# ::edge	pull-01	location	area	p	a	
+# ::edge	area	ARG0-of	have-03	a	h	
+# ::edge	wire	mod	electricity	w	e	
+# ::edge	wire	quant	many	w	m	
+# ::edge	have-03	ARG1	wire	h	w	
+# ::edge	wire	location	overhead	w	o	
+(p / pull-01
+    :ARG0 (t2 / train)
+    :ARG1 (c / car)
+    :location (a / area
+        :ARG0-of (h / have-03
+            :ARG1 (w / wire
+                :quant (m / many)
+                :location (o / overhead)
+                :mod (e / electricity)))
+        :mod (t / track
+            :quant (m2 / multiple))))

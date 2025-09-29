@@ -1,0 +1,34 @@
+# ::tok A table with a plate , wine - filled glass , and bread , among other items
+# ::node	t	table	1-2
+# ::node	h	have-03	2-3
+# ::node	p	plate	4-5
+# ::node	w	wine	6-7
+# ::node	f	fill-01	8-9
+# ::node	g	glass	9-10
+# ::node	a	and	11-12
+# ::node	b	bread	12-13
+# ::node	i	include-91	14-15
+# ::node	o	other	15-16
+# ::node	i2	item	16-17
+# ::root	t	table
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	fill-01	ARG2	wine	f	w	
+# ::edge	glass	ARG1-of	fill-01	g	f	
+# ::edge	and	op2	glass	a	g	
+# ::edge	and	op1	plate	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	bread	a	b	
+# ::edge	and	ARG1-of	include-91	a	i	
+# ::edge	item	mod	other	i2	o	
+# ::edge	include-91	ARG2	item	i	i2	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :ARG1-of (i / include-91
+                :ARG2 (i2 / item
+                    :mod (o / other)))
+            :op1 (p / plate)
+            :op2 (g / glass
+                :ARG1-of (f / fill-01
+                    :ARG2 (w / wine)))
+            :op3 (b / bread))))

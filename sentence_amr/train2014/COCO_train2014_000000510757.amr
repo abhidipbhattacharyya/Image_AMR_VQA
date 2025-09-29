@@ -1,0 +1,40 @@
+# ::tok A blue sky with an image if a clock in the sky and a No Passing Zone sign on the left side .
+# ::node	b2	blue	1-2
+# ::node	s3	sky	2-3
+# ::node	h	have-03	3-4
+# ::node	i	image	5-6
+# ::node	c	clock	8-9
+# ::node	b	be-located-at-91	9-10
+# ::node	a	and	12-13
+# ::node	0	-	14-15
+# ::node	p	pass-03	15-16
+# ::node	z	zone	16-17
+# ::node	s2	sign	17-18
+# ::node	l	left-20	20-21
+# ::node	s	side	21-22
+# ::root	a	and
+# ::edge	sky	mod	blue	s3	b2	
+# ::edge	sky	ARG0-of	have-03	s3	h	
+# ::edge	have-03	ARG1	image	h	i	
+# ::edge	be-located-at-91	ARG1	clock	b	c	
+# ::edge	be-located-at-91	ARG2	sky	b	s3	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	pass-03	polarity	-	p	0	
+# ::edge	zone	mod	pass-03	z	p	
+# ::edge	sign	topic	zone	s2	z	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	side	ARG1-of	left-20	s	l	
+# ::edge	sign	location	side	s2	s	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (c / clock)
+        :ARG2 (s3 / sky
+            :ARG0-of (h / have-03
+                :ARG1 (i / image))
+            :mod (b2 / blue)))
+    :op2 (s2 / sign
+        :location (s / side
+            :ARG1-of (l / left-20))
+        :topic (z / zone
+            :mod (p / pass-03
+                :polarity -))))

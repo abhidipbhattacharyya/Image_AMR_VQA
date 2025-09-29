@@ -1,0 +1,28 @@
+# ::tok A group of birds sitting on branches that are above water in a storm drainage ditch .
+# ::node	g	group	1-2
+# ::node	b	bird	3-4
+# ::node	s	sit-01	4-5
+# ::node	b2	branch	6-7
+# ::node	a	above	9-10
+# ::node	w	water	10-11
+# ::node	s2	storm-01	13-14
+# ::node	d2	drain-01	14-15
+# ::node	d	ditch	15-16
+# ::root	s	sit-01
+# ::edge	group	consist-of	bird	g	b	
+# ::edge	sit-01	ARG1	group	s	g	
+# ::edge	sit-01	ARG2	branch	s	b2	
+# ::edge	branch	location	above	b2	a	
+# ::edge	above	op1	water	a	w	
+# ::edge	drain-01	ARG3	storm-01	d2	s2	
+# ::edge	ditch	ARG2-of	drain-01	d	d2	
+# ::edge	water	location	ditch	w	d	
+(s / sit-01
+    :ARG1 (g / group
+        :consist-of (b / bird))
+    :ARG2 (b2 / branch
+        :location (a / above
+            :op1 (w / water
+                :location (d / ditch
+                    :ARG2-of (d2 / drain-01
+                        :ARG3 (s2 / storm-01)))))))

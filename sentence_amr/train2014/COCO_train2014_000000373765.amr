@@ -1,0 +1,33 @@
+# ::tok A man standing near a fruit stand carrying bunches of bananas .
+# ::node	m	man	1-2
+# ::node	s2	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	f	fruit	5-6
+# ::node	s	stand	6-7
+# ::node	c	carry-01	7-8
+# ::node	m3	multiple	8-9
+# ::node	m2	mass-quantity	8-9
+# ::node	0	12	8-9
+# ::node	b	banana	10-11
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	man	s2	m	
+# ::edge	stand-01	ARG2	near-02	s2	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	stand	mod	fruit	s	f	
+# ::edge	near-02	ARG2	stand	n	s	
+# ::edge	man	ARG0-of	carry-01	m	c	
+# ::edge	multiple	op1	mass-quantity	m3	m2	
+# ::edge	mass-quantity	quant	12	m2	0	
+# ::edge	banana	quant	multiple	b	m3	
+# ::edge	carry-01	ARG1	banana	c	b	
+(s2 / stand-01
+    :ARG1 (m / man
+        :ARG0-of (c / carry-01
+            :ARG1 (b / banana
+                :quant (m3 / multiple
+                    :op1 (m2 / mass-quantity
+                        :quant 12)))))
+    :ARG2 (n / near-02
+        :ARG1 m
+        :ARG2 (s / stand
+            :mod (f / fruit))))

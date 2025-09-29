@@ -1,0 +1,27 @@
+# ::tok Bartender opening a bottle of wine while patron waits patiently
+# ::node	p3	person	0-1
+# ::node	c	counter-01	0-1
+# ::node	o	open-01	1-2
+# ::node	b	bottle	3-4
+# ::node	w2	wine	5-6
+# ::node	p2	patron	7-8
+# ::node	w	wait-01	8-9
+# ::node	p	patient-01	9-10
+# ::root	o	open-01
+# ::edge	person	ARG0-of	counter-01	p3	c	
+# ::edge	open-01	ARG0	person	o	p3	
+# ::edge	wine	quant	bottle	w2	b	
+# ::edge	open-01	ARG1	wine	o	w2	
+# ::edge	wait-01	ARG1	patron	w	p2	
+# ::edge	open-01	time	wait-01	o	w	
+# ::edge	wait-01	ARG2-of	patient-01	w	p	
+# ::edge	patient-01	ARG1	person	p	p3	
+(o / open-01
+    :ARG0 (p3 / person
+        :ARG0-of (c / counter-01))
+    :ARG1 (w2 / wine
+        :quant (b / bottle))
+    :time (w / wait-01
+        :ARG1 (p2 / patron)
+        :ARG2-of (p / patient-01
+            :ARG1 p3)))

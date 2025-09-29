@@ -1,0 +1,54 @@
+# ::tok Medical students are looking at the monitor to check their patient 's condition , while their associates wait in anticipation .
+# ::node	m	medicine	0-1
+# ::node	p2	person	1-2
+# ::node	s	study-01	1-2
+# ::node	l	look-01	3-4
+# ::node	m2	monitor	6-7
+# ::node	c	check-01	8-9
+# ::node	p3	person	10-11
+# ::node	h	have-rel-role-91	10-11
+# ::node	p	patient	10-11
+# ::node	c2	condition	12-13
+# ::node	a	and	13-14
+# ::node	p4	person	16-17
+# ::node	a3	associate-01	16-17
+# ::node	w	wait-01	17-18
+# ::node	a2	anticipate-01	19-20
+# ::root	a	and
+# ::edge	person	ARG0-of	study-01	p2	s	
+# ::edge	study-01	ARG1	medicine	s	m	
+# ::edge	look-01	ARG0	person	l	p2	
+# ::edge	look-01	ARG1	monitor	l	m2	
+# ::edge	look-01	purpose	check-01	l	c	
+# ::edge	check-01	ARG0	person	c	p2	
+# ::edge	person	ARG0-of	have-rel-role-91	p3	h	
+# ::edge	have-rel-role-91	ARG1	person	h	p2	
+# ::edge	have-rel-role-91	ARG2	patient	h	p	
+# ::edge	condition	poss	person	c2	p3	
+# ::edge	check-01	ARG1	condition	c	c2	
+# ::edge	and	op1	look-01	a	l	
+# ::edge	person	ARG1-of	associate-01	p4	a3	
+# ::edge	associate-01	ARG2	person	a3	p2	
+# ::edge	wait-01	ARG1	person	w	p4	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	manner	anticipate-01	w	a2	
+# ::edge	anticipate-01	ARG0	person	a2	p4	
+(a / and
+    :op1 (l / look-01
+        :purpose (c / check-01
+            :ARG0 (p2 / person
+                :ARG0-of (s / study-01
+                    :ARG1 (m / medicine)))
+            :ARG1 (c2 / condition
+                :poss (p3 / person
+                    :ARG0-of (h / have-rel-role-91
+                        :ARG1 p2
+                        :ARG2 (p / patient)))))
+        :ARG0 p2
+        :ARG1 (m2 / monitor))
+    :op2 (w / wait-01
+        :ARG1 (p4 / person
+            :ARG1-of (a3 / associate-01
+                :ARG2 p2))
+        :manner (a2 / anticipate-01
+            :ARG0 p4)))

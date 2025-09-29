@@ -1,0 +1,37 @@
+# ::tok Foure pieces of english muffin style pizza on a plate with a beverage glass in front of it .
+# ::node	c2	customer	0-1
+# ::node	p	piece	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	England	3-4
+# ::node	m	muffin	4-5
+# ::node	s	style	5-6
+# ::node	p2	pizza	6-7
+# ::node	p3	plate	9-10
+# ::node	b	beverage	12-13
+# ::node	g	glass	13-14
+# ::node	i	in-front-of	15-16
+# ::root	p	piece
+# ::edge	piece	mod	customer	p	c2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	England	n	0	
+# ::edge	muffin	mod	country	m	c	
+# ::edge	style	mod	muffin	s	m	
+# ::edge	pizza	mod	style	p2	s	
+# ::edge	piece	part-of	pizza	p	p2	
+# ::edge	piece	location	plate	p	p3	
+# ::edge	glass	mod	beverage	g	b	
+# ::edge	in-front-of	op1	glass	i	g	
+# ::edge	plate	location	in-front-of	p3	i	
+(p / piece
+    :location (p3 / plate
+        :location (i / in-front-of
+            :op1 (g / glass
+                :mod (b / beverage))))
+    :mod (c2 / customer)
+    :part-of (p2 / pizza
+        :mod (s / style
+            :mod (m / muffin
+                :mod (c / country
+                    :name (n / name
+                        :op1 "England"))))))

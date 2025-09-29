@@ -1,0 +1,31 @@
+# ::tok A green bus waits by a bus stop on a sunny afternoon in the valley .
+# ::node	g	green-02	1-2
+# ::node	b	bus	2-3
+# ::node	w	wait-01	3-4
+# ::node	l	location	5-6
+# ::node	b2	bus	6-7
+# ::node	s	stop-01	7-8
+# ::node	s2	sunny	10-11
+# ::node	d	date-entity	11-12
+# ::node	a	afternoon	11-12
+# ::node	v	valley	14-15
+# ::root	w	wait-01
+# ::edge	bus	ARG1-of	green-02	b	g	
+# ::edge	wait-01	ARG1	bus	w	b	
+# ::edge	wait-01	location	location	w	l	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	location	location-of	stop-01	l	s	
+# ::edge	date-entity	mod	sunny	d	s2	
+# ::edge	wait-01	time	date-entity	w	d	
+# ::edge	date-entity	dayperiod	afternoon	d	a	
+# ::edge	location	location	valley	l	v	
+(w / wait-01
+    :ARG1 (b / bus
+        :ARG1-of (g / green-02))
+    :location (l / location
+        :location (v / valley)
+        :location-of (s / stop-01
+            :ARG1 (b2 / bus)))
+    :time (d / date-entity
+        :dayperiod (a / afternoon)
+        :mod (s2 / sunny)))

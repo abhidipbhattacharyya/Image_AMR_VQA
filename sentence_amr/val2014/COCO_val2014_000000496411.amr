@@ -1,0 +1,33 @@
+# ::tok A 3 - way stop sign is close up , with a few buildings behind it .
+# ::node	0	3	1-2
+# ::node	w	way	3-4
+# ::node	s2	stop-01	4-5
+# ::node	s	sign	5-6
+# ::node	c	close-10	7-8
+# ::node	a	and	9-10
+# ::node	f	few	12-13
+# ::node	b3	building	13-14
+# ::node	b	be-located-at-91	14-15
+# ::node	b2	behind	14-15
+# ::root	a	and
+# ::edge	way	quant	3	w	0	
+# ::edge	sign	purpose	stop-01	s	s2	
+# ::edge	sign	mod	way	s	w	
+# ::edge	close-10	ARG1	sign	c	s	
+# ::edge	and	op1	close-10	a	c	
+# ::edge	building	quant	few	b3	f	
+# ::edge	be-located-at-91	ARG1	building	b	b3	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	sign	b2	s	
+(a / and
+    :op1 (c / close-10
+        :ARG1 (s / sign
+            :purpose (s2 / stop-01)
+            :mod (w / way
+                :quant 3)))
+    :op2 (b / be-located-at-91
+        :ARG1 (b3 / building
+            :quant (f / few))
+        :ARG2 (b2 / behind
+            :op1 s)))

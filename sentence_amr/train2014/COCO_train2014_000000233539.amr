@@ -1,0 +1,44 @@
+# ::tok A very nicely decorated snack cake sitting beside some of the utensils used in making it .
+# ::node	v	very	1-2
+# ::node	n	nice-01	2-3
+# ::node	d	decorate-01	3-4
+# ::node	s2	snack	4-5
+# ::node	c	cake	5-6
+# ::node	s	sit-01	6-7
+# ::node	b	beside	7-8
+# ::node	s3	some	8-9
+# ::node	i	include-91	9-10
+# ::node	e	enzyme	11-12
+# ::node	e2	enzyme	11-12
+# ::node	u	use-01	11-12
+# ::node	m	make-01	14-15
+# ::root	s	sit-01
+# ::edge	nice-01	degree	very	n	v	
+# ::edge	decorate-01	ARG1-of	nice-01	d	n	
+# ::edge	cake	mod	snack	c	s2	
+# ::edge	cake	ARG1-of	decorate-01	c	d	
+# ::edge	sit-01	ARG1	cake	s	c	
+# ::edge	sit-01	ARG2	beside	s	b	
+# ::edge	enzyme	ARG1-of	include-91	e	i	
+# ::edge	enzyme	quant	some	e	s3	
+# ::edge	beside	op1	enzyme	b	e	
+# ::edge	enzyme	instrument	cake	e	c	
+# ::edge	include-91	ARG2	enzyme	i	e2	
+# ::edge	enzyme	ARG2-of	use-01	e2	u	
+# ::edge	use-01	ARG1	make-01	u	m	
+# ::edge	make-01	ARG1	cake	m	c	
+(s / sit-01
+    :ARG1 (c / cake
+        :ARG1-of (d / decorate-01
+            :ARG1-of (n / nice-01
+                :degree (v / very)))
+        :mod (s2 / snack))
+    :ARG2 (b / beside
+        :op1 (e / enzyme
+            :quant (s3 / some)
+            :ARG1-of (i / include-91
+                :ARG2 (e2 / enzyme
+                    :ARG2-of (u / use-01
+                        :ARG1 (m / make-01
+                            :ARG1 c))))
+            :instrument c)))

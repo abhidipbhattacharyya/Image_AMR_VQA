@@ -1,0 +1,25 @@
+# ::tok Port a potty displayed in basement near maintenance belongings .
+# ::node	p	port	0-1
+# ::node	p2	potty	2-3
+# ::node	d	display-01	3-4
+# ::node	b	basement	5-6
+# ::node	n	near-02	6-7
+# ::node	m	maintain-01	7-8
+# ::node	t	thing	8-9
+# ::node	b2	belong-01	8-9
+# ::root	p	port
+# ::edge	port	domain	potty	p	p2	
+# ::edge	potty	ARG1-of	display-01	p2	d	
+# ::edge	display-01	ARG2	basement	d	b	
+# ::edge	display-01	ARG1-of	near-02	d	n	
+# ::edge	thing	purpose	maintain-01	t	m	
+# ::edge	near-02	ARG2	thing	n	t	
+# ::edge	thing	ARG0-of	belong-01	t	b2	
+(p / port
+    :domain (p2 / potty
+        :ARG1-of (d / display-01
+            :ARG1-of (n / near-02
+                :ARG2 (t / thing
+                    :purpose (m / maintain-01)
+                    :ARG0-of (b2 / belong-01)))
+            :ARG2 (b / basement))))

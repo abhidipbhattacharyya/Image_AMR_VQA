@@ -1,0 +1,50 @@
+# ::tok A train is stopped in a snowy landscape as people with skis make a trail away from it and one man holding skis smiles for the camera .
+# ::node	t2	train	1-2
+# ::node	s4	stop-01	3-4
+# ::node	s3	snowy-02	6-7
+# ::node	l	landscape	7-8
+# ::node	p	person	9-10
+# ::node	s	ski-01	11-12
+# ::node	m	make-01	12-13
+# ::node	t	trail	14-15
+# ::node	a2	away	15-16
+# ::node	a	and	18-19
+# ::node	0	1	19-20
+# ::node	m2	man	20-21
+# ::node	h	hold-01	21-22
+# ::node	s2	smile-01	23-24
+# ::node	c	camera	26-27
+# ::root	a	and
+# ::edge	stop-01	ARG1	train	s4	t2	
+# ::edge	landscape	ARG1-of	snowy-02	l	s3	
+# ::edge	stop-01	location	landscape	s4	l	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	make-01	ARG1	trail	m	t	
+# ::edge	make-01	direction	away	m	a2	
+# ::edge	away	op1	train	a2	t2	
+# ::edge	and	op2	make-01	a	m	
+# ::edge	and	op1	stop-01	a	s4	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	ARG0-of	hold-01	m2	h	
+# ::edge	hold-01	ARG1	ski-01	h	s	
+# ::edge	smile-01	ARG0	man	s2	m2	
+# ::edge	and	op3	smile-01	a	s2	
+# ::edge	smile-01	beneficiary	camera	s2	c	
+(a / and
+    :op1 (s4 / stop-01
+        :ARG1 (t2 / train)
+        :location (l / landscape
+            :ARG1-of (s3 / snowy-02)))
+    :op2 (m / make-01
+        :ARG0 (p / person
+            :ARG0-of (s / ski-01))
+        :ARG1 (t / trail)
+        :direction (a2 / away
+            :op1 t2))
+    :op3 (s2 / smile-01
+        :ARG0 (m2 / man
+            :quant 1
+            :ARG0-of (h / hold-01
+                :ARG1 s))
+        :beneficiary (c / camera)))

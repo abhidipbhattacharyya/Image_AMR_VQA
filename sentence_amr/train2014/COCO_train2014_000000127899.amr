@@ -1,0 +1,39 @@
+# ::tok A coverlet of hearts on a bed with a green , white and red towels rolled up on top of it .
+# ::node	c	coverlet	1-2
+# ::node	h	heart	3-4
+# ::node	b	bed	6-7
+# ::node	g	green-02	9-10
+# ::node	w	white-03	11-12
+# ::node	a	and	12-13
+# ::node	r	red-02	13-14
+# ::node	b2	blanket	14-15
+# ::node	b3	blanket	14-15
+# ::node	t	tile	14-15
+# ::node	r2	roll-01	15-16
+# ::node	t2	top	18-19
+# ::root	c	coverlet
+# ::edge	coverlet	consist-of	heart	c	h	
+# ::edge	coverlet	location	bed	c	b	
+# ::edge	and	op1	blanket	a	b2	
+# ::edge	blanket	ARG1-of	green-02	b2	g	
+# ::edge	and	op2	blanket	a	b3	
+# ::edge	blanket	ARG1-of	white-03	b3	w	
+# ::edge	tile	ARG1-of	red-02	t	r	
+# ::edge	and	op3	tile	a	t	
+# ::edge	and	ARG1-of	roll-01	a	r2	
+# ::edge	roll-01	ARG2	top	r2	t2	
+# ::edge	top	op1	and	t2	a	
+# ::edge	coverlet	rel	roll-01	c	r2	
+(c / coverlet
+    :consist-of (h / heart)
+    :location (b / bed)
+    :rel (r2 / roll-01
+        :ARG2 (t2 / top
+            :op1 (a / and
+                :ARG1-of r2
+                :op1 (b2 / blanket
+                    :ARG1-of (g / green-02))
+                :op2 (b3 / blanket
+                    :ARG1-of (w / white-03))
+                :op3 (t / tile
+                    :ARG1-of (r / red-02))))))

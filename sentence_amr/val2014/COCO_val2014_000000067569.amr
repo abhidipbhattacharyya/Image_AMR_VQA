@@ -1,0 +1,31 @@
+# ::tok A plane that can also land in water is behind a chain - link fence .
+# ::node	p	plane	1-2
+# ::node	p2	possible-01	3-4
+# ::node	a	also	4-5
+# ::node	l	land-01	5-6
+# ::node	w	water	7-8
+# ::node	b	be-located-at-91	9-10
+# ::node	b2	behind	9-10
+# ::node	c	chain	11-12
+# ::node	l2	link-01	13-14
+# ::node	f	fence	14-15
+# ::root	b	be-located-at-91
+# ::edge	land-01	mod	also	l	a	
+# ::edge	land-01	ARG1-of	possible-01	l	p2	
+# ::edge	plane	ARG1-of	land-01	p	l	
+# ::edge	land-01	destination	water	l	w	
+# ::edge	be-located-at-91	ARG1	plane	b	p	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	link-01	ARG2	chain	l2	c	
+# ::edge	fence	ARG1-of	link-01	f	l2	
+# ::edge	behind	op1	fence	b2	f	
+(b / be-located-at-91
+    :ARG1 (p / plane
+        :ARG1-of (l / land-01
+            :ARG1-of (p2 / possible-01)
+            :destination (w / water)
+            :mod (a / also)))
+    :ARG2 (b2 / behind
+        :op1 (f / fence
+            :ARG1-of (l2 / link-01
+                :ARG2 (c / chain)))))

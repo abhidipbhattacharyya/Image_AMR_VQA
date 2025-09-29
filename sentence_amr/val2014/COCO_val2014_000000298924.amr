@@ -1,0 +1,31 @@
+# ::tok A bowl of rice noodles , meat and vegetables with a bottle of sriracha
+# ::node	b2	bowl	1-2
+# ::node	r	rice	3-4
+# ::node	n	noodle	4-5
+# ::node	a	and	5-6
+# ::node	m	meat	6-7
+# ::node	v	vegetable	8-9
+# ::node	0	1	10-11
+# ::node	b	bottle	11-12
+# ::node	v2	volume-quantity	12-13
+# ::node	s	sriracha	13-14
+# ::root	a	and
+# ::edge	noodle	mod	rice	n	r	
+# ::edge	and	op1	noodle	a	n	
+# ::edge	and	quant	bowl	a	b2	
+# ::edge	and	op2	meat	a	m	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	volume-quantity	unit	bottle	v2	b	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	sriracha	quant	volume-quantity	s	v2	
+# ::edge	and	op4	sriracha	a	s	
+(a / and
+    :quant (b2 / bowl)
+    :op1 (n / noodle
+        :mod (r / rice))
+    :op2 (m / meat)
+    :op3 (v / vegetable)
+    :op4 (s / sriracha
+        :quant (v2 / volume-quantity
+            :quant 1
+            :unit (b / bottle))))

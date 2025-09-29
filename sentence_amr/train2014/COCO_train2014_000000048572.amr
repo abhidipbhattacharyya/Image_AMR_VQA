@@ -1,0 +1,57 @@
+# ::tok A wooden table with a large bowl that has cooked shrimp and salad in it and three small bowls above the main bowl .
+# ::node	w	wood	1-2
+# ::node	t	table	2-3
+# ::node	h	have-03	3-4
+# ::node	l	large	5-6
+# ::node	b2	bowl	6-7
+# ::node	c	cook-01	9-10
+# ::node	s2	shrimp	10-11
+# ::node	a2	and	11-12
+# ::node	s	salad	12-13
+# ::node	a3	and	15-16
+# ::node	0	3	16-17
+# ::node	s3	small	17-18
+# ::node	p	pound	18-19
+# ::node	p2	pound	18-19
+# ::node	b	be-located-at-91	19-20
+# ::node	a	above	19-20
+# ::root	h	have-03
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	have-03	ARG0	table	h	t	
+# ::edge	bowl	mod	large	b2	l	
+# ::edge	bowl	ARG0-of	cook-01	b2	c	
+# ::edge	and	op1	shrimp	a2	s2	
+# ::edge	cook-01	ARG1	and	c	a2	
+# ::edge	and	location	bowl	a2	b2	
+# ::edge	and	op2	salad	a2	s	
+# ::edge	and	op1	bowl	a3	b2	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	bowl	unit	pound	b2	p	
+# ::edge	pound	mod	large	p	l	
+# ::edge	pound	quant	3	p	0	
+# ::edge	pound	mod	small	p2	s3	
+# ::edge	pound	quant	3	p2	0	
+# ::edge	be-located-at-91	ARG1	pound	b	p2	
+# ::edge	and	op2	be-located-at-91	a3	b	
+# ::edge	be-located-at-91	ARG2	above	b	a	
+# ::edge	above	op1	bowl	a	b2	
+(h / have-03
+    :ARG0 (t / table
+        :consist-of (w / wood))
+    :ARG1 (a3 / and
+        :op1 (b2 / bowl
+            :ARG0-of (c / cook-01
+                :ARG1 (a2 / and
+                    :location b2
+                    :op1 (s2 / shrimp)
+                    :op2 (s / salad)))
+            :mod (l / large)
+            :unit (p / pound
+                :quant 3
+                :mod l))
+        :op2 (b / be-located-at-91
+            :ARG1 (p2 / pound
+                :quant 3
+                :mod (s3 / small))
+            :ARG2 (a / above
+                :op1 b2))))

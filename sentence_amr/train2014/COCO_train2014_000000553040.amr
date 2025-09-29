@@ -1,0 +1,28 @@
+# ::tok A horse that is trying to find some grass to eat through the snow .
+# ::node	h	horse	1-2
+# ::node	t	try-01	4-5
+# ::node	f	find-01	6-7
+# ::node	s2	some	7-8
+# ::node	g	grass	8-9
+# ::node	e	eat-01	10-11
+# ::node	s	snow	13-14
+# ::root	h	horse
+# ::edge	horse	ARG0-of	try-01	h	t	
+# ::edge	try-01	ARG1	find-01	t	f	
+# ::edge	find-01	ARG0	horse	f	h	
+# ::edge	grass	quant	some	g	s2	
+# ::edge	find-01	ARG1	grass	f	g	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	try-01	purpose	eat-01	t	e	
+# ::edge	eat-01	ARG0	horse	e	h	
+# ::edge	eat-01	path	snow	e	s	
+(h / horse
+    :ARG0-of (t / try-01
+        :purpose (e / eat-01
+            :ARG0 h
+            :ARG1 (g / grass
+                :quant (s2 / some))
+            :path (s / snow))
+        :ARG1 (f / find-01
+            :ARG0 h
+            :ARG1 g)))

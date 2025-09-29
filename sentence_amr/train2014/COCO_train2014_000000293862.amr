@@ -1,0 +1,31 @@
+# ::tok FedEx Express airmail delivery plane parked on a snowy runway .
+# ::node	1	FedEx	0-1
+# ::node	c	company	1-2
+# ::node	0	Express	1-2
+# ::node	a	airmail	2-3
+# ::node	d	deliver-01	3-4
+# ::node	p2	plane	4-5
+# ::node	n	name	4-5
+# ::node	p	park-01	5-6
+# ::node	s	snowy-02	8-9
+# ::node	r	runway	9-10
+# ::root	p	park-01
+# ::edge	deliver-01	ARG1	airmail	d	a	
+# ::edge	plane	ARG0-of	deliver-01	p2	d	
+# ::edge	plane	mod	company	p2	c	
+# ::edge	name	op2	Express	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	FedEx	n	1	
+# ::edge	park-01	ARG1	plane	p	p2	
+# ::edge	runway	ARG1-of	snowy-02	r	s	
+# ::edge	park-01	ARG2	runway	p	r	
+(p / park-01
+    :ARG1 (p2 / plane
+        :ARG0-of (d / deliver-01
+            :ARG1 (a / airmail))
+        :mod (c / company
+            :name (n / name
+                :op1 "FedEx"
+                :op2 "Express")))
+    :ARG2 (r / runway
+        :ARG1-of (s / snowy-02)))

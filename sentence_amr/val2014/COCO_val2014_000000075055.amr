@@ -1,0 +1,52 @@
+# ::tok A woman sleeping under a multicolored blanket and a large cat laying next to her on it 's back with all four legs spread out .
+# ::node	w	woman	1-2
+# ::node	s	sleep-01	2-3
+# ::node	u	under	3-4
+# ::node	m	multiple	5-6
+# ::node	b2	blanket	6-7
+# ::node	a2	and	7-8
+# ::node	l	large	9-10
+# ::node	c	cat	10-11
+# ::node	l2	lay-01	11-12
+# ::node	n	next-to	12-13
+# ::node	b	back	18-19
+# ::node	a	all	20-21
+# ::node	0	4	21-22
+# ::node	l3	leg	22-23
+# ::node	s2	spread-out-04	23-24
+# ::root	a2	and
+# ::edge	sleep-01	ARG0	woman	s	w	
+# ::edge	sleep-01	location	under	s	u	
+# ::edge	blanket	mod	multiple	b2	m	
+# ::edge	under	op1	blanket	u	b2	
+# ::edge	and	op1	sleep-01	a2	s	
+# ::edge	cat	mod	large	c	l	
+# ::edge	lay-01	ARG1	cat	l2	c	
+# ::edge	and	op2	lay-01	a2	l2	
+# ::edge	lay-01	ARG2	next-to	l2	n	
+# ::edge	next-to	op1	woman	n	w	
+# ::edge	cat	part	back	c	b	
+# ::edge	lay-01	ARG2	back	l2	b	
+# ::edge	leg	quant	4	l3	0	
+# ::edge	leg	mod	all	l3	a	
+# ::edge	woman	part	leg	w	l3	
+# ::edge	spread-out-04	ARG1	leg	s2	l3	
+# ::edge	cat	ARG2-of	spread-out-04	c	s2	
+(a2 / and
+    :op1 (s / sleep-01
+        :ARG0 (w / woman
+            :part (l3 / leg
+                :quant 4
+                :mod (a / all)))
+        :location (u / under
+            :op1 (b2 / blanket
+                :mod (m / multiple))))
+    :op2 (l2 / lay-01
+        :ARG1 (c / cat
+            :ARG2-of (s2 / spread-out-04
+                :ARG1 l3)
+            :mod (l / large)
+            :part (b / back))
+        :ARG2 (n / next-to
+            :op1 w)
+        :ARG2 b))

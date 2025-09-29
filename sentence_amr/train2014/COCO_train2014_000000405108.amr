@@ -1,0 +1,22 @@
+# ::tok A number of different types of equipment that a band may use
+# ::node	n	number	1-2
+# ::node	d	differ-02	3-4
+# ::node	t	type	4-5
+# ::node	e	equipment	6-7
+# ::node	b	band	9-10
+# ::node	p	possible-01	10-11
+# ::node	u	use-01	11-12
+# ::root	e	equipment
+# ::edge	type	ARG1-of	differ-02	t	d	
+# ::edge	type	quant	number	t	n	
+# ::edge	equipment	mod	type	e	t	
+# ::edge	use-01	ARG1-of	possible-01	u	p	
+# ::edge	use-01	ARG0	band	u	b	
+# ::edge	equipment	ARG1-of	use-01	e	u	
+(e / equipment
+    :ARG1-of (u / use-01
+        :ARG0 (b / band)
+        :ARG1-of (p / possible-01))
+    :mod (t / type
+        :quant (n / number)
+        :ARG1-of (d / differ-02)))

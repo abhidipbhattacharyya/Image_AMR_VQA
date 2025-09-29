@@ -1,0 +1,30 @@
+# ::tok a street with a bunch of vehicles sitting parked next to some street lights
+# ::node	s3	street	1-2
+# ::node	b	bunch	4-5
+# ::node	v	vehicle	6-7
+# ::node	s	sit-01	7-8
+# ::node	p	park-01	8-9
+# ::node	n	next-to	9-10
+# ::node	s2	some	11-12
+# ::node	s4	street	12-13
+# ::node	l	light	13-14
+# ::root	s3	street
+# ::edge	vehicle	quant	bunch	v	b	
+# ::edge	sit-01	ARG1	vehicle	s	v	
+# ::edge	street	location-of	sit-01	s3	s	
+# ::edge	sit-01	ARG2	park-01	s	p	
+# ::edge	park-01	ARG1	vehicle	p	v	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	light	mod	street	l	s4	
+# ::edge	light	quant	some	l	s2	
+# ::edge	next-to	op1	light	n	l	
+(s3 / street
+    :location-of (s / sit-01
+        :ARG1 (v / vehicle
+            :quant (b / bunch))
+        :ARG2 (p / park-01
+            :ARG1 v
+            :ARG2 (n / next-to
+                :op1 (l / light
+                    :quant (s2 / some)
+                    :mod (s4 / street))))))

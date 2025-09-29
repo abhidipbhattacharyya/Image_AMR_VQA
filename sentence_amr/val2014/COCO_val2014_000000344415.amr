@@ -1,0 +1,37 @@
+# ::tok Fuzzy photo of two trains going to the same direction of two of many tracks .
+# ::node	w	weird	0-1
+# ::node	p	photo	1-2
+# ::node	0	2	3-4
+# ::node	t3	train	4-5
+# ::node	g	go-01	5-6
+# ::node	s	same-01	8-9
+# ::node	d	direction	9-10
+# ::node	1	2	11-12
+# ::node	i	include-91	12-13
+# ::node	m	many	13-14
+# ::node	t	track	14-15
+# ::node	t2	track	14-15
+# ::root	p	photo
+# ::edge	photo	mod	weird	p	w	
+# ::edge	train	quant	2	t3	0	
+# ::edge	photo	topic	train	p	t3	
+# ::edge	train	ARG1-of	go-01	t3	g	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	go-01	ARG4	direction	g	d	
+# ::edge	track	ARG1-of	include-91	t	i	
+# ::edge	track	quant	2	t	1	
+# ::edge	direction	poss	track	d	t	
+# ::edge	track	quant	many	t2	m	
+# ::edge	include-91	ARG2	track	i	t2	
+(p / photo
+    :mod (w / weird)
+    :topic (t3 / train
+        :quant 2
+        :ARG1-of (g / go-01
+            :ARG4 (d / direction
+                :ARG1-of (s / same-01)
+                :poss (t / track
+                    :quant 2
+                    :ARG1-of (i / include-91
+                        :ARG2 (t2 / track
+                            :quant (m / many))))))))

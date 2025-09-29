@@ -1,0 +1,26 @@
+# ::tok Several people sitting while either posing to be drawn or the artist .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	sit-01	2-3
+# ::node	p2	pose-01	5-6
+# ::node	d	draw-02	8-9
+# ::node	o	or	9-10
+# ::node	a	artist	11-12
+# ::root	s2	sit-01
+# ::edge	person	quant	several	p	s	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	pose-01	ARG0	person	p2	p	
+# ::edge	pose-01	purpose	draw-02	p2	d	
+# ::edge	draw-02	ARG1	person	d	p	
+# ::edge	or	op1	pose-01	o	p2	
+# ::edge	sit-01	time	or	s2	o	
+# ::edge	or	op2	artist	o	a	
+(s2 / sit-01
+    :ARG1 (p / person
+        :quant (s / several))
+    :time (o / or
+        :op1 (p2 / pose-01
+            :purpose (d / draw-02
+                :ARG1 p)
+            :ARG0 p)
+        :op2 (a / artist)))

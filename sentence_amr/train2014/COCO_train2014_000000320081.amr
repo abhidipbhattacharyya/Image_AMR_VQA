@@ -1,0 +1,37 @@
+# ::tok Two vases one containing a red rose and the other with blue flowers .
+# ::node	1	2	0-1
+# ::node	f	flower	1-2
+# ::node	p	plant	1-2
+# ::node	0	1	2-3
+# ::node	c	contain-01	3-4
+# ::node	c2	contain-01	3-4
+# ::node	r	red-02	5-6
+# ::node	r2	rose	6-7
+# ::node	a	and	7-8
+# ::node	o	other	9-10
+# ::node	b	blue	11-12
+# ::node	f2	flower	12-13
+# ::root	a	and
+# ::edge	flower	quant	2	f	1	
+# ::edge	flower	quant	1	f	0	
+# ::edge	flower	ARG0-of	contain-01	f	c	
+# ::edge	plant	ARG0-of	contain-01	p	c2	
+# ::edge	rose	ARG1-of	red-02	r2	r	
+# ::edge	contain-01	ARG1	rose	c	r2	
+# ::edge	and	op2	plant	a	p	
+# ::edge	and	op1	flower	a	f	
+# ::edge	plant	mod	other	p	o	
+# ::edge	flower	mod	blue	f2	b	
+# ::edge	contain-01	ARG1	flower	c2	f2	
+(a / and
+    :op1 (f / flower
+        :quant 2
+        :quant 1
+        :ARG0-of (c / contain-01
+            :ARG1 (r2 / rose
+                :ARG1-of (r / red-02))))
+    :op2 (p / plant
+        :ARG0-of (c2 / contain-01
+            :ARG1 (f2 / flower
+                :mod (b / blue)))
+        :mod (o / other)))

@@ -1,0 +1,29 @@
+# ::tok Someone holding a half eaten pastry very close to their mouth
+# ::node	s	someone	0-1
+# ::node	h2	hold-01	1-2
+# ::node	h	half	3-4
+# ::node	e	eat-01	4-5
+# ::node	p	pastry	5-6
+# ::node	v	very	6-7
+# ::node	c	close-06	7-8
+# ::node	m	mouth	10-11
+# ::root	s	someone
+# ::edge	someone	ARG0-of	hold-01	s	h2	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	eat-01	ARG0	someone	e	s	
+# ::edge	pastry	ARG1-of	eat-01	p	e	
+# ::edge	hold-01	ARG1	pastry	h2	p	
+# ::edge	close-06	degree	very	c	v	
+# ::edge	hold-01	ARG1-of	close-06	h2	c	
+# ::edge	close-06	ARG2	mouth	c	m	
+# ::edge	someone	part	mouth	s	m	
+(s / someone
+    :ARG0-of (h2 / hold-01
+        :ARG1 (p / pastry
+            :ARG1-of (e / eat-01
+                :ARG0 s
+                :degree (h / half)))
+        :ARG1-of (c / close-06
+            :ARG2 (m / mouth)
+            :degree (v / very)))
+    :part m)

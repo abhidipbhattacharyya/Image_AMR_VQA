@@ -1,0 +1,28 @@
+# ::tok Cars moving down street with bus moving past on one side
+# ::node	c	car	0-1
+# ::node	m	move-01	1-2
+# ::node	d	down	2-3
+# ::node	s2	street	3-4
+# ::node	b	bus	5-6
+# ::node	m2	move-01	6-7
+# ::node	p	past	7-8
+# ::node	0	1	9-10
+# ::node	s	side	10-11
+# ::root	m	move-01
+# ::edge	move-01	ARG1	car	m	c	
+# ::edge	move-01	direction	down	m	d	
+# ::edge	move-01	ARG2	street	m	s2	
+# ::edge	move-01	ARG1	bus	m2	b	
+# ::edge	move-01	accompanier	move-01	m	m2	
+# ::edge	move-01	direction	past	m2	p	
+# ::edge	side	quant	1	s	0	
+# ::edge	move-01	location	side	m2	s	
+(m / move-01
+    :ARG1 (c / car)
+    :ARG2 (s2 / street)
+    :accompanier (m2 / move-01
+        :ARG1 (b / bus)
+        :direction (p / past)
+        :location (s / side
+            :quant 1))
+    :direction (d / down))

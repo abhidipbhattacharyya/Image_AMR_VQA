@@ -1,0 +1,61 @@
+# ::tok A 4 Way Stop sign on the corner of S. 2nd Street and S. 5th Ave in front of the Ceresota building .
+# ::node	1	4	1-2
+# ::node	w	way	2-3
+# ::node	s2	stop-01	3-4
+# ::node	s	signal-07	4-5
+# ::node	c2	corner	7-8
+# ::node	n	name	9-10
+# ::node	5	S.	9-10
+# ::node	0	2nd	10-11
+# ::node	s3	street	11-12
+# ::node	7	Street	11-12
+# ::node	n2	name	13-14
+# ::node	6	S.	13-14
+# ::node	2	5th	14-15
+# ::node	r	road	15-16
+# ::node	3	Ave	15-16
+# ::node	i	in-front-of	17-18
+# ::node	c	city	20-21
+# ::node	n3	name	20-21
+# ::node	4	Ceresota	20-21
+# ::node	b	building	21-22
+# ::root	s	signal-07
+# ::edge	way	quant	4	w	1	
+# ::edge	stop-01	mod	way	s2	w	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	signal-07	location	corner	s	c2	
+# ::edge	name	op1	S.	n	5	
+# ::edge	name	op2	2nd	n	0	
+# ::edge	street	name	name	s3	n	
+# ::edge	corner	part-of	street	c2	s3	
+# ::edge	name	op3	Street	n	7	
+# ::edge	name	op1	S.	n2	6	
+# ::edge	name	op2	5th	n2	2	
+# ::edge	road	name	name	r	n2	
+# ::edge	corner	part-of	road	c2	r	
+# ::edge	name	op3	Ave	n2	3	
+# ::edge	signal-07	location	in-front-of	s	i	
+# ::edge	city	name	name	c	n3	
+# ::edge	name	op1	Ceresota	n3	4	
+# ::edge	building	mod	city	b	c	
+# ::edge	in-front-of	op1	building	i	b	
+(s / signal-07
+    :ARG1 (s2 / stop-01
+        :mod (w / way
+            :quant 4))
+    :location (c2 / corner
+        :part-of (s3 / street
+            :name (n / name
+                :op1 "S."
+                :op2 "2nd"
+                :op3 "Street"))
+        :part-of (r / road
+            :name (n2 / name
+                :op1 "S."
+                :op2 "5th"
+                :op3 "Ave")))
+    :location (i / in-front-of
+        :op1 (b / building
+            :mod (c / city
+                :name (n3 / name
+                    :op1 "Ceresota")))))

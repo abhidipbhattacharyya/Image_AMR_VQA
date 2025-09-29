@@ -1,0 +1,33 @@
+# ::tok A train engine with multiple cars attached going down a set of train tracks .
+# ::node	e	engine	2-3
+# ::node	t	thing	3-4
+# ::node	m	multiple	4-5
+# ::node	c	car	5-6
+# ::node	a	attach-01	6-7
+# ::node	g	go-02	7-8
+# ::node	d	down	8-9
+# ::node	s	set	10-11
+# ::node	t3	train	12-13
+# ::node	t2	track	13-14
+# ::root	g	go-02
+# ::edge	thing	part-of	engine	t	e	
+# ::edge	car	quant	multiple	c	m	
+# ::edge	attach-01	ARG1	car	a	c	
+# ::edge	thing	ARG2-of	attach-01	t	a	
+# ::edge	go-02	ARG0	thing	g	t	
+# ::edge	go-02	direction	down	g	d	
+# ::edge	go-02	ARG4	set	g	s	
+# ::edge	engine	mod	train	e	t3	
+# ::edge	track	mod	train	t2	t3	
+# ::edge	set	consist-of	track	s	t2	
+(g / go-02
+    :ARG0 (t / thing
+        :ARG2-of (a / attach-01
+            :ARG1 (c / car
+                :quant (m / multiple)))
+        :part-of (e / engine
+            :mod (t3 / train)))
+    :ARG4 (s / set
+        :consist-of (t2 / track
+            :mod t3))
+    :direction (d / down))

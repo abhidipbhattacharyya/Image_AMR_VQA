@@ -1,0 +1,40 @@
+# ::tok Battlestar Galactica is playing on a flat screen television and there is a plate of pizza on the floor .
+# ::node	b2	broadcast-program	0-1
+# ::node	n	name	0-1
+# ::node	0	Battlestar	0-1
+# ::node	1	Galactica	1-2
+# ::node	p3	play-11	3-4
+# ::node	f	flat	6-7
+# ::node	s	screen	7-8
+# ::node	t	television	8-9
+# ::node	a	and	9-10
+# ::node	p2	plate	13-14
+# ::node	p	pizza	15-16
+# ::node	b	be-located-at-91	16-17
+# ::node	f2	floor	18-19
+# ::root	a	and
+# ::edge	broadcast-program	name	name	b2	n	
+# ::edge	name	op1	Battlestar	n	0	
+# ::edge	name	op2	Galactica	n	1	
+# ::edge	play-11	ARG1	broadcast-program	p3	b2	
+# ::edge	screen	mod	flat	s	f	
+# ::edge	television	part	screen	t	s	
+# ::edge	play-11	medium	television	p3	t	
+# ::edge	and	op1	play-11	a	p3	
+# ::edge	plate	consist-of	pizza	p2	p	
+# ::edge	be-located-at-91	ARG1	plate	b	p2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	floor	b	f2	
+(a / and
+    :op1 (p3 / play-11
+        :ARG1 (b2 / broadcast-program
+            :name (n / name
+                :op1 "Battlestar"
+                :op2 "Galactica"))
+        :medium (t / television
+            :part (s / screen
+                :mod (f / flat))))
+    :op2 (b / be-located-at-91
+        :ARG1 (p2 / plate
+            :consist-of (p / pizza))
+        :ARG2 (f2 / floor)))

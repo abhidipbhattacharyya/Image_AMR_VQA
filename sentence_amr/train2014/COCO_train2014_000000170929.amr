@@ -1,0 +1,37 @@
+# ::tok The bathroom has a composting toilet , a bin of compost , toilet paper , sanitizer and a trash can .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	r	recycle-01	4-5
+# ::node	t	toilet	5-6
+# ::node	b2	bin	8-9
+# ::node	c2	compost	10-11
+# ::node	t2	toilet	12-13
+# ::node	p	paper	13-14
+# ::node	w	wipe-01	15-16
+# ::node	a	and	16-17
+# ::node	t3	trash	18-19
+# ::node	c	can	19-20
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	toilet	ARG0-of	recycle-01	t	r	
+# ::edge	bin	consist-of	compost	b2	c2	
+# ::edge	paper	mod	toilet	p	t2	
+# ::edge	and	op4	wipe-01	a	w	
+# ::edge	and	op3	paper	a	p	
+# ::edge	and	op2	bin	a	b2	
+# ::edge	and	op1	toilet	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	can	purpose	trash	c	t3	
+# ::edge	and	op5	can	a	c	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :ARG1 (a / and
+        :op1 (t / toilet
+            :ARG0-of (r / recycle-01))
+        :op2 (b2 / bin
+            :consist-of (c2 / compost))
+        :op3 (p / paper
+            :mod (t2 / toilet))
+        :op4 (w / wipe-01)
+        :op5 (c / can
+            :purpose (t3 / trash))))

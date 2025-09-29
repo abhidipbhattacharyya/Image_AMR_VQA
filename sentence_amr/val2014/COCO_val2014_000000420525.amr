@@ -1,0 +1,37 @@
+# ::tok some people some wooden barrels and they have glasses of wine
+# ::node	s	some	0-1
+# ::node	p	person	1-2
+# ::node	s2	some	2-3
+# ::node	w2	wood	3-4
+# ::node	v	volume-quantity	4-5
+# ::node	b	barrel	4-5
+# ::node	a	and	5-6
+# ::node	h	have-06	7-8
+# ::node	v2	volume-quantity	8-9
+# ::node	g	glasses	8-9
+# ::node	0	1	8-9
+# ::node	w	wine	10-11
+# ::root	a	and
+# ::edge	person	quant	some	p	s	
+# ::edge	volume-quantity	mod	wood	v	w2	
+# ::edge	volume-quantity	quant	some	v	s2	
+# ::edge	volume-quantity	unit	barrel	v	b	
+# ::edge	and	op1	volume-quantity	a	v	
+# ::edge	and	op2	have-06	a	h	
+# ::edge	have-06	ARG0	person	h	p	
+# ::edge	volume-quantity	unit	glasses	v2	g	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	wine	quant	volume-quantity	w	v2	
+# ::edge	have-06	ARG1	wine	h	w	
+(a / and
+    :op1 (v / volume-quantity
+        :quant (s2 / some)
+        :mod (w2 / wood)
+        :unit (b / barrel))
+    :op2 (h / have-06
+        :ARG0 (p / person
+            :quant (s / some))
+        :ARG1 (w / wine
+            :quant (v2 / volume-quantity
+                :quant 1
+                :unit (g / glasses)))))

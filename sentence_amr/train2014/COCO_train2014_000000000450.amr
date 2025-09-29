@@ -1,0 +1,28 @@
+# ::tok A pizza sitting on a white plate next to a glass of water .
+# ::node	p	pizza	1-2
+# ::node	s	sit-01	2-3
+# ::node	w2	white-03	5-6
+# ::node	p2	plate	6-7
+# ::node	n	next-to	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	g	glass	10-11
+# ::node	w	water	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	pizza	s	p	
+# ::edge	plate	ARG1-of	white-03	p2	w2	
+# ::edge	sit-01	ARG2	plate	s	p2	
+# ::edge	plate	location	next-to	p2	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	water	quant	volume-quantity	w	v	
+# ::edge	next-to	op1	water	n	w	
+(s / sit-01
+    :ARG1 (p / pizza)
+    :ARG2 (p2 / plate
+        :ARG1-of (w2 / white-03)
+        :location (n / next-to
+            :op1 (w / water
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))))))

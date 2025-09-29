@@ -1,0 +1,31 @@
+# ::tok A bridge leads to several castle like buildings that rest under a darkened sundown .
+# ::node	b	bridge	1-2
+# ::node	l	lead-01	2-3
+# ::node	s	several	4-5
+# ::node	c	castle	5-6
+# ::node	r	resemble-01	6-7
+# ::node	b2	building	7-8
+# ::node	r2	rest-01	9-10
+# ::node	u	under	10-11
+# ::node	d	darken-01	12-13
+# ::node	s2	sundown	13-14
+# ::root	l	lead-01
+# ::edge	lead-01	ARG0	bridge	l	b	
+# ::edge	resemble-01	ARG2	castle	r	c	
+# ::edge	building	ARG1-of	resemble-01	b2	r	
+# ::edge	building	quant	several	b2	s	
+# ::edge	lead-01	ARG4	building	l	b2	
+# ::edge	building	ARG1-of	rest-01	b2	r2	
+# ::edge	rest-01	location	under	r2	u	
+# ::edge	sundown	ARG1-of	darken-01	s2	d	
+# ::edge	under	op1	sundown	u	s2	
+(l / lead-01
+    :ARG0 (b / bridge)
+    :ARG4 (b2 / building
+        :quant (s / several)
+        :ARG1-of (r / resemble-01
+            :ARG2 (c / castle))
+        :ARG1-of (r2 / rest-01
+            :location (u / under
+                :op1 (s2 / sundown
+                    :ARG1-of (d / darken-01))))))

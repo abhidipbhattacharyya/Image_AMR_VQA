@@ -1,0 +1,28 @@
+# ::tok A dog is resting across a backseat beside a seat belt window sign .
+# ::node	d	dog	1-2
+# ::node	r	rest-01	3-4
+# ::node	a	across	4-5
+# ::node	b	backseat	6-7
+# ::node	n	next-to	7-8
+# ::node	s	seat-01	9-10
+# ::node	w	wear-01	10-11
+# ::node	w2	window	11-12
+# ::node	s2	sign	12-13
+# ::root	r	rest-01
+# ::edge	rest-01	ARG1	dog	r	d	
+# ::edge	rest-01	ARG2	across	r	a	
+# ::edge	across	op1	backseat	a	b	
+# ::edge	backseat	location	next-to	b	n	
+# ::edge	wear-01	ARG1	seat-01	w	s	
+# ::edge	sign	mod	window	s2	w2	
+# ::edge	sign	ARG0-of	wear-01	s2	w	
+# ::edge	next-to	op1	sign	n	s2	
+(r / rest-01
+    :ARG1 (d / dog)
+    :ARG2 (a / across
+        :op1 (b / backseat
+            :location (n / next-to
+                :op1 (s2 / sign
+                    :ARG0-of (w / wear-01
+                        :ARG1 (s / seat-01))
+                    :mod (w2 / window))))))

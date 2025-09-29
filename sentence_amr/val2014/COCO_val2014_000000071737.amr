@@ -1,0 +1,44 @@
+# ::tok Children gather for a birthday party with a Hello Kitty cake and prepare to blow the candles out
+# ::node	c3	child	0-1
+# ::node	g	gather-03	1-2
+# ::node	b	birthday	4-5
+# ::node	p	party	5-6
+# ::node	n	name	8-9
+# ::node	0	Hello	8-9
+# ::node	p3	product	9-10
+# ::node	1	Kitty	9-10
+# ::node	c	cake	10-11
+# ::node	a	and	11-12
+# ::node	p2	prepare-02	12-13
+# ::node	b2	blow-01	14-15
+# ::node	c2	candle	16-17
+# ::root	a	and
+# ::edge	gather-03	ARG0	child	g	c3	
+# ::edge	party	mod	birthday	p	b	
+# ::edge	gather-03	ARG1	party	g	p	
+# ::edge	name	op1	Hello	n	0	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op2	Kitty	n	1	
+# ::edge	cake	mod	product	c	p3	
+# ::edge	party	accompanier	cake	p	c	
+# ::edge	and	op1	gather-03	a	g	
+# ::edge	and	op2	prepare-02	a	p2	
+# ::edge	prepare-02	ARG0	child	p2	c3	
+# ::edge	prepare-02	ARG2	blow-01	p2	b2	
+# ::edge	blow-01	ARG0	child	b2	c3	
+# ::edge	blow-01	ARG1	candle	b2	c2	
+(a / and
+    :op1 (g / gather-03
+        :ARG0 (c3 / child)
+        :ARG1 (p / party
+            :accompanier (c / cake
+                :mod (p3 / product
+                    :name (n / name
+                        :op1 "Hello"
+                        :op2 "Kitty")))
+            :mod (b / birthday)))
+    :op2 (p2 / prepare-02
+        :ARG0 c3
+        :ARG2 (b2 / blow-01
+            :ARG0 c3
+            :ARG1 (c2 / candle))))

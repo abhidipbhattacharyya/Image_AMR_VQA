@@ -1,0 +1,32 @@
+# ::tok A man is sitting on a bench with two pieces of luggage sitting next to him .
+# ::node	m	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	b	bench	6-7
+# ::node	0	2	8-9
+# ::node	p	piece	9-10
+# ::node	l	luggage	11-12
+# ::node	s2	sit-01	12-13
+# ::node	h	have-03	12-13
+# ::node	n	next-to	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	piece	quant	2	p	0	
+# ::edge	piece	consist-of	luggage	p	l	
+# ::edge	sit-01	ARG1	piece	s2	p	
+# ::edge	have-03	ARG1	piece	h	p	
+# ::edge	man	ARG0-of	have-03	m	h	
+# ::edge	sit-01	ARG2	next-to	s2	n	
+# ::edge	next-to	op1	man	n	m	
+# ::edge	sit-01	rel	sit-01	s	s2	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (h / have-03
+            :ARG1 (p / piece
+                :quant 2
+                :consist-of (l / luggage))))
+    :ARG2 (b / bench)
+    :rel (s2 / sit-01
+        :ARG1 p
+        :ARG2 (n / next-to
+            :op1 m)))

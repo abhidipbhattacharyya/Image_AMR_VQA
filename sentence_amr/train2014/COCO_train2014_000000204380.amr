@@ -1,0 +1,34 @@
+# ::tok A stop sign is posted on an intersection light post below two street names .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	p2	post-01	4-5
+# ::node	i	intersect-01	7-8
+# ::node	l	light	8-9
+# ::node	p	post	9-10
+# ::node	b	below	10-11
+# ::node	0	2	11-12
+# ::node	s3	street	12-13
+# ::node	t	thing	13-14
+# ::node	n	name-01	13-14
+# ::root	p2	post-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	post-01	ARG1	signal-07	p2	s	
+# ::edge	light	ARG0-of	intersect-01	l	i	
+# ::edge	post	mod	light	p	l	
+# ::edge	post-01	ARG2	post	p2	p	
+# ::edge	post	location	below	p	b	
+# ::edge	thing	quant	2	t	0	
+# ::edge	below	op1	thing	b	t	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	name-01	ARG1	street	n	s3	
+(p2 / post-01
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG2 (p / post
+        :location (b / below
+            :op1 (t / thing
+                :quant 2
+                :ARG2-of (n / name-01
+                    :ARG1 (s3 / street))))
+        :mod (l / light
+            :ARG0-of (i / intersect-01))))

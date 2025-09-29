@@ -1,0 +1,37 @@
+# ::tok a pedestrian walk / do n't walk sign sitting on the side of a light pole .
+# ::node	p	pedestrian	1-2
+# ::node	w	walk-01	2-3
+# ::node	s4	slash	3-4
+# ::node	y	you	4-5
+# ::node	1	imperative	4-5
+# ::node	0	-	5-6
+# ::node	w2	walk-01	6-7
+# ::node	s2	sign	7-8
+# ::node	s3	sit-01	8-9
+# ::node	s	side	11-12
+# ::node	l	light	14-15
+# ::node	p2	pole	15-16
+# ::root	s3	sit-01
+# ::edge	walk-01	ARG0	pedestrian	w	p	
+# ::edge	slash	op1	walk-01	s4	w	
+# ::edge	walk-01	polarity	-	w2	0	
+# ::edge	walk-01	mode	imperative	w2	1	
+# ::edge	walk-01	ARG0	you	w2	y	
+# ::edge	slash	op2	walk-01	s4	w2	
+# ::edge	sign	topic	slash	s2	s4	
+# ::edge	sit-01	ARG1	sign	s3	s2	
+# ::edge	sit-01	ARG2	side	s3	s	
+# ::edge	pole	mod	light	p2	l	
+# ::edge	side	part-of	pole	s	p2	
+(s3 / sit-01
+    :ARG1 (s2 / sign
+        :topic (s4 / slash
+            :op1 (w / walk-01
+                :ARG0 (p / pedestrian))
+            :op2 (w2 / walk-01
+                :ARG0 (y / you)
+                :mode imperative
+                :polarity -)))
+    :ARG2 (s / side
+        :part-of (p2 / pole
+            :mod (l / light))))

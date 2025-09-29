@@ -1,0 +1,22 @@
+# ::tok A set of parked buses in parking spaces on a blacktop surface .
+# ::node	s	set	1-2
+# ::node	p	park-01	3-4
+# ::node	b2	bus	4-5
+# ::node	p2	park-01	6-7
+# ::node	s2	space	7-8
+# ::node	b	blacktop	10-11
+# ::node	s3	surface	11-12
+# ::root	s	set
+# ::edge	bus	ARG1-of	park-01	b2	p	
+# ::edge	set	consist-of	bus	s	b2	
+# ::edge	space	ARG2-of	park-01	s2	p2	
+# ::edge	park-01	location	space	p	s2	
+# ::edge	surface	consist-of	blacktop	s3	b	
+# ::edge	space	location	surface	s2	s3	
+(s / set
+    :consist-of (b2 / bus
+        :ARG1-of (p / park-01
+            :location (s2 / space
+                :ARG2-of (p2 / park-01)
+                :location (s3 / surface
+                    :consist-of (b / blacktop))))))

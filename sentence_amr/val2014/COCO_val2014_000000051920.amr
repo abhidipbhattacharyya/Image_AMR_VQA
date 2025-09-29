@@ -1,0 +1,38 @@
+# ::tok a man sitting in front of a partially eaten pizza on a silver tray and eating a slice of pizza .
+# ::node	m	man	1-2
+# ::node	s2	sit-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	p	partial-01	7-8
+# ::node	e	eat-01	8-9
+# ::node	p2	pizza	9-10
+# ::node	s	silver	12-13
+# ::node	t	tray	13-14
+# ::node	a	and	14-15
+# ::node	e2	eat-01	15-16
+# ::node	s3	slice	17-18
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	in-front-of	s2	i	
+# ::edge	eat-01	ARG1-of	partial-01	e	p	
+# ::edge	pizza	ARG1-of	eat-01	p2	e	
+# ::edge	in-front-of	op1	pizza	i	p2	
+# ::edge	tray	consist-of	silver	t	s	
+# ::edge	pizza	location	tray	p2	t	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	eat-01	a	e2	
+# ::edge	eat-01	ARG0	man	e2	m	
+# ::edge	eat-01	ARG1	slice	e2	s3	
+# ::edge	pizza	part	slice	p2	s3	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (m / man)
+        :ARG2 (i / in-front-of
+            :op1 (p2 / pizza
+                :ARG1-of (e / eat-01
+                    :ARG1-of (p / partial-01))
+                :location (t / tray
+                    :consist-of (s / silver))
+                :part (s3 / slice))))
+    :op2 (e2 / eat-01
+        :ARG0 m
+        :ARG1 s3))

@@ -1,0 +1,37 @@
+# ::tok A family room 's TV is tuned to a football game , but the beige couch and chairs are empty .
+# ::node	f	family	1-2
+# ::node	r	room	2-3
+# ::node	t	television	4-5
+# ::node	t2	tune-01	6-7
+# ::node	f2	football	9-10
+# ::node	g	game	10-11
+# ::node	c2	contrast-01	12-13
+# ::node	b	beige	14-15
+# ::node	c3	couch	15-16
+# ::node	a	and	16-17
+# ::node	c	chair	17-18
+# ::node	e	empty-02	19-20
+# ::root	c2	contrast-01
+# ::edge	room	mod	family	r	f	
+# ::edge	television	part-of	room	t	r	
+# ::edge	tune-01	ARG1	television	t2	t	
+# ::edge	game	mod	football	g	f2	
+# ::edge	tune-01	ARG2	game	t2	g	
+# ::edge	contrast-01	ARG1	tune-01	c2	t2	
+# ::edge	and	op1	couch	a	c3	
+# ::edge	and	mod	beige	a	b	
+# ::edge	and	op2	chair	a	c	
+# ::edge	empty-02	ARG1	and	e	a	
+# ::edge	contrast-01	ARG2	empty-02	c2	e	
+(c2 / contrast-01
+    :ARG1 (t2 / tune-01
+        :ARG1 (t / television
+            :part-of (r / room
+                :mod (f / family)))
+        :ARG2 (g / game
+            :mod (f2 / football)))
+    :ARG2 (e / empty-02
+        :ARG1 (a / and
+            :mod (b / beige)
+            :op1 (c3 / couch)
+            :op2 (c / chair))))

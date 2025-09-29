@@ -1,0 +1,25 @@
+# ::tok A construction zone with signs showing where buses should be diverted .
+# ::node	c	construct-01	1-2
+# ::node	z	zone	2-3
+# ::node	s2	sign	4-5
+# ::node	s	show-01	5-6
+# ::node	l	location	6-7
+# ::node	b	bus	7-8
+# ::node	r	recommend-01	8-9
+# ::node	d	divert-01	10-11
+# ::root	z	zone
+# ::edge	zone	location-of	construct-01	z	c	
+# ::edge	zone	location-of	sign	z	s2	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	show-01	ARG1	location	s	l	
+# ::edge	divert-01	ARG1-of	recommend-01	d	r	
+# ::edge	divert-01	ARG1	bus	d	b	
+# ::edge	location	location-of	divert-01	l	d	
+(z / zone
+    :location-of (c / construct-01)
+    :location-of (s2 / sign
+        :ARG0-of (s / show-01
+            :ARG1 (l / location
+                :location-of (d / divert-01
+                    :ARG1 (b / bus)
+                    :ARG1-of (r / recommend-01))))))

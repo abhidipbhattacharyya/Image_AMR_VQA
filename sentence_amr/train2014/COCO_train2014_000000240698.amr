@@ -1,0 +1,33 @@
+# ::tok A bench is on a stone floor , in front of a stone wall with an iron barred window .
+# ::node	b2	bench	1-2
+# ::node	s	stone	5-6
+# ::node	f	floor	6-7
+# ::node	i	in-front-of	9-10
+# ::node	w	wall	13-14
+# ::node	h	have-03	14-15
+# ::node	i2	iron	16-17
+# ::node	b	bar-01	17-18
+# ::node	w2	window	18-19
+# ::node	e	event	19-20
+# ::root	e	event
+# ::edge	floor	consist-of	stone	f	s	
+# ::edge	bench	location	floor	b2	f	
+# ::edge	bench	location	in-front-of	b2	i	
+# ::edge	in-front-of	op1	wall	i	w	
+# ::edge	wall	consist-of	stone	w	s	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	bar-01	ARG2	iron	b	i2	
+# ::edge	window	ARG1-of	bar-01	w2	b	
+# ::edge	have-03	ARG1	window	h	w2	
+# ::edge	event	mod	bench	e	b2	
+(e / event
+    :mod (b2 / bench
+        :location (f / floor
+            :consist-of (s / stone))
+        :location (i / in-front-of
+            :op1 (w / wall
+                :ARG0-of (h / have-03
+                    :ARG1 (w2 / window
+                        :ARG1-of (b / bar-01
+                            :ARG2 (i2 / iron))))
+                :consist-of s))))

@@ -1,0 +1,23 @@
+# ::tok The dog is standing at the door waiting to be let in .
+# ::node	d	dog	1-2
+# ::node	s	stand-01	3-4
+# ::node	d2	door	6-7
+# ::node	w	wait-01	7-8
+# ::node	l	let-01	10-11
+# ::node	e	enter-01	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	dog	s	d	
+# ::edge	stand-01	ARG2	door	s	d2	
+# ::edge	stand-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	dog	w	d	
+# ::edge	wait-01	ARG2	let-01	w	l	
+# ::edge	let-01	ARG1	enter-01	l	e	
+# ::edge	enter-01	ARG1	dog	e	d	
+(s / stand-01
+    :purpose (w / wait-01
+        :ARG1 (d / dog)
+        :ARG2 (l / let-01
+            :ARG1 (e / enter-01
+                :ARG1 d)))
+    :ARG1 d
+    :ARG2 (d2 / door))

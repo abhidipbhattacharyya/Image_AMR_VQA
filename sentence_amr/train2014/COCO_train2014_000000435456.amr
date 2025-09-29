@@ -1,0 +1,42 @@
+# ::tok A man in a top hat , wearing white makeup , holding a carrot in his mouth walks beside a crowd of people .
+# ::node	m2	man	1-2
+# ::node	t	top	4-5
+# ::node	h	hat	5-6
+# ::node	w2	wear-01	7-8
+# ::node	w3	white-03	8-9
+# ::node	m	makeup	9-10
+# ::node	h2	hold-01	11-12
+# ::node	c	carrot	13-14
+# ::node	m3	mouth	16-17
+# ::node	w	walk-01	17-18
+# ::node	b	beside	18-19
+# ::node	c2	crowd	20-21
+# ::node	p	person	22-23
+# ::root	w	walk-01
+# ::edge	hat	mod	top	h	t	
+# ::edge	wear-01	ARG1	hat	w2	h	
+# ::edge	man	ARG0-of	wear-01	m2	w2	
+# ::edge	makeup	ARG1-of	white-03	m	w3	
+# ::edge	man	mod	makeup	m2	m	
+# ::edge	man	ARG0-of	hold-01	m2	h2	
+# ::edge	hold-01	ARG1	carrot	h2	c	
+# ::edge	carrot	location	mouth	c	m3	
+# ::edge	man	part	mouth	m2	m3	
+# ::edge	walk-01	ARG0	man	w	m2	
+# ::edge	walk-01	ARG2	beside	w	b	
+# ::edge	beside	op1	crowd	b	c2	
+# ::edge	crowd	consist-of	person	c2	p	
+(w / walk-01
+    :ARG0 (m2 / man
+        :ARG0-of (w2 / wear-01
+            :ARG1 (h / hat
+                :mod (t / top)))
+        :ARG0-of (h2 / hold-01
+            :ARG1 (c / carrot
+                :location (m3 / mouth)))
+        :mod (m / makeup
+            :ARG1-of (w3 / white-03))
+        :part m3)
+    :ARG2 (b / beside
+        :op1 (c2 / crowd
+            :consist-of (p / person))))

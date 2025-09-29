@@ -1,0 +1,37 @@
+# ::tok A sandwich on a plate and a cup of Starbuck 's coffee in a to - go cup .
+# ::node	s	sandwich	1-2
+# ::node	p	plate	4-5
+# ::node	a	and	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	0	1	6-7
+# ::node	c3	cup	7-8
+# ::node	c2	company	9-10
+# ::node	n	name	9-10
+# ::node	1	Starbuck	9-10
+# ::node	c	coffee	11-12
+# ::node	g	go-01	16-17
+# ::node	c4	cup	17-18
+# ::root	a	and
+# ::edge	sandwich	location	plate	s	p	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Starbuck	n	1	
+# ::edge	coffee	source	company	c	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op2	coffee	a	c	
+# ::edge	cup	ARG1-of	go-01	c4	g	
+# ::edge	coffee	location	cup	c	c4	
+(a / and
+    :op1 (s / sandwich
+        :location (p / plate))
+    :op2 (c / coffee
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c3 / cup))
+        :location (c4 / cup
+            :ARG1-of (g / go-01))
+        :source (c2 / company
+            :name (n / name
+                :op1 "Starbuck"))))

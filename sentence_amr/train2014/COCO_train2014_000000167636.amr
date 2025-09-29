@@ -1,0 +1,49 @@
+# ::tok A man with a Boston baseball cap on and he is holding a baseball bat over his shoulder with one hand .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	c2	city	4-5
+# ::node	n	name	4-5
+# ::node	1	Boston	4-5
+# ::node	b	baseball	5-6
+# ::node	c	cap	6-7
+# ::node	a	and	8-9
+# ::node	h2	hold-01	11-12
+# ::node	b2	bat	14-15
+# ::node	o	over	15-16
+# ::node	s	shoulder	17-18
+# ::node	0	1	19-20
+# ::node	h	hand	20-21
+# ::root	a	and
+# ::edge	wear-01	ARG0	man	w	m	
+# ::edge	city	name	name	c2	n	
+# ::edge	name	op1	Boston	n	1	
+# ::edge	cap	mod	baseball	c	b	
+# ::edge	cap	mod	city	c	c2	
+# ::edge	wear-01	ARG1	cap	w	c	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op2	hold-01	a	h2	
+# ::edge	hold-01	ARG0	man	h2	m	
+# ::edge	hold-01	ARG1	bat	h2	b2	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	hold-01	location	over	h2	o	
+# ::edge	over	op1	shoulder	o	s	
+# ::edge	man	part	shoulder	m	s	
+# ::edge	hand	quant	1	h	0	
+# ::edge	hold-01	manner	hand	h2	h	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (m / man
+            :part (s / shoulder))
+        :ARG1 (c / cap
+            :mod (b / baseball)
+            :mod (c2 / city
+                :name (n / name
+                    :op1 "Boston"))))
+    :op2 (h2 / hold-01
+        :ARG0 m
+        :ARG1 (b2 / bat
+            :mod b)
+        :location (o / over
+            :op1 s)
+        :manner (h / hand
+            :quant 1)))

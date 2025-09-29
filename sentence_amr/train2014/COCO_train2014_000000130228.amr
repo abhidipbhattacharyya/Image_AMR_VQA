@@ -1,0 +1,25 @@
+# ::tok Public transit bus traveling past brick large building .
+# ::node	p2	public-02	0-1
+# ::node	t	transit-01	1-2
+# ::node	b3	bus	2-3
+# ::node	t2	travel-01	3-4
+# ::node	p	past	4-5
+# ::node	b	brick	5-6
+# ::node	l	large	6-7
+# ::node	b2	building	7-8
+# ::root	t2	travel-01
+# ::edge	transit-01	ARG1-of	public-02	t	p2	
+# ::edge	bus	ARG2-of	transit-01	b3	t	
+# ::edge	travel-01	ARG0	bus	t2	b3	
+# ::edge	travel-01	path	past	t2	p	
+# ::edge	building	mod	large	b2	l	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	past	op1	building	p	b2	
+(t2 / travel-01
+    :ARG0 (b3 / bus
+        :ARG2-of (t / transit-01
+            :ARG1-of (p2 / public-02)))
+    :path (p / past
+        :op1 (b2 / building
+            :consist-of (b / brick)
+            :mod (l / large))))

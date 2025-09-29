@@ -1,0 +1,25 @@
+# ::tok A double vanity with no touch faucets set into a black countertop .
+# ::node	d	double	1-2
+# ::node	v	vanity	2-3
+# ::node	0	-	4-5
+# ::node	t	touch	5-6
+# ::node	m	medicine	6-7
+# ::node	s	set-01	7-8
+# ::node	b	black-04	10-11
+# ::node	c	countertop	11-12
+# ::root	v	vanity
+# ::edge	vanity	mod	double	v	d	
+# ::edge	touch	polarity	-	t	0	
+# ::edge	medicine	mod	touch	m	t	
+# ::edge	set-01	ARG2	medicine	s	m	
+# ::edge	vanity	ARG1-of	set-01	v	s	
+# ::edge	countertop	ARG1-of	black-04	c	b	
+# ::edge	set-01	ARG2	countertop	s	c	
+(v / vanity
+    :ARG1-of (s / set-01
+        :ARG2 (m / medicine
+            :mod (t / touch
+                :polarity -))
+        :ARG2 (c / countertop
+            :ARG1-of (b / black-04)))
+    :mod (d / double))

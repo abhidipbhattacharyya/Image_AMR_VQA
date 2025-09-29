@@ -1,0 +1,28 @@
+# ::tok A dog fetches a large stick despite the ocean waves crashing near the shore .
+# ::node	d2	dog	1-2
+# ::node	d	demand-01	2-3
+# ::node	l	large	4-5
+# ::node	s2	stick	5-6
+# ::node	o	ocean	8-9
+# ::node	w	wave	9-10
+# ::node	c	crash-01	10-11
+# ::node	n	near-02	11-12
+# ::node	s	shore	13-14
+# ::root	d	demand-01
+# ::edge	demand-01	ARG0	dog	d	d2	
+# ::edge	stick	mod	large	s2	l	
+# ::edge	demand-01	ARG1	stick	d	s2	
+# ::edge	wave	mod	ocean	w	o	
+# ::edge	crash-01	ARG1	wave	c	w	
+# ::edge	demand-01	concession	crash-01	d	c	
+# ::edge	crash-01	ARG1-of	near-02	c	n	
+# ::edge	near-02	ARG2	shore	n	s	
+(d / demand-01
+    :ARG0 (d2 / dog)
+    :ARG1 (s2 / stick
+        :mod (l / large))
+    :concession (c / crash-01
+        :ARG1 (w / wave
+            :mod (o / ocean))
+        :ARG1-of (n / near-02
+            :ARG2 (s / shore))))

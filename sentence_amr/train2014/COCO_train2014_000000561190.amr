@@ -1,0 +1,31 @@
+# ::tok Adult men in large conference room using video game remote controls .
+# ::node	a	adult	0-1
+# ::node	m	man	1-2
+# ::node	l	large	3-4
+# ::node	c	conference	4-5
+# ::node	r2	room	5-6
+# ::node	u	use-01	6-7
+# ::node	v	video	7-8
+# ::node	g	game	8-9
+# ::node	r	remote	9-10
+# ::node	c2	control-01	10-11
+# ::root	m	man
+# ::edge	man	mod	adult	m	a	
+# ::edge	room	mod	conference	r2	c	
+# ::edge	room	mod	large	r2	l	
+# ::edge	man	location	room	m	r2	
+# ::edge	man	ARG0-of	use-01	m	u	
+# ::edge	game	mod	video	g	v	
+# ::edge	control-01	mod	remote	c2	r	
+# ::edge	control-01	ARG1	game	c2	g	
+# ::edge	use-01	ARG1	control-01	u	c2	
+(m / man
+    :ARG0-of (u / use-01
+        :ARG1 (c2 / control-01
+            :ARG1 (g / game
+                :mod (v / video))
+            :mod (r / remote)))
+    :location (r2 / room
+        :mod (c / conference)
+        :mod (l / large))
+    :mod (a / adult))

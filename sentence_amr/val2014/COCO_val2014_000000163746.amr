@@ -1,0 +1,58 @@
+# ::tok Two almost identical photos with some minor cropping show two young girls standing on the coast with people in the water in the background as a plane flies overhead
+# ::node	0	2	0-1
+# ::node	a	almost	1-2
+# ::node	i	identical-01	2-3
+# ::node	p2	photo	3-4
+# ::node	s2	some	5-6
+# ::node	m	minor-01	6-7
+# ::node	c2	crop-01	7-8
+# ::node	s	show-01	8-9
+# ::node	1	2	9-10
+# ::node	y	young	10-11
+# ::node	g	girl	11-12
+# ::node	s3	stand-01	12-13
+# ::node	c	coast	15-16
+# ::node	p	person	17-18
+# ::node	w	water	20-21
+# ::node	b	background	23-24
+# ::node	p3	plane	26-27
+# ::node	f	fly-01	27-28
+# ::node	o	overhead	28-29
+# ::root	s	show-01
+# ::edge	identical-01	mod	almost	i	a	
+# ::edge	photo	ARG1-of	identical-01	p2	i	
+# ::edge	photo	quant	2	p2	0	
+# ::edge	crop-01	ARG1-of	minor-01	c2	m	
+# ::edge	crop-01	quant	some	c2	s2	
+# ::edge	photo	accompanier	crop-01	p2	c2	
+# ::edge	show-01	ARG0	photo	s	p2	
+# ::edge	girl	mod	young	g	y	
+# ::edge	girl	quant	2	g	1	
+# ::edge	stand-01	ARG1	girl	s3	g	
+# ::edge	show-01	ARG1	stand-01	s	s3	
+# ::edge	stand-01	ARG2	coast	s3	c	
+# ::edge	girl	accompanier	person	g	p	
+# ::edge	person	location	water	p	w	
+# ::edge	person	location	background	p	b	
+# ::edge	fly-01	ARG2	plane	f	p3	
+# ::edge	show-01	time	fly-01	s	f	
+# ::edge	fly-01	location	overhead	f	o	
+(s / show-01
+    :ARG0 (p2 / photo
+        :quant 2
+        :ARG1-of (i / identical-01
+            :mod (a / almost))
+        :accompanier (c2 / crop-01
+            :quant (s2 / some)
+            :ARG1-of (m / minor-01)))
+    :ARG1 (s3 / stand-01
+        :ARG1 (g / girl
+            :quant 2
+            :accompanier (p / person
+                :location (w / water)
+                :location (b / background))
+            :mod (y / young))
+        :ARG2 (c / coast))
+    :time (f / fly-01
+        :ARG2 (p3 / plane)
+        :location (o / overhead)))

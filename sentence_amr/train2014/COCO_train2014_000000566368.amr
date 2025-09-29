@@ -1,0 +1,46 @@
+# ::tok Ten channel selectors that have green and red buttons a huge round button and numeral numbers .
+# ::node	0	10	0-1
+# ::node	c	channel	1-2
+# ::node	p	product	2-3
+# ::node	s	select-01	2-3
+# ::node	h	have-03	4-5
+# ::node	g	green-02	5-6
+# ::node	a	and	6-7
+# ::node	r	red-02	7-8
+# ::node	b	button	8-9
+# ::node	b2	button	8-9
+# ::node	h2	huge	10-11
+# ::node	r2	round-06	11-12
+# ::node	b3	button	12-13
+# ::node	n2	numeral	14-15
+# ::node	n	number	15-16
+# ::root	p	product
+# ::edge	product	quant	10	p	0	
+# ::edge	product	ARG0-of	select-01	p	s	
+# ::edge	select-01	ARG1	channel	s	c	
+# ::edge	product	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	button	a	b	
+# ::edge	button	ARG1-of	green-02	b	g	
+# ::edge	button	ARG1-of	red-02	b2	r	
+# ::edge	and	op2	button	a	b2	
+# ::edge	button	ARG1-of	round-06	b3	r2	
+# ::edge	button	mod	huge	b3	h2	
+# ::edge	and	op3	button	a	b3	
+# ::edge	number	mod	numeral	n	n2	
+# ::edge	and	op4	number	a	n	
+(p / product
+    :quant 10
+    :ARG0-of (s / select-01
+        :ARG1 (c / channel))
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / button
+                :ARG1-of (g / green-02))
+            :op2 (b2 / button
+                :ARG1-of (r / red-02))
+            :op3 (b3 / button
+                :ARG1-of (r2 / round-06)
+                :mod (h2 / huge))
+            :op4 (n / number
+                :mod (n2 / numeral)))))

@@ -1,0 +1,27 @@
+# ::tok A partial sliced open piece of bread with some hotdogs in the middle
+# ::node	p	part	1-2
+# ::node	s	slice-01	2-3
+# ::node	o	open-01	3-4
+# ::node	p2	piece	4-5
+# ::node	b	bread	6-7
+# ::node	s2	some	8-9
+# ::node	h	hot-dog	9-10
+# ::node	m	middle	12-13
+# ::root	p2	piece
+# ::edge	slice-01	degree	part	s	p	
+# ::edge	piece	ARG1-of	open-01	p2	o	
+# ::edge	piece	ARG1-of	slice-01	p2	s	
+# ::edge	piece	part-of	bread	p2	b	
+# ::edge	hot-dog	quant	some	h	s2	
+# ::edge	piece	accompanier	hot-dog	p2	h	
+# ::edge	hot-dog	location	middle	h	m	
+# ::edge	middle	op1	bread	m	b	
+(p2 / piece
+    :ARG1-of (o / open-01)
+    :ARG1-of (s / slice-01
+        :degree (p / part))
+    :accompanier (h / hot-dog
+        :quant (s2 / some)
+        :location (m / middle
+            :op1 (b / bread)))
+    :part-of b)

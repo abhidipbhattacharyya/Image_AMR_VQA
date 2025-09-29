@@ -1,0 +1,25 @@
+# ::tok Multiple planes at an airport with several stair trucks driving around .
+# ::node	m	multiple	0-1
+# ::node	p	plane	1-2
+# ::node	a	airport	4-5
+# ::node	s	several	6-7
+# ::node	s2	stair	7-8
+# ::node	t	truck	8-9
+# ::node	d	drive-01	9-10
+# ::node	a2	around	10-11
+# ::root	p	plane
+# ::edge	plane	quant	multiple	p	m	
+# ::edge	plane	location	airport	p	a	
+# ::edge	truck	mod	stair	t	s2	
+# ::edge	truck	quant	several	t	s	
+# ::edge	drive-01	ARG1	truck	d	t	
+# ::edge	plane	prep-with	drive-01	p	d	
+# ::edge	drive-01	direction	around	d	a2	
+(p / plane
+    :quant (m / multiple)
+    :location (a / airport)
+    :prep-with (d / drive-01
+        :ARG1 (t / truck
+            :quant (s / several)
+            :mod (s2 / stair))
+        :direction (a2 / around)))

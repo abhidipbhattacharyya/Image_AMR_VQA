@@ -1,0 +1,44 @@
+# ::tok A giraffe is half way between sitting and standing , while another giraffe looks on from behind some shrubs .
+# ::node	g	giraffe	1-2
+# ::node	h	half	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	w	way	4-5
+# ::node	b3	between	5-6
+# ::node	s	sit-01	6-7
+# ::node	s3	stand-01	8-9
+# ::node	a	another	11-12
+# ::node	g2	giraffe	12-13
+# ::node	l	look-01	13-14
+# ::node	b2	behind	16-17
+# ::node	s2	some	17-18
+# ::node	u	Bush	18-19
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	giraffe	b	g	
+# ::edge	be-located-at-91	ARG3	way	b	w	
+# ::edge	way	mod	half	w	h	
+# ::edge	way	mod	between	w	b3	
+# ::edge	between	op1	sit-01	b3	s	
+# ::edge	sit-01	ARG1	giraffe	s	g	
+# ::edge	between	op2	stand-01	b3	s3	
+# ::edge	stand-01	ARG1	giraffe	s3	g	
+# ::edge	giraffe	mod	another	g2	a	
+# ::edge	look-01	ARG0	giraffe	l	g2	
+# ::edge	be-located-at-91	time	look-01	b	l	
+# ::edge	look-01	source	behind	l	b2	
+# ::edge	Bush	quant	some	u	s2	
+# ::edge	behind	op1	Bush	b2	u	
+(b / be-located-at-91
+    :ARG1 (g / giraffe)
+    :ARG3 (w / way
+        :mod (h / half)
+        :mod (b3 / between
+            :op1 (s / sit-01
+                :ARG1 g)
+            :op2 (s3 / stand-01
+                :ARG1 g)))
+    :time (l / look-01
+        :ARG0 (g2 / giraffe
+            :mod (a / another))
+        :source (b2 / behind
+            :op1 (u / Bush
+                :quant (s2 / some)))))

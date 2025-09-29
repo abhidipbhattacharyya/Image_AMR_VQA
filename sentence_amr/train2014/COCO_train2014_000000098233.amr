@@ -1,0 +1,50 @@
+# ::tok Many people sit and stand next to flags in an open field on a grey , cloudy day while kites are flying in the sky .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	a	and	3-4
+# ::node	s3	stand-01	4-5
+# ::node	n	next-to	5-6
+# ::node	f2	flag	7-8
+# ::node	o2	open-06	10-11
+# ::node	f	field	11-12
+# ::node	g	gray-02	14-15
+# ::node	c	cloudy-02	16-17
+# ::node	d	day	17-18
+# ::node	o	Korea	19-20
+# ::node	f3	fly-01	21-22
+# ::node	s2	sky	24-25
+# ::root	a	and
+# ::edge	person	quant	many	p	m	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	next-to	s3	n	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	flag	n	f2	
+# ::edge	field	ARG1-of	open-06	f	o2	
+# ::edge	and	location	field	a	f	
+# ::edge	day	ARG1-of	cloudy-02	d	c	
+# ::edge	day	ARG1-of	gray-02	d	g	
+# ::edge	and	time	day	a	d	
+# ::edge	fly-01	ARG2	Korea	f3	o	
+# ::edge	and	time	fly-01	a	f3	
+# ::edge	fly-01	location	sky	f3	s2	
+(a / and
+    :location (f / field
+        :ARG1-of (o2 / open-06))
+    :op1 (s / sit-01
+        :ARG1 (p / person
+            :quant (m / many))
+        :ARG2 (n / next-to
+            :op1 (f2 / flag)))
+    :op2 (s3 / stand-01
+        :ARG1 p
+        :ARG2 n)
+    :time (d / day
+        :ARG1-of (c / cloudy-02)
+        :ARG1-of (g / gray-02))
+    :time (f3 / fly-01
+        :ARG2 (o / Korea)
+        :location (s2 / sky)))

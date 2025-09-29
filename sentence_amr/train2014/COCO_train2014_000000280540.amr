@@ -1,0 +1,45 @@
+# ::tok A hotel bathroom with the shower curtain open and fresh towels stacked above the toilet and laid across the bathtub .
+# ::node	h	hotel	1-2
+# ::node	b	bathroom	2-3
+# ::node	s	shower	5-6
+# ::node	c	curtain	6-7
+# ::node	o	open-01	7-8
+# ::node	f	fresh-04	9-10
+# ::node	s2	shower-01	10-11
+# ::node	s3	stack-01	11-12
+# ::node	a	above	12-13
+# ::node	t	toilet	14-15
+# ::node	a3	and	15-16
+# ::node	l	lay-01	16-17
+# ::node	a2	across	17-18
+# ::node	b2	bathtub	19-20
+# ::root	b	bathroom
+# ::edge	bathroom	location	hotel	b	h	
+# ::edge	curtain	mod	shower	c	s	
+# ::edge	open-01	ARG1	curtain	o	c	
+# ::edge	bathroom	manner	open-01	b	o	
+# ::edge	shower-01	ARG1-of	fresh-04	s2	f	
+# ::edge	stack-01	ARG1	shower-01	s3	s2	
+# ::edge	stack-01	ARG2	above	s3	a	
+# ::edge	above	op1	toilet	a	t	
+# ::edge	and	op1	stack-01	a3	s3	
+# ::edge	bathroom	location-of	and	b	a3	
+# ::edge	and	op2	lay-01	a3	l	
+# ::edge	lay-01	ARG1	shower-01	l	s2	
+# ::edge	lay-01	ARG2	across	l	a2	
+# ::edge	across	op1	bathtub	a2	b2	
+(b / bathroom
+    :location (h / hotel)
+    :location-of (a3 / and
+        :op1 (s3 / stack-01
+            :ARG1 (s2 / shower-01
+                :ARG1-of (f / fresh-04))
+            :ARG2 (a / above
+                :op1 (t / toilet)))
+        :op2 (l / lay-01
+            :ARG1 s2
+            :ARG2 (a2 / across
+                :op1 (b2 / bathtub))))
+    :manner (o / open-01
+        :ARG1 (c / curtain
+            :mod (s / shower))))

@@ -1,0 +1,27 @@
+# ::tok A street sign on the corner of West 31st indicating the street names .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	c	corner	5-6
+# ::node	s3	street-address-91	7-8
+# ::node	w	west	7-8
+# ::node	0	31	8-9
+# ::node	i	indicate-01	9-10
+# ::node	n	name	12-13
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	location	corner	s	c	
+# ::edge	corner	op1	street-address-91	c	s3	
+# ::edge	street-address-91	ARG1	west	s3	w	
+# ::edge	street-address-91	ARG2	31	s3	0	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	indicate-01	ARG1	name	i	n	
+# ::edge	name	mod	street	n	s2	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (n / name
+            :mod (s2 / street)))
+    :location (c / corner
+        :op1 (s3 / street-address-91
+            :ARG1 (w / west)
+            :ARG2 31))
+    :mod s2)

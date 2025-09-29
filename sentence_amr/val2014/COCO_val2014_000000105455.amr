@@ -1,0 +1,34 @@
+# ::tok Colorful clock tower , mostly red with typical European buildings in background .
+# ::node	l	logical	0-1
+# ::node	c	clock	1-2
+# ::node	t	tower	2-3
+# ::node	m	most	4-5
+# ::node	r	red-02	5-6
+# ::node	t2	typical-02	7-8
+# ::node	c2	continent	8-9
+# ::node	n	name	8-9
+# ::node	0	Europe	8-9
+# ::node	b2	building	9-10
+# ::node	b	background	11-12
+# ::root	t	tower
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	mod	logical	t	l	
+# ::edge	red-02	mod	most	r	m	
+# ::edge	tower	ARG1-of	red-02	t	r	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	building	mod	continent	b2	c2	
+# ::edge	building	ARG1-of	typical-02	b2	t2	
+# ::edge	red-02	prep-with	building	r	b2	
+# ::edge	building	location	background	b2	b	
+(t / tower
+    :ARG1-of (r / red-02
+        :mod (m / most)
+        :prep-with (b2 / building
+            :ARG1-of (t2 / typical-02)
+            :location (b / background)
+            :mod (c2 / continent
+                :name (n / name
+                    :op1 "Europe"))))
+    :mod (c / clock)
+    :mod (l / logical))

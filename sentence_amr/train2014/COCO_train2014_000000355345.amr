@@ -1,0 +1,36 @@
+# ::tok A group of people near a fort type castle made of rock and with a large hill behind it .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	n	near-02	4-5
+# ::node	f	fort	6-7
+# ::node	t	type	7-8
+# ::node	c	castle	8-9
+# ::node	m	make-01	9-10
+# ::node	r	rock	11-12
+# ::node	l	large	15-16
+# ::node	h	hill	16-17
+# ::node	b	behind	17-18
+# ::root	n	near-02
+# ::edge	group	consist-of	person	g	p	
+# ::edge	near-02	ARG1	group	n	g	
+# ::edge	type	mod	fort	t	f	
+# ::edge	castle	mod	type	c	t	
+# ::edge	near-02	ARG2	castle	n	c	
+# ::edge	castle	ARG1-of	make-01	c	m	
+# ::edge	make-01	ARG2	rock	m	r	
+# ::edge	hill	mod	large	h	l	
+# ::edge	castle	part	hill	c	h	
+# ::edge	hill	location	behind	h	b	
+# ::edge	behind	op1	castle	b	c	
+(n / near-02
+    :ARG1 (g / group
+        :consist-of (p / person))
+    :ARG2 (c / castle
+        :ARG1-of (m / make-01
+            :ARG2 (r / rock))
+        :mod (t / type
+            :mod (f / fort))
+        :part (h / hill
+            :location (b / behind
+                :op1 c)
+            :mod (l / large))))

@@ -1,0 +1,28 @@
+# ::tok Many motorcycles are parked along the sidewalk curb as one drives by .
+# ::node	m	many	0-1
+# ::node	m2	motorcycle	1-2
+# ::node	p	park-01	3-4
+# ::node	a	along	4-5
+# ::node	s	sidewalk	6-7
+# ::node	c	curb	7-8
+# ::node	o	one	9-10
+# ::node	d	drive-01	10-11
+# ::node	b	by	11-12
+# ::root	p	park-01
+# ::edge	motorcycle	quant	many	m2	m	
+# ::edge	park-01	ARG1	motorcycle	p	m2	
+# ::edge	park-01	location	along	p	a	
+# ::edge	curb	location	sidewalk	c	s	
+# ::edge	along	op1	curb	a	c	
+# ::edge	drive-01	ARG0	one	d	o	
+# ::edge	park-01	time	drive-01	p	d	
+# ::edge	drive-01	direction	by	d	b	
+(p / park-01
+    :ARG1 (m2 / motorcycle
+        :quant (m / many))
+    :location (a / along
+        :op1 (c / curb
+            :location (s / sidewalk)))
+    :time (d / drive-01
+        :ARG0 (o / one)
+        :direction (b / by)))

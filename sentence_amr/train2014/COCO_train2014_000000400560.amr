@@ -1,0 +1,28 @@
+# ::tok A living room filled with furniture and a bunch of wall mounted mirrors .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	f	fill-01	3-4
+# ::node	f2	furniture	5-6
+# ::node	a	and	6-7
+# ::node	b	bunch	8-9
+# ::node	w	wall	10-11
+# ::node	m2	mount-03	11-12
+# ::node	m	mirror	12-13
+# ::root	f	fill-01
+# ::edge	room	mod	living	r	l	
+# ::edge	fill-01	ARG1	room	f	r	
+# ::edge	and	op1	furniture	a	f2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	mount-03	location	wall	m2	w	
+# ::edge	mirror	ARG1-of	mount-03	m	m2	
+# ::edge	mirror	quant	bunch	m	b	
+# ::edge	and	op2	mirror	a	m	
+(f / fill-01
+    :ARG1 (r / room
+        :mod (l / living))
+    :ARG2 (a / and
+        :op1 (f2 / furniture)
+        :op2 (m / mirror
+            :quant (b / bunch)
+            :ARG1-of (m2 / mount-03
+                :location (w / wall)))))

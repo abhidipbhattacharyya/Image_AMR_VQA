@@ -1,0 +1,50 @@
+# ::tok Five commuters do their best to avoid eye contact on a crowded subway car .
+# ::node	0	5	0-1
+# ::node	p	person	1-2
+# ::node	c2	commute-01	1-2
+# ::node	d	do-02	2-3
+# ::node	g	good-02	4-5
+# ::node	h	have-degree-91	4-5
+# ::node	m	most	4-5
+# ::node	a	avoid-01	6-7
+# ::node	e	eye	7-8
+# ::node	c3	contact-01	8-9
+# ::node	c4	crowd-01	11-12
+# ::node	s	subway	12-13
+# ::node	c	car	13-14
+# ::root	d	do-02
+# ::edge	person	quant	5	p	0	
+# ::edge	person	ARG0-of	commute-01	p	c2	
+# ::edge	do-02	ARG0	person	d	p	
+# ::edge	do-02	ARG1	good-02	d	g	
+# ::edge	good-02	ARG1	person	g	p	
+# ::edge	good-02	ARG2-of	have-degree-91	g	h	
+# ::edge	have-degree-91	ARG1	person	h	p	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	good-02	ARG2	avoid-01	g	a	
+# ::edge	avoid-01	ARG0	person	a	p	
+# ::edge	person	part	eye	p	e	
+# ::edge	contact-01	manner	eye	c3	e	
+# ::edge	avoid-01	ARG1	contact-01	a	c3	
+# ::edge	contact-01	ARG0	person	c3	p	
+# ::edge	car	mod	subway	c	s	
+# ::edge	car	ARG1-of	crowd-01	c	c4	
+# ::edge	contact-01	location	car	c3	c	
+(d / do-02
+    :ARG0 (p / person
+        :quant 5
+        :ARG0-of (c2 / commute-01)
+        :part (e / eye))
+    :ARG1 (g / good-02
+        :ARG1 p
+        :ARG2 (a / avoid-01
+            :ARG0 p
+            :ARG1 (c3 / contact-01
+                :ARG0 p
+                :location (c / car
+                    :ARG1-of (c4 / crowd-01)
+                    :mod (s / subway))
+                :manner e))
+        :ARG2-of (h / have-degree-91
+            :ARG1 p
+            :ARG3 (m / most))))

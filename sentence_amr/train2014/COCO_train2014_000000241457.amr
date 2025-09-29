@@ -1,0 +1,38 @@
+# ::tok Dozens of people at a beach flying kites of all shapes and sizes .
+# ::node	m	multiple	0-1
+# ::node	0	12	0-1
+# ::node	p	person	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	b2	beach	5-6
+# ::node	f	fly-01	6-7
+# ::node	o	Korea	7-8
+# ::node	a	all	9-10
+# ::node	s	shape-01	10-11
+# ::node	a2	and	11-12
+# ::node	s2	size	12-13
+# ::root	b	be-located-at-91
+# ::edge	multiple	op1	12	m	0	
+# ::edge	person	quant	multiple	p	m	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	beach	b	b2	
+# ::edge	person	ARG0-of	fly-01	p	f	
+# ::edge	fly-01	ARG1	Korea	f	o	
+# ::edge	shape-01	ARG1	Korea	s	o	
+# ::edge	and	op1	shape-01	a2	s	
+# ::edge	and	mod	all	a2	a	
+# ::edge	Korea	consist-of	and	o	a2	
+# ::edge	and	op2	size	a2	s2	
+# ::edge	size	poss	Korea	s2	o	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :quant (m / multiple
+            :op1 12)
+        :ARG0-of (f / fly-01
+            :ARG1 (o / Korea
+                :consist-of (a2 / and
+                    :mod (a / all)
+                    :op1 (s / shape-01
+                        :ARG1 o)
+                    :op2 (s2 / size
+                        :poss o)))))
+    :ARG2 (b2 / beach))

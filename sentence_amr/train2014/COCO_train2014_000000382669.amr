@@ -1,0 +1,46 @@
+# ::tok an old fashion world war 2 style motorcycle being ridden by a sixties era looking person
+# ::node	o	old	1-2
+# ::node	f	fashion	2-3
+# ::node	n	name	3-4
+# ::node	3	World	3-4
+# ::node	w	war	4-5
+# ::node	2	War	4-5
+# ::node	1	2	5-6
+# ::node	s	style	6-7
+# ::node	m	motorcycle	7-8
+# ::node	r	ride-01	9-10
+# ::node	0	1960	12-13
+# ::node	e	era	13-14
+# ::node	t	temporal-quantity	13-14
+# ::node	l	look-02	14-15
+# ::node	p	person	15-16
+# ::root	m	motorcycle
+# ::edge	fashion	mod	old	f	o	
+# ::edge	name	op1	World	n	3	
+# ::edge	war	name	name	w	n	
+# ::edge	name	op2	War	n	2	
+# ::edge	name	op3	2	n	1	
+# ::edge	style	mod	war	s	w	
+# ::edge	style	mod	fashion	s	f	
+# ::edge	motorcycle	mod	style	m	s	
+# ::edge	motorcycle	ARG1-of	ride-01	m	r	
+# ::edge	era	age	temporal-quantity	e	t	
+# ::edge	temporal-quantity	quant	1960	t	0	
+# ::edge	look-02	ARG1	era	l	e	
+# ::edge	person	ARG0-of	look-02	p	l	
+# ::edge	ride-01	ARG0	person	r	p	
+(m / motorcycle
+    :ARG1-of (r / ride-01
+        :ARG0 (p / person
+            :ARG0-of (l / look-02
+                :ARG1 (e / era
+                    :age (t / temporal-quantity
+                        :quant 1960)))))
+    :mod (s / style
+        :mod (w / war
+            :name (n / name
+                :op1 "World"
+                :op2 "War"
+                :op3 2))
+        :mod (f / fashion
+            :mod (o / old))))

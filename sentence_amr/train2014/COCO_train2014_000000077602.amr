@@ -1,0 +1,40 @@
+# ::tok Batter , Catcher and Umpire wait at home plate for ball to be thrown .
+# ::node	p	person	0-1
+# ::node	b2	bomb-01	0-1
+# ::node	p2	person	2-3
+# ::node	c	catch-01	2-3
+# ::node	a	and	3-4
+# ::node	p3	person	4-5
+# ::node	h	have-org-role-91	4-5
+# ::node	o	official	4-5
+# ::node	w	wait-01	5-6
+# ::node	h2	home	7-8
+# ::node	p4	plate	8-9
+# ::node	b	ball	10-11
+# ::node	t	throw-01	13-14
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	bomb-01	p	b2	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	and	op2	person	a	p2	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op3	person	a	p3	
+# ::edge	person	ARG0-of	have-org-role-91	p3	h	
+# ::edge	have-org-role-91	ARG2	official	h	o	
+# ::edge	wait-01	ARG1	and	w	a	
+# ::edge	plate	mod	home	p4	h2	
+# ::edge	wait-01	location	plate	w	p4	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	wait-01	ARG2	throw-01	w	t	
+(w / wait-01
+    :ARG1 (a / and
+        :op1 (p / person
+            :ARG0-of (b2 / bomb-01))
+        :op2 (p2 / person
+            :ARG0-of (c / catch-01))
+        :op3 (p3 / person
+            :ARG0-of (h / have-org-role-91
+                :ARG2 (o / official))))
+    :ARG2 (t / throw-01
+        :ARG1 (b / ball))
+    :location (p4 / plate
+        :mod (h2 / home)))

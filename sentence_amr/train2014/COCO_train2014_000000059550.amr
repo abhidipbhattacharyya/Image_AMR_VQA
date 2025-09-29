@@ -1,0 +1,28 @@
+# ::tok A street sign in an oriental language is shown beneath an overpass .
+# ::node	s3	street	1-2
+# ::node	s2	sign	2-3
+# ::node	e	ethnic-group	5-6
+# ::node	n	name	5-6
+# ::node	0	Orient	5-6
+# ::node	l	language	6-7
+# ::node	s	show-01	8-9
+# ::node	b	beneath	9-10
+# ::node	o	overpass	11-12
+# ::root	s	show-01
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Orient	n	0	
+# ::edge	language	mod	ethnic-group	l	e	
+# ::edge	sign	mod	language	s2	l	
+# ::edge	show-01	ARG1	sign	s	s2	
+# ::edge	show-01	location	beneath	s	b	
+# ::edge	beneath	op1	overpass	b	o	
+(s / show-01
+    :ARG1 (s2 / sign
+        :mod (s3 / street)
+        :mod (l / language
+            :mod (e / ethnic-group
+                :name (n / name
+                    :op1 "Orient"))))
+    :location (b / beneath
+        :op1 (o / overpass)))

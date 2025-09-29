@@ -1,0 +1,25 @@
+# ::tok Locomotive train moving through country side with wires above
+# ::node	l	locust	0-1
+# ::node	t	train	1-2
+# ::node	m	move-01	2-3
+# ::node	c	country	4-5
+# ::node	s	side	5-6
+# ::node	h	have-03	6-7
+# ::node	w	wire	7-8
+# ::node	a	above	8-9
+# ::root	m	move-01
+# ::edge	train	mod	locust	t	l	
+# ::edge	move-01	ARG1	train	m	t	
+# ::edge	side	mod	country	s	c	
+# ::edge	move-01	ARG2	side	m	s	
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	wire	h	w	
+# ::edge	wire	location	above	w	a	
+(m / move-01
+    :ARG1 (t / train
+        :ARG0-of (h / have-03
+            :ARG1 (w / wire
+                :location (a / above)))
+        :mod (l / locust))
+    :ARG2 (s / side
+        :mod (c / country)))

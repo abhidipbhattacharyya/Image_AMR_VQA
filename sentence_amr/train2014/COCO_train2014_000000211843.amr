@@ -1,0 +1,30 @@
+# ::tok Hostess pours wine for group of adults gathered for indoor celebration .
+# ::node	p	person	0-1
+# ::node	h	host-01	0-1
+# ::node	p2	pour-01	1-2
+# ::node	w	wine	2-3
+# ::node	g2	group	4-5
+# ::node	a	adult	6-7
+# ::node	g	gather-03	7-8
+# ::node	i	indoor	9-10
+# ::node	c	celebrate-02	10-11
+# ::root	p2	pour-01
+# ::edge	person	ARG0-of	host-01	p	h	
+# ::edge	pour-01	ARG0	person	p2	p	
+# ::edge	pour-01	ARG1	wine	p2	w	
+# ::edge	pour-01	ARG2	group	p2	g2	
+# ::edge	group	consist-of	adult	g2	a	
+# ::edge	group	ARG0-of	gather-03	g2	g	
+# ::edge	celebrate-02	location	indoor	c	i	
+# ::edge	gather-03	purpose	celebrate-02	g	c	
+# ::edge	celebrate-02	ARG0	group	c	g2	
+(p2 / pour-01
+    :ARG0 (p / person
+        :ARG0-of (h / host-01))
+    :ARG1 (w / wine)
+    :ARG2 (g2 / group
+        :ARG0-of (g / gather-03
+            :purpose (c / celebrate-02
+                :ARG0 g2
+                :location (i / indoor)))
+        :consist-of (a / adult)))

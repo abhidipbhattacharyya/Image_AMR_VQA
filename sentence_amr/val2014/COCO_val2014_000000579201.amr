@@ -1,0 +1,28 @@
+# ::tok An apple is slit by a bloody knife in front of an Apple device .
+# ::node	a	apple	1-2
+# ::node	s	slit-01	3-4
+# ::node	b	bloody-01	6-7
+# ::node	k	knife	7-8
+# ::node	i	in-front-of	9-10
+# ::node	c	company	12-13
+# ::node	n	name	12-13
+# ::node	0	Apple	12-13
+# ::node	d	device	13-14
+# ::root	s	slit-01
+# ::edge	slit-01	ARG1	apple	s	a	
+# ::edge	knife	ARG1-of	bloody-01	k	b	
+# ::edge	slit-01	ARG0	knife	s	k	
+# ::edge	slit-01	location	in-front-of	s	i	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Apple	n	0	
+# ::edge	device	mod	company	d	c	
+# ::edge	in-front-of	op1	device	i	d	
+(s / slit-01
+    :ARG0 (k / knife
+        :ARG1-of (b / bloody-01))
+    :ARG1 (a / apple)
+    :location (i / in-front-of
+        :op1 (d / device
+            :mod (c / company
+                :name (n / name
+                    :op1 "Apple")))))

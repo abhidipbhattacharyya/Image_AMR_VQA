@@ -1,0 +1,36 @@
+# ::tok A road on both sides of which many street lights are lighted and in front buildings are lighted .
+# ::node	r	road	1-2
+# ::node	b	both	3-4
+# ::node	s	side	4-5
+# ::node	m	many	7-8
+# ::node	s2	street	8-9
+# ::node	l	light	9-10
+# ::node	l2	light-04	11-12
+# ::node	f	front	14-15
+# ::node	b2	building	15-16
+# ::node	l3	light-04	17-18
+# ::node	a	and	18-19
+# ::root	a	and
+# ::edge	side	mod	both	s	b	
+# ::edge	road	location	side	r	s	
+# ::edge	light	mod	street	l	s2	
+# ::edge	light	quant	many	l	m	
+# ::edge	light-04	ARG1	light	l2	l	
+# ::edge	road	ARG0-of	light-04	r	l2	
+# ::edge	building	mod	front	b2	f	
+# ::edge	light-04	location	building	l3	b2	
+# ::edge	light	ARG1-of	light-04	l	l3	
+# ::edge	and	op1	road	a	r	
+# ::edge	and	op2	road	a	r	
+(a / and
+    :op1 (r / road
+        :ARG0-of (l2 / light-04
+            :ARG1 (l / light
+                :quant (m / many)
+                :ARG1-of (l3 / light-04
+                    :location (b2 / building
+                        :mod (f / front)))
+                :mod (s2 / street)))
+        :location (s / side
+            :mod (b / both)))
+    :op2 r)

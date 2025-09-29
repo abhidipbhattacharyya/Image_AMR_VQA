@@ -1,0 +1,50 @@
+# ::tok A colorful bus is in traffic near a Jack in the Box and Church 's Chicken .
+# ::node	c2	colorful	1-2
+# ::node	b2	bus	2-3
+# ::node	t	traffic	5-6
+# ::node	n3	near-02	6-7
+# ::node	3	jack	8-9
+# ::node	b	be-located-at-91	9-10
+# ::node	2	in	9-10
+# ::node	4	the	10-11
+# ::node	0	Box	11-12
+# ::node	a	and	12-13
+# ::node	o	organization	13-14
+# ::node	n	name	13-14
+# ::node	c	church	13-14
+# ::node	n2	name	15-16
+# ::node	1	Chicken	15-16
+# ::root	t	traffic
+# ::edge	bus	mod	colorful	b2	c2	
+# ::edge	traffic	location-of	bus	t	b2	
+# ::edge	traffic	ARG1-of	near-02	t	n3	
+# ::edge	be-located-at-91	ARG1	jack	b	3	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	near-02	ARG2	and	n3	a	
+# ::edge	and	op2	organization	a	o	
+# ::edge	organization	name	name	o	n	
+# ::edge	name	op4	Box	n	0	
+# ::edge	name	op3	the	n	4	
+# ::edge	name	op2	in	n	2	
+# ::edge	name	op1	jack	n	3	
+# ::edge	name	op1	church	n2	c	
+# ::edge	church	name	name	c	n2	
+# ::edge	name	op2	Chicken	n2	1	
+# ::edge	traffic	rel	church	t	c	
+(t / traffic
+    :ARG1-of (n3 / near-02
+        :ARG2 (a / and
+            :op1 (b / be-located-at-91
+                :ARG1 "jack")
+            :op2 (o / organization
+                :name (n / name
+                    :op1 "jack"
+                    :op2 "in"
+                    :op3 "the"
+                    :op4 "Box"))))
+    :location-of (b2 / bus
+        :mod (c2 / colorful))
+    :rel (c / "church"
+        :name (n2 / name
+            :op1 c
+            :op2 "Chicken")))

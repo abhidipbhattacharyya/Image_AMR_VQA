@@ -1,0 +1,54 @@
+# ::tok The photo is taken at the bottom of the ski slope , in view of several skiers are coming down several ready to board the ski lifts .
+# ::node	p3	photo	1-2
+# ::node	t	take-01	3-4
+# ::node	b2	bottom	6-7
+# ::node	s3	ski-01	9-10
+# ::node	s6	slope	10-11
+# ::node	v	view-01	13-14
+# ::node	s	several	15-16
+# ::node	p	person	16-17
+# ::node	s4	ski-01	16-17
+# ::node	p2	person	16-17
+# ::node	c	come-01	18-19
+# ::node	d	down	19-20
+# ::node	s2	several	20-21
+# ::node	r	ready-02	21-22
+# ::node	b	board-01	23-24
+# ::node	s5	ski-01	25-26
+# ::node	l	lift-01	26-27
+# ::root	t	take-01
+# ::edge	take-01	ARG1	photo	t	p3	
+# ::edge	take-01	location	bottom	t	b2	
+# ::edge	slope	mod	ski-01	s6	s3	
+# ::edge	bottom	part-of	slope	b2	s6	
+# ::edge	take-01	ARG2-of	view-01	t	v	
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	ski-01	p	s4	
+# ::edge	ski-01	ARG0	person	s4	p2	
+# ::edge	come-01	ARG1	person	c	p	
+# ::edge	view-01	ARG1	come-01	v	c	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	person	quant	several	p2	s2	
+# ::edge	person	ARG1-of	ready-02	p2	r	
+# ::edge	ready-02	ARG2	board-01	r	b	
+# ::edge	board-01	ARG0	person	b	p2	
+# ::edge	lift-01	ARG1	ski-01	l	s5	
+# ::edge	board-01	ARG1	lift-01	b	l	
+(t / take-01
+    :ARG1 (p3 / photo)
+    :ARG2-of (v / view-01
+        :ARG1 (c / come-01
+            :ARG1 (p / person
+                :quant (s / several)
+                :ARG0-of (s4 / ski-01
+                    :ARG0 (p2 / person
+                        :quant (s2 / several)
+                        :ARG1-of (r / ready-02
+                            :ARG2 (b / board-01
+                                :ARG0 p2
+                                :ARG1 (l / lift-01
+                                    :ARG1 (s5 / ski-01)))))))
+            :direction (d / down)))
+    :location (b2 / bottom
+        :part-of (s6 / slope
+            :mod (s3 / ski-01))))

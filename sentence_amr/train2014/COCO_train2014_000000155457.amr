@@ -1,0 +1,24 @@
+# ::tok A fire hydrant has been fitted with a pump to route water elsewhere .
+# ::node	f	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	f2	fit-01	5-6
+# ::node	p	pump	8-9
+# ::node	r	route-01	10-11
+# ::node	w	water	11-12
+# ::node	e	elsewhere	12-13
+# ::root	f2	fit-01
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	fit-01	ARG1	hydrant	f2	h	
+# ::edge	fit-01	ARG2	pump	f2	p	
+# ::edge	route-01	ARG0	pump	r	p	
+# ::edge	fit-01	purpose	route-01	f2	r	
+# ::edge	route-01	ARG1	water	r	w	
+# ::edge	route-01	ARG2	elsewhere	r	e	
+(f2 / fit-01
+    :purpose (r / route-01
+        :ARG0 (p / pump)
+        :ARG1 (w / water)
+        :ARG2 (e / elsewhere))
+    :ARG1 (h / hydrant
+        :mod (f / fire))
+    :ARG2 p)

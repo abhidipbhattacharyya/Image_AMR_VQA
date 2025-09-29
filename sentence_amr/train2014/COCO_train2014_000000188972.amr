@@ -1,0 +1,32 @@
+# ::tok A subway train pulled into a station with people getting on and off .
+# ::node	s2	subway	1-2
+# ::node	t	train	2-3
+# ::node	p2	pull-01	3-4
+# ::node	s	station	6-7
+# ::node	p	person	8-9
+# ::node	g	get-05	9-10
+# ::node	g2	get-05	9-10
+# ::node	a	and	11-12
+# ::node	o	off	12-13
+# ::root	p2	pull-01
+# ::edge	train	mod	subway	t	s2	
+# ::edge	pull-01	ARG1	train	p2	t	
+# ::edge	pull-01	ARG2	station	p2	s	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG2	train	g	t	
+# ::edge	get-05	ARG1	person	g2	p	
+# ::edge	and	op2	get-05	a	g2	
+# ::edge	and	op1	get-05	a	g	
+# ::edge	station	location-of	and	s	a	
+# ::edge	get-05	ARG2	off	g2	o	
+(p2 / pull-01
+    :ARG1 (t / train
+        :mod (s2 / subway))
+    :ARG2 (s / station
+        :location-of (a / and
+            :op1 (g / get-05
+                :ARG1 (p / person)
+                :ARG2 t)
+            :op2 (g2 / get-05
+                :ARG1 p
+                :ARG2 (o / off)))))

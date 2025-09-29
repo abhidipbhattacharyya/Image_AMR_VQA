@@ -1,0 +1,61 @@
+# ::tok A foggy light shines in the night , revealing snow - encrusted evergreens in the background , while spotlighting a skier that is swooshing through two poles on a snowy slope , in the foreground .
+# ::node	s4	smoke-01	1-2
+# ::node	l	light	2-3
+# ::node	s	shine-01	3-4
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	r	reveal-01	8-9
+# ::node	s5	snow	9-10
+# ::node	e	encrust-01	11-12
+# ::node	f2	forest	12-13
+# ::node	b	background	15-16
+# ::node	s7	spotlight-01	18-19
+# ::node	p	person	20-21
+# ::node	s2	ski-01	20-21
+# ::node	m	move-01	23-24
+# ::node	t	through	24-25
+# ::node	0	2	25-26
+# ::node	p2	pole	26-27
+# ::node	s6	snowy-02	29-30
+# ::node	s3	slope	30-31
+# ::node	f	foreground	34-35
+# ::root	s	shine-01
+# ::edge	light	ARG1-of	smoke-01	l	s4	
+# ::edge	shine-01	ARG1	light	s	l	
+# ::edge	shine-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	ARG0-of	reveal-01	l	r	
+# ::edge	encrust-01	ARG2	snow	e	s5	
+# ::edge	forest	ARG1-of	encrust-01	f2	e	
+# ::edge	reveal-01	ARG1	forest	r	f2	
+# ::edge	reveal-01	location	background	r	b	
+# ::edge	shine-01	ARG0-of	spotlight-01	s	s7	
+# ::edge	spotlight-01	ARG1	person	s7	p	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	person	ARG0-of	move-01	p	m	
+# ::edge	move-01	path	through	m	t	
+# ::edge	pole	quant	2	p2	0	
+# ::edge	through	op1	pole	t	p2	
+# ::edge	slope	ARG1-of	snowy-02	s3	s6	
+# ::edge	pole	location	slope	p2	s3	
+# ::edge	person	location	foreground	p	f	
+(s / shine-01
+    :ARG0-of (s7 / spotlight-01
+        :ARG1 (p / person
+            :ARG0-of (s2 / ski-01)
+            :ARG0-of (m / move-01
+                :path (t / through
+                    :op1 (p2 / pole
+                        :quant 2
+                        :location (s3 / slope
+                            :ARG1-of (s6 / snowy-02)))))
+            :location (f / foreground)))
+    :ARG1 (l / light
+        :ARG0-of (r / reveal-01
+            :ARG1 (f2 / forest
+                :ARG1-of (e / encrust-01
+                    :ARG2 (s5 / snow)))
+            :location (b / background))
+        :ARG1-of (s4 / smoke-01))
+    :time (d / date-entity
+        :dayperiod (n / night)))

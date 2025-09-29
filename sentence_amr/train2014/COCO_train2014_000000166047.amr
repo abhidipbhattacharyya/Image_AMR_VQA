@@ -1,0 +1,29 @@
+# ::tok A man swings a tennis racket and successfully returns the ball .
+# ::node	m	man	1-2
+# ::node	s2	swing-02	2-3
+# ::node	t	tennis	4-5
+# ::node	r	racket	5-6
+# ::node	a	and	6-7
+# ::node	s	succeed-01	7-8
+# ::node	r2	return-02	8-9
+# ::node	b	ball	10-11
+# ::root	a	and
+# ::edge	swing-02	ARG0	man	s2	m	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	swing-02	ARG1	racket	s2	r	
+# ::edge	and	op1	swing-02	a	s2	
+# ::edge	succeed-01	ARG0	man	s	m	
+# ::edge	return-02	ARG1-of	succeed-01	r2	s	
+# ::edge	and	op2	return-02	a	r2	
+# ::edge	return-02	ARG0	man	r2	m	
+# ::edge	return-02	ARG1	ball	r2	b	
+(a / and
+    :op1 (s2 / swing-02
+        :ARG0 (m / man)
+        :ARG1 (r / racket
+            :mod (t / tennis)))
+    :op2 (r2 / return-02
+        :ARG0 m
+        :ARG1 (b / ball)
+        :ARG1-of (s / succeed-01
+            :ARG0 m)))

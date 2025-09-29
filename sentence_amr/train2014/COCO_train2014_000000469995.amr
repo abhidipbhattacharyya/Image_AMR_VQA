@@ -1,0 +1,55 @@
+# ::tok The shot has a blurry background , suggesting lots of greenery and , in the foreground , a big cement bench holding a young and morose looking kid in blue .
+# ::node	s	shot	1-2
+# ::node	h	have-03	2-3
+# ::node	b5	blur-01	4-5
+# ::node	b	background	5-6
+# ::node	s2	suggest-01	7-8
+# ::node	l2	lot	8-9
+# ::node	g	greenery	10-11
+# ::node	a	and	11-12
+# ::node	f	foreground	15-16
+# ::node	b3	big	18-19
+# ::node	c	cement	19-20
+# ::node	b2	bench	20-21
+# ::node	h2	hold-01	21-22
+# ::node	y	young	23-24
+# ::node	m	morose	25-26
+# ::node	l	look-02	26-27
+# ::node	k	kid	27-28
+# ::node	b4	blue	29-30
+# ::root	h	have-03
+# ::edge	have-03	ARG0	shot	h	s	
+# ::edge	background	ARG1-of	blur-01	b	b5	
+# ::edge	suggest-01	ARG0	background	s2	b	
+# ::edge	have-03	ARG1	suggest-01	h	s2	
+# ::edge	greenery	quant	lot	g	l2	
+# ::edge	and	op1	greenery	a	g	
+# ::edge	suggest-01	ARG1	and	s2	a	
+# ::edge	bench	consist-of	cement	b2	c	
+# ::edge	bench	mod	big	b2	b3	
+# ::edge	bench	location	foreground	b2	f	
+# ::edge	and	op2	bench	a	b2	
+# ::edge	bench	ARG0-of	hold-01	b2	h2	
+# ::edge	look-02	ARG1	morose	l	m	
+# ::edge	kid	ARG0-of	look-02	k	l	
+# ::edge	kid	mod	young	k	y	
+# ::edge	hold-01	ARG1	kid	h2	k	
+# ::edge	kid	mod	blue	k	b4	
+(h / have-03
+    :ARG0 (s / shot)
+    :ARG1 (s2 / suggest-01
+        :ARG0 (b / background
+            :ARG1-of (b5 / blur-01))
+        :ARG1 (a / and
+            :op1 (g / greenery
+                :quant (l2 / lot))
+            :op2 (b2 / bench
+                :ARG0-of (h2 / hold-01
+                    :ARG1 (k / kid
+                        :ARG0-of (l / look-02
+                            :ARG1 (m / morose))
+                        :mod (y / young)
+                        :mod (b4 / blue)))
+                :consist-of (c / cement)
+                :location (f / foreground)
+                :mod (b3 / big)))))

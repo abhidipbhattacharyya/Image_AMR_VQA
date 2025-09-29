@@ -1,0 +1,28 @@
+# ::tok A line of cars going across a railroad track while a train is coming down the track .
+# ::node	l	line	1-2
+# ::node	c	car	3-4
+# ::node	g	go-01	4-5
+# ::node	a	across	5-6
+# ::node	r	railroad	7-8
+# ::node	t	track	8-9
+# ::node	t2	train	11-12
+# ::node	c2	come-01	13-14
+# ::node	d	down	14-15
+# ::root	g	go-01
+# ::edge	line	consist-of	car	l	c	
+# ::edge	go-01	ARG1	line	g	l	
+# ::edge	go-01	path	across	g	a	
+# ::edge	track	purpose	railroad	t	r	
+# ::edge	across	op1	track	a	t	
+# ::edge	come-01	ARG1	train	c2	t2	
+# ::edge	go-01	time	come-01	g	c2	
+# ::edge	come-01	direction	down	c2	d	
+(g / go-01
+    :ARG1 (l / line
+        :consist-of (c / car))
+    :path (a / across
+        :op1 (t / track
+            :purpose (r / railroad)))
+    :time (c2 / come-01
+        :ARG1 (t2 / train)
+        :direction (d / down)))

@@ -1,0 +1,33 @@
+# ::tok Two trains traveling down tracks with black smoke pouring out of the top of them .
+# ::node	0	2	0-1
+# ::node	t3	train	1-2
+# ::node	t4	travel-01	2-3
+# ::node	d	down	3-4
+# ::node	t2	track	4-5
+# ::node	h	have-03	5-6
+# ::node	b	black-04	6-7
+# ::node	s	smoke	7-8
+# ::node	p	pour-01	8-9
+# ::node	t	top	12-13
+# ::root	t4	travel-01
+# ::edge	train	quant	2	t3	0	
+# ::edge	travel-01	ARG0	train	t4	t3	
+# ::edge	travel-01	direction	down	t4	d	
+# ::edge	down	path	track	d	t2	
+# ::edge	train	ARG0-of	have-03	t3	h	
+# ::edge	smoke	ARG1-of	black-04	s	b	
+# ::edge	pour-01	ARG1	smoke	p	s	
+# ::edge	have-03	ARG1	pour-01	h	p	
+# ::edge	pour-01	ARG2	top	p	t	
+# ::edge	train	part	top	t3	t	
+(t4 / travel-01
+    :ARG0 (t3 / train
+        :quant 2
+        :ARG0-of (h / have-03
+            :ARG1 (p / pour-01
+                :ARG1 (s / smoke
+                    :ARG1-of (b / black-04))
+                :ARG2 (t / top)))
+        :part t)
+    :direction (d / down
+        :path (t2 / track)))

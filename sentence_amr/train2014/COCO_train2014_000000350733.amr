@@ -1,0 +1,45 @@
+# ::tok A table has two cups and three plates and the plates hold eggs , sausage and some bread .
+# ::node	t	table	1-2
+# ::node	h	have-03	2-3
+# ::node	0	2	3-4
+# ::node	c	cup	4-5
+# ::node	a	and	5-6
+# ::node	1	3	6-7
+# ::node	p	plate	7-8
+# ::node	a2	and	8-9
+# ::node	h2	hold-01	11-12
+# ::node	e	egg	12-13
+# ::node	a3	and	13-14
+# ::node	s	sausage	14-15
+# ::node	s2	some	16-17
+# ::node	b	bread	17-18
+# ::root	a2	and
+# ::edge	have-03	ARG0	table	h	t	
+# ::edge	cup	quant	2	c	0	
+# ::edge	and	op1	cup	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	plate	quant	3	p	1	
+# ::edge	and	op2	plate	a	p	
+# ::edge	and	op1	have-03	a2	h	
+# ::edge	and	op2	hold-01	a2	h2	
+# ::edge	hold-01	ARG0	plate	h2	p	
+# ::edge	and	op1	egg	a3	e	
+# ::edge	hold-01	ARG1	and	h2	a3	
+# ::edge	and	op2	sausage	a3	s	
+# ::edge	bread	mod	some	b	s2	
+# ::edge	and	op3	bread	a3	b	
+(a2 / and
+    :op1 (h / have-03
+        :ARG0 (t / table)
+        :ARG1 (a / and
+            :op1 (c / cup
+                :quant 2)
+            :op2 (p / plate
+                :quant 3)))
+    :op2 (h2 / hold-01
+        :ARG0 p
+        :ARG1 (a3 / and
+            :op1 (e / egg)
+            :op2 (s / sausage)
+            :op3 (b / bread
+                :mod (s2 / some)))))

@@ -1,0 +1,28 @@
+# ::tok People purchasing food from Stirchley Stores food cooperative
+# ::node	p	person	0-1
+# ::node	p2	purchase-01	1-2
+# ::node	f	food	2-3
+# ::node	n	name	4-5
+# ::node	0	Stirchley	4-5
+# ::node	c	company	5-6
+# ::node	1	Stores	5-6
+# ::node	f2	food	6-7
+# ::node	c2	cooperative	7-8
+# ::root	p2	purchase-01
+# ::edge	purchase-01	ARG0	person	p2	p	
+# ::edge	purchase-01	ARG1	food	p2	f	
+# ::edge	name	op1	Stirchley	n	0	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Stores	n	1	
+# ::edge	cooperative	mod	food	c2	f2	
+# ::edge	cooperative	mod	company	c2	c	
+# ::edge	purchase-01	ARG2	cooperative	p2	c2	
+(p2 / purchase-01
+    :ARG0 (p / person)
+    :ARG1 (f / food)
+    :ARG2 (c2 / cooperative
+        :mod (f2 / food)
+        :mod (c / company
+            :name (n / name
+                :op1 "Stirchley"
+                :op2 "Stores"))))

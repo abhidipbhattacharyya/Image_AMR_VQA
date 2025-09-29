@@ -1,0 +1,42 @@
+# ::tok Men sit on a bench in front of a shop and one has a hat and a cane .
+# ::node	m	man	0-1
+# ::node	s2	sit-01	1-2
+# ::node	b	bench	4-5
+# ::node	i	in-front-of	6-7
+# ::node	s	shop	9-10
+# ::node	a	and	10-11
+# ::node	p	person	11-12
+# ::node	i2	include-91	11-12
+# ::node	0	1	11-12
+# ::node	h2	have-03	12-13
+# ::node	h	hat	14-15
+# ::node	a2	and	15-16
+# ::node	c	cane	17-18
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	bench	s2	b	
+# ::edge	bench	location	in-front-of	b	i	
+# ::edge	in-front-of	op1	shop	i	s	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	person	ARG1-of	include-91	p	i2	
+# ::edge	include-91	ARG2	man	i2	m	
+# ::edge	person	quant	1	p	0	
+# ::edge	have-03	ARG0	person	h2	p	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	and	op1	hat	a2	h	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op2	cane	a2	c	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (m / man)
+        :ARG2 (b / bench
+            :location (i / in-front-of
+                :op1 (s / shop))))
+    :op2 (h2 / have-03
+        :ARG0 (p / person
+            :quant 1
+            :ARG1-of (i2 / include-91
+                :ARG2 m))
+        :ARG1 (a2 / and
+            :op1 (h / hat)
+            :op2 (c / cane))))

@@ -1,0 +1,24 @@
+# ::tok A person with cold weather gear on while skiing in the snow .
+# ::node	p	person	1-2
+# ::node	c	cold-01	3-4
+# ::node	w	weather	4-5
+# ::node	g	gear	5-6
+# ::node	o	on-01	6-7
+# ::node	s	ski-01	8-9
+# ::node	s2	snow	11-12
+# ::root	p	person
+# ::edge	weather	ARG1-of	cold-01	w	c	
+# ::edge	gear	mod	weather	g	w	
+# ::edge	on-01	ARG1	gear	o	g	
+# ::edge	person	ARG0-of	on-01	p	o	
+# ::edge	person	time	ski-01	p	s	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	ski-01	location	snow	s	s2	
+(p / person
+    :ARG0-of (o / on-01
+        :ARG1 (g / gear
+            :mod (w / weather
+                :ARG1-of (c / cold-01))))
+    :time (s / ski-01
+        :ARG0 p
+        :location (s2 / snow)))

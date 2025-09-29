@@ -1,0 +1,39 @@
+# ::tok A picture of a round clock with its hands pointing fifteen until twelve .
+# ::node	p	picture	1-2
+# ::node	r	round-06	4-5
+# ::node	c	clock	5-6
+# ::node	h	hand	8-9
+# ::node	p2	point-01	9-10
+# ::node	d	date-interval	10-11
+# ::node	t	temporal-quantity	10-11
+# ::node	y	year	10-11
+# ::node	t2	temporal-quantity	10-11
+# ::node	0	12	10-11
+# ::node	y2	year	12-13
+# ::node	1	12	12-13
+# ::root	p2	point-01
+# ::edge	clock	ARG1-of	round-06	c	r	
+# ::edge	picture	topic	clock	p	c	
+# ::edge	clock	part	hand	c	h	
+# ::edge	point-01	ARG0	hand	p2	h	
+# ::edge	point-01	ARG2	date-interval	p2	d	
+# ::edge	date-interval	op1	temporal-quantity	d	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	date-interval	op2	temporal-quantity	d	t2	
+# ::edge	temporal-quantity	quant	12	t	0	
+# ::edge	temporal-quantity	unit	year	t2	y2	
+# ::edge	temporal-quantity	quant	12	t2	1	
+# ::edge	point-01	rel	picture	p2	p	
+(p2 / point-01
+    :ARG0 (h / hand)
+    :ARG2 (d / date-interval
+        :op1 (t / temporal-quantity
+            :quant 12
+            :unit (y / year))
+        :op2 (t2 / temporal-quantity
+            :quant 12
+            :unit (y2 / year)))
+    :rel (p / picture
+        :topic (c / clock
+            :ARG1-of (r / round-06)
+            :part h)))

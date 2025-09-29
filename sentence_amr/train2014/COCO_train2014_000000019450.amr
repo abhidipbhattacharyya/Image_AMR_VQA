@@ -1,0 +1,34 @@
+# ::tok A runner and first baseman in a baseball game with crowd watching .
+# ::node	p	person	1-2
+# ::node	r	run-02	1-2
+# ::node	a	and	2-3
+# ::node	o	ordinal-entity	3-4
+# ::node	0	1	3-4
+# ::node	p2	person	4-5
+# ::node	b	base-01	4-5
+# ::node	b2	baseball	7-8
+# ::node	g	game	8-9
+# ::node	c	crowd	10-11
+# ::node	w	watch-01	11-12
+# ::root	a	and
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	and	op1	person	a	p	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	base-01	p2	b	
+# ::edge	base-01	ord	ordinal-entity	b	o	
+# ::edge	game	mod	baseball	g	b2	
+# ::edge	and	subevent-of	game	a	g	
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	and	ARG1-of	watch-01	a	w	
+(a / and
+    :ARG1-of (w / watch-01
+        :ARG0 (c / crowd))
+    :op1 (p / person
+        :ARG0-of (r / run-02))
+    :op2 (p2 / person
+        :ARG0-of (b / base-01
+            :ord (o / ordinal-entity
+                :value 1)))
+    :subevent-of (g / game
+        :mod (b2 / baseball)))

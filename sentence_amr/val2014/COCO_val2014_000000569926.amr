@@ -1,0 +1,40 @@
+# ::tok Orange halves sit on a wooden kitchen countertop in front of a metal juicer and mesh bags of oranges .
+# ::node	o	orange	0-1
+# ::node	h	half	1-2
+# ::node	s	sit-01	2-3
+# ::node	w	wood	5-6
+# ::node	k	kitchen	6-7
+# ::node	c	countertop	7-8
+# ::node	i	in-front-of	9-10
+# ::node	m2	metal	12-13
+# ::node	j	juicer	13-14
+# ::node	a	and	14-15
+# ::node	m	mesh	15-16
+# ::node	b	bag	16-17
+# ::node	o2	orange	18-19
+# ::root	s	sit-01
+# ::edge	half	mod	orange	h	o	
+# ::edge	sit-01	ARG1	half	s	h	
+# ::edge	countertop	mod	kitchen	c	k	
+# ::edge	countertop	mod	wood	c	w	
+# ::edge	sit-01	ARG2	countertop	s	c	
+# ::edge	countertop	location	in-front-of	c	i	
+# ::edge	juicer	mod	metal	j	m2	
+# ::edge	and	op1	juicer	a	j	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	bag	mod	mesh	b	m	
+# ::edge	and	op2	bag	a	b	
+# ::edge	bag	consist-of	orange	b	o2	
+(s / sit-01
+    :ARG1 (h / half
+        :mod (o / orange))
+    :ARG2 (c / countertop
+        :location (i / in-front-of
+            :op1 (a / and
+                :op1 (j / juicer
+                    :mod (m2 / metal))
+                :op2 (b / bag
+                    :consist-of (o2 / orange)
+                    :mod (m / mesh))))
+        :mod (k / kitchen)
+        :mod (w / wood)))

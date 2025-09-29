@@ -1,0 +1,57 @@
+# ::tok A passenger canal barge cruises down a European canal filled with boats and back dropped with older European - style buildings .
+# ::node	p	passenger	1-2
+# ::node	c	canal	2-3
+# ::node	b2	barge	3-4
+# ::node	c4	cruise-01	4-5
+# ::node	d	down	5-6
+# ::node	c2	canal	8-9
+# ::node	f	fill-01	9-10
+# ::node	b3	boat	11-12
+# ::node	b	back	13-14
+# ::node	d2	drop-01	14-15
+# ::node	h	have-degree-91	16-17
+# ::node	o	old	16-17
+# ::node	m	more	16-17
+# ::node	c3	continent	17-18
+# ::node	n	name	17-18
+# ::node	0	Europe	17-18
+# ::node	s	style	19-20
+# ::node	b4	building	20-21
+# ::root	c4	cruise-01
+# ::edge	barge	mod	canal	b2	c	
+# ::edge	barge	mod	passenger	b2	p	
+# ::edge	cruise-01	ARG0	barge	c4	b2	
+# ::edge	cruise-01	direction	down	c4	d	
+# ::edge	down	op1	canal	d	c2	
+# ::edge	canal	ARG1-of	fill-01	c2	f	
+# ::edge	fill-01	ARG2	boat	f	b3	
+# ::edge	drop-01	direction	back	d2	b	
+# ::edge	barge	ARG1-of	drop-01	b2	d2	
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	canal	mod	continent	c2	c3	
+# ::edge	continent	name	name	c3	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	style	mod	continent	s	c3	
+# ::edge	building	mod	style	b4	s	
+# ::edge	building	ARG1-of	have-degree-91	b4	h	
+# ::edge	drop-01	ARG4	building	d2	b4	
+(c4 / cruise-01
+    :ARG0 (b2 / barge
+        :ARG1-of (d2 / drop-01
+            :ARG4 (b4 / building
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (o / old)
+                    :ARG3 (m / more))
+                :mod (s / style
+                    :mod (c3 / continent
+                        :name (n / name
+                            :op1 "Europe"))))
+            :direction (b / back))
+        :mod (c / canal)
+        :mod (p / passenger))
+    :direction (d / down
+        :op1 (c2 / canal
+            :ARG1-of (f / fill-01
+                :ARG2 (b3 / boat))
+            :mod c3)))

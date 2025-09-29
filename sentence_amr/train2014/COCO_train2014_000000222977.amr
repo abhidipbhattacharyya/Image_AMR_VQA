@@ -1,0 +1,42 @@
+# ::tok A man pretends to ski with poles while one man watches and another man looks straight ahead .
+# ::node	m	man	1-2
+# ::node	p2	pretend-01	2-3
+# ::node	s	ski-01	4-5
+# ::node	p	pole	6-7
+# ::node	o	one	8-9
+# ::node	m2	man	9-10
+# ::node	w	watch-01	10-11
+# ::node	a2	and	11-12
+# ::node	a3	another	12-13
+# ::node	m3	man	13-14
+# ::node	l	look-01	14-15
+# ::node	s2	straight-04	15-16
+# ::node	a	ahead	16-17
+# ::root	a2	and
+# ::edge	pretend-01	ARG0	man	p2	m	
+# ::edge	pretend-01	ARG1	ski-01	p2	s	
+# ::edge	ski-01	ARG0	man	s	m	
+# ::edge	ski-01	instrument	pole	s	p	
+# ::edge	man	mod	one	m2	o	
+# ::edge	watch-01	ARG0	man	w	m2	
+# ::edge	and	op1	watch-01	a2	w	
+# ::edge	and	time	pretend-01	a2	p2	
+# ::edge	man	mod	another	m3	a3	
+# ::edge	look-01	ARG0	man	l	m3	
+# ::edge	and	op2	look-01	a2	l	
+# ::edge	ahead	ARG1-of	straight-04	a	s2	
+# ::edge	look-01	ARG1	ahead	l	a	
+(a2 / and
+    :op1 (w / watch-01
+        :ARG0 (m2 / man
+            :mod (o / one)))
+    :op2 (l / look-01
+        :ARG0 (m3 / man
+            :mod (a3 / another))
+        :ARG1 (a / ahead
+            :ARG1-of (s2 / straight-04)))
+    :time (p2 / pretend-01
+        :ARG0 (m / man)
+        :ARG1 (s / ski-01
+            :ARG0 m
+            :instrument (p / pole))))

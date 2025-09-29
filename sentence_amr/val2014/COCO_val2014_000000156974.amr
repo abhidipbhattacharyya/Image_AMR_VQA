@@ -1,0 +1,41 @@
+# ::tok Giraffe with head extended up and two along fence eating from food trough
+# ::node	a3	animal	0-1
+# ::node	h	head	2-3
+# ::node	h2	head	2-3
+# ::node	e2	extend-01	3-4
+# ::node	u	up-03	4-5
+# ::node	a2	and	5-6
+# ::node	0	2	6-7
+# ::node	a	along	7-8
+# ::node	f	fence	8-9
+# ::node	e	eat-01	9-10
+# ::node	f2	food	11-12
+# ::node	t	trough	12-13
+# ::root	a2	and
+# ::edge	animal	part	head	a3	h	
+# ::edge	extend-01	ARG1	head	e2	h	
+# ::edge	extend-01	ARG0	animal	e2	a3	
+# ::edge	extend-01	direction	up-03	e2	u	
+# ::edge	and	op1	extend-01	a2	e2	
+# ::edge	head	quant	2	h2	0	
+# ::edge	head	location	along	h2	a	
+# ::edge	along	op1	fence	a	f	
+# ::edge	and	op2	eat-01	a2	e	
+# ::edge	eat-01	ARG0	animal	e	a3	
+# ::edge	trough	mod	food	t	f2	
+# ::edge	eat-01	source	trough	e	t	
+# ::edge	and	rel	head	a2	h2	
+(a2 / and
+    :op1 (e2 / extend-01
+        :ARG0 (a3 / animal
+            :part (h / head))
+        :ARG1 h
+        :direction (u / up-03))
+    :op2 (e / eat-01
+        :ARG0 a3
+        :source (t / trough
+            :mod (f2 / food)))
+    :rel (h2 / head
+        :quant 2
+        :location (a / along
+            :op1 (f / fence))))

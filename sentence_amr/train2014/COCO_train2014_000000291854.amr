@@ -1,0 +1,40 @@
+# ::tok A fenced in area with a giraffe reaching it 's neck and head over a fence that separates it from people .
+# ::node	f2	free-04	1-2
+# ::node	a2	area	3-4
+# ::node	g	giraffe	6-7
+# ::node	r	reach-03	7-8
+# ::node	n	neck	10-11
+# ::node	a	and	11-12
+# ::node	h	head	12-13
+# ::node	o	over	13-14
+# ::node	f	fence	15-16
+# ::node	s	separate-01	17-18
+# ::node	p	person	20-21
+# ::root	a2	area
+# ::edge	area	ARG1-of	free-04	a2	f2	
+# ::edge	reach-03	ARG0	giraffe	r	g	
+# ::edge	reach-03	ARG1	neck	r	n	
+# ::edge	giraffe	part	neck	g	n	
+# ::edge	and	op1	reach-03	a	r	
+# ::edge	area	location-of	and	a2	a	
+# ::edge	and	op2	head	a	h	
+# ::edge	giraffe	part	head	g	h	
+# ::edge	head	path	over	h	o	
+# ::edge	over	op1	fence	o	f	
+# ::edge	fence	ARG0-of	separate-01	f	s	
+# ::edge	separate-01	ARG1	giraffe	s	g	
+# ::edge	separate-01	ARG2	person	s	p	
+(a2 / area
+    :ARG1-of (f2 / free-04)
+    :location-of (a / and
+        :op1 (r / reach-03
+            :ARG0 (g / giraffe
+                :part (n / neck)
+                :part (h / head
+                    :path (o / over
+                        :op1 (f / fence
+                            :ARG0-of (s / separate-01
+                                :ARG1 g
+                                :ARG2 (p / person))))))
+            :ARG1 n)
+        :op2 h))

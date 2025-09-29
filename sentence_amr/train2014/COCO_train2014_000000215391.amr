@@ -1,0 +1,50 @@
+# ::tok An airplane with one pilot has it 's landing gear down and the words fly2help are painted on the wing of the plane .
+# ::node	a	airplane	1-2
+# ::node	0	1	3-4
+# ::node	p2	person	4-5
+# ::node	p3	pilot-01	4-5
+# ::node	h	have-06	5-6
+# ::node	l	land-01	8-9
+# ::node	g	gear	9-10
+# ::node	d	down-03	10-11
+# ::node	a2	and	11-12
+# ::node	w2	word	13-14
+# ::node	c	company	14-15
+# ::node	n	name	14-15
+# ::node	1	2	14-15
+# ::node	p	paint-01	16-17
+# ::node	w	wing	19-20
+# ::root	a2	and
+# ::edge	person	quant	1	p2	0	
+# ::edge	person	ARG0-of	pilot-01	p2	p3	
+# ::edge	have-06	ARG0	person	h	p2	
+# ::edge	gear	purpose	land-01	g	l	
+# ::edge	airplane	part	gear	a	g	
+# ::edge	down-03	ARG1	gear	d	g	
+# ::edge	have-06	ARG1	down-03	h	d	
+# ::edge	and	op1	have-06	a2	h	
+# ::edge	word	mod	company	w2	c	
+# ::edge	company	name	name	c	n	
+# ::edge	word	value	2	w2	1	
+# ::edge	paint-01	ARG1	word	p	w2	
+# ::edge	and	op2	paint-01	a2	p	
+# ::edge	paint-01	location	wing	p	w	
+# ::edge	airplane	part	wing	a	w	
+# ::edge	and	rel	airplane	a2	a	
+(a2 / and
+    :op1 (h / have-06
+        :ARG0 (p2 / person
+            :quant 1
+            :ARG0-of (p3 / pilot-01))
+        :ARG1 (d / down-03
+            :ARG1 (g / gear
+                :purpose (l / land-01))))
+    :op2 (p / paint-01
+        :ARG1 (w2 / word
+            :mod (c / company
+                :name (n / name))
+            :value 2)
+        :location (w / wing))
+    :rel (a / airplane
+        :part g
+        :part w))

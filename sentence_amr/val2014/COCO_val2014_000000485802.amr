@@ -1,0 +1,30 @@
+# ::tok A plane flying straight up and high in the sky leaves a tail of smoke .
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	s3	straight-04	3-4
+# ::node	u	up-03	4-5
+# ::node	h	high-02	6-7
+# ::node	s	sky	9-10
+# ::node	l	leave-13	10-11
+# ::node	t	tail	12-13
+# ::node	s2	smoke	14-15
+# ::root	l	leave-13
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	ARG1-of	straight-04	f	s3	
+# ::edge	fly-01	direction	up-03	f	u	
+# ::edge	plane	ARG1-of	high-02	p	h	
+# ::edge	high-02	ARG2	sky	h	s	
+# ::edge	up-03	ARG2	sky	u	s	
+# ::edge	leave-13	ARG0	plane	l	p	
+# ::edge	leave-13	ARG1	tail	l	t	
+# ::edge	tail	consist-of	smoke	t	s2	
+(l / leave-13
+    :ARG0 (p / plane
+        :ARG1-of (h / high-02
+            :ARG2 (s / sky))
+        :ARG2-of (f / fly-01
+            :ARG1-of (s3 / straight-04)
+            :direction (u / up-03
+                :ARG2 s)))
+    :ARG1 (t / tail
+        :consist-of (s2 / smoke)))

@@ -1,0 +1,27 @@
+# ::tok A red train stopping on a platform at dusk while people wait for the train .
+# ::node	r	red-02	1-2
+# ::node	t	train	2-3
+# ::node	s	stop-01	3-4
+# ::node	p2	platform	6-7
+# ::node	d	date-entity	8-9
+# ::node	d2	dusk	8-9
+# ::node	p	person	10-11
+# ::node	w	wait-01	11-12
+# ::root	s	stop-01
+# ::edge	train	ARG1-of	red-02	t	r	
+# ::edge	stop-01	ARG1	train	s	t	
+# ::edge	stop-01	location	platform	s	p2	
+# ::edge	stop-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	dusk	d	d2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	stop-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG2	train	w	t	
+(s / stop-01
+    :ARG1 (t / train
+        :ARG1-of (r / red-02))
+    :location (p2 / platform)
+    :time (d / date-entity
+        :dayperiod (d2 / dusk))
+    :time (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 t))

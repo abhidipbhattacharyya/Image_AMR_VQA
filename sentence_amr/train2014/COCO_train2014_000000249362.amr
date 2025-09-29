@@ -1,0 +1,45 @@
+# ::tok Base ball game with batter on home base with bat extended and umpire standing on his side .
+# ::node	b3	base-02	0-1
+# ::node	b	ball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	4-5
+# ::node	s3	strike-01	4-5
+# ::node	h	home	6-7
+# ::node	b2	base	7-8
+# ::node	b4	bat	9-10
+# ::node	e	extend-01	10-11
+# ::node	a	and	11-12
+# ::node	p2	person	12-13
+# ::node	u	umpire-01	12-13
+# ::node	s2	stand-01	13-14
+# ::node	s	side	16-17
+# ::root	g	game
+# ::edge	ball	ARG1-of	base-02	b	b3	
+# ::edge	game	mod	ball	g	b	
+# ::edge	person	ARG0-of	strike-01	p	s3	
+# ::edge	base	mod	home	b2	h	
+# ::edge	person	location	base	p	b2	
+# ::edge	extend-01	ARG1	bat	e	b4	
+# ::edge	person	manner	extend-01	p	e	
+# ::edge	and	op1	person	a	p	
+# ::edge	game	subevent	and	g	a	
+# ::edge	person	ARG0-of	umpire-01	p2	u	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG2	side	s2	s	
+# ::edge	side	poss	person	s	p	
+(g / game
+    :mod (b / ball
+        :ARG1-of (b3 / base-02))
+    :subevent (a / and
+        :op1 (p / person
+            :ARG0-of (s3 / strike-01)
+            :location (b2 / base
+                :mod (h / home))
+            :manner (e / extend-01
+                :ARG1 (b4 / bat)))
+        :op2 (s2 / stand-01
+            :ARG1 (p2 / person
+                :ARG0-of (u / umpire-01))
+            :ARG2 (s / side
+                :poss p))))

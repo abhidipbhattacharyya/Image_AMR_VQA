@@ -1,0 +1,27 @@
+# ::tok A skillet of food has broccoli as one of its ingredients .
+# ::node	s	skillet	1-2
+# ::node	f	food	3-4
+# ::node	h	have-03	4-5
+# ::node	b	broccoli	5-6
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::node	i2	ingredient	10-11
+# ::node	i3	ingredient	10-11
+# ::root	h	have-03
+# ::edge	skillet	consist-of	food	s	f	
+# ::edge	have-03	ARG0	skillet	h	s	
+# ::edge	have-03	ARG1	broccoli	h	b	
+# ::edge	ingredient	ARG1-of	include-91	i2	i	
+# ::edge	ingredient	quant	1	i2	0	
+# ::edge	broccoli	prep-as	ingredient	b	i2	
+# ::edge	include-91	ARG2	ingredient	i	i3	
+# ::edge	skillet	part	ingredient	s	i3	
+(h / have-03
+    :ARG0 (s / skillet
+        :consist-of (f / food)
+        :part (i3 / ingredient))
+    :ARG1 (b / broccoli
+        :prep-as (i2 / ingredient
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 i3))))

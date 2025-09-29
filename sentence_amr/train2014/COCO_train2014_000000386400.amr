@@ -1,0 +1,36 @@
+# ::tok A stop sign warns that if you do not stop you could collide with cars and bikes .
+# ::node	s2	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	w	warn-01	3-4
+# ::node	y	you	6-7
+# ::node	0	-	8-9
+# ::node	s3	stop-01	9-10
+# ::node	p	possible-01	11-12
+# ::node	c2	collide-01	12-13
+# ::node	c	car	14-15
+# ::node	a	and	15-16
+# ::node	b	bike-01	16-17
+# ::root	w	warn-01
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	warn-01	ARG0	signal-07	w	s	
+# ::edge	stop-01	polarity	-	s3	0	
+# ::edge	stop-01	ARG0	you	s3	y	
+# ::edge	possible-01	condition	stop-01	p	s3	
+# ::edge	warn-01	ARG1	possible-01	w	p	
+# ::edge	possible-01	ARG1	collide-01	p	c2	
+# ::edge	collide-01	ARG0	you	c2	y	
+# ::edge	and	op1	car	a	c	
+# ::edge	collide-01	ARG1	and	c2	a	
+# ::edge	and	op2	bike-01	a	b	
+(w / warn-01
+    :ARG0 (s / signal-07
+        :ARG1 (s2 / stop-01))
+    :ARG1 (p / possible-01
+        :ARG1 (c2 / collide-01
+            :ARG0 (y / you)
+            :ARG1 (a / and
+                :op1 (c / car)
+                :op2 (b / bike-01)))
+        :condition (s3 / stop-01
+            :ARG0 y
+            :polarity -)))

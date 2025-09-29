@@ -1,0 +1,30 @@
+# ::tok A small airplane flying through a cloud filled sky with floaters on its bottom .
+# ::node	s2	small	1-2
+# ::node	a	airplane	2-3
+# ::node	f3	fly-01	3-4
+# ::node	c	cloud	6-7
+# ::node	f	fill-01	7-8
+# ::node	s	sky	8-9
+# ::node	f2	float-01	10-11
+# ::node	t	thing	11-12
+# ::node	b	bottom	13-14
+# ::root	a	airplane
+# ::edge	airplane	mod	small	a	s2	
+# ::edge	airplane	ARG2-of	fly-01	a	f3	
+# ::edge	fill-01	ARG2	cloud	f	c	
+# ::edge	sky	ARG1-of	fill-01	s	f	
+# ::edge	fly-01	path	sky	f3	s	
+# ::edge	thing	ARG1-of	float-01	t	f2	
+# ::edge	fly-01	ARG2	thing	f3	t	
+# ::edge	thing	location	bottom	t	b	
+# ::edge	airplane	part	bottom	a	b	
+(a / airplane
+    :ARG2-of (f3 / fly-01
+        :ARG2 (t / thing
+            :ARG1-of (f2 / float-01)
+            :location (b / bottom))
+        :path (s / sky
+            :ARG1-of (f / fill-01
+                :ARG2 (c / cloud))))
+    :mod (s2 / small)
+    :part b)

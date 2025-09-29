@@ -1,0 +1,25 @@
+# ::tok A bus sitting at a bus station with a metal and glass covering .
+# ::node	b	bus	1-2
+# ::node	s	sit-01	2-3
+# ::node	b2	bus	5-6
+# ::node	s2	station	6-7
+# ::node	m	metal	9-10
+# ::node	a	and	10-11
+# ::node	g	glass	11-12
+# ::node	c	cover-02	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	station	mod	bus	s2	b2	
+# ::edge	sit-01	ARG2	station	s	s2	
+# ::edge	and	op1	metal	a	m	
+# ::edge	and	op2	glass	a	g	
+# ::edge	cover-02	ARG2	and	c	a	
+# ::edge	bus	ARG1-of	cover-02	b	c	
+(s / sit-01
+    :ARG1 (b / bus
+        :ARG1-of (c / cover-02
+            :ARG2 (a / and
+                :op1 (m / metal)
+                :op2 (g / glass))))
+    :ARG2 (s2 / station
+        :mod (b2 / bus)))

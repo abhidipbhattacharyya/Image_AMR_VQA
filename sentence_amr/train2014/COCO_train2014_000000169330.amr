@@ -1,0 +1,27 @@
+# ::tok A sign is posted that resembles a stop sign but has a personal message .
+# ::node	s	sign	1-2
+# ::node	p2	post-01	3-4
+# ::node	r	resemble-01	5-6
+# ::node	s3	stop-01	7-8
+# ::node	s2	sign	8-9
+# ::node	h	have-03	10-11
+# ::node	p	personal-02	12-13
+# ::node	m	message-01	13-14
+# ::root	p2	post-01
+# ::edge	post-01	ARG1	sign	p2	s	
+# ::edge	sign	ARG1-of	resemble-01	s	r	
+# ::edge	sign	topic	stop-01	s2	s3	
+# ::edge	resemble-01	ARG2	sign	r	s2	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	message-01	ARG1-of	personal-02	m	p	
+# ::edge	have-03	ARG1	message-01	h	m	
+# ::edge	message-01	ARG0	sign	m	s	
+(p2 / post-01
+    :ARG1 (s / sign
+        :ARG0-of (h / have-03
+            :ARG1 (m / message-01
+                :ARG0 s
+                :ARG1-of (p / personal-02)))
+        :ARG1-of (r / resemble-01
+            :ARG2 (s2 / sign
+                :topic (s3 / stop-01)))))

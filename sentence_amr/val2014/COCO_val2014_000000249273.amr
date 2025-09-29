@@ -1,0 +1,33 @@
+# ::tok Fire hydrant on a sidewalk with a Sidewalk Closed sign and construction equipment .
+# ::node	f	fire-03	0-1
+# ::node	h	hydrant	1-2
+# ::node	s	sidewalk	4-5
+# ::node	w	walk-01	7-8
+# ::node	c	close-01	8-9
+# ::node	s2	sign	9-10
+# ::node	a	and	10-11
+# ::node	a2	and	10-11
+# ::node	c2	construct-01	11-12
+# ::node	e	equipment	12-13
+# ::root	a	and
+# ::edge	hydrant	purpose	fire-03	h	f	
+# ::edge	hydrant	location	sidewalk	h	s	
+# ::edge	walk-01	ARG2	close-01	w	c	
+# ::edge	sign	mod	walk-01	s2	w	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	sign	a2	s2	
+# ::edge	equipment	purpose	construct-01	e	c2	
+# ::edge	and	op2	equipment	a2	e	
+# ::edge	and	rel	hydrant	a	h	
+(a / and
+    :op1 (s2 / sign
+        :mod (w / walk-01
+            :ARG2 (c / close-01)))
+    :op2 (a2 / and
+        :op1 s2
+        :op2 (e / equipment
+            :purpose (c2 / construct-01)))
+    :rel (h / hydrant
+        :purpose (f / fire-03)
+        :location (s / sidewalk)))

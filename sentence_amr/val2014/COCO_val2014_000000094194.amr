@@ -1,0 +1,31 @@
+# ::tok A man prepares to cut a cake while standing near another man .
+# ::node	m	man	1-2
+# ::node	p	prepare-02	2-3
+# ::node	c2	cut-01	4-5
+# ::node	c	cake	6-7
+# ::node	s	stand-01	8-9
+# ::node	n	near-02	9-10
+# ::node	a	another	10-11
+# ::node	m2	man	11-12
+# ::root	p	prepare-02
+# ::edge	prepare-02	ARG0	man	p	m	
+# ::edge	prepare-02	ARG1	cut-01	p	c2	
+# ::edge	cut-01	ARG0	man	c2	m	
+# ::edge	cut-01	ARG1	cake	c2	c	
+# ::edge	prepare-02	time	stand-01	p	s	
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	man	mod	another	m2	a	
+# ::edge	near-02	ARG2	man	n	m2	
+(p / prepare-02
+    :ARG0 (m / man)
+    :ARG1 (c2 / cut-01
+        :ARG0 m
+        :ARG1 (c / cake))
+    :time (s / stand-01
+        :ARG1 m
+        :ARG2 (n / near-02
+            :ARG1 m
+            :ARG2 (m2 / man
+                :mod (a / another)))))

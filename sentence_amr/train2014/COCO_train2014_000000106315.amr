@@ -1,0 +1,33 @@
+# ::tok An orange has been zested , and the associated tools and more oranges lie on the table .
+# ::node	o	orange	1-2
+# ::node	z	zap-01	4-5
+# ::node	a	and	6-7
+# ::node	a3	associate-01	8-9
+# ::node	t2	tool	9-10
+# ::node	a2	and	10-11
+# ::node	m	more	11-12
+# ::node	o2	orange	12-13
+# ::node	l	lie-07	13-14
+# ::node	t	table	16-17
+# ::root	a	and
+# ::edge	zap-01	ARG1	orange	z	o	
+# ::edge	and	op1	zap-01	a	z	
+# ::edge	associate-01	ARG2	orange	a3	o	
+# ::edge	tool	ARG1-of	associate-01	t2	a3	
+# ::edge	and	op1	tool	a2	t2	
+# ::edge	orange	quant	more	o2	m	
+# ::edge	and	op2	orange	a2	o2	
+# ::edge	lie-07	ARG1	and	l	a2	
+# ::edge	and	op2	lie-07	a	l	
+# ::edge	lie-07	ARG2	table	l	t	
+(a / and
+    :op1 (z / zap-01
+        :ARG1 (o / orange))
+    :op2 (l / lie-07
+        :ARG1 (a2 / and
+            :op1 (t2 / tool
+                :ARG1-of (a3 / associate-01
+                    :ARG2 o))
+            :op2 (o2 / orange
+                :quant (m / more)))
+        :ARG2 (t / table)))

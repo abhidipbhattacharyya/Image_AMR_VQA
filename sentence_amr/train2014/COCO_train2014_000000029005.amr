@@ -1,0 +1,75 @@
+# ::tok A horizontal panel of six small food images shows different views of uncooked vegetables in the left three and different views of cooked casserole type dishes , incorporating the vegetables in the right three .
+# ::node	h	horizontal	1-2
+# ::node	p	panel	2-3
+# ::node	1	6	4-5
+# ::node	s2	small	5-6
+# ::node	f	food	6-7
+# ::node	i	image	7-8
+# ::node	s	show-01	8-9
+# ::node	d	differ-02	9-10
+# ::node	v3	view-01	10-11
+# ::node	c2	cook-01	12-13
+# ::node	v	vegetable	13-14
+# ::node	l	left-20	16-17
+# ::node	t	temporal-quantity	17-18
+# ::node	0	3	17-18
+# ::node	a	and	18-19
+# ::node	v4	view-02	20-21
+# ::node	c3	cook-01	22-23
+# ::node	c	casserole	23-24
+# ::node	t3	type	24-25
+# ::node	d2	dish	25-26
+# ::node	i2	incorporate-02	27-28
+# ::node	v2	vegetable	29-30
+# ::node	r	right-04	32-33
+# ::node	t2	three	33-34
+# ::root	s	show-01
+# ::edge	panel	mod	horizontal	p	h	
+# ::edge	food	mod	small	f	s2	
+# ::edge	image	mod	food	i	f	
+# ::edge	image	quant	6	i	1	
+# ::edge	panel	consist-of	image	p	i	
+# ::edge	show-01	ARG0	panel	s	p	
+# ::edge	view-01	ARG1-of	differ-02	v3	d	
+# ::edge	vegetable	ARG1-of	cook-01	v	c2	
+# ::edge	view-01	ARG1	vegetable	v3	v	
+# ::edge	temporal-quantity	ARG1-of	left-20	t	l	
+# ::edge	view-01	location	temporal-quantity	v3	t	
+# ::edge	temporal-quantity	quant	3	t	0	
+# ::edge	and	op1	view-01	a	v3	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	view-02	a	v4	
+# ::edge	differ-02	ARG1	view-02	d	v4	
+# ::edge	type	mod	casserole	t3	c	
+# ::edge	dish	mod	type	d2	t3	
+# ::edge	dish	ARG1-of	cook-01	d2	c3	
+# ::edge	view-02	ARG1	dish	v4	d2	
+# ::edge	view-02	ARG2-of	incorporate-02	v4	i2	
+# ::edge	incorporate-02	ARG1	vegetable	i2	v2	
+# ::edge	three	ARG1-of	right-04	t2	r	
+# ::edge	incorporate-02	location	three	i2	t2	
+(s / show-01
+    :ARG0 (p / panel
+        :consist-of (i / image
+            :quant 6
+            :mod (f / food
+                :mod (s2 / small)))
+        :mod (h / horizontal))
+    :ARG1 (a / and
+        :op1 (v3 / view-01
+            :ARG1 (v / vegetable
+                :ARG1-of (c2 / cook-01))
+            :ARG1-of (d / differ-02
+                :ARG1 (v4 / view-02
+                    :ARG1 (d2 / dish
+                        :ARG1-of (c3 / cook-01)
+                        :mod (t3 / type
+                            :mod (c / casserole)))
+                    :ARG2-of (i2 / incorporate-02
+                        :ARG1 (v2 / vegetable)
+                        :location (t2 / three
+                            :ARG1-of (r / right-04)))))
+            :location (t / temporal-quantity
+                :quant 3
+                :ARG1-of (l / left-20)))
+        :op2 v4))

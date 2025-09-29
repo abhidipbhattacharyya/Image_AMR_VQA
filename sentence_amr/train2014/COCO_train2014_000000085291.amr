@@ -1,0 +1,22 @@
+# ::tok A plane is taking off in the early evening from an airport runway .
+# ::node	p	plane	1-2
+# ::node	t	take-off-19	3-4
+# ::node	e	early	7-8
+# ::node	d	date-entity	8-9
+# ::node	e2	evening	8-9
+# ::node	a	airport	11-12
+# ::node	r	runway	12-13
+# ::root	t	take-off-19
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	take-off-19	time	early	t	e	
+# ::edge	early	op1	date-entity	e	d	
+# ::edge	date-entity	dayperiod	evening	d	e2	
+# ::edge	runway	mod	airport	r	a	
+# ::edge	take-off-19	ARG2	runway	t	r	
+(t / take-off-19
+    :ARG1 (p / plane)
+    :ARG2 (r / runway
+        :mod (a / airport))
+    :time (e / early
+        :op1 (d / date-entity
+            :dayperiod (e2 / evening))))

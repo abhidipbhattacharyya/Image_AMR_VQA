@@ -1,0 +1,36 @@
+# ::tok A small green truck with a ton of semi - ripened bananas in the back .
+# ::node	s2	small	1-2
+# ::node	g	green-02	2-3
+# ::node	t2	truck	3-4
+# ::node	m	mass-quantity	6-7
+# ::node	t	ton	6-7
+# ::node	0	1	6-7
+# ::node	s	semi	8-9
+# ::node	r	rip-01	10-11
+# ::node	b2	banana	11-12
+# ::node	b3	be-located-at-91	12-13
+# ::node	b	back	14-15
+# ::root	t2	truck
+# ::edge	truck	ARG1-of	green-02	t2	g	
+# ::edge	truck	mod	small	t2	s2	
+# ::edge	mass-quantity	unit	ton	m	t	
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	rip-01	degree	semi	r	s	
+# ::edge	banana	ARG1-of	rip-01	b2	r	
+# ::edge	banana	quant	mass-quantity	b2	m	
+# ::edge	be-located-at-91	ARG1	banana	b3	b2	
+# ::edge	truck	ARG2-of	be-located-at-91	t2	b3	
+# ::edge	truck	location	back	t2	b	
+# ::edge	truck	part	back	t2	b	
+(t2 / truck
+    :ARG1-of (g / green-02)
+    :ARG2-of (b3 / be-located-at-91
+        :ARG1 (b2 / banana
+            :quant (m / mass-quantity
+                :quant 1
+                :unit (t / ton))
+            :ARG1-of (r / rip-01
+                :degree (s / semi))))
+    :location (b / back)
+    :mod (s2 / small)
+    :part b)

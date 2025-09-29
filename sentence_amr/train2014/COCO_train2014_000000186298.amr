@@ -1,0 +1,37 @@
+# ::tok A flatbed truck and trailer carrying 2 large power boats wrapped up for the winter .
+# ::node	f	flat-06	1-2
+# ::node	t2	truck	2-3
+# ::node	a	and	3-4
+# ::node	t	trailer	4-5
+# ::node	c	carry-01	5-6
+# ::node	0	2	6-7
+# ::node	l	large	7-8
+# ::node	p	power-01	8-9
+# ::node	b	boat	9-10
+# ::node	w2	wrap-up-02	10-11
+# ::node	d	date-entity	14-15
+# ::node	w	winter	14-15
+# ::root	w2	wrap-up-02
+# ::edge	truck	ARG1-of	flat-06	t2	f	
+# ::edge	and	op1	truck	a	t2	
+# ::edge	and	op2	trailer	a	t	
+# ::edge	and	ARG0-of	carry-01	a	c	
+# ::edge	boat	ARG0-of	power-01	b	p	
+# ::edge	boat	mod	large	b	l	
+# ::edge	boat	quant	2	b	0	
+# ::edge	carry-01	ARG1	boat	c	b	
+# ::edge	wrap-up-02	ARG1	and	w2	a	
+# ::edge	wrap-up-02	time	date-entity	w2	d	
+# ::edge	date-entity	season	winter	d	w	
+(w2 / wrap-up-02
+    :ARG1 (a / and
+        :ARG0-of (c / carry-01
+            :ARG1 (b / boat
+                :quant 2
+                :ARG0-of (p / power-01)
+                :mod (l / large)))
+        :op1 (t2 / truck
+            :ARG1-of (f / flat-06))
+        :op2 (t / trailer))
+    :time (d / date-entity
+        :season (w / winter)))

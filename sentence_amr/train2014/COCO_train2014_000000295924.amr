@@ -1,0 +1,28 @@
+# ::tok A railroad crossway signal initiates , blocking off traffic , allowing a train to passing through .
+# ::node	r	railroad	1-2
+# ::node	c	crossway	2-3
+# ::node	s	signal	3-4
+# ::node	i	initiate-01	4-5
+# ::node	b	block-01	6-7
+# ::node	t	traffic	8-9
+# ::node	a	allow-01	10-11
+# ::node	t2	train	12-13
+# ::node	p	pass-03	14-15
+# ::root	i	initiate-01
+# ::edge	crossway	mod	railroad	c	r	
+# ::edge	signal	mod	crossway	s	c	
+# ::edge	initiate-01	ARG0	signal	i	s	
+# ::edge	initiate-01	ARG0-of	block-01	i	b	
+# ::edge	block-01	ARG1	traffic	b	t	
+# ::edge	initiate-01	ARG0-of	allow-01	i	a	
+# ::edge	pass-03	ARG1	train	p	t2	
+# ::edge	allow-01	ARG1	pass-03	a	p	
+(i / initiate-01
+    :ARG0 (s / signal
+        :mod (c / crossway
+            :mod (r / railroad)))
+    :ARG0-of (b / block-01
+        :ARG1 (t / traffic))
+    :ARG0-of (a / allow-01
+        :ARG1 (p / pass-03
+            :ARG1 (t2 / train))))

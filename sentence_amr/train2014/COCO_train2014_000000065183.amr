@@ -1,0 +1,40 @@
+# ::tok People standing behind a disabled bus while an on looker takes a photo and another looks at a rear tire .
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	b	behind	2-3
+# ::node	d	disable-01	4-5
+# ::node	b2	bus	5-6
+# ::node	p2	person	9-10
+# ::node	l	look-01	9-10
+# ::node	p3	photograph-01	12-13
+# ::node	a	and	13-14
+# ::node	a2	another	14-15
+# ::node	l2	look-01	15-16
+# ::node	r	rear	18-19
+# ::node	t	tire	19-20
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	behind	s	b	
+# ::edge	bus	ARG1-of	disable-01	b2	d	
+# ::edge	behind	op1	bus	b	b2	
+# ::edge	person	ARG0-of	look-01	p2	l	
+# ::edge	photograph-01	ARG0	person	p3	p2	
+# ::edge	and	op1	photograph-01	a	p3	
+# ::edge	stand-01	time	and	s	a	
+# ::edge	look-01	ARG0	another	l2	a2	
+# ::edge	and	op2	look-01	a	l2	
+# ::edge	tire	mod	rear	t	r	
+# ::edge	look-01	ARG1	tire	l2	t	
+(s / stand-01
+    :ARG1 (p / person)
+    :ARG2 (b / behind
+        :op1 (b2 / bus
+            :ARG1-of (d / disable-01)))
+    :time (a / and
+        :op1 (p3 / photograph-01
+            :ARG0 (p2 / person
+                :ARG0-of (l / look-01)))
+        :op2 (l2 / look-01
+            :ARG0 (a2 / another)
+            :ARG1 (t / tire
+                :mod (r / rear)))))

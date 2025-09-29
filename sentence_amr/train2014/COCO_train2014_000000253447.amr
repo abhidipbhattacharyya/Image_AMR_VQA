@@ -1,0 +1,28 @@
+# ::tok Adult on scooter or roadway passing stairs and parking area .
+# ::node	a	adult	0-1
+# ::node	s	scooter	2-3
+# ::node	o	or	3-4
+# ::node	r	roadway	4-5
+# ::node	p2	pass-03	5-6
+# ::node	s2	stair	6-7
+# ::node	a2	and	7-8
+# ::node	p	park-01	8-9
+# ::node	a3	area	9-10
+# ::root	a	adult
+# ::edge	or	op1	scooter	o	s	
+# ::edge	adult	location	or	a	o	
+# ::edge	or	op2	roadway	o	r	
+# ::edge	adult	ARG0-of	pass-03	a	p2	
+# ::edge	and	op1	stair	a2	s2	
+# ::edge	pass-03	ARG1	and	p2	a2	
+# ::edge	area	ARG2-of	park-01	a3	p	
+# ::edge	and	op2	area	a2	a3	
+(a / adult
+    :ARG0-of (p2 / pass-03
+        :ARG1 (a2 / and
+            :op1 (s2 / stair)
+            :op2 (a3 / area
+                :ARG2-of (p / park-01))))
+    :location (o / or
+        :op1 (s / scooter)
+        :op2 (r / roadway)))

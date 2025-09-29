@@ -1,0 +1,43 @@
+# ::tok A massive double cheese burger sitting next to a cup of fries and a puddle of ketchup on a napkin .
+# ::node	m	massive	1-2
+# ::node	d	double	2-3
+# ::node	c	cheese	3-4
+# ::node	b	burger	4-5
+# ::node	s	sit-01	5-6
+# ::node	n2	next-to	6-7
+# ::node	v	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	c2	cup	9-10
+# ::node	f	fry-01	11-12
+# ::node	a	and	12-13
+# ::node	p	puddle	14-15
+# ::node	k	ketchup	16-17
+# ::node	n	napkin	19-20
+# ::root	s	sit-01
+# ::edge	cheese	mod	double	c	d	
+# ::edge	burger	mod	cheese	b	c	
+# ::edge	burger	mod	massive	b	m	
+# ::edge	sit-01	ARG1	burger	s	b	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	fry-01	quant	volume-quantity	f	v	
+# ::edge	and	op1	fry-01	a	f	
+# ::edge	next-to	op1	and	n2	a	
+# ::edge	and	op2	puddle	a	p	
+# ::edge	puddle	consist-of	ketchup	p	k	
+# ::edge	puddle	location	napkin	p	n	
+(s / sit-01
+    :ARG1 (b / burger
+        :mod (c / cheese
+            :mod (d / double))
+        :mod (m / massive))
+    :ARG2 (n2 / next-to
+        :op1 (a / and
+            :op1 (f / fry-01
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup)))
+            :op2 (p / puddle
+                :consist-of (k / ketchup)
+                :location (n / napkin)))))

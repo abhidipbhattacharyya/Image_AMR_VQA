@@ -1,0 +1,33 @@
+# ::tok A dinner plate with food carefully arranged around the rim and in the center of the plate .
+# ::node	d	dinner	1-2
+# ::node	p	plate	2-3
+# ::node	h	have-03	3-4
+# ::node	f	food	4-5
+# ::node	c	care-04	5-6
+# ::node	a3	arrange-01	6-7
+# ::node	a2	around	7-8
+# ::node	r	rim	9-10
+# ::node	a	and	10-11
+# ::node	c2	center	13-14
+# ::root	p	plate
+# ::edge	plate	mod	dinner	p	d	
+# ::edge	plate	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	food	h	f	
+# ::edge	arrange-01	ARG1-of	care-04	a3	c	
+# ::edge	food	ARG1-of	arrange-01	f	a3	
+# ::edge	around	op1	rim	a2	r	
+# ::edge	and	op1	around	a	a2	
+# ::edge	arrange-01	ARG2	and	a3	a	
+# ::edge	and	op2	center	a	c2	
+# ::edge	plate	part	center	p	c2	
+(p / plate
+    :ARG0-of (h / have-03
+        :ARG1 (f / food
+            :ARG1-of (a3 / arrange-01
+                :ARG1-of (c / care-04)
+                :ARG2 (a / and
+                    :op1 (a2 / around
+                        :op1 (r / rim))
+                    :op2 (c2 / center)))))
+    :mod (d / dinner)
+    :part c2)

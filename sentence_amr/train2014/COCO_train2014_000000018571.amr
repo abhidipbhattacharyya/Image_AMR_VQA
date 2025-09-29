@@ -1,0 +1,52 @@
+# ::tok Technological equipment , including an Apple monitor , computer keyboard and e - reader sit on a desk .
+# ::node	t	technical	0-1
+# ::node	e	equipment	1-2
+# ::node	i	include-01	3-4
+# ::node	c	company	5-6
+# ::node	n	name	5-6
+# ::node	0	Apple	5-6
+# ::node	m	monitor	6-7
+# ::node	c3	computer	8-9
+# ::node	k	keyboard	9-10
+# ::node	a	and	10-11
+# ::node	c2	company	11-12
+# ::node	n2	name	11-12
+# ::node	1	eBay	11-12
+# ::node	p	person	13-14
+# ::node	r	read-01	13-14
+# ::node	s	sit-01	14-15
+# ::node	d	desk	17-18
+# ::root	s	sit-01
+# ::edge	equipment	mod	technical	e	t	
+# ::edge	equipment	ARG2-of	include-01	e	i	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Apple	n	0	
+# ::edge	monitor	mod	company	m	c	
+# ::edge	keyboard	mod	computer	k	c3	
+# ::edge	and	op2	keyboard	a	k	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	eBay	n2	1	
+# ::edge	person	mod	company	p	c2	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG0-of	read-01	p	r	
+# ::edge	sit-01	ARG1	equipment	s	e	
+# ::edge	sit-01	ARG2	desk	s	d	
+(s / sit-01
+    :ARG1 (e / equipment
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (m / monitor
+                    :mod (c / company
+                        :name (n / name
+                            :op1 "Apple")))
+                :op2 (k / keyboard
+                    :mod (c3 / computer))
+                :op3 (p / person
+                    :ARG0-of (r / read-01)
+                    :mod (c2 / company
+                        :name (n2 / name
+                            :op1 "eBay")))))
+        :mod (t / technical))
+    :ARG2 (d / desk))

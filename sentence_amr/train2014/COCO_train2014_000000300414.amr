@@ -1,0 +1,28 @@
+# ::tok A near - collision between a blue car and a white car at a busy traffic intersection
+# ::node	n	near-02	1-2
+# ::node	c3	collide-01	3-4
+# ::node	b	blue	6-7
+# ::node	c	car	7-8
+# ::node	w	white-03	10-11
+# ::node	c2	car	11-12
+# ::node	b2	busy-02	14-15
+# ::node	t	traffic	15-16
+# ::node	i	intersect-01	16-17
+# ::root	c3	collide-01
+# ::edge	collide-01	ARG1-of	near-02	c3	n	
+# ::edge	car	mod	blue	c	b	
+# ::edge	collide-01	ARG0	car	c3	c	
+# ::edge	car	ARG1-of	white-03	c2	w	
+# ::edge	collide-01	ARG1	car	c3	c2	
+# ::edge	intersect-01	ARG1	traffic	i	t	
+# ::edge	intersect-01	ARG1-of	busy-02	i	b2	
+# ::edge	collide-01	location	intersect-01	c3	i	
+(c3 / collide-01
+    :ARG0 (c / car
+        :mod (b / blue))
+    :ARG1 (c2 / car
+        :ARG1-of (w / white-03))
+    :ARG1-of (n / near-02)
+    :location (i / intersect-01
+        :ARG1 (t / traffic)
+        :ARG1-of (b2 / busy-02)))

@@ -1,0 +1,30 @@
+# ::tok A bathroom is prepped for painting as blue masking tape is covering the edges .
+# ::node	b	bathroom	1-2
+# ::node	p2	prepare-02	3-4
+# ::node	p	paint-02	5-6
+# ::node	c	cause-01	6-7
+# ::node	b2	blue	7-8
+# ::node	m	mask-01	8-9
+# ::node	t	tape	9-10
+# ::node	c2	cover-02	11-12
+# ::node	e	edge	13-14
+# ::root	p2	prepare-02
+# ::edge	prepare-02	ARG1	bathroom	p2	b	
+# ::edge	prepare-02	ARG2	paint-02	p2	p	
+# ::edge	paint-02	ARG1	bathroom	p	b	
+# ::edge	prepare-02	ARG1-of	cause-01	p2	c	
+# ::edge	tape	ARG0-of	mask-01	t	m	
+# ::edge	tape	mod	blue	t	b2	
+# ::edge	cover-02	ARG2	tape	c2	t	
+# ::edge	cause-01	ARG0	cover-02	c	c2	
+# ::edge	cover-02	ARG1	edge	c2	e	
+(p2 / prepare-02
+    :ARG1 (b / bathroom)
+    :ARG1-of (c / cause-01
+        :ARG0 (c2 / cover-02
+            :ARG1 (e / edge)
+            :ARG2 (t / tape
+                :ARG0-of (m / mask-01)
+                :mod (b2 / blue))))
+    :ARG2 (p / paint-02
+        :ARG1 b))

@@ -1,0 +1,40 @@
+# ::tok A blue picnic table , a red table and a green table sit in an outdoor area near a lake .
+# ::node	b	blue	1-2
+# ::node	p	picnic-01	2-3
+# ::node	t	table	3-4
+# ::node	r	red-02	6-7
+# ::node	t2	table	7-8
+# ::node	a	and	8-9
+# ::node	g	green-02	10-11
+# ::node	t3	table	11-12
+# ::node	s	sit-01	12-13
+# ::node	o	outdoor	15-16
+# ::node	a2	area	16-17
+# ::node	n	near-02	17-18
+# ::node	l	lake	19-20
+# ::root	s	sit-01
+# ::edge	table	purpose	picnic-01	t	p	
+# ::edge	table	mod	blue	t	b	
+# ::edge	table	ARG1-of	red-02	t2	r	
+# ::edge	and	op2	table	a	t2	
+# ::edge	and	op1	table	a	t	
+# ::edge	table	ARG1-of	green-02	t3	g	
+# ::edge	and	op3	table	a	t3	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	area	location	outdoor	a2	o	
+# ::edge	sit-01	ARG2	area	s	a2	
+# ::edge	area	ARG1-of	near-02	a2	n	
+# ::edge	near-02	ARG2	lake	n	l	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (t / table
+            :purpose (p / picnic-01)
+            :mod (b / blue))
+        :op2 (t2 / table
+            :ARG1-of (r / red-02))
+        :op3 (t3 / table
+            :ARG1-of (g / green-02)))
+    :ARG2 (a2 / area
+        :ARG1-of (n / near-02
+            :ARG2 (l / lake))
+        :location (o / outdoor)))

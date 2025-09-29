@@ -1,0 +1,28 @@
+# ::tok A Royal York bus is parked on the side of the road at night .
+# ::node	n	name	1-2
+# ::node	0	Royal	1-2
+# ::node	1	York	2-3
+# ::node	b	bus	3-4
+# ::node	p	park-01	5-6
+# ::node	s	side	8-9
+# ::node	r	road	11-12
+# ::node	d	date-entity	13-14
+# ::node	n2	night	13-14
+# ::root	p	park-01
+# ::edge	name	op1	Royal	n	0	
+# ::edge	name	op2	York	n	1	
+# ::edge	bus	name	name	b	n	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	park-01	ARG2	side	p	s	
+# ::edge	side	part-of	road	s	r	
+# ::edge	park-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+(p / park-01
+    :ARG1 (b / bus
+        :name (n / name
+            :op1 "Royal"
+            :op2 "York"))
+    :ARG2 (s / side
+        :part-of (r / road))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

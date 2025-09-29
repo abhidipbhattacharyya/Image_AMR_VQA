@@ -1,0 +1,28 @@
+# ::tok Fast train on tracks with " first " on front at train station
+# ::node	f	fast-02	0-1
+# ::node	t2	train	1-2
+# ::node	t	track	3-4
+# ::node	o	ordinal-entity	6-7
+# ::node	0	1	6-7
+# ::node	b	be-located-at-91	8-9
+# ::node	f2	front	9-10
+# ::node	t3	train	11-12
+# ::node	s	station	12-13
+# ::root	b	be-located-at-91
+# ::edge	train	ARG1-of	fast-02	t2	f	
+# ::edge	train	location	track	t2	t	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	be-located-at-91	ARG1	train	b	t2	
+# ::edge	be-located-at-91	ARG2	front	b	f2	
+# ::edge	front	ord	ordinal-entity	f2	o	
+# ::edge	station	mod	train	s	t3	
+# ::edge	front	location	station	f2	s	
+(b / be-located-at-91
+    :ARG1 (t2 / train
+        :ARG1-of (f / fast-02)
+        :location (t / track))
+    :ARG2 (f2 / front
+        :location (s / station
+            :mod (t3 / train))
+        :ord (o / ordinal-entity
+            :value 1)))

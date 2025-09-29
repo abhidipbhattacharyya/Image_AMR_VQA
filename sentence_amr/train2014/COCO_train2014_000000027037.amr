@@ -1,0 +1,68 @@
+# ::tok A man is seated on a motorcycle in a large room filled with other motorcycles and people , a large knot of whom are standing with their backs to the man , albeit close by , apparently looking over a nearby bike .
+# ::node	m	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	m2	motorcycle	6-7
+# ::node	l	large	9-10
+# ::node	r	room	10-11
+# ::node	f	fill-01	11-12
+# ::node	o	other	13-14
+# ::node	m3	motorcycle	14-15
+# ::node	a	and	15-16
+# ::node	p	person	16-17
+# ::node	l2	large	19-20
+# ::node	k	knot	20-21
+# ::node	s2	stand-01	24-25
+# ::node	b	back	27-28
+# ::node	c	close-10	33-34
+# ::node	a2	appear-02	36-37
+# ::node	l3	look-01	37-38
+# ::node	n	nearby	40-41
+# ::node	b2	bike	41-42
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	motorcycle	s	m2	
+# ::edge	room	mod	large	r	l	
+# ::edge	sit-01	location	room	s	r	
+# ::edge	room	ARG1-of	fill-01	r	f	
+# ::edge	motorcycle	mod	other	m3	o	
+# ::edge	and	op1	motorcycle	a	m3	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	mod	other	p	o	
+# ::edge	knot	mod	large	k	l2	
+# ::edge	and	example	knot	a	k	
+# ::edge	knot	ARG0-of	stand-01	k	s2	
+# ::edge	stand-01	ARG2	man	s2	m	
+# ::edge	stand-01	manner	back	s2	b	
+# ::edge	back	poss	knot	b	k	
+# ::edge	stand-01	concession	close-10	s2	c	
+# ::edge	close-10	ARG2	knot	c	k	
+# ::edge	close-10	ARG1	man	c	m	
+# ::edge	look-01	ARG1-of	appear-02	l3	a2	
+# ::edge	knot	ARG0-of	look-01	k	l3	
+# ::edge	bike	location	nearby	b2	n	
+# ::edge	look-01	ARG1	bike	l3	b2	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (m2 / motorcycle)
+    :location (r / room
+        :ARG1-of (f / fill-01
+            :ARG2 (a / and
+                :example (k / knot
+                    :ARG0-of (s2 / stand-01
+                        :ARG2 m
+                        :concession (c / close-10
+                            :ARG1 m
+                            :ARG2 k)
+                        :manner (b / back
+                            :poss k))
+                    :ARG0-of (l3 / look-01
+                        :ARG1 (b2 / bike
+                            :location (n / nearby))
+                        :ARG1-of (a2 / appear-02))
+                    :mod (l2 / large))
+                :op1 (m3 / motorcycle
+                    :mod (o / other))
+                :op2 (p / person
+                    :mod o)))
+        :mod (l / large)))

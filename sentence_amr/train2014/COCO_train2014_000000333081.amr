@@ -1,0 +1,38 @@
+# ::tok Several people wearing skis and goggles preparing to go skiing .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	w	wear-01	2-3
+# ::node	s2	ski-01	3-4
+# ::node	a	and	4-5
+# ::node	g2	goggles	5-6
+# ::node	p2	prepare-02	6-7
+# ::node	g	go-02	8-9
+# ::node	s3	ski-01	9-10
+# ::root	p2	prepare-02
+# ::edge	person	quant	several	p	s	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	ski-01	ARG0	person	s2	p	
+# ::edge	and	op1	ski-01	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	goggles	a	g2	
+# ::edge	prepare-02	ARG1	person	p2	p	
+# ::edge	prepare-02	ARG0	person	p2	p	
+# ::edge	prepare-02	ARG2	go-02	p2	g	
+# ::edge	go-02	ARG0	person	g	p	
+# ::edge	go-02	ARG1	ski-01	g	s3	
+# ::edge	ski-01	ARG0	person	s3	p	
+# ::edge	prepare-02	rel	wear-01	p2	w	
+(p2 / prepare-02
+    :ARG0 (p / person
+        :quant (s / several))
+    :ARG1 p
+    :ARG2 (g / go-02
+        :ARG0 p
+        :ARG1 (s3 / ski-01
+            :ARG0 p))
+    :rel (w / wear-01
+        :ARG0 p
+        :ARG1 (a / and
+            :op1 (s2 / ski-01
+                :ARG0 p)
+            :op2 (g2 / goggles))))

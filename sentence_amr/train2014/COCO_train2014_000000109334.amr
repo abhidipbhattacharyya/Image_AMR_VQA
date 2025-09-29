@@ -1,0 +1,31 @@
+# ::tok A herd of elephants are moving closely packed together with the little ones taking the inside .
+# ::node	h	herd	1-2
+# ::node	e	elephant	3-4
+# ::node	e2	elephant	3-4
+# ::node	m	move-01	5-6
+# ::node	c	close-10	6-7
+# ::node	p	pack-01	7-8
+# ::node	t2	together	8-9
+# ::node	l	little	11-12
+# ::node	t	take-01	13-14
+# ::node	i	inside	15-16
+# ::root	m	move-01
+# ::edge	herd	consist-of	elephant	h	e	
+# ::edge	move-01	ARG1	herd	m	h	
+# ::edge	pack-01	ARG1-of	close-10	p	c	
+# ::edge	herd	ARG2-of	pack-01	h	p	
+# ::edge	pack-01	mod	together	p	t2	
+# ::edge	elephant	mod	little	e2	l	
+# ::edge	elephant	ARG0-of	take-01	e2	t	
+# ::edge	take-01	ARG1	inside	t	i	
+# ::edge	move-01	rel	elephant	m	e2	
+(m / move-01
+    :ARG1 (h / herd
+        :ARG2-of (p / pack-01
+            :ARG1-of (c / close-10)
+            :mod (t2 / together))
+        :consist-of (e / elephant))
+    :rel (e2 / elephant
+        :ARG0-of (t / take-01
+            :ARG1 (i / inside))
+        :mod (l / little)))

@@ -1,0 +1,34 @@
+# ::tok some of these seagulls are flying and some are walking on the beach
+# ::node	s2	some	0-1
+# ::node	i	include-91	1-2
+# ::node	t	this	2-3
+# ::node	o	ocean	3-4
+# ::node	o2	ocean	3-4
+# ::node	s	segregate-01	3-4
+# ::node	f	fly-01	5-6
+# ::node	a	and	6-7
+# ::node	s3	some	7-8
+# ::node	w	walk-01	9-10
+# ::node	b	beach	12-13
+# ::root	a	and
+# ::edge	ocean	ARG1-of	include-91	o	i	
+# ::edge	ocean	quant	some	o	s2	
+# ::edge	ocean	mod	this	o2	t	
+# ::edge	include-91	ARG2	ocean	i	o2	
+# ::edge	ocean	ARG1-of	segregate-01	o2	s	
+# ::edge	fly-01	ARG1	ocean	f	o	
+# ::edge	and	op1	fly-01	a	f	
+# ::edge	walk-01	ARG0	some	w	s3	
+# ::edge	and	op2	walk-01	a	w	
+# ::edge	walk-01	ARG2	beach	w	b	
+(a / and
+    :op1 (f / fly-01
+        :ARG1 (o / ocean
+            :quant (s2 / some)
+            :ARG1-of (i / include-91
+                :ARG2 (o2 / ocean
+                    :ARG1-of (s / segregate-01)
+                    :mod (t / this)))))
+    :op2 (w / walk-01
+        :ARG0 (s3 / some)
+        :ARG2 (b / beach)))

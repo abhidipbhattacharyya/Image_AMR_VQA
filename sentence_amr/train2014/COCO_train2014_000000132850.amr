@@ -1,0 +1,25 @@
+# ::tok Express commuter plane parked at an airport passenger loading gate .
+# ::node	e	express-01	0-1
+# ::node	c	commute-01	1-2
+# ::node	p3	plane	2-3
+# ::node	p	park-01	3-4
+# ::node	a	airport	6-7
+# ::node	p2	passenger	7-8
+# ::node	l	load-01	8-9
+# ::node	g	gate	9-10
+# ::root	p	park-01
+# ::edge	plane	ARG0-of	commute-01	p3	c	
+# ::edge	plane	ARG1-of	express-01	p3	e	
+# ::edge	park-01	ARG1	plane	p	p3	
+# ::edge	load-01	ARG1	passenger	l	p2	
+# ::edge	gate	purpose	load-01	g	l	
+# ::edge	gate	location	airport	g	a	
+# ::edge	park-01	ARG2	gate	p	g	
+(p / park-01
+    :ARG1 (p3 / plane
+        :ARG0-of (c / commute-01)
+        :ARG1-of (e / express-01))
+    :ARG2 (g / gate
+        :purpose (l / load-01
+            :ARG1 (p2 / passenger))
+        :location (a / airport)))

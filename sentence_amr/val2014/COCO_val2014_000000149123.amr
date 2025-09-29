@@ -1,0 +1,34 @@
+# ::tok a truck parked in front of a red double decker bus next to a sidewalk in front of a building .
+# ::node	t	truck	1-2
+# ::node	p	park-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	r	red-02	7-8
+# ::node	d2	double	8-9
+# ::node	d	deck	9-10
+# ::node	b2	bus	10-11
+# ::node	n	next-to	11-12
+# ::node	s	sidewalk	14-15
+# ::node	i2	in-front-of	16-17
+# ::node	b	building	19-20
+# ::root	p	park-01
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	deck	mod	double	d	d2	
+# ::edge	bus	mod	deck	b2	d	
+# ::edge	bus	ARG1-of	red-02	b2	r	
+# ::edge	in-front-of	op1	bus	i	b2	
+# ::edge	park-01	location	next-to	p	n	
+# ::edge	next-to	op1	sidewalk	n	s	
+# ::edge	sidewalk	location	in-front-of	s	i2	
+# ::edge	in-front-of	op1	building	i2	b	
+(p / park-01
+    :ARG1 (t / truck)
+    :ARG2 (i / in-front-of
+        :op1 (b2 / bus
+            :ARG1-of (r / red-02)
+            :mod (d / deck
+                :mod (d2 / double))))
+    :location (n / next-to
+        :op1 (s / sidewalk
+            :location (i2 / in-front-of
+                :op1 (b / building)))))

@@ -1,0 +1,37 @@
+# ::tok Tray with one donut and a cup of drink sits on the table
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	2	Tray	0-1
+# ::node	0	1	2-3
+# ::node	d	donut	3-4
+# ::node	a	and	4-5
+# ::node	v	volume-quantity	5-6
+# ::node	1	1	5-6
+# ::node	c	cup	6-7
+# ::node	d2	drink	8-9
+# ::node	s	sit-01	9-10
+# ::node	t	table	12-13
+# ::root	s	sit-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Tray	n	2	
+# ::edge	donut	quant	1	d	0	
+# ::edge	and	op1	donut	a	d	
+# ::edge	person	accompanier	and	p	a	
+# ::edge	volume-quantity	quant	1	v	1	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	drink	quant	volume-quantity	d2	v	
+# ::edge	and	op2	drink	a	d2	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (p / person
+        :name (n / name
+            :op1 "Tray")
+        :accompanier (a / and
+            :op1 (d / donut
+                :quant 1)
+            :op2 (d2 / drink
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c / cup)))))
+    :ARG2 (t / table))

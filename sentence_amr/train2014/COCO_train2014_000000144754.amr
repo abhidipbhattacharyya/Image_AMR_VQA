@@ -1,0 +1,30 @@
+# ::tok A box of frozen 4 - cheese pizza displays a cooked pizza on the front .
+# ::node	b	box	1-2
+# ::node	f	freeze-01	3-4
+# ::node	0	4	4-5
+# ::node	c	cheese	6-7
+# ::node	p	pizza	7-8
+# ::node	d	display-01	8-9
+# ::node	c2	cook-01	10-11
+# ::node	p2	pizza	11-12
+# ::node	f2	front	14-15
+# ::root	d	display-01
+# ::edge	cheese	quant	4	c	0	
+# ::edge	pizza	mod	cheese	p	c	
+# ::edge	pizza	ARG1-of	freeze-01	p	f	
+# ::edge	box	consist-of	pizza	b	p	
+# ::edge	display-01	ARG0	box	d	b	
+# ::edge	pizza	ARG1-of	cook-01	p2	c2	
+# ::edge	display-01	ARG1	pizza	d	p2	
+# ::edge	display-01	location	front	d	f2	
+# ::edge	box	part	front	b	f2	
+(d / display-01
+    :ARG0 (b / box
+        :consist-of (p / pizza
+            :ARG1-of (f / freeze-01)
+            :mod (c / cheese
+                :quant 4))
+        :part (f2 / front))
+    :ARG1 (p2 / pizza
+        :ARG1-of (c2 / cook-01))
+    :location f2)

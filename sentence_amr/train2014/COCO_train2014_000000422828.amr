@@ -1,0 +1,31 @@
+# ::tok A plastic container holding a chilli dog smothered in lots of cheese .
+# ::node	p	plastic	1-2
+# ::node	c3	container	2-3
+# ::node	h	hold-01	3-4
+# ::node	c2	chilli	5-6
+# ::node	d	dog	6-7
+# ::node	r	recognize-01	7-8
+# ::node	s	smothered	7-8
+# ::node	l	lot	9-10
+# ::node	c	cheese	11-12
+# ::node	e	event	12-13
+# ::root	e	event
+# ::edge	container	consist-of	plastic	c3	p	
+# ::edge	container	ARG0-of	hold-01	c3	h	
+# ::edge	dog	mod	chilli	d	c2	
+# ::edge	hold-01	ARG1	dog	h	d	
+# ::edge	dog	ARG1-of	recognize-01	d	r	
+# ::edge	recognize-01	ARG0	smothered	r	s	
+# ::edge	cheese	quant	lot	c	l	
+# ::edge	smothered	consist-of	cheese	s	c	
+# ::edge	event	mod	container	e	c3	
+(e / event
+    :mod (c3 / container
+        :ARG0-of (h / hold-01
+            :ARG1 (d / dog
+                :ARG1-of (r / recognize-01
+                    :ARG0 (s / smothered
+                        :consist-of (c / cheese
+                            :quant (l / lot))))
+                :mod (c2 / chilli)))
+        :consist-of (p / plastic)))

@@ -1,0 +1,27 @@
+# ::tok People standing around a conveyor belt at an airport waiting for their luggage .
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	a2	around	2-3
+# ::node	c	conveyor	4-5
+# ::node	b	belt	5-6
+# ::node	a	airport	8-9
+# ::node	w	wait-01	9-10
+# ::node	l	luggage	12-13
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	around	s	a2	
+# ::edge	belt	mod	conveyor	b	c	
+# ::edge	around	op1	belt	a2	b	
+# ::edge	stand-01	location	airport	s	a	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	wait-01	ARG2	luggage	w	l	
+# ::edge	luggage	poss	person	l	p	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG1-of (w / wait-01
+            :ARG2 (l / luggage
+                :poss p)))
+    :ARG2 (a2 / around
+        :op1 (b / belt
+            :mod (c / conveyor)))
+    :location (a / airport))

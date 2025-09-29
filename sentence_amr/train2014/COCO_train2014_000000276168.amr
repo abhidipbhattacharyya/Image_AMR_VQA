@@ -1,0 +1,50 @@
+# ::tok An area of big cement blocks shows lots of people walking towards , or away from , a large airforce plane , parked on the blocks .
+# ::node	a2	area	1-2
+# ::node	b	big	3-4
+# ::node	c	cement	4-5
+# ::node	b2	block	5-6
+# ::node	s	show-01	6-7
+# ::node	l2	lot	7-8
+# ::node	p2	person	9-10
+# ::node	w	walk-01	10-11
+# ::node	t	towards	11-12
+# ::node	o	or	13-14
+# ::node	a3	away	14-15
+# ::node	l	large	18-19
+# ::node	a	airforce	19-20
+# ::node	p3	plane	20-21
+# ::node	p	park-01	22-23
+# ::root	s	show-01
+# ::edge	block	consist-of	cement	b2	c	
+# ::edge	block	mod	big	b2	b	
+# ::edge	area	consist-of	block	a2	b2	
+# ::edge	show-01	ARG0	area	s	a2	
+# ::edge	person	quant	lot	p2	l2	
+# ::edge	show-01	ARG1	person	s	p2	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	or	op1	towards	o	t	
+# ::edge	walk-01	direction	or	w	o	
+# ::edge	or	op2	away	o	a3	
+# ::edge	plane	mod	airforce	p3	a	
+# ::edge	plane	mod	large	p3	l	
+# ::edge	away	source	plane	a3	p3	
+# ::edge	towards	op1	plane	t	p3	
+# ::edge	plane	ARG1-of	park-01	p3	p	
+# ::edge	park-01	ARG2	block	p	b2	
+(s / show-01
+    :ARG0 (a2 / area
+        :consist-of (b2 / block
+            :consist-of (c / cement)
+            :mod (b / big)))
+    :ARG1 (p2 / person
+        :quant (l2 / lot)
+        :ARG0-of (w / walk-01
+            :direction (o / or
+                :op1 (t / towards
+                    :op1 (p3 / plane
+                        :ARG1-of (p / park-01
+                            :ARG2 b2)
+                        :mod (a / airforce)
+                        :mod (l / large)))
+                :op2 (a3 / away
+                    :source p3)))))

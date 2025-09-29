@@ -1,0 +1,31 @@
+# ::tok Skier in mid flight , with crossed skiis , above a ski jump .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	m	mid	2-3
+# ::node	f	fly-01	3-4
+# ::node	c	cross-01	6-7
+# ::node	s2	ski-01	7-8
+# ::node	a	above	9-10
+# ::node	t	thing	10-11
+# ::node	s3	ski-01	11-12
+# ::node	j	jump-03	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	fly-01	time	mid	f	m	
+# ::edge	person	time	fly-01	p	f	
+# ::edge	cross-01	ARG1-of	ski-01	c	s2	
+# ::edge	person	location	above	p	a	
+# ::edge	above	op1	thing	a	t	
+# ::edge	thing	ARG1-of	cross-01	t	c	
+# ::edge	jump-03	mod	ski-01	j	s3	
+# ::edge	thing	ARG1-of	jump-03	t	j	
+(p / person
+    :ARG0-of (s / ski-01)
+    :location (a / above
+        :op1 (t / thing
+            :ARG1-of (c / cross-01
+                :ARG1-of (s2 / ski-01))
+            :ARG1-of (j / jump-03
+                :mod (s3 / ski-01))))
+    :time (f / fly-01
+        :time (m / mid)))

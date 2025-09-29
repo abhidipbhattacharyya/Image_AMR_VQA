@@ -1,0 +1,28 @@
+# ::tok cars traveling down a multi lane street next to sidewalk with signs .
+# ::node	c	car	0-1
+# ::node	t	travel-01	1-2
+# ::node	d	down	2-3
+# ::node	m	multiple	4-5
+# ::node	l	lane	5-6
+# ::node	s3	street	6-7
+# ::node	n	next-to	7-8
+# ::node	s	sidewalk	9-10
+# ::node	s2	sign	11-12
+# ::root	t	travel-01
+# ::edge	travel-01	ARG0	car	t	c	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	lane	quant	multiple	l	m	
+# ::edge	street	mod	lane	s3	l	
+# ::edge	travel-01	ARG1	street	t	s3	
+# ::edge	street	location	next-to	s3	n	
+# ::edge	next-to	op1	sidewalk	n	s	
+# ::edge	car	prep-with	sign	c	s2	
+(t / travel-01
+    :ARG0 (c / car
+        :prep-with (s2 / sign))
+    :ARG1 (s3 / street
+        :location (n / next-to
+            :op1 (s / sidewalk))
+        :mod (l / lane
+            :quant (m / multiple)))
+    :direction (d / down))

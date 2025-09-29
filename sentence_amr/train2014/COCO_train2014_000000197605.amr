@@ -1,0 +1,42 @@
+# ::tok A graffiti covered wall is in the background as skateboarders are on the concrete floor in front of it .
+# ::node	g	graffiti-01	1-2
+# ::node	c2	cover-02	2-3
+# ::node	w	wall	3-4
+# ::node	b	background	7-8
+# ::node	p	person	9-10
+# ::node	b3	board-05	9-10
+# ::node	p2	product	9-10
+# ::node	n	name	9-10
+# ::node	0	skate-01	9-10
+# ::node	b2	be-located-at-91	11-12
+# ::node	c	concrete-02	13-14
+# ::node	f	floor	14-15
+# ::node	i	in-front-of	16-17
+# ::root	b	background
+# ::edge	cover-02	ARG2	graffiti-01	c2	g	
+# ::edge	wall	ARG1-of	cover-02	w	c2	
+# ::edge	background	location-of	wall	b	w	
+# ::edge	person	ARG0-of	board-05	p	b3	
+# ::edge	board-05	ARG1	product	b3	p2	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	skate-01	n	0	
+# ::edge	be-located-at-91	ARG1	person	b2	p	
+# ::edge	background	time-of	be-located-at-91	b	b2	
+# ::edge	floor	ARG1-of	concrete-02	f	c	
+# ::edge	be-located-at-91	ARG2	floor	b2	f	
+# ::edge	floor	location	in-front-of	f	i	
+# ::edge	in-front-of	op1	wall	i	w	
+(b / background
+    :location-of (w / wall
+        :ARG1-of (c2 / cover-02
+            :ARG2 (g / graffiti-01)))
+    :time-of (b2 / be-located-at-91
+        :ARG1 (p / person
+            :ARG0-of (b3 / board-05
+                :ARG1 (p2 / product
+                    :name (n / name
+                        :op1 "skate-01"))))
+        :ARG2 (f / floor
+            :ARG1-of (c / concrete-02)
+            :location (i / in-front-of
+                :op1 w))))

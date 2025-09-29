@@ -1,0 +1,34 @@
+# ::tok A dirty kitchen with a hotplate , cluttered shelf , and a sign warning not to drink the water .
+# ::node	d	dirty-02	1-2
+# ::node	k	kitchen	2-3
+# ::node	h	hotplate	5-6
+# ::node	c	clutch-01	7-8
+# ::node	s	shelf	8-9
+# ::node	a	and	10-11
+# ::node	s2	sign	12-13
+# ::node	w	warn-01	13-14
+# ::node	0	-	14-15
+# ::node	d2	drink-01	16-17
+# ::node	w2	water	18-19
+# ::root	k	kitchen
+# ::edge	kitchen	ARG1-of	dirty-02	k	d	
+# ::edge	shelf	ARG1-of	clutch-01	s	c	
+# ::edge	and	op2	shelf	a	s	
+# ::edge	and	op1	hotplate	a	h	
+# ::edge	kitchen	location-of	and	k	a	
+# ::edge	and	op3	sign	a	s2	
+# ::edge	sign	ARG0-of	warn-01	s2	w	
+# ::edge	drink-01	polarity	-	d2	0	
+# ::edge	warn-01	ARG1	drink-01	w	d2	
+# ::edge	drink-01	ARG1	water	d2	w2	
+(k / kitchen
+    :ARG1-of (d / dirty-02)
+    :location-of (a / and
+        :op1 (h / hotplate)
+        :op2 (s / shelf
+            :ARG1-of (c / clutch-01))
+        :op3 (s2 / sign
+            :ARG0-of (w / warn-01
+                :ARG1 (d2 / drink-01
+                    :ARG1 (w2 / water)
+                    :polarity -)))))

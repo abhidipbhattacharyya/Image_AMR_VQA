@@ -1,0 +1,37 @@
+# ::tok A British airways airplane flies through a clear blue sky .
+# ::node	c3	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Britain	1-2
+# ::node	c2	company	2-3
+# ::node	n2	name	2-3
+# ::node	2	airliner	2-3
+# ::node	1	Party	2-3
+# ::node	a	airplane	3-4
+# ::node	f	fly-01	4-5
+# ::node	c	clear-08	7-8
+# ::node	b	blue	8-9
+# ::node	s	sky	9-10
+# ::root	f	fly-01
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Britain	n	0	
+# ::edge	company	mod	country	c2	c3	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	airliner	n2	2	
+# ::edge	name	op2	Party	n2	1	
+# ::edge	airplane	poss	company	a	c2	
+# ::edge	fly-01	ARG2	airplane	f	a	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	sky	ARG1-of	clear-08	s	c	
+# ::edge	fly-01	path	sky	f	s	
+(f / fly-01
+    :ARG2 (a / airplane
+        :poss (c2 / company
+            :name (n2 / name
+                :op1 "airliner"
+                :op2 "Party")
+            :mod (c3 / country
+                :name (n / name
+                    :op1 "Britain"))))
+    :path (s / sky
+        :ARG1-of (c / clear-08)
+        :mod (b / blue)))

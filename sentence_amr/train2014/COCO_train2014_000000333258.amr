@@ -1,0 +1,50 @@
+# ::tok A tennis player is lifting is bending his leg off the ground and reaching his arm up in order to hit the ball .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	l2	lift-01	4-5
+# ::node	b2	bend-01	6-7
+# ::node	l	leg	8-9
+# ::node	g	ground	11-12
+# ::node	a	and	12-13
+# ::node	r	reach-03	13-14
+# ::node	a2	arm	15-16
+# ::node	u	up	16-17
+# ::node	h	hit-01	20-21
+# ::node	b	ball	22-23
+# ::root	a	and
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	lift-01	ARG0	person	l2	p	
+# ::edge	bend-01	ARG0	person	b2	p	
+# ::edge	bend-01	ARG1	leg	b2	l	
+# ::edge	person	part	leg	p	l	
+# ::edge	bend-01	ARG3	ground	b2	g	
+# ::edge	and	op2	bend-01	a	b2	
+# ::edge	and	op1	lift-01	a	l2	
+# ::edge	and	op3	reach-03	a	r	
+# ::edge	reach-03	ARG0	person	r	p	
+# ::edge	reach-03	ARG1	arm	r	a2	
+# ::edge	person	part	arm	p	a2	
+# ::edge	reach-03	direction	up	r	u	
+# ::edge	reach-03	purpose	hit-01	r	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+(a / and
+    :op1 (l2 / lift-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis))
+            :part (l / leg)
+            :part (a2 / arm)))
+    :op2 (b2 / bend-01
+        :ARG0 p
+        :ARG1 l
+        :ARG3 (g / ground))
+    :op3 (r / reach-03
+        :purpose (h / hit-01
+            :ARG0 p
+            :ARG1 (b / ball))
+        :ARG0 p
+        :ARG1 a2
+        :direction (u / up)))

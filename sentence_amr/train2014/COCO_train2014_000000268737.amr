@@ -1,0 +1,34 @@
+# ::tok Red tail lights glare on the back of a pickup going down a road towards a lighted field .
+# ::node	r	red-02	0-1
+# ::node	t	tail-01	1-2
+# ::node	l	light	2-3
+# ::node	s	stare-01	3-4
+# ::node	b	back	6-7
+# ::node	p	pickup	9-10
+# ::node	g	go-02	10-11
+# ::node	d	down	11-12
+# ::node	r2	road	13-14
+# ::node	l2	light-04	16-17
+# ::node	f	field	17-18
+# ::root	s	stare-01
+# ::edge	light	ARG0-of	tail-01	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	stare-01	ARG0	light	s	l	
+# ::edge	stare-01	ARG2	back	s	b	
+# ::edge	back	part-of	pickup	b	p	
+# ::edge	pickup	ARG0-of	go-02	p	g	
+# ::edge	go-02	direction	down	g	d	
+# ::edge	go-02	ARG1	road	g	r2	
+# ::edge	field	ARG1-of	light-04	f	l2	
+# ::edge	go-02	direction	field	g	f	
+(s / stare-01
+    :ARG0 (l / light
+        :ARG0-of (t / tail-01)
+        :ARG1-of (r / red-02))
+    :ARG2 (b / back
+        :part-of (p / pickup
+            :ARG0-of (g / go-02
+                :ARG1 (r2 / road)
+                :direction (d / down)
+                :direction (f / field
+                    :ARG1-of (l2 / light-04))))))

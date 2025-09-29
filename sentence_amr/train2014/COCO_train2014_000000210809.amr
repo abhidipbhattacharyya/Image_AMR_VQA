@@ -1,0 +1,45 @@
+# ::tok A bathroom with a commode and a wall on the other side of which is a double vanity with an upscale counter and back splash .
+# ::node	b2	bathroom	1-2
+# ::node	c	commode	4-5
+# ::node	a	and	5-6
+# ::node	w	wall	7-8
+# ::node	o	other	10-11
+# ::node	s	side	11-12
+# ::node	d	double	16-17
+# ::node	v	vanity	17-18
+# ::node	h	have-03	18-19
+# ::node	u	upscale	20-21
+# ::node	c2	counter	21-22
+# ::node	a2	and	22-23
+# ::node	b	back	23-24
+# ::node	s2	splash	24-25
+# ::root	b2	bathroom
+# ::edge	and	op1	commode	a	c	
+# ::edge	bathroom	part	and	b2	a	
+# ::edge	and	op2	wall	a	w	
+# ::edge	side	mod	other	s	o	
+# ::edge	and	location	side	a	s	
+# ::edge	bathroom	part	side	b2	s	
+# ::edge	vanity	mod	double	v	d	
+# ::edge	wall	domain	vanity	w	v	
+# ::edge	vanity	ARG0-of	have-03	v	h	
+# ::edge	counter	mod	upscale	c2	u	
+# ::edge	and	op1	counter	a2	c2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	splash	mod	back	s2	b	
+# ::edge	and	op2	splash	a2	s2	
+(b2 / bathroom
+    :part (a / and
+        :location (s / side
+            :mod (o / other))
+        :op1 (c / commode)
+        :op2 (w / wall
+            :domain (v / vanity
+                :ARG0-of (h / have-03
+                    :ARG1 (a2 / and
+                        :op1 (c2 / counter
+                            :mod (u / upscale))
+                        :op2 (s2 / splash
+                            :mod (b / back))))
+                :mod (d / double))))
+    :part s)

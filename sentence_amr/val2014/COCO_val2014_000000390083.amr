@@ -1,0 +1,22 @@
+# ::tok A lit up sign attached to a building during the night hours
+# ::node	l	light-04	1-2
+# ::node	s	sign	3-4
+# ::node	a	attach-01	4-5
+# ::node	b	building	7-8
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::node	h	hour	11-12
+# ::root	s	sign
+# ::edge	sign	ARG1-of	light-04	s	l	
+# ::edge	sign	ARG1-of	attach-01	s	a	
+# ::edge	attach-01	ARG2	building	a	b	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	hour	mod	date-entity	h	d	
+# ::edge	sign	time	hour	s	h	
+(s / sign
+    :ARG1-of (l / light-04)
+    :ARG1-of (a / attach-01
+        :ARG2 (b / building))
+    :time (h / hour
+        :mod (d / date-entity
+            :dayperiod (n / night))))

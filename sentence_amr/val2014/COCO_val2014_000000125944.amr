@@ -1,0 +1,54 @@
+# ::tok a pink post - it - note that states , " Close the door when you leave !!!
+# ::node	p	pink-04	1-2
+# ::node	i	it	2-3
+# ::node	n	note	6-7
+# ::node	s	state-01	8-9
+# ::node	c	close-01	11-12
+# ::node	y	you	11-12
+# ::node	0	imperative	11-12
+# ::node	d	door	13-14
+# ::node	l	leave-11	16-17
+# ::root	n	note
+# ::edge	note	mod	it	n	i	
+# ::edge	note	ARG1-of	pink-04	n	p	
+# ::edge	note	ARG0-of	state-01	n	s	
+# ::edge	state-01	ARG1	close-01	s	c	
+# ::edge	close-01	ARG0	you	c	y	
+# ::edge	close-01	mode	imperative	c	0	
+# ::edge	close-01	ARG1	door	c	d	
+# ::edge	leave-11	ARG0	you	l	y	
+# ::edge	close-01	time	leave-11	c	l	
+(n / note
+    :ARG0-of (s / state-01
+        :ARG1 (c / close-01
+            :ARG0 (y / you)
+            :ARG1 (d / door)
+            :mode imperative
+            :time (l / leave-11
+                :ARG0 y)))
+    :ARG1-of (p / pink-04)
+    :mod (i / it))
+
+
+# ::tok Thanks . " attached to an open toilet seat lid
+# ::node	t	thank-01	0-1
+# ::node	y	you	0-1
+# ::node	a	attach-01	3-4
+# ::node	o	open-01	6-7
+# ::node	t2	toilet	7-8
+# ::node	s	seat	8-9
+# ::node	l	lid	9-10
+# ::root	a	attach-01
+# ::edge	thank-01	ARG1	you	t	y	
+# ::edge	seat	part-of	toilet	s	t2	
+# ::edge	lid	part-of	seat	l	s	
+# ::edge	lid	ARG1-of	open-01	l	o	
+# ::edge	attach-01	ARG2	lid	a	l	
+# ::edge	attach-01	rel	thank-01	a	t	
+(a / attach-01
+    :ARG2 (l / lid
+        :ARG1-of (o / open-01)
+        :part-of (s / seat
+            :part-of (t2 / toilet)))
+    :rel (t / thank-01
+        :ARG1 (y / you)))

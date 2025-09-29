@@ -1,0 +1,24 @@
+# ::tok Motor vehicles that are unique being parked in a field with people watching .
+# ::node	m	motor	0-1
+# ::node	v	vehicle	1-2
+# ::node	u	unique-01	4-5
+# ::node	p	park-01	6-7
+# ::node	f	field	9-10
+# ::node	p2	person	11-12
+# ::node	w	watch-01	12-13
+# ::root	u	unique-01
+# ::edge	vehicle	mod	motor	v	m	
+# ::edge	unique-01	ARG1	vehicle	u	v	
+# ::edge	unique-01	ARG2	park-01	u	p	
+# ::edge	park-01	ARG1	vehicle	p	v	
+# ::edge	park-01	ARG2	field	p	f	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	park-01	ARG1-of	watch-01	p	w	
+(u / unique-01
+    :ARG1 (v / vehicle
+        :mod (m / motor))
+    :ARG2 (p / park-01
+        :ARG1 v
+        :ARG1-of (w / watch-01
+            :ARG0 (p2 / person))
+        :ARG2 (f / field)))

@@ -1,0 +1,30 @@
+# ::tok Man on bench sits watching locomotive passenger rail pass him quickly .
+# ::node	m	man	0-1
+# ::node	b	bench	2-3
+# ::node	s	sit-01	3-4
+# ::node	w	watch-01	4-5
+# ::node	l	locomotive	5-6
+# ::node	p2	passenger	6-7
+# ::node	r	rail	7-8
+# ::node	p	pass-03	8-9
+# ::node	q	quick-02	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	man	ARG0-of	watch-01	m	w	
+# ::edge	rail	mod	passenger	r	p2	
+# ::edge	rail	mod	locomotive	r	l	
+# ::edge	pass-03	ARG0	rail	p	r	
+# ::edge	watch-01	ARG1	pass-03	w	p	
+# ::edge	pass-03	ARG1	man	p	m	
+# ::edge	pass-03	ARG1-of	quick-02	p	q	
+(s / sit-01
+    :ARG1 (m / man
+        :ARG0-of (w / watch-01
+            :ARG1 (p / pass-03
+                :ARG0 (r / rail
+                    :mod (p2 / passenger)
+                    :mod (l / locomotive))
+                :ARG1 m
+                :ARG1-of (q / quick-02))))
+    :ARG2 (b / bench))

@@ -1,0 +1,40 @@
+# ::tok A living room with a chocolate couch , an easy chair and nan empty bookshelf .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	c2	chocolate	5-6
+# ::node	c3	couch	6-7
+# ::node	e	easy-05	9-10
+# ::node	c	chair	10-11
+# ::node	a	and	11-12
+# ::node	p	person	12-13
+# ::node	h2	have-rel-role-91	12-13
+# ::node	g	grandmother	12-13
+# ::node	e2	empty-02	13-14
+# ::node	b	bookshelf	14-15
+# ::root	r	room
+# ::edge	room	mod	living	r	l	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	couch	mod	chocolate	c3	c2	
+# ::edge	chair	ARG1-of	easy-05	c	e	
+# ::edge	and	op2	chair	a	c	
+# ::edge	and	op1	couch	a	c3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	person	ARG0-of	have-rel-role-91	p	h2	
+# ::edge	have-rel-role-91	ARG2	grandmother	h2	g	
+# ::edge	empty-02	ARG0	person	e2	p	
+# ::edge	bookshelf	ARG1-of	empty-02	b	e2	
+# ::edge	and	op3	bookshelf	a	b	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c3 / couch
+                :mod (c2 / chocolate))
+            :op2 (c / chair
+                :ARG1-of (e / easy-05))
+            :op3 (b / bookshelf
+                :ARG1-of (e2 / empty-02
+                    :ARG0 (p / person
+                        :ARG0-of (h2 / have-rel-role-91
+                            :ARG2 (g / grandmother)))))))
+    :mod (l / living))

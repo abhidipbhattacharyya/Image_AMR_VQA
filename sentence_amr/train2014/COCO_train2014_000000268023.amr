@@ -1,0 +1,40 @@
+# ::tok A double decker bus and a teal RV share a lot with tables and lights .
+# ::node	d2	double	1-2
+# ::node	d	deck	2-3
+# ::node	b	bus	3-4
+# ::node	a	and	4-5
+# ::node	t2	teal	6-7
+# ::node	v	vehicle	7-8
+# ::node	n	name	7-8
+# ::node	0	RV	7-8
+# ::node	s	share-01	8-9
+# ::node	l2	lot	10-11
+# ::node	t	table	12-13
+# ::node	a2	and	13-14
+# ::node	l	light	14-15
+# ::root	s	share-01
+# ::edge	deck	mod	double	d	d2	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	and	op1	bus	a	b	
+# ::edge	vehicle	mod	teal	v	t2	
+# ::edge	and	op2	vehicle	a	v	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	RV	n	0	
+# ::edge	share-01	ARG0	and	s	a	
+# ::edge	share-01	quant	lot	s	l2	
+# ::edge	and	op1	table	a2	t	
+# ::edge	share-01	ARG1	and	s	a2	
+# ::edge	and	op2	light	a2	l	
+(s / share-01
+    :quant (l2 / lot)
+    :ARG0 (a / and
+        :op1 (b / bus
+            :mod (d / deck
+                :mod (d2 / double)))
+        :op2 (v / vehicle
+            :name (n / name
+                :op1 "RV")
+            :mod (t2 / teal)))
+    :ARG1 (a2 / and
+        :op1 (t / table)
+        :op2 (l / light)))

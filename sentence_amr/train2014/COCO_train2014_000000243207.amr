@@ -1,0 +1,25 @@
+# ::tok a jumbo jet rests on the tarmac while people depart on a mobile jetway
+# ::node	j3	jumbo	1-2
+# ::node	j	jet	2-3
+# ::node	r	rest-01	3-4
+# ::node	t	tarmac	6-7
+# ::node	p	person	8-9
+# ::node	d	depart-01	9-10
+# ::node	m	mobile-02	12-13
+# ::node	j2	jetway	13-14
+# ::root	r	rest-01
+# ::edge	jet	mod	jumbo	j	j3	
+# ::edge	rest-01	ARG1	jet	r	j	
+# ::edge	rest-01	location	tarmac	r	t	
+# ::edge	depart-01	ARG0	person	d	p	
+# ::edge	rest-01	time	depart-01	r	d	
+# ::edge	jetway	ARG1-of	mobile-02	j2	m	
+# ::edge	depart-01	location	jetway	d	j2	
+(r / rest-01
+    :ARG1 (j / jet
+        :mod (j3 / jumbo))
+    :location (t / tarmac)
+    :time (d / depart-01
+        :ARG0 (p / person)
+        :location (j2 / jetway
+            :ARG1-of (m / mobile-02))))

@@ -1,0 +1,21 @@
+# ::tok A number of traffic sign around five traffic lights .
+# ::node	n	number	1-2
+# ::node	t	traffic	3-4
+# ::node	s	sign	4-5
+# ::node	a	around	5-6
+# ::node	0	5	6-7
+# ::node	l	light	8-9
+# ::root	s	sign
+# ::edge	sign	mod	traffic	s	t	
+# ::edge	sign	quant	number	s	n	
+# ::edge	sign	location	around	s	a	
+# ::edge	light	quant	5	l	0	
+# ::edge	around	op1	light	a	l	
+# ::edge	light	mod	traffic	l	t	
+(s / sign
+    :quant (n / number)
+    :location (a / around
+        :op1 (l / light
+            :quant 5
+            :mod (t / traffic)))
+    :mod t)

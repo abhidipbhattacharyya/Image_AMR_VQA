@@ -1,0 +1,22 @@
+# ::tok A military cargo plane on a runway with other aircraft 's .
+# ::node	m	military	1-2
+# ::node	c	cargo	2-3
+# ::node	p	plane	3-4
+# ::node	p2	plane	3-4
+# ::node	r	runway	6-7
+# ::node	i	include-91	7-8
+# ::node	o	other	8-9
+# ::root	p	plane
+# ::edge	plane	mod	cargo	p	c	
+# ::edge	plane	mod	military	p	m	
+# ::edge	plane	location	runway	p	r	
+# ::edge	include-91	ARG2	plane	i	p2	
+# ::edge	plane	ARG1-of	include-91	p	i	
+# ::edge	plane	mod	other	p2	o	
+(p / plane
+    :ARG1-of (i / include-91
+        :ARG2 (p2 / plane
+            :mod (o / other)))
+    :location (r / runway)
+    :mod (c / cargo)
+    :mod (m / military))

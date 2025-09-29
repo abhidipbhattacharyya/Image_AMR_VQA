@@ -1,0 +1,28 @@
+# ::tok A bear has his mouth open and is showing a lot of teeth .
+# ::node	b	bear	1-2
+# ::node	m	mouth	4-5
+# ::node	o	open-01	5-6
+# ::node	a	and	6-7
+# ::node	s	show-01	8-9
+# ::node	l	lot	10-11
+# ::node	t	tooth	12-13
+# ::root	a	and
+# ::edge	bear	part	mouth	b	m	
+# ::edge	open-01	ARG1	mouth	o	m	
+# ::edge	open-01	ARG0	bear	o	b	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	and	op2	show-01	a	s	
+# ::edge	show-01	ARG0	bear	s	b	
+# ::edge	tooth	quant	lot	t	l	
+# ::edge	show-01	ARG1	tooth	s	t	
+# ::edge	bear	part	tooth	b	t	
+(a / and
+    :op1 (o / open-01
+        :ARG0 (b / bear
+            :part (m / mouth)
+            :part (t / tooth
+                :quant (l / lot)))
+        :ARG1 m)
+    :op2 (s / show-01
+        :ARG0 b
+        :ARG1 t))

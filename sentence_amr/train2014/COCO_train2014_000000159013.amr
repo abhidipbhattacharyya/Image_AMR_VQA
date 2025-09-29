@@ -1,0 +1,31 @@
+# ::tok A Gatorade bottle and orange juice carton are seen in a toilet .
+# ::node	p	product	1-2
+# ::node	n	name	1-2
+# ::node	0	Gatorade	1-2
+# ::node	b	bottle	2-3
+# ::node	a	and	3-4
+# ::node	o	orange	4-5
+# ::node	j	juice	5-6
+# ::node	c	carton	6-7
+# ::node	s	see-01	8-9
+# ::node	t	toilet	11-12
+# ::root	s	see-01
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Gatorade	n	0	
+# ::edge	bottle	mod	product	b	p	
+# ::edge	and	op1	bottle	a	b	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	carton	mod	juice	c	j	
+# ::edge	and	op2	carton	a	c	
+# ::edge	see-01	ARG1	and	s	a	
+# ::edge	see-01	location	toilet	s	t	
+(s / see-01
+    :ARG1 (a / and
+        :op1 (b / bottle
+            :mod (p / product
+                :name (n / name
+                    :op1 "Gatorade")))
+        :op2 (c / carton
+            :mod (j / juice
+                :mod (o / orange))))
+    :location (t / toilet))

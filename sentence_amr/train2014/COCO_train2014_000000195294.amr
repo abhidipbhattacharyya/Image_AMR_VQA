@@ -1,0 +1,25 @@
+# ::tok Double deck buses sitting in the street next to a traffic light .
+# ::node	d2	double-01	0-1
+# ::node	d	deck	1-2
+# ::node	b	bus	2-3
+# ::node	s	sit-01	3-4
+# ::node	s2	street	6-7
+# ::node	n	next-to	7-8
+# ::node	t	traffic	10-11
+# ::node	l	light	11-12
+# ::root	s	sit-01
+# ::edge	deck	ARG1-of	double-01	d	d2	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	sit-01	ARG1	bus	s	b	
+# ::edge	sit-01	ARG2	street	s	s2	
+# ::edge	street	location-of	next-to	s2	n	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	next-to	op1	light	n	l	
+(s / sit-01
+    :ARG1 (b / bus
+        :mod (d / deck
+            :ARG1-of (d2 / double-01)))
+    :ARG2 (s2 / street
+        :location-of (n / next-to
+            :op1 (l / light
+                :mod (t / traffic)))))

@@ -1,0 +1,39 @@
+# ::tok Spectators watch a game as a tennis player moves quickly to hit the oncoming ball
+# ::node	p	person	0-1
+# ::node	w	watch-01	0-1
+# ::node	w2	watch-01	1-2
+# ::node	g	game	3-4
+# ::node	t	tennis	6-7
+# ::node	p2	person	7-8
+# ::node	p3	play-01	7-8
+# ::node	m	move-01	8-9
+# ::node	q	quick-02	9-10
+# ::node	h	hit-01	11-12
+# ::node	c	come-01	13-14
+# ::node	b	ball	14-15
+# ::root	w2	watch-01
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG0	person	w2	p	
+# ::edge	watch-01	ARG1	game	w2	g	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	move-01	ARG0	person	m	p2	
+# ::edge	watch-01	time	move-01	w2	m	
+# ::edge	move-01	ARG1-of	quick-02	m	q	
+# ::edge	move-01	ARG2	hit-01	m	h	
+# ::edge	hit-01	ARG0	person	h	p2	
+# ::edge	ball	ARG1-of	come-01	b	c	
+# ::edge	hit-01	ARG1	ball	h	b	
+(w2 / watch-01
+    :ARG0 (p / person
+        :ARG0-of (w / watch-01))
+    :ARG1 (g / game)
+    :time (m / move-01
+        :ARG0 (p2 / person
+            :ARG0-of (p3 / play-01
+                :ARG1 (t / tennis)))
+        :ARG1-of (q / quick-02)
+        :ARG2 (h / hit-01
+            :ARG0 p2
+            :ARG1 (b / ball
+                :ARG1-of (c / come-01)))))

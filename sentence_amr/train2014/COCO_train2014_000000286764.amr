@@ -1,0 +1,25 @@
+# ::tok A underwater viewing room at a zoo shows a polar bear diving .
+# ::node	u	underwater	1-2
+# ::node	v	view-01	2-3
+# ::node	r	room	3-4
+# ::node	z	zoo	6-7
+# ::node	s	show-01	7-8
+# ::node	p	polar	9-10
+# ::node	b	bear	10-11
+# ::node	d	dive-01	11-12
+# ::root	s	show-01
+# ::edge	view-01	ARG1	underwater	v	u	
+# ::edge	room	location-of	view-01	r	v	
+# ::edge	room	location	zoo	r	z	
+# ::edge	show-01	ARG0	room	s	r	
+# ::edge	bear	mod	polar	b	p	
+# ::edge	dive-01	ARG0	bear	d	b	
+# ::edge	show-01	ARG1	dive-01	s	d	
+(s / show-01
+    :ARG0 (r / room
+        :location (z / zoo)
+        :location-of (v / view-01
+            :ARG1 (u / underwater)))
+    :ARG1 (d / dive-01
+        :ARG0 (b / bear
+            :mod (p / polar))))

@@ -1,0 +1,24 @@
+# ::tok A stainless steel refrigerator and microwave are in a kitchen .
+# ::node	s	stainless	1-2
+# ::node	s2	steel	2-3
+# ::node	r	refrigerator	3-4
+# ::node	a	and	4-5
+# ::node	m	microwave	5-6
+# ::node	b	be-located-at-91	7-8
+# ::node	k	kitchen	9-10
+# ::root	b	be-located-at-91
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	refrigerator	mod	steel	r	s2	
+# ::edge	and	op1	refrigerator	a	r	
+# ::edge	and	op2	microwave	a	m	
+# ::edge	microwave	mod	steel	m	s2	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	kitchen	b	k	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (r / refrigerator
+            :mod (s2 / steel
+                :mod (s / stainless)))
+        :op2 (m / microwave
+            :mod s2))
+    :ARG2 (k / kitchen))

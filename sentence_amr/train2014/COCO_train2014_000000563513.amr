@@ -1,0 +1,41 @@
+# ::tok There are two plates one has salad and the other has vegetables
+# ::node	1	2	2-3
+# ::node	p	plate	3-4
+# ::node	p2	plate	3-4
+# ::node	i	include-91	4-5
+# ::node	0	1	4-5
+# ::node	h	have-03	5-6
+# ::node	s	salad	6-7
+# ::node	a	and	7-8
+# ::node	i2	include-91	8-9
+# ::node	o	other	9-10
+# ::node	h2	have-03	10-11
+# ::node	v	vegetable	11-12
+# ::root	a	and
+# ::edge	plate	quant	2	p	1	
+# ::edge	plate	ARG2-of	include-91	p	i	
+# ::edge	include-91	ARG1	plate	i	p	
+# ::edge	plate	quant	1	p2	0	
+# ::edge	have-03	ARG0	plate	h	p2	
+# ::edge	have-03	ARG1	salad	h	s	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	plate	ARG1-of	include-91	p2	i2	
+# ::edge	include-91	ARG2	plate	i2	p	
+# ::edge	include-91	ARG3	other	i2	o	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	have-03	ARG0	plate	h2	p2	
+# ::edge	have-03	ARG1	vegetable	h2	v	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (p2 / plate
+            :quant 1
+            :ARG1-of (i2 / include-91
+                :ARG2 (p / plate
+                    :quant 2
+                    :ARG2-of (i / include-91
+                        :ARG1 p))
+                :ARG3 (o / other)))
+        :ARG1 (s / salad))
+    :op2 (h2 / have-03
+        :ARG0 p2
+        :ARG1 (v / vegetable)))

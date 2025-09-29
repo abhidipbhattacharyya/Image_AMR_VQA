@@ -1,0 +1,33 @@
+# ::tok A chef wearing a stripped apron is teaching a class how to use a large knife .
+# ::node	c	chef	1-2
+# ::node	w	wear-01	2-3
+# ::node	s	strip-01	4-5
+# ::node	a	apron	5-6
+# ::node	t	teach-01	7-8
+# ::node	c2	class	9-10
+# ::node	t2	thing	10-11
+# ::node	u	use-01	12-13
+# ::node	l	large	14-15
+# ::node	k	knife	15-16
+# ::root	t	teach-01
+# ::edge	chef	ARG0-of	wear-01	c	w	
+# ::edge	apron	ARG1-of	strip-01	a	s	
+# ::edge	wear-01	ARG1	apron	w	a	
+# ::edge	teach-01	ARG0	chef	t	c	
+# ::edge	teach-01	ARG2	class	t	c2	
+# ::edge	teach-01	ARG1	thing	t	t2	
+# ::edge	thing	manner-of	use-01	t2	u	
+# ::edge	use-01	ARG0	chef	u	c	
+# ::edge	knife	mod	large	k	l	
+# ::edge	use-01	ARG1	knife	u	k	
+(t / teach-01
+    :ARG0 (c / chef
+        :ARG0-of (w / wear-01
+            :ARG1 (a / apron
+                :ARG1-of (s / strip-01))))
+    :ARG1 (t2 / thing
+        :manner-of (u / use-01
+            :ARG0 c
+            :ARG1 (k / knife
+                :mod (l / large))))
+    :ARG2 (c2 / class))

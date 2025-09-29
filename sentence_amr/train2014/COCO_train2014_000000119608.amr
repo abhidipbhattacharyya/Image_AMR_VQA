@@ -1,0 +1,48 @@
+# ::tok A group of cell phones standing up with one lying down with a key chain holder .
+# ::node	g	group	1-2
+# ::node	c	cell	3-4
+# ::node	p	phone	4-5
+# ::node	p2	phone	4-5
+# ::node	s	stand-01	5-6
+# ::node	u	up	6-7
+# ::node	a	and	7-8
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	l	lie-07	9-10
+# ::node	d	down	10-11
+# ::node	t	thing	12-13
+# ::node	k	key-02	13-14
+# ::node	c2	chain-01	14-15
+# ::node	h	hold-01	15-16
+# ::root	a	and
+# ::edge	phone	mod	cell	p	c	
+# ::edge	group	consist-of	phone	g	p	
+# ::edge	stand-01	ARG1	group	s	g	
+# ::edge	stand-01	ARG2	up	s	u	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	phone	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	phone	i	p	
+# ::edge	phone	quant	1	p2	0	
+# ::edge	and	op2	lie-07	a	l	
+# ::edge	lie-07	ARG1	phone	l	p2	
+# ::edge	lie-07	ARG2	down	l	d	
+# ::edge	lie-07	instrument	thing	l	t	
+# ::edge	chain-01	ARG1	key-02	c2	k	
+# ::edge	hold-01	ARG1	chain-01	h	c2	
+# ::edge	thing	ARG0-of	hold-01	t	h	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (g / group
+            :consist-of (p / phone
+                :mod (c / cell)))
+        :ARG2 (u / up))
+    :op2 (l / lie-07
+        :ARG1 (p2 / phone
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 p))
+        :ARG2 (d / down)
+        :instrument (t / thing
+            :ARG0-of (h / hold-01
+                :ARG1 (c2 / chain-01
+                    :ARG1 (k / key-02))))))

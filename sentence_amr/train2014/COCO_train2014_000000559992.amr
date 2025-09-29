@@ -1,0 +1,42 @@
+# ::tok A kitchen with a stainless steel , two door refrigerator that has an ice and water dispenser in the door .
+# ::node	k	kitchen	1-2
+# ::node	s	stainless	4-5
+# ::node	s2	steel	5-6
+# ::node	0	2	7-8
+# ::node	d	door	8-9
+# ::node	r	refrigerator	9-10
+# ::node	h	have-03	11-12
+# ::node	i	ice	13-14
+# ::node	a	and	14-15
+# ::node	w	water	15-16
+# ::node	t	thing	16-17
+# ::node	p	package-01	16-17
+# ::node	d2	door	19-20
+# ::root	k	kitchen
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	door	quant	2	d	0	
+# ::edge	refrigerator	part	door	r	d	
+# ::edge	refrigerator	consist-of	steel	r	s2	
+# ::edge	kitchen	prep-with	refrigerator	k	r	
+# ::edge	refrigerator	ARG0-of	have-03	r	h	
+# ::edge	and	op1	ice	a	i	
+# ::edge	and	op2	water	a	w	
+# ::edge	thing	purpose	and	t	a	
+# ::edge	have-03	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	package-01	t	p	
+# ::edge	thing	location	door	t	d2	
+# ::edge	door	part	door	d	d2	
+(k / kitchen
+    :prep-with (r / refrigerator
+        :ARG0-of (h / have-03
+            :ARG1 (t / thing
+                :purpose (a / and
+                    :op1 (i / ice)
+                    :op2 (w / water))
+                :ARG0-of (p / package-01)
+                :location (d2 / door)))
+        :consist-of (s2 / steel
+            :mod (s / stainless))
+        :part (d / door
+            :quant 2
+            :part d2)))

@@ -1,0 +1,39 @@
+# ::tok a balding man in glasses holding an umbrella and wearing a jacket with a very high collar around his face
+# ::node	b	bald-faced	1-2
+# ::node	m	man	2-3
+# ::node	g	glasses	4-5
+# ::node	h2	hold-01	5-6
+# ::node	u	umbrella	7-8
+# ::node	w	wear-01	9-10
+# ::node	j	jacket	11-12
+# ::node	v	very	14-15
+# ::node	h	high-02	15-16
+# ::node	c	collar	16-17
+# ::node	a	around	17-18
+# ::node	f	face	19-20
+# ::root	m	man
+# ::edge	man	mod	bald-faced	m	b	
+# ::edge	hold-01	ARG1	glasses	h2	g	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	umbrella	h2	u	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	wear-01	ARG1	jacket	w	j	
+# ::edge	high-02	degree	very	h	v	
+# ::edge	collar	ARG1-of	high-02	c	h	
+# ::edge	jacket	part	collar	j	c	
+# ::edge	collar	location	around	c	a	
+# ::edge	around	op1	face	a	f	
+# ::edge	man	part	face	m	f	
+(m / man
+    :ARG0-of (h2 / hold-01
+        :ARG1 (g / glasses)
+        :ARG1 (u / umbrella))
+    :ARG0-of (w / wear-01
+        :ARG1 (j / jacket
+            :part (c / collar
+                :ARG1-of (h / high-02
+                    :degree (v / very))
+                :location (a / around
+                    :op1 (f / face)))))
+    :mod (b / bald-faced)
+    :part f)

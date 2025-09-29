@@ -1,0 +1,31 @@
+# ::tok A huge Fed Ex truck with three different containers that the truck is pulling .
+# ::node	h	huge	1-2
+# ::node	2	Fed	2-3
+# ::node	c	company	3-4
+# ::node	n	name	3-4
+# ::node	1	Ex	3-4
+# ::node	t	truck	4-5
+# ::node	0	3	6-7
+# ::node	d	differ-02	7-8
+# ::node	c2	container	8-9
+# ::node	p	pull-01	13-14
+# ::root	p	pull-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Fed	n	2	
+# ::edge	name	op2	Ex	n	1	
+# ::edge	truck	mod	company	t	c	
+# ::edge	truck	mod	huge	t	h	
+# ::edge	container	ARG1-of	differ-02	c2	d	
+# ::edge	container	quant	3	c2	0	
+# ::edge	pull-01	ARG1	container	p	c2	
+# ::edge	pull-01	ARG0	truck	p	t	
+(p / pull-01
+    :ARG0 (t / truck
+        :mod (c / company
+            :name (n / name
+                :op1 "Fed"
+                :op2 "Ex"))
+        :mod (h / huge))
+    :ARG1 (c2 / container
+        :quant 3
+        :ARG1-of (d / differ-02)))

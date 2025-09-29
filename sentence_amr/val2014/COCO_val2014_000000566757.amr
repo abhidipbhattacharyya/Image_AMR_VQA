@@ -1,0 +1,24 @@
+# ::tok A group of people sitting and standing inside of a bus .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	s2	stand-01	6-7
+# ::node	i	inside	7-8
+# ::node	b	bus	10-11
+# ::node	e	event	11-12
+# ::root	e	event
+# ::edge	group	consist-of	person	g	p	
+# ::edge	group	ARG1-of	sit-01	g	s	
+# ::edge	group	ARG1-of	stand-01	g	s2	
+# ::edge	stand-01	ARG2	inside	s2	i	
+# ::edge	sit-01	ARG2	inside	s	i	
+# ::edge	inside	op1	bus	i	b	
+# ::edge	event	mod	group	e	g	
+(e / event
+    :mod (g / group
+        :ARG1-of (s / sit-01
+            :ARG2 (i / inside
+                :op1 (b / bus)))
+        :ARG1-of (s2 / stand-01
+            :ARG2 i)
+        :consist-of (p / person)))

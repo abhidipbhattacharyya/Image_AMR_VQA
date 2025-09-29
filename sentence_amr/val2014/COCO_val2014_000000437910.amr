@@ -1,0 +1,33 @@
+# ::tok newspapers on the wall .
+# ::node	n	newspaper	0-1
+# ::node	w	wall	3-4
+# ::root	n	newspaper
+# ::edge	newspaper	location	wall	n	w	
+(n / newspaper
+    :location (w / wall))
+
+
+# ::tok a separate sink and private toilet area with a door
+# ::node	s	separate-02	1-2
+# ::node	s2	sink	2-3
+# ::node	a	and	3-4
+# ::node	p	private-02	4-5
+# ::node	t	toilet	5-6
+# ::node	a2	area	6-7
+# ::node	d	door	9-10
+# ::root	a	and
+# ::edge	sink	ARG1-of	separate-02	s2	s	
+# ::edge	and	op1	sink	a	s2	
+# ::edge	toilet	ARG1-of	private-02	t	p	
+# ::edge	area	location-of	toilet	a2	t	
+# ::edge	and	op2	area	a	a2	
+# ::edge	and	part	door	a	d	
+# ::edge	and	prep-with	door	a	d	
+(a / and
+    :op1 (s2 / sink
+        :ARG1-of (s / separate-02))
+    :op2 (a2 / area
+        :location-of (t / toilet
+            :ARG1-of (p / private-02)))
+    :part (d / door)
+    :prep-with d)

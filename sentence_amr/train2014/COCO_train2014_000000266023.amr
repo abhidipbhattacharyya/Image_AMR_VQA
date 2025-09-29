@@ -1,0 +1,22 @@
+# ::tok A passenger train moves over tracks that are near a field
+# ::node	p	passenger	1-2
+# ::node	t2	train	2-3
+# ::node	m	move-01	3-4
+# ::node	o	over	4-5
+# ::node	t	track	5-6
+# ::node	n	near-02	8-9
+# ::node	f	field	10-11
+# ::root	m	move-01
+# ::edge	train	mod	passenger	t2	p	
+# ::edge	move-01	ARG1	train	m	t2	
+# ::edge	move-01	path	over	m	o	
+# ::edge	over	op1	track	o	t	
+# ::edge	track	ARG1-of	near-02	t	n	
+# ::edge	near-02	ARG2	field	n	f	
+(m / move-01
+    :ARG1 (t2 / train
+        :mod (p / passenger))
+    :path (o / over
+        :op1 (t / track
+            :ARG1-of (n / near-02
+                :ARG2 (f / field)))))

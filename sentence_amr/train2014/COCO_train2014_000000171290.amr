@@ -1,0 +1,28 @@
+# ::tok A silver cargo train goes down the track on a somewhat cloudy day
+# ::node	s	silver	1-2
+# ::node	c	cargo	2-3
+# ::node	t2	train	3-4
+# ::node	g	go-01	4-5
+# ::node	d2	down	5-6
+# ::node	t	track	7-8
+# ::node	s2	somewhat	10-11
+# ::node	c2	cloudy-02	11-12
+# ::node	d	day	12-13
+# ::root	g	go-01
+# ::edge	train	mod	cargo	t2	c	
+# ::edge	train	mod	silver	t2	s	
+# ::edge	go-01	ARG1	train	g	t2	
+# ::edge	go-01	direction	down	g	d2	
+# ::edge	go-01	path	track	g	t	
+# ::edge	cloudy-02	degree	somewhat	c2	s2	
+# ::edge	day	ARG1-of	cloudy-02	d	c2	
+# ::edge	go-01	time	day	g	d	
+(g / go-01
+    :ARG1 (t2 / train
+        :mod (c / cargo)
+        :mod (s / silver))
+    :direction (d2 / down)
+    :path (t / track)
+    :time (d / day
+        :ARG1-of (c2 / cloudy-02
+            :degree (s2 / somewhat))))

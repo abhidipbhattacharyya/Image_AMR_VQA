@@ -1,0 +1,33 @@
+# ::tok A microwave sits on a table with a lower shelf containing a toaster oven
+# ::node	m	microwave	1-2
+# ::node	s2	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	l	low-04	8-9
+# ::node	h	have-degree-91	8-9
+# ::node	m2	more	8-9
+# ::node	s	shelf	9-10
+# ::node	c	contain-01	10-11
+# ::node	t2	toaster	12-13
+# ::node	o	oven	13-14
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	microwave	s2	m	
+# ::edge	sit-01	ARG2	table	s2	t	
+# ::edge	low-04	ARG2-of	have-degree-91	l	h	
+# ::edge	have-degree-91	ARG3	more	h	m2	
+# ::edge	have-degree-91	ARG1	shelf	h	s	
+# ::edge	shelf	ARG1-of	low-04	s	l	
+# ::edge	table	part	shelf	t	s	
+# ::edge	shelf	ARG0-of	contain-01	s	c	
+# ::edge	oven	mod	toaster	o	t2	
+# ::edge	contain-01	ARG1	oven	c	o	
+(s2 / sit-01
+    :ARG1 (m / microwave)
+    :ARG2 (t / table
+        :part (s / shelf
+            :ARG0-of (c / contain-01
+                :ARG1 (o / oven
+                    :mod (t2 / toaster)))
+            :ARG1-of (l / low-04
+                :ARG2-of (h / have-degree-91
+                    :ARG1 s
+                    :ARG3 (m2 / more))))))

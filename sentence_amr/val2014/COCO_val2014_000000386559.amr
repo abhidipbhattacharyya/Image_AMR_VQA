@@ -1,0 +1,81 @@
+# ::tok In the background people appear to be selecting from a buffet , while in the foreground a young man smiles , seated before an empty plate that rests on a table with glassware , while close to him rests a full plate and a hand with a devise in it .
+# ::node	b	background	2-3
+# ::node	p	person	3-4
+# ::node	a2	appear-02	4-5
+# ::node	s2	select-01	7-8
+# ::node	b3	buffet	10-11
+# ::node	c2	contrast-01	12-13
+# ::node	f	foreground	15-16
+# ::node	y	young	17-18
+# ::node	m	man	18-19
+# ::node	s3	smile-01	19-20
+# ::node	s	seat-01	21-22
+# ::node	b2	before	22-23
+# ::node	e	empty-02	24-25
+# ::node	p2	plate	25-26
+# ::node	r2	rest-02	27-28
+# ::node	t	table	30-31
+# ::node	h2	have-03	31-32
+# ::node	g	glassware	32-33
+# ::node	c	close-10	35-36
+# ::node	r	rest-01	38-39
+# ::node	f2	full-09	40-41
+# ::node	p3	plate	41-42
+# ::node	a	and	42-43
+# ::node	h	hand	44-45
+# ::node	h3	have-03	45-46
+# ::node	d	devise	47-48
+# ::root	c2	contrast-01
+# ::edge	appear-02	location	background	a2	b	
+# ::edge	appear-02	ARG1	select-01	a2	s2	
+# ::edge	select-01	ARG0	person	s2	p	
+# ::edge	select-01	ARG2	buffet	s2	b3	
+# ::edge	contrast-01	ARG1	appear-02	c2	a2	
+# ::edge	man	mod	young	m	y	
+# ::edge	smile-01	ARG0	man	s3	m	
+# ::edge	smile-01	location	foreground	s3	f	
+# ::edge	contrast-01	ARG2	smile-01	c2	s3	
+# ::edge	man	ARG1-of	seat-01	m	s	
+# ::edge	seat-01	ARG2	before	s	b2	
+# ::edge	plate	ARG1-of	empty-02	p2	e	
+# ::edge	before	op1	plate	b2	p2	
+# ::edge	plate	ARG1-of	rest-02	p2	r2	
+# ::edge	rest-02	ARG2	table	r2	t	
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	have-03	ARG1	glassware	h2	g	
+# ::edge	close-10	ARG2	man	c	m	
+# ::edge	rest-01	location	close-10	r	c	
+# ::edge	seat-01	time	rest-01	s	r	
+# ::edge	plate	ARG1-of	full-09	p3	f2	
+# ::edge	and	op1	plate	a	p3	
+# ::edge	rest-01	ARG1	and	r	a	
+# ::edge	and	op2	hand	a	h	
+# ::edge	hand	ARG0-of	have-03	h	h3	
+# ::edge	have-03	ARG1	devise	h3	d	
+(c2 / contrast-01
+    :ARG1 (a2 / appear-02
+        :ARG1 (s2 / select-01
+            :ARG0 (p / person)
+            :ARG2 (b3 / buffet))
+        :location (b / background))
+    :ARG2 (s3 / smile-01
+        :ARG0 (m / man
+            :ARG1-of (s / seat-01
+                :ARG2 (b2 / before
+                    :op1 (p2 / plate
+                        :ARG1-of (e / empty-02)
+                        :ARG1-of (r2 / rest-02
+                            :ARG2 (t / table
+                                :ARG0-of (h2 / have-03
+                                    :ARG1 (g / glassware))))))
+                :time (r / rest-01
+                    :ARG1 (a / and
+                        :op1 (p3 / plate
+                            :ARG1-of (f2 / full-09))
+                        :op2 (h / hand
+                            :ARG0-of (h3 / have-03
+                                :ARG1 (d / devise))))
+                    :location (c / close-10
+                        :ARG2 m)))
+            :mod (y / young))
+        :location (f / foreground)))

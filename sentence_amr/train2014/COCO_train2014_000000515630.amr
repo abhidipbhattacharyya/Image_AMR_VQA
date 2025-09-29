@@ -1,0 +1,30 @@
+# ::tok This crop of marijuana plants will produce tremendous profits for its growers .
+# ::node	t	this	0-1
+# ::node	c	crop	1-2
+# ::node	m	marijuana	3-4
+# ::node	p2	plant	4-5
+# ::node	p3	produce-01	6-7
+# ::node	t2	tremendous	7-8
+# ::node	p4	profit-01	8-9
+# ::node	p	person	11-12
+# ::node	g	grow-03	11-12
+# ::root	p3	produce-01
+# ::edge	crop	mod	this	c	t	
+# ::edge	plant	mod	marijuana	p2	m	
+# ::edge	crop	consist-of	plant	c	p2	
+# ::edge	produce-01	ARG0	crop	p3	c	
+# ::edge	profit-01	mod	tremendous	p4	t2	
+# ::edge	produce-01	ARG1	profit-01	p3	p4	
+# ::edge	profit-01	ARG0	person	p4	p	
+# ::edge	person	ARG0-of	grow-03	p	g	
+# ::edge	grow-03	ARG1	crop	g	c	
+(p3 / produce-01
+    :ARG0 (c / crop
+        :consist-of (p2 / plant
+            :mod (m / marijuana))
+        :mod (t / this))
+    :ARG1 (p4 / profit-01
+        :ARG0 (p / person
+            :ARG0-of (g / grow-03
+                :ARG1 c))
+        :mod (t2 / tremendous)))

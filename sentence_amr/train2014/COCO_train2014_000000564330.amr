@@ -1,0 +1,36 @@
+# ::tok Cats sleeping on top of a bed with blue and white striped blankets .
+# ::node	c	cat	0-1
+# ::node	s	sleep-01	1-2
+# ::node	t	top	3-4
+# ::node	b	bed	6-7
+# ::node	b4	blue	8-9
+# ::node	a	and	9-10
+# ::node	w	white-03	10-11
+# ::node	s2	stripe	11-12
+# ::node	s3	stripe	11-12
+# ::node	b2	blanket	12-13
+# ::node	b3	blanket	12-13
+# ::root	s	sleep-01
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	sleep-01	location	top	s	t	
+# ::edge	top	part-of	bed	t	b	
+# ::edge	bed	instrument	and	b	a	
+# ::edge	and	op1	stripe	a	s2	
+# ::edge	stripe	mod	blue	s2	b4	
+# ::edge	stripe	ARG1-of	white-03	s3	w	
+# ::edge	blanket	consist-of	stripe	b2	s2	
+# ::edge	and	op2	blanket	a	b2	
+# ::edge	blanket	part	stripe	b3	s3	
+# ::edge	and	op2	blanket	a	b3	
+(s / sleep-01
+    :ARG0 (c / cat)
+    :location (t / top
+        :part-of (b / bed
+            :instrument (a / and
+                :op1 (s2 / stripe
+                    :mod (b4 / blue))
+                :op2 (b2 / blanket
+                    :consist-of s2)
+                :op2 (b3 / blanket
+                    :part (s3 / stripe
+                        :ARG1-of (w / white-03)))))))

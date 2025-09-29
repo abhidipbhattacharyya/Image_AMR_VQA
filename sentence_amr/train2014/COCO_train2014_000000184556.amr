@@ -1,0 +1,40 @@
+# ::tok Many identical bikes , blue and red , are parked in front of the wooden doors of a building .
+# ::node	m	many	0-1
+# ::node	i	identical-01	1-2
+# ::node	b	bike-01	2-3
+# ::node	b2	bike-01	2-3
+# ::node	b3	bike-01	2-3
+# ::node	b4	blue	4-5
+# ::node	a	and	5-6
+# ::node	r	red-02	6-7
+# ::node	p	park-01	9-10
+# ::node	i2	in-front-of	11-12
+# ::node	w	wood	14-15
+# ::node	d	door	15-16
+# ::node	b5	building	18-19
+# ::root	p	park-01
+# ::edge	bike-01	ARG1-of	identical-01	b	i	
+# ::edge	bike-01	quant	many	b	m	
+# ::edge	bike-01	mod	blue	b2	b4	
+# ::edge	and	op2	bike-01	a	b3	
+# ::edge	and	op1	bike-01	a	b2	
+# ::edge	identical-01	ARG2	and	i	a	
+# ::edge	bike-01	ARG1-of	red-02	b3	r	
+# ::edge	park-01	ARG1	bike-01	p	b	
+# ::edge	park-01	ARG2	in-front-of	p	i2	
+# ::edge	door	mod	wood	d	w	
+# ::edge	in-front-of	op1	door	i2	d	
+# ::edge	door	part-of	building	d	b5	
+(p / park-01
+    :ARG1 (b / bike-01
+        :quant (m / many)
+        :ARG1-of (i / identical-01
+            :ARG2 (a / and
+                :op1 (b2 / bike-01
+                    :mod (b4 / blue))
+                :op2 (b3 / bike-01
+                    :ARG1-of (r / red-02)))))
+    :ARG2 (i2 / in-front-of
+        :op1 (d / door
+            :mod (w / wood)
+            :part-of (b5 / building))))

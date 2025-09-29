@@ -1,0 +1,73 @@
+# ::tok A long column with four different clocks on it with times for Los Angeles , St. Petersburg , London and Tokyo .
+# ::node	l	long-03	1-2
+# ::node	c5	column	2-3
+# ::node	h	have-03	3-4
+# ::node	0	4	4-5
+# ::node	d	differ-02	5-6
+# ::node	w	watch	6-7
+# ::node	t	time	10-11
+# ::node	t2	time	10-11
+# ::node	t3	time	10-11
+# ::node	n	name	12-13
+# ::node	3	Los	12-13
+# ::node	c	city	13-14
+# ::node	1	Angeles	13-14
+# ::node	n2	name	15-16
+# ::node	5	St.	15-16
+# ::node	c2	city	16-17
+# ::node	4	Petersburg	16-17
+# ::node	c3	city	18-19
+# ::node	n3	name	18-19
+# ::node	2	London	18-19
+# ::node	a	and	19-20
+# ::node	c4	city	20-21
+# ::node	n4	name	20-21
+# ::node	6	Tokyo	20-21
+# ::root	c5	column
+# ::edge	column	ARG1-of	long-03	c5	l	
+# ::edge	column	ARG0-of	have-03	c5	h	
+# ::edge	watch	ARG1-of	differ-02	w	d	
+# ::edge	watch	quant	4	w	0	
+# ::edge	have-03	ARG1	watch	h	w	
+# ::edge	watch	time-of	time	w	t	
+# ::edge	time	time-of	time	t	t2	
+# ::edge	time	time	time	t	t3	
+# ::edge	name	op1	Los	n	3	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op2	Angeles	n	1	
+# ::edge	name	op1	St.	n2	5	
+# ::edge	city	name	name	c2	n2	
+# ::edge	name	op2	Petersburg	n2	4	
+# ::edge	city	name	name	c3	n3	
+# ::edge	name	op1	London	n3	2	
+# ::edge	and	op3	city	a	c3	
+# ::edge	and	op2	city	a	c2	
+# ::edge	and	op1	city	a	c	
+# ::edge	time	beneficiary	and	t	a	
+# ::edge	and	op4	city	a	c4	
+# ::edge	city	name	name	c4	n4	
+# ::edge	name	op1	Tokyo	n4	6	
+(c5 / column
+    :ARG0-of (h / have-03
+        :ARG1 (w / watch
+            :quant 4
+            :ARG1-of (d / differ-02)
+            :time-of (t / time
+                :beneficiary (a / and
+                    :op1 (c / city
+                        :name (n / name
+                            :op1 "Los"
+                            :op2 "Angeles"))
+                    :op2 (c2 / city
+                        :name (n2 / name
+                            :op1 "St."
+                            :op2 "Petersburg"))
+                    :op3 (c3 / city
+                        :name (n3 / name
+                            :op1 "London"))
+                    :op4 (c4 / city
+                        :name (n4 / name
+                            :op1 "Tokyo")))
+                :time (t3 / time)
+                :time-of (t2 / time))))
+    :ARG1-of (l / long-03))

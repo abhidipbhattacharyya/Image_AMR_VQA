@@ -1,0 +1,22 @@
+# ::tok People watching TV while the one standing is operating the remote .
+# ::node	p	person	0-1
+# ::node	w	watch-01	1-2
+# ::node	t	television	2-3
+# ::node	o	one	5-6
+# ::node	s	stand-01	6-7
+# ::node	o2	operate-01	8-9
+# ::node	r	remote	10-11
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	watch-01	ARG1	television	w	t	
+# ::edge	one	ARG1-of	stand-01	o	s	
+# ::edge	operate-01	ARG0	one	o2	o	
+# ::edge	watch-01	time	operate-01	w	o2	
+# ::edge	operate-01	ARG1	remote	o2	r	
+(w / watch-01
+    :ARG0 (p / person)
+    :ARG1 (t / television)
+    :time (o2 / operate-01
+        :ARG0 (o / one
+            :ARG1-of (s / stand-01))
+        :ARG1 (r / remote)))

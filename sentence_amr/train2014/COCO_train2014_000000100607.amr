@@ -1,0 +1,30 @@
+# ::tok A street corner with a sign letting pedestrians to know where to walk .
+# ::node	s2	street	1-2
+# ::node	c	corner	2-3
+# ::node	s	sign	5-6
+# ::node	l	let-01	6-7
+# ::node	w	walk-01	7-8
+# ::node	k	know-01	9-10
+# ::node	t	thing	10-11
+# ::node	p	person	11-12
+# ::node	w2	walk-01	12-13
+# ::root	c	corner
+# ::edge	corner	location-of	street	c	s2	
+# ::edge	corner	location-of	sign	c	s	
+# ::edge	sign	ARG0-of	let-01	s	l	
+# ::edge	let-01	ARG1	know-01	l	k	
+# ::edge	know-01	ARG1	thing	k	t	
+# ::edge	know-01	ARG0	person	k	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	ARG0	person	w2	p	
+# ::edge	thing	location-of	walk-01	t	w2	
+(c / corner
+    :location-of (s2 / street)
+    :location-of (s / sign
+        :ARG0-of (l / let-01
+            :ARG1 (k / know-01
+                :ARG0 (p / person
+                    :ARG0-of (w / walk-01))
+                :ARG1 (t / thing
+                    :location-of (w2 / walk-01
+                        :ARG0 p))))))

@@ -1,0 +1,27 @@
+# ::tok Open fridge door displaying a wide selection of food inside .
+# ::node	o	open-01	0-1
+# ::node	f2	fridge	1-2
+# ::node	d2	door	2-3
+# ::node	d	display-01	3-4
+# ::node	w	wide-02	5-6
+# ::node	s	select-01	6-7
+# ::node	f	food	8-9
+# ::node	i	inside	9-10
+# ::root	d	display-01
+# ::edge	door	part-of	fridge	d2	f2	
+# ::edge	door	ARG1-of	open-01	d2	o	
+# ::edge	display-01	ARG2	door	d	d2	
+# ::edge	select-01	ARG1-of	wide-02	s	w	
+# ::edge	food	ARG1-of	select-01	f	s	
+# ::edge	display-01	ARG1	food	d	f	
+# ::edge	display-01	location	inside	d	i	
+# ::edge	inside	op1	fridge	i	f2	
+(d / display-01
+    :ARG1 (f / food
+        :ARG1-of (s / select-01
+            :ARG1-of (w / wide-02)))
+    :ARG2 (d2 / door
+        :ARG1-of (o / open-01)
+        :part-of (f2 / fridge))
+    :location (i / inside
+        :op1 f2))

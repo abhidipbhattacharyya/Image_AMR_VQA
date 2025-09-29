@@ -1,0 +1,24 @@
+# ::tok A large passenger airplane has either just taken off or it is landing .
+# ::node	l2	large	1-2
+# ::node	p	passenger	2-3
+# ::node	a	airplane	3-4
+# ::node	j	just	6-7
+# ::node	t	take-off-19	7-8
+# ::node	o	or	9-10
+# ::node	l	land-01	12-13
+# ::root	o	or
+# ::edge	airplane	mod	passenger	a	p	
+# ::edge	airplane	mod	large	a	l2	
+# ::edge	take-off-19	time	just	t	j	
+# ::edge	take-off-19	ARG1	airplane	t	a	
+# ::edge	or	op1	take-off-19	o	t	
+# ::edge	or	op2	land-01	o	l	
+# ::edge	land-01	ARG1	airplane	l	a	
+(o / or
+    :op1 (t / take-off-19
+        :ARG1 (a / airplane
+            :mod (p / passenger)
+            :mod (l2 / large))
+        :time (j / just))
+    :op2 (l / land-01
+        :ARG1 a))

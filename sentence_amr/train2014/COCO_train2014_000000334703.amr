@@ -1,0 +1,79 @@
+# ::tok A person standing sideways , holding a tennis racket and a tennis ball on a tennis court area with a backboard by a fence , with benches and two people playing with a basketball on the other side , and trees and building in background .
+# ::node	p2	person	1-2
+# ::node	s3	stand-01	2-3
+# ::node	s2	sideways	3-4
+# ::node	h2	hold-01	5-6
+# ::node	t	tennis	7-8
+# ::node	r	racket	8-9
+# ::node	a	and	9-10
+# ::node	b3	ball	12-13
+# ::node	c	court	16-17
+# ::node	a3	area	17-18
+# ::node	h	have-03	18-19
+# ::node	b	backboard	20-21
+# ::node	f	fence	23-24
+# ::node	p	park	26-27
+# ::node	0	2	28-29
+# ::node	p3	person	29-30
+# ::node	p4	play-01	30-31
+# ::node	b4	basketball	33-34
+# ::node	o	other	36-37
+# ::node	s	side	37-38
+# ::node	t2	tree	40-41
+# ::node	a2	and	41-42
+# ::node	b5	building	42-43
+# ::node	b2	background	44-45
+# ::root	s3	stand-01
+# ::edge	stand-01	ARG1	person	s3	p2	
+# ::edge	stand-01	direction	sideways	s3	s2	
+# ::edge	person	ARG0-of	hold-01	p2	h2	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	and	op1	racket	a	r	
+# ::edge	hold-01	ARG1	and	h2	a	
+# ::edge	and	op2	ball	a	b3	
+# ::edge	ball	mod	tennis	b3	t	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	area	mod	court	a3	c	
+# ::edge	stand-01	location	area	s3	a3	
+# ::edge	area	ARG0-of	have-03	a3	h	
+# ::edge	have-03	ARG1	backboard	h	b	
+# ::edge	backboard	location	fence	b	f	
+# ::edge	area	accompanier	park	a3	p	
+# ::edge	person	quant	2	p3	0	
+# ::edge	play-01	ARG0	person	p4	p3	
+# ::edge	area	location-of	play-01	a3	p4	
+# ::edge	play-01	ARG2	basketball	p4	b4	
+# ::edge	side	mod	other	s	o	
+# ::edge	play-01	location	side	p4	s	
+# ::edge	and	op2	tree	a2	t2	
+# ::edge	area	op3	and	a3	a2	
+# ::edge	and	op1	person	a2	p2	
+# ::edge	and	op3	building	a2	b5	
+# ::edge	and	location	background	a2	b2	
+(s3 / stand-01
+    :ARG1 (p2 / person
+        :ARG0-of (h2 / hold-01
+            :ARG1 (a / and
+                :op1 (r / racket
+                    :mod (t / tennis))
+                :op2 (b3 / ball
+                    :mod t))))
+    :direction (s2 / sideways)
+    :location (a3 / area
+        :ARG0-of (h / have-03
+            :ARG1 (b / backboard
+                :location (f / fence)))
+        :accompanier (p / park)
+        :location-of (p4 / play-01
+            :ARG0 (p3 / person
+                :quant 2)
+            :ARG2 (b4 / basketball)
+            :location (s / side
+                :mod (o / other)))
+        :mod (c / court
+            :mod t)
+        :op3 (a2 / and
+            :location (b2 / background)
+            :op1 p2
+            :op2 (t2 / tree)
+            :op3 (b5 / building))))

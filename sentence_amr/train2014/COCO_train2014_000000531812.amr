@@ -1,0 +1,41 @@
+# ::tok A grilled cheese sandwich with onions and pickles and a tomato in the middle .
+# ::node	c2	country-region	1-2
+# ::node	n	name	1-2
+# ::node	v	variable	1-2
+# ::node	g	grilled	1-2
+# ::node	c	cheese	2-3
+# ::node	s	sandwich	3-4
+# ::node	h	have-03	4-5
+# ::node	t	tomato	5-6
+# ::node	a	and	6-7
+# ::node	p	pickle	7-8
+# ::node	t2	tomato	10-11
+# ::node	m	middle	13-14
+# ::root	s	sandwich
+# ::edge	country-region	name	name	c2	n	
+# ::edge	sandwich	mod	cheese	s	c	
+# ::edge	sandwich	mod	variable	s	v	
+# ::edge	sandwich	mod	country-region	s	c2	
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	and	op1	tomato	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	mod	variable	a	v	
+# ::edge	and	op2	pickle	a	p	
+# ::edge	and	op3	tomato	a	t2	
+# ::edge	tomato	location	middle	t2	m	
+# ::edge	middle	op1	sandwich	m	s	
+# ::edge	sandwich	rel	grilled	s	g	
+(s / sandwich
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :mod (v / variable)
+            :op1 (t / tomato)
+            :op2 (p / pickle)
+            :op3 (t2 / tomato
+                :location (m / middle
+                    :op1 s))))
+    :mod (c / cheese)
+    :mod v
+    :mod (c2 / country-region
+        :name (n / name))
+    :rel (g / grilled))

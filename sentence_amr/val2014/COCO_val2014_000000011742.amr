@@ -1,0 +1,51 @@
+# ::tok A bottle of good Shiraz sits beside a glass with some in it ; something yummy to eat appears in the background .
+# ::node	b3	bottle	1-2
+# ::node	g2	good-02	3-4
+# ::node	p	product	4-5
+# ::node	n	name	4-5
+# ::node	0	Shiraz	4-5
+# ::node	s	sit-01	5-6
+# ::node	b2	beside	6-7
+# ::node	g	glass	8-9
+# ::node	h	have-03	9-10
+# ::node	s2	some	10-11
+# ::node	c	cause-01	13-14
+# ::node	s3	something	14-15
+# ::node	y	yummy	15-16
+# ::node	e	eat-01	17-18
+# ::node	a	appear-01	18-19
+# ::node	b	background	21-22
+# ::root	c	cause-01
+# ::edge	product	ARG1-of	good-02	p	g2	
+# ::edge	product	quant	bottle	p	b3	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Shiraz	n	0	
+# ::edge	sit-01	ARG1	bottle	s	b3	
+# ::edge	sit-01	ARG2	beside	s	b2	
+# ::edge	beside	op1	glass	b2	g	
+# ::edge	glass	ARG0-of	have-03	g	h	
+# ::edge	have-03	ARG1	some	h	s2	
+# ::edge	cause-01	ARG0	sit-01	c	s	
+# ::edge	something	mod	yummy	s3	y	
+# ::edge	something	ARG1-of	eat-01	s3	e	
+# ::edge	appear-01	ARG1	something	a	s3	
+# ::edge	cause-01	ARG1	appear-01	c	a	
+# ::edge	appear-01	location	background	a	b	
+# ::edge	cause-01	rel	product	c	p	
+(c / cause-01
+    :ARG0 (s / sit-01
+        :ARG1 (b3 / bottle)
+        :ARG2 (b2 / beside
+            :op1 (g / glass
+                :ARG0-of (h / have-03
+                    :ARG1 (s2 / some)))))
+    :ARG1 (a / appear-01
+        :ARG1 (s3 / something
+            :ARG1-of (e / eat-01)
+            :mod (y / yummy))
+        :location (b / background))
+    :rel (p / product
+        :name (n / name
+            :op1 "Shiraz")
+        :quant b3
+        :ARG1-of (g2 / good-02)))

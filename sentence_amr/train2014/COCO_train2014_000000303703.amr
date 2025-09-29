@@ -1,0 +1,34 @@
+# ::tok Kitchen table ready for party with beverage cups , citrus fruit , and alcohol bottles .
+# ::node	h	hunger-01	0-1
+# ::node	t	table	1-2
+# ::node	r	ready-01	2-3
+# ::node	p	party-01	4-5
+# ::node	b	beverage	6-7
+# ::node	c2	cup	7-8
+# ::node	c	citrus	9-10
+# ::node	f	fruit	10-11
+# ::node	a2	and	12-13
+# ::node	a	alcohol	13-14
+# ::node	b2	bottle	14-15
+# ::root	r	ready-01
+# ::edge	table	ARG1-of	hunger-01	t	h	
+# ::edge	ready-01	ARG1	table	r	t	
+# ::edge	ready-01	ARG2	party-01	r	p	
+# ::edge	cup	mod	beverage	c2	b	
+# ::edge	fruit	mod	citrus	f	c	
+# ::edge	and	op2	fruit	a2	f	
+# ::edge	and	op1	cup	a2	c2	
+# ::edge	ready-01	accompanier	and	r	a2	
+# ::edge	bottle	mod	alcohol	b2	a	
+# ::edge	and	op3	bottle	a2	b2	
+(r / ready-01
+    :ARG1 (t / table
+        :ARG1-of (h / hunger-01))
+    :ARG2 (p / party-01)
+    :accompanier (a2 / and
+        :op1 (c2 / cup
+            :mod (b / beverage))
+        :op2 (f / fruit
+            :mod (c / citrus))
+        :op3 (b2 / bottle
+            :mod (a / alcohol))))

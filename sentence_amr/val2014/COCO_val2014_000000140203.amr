@@ -1,0 +1,25 @@
+# ::tok A vehicle displays a customized license plate and milk advertisements .
+# ::node	v	vehicle	1-2
+# ::node	d	display-01	2-3
+# ::node	c	customize-01	4-5
+# ::node	l	license-01	5-6
+# ::node	p	plate	6-7
+# ::node	a2	and	7-8
+# ::node	m	milk	8-9
+# ::node	a	advertise-01	9-10
+# ::root	d	display-01
+# ::edge	display-01	ARG0	vehicle	d	v	
+# ::edge	plate	mod	license-01	p	l	
+# ::edge	plate	ARG1-of	customize-01	p	c	
+# ::edge	and	op1	plate	a2	p	
+# ::edge	display-01	ARG1	and	d	a2	
+# ::edge	advertise-01	ARG1	milk	a	m	
+# ::edge	and	op2	advertise-01	a2	a	
+(d / display-01
+    :ARG0 (v / vehicle)
+    :ARG1 (a2 / and
+        :op1 (p / plate
+            :ARG1-of (c / customize-01)
+            :mod (l / license-01))
+        :op2 (a / advertise-01
+            :ARG1 (m / milk))))

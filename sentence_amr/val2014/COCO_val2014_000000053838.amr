@@ -1,0 +1,36 @@
+# ::tok Sunlight blurs the view as it reflects from the body of a jet airplane that has it 's landing wheels out .
+# ::node	s	sun	0-1
+# ::node	b	blur-01	1-2
+# ::node	v	view-01	3-4
+# ::node	r	reflect-01	6-7
+# ::node	b2	body	9-10
+# ::node	j	jet	12-13
+# ::node	a	airplane	13-14
+# ::node	h	have-03	15-16
+# ::node	l	land-01	18-19
+# ::node	w	wheel	19-20
+# ::node	o	out-06	20-21
+# ::root	b	blur-01
+# ::edge	blur-01	ARG0	sun	b	s	
+# ::edge	blur-01	ARG1	view-01	b	v	
+# ::edge	blur-01	ARG1-of	reflect-01	b	r	
+# ::edge	reflect-01	ARG2	body	r	b2	
+# ::edge	airplane	mod	jet	a	j	
+# ::edge	body	part-of	airplane	b2	a	
+# ::edge	airplane	ARG0-of	have-03	a	h	
+# ::edge	wheel	ARG1-of	land-01	w	l	
+# ::edge	have-03	ARG1	wheel	h	w	
+# ::edge	airplane	part	wheel	a	w	
+# ::edge	wheel	ARG1-of	out-06	w	o	
+(b / blur-01
+    :ARG0 (s / sun)
+    :ARG1 (v / view-01)
+    :ARG1-of (r / reflect-01
+        :ARG2 (b2 / body
+            :part-of (a / airplane
+                :ARG0-of (h / have-03
+                    :ARG1 (w / wheel
+                        :ARG1-of (l / land-01)
+                        :ARG1-of (o / out-06)))
+                :mod (j / jet)
+                :part w))))

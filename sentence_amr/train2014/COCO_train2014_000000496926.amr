@@ -1,0 +1,36 @@
+# ::tok Two laptops sitting on a desk next to some pens and pencils next to a chair .
+# ::node	0	2	0-1
+# ::node	l	laptop	1-2
+# ::node	s	sit-01	2-3
+# ::node	d	desk	5-6
+# ::node	n	next-to	6-7
+# ::node	s2	some	8-9
+# ::node	s3	station	9-10
+# ::node	w	write-01	9-10
+# ::node	b	brush	11-12
+# ::node	n2	next-to	12-13
+# ::node	c	chair	15-16
+# ::root	s	sit-01
+# ::edge	laptop	quant	2	l	0	
+# ::edge	sit-01	ARG1	laptop	s	l	
+# ::edge	sit-01	ARG2	desk	s	d	
+# ::edge	desk	location	next-to	d	n	
+# ::edge	station	mod	some	s3	s2	
+# ::edge	next-to	op1	station	n	s3	
+# ::edge	station	ARG0-of	write-01	s3	w	
+# ::edge	brush	mod	some	b	s2	
+# ::edge	next-to	op2	brush	n	b	
+# ::edge	brush	location	next-to	b	n2	
+# ::edge	next-to	op1	chair	n2	c	
+(s / sit-01
+    :ARG1 (l / laptop
+        :quant 2)
+    :ARG2 (d / desk
+        :location (n / next-to
+            :op1 (s3 / station
+                :ARG0-of (w / write-01)
+                :mod (s2 / some))
+            :op2 (b / brush
+                :location (n2 / next-to
+                    :op1 (c / chair))
+                :mod s2))))

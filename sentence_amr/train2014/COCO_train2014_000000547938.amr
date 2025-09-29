@@ -1,0 +1,39 @@
+# ::tok The Royal Jordanian airplane with a gold crown on it 's tail is easily recognizable .
+# ::node	n	name	1-2
+# ::node	1	Royal	1-2
+# ::node	c	country	2-3
+# ::node	0	Jordan	2-3
+# ::node	a	airplane	3-4
+# ::node	h	have-03	4-5
+# ::node	g	gold	6-7
+# ::node	c2	crown	7-8
+# ::node	t	tail	11-12
+# ::node	e	easy-05	13-14
+# ::node	p	possible-01	14-15
+# ::node	r	recognize-02	14-15
+# ::root	p	possible-01
+# ::edge	name	op1	Royal	n	1	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op2	Jordan	n	0	
+# ::edge	airplane	mod	country	a	c	
+# ::edge	airplane	ARG0-of	have-03	a	h	
+# ::edge	crown	consist-of	gold	c2	g	
+# ::edge	have-03	ARG1	crown	h	c2	
+# ::edge	crown	location	tail	c2	t	
+# ::edge	airplane	part	tail	a	t	
+# ::edge	possible-01	ARG1	recognize-02	p	r	
+# ::edge	recognize-02	ARG1-of	easy-05	r	e	
+# ::edge	recognize-02	ARG1	airplane	r	a	
+(p / possible-01
+    :ARG1 (r / recognize-02
+        :ARG1 (a / airplane
+            :ARG0-of (h / have-03
+                :ARG1 (c2 / crown
+                    :consist-of (g / gold)
+                    :location (t / tail)))
+            :mod (c / country
+                :name (n / name
+                    :op1 "Royal"
+                    :op2 "Jordan"))
+            :part t)
+        :ARG1-of (e / easy-05)))

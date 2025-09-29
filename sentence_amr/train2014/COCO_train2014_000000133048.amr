@@ -1,0 +1,25 @@
+# ::tok A side mirror with the image of the Eifel Tower reflecting in it .
+# ::node	s	side	1-2
+# ::node	m	mirror	2-3
+# ::node	i	image	5-6
+# ::node	n	name	8-9
+# ::node	0	Eifel	8-9
+# ::node	b	building	9-10
+# ::node	1	Tower	9-10
+# ::node	r	reflect-01	10-11
+# ::root	m	mirror
+# ::edge	mirror	location	side	m	s	
+# ::edge	name	op1	Eifel	n	0	
+# ::edge	building	name	name	b	n	
+# ::edge	image	mod	building	i	b	
+# ::edge	name	op2	Tower	n	1	
+# ::edge	reflect-01	ARG1	image	r	i	
+# ::edge	mirror	ARG2-of	reflect-01	m	r	
+(m / mirror
+    :ARG2-of (r / reflect-01
+        :ARG1 (i / image
+            :mod (b / building
+                :name (n / name
+                    :op1 "Eifel"
+                    :op2 "Tower"))))
+    :location (s / side))

@@ -1,0 +1,27 @@
+# ::tok the pedestrian 's light at this intersection is telling people not to walk
+# ::node	p	pedestrian	1-2
+# ::node	l	light	3-4
+# ::node	t2	this	5-6
+# ::node	i	intersect-01	6-7
+# ::node	t	tell-01	8-9
+# ::node	p2	person	9-10
+# ::node	0	-	10-11
+# ::node	w	walk-01	12-13
+# ::root	t	tell-01
+# ::edge	light	poss	pedestrian	l	p	
+# ::edge	intersect-01	mod	this	i	t2	
+# ::edge	light	location	intersect-01	l	i	
+# ::edge	tell-01	ARG0	light	t	l	
+# ::edge	tell-01	ARG2	person	t	p2	
+# ::edge	walk-01	polarity	-	w	0	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	tell-01	ARG1	walk-01	t	w	
+(t / tell-01
+    :ARG0 (l / light
+        :location (i / intersect-01
+            :mod (t2 / this))
+        :poss (p / pedestrian))
+    :ARG1 (w / walk-01
+        :ARG0 (p2 / person)
+        :polarity -)
+    :ARG2 p2)

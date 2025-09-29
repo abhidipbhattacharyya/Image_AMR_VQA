@@ -1,0 +1,27 @@
+# ::tok A well stacked shelf of very ripe oranges ready for sale .
+# ::node	w	well	1-2
+# ::node	s3	stack-01	2-3
+# ::node	s2	shelf	3-4
+# ::node	v	very	5-6
+# ::node	r2	ripe-02	6-7
+# ::node	o	orange	7-8
+# ::node	r	ready-02	8-9
+# ::node	s	sell-01	10-11
+# ::root	s2	shelf
+# ::edge	stack-01	mod	well	s3	w	
+# ::edge	shelf	ARG1-of	stack-01	s2	s3	
+# ::edge	ripe-02	degree	very	r2	v	
+# ::edge	orange	ARG1-of	ripe-02	o	r2	
+# ::edge	shelf	consist-of	orange	s2	o	
+# ::edge	shelf	ARG1-of	ready-02	s2	r	
+# ::edge	ready-02	ARG2	sell-01	r	s	
+# ::edge	sell-01	ARG1	orange	s	o	
+(s2 / shelf
+    :ARG1-of (s3 / stack-01
+        :mod (w / well))
+    :ARG1-of (r / ready-02
+        :ARG2 (s / sell-01
+            :ARG1 (o / orange
+                :ARG1-of (r2 / ripe-02
+                    :degree (v / very)))))
+    :consist-of o)

@@ -1,0 +1,58 @@
+# ::tok An indoor area has columns and glass cases with rows of wine , and to the foreground , a smiling woman with an outstretched hand , clasping a near - empty wineglass .
+# ::node	i	indoor	1-2
+# ::node	a3	area	2-3
+# ::node	h2	have-03	3-4
+# ::node	c3	column	4-5
+# ::node	a	and	5-6
+# ::node	a2	and	5-6
+# ::node	g	glass	6-7
+# ::node	c	case	7-8
+# ::node	r	row	9-10
+# ::node	w	wine	11-12
+# ::node	f	foreground	16-17
+# ::node	s	smile-01	19-20
+# ::node	w3	woman	20-21
+# ::node	e2	extend-01	23-24
+# ::node	h	hand	24-25
+# ::node	c2	clasp-01	26-27
+# ::node	n	near-02	28-29
+# ::node	e	empty-02	30-31
+# ::node	w2	wineglass	31-32
+# ::root	a	and
+# ::edge	area	location	indoor	a3	i	
+# ::edge	have-03	ARG0	area	h2	a3	
+# ::edge	and	op1	have-03	a	h2	
+# ::edge	and	op1	column	a2	c3	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	case	consist-of	glass	c	g	
+# ::edge	and	op2	case	a2	c	
+# ::edge	and	consist-of	row	a2	r	
+# ::edge	row	consist-of	wine	r	w	
+# ::edge	woman	ARG0-of	smile-01	w3	s	
+# ::edge	woman	location	foreground	w3	f	
+# ::edge	and	op2	woman	a	w3	
+# ::edge	hand	ARG1-of	extend-01	h	e2	
+# ::edge	woman	part	hand	w3	h	
+# ::edge	woman	ARG0-of	clasp-01	w3	c2	
+# ::edge	empty-02	degree	near-02	e	n	
+# ::edge	wineglass	ARG1-of	empty-02	w2	e	
+# ::edge	clasp-01	ARG1	wineglass	c2	w2	
+(a / and
+    :op1 (h2 / have-03
+        :ARG0 (a3 / area
+            :location (i / indoor))
+        :ARG1 (a2 / and
+            :consist-of (r / row
+                :consist-of (w / wine))
+            :op1 (c3 / column)
+            :op2 (c / case
+                :consist-of (g / glass))))
+    :op2 (w3 / woman
+        :ARG0-of (s / smile-01)
+        :ARG0-of (c2 / clasp-01
+            :ARG1 (w2 / wineglass
+                :ARG1-of (e / empty-02
+                    :degree (n / near-02))))
+        :location (f / foreground)
+        :part (h / hand
+            :ARG1-of (e2 / extend-01))))

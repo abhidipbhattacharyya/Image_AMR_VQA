@@ -1,0 +1,33 @@
+# ::tok A no honking and no stopping sign are posted on a pole .
+# ::node	y	you	1-2
+# ::node	i	imperative	1-2
+# ::node	0	-	1-2
+# ::node	d	drive-01	2-3
+# ::node	a	and	3-4
+# ::node	1	-	4-5
+# ::node	s2	stop-01	5-6
+# ::node	s	sign	6-7
+# ::node	p2	post-01	8-9
+# ::node	p	pole	11-12
+# ::root	p2	post-01
+# ::edge	drive-01	polarity	-	d	0	
+# ::edge	drive-01	mode	imperative	d	i	
+# ::edge	drive-01	ARG0	you	d	y	
+# ::edge	and	op1	drive-01	a	d	
+# ::edge	stop-01	polarity	-	s2	1	
+# ::edge	imperative	op2	stop-01	i	s2	
+# ::edge	stop-01	ARG0	you	s2	y	
+# ::edge	sign	topic	and	s	a	
+# ::edge	post-01	ARG1	sign	p2	s	
+# ::edge	post-01	ARG2	pole	p2	p	
+(p2 / post-01
+    :ARG1 (s / sign
+        :topic (a / and
+            :op1 (d / drive-01
+                :ARG0 (y / you)
+                :mode (i / imperative
+                    :op2 (s2 / stop-01
+                        :ARG0 y
+                        :polarity -))
+                :polarity -)))
+    :ARG2 (p / pole))

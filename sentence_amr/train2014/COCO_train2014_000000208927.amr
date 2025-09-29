@@ -1,0 +1,27 @@
+# ::tok Buses lined up parked in the parking lot with cars parked behind them .
+# ::node	b2	bus	0-1
+# ::node	l	line-up-02	1-2
+# ::node	p	park-01	3-4
+# ::node	p2	park-01	6-7
+# ::node	l2	lot	7-8
+# ::node	c	car	9-10
+# ::node	p3	park-01	10-11
+# ::node	b	behind	11-12
+# ::root	l	line-up-02
+# ::edge	line-up-02	ARG1	bus	l	b2	
+# ::edge	bus	ARG1-of	park-01	b2	p	
+# ::edge	lot	ARG2-of	park-01	l2	p2	
+# ::edge	park-01	ARG2	lot	p	l2	
+# ::edge	line-up-02	accompanier	car	l	c	
+# ::edge	car	ARG1-of	park-01	c	p3	
+# ::edge	park-01	location	behind	p3	b	
+# ::edge	behind	op1	bus	b	b2	
+(l / line-up-02
+    :ARG1 (b2 / bus
+        :ARG1-of (p / park-01
+            :ARG2 (l2 / lot
+                :ARG2-of (p2 / park-01))))
+    :accompanier (c / car
+        :ARG1-of (p3 / park-01
+            :location (b / behind
+                :op1 b2))))

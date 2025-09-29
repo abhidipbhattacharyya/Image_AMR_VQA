@@ -1,0 +1,42 @@
+# ::tok One player lurching over the other to catch a frisbee in open grassy area .
+# ::node	0	1	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	p3	play-01	1-2
+# ::node	l	lurch-01	2-3
+# ::node	c2	cause-01	3-4
+# ::node	o3	over	3-4
+# ::node	o2	other	5-6
+# ::node	c	catch-01	7-8
+# ::node	f	frisbee	9-10
+# ::node	o	open-06	11-12
+# ::node	g	grass	12-13
+# ::node	a	area	13-14
+# ::root	l	lurch-01
+# ::edge	person	quant	1	p	0	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	lurch-01	ARG0	person	l	p	
+# ::edge	lurch-01	ARG1-of	cause-01	l	c2	
+# ::edge	lurch-01	direction	over	l	o3	
+# ::edge	over	op1	other	o3	o2	
+# ::edge	cause-01	ARG0	catch-01	c2	c	
+# ::edge	catch-01	ARG0	person	c	p	
+# ::edge	catch-01	ARG1	frisbee	c	f	
+# ::edge	area	consist-of	grass	a	g	
+# ::edge	area	ARG1-of	open-06	a	o	
+# ::edge	catch-01	location	area	c	a	
+# ::edge	lurch-01	rel	play-01	l	p3	
+(l / lurch-01
+    :ARG0 (p / person
+        :quant 1
+        :ARG0-of (p2 / play-01))
+    :ARG1-of (c2 / cause-01
+        :ARG0 (c / catch-01
+            :ARG0 p
+            :ARG1 (f / frisbee)
+            :location (a / area
+                :ARG1-of (o / open-06)
+                :consist-of (g / grass))))
+    :direction (o3 / over
+        :op1 (o2 / other))
+    :rel (p3 / play-01))

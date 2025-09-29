@@ -1,0 +1,25 @@
+# ::tok A blue train stopped at a train station with people walking with luggage .
+# ::node	b	blue	1-2
+# ::node	t	train	2-3
+# ::node	s2	stop-01	3-4
+# ::node	t2	train	6-7
+# ::node	s	station	7-8
+# ::node	p	person	9-10
+# ::node	w	walk-01	10-11
+# ::node	l	luggage	12-13
+# ::root	s2	stop-01
+# ::edge	train	mod	blue	t	b	
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	station	mod	train	s	t2	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	train	location-of	person	t	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	accompanier	luggage	w	l	
+(s2 / stop-01
+    :ARG1 (t / train
+        :location-of (p / person
+            :ARG0-of (w / walk-01
+                :accompanier (l / luggage)))
+        :mod (b / blue))
+    :location (s / station
+        :mod (t2 / train)))

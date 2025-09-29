@@ -1,0 +1,25 @@
+# ::tok A sliced pizza with olives and greens with several pieces missing .
+# ::node	s2	slice-01	1-2
+# ::node	p2	pizza	2-3
+# ::node	l	Olive	4-5
+# ::node	a	and	5-6
+# ::node	r	Greens	6-7
+# ::node	s	several	8-9
+# ::node	p	piece	9-10
+# ::node	m	miss-01	10-11
+# ::root	p2	pizza
+# ::edge	pizza	ARG1-of	slice-01	p2	s2	
+# ::edge	and	op1	Olive	a	l	
+# ::edge	pizza	accompanier	and	p2	a	
+# ::edge	and	op2	Greens	a	r	
+# ::edge	piece	quant	several	p	s	
+# ::edge	miss-01	ARG1	piece	m	p	
+# ::edge	pizza	ARG2-of	miss-01	p2	m	
+(p2 / pizza
+    :ARG1-of (s2 / slice-01)
+    :ARG2-of (m / miss-01
+        :ARG1 (p / piece
+            :quant (s / several)))
+    :accompanier (a / and
+        :op1 (l / Olive)
+        :op2 (r / Greens)))

@@ -1,0 +1,37 @@
+# ::tok one bowl of beans and rice and another bowl of pea soup an orange and an apple
+# ::node	0	1	0-1
+# ::node	b2	bowl	1-2
+# ::node	b	bean	3-4
+# ::node	a	and	4-5
+# ::node	r	rice	5-6
+# ::node	a2	and	6-7
+# ::node	a3	another	7-8
+# ::node	b3	bowl	8-9
+# ::node	p	pea	10-11
+# ::node	s	soup	11-12
+# ::node	o	orange	13-14
+# ::node	a4	apple	16-17
+# ::root	a2	and
+# ::edge	bowl	quant	1	b2	0	
+# ::edge	and	op1	bean	a	b	
+# ::edge	bowl	consist-of	and	b2	a	
+# ::edge	and	op2	rice	a	r	
+# ::edge	and	op1	bowl	a2	b2	
+# ::edge	bowl	mod	another	b3	a3	
+# ::edge	soup	mod	pea	s	p	
+# ::edge	soup	quant	bowl	s	b3	
+# ::edge	and	op2	soup	a2	s	
+# ::edge	and	op3	orange	a2	o	
+# ::edge	and	op4	apple	a2	a4	
+(a2 / and
+    :op1 (b2 / bowl
+        :quant 1
+        :consist-of (a / and
+            :op1 (b / bean)
+            :op2 (r / rice)))
+    :op2 (s / soup
+        :quant (b3 / bowl
+            :mod (a3 / another))
+        :mod (p / pea))
+    :op3 (o / orange)
+    :op4 (a4 / apple))

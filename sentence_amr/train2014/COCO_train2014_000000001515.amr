@@ -1,0 +1,28 @@
+# ::tok Several smokestacks release a lot of smoke , partially obscuring a plane in the sky .
+# ::node	s	several	0-1
+# ::node	s4	smoke-01	1-2
+# ::node	r	release-01	2-3
+# ::node	l	lot	4-5
+# ::node	s3	smoke	6-7
+# ::node	p	part	8-9
+# ::node	o	obscure-01	9-10
+# ::node	p2	plane	11-12
+# ::node	s2	sky	14-15
+# ::root	r	release-01
+# ::edge	smoke-01	quant	several	s4	s	
+# ::edge	release-01	ARG0	smoke-01	r	s4	
+# ::edge	smoke	quant	lot	s3	l	
+# ::edge	release-01	ARG1	smoke	r	s3	
+# ::edge	obscure-01	degree	part	o	p	
+# ::edge	release-01	ARG0-of	obscure-01	r	o	
+# ::edge	obscure-01	ARG1	plane	o	p2	
+# ::edge	plane	location	sky	p2	s2	
+(r / release-01
+    :ARG0 (s4 / smoke-01
+        :quant (s / several))
+    :ARG0-of (o / obscure-01
+        :ARG1 (p2 / plane
+            :location (s2 / sky))
+        :degree (p / part))
+    :ARG1 (s3 / smoke
+        :quant (l / lot)))

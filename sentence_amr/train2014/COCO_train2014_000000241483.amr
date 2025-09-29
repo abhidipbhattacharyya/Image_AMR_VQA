@@ -1,0 +1,43 @@
+# ::tok A black refrigerator at the end of an L - shaped counter topped with a microwave , coffeemaker and stainless steel sink .
+# ::node	b	black-04	1-2
+# ::node	r	refrigerator	2-3
+# ::node	e	end	5-6
+# ::node	s5	string-entity	8-9
+# ::node	0	L	8-9
+# ::node	s	shape-01	10-11
+# ::node	c2	counter	11-12
+# ::node	t	top-02	12-13
+# ::node	m	microwave	15-16
+# ::node	c	coffeemaker	17-18
+# ::node	a	and	18-19
+# ::node	s3	stainless	19-20
+# ::node	s4	steel	20-21
+# ::node	s2	sink	21-22
+# ::root	r	refrigerator
+# ::edge	refrigerator	ARG1-of	black-04	r	b	
+# ::edge	refrigerator	location	end	r	e	
+# ::edge	string-entity	value	L	s5	0	
+# ::edge	shape-01	ARG2	string-entity	s	s5	
+# ::edge	counter	ARG1-of	shape-01	c2	s	
+# ::edge	end	part-of	counter	e	c2	
+# ::edge	counter	ARG0-of	top-02	c2	t	
+# ::edge	and	op2	coffeemaker	a	c	
+# ::edge	and	op1	microwave	a	m	
+# ::edge	top-02	ARG1	and	t	a	
+# ::edge	steel	mod	stainless	s4	s3	
+# ::edge	sink	consist-of	steel	s2	s4	
+# ::edge	and	op3	sink	a	s2	
+(r / refrigerator
+    :ARG1-of (b / black-04)
+    :location (e / end
+        :part-of (c2 / counter
+            :ARG0-of (t / top-02
+                :ARG1 (a / and
+                    :op1 (m / microwave)
+                    :op2 (c / coffeemaker)
+                    :op3 (s2 / sink
+                        :consist-of (s4 / steel
+                            :mod (s3 / stainless)))))
+            :ARG1-of (s / shape-01
+                :ARG2 (s5 / string-entity
+                    :value "L")))))

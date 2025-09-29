@@ -1,0 +1,27 @@
+# ::tok Large commercial passenger jetliner preparing to land on clear day .
+# ::node	l2	large	0-1
+# ::node	c2	commerce	1-2
+# ::node	p	passenger	2-3
+# ::node	j	jetliner	3-4
+# ::node	p2	prepare-02	4-5
+# ::node	l	land-01	6-7
+# ::node	c	clear-01	8-9
+# ::node	d	day	9-10
+# ::root	p2	prepare-02
+# ::edge	jetliner	mod	passenger	j	p	
+# ::edge	jetliner	mod	commerce	j	c2	
+# ::edge	jetliner	mod	large	j	l2	
+# ::edge	prepare-02	ARG1	jetliner	p2	j	
+# ::edge	prepare-02	ARG2	land-01	p2	l	
+# ::edge	land-01	ARG1	jetliner	l	j	
+# ::edge	day	ARG1-of	clear-01	d	c	
+# ::edge	land-01	time	day	l	d	
+(p2 / prepare-02
+    :ARG1 (j / jetliner
+        :mod (p / passenger)
+        :mod (c2 / commerce)
+        :mod (l2 / large))
+    :ARG2 (l / land-01
+        :ARG1 j
+        :time (d / day
+            :ARG1-of (c / clear-01))))

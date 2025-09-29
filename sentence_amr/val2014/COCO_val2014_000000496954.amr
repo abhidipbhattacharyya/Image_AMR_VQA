@@ -1,0 +1,31 @@
+# ::tok A slice of brown cake possibly a carrot cake next to a slice of grapefruit .
+# ::node	s	slice	1-2
+# ::node	b2	brown-01	3-4
+# ::node	c	cake	4-5
+# ::node	p	possible-01	5-6
+# ::node	c3	carrot	7-8
+# ::node	c2	cake	8-9
+# ::node	n	next-to	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	s2	slice	12-13
+# ::node	g	grapefruit	14-15
+# ::root	b	be-located-at-91
+# ::edge	cake	ARG1-of	brown-01	c	b2	
+# ::edge	slice	consist-of	cake	s	c	
+# ::edge	cake	mod	carrot	c2	c3	
+# ::edge	possible-01	ARG1	cake	p	c2	
+# ::edge	cake	domain	slice	c2	s	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	be-located-at-91	ARG1	possible-01	b	p	
+# ::edge	next-to	op1	slice	n	s2	
+# ::edge	slice	consist-of	grapefruit	s2	g	
+(b / be-located-at-91
+    :ARG1 (p / possible-01
+        :ARG1 (c2 / cake
+            :domain (s / slice
+                :consist-of (c / cake
+                    :ARG1-of (b2 / brown-01)))
+            :mod (c3 / carrot)))
+    :ARG2 (n / next-to
+        :op1 (s2 / slice
+            :consist-of (g / grapefruit))))

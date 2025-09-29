@@ -1,0 +1,56 @@
+# ::tok A boy is drinking a bottle of beer while holding his baseball bat .
+# ::node	b5	boy	1-2
+# ::node	d	drink-01	3-4
+# ::node	b4	bottle	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	b3	beer	7-8
+# ::node	h	hold-01	9-10
+# ::node	b	baseball	11-12
+# ::node	b2	bat	12-13
+# ::root	d	drink-01
+# ::edge	drink-01	ARG0	boy	d	b5	
+# ::edge	volume-quantity	unit	bottle	v	b4	
+# ::edge	beer	quant	volume-quantity	b3	v	
+# ::edge	drink-01	ARG1	beer	d	b3	
+# ::edge	drink-01	time	hold-01	d	h	
+# ::edge	hold-01	ARG0	boy	h	b5	
+# ::edge	bat	mod	baseball	b2	b	
+# ::edge	hold-01	ARG1	bat	h	b2	
+# ::edge	bat	poss	boy	b2	b5	
+(d / drink-01
+    :ARG0 (b5 / boy)
+    :ARG1 (b3 / beer
+        :quant (v / volume-quantity
+            :unit (b4 / bottle)))
+    :time (h / hold-01
+        :ARG0 b5
+        :ARG1 (b2 / bat
+            :mod (b / baseball)
+            :poss b5)))
+
+
+# ::tok A woman who is standing behind him is pouring wine from a bottle .
+# ::node	w2	woman	1-2
+# ::node	s	stand-01	4-5
+# ::node	b	behind	5-6
+# ::node	h	he	6-7
+# ::node	p	pour-01	8-9
+# ::node	w	wine	9-10
+# ::node	0	1	11-12
+# ::node	b2	bottle	12-13
+# ::root	p	pour-01
+# ::edge	woman	ARG1-of	stand-01	w2	s	
+# ::edge	stand-01	ARG2	behind	s	b	
+# ::edge	behind	op1	he	b	h	
+# ::edge	pour-01	ARG0	woman	p	w2	
+# ::edge	pour-01	ARG1	wine	p	w	
+# ::edge	bottle	quant	1	b2	0	
+# ::edge	pour-01	ARG3	bottle	p	b2	
+(p / pour-01
+    :ARG0 (w2 / woman
+        :ARG1-of (s / stand-01
+            :ARG2 (b / behind
+                :op1 (h / he))))
+    :ARG1 (w / wine)
+    :ARG3 (b2 / bottle
+        :quant 1))

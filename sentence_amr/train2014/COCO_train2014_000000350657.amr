@@ -1,0 +1,42 @@
+# ::tok A Phillies baseball player is preparing to throw the baseball , standing in front of a tall fence .
+# ::node	t2	team	1-2
+# ::node	n	name	1-2
+# ::node	0	Phillies	1-2
+# ::node	b	baseball	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	p3	prepare-02	5-6
+# ::node	t3	throw-01	7-8
+# ::node	b2	baseball	9-10
+# ::node	s	stand-01	11-12
+# ::node	i	in-front-of	13-14
+# ::node	t	tall	16-17
+# ::node	f	fence	17-18
+# ::root	p3	prepare-02
+# ::edge	team	name	name	t2	n	
+# ::edge	name	op1	Phillies	n	0	
+# ::edge	person	part-of	team	p	t2	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG2	throw-01	p3	t3	
+# ::edge	throw-01	ARG0	person	t3	p	
+# ::edge	throw-01	ARG1	baseball	t3	b2	
+# ::edge	person	ARG1-of	stand-01	p	s	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	fence	mod	tall	f	t	
+# ::edge	in-front-of	op1	fence	i	f	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball))
+        :ARG1-of (s / stand-01
+            :ARG2 (i / in-front-of
+                :op1 (f / fence
+                    :mod (t / tall))))
+        :part-of (t2 / team
+            :name (n / name
+                :op1 "Phillies")))
+    :ARG2 (t3 / throw-01
+        :ARG0 p
+        :ARG1 (b2 / baseball)))

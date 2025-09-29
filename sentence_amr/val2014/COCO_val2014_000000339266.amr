@@ -1,0 +1,27 @@
+# ::tok Several bananas hooked up to wires to product a charge hooked to a laptop .
+# ::node	s	several	0-1
+# ::node	b	banana	1-2
+# ::node	h2	hook-up-02	2-3
+# ::node	w	wire	5-6
+# ::node	p	product	7-8
+# ::node	c	charge	9-10
+# ::node	h	hook-01	10-11
+# ::node	l	laptop	13-14
+# ::root	h2	hook-up-02
+# ::edge	banana	quant	several	b	s	
+# ::edge	hook-up-02	ARG1	banana	h2	b	
+# ::edge	hook-up-02	ARG2	wire	h2	w	
+# ::edge	hook-up-02	purpose	product	h2	p	
+# ::edge	product	ARG0	banana	p	b	
+# ::edge	product	ARG1	charge	p	c	
+# ::edge	charge	ARG1-of	hook-01	c	h	
+# ::edge	hook-01	ARG2	laptop	h	l	
+(h2 / hook-up-02
+    :purpose (p / product
+        :ARG0 (b / banana
+            :quant (s / several))
+        :ARG1 (c / charge
+            :ARG1-of (h / hook-01
+                :ARG2 (l / laptop))))
+    :ARG1 b
+    :ARG2 (w / wire))

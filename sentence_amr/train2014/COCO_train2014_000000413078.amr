@@ -1,0 +1,48 @@
+# ::tok Two buses , one blue and one red and white , are going to different destinations .
+# ::node	2	2	0-1
+# ::node	b2	bus	1-2
+# ::node	b3	bus	1-2
+# ::node	b4	bus	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	b	blue	4-5
+# ::node	a	and	5-6
+# ::node	r	red-02	7-8
+# ::node	w	white-03	9-10
+# ::node	g	go-02	12-13
+# ::node	d2	differ-02	14-15
+# ::node	d	destination	15-16
+# ::root	g	go-02
+# ::edge	bus	quant	2	b2	2	
+# ::edge	bus	ARG2-of	include-91	b2	i	
+# ::edge	bus	ARG2-of	include-91	b4	i2	
+# ::edge	include-91	ARG1	bus	i2	b2	
+# ::edge	bus	quant	1	b3	0	
+# ::edge	bus	quant	1	b4	1	
+# ::edge	bus	mod	blue	b3	b	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op2	bus	a	b4	
+# ::edge	and	op1	bus	a	b3	
+# ::edge	bus	ARG1-of	red-02	b4	r	
+# ::edge	bus	ARG1-of	white-03	b4	w	
+# ::edge	go-02	ARG0	bus	g	b2	
+# ::edge	destination	ARG1-of	differ-02	d	d2	
+# ::edge	go-02	ARG4	destination	g	d	
+(g / go-02
+    :ARG0 (b2 / bus
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (a / and
+                :op1 (b3 / bus
+                    :quant 1
+                    :mod (b / blue))
+                :op2 (b4 / bus
+                    :quant 1
+                    :ARG1-of (r / red-02)
+                    :ARG1-of (w / white-03)
+                    :ARG2-of (i2 / include-91
+                        :ARG1 b2)))))
+    :ARG4 (d / destination
+        :ARG1-of (d2 / differ-02)))

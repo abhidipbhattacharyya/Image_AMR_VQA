@@ -1,0 +1,25 @@
+# ::tok People walking through outdoor shopping area in urban type environment
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	o	outdoor	3-4
+# ::node	s	shop-01	4-5
+# ::node	a	area	5-6
+# ::node	u	urban	7-8
+# ::node	t	type-03	8-9
+# ::node	e	environment	9-10
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	area	location-of	shop-01	a	s	
+# ::edge	area	location	outdoor	a	o	
+# ::edge	walk-01	ARG2	area	w	a	
+# ::edge	type-03	ARG2	urban	t	u	
+# ::edge	environment	ARG1-of	type-03	e	t	
+# ::edge	area	location	environment	a	e	
+(w / walk-01
+    :ARG0 (p / person)
+    :ARG2 (a / area
+        :location (o / outdoor)
+        :location (e / environment
+            :ARG1-of (t / type-03
+                :ARG2 (u / urban)))
+        :location-of (s / shop-01)))

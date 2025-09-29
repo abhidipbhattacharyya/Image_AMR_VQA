@@ -1,0 +1,28 @@
+# ::tok A ski slope shows someone snowboarding while others look down from the top .
+# ::node	s2	ski-01	1-2
+# ::node	s4	slope	2-3
+# ::node	s	show-01	3-4
+# ::node	s5	someone	4-5
+# ::node	s3	ski-01	5-6
+# ::node	o	other	7-8
+# ::node	l	look-01	8-9
+# ::node	d	down	9-10
+# ::node	t	top	12-13
+# ::root	s	show-01
+# ::edge	slope	mod	ski-01	s4	s2	
+# ::edge	show-01	ARG0	slope	s	s4	
+# ::edge	ski-01	ARG0	someone	s3	s5	
+# ::edge	show-01	ARG1	ski-01	s	s3	
+# ::edge	look-01	ARG0	other	l	o	
+# ::edge	show-01	time	look-01	s	l	
+# ::edge	look-01	ARG1	down	l	d	
+# ::edge	down	source	top	d	t	
+(s / show-01
+    :ARG0 (s4 / slope
+        :mod (s2 / ski-01))
+    :ARG1 (s3 / ski-01
+        :ARG0 (s5 / someone))
+    :time (l / look-01
+        :ARG0 (o / other)
+        :ARG1 (d / down
+            :source (t / top))))

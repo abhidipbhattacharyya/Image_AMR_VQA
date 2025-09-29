@@ -1,0 +1,67 @@
+# ::tok This looks like a dissolve of 2 or 3 photos : donuts frying in circular pan , an elderly man standing inside a doorway , and several people socializing inside a cylinder .
+# ::node	t	this	0-1
+# ::node	l	look-02	1-2
+# ::node	d	dissolve-01	4-5
+# ::node	0	2	6-7
+# ::node	o	or	7-8
+# ::node	1	3	8-9
+# ::node	p3	photo	9-10
+# ::node	d2	donut	11-12
+# ::node	f	fry-01	12-13
+# ::node	c	circular	14-15
+# ::node	p	pan	15-16
+# ::node	e	elderly	18-19
+# ::node	m	man	19-20
+# ::node	s3	stand-01	20-21
+# ::node	i	inside	21-22
+# ::node	d3	doorway	23-24
+# ::node	a	and	25-26
+# ::node	s	several	26-27
+# ::node	p2	person	27-28
+# ::node	s2	socialize-01	28-29
+# ::node	i2	inside	29-30
+# ::node	c2	cylinder	31-32
+# ::root	l	look-02
+# ::edge	look-02	ARG0	this	l	t	
+# ::edge	look-02	ARG1	dissolve-01	l	d	
+# ::edge	or	op1	2	o	0	
+# ::edge	or	op2	3	o	1	
+# ::edge	photo	quant	or	p3	o	
+# ::edge	dissolve-01	ARG2	photo	d	p3	
+# ::edge	donut	ARG1-of	fry-01	d2	f	
+# ::edge	pan	mod	circular	p	c	
+# ::edge	fry-01	location	pan	f	p	
+# ::edge	man	mod	elderly	m	e	
+# ::edge	stand-01	ARG0	man	s3	m	
+# ::edge	stand-01	ARG2	inside	s3	i	
+# ::edge	inside	op1	doorway	i	d3	
+# ::edge	and	op2	stand-01	a	s3	
+# ::edge	and	op1	donut	a	d2	
+# ::edge	dissolve-01	ARG1	and	d	a	
+# ::edge	person	quant	several	p2	s	
+# ::edge	socialize-01	ARG0	person	s2	p2	
+# ::edge	and	op3	socialize-01	a	s2	
+# ::edge	socialize-01	location	inside	s2	i2	
+# ::edge	inside	op1	cylinder	i2	c2	
+(l / look-02
+    :ARG0 (t / this)
+    :ARG1 (d / dissolve-01
+        :ARG1 (a / and
+            :op1 (d2 / donut
+                :ARG1-of (f / fry-01
+                    :location (p / pan
+                        :mod (c / circular))))
+            :op2 (s3 / stand-01
+                :ARG0 (m / man
+                    :mod (e / elderly))
+                :ARG2 (i / inside
+                    :op1 (d3 / doorway)))
+            :op3 (s2 / socialize-01
+                :ARG0 (p2 / person
+                    :quant (s / several))
+                :location (i2 / inside
+                    :op1 (c2 / cylinder))))
+        :ARG2 (p3 / photo
+            :quant (o / or
+                :op1 2
+                :op2 3))))

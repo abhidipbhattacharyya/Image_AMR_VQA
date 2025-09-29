@@ -1,0 +1,43 @@
+# ::tok The desk is covered with music CD covers , a cell phone , and an mp3 player .
+# ::node	d	desk	1-2
+# ::node	c2	cover-02	3-4
+# ::node	m	music	5-6
+# ::node	d3	disc	6-7
+# ::node	d2	digital	6-7
+# ::node	d4	disc	6-7
+# ::node	c3	cover-02	7-8
+# ::node	c	cell	10-11
+# ::node	p	phone	11-12
+# ::node	a	and	13-14
+# ::node	n	name	15-16
+# ::node	0	mp3	15-16
+# ::node	t	thing	16-17
+# ::node	p2	play-11	16-17
+# ::root	c2	cover-02
+# ::edge	cover-02	ARG1	desk	c2	d	
+# ::edge	disc	mod	music	d3	m	
+# ::edge	disc	mod	digital	d3	d2	
+# ::edge	cover-02	ARG1	disc	c3	d3	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	and	op2	phone	a	p	
+# ::edge	and	op1	cover-02	a	c3	
+# ::edge	cover-02	ARG2	and	c2	a	
+# ::edge	disc	name	name	d4	n	
+# ::edge	name	op1	mp3	n	0	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG2-of	play-11	t	p2	
+# ::edge	play-11	ARG3	disc	p2	d4	
+(c2 / cover-02
+    :ARG1 (d / desk)
+    :ARG2 (a / and
+        :op1 (c3 / cover-02
+            :ARG1 (d3 / disc
+                :mod (m / music)
+                :mod (d2 / digital)))
+        :op2 (p / phone
+            :mod (c / cell))
+        :op3 (t / thing
+            :ARG2-of (p2 / play-11
+                :ARG3 (d4 / disc
+                    :name (n / name
+                        :op1 "mp3"))))))

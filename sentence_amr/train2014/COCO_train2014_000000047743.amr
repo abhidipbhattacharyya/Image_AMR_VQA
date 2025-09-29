@@ -1,0 +1,21 @@
+# ::tok A group of heffer cows are ready to be brought to the butcher
+# ::node	g	group	1-2
+# ::node	h	heffer	3-4
+# ::node	c	cow	4-5
+# ::node	r	ready-02	6-7
+# ::node	b	bring-01	9-10
+# ::node	b2	butcher	12-13
+# ::root	r	ready-02
+# ::edge	cow	mod	heffer	c	h	
+# ::edge	group	consist-of	cow	g	c	
+# ::edge	ready-02	ARG1	group	r	g	
+# ::edge	ready-02	ARG2	bring-01	r	b	
+# ::edge	bring-01	ARG1	group	b	g	
+# ::edge	bring-01	ARG2	butcher	b	b2	
+(r / ready-02
+    :ARG1 (g / group
+        :consist-of (c / cow
+            :mod (h / heffer)))
+    :ARG2 (b / bring-01
+        :ARG1 g
+        :ARG2 (b2 / butcher)))

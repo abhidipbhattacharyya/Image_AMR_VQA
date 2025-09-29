@@ -1,0 +1,39 @@
+# ::tok Lady enjoying bathing a dog in a small blue basin in a bathroom or kitchen .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Lady	0-1
+# ::node	e	enjoy-01	1-2
+# ::node	b2	bathe-01	2-3
+# ::node	d	dog	4-5
+# ::node	s	small	7-8
+# ::node	b4	blue	8-9
+# ::node	b	basin	9-10
+# ::node	b3	bathroom	12-13
+# ::node	o	or	13-14
+# ::node	k	kitchen	14-15
+# ::root	e	enjoy-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Lady	n	0	
+# ::edge	enjoy-01	ARG0	person	e	p	
+# ::edge	enjoy-01	ARG1	bathe-01	e	b2	
+# ::edge	bathe-01	ARG0	person	b2	p	
+# ::edge	bathe-01	ARG1	dog	b2	d	
+# ::edge	basin	mod	blue	b	b4	
+# ::edge	basin	mod	small	b	s	
+# ::edge	bathe-01	location	basin	b2	b	
+# ::edge	or	op1	bathroom	o	b3	
+# ::edge	basin	location	or	b	o	
+# ::edge	or	op2	kitchen	o	k	
+(e / enjoy-01
+    :ARG0 (p / person
+        :name (n / name
+            :op1 "Lady"))
+    :ARG1 (b2 / bathe-01
+        :ARG0 p
+        :ARG1 (d / dog)
+        :location (b / basin
+            :location (o / or
+                :op1 (b3 / bathroom)
+                :op2 (k / kitchen))
+            :mod (b4 / blue)
+            :mod (s / small))))

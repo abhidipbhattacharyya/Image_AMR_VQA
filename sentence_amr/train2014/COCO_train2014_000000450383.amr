@@ -1,0 +1,96 @@
+# ::tok A fence separates three people seen inside the dugout .
+# ::node	f	fence	1-2
+# ::node	s2	separate-01	2-3
+# ::node	0	3	3-4
+# ::node	p	person	4-5
+# ::node	s	see-01	5-6
+# ::node	i	inside	6-7
+# ::node	d	dugout	8-9
+# ::root	s2	separate-01
+# ::edge	separate-01	ARG0	fence	s2	f	
+# ::edge	person	quant	3	p	0	
+# ::edge	separate-01	ARG1	person	s2	p	
+# ::edge	person	ARG1-of	see-01	p	s	
+# ::edge	see-01	location	inside	s	i	
+# ::edge	inside	op1	dugout	i	d	
+(s2 / separate-01
+    :ARG0 (f / fence)
+    :ARG1 (p / person
+        :quant 3
+        :ARG1-of (s / see-01
+            :location (i / inside
+                :op1 (d / dugout)))))
+
+
+# ::tok One young boy is in the batters box with his bat ready and another one is standing behind him and a man has his hand up to block the sun and is looking off to the distance .
+# ::node	0	1	0-1
+# ::node	y	young	1-2
+# ::node	b6	boy	2-3
+# ::node	b7	boy	2-3
+# ::node	b2	be-located-at-91	4-5
+# ::node	s2	strike-01	6-7
+# ::node	b5	box	7-8
+# ::node	b	bat	10-11
+# ::node	r	ready-02	11-12
+# ::node	a2	another	13-14
+# ::node	s	stand-01	16-17
+# ::node	b3	behind	17-18
+# ::node	m	man	21-22
+# ::node	h	hand	24-25
+# ::node	u	up-03	25-26
+# ::node	b4	block-01	27-28
+# ::node	s3	sun	29-30
+# ::node	a	and	30-31
+# ::node	l	look-01	32-33
+# ::node	o	off	33-34
+# ::node	d	distance	36-37
+# ::root	a	and
+# ::edge	boy	mod	young	b6	y	
+# ::edge	boy	quant	1	b6	0	
+# ::edge	be-located-at-91	ARG1	boy	b2	b6	
+# ::edge	boy	ARG0-of	strike-01	b6	s2	
+# ::edge	be-located-at-91	ARG2	box	b2	b5	
+# ::edge	bat	poss	boy	b	b6	
+# ::edge	ready-02	ARG1	bat	r	b	
+# ::edge	boy	ARG0-of	ready-02	b6	r	
+# ::edge	boy	mod	another	b7	a2	
+# ::edge	stand-01	ARG1	boy	s	b7	
+# ::edge	stand-01	ARG2	behind	s	b3	
+# ::edge	behind	op1	boy	b3	b6	
+# ::edge	man	part	hand	m	h	
+# ::edge	up-03	ARG1	hand	u	h	
+# ::edge	up-03	purpose	block-01	u	b4	
+# ::edge	block-01	ARG0	man	b4	m	
+# ::edge	block-01	ARG1	sun	b4	s3	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	and	op3	look-01	a	l	
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	look-01	direction	off	l	o	
+# ::edge	look-01	ARG1	distance	l	d	
+# ::edge	and	rel	up-03	a	u	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (b6 / boy
+            :quant 1
+            :ARG0-of (s2 / strike-01)
+            :ARG0-of (r / ready-02
+                :ARG1 (b / bat
+                    :poss b6))
+            :mod (y / young))
+        :ARG2 (b5 / box))
+    :op2 (s / stand-01
+        :ARG1 (b7 / boy
+            :mod (a2 / another))
+        :ARG2 (b3 / behind
+            :op1 b6))
+    :op3 (l / look-01
+        :ARG0 (m / man
+            :part (h / hand))
+        :ARG1 (d / distance)
+        :direction (o / off))
+    :rel (u / up-03
+        :purpose (b4 / block-01
+            :ARG0 m
+            :ARG1 (s3 / sun))
+        :ARG1 h))

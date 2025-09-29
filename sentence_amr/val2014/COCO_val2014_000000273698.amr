@@ -1,0 +1,52 @@
+# ::tok two breakfast plates of food .
+# ::node	0	2	0-1
+# ::node	b	breakfast-01	1-2
+# ::node	p	plate	2-3
+# ::node	f	food	4-5
+# ::root	p	plate
+# ::edge	plate	mod	breakfast-01	p	b	
+# ::edge	plate	quant	2	p	0	
+# ::edge	plate	consist-of	food	p	f	
+(p / plate
+    :quant 2
+    :consist-of (f / food)
+    :mod (b / breakfast-01))
+
+
+# ::tok one has pancakes , the other has scrambled eggs and toast .
+# ::node	o	one	0-1
+# ::node	h	have-03	1-2
+# ::node	e3	enzyme	2-3
+# ::node	c	cook-01	2-3
+# ::node	e	egg	2-3
+# ::node	a	and	3-4
+# ::node	o2	other	5-6
+# ::node	h2	have-03	6-7
+# ::node	s	scramble-01	7-8
+# ::node	e2	egg	8-9
+# ::node	a2	and	9-10
+# ::node	t	toast	10-11
+# ::root	a	and
+# ::edge	have-03	ARG0	one	h	o	
+# ::edge	have-03	ARG1	enzyme	h	e3	
+# ::edge	enzyme	ARG1-of	cook-01	e3	c	
+# ::edge	cook-01	ARG0	egg	c	e	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	have-03	ARG0	other	h2	o2	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	egg	ARG1-of	scramble-01	e2	s	
+# ::edge	and	op1	egg	a2	e2	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op2	toast	a2	t	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (o / one)
+        :ARG1 (e3 / enzyme
+            :ARG1-of (c / cook-01
+                :ARG0 (e / egg))))
+    :op2 (h2 / have-03
+        :ARG0 (o2 / other)
+        :ARG1 (a2 / and
+            :op1 (e2 / egg
+                :ARG1-of (s / scramble-01))
+            :op2 (t / toast))))

@@ -1,0 +1,32 @@
+# ::tok A cart with old - fashioned trunks stacked on top of each other .
+# ::node	c	cart	1-2
+# ::node	o	old	3-4
+# ::node	f	fashion	5-6
+# ::node	t3	trash-01	6-7
+# ::node	s	stack-01	7-8
+# ::node	t	thing	8-9
+# ::node	t2	top	9-10
+# ::node	e	each	11-12
+# ::node	o2	other	12-13
+# ::root	c	cart
+# ::edge	fashion	mod	old	f	o	
+# ::edge	trash-01	mod	fashion	t3	f	
+# ::edge	cart	ARG1-of	stack-01	c	s	
+# ::edge	thing	ARG1-of	stack-01	t	s	
+# ::edge	thing	mod	fashion	t	f	
+# ::edge	cart	consist-of	thing	c	t	
+# ::edge	stack-01	ARG2	top	s	t2	
+# ::edge	other	mod	each	o2	e	
+# ::edge	top	op1	other	t2	o2	
+# ::edge	cart	rel	trash-01	c	t3	
+(c / cart
+    :ARG1-of (s / stack-01
+        :ARG2 (t2 / top
+            :op1 (o2 / other
+                :mod (e / each))))
+    :consist-of (t / thing
+        :ARG1-of s
+        :mod (f / fashion
+            :mod (o / old)))
+    :rel (t3 / trash-01
+        :mod f))

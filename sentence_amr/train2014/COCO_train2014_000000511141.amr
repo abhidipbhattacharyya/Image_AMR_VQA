@@ -1,0 +1,39 @@
+# ::tok A square pizza one half cheese , the other half with toppings
+# ::node	s	square	1-2
+# ::node	p	pizza	2-3
+# ::node	p2	pizza	2-3
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	h	half	4-5
+# ::node	c	cheese	5-6
+# ::node	a	and	6-7
+# ::node	o	other	8-9
+# ::node	h2	half	9-10
+# ::node	p3	protein	11-12
+# ::node	t	top-01	11-12
+# ::root	a	and
+# ::edge	pizza	mod	square	p	s	
+# ::edge	pizza	ARG2-of	include-91	p	i	
+# ::edge	include-91	ARG1	pizza	i2	p2	
+# ::edge	include-91	ARG3	half	i	h	
+# ::edge	include-91	ARG1	cheese	i	c	
+# ::edge	and	op2	include-91	a	i2	
+# ::edge	and	op1	include-91	a	i	
+# ::edge	pizza	mod	other	p2	o	
+# ::edge	include-91	ARG2	half	i2	h2	
+# ::edge	include-91	ARG3	protein	i2	p3	
+# ::edge	protein	ARG2-of	top-01	p3	t	
+# ::edge	and	rel	pizza	a	p	
+(a / and
+    :op1 (i / include-91
+        :ARG1 (c / cheese)
+        :ARG3 (h / half))
+    :op2 (i2 / include-91
+        :ARG1 (p2 / pizza
+            :mod (o / other))
+        :ARG2 (h2 / half)
+        :ARG3 (p3 / protein
+            :ARG2-of (t / top-01)))
+    :rel (p / pizza
+        :ARG2-of i
+        :mod (s / square)))

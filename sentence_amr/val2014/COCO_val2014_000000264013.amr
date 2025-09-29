@@ -1,0 +1,37 @@
+# ::tok Several rows of track with a ' direct rail services ' train on the furthest one .
+# ::node	s2	several	0-1
+# ::node	r2	row	1-2
+# ::node	t	track	3-4
+# ::node	h	have-03	4-5
+# ::node	d	direct-02	7-8
+# ::node	r	rail	8-9
+# ::node	s	serve-01	9-10
+# ::node	t2	train	11-12
+# ::node	h2	have-degree-91	14-15
+# ::node	f	far	14-15
+# ::node	m	most	14-15
+# ::node	o	one	15-16
+# ::root	h	have-03
+# ::edge	row	quant	several	r2	s2	
+# ::edge	track	consist-of	row	t	r2	
+# ::edge	have-03	ARG1	track	h	t	
+# ::edge	serve-01	ARG1	rail	s	r	
+# ::edge	serve-01	ARG1-of	direct-02	s	d	
+# ::edge	train	ARG0-of	serve-01	t2	s	
+# ::edge	have-03	ARG0	train	h	t2	
+# ::edge	have-degree-91	ARG2	far	h2	f	
+# ::edge	have-degree-91	ARG3	most	h2	m	
+# ::edge	one	ARG1-of	have-degree-91	o	h2	
+# ::edge	have-03	location	one	h	o	
+(h / have-03
+    :ARG0 (t2 / train
+        :ARG0-of (s / serve-01
+            :ARG1 (r / rail)
+            :ARG1-of (d / direct-02)))
+    :ARG1 (t / track
+        :consist-of (r2 / row
+            :quant (s2 / several)))
+    :location (o / one
+        :ARG1-of (h2 / have-degree-91
+            :ARG2 (f / far)
+            :ARG3 (m / most))))

@@ -1,0 +1,45 @@
+# ::tok A piece of chocolate shaped like a Star Wars space ship and another piece of chocolate cake .
+# ::node	p	piece	1-2
+# ::node	c2	chocolate	3-4
+# ::node	s	shape-01	4-5
+# ::node	r	resemble-01	5-6
+# ::node	n	name	6-7
+# ::node	0	Star	7-8
+# ::node	b	book	8-9
+# ::node	1	Wars	8-9
+# ::node	s3	space	9-10
+# ::node	s2	ship	10-11
+# ::node	a	and	11-12
+# ::node	a2	another	12-13
+# ::node	p2	piece	13-14
+# ::node	c	cake	16-17
+# ::root	a	and
+# ::edge	piece	consist-of	chocolate	p	c2	
+# ::edge	piece	ARG1-of	shape-01	p	s	
+# ::edge	shape-01	ARG2	resemble-01	s	r	
+# ::edge	name	op1	Star	n	0	
+# ::edge	book	name	name	b	n	
+# ::edge	name	op2	Wars	n	1	
+# ::edge	ship	mod	space	s2	s3	
+# ::edge	ship	mod	book	s2	b	
+# ::edge	resemble-01	ARG2	ship	r	s2	
+# ::edge	and	op1	piece	a	p	
+# ::edge	piece	mod	another	p2	a2	
+# ::edge	and	op2	piece	a	p2	
+# ::edge	piece	consist-of	cake	p2	c	
+# ::edge	cake	mod	chocolate	c	c2	
+(a / and
+    :op1 (p / piece
+        :ARG1-of (s / shape-01
+            :ARG2 (r / resemble-01
+                :ARG2 (s2 / ship
+                    :mod (s3 / space)
+                    :mod (b / book
+                        :name (n / name
+                            :op1 "Star"
+                            :op2 "Wars")))))
+        :consist-of (c2 / chocolate))
+    :op2 (p2 / piece
+        :consist-of (c / cake
+            :mod c2)
+        :mod (a2 / another)))

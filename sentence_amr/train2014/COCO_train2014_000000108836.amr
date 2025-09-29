@@ -1,0 +1,32 @@
+# ::tok A Lego toy is held up to look like it is lying down on a bed .
+# ::node	n	name	1-2
+# ::node	0	Lego	1-2
+# ::node	t	toy	2-3
+# ::node	h	hold-01	4-5
+# ::node	u	up	5-6
+# ::node	l2	look-02	7-8
+# ::node	r	resemble-01	8-9
+# ::node	l	lie-down-09	11-12
+# ::node	b	bed	15-16
+# ::root	h	hold-01
+# ::edge	name	op1	Lego	n	0	
+# ::edge	toy	name	name	t	n	
+# ::edge	hold-01	ARG1	toy	h	t	
+# ::edge	hold-01	ARG3	up	h	u	
+# ::edge	hold-01	purpose	look-02	h	l2	
+# ::edge	look-02	ARG0	toy	l2	t	
+# ::edge	look-02	ARG1	resemble-01	l2	r	
+# ::edge	resemble-01	ARG2	lie-down-09	r	l	
+# ::edge	lie-down-09	ARG1	toy	l	t	
+# ::edge	lie-down-09	ARG2	bed	l	b	
+(h / hold-01
+    :purpose (l2 / look-02
+        :ARG0 (t / toy
+            :name (n / name
+                :op1 "Lego"))
+        :ARG1 (r / resemble-01
+            :ARG2 (l / lie-down-09
+                :ARG1 t
+                :ARG2 (b / bed))))
+    :ARG1 t
+    :ARG3 (u / up))

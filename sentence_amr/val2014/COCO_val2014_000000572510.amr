@@ -1,0 +1,38 @@
+# ::tok A short order cook is preparing and packing an order from the assembly line .
+# ::node	s	short-07	1-2
+# ::node	o	order-02	2-3
+# ::node	p2	person	3-4
+# ::node	c	cook-01	3-4
+# ::node	p3	prepare-01	5-6
+# ::node	a	and	6-7
+# ::node	p	pack-01	7-8
+# ::node	o2	order-02	9-10
+# ::node	t	thing	10-11
+# ::node	a2	assemble-01	12-13
+# ::node	l	line	13-14
+# ::root	a	and
+# ::edge	order-02	ARG1-of	short-07	o	s	
+# ::edge	person	ARG0-of	order-02	p2	o	
+# ::edge	person	ARG0-of	cook-01	p2	c	
+# ::edge	prepare-01	ARG0	person	p3	p2	
+# ::edge	and	op1	prepare-01	a	p3	
+# ::edge	and	op2	pack-01	a	p	
+# ::edge	pack-01	ARG0	person	p	p2	
+# ::edge	thing	ARG1-of	order-02	t	o2	
+# ::edge	pack-01	ARG1	thing	p	t	
+# ::edge	prepare-01	ARG1	thing	p3	t	
+# ::edge	line	ARG0-of	assemble-01	l	a2	
+# ::edge	and	source	line	a	l	
+(a / and
+    :op1 (p3 / prepare-01
+        :ARG0 (p2 / person
+            :ARG0-of (o / order-02
+                :ARG1-of (s / short-07))
+            :ARG0-of (c / cook-01))
+        :ARG1 (t / thing
+            :ARG1-of (o2 / order-02)))
+    :op2 (p / pack-01
+        :ARG0 p2
+        :ARG1 t)
+    :source (l / line
+        :ARG0-of (a2 / assemble-01)))

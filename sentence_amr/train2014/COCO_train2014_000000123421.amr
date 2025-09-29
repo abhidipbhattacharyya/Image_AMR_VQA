@@ -1,0 +1,50 @@
+# ::tok Various doughnuts lay on a napkin and include a doughnut with coconut and one glazed and one chocolate .
+# ::node	v	various	0-1
+# ::node	c3	cookie	1-2
+# ::node	l	lay-01	2-3
+# ::node	n	napkin	5-6
+# ::node	a	and	6-7
+# ::node	i	include-01	7-8
+# ::node	d	doughnut	9-10
+# ::node	d2	doughnut	9-10
+# ::node	h	have-03	10-11
+# ::node	c2	coconut	11-12
+# ::node	a2	and	12-13
+# ::node	g	glaze-01	14-15
+# ::node	0	1	16-17
+# ::node	1	1	16-17
+# ::node	c	chocolate	17-18
+# ::root	a	and
+# ::edge	cookie	mod	various	c3	v	
+# ::edge	lay-01	ARG1	cookie	l	c3	
+# ::edge	lay-01	ARG2	napkin	l	n	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	and	op2	include-01	a	i	
+# ::edge	include-01	ARG2	cookie	i	c3	
+# ::edge	have-03	ARG1	doughnut	h	d	
+# ::edge	doughnut	ARG0-of	have-03	d	h	
+# ::edge	doughnut	mod	coconut	d	c2	
+# ::edge	and	op2	doughnut	a2	d2	
+# ::edge	and	op1	doughnut	a2	d	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	doughnut	ARG1-of	glaze-01	d2	g	
+# ::edge	doughnut	quant	1	d2	0	
+# ::edge	chocolate	quant	1	c	1	
+# ::edge	and	op3	chocolate	a2	c	
+(a / and
+    :op1 (l / lay-01
+        :ARG1 (c3 / cookie
+            :mod (v / various))
+        :ARG2 (n / napkin))
+    :op2 (i / include-01
+        :ARG1 (a2 / and
+            :op1 (d / doughnut
+                :ARG0-of (h / have-03
+                    :ARG1 d)
+                :mod (c2 / coconut))
+            :op2 (d2 / doughnut
+                :quant 1
+                :ARG1-of (g / glaze-01))
+            :op3 (c / chocolate
+                :quant 1))
+        :ARG2 c3))

@@ -1,0 +1,48 @@
+# ::tok A fire hydrant with water flowing out next to a blackboard sign reading , " Acqua We are Open . "
+# ::node	f	fire	1-2
+# ::node	h2	hydrant	2-3
+# ::node	h	have-03	3-4
+# ::node	w	water	4-5
+# ::node	f2	flow-01	5-6
+# ::node	o2	out	6-7
+# ::node	n2	next-to	7-8
+# ::node	b	blackboard	10-11
+# ::node	s	sign	11-12
+# ::node	r	read-01	12-13
+# ::node	n	name	15-16
+# ::node	0	Acqua	15-16
+# ::node	w2	we	16-17
+# ::node	o	open-01	18-19
+# ::node	c	city	18-19
+# ::root	h2	hydrant
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG0-of	have-03	h2	h	
+# ::edge	have-03	ARG1	water	h	w	
+# ::edge	water	ARG1-of	flow-01	w	f2	
+# ::edge	flow-01	direction	out	f2	o2	
+# ::edge	hydrant	location	next-to	h2	n2	
+# ::edge	sign	mod	blackboard	s	b	
+# ::edge	next-to	op1	sign	n2	s	
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	name	op1	Acqua	n	0	
+# ::edge	open-01	ARG1	we	o	w2	
+# ::edge	name	ARG3	open-01	n	o	
+# ::edge	open-01	location	city	o	c	
+# ::edge	city	name	name	c	n	
+# ::edge	hydrant	rel	open-01	h2	o	
+(h2 / hydrant
+    :ARG0-of (h / have-03
+        :ARG1 (w / water
+            :ARG1-of (f2 / flow-01
+                :direction (o2 / out))))
+    :location (n2 / next-to
+        :op1 (s / sign
+            :ARG1-of (r / read-01)
+            :mod (b / blackboard)))
+    :mod (f / fire)
+    :rel (o / "open-01"
+        :ARG1 (w2 / we)
+        :location (c / city
+            :name (n / name
+                :ARG3 o
+                :op1 "Acqua"))))

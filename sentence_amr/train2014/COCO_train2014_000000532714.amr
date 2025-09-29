@@ -1,0 +1,25 @@
+# ::tok A person sitting on the end of a bench with a passenger train pulled up to the platform .
+# ::node	p2	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	e	end	5-6
+# ::node	b	bench	8-9
+# ::node	p	passenger	11-12
+# ::node	t	train	12-13
+# ::node	p4	pull-01	13-14
+# ::node	p3	platform	17-18
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	sit-01	ARG2	end	s	e	
+# ::edge	end	part-of	bench	e	b	
+# ::edge	train	mod	passenger	t	p	
+# ::edge	pull-01	ARG1	train	p4	t	
+# ::edge	platform	ARG2-of	pull-01	p3	p4	
+# ::edge	bench	part	platform	b	p3	
+(s / sit-01
+    :ARG1 (p2 / person)
+    :ARG2 (e / end
+        :part-of (b / bench
+            :part (p3 / platform
+                :ARG2-of (p4 / pull-01
+                    :ARG1 (t / train
+                        :mod (p / passenger)))))))

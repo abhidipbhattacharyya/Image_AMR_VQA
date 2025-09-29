@@ -1,0 +1,104 @@
+# ::tok A blurry night - time street scene shows a higher and lower roadway with overpasses and lots of traffic going the same way , while to the left an area of red glare with an arrow and number , suggests a caution area .
+# ::node	b	blur-01	1-2
+# ::node	d	date-entity	2-3
+# ::node	n	night	2-3
+# ::node	s5	street	5-6
+# ::node	s2	scene	6-7
+# ::node	s4	show-01	7-8
+# ::node	h3	have-degree-91	9-10
+# ::node	h5	high-02	9-10
+# ::node	m	more	11-12
+# ::node	h4	have-degree-91	11-12
+# ::node	l3	low-04	11-12
+# ::node	m2	more	11-12
+# ::node	r2	roadway	12-13
+# ::node	h	have-03	13-14
+# ::node	b2	bridge	14-15
+# ::node	a	and	15-16
+# ::node	l2	lot	16-17
+# ::node	t	traffic	18-19
+# ::node	g	go-02	19-20
+# ::node	s	same-01	21-22
+# ::node	w	way	22-23
+# ::node	c2	contrast-01	24-25
+# ::node	l	left-20	27-28
+# ::node	a3	area	29-30
+# ::node	r	red-02	31-32
+# ::node	s3	shine-01	32-33
+# ::node	h2	have-03	33-34
+# ::node	a5	arrow	35-36
+# ::node	a2	and	36-37
+# ::node	n2	number	37-38
+# ::node	s6	suggest-01	39-40
+# ::node	c	caution-01	41-42
+# ::node	a4	area	42-43
+# ::root	c2	contrast-01
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	scene	mod	street	s2	s5	
+# ::edge	scene	time	date-entity	s2	d	
+# ::edge	scene	ARG1-of	blur-01	s2	b	
+# ::edge	show-01	ARG0	scene	s4	s2	
+# ::edge	have-degree-91	ARG2	high-02	h3	h5	
+# ::edge	have-degree-91	ARG3	more	h3	m	
+# ::edge	have-degree-91	ARG2	low-04	h4	l3	
+# ::edge	have-degree-91	ARG3	more	h4	m2	
+# ::edge	low-04	ARG1	roadway	l3	r2	
+# ::edge	roadway	ARG1-of	have-degree-91	r2	h4	
+# ::edge	high-02	ARG1	roadway	h5	r2	
+# ::edge	roadway	ARG1-of	have-degree-91	r2	h3	
+# ::edge	roadway	ARG0-of	have-03	r2	h	
+# ::edge	and	op1	bridge	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	traffic	quant	lot	t	l2	
+# ::edge	and	op2	traffic	a	t	
+# ::edge	traffic	ARG0-of	go-02	t	g	
+# ::edge	way	ARG1-of	same-01	w	s	
+# ::edge	go-02	ARG1	way	g	w	
+# ::edge	contrast-01	ARG1	show-01	c2	s4	
+# ::edge	area	ARG1-of	shine-01	a3	s3	
+# ::edge	shine-01	ARG0-of	have-03	s3	h2	
+# ::edge	and	op1	arrow	a2	a5	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	and	op2	number	a2	n2	
+# ::edge	suggest-01	ARG0	area	s6	a3	
+# ::edge	suggest-01	location	left-20	s6	l	
+# ::edge	contrast-01	ARG2	suggest-01	c2	s6	
+# ::edge	area	purpose	caution-01	a4	c	
+# ::edge	suggest-01	ARG1	area	s6	a4	
+# ::edge	contrast-01	rel	high-02	c2	h5	
+# ::edge	contrast-01	rel	red-02	c2	r	
+(c2 / contrast-01
+    :ARG1 (s4 / show-01
+        :ARG0 (s2 / scene
+            :ARG1-of (b / blur-01)
+            :mod (s5 / street)
+            :time (d / date-entity
+                :dayperiod (n / night))))
+    :ARG2 (s6 / suggest-01
+        :ARG0 (a3 / area
+            :ARG1-of (s3 / shine-01
+                :ARG0-of (h2 / have-03
+                    :ARG1 (a2 / and
+                        :op1 (a5 / arrow)
+                        :op2 (n2 / number)))))
+        :ARG1 (a4 / area
+            :purpose (c / caution-01))
+        :location (l / left-20))
+    :rel (h5 / high-02
+        :ARG1 (r2 / roadway
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (b2 / bridge)
+                    :op2 (t / traffic
+                        :quant (l2 / lot)
+                        :ARG0-of (g / go-02
+                            :ARG1 (w / way
+                                :ARG1-of (s / same-01))))))
+            :ARG1-of (h4 / have-degree-91
+                :ARG2 (l3 / low-04
+                    :ARG1 r2)
+                :ARG3 (m2 / more))
+            :ARG1-of (h3 / have-degree-91
+                :ARG2 h5
+                :ARG3 (m / more))))
+    :rel (r / red-02))

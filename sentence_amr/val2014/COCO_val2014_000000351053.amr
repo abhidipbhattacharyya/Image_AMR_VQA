@@ -1,0 +1,41 @@
+# ::tok A street with taxis in the street and a street post with two signs attached that show statues of lions on the signs .
+# ::node	s4	street	1-2
+# ::node	h	have-03	2-3
+# ::node	t	taxi	3-4
+# ::node	s5	street	6-7
+# ::node	a	and	7-8
+# ::node	p	post	10-11
+# ::node	0	2	12-13
+# ::node	s2	sign	13-14
+# ::node	a2	attach-01	14-15
+# ::node	s	show-01	16-17
+# ::node	s3	statue	17-18
+# ::node	l	lion	19-20
+# ::root	s4	street
+# ::edge	street	ARG0-of	have-03	s4	h	
+# ::edge	taxi	location	street	t	s5	
+# ::edge	and	op1	taxi	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	post	a	p	
+# ::edge	sign	quant	2	s2	0	
+# ::edge	post	prep-with	sign	p	s2	
+# ::edge	sign	ARG1-of	attach-01	s2	a2	
+# ::edge	attach-01	ARG2	post	a2	p	
+# ::edge	sign	ARG0-of	show-01	s2	s	
+# ::edge	show-01	ARG1	statue	s	s3	
+# ::edge	statue	location	street	s3	s4	
+# ::edge	statue	mod	lion	s3	l	
+(s4 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t / taxi
+                :location (s5 / street))
+            :op2 (p / post
+                :prep-with (s2 / sign
+                    :quant 2
+                    :ARG0-of (s / show-01
+                        :ARG1 (s3 / statue
+                            :location s4
+                            :mod (l / lion)))
+                    :ARG1-of (a2 / attach-01
+                        :ARG2 p))))))

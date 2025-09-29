@@ -1,0 +1,30 @@
+# ::tok Church like building with four clocks located on the sides of it 's roof tower
+# ::node	c	church	0-1
+# ::node	r	resemble-01	1-2
+# ::node	b	building	2-3
+# ::node	h	have-03	3-4
+# ::node	0	4	4-5
+# ::node	w	watch	5-6
+# ::node	s	side	9-10
+# ::node	r2	roof	13-14
+# ::node	t	tower	14-15
+# ::root	b	building
+# ::edge	resemble-01	ARG2	church	r	c	
+# ::edge	building	ARG1-of	resemble-01	b	r	
+# ::edge	building	ARG0-of	have-03	b	h	
+# ::edge	watch	quant	4	w	0	
+# ::edge	have-03	ARG1	watch	h	w	
+# ::edge	watch	location	side	w	s	
+# ::edge	tower	mod	roof	t	r2	
+# ::edge	side	part-of	tower	s	t	
+# ::edge	building	part	tower	b	t	
+(b / building
+    :ARG0-of (h / have-03
+        :ARG1 (w / watch
+            :quant 4
+            :location (s / side
+                :part-of (t / tower
+                    :mod (r2 / roof)))))
+    :ARG1-of (r / resemble-01
+        :ARG2 (c / church))
+    :part t)

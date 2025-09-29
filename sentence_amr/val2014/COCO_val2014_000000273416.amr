@@ -1,0 +1,48 @@
+# ::tok A man looks into the trunk of a red car as it is parked in front of a small building that features a small courtyard and a large sign .
+# ::node	m	man	1-2
+# ::node	l2	look-01	2-3
+# ::node	t	trunk	5-6
+# ::node	r	red-02	8-9
+# ::node	c	car	9-10
+# ::node	p	park-01	13-14
+# ::node	i	in-front-of	15-16
+# ::node	s2	small	18-19
+# ::node	b	building	19-20
+# ::node	f	feature-01	21-22
+# ::node	s3	small	23-24
+# ::node	c2	courtyard	24-25
+# ::node	a	and	25-26
+# ::node	l	large	27-28
+# ::node	s	sign	28-29
+# ::root	l2	look-01
+# ::edge	look-01	ARG0	man	l2	m	
+# ::edge	look-01	ARG1	trunk	l2	t	
+# ::edge	car	ARG1-of	red-02	c	r	
+# ::edge	trunk	part-of	car	t	c	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	look-01	time	park-01	l2	p	
+# ::edge	park-01	ARG2	in-front-of	p	i	
+# ::edge	building	mod	small	b	s2	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	building	ARG2-of	feature-01	b	f	
+# ::edge	courtyard	mod	small	c2	s3	
+# ::edge	and	op1	courtyard	a	c2	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	sign	mod	large	s	l	
+# ::edge	and	op2	sign	a	s	
+(l2 / look-01
+    :ARG0 (m / man)
+    :ARG1 (t / trunk
+        :part-of (c / car
+            :ARG1-of (r / red-02)))
+    :time (p / park-01
+        :ARG1 c
+        :ARG2 (i / in-front-of
+            :op1 (b / building
+                :ARG2-of (f / feature-01
+                    :ARG1 (a / and
+                        :op1 (c2 / courtyard
+                            :mod (s3 / small))
+                        :op2 (s / sign
+                            :mod (l / large))))
+                :mod (s2 / small)))))

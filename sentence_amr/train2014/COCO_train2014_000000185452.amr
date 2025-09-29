@@ -1,0 +1,40 @@
+# ::tok A sandwich filled with meat and eggs on a white plate next to a cup of star bucks .
+# ::node	s	sandwich	1-2
+# ::node	f	fill-01	2-3
+# ::node	m	meat	4-5
+# ::node	a	and	5-6
+# ::node	e	egg	6-7
+# ::node	w	white-03	9-10
+# ::node	p	plate	10-11
+# ::node	n	next-to	11-12
+# ::node	v	volume-quantity	13-14
+# ::node	0	1	13-14
+# ::node	c	cup	14-15
+# ::node	s2	star	16-17
+# ::node	d	dollar	17-18
+# ::root	s	sandwich
+# ::edge	sandwich	ARG1-of	fill-01	s	f	
+# ::edge	and	op1	meat	a	m	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	egg	a	e	
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	sandwich	location	plate	s	p	
+# ::edge	plate	location	next-to	p	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c	
+# ::edge	dollar	mod	star	d	s2	
+# ::edge	dollar	quant	volume-quantity	d	v	
+# ::edge	next-to	op1	dollar	n	d	
+(s / sandwich
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (m / meat)
+            :op2 (e / egg)))
+    :location (p / plate
+        :ARG1-of (w / white-03)
+        :location (n / next-to
+            :op1 (d / dollar
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c / cup))
+                :mod (s2 / star)))))

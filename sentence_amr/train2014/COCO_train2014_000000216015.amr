@@ -1,0 +1,36 @@
+# ::tok Hook and ladder fire truck at the scene of a night time fire .
+# ::node	h	hook-01	0-1
+# ::node	a	and	1-2
+# ::node	l	ladder	2-3
+# ::node	f2	fire-03	3-4
+# ::node	t	truck	4-5
+# ::node	t2	truck	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	s	scene	7-8
+# ::node	d	date-entity	10-11
+# ::node	n	night	10-11
+# ::node	f	fire	12-13
+# ::root	b	be-located-at-91
+# ::edge	truck	mod	fire-03	t	f2	
+# ::edge	and	op1	truck	a	t	
+# ::edge	truck	ARG1-of	hook-01	t	h	
+# ::edge	truck	mod	fire-03	t2	f2	
+# ::edge	truck	mod	ladder	t2	l	
+# ::edge	and	op2	truck	a	t2	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	scene	b	s	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	fire	time	date-entity	f	d	
+# ::edge	scene	location-of	fire	s	f	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (t / truck
+            :ARG1-of (h / hook-01)
+            :mod (f2 / fire-03))
+        :op2 (t2 / truck
+            :mod f2
+            :mod (l / ladder)))
+    :ARG2 (s / scene
+        :location-of (f / fire
+            :time (d / date-entity
+                :dayperiod (n / night)))))

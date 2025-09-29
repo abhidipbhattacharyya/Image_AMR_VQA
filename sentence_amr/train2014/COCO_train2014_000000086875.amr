@@ -1,0 +1,31 @@
+# ::tok Three pictures of the same clock / bell tower at different times of day
+# ::node	0	3	0-1
+# ::node	p	picture	1-2
+# ::node	s	same-01	4-5
+# ::node	c	clock	5-6
+# ::node	s2	slash	6-7
+# ::node	b	bell	7-8
+# ::node	t2	tower	8-9
+# ::node	d2	differ-02	10-11
+# ::node	t	time	11-12
+# ::node	d	day	13-14
+# ::root	p	picture
+# ::edge	picture	quant	3	p	0	
+# ::edge	slash	op1	clock	s2	c	
+# ::edge	slash	ARG1-of	same-01	s2	s	
+# ::edge	picture	topic	slash	p	s2	
+# ::edge	tower	mod	bell	t2	b	
+# ::edge	slash	op2	tower	s2	t2	
+# ::edge	time	ARG1-of	differ-02	t	d2	
+# ::edge	picture	frequency	time	p	t	
+# ::edge	time	part-of	day	t	d	
+(p / picture
+    :quant 3
+    :frequency (t / time
+        :ARG1-of (d2 / differ-02)
+        :part-of (d / day))
+    :topic (s2 / slash
+        :ARG1-of (s / same-01)
+        :op1 (c / clock)
+        :op2 (t2 / tower
+            :mod (b / bell))))

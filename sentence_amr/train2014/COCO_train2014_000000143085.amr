@@ -1,0 +1,33 @@
+# ::tok an Air Canada passenger jet flying with its landing wheels out
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	Air	1-2
+# ::node	1	Canada	2-3
+# ::node	p	passenger	3-4
+# ::node	j	jet	4-5
+# ::node	f	fly-01	5-6
+# ::node	l	land-01	8-9
+# ::node	w	wheel	9-10
+# ::node	o	out-06	10-11
+# ::root	f	fly-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Air	n	0	
+# ::edge	name	op2	Canada	n	1	
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	jet	mod	company	j	c	
+# ::edge	fly-01	ARG2	jet	f	j	
+# ::edge	wheel	ARG1-of	land-01	w	l	
+# ::edge	jet	part	wheel	j	w	
+# ::edge	out-06	ARG1	wheel	o	w	
+# ::edge	fly-01	manner	out-06	f	o	
+(f / fly-01
+    :ARG2 (j / jet
+        :mod (p / passenger)
+        :mod (c / company
+            :name (n / name
+                :op1 "Air"
+                :op2 "Canada"))
+        :part (w / wheel
+            :ARG1-of (l / land-01)))
+    :manner (o / out-06
+        :ARG1 w))

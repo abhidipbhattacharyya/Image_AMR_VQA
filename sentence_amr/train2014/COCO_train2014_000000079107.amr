@@ -1,0 +1,48 @@
+# ::tok Bathroom scene taken from above , showing blue sink and blue commode but commode cover and seat are tan .
+# ::node	b	bathroom	0-1
+# ::node	s	scene	1-2
+# ::node	t	take-01	2-3
+# ::node	a	above	4-5
+# ::node	a2	and	5-6
+# ::node	s3	show-01	6-7
+# ::node	s4	sink	8-9
+# ::node	a3	and	9-10
+# ::node	b2	blue	10-11
+# ::node	c	commode	11-12
+# ::node	c2	contrast-01	12-13
+# ::node	c3	cover-02	14-15
+# ::node	a4	and	15-16
+# ::node	s2	seat	16-17
+# ::node	t2	tan-01	18-19
+# ::root	a2	and
+# ::edge	scene	location	bathroom	s	b	
+# ::edge	scene	ARG1-of	take-01	s	t	
+# ::edge	take-01	source	above	t	a	
+# ::edge	and	op1	scene	a2	s	
+# ::edge	scene	ARG0-of	show-01	s	s3	
+# ::edge	and	op1	sink	a3	s4	
+# ::edge	show-01	ARG1	and	s3	a3	
+# ::edge	sink	mod	blue	s4	b2	
+# ::edge	and	op2	commode	a3	c	
+# ::edge	and	ARG1-of	contrast-01	a3	c2	
+# ::edge	cover-02	ARG1	commode	c3	c	
+# ::edge	and	op1	cover-02	a4	c3	
+# ::edge	and	op2	seat	a4	s2	
+# ::edge	tan-01	ARG1	and	t2	a4	
+# ::edge	contrast-01	ARG2	tan-01	c2	t2	
+(a2 / and
+    :op1 (s / scene
+        :ARG0-of (s3 / show-01
+            :ARG1 (a3 / and
+                :ARG1-of (c2 / contrast-01
+                    :ARG2 (t2 / tan-01
+                        :ARG1 (a4 / and
+                            :op1 (c3 / cover-02
+                                :ARG1 (c / commode))
+                            :op2 (s2 / seat))))
+                :op1 (s4 / sink
+                    :mod (b2 / blue))
+                :op2 c))
+        :ARG1-of (t / take-01
+            :source (a / above))
+        :location (b / bathroom)))

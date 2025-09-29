@@ -1,0 +1,27 @@
+# ::tok Traffic trying to merge onto the highway from two busy on ramps .
+# ::node	t	traffic	0-1
+# ::node	t2	try-01	1-2
+# ::node	m	merge-01	3-4
+# ::node	h	highway	6-7
+# ::node	0	2	8-9
+# ::node	b	busy-01	9-10
+# ::node	h2	highway	11-12
+# ::node	e	exit-01	11-12
+# ::root	t2	try-01
+# ::edge	try-01	ARG0	traffic	t2	t	
+# ::edge	try-01	ARG1	merge-01	t2	m	
+# ::edge	merge-01	ARG1	traffic	m	t	
+# ::edge	merge-01	location	highway	m	h	
+# ::edge	highway	ARG1-of	busy-01	h2	b	
+# ::edge	highway	quant	2	h2	0	
+# ::edge	merge-01	source	highway	m	h2	
+# ::edge	highway	location-of	exit-01	h2	e	
+(t2 / try-01
+    :ARG0 (t / traffic)
+    :ARG1 (m / merge-01
+        :ARG1 t
+        :location (h / highway)
+        :source (h2 / highway
+            :quant 2
+            :ARG1-of (b / busy-01)
+            :location-of (e / exit-01))))

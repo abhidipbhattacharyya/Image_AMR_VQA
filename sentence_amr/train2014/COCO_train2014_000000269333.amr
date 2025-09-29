@@ -1,0 +1,31 @@
+# ::tok A city block with many signs indicating construction and repair work .
+# ::node	c	city	1-2
+# ::node	b	block	2-3
+# ::node	m	many	4-5
+# ::node	s	sign	5-6
+# ::node	i	indicate-01	6-7
+# ::node	c2	construct-01	7-8
+# ::node	a	and	8-9
+# ::node	r	repair-01	9-10
+# ::node	w	work-01	10-11
+# ::node	w2	work-01	10-11
+# ::root	b	block
+# ::edge	block	mod	city	b	c	
+# ::edge	sign	quant	many	s	m	
+# ::edge	block	location-of	sign	b	s	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	indicate-01	ARG1	and	i	a	
+# ::edge	and	op1	work-01	a	w	
+# ::edge	work-01	ARG1	construct-01	w	c2	
+# ::edge	work-01	ARG1	repair-01	w2	r	
+# ::edge	and	op2	work-01	a	w2	
+(b / block
+    :location-of (s / sign
+        :quant (m / many)
+        :ARG0-of (i / indicate-01
+            :ARG1 (a / and
+                :op1 (w / work-01
+                    :ARG1 (c2 / construct-01))
+                :op2 (w2 / work-01
+                    :ARG1 (r / repair-01)))))
+    :mod (c / city))

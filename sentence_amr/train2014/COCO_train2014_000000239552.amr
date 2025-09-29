@@ -1,0 +1,40 @@
+# ::tok A road sign advertises luxury while a cow rests on a dirt lawn in front of run down buildings .
+# ::node	r2	road	1-2
+# ::node	s	sign	2-3
+# ::node	a	advertise-01	3-4
+# ::node	l2	luxury	4-5
+# ::node	c	contrast-01	5-6
+# ::node	c2	cow	7-8
+# ::node	r	rest-01	8-9
+# ::node	d	dirt	11-12
+# ::node	l	lawn	12-13
+# ::node	i	in-front-of	14-15
+# ::node	r3	run-13	16-17
+# ::node	d2	down	17-18
+# ::node	b	building	18-19
+# ::root	c	contrast-01
+# ::edge	sign	mod	road	s	r2	
+# ::edge	advertise-01	ARG0	sign	a	s	
+# ::edge	advertise-01	ARG1	luxury	a	l2	
+# ::edge	contrast-01	ARG1	advertise-01	c	a	
+# ::edge	rest-01	ARG1	cow	r	c2	
+# ::edge	contrast-01	ARG2	rest-01	c	r	
+# ::edge	lawn	mod	dirt	l	d	
+# ::edge	rest-01	ARG2	lawn	r	l	
+# ::edge	lawn	location	in-front-of	l	i	
+# ::edge	run-13	direction	down	r3	d2	
+# ::edge	building	ARG1-of	run-13	b	r3	
+# ::edge	in-front-of	op1	building	i	b	
+(c / contrast-01
+    :ARG1 (a / advertise-01
+        :ARG0 (s / sign
+            :mod (r2 / road))
+        :ARG1 (l2 / luxury))
+    :ARG2 (r / rest-01
+        :ARG1 (c2 / cow)
+        :ARG2 (l / lawn
+            :location (i / in-front-of
+                :op1 (b / building
+                    :ARG1-of (r3 / run-13
+                        :direction (d2 / down))))
+            :mod (d / dirt))))

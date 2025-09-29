@@ -1,0 +1,37 @@
+# ::tok A sign reads " Maple Street Book Shop " and stand by an old building .
+# ::node	s	sign	1-2
+# ::node	r	read-01	2-3
+# ::node	1	Maple	4-5
+# ::node	3	Street	5-6
+# ::node	0	Book	6-7
+# ::node	c	company	7-8
+# ::node	n	name	7-8
+# ::node	2	Shop	7-8
+# ::node	a	and	9-10
+# ::node	s2	stand-by-05	10-11
+# ::node	o	old	13-14
+# ::node	b	building	14-15
+# ::root	a	and
+# ::edge	read-01	ARG1	sign	r	s	
+# ::edge	read-01	ARG3	company	r	c	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op3	Book	n	0	
+# ::edge	name	op2	Street	n	3	
+# ::edge	name	op1	Maple	n	1	
+# ::edge	name	op4	Shop	n	2	
+# ::edge	and	op1	read-01	a	r	
+# ::edge	and	op2	stand-by-05	a	s2	
+# ::edge	building	mod	old	b	o	
+# ::edge	stand-by-05	location	building	s2	b	
+(a / and
+    :op1 (r / read-01
+        :ARG1 (s / sign)
+        :ARG3 (c / company
+            :name (n / name
+                :op1 "Maple"
+                :op2 "Street"
+                :op3 "Book"
+                :op4 "Shop")))
+    :op2 (s2 / stand-by-05
+        :location (b / building
+            :mod (o / old))))

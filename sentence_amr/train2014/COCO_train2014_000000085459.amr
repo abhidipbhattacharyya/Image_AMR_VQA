@@ -1,0 +1,34 @@
+# ::tok A twin washroom with a glass partition each having washbasin , shower and toilet .
+# ::node	t2	twin	1-2
+# ::node	w2	washroom	2-3
+# ::node	h	have-03	3-4
+# ::node	g	glass	5-6
+# ::node	p	partition	6-7
+# ::node	e	each	7-8
+# ::node	h2	have-03	8-9
+# ::node	w	wash-01	9-10
+# ::node	s	shower	11-12
+# ::node	a	and	12-13
+# ::node	t	toilet	13-14
+# ::root	h	have-03
+# ::edge	washroom	mod	twin	w2	t2	
+# ::edge	have-03	ARG0	washroom	h	w2	
+# ::edge	partition	consist-of	glass	p	g	
+# ::edge	have-03	ARG1	partition	h	p	
+# ::edge	washroom	mod	each	w2	e	
+# ::edge	each	ARG0-of	have-03	e	h2	
+# ::edge	and	op2	shower	a	s	
+# ::edge	and	op1	wash-01	a	w	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	and	op3	toilet	a	t	
+(h / have-03
+    :ARG0 (w2 / washroom
+        :mod (t2 / twin)
+        :mod (e / each
+            :ARG0-of (h2 / have-03
+                :ARG1 (a / and
+                    :op1 (w / wash-01)
+                    :op2 (s / shower)
+                    :op3 (t / toilet)))))
+    :ARG1 (p / partition
+        :consist-of (g / glass)))

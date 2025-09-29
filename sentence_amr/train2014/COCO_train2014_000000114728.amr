@@ -1,0 +1,33 @@
+# ::tok Jet airliner , in flight , with extended landing gear and flaps , preparing to land .
+# ::node	j	jet	0-1
+# ::node	a	airliner	1-2
+# ::node	f	fly-01	4-5
+# ::node	e	extend-01	7-8
+# ::node	l	land-01	8-9
+# ::node	g	gear	9-10
+# ::node	a2	and	10-11
+# ::node	w	wing	11-12
+# ::node	p	prepare-02	13-14
+# ::node	l2	land-01	15-16
+# ::root	p	prepare-02
+# ::edge	airliner	mod	jet	a	j	
+# ::edge	airliner	ARG2-of	fly-01	a	f	
+# ::edge	gear	purpose	land-01	g	l	
+# ::edge	gear	ARG1-of	extend-01	g	e	
+# ::edge	and	op1	gear	a2	g	
+# ::edge	airliner	part	and	a	a2	
+# ::edge	and	op2	wing	a2	w	
+# ::edge	prepare-02	ARG1	airliner	p	a	
+# ::edge	prepare-02	ARG2	land-01	p	l2	
+# ::edge	land-01	ARG1	airliner	l2	a	
+(p / prepare-02
+    :ARG1 (a / airliner
+        :ARG2-of (f / fly-01)
+        :mod (j / jet)
+        :part (a2 / and
+            :op1 (g / gear
+                :purpose (l / land-01)
+                :ARG1-of (e / extend-01))
+            :op2 (w / wing)))
+    :ARG2 (l2 / land-01
+        :ARG1 a))

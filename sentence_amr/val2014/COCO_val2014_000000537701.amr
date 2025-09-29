@@ -1,0 +1,46 @@
+# ::tok This Asian man is very nicely dressed in a navy shirt and striped tie in red tones .
+# ::node	t	this	0-1
+# ::node	c2	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	m	man	2-3
+# ::node	v	very	4-5
+# ::node	n3	nice-01	5-6
+# ::node	d	dress-01	6-7
+# ::node	n2	navy	9-10
+# ::node	s	shirt	10-11
+# ::node	a	and	11-12
+# ::node	s2	stripe	12-13
+# ::node	t2	tie	13-14
+# ::node	r	red-02	15-16
+# ::node	c	color	16-17
+# ::root	d	dress-01
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	man	mod	continent	m	c2	
+# ::edge	man	mod	this	m	t	
+# ::edge	nice-01	degree	very	n3	v	
+# ::edge	dress-01	ARG1-of	nice-01	d	n3	
+# ::edge	dress-01	ARG1	man	d	m	
+# ::edge	shirt	mod	navy	s	n2	
+# ::edge	and	op1	shirt	a	s	
+# ::edge	dress-01	ARG2	and	d	a	
+# ::edge	tie	mod	stripe	t2	s2	
+# ::edge	and	op2	tie	a	t2	
+# ::edge	color	ARG1-of	red-02	c	r	
+# ::edge	and	mod	color	a	c	
+(d / dress-01
+    :ARG1 (m / man
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Asia"))
+        :mod (t / this))
+    :ARG1-of (n3 / nice-01
+        :degree (v / very))
+    :ARG2 (a / and
+        :mod (c / color
+            :ARG1-of (r / red-02))
+        :op1 (s / shirt
+            :mod (n2 / navy))
+        :op2 (t2 / tie
+            :mod (s2 / stripe))))

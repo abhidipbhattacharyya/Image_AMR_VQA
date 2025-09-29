@@ -1,0 +1,45 @@
+# ::tok A man pouring red wine into a glass that another person is holding , and several bottles on the table in front of them .
+# ::node	m	man	1-2
+# ::node	p2	pour-01	2-3
+# ::node	r	red-02	3-4
+# ::node	w	wine	4-5
+# ::node	g	glass	7-8
+# ::node	a2	another	9-10
+# ::node	p	person	10-11
+# ::node	h	hold-01	12-13
+# ::node	a	and	14-15
+# ::node	s	several	15-16
+# ::node	b2	bottle	16-17
+# ::node	b	be-located-at-91	17-18
+# ::node	t	table	19-20
+# ::node	i	in-front-of	21-22
+# ::root	p2	pour-01
+# ::edge	pour-01	ARG0	man	p2	m	
+# ::edge	wine	ARG1-of	red-02	w	r	
+# ::edge	pour-01	ARG3	glass	p2	g	
+# ::edge	person	mod	another	p	a2	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	glass	ARG1-of	hold-01	g	h	
+# ::edge	and	op1	wine	a	w	
+# ::edge	pour-01	ARG1	and	p2	a	
+# ::edge	bottle	quant	several	b2	s	
+# ::edge	be-located-at-91	ARG1	bottle	b	b2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+# ::edge	table	location	in-front-of	t	i	
+# ::edge	in-front-of	op1	person	i	p	
+(p2 / pour-01
+    :ARG0 (m / man)
+    :ARG1 (a / and
+        :op1 (w / wine
+            :ARG1-of (r / red-02))
+        :op2 (b / be-located-at-91
+            :ARG1 (b2 / bottle
+                :quant (s / several))
+            :ARG2 (t / table
+                :location (i / in-front-of
+                    :op1 (p / person
+                        :mod (a2 / another))))))
+    :ARG3 (g / glass
+        :ARG1-of (h / hold-01
+            :ARG0 p)))

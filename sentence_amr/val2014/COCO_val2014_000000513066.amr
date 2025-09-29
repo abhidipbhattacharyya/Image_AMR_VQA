@@ -1,0 +1,29 @@
+# ::tok A person standing over another person sticking them with a hypodermic needle .
+# ::node	p	person	1-2
+# ::node	s	stand-01	2-3
+# ::node	o	over	3-4
+# ::node	a	another	4-5
+# ::node	p2	person	5-6
+# ::node	s2	stick-01	6-7
+# ::node	h	hypodermic	10-11
+# ::node	n	needle	11-12
+# ::root	s2	stick-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	over	s	o	
+# ::edge	person	mod	another	p2	a	
+# ::edge	over	op1	person	o	p2	
+# ::edge	stick-01	ARG2	person	s2	p2	
+# ::edge	stick-01	ARG0	person	s2	p	
+# ::edge	needle	mod	hypodermic	n	h	
+# ::edge	stick-01	instrument	needle	s2	n	
+# ::edge	stick-01	rel	stand-01	s2	s	
+(s2 / stick-01
+    :ARG0 (p / person)
+    :ARG2 (p2 / person
+        :mod (a / another))
+    :instrument (n / needle
+        :mod (h / hypodermic))
+    :rel (s / stand-01
+        :ARG1 p
+        :ARG2 (o / over
+            :op1 p2)))

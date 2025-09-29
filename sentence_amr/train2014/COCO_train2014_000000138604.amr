@@ -1,0 +1,33 @@
+# ::tok Cat looking in the mirror while the camera flash makes his eyes light up .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Cat	0-1
+# ::node	l2	look-01	1-2
+# ::node	m2	mirror	4-5
+# ::node	c	camera	7-8
+# ::node	f	flash-01	8-9
+# ::node	m	make-02	9-10
+# ::node	e	eye	11-12
+# ::node	l	light-up-08	12-13
+# ::root	l2	look-01
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Cat	n	0	
+# ::edge	look-01	ARG0	person	l2	p	
+# ::edge	look-01	ARG1	mirror	l2	m2	
+# ::edge	flash-01	ARG0	camera	f	c	
+# ::edge	make-02	ARG0	flash-01	m	f	
+# ::edge	look-01	time	make-02	l2	m	
+# ::edge	person	part	eye	p	e	
+# ::edge	light-up-08	ARG1	eye	l	e	
+# ::edge	make-02	ARG1	light-up-08	m	l	
+(l2 / look-01
+    :ARG0 (p / person
+        :name (n / name
+            :op1 "Cat")
+        :part (e / eye))
+    :ARG1 (m2 / mirror)
+    :time (m / make-02
+        :ARG0 (f / flash-01
+            :ARG0 (c / camera))
+        :ARG1 (l / light-up-08
+            :ARG1 e)))

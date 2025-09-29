@@ -1,0 +1,31 @@
+# ::tok A bowl is shown full of a red soup with broccoli florets on top .
+# ::node	b	bowl	1-2
+# ::node	s	show-01	3-4
+# ::node	f	fill-01	4-5
+# ::node	r	red-02	7-8
+# ::node	s2	soup	8-9
+# ::node	h	have-03	9-10
+# ::node	b2	broccoli	10-11
+# ::node	m	mass-quantity	11-12
+# ::node	r2	reserve-01	11-12
+# ::node	t	top	13-14
+# ::root	s	show-01
+# ::edge	show-01	ARG1	bowl	s	b	
+# ::edge	bowl	ARG1-of	fill-01	b	f	
+# ::edge	soup	ARG1-of	red-02	s2	r	
+# ::edge	fill-01	ARG2	soup	f	s2	
+# ::edge	soup	ARG0-of	have-03	s2	h	
+# ::edge	mass-quantity	unit	broccoli	m	b2	
+# ::edge	have-03	ARG1	mass-quantity	h	m	
+# ::edge	mass-quantity	ARG1-of	reserve-01	m	r2	
+# ::edge	reserve-01	location	top	r2	t	
+(s / show-01
+    :ARG1 (b / bowl
+        :ARG1-of (f / fill-01
+            :ARG2 (s2 / soup
+                :ARG0-of (h / have-03
+                    :ARG1 (m / mass-quantity
+                        :ARG1-of (r2 / reserve-01
+                            :location (t / top))
+                        :unit (b2 / broccoli)))
+                :ARG1-of (r / red-02)))))

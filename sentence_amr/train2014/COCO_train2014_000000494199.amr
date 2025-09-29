@@ -1,0 +1,36 @@
+# ::tok A cutting board with green peppers already cut and some awaiting their cutting .
+# ::node	b	board	2-3
+# ::node	h	have-03	3-4
+# ::node	g	green-02	4-5
+# ::node	p	pepper-spray	5-6
+# ::node	p2	plant	5-6
+# ::node	a	already	6-7
+# ::node	c2	cut-02	7-8
+# ::node	a2	and	8-9
+# ::node	s	some	9-10
+# ::node	a3	await-01	10-11
+# ::node	c	cut-01	12-13
+# ::root	h	have-03
+# ::edge	have-03	ARG0	board	h	b	
+# ::edge	pepper-spray	ARG1-of	green-02	p	g	
+# ::edge	cut-02	time	already	c2	a	
+# ::edge	cut-02	ARG1	pepper-spray	c2	p	
+# ::edge	and	op1	cut-02	a2	c2	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	plant	quant	some	p2	s	
+# ::edge	and	op2	await-01	a2	a3	
+# ::edge	await-01	ARG2	plant	a3	p2	
+# ::edge	await-01	ARG1	pepper-spray	a3	p	
+# ::edge	plant	ARG1-of	cut-01	p2	c	
+(h / have-03
+    :ARG0 (b / board)
+    :ARG1 (a2 / and
+        :op1 (c2 / cut-02
+            :ARG1 (p / pepper-spray
+                :ARG1-of (g / green-02))
+            :time (a / already))
+        :op2 (a3 / await-01
+            :ARG1 p
+            :ARG2 (p2 / plant
+                :quant (s / some)
+                :ARG1-of (c / cut-01)))))

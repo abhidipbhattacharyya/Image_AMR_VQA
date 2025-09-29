@@ -1,0 +1,23 @@
+# ::tok A long train sits at the station waiting for it 's departure .
+# ::node	l	long-03	1-2
+# ::node	t	train	2-3
+# ::node	s	sit-01	3-4
+# ::node	s2	station	6-7
+# ::node	w	wait-01	7-8
+# ::node	d	depart-01	11-12
+# ::root	s	sit-01
+# ::edge	train	ARG1-of	long-03	t	l	
+# ::edge	sit-01	ARG1	train	s	t	
+# ::edge	sit-01	ARG2	station	s	s2	
+# ::edge	sit-01	purpose	wait-01	s	w	
+# ::edge	wait-01	ARG1	train	w	t	
+# ::edge	wait-01	ARG2	depart-01	w	d	
+# ::edge	depart-01	ARG0	train	d	t	
+(s / sit-01
+    :purpose (w / wait-01
+        :ARG1 (t / train
+            :ARG1-of (l / long-03))
+        :ARG2 (d / depart-01
+            :ARG0 t))
+    :ARG1 t
+    :ARG2 (s2 / station))

@@ -1,0 +1,27 @@
+# ::tok Double decker bus riding down a city street with passengers in it .
+# ::node	d2	double-01	0-1
+# ::node	d	deck	1-2
+# ::node	b	bus	2-3
+# ::node	r	ride-01	3-4
+# ::node	d3	down	4-5
+# ::node	c	city	6-7
+# ::node	s	street	7-8
+# ::node	p	passenger	9-10
+# ::root	r	ride-01
+# ::edge	deck	ARG1-of	double-01	d	d2	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	ride-01	ARG0	bus	r	b	
+# ::edge	ride-01	direction	down	r	d3	
+# ::edge	street	mod	city	s	c	
+# ::edge	ride-01	path	street	r	s	
+# ::edge	bus	location-of	passenger	b	p	
+# ::edge	passenger	location	bus	p	b	
+(r / ride-01
+    :ARG0 (b / bus
+        :location-of (p / passenger
+            :location b)
+        :mod (d / deck
+            :ARG1-of (d2 / double-01)))
+    :direction (d3 / down)
+    :path (s / street
+        :mod (c / city)))

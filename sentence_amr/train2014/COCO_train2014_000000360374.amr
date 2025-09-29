@@ -1,0 +1,25 @@
+# ::tok A broad urban thoroughfare crowded with nine lanes of bumper - to - bumper traffic .
+# ::node	b	broad-02	1-2
+# ::node	c	city	2-3
+# ::node	t	thoroughfare	3-4
+# ::node	c2	crowd-01	4-5
+# ::node	0	9	6-7
+# ::node	l	lane	7-8
+# ::node	b2	bumper-to-bumper	13-14
+# ::node	t2	traffic	14-15
+# ::root	t	thoroughfare
+# ::edge	thoroughfare	mod	city	t	c	
+# ::edge	thoroughfare	ARG1-of	broad-02	t	b	
+# ::edge	thoroughfare	ARG1-of	crowd-01	t	c2	
+# ::edge	lane	quant	9	l	0	
+# ::edge	traffic	mod	bumper-to-bumper	t2	b2	
+# ::edge	traffic	consist-of	lane	t2	l	
+# ::edge	crowd-01	ARG2	traffic	c2	t2	
+(t / thoroughfare
+    :ARG1-of (b / broad-02)
+    :ARG1-of (c2 / crowd-01
+        :ARG2 (t2 / traffic
+            :consist-of (l / lane
+                :quant 9)
+            :mod (b2 / bumper-to-bumper)))
+    :mod (c / city))

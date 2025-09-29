@@ -1,0 +1,37 @@
+# ::tok front of a bowling alley with Asian characters written on the sign
+# ::node	i	in-front-of	0-1
+# ::node	d	disco	3-4
+# ::node	b	bowl-01	3-4
+# ::node	a	alley	4-5
+# ::node	h	have-03	5-6
+# ::node	c2	continent	6-7
+# ::node	n	name	6-7
+# ::node	0	Asia	6-7
+# ::node	c	character	7-8
+# ::node	t	thing	8-9
+# ::node	w	write-01	8-9
+# ::node	s	sign	11-12
+# ::root	i	in-front-of
+# ::edge	alley	location-of	bowl-01	a	b	
+# ::edge	in-front-of	op1	alley	i	a	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	character	mod	continent	c	c2	
+# ::edge	have-03	ARG1	character	h	c	
+# ::edge	thing	ARG0-of	have-03	t	h	
+# ::edge	alley	location-of	thing	a	t	
+# ::edge	thing	ARG1-of	write-01	t	w	
+# ::edge	write-01	location	sign	w	s	
+# ::edge	in-front-of	rel	disco	i	d	
+(i / in-front-of
+    :op1 (a / alley
+        :location-of (b / bowl-01)
+        :location-of (t / thing
+            :ARG0-of (h / have-03
+                :ARG1 (c / character
+                    :mod (c2 / continent
+                        :name (n / name
+                            :op1 "Asia"))))
+            :ARG1-of (w / write-01
+                :location (s / sign))))
+    :rel (d / disco))

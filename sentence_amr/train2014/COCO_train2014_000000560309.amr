@@ -1,0 +1,34 @@
+# ::tok A room with two matching chair with clock and doorway that lead to a hallway .
+# ::node	r	room	1-2
+# ::node	h2	have-03	2-3
+# ::node	0	2	3-4
+# ::node	m	match-01	4-5
+# ::node	c	chair	5-6
+# ::node	h3	have-03	6-7
+# ::node	c2	clock	7-8
+# ::node	a	and	8-9
+# ::node	d	doorway	9-10
+# ::node	l	lead-01	11-12
+# ::node	h	hallway	14-15
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h2	
+# ::edge	chair	ARG1-of	match-01	c	m	
+# ::edge	chair	quant	2	c	0	
+# ::edge	have-03	ARG1	chair	h2	c	
+# ::edge	chair	ARG0-of	have-03	c	h3	
+# ::edge	and	op1	clock	a	c2	
+# ::edge	have-03	ARG1	and	h3	a	
+# ::edge	and	op2	doorway	a	d	
+# ::edge	chair	ARG0-of	lead-01	c	l	
+# ::edge	lead-01	ARG4	hallway	l	h	
+(r / room
+    :ARG0-of (h2 / have-03
+        :ARG1 (c / chair
+            :quant 2
+            :ARG0-of (h3 / have-03
+                :ARG1 (a / and
+                    :op1 (c2 / clock)
+                    :op2 (d / doorway)))
+            :ARG0-of (l / lead-01
+                :ARG4 (h / hallway))
+            :ARG1-of (m / match-01))))

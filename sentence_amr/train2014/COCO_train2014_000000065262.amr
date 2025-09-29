@@ -1,0 +1,39 @@
+# ::tok A large 747 jumbo jet airplane taxiing down the runway with another jet landing behind it .
+# ::node	l2	large	1-2
+# ::node	n	name	2-3
+# ::node	0	747	2-3
+# ::node	j2	jumbo	3-4
+# ::node	a	airplane	5-6
+# ::node	t	tax-01	6-7
+# ::node	d	down	7-8
+# ::node	r	runway	9-10
+# ::node	a2	another	11-12
+# ::node	j	jet	12-13
+# ::node	l	land-01	13-14
+# ::node	b	behind	14-15
+# ::root	t	tax-01
+# ::edge	name	op1	747	n	0	
+# ::edge	airplane	mod	jumbo	a	j2	
+# ::edge	airplane	name	name	a	n	
+# ::edge	airplane	mod	large	a	l2	
+# ::edge	tax-01	ARG1	airplane	t	a	
+# ::edge	tax-01	direction	down	t	d	
+# ::edge	tax-01	path	runway	t	r	
+# ::edge	jet	mod	another	j	a2	
+# ::edge	land-01	ARG1	jet	l	j	
+# ::edge	airplane	location-of	land-01	a	l	
+# ::edge	land-01	location	behind	l	b	
+# ::edge	behind	op1	airplane	b	a	
+(t / tax-01
+    :ARG1 (a / airplane
+        :name (n / name
+            :op1 747)
+        :location-of (l / land-01
+            :ARG1 (j / jet
+                :mod (a2 / another))
+            :location (b / behind
+                :op1 a))
+        :mod (j2 / jumbo)
+        :mod (l2 / large))
+    :direction (d / down)
+    :path (r / runway))

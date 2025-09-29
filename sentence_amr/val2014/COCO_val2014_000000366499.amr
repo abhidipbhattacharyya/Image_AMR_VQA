@@ -1,0 +1,36 @@
+# ::tok A hand tossed pizza on a wooden table with tomatoes and other toppings .
+# ::node	h	hand	1-2
+# ::node	t3	toss-01	2-3
+# ::node	p	pizza	3-4
+# ::node	w	wood	6-7
+# ::node	t	table	7-8
+# ::node	t2	tomato	9-10
+# ::node	a	and	10-11
+# ::node	o	other	11-12
+# ::node	c	continent	12-13
+# ::node	n	name	12-13
+# ::node	h2	health	12-13
+# ::root	t3	toss-01
+# ::edge	toss-01	ARG0	hand	t3	h	
+# ::edge	toss-01	ARG1	pizza	t3	p	
+# ::edge	table	consist-of	wood	t	w	
+# ::edge	toss-01	ARG4	table	t3	t	
+# ::edge	and	op1	tomato	a	t2	
+# ::edge	table	consist-of	and	t	a	
+# ::edge	tomato	mod	continent	t2	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op2	health	n	h2	
+# ::edge	health	mod	pizza	h2	p	
+# ::edge	toss-01	rel	other	t3	o	
+(t3 / toss-01
+    :ARG0 (h / hand)
+    :ARG1 (p / pizza)
+    :ARG4 (t / table
+        :consist-of (w / wood)
+        :consist-of (a / and
+            :op1 (t2 / tomato
+                :mod (c / continent
+                    :name (n / name
+                        :op2 (h2 / "health"
+                            :mod p))))))
+    :rel (o / other))

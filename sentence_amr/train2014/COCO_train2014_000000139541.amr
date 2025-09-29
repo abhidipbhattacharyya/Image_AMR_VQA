@@ -1,0 +1,34 @@
+# ::tok A tuna fish sandwich is sitting next to a large group of french fries .
+# ::node	t	tuna	1-2
+# ::node	f	fish	2-3
+# ::node	s	sandwich	3-4
+# ::node	s2	sit-01	5-6
+# ::node	n2	next-to	6-7
+# ::node	l	large	9-10
+# ::node	g	group	10-11
+# ::node	c	country	12-13
+# ::node	n	name	12-13
+# ::node	0	France	12-13
+# ::node	f2	fry-01	13-14
+# ::root	s2	sit-01
+# ::edge	fish	mod	tuna	f	t	
+# ::edge	sandwich	mod	fish	s	f	
+# ::edge	sit-01	ARG1	sandwich	s2	s	
+# ::edge	sit-01	ARG2	next-to	s2	n2	
+# ::edge	group	mod	large	g	l	
+# ::edge	next-to	op1	group	n2	g	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f2	c	
+# ::edge	group	consist-of	fry-01	g	f2	
+(s2 / sit-01
+    :ARG1 (s / sandwich
+        :mod (f / fish
+            :mod (t / tuna)))
+    :ARG2 (n2 / next-to
+        :op1 (g / group
+            :consist-of (f2 / fry-01
+                :mod (c / country
+                    :name (n / name
+                        :op1 "France")))
+            :mod (l / large))))

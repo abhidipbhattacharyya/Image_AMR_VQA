@@ -1,0 +1,30 @@
+# ::tok A train moving along a train track with guide wires attached at the top .
+# ::node	t3	train	1-2
+# ::node	m	move-01	2-3
+# ::node	a	along	3-4
+# ::node	t4	train	5-6
+# ::node	t2	track	6-7
+# ::node	g	guide-01	8-9
+# ::node	w	wire	9-10
+# ::node	a2	attach-01	10-11
+# ::node	t	top	13-14
+# ::root	m	move-01
+# ::edge	move-01	ARG1	train	m	t3	
+# ::edge	move-01	path	along	m	a	
+# ::edge	track	mod	train	t2	t4	
+# ::edge	along	op1	track	a	t2	
+# ::edge	wire	ARG0-of	guide-01	w	g	
+# ::edge	attach-01	ARG1	wire	a2	w	
+# ::edge	train	ARG2-of	attach-01	t3	a2	
+# ::edge	wire	location	top	w	t	
+# ::edge	train	part	top	t3	t	
+(m / move-01
+    :ARG1 (t3 / train
+        :ARG2-of (a2 / attach-01
+            :ARG1 (w / wire
+                :ARG0-of (g / guide-01)
+                :location (t / top)))
+        :part t)
+    :path (a / along
+        :op1 (t2 / track
+            :mod (t4 / train))))

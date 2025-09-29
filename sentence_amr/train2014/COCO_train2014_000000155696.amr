@@ -1,0 +1,36 @@
+# ::tok Three of six people standing and sitting at a restaurant table are on cell phones .
+# ::node	0	3	0-1
+# ::node	i	include-91	1-2
+# ::node	1	6	2-3
+# ::node	p	person	3-4
+# ::node	p2	person	3-4
+# ::node	s2	stand-01	4-5
+# ::node	s	sit-01	6-7
+# ::node	r	restaurant	9-10
+# ::node	t	table	10-11
+# ::node	c	cell	13-14
+# ::node	p3	phone	14-15
+# ::root	p3	phone
+# ::edge	person	ARG1-of	include-91	p	i	
+# ::edge	person	quant	3	p	0	
+# ::edge	person	quant	6	p2	1	
+# ::edge	include-91	ARG2	person	i	p2	
+# ::edge	person	ARG1-of	stand-01	p	s2	
+# ::edge	person	ARG1-of	sit-01	p2	s	
+# ::edge	table	mod	restaurant	t	r	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	stand-01	ARG2	table	s2	t	
+# ::edge	phone	mod	cell	p3	c	
+# ::edge	phone	medium-of	person	p3	p	
+(p3 / phone
+    :medium-of (p / person
+        :quant 3
+        :ARG1-of (i / include-91
+            :ARG2 (p2 / person
+                :quant 6
+                :ARG1-of (s / sit-01
+                    :ARG2 (t / table
+                        :mod (r / restaurant)))))
+        :ARG1-of (s2 / stand-01
+            :ARG2 t))
+    :mod (c / cell))

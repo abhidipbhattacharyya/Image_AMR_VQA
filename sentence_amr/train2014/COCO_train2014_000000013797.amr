@@ -1,0 +1,36 @@
+# ::tok A group of men standing around a table with microphones while one makes a speech .
+# ::node	g	group	1-2
+# ::node	i	include-91	1-2
+# ::node	m	man	3-4
+# ::node	m2	man	3-4
+# ::node	s2	stand-01	4-5
+# ::node	a	around	5-6
+# ::node	t	table	7-8
+# ::node	c	camera	9-10
+# ::node	i2	include-91	11-12
+# ::node	0	1	11-12
+# ::node	s	speak-01	14-15
+# ::root	s2	stand-01
+# ::edge	group	ARG2-of	include-91	g	i	
+# ::edge	group	ARG1	man	g	m	
+# ::edge	include-91	ARG1	man	i	m2	
+# ::edge	stand-01	ARG1	group	s2	g	
+# ::edge	stand-01	ARG2	around	s2	a	
+# ::edge	around	op1	table	a	t	
+# ::edge	man	instrument	camera	m	c	
+# ::edge	man	ARG1-of	include-91	m2	i2	
+# ::edge	include-91	ARG2	man	i2	m	
+# ::edge	man	quant	1	m2	0	
+# ::edge	man	ARG0-of	speak-01	m2	s	
+(s2 / stand-01
+    :ARG1 (g / group
+        :ARG1 (m / man
+            :instrument (c / camera))
+        :ARG2-of (i / include-91
+            :ARG1 (m2 / man
+                :quant 1
+                :ARG0-of (s / speak-01)
+                :ARG1-of (i2 / include-91
+                    :ARG2 m))))
+    :ARG2 (a / around
+        :op1 (t / table)))

@@ -1,0 +1,33 @@
+# ::tok A person sitting on a bench next to rail road tracks with a train coming toward him .
+# ::node	p	person	1-2
+# ::node	s	sit-01	2-3
+# ::node	b	bench	5-6
+# ::node	n	next-to	6-7
+# ::node	r	rail	8-9
+# ::node	r2	road	9-10
+# ::node	t2	track	10-11
+# ::node	t3	train	13-14
+# ::node	c	come-01	14-15
+# ::node	t	toward	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	bench	location	next-to	b	n	
+# ::edge	road	mod	rail	r2	r	
+# ::edge	track	mod	road	t2	r2	
+# ::edge	next-to	op1	track	n	t2	
+# ::edge	come-01	ARG1	train	c	t3	
+# ::edge	person	location-of	come-01	p	c	
+# ::edge	come-01	direction	toward	c	t	
+# ::edge	toward	op1	person	t	p	
+(s / sit-01
+    :ARG1 (p / person
+        :location-of (c / come-01
+            :ARG1 (t3 / train)
+            :direction (t / toward
+                :op1 p)))
+    :ARG2 (b / bench
+        :location (n / next-to
+            :op1 (t2 / track
+                :mod (r2 / road
+                    :mod (r / rail))))))

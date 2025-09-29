@@ -1,0 +1,27 @@
+# ::tok A transit bus in the reflection of a car mirror as it comes down the road .
+# ::node	t	transit-01	1-2
+# ::node	b	bus	2-3
+# ::node	r	reflect-01	5-6
+# ::node	c	car	8-9
+# ::node	m	mirror	9-10
+# ::node	c2	come-01	12-13
+# ::node	d	down	13-14
+# ::node	r2	road	15-16
+# ::root	b	bus
+# ::edge	bus	ARG0-of	transit-01	b	t	
+# ::edge	bus	ARG1-of	reflect-01	b	r	
+# ::edge	mirror	mod	car	m	c	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	bus	time	come-01	b	c2	
+# ::edge	come-01	ARG1	bus	c2	b	
+# ::edge	come-01	direction	down	c2	d	
+# ::edge	come-01	path	road	c2	r2	
+(b / bus
+    :ARG0-of (t / transit-01)
+    :ARG1-of (r / reflect-01
+        :ARG2 (m / mirror
+            :mod (c / car)))
+    :time (c2 / come-01
+        :ARG1 b
+        :direction (d / down)
+        :path (r2 / road)))

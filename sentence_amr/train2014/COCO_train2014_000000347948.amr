@@ -1,0 +1,27 @@
+# ::tok a double decker bus goes down the road after picking up passengers
+# ::node	d	double-decker	2-3
+# ::node	b	bus	3-4
+# ::node	g	go-01	4-5
+# ::node	d2	down	5-6
+# ::node	r	road	7-8
+# ::node	a	after	8-9
+# ::node	p2	pick-up-04	9-10
+# ::node	p	passenger	11-12
+# ::root	g	go-01
+# ::edge	bus	mod	double-decker	b	d	
+# ::edge	go-01	ARG1	bus	g	b	
+# ::edge	go-01	direction	down	g	d2	
+# ::edge	go-01	ARG4	road	g	r	
+# ::edge	go-01	time	after	g	a	
+# ::edge	after	op1	pick-up-04	a	p2	
+# ::edge	pick-up-04	ARG0	bus	p2	b	
+# ::edge	pick-up-04	ARG1	passenger	p2	p	
+(g / go-01
+    :ARG1 (b / bus
+        :mod (d / double-decker))
+    :ARG4 (r / road)
+    :direction (d2 / down)
+    :time (a / after
+        :op1 (p2 / pick-up-04
+            :ARG0 b
+            :ARG1 (p / passenger))))

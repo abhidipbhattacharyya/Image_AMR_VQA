@@ -1,0 +1,34 @@
+# ::tok A British United cargo plane landing at in a grassy area .
+# ::node	n	name	1-2
+# ::node	c3	country	1-2
+# ::node	n2	name	1-2
+# ::node	0	Britain	1-2
+# ::node	c2	company	2-3
+# ::node	1	United	2-3
+# ::node	c	cargo	3-4
+# ::node	p	plane	4-5
+# ::node	l	land-01	5-6
+# ::node	g	grass	9-10
+# ::node	a	area	10-11
+# ::root	l	land-01
+# ::edge	country	name	name	c3	n2	
+# ::edge	name	op1	Britain	n2	0	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	United	n	1	
+# ::edge	plane	mod	cargo	p	c	
+# ::edge	plane	mod	company	p	c2	
+# ::edge	plane	mod	country	p	c3	
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	area	consist-of	grass	a	g	
+# ::edge	land-01	location	area	l	a	
+(l / land-01
+    :ARG1 (p / plane
+        :mod (c / cargo)
+        :mod (c2 / company
+            :name (n / name
+                :op1 "United"))
+        :mod (c3 / country
+            :name (n2 / name
+                :op1 "Britain")))
+    :location (a / area
+        :consist-of (g / grass)))

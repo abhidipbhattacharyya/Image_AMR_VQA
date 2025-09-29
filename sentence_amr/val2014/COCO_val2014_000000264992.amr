@@ -1,0 +1,44 @@
+# ::tok A note that urges people to take a vitamin C break next to two baskets of oranges .
+# ::node	n3	note	1-2
+# ::node	u	urge-01	3-4
+# ::node	p	person	4-5
+# ::node	t	take-01	6-7
+# ::node	n	name	8-9
+# ::node	2	vitamin	8-9
+# ::node	s	small-molecule	9-10
+# ::node	1	C	9-10
+# ::node	b2	break-19	10-11
+# ::node	n2	next-to	11-12
+# ::node	0	2	13-14
+# ::node	b	basket	14-15
+# ::node	o	orange	16-17
+# ::root	u	urge-01
+# ::edge	urge-01	ARG0	note	u	n3	
+# ::edge	urge-01	ARG1	person	u	p	
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	urge-01	ARG2	take-01	u	t	
+# ::edge	name	op1	vitamin	n	2	
+# ::edge	small-molecule	name	name	s	n	
+# ::edge	name	op2	C	n	1	
+# ::edge	break-19	ARG1	small-molecule	b2	s	
+# ::edge	take-01	ARG1	break-19	t	b2	
+# ::edge	break-19	ARG0	person	b2	p	
+# ::edge	take-01	location	next-to	t	n2	
+# ::edge	basket	quant	2	b	0	
+# ::edge	next-to	op1	basket	n2	b	
+# ::edge	basket	consist-of	orange	b	o	
+(u / urge-01
+    :ARG0 (n3 / note)
+    :ARG1 (p / person)
+    :ARG2 (t / take-01
+        :ARG0 p
+        :ARG1 (b2 / break-19
+            :ARG0 p
+            :ARG1 (s / small-molecule
+                :name (n / name
+                    :op1 "vitamin"
+                    :op2 "C")))
+        :location (n2 / next-to
+            :op1 (b / basket
+                :quant 2
+                :consist-of (o / orange)))))

@@ -1,0 +1,35 @@
+# ::tok A man in white shorts jumping in the air to catch a green Frisbee .
+# ::node	m	man	1-2
+# ::node	w	white-03	3-4
+# ::node	s	shorts	4-5
+# ::node	j	jump-03	5-6
+# ::node	a	air	8-9
+# ::node	c	catch-01	10-11
+# ::node	g	green-02	12-13
+# ::node	d	disc	13-14
+# ::node	n	name	13-14
+# ::node	0	Frisbee	13-14
+# ::root	m	man
+# ::edge	shorts	ARG1-of	white-03	s	w	
+# ::edge	man	ARG0-of	jump-03	m	j	
+# ::edge	jump-03	destination	air	j	a	
+# ::edge	jump-03	purpose	catch-01	j	c	
+# ::edge	catch-01	ARG0	man	c	m	
+# ::edge	disc	ARG1-of	green-02	d	g	
+# ::edge	catch-01	ARG1	disc	c	d	
+# ::edge	disc	name	name	d	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	man	rel	shorts	m	s	
+# ::edge	man	rel	jump-03	m	j	
+(m / man
+    :ARG0-of (j / jump-03
+        :purpose (c / catch-01
+            :ARG0 m
+            :ARG1 (d / disc
+                :name (n / name
+                    :op1 "Frisbee")
+                :ARG1-of (g / green-02)))
+        :destination (a / air))
+    :rel (s / shorts
+        :ARG1-of (w / white-03))
+    :rel j)

@@ -1,0 +1,26 @@
+# ::tok Two pizzas with a piece missing on one of them .
+# ::node	1	2	0-1
+# ::node	p2	pizzeria	1-2
+# ::node	h	have-03	2-3
+# ::node	p	piece	4-5
+# ::node	m	miss-01	5-6
+# ::node	0	1	7-8
+# ::node	i	include-91	8-9
+# ::root	h	have-03
+# ::edge	pizzeria	quant	2	p2	1	
+# ::edge	have-03	ARG0	pizzeria	h	p2	
+# ::edge	miss-01	ARG1	piece	m	p	
+# ::edge	have-03	ARG1	miss-01	h	m	
+# ::edge	miss-01	location	pizzeria	m	p2	
+# ::edge	include-91	ARG3	1	i	0	
+# ::edge	pizzeria	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	pizzeria	i	p2	
+(h / have-03
+    :ARG0 (p2 / pizzeria
+        :quant 2
+        :ARG1-of (i / include-91
+            :ARG2 p2
+            :ARG3 1))
+    :ARG1 (m / miss-01
+        :ARG1 (p / piece)
+        :location p2))

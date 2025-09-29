@@ -1,0 +1,24 @@
+# ::tok A jumbo jet plane with a boarding deck connected to it .
+# ::node	j2	jumbo	1-2
+# ::node	j	jet	2-3
+# ::node	p	plane	3-4
+# ::node	h	have-03	4-5
+# ::node	b	board-01	6-7
+# ::node	d	deck	7-8
+# ::node	c	connect-01	8-9
+# ::root	c	connect-01
+# ::edge	jet	mod	jumbo	j	j2	
+# ::edge	plane	mod	jet	p	j	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	deck	purpose	board-01	d	b	
+# ::edge	have-03	ARG1	deck	h	d	
+# ::edge	connect-01	ARG2	plane	c	p	
+# ::edge	connect-01	ARG1	plane	c	p	
+(c / connect-01
+    :ARG1 (p / plane
+        :ARG0-of (h / have-03
+            :ARG1 (d / deck
+                :purpose (b / board-01)))
+        :mod (j / jet
+            :mod (j2 / jumbo)))
+    :ARG2 p)

@@ -1,0 +1,37 @@
+# ::tok Two doughnuts on top of a paper bag and a cup of coffee in a mug .
+# ::node	1	2	0-1
+# ::node	d	donut	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	t	top	3-4
+# ::node	p	paper	6-7
+# ::node	b	bag	7-8
+# ::node	a	and	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c2	cup	10-11
+# ::node	c	coffee	12-13
+# ::node	m	mug	15-16
+# ::root	a	and
+# ::edge	donut	quant	2	d	1	
+# ::edge	be-located-at-91	ARG1	donut	b2	d	
+# ::edge	be-located-at-91	ARG2	top	b2	t	
+# ::edge	bag	consist-of	paper	b	p	
+# ::edge	top	op1	bag	t	b	
+# ::edge	and	op1	be-located-at-91	a	b2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op2	coffee	a	c	
+# ::edge	coffee	location	mug	c	m	
+(a / and
+    :op1 (b2 / be-located-at-91
+        :ARG1 (d / donut
+            :quant 2)
+        :ARG2 (t / top
+            :op1 (b / bag
+                :consist-of (p / paper))))
+    :op2 (c / coffee
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c2 / cup))
+        :location (m / mug)))

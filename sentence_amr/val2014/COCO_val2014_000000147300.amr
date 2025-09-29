@@ -1,0 +1,44 @@
+# ::tok A road sign indicating that to get on interstate 94 you need to take the next left .
+# ::node	r	road	1-2
+# ::node	s	sign	2-3
+# ::node	i	indicate-01	3-4
+# ::node	g	get-05	6-7
+# ::node	r2	road	8-9
+# ::node	n	name	8-9
+# ::node	1	Federal	8-9
+# ::node	0	94	9-10
+# ::node	y	you	10-11
+# ::node	n2	need-01	11-12
+# ::node	t	take-01	13-14
+# ::node	n3	next	15-16
+# ::node	l	left-20	16-17
+# ::root	s	sign
+# ::edge	sign	mod	road	s	r	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	get-05	ARG2	road	g	r2	
+# ::edge	road	name	name	r2	n	
+# ::edge	name	op1	Federal	n	1	
+# ::edge	name	op2	94	n	0	
+# ::edge	get-05	ARG1	you	g	y	
+# ::edge	need-01	ARG0	you	n2	y	
+# ::edge	need-01	purpose	get-05	n2	g	
+# ::edge	indicate-01	ARG1	need-01	i	n2	
+# ::edge	need-01	ARG1	take-01	n2	t	
+# ::edge	take-01	ARG0	you	t	y	
+# ::edge	left-20	mod	next	l	n3	
+# ::edge	take-01	ARG1	left-20	t	l	
+(s / sign
+    :ARG0-of (i / indicate-01
+        :ARG1 (n2 / need-01
+            :purpose (g / get-05
+                :ARG1 (y / you)
+                :ARG2 (r2 / road
+                    :name (n / name
+                        :op1 "Federal"
+                        :op2 94)))
+            :ARG0 y
+            :ARG1 (t / take-01
+                :ARG0 y
+                :ARG1 (l / left-20
+                    :mod (n3 / next)))))
+    :mod (r / road))

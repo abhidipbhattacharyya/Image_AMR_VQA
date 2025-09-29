@@ -1,0 +1,48 @@
+# ::tok Photoshop has allowed the photographer to creatively identify the name of the Italian city in his shot .
+# ::node	p3	product	0-1
+# ::node	n	name	0-1
+# ::node	1	Photoshop	0-1
+# ::node	a	allow-01	2-3
+# ::node	p	person	4-5
+# ::node	p2	photograph-01	4-5
+# ::node	s	scientific	6-7
+# ::node	i	identify-01	7-8
+# ::node	t	thing	8-9
+# ::node	n3	name-01	9-10
+# ::node	c2	country	12-13
+# ::node	n2	name	12-13
+# ::node	0	Italy	12-13
+# ::node	c	city	13-14
+# ::node	s2	shoot-03	16-17
+# ::root	a	allow-01
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Photoshop	n	1	
+# ::edge	allow-01	ARG0	product	a	p3	
+# ::edge	person	ARG0-of	photograph-01	p	p2	
+# ::edge	identify-01	manner	scientific	i	s	
+# ::edge	identify-01	ARG0	person	i	p	
+# ::edge	allow-01	ARG1	identify-01	a	i	
+# ::edge	identify-01	ARG1	thing	i	t	
+# ::edge	thing	ARG2-of	name-01	t	n3	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	Italy	n2	0	
+# ::edge	city	location	country	c	c2	
+# ::edge	name-01	ARG1	city	n3	c	
+# ::edge	identify-01	location	shoot-03	i	s2	
+# ::edge	shoot-03	ARG0	person	s2	p	
+(a / allow-01
+    :ARG0 (p3 / product
+        :name (n / name
+            :op1 "Photoshop"))
+    :ARG1 (i / identify-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / photograph-01))
+        :ARG1 (t / thing
+            :ARG2-of (n3 / name-01
+                :ARG1 (c / city
+                    :location (c2 / country
+                        :name (n2 / name
+                            :op1 "Italy")))))
+        :location (s2 / shoot-03
+            :ARG0 p)
+        :manner (s / scientific)))

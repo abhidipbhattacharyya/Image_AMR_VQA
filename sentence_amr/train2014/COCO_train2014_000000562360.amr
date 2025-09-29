@@ -1,0 +1,33 @@
+# ::tok A person extends one hand and holds a tennis racquet in the other .
+# ::node	p	person	1-2
+# ::node	e	extend-01	2-3
+# ::node	0	1	3-4
+# ::node	h	hand	4-5
+# ::node	h2	hand	4-5
+# ::node	a	and	5-6
+# ::node	h3	hold-01	6-7
+# ::node	t	tennis	8-9
+# ::node	r	racquet	9-10
+# ::node	o	other	12-13
+# ::root	a	and
+# ::edge	extend-01	ARG0	person	e	p	
+# ::edge	hand	quant	1	h	0	
+# ::edge	extend-01	ARG1	hand	e	h	
+# ::edge	and	op1	extend-01	a	e	
+# ::edge	and	op2	hold-01	a	h3	
+# ::edge	hold-01	ARG0	hand	h3	h2	
+# ::edge	racquet	mod	tennis	r	t	
+# ::edge	hold-01	ARG1	racquet	h3	r	
+# ::edge	racquet	part	hand	r	h2	
+# ::edge	hand	mod	other	h2	o	
+(a / and
+    :op1 (e / extend-01
+        :ARG0 (p / person)
+        :ARG1 (h / hand
+            :quant 1))
+    :op2 (h3 / hold-01
+        :ARG0 (h2 / hand
+            :mod (o / other))
+        :ARG1 (r / racquet
+            :mod (t / tennis)
+            :part h2)))

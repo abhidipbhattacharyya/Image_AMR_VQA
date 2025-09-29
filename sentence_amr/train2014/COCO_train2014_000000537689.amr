@@ -1,0 +1,42 @@
+# ::tok A man in very torn , dirty clothing is walking down a city street in front of a well dressed woman .
+# ::node	m	man	1-2
+# ::node	v	very	3-4
+# ::node	t	tear-01	4-5
+# ::node	d	dirty-02	6-7
+# ::node	c2	clothe-01	7-8
+# ::node	w	walk-01	9-10
+# ::node	d2	down	10-11
+# ::node	c	city	12-13
+# ::node	s	street	13-14
+# ::node	i	in-front-of	15-16
+# ::node	w2	well	18-19
+# ::node	d3	dress-01	19-20
+# ::node	w3	woman	20-21
+# ::root	w	walk-01
+# ::edge	tear-01	degree	very	t	v	
+# ::edge	dirty-02	degree	very	d	v	
+# ::edge	clothe-01	ARG1-of	dirty-02	c2	d	
+# ::edge	man	ARG1-of	clothe-01	m	c2	
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	direction	down	w	d2	
+# ::edge	street	mod	city	s	c	
+# ::edge	walk-01	ARG2	street	w	s	
+# ::edge	walk-01	location	in-front-of	w	i	
+# ::edge	dress-01	degree	well	d3	w2	
+# ::edge	woman	ARG1-of	dress-01	w3	d3	
+# ::edge	in-front-of	op1	woman	i	w3	
+# ::edge	walk-01	rel	tear-01	w	t	
+(w / walk-01
+    :ARG0 (m / man
+        :ARG1-of (c2 / clothe-01
+            :ARG1-of (d / dirty-02
+                :degree (v / very))))
+    :ARG2 (s / street
+        :mod (c / city))
+    :direction (d2 / down)
+    :location (i / in-front-of
+        :op1 (w3 / woman
+            :ARG1-of (d3 / dress-01
+                :degree (w2 / well))))
+    :rel (t / tear-01
+        :degree v))

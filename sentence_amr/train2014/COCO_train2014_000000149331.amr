@@ -1,0 +1,34 @@
+# ::tok A rooftop view shows boats in a muddy waterway lined up while a crane and car pass by .
+# ::node	r	rooftop	1-2
+# ::node	v	view-01	2-3
+# ::node	s	show-01	3-4
+# ::node	b	boat	4-5
+# ::node	m	muddy-01	7-8
+# ::node	w	waterway	8-9
+# ::node	l	line-up-02	9-10
+# ::node	c2	crane	13-14
+# ::node	a	and	14-15
+# ::node	c	car	15-16
+# ::node	p	pass-03	16-17
+# ::root	s	show-01
+# ::edge	view-01	location	rooftop	v	r	
+# ::edge	show-01	ARG0	view-01	s	v	
+# ::edge	waterway	ARG1-of	muddy-01	w	m	
+# ::edge	boat	location	waterway	b	w	
+# ::edge	line-up-02	ARG1	boat	l	b	
+# ::edge	show-01	ARG1	line-up-02	s	l	
+# ::edge	and	op1	crane	a	c2	
+# ::edge	and	op2	car	a	c	
+# ::edge	pass-03	ARG1	and	p	a	
+# ::edge	show-01	time	pass-03	s	p	
+(s / show-01
+    :ARG0 (v / view-01
+        :location (r / rooftop))
+    :ARG1 (l / line-up-02
+        :ARG1 (b / boat
+            :location (w / waterway
+                :ARG1-of (m / muddy-01))))
+    :time (p / pass-03
+        :ARG1 (a / and
+            :op1 (c2 / crane)
+            :op2 (c / car))))

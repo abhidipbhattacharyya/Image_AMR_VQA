@@ -1,0 +1,28 @@
+# ::tok A city street at night with traffic and people out walking
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	t	traffic	6-7
+# ::node	a	and	7-8
+# ::node	p	person	8-9
+# ::node	o	out	9-10
+# ::node	w	walk-01	10-11
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	street	location-of	and	s	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	walk-01	manner	out	w	o	
+# ::edge	person	ARG0-of	walk-01	p	w	
+(s / street
+    :location-of (a / and
+        :op1 (t / traffic)
+        :op2 (p / person
+            :ARG0-of (w / walk-01
+                :manner (o / out))))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (n / night)))

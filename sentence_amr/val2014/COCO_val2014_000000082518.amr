@@ -1,0 +1,90 @@
+# ::tok A stadium area with seated watchers , bisected with blue steps leads downward to a blue wall with printed logos and a tennis court with a white - wearing woman .
+# ::node	s2	stadium	1-2
+# ::node	a2	area	2-3
+# ::node	s	seat-01	4-5
+# ::node	p	person	5-6
+# ::node	w2	watch-01	5-6
+# ::node	b2	border-01	7-8
+# ::node	b	blue	9-10
+# ::node	s3	step-01	10-11
+# ::node	l	lead-01	11-12
+# ::node	d	downward	12-13
+# ::node	w	wall	16-17
+# ::node	h	have-03	17-18
+# ::node	p2	print-01	18-19
+# ::node	g	globe	19-20
+# ::node	a	and	20-21
+# ::node	t	tennis	22-23
+# ::node	c	court	23-24
+# ::node	w4	white-03	26-27
+# ::node	w3	wear-01	28-29
+# ::node	w5	woman	29-30
+# ::root	l	lead-01
+# ::edge	area	mod	stadium	a2	s2	
+# ::edge	person	ARG1-of	seat-01	p	s	
+# ::edge	area	location-of	person	a2	p	
+# ::edge	person	ARG0-of	watch-01	p	w2	
+# ::edge	area	ARG1-of	border-01	a2	b2	
+# ::edge	step-01	mod	blue	s3	b	
+# ::edge	border-01	ARG2	step-01	b2	s3	
+# ::edge	lead-01	ARG0	area	l	a2	
+# ::edge	lead-01	direction	downward	l	d	
+# ::edge	wall	mod	blue	w	b	
+# ::edge	wall	ARG0-of	have-03	w	h	
+# ::edge	globe	ARG1-of	print-01	g	p2	
+# ::edge	have-03	ARG1	globe	h	g	
+# ::edge	and	op1	wall	a	w	
+# ::edge	lead-01	ARG4	and	l	a	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	and	op2	court	a	c	
+# ::edge	wear-01	ARG1	white-03	w3	w4	
+# ::edge	woman	ARG0-of	wear-01	w5	w3	
+# ::edge	court	location-of	woman	c	w5	
+(l / lead-01
+    :ARG0 (a2 / area
+        :ARG1-of (b2 / border-01
+            :ARG2 (s3 / step-01
+                :mod (b / blue)))
+        :location-of (p / person
+            :ARG0-of (w2 / watch-01)
+            :ARG1-of (s / seat-01))
+        :mod (s2 / stadium))
+    :ARG4 (a / and
+        :op1 (w / wall
+            :ARG0-of (h / have-03
+                :ARG1 (g / globe
+                    :ARG1-of (p2 / print-01)))
+            :mod b)
+        :op2 (c / court
+            :location-of (w5 / woman
+                :ARG0-of (w3 / wear-01
+                    :ARG1 (w4 / white-03)))
+            :mod (t / tennis)))
+    :direction (d / downward))
+
+
+# ::tok grasping a racquet with an upwards stretched arm that is reaching for a tennis ball .
+# ::node	g	grip-01	0-1
+# ::node	r	racquet	2-3
+# ::node	u	upward	5-6
+# ::node	s	stretch-01	6-7
+# ::node	a	arm	7-8
+# ::node	r2	reach-03	10-11
+# ::node	t	tennis	13-14
+# ::node	b	ball	14-15
+# ::root	g	grip-01
+# ::edge	grip-01	ARG1	racquet	g	r	
+# ::edge	stretch-01	direction	upward	s	u	
+# ::edge	arm	ARG1-of	stretch-01	a	s	
+# ::edge	grip-01	instrument	arm	g	a	
+# ::edge	racquet	ARG0-of	reach-03	r	r2	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	reach-03	ARG2	ball	r2	b	
+(g / grip-01
+    :ARG1 (r / racquet
+        :ARG0-of (r2 / reach-03
+            :ARG2 (b / ball
+                :mod (t / tennis))))
+    :instrument (a / arm
+        :ARG1-of (s / stretch-01
+            :direction (u / upward))))

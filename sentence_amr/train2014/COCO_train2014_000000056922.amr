@@ -1,0 +1,36 @@
+# ::tok A person uses a pair of silver scissors to cut a 50 euros bill in half
+# ::node	p2	person	1-2
+# ::node	u	use-01	2-3
+# ::node	p	pair	4-5
+# ::node	s2	silver	6-7
+# ::node	s	scissors	7-8
+# ::node	c	cut-01	9-10
+# ::node	0	50	11-12
+# ::node	m	monetary-quantity	12-13
+# ::node	e	euro	12-13
+# ::node	b	bill	13-14
+# ::node	h	half	15-16
+# ::root	u	use-01
+# ::edge	use-01	ARG0	person	u	p2	
+# ::edge	scissors	mod	silver	s	s2	
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	use-01	ARG1	scissors	u	s	
+# ::edge	use-01	ARG2	cut-01	u	c	
+# ::edge	cut-01	ARG0	person	c	p2	
+# ::edge	monetary-quantity	quant	50	m	0	
+# ::edge	monetary-quantity	unit	euro	m	e	
+# ::edge	bill	mod	monetary-quantity	b	m	
+# ::edge	cut-01	ARG1	bill	c	b	
+# ::edge	cut-01	manner	half	c	h	
+(u / use-01
+    :ARG0 (p2 / person)
+    :ARG1 (s / scissors
+        :quant (p / pair)
+        :mod (s2 / silver))
+    :ARG2 (c / cut-01
+        :ARG0 p2
+        :ARG1 (b / bill
+            :mod (m / monetary-quantity
+                :quant 50
+                :unit (e / euro)))
+        :manner (h / half)))

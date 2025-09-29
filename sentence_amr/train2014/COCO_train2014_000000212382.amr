@@ -1,0 +1,31 @@
+# ::tok A quite big flock of large birds are flying over what appears to be a kite .
+# ::node	q	quite	1-2
+# ::node	b	big	2-3
+# ::node	f	flock	3-4
+# ::node	l	large	5-6
+# ::node	b2	bird	6-7
+# ::node	f2	fly-01	8-9
+# ::node	o	over	9-10
+# ::node	t	thing	10-11
+# ::node	a	appear-02	11-12
+# ::node	k	kite	15-16
+# ::root	f2	fly-01
+# ::edge	big	degree	quite	b	q	
+# ::edge	flock	mod	big	f	b	
+# ::edge	bird	mod	large	b2	l	
+# ::edge	flock	consist-of	bird	f	b2	
+# ::edge	fly-01	ARG1	flock	f2	f	
+# ::edge	fly-01	path	over	f2	o	
+# ::edge	over	op1	thing	o	t	
+# ::edge	thing	ARG1-of	appear-02	t	a	
+# ::edge	appear-02	ARG2	kite	a	k	
+(f2 / fly-01
+    :ARG1 (f / flock
+        :consist-of (b2 / bird
+            :mod (l / large))
+        :mod (b / big
+            :degree (q / quite)))
+    :path (o / over
+        :op1 (t / thing
+            :ARG1-of (a / appear-02
+                :ARG2 (k / kite)))))

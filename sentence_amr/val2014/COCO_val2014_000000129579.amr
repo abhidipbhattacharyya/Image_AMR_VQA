@@ -1,0 +1,37 @@
+# ::tok Sign post with three lights in front of a building with grand clock .
+# ::node	s	sign-01	0-1
+# ::node	y	you	0-1
+# ::node	1	imperative	0-1
+# ::node	p	post-01	1-2
+# ::node	h	have-03	2-3
+# ::node	0	3	3-4
+# ::node	l	light	4-5
+# ::node	i	in-front-of	6-7
+# ::node	b	building	9-10
+# ::node	h2	have-03	10-11
+# ::node	g	grand	11-12
+# ::node	c	clock	12-13
+# ::root	s	sign-01
+# ::edge	sign-01	ARG0	you	s	y	
+# ::edge	sign-01	mode	imperative	s	1	
+# ::edge	sign-01	ARG1	post-01	s	p	
+# ::edge	post-01	ARG0-of	have-03	p	h	
+# ::edge	light	quant	3	l	0	
+# ::edge	have-03	ARG1	light	h	l	
+# ::edge	post-01	location	in-front-of	p	i	
+# ::edge	in-front-of	op1	building	i	b	
+# ::edge	building	ARG0-of	have-03	b	h2	
+# ::edge	clock	mod	grand	c	g	
+# ::edge	have-03	ARG1	clock	h2	c	
+(s / sign-01
+    :ARG0 (y / you)
+    :ARG1 (p / post-01
+        :ARG0-of (h / have-03
+            :ARG1 (l / light
+                :quant 3))
+        :location (i / in-front-of
+            :op1 (b / building
+                :ARG0-of (h2 / have-03
+                    :ARG1 (c / clock
+                        :mod (g / grand))))))
+    :mode imperative)

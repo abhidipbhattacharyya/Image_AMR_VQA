@@ -1,0 +1,30 @@
+# ::tok A truck driving through and intersection waiting on a pedestrian to finish crossing the street .
+# ::node	t2	truck	1-2
+# ::node	d	drive-01	2-3
+# ::node	t	through	3-4
+# ::node	i	intersect-01	5-6
+# ::node	w	wait-01	6-7
+# ::node	p	pedestrian	9-10
+# ::node	f	finish-01	11-12
+# ::node	c	cross-02	12-13
+# ::node	s	street	14-15
+# ::root	w	wait-01
+# ::edge	truck	ARG1-of	drive-01	t2	d	
+# ::edge	drive-01	path	through	d	t	
+# ::edge	truck	ARG0-of	intersect-01	t2	i	
+# ::edge	wait-01	ARG1	truck	w	t2	
+# ::edge	finish-01	ARG0	pedestrian	f	p	
+# ::edge	wait-01	ARG2	finish-01	w	f	
+# ::edge	finish-01	ARG1	cross-02	f	c	
+# ::edge	cross-02	ARG0	pedestrian	c	p	
+# ::edge	cross-02	ARG1	street	c	s	
+(w / wait-01
+    :ARG1 (t2 / truck
+        :ARG0-of (i / intersect-01)
+        :ARG1-of (d / drive-01
+            :path (t / through)))
+    :ARG2 (f / finish-01
+        :ARG0 (p / pedestrian)
+        :ARG1 (c / cross-02
+            :ARG0 p
+            :ARG1 (s / street))))

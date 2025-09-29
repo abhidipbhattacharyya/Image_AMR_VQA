@@ -1,0 +1,46 @@
+# ::tok A plate of naan breads on a clear plate with a mixture of tomatoes , pine nuts and Indian spices on top .
+# ::node	p2	plate	1-2
+# ::node	n	naan	3-4
+# ::node	c	cake	4-5
+# ::node	c2	clear-01	7-8
+# ::node	m	mix-01	11-12
+# ::node	t	tomato	13-14
+# ::node	p	pine	15-16
+# ::node	n4	nut	16-17
+# ::node	a	and	17-18
+# ::node	c3	country	18-19
+# ::node	n2	name	18-19
+# ::node	0	India	18-19
+# ::node	1	essential	19-20
+# ::node	n3	narcotic	19-20
+# ::node	t2	top-01	21-22
+# ::root	m	mix-01
+# ::edge	cake	mod	naan	c	n	
+# ::edge	plate	consist-of	cake	p2	c	
+# ::edge	plate	ARG1-of	clear-01	p2	c2	
+# ::edge	mix-01	ARG2	plate	m	p2	
+# ::edge	nut	mod	pine	n4	p	
+# ::edge	and	op2	nut	a	n4	
+# ::edge	and	op1	tomato	a	t	
+# ::edge	mix-01	ARG1	and	m	a	
+# ::edge	country	name	name	c3	n2	
+# ::edge	name	op1	India	n2	0	
+# ::edge	nut	mode	essential	n4	1	
+# ::edge	narcotic	mod	country	n3	c3	
+# ::edge	and	op3	narcotic	a	n3	
+# ::edge	mix-01	ARG2-of	top-01	m	t2	
+(m / mix-01
+    :ARG1 (a / and
+        :op1 (t / tomato)
+        :op2 (n4 / nut
+            :mod (p / pine)
+            :mode essential)
+        :op3 (n3 / narcotic
+            :mod (c3 / country
+                :name (n2 / name
+                    :op1 "India"))))
+    :ARG2 (p2 / plate
+        :ARG1-of (c2 / clear-01)
+        :consist-of (c / cake
+            :mod (n / naan)))
+    :ARG2-of (t2 / top-01))

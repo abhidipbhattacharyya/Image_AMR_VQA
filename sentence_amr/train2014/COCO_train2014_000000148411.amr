@@ -1,0 +1,46 @@
+# ::tok Asian style food sits on a table at a restaurant in steaming racks and stylish plates for diners .
+# ::node	c	continent	0-1
+# ::node	n	name	0-1
+# ::node	0	Asia	0-1
+# ::node	s4	style	1-2
+# ::node	f	food	2-3
+# ::node	s2	sit-01	3-4
+# ::node	t	table	6-7
+# ::node	r	restaurant	9-10
+# ::node	s3	steam-02	11-12
+# ::node	s	shelf	12-13
+# ::node	a	and	13-14
+# ::node	s5	stylish	14-15
+# ::node	p2	plate	15-16
+# ::node	p	person	17-18
+# ::node	d	dine-01	17-18
+# ::root	s2	sit-01
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	style	mod	continent	s4	c	
+# ::edge	food	mod	style	f	s4	
+# ::edge	sit-01	ARG1	food	s2	f	
+# ::edge	sit-01	ARG2	table	s2	t	
+# ::edge	table	location	restaurant	t	r	
+# ::edge	shelf	ARG1-of	steam-02	s	s3	
+# ::edge	and	op1	shelf	a	s	
+# ::edge	restaurant	part	and	r	a	
+# ::edge	plate	mod	stylish	p2	s5	
+# ::edge	and	op2	plate	a	p2	
+# ::edge	plate	beneficiary	person	p2	p	
+# ::edge	person	ARG0-of	dine-01	p	d	
+(s2 / sit-01
+    :ARG1 (f / food
+        :mod (s4 / style
+            :mod (c / continent
+                :name (n / name
+                    :op1 "Asia"))))
+    :ARG2 (t / table
+        :location (r / restaurant
+            :part (a / and
+                :op1 (s / shelf
+                    :ARG1-of (s3 / steam-02))
+                :op2 (p2 / plate
+                    :beneficiary (p / person
+                        :ARG0-of (d / dine-01))
+                    :mod (s5 / stylish))))))

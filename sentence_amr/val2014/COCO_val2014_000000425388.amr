@@ -1,0 +1,25 @@
+# ::tok A bus with a second bus connected to it is driving on a city street .
+# ::node	b	bus	1-2
+# ::node	o	ordinal-entity	4-5
+# ::node	0	2	4-5
+# ::node	b2	bus	5-6
+# ::node	c2	connect-01	6-7
+# ::node	d	drive-01	10-11
+# ::node	c	city	13-14
+# ::node	s	street	14-15
+# ::root	d	drive-01
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	bus	ord	ordinal-entity	b2	o	
+# ::edge	connect-01	ARG2	bus	c2	b2	
+# ::edge	bus	ARG1-of	connect-01	b	c2	
+# ::edge	drive-01	ARG0	bus	d	b	
+# ::edge	street	mod	city	s	c	
+# ::edge	drive-01	ARG1	street	d	s	
+(d / drive-01
+    :ARG0 (b / bus
+        :ARG1-of (c2 / connect-01
+            :ARG2 (b2 / bus
+                :ord (o / ordinal-entity
+                    :value 2))))
+    :ARG1 (s / street
+        :mod (c / city)))

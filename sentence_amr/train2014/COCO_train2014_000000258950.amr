@@ -1,0 +1,25 @@
+# ::tok A mesh bag of oranges sit in a box near a stack of books .
+# ::node	m	mesh	1-2
+# ::node	b	bag	2-3
+# ::node	o	orange	4-5
+# ::node	s	sit-01	5-6
+# ::node	b3	box	8-9
+# ::node	n	near-02	9-10
+# ::node	s2	stack	11-12
+# ::node	b2	book	13-14
+# ::root	s	sit-01
+# ::edge	bag	consist-of	mesh	b	m	
+# ::edge	bag	consist-of	orange	b	o	
+# ::edge	sit-01	ARG1	bag	s	b	
+# ::edge	sit-01	ARG2	box	s	b3	
+# ::edge	box	ARG1-of	near-02	b3	n	
+# ::edge	near-02	ARG2	stack	n	s2	
+# ::edge	stack	consist-of	book	s2	b2	
+(s / sit-01
+    :ARG1 (b / bag
+        :consist-of (m / mesh)
+        :consist-of (o / orange))
+    :ARG2 (b3 / box
+        :ARG1-of (n / near-02
+            :ARG2 (s2 / stack
+                :consist-of (b2 / book)))))

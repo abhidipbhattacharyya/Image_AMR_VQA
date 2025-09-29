@@ -1,0 +1,31 @@
+# ::tok Street intersection with stopped cars and a pedestrian holding an umbrella on a rainy day .
+# ::node	s2	street	0-1
+# ::node	i	intersect-01	1-2
+# ::node	s	stop-01	3-4
+# ::node	c	car	4-5
+# ::node	a	and	5-6
+# ::node	p	pedestrian	7-8
+# ::node	h	hold-01	8-9
+# ::node	u	umbrella	10-11
+# ::node	r	rain-01	13-14
+# ::node	d	day	14-15
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	street	i	s2	
+# ::edge	car	ARG1-of	stop-01	c	s	
+# ::edge	and	op1	car	a	c	
+# ::edge	intersect-01	location-of	and	i	a	
+# ::edge	and	op2	pedestrian	a	p	
+# ::edge	pedestrian	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+# ::edge	day	mod	rain-01	d	r	
+# ::edge	intersect-01	time	day	i	d	
+(i / intersect-01
+    :ARG1 (s2 / street)
+    :location-of (a / and
+        :op1 (c / car
+            :ARG1-of (s / stop-01))
+        :op2 (p / pedestrian
+            :ARG0-of (h / hold-01
+                :ARG1 (u / umbrella))))
+    :time (d / day
+        :mod (r / rain-01)))

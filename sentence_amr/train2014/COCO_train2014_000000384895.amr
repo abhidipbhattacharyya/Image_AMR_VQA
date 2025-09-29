@@ -1,0 +1,27 @@
+# ::tok Small bus with no entry sign unless authorized on the doors .
+# ::node	s2	small	0-1
+# ::node	b	bus	1-2
+# ::node	0	-	3-4
+# ::node	1	-	3-4
+# ::node	e	enter-01	4-5
+# ::node	s	signal-07	5-6
+# ::node	a	authorize-01	7-8
+# ::node	d	door	10-11
+# ::root	b	bus
+# ::edge	bus	mod	small	b	s2	
+# ::edge	signal-07	ARG1	enter-01	s	e	
+# ::edge	signal-07	polarity	-	s	0	
+# ::edge	bus	ARG0-of	signal-07	b	s	
+# ::edge	signal-07	condition	authorize-01	s	a	
+# ::edge	authorize-01	polarity	-	a	1	
+# ::edge	authorize-01	location	door	a	d	
+# ::edge	bus	part	door	b	d	
+(b / bus
+    :ARG0-of (s / signal-07
+        :ARG1 (e / enter-01)
+        :condition (a / authorize-01
+            :location (d / door)
+            :polarity -)
+        :polarity -)
+    :mod (s2 / small)
+    :part d)

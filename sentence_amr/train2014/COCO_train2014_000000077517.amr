@@ -1,0 +1,33 @@
+# ::tok A girls softball game with a play at home base as an umpire watches to make the call .
+# ::node	g2	girl	1-2
+# ::node	s	softball	2-3
+# ::node	g	game	3-4
+# ::node	p2	play-01	6-7
+# ::node	h	home	8-9
+# ::node	b	base	9-10
+# ::node	p	person	12-13
+# ::node	u	umpire-01	12-13
+# ::node	w	watch-01	13-14
+# ::node	c	call-10	17-18
+# ::root	g	game
+# ::edge	game	mod	softball	g	s	
+# ::edge	game	mod	girl	g	g2	
+# ::edge	game	location-of	play-01	g	p2	
+# ::edge	base	mod	home	b	h	
+# ::edge	play-01	location	base	p2	b	
+# ::edge	person	ARG0-of	umpire-01	p	u	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	game	time	watch-01	g	w	
+# ::edge	watch-01	ARG1	call-10	w	c	
+# ::edge	call-10	ARG0	person	c	p	
+(g / game
+    :location-of (p2 / play-01
+        :location (b / base
+            :mod (h / home)))
+    :mod (s / softball)
+    :mod (g2 / girl)
+    :time (w / watch-01
+        :ARG0 (p / person
+            :ARG0-of (u / umpire-01))
+        :ARG1 (c / call-10
+            :ARG0 p)))

@@ -1,0 +1,40 @@
+# ::tok Street signs for the intersection of Anza and 21st Avenue in front of a large building
+# ::node	s2	street	0-1
+# ::node	s	sign	1-2
+# ::node	i2	intersect-01	4-5
+# ::node	n	name	6-7
+# ::node	1	Anza	6-7
+# ::node	n2	name	8-9
+# ::node	0	21st	8-9
+# ::node	r	road	9-10
+# ::node	r2	road	9-10
+# ::node	2	Avenue	9-10
+# ::node	i	in-front-of	11-12
+# ::node	l	large	14-15
+# ::node	b	building	15-16
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	topic	intersect-01	s	i2	
+# ::edge	name	op1	Anza	n	1	
+# ::edge	name	op1	21st	n2	0	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	ARG1	road	i2	r	
+# ::edge	road	name	name	r2	n2	
+# ::edge	intersect-01	ARG1	road	i2	r2	
+# ::edge	name	op2	Avenue	n2	2	
+# ::edge	sign	location	in-front-of	s	i	
+# ::edge	building	mod	large	b	l	
+# ::edge	in-front-of	op1	building	i	b	
+(s / sign
+    :location (i / in-front-of
+        :op1 (b / building
+            :mod (l / large)))
+    :mod (s2 / street)
+    :topic (i2 / intersect-01
+        :ARG1 (r / road
+            :name (n / name
+                :op1 "Anza"))
+        :ARG1 (r2 / road
+            :name (n2 / name
+                :op1 "21st"
+                :op2 "Avenue"))))

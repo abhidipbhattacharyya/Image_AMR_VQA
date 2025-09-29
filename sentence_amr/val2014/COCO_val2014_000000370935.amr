@@ -1,0 +1,43 @@
+# ::tok A man doing a jumping trick off the top of a stone type staircase outdoors and the skateboard flipping over underneath him .
+# ::node	m	man	1-2
+# ::node	j	jump-03	4-5
+# ::node	t2	trick-01	5-6
+# ::node	t	top	8-9
+# ::node	s3	stone	11-12
+# ::node	t3	type-03	12-13
+# ::node	s2	staircase	13-14
+# ::node	o	outdoors	14-15
+# ::node	a	and	15-16
+# ::node	s	skateboard	17-18
+# ::node	f	flip-01	18-19
+# ::node	u	underneath	20-21
+# ::root	a	and
+# ::edge	jump-03	ARG0	man	j	m	
+# ::edge	trick-01	mod	jump-03	t2	j	
+# ::edge	trick-01	ARG0	man	t2	m	
+# ::edge	trick-01	source	top	t2	t	
+# ::edge	type-03	ARG2	stone	t3	s3	
+# ::edge	staircase	ARG1-of	type-03	s2	t3	
+# ::edge	top	part-of	staircase	t	s2	
+# ::edge	staircase	location	outdoors	s2	o	
+# ::edge	and	op1	trick-01	a	t2	
+# ::edge	skateboard	poss	man	s	m	
+# ::edge	flip-01	ARG1	skateboard	f	s	
+# ::edge	and	op2	flip-01	a	f	
+# ::edge	flip-01	location	underneath	f	u	
+# ::edge	underneath	op1	man	u	m	
+(a / and
+    :op1 (t2 / trick-01
+        :ARG0 (m / man)
+        :mod (j / jump-03
+            :ARG0 m)
+        :source (t / top
+            :part-of (s2 / staircase
+                :ARG1-of (t3 / type-03
+                    :ARG2 (s3 / stone))
+                :location (o / outdoors))))
+    :op2 (f / flip-01
+        :ARG1 (s / skateboard
+            :poss m)
+        :location (u / underneath
+            :op1 m)))

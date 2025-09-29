@@ -1,0 +1,33 @@
+# ::tok Tennis game on clay court , player waiting to respond from severing player .
+# ::node	c2	court	0-1
+# ::node	g	game	1-2
+# ::node	c	clay	3-4
+# ::node	c3	court	4-5
+# ::node	a	and	5-6
+# ::node	p	person	6-7
+# ::node	p2	play-01	6-7
+# ::node	w	wait-01	7-8
+# ::node	r	respond-01	9-10
+# ::node	s	severe	11-12
+# ::root	a	and
+# ::edge	game	mod	court	g	c2	
+# ::edge	court	mod	clay	c3	c	
+# ::edge	game	location	court	g	c3	
+# ::edge	and	op1	game	a	g	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG2	respond-01	w	r	
+# ::edge	respond-01	ARG0	person	r	p	
+# ::edge	respond-01	manner	severe	r	s	
+(a / and
+    :op1 (g / game
+        :location (c3 / court
+            :mod (c / clay))
+        :mod (c2 / court))
+    :op2 (w / wait-01
+        :ARG1 (p / person
+            :ARG0-of (p2 / play-01))
+        :ARG2 (r / respond-01
+            :ARG0 p
+            :manner (s / severe))))

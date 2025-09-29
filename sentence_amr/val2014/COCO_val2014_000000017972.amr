@@ -1,0 +1,30 @@
+# ::tok A pair of blue handled scissors being used to cut a piece of pink paper .
+# ::node	p	pair	1-2
+# ::node	b	blue	3-4
+# ::node	h	handle-01	4-5
+# ::node	m	mirror	5-6
+# ::node	u	use-01	7-8
+# ::node	c	cut-01	9-10
+# ::node	p3	piece	11-12
+# ::node	p4	pink-04	13-14
+# ::node	p2	paper	14-15
+# ::root	u	use-01
+# ::edge	handle-01	ARG0	blue	h	b	
+# ::edge	mirror	ARG1-of	handle-01	m	h	
+# ::edge	mirror	quant	pair	m	p	
+# ::edge	use-01	ARG1	mirror	u	m	
+# ::edge	use-01	ARG2	cut-01	u	c	
+# ::edge	cut-01	ARG0	mirror	c	m	
+# ::edge	cut-01	ARG1	piece	c	p3	
+# ::edge	paper	ARG1-of	pink-04	p2	p4	
+# ::edge	piece	consist-of	paper	p3	p2	
+(u / use-01
+    :ARG1 (m / mirror
+        :quant (p / pair)
+        :ARG1-of (h / handle-01
+            :ARG0 (b / blue)))
+    :ARG2 (c / cut-01
+        :ARG0 m
+        :ARG1 (p3 / piece
+            :consist-of (p2 / paper
+                :ARG1-of (p4 / pink-04)))))

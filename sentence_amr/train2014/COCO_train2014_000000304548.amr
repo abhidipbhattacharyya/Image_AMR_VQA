@@ -1,0 +1,40 @@
+# ::tok A male snowboarder wearing sunglasses and winter attire snowboards down an incline
+# ::node	m	male	1-2
+# ::node	p	person	2-3
+# ::node	b	board-05	2-3
+# ::node	s	snow	2-3
+# ::node	w	wear-01	3-4
+# ::node	s2	sunglasses	4-5
+# ::node	a	and	5-6
+# ::node	d	date-entity	6-7
+# ::node	w2	winter	6-7
+# ::node	a2	attire	7-8
+# ::node	b2	board-05	8-9
+# ::node	d2	down	9-10
+# ::node	i	incline-01	11-12
+# ::root	b2	board-05
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	board-05	ARG1	snow	b	s	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	and	op1	sunglasses	a	s2	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	date-entity	season	winter	d	w2	
+# ::edge	attire	mod	date-entity	a2	d	
+# ::edge	and	op2	attire	a	a2	
+# ::edge	board-05	ARG0	person	b2	p	
+# ::edge	board-05	direction	down	b2	d2	
+# ::edge	board-05	ARG0-of	incline-01	b2	i	
+(b2 / board-05
+    :ARG0 (p / person
+        :ARG0-of (b / board-05
+            :ARG1 (s / snow))
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s2 / sunglasses)
+                :op2 (a2 / attire
+                    :mod (d / date-entity
+                        :season (w2 / winter)))))
+        :mod (m / male))
+    :ARG0-of (i / incline-01)
+    :direction (d2 / down))

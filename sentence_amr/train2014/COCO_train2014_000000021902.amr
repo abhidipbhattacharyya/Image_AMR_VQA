@@ -1,0 +1,22 @@
+# ::tok A train is on a track that is connected to several others .
+# ::node	t3	train	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	t	track	5-6
+# ::node	t2	track	5-6
+# ::node	c	connect-01	8-9
+# ::node	s	several	10-11
+# ::node	o	other	11-12
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	train	b	t3	
+# ::edge	be-located-at-91	ARG2	track	b	t	
+# ::edge	connect-01	ARG2	track	c	t2	
+# ::edge	track	ARG1-of	connect-01	t	c	
+# ::edge	track	quant	several	t2	s	
+# ::edge	track	mod	other	t2	o	
+(b / be-located-at-91
+    :ARG1 (t3 / train)
+    :ARG2 (t / track
+        :ARG1-of (c / connect-01
+            :ARG2 (t2 / track
+                :quant (s / several)
+                :mod (o / other)))))

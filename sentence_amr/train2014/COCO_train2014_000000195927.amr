@@ -1,0 +1,49 @@
+# ::tok A kitchen with a small stove , a sink with two faucets extending from the wall and yellow painted walls and cabinets .
+# ::node	k	kitchen	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	small	4-5
+# ::node	s3	stove	5-6
+# ::node	s	sink	8-9
+# ::node	h2	have-03	9-10
+# ::node	0	2	10-11
+# ::node	m	medicine	11-12
+# ::node	e	extend-01	12-13
+# ::node	w	wall	15-16
+# ::node	a	and	16-17
+# ::node	y	yellow	17-18
+# ::node	p	paint-01	18-19
+# ::node	w2	wall	19-20
+# ::node	a2	and	20-21
+# ::node	c	cabinet	21-22
+# ::root	k	kitchen
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	stove	mod	small	s3	s2	
+# ::edge	sink	ARG0-of	have-03	s	h2	
+# ::edge	medicine	quant	2	m	0	
+# ::edge	have-03	ARG1	medicine	h2	m	
+# ::edge	medicine	ARG1-of	extend-01	m	e	
+# ::edge	extend-01	ARG3	wall	e	w	
+# ::edge	and	op2	sink	a	s	
+# ::edge	and	op1	stove	a	s3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	paint-01	ARG2	yellow	p	y	
+# ::edge	and	op1	wall	a2	w2	
+# ::edge	and	ARG1-of	paint-01	a2	p	
+# ::edge	and	op3	and	a	a2	
+# ::edge	and	op2	cabinet	a2	c	
+(k / kitchen
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s3 / stove
+                :mod (s2 / small))
+            :op2 (s / sink
+                :ARG0-of (h2 / have-03
+                    :ARG1 (m / medicine
+                        :quant 2
+                        :ARG1-of (e / extend-01
+                            :ARG3 (w / wall)))))
+            :op3 (a2 / and
+                :ARG1-of (p / paint-01
+                    :ARG2 (y / yellow))
+                :op1 (w2 / wall)
+                :op2 (c / cabinet)))))

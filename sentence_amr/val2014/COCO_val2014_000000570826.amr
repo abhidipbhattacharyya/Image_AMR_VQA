@@ -1,0 +1,25 @@
+# ::tok a public transit train on a train track with buildings in the background
+# ::node	p	public-02	1-2
+# ::node	t4	transit-01	2-3
+# ::node	t2	train	3-4
+# ::node	t3	train	6-7
+# ::node	t	track	7-8
+# ::node	h	have-03	8-9
+# ::node	b2	building	9-10
+# ::node	b	background	12-13
+# ::root	t2	train
+# ::edge	transit-01	ARG1-of	public-02	t4	p	
+# ::edge	train	ARG0-of	transit-01	t2	t4	
+# ::edge	track	mod	train	t	t3	
+# ::edge	train	location	track	t2	t	
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	background	b2	b	
+(t2 / train
+    :ARG0-of (t4 / transit-01
+        :ARG1-of (p / public-02))
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / building
+            :location (b / background)))
+    :location (t / track
+        :mod (t3 / train)))

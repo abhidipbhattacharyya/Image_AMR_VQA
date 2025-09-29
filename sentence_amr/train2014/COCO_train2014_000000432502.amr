@@ -1,0 +1,35 @@
+# ::tok A man hugging a woman as they sit on a wooden park bench with woods behind them .
+# ::node	m	man	1-2
+# ::node	h2	hug-01	2-3
+# ::node	w	woman	4-5
+# ::node	s	sit-01	7-8
+# ::node	w2	wood	10-11
+# ::node	p	park	11-12
+# ::node	b2	bench	12-13
+# ::node	h	have-03	13-14
+# ::node	w3	woods	14-15
+# ::node	b	behind	15-16
+# ::root	h2	hug-01
+# ::edge	hug-01	ARG0	man	h2	m	
+# ::edge	hug-01	ARG1	woman	h2	w	
+# ::edge	sit-01	ARG1	woman	s	w	
+# ::edge	hug-01	time	sit-01	h2	s	
+# ::edge	bench	location	park	b2	p	
+# ::edge	bench	consist-of	wood	b2	w2	
+# ::edge	sit-01	ARG2	bench	s	b2	
+# ::edge	bench	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	woods	h	w3	
+# ::edge	woods	location	behind	w3	b	
+# ::edge	behind	op1	woman	b	w	
+(h2 / hug-01
+    :ARG0 (m / man)
+    :ARG1 (w / woman)
+    :time (s / sit-01
+        :ARG1 w
+        :ARG2 (b2 / bench
+            :ARG0-of (h / have-03
+                :ARG1 (w3 / woods
+                    :location (b / behind
+                        :op1 w)))
+            :consist-of (w2 / wood)
+            :location (p / park))))

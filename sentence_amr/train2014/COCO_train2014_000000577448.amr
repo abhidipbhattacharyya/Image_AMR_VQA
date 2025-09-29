@@ -1,0 +1,28 @@
+# ::tok People can be seen sitting inside the open door of the metro train .
+# ::node	p	person	0-1
+# ::node	p2	possible-01	1-2
+# ::node	s	see-01	3-4
+# ::node	s2	sit-01	4-5
+# ::node	i	inside	5-6
+# ::node	o	open-09	7-8
+# ::node	d	door	8-9
+# ::node	m	metro	11-12
+# ::node	t	train	12-13
+# ::root	p2	possible-01
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG1	sit-01	s	s2	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	sit-01	ARG2	inside	s2	i	
+# ::edge	door	ARG1-of	open-09	d	o	
+# ::edge	inside	op1	door	i	d	
+# ::edge	train	mod	metro	t	m	
+# ::edge	door	part-of	train	d	t	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (s2 / sit-01
+            :ARG1 (p / person)
+            :ARG2 (i / inside
+                :op1 (d / door
+                    :ARG1-of (o / open-09)
+                    :part-of (t / train
+                        :mod (m / metro)))))))

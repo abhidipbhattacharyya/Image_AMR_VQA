@@ -1,0 +1,34 @@
+# ::tok On an all black and white photo we can see the red in a stop sign a guy is holding .
+# ::node	a	all	2-3
+# ::node	b	black-and-white	3-4
+# ::node	p	photo	6-7
+# ::node	w	we	7-8
+# ::node	p2	possible-01	8-9
+# ::node	s	see-01	9-10
+# ::node	r	red-02	11-12
+# ::node	s3	stop-01	14-15
+# ::node	s2	signal-07	15-16
+# ::node	g	guy	17-18
+# ::node	h	hold-01	19-20
+# ::root	p2	possible-01
+# ::edge	black-and-white	mod	all	b	a	
+# ::edge	photo	mod	black-and-white	p	b	
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG0	we	s	w	
+# ::edge	see-01	location	photo	s	p	
+# ::edge	see-01	ARG1	red-02	s	r	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	red-02	location	signal-07	r	s2	
+# ::edge	hold-01	ARG0	guy	h	g	
+# ::edge	signal-07	ARG1-of	hold-01	s2	h	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG0 (w / we)
+        :ARG1 (r / red-02
+            :location (s2 / signal-07
+                :ARG1 (s3 / stop-01)
+                :ARG1-of (h / hold-01
+                    :ARG0 (g / guy))))
+        :location (p / photo
+            :mod (b / black-and-white
+                :mod (a / all)))))

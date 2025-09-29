@@ -1,0 +1,33 @@
+# ::tok A toilet bowl lid is open in a bathroom stall as notices are on the wall behind it .
+# ::node	t	toilet	1-2
+# ::node	b3	bowl	2-3
+# ::node	l	lid	3-4
+# ::node	o	open-01	5-6
+# ::node	b	bathroom	8-9
+# ::node	s	stall	9-10
+# ::node	c	cause-01	10-11
+# ::node	n	notice-03	11-12
+# ::node	w	wall	15-16
+# ::node	b2	behind	16-17
+# ::root	o	open-01
+# ::edge	bowl	mod	toilet	b3	t	
+# ::edge	lid	part-of	bowl	l	b3	
+# ::edge	open-01	ARG1	lid	o	l	
+# ::edge	stall	location	bathroom	s	b	
+# ::edge	open-01	location	stall	o	s	
+# ::edge	open-01	ARG1-of	cause-01	o	c	
+# ::edge	cause-01	ARG0	notice-03	c	n	
+# ::edge	notice-03	location	wall	n	w	
+# ::edge	wall	location	behind	w	b2	
+# ::edge	behind	op1	stall	b2	s	
+(o / open-01
+    :ARG1 (l / lid
+        :part-of (b3 / bowl
+            :mod (t / toilet)))
+    :ARG1-of (c / cause-01
+        :ARG0 (n / notice-03
+            :location (w / wall
+                :location (b2 / behind
+                    :op1 (s / stall
+                        :location (b / bathroom))))))
+    :location s)

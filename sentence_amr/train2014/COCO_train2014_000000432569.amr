@@ -1,0 +1,42 @@
+# ::tok a man wearing plaid shorts and a hat cooks a pizza in a brick outdoor oven .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	p2	political-party	3-4
+# ::node	n	name	3-4
+# ::node	0	Plaid	3-4
+# ::node	s	shorts	4-5
+# ::node	a	and	5-6
+# ::node	h	hat	7-8
+# ::node	c	cook-01	8-9
+# ::node	p	pizza	10-11
+# ::node	b	brick	13-14
+# ::node	o	outdoor	14-15
+# ::node	o2	oven	15-16
+# ::root	c	cook-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	political-party	name	name	p2	n	
+# ::edge	name	op1	Plaid	n	0	
+# ::edge	shorts	mod	political-party	s	p2	
+# ::edge	and	op1	shorts	a	s	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	hat	a	h	
+# ::edge	hat	mod	political-party	h	p2	
+# ::edge	cook-01	ARG0	man	c	m	
+# ::edge	cook-01	ARG1	pizza	c	p	
+# ::edge	oven	location	outdoor	o2	o	
+# ::edge	oven	consist-of	brick	o2	b	
+# ::edge	cook-01	location	oven	c	o2	
+(c / cook-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (s / shorts
+                    :mod (p2 / political-party
+                        :name (n / name
+                            :op1 "Plaid")))
+                :op2 (h / hat
+                    :mod p2))))
+    :ARG1 (p / pizza)
+    :location (o2 / oven
+        :consist-of (b / brick)
+        :location (o / outdoor)))

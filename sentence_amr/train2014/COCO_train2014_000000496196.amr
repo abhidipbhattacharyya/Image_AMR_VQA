@@ -1,0 +1,28 @@
+# ::tok A coffee mug sits in the afternoon sun , which casts a long shadow .
+# ::node	c2	coffee	1-2
+# ::node	m	mug	2-3
+# ::node	s2	sit-01	3-4
+# ::node	d	date-entity	6-7
+# ::node	a	afternoon	6-7
+# ::node	s3	sun	7-8
+# ::node	c	cast-01	10-11
+# ::node	l	long-03	12-13
+# ::node	s	shadow	13-14
+# ::root	s2	sit-01
+# ::edge	mug	mod	coffee	m	c2	
+# ::edge	sit-01	ARG1	mug	s2	m	
+# ::edge	date-entity	dayperiod	afternoon	d	a	
+# ::edge	sun	time	date-entity	s3	d	
+# ::edge	sit-01	ARG2	sun	s2	s3	
+# ::edge	sun	ARG0-of	cast-01	s3	c	
+# ::edge	shadow	ARG1-of	long-03	s	l	
+# ::edge	cast-01	ARG1	shadow	c	s	
+(s2 / sit-01
+    :ARG1 (m / mug
+        :mod (c2 / coffee))
+    :ARG2 (s3 / sun
+        :ARG0-of (c / cast-01
+            :ARG1 (s / shadow
+                :ARG1-of (l / long-03)))
+        :time (d / date-entity
+            :dayperiod (a / afternoon))))

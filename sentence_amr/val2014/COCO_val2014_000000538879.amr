@@ -1,0 +1,27 @@
+# ::tok some fog traffic lights street lights and buildings
+# ::node	s	some	0-1
+# ::node	f	fog	1-2
+# ::node	t	traffic	2-3
+# ::node	l	light	3-4
+# ::node	s2	street	4-5
+# ::node	l2	light	5-6
+# ::node	a	and	6-7
+# ::node	b	building	7-8
+# ::root	a	and
+# ::edge	fog	quant	some	f	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	mod	street	l2	s2	
+# ::edge	and	op2	light	a	l2	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	mod	fog	a	f	
+# ::edge	and	quant	some	a	s	
+# ::edge	and	op3	building	a	b	
+(a / and
+    :quant (s / some)
+    :mod (f / fog
+        :quant s)
+    :op1 (l / light
+        :mod (t / traffic))
+    :op2 (l2 / light
+        :mod (s2 / street))
+    :op3 (b / building))

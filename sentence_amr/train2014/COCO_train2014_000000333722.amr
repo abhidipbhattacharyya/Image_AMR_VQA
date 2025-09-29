@@ -1,0 +1,25 @@
+# ::tok Traffic lights are seen in front of a shopping center on a stormy day .
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	s	see-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	s2	shop-01	8-9
+# ::node	c	center	9-10
+# ::node	s3	storm-01	12-13
+# ::node	d	day	13-14
+# ::root	s	see-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	see-01	ARG1	light	s	l	
+# ::edge	see-01	location	in-front-of	s	i	
+# ::edge	center	mod	shop-01	c	s2	
+# ::edge	in-front-of	op1	center	i	c	
+# ::edge	day	mod	storm-01	d	s3	
+# ::edge	see-01	time	day	s	d	
+(s / see-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :location (i / in-front-of
+        :op1 (c / center
+            :mod (s2 / shop-01)))
+    :time (d / day
+        :mod (s3 / storm-01)))

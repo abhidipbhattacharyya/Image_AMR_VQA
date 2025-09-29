@@ -1,0 +1,33 @@
+# ::tok A series of street signs that include street names and directions .
+# ::node	s	series	1-2
+# ::node	s3	street	3-4
+# ::node	s2	sign	4-5
+# ::node	i	include-01	6-7
+# ::node	s4	street	7-8
+# ::node	t	thing	8-9
+# ::node	n	name-01	8-9
+# ::node	a	and	9-10
+# ::node	t2	thing	10-11
+# ::node	d	direct-01	10-11
+# ::root	s2	sign
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	sign	quant	series	s2	s	
+# ::edge	sign	ARG2-of	include-01	s2	i	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	name-01	ARG1	street	n	s4	
+# ::edge	and	op1	thing	a	t	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	thing	a	t2	
+# ::edge	thing	ARG2-of	direct-01	t2	d	
+# ::edge	direct-01	ARG1	street	d	s4	
+(s2 / sign
+    :quant (s / series)
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (t / thing
+                :ARG2-of (n / name-01
+                    :ARG1 (s4 / street)))
+            :op2 (t2 / thing
+                :ARG2-of (d / direct-01
+                    :ARG1 s4))))
+    :mod (s3 / street))

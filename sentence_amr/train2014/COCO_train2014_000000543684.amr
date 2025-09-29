@@ -1,0 +1,46 @@
+# ::tok The traffic light is red at the median strip of two streets of an intersection in the city , as the light at the next corner down is green .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	r	red-02	4-5
+# ::node	m	median	7-8
+# ::node	s2	strip	8-9
+# ::node	0	2	10-11
+# ::node	s	street	11-12
+# ::node	i	intersect-01	14-15
+# ::node	c2	city	17-18
+# ::node	c	cause-01	18-19
+# ::node	l2	light	21-22
+# ::node	n	next	24-25
+# ::node	c3	corner	25-26
+# ::node	d	down	26-27
+# ::node	g	green-02	28-29
+# ::root	c	cause-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	red-02	ARG1	light	r	l	
+# ::edge	strip	mod	median	s2	m	
+# ::edge	red-02	location	strip	r	s2	
+# ::edge	street	quant	2	s	0	
+# ::edge	strip	part-of	street	s2	s	
+# ::edge	street	ARG1-of	intersect-01	s	i	
+# ::edge	intersect-01	location	city	i	c2	
+# ::edge	cause-01	ARG1	red-02	c	r	
+# ::edge	corner	mod	next	c3	n	
+# ::edge	light	location	corner	l2	c3	
+# ::edge	corner	direction	down	c3	d	
+# ::edge	green-02	ARG1	light	g	l2	
+# ::edge	cause-01	ARG0	green-02	c	g	
+(c / cause-01
+    :ARG0 (g / green-02
+        :ARG1 (l2 / light
+            :location (c3 / corner
+                :direction (d / down)
+                :mod (n / next))))
+    :ARG1 (r / red-02
+        :ARG1 (l / light
+            :mod (t / traffic))
+        :location (s2 / strip
+            :mod (m / median)
+            :part-of (s / street
+                :quant 2
+                :ARG1-of (i / intersect-01
+                    :location (c2 / city))))))

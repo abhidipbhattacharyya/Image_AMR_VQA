@@ -1,0 +1,63 @@
+# ::tok Just Barb 's sells the best fried clams , Pepsi , and breakfast between 6 am - 11am .
+# ::node	j	just	0-1
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	2	Barb	1-2
+# ::node	s	sell-01	3-4
+# ::node	h	have-degree-91	5-6
+# ::node	g	good-02	5-6
+# ::node	m	most	5-6
+# ::node	f	fry-01	6-7
+# ::node	c3	crab	7-8
+# ::node	c2	company	9-10
+# ::node	n2	name	9-10
+# ::node	3	Pepsi	9-10
+# ::node	a	and	11-12
+# ::node	b2	breakfast-01	12-13
+# ::node	b	between	13-14
+# ::node	d	date-entity	14-15
+# ::node	1	18:00	14-15
+# ::node	d2	date-entity	17-18
+# ::node	0	11:00	17-18
+# ::root	s	sell-01
+# ::edge	company	mod	just	c	j	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Barb	n	2	
+# ::edge	sell-01	ARG0	company	s	c	
+# ::edge	have-degree-91	ARG2	good-02	h	g	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	crab	ARG1-of	fry-01	c3	f	
+# ::edge	have-degree-91	ARG1	crab	h	c3	
+# ::edge	crab	ARG1-of	have-degree-91	c3	h	
+# ::edge	company	name	name	c2	n2	
+# ::edge	name	op1	Pepsi	n2	3	
+# ::edge	and	op2	company	a	c2	
+# ::edge	and	op1	crab	a	c3	
+# ::edge	sell-01	ARG1	and	s	a	
+# ::edge	and	op3	breakfast-01	a	b2	
+# ::edge	sell-01	time	between	s	b	
+# ::edge	between	op1	date-entity	b	d	
+# ::edge	date-entity	time	18:00	d	1	
+# ::edge	between	op2	date-entity	b	d2	
+# ::edge	date-entity	time	11:00	d2	0	
+(s / sell-01
+    :ARG0 (c / company
+        :name (n / name
+            :op1 "Barb")
+        :mod (j / just))
+    :ARG1 (a / and
+        :op1 (c3 / crab
+            :ARG1-of (f / fry-01)
+            :ARG1-of (h / have-degree-91
+                :ARG1 c3
+                :ARG2 (g / good-02)
+                :ARG3 (m / most)))
+        :op2 (c2 / company
+            :name (n2 / name
+                :op1 "Pepsi"))
+        :op3 (b2 / breakfast-01))
+    :time (b / between
+        :op1 (d / date-entity
+            :time "18:00")
+        :op2 (d2 / date-entity
+            :time "11:00")))

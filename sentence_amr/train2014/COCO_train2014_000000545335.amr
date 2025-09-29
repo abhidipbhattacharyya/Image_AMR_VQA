@@ -1,0 +1,34 @@
+# ::tok A single skier is the only person for miles of flat snow .
+# ::node	s2	single-02	1-2
+# ::node	p	person	2-3
+# ::node	s3	ski-01	2-3
+# ::node	o	only	5-6
+# ::node	m2	multiple	8-9
+# ::node	d	distance-quantity	8-9
+# ::node	m	mile	8-9
+# ::node	0	1	8-9
+# ::node	f	flat-06	10-11
+# ::node	s4	snow	11-12
+# ::node	s	say-01	12-13
+# ::root	s	say-01
+# ::edge	person	ARG1-of	single-02	p	s2	
+# ::edge	person	ARG0-of	ski-01	p	s3	
+# ::edge	person	mod	only	p	o	
+# ::edge	multiple	op1	distance-quantity	m2	d	
+# ::edge	distance-quantity	unit	mile	d	m	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	snow	ARG1-of	flat-06	s4	f	
+# ::edge	snow	duration	multiple	s4	m2	
+# ::edge	say-01	ARG1	snow	s	s4	
+# ::edge	say-01	ARG2	person	s	p	
+(s / say-01
+    :ARG1 (s4 / snow
+        :ARG1-of (f / flat-06)
+        :duration (m2 / multiple
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (m / mile))))
+    :ARG2 (p / person
+        :ARG0-of (s3 / ski-01)
+        :ARG1-of (s2 / single-02)
+        :mod (o / only)))

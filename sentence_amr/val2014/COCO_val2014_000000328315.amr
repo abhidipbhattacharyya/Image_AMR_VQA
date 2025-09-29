@@ -1,0 +1,40 @@
+# ::tok A wooden desk with a computer and books / cds in the shelves of the desk .
+# ::node	w	wood	1-2
+# ::node	d	desk	2-3
+# ::node	h	have-03	3-4
+# ::node	c	computer	5-6
+# ::node	a	and	6-7
+# ::node	b	book	7-8
+# ::node	s2	slash	8-9
+# ::node	d3	disc	9-10
+# ::node	d2	digital	9-10
+# ::node	a2	and	9-10
+# ::node	s	shelf	12-13
+# ::root	d	desk
+# ::edge	desk	consist-of	wood	d	w	
+# ::edge	desk	ARG0-of	have-03	d	h	
+# ::edge	and	op1	computer	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	slash	op1	book	s2	b	
+# ::edge	and	op2	slash	a	s2	
+# ::edge	slash	op2	disc	s2	d3	
+# ::edge	disc	mod	digital	d3	d2	
+# ::edge	and	op2	disc	a2	d3	
+# ::edge	and	op1	desk	a2	d	
+# ::edge	slash	location	shelf	s2	s	
+# ::edge	desk	part	shelf	d	s	
+# ::edge	desk	rel	and	d	a2	
+(d / desk
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / computer)
+            :op2 (s2 / slash
+                :location (s / shelf)
+                :op1 (b / book)
+                :op2 (d3 / disc
+                    :mod (d2 / digital)))))
+    :consist-of (w / wood)
+    :part s
+    :rel (a2 / and
+        :op1 d
+        :op2 d3))

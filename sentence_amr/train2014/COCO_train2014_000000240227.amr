@@ -1,0 +1,41 @@
+# ::tok a out dated old kitchen that needs to be revamped containing a old stove and cabinets that lacked doors .
+# ::node	d	date-01	2-3
+# ::node	o	old	3-4
+# ::node	k	kitchen	4-5
+# ::node	n	need-01	6-7
+# ::node	r	revamp-01	9-10
+# ::node	c2	contain-01	10-11
+# ::node	o2	old	12-13
+# ::node	s	stove	13-14
+# ::node	a	and	14-15
+# ::node	c	cabinet	15-16
+# ::node	l	lack-01	17-18
+# ::node	d2	door	18-19
+# ::root	k	kitchen
+# ::edge	kitchen	mod	old	k	o	
+# ::edge	kitchen	ARG1-of	date-01	k	d	
+# ::edge	kitchen	ARG0-of	need-01	k	n	
+# ::edge	need-01	ARG1	revamp-01	n	r	
+# ::edge	revamp-01	ARG1	kitchen	r	k	
+# ::edge	kitchen	ARG0-of	contain-01	k	c2	
+# ::edge	stove	mod	old	s	o2	
+# ::edge	and	op1	stove	a	s	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	and	op2	cabinet	a	c	
+# ::edge	cabinet	mod	old	c	o2	
+# ::edge	and	ARG0-of	lack-01	a	l	
+# ::edge	lack-01	ARG1	door	l	d2	
+(k / kitchen
+    :ARG0-of (n / need-01
+        :ARG1 (r / revamp-01
+            :ARG1 k))
+    :ARG0-of (c2 / contain-01
+        :ARG1 (a / and
+            :ARG0-of (l / lack-01
+                :ARG1 (d2 / door))
+            :op1 (s / stove
+                :mod (o2 / old))
+            :op2 (c / cabinet
+                :mod o2)))
+    :ARG1-of (d / date-01)
+    :mod (o / old))

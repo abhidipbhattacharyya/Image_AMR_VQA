@@ -1,0 +1,25 @@
+# ::tok half of the thin crust pizza has been eaten by the diner .
+# ::node	0	1/2	0-1
+# ::node	i	include-91	1-2
+# ::node	t	thin-03	3-4
+# ::node	c	crust	4-5
+# ::node	p	pizza	5-6
+# ::node	p2	pizza	5-6
+# ::node	e	eat-01	8-9
+# ::node	d	diner	11-12
+# ::root	e	eat-01
+# ::edge	include-91	ARG3	1/2	i	0	
+# ::edge	crust	ARG1-of	thin-03	c	t	
+# ::edge	pizza	mod	crust	p	c	
+# ::edge	pizza	ARG1-of	include-91	p	i	
+# ::edge	include-91	ARG2	pizza	i	p2	
+# ::edge	eat-01	ARG1	pizza	e	p	
+# ::edge	eat-01	ARG0	diner	e	d	
+(e / eat-01
+    :ARG0 (d / diner)
+    :ARG1 (p / pizza
+        :ARG1-of (i / include-91
+            :ARG2 (p2 / pizza)
+            :ARG3 "1/2")
+        :mod (c / crust
+            :ARG1-of (t / thin-03))))

@@ -1,0 +1,36 @@
+# ::tok A child is holding a Wii remote while standing in between a table with chairs and a couch .
+# ::node	c2	child	1-2
+# ::node	h	hold-01	3-4
+# ::node	p	product	5-6
+# ::node	n	name	5-6
+# ::node	0	Wii	5-6
+# ::node	r	remote	6-7
+# ::node	s	stand-01	8-9
+# ::node	b	between	10-11
+# ::node	t	table	12-13
+# ::node	c	chair	14-15
+# ::node	c3	couch	17-18
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	child	h	c2	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	remote	mod	product	r	p	
+# ::edge	hold-01	ARG1	remote	h	r	
+# ::edge	hold-01	time	stand-01	h	s	
+# ::edge	stand-01	ARG1	child	s	c2	
+# ::edge	stand-01	ARG2	between	s	b	
+# ::edge	between	op1	table	b	t	
+# ::edge	table	accompanier	chair	t	c	
+# ::edge	between	op2	couch	b	c3	
+(h / hold-01
+    :ARG0 (c2 / child)
+    :ARG1 (r / remote
+        :mod (p / product
+            :name (n / name
+                :op1 "Wii")))
+    :time (s / stand-01
+        :ARG1 c2
+        :ARG2 (b / between
+            :op1 (t / table
+                :accompanier (c / chair))
+            :op2 (c3 / couch))))

@@ -1,0 +1,33 @@
+# ::tok A man makes an unpleasant face as he examines a food item on a paper plate .
+# ::node	m2	man	1-2
+# ::node	m	make-02	2-3
+# ::node	0	-	3-4
+# ::node	p3	pleasant-02	4-5
+# ::node	f	face	5-6
+# ::node	e	examine-01	8-9
+# ::node	f2	food	10-11
+# ::node	i	item	11-12
+# ::node	p	paper	14-15
+# ::node	p2	plate	15-16
+# ::root	m	make-02
+# ::edge	make-02	ARG0	man	m	m2	
+# ::edge	pleasant-02	polarity	-	p3	0	
+# ::edge	face	ARG1-of	pleasant-02	f	p3	
+# ::edge	make-02	ARG1	face	m	f	
+# ::edge	make-02	time	examine-01	m	e	
+# ::edge	examine-01	ARG0	man	e	m2	
+# ::edge	item	mod	food	i	f2	
+# ::edge	examine-01	ARG1	item	e	i	
+# ::edge	plate	consist-of	paper	p2	p	
+# ::edge	item	location	plate	i	p2	
+(m / make-02
+    :ARG0 (m2 / man)
+    :ARG1 (f / face
+        :ARG1-of (p3 / pleasant-02
+            :polarity -))
+    :time (e / examine-01
+        :ARG0 m2
+        :ARG1 (i / item
+            :location (p2 / plate
+                :consist-of (p / paper))
+            :mod (f2 / food))))

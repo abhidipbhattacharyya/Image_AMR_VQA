@@ -1,0 +1,25 @@
+# ::tok A man working some levers at a snow covered train track .
+# ::node	m	man	1-2
+# ::node	w	work-01	2-3
+# ::node	s2	some	3-4
+# ::node	t3	trigger	4-5
+# ::node	s	snow	7-8
+# ::node	c	cover-02	8-9
+# ::node	t2	train	9-10
+# ::node	t	track	10-11
+# ::root	w	work-01
+# ::edge	work-01	ARG0	man	w	m	
+# ::edge	trigger	quant	some	t3	s2	
+# ::edge	work-01	ARG1	trigger	w	t3	
+# ::edge	cover-02	ARG2	snow	c	s	
+# ::edge	track	purpose	train	t	t2	
+# ::edge	track	ARG1-of	cover-02	t	c	
+# ::edge	work-01	location	track	w	t	
+(w / work-01
+    :ARG0 (m / man)
+    :ARG1 (t3 / trigger
+        :quant (s2 / some))
+    :location (t / track
+        :purpose (t2 / train)
+        :ARG1-of (c / cover-02
+            :ARG2 (s / snow))))

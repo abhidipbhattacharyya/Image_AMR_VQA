@@ -1,0 +1,33 @@
+# ::tok A plate topped with baby carrots , a cup of dressing and yogurt .
+# ::node	p	plate	1-2
+# ::node	t	top-02	2-3
+# ::node	b	baby	4-5
+# ::node	c	carrot	5-6
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	c2	cup	8-9
+# ::node	d	dressing	10-11
+# ::node	a	and	11-12
+# ::node	y	yogurt	12-13
+# ::root	t	top-02
+# ::edge	top-02	ARG0	plate	t	p	
+# ::edge	carrot	mod	baby	c	b	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	dressing	quant	volume-quantity	d	v	
+# ::edge	and	op2	dressing	a	d	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	top-02	ARG1	and	t	a	
+# ::edge	and	op3	yogurt	a	y	
+# ::edge	yogurt	quant	volume-quantity	y	v	
+(t / top-02
+    :ARG0 (p / plate)
+    :ARG1 (a / and
+        :op1 (c / carrot
+            :mod (b / baby))
+        :op2 (d / dressing
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c2 / cup)))
+        :op3 (y / yogurt
+            :quant v)))

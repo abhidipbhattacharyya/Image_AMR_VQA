@@ -1,0 +1,37 @@
+# ::tok A plate holds a good size portion of a cooked , mixed dish that includes broccoli and pasta .
+# ::node	p2	plate	1-2
+# ::node	h	hold-01	2-3
+# ::node	g	good-02	4-5
+# ::node	s	size	5-6
+# ::node	p3	portion	6-7
+# ::node	c	cook-01	9-10
+# ::node	m	mix-01	11-12
+# ::node	d	dish	12-13
+# ::node	i	include-01	14-15
+# ::node	b	broccoli	15-16
+# ::node	a	and	16-17
+# ::node	p	pasta	17-18
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	plate	h	p2	
+# ::edge	size	ARG1-of	good-02	s	g	
+# ::edge	portion	mod	size	p3	s	
+# ::edge	hold-01	ARG1	portion	h	p3	
+# ::edge	dish	ARG1-of	mix-01	d	m	
+# ::edge	dish	ARG1-of	cook-01	d	c	
+# ::edge	portion	part-of	dish	p3	d	
+# ::edge	dish	ARG2-of	include-01	d	i	
+# ::edge	and	op1	broccoli	a	b	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	pasta	a	p	
+(h / hold-01
+    :ARG0 (p2 / plate)
+    :ARG1 (p3 / portion
+        :mod (s / size
+            :ARG1-of (g / good-02))
+        :part-of (d / dish
+            :ARG1-of (m / mix-01)
+            :ARG1-of (c / cook-01)
+            :ARG2-of (i / include-01
+                :ARG1 (a / and
+                    :op1 (b / broccoli)
+                    :op2 (p / pasta))))))

@@ -1,0 +1,23 @@
+# ::tok The diners are waiting patiently for their order to arrive .
+# ::node	p2	person	1-2
+# ::node	d	dine-01	1-2
+# ::node	w	wait-01	3-4
+# ::node	p	patient-01	4-5
+# ::node	o	order-02	7-8
+# ::node	a	arrive-01	9-10
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	dine-01	p2	d	
+# ::edge	wait-01	ARG1	person	w	p2	
+# ::edge	wait-01	ARG2-of	patient-01	w	p	
+# ::edge	patient-01	ARG1	person	p	p2	
+# ::edge	order-02	ARG0	person	o	p2	
+# ::edge	arrive-01	ARG1	order-02	a	o	
+# ::edge	wait-01	ARG2	arrive-01	w	a	
+(w / wait-01
+    :ARG1 (p2 / person
+        :ARG0-of (d / dine-01))
+    :ARG2 (a / arrive-01
+        :ARG1 (o / order-02
+            :ARG0 p2))
+    :ARG2-of (p / patient-01
+        :ARG1 p2))

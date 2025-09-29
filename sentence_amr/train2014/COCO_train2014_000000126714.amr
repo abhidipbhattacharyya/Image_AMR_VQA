@@ -1,0 +1,45 @@
+# ::tok A two people holding video game controllers ; one standing in the foreground and the other sitting in the background .
+# ::node	0	2	1-2
+# ::node	p	person	2-3
+# ::node	h	hold-01	3-4
+# ::node	v	video	4-5
+# ::node	g	game	5-6
+# ::node	c	control-01	6-7
+# ::node	t	thing	7-8
+# ::node	o	one	8-9
+# ::node	s2	stand-01	9-10
+# ::node	f	foreground	12-13
+# ::node	a	and	13-14
+# ::node	o2	other	15-16
+# ::node	s	sit-01	16-17
+# ::node	b	background	19-20
+# ::root	h	hold-01
+# ::edge	person	quant	2	p	0	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	game	mod	video	g	v	
+# ::edge	control-01	ARG1	game	c	g	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	hold-01	ARG1	thing	h	t	
+# ::edge	stand-01	ARG1	one	s2	o	
+# ::edge	stand-01	ARG2	foreground	s2	f	
+# ::edge	and	op1	stand-01	a	s2	
+# ::edge	and	op2	other	a	o2	
+# ::edge	sit-01	ARG1	other	s	o2	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG2	background	s	b	
+# ::edge	hold-01	rel	and	h	a	
+(h / hold-01
+    :ARG0 (p / person
+        :quant 2)
+    :ARG1 (t / thing
+        :ARG0-of (c / control-01
+            :ARG1 (g / game
+                :mod (v / video))))
+    :rel (a / and
+        :op1 (s2 / stand-01
+            :ARG1 (o / one)
+            :ARG2 (f / foreground))
+        :op2 (o2 / other)
+        :op2 (s / sit-01
+            :ARG1 o2
+            :ARG2 (b / background))))

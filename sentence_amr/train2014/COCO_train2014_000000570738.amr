@@ -1,0 +1,27 @@
+# ::tok Group of baseball players preparing next move in a game .
+# ::node	g2	group	0-1
+# ::node	b	baseball	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	p3	prepare-02	4-5
+# ::node	n	next	5-6
+# ::node	m	move-02	6-7
+# ::node	g	game	9-10
+# ::root	p3	prepare-02
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	prepare-02	ARG0	group	p3	g2	
+# ::edge	move-02	mod	next	m	n	
+# ::edge	prepare-02	ARG1	move-02	p3	m	
+# ::edge	move-02	ARG0	person	m	p	
+# ::edge	move-02	subevent-of	game	m	g	
+(p3 / prepare-02
+    :ARG0 (g2 / group
+        :consist-of (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b / baseball))))
+    :ARG1 (m / move-02
+        :ARG0 p
+        :mod (n / next)
+        :subevent-of (g / game)))

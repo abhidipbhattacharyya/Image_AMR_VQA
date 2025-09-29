@@ -1,0 +1,34 @@
+# ::tok A taxi van following a double decker bus on a road while another bus is coming the opposite direction .
+# ::node	t	taxi	1-2
+# ::node	v	van	2-3
+# ::node	f	follow-01	3-4
+# ::node	d2	double-decker	6-7
+# ::node	b	bus	7-8
+# ::node	r	road	10-11
+# ::node	a	another	12-13
+# ::node	b2	bus	13-14
+# ::node	c	come-01	15-16
+# ::node	o	opposite-01	17-18
+# ::node	d	direction	18-19
+# ::root	f	follow-01
+# ::edge	van	mod	taxi	v	t	
+# ::edge	follow-01	ARG1	van	f	v	
+# ::edge	bus	mod	double-decker	b	d2	
+# ::edge	follow-01	ARG2	bus	f	b	
+# ::edge	follow-01	location	road	f	r	
+# ::edge	bus	mod	another	b2	a	
+# ::edge	come-01	ARG1	bus	c	b2	
+# ::edge	follow-01	time	come-01	f	c	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	come-01	direction	direction	c	d	
+(f / follow-01
+    :ARG1 (v / van
+        :mod (t / taxi))
+    :ARG2 (b / bus
+        :mod (d2 / double-decker))
+    :location (r / road)
+    :time (c / come-01
+        :ARG1 (b2 / bus
+            :mod (a / another))
+        :direction (d / direction
+            :ARG1-of (o / opposite-01))))

@@ -1,0 +1,30 @@
+# ::tok some cars sitting next to a wall with lot of wire on top of it
+# ::node	s2	some	0-1
+# ::node	c	car	1-2
+# ::node	s	sit-01	2-3
+# ::node	n	next-to	3-4
+# ::node	w	wall	6-7
+# ::node	h	have-03	7-8
+# ::node	l	lot	8-9
+# ::node	w2	wire	10-11
+# ::node	t	top	12-13
+# ::root	s	sit-01
+# ::edge	car	quant	some	c	s2	
+# ::edge	sit-01	ARG1	car	s	c	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	wall	n	w	
+# ::edge	car	ARG0-of	have-03	c	h	
+# ::edge	wire	quant	lot	w2	l	
+# ::edge	have-03	ARG1	wire	h	w2	
+# ::edge	wire	location	top	w2	t	
+# ::edge	top	op1	wall	t	w	
+(s / sit-01
+    :ARG1 (c / car
+        :quant (s2 / some)
+        :ARG0-of (h / have-03
+            :ARG1 (w2 / wire
+                :quant (l / lot)
+                :location (t / top
+                    :op1 (w / wall)))))
+    :ARG2 (n / next-to
+        :op1 w))

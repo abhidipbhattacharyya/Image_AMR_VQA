@@ -1,0 +1,72 @@
+# ::tok Chest only view of person wearing floral pink and purple neck tie on yellow shirt with dark lanyard , possibly for access or ID card .
+# ::node	b	breast	0-1
+# ::node	o	only	1-2
+# ::node	v	view-01	2-3
+# ::node	p	person	4-5
+# ::node	w	wear-01	5-6
+# ::node	f	floral	6-7
+# ::node	p2	pink-04	7-8
+# ::node	a2	and	8-9
+# ::node	p4	purple-02	9-10
+# ::node	n	neck	10-11
+# ::node	t	tie	11-12
+# ::node	t2	tie	11-12
+# ::node	y	yellow-02	13-14
+# ::node	s	shirt	14-15
+# ::node	d	dark-02	16-17
+# ::node	l	lanyard	17-18
+# ::node	p3	possible-01	19-20
+# ::node	h	have-purpose-91	20-21
+# ::node	a	access-01	21-22
+# ::node	o2	or	22-23
+# ::node	d2	document-01	23-24
+# ::node	i	identity	23-24
+# ::node	c	card	24-25
+# ::root	v	view-01
+# ::edge	view-01	mod	only	v	o	
+# ::edge	view-01	location	breast	v	b	
+# ::edge	view-01	ARG1	person	v	p	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	pink-04	mod	floral	p2	f	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	tie	mod	neck	t	n	
+# ::edge	and	op1	tie	a2	t	
+# ::edge	tie	ARG1-of	pink-04	t	p2	
+# ::edge	tie	mod	neck	t2	n	
+# ::edge	tie	ARG1-of	purple-02	t2	p4	
+# ::edge	and	op2	tie	a2	t2	
+# ::edge	shirt	ARG1-of	yellow-02	s	y	
+# ::edge	wear-01	location	shirt	w	s	
+# ::edge	lanyard	ARG1-of	dark-02	l	d	
+# ::edge	and	op3	lanyard	a2	l	
+# ::edge	have-purpose-91	ARG1-of	possible-01	h	p3	
+# ::edge	wear-01	ARG1-of	have-purpose-91	w	h	
+# ::edge	or	op1	access-01	o2	a	
+# ::edge	have-purpose-91	ARG2	or	h	o2	
+# ::edge	document-01	ARG1	identity	d2	i	
+# ::edge	card	ARG0-of	document-01	c	d2	
+# ::edge	or	op2	card	o2	c	
+(v / view-01
+    :ARG1 (p / person
+        :ARG0-of (w / wear-01
+            :ARG1 (a2 / and
+                :op1 (t / tie
+                    :ARG1-of (p2 / pink-04
+                        :mod (f / floral))
+                    :mod (n / neck))
+                :op2 (t2 / tie
+                    :ARG1-of (p4 / purple-02)
+                    :mod n)
+                :op3 (l / lanyard
+                    :ARG1-of (d / dark-02)))
+            :ARG1-of (h / have-purpose-91
+                :ARG1-of (p3 / possible-01)
+                :ARG2 (o2 / or
+                    :op1 (a / access-01)
+                    :op2 (c / card
+                        :ARG0-of (d2 / document-01
+                            :ARG1 (i / identity)))))
+            :location (s / shirt
+                :ARG1-of (y / yellow-02))))
+    :location (b / breast)
+    :mod (o / only))

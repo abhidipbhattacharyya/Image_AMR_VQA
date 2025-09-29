@@ -1,0 +1,34 @@
+# ::tok a motorcycle and a three wheeler both coming same direction on both sides of street
+# ::node	m	motorcycle	1-2
+# ::node	a	and	2-3
+# ::node	0	3	4-5
+# ::node	v	vehicle	5-6
+# ::node	w	wheel	5-6
+# ::node	c	come-01	7-8
+# ::node	s	same-01	8-9
+# ::node	d	direction	9-10
+# ::node	b	both	11-12
+# ::node	s2	side	12-13
+# ::node	s3	street	14-15
+# ::root	c	come-01
+# ::edge	and	op1	motorcycle	a	m	
+# ::edge	and	op2	vehicle	a	v	
+# ::edge	vehicle	part	wheel	v	w	
+# ::edge	wheel	quant	3	w	0	
+# ::edge	come-01	ARG1	and	c	a	
+# ::edge	direction	ARG1-of	same-01	d	s	
+# ::edge	come-01	direction	direction	c	d	
+# ::edge	side	mod	both	s2	b	
+# ::edge	come-01	ARG4	side	c	s2	
+# ::edge	side	part-of	street	s2	s3	
+(c / come-01
+    :ARG1 (a / and
+        :op1 (m / motorcycle)
+        :op2 (v / vehicle
+            :part (w / wheel
+                :quant 3)))
+    :ARG4 (s2 / side
+        :mod (b / both)
+        :part-of (s3 / street))
+    :direction (d / direction
+        :ARG1-of (s / same-01)))

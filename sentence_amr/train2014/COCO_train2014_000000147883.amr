@@ -1,0 +1,32 @@
+# ::tok Cat rounding the corner looking for a new place to nap .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	Cat	0-1
+# ::node	r	round-up-02	1-2
+# ::node	c	corner	3-4
+# ::node	l	look-01	4-5
+# ::node	n3	new-01	7-8
+# ::node	p2	place	8-9
+# ::node	n2	nap-01	10-11
+# ::root	r	round-up-02
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Cat	n	0	
+# ::edge	round-up-02	ARG0	person	r	p	
+# ::edge	round-up-02	ARG1	corner	r	c	
+# ::edge	round-up-02	purpose	look-01	r	l	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	place	ARG1-of	new-01	p2	n3	
+# ::edge	look-01	ARG1	place	l	p2	
+# ::edge	place	location-of	nap-01	p2	n2	
+# ::edge	nap-01	ARG0	person	n2	p	
+(r / round-up-02
+    :purpose (l / look-01
+        :ARG0 (p / person
+            :name (n / name
+                :op1 "Cat"))
+        :ARG1 (p2 / place
+            :ARG1-of (n3 / new-01)
+            :location-of (n2 / nap-01
+                :ARG0 p)))
+    :ARG0 p
+    :ARG1 (c / corner))

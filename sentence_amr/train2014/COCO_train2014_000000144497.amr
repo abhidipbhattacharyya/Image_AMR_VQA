@@ -1,0 +1,30 @@
+# ::tok A stoplight with cars stopped just after crossing a train track
+# ::node	s2	stoplight	1-2
+# ::node	h	have-03	2-3
+# ::node	c	car	3-4
+# ::node	s	stop-01	4-5
+# ::node	j	just	5-6
+# ::node	a	after	6-7
+# ::node	c2	cross-02	7-8
+# ::node	t2	train	9-10
+# ::node	t	track	10-11
+# ::root	s	stop-01
+# ::edge	stoplight	ARG0-of	have-03	s2	h	
+# ::edge	have-03	ARG1	car	h	c	
+# ::edge	stop-01	ARG1	stoplight	s	s2	
+# ::edge	after	mod	just	a	j	
+# ::edge	stop-01	time	after	s	a	
+# ::edge	after	op1	cross-02	a	c2	
+# ::edge	cross-02	ARG0	stoplight	c2	s2	
+# ::edge	track	mod	train	t	t2	
+# ::edge	cross-02	ARG1	track	c2	t	
+(s / stop-01
+    :ARG1 (s2 / stoplight
+        :ARG0-of (h / have-03
+            :ARG1 (c / car)))
+    :time (a / after
+        :mod (j / just)
+        :op1 (c2 / cross-02
+            :ARG0 s2
+            :ARG1 (t / track
+                :mod (t2 / train)))))

@@ -1,0 +1,33 @@
+# ::tok A temperature gauge attached to a toaster oven with two binder clips inside .
+# ::node	t	temperature	1-2
+# ::node	g	gauge	2-3
+# ::node	a	attach-01	3-4
+# ::node	t2	toaster	6-7
+# ::node	o	oven	7-8
+# ::node	h	have-03	8-9
+# ::node	0	2	9-10
+# ::node	b	binder	10-11
+# ::node	c	clip	11-12
+# ::node	i	inside	12-13
+# ::root	a	attach-01
+# ::edge	gauge	purpose	temperature	g	t	
+# ::edge	attach-01	ARG1	gauge	a	g	
+# ::edge	oven	mod	toaster	o	t2	
+# ::edge	attach-01	ARG2	oven	a	o	
+# ::edge	oven	ARG0-of	have-03	o	h	
+# ::edge	clip	mod	binder	c	b	
+# ::edge	clip	quant	2	c	0	
+# ::edge	have-03	ARG1	clip	h	c	
+# ::edge	clip	location	inside	c	i	
+# ::edge	inside	op1	oven	i	o	
+(a / attach-01
+    :ARG1 (g / gauge
+        :purpose (t / temperature))
+    :ARG2 (o / oven
+        :ARG0-of (h / have-03
+            :ARG1 (c / clip
+                :quant 2
+                :location (i / inside
+                    :op1 o)
+                :mod (b / binder)))
+        :mod (t2 / toaster)))

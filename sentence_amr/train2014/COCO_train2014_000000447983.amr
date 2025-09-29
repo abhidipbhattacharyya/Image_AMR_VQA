@@ -1,0 +1,37 @@
+# ::tok This sign indicates a dip in the road is ahead and the speed limit is 15 MPH .
+# ::node	t	this	0-1
+# ::node	s	sign	1-2
+# ::node	i	indicate-01	2-3
+# ::node	d	dip	4-5
+# ::node	r	road	7-8
+# ::node	a	ahead	9-10
+# ::node	a2	and	10-11
+# ::node	s2	speed-01	12-13
+# ::node	l	limit-01	13-14
+# ::node	0	15	15-16
+# ::node	s3	speed-quantity	16-17
+# ::node	m	mile-per-hour	16-17
+# ::root	i	indicate-01
+# ::edge	sign	mod	this	s	t	
+# ::edge	indicate-01	ARG0	sign	i	s	
+# ::edge	dip	mod	road	d	r	
+# ::edge	road	location	ahead	r	a	
+# ::edge	and	op1	dip	a2	d	
+# ::edge	indicate-01	ARG1	and	i	a2	
+# ::edge	limit-01	ARG1	speed-01	l	s2	
+# ::edge	speed-quantity	quant	15	s3	0	
+# ::edge	speed-quantity	ARG2-of	limit-01	s3	l	
+# ::edge	and	op2	speed-quantity	a2	s3	
+# ::edge	speed-quantity	unit	mile-per-hour	s3	m	
+(i / indicate-01
+    :ARG0 (s / sign
+        :mod (t / this))
+    :ARG1 (a2 / and
+        :op1 (d / dip
+            :mod (r / road
+                :location (a / ahead)))
+        :op2 (s3 / speed-quantity
+            :quant 15
+            :ARG2-of (l / limit-01
+                :ARG1 (s2 / speed-01))
+            :unit (m / mile-per-hour))))

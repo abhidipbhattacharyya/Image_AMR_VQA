@@ -1,0 +1,31 @@
+# ::tok A subway station with several people on and off - board a subway
+# ::node	s2	station	2-3
+# ::node	s	several	4-5
+# ::node	p	person	5-6
+# ::node	a	and	7-8
+# ::node	0	-	8-9
+# ::node	b	board-01	10-11
+# ::node	b2	board-01	10-11
+# ::node	s3	subway	12-13
+# ::root	s2	station
+# ::edge	person	quant	several	p	s	
+# ::edge	and	op1	person	a	p	
+# ::edge	station	location-of	and	s2	a	
+# ::edge	and	op2	board-01	a	b	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	board-01	polarity	-	b2	0	
+# ::edge	and	op3	board-01	a	b2	
+# ::edge	board-01	ARG0	person	b2	p	
+# ::edge	board-01	ARG1	subway	b2	s3	
+# ::edge	board-01	ARG1	subway	b	s3	
+(s2 / station
+    :location-of (a / and
+        :op1 (p / person
+            :quant (s / several))
+        :op2 (b / board-01
+            :ARG0 p
+            :ARG1 (s3 / subway))
+        :op3 (b2 / board-01
+            :ARG0 p
+            :ARG1 s3
+            :polarity -)))

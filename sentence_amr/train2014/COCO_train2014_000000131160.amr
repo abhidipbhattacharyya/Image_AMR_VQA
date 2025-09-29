@@ -1,0 +1,28 @@
+# ::tok Two directional street signs on one pole with buildings in the background .
+# ::node	1	2	0-1
+# ::node	d	direct-01	1-2
+# ::node	s2	street	2-3
+# ::node	s	sign	3-4
+# ::node	0	1	5-6
+# ::node	p	pole	6-7
+# ::node	h	have-03	7-8
+# ::node	b2	building	8-9
+# ::node	b	background	11-12
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	ARG0-of	direct-01	s	d	
+# ::edge	sign	quant	2	s	1	
+# ::edge	pole	quant	1	p	0	
+# ::edge	sign	location	pole	s	p	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	background	b2	b	
+(s / sign
+    :quant 2
+    :ARG0-of (d / direct-01)
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / building
+            :location (b / background)))
+    :location (p / pole
+        :quant 1)
+    :mod (s2 / street))

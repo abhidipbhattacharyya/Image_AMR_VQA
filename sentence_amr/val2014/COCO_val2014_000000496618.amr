@@ -1,0 +1,33 @@
+# ::tok The breakfast consists of fried eggs , pancakes , and syrup on the side .
+# ::node	b	breakfast	1-2
+# ::node	c	consist-01	2-3
+# ::node	f	fry-01	4-5
+# ::node	e	egg	5-6
+# ::node	a	and	6-7
+# ::node	e2	enzyme	7-8
+# ::node	e3	enzyme	7-8
+# ::node	e4	enzyme	7-8
+# ::node	s2	syrup	10-11
+# ::node	s	side	13-14
+# ::root	c	consist-01
+# ::edge	consist-01	ARG1	breakfast	c	b	
+# ::edge	egg	ARG1-of	fry-01	e	f	
+# ::edge	and	op1	egg	a	e	
+# ::edge	consist-01	ARG2	and	c	a	
+# ::edge	and	op2	enzyme	a	e2	
+# ::edge	and	op3	enzyme	a	e3	
+# ::edge	and	op4	enzyme	a	e4	
+# ::edge	syrup	consist-of	enzyme	s2	e3	
+# ::edge	and	op2	syrup	a	s2	
+# ::edge	enzyme	mod	side	e3	s	
+(c / consist-01
+    :ARG1 (b / breakfast)
+    :ARG2 (a / and
+        :op1 (e / egg
+            :ARG1-of (f / fry-01))
+        :op2 (e2 / enzyme)
+        :op2 (s2 / syrup
+            :consist-of (e3 / enzyme
+                :mod (s / side)))
+        :op3 e3
+        :op4 (e4 / enzyme)))

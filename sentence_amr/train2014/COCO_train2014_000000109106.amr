@@ -1,0 +1,36 @@
+# ::tok A black cat looks behind as it lays in a room with a large screen at one end .
+# ::node	b2	black-04	1-2
+# ::node	c	cat	2-3
+# ::node	l3	look-01	3-4
+# ::node	b	behind	4-5
+# ::node	l2	lay-01	7-8
+# ::node	r	room	10-11
+# ::node	h	have-03	11-12
+# ::node	l	large	13-14
+# ::node	s	screen	14-15
+# ::node	o	one	16-17
+# ::node	e	end	17-18
+# ::root	l3	look-01
+# ::edge	cat	ARG1-of	black-04	c	b2	
+# ::edge	look-01	ARG0	cat	l3	c	
+# ::edge	look-01	ARG1	behind	l3	b	
+# ::edge	look-01	time	lay-01	l3	l2	
+# ::edge	lay-01	ARG1	cat	l2	c	
+# ::edge	lay-01	ARG2	room	l2	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	screen	mod	large	s	l	
+# ::edge	have-03	ARG1	screen	h	s	
+# ::edge	end	mod	one	e	o	
+# ::edge	screen	location	end	s	e	
+(l3 / look-01
+    :ARG0 (c / cat
+        :ARG1-of (b2 / black-04))
+    :ARG1 (b / behind)
+    :time (l2 / lay-01
+        :ARG1 c
+        :ARG2 (r / room
+            :ARG0-of (h / have-03
+                :ARG1 (s / screen
+                    :location (e / end
+                        :mod (o / one))
+                    :mod (l / large))))))

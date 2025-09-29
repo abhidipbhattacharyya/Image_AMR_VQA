@@ -1,0 +1,33 @@
+# ::tok a field with no grass is well made and a train moving besides it
+# ::node	f	field	1-2
+# ::node	h	have-03	2-3
+# ::node	0	-	3-4
+# ::node	g2	grass	4-5
+# ::node	g	good-02	6-7
+# ::node	m	make-01	7-8
+# ::node	a	and	8-9
+# ::node	t	train	10-11
+# ::node	m2	move-01	11-12
+# ::node	b	besides	12-13
+# ::root	a	and
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	grass	h	g2	
+# ::edge	make-01	ARG1-of	good-02	m	g	
+# ::edge	make-01	ARG1	field	m	f	
+# ::edge	and	op1	make-01	a	m	
+# ::edge	move-01	ARG1	train	m2	t	
+# ::edge	and	op2	move-01	a	m2	
+# ::edge	move-01	location	besides	m2	b	
+# ::edge	besides	op1	field	b	f	
+(a / and
+    :op1 (m / make-01
+        :ARG1 (f / field
+            :ARG0-of (h / have-03
+                :ARG1 (g2 / grass)
+                :polarity -))
+        :ARG1-of (g / good-02))
+    :op2 (m2 / move-01
+        :ARG1 (t / train)
+        :location (b / besides
+            :op1 f)))

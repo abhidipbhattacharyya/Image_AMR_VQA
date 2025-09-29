@@ -1,0 +1,36 @@
+# ::tok this tabby cat must trust this man since she is showing her stomach
+# ::node	t	tabby	1-2
+# ::node	c	cat	2-3
+# ::node	o	obligate-01	3-4
+# ::node	t3	trust-02	4-5
+# ::node	t2	this	5-6
+# ::node	m	man	6-7
+# ::node	c2	cause-01	7-8
+# ::node	s	show-01	10-11
+# ::node	s2	stomach	12-13
+# ::root	o	obligate-01
+# ::edge	cat	mod	tabby	c	t	
+# ::edge	obligate-01	ARG1	cat	o	c	
+# ::edge	obligate-01	ARG2	trust-02	o	t3	
+# ::edge	trust-02	ARG0	cat	t3	c	
+# ::edge	cat	mod	this	c	t2	
+# ::edge	man	mod	this	m	t2	
+# ::edge	trust-02	ARG1	man	t3	m	
+# ::edge	obligate-01	ARG1-of	cause-01	o	c2	
+# ::edge	cause-01	ARG0	show-01	c2	s	
+# ::edge	show-01	ARG0	cat	s	c	
+# ::edge	show-01	ARG1	stomach	s	s2	
+# ::edge	cat	part	stomach	c	s2	
+(o / obligate-01
+    :ARG1 (c / cat
+        :mod (t / tabby)
+        :mod (t2 / this)
+        :part (s2 / stomach))
+    :ARG1-of (c2 / cause-01
+        :ARG0 (s / show-01
+            :ARG0 c
+            :ARG1 s2))
+    :ARG2 (t3 / trust-02
+        :ARG0 c
+        :ARG1 (m / man
+            :mod t2)))

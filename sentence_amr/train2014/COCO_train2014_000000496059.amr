@@ -1,0 +1,22 @@
+# ::tok Two emergency vehicles racing through an intersection with flashing lights .
+# ::node	0	2	0-1
+# ::node	e	emergency	1-2
+# ::node	v	vehicle	2-3
+# ::node	s	speed-01	3-4
+# ::node	i	intersect-01	6-7
+# ::node	f	flash-01	8-9
+# ::node	l	light	9-10
+# ::root	s	speed-01
+# ::edge	vehicle	mod	emergency	v	e	
+# ::edge	vehicle	quant	2	v	0	
+# ::edge	speed-01	ARG0	vehicle	s	v	
+# ::edge	speed-01	path	intersect-01	s	i	
+# ::edge	light	ARG1-of	flash-01	l	f	
+# ::edge	intersect-01	part	light	i	l	
+(s / speed-01
+    :ARG0 (v / vehicle
+        :quant 2
+        :mod (e / emergency))
+    :path (i / intersect-01
+        :part (l / light
+            :ARG1-of (f / flash-01))))

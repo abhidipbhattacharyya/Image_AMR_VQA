@@ -1,0 +1,30 @@
+# ::tok The ballplayer waits in the batter 's box , watching the umpire defend his call .
+# ::node	b	ballplayer	1-2
+# ::node	w	wait-01	2-3
+# ::node	b2	batter-01	5-6
+# ::node	b3	box	7-8
+# ::node	w2	watch-01	9-10
+# ::node	p	person	11-12
+# ::node	u	umpire-01	11-12
+# ::node	d	defend-01	12-13
+# ::node	c	call-10	14-15
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	ballplayer	w	b	
+# ::edge	box	mod	batter-01	b3	b2	
+# ::edge	wait-01	location	box	w	b3	
+# ::edge	ballplayer	ARG0-of	watch-01	b	w2	
+# ::edge	person	ARG0-of	umpire-01	p	u	
+# ::edge	defend-01	ARG0	person	d	p	
+# ::edge	watch-01	ARG1	defend-01	w2	d	
+# ::edge	defend-01	ARG1	call-10	d	c	
+# ::edge	call-10	ARG0	person	c	p	
+(w / wait-01
+    :ARG1 (b / ballplayer
+        :ARG0-of (w2 / watch-01
+            :ARG1 (d / defend-01
+                :ARG0 (p / person
+                    :ARG0-of (u / umpire-01))
+                :ARG1 (c / call-10
+                    :ARG0 p))))
+    :location (b3 / box
+        :mod (b2 / batter-01)))

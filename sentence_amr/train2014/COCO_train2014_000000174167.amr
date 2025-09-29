@@ -1,0 +1,25 @@
+# ::tok A street at night with buildings across the street with large windows .
+# ::node	s	street	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	b	building	5-6
+# ::node	a	across	6-7
+# ::node	s2	street	8-9
+# ::node	l	large	10-11
+# ::node	w	window	11-12
+# ::root	s	street
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	street	location-of	building	s	b	
+# ::edge	building	location	across	b	a	
+# ::edge	across	op1	street	a	s2	
+# ::edge	window	mod	large	w	l	
+# ::edge	building	part	window	b	w	
+(s / street
+    :location-of (b / building
+        :location (a / across
+            :op1 (s2 / street))
+        :part (w / window
+            :mod (l / large)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

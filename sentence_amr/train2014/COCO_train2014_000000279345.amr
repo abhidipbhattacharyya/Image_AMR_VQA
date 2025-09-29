@@ -1,0 +1,33 @@
+# ::tok A man eating a meal in a booth at a restaurant , with a woman sitting beside him not eating .
+# ::node	m	man	1-2
+# ::node	e	eat-01	2-3
+# ::node	m2	meal	4-5
+# ::node	b2	booth	7-8
+# ::node	r	restaurant	10-11
+# ::node	w	woman	14-15
+# ::node	s	sit-01	15-16
+# ::node	b	beside	16-17
+# ::node	0	-	18-19
+# ::node	e2	eat-01	19-20
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	eat-01	ARG1	meal	e	m2	
+# ::edge	eat-01	location	booth	e	b2	
+# ::edge	booth	location	restaurant	b2	r	
+# ::edge	man	accompanier	woman	m	w	
+# ::edge	woman	ARG1-of	sit-01	w	s	
+# ::edge	sit-01	ARG2	beside	s	b	
+# ::edge	beside	op1	man	b	m	
+# ::edge	eat-01	polarity	-	e2	0	
+# ::edge	woman	ARG0-of	eat-01	w	e2	
+(e / eat-01
+    :ARG0 (m / man
+        :accompanier (w / woman
+            :ARG0-of (e2 / eat-01
+                :polarity -)
+            :ARG1-of (s / sit-01
+                :ARG2 (b / beside
+                    :op1 m))))
+    :ARG1 (m2 / meal)
+    :location (b2 / booth
+        :location (r / restaurant)))

@@ -1,0 +1,34 @@
+# ::tok a city scene of a sidewalk with a red fire hydrant on a sidewalk next to an ATM
+# ::node	c	city	1-2
+# ::node	s	scene	2-3
+# ::node	s2	sidewalk	5-6
+# ::node	h	have-03	6-7
+# ::node	r	red-02	8-9
+# ::node	f	fire	9-10
+# ::node	h2	hydrant	10-11
+# ::node	n2	next-to	14-15
+# ::node	b	bank-teller	16-17
+# ::node	n	name	17-18
+# ::node	0	ATM	17-18
+# ::root	s	scene
+# ::edge	scene	mod	city	s	c	
+# ::edge	scene	mod	sidewalk	s	s2	
+# ::edge	sidewalk	ARG0-of	have-03	s2	h	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	ARG1-of	red-02	h2	r	
+# ::edge	have-03	ARG1	hydrant	h	h2	
+# ::edge	sidewalk	location	next-to	s2	n2	
+# ::edge	next-to	op1	bank-teller	n2	b	
+# ::edge	bank-teller	name	name	b	n	
+# ::edge	name	op1	ATM	n	0	
+(s / scene
+    :mod (c / city)
+    :mod (s2 / sidewalk
+        :ARG0-of (h / have-03
+            :ARG1 (h2 / hydrant
+                :ARG1-of (r / red-02)
+                :mod (f / fire)))
+        :location (n2 / next-to
+            :op1 (b / bank-teller
+                :name (n / name
+                    :op1 "ATM")))))

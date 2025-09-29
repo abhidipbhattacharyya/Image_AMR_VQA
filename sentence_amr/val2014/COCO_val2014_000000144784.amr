@@ -1,0 +1,22 @@
+# ::tok A person presses the power button on a blender containing liquid
+# ::node	p	person	1-2
+# ::node	p3	press-01	2-3
+# ::node	p2	power-01	4-5
+# ::node	b2	button	5-6
+# ::node	b	blender	8-9
+# ::node	c	contain-01	9-10
+# ::node	l	liquid	10-11
+# ::root	p3	press-01
+# ::edge	press-01	ARG0	person	p3	p	
+# ::edge	button	mod	power-01	b2	p2	
+# ::edge	press-01	ARG1	button	p3	b2	
+# ::edge	power-01	ARG1	blender	p2	b	
+# ::edge	blender	ARG0-of	contain-01	b	c	
+# ::edge	contain-01	ARG1	liquid	c	l	
+(p3 / press-01
+    :ARG0 (p / person)
+    :ARG1 (b2 / button
+        :mod (p2 / power-01
+            :ARG1 (b / blender
+                :ARG0-of (c / contain-01
+                    :ARG1 (l / liquid))))))

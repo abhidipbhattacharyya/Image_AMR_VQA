@@ -1,0 +1,28 @@
+# ::tok A traffic light turns green at the intersection with Williams Street .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	t2	turn-01	3-4
+# ::node	g	green-02	4-5
+# ::node	i	intersect-01	7-8
+# ::node	n	name	9-10
+# ::node	1	Williams	9-10
+# ::node	r	road	10-11
+# ::node	0	Street	10-11
+# ::root	t2	turn-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	turn-01	ARG1	light	t2	l	
+# ::edge	turn-01	manner	green-02	t2	g	
+# ::edge	turn-01	location	intersect-01	t2	i	
+# ::edge	name	op1	Williams	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	name	op2	Street	n	0	
+(t2 / turn-01
+    :ARG1 (l / light
+        :mod (t / traffic))
+    :location (i / intersect-01
+        :ARG1 (r / road
+            :name (n / name
+                :op1 "Williams"
+                :op2 "Street")))
+    :manner (g / green-02))

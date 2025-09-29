@@ -1,0 +1,85 @@
+# ::tok A desk contianing a computer monitor , telephone , modem , CD drive , and a cat above a keyboard drawer containing a keyboard and a mouse which is above a tangle of wires and next to a bed .
+# ::node	d	desk	1-2
+# ::node	p	political-movement	2-3
+# ::node	c2	computer	4-5
+# ::node	m2	monitor	5-6
+# ::node	t2	telephone	7-8
+# ::node	m	modem	9-10
+# ::node	d3	disc	11-12
+# ::node	d2	digital	11-12
+# ::node	a3	and	11-12
+# ::node	p2	product	11-12
+# ::node	n	name	11-12
+# ::node	0	CD	11-12
+# ::node	d5	drive	12-13
+# ::node	b	be-located-at-91	13-14
+# ::node	c	cat	16-17
+# ::node	a	above	17-18
+# ::node	d4	drawer	20-21
+# ::node	c3	contain-01	21-22
+# ::node	k	keyboard	23-24
+# ::node	a4	and	24-25
+# ::node	m3	mouse	26-27
+# ::node	a2	above	29-30
+# ::node	t	tangle-01	31-32
+# ::node	w	wire	33-34
+# ::node	n2	next-to	35-36
+# ::node	b2	bed	38-39
+# ::root	b	be-located-at-91
+# ::edge	monitor	mod	computer	m2	c2	
+# ::edge	disc	mod	digital	d3	d2	
+# ::edge	and	op3	modem	a3	m	
+# ::edge	and	op2	telephone	a3	t2	
+# ::edge	and	op1	monitor	a3	m2	
+# ::edge	and	op4	product	a3	p2	
+# ::edge	product	mod	disc	p2	d3	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	CD	n	0	
+# ::edge	drive	mod	disc	d5	d3	
+# ::edge	and	op5	drive	a3	d5	
+# ::edge	be-located-at-91	ARG2	desk	b	d	
+# ::edge	be-located-at-91	ARG1	desk	b	d	
+# ::edge	and	op6	cat	a3	c	
+# ::edge	be-located-at-91	ARG2	above	b	a	
+# ::edge	above	op1	drawer	a	d4	
+# ::edge	drawer	ARG0-of	contain-01	d4	c3	
+# ::edge	drawer	mod	keyboard	d4	k	
+# ::edge	and	op1	keyboard	a4	k	
+# ::edge	contain-01	ARG1	and	c3	a4	
+# ::edge	and	op2	mouse	a4	m3	
+# ::edge	and	location	above	a4	a2	
+# ::edge	above	op1	tangle-01	a2	t	
+# ::edge	tangle-01	ARG1	wire	t	w	
+# ::edge	and	location	next-to	a4	n2	
+# ::edge	next-to	op1	bed	n2	b2	
+# ::edge	be-located-at-91	rel	and	b	a3	
+# ::edge	be-located-at-91	rel	political-movement	b	p	
+(b / be-located-at-91
+    :ARG1 (d / desk)
+    :ARG2 d
+    :ARG2 (a / above
+        :op1 (d4 / drawer
+            :ARG0-of (c3 / contain-01
+                :ARG1 (a4 / and
+                    :location (a2 / above
+                        :op1 (t / tangle-01
+                            :ARG1 (w / wire)))
+                    :location (n2 / next-to
+                        :op1 (b2 / bed))
+                    :op1 (k / keyboard)
+                    :op2 (m3 / mouse)))
+            :mod k))
+    :rel (a3 / and
+        :op1 (m2 / monitor
+            :mod (c2 / computer))
+        :op2 (t2 / telephone)
+        :op3 (m / modem)
+        :op4 (p2 / product
+            :name (n / name
+                :op1 "CD")
+            :mod (d3 / disc
+                :mod (d2 / digital)))
+        :op5 (d5 / drive
+            :mod d3)
+        :op6 (c / cat))
+    :rel (p / political-movement))

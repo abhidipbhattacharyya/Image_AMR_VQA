@@ -1,0 +1,47 @@
+# ::tok A kitchen doorway , half showing the fridge and part of the kitchen , half shoving bookcases and a dining room table .
+# ::node	k	kitchen	1-2
+# ::node	d2	doorway	2-3
+# ::node	a	and	3-4
+# ::node	h	half	4-5
+# ::node	s2	show-01	5-6
+# ::node	f	fridge	7-8
+# ::node	a2	and	8-9
+# ::node	p	part	9-10
+# ::node	s	shove-01	15-16
+# ::node	c	case	16-17
+# ::node	a3	and	17-18
+# ::node	d	dine-01	19-20
+# ::node	r	room	20-21
+# ::node	t	table	21-22
+# ::root	a	and
+# ::edge	doorway	mod	kitchen	d2	k	
+# ::edge	and	op1	doorway	a	d2	
+# ::edge	show-01	ARG0	half	s2	h	
+# ::edge	and	op2	show-01	a	s2	
+# ::edge	and	op1	fridge	a2	f	
+# ::edge	show-01	ARG1	and	s2	a2	
+# ::edge	and	op2	part	a2	p	
+# ::edge	kitchen	part	part	k	p	
+# ::edge	shove-01	ARG0	half	s	h	
+# ::edge	and	op3	shove-01	a	s	
+# ::edge	and	op1	case	a3	c	
+# ::edge	shove-01	ARG1	and	s	a3	
+# ::edge	room	mod	dine-01	r	d	
+# ::edge	table	location	room	t	r	
+# ::edge	and	op2	table	a3	t	
+(a / and
+    :op1 (d2 / doorway
+        :mod (k / kitchen
+            :part (p / part)))
+    :op2 (s2 / show-01
+        :ARG0 (h / half)
+        :ARG1 (a2 / and
+            :op1 (f / fridge)
+            :op2 p))
+    :op3 (s / shove-01
+        :ARG0 h
+        :ARG1 (a3 / and
+            :op1 (c / case)
+            :op2 (t / table
+                :location (r / room
+                    :mod (d / dine-01))))))

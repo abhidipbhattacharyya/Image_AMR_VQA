@@ -1,0 +1,64 @@
+# ::tok On a corner store 's wall , hanging above a decorative mural of a laying woman , blue letters against a sign 's white background read , " JUST $1 DOLLAR . "
+# ::node	c	corner	2-3
+# ::node	s2	store	3-4
+# ::node	w	wall	5-6
+# ::node	h	hang-01	7-8
+# ::node	a	above	8-9
+# ::node	d	decorative	10-11
+# ::node	m2	mural	11-12
+# ::node	l	lay-01	14-15
+# ::node	w3	woman	15-16
+# ::node	b2	blue	17-18
+# ::node	l2	letter	18-19
+# ::node	a2	against	19-20
+# ::node	s	sign	21-22
+# ::node	w2	white-03	23-24
+# ::node	b	background	24-25
+# ::node	r	read-01	25-26
+# ::node	j	just	28-29
+# ::node	c2	cost-01	29-30
+# ::node	m	monetary-quantity	29-30
+# ::node	d2	dollar	29-30
+# ::node	0	1	29-30
+# ::root	r	read-01
+# ::edge	store	mod	corner	s2	c	
+# ::edge	wall	part-of	store	w	s2	
+# ::edge	wall	ARG1-of	hang-01	w	h	
+# ::edge	hang-01	ARG2	above	h	a	
+# ::edge	mural	mod	decorative	m2	d	
+# ::edge	above	op1	mural	a	m2	
+# ::edge	woman	ARG1-of	lay-01	w3	l	
+# ::edge	mural	topic	woman	m2	w3	
+# ::edge	letter	mod	blue	l2	b2	
+# ::edge	letter	location	against	l2	a2	
+# ::edge	background	ARG1-of	white-03	b	w2	
+# ::edge	background	part-of	sign	b	s	
+# ::edge	against	op1	background	a2	b	
+# ::edge	read-01	ARG1	letter	r	l2	
+# ::edge	read-01	location	wall	r	w	
+# ::edge	cost-01	mod	just	c2	j	
+# ::edge	read-01	ARG3	cost-01	r	c2	
+# ::edge	cost-01	ARG2	monetary-quantity	c2	m	
+# ::edge	monetary-quantity	unit	dollar	m	d2	
+# ::edge	monetary-quantity	quant	1	m	0	
+(r / read-01
+    :ARG1 (l2 / letter
+        :location (a2 / against
+            :op1 (b / background
+                :ARG1-of (w2 / white-03)
+                :part-of (s / sign)))
+        :mod (b2 / blue))
+    :ARG3 (c2 / cost-01
+        :ARG2 (m / monetary-quantity
+            :quant 1
+            :unit (d2 / dollar))
+        :mod (j / just))
+    :location (w / wall
+        :ARG1-of (h / hang-01
+            :ARG2 (a / above
+                :op1 (m2 / mural
+                    :mod (d / decorative)
+                    :topic (w3 / woman
+                        :ARG1-of (l / lay-01)))))
+        :part-of (s2 / store
+            :mod (c / corner))))

@@ -1,0 +1,48 @@
+# ::tok A hose hooked up to a fire hydrant curbside and the hose is going through the back window of a car and out the other window .
+# ::node	h2	hose	1-2
+# ::node	h	hook-up-02	2-3
+# ::node	f	fire	6-7
+# ::node	h3	hydrant	7-8
+# ::node	c2	curbside	8-9
+# ::node	a	and	9-10
+# ::node	g	go-01	13-14
+# ::node	t	through	14-15
+# ::node	b	back	16-17
+# ::node	w	window	17-18
+# ::node	c	car	20-21
+# ::node	a2	and	21-22
+# ::node	o2	out	22-23
+# ::node	o	other	24-25
+# ::node	w2	window	25-26
+# ::root	a	and
+# ::edge	hose	ARG1-of	hook-up-02	h2	h	
+# ::edge	hydrant	mod	fire	h3	f	
+# ::edge	curbside	mod	hydrant	c2	h3	
+# ::edge	hook-up-02	ARG2	curbside	h	c2	
+# ::edge	and	op1	hose	a	h2	
+# ::edge	and	op2	go-01	a	g	
+# ::edge	go-01	ARG1	hose	g	h2	
+# ::edge	window	mod	back	w	b	
+# ::edge	through	op1	window	t	w	
+# ::edge	window	part-of	car	w	c	
+# ::edge	and	op1	through	a2	t	
+# ::edge	go-01	ARG4	and	g	a2	
+# ::edge	and	op2	out	a2	o2	
+# ::edge	window	mod	other	w2	o	
+# ::edge	out	op1	window	o2	w2	
+(a / and
+    :op1 (h2 / hose
+        :ARG1-of (h / hook-up-02
+            :ARG2 (c2 / curbside
+                :mod (h3 / hydrant
+                    :mod (f / fire)))))
+    :op2 (g / go-01
+        :ARG1 h2
+        :ARG4 (a2 / and
+            :op1 (t / through
+                :op1 (w / window
+                    :mod (b / back)
+                    :part-of (c / car)))
+            :op2 (o2 / out
+                :op1 (w2 / window
+                    :mod (o / other))))))

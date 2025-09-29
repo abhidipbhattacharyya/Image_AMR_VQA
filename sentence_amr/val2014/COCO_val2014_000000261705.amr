@@ -1,0 +1,36 @@
+# ::tok Chefs making pizza on a counter with containers of ingredients and meats hanging above them .
+# ::node	p	person	0-1
+# ::node	c2	cook-01	0-1
+# ::node	m	make-01	1-2
+# ::node	p2	pizza	2-3
+# ::node	c3	counter	5-6
+# ::node	c	container	7-8
+# ::node	i	ingredient	9-10
+# ::node	a2	and	10-11
+# ::node	m2	meat	11-12
+# ::node	h	hang-01	12-13
+# ::node	a	above	13-14
+# ::root	m	make-01
+# ::edge	person	ARG0-of	cook-01	p	c2	
+# ::edge	make-01	ARG0	person	m	p	
+# ::edge	make-01	ARG1	pizza	m	p2	
+# ::edge	make-01	location	counter	m	c3	
+# ::edge	and	op1	ingredient	a2	i	
+# ::edge	container	consist-of	and	c	a2	
+# ::edge	and	op2	meat	a2	m2	
+# ::edge	hang-01	ARG1	container	h	c	
+# ::edge	make-01	prep-with	hang-01	m	h	
+# ::edge	hang-01	ARG2	above	h	a	
+# ::edge	above	op1	person	a	p	
+(m / make-01
+    :ARG0 (p / person
+        :ARG0-of (c2 / cook-01))
+    :ARG1 (p2 / pizza)
+    :location (c3 / counter)
+    :prep-with (h / hang-01
+        :ARG1 (c / container
+            :consist-of (a2 / and
+                :op1 (i / ingredient)
+                :op2 (m2 / meat)))
+        :ARG2 (a / above
+            :op1 p)))

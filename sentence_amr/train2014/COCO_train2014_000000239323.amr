@@ -1,0 +1,33 @@
+# ::tok A little kitty sits in front of a water bowl staring off elsewhere .
+# ::node	l	little	1-2
+# ::node	k	kitty	2-3
+# ::node	s	sit-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	w	water	8-9
+# ::node	b	bowl	9-10
+# ::node	s2	stare-01	10-11
+# ::node	o	off	11-12
+# ::node	e	elsewhere	12-13
+# ::node	a	and	13-14
+# ::root	a	and
+# ::edge	kitty	mod	little	k	l	
+# ::edge	sit-01	ARG1	kitty	s	k	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	bowl	mod	water	b	w	
+# ::edge	in-front-of	op1	bowl	i	b	
+# ::edge	stare-01	ARG0	kitty	s2	k	
+# ::edge	stare-01	mod	off	s2	o	
+# ::edge	stare-01	location	elsewhere	s2	e	
+# ::edge	and	op2	stare-01	a	s2	
+# ::edge	and	op1	sit-01	a	s	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (k / kitty
+            :mod (l / little))
+        :ARG2 (i / in-front-of
+            :op1 (b / bowl
+                :mod (w / water))))
+    :op2 (s2 / stare-01
+        :ARG0 k
+        :location (e / elsewhere)
+        :mod (o / off)))

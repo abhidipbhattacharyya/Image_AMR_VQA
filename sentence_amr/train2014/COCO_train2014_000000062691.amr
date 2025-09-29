@@ -1,0 +1,53 @@
+# ::tok A young man with short , spiked - up hair and a towel over his shoulder shaves as a man behind him in a white hat adjusts a tie .
+# ::node	y	young	1-2
+# ::node	m	man	2-3
+# ::node	s2	short-07	4-5
+# ::node	s4	spike-04	6-7
+# ::node	h	hair	9-10
+# ::node	t2	towel	12-13
+# ::node	o	over	13-14
+# ::node	s3	shoulder	15-16
+# ::node	s	shave-01	16-17
+# ::node	m2	man	19-20
+# ::node	b	behind	20-21
+# ::node	w	wear-01	22-23
+# ::node	w2	white-03	24-25
+# ::node	h2	hat	25-26
+# ::node	a	adjust-01	26-27
+# ::node	t	tie	28-29
+# ::root	s	shave-01
+# ::edge	man	mod	young	m	y	
+# ::edge	hair	ARG1-of	spike-04	h	s4	
+# ::edge	hair	ARG1-of	short-07	h	s2	
+# ::edge	man	part	hair	m	h	
+# ::edge	towel	location	over	t2	o	
+# ::edge	over	op1	shoulder	o	s3	
+# ::edge	man	part	shoulder	m	s3	
+# ::edge	shave-01	ARG1	towel	s	t2	
+# ::edge	shave-01	ARG0	man	s	m	
+# ::edge	man	location	behind	m2	b	
+# ::edge	behind	op1	man	b	m	
+# ::edge	man	ARG0-of	wear-01	m2	w	
+# ::edge	hat	ARG1-of	white-03	h2	w2	
+# ::edge	wear-01	ARG1	hat	w	h2	
+# ::edge	adjust-01	ARG0	man	a	m2	
+# ::edge	shave-01	time	adjust-01	s	a	
+# ::edge	adjust-01	ARG1	tie	a	t	
+(s / shave-01
+    :ARG0 (m / man
+        :mod (y / young)
+        :part (h / hair
+            :ARG1-of (s4 / spike-04)
+            :ARG1-of (s2 / short-07))
+        :part (s3 / shoulder))
+    :ARG1 (t2 / towel
+        :location (o / over
+            :op1 s3))
+    :time (a / adjust-01
+        :ARG0 (m2 / man
+            :ARG0-of (w / wear-01
+                :ARG1 (h2 / hat
+                    :ARG1-of (w2 / white-03)))
+            :location (b / behind
+                :op1 m))
+        :ARG1 (t / tie)))

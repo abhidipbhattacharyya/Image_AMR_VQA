@@ -1,0 +1,42 @@
+# ::tok A woman on a motorcycle is next to a man walking a dog along with other people going down a dirt road .
+# ::node	w2	woman	1-2
+# ::node	m2	motorcycle	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	n	next-to	6-7
+# ::node	m	man	9-10
+# ::node	w	walk-01	10-11
+# ::node	d2	dog	12-13
+# ::node	o	other	15-16
+# ::node	p	person	16-17
+# ::node	g	go-02	17-18
+# ::node	d3	down	18-19
+# ::node	d	dirt	20-21
+# ::node	r	road	21-22
+# ::root	b	be-located-at-91
+# ::edge	motorcycle	location-of	woman	m2	w2	
+# ::edge	be-located-at-91	ARG1	woman	b	w2	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	next-to	op1	man	n	m	
+# ::edge	man	ARG0-of	walk-01	m	w	
+# ::edge	walk-01	ARG1	dog	w	d2	
+# ::edge	person	mod	other	p	o	
+# ::edge	next-to	accompanier	person	n	p	
+# ::edge	person	ARG0-of	go-02	p	g	
+# ::edge	go-02	direction	down	g	d3	
+# ::edge	road	mod	dirt	r	d	
+# ::edge	go-02	ARG1	road	g	r	
+# ::edge	be-located-at-91	rel	motorcycle	b	m2	
+(b / be-located-at-91
+    :ARG1 (w2 / woman)
+    :ARG2 (n / next-to
+        :accompanier (p / person
+            :ARG0-of (g / go-02
+                :ARG1 (r / road
+                    :mod (d / dirt))
+                :direction (d3 / down))
+            :mod (o / other))
+        :op1 (m / man
+            :ARG0-of (w / walk-01
+                :ARG1 (d2 / dog))))
+    :rel (m2 / motorcycle
+        :location-of w2))

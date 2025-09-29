@@ -1,0 +1,96 @@
+# ::tok A colorfully painted line of bunched together houses lines a poorly paved road , featuring a fifties - style car .
+# ::node	c2	color-01	1-2
+# ::node	p	paint-01	2-3
+# ::node	l	line	3-4
+# ::node	p3	pile-01	5-6
+# ::node	t	together	6-7
+# ::node	h	house	7-8
+# ::node	l2	line	8-9
+# ::node	p4	poor	10-11
+# ::node	p2	pave-01	11-12
+# ::node	r	road	12-13
+# ::node	f	feature-01	14-15
+# ::node	d	date-entity	16-17
+# ::node	0	50	16-17
+# ::node	s	style	18-19
+# ::node	c	car	19-20
+# ::root	l2	line
+# ::edge	paint-01	ARG1-of	color-01	p	c2	
+# ::edge	line	ARG1-of	paint-01	l	p	
+# ::edge	pile-01	ARG2	together	p3	t	
+# ::edge	house	ARG1-of	pile-01	h	p3	
+# ::edge	line	consist-of	house	l	h	
+# ::edge	line	domain	line	l2	l	
+# ::edge	pave-01	manner	poor	p2	p4	
+# ::edge	road	ARG1-of	pave-01	r	p2	
+# ::edge	line	mod	road	l2	r	
+# ::edge	line	ARG2-of	feature-01	l	f	
+# ::edge	date-entity	decade	50	d	0	
+# ::edge	style	mod	date-entity	s	d	
+# ::edge	car	mod	style	c	s	
+# ::edge	feature-01	ARG1	car	f	c	
+(l2 / line
+    :domain (l / line
+        :ARG1-of (p / paint-01
+            :ARG1-of (c2 / color-01))
+        :ARG2-of (f / feature-01
+            :ARG1 (c / car
+                :mod (s / style
+                    :mod (d / date-entity
+                        :decade 50))))
+        :consist-of (h / house
+            :ARG1-of (p3 / pile-01
+                :ARG2 (t / together))))
+    :mod (r / road
+        :ARG1-of (p2 / pave-01
+            :manner (p4 / poor))))
+
+
+# ::tok a donkey pulling a seated conveyance , and several people walking and standing , including a woman with the donkey 's rope halter in hand .
+# ::node	d	donkey	1-2
+# ::node	p2	pull-01	2-3
+# ::node	s	seat-01	4-5
+# ::node	t	thing	5-6
+# ::node	c	convey-01	5-6
+# ::node	a	and	7-8
+# ::node	s2	several	8-9
+# ::node	p	person	9-10
+# ::node	w	walk-01	10-11
+# ::node	s3	stand-01	12-13
+# ::node	i2	include-01	14-15
+# ::node	w2	woman	16-17
+# ::node	r	rope	21-22
+# ::node	h	halter	22-23
+# ::node	i	in-ones-hands-04	24-25
+# ::root	a	and
+# ::edge	pull-01	ARG0	donkey	p2	d	
+# ::edge	thing	ARG1-of	seat-01	t	s	
+# ::edge	pull-01	ARG1	thing	p2	t	
+# ::edge	thing	ARG1-of	convey-01	t	c	
+# ::edge	and	op1	pull-01	a	p2	
+# ::edge	person	quant	several	p	s2	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	person	ARG0-of	stand-01	p	s3	
+# ::edge	person	ARG2-of	include-01	p	i2	
+# ::edge	include-01	ARG1	woman	i2	w2	
+# ::edge	halter	mod	rope	h	r	
+# ::edge	halter	poss	donkey	h	d	
+# ::edge	in-ones-hands-04	ARG1	halter	i	h	
+# ::edge	woman	ARG0-of	in-ones-hands-04	w2	i	
+(a / and
+    :op1 (p2 / pull-01
+        :ARG0 (d / donkey)
+        :ARG1 (t / thing
+            :ARG1-of (s / seat-01)
+            :ARG1-of (c / convey-01)))
+    :op2 (p / person
+        :quant (s2 / several)
+        :ARG0-of (w / walk-01)
+        :ARG0-of (s3 / stand-01)
+        :ARG2-of (i2 / include-01
+            :ARG1 (w2 / woman
+                :ARG0-of (i / in-ones-hands-04
+                    :ARG1 (h / halter
+                        :mod (r / rope)
+                        :poss d))))))

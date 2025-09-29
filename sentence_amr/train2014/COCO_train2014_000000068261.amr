@@ -1,0 +1,27 @@
+# ::tok Many cars are parked at the curb or are traveling down the street .
+# ::node	m	many	0-1
+# ::node	c	car	1-2
+# ::node	p	park-01	3-4
+# ::node	c2	curb	6-7
+# ::node	o	or	7-8
+# ::node	t	travel-01	9-10
+# ::node	d	down	10-11
+# ::node	s	street	12-13
+# ::root	o	or
+# ::edge	car	quant	many	c	m	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	park-01	ARG2	curb	p	c2	
+# ::edge	or	op1	park-01	o	p	
+# ::edge	or	op2	travel-01	o	t	
+# ::edge	travel-01	ARG0	car	t	c	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	ARG1	street	t	s	
+(o / or
+    :op1 (p / park-01
+        :ARG1 (c / car
+            :quant (m / many))
+        :ARG2 (c2 / curb))
+    :op2 (t / travel-01
+        :ARG0 c
+        :ARG1 (s / street)
+        :direction (d / down)))

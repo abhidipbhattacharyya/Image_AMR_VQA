@@ -1,0 +1,26 @@
+# ::tok A trash bin with ping pong paddles attached to it with the table in the bin .
+# ::node	t2	trash	1-2
+# ::node	b	bin	2-3
+# ::node	p2	pong	5-6
+# ::node	p	paddle-01	6-7
+# ::node	a2	attach-01	7-8
+# ::node	a	and	10-11
+# ::node	t	table	12-13
+# ::root	b	bin
+# ::edge	bin	purpose	trash	b	t2	
+# ::edge	paddle-01	mod	pong	p	p2	
+# ::edge	paddle-01	ARG1-of	attach-01	p	a2	
+# ::edge	attach-01	ARG2	bin	a2	b	
+# ::edge	and	op1	paddle-01	a	p	
+# ::edge	bin	location-of	and	b	a	
+# ::edge	and	op2	table	a	t	
+# ::edge	table	location	bin	t	b	
+(b / bin
+    :purpose (t2 / trash)
+    :location-of (a / and
+        :op1 (p / paddle-01
+            :ARG1-of (a2 / attach-01
+                :ARG2 b)
+            :mod (p2 / pong))
+        :op2 (t / table
+            :location b)))

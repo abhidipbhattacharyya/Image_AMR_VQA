@@ -1,0 +1,37 @@
+# ::tok A city street that has vehicles on it along with a two level bus , with no passengers on the upper level .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	v	vehicle	5-6
+# ::node	a	and	9-10
+# ::node	1	2	11-12
+# ::node	l	level	12-13
+# ::node	b	bus	13-14
+# ::node	h	have-03	15-16
+# ::node	0	-	16-17
+# ::node	p	passenger	17-18
+# ::node	u	upper	20-21
+# ::node	l2	level	21-22
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	and	op1	vehicle	a	v	
+# ::edge	street	location-of	and	s	a	
+# ::edge	level	quant	2	l	1	
+# ::edge	bus	mod	level	b	l	
+# ::edge	and	op2	bus	a	b	
+# ::edge	bus	ARG0-of	have-03	b	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	passenger	h	p	
+# ::edge	level	mod	upper	l2	u	
+# ::edge	passenger	location	level	p	l2	
+(s / street
+    :location-of (a / and
+        :op1 (v / vehicle)
+        :op2 (b / bus
+            :ARG0-of (h / have-03
+                :ARG1 (p / passenger
+                    :location (l2 / level
+                        :mod (u / upper)))
+                :polarity -)
+            :mod (l / level
+                :quant 2)))
+    :mod (c / city))

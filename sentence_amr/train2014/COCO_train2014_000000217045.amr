@@ -1,0 +1,44 @@
+# ::tok One cat is sitting the top of toilet and another cat is siting one the floor in front of the toilet looking at the cat on the toilet .
+# ::node	0	1	0-1
+# ::node	c	cat	1-2
+# ::node	s	sit-01	3-4
+# ::node	t2	top	5-6
+# ::node	t	toilet	7-8
+# ::node	a	and	8-9
+# ::node	a2	another	9-10
+# ::node	c2	cat	10-11
+# ::node	s2	sit-01	12-13
+# ::node	f	floor	15-16
+# ::node	i	in-front-of	17-18
+# ::node	l	look-01	21-22
+# ::node	c3	cat	24-25
+# ::root	a	and
+# ::edge	cat	quant	1	c	0	
+# ::edge	sit-01	ARG1	cat	s	c	
+# ::edge	sit-01	ARG2	top	s	t2	
+# ::edge	top	part-of	toilet	t2	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	cat	mod	another	c2	a2	
+# ::edge	sit-01	ARG1	cat	s2	c2	
+# ::edge	and	op2	sit-01	a	s2	
+# ::edge	sit-01	ARG2	floor	s2	f	
+# ::edge	floor	location	in-front-of	f	i	
+# ::edge	in-front-of	op1	toilet	i	t	
+# ::edge	cat	ARG0-of	look-01	c2	l	
+# ::edge	look-01	ARG1	cat	l	c3	
+# ::edge	cat	location	toilet	c3	t	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (c / cat
+            :quant 1)
+        :ARG2 (t2 / top
+            :part-of (t / toilet)))
+    :op2 (s2 / sit-01
+        :ARG1 (c2 / cat
+            :ARG0-of (l / look-01
+                :ARG1 (c3 / cat
+                    :location t))
+            :mod (a2 / another))
+        :ARG2 (f / floor
+            :location (i / in-front-of
+                :op1 t))))

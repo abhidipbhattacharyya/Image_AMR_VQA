@@ -1,0 +1,32 @@
+# ::tok A small cat head peer out over a teacup , which is stuffed with the cat 's body .
+# ::node	s	small	1-2
+# ::node	c	cat	2-3
+# ::node	h	head	3-4
+# ::node	p	peer-01	4-5
+# ::node	b	be-located-at-91	6-7
+# ::node	o	over	6-7
+# ::node	t	teacup	8-9
+# ::node	s2	stuff-01	12-13
+# ::node	b2	body	17-18
+# ::root	p	peer-01
+# ::edge	cat	mod	small	c	s	
+# ::edge	head	part-of	cat	h	c	
+# ::edge	peer-01	ARG0	head	p	h	
+# ::edge	peer-01	ARG1	be-located-at-91	p	b	
+# ::edge	be-located-at-91	ARG1	head	b	h	
+# ::edge	be-located-at-91	ARG2	over	b	o	
+# ::edge	over	op1	teacup	o	t	
+# ::edge	teacup	ARG1-of	stuff-01	t	s2	
+# ::edge	stuff-01	ARG2	body	s2	b2	
+# ::edge	cat	part	body	c	b2	
+(p / peer-01
+    :ARG0 (h / head
+        :part-of (c / cat
+            :mod (s / small)
+            :part (b2 / body)))
+    :ARG1 (b / be-located-at-91
+        :ARG1 h
+        :ARG2 (o / over
+            :op1 (t / teacup
+                :ARG1-of (s2 / stuff-01
+                    :ARG2 b2)))))

@@ -1,0 +1,31 @@
+# ::tok A girl trusts another girl to shave her while sitting back to back .
+# ::node	g	girl	1-2
+# ::node	t	trust-01	2-3
+# ::node	a	another	3-4
+# ::node	g2	girl	4-5
+# ::node	s	shave-01	6-7
+# ::node	s2	sit-01	9-10
+# ::node	b	back	10-11
+# ::node	b2	back	12-13
+# ::root	t	trust-01
+# ::edge	trust-01	ARG0	girl	t	g	
+# ::edge	girl	mod	another	g2	a	
+# ::edge	trust-01	ARG2	girl	t	g2	
+# ::edge	shave-01	ARG0	girl	s	g2	
+# ::edge	trust-01	ARG1	shave-01	t	s	
+# ::edge	shave-01	ARG1	girl	s	g	
+# ::edge	shave-01	time	sit-01	s	s2	
+# ::edge	sit-01	ARG1	girl	s2	g	
+# ::edge	sit-01	manner	back	s2	b	
+# ::edge	back	op1	back	b	b2	
+(t / trust-01
+    :ARG0 (g / girl)
+    :ARG1 (s / shave-01
+        :ARG0 (g2 / girl
+            :mod (a / another))
+        :ARG1 g
+        :time (s2 / sit-01
+            :ARG1 g
+            :manner (b / back
+                :op1 (b2 / back))))
+    :ARG2 g2)

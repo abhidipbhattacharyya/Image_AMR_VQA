@@ -1,0 +1,40 @@
+# ::tok A lady carrying a backpack and riding a bicycle stopped at a traffic light while cars pass in the opposite direction .
+# ::node	l	lady	1-2
+# ::node	c2	carry-01	2-3
+# ::node	b	backpack	4-5
+# ::node	r	ride-01	6-7
+# ::node	b2	bicycle	8-9
+# ::node	s	stop-01	9-10
+# ::node	t	traffic	12-13
+# ::node	l2	light	13-14
+# ::node	c3	contrast-01	14-15
+# ::node	c	car	15-16
+# ::node	p	pass-03	16-17
+# ::node	o	opposite-01	19-20
+# ::node	d	direction	20-21
+# ::root	c3	contrast-01
+# ::edge	lady	ARG0-of	carry-01	l	c2	
+# ::edge	carry-01	ARG1	backpack	c2	b	
+# ::edge	lady	ARG0-of	ride-01	l	r	
+# ::edge	ride-01	ARG1	bicycle	r	b2	
+# ::edge	stop-01	ARG0	lady	s	l	
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	stop-01	location	light	s	l2	
+# ::edge	contrast-01	ARG1	stop-01	c3	s	
+# ::edge	pass-03	ARG1	car	p	c	
+# ::edge	contrast-01	ARG2	pass-03	c3	p	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	pass-03	direction	direction	p	d	
+(c3 / contrast-01
+    :ARG1 (s / stop-01
+        :ARG0 (l / lady
+            :ARG0-of (c2 / carry-01
+                :ARG1 (b / backpack))
+            :ARG0-of (r / ride-01
+                :ARG1 (b2 / bicycle)))
+        :location (l2 / light
+            :mod (t / traffic)))
+    :ARG2 (p / pass-03
+        :ARG1 (c / car)
+        :direction (d / direction
+            :ARG1-of (o / opposite-01))))

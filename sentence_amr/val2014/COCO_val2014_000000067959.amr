@@ -1,0 +1,50 @@
+# ::tok One of the donuts in the box has cereal on it , another has oreos , another is partially sprinkled , and another one has chocolate glazed .
+# ::node	0	1	0-1
+# ::node	i	include-91	1-2
+# ::node	d	donut	3-4
+# ::node	d2	donut	3-4
+# ::node	b	box	6-7
+# ::node	h	have-03	7-8
+# ::node	c	cereal	8-9
+# ::node	h2	have-03	13-14
+# ::node	c3	cookie	14-15
+# ::node	a2	another	16-17
+# ::node	p	part	18-19
+# ::node	d3	dust-01	19-20
+# ::node	a	and	21-22
+# ::node	c2	chocolate	25-26
+# ::node	g	glaze-01	26-27
+# ::root	a	and
+# ::edge	donut	ARG1-of	include-91	d	i	
+# ::edge	donut	quant	1	d	0	
+# ::edge	include-91	ARG2	donut	i	d2	
+# ::edge	donut	location	box	d2	b	
+# ::edge	have-03	ARG0	donut	h	d	
+# ::edge	have-03	ARG1	cereal	h	c	
+# ::edge	have-03	ARG0	donut	h2	d2	
+# ::edge	have-03	ARG1	cookie	h2	c3	
+# ::edge	donut	mod	another	d2	a2	
+# ::edge	dust-01	degree	part	d3	p	
+# ::edge	dust-01	ARG2	another	d3	a2	
+# ::edge	and	op3	dust-01	a	d3	
+# ::edge	and	op2	have-03	a	h2	
+# ::edge	and	op1	have-03	a	h	
+# ::edge	glaze-01	ARG1	chocolate	g	c2	
+# ::edge	and	op4	glaze-01	a	g	
+(a / and
+    :op1 (h / have-03
+        :ARG0 (d / donut
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (d2 / donut
+                    :location (b / box)
+                    :mod (a2 / another))))
+        :ARG1 (c / cereal))
+    :op2 (h2 / have-03
+        :ARG0 d2
+        :ARG1 (c3 / cookie))
+    :op3 (d3 / dust-01
+        :ARG2 a2
+        :degree (p / part))
+    :op4 (g / glaze-01
+        :ARG1 (c2 / chocolate)))

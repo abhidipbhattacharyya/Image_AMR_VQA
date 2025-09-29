@@ -1,0 +1,25 @@
+# ::tok A city street on a rainy day with people taking cover using umbrellas
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	r	rain-01	5-6
+# ::node	d	day	6-7
+# ::node	p	person	8-9
+# ::node	c2	cover-02	10-11
+# ::node	u2	use-01	11-12
+# ::node	u	umbrella	12-13
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	day	mod	rain-01	d	r	
+# ::edge	street	time	day	s	d	
+# ::edge	street	location-of	person	s	p	
+# ::edge	person	ARG0-of	cover-02	p	c2	
+# ::edge	person	ARG0-of	use-01	p	u2	
+# ::edge	use-01	ARG1	umbrella	u2	u	
+(s / street
+    :location-of (p / person
+        :ARG0-of (c2 / cover-02)
+        :ARG0-of (u2 / use-01
+            :ARG1 (u / umbrella)))
+    :mod (c / city)
+    :time (d / day
+        :mod (r / rain-01)))

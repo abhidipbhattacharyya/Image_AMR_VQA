@@ -1,0 +1,27 @@
+# ::tok Number of skiers coming down the mountain on a glorious day
+# ::node	n	number	0-1
+# ::node	p	person	2-3
+# ::node	s	ski-01	2-3
+# ::node	c	come-01	3-4
+# ::node	d2	down-01	4-5
+# ::node	m	mountain	6-7
+# ::node	g	glorious	9-10
+# ::node	d	day	10-11
+# ::root	c	come-01
+# ::edge	number	quant-of	person	n	p	
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	come-01	ARG1	number	c	n	
+# ::edge	come-01	direction	down-01	c	d2	
+# ::edge	down-01	ARG1	person	d2	p	
+# ::edge	down-01	ARG3	mountain	d2	m	
+# ::edge	day	mod	glorious	d	g	
+# ::edge	come-01	time	day	c	d	
+(c / come-01
+    :ARG1 (n / number
+        :quant-of (p / person
+            :ARG0-of (s / ski-01)))
+    :direction (d2 / down-01
+        :ARG1 p
+        :ARG3 (m / mountain))
+    :time (d / day
+        :mod (g / glorious)))

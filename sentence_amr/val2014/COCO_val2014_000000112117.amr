@@ -1,0 +1,33 @@
+# ::tok Several shelves of old lights , clocks and Valentines merchandise .
+# ::node	s	several	0-1
+# ::node	s2	shelf	1-2
+# ::node	o	old	3-4
+# ::node	l	light	4-5
+# ::node	w	watch	6-7
+# ::node	a	and	7-8
+# ::node	f	festival	8-9
+# ::node	n	name	8-9
+# ::node	0	Valentine's	8-9
+# ::node	m	merchandise	9-10
+# ::root	s2	shelf
+# ::edge	shelf	quant	several	s2	s	
+# ::edge	light	mod	old	l	o	
+# ::edge	watch	mod	old	w	o	
+# ::edge	and	op2	watch	a	w	
+# ::edge	and	op1	light	a	l	
+# ::edge	shelf	consist-of	and	s2	a	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Valentine's	n	0	
+# ::edge	merchandise	mod	festival	m	f	
+# ::edge	and	op3	merchandise	a	m	
+(s2 / shelf
+    :quant (s / several)
+    :consist-of (a / and
+        :op1 (l / light
+            :mod (o / old))
+        :op2 (w / watch
+            :mod o)
+        :op3 (m / merchandise
+            :mod (f / festival
+                :name (n / name
+                    :op1 "Valentine's")))))

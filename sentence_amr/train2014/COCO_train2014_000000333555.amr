@@ -1,0 +1,42 @@
+# ::tok A great room with the living area in the foreground , dining table behind it and kitchen in the very back .
+# ::node	g	great	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	l	living	5-6
+# ::node	a2	area	6-7
+# ::node	f	foreground	9-10
+# ::node	d	dine-01	11-12
+# ::node	t	table	12-13
+# ::node	b2	behind	13-14
+# ::node	a	and	15-16
+# ::node	k	kitchen	16-17
+# ::node	v	very	19-20
+# ::node	b	back	20-21
+# ::root	r	room
+# ::edge	room	mod	great	r	g	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	area	mod	living	a2	l	
+# ::edge	area	location	foreground	a2	f	
+# ::edge	table	mod	dine-01	t	d	
+# ::edge	table	location	behind	t	b2	
+# ::edge	behind	op1	area	b2	a2	
+# ::edge	and	op2	table	a	t	
+# ::edge	and	op1	area	a	a2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op3	kitchen	a	k	
+# ::edge	back	mod	very	b	v	
+# ::edge	kitchen	location	back	k	b	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (a2 / area
+                :location (f / foreground)
+                :mod (l / living))
+            :op2 (t / table
+                :location (b2 / behind
+                    :op1 a2)
+                :mod (d / dine-01))
+            :op3 (k / kitchen
+                :location (b / back
+                    :mod (v / very)))))
+    :mod (g / great))

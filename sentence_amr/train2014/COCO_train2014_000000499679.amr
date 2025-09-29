@@ -1,0 +1,49 @@
+# ::tok A baseball game with a batter at the plate swinging and a catcher and umpire crouching behind home plate together .
+# ::node	b	baseball	1-2
+# ::node	g	game	2-3
+# ::node	p	person	5-6
+# ::node	b2	batter-01	5-6
+# ::node	p4	plate	8-9
+# ::node	s	swing-02	9-10
+# ::node	p2	person	12-13
+# ::node	c	catch-01	12-13
+# ::node	a	and	13-14
+# ::node	p3	person	14-15
+# ::node	u	umpire-01	14-15
+# ::node	c2	crouch-01	15-16
+# ::node	b3	behind	16-17
+# ::node	h	home	17-18
+# ::node	p5	plate	18-19
+# ::node	t	together	19-20
+# ::root	g	game
+# ::edge	game	mod	baseball	g	b	
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	person	location	plate	p	p4	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	and	op1	swing-02	a	s	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+# ::edge	person	ARG0-of	crouch-01	p3	c2	
+# ::edge	crouch-01	location	behind	c2	b3	
+# ::edge	plate	mod	home	p5	h	
+# ::edge	behind	op1	plate	b3	p5	
+# ::edge	and	manner	together	a	t	
+# ::edge	game	rel	person	g	p2	
+# ::edge	game	rel	and	g	a	
+(g / game
+    :mod (b / baseball)
+    :rel (p2 / person
+        :ARG0-of (c / catch-01))
+    :rel (a / and
+        :manner (t / together)
+        :op1 (s / swing-02
+            :ARG0 (p / person
+                :ARG0-of (b2 / batter-01)
+                :location (p4 / plate)))
+        :op2 (p3 / person
+            :ARG0-of (u / umpire-01)
+            :ARG0-of (c2 / crouch-01
+                :location (b3 / behind
+                    :op1 (p5 / plate
+                        :mod (h / home)))))))

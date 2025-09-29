@@ -1,0 +1,24 @@
+# ::tok A traffic light with street signs mounted to the side of it .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	h	have-03	3-4
+# ::node	s3	street	4-5
+# ::node	s2	sign	5-6
+# ::node	m	mount-03	6-7
+# ::node	s	side	9-10
+# ::root	l	light
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG0-of	have-03	l	h	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	ARG1-of	mount-03	s2	m	
+# ::edge	mount-03	location	side	m	s	
+# ::edge	light	part	side	l	s	
+(l / light
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / sign
+            :ARG1-of (m / mount-03
+                :location (s / side))
+            :mod (s3 / street)))
+    :mod (t / traffic)
+    :part s)

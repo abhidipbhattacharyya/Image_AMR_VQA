@@ -1,0 +1,64 @@
+# ::tok A blurred shot shows a big world map on a wall , making a backdrop for a smiling man and woman holding up a wrapper between them to display a half of a pizza .
+# ::node	b4	blur-01	1-2
+# ::node	s	shot	2-3
+# ::node	s2	show-01	3-4
+# ::node	b3	big	5-6
+# ::node	w3	world	6-7
+# ::node	m3	map	7-8
+# ::node	w	wall	10-11
+# ::node	m	make-01	12-13
+# ::node	b	backdrop	14-15
+# ::node	s3	smile-01	17-18
+# ::node	m2	man	18-19
+# ::node	a	and	19-20
+# ::node	w2	woman	20-21
+# ::node	h2	hold-01	21-22
+# ::node	w4	wrapper	24-25
+# ::node	b2	between	25-26
+# ::node	d	display-01	28-29
+# ::node	h	half	30-31
+# ::node	p	pizza	33-34
+# ::root	s2	show-01
+# ::edge	shot	ARG1-of	blur-01	s	b4	
+# ::edge	show-01	ARG0	shot	s2	s	
+# ::edge	map	mod	world	m3	w3	
+# ::edge	map	mod	big	m3	b3	
+# ::edge	show-01	ARG1	map	s2	m3	
+# ::edge	show-01	location	wall	s2	w	
+# ::edge	show-01	ARG0-of	make-01	s2	m	
+# ::edge	make-01	ARG1	backdrop	m	b	
+# ::edge	and	op1	man	a	m2	
+# ::edge	and	ARG0-of	smile-01	a	s3	
+# ::edge	backdrop	beneficiary	and	b	a	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	and	ARG0-of	hold-01	a	h2	
+# ::edge	hold-01	ARG1	wrapper	h2	w4	
+# ::edge	wrapper	location	between	w4	b2	
+# ::edge	between	op2	woman	b2	w2	
+# ::edge	between	op1	man	b2	m2	
+# ::edge	display-01	ARG0	and	d	a	
+# ::edge	backdrop	purpose	display-01	b	d	
+# ::edge	pizza	quant	half	p	h	
+# ::edge	display-01	ARG1	pizza	d	p	
+(s2 / show-01
+    :ARG0 (s / shot
+        :ARG1-of (b4 / blur-01))
+    :ARG0-of (m / make-01
+        :ARG1 (b / backdrop
+            :purpose (d / display-01
+                :ARG0 (a / and
+                    :ARG0-of (s3 / smile-01)
+                    :ARG0-of (h2 / hold-01
+                        :ARG1 (w4 / wrapper
+                            :location (b2 / between
+                                :op1 (m2 / man)
+                                :op2 (w2 / woman))))
+                    :op1 m2
+                    :op2 w2)
+                :ARG1 (p / pizza
+                    :quant (h / half)))
+            :beneficiary a))
+    :ARG1 (m3 / map
+        :mod (w3 / world)
+        :mod (b3 / big))
+    :location (w / wall))

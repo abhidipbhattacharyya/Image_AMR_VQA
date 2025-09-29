@@ -1,0 +1,34 @@
+# ::tok A bike parked next to a fence near a body of water with a large boat in the background .
+# ::node	b2	bike	1-2
+# ::node	p	park-01	2-3
+# ::node	n2	next-to	3-4
+# ::node	f	fence	6-7
+# ::node	n	near-02	7-8
+# ::node	b4	body	9-10
+# ::node	w	water	11-12
+# ::node	h	have-03	12-13
+# ::node	l	large	14-15
+# ::node	b3	boat	15-16
+# ::node	b	background	18-19
+# ::root	p	park-01
+# ::edge	park-01	ARG1	bike	p	b2	
+# ::edge	park-01	ARG2	next-to	p	n2	
+# ::edge	next-to	op1	fence	n2	f	
+# ::edge	fence	ARG1-of	near-02	f	n	
+# ::edge	near-02	ARG2	body	n	b4	
+# ::edge	body	consist-of	water	b4	w	
+# ::edge	bike	ARG0-of	have-03	b2	h	
+# ::edge	boat	mod	large	b3	l	
+# ::edge	have-03	ARG1	boat	h	b3	
+# ::edge	boat	location	background	b3	b	
+(p / park-01
+    :ARG1 (b2 / bike
+        :ARG0-of (h / have-03
+            :ARG1 (b3 / boat
+                :location (b / background)
+                :mod (l / large))))
+    :ARG2 (n2 / next-to
+        :op1 (f / fence
+            :ARG1-of (n / near-02
+                :ARG2 (b4 / body
+                    :consist-of (w / water))))))

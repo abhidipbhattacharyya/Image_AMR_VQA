@@ -1,0 +1,25 @@
+# ::tok A small black tiled bathroom with a sink and shower tub combination
+# ::node	s3	small	1-2
+# ::node	b2	black-04	2-3
+# ::node	t	tile-01	3-4
+# ::node	b	bathroom	4-5
+# ::node	s2	sink	7-8
+# ::node	s	shower	9-10
+# ::node	t2	tub	10-11
+# ::node	c	combine-01	11-12
+# ::root	b	bathroom
+# ::edge	tile-01	ARG1-of	black-04	t	b2	
+# ::edge	bathroom	ARG1-of	tile-01	b	t	
+# ::edge	bathroom	mod	small	b	s3	
+# ::edge	tub	mod	shower	t2	s	
+# ::edge	combine-01	ARG2	tub	c	t2	
+# ::edge	combine-01	ARG1	sink	c	s2	
+# ::edge	bathroom	prep-with	combine-01	b	c	
+(b / bathroom
+    :ARG1-of (t / tile-01
+        :ARG1-of (b2 / black-04))
+    :mod (s3 / small)
+    :prep-with (c / combine-01
+        :ARG1 (s2 / sink)
+        :ARG2 (t2 / tub
+            :mod (s / shower))))

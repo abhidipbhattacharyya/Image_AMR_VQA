@@ -1,0 +1,25 @@
+# ::tok Modern train station platform with passengers entering parked train .
+# ::node	m	modern-02	0-1
+# ::node	t	train	1-2
+# ::node	s	station	2-3
+# ::node	p3	platform	3-4
+# ::node	p2	passenger	5-6
+# ::node	e	enter-01	6-7
+# ::node	p	park-01	7-8
+# ::node	t2	train	8-9
+# ::root	p3	platform
+# ::edge	station	mod	train	s	t	
+# ::edge	platform	location	station	p3	s	
+# ::edge	platform	ARG1-of	modern-02	p3	m	
+# ::edge	enter-01	ARG0	passenger	e	p2	
+# ::edge	platform	location-of	enter-01	p3	e	
+# ::edge	train	ARG1-of	park-01	t2	p	
+# ::edge	enter-01	ARG1	train	e	t2	
+(p3 / platform
+    :ARG1-of (m / modern-02)
+    :location (s / station
+        :mod (t / train))
+    :location-of (e / enter-01
+        :ARG0 (p2 / passenger)
+        :ARG1 (t2 / train
+            :ARG1-of (p / park-01))))

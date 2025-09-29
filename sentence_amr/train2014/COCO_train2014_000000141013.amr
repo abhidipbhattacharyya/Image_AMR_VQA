@@ -1,0 +1,38 @@
+# ::tok motorcyclist with a huge america flag on the back out for a ride
+# ::node	p	person	0-1
+# ::node	m	motorcycle	0-1
+# ::node	h	have-03	1-2
+# ::node	h2	huge	3-4
+# ::node	c	country	4-5
+# ::node	n	name	4-5
+# ::node	0	America	4-5
+# ::node	f	flag	5-6
+# ::node	b	back	8-9
+# ::node	o	out-06	9-10
+# ::node	r	ride-01	12-13
+# ::root	o	out-06
+# ::edge	person	mod	motorcycle	p	m	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c	
+# ::edge	flag	mod	huge	f	h2	
+# ::edge	have-03	ARG1	flag	h	f	
+# ::edge	flag	location	back	f	b	
+# ::edge	person	part	back	p	b	
+# ::edge	out-06	ARG1	person	o	p	
+# ::edge	out-06	purpose	ride-01	o	r	
+# ::edge	ride-01	ARG0	person	r	p	
+(o / out-06
+    :purpose (r / ride-01
+        :ARG0 (p / person
+            :ARG0-of (h / have-03
+                :ARG1 (f / flag
+                    :location (b / back)
+                    :mod (c / country
+                        :name (n / name
+                            :op1 "America"))
+                    :mod (h2 / huge)))
+            :mod (m / motorcycle)
+            :part b))
+    :ARG1 p)

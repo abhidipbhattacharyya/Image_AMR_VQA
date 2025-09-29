@@ -1,0 +1,45 @@
+# ::tok A man in a green shirt holds a string near a blue kite as a man near him carries two surfboards .
+# ::node	m	man	1-2
+# ::node	g	green-02	4-5
+# ::node	s	shirt	5-6
+# ::node	h	hold-01	6-7
+# ::node	s2	string	8-9
+# ::node	n	near-02	9-10
+# ::node	b	blue	11-12
+# ::node	k	kite	12-13
+# ::node	m2	man	15-16
+# ::node	n2	near-02	16-17
+# ::node	c	carry-01	18-19
+# ::node	0	2	19-20
+# ::node	s3	surf-01	20-21
+# ::node	a	and	21-22
+# ::root	a	and
+# ::edge	shirt	ARG1-of	green-02	s	g	
+# ::edge	man	mod	shirt	m	s	
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	hold-01	ARG1	string	h	s2	
+# ::edge	hold-01	ARG1-of	near-02	h	n	
+# ::edge	kite	mod	blue	k	b	
+# ::edge	near-02	ARG2	kite	n	k	
+# ::edge	man	ARG1-of	near-02	m2	n2	
+# ::edge	near-02	ARG2	man	n2	m	
+# ::edge	carry-01	ARG0	man	c	m2	
+# ::edge	surf-01	quant	2	s3	0	
+# ::edge	carry-01	ARG1	surf-01	c	s3	
+# ::edge	and	op2	carry-01	a	c	
+# ::edge	and	op1	hold-01	a	h	
+(a / and
+    :op1 (h / hold-01
+        :ARG0 (m / man
+            :mod (s / shirt
+                :ARG1-of (g / green-02)))
+        :ARG1 (s2 / string)
+        :ARG1-of (n / near-02
+            :ARG2 (k / kite
+                :mod (b / blue))))
+    :op2 (c / carry-01
+        :ARG0 (m2 / man
+            :ARG1-of (n2 / near-02
+                :ARG2 m))
+        :ARG1 (s3 / surf-01
+            :quant 2)))

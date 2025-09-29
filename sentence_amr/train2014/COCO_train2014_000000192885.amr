@@ -1,0 +1,28 @@
+# ::tok A patio with benches outside a brick building with stairs leading up to a door .
+# ::node	p	patio	1-2
+# ::node	b	bench	3-4
+# ::node	o	outside	4-5
+# ::node	b2	brick	6-7
+# ::node	b3	building	7-8
+# ::node	h	have-03	8-9
+# ::node	s	stair	9-10
+# ::node	l	lead-01	10-11
+# ::node	d	door	14-15
+# ::root	p	patio
+# ::edge	patio	part	bench	p	b	
+# ::edge	patio	location	outside	p	o	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	outside	op1	building	o	b3	
+# ::edge	building	ARG0-of	have-03	b3	h	
+# ::edge	have-03	ARG1	stair	h	s	
+# ::edge	stair	ARG0-of	lead-01	s	l	
+# ::edge	lead-01	ARG4	door	l	d	
+(p / patio
+    :location (o / outside
+        :op1 (b3 / building
+            :ARG0-of (h / have-03
+                :ARG1 (s / stair
+                    :ARG0-of (l / lead-01
+                        :ARG4 (d / door))))
+            :consist-of (b2 / brick)))
+    :part (b / bench))

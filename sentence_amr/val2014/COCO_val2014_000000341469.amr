@@ -1,0 +1,26 @@
+# ::tok The red suitcases are setting in a corner , waiting to be bought for a trip .
+# ::node	r	red-02	1-2
+# ::node	s2	suitcase	2-3
+# ::node	s	set-01	4-5
+# ::node	c	corner	7-8
+# ::node	w	wait-01	9-10
+# ::node	b	buy-01	12-13
+# ::node	t	trip-03	15-16
+# ::root	s	set-01
+# ::edge	suitcase	ARG1-of	red-02	s2	r	
+# ::edge	set-01	ARG1	suitcase	s	s2	
+# ::edge	set-01	ARG2	corner	s	c	
+# ::edge	suitcase	purpose	wait-01	s2	w	
+# ::edge	wait-01	ARG1	suitcase	w	s2	
+# ::edge	wait-01	ARG2	buy-01	w	b	
+# ::edge	buy-01	ARG1	suitcase	b	s2	
+# ::edge	buy-01	purpose	trip-03	b	t	
+(s / set-01
+    :ARG1 (s2 / suitcase
+        :purpose (w / wait-01
+            :ARG1 s2
+            :ARG2 (b / buy-01
+                :purpose (t / trip-03)
+                :ARG1 s2))
+        :ARG1-of (r / red-02))
+    :ARG2 (c / corner))

@@ -1,0 +1,22 @@
+# ::tok Car and tram traffic passing through a large intersection
+# ::node	c	car	0-1
+# ::node	a	and	1-2
+# ::node	t2	tram	2-3
+# ::node	t	traffic	3-4
+# ::node	p	pass-03	4-5
+# ::node	l	large	7-8
+# ::node	i	intersect-01	8-9
+# ::root	p	pass-03
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op2	tram	a	t2	
+# ::edge	traffic	mod	and	t	a	
+# ::edge	pass-03	ARG1	traffic	p	t	
+# ::edge	intersect-01	mod	large	i	l	
+# ::edge	pass-03	path	intersect-01	p	i	
+(p / pass-03
+    :ARG1 (t / traffic
+        :mod (a / and
+            :op1 (c / car)
+            :op2 (t2 / tram)))
+    :path (i / intersect-01
+        :mod (l / large)))

@@ -1,0 +1,32 @@
+# ::tok Bathroom with sink , toilet , washing machine and partial bathtub view .
+# ::node	r	room	0-1
+# ::node	s	sink	2-3
+# ::node	t	toilet	4-5
+# ::node	w	wash-01	6-7
+# ::node	m	machine	7-8
+# ::node	a	and	8-9
+# ::node	p	part	9-10
+# ::node	b	bathtub	10-11
+# ::node	v	view-01	11-12
+# ::root	r	room
+# ::edge	machine	ARG0-of	wash-01	m	w	
+# ::edge	and	op4	machine	a	m	
+# ::edge	and	op3	toilet	a	t	
+# ::edge	and	op2	toilet	a	t	
+# ::edge	and	op1	room	a	r	
+# ::edge	room	location-of	and	r	a	
+# ::edge	room	location	bathtub	r	b	
+# ::edge	view-01	mod	part	v	p	
+# ::edge	and	op5	view-01	a	v	
+# ::edge	room	rel	sink	r	s	
+(r / room
+    :location (b / bathtub)
+    :location-of (a / and
+        :op1 r
+        :op2 (t / toilet)
+        :op3 t
+        :op4 (m / machine
+            :ARG0-of (w / wash-01))
+        :op5 (v / view-01
+            :mod (p / part)))
+    :rel (s / sink))

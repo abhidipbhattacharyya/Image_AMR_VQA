@@ -1,0 +1,32 @@
+# ::tok Person on skis pushing using ski poles to glide along walkway .
+# ::node	p	person	0-1
+# ::node	s	ski-01	2-3
+# ::node	p3	push-01	3-4
+# ::node	u	use-01	4-5
+# ::node	s2	ski-01	5-6
+# ::node	p2	pole	6-7
+# ::node	s3	slip-02	8-9
+# ::node	a	along	9-10
+# ::node	w	walkway	10-11
+# ::root	p3	push-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	push-01	ARG0	person	p3	p	
+# ::edge	push-01	manner	use-01	p3	u	
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	pole	mod	ski-01	p2	s2	
+# ::edge	use-01	ARG1	pole	u	p2	
+# ::edge	use-01	ARG2	slip-02	u	s3	
+# ::edge	slip-02	ARG1	person	s3	p	
+# ::edge	slip-02	path	along	s3	a	
+# ::edge	along	op1	walkway	a	w	
+(p3 / push-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01))
+    :manner (u / use-01
+        :ARG0 p
+        :ARG1 (p2 / pole
+            :mod (s2 / ski-01))
+        :ARG2 (s3 / slip-02
+            :ARG1 p
+            :path (a / along
+                :op1 (w / walkway)))))

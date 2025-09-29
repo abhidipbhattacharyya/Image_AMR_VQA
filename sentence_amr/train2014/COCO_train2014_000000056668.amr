@@ -1,0 +1,28 @@
+# ::tok a street corner that has a speed limit sign and a record store
+# ::node	s4	street	1-2
+# ::node	c	corner	2-3
+# ::node	h	have-03	4-5
+# ::node	s2	speed-01	6-7
+# ::node	l	limit-01	7-8
+# ::node	s	sign	8-9
+# ::node	a	and	9-10
+# ::node	r	record	11-12
+# ::node	s3	store	12-13
+# ::root	c	corner
+# ::edge	corner	location-of	street	c	s4	
+# ::edge	corner	ARG0-of	have-03	c	h	
+# ::edge	limit-01	ARG2	speed-01	l	s2	
+# ::edge	sign	topic	limit-01	s	l	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	store	mod	record	s3	r	
+# ::edge	and	op2	store	a	s3	
+(c / corner
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :topic (l / limit-01
+                    :ARG2 (s2 / speed-01)))
+            :op2 (s3 / store
+                :mod (r / record))))
+    :location-of (s4 / street))

@@ -1,0 +1,25 @@
+# ::tok A candle is lit in a large glass goblet with other candles around it .
+# ::node	c	candle	1-2
+# ::node	l2	light-04	3-4
+# ::node	l	large	6-7
+# ::node	g	glass	7-8
+# ::node	g2	goblet	8-9
+# ::node	o	other	10-11
+# ::node	c2	candle	11-12
+# ::node	a	around	12-13
+# ::root	l2	light-04
+# ::edge	light-04	ARG1	candle	l2	c	
+# ::edge	goblet	consist-of	glass	g2	g	
+# ::edge	goblet	mod	large	g2	l	
+# ::edge	light-04	location	goblet	l2	g2	
+# ::edge	candle	mod	other	c2	o	
+# ::edge	around	location-of	candle	a	c2	
+# ::edge	goblet	location-of	around	g2	a	
+(l2 / light-04
+    :ARG1 (c / candle)
+    :location (g2 / goblet
+        :consist-of (g / glass)
+        :location-of (a / around
+            :location-of (c2 / candle
+                :mod (o / other)))
+        :mod (l / large)))

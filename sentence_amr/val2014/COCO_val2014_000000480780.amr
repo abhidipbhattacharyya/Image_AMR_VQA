@@ -1,0 +1,31 @@
+# ::tok Bunches of bananas on the tree speak of a location in a tropical climate .
+# ::node	m2	multiple	0-1
+# ::node	m	monetary-quantity	0-1
+# ::node	p	pound	0-1
+# ::node	0	1	0-1
+# ::node	b	banana	2-3
+# ::node	t	tree	5-6
+# ::node	s	speak-01	6-7
+# ::node	l	location	9-10
+# ::node	t2	tropic	12-13
+# ::node	c	climate	13-14
+# ::root	s	speak-01
+# ::edge	multiple	op1	monetary-quantity	m2	m	
+# ::edge	monetary-quantity	unit	pound	m	p	
+# ::edge	monetary-quantity	quant	1	m	0	
+# ::edge	banana	quant	multiple	b	m2	
+# ::edge	banana	location	tree	b	t	
+# ::edge	speak-01	ARG0	banana	s	b	
+# ::edge	speak-01	ARG1	location	s	l	
+# ::edge	climate	mod	tropic	c	t2	
+# ::edge	location	location	climate	l	c	
+(s / speak-01
+    :ARG0 (b / banana
+        :quant (m2 / multiple
+            :op1 (m / monetary-quantity
+                :quant 1
+                :unit (p / pound)))
+        :location (t / tree))
+    :ARG1 (l / location
+        :location (c / climate
+            :mod (t2 / tropic))))

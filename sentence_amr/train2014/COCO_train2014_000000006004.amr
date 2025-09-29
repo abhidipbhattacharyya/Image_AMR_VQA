@@ -1,0 +1,28 @@
+# ::tok A small motor boat moving through the water with a couple of luxury ships behind .
+# ::node	s2	small	1-2
+# ::node	m	motor-01	2-3
+# ::node	b2	boat	3-4
+# ::node	m2	move-01	4-5
+# ::node	w	water	7-8
+# ::node	c	couple	10-11
+# ::node	l	luxury	12-13
+# ::node	s	ship	13-14
+# ::node	b	behind	14-15
+# ::root	m2	move-01
+# ::edge	boat	ARG1-of	motor-01	b2	m	
+# ::edge	boat	mod	small	b2	s2	
+# ::edge	move-01	ARG1	boat	m2	b2	
+# ::edge	move-01	path	water	m2	w	
+# ::edge	ship	mod	luxury	s	l	
+# ::edge	ship	quant	couple	s	c	
+# ::edge	behind	location-of	ship	b	s	
+# ::edge	boat	op1-of	behind	b2	b	
+(m2 / move-01
+    :ARG1 (b2 / boat
+        :ARG1-of (m / motor-01)
+        :mod (s2 / small)
+        :op1-of (b / behind
+            :location-of (s / ship
+                :quant (c / couple)
+                :mod (l / luxury))))
+    :path (w / water))

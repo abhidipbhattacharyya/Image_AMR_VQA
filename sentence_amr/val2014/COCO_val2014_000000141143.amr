@@ -1,0 +1,38 @@
+# ::tok A beach with many seagulls on the ground and many more flying over them .
+# ::node	b	beach	1-2
+# ::node	m	many	3-4
+# ::node	s	seaman	4-5
+# ::node	s2	seaman	4-5
+# ::node	g	ground	7-8
+# ::node	a	and	8-9
+# ::node	m2	many	9-10
+# ::node	h	have-quant-91	10-11
+# ::node	m3	more	10-11
+# ::node	f	fly-01	11-12
+# ::node	o	over	12-13
+# ::root	b	beach
+# ::edge	seaman	quant	many	s	m	
+# ::edge	seaman	location	ground	s	g	
+# ::edge	and	op1	seaman	a	s	
+# ::edge	beach	location-of	and	b	a	
+# ::edge	seaman	quant	many	s2	m2	
+# ::edge	seaman	ARG1-of	have-quant-91	s2	h	
+# ::edge	have-quant-91	ARG4	seaman	h	s	
+# ::edge	have-quant-91	ARG3	more	h	m3	
+# ::edge	and	op2	fly-01	a	f	
+# ::edge	fly-01	ARG2	seaman	f	s2	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	over	op1	seaman	o	s	
+(b / beach
+    :location-of (a / and
+        :op1 (s / seaman
+            :quant (m / many)
+            :location (g / ground))
+        :op2 (f / fly-01
+            :ARG2 (s2 / seaman
+                :quant (m2 / many)
+                :ARG1-of (h / have-quant-91
+                    :ARG3 (m3 / more)
+                    :ARG4 s))
+            :path (o / over
+                :op1 s))))

@@ -1,0 +1,22 @@
+# ::tok The back end of a semi truck driving on a divided highway .
+# ::node	b	back	1-2
+# ::node	e	end	2-3
+# ::node	s	semi	5-6
+# ::node	t	truck	6-7
+# ::node	d2	drive-01	7-8
+# ::node	d	divide-02	10-11
+# ::node	h	highway	11-12
+# ::root	e	end
+# ::edge	end	mod	back	e	b	
+# ::edge	truck	mod	semi	t	s	
+# ::edge	end	part-of	truck	e	t	
+# ::edge	truck	ARG0-of	drive-01	t	d2	
+# ::edge	highway	ARG1-of	divide-02	h	d	
+# ::edge	drive-01	ARG1	highway	d2	h	
+(e / end
+    :mod (b / back)
+    :part-of (t / truck
+        :ARG0-of (d2 / drive-01
+            :ARG1 (h / highway
+                :ARG1-of (d / divide-02)))
+        :mod (s / semi)))

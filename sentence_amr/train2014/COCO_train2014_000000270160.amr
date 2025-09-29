@@ -1,0 +1,47 @@
+# ::tok A baseball player is out during a game as the baseman holds a ball and touches his foot to the plate .
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p4	play-01	2-3
+# ::node	o	out-06	4-5
+# ::node	g	game	7-8
+# ::node	c	cause-01	8-9
+# ::node	p2	person	10-11
+# ::node	b2	base-01	10-11
+# ::node	h	hold-01	11-12
+# ::node	b	ball	13-14
+# ::node	a	and	14-15
+# ::node	t	touch-01	15-16
+# ::node	f	foot	17-18
+# ::node	p3	plate	20-21
+# ::root	o	out-06
+# ::edge	person	ARG0-of	play-01	p	p4	
+# ::edge	play-01	ARG1	baseball	p4	b3	
+# ::edge	out-06	ARG1	person	o	p	
+# ::edge	out-06	time	game	o	g	
+# ::edge	out-06	ARG1-of	cause-01	o	c	
+# ::edge	person	ARG0-of	base-01	p2	b2	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	hold-01	ARG1	ball	h	b	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	cause-01	ARG0	and	c	a	
+# ::edge	and	op2	touch-01	a	t	
+# ::edge	touch-01	ARG0	person	t	p2	
+# ::edge	touch-01	ARG1	foot	t	f	
+# ::edge	person	part	foot	p	f	
+# ::edge	touch-01	destination	plate	t	p3	
+(o / out-06
+    :ARG1 (p / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (b3 / baseball))
+        :part (f / foot))
+    :ARG1-of (c / cause-01
+        :ARG0 (a / and
+            :op1 (h / hold-01
+                :ARG0 (p2 / person
+                    :ARG0-of (b2 / base-01))
+                :ARG1 (b / ball))
+            :op2 (t / touch-01
+                :ARG0 p2
+                :ARG1 f
+                :destination (p3 / plate))))
+    :time (g / game))

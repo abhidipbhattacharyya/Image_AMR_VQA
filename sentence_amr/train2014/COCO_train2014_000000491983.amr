@@ -1,0 +1,35 @@
+# ::tok Computer desk with a monitor on top of it and office supplies around it .
+# ::node	c	computer	0-1
+# ::node	d	desk	1-2
+# ::node	h	have-03	2-3
+# ::node	m	monitor	4-5
+# ::node	t2	top	6-7
+# ::node	a	and	9-10
+# ::node	o	office	10-11
+# ::node	t	thing	11-12
+# ::node	s	supply-01	11-12
+# ::node	a2	around	12-13
+# ::root	h	have-03
+# ::edge	desk	mod	computer	d	c	
+# ::edge	have-03	ARG0	desk	h	d	
+# ::edge	top	location-of	monitor	t2	m	
+# ::edge	desk	part	top	d	t2	
+# ::edge	and	op1	top	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG1-of	supply-01	t	s	
+# ::edge	supply-01	ARG2	office	s	o	
+# ::edge	thing	location	around	t	a2	
+# ::edge	around	op1	desk	a2	d	
+(h / have-03
+    :ARG0 (d / desk
+        :mod (c / computer)
+        :part (t2 / top
+            :location-of (m / monitor)))
+    :ARG1 (a / and
+        :op1 t2
+        :op2 (t / thing
+            :ARG1-of (s / supply-01
+                :ARG2 (o / office))
+            :location (a2 / around
+                :op1 d))))

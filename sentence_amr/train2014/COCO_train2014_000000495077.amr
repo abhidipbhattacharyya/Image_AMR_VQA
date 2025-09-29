@@ -1,0 +1,39 @@
+# ::tok A man holding a jar of mustard while a white plate with four hotdogs sit on his lap .
+# ::node	m	man	1-2
+# ::node	h2	hold-01	2-3
+# ::node	j	jar	4-5
+# ::node	c	contain-01	4-5
+# ::node	m2	mustard	6-7
+# ::node	w	white-03	9-10
+# ::node	p	plate	10-11
+# ::node	h	have-03	11-12
+# ::node	0	4	12-13
+# ::node	h3	hot-dog	13-14
+# ::node	s	sit-01	14-15
+# ::node	l	lap	17-18
+# ::root	m	man
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	jar	h2	j	
+# ::edge	jar	ARG0-of	contain-01	j	c	
+# ::edge	contain-01	ARG1	mustard	c	m2	
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	plate	ARG0-of	have-03	p	h	
+# ::edge	hot-dog	quant	4	h3	0	
+# ::edge	have-03	ARG1	hot-dog	h	h3	
+# ::edge	sit-01	ARG1	plate	s	p	
+# ::edge	hold-01	time	sit-01	h2	s	
+# ::edge	sit-01	ARG2	lap	s	l	
+# ::edge	man	part	lap	m	l	
+(m / man
+    :ARG0-of (h2 / hold-01
+        :ARG1 (j / jar
+            :ARG0-of (c / contain-01
+                :ARG1 (m2 / mustard)))
+        :time (s / sit-01
+            :ARG1 (p / plate
+                :ARG0-of (h / have-03
+                    :ARG1 (h3 / hot-dog
+                        :quant 4))
+                :ARG1-of (w / white-03))
+            :ARG2 (l / lap)))
+    :part l)

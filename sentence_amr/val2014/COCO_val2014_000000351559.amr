@@ -1,0 +1,28 @@
+# ::tok A green stop light with a tall building lighted up in the background at night .
+# ::node	g	green-02	1-2
+# ::node	s	stop-01	2-3
+# ::node	l	light	3-4
+# ::node	t	tall	6-7
+# ::node	b2	building	7-8
+# ::node	l2	light-up-08	8-9
+# ::node	b	background	12-13
+# ::node	d	date-entity	14-15
+# ::node	n	night	14-15
+# ::root	l	light
+# ::edge	light	purpose	stop-01	l	s	
+# ::edge	light	ARG1-of	green-02	l	g	
+# ::edge	building	mod	tall	b2	t	
+# ::edge	light-up-08	ARG0	building	l2	b2	
+# ::edge	light	ARG1-of	light-up-08	l	l2	
+# ::edge	building	location	background	b2	b	
+# ::edge	light-up-08	time	date-entity	l2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(l / light
+    :purpose (s / stop-01)
+    :ARG1-of (g / green-02)
+    :ARG1-of (l2 / light-up-08
+        :ARG0 (b2 / building
+            :location (b / background)
+            :mod (t / tall))
+        :time (d / date-entity
+            :dayperiod (n / night))))

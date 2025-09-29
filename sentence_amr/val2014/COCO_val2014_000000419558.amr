@@ -1,0 +1,27 @@
+# ::tok A park bench sits conveniently for any passerby to sit on .
+# ::node	p	park	1-2
+# ::node	b	bench	2-3
+# ::node	s	sit-01	3-4
+# ::node	c	convenient	4-5
+# ::node	a	any	6-7
+# ::node	p3	person	7-8
+# ::node	p2	pass-by-17	7-8
+# ::node	s2	sit-01	9-10
+# ::root	s	sit-01
+# ::edge	bench	location	park	b	p	
+# ::edge	sit-01	ARG1	bench	s	b	
+# ::edge	sit-01	manner	convenient	s	c	
+# ::edge	person	mod	any	p3	a	
+# ::edge	person	ARG0-of	pass-by-17	p3	p2	
+# ::edge	sit-01	ARG1	person	s2	p3	
+# ::edge	sit-01	ARG2	sit-01	s	s2	
+# ::edge	sit-01	ARG2	bench	s2	b	
+(s / sit-01
+    :ARG1 (b / bench
+        :location (p / park))
+    :ARG2 (s2 / sit-01
+        :ARG1 (p3 / person
+            :ARG0-of (p2 / pass-by-17)
+            :mod (a / any))
+        :ARG2 b)
+    :manner (c / convenient))

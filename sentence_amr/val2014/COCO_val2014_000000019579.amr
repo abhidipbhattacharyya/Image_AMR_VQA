@@ -1,0 +1,37 @@
+# ::tok A partially eaten subway style sandwich on a paper plate next to a plastic cup full of soda .
+# ::node	p2	part	1-2
+# ::node	e	eat-01	2-3
+# ::node	s4	subway	3-4
+# ::node	s3	style	4-5
+# ::node	s	sandwich	5-6
+# ::node	p	paper	8-9
+# ::node	p4	plate	9-10
+# ::node	n	next-to	10-11
+# ::node	p3	plastic	13-14
+# ::node	c	cup	14-15
+# ::node	f	full-09	15-16
+# ::node	s2	soda	17-18
+# ::root	s	sandwich
+# ::edge	eat-01	degree	part	e	p2	
+# ::edge	style	mod	subway	s3	s4	
+# ::edge	sandwich	mod	style	s	s3	
+# ::edge	sandwich	ARG1-of	eat-01	s	e	
+# ::edge	plate	consist-of	paper	p4	p	
+# ::edge	sandwich	location	plate	s	p4	
+# ::edge	plate	location	next-to	p4	n	
+# ::edge	cup	consist-of	plastic	c	p3	
+# ::edge	next-to	op1	cup	n	c	
+# ::edge	cup	ARG1-of	full-09	c	f	
+# ::edge	full-09	ARG2	soda	f	s2	
+(s / sandwich
+    :ARG1-of (e / eat-01
+        :degree (p2 / part))
+    :location (p4 / plate
+        :consist-of (p / paper)
+        :location (n / next-to
+            :op1 (c / cup
+                :ARG1-of (f / full-09
+                    :ARG2 (s2 / soda))
+                :consist-of (p3 / plastic))))
+    :mod (s3 / style
+        :mod (s4 / subway)))

@@ -1,0 +1,40 @@
+# ::tok City city at night complete with a blue sky , buildings and a white tower type building .
+# ::node	c	city	0-1
+# ::node	c2	city	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	c3	complete-03	4-5
+# ::node	b	blue	7-8
+# ::node	s	sky	8-9
+# ::node	b2	building	10-11
+# ::node	a	and	11-12
+# ::node	w	white-03	13-14
+# ::node	t	tower	14-15
+# ::node	t2	type	15-16
+# ::node	b3	building	16-17
+# ::root	c2	city
+# ::edge	city	mod	city	c2	c	
+# ::edge	city	time	date-entity	c2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	city	ARG1-of	complete-03	c2	c3	
+# ::edge	sky	mod	blue	s	b	
+# ::edge	and	op2	building	a	b2	
+# ::edge	and	op1	sky	a	s	
+# ::edge	complete-03	ARG2	and	c3	a	
+# ::edge	tower	ARG1-of	white-03	t	w	
+# ::edge	type	mod	tower	t2	t	
+# ::edge	building	mod	type	b3	t2	
+# ::edge	and	op3	building	a	b3	
+(c2 / city
+    :ARG1-of (c3 / complete-03
+        :ARG2 (a / and
+            :op1 (s / sky
+                :mod (b / blue))
+            :op2 (b2 / building)
+            :op3 (b3 / building
+                :mod (t2 / type
+                    :mod (t / tower
+                        :ARG1-of (w / white-03))))))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (n / night)))

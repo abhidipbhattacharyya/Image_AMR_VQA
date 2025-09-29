@@ -1,0 +1,41 @@
+# ::tok A person who is wearing high heels is standing in the middle of an area looking down at something they are holding in their hands .
+# ::node	p	person	1-2
+# ::node	w	wear-01	4-5
+# ::node	h3	high-02	5-6
+# ::node	h2	heel	6-7
+# ::node	s2	stand-01	8-9
+# ::node	m	middle	11-12
+# ::node	a	area	14-15
+# ::node	l	look-01	15-16
+# ::node	d	down	16-17
+# ::node	s	something	18-19
+# ::node	h4	hold-01	21-22
+# ::node	h	hand	24-25
+# ::root	s2	stand-01
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	heel	ARG1-of	high-02	h2	h3	
+# ::edge	wear-01	ARG1	heel	w	h2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	middle	s2	m	
+# ::edge	middle	part-of	area	m	a	
+# ::edge	person	ARG0-of	look-01	p	l	
+# ::edge	look-01	direction	down	l	d	
+# ::edge	look-01	ARG1	something	l	s	
+# ::edge	something	ARG1-of	hold-01	s	h4	
+# ::edge	hold-01	ARG0	person	h4	p	
+# ::edge	hold-01	location	hand	h4	h	
+# ::edge	person	part	hand	p	h	
+(s2 / stand-01
+    :ARG1 (p / person
+        :ARG0-of (w / wear-01
+            :ARG1 (h2 / heel
+                :ARG1-of (h3 / high-02)))
+        :ARG0-of (l / look-01
+            :ARG1 (s / something
+                :ARG1-of (h4 / hold-01
+                    :ARG0 p
+                    :location (h / hand)))
+            :direction (d / down))
+        :part h)
+    :ARG2 (m / middle
+        :part-of (a / area)))

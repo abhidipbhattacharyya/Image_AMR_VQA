@@ -1,0 +1,42 @@
+# ::tok Two brown teddy bears , one has a red sweater , wear diapers .
+# ::node	1	2	0-1
+# ::node	b3	brown-01	1-2
+# ::node	t	teddy	2-3
+# ::node	t2	teddy	2-3
+# ::node	b	bear	3-4
+# ::node	b2	bear	3-4
+# ::node	i	include-91	5-6
+# ::node	0	1	5-6
+# ::node	h	have-03	6-7
+# ::node	r	red-02	8-9
+# ::node	s	sweater	9-10
+# ::node	w	wear-01	11-12
+# ::node	d	diaper	12-13
+# ::root	w	wear-01
+# ::edge	bear	mod	teddy	b	t2	
+# ::edge	bear	ARG1-of	brown-01	b	b3	
+# ::edge	bear	quant	2	b	1	
+# ::edge	bear	mod	teddy	b2	t2	
+# ::edge	include-91	ARG1	bear	i	b2	
+# ::edge	bear	ARG2-of	include-91	b	i	
+# ::edge	bear	quant	1	b2	0	
+# ::edge	bear	ARG0-of	have-03	b2	h	
+# ::edge	sweater	ARG1-of	red-02	s	r	
+# ::edge	have-03	ARG1	sweater	h	s	
+# ::edge	wear-01	ARG0	bear	w	b	
+# ::edge	wear-01	ARG1	diaper	w	d	
+# ::edge	wear-01	rel	teddy	w	t	
+(w / wear-01
+    :ARG0 (b / bear
+        :quant 2
+        :ARG1-of (b3 / brown-01)
+        :ARG2-of (i / include-91
+            :ARG1 (b2 / bear
+                :quant 1
+                :ARG0-of (h / have-03
+                    :ARG1 (s / sweater
+                        :ARG1-of (r / red-02)))
+                :mod (t2 / teddy)))
+        :mod t2)
+    :ARG1 (d / diaper)
+    :rel (t / teddy))

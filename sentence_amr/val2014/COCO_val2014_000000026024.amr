@@ -1,0 +1,24 @@
+# ::tok The whole dugout is watching a batter as he swings at a pitch .
+# ::node	w2	whole	1-2
+# ::node	d	dugout	2-3
+# ::node	w	watch-01	4-5
+# ::node	p	person	6-7
+# ::node	s	strike-01	6-7
+# ::node	s2	swing-02	9-10
+# ::node	p2	pitch	12-13
+# ::root	w	watch-01
+# ::edge	dugout	mod	whole	d	w2	
+# ::edge	watch-01	ARG0	dugout	w	d	
+# ::edge	watch-01	ARG1	person	w	p	
+# ::edge	person	ARG0-of	strike-01	p	s	
+# ::edge	swing-02	ARG0	person	s2	p	
+# ::edge	watch-01	time	swing-02	w	s2	
+# ::edge	swing-02	ARG1	pitch	s2	p2	
+(w / watch-01
+    :ARG0 (d / dugout
+        :mod (w2 / whole))
+    :ARG1 (p / person
+        :ARG0-of (s / strike-01))
+    :time (s2 / swing-02
+        :ARG0 p
+        :ARG1 (p2 / pitch)))

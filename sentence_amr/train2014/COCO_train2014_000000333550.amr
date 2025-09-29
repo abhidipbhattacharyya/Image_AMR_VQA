@@ -1,0 +1,39 @@
+# ::tok Three cows in a pasture , one of which is nuzzling the other cow while the other looks on
+# ::node	1	3	0-1
+# ::node	c2	cow	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	p	pasture	4-5
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	n	nope	10-11
+# ::node	o	other	12-13
+# ::node	c3	cow	13-14
+# ::node	c4	cow	13-14
+# ::node	c	contrast-01	14-15
+# ::node	l	look-01	17-18
+# ::root	b	be-located-at-91
+# ::edge	cow	quant	3	c2	1	
+# ::edge	be-located-at-91	ARG1	cow	b	c2	
+# ::edge	be-located-at-91	ARG2	pasture	b	p	
+# ::edge	cow	ARG2-of	include-91	c2	i	
+# ::edge	cow	mod	nope	c3	n	
+# ::edge	nope	ARG1	cow	n	c3	
+# ::edge	cow	mod	other	c4	o	
+# ::edge	contrast-01	ARG2	nope	c	n	
+# ::edge	include-91	ARG1-of	contrast-01	i	c	
+# ::edge	look-01	ARG0	cow	l	c4	
+# ::edge	nope	time	look-01	n	l	
+# ::edge	be-located-at-91	rel	1	b	0	
+(b / be-located-at-91
+    :ARG1 (c2 / cow
+        :quant 3
+        :ARG2-of (i / include-91
+            :ARG1-of (c / contrast-01
+                :ARG2 (n / nope
+                    :ARG1 (c3 / cow
+                        :mod n)
+                    :time (l / look-01
+                        :ARG0 (c4 / cow
+                            :mod (o / other)))))))
+    :ARG2 (p / pasture)
+    :rel 1)

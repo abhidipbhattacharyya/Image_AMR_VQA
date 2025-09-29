@@ -1,0 +1,26 @@
+# ::tok Some trains are traveling on the railroad and ready to leave .
+# ::node	s	some	0-1
+# ::node	t	train	1-2
+# ::node	t2	travel-01	3-4
+# ::node	r	railroad	6-7
+# ::node	a	and	7-8
+# ::node	r2	ready-02	8-9
+# ::node	l	leave-11	10-11
+# ::root	a	and
+# ::edge	train	quant	some	t	s	
+# ::edge	travel-01	ARG0	train	t2	t	
+# ::edge	travel-01	ARG1	railroad	t2	r	
+# ::edge	and	op1	travel-01	a	t2	
+# ::edge	and	op2	ready-02	a	r2	
+# ::edge	ready-02	ARG1	train	r2	t	
+# ::edge	ready-02	ARG2	leave-11	r2	l	
+# ::edge	leave-11	ARG0	train	l	t	
+(a / and
+    :op1 (t2 / travel-01
+        :ARG0 (t / train
+            :quant (s / some))
+        :ARG1 (r / railroad))
+    :op2 (r2 / ready-02
+        :ARG1 t
+        :ARG2 (l / leave-11
+            :ARG0 t)))

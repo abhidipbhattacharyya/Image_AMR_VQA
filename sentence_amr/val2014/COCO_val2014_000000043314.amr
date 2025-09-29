@@ -1,0 +1,25 @@
+# ::tok Skier in mid air following loss of balance on mountaintop .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	m	mid	2-3
+# ::node	a	air	3-4
+# ::node	f	follow-01	4-5
+# ::node	l	lose-02	5-6
+# ::node	b	balance	7-8
+# ::node	m2	mountaintop	9-10
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	air	mod	mid	a	m	
+# ::edge	person	location	air	p	a	
+# ::edge	person	ARG1-of	follow-01	p	f	
+# ::edge	follow-01	ARG2	lose-02	f	l	
+# ::edge	lose-02	ARG1	balance	l	b	
+# ::edge	lose-02	location	mountaintop	l	m2	
+(p / person
+    :ARG0-of (s / ski-01)
+    :ARG1-of (f / follow-01
+        :ARG2 (l / lose-02
+            :ARG1 (b / balance)
+            :location (m2 / mountaintop)))
+    :location (a / air
+        :mod (m / mid)))

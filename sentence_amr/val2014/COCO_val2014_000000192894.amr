@@ -1,0 +1,36 @@
+# ::tok Two sheep , one looking at the camera , while the other looks away are in the wilderness .
+# ::node	1	2	0-1
+# ::node	s	sheep	1-2
+# ::node	s2	sheep	1-2
+# ::node	i	include-91	3-4
+# ::node	0	1	3-4
+# ::node	l	look-01	4-5
+# ::node	c	camera	7-8
+# ::node	o	other	11-12
+# ::node	l2	look-01	12-13
+# ::node	a	away	13-14
+# ::node	w	wilderness	17-18
+# ::root	w	wilderness
+# ::edge	sheep	quant	2	s	1	
+# ::edge	include-91	ARG1	sheep	i	s	
+# ::edge	sheep	ARG2-of	include-91	s	i	
+# ::edge	sheep	quant	1	s2	0	
+# ::edge	sheep	ARG0-of	look-01	s	l	
+# ::edge	look-01	ARG1	camera	l	c	
+# ::edge	sheep	mod	other	s2	o	
+# ::edge	sheep	ARG0-of	look-01	s2	l2	
+# ::edge	look-01	direction	away	l2	a	
+# ::edge	wilderness	domain	sheep	w	s	
+# ::edge	wilderness	rel	sheep	w	s2	
+(w / wilderness
+    :domain (s / sheep
+        :quant 2
+        :ARG0-of (l / look-01
+            :ARG1 (c / camera))
+        :ARG2-of (i / include-91
+            :ARG1 s))
+    :rel (s2 / sheep
+        :quant 1
+        :ARG0-of (l2 / look-01
+            :direction (a / away))
+        :mod (o / other)))

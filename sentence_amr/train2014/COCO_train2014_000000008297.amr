@@ -1,0 +1,32 @@
+# ::tok A tennis player swings the racket back preparing to hit the ball .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s	swing-02	3-4
+# ::node	r	racket	5-6
+# ::node	b	back	6-7
+# ::node	p3	prepare-02	7-8
+# ::node	h	hit-01	9-10
+# ::node	b2	ball	11-12
+# ::root	s	swing-02
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	racket	s	r	
+# ::edge	swing-02	direction	back	s	b	
+# ::edge	swing-02	purpose	prepare-02	s	p3	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG2	hit-01	p3	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b2	
+(s / swing-02
+    :purpose (p3 / prepare-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (t / tennis)))
+        :ARG2 (h / hit-01
+            :ARG0 p
+            :ARG1 (b2 / ball)))
+    :ARG0 p
+    :ARG1 (r / racket)
+    :direction (b / back))

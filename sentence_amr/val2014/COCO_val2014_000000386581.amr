@@ -1,0 +1,26 @@
+# ::tok a police horse tied to a parking meter as the cop writes a ticket
+# ::node	p2	police	1-2
+# ::node	h	horse	2-3
+# ::node	t2	tie-01	3-4
+# ::node	p	park-01	6-7
+# ::node	m	meter	7-8
+# ::node	w	write-01	11-12
+# ::node	t	ticket-02	13-14
+# ::root	h	horse
+# ::edge	horse	mod	police	h	p2	
+# ::edge	horse	ARG1-of	tie-01	h	t2	
+# ::edge	meter	mod	park-01	m	p	
+# ::edge	tie-01	ARG2	meter	t2	m	
+# ::edge	horse	time	write-01	h	w	
+# ::edge	write-01	ARG0	police	w	p2	
+# ::edge	write-01	ARG1	ticket-02	w	t	
+# ::edge	ticket-02	ARG0	police	t	p2	
+(h / horse
+    :ARG1-of (t2 / tie-01
+        :ARG2 (m / meter
+            :mod (p / park-01)))
+    :mod (p2 / police)
+    :time (w / write-01
+        :ARG0 p2
+        :ARG1 (t / ticket-02
+            :ARG0 p2)))

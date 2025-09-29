@@ -1,0 +1,27 @@
+# ::tok This all terrain vehicle has been modified for off road use .
+# ::node	t2	this	0-1
+# ::node	a	all	1-2
+# ::node	t	terrain	2-3
+# ::node	v	vehicle	3-4
+# ::node	m	modify-01	6-7
+# ::node	o	off	8-9
+# ::node	r	road	9-10
+# ::node	u	use-01	10-11
+# ::root	m	modify-01
+# ::edge	terrain	mod	all	t	a	
+# ::edge	vehicle	mod	terrain	v	t	
+# ::edge	vehicle	mod	this	v	t2	
+# ::edge	modify-01	ARG1	vehicle	m	v	
+# ::edge	road	mod	off	r	o	
+# ::edge	use-01	ARG2	road	u	r	
+# ::edge	modify-01	ARG2	use-01	m	u	
+# ::edge	use-01	ARG1	vehicle	u	v	
+(m / modify-01
+    :ARG1 (v / vehicle
+        :mod (t / terrain
+            :mod (a / all))
+        :mod (t2 / this))
+    :ARG2 (u / use-01
+        :ARG1 v
+        :ARG2 (r / road
+            :mod (o / off))))

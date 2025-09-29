@@ -1,0 +1,36 @@
+# ::tok A man wearing a North Carolina basketball jersey performs skateboard tricks
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	n	name	4-5
+# ::node	1	North	4-5
+# ::node	t	team	5-6
+# ::node	0	Carolina	5-6
+# ::node	b	basketball	6-7
+# ::node	j	jersey	7-8
+# ::node	p	perform-01	8-9
+# ::node	s	skateboard	9-10
+# ::node	t2	trick-01	10-11
+# ::root	p	perform-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	name	op1	North	n	1	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op2	Carolina	n	0	
+# ::edge	jersey	mod	basketball	j	b	
+# ::edge	jersey	mod	team	j	t	
+# ::edge	wear-01	ARG1	jersey	w	j	
+# ::edge	perform-01	ARG0	man	p	m	
+# ::edge	trick-01	mod	skateboard	t2	s	
+# ::edge	perform-01	ARG1	trick-01	p	t2	
+# ::edge	trick-01	ARG0	man	t2	m	
+(p / perform-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (j / jersey
+                :mod (b / basketball)
+                :mod (t / team
+                    :name (n / name
+                        :op1 "North"
+                        :op2 "Carolina")))))
+    :ARG1 (t2 / trick-01
+        :ARG0 m
+        :mod (s / skateboard)))

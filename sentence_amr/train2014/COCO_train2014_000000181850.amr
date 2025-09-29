@@ -1,0 +1,30 @@
+# ::tok Several people eating the last couple of bites of a dessert off the same plate .
+# ::node	s2	several	0-1
+# ::node	p	person	1-2
+# ::node	e	eat-01	2-3
+# ::node	l	last	4-5
+# ::node	c	couple	5-6
+# ::node	b	bite-01	7-8
+# ::node	d	dessert	10-11
+# ::node	s	same-01	13-14
+# ::node	p2	plate	14-15
+# ::root	e	eat-01
+# ::edge	person	quant	several	p	s2	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	couple	mod	last	c	l	
+# ::edge	bite-01	quant	couple	b	c	
+# ::edge	eat-01	ARG1	bite-01	e	b	
+# ::edge	bite-01	ARG0	person	b	p	
+# ::edge	bite-01	ARG1	dessert	b	d	
+# ::edge	plate	ARG1-of	same-01	p2	s	
+# ::edge	dessert	source	plate	d	p2	
+(e / eat-01
+    :ARG0 (p / person
+        :quant (s2 / several))
+    :ARG1 (b / bite-01
+        :quant (c / couple
+            :mod (l / last))
+        :ARG0 p
+        :ARG1 (d / dessert
+            :source (p2 / plate
+                :ARG1-of (s / same-01)))))

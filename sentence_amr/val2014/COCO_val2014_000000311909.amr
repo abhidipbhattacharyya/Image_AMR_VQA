@@ -1,0 +1,27 @@
+# ::tok The #41 bus parked at the curb waiting for passengers to board
+# ::node	n	number	1-2
+# ::node	0	#41	1-2
+# ::node	b2	bus	2-3
+# ::node	p	park-01	3-4
+# ::node	c	curb	6-7
+# ::node	w	wait-01	7-8
+# ::node	p2	passenger	9-10
+# ::node	b	board-01	11-12
+# ::root	p	park-01
+# ::edge	number	value	#41	n	0	
+# ::edge	bus	ord	number	b2	n	
+# ::edge	park-01	ARG1	bus	p	b2	
+# ::edge	park-01	ARG2	curb	p	c	
+# ::edge	bus	ARG1-of	wait-01	b2	w	
+# ::edge	board-01	ARG0	passenger	b	p2	
+# ::edge	wait-01	ARG2	board-01	w	b	
+# ::edge	board-01	ARG1	bus	b	b2	
+(p / park-01
+    :ARG1 (b2 / bus
+        :ARG1-of (w / wait-01
+            :ARG2 (b / board-01
+                :ARG0 (p2 / passenger)
+                :ARG1 b2))
+        :ord (n / number
+            :value "#41"))
+    :ARG2 (c / curb))

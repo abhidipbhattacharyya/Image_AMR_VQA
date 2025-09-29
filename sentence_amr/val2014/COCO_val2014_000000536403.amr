@@ -1,0 +1,40 @@
+# ::tok three sausages on three pieces of bread with Cole slaw and lettuce
+# ::node	0	3	0-1
+# ::node	m	meat	1-2
+# ::node	1	3	3-4
+# ::node	p	piece	4-5
+# ::node	b	bread	6-7
+# ::node	a	accompany-01	7-8
+# ::node	s	ship	8-9
+# ::node	n	name	8-9
+# ::node	2	Cole	8-9
+# ::node	s2	slaw	9-10
+# ::node	a2	and	10-11
+# ::node	a3	and	10-11
+# ::node	l	lettuce	11-12
+# ::root	a2	and
+# ::edge	meat	quant	3	m	0	
+# ::edge	piece	quant	3	p	1	
+# ::edge	bread	consist-of	piece	b	p	
+# ::edge	accompany-01	ARG1	bread	a	b	
+# ::edge	ship	name	name	s	n	
+# ::edge	name	op1	Cole	n	2	
+# ::edge	slaw	mod	ship	s2	s	
+# ::edge	and	op2	accompany-01	a2	a	
+# ::edge	and	op1	meat	a2	m	
+# ::edge	and	op1	slaw	a3	s2	
+# ::edge	accompany-01	ARG0	and	a	a3	
+# ::edge	and	op2	lettuce	a3	l	
+(a2 / and
+    :op1 (m / meat
+        :quant 3)
+    :op2 (a / accompany-01
+        :ARG0 (a3 / and
+            :op1 (s2 / slaw
+                :mod (s / ship
+                    :name (n / name
+                        :op1 "Cole")))
+            :op2 (l / lettuce))
+        :ARG1 (b / bread
+            :consist-of (p / piece
+                :quant 3))))

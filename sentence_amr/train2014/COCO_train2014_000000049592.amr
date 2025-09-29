@@ -1,0 +1,30 @@
+# ::tok People enjoy biking , sitting , and swimming on and in the beach .
+# ::node	p	person	0-1
+# ::node	e	enjoy-01	1-2
+# ::node	b2	bike-01	2-3
+# ::node	s	sit-01	4-5
+# ::node	s2	swim-01	7-8
+# ::node	a	and	9-10
+# ::node	b	beach	12-13
+# ::root	e	enjoy-01
+# ::edge	enjoy-01	ARG0	person	e	p	
+# ::edge	bike-01	ARG0	person	b2	p	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	swim-01	ARG0	person	s2	p	
+# ::edge	and	op3	swim-01	a	s2	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	and	op1	bike-01	a	b2	
+# ::edge	enjoy-01	ARG1	and	e	a	
+# ::edge	swim-01	location	beach	s2	b	
+# ::edge	sit-01	location	beach	s	b	
+(e / enjoy-01
+    :ARG0 (p / person)
+    :ARG1 (a / and
+        :op1 (b2 / bike-01
+            :ARG0 p)
+        :op2 (s / sit-01
+            :ARG1 p
+            :location (b / beach))
+        :op3 (s2 / swim-01
+            :ARG0 p
+            :location b)))

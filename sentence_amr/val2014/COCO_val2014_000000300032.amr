@@ -1,0 +1,30 @@
+# ::tok An electric fence with a sign behind it that says " A flood can happen anywhere . "
+# ::node	e	electric	1-2
+# ::node	f	fence	2-3
+# ::node	s2	sign	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	b2	behind	6-7
+# ::node	s	say-01	9-10
+# ::node	f2	flood-01	12-13
+# ::node	p	possible-01	13-14
+# ::node	a	anywhere	15-16
+# ::root	f	fence
+# ::edge	fence	mod	electric	f	e	
+# ::edge	be-located-at-91	ARG1	sign	b	s2	
+# ::edge	fence	ARG2-of	be-located-at-91	f	b	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	op1	fence	b2	f	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	possible-01	ARG1	flood-01	p	f2	
+# ::edge	say-01	ARG1	possible-01	s	p	
+# ::edge	flood-01	location	anywhere	f2	a	
+(f / fence
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (s2 / sign
+            :ARG0-of (s / say-01
+                :ARG1 (p / possible-01
+                    :ARG1 (f2 / flood-01
+                        :location (a / anywhere)))))
+        :ARG2 (b2 / behind
+            :op1 f))
+    :mod (e / electric))

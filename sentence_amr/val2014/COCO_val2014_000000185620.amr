@@ -1,0 +1,31 @@
+# ::tok Brick wall and windows with white painted area made to look like face .
+# ::node	d	disc	0-1
+# ::node	w	wall	1-2
+# ::node	a	and	2-3
+# ::node	w3	window	3-4
+# ::node	w2	white-03	5-6
+# ::node	p	paint-01	6-7
+# ::node	a2	area	7-8
+# ::node	m	make-02	8-9
+# ::node	l	look-02	10-11
+# ::node	f	face	12-13
+# ::root	m	make-02
+# ::edge	wall	consist-of	disc	w	d	
+# ::edge	and	op1	wall	a	w	
+# ::edge	and	op2	window	a	w3	
+# ::edge	paint-01	ARG1-of	white-03	p	w2	
+# ::edge	area	ARG1-of	paint-01	a2	p	
+# ::edge	and	prep-with	area	a	a2	
+# ::edge	make-02	ARG1	look-02	m	l	
+# ::edge	look-02	ARG0	and	l	a	
+# ::edge	look-02	ARG1	face	l	f	
+(m / make-02
+    :ARG1 (l / look-02
+        :ARG0 (a / and
+            :op1 (w / wall
+                :consist-of (d / disc))
+            :op2 (w3 / window)
+            :prep-with (a2 / area
+                :ARG1-of (p / paint-01
+                    :ARG1-of (w2 / white-03))))
+        :ARG1 (f / face)))

@@ -1,0 +1,40 @@
+# ::tok Walls are painted blue and white while an open doorway reveals another room painted yellow .
+# ::node	w	wall	0-1
+# ::node	p	paint-01	2-3
+# ::node	b	blue	3-4
+# ::node	a	and	4-5
+# ::node	w2	white-03	5-6
+# ::node	c	contrast-01	6-7
+# ::node	o	open-01	8-9
+# ::node	d	doorway	9-10
+# ::node	r	reveal-01	10-11
+# ::node	a2	another	11-12
+# ::node	r2	room	12-13
+# ::node	p2	paint-01	13-14
+# ::node	y	yellow	14-15
+# ::root	c	contrast-01
+# ::edge	paint-01	ARG1	wall	p	w	
+# ::edge	and	op1	blue	a	b	
+# ::edge	paint-01	ARG2	and	p	a	
+# ::edge	and	op2	white-03	a	w2	
+# ::edge	contrast-01	ARG1	paint-01	c	p	
+# ::edge	doorway	ARG1-of	open-01	d	o	
+# ::edge	reveal-01	ARG0	doorway	r	d	
+# ::edge	contrast-01	ARG2	reveal-01	c	r	
+# ::edge	room	mod	another	r2	a2	
+# ::edge	reveal-01	ARG1	room	r	r2	
+# ::edge	room	ARG1-of	paint-01	r2	p2	
+# ::edge	paint-01	ARG2	yellow	p2	y	
+(c / contrast-01
+    :ARG1 (p / paint-01
+        :ARG1 (w / wall)
+        :ARG2 (a / and
+            :op1 (b / blue)
+            :op2 (w2 / white-03)))
+    :ARG2 (r / reveal-01
+        :ARG0 (d / doorway
+            :ARG1-of (o / open-01))
+        :ARG1 (r2 / room
+            :ARG1-of (p2 / paint-01
+                :ARG2 (y / yellow))
+            :mod (a2 / another))))

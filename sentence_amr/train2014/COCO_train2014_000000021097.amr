@@ -1,0 +1,40 @@
+# ::tok A Japanese combination lunch special in a plastic to - go container and a soda sit on a table .
+# ::node	c3	country	1-2
+# ::node	n	name	1-2
+# ::node	0	Japan	1-2
+# ::node	c	combine-01	2-3
+# ::node	l	lunch	3-4
+# ::node	s3	special-02	4-5
+# ::node	p	plastic	7-8
+# ::node	g	go-01	10-11
+# ::node	c2	container	11-12
+# ::node	a	and	12-13
+# ::node	s2	soda	14-15
+# ::node	s	sit-01	15-16
+# ::node	t	table	18-19
+# ::root	s	sit-01
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Japan	n	0	
+# ::edge	special-02	ARG1	lunch	s3	l	
+# ::edge	special-02	ARG1-of	combine-01	s3	c	
+# ::edge	special-02	mod	country	s3	c3	
+# ::edge	container	ARG4-of	go-01	c2	g	
+# ::edge	container	consist-of	plastic	c2	p	
+# ::edge	special-02	prep-in	container	s3	c2	
+# ::edge	and	op1	special-02	a	s3	
+# ::edge	and	op2	soda	a	s2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (s3 / special-02
+            :ARG1 (l / lunch)
+            :ARG1-of (c / combine-01)
+            :mod (c3 / country
+                :name (n / name
+                    :op1 "Japan"))
+            :prep-in (c2 / container
+                :ARG4-of (g / go-01)
+                :consist-of (p / plastic)))
+        :op2 (s2 / soda))
+    :ARG2 (t / table))

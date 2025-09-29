@@ -1,0 +1,24 @@
+# ::tok A microwave with the door propped open while sitting on a wooden countertop .
+# ::node	m	microwave	1-2
+# ::node	d	door	4-5
+# ::node	p	prop-up-01	5-6
+# ::node	o	open-09	6-7
+# ::node	s	sit-01	8-9
+# ::node	w	wood	11-12
+# ::node	c	countertop	12-13
+# ::root	m	microwave
+# ::edge	prop-up-01	ARG1	door	p	d	
+# ::edge	microwave	ARG0-of	prop-up-01	m	p	
+# ::edge	prop-up-01	ARG1-of	open-09	p	o	
+# ::edge	microwave	time	sit-01	m	s	
+# ::edge	sit-01	ARG1	microwave	s	m	
+# ::edge	countertop	mod	wood	c	w	
+# ::edge	sit-01	ARG2	countertop	s	c	
+(m / microwave
+    :ARG0-of (p / prop-up-01
+        :ARG1 (d / door)
+        :ARG1-of (o / open-09))
+    :time (s / sit-01
+        :ARG1 m
+        :ARG2 (c / countertop
+            :mod (w / wood))))

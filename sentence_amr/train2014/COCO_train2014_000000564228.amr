@@ -1,0 +1,51 @@
+# ::tok A Siamese cat standing toward the rear of a busy desk in back of a pair of open laptops , with a slatted window behind it .
+# ::node	n	name	1-2
+# ::node	0	Siamese	1-2
+# ::node	c	cat	2-3
+# ::node	s2	stand-01	3-4
+# ::node	r	rear	6-7
+# ::node	b3	busy-01	9-10
+# ::node	d	desk	10-11
+# ::node	b	back	12-13
+# ::node	p	pair	15-16
+# ::node	o	open-01	17-18
+# ::node	n2	name	18-19
+# ::node	l	laptop	18-19
+# ::node	h	have-03	20-21
+# ::node	s	slatted	22-23
+# ::node	w	window	23-24
+# ::node	b2	behind	24-25
+# ::root	s2	stand-01
+# ::edge	name	op1	Siamese	n	0	
+# ::edge	cat	name	name	c	n	
+# ::edge	stand-01	ARG1	cat	s2	c	
+# ::edge	stand-01	ARG2	rear	s2	r	
+# ::edge	desk	ARG1-of	busy-01	d	b3	
+# ::edge	rear	part-of	desk	r	d	
+# ::edge	desk	location	back	d	b	
+# ::edge	desk	name	name	d	n2	
+# ::edge	laptop	ARG1-of	open-01	l	o	
+# ::edge	laptop	quant	pair	l	p	
+# ::edge	back	op1	laptop	b	l	
+# ::edge	desk	ARG0-of	have-03	d	h	
+# ::edge	window	mod	slatted	w	s	
+# ::edge	have-03	ARG1	window	h	w	
+# ::edge	window	location	behind	w	b2	
+# ::edge	behind	op1	desk	b2	d	
+(s2 / stand-01
+    :ARG1 (c / cat
+        :name (n / name
+            :op1 "Siamese"))
+    :ARG2 (r / rear
+        :part-of (d / desk
+            :name (n2 / name)
+            :ARG0-of (h / have-03
+                :ARG1 (w / window
+                    :location (b2 / behind
+                        :op1 d)
+                    :mod (s / slatted)))
+            :ARG1-of (b3 / busy-01)
+            :location (b / back
+                :op1 (l / laptop
+                    :quant (p / pair)
+                    :ARG1-of (o / open-01))))))

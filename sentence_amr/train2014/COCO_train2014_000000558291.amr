@@ -1,0 +1,32 @@
+# ::tok A skier stops to pose for a picture before going up a mountain .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	s2	stop-01	2-3
+# ::node	p3	pose-01	4-5
+# ::node	p2	picture	7-8
+# ::node	b	before	8-9
+# ::node	g	go-02	9-10
+# ::node	u	up-03	10-11
+# ::node	m	mountain	12-13
+# ::root	s2	stop-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	stop-01	ARG0	person	s2	p	
+# ::edge	stop-01	purpose	pose-01	s2	p3	
+# ::edge	pose-01	ARG0	person	p3	p	
+# ::edge	pose-01	purpose	picture	p3	p2	
+# ::edge	pose-01	time	before	p3	b	
+# ::edge	before	op1	go-02	b	g	
+# ::edge	go-02	ARG0	person	g	p	
+# ::edge	go-02	direction	up-03	g	u	
+# ::edge	go-02	ARG4	mountain	g	m	
+(s2 / stop-01
+    :purpose (p3 / pose-01
+        :purpose (p2 / picture)
+        :ARG0 (p / person
+            :ARG0-of (s / ski-01))
+        :time (b / before
+            :op1 (g / go-02
+                :ARG0 p
+                :ARG4 (m / mountain)
+                :direction (u / up-03))))
+    :ARG0 p)

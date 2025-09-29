@@ -1,0 +1,21 @@
+# ::tok A train engine with carts attached with smoke billowing from it .
+# ::node	t	train	1-2
+# ::node	e	engine	2-3
+# ::node	c	cart	4-5
+# ::node	a	attach-01	5-6
+# ::node	s	smoke	7-8
+# ::node	b	billow-01	8-9
+# ::root	e	engine
+# ::edge	engine	mod	train	e	t	
+# ::edge	engine	part	cart	e	c	
+# ::edge	cart	ARG1-of	attach-01	c	a	
+# ::edge	billow-01	ARG1	smoke	b	s	
+# ::edge	attach-01	ARG2	billow-01	a	b	
+# ::edge	billow-01	ARG0	engine	b	e	
+(e / engine
+    :mod (t / train)
+    :part (c / cart
+        :ARG1-of (a / attach-01
+            :ARG2 (b / billow-01
+                :ARG0 e
+                :ARG1 (s / smoke)))))

@@ -1,0 +1,45 @@
+# ::tok A room that has a wooden floor and various pieces of furniture along with a large set of windows in the corner of the room on both walls .
+# ::node	r	room	1-2
+# ::node	h	have-03	3-4
+# ::node	w3	wood	5-6
+# ::node	f	floor	6-7
+# ::node	a	and	7-8
+# ::node	v	various	8-9
+# ::node	p	piece	9-10
+# ::node	f2	furniture	11-12
+# ::node	l	large	15-16
+# ::node	s	set	16-17
+# ::node	w2	window	18-19
+# ::node	c	corner	21-22
+# ::node	b	both	26-27
+# ::node	w	wall	27-28
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	floor	consist-of	wood	f	w3	
+# ::edge	and	op1	floor	a	f	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	piece	mod	various	p	v	
+# ::edge	and	op2	piece	a	p	
+# ::edge	piece	mod	furniture	p	f2	
+# ::edge	set	mod	large	s	l	
+# ::edge	and	op3	set	a	s	
+# ::edge	set	consist-of	window	s	w2	
+# ::edge	window	location	corner	w2	c	
+# ::edge	room	part	corner	r	c	
+# ::edge	wall	mod	both	w	b	
+# ::edge	window	location	wall	w2	w	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (f / floor
+                :consist-of (w3 / wood))
+            :op2 (p / piece
+                :mod (v / various)
+                :mod (f2 / furniture))
+            :op3 (s / set
+                :consist-of (w2 / window
+                    :location (c / corner)
+                    :location (w / wall
+                        :mod (b / both)))
+                :mod (l / large))))
+    :part c)

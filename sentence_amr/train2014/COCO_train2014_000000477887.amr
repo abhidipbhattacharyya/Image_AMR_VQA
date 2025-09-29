@@ -1,0 +1,28 @@
+# ::tok A circular rail of benches is placed in a plaza between buildings at night .
+# ::node	c	circular	1-2
+# ::node	r	rail	2-3
+# ::node	b	bench	4-5
+# ::node	p	place-01	6-7
+# ::node	p2	plaza	9-10
+# ::node	b2	between	10-11
+# ::node	b3	building	11-12
+# ::node	d	date-entity	13-14
+# ::node	n	night	13-14
+# ::root	p	place-01
+# ::edge	rail	mod	circular	r	c	
+# ::edge	rail	consist-of	bench	r	b	
+# ::edge	place-01	ARG1	rail	p	r	
+# ::edge	place-01	ARG2	plaza	p	p2	
+# ::edge	plaza	location	between	p2	b2	
+# ::edge	between	op1	building	b2	b3	
+# ::edge	place-01	time	date-entity	p	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(p / place-01
+    :ARG1 (r / rail
+        :consist-of (b / bench)
+        :mod (c / circular))
+    :ARG2 (p2 / plaza
+        :location (b2 / between
+            :op1 (b3 / building)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

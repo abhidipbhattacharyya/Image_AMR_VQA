@@ -1,0 +1,50 @@
+# ::tok A baseball player stands in front of the umpire on a pitchers mound with his hand held back holding the ball .
+# ::node	b3	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	s	stand-01	3-4
+# ::node	i	in-front-of	5-6
+# ::node	p2	person	8-9
+# ::node	h2	have-org-role-91	8-9
+# ::node	u	umpire	8-9
+# ::node	t	throw-01	11-12
+# ::node	m	mound	12-13
+# ::node	h	hand	15-16
+# ::node	h3	hold-01	16-17
+# ::node	b	back	17-18
+# ::node	h4	hold-01	18-19
+# ::node	b2	ball	20-21
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b3	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	person	i	p2	
+# ::edge	person	ARG0-of	have-org-role-91	p2	h2	
+# ::edge	have-org-role-91	ARG2	umpire	h2	u	
+# ::edge	mound	location-of	throw-01	m	t	
+# ::edge	person	location	mound	p2	m	
+# ::edge	person	part	hand	p	h	
+# ::edge	hold-01	ARG1	hand	h3	h	
+# ::edge	person	manner	hold-01	p	h3	
+# ::edge	hold-01	ARG0	person	h3	p	
+# ::edge	hold-01	direction	back	h3	b	
+# ::edge	hand	ARG0-of	hold-01	h	h4	
+# ::edge	hold-01	ARG1	ball	h4	b2	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b3 / baseball))
+        :manner (h3 / hold-01
+            :ARG0 p
+            :ARG1 (h / hand
+                :ARG0-of (h4 / hold-01
+                    :ARG1 (b2 / ball)))
+            :direction (b / back))
+        :part h)
+    :ARG2 (i / in-front-of
+        :op1 (p2 / person
+            :ARG0-of (h2 / have-org-role-91
+                :ARG2 (u / umpire))
+            :location (m / mound
+                :location-of (t / throw-01)))))

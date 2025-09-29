@@ -1,0 +1,31 @@
+# ::tok A street sign stating that the road is one way beneath a blue sky .
+# ::node	s4	street	1-2
+# ::node	s	sign	2-3
+# ::node	s3	state-01	3-4
+# ::node	r	road	6-7
+# ::node	0	1	8-9
+# ::node	w	way	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	b2	beneath	10-11
+# ::node	b3	blue	12-13
+# ::node	s2	sky	13-14
+# ::root	s	sign
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	ARG0-of	state-01	s	s3	
+# ::edge	way	quant	1	w	0	
+# ::edge	be-located-at-91	ARG1	road	b	r	
+# ::edge	state-01	ARG1	be-located-at-91	s3	b	
+# ::edge	be-located-at-91	ARG2	beneath	b	b2	
+# ::edge	beneath	direction	way	b2	w	
+# ::edge	sky	mod	blue	s2	b3	
+# ::edge	beneath	op1	sky	b2	s2	
+(s / sign
+    :ARG0-of (s3 / state-01
+        :ARG1 (b / be-located-at-91
+            :ARG1 (r / road)
+            :ARG2 (b2 / beneath
+                :direction (w / way
+                    :quant 1)
+                :op1 (s2 / sky
+                    :mod (b3 / blue)))))
+    :mod (s4 / street))

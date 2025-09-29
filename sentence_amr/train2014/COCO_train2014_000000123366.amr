@@ -1,0 +1,36 @@
+# ::tok Two men are playing soccer one is about to kick the ball .
+# ::node	1	2	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	p	play-01	3-4
+# ::node	s	soccer	4-5
+# ::node	i	include-91	5-6
+# ::node	0	1	5-6
+# ::node	a	about-to	7-8
+# ::node	k	kick-01	9-10
+# ::node	b	ball	11-12
+# ::node	a2	and	12-13
+# ::root	a2	and
+# ::edge	man	quant	2	m	1	
+# ::edge	play-01	ARG0	man	p	m	
+# ::edge	play-01	ARG1	soccer	p	s	
+# ::edge	include-91	ARG2	man	i	m2	
+# ::edge	man	ARG1-of	include-91	m	i	
+# ::edge	man	quant	1	m2	0	
+# ::edge	kick-01	time	about-to	k	a	
+# ::edge	kick-01	ARG0	man	k	m2	
+# ::edge	kick-01	ARG1	ball	k	b	
+# ::edge	and	op2	kick-01	a2	k	
+# ::edge	and	op1	play-01	a2	p	
+(a2 / and
+    :op1 (p / play-01
+        :ARG0 (m / man
+            :quant 2
+            :ARG1-of (i / include-91
+                :ARG2 (m2 / man
+                    :quant 1)))
+        :ARG1 (s / soccer))
+    :op2 (k / kick-01
+        :ARG0 m2
+        :ARG1 (b / ball)
+        :time (a / about-to)))

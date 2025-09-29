@@ -1,0 +1,19 @@
+# ::tok Many bananas with wires hooked into them are displayed in a row .
+# ::node	m	many	0-1
+# ::node	b	banana	1-2
+# ::node	w	wire	3-4
+# ::node	h	hook-01	4-5
+# ::node	d	display-01	8-9
+# ::node	r	row	11-12
+# ::root	d	display-01
+# ::edge	banana	quant	many	b	m	
+# ::edge	hook-01	ARG2	wire	h	w	
+# ::edge	banana	ARG1-of	hook-01	b	h	
+# ::edge	display-01	ARG1	banana	d	b	
+# ::edge	display-01	ARG2	row	d	r	
+(d / display-01
+    :ARG1 (b / banana
+        :quant (m / many)
+        :ARG1-of (h / hook-01
+            :ARG2 (w / wire)))
+    :ARG2 (r / row))

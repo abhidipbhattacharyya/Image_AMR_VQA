@@ -1,0 +1,46 @@
+# ::tok A " Boneless , Bananas , 89 cent / per pound sign " is sitting on a pile of Bananas near some apples .
+# ::node	h	healthy	2-3
+# ::node	b	banana	4-5
+# ::node	1	89	6-7
+# ::node	m2	monetary-quantity	7-8
+# ::node	c	cent	7-8
+# ::node	r	rate-entity-91	8-9
+# ::node	0	1	9-10
+# ::node	m	mass-quantity	10-11
+# ::node	p2	pound	10-11
+# ::node	s	sign	11-12
+# ::node	s2	sit-01	14-15
+# ::node	p	pile-01	17-18
+# ::node	n	near-02	20-21
+# ::node	s3	some	21-22
+# ::node	a	apple	22-23
+# ::root	s2	sit-01
+# ::edge	monetary-quantity	quant	89	m2	1	
+# ::edge	monetary-quantity	unit	cent	m2	c	
+# ::edge	rate-entity-91	ARG1	monetary-quantity	r	m2	
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	rate-entity-91	ARG2	mass-quantity	r	m	
+# ::edge	mass-quantity	unit	pound	m	p2	
+# ::edge	sign	mod	rate-entity-91	s	r	
+# ::edge	sign	mod	healthy	s	h	
+# ::edge	sit-01	ARG1	sign	s2	s	
+# ::edge	sit-01	ARG2	pile-01	s2	p	
+# ::edge	pile-01	ARG1	banana	p	b	
+# ::edge	pile-01	ARG1-of	near-02	p	n	
+# ::edge	apple	quant	some	a	s3	
+# ::edge	near-02	ARG2	apple	n	a	
+(s2 / sit-01
+    :ARG1 (s / sign
+        :mod (r / rate-entity-91
+            :ARG1 (m2 / monetary-quantity
+                :quant 89
+                :unit (c / cent))
+            :ARG2 (m / mass-quantity
+                :quant 1
+                :unit (p2 / pound)))
+        :mod (h / healthy))
+    :ARG2 (p / pile-01
+        :ARG1 (b / banana)
+        :ARG1-of (n / near-02
+            :ARG2 (a / apple
+                :quant (s3 / some)))))

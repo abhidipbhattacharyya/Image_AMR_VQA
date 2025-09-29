@@ -1,0 +1,37 @@
+# ::tok A semi - truck with Del Mar College is seen driving down a busy road .
+# ::node	s2	semi	1-2
+# ::node	t	truck	3-4
+# ::node	n	name	3-4
+# ::node	1	Del	5-6
+# ::node	2	Mar	6-7
+# ::node	u	university	7-8
+# ::node	0	College	7-8
+# ::node	s	see-01	9-10
+# ::node	d2	drive-01	10-11
+# ::node	d	down	11-12
+# ::node	b	busy-02	13-14
+# ::node	r	road	14-15
+# ::root	s	see-01
+# ::edge	truck	mod	semi	t	s2	
+# ::edge	name	op1	Del	n	1	
+# ::edge	name	op2	Mar	n	2	
+# ::edge	university	name	name	u	n	
+# ::edge	truck	prep-with	university	t	u	
+# ::edge	name	op3	College	n	0	
+# ::edge	see-01	ARG1	drive-01	s	d2	
+# ::edge	drive-01	ARG0	truck	d2	t	
+# ::edge	drive-01	direction	down	d2	d	
+# ::edge	road	ARG1-of	busy-02	r	b	
+# ::edge	drive-01	ARG1	road	d2	r	
+(s / see-01
+    :ARG1 (d2 / drive-01
+        :ARG0 (t / truck
+            :mod (s2 / semi)
+            :prep-with (u / university
+                :name (n / name
+                    :op1 "Del"
+                    :op2 "Mar"
+                    :op3 "College")))
+        :ARG1 (r / road
+            :ARG1-of (b / busy-02))
+        :direction (d / down)))

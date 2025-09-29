@@ -1,0 +1,36 @@
+# ::tok A man is riding an atv with trucks and dirt bikes parked around him .
+# ::node	m	man	1-2
+# ::node	r	ride-01	3-4
+# ::node	v	vehicle	5-6
+# ::node	n	name	5-6
+# ::node	0	RV	5-6
+# ::node	t	truck	7-8
+# ::node	a	and	8-9
+# ::node	d	dirt	9-10
+# ::node	b	bike-01	10-11
+# ::node	p	park-01	11-12
+# ::node	a2	around	12-13
+# ::root	r	ride-01
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	ride-01	ARG1	vehicle	r	v	
+# ::edge	vehicle	name	name	v	n	
+# ::edge	name	op1	RV	n	0	
+# ::edge	and	op1	truck	a	t	
+# ::edge	bike-01	mod	dirt	b	d	
+# ::edge	and	op2	bike-01	a	b	
+# ::edge	park-01	ARG1	and	p	a	
+# ::edge	ride-01	ARG2-of	park-01	r	p	
+# ::edge	park-01	location	around	p	a2	
+# ::edge	around	op1	man	a2	m	
+(r / ride-01
+    :ARG0 (m / man)
+    :ARG1 (v / vehicle
+        :name (n / name
+            :op1 "RV"))
+    :ARG2-of (p / park-01
+        :ARG1 (a / and
+            :op1 (t / truck)
+            :op2 (b / bike-01
+                :mod (d / dirt)))
+        :location (a2 / around
+            :op1 m)))

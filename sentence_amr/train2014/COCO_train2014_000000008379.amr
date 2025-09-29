@@ -1,0 +1,48 @@
+# ::tok An old rusty pole that has a sign " Parking " hanging from it .
+# ::node	o	old	1-2
+# ::node	r	rust-01	2-3
+# ::node	p2	pole	3-4
+# ::node	h2	have-03	5-6
+# ::node	s	sign	7-8
+# ::node	p	park-01	9-10
+# ::node	h	hang-01	11-12
+# ::root	p2	pole
+# ::edge	pole	ARG1-of	rust-01	p2	r	
+# ::edge	pole	mod	old	p2	o	
+# ::edge	pole	ARG0-of	have-03	p2	h2	
+# ::edge	have-03	ARG1	sign	h2	s	
+# ::edge	sign	topic	park-01	s	p	
+# ::edge	sign	ARG1-of	hang-01	s	h	
+# ::edge	hang-01	ARG2	pole	h	p2	
+(p2 / pole
+    :ARG0-of (h2 / have-03
+        :ARG1 (s / sign
+            :ARG1-of (h / hang-01
+                :ARG2 p2)
+            :topic (p / park-01)))
+    :ARG1-of (r / rust-01)
+    :mod (o / old))
+
+
+# ::tok Across from it is an old brick building with three windows .
+# ::node	a	across	0-1
+# ::node	i	it	2-3
+# ::node	o	old	5-6
+# ::node	b	brick	6-7
+# ::node	b2	building	7-8
+# ::node	0	3	9-10
+# ::node	w	window	10-11
+# ::root	b2	building
+# ::edge	across	op1	it	a	i	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	building	mod	old	b2	o	
+# ::edge	building	location	across	b2	a	
+# ::edge	window	quant	3	w	0	
+# ::edge	building	part	window	b2	w	
+(b2 / building
+    :consist-of (b / brick)
+    :location (a / across
+        :op1 (i / it))
+    :mod (o / old)
+    :part (w / window
+        :quant 3))

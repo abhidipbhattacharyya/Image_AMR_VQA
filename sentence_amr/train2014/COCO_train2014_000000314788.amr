@@ -1,0 +1,29 @@
+# ::tok Planes landing and taking off at an airstrip in front of some buildings .
+# ::node	p	plane	0-1
+# ::node	l	land-01	1-2
+# ::node	a2	and	2-3
+# ::node	t	take-off-19	3-4
+# ::node	a	airstrip	7-8
+# ::node	i	in-front-of	9-10
+# ::node	s	some	11-12
+# ::node	b	building	12-13
+# ::root	a2	and
+# ::edge	land-01	ARG1	plane	l	p	
+# ::edge	and	op1	land-01	a2	l	
+# ::edge	and	op2	take-off-19	a2	t	
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	take-off-19	location	airstrip	t	a	
+# ::edge	land-01	location	airstrip	l	a	
+# ::edge	airstrip	location	in-front-of	a	i	
+# ::edge	building	quant	some	b	s	
+# ::edge	in-front-of	op1	building	i	b	
+(a2 / and
+    :op1 (l / land-01
+        :ARG1 (p / plane)
+        :location (a / airstrip
+            :location (i / in-front-of
+                :op1 (b / building
+                    :quant (s / some)))))
+    :op2 (t / take-off-19
+        :ARG1 p
+        :location a))

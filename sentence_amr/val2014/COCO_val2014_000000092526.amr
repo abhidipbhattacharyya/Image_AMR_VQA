@@ -1,0 +1,41 @@
+# ::tok A giraffe reaches it 's next to eat leaves from a small tree in an enclosure with a tan building in the background .
+# ::node	g	giraffe	1-2
+# ::node	r	reach-01	2-3
+# ::node	n	next	5-6
+# ::node	e	eat-01	7-8
+# ::node	l	leaf	8-9
+# ::node	s	small	11-12
+# ::node	t2	tree	12-13
+# ::node	e2	enclosure	15-16
+# ::node	h	have-03	16-17
+# ::node	t	tan-01	18-19
+# ::node	b2	building	19-20
+# ::node	b	background	22-23
+# ::root	r	reach-01
+# ::edge	reach-01	ARG0	giraffe	r	g	
+# ::edge	reach-01	ARG1	next	r	n	
+# ::edge	next	poss	giraffe	n	g	
+# ::edge	reach-01	purpose	eat-01	r	e	
+# ::edge	eat-01	ARG0	giraffe	e	g	
+# ::edge	eat-01	ARG1	leaf	e	l	
+# ::edge	tree	mod	small	t2	s	
+# ::edge	leaf	source	tree	l	t2	
+# ::edge	tree	location	enclosure	t2	e2	
+# ::edge	enclosure	ARG0-of	have-03	e2	h	
+# ::edge	building	ARG1-of	tan-01	b2	t	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	background	b2	b	
+(r / reach-01
+    :purpose (e / eat-01
+        :ARG0 (g / giraffe)
+        :ARG1 (l / leaf
+            :source (t2 / tree
+                :location (e2 / enclosure
+                    :ARG0-of (h / have-03
+                        :ARG1 (b2 / building
+                            :ARG1-of (t / tan-01)
+                            :location (b / background))))
+                :mod (s / small))))
+    :ARG0 g
+    :ARG1 (n / next
+        :poss g))

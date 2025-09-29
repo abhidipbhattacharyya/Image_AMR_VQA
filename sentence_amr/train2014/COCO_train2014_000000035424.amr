@@ -1,0 +1,28 @@
+# ::tok People on pavement watch freight trains passing by a power generating station .
+# ::node	p3	person	0-1
+# ::node	p2	pavement	2-3
+# ::node	w	watch-01	3-4
+# ::node	f	freight	4-5
+# ::node	t	train	5-6
+# ::node	p	pass-by-17	6-7
+# ::node	p4	power-01	9-10
+# ::node	g	generate-01	10-11
+# ::node	s	station	11-12
+# ::root	w	watch-01
+# ::edge	person	location	pavement	p3	p2	
+# ::edge	watch-01	ARG0	person	w	p3	
+# ::edge	train	mod	freight	t	f	
+# ::edge	watch-01	ARG1	train	w	t	
+# ::edge	train	ARG0-of	pass-by-17	t	p	
+# ::edge	generate-01	ARG1	power-01	g	p4	
+# ::edge	station	ARG0-of	generate-01	s	g	
+# ::edge	pass-by-17	ARG1	station	p	s	
+(w / watch-01
+    :ARG0 (p3 / person
+        :location (p2 / pavement))
+    :ARG1 (t / train
+        :ARG0-of (p / pass-by-17
+            :ARG1 (s / station
+                :ARG0-of (g / generate-01
+                    :ARG1 (p4 / power-01))))
+        :mod (f / freight)))

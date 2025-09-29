@@ -1,0 +1,37 @@
+# ::tok A bowl of vegetables and fruit such as oranges , cantaloupe and peaches sits on a brightly colored table .
+# ::node	b	bowl	1-2
+# ::node	v	vegetable	3-4
+# ::node	a	and	4-5
+# ::node	f	fruit	5-6
+# ::node	o	orange	8-9
+# ::node	c	cantaloupe	10-11
+# ::node	a2	and	11-12
+# ::node	o2	orange	12-13
+# ::node	s	sit-01	13-14
+# ::node	b2	bright-02	16-17
+# ::node	c2	color-01	17-18
+# ::node	t	table	18-19
+# ::root	s	sit-01
+# ::edge	and	op1	vegetable	a	v	
+# ::edge	bowl	consist-of	and	b	a	
+# ::edge	and	op2	fruit	a	f	
+# ::edge	and	op2	cantaloupe	a2	c	
+# ::edge	and	op1	orange	a2	o	
+# ::edge	and	example	and	a	a2	
+# ::edge	and	op3	orange	a2	o2	
+# ::edge	sit-01	ARG1	bowl	s	b	
+# ::edge	color-01	ARG1-of	bright-02	c2	b2	
+# ::edge	table	ARG1-of	color-01	t	c2	
+# ::edge	sit-01	ARG2	table	s	t	
+(s / sit-01
+    :ARG1 (b / bowl
+        :consist-of (a / and
+            :example (a2 / and
+                :op1 (o / orange)
+                :op2 (c / cantaloupe)
+                :op3 (o2 / orange))
+            :op1 (v / vegetable)
+            :op2 (f / fruit)))
+    :ARG2 (t / table
+        :ARG1-of (c2 / color-01
+            :ARG1-of (b2 / bright-02))))

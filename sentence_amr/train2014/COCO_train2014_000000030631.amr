@@ -1,0 +1,38 @@
+# ::tok Two giraffes and three zebras stand next to one another while one of the giraffes get fed .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	a	and	2-3
+# ::node	2	3	3-4
+# ::node	g2	giraffe	4-5
+# ::node	s	stand-01	5-6
+# ::node	n	next-to	6-7
+# ::node	0	1	11-12
+# ::node	i	include-91	12-13
+# ::node	g3	giraffe	14-15
+# ::node	f	feed-01	16-17
+# ::root	s	stand-01
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	and	op1	giraffe	a	g	
+# ::edge	giraffe	quant	3	g2	2	
+# ::edge	and	op2	giraffe	a	g2	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	giraffe	n	g	
+# ::edge	include-91	ARG2	giraffe	i	g	
+# ::edge	giraffe	ARG1-of	include-91	g3	i	
+# ::edge	giraffe	quant	1	g3	0	
+# ::edge	feed-01	ARG2	giraffe	f	g3	
+# ::edge	stand-01	time	feed-01	s	f	
+(s / stand-01
+    :ARG1 (a / and
+        :op1 (g / giraffe
+            :quant 2)
+        :op2 (g2 / giraffe
+            :quant 3))
+    :ARG2 (n / next-to
+        :op1 g)
+    :time (f / feed-01
+        :ARG2 (g3 / giraffe
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 g))))

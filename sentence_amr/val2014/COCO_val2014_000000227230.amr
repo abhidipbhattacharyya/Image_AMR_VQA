@@ -1,0 +1,46 @@
+# ::tok A man windsurfing on a board and making a sign with one of his hands , while holding onto a sail with the other hand .
+# ::node	m	man	1-2
+# ::node	s3	surf-01	2-3
+# ::node	b	board	5-6
+# ::node	a	and	6-7
+# ::node	s2	signal-07	9-10
+# ::node	0	1	11-12
+# ::node	i	include-91	12-13
+# ::node	h	hand	14-15
+# ::node	h2	hand	14-15
+# ::node	h4	hold-01	17-18
+# ::node	s	sail	20-21
+# ::node	o	other	23-24
+# ::node	h3	hand	24-25
+# ::root	a	and
+# ::edge	surf-01	ARG0	man	s3	m	
+# ::edge	surf-01	ARG2	board	s3	b	
+# ::edge	and	op1	surf-01	a	s3	
+# ::edge	and	op2	signal-07	a	s2	
+# ::edge	signal-07	ARG0	man	s2	m	
+# ::edge	hand	ARG1-of	include-91	h	i	
+# ::edge	hand	quant	1	h	0	
+# ::edge	signal-07	instrument	hand	s2	h	
+# ::edge	include-91	ARG2	hand	i	h2	
+# ::edge	man	part	hand	m	h2	
+# ::edge	and	time	hold-01	a	h4	
+# ::edge	hold-01	ARG0	man	h4	m	
+# ::edge	hold-01	ARG1	sail	h4	s	
+# ::edge	hand	mod	other	h3	o	
+# ::edge	hold-01	instrument	hand	h4	h3	
+(a / and
+    :op1 (s3 / surf-01
+        :ARG0 (m / man
+            :part (h2 / hand))
+        :ARG2 (b / board))
+    :op2 (s2 / signal-07
+        :ARG0 m
+        :instrument (h / hand
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 h2)))
+    :time (h4 / hold-01
+        :ARG0 m
+        :ARG1 (s / sail)
+        :instrument (h3 / hand
+            :mod (o / other))))

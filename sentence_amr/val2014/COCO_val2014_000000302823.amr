@@ -1,0 +1,31 @@
+# ::tok A plate topped with three donuts next to a cup of coffee .
+# ::node	p	plate	1-2
+# ::node	t	top-01	2-3
+# ::node	1	3	4-5
+# ::node	d	donut	5-6
+# ::node	n	next-to	6-7
+# ::node	v	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	c2	cup	9-10
+# ::node	c	coffee	11-12
+# ::node	e	event	12-13
+# ::root	e	event
+# ::edge	plate	ARG1-of	top-01	p	t	
+# ::edge	donut	quant	3	d	1	
+# ::edge	top-01	ARG2	donut	t	d	
+# ::edge	plate	location	next-to	p	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	next-to	op1	coffee	n	c	
+# ::edge	event	mod	plate	e	p	
+(e / event
+    :mod (p / plate
+        :ARG1-of (t / top-01
+            :ARG2 (d / donut
+                :quant 3))
+        :location (n / next-to
+            :op1 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup))))))

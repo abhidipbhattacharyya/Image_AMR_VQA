@@ -1,0 +1,52 @@
+# ::tok A plate of breakfast food with eggs , English muffins , hash browns , and bacon on a table with coffee and chocolate cake .
+# ::node	p	plate	1-2
+# ::node	b2	breakfast-01	3-4
+# ::node	f	food	4-5
+# ::node	e	egg	6-7
+# ::node	c6	country	8-9
+# ::node	n	name	8-9
+# ::node	0	England	8-9
+# ::node	c4	cookie	9-10
+# ::node	h	hash	11-12
+# ::node	c5	cookie	12-13
+# ::node	a	and	14-15
+# ::node	b	bacon	15-16
+# ::node	t	table	18-19
+# ::node	c3	coffee	20-21
+# ::node	a2	and	21-22
+# ::node	c2	chocolate	22-23
+# ::node	c	cake	23-24
+# ::root	f	food
+# ::edge	food	ARG1-of	breakfast-01	f	b2	
+# ::edge	food	consist-of	plate	f	p	
+# ::edge	country	name	name	c6	n	
+# ::edge	name	op1	England	n	0	
+# ::edge	cookie	mod	country	c4	c6	
+# ::edge	cookie	mod	hash	c5	h	
+# ::edge	and	op3	cookie	a	c5	
+# ::edge	and	op2	cookie	a	c4	
+# ::edge	and	op1	egg	a	e	
+# ::edge	food	accompanier	and	f	a	
+# ::edge	and	op4	bacon	a	b	
+# ::edge	food	location	table	f	t	
+# ::edge	and	op1	coffee	a2	c3	
+# ::edge	table	location-of	and	t	a2	
+# ::edge	cake	mod	chocolate	c	c2	
+# ::edge	and	op2	cake	a2	c	
+(f / food
+    :ARG1-of (b2 / breakfast-01)
+    :accompanier (a / and
+        :op1 (e / egg)
+        :op2 (c4 / cookie
+            :mod (c6 / country
+                :name (n / name
+                    :op1 "England")))
+        :op3 (c5 / cookie
+            :mod (h / hash))
+        :op4 (b / bacon))
+    :consist-of (p / plate)
+    :location (t / table
+        :location-of (a2 / and
+            :op1 (c3 / coffee)
+            :op2 (c / cake
+                :mod (c2 / chocolate)))))

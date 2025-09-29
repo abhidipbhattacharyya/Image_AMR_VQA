@@ -1,0 +1,39 @@
+# ::tok A city street at dusk with a street light that is on and a stop sign across the street .
+# ::node	c	city	1-2
+# ::node	s3	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	d2	dusk	4-5
+# ::node	h	have-03	5-6
+# ::node	s4	street	7-8
+# ::node	l	light	8-9
+# ::node	o	on-01	11-12
+# ::node	a2	and	12-13
+# ::node	s2	stop-01	14-15
+# ::node	s	signal-07	15-16
+# ::node	a	across	16-17
+# ::root	s3	street
+# ::edge	street	mod	city	s3	c	
+# ::edge	street	time	date-entity	s3	d	
+# ::edge	date-entity	dayperiod	dusk	d	d2	
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	light	mod	street	l	s4	
+# ::edge	light	ARG1-of	on-01	l	o	
+# ::edge	and	op1	light	a2	l	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	and	op2	signal-07	a2	s	
+# ::edge	signal-07	location	across	s	a	
+# ::edge	across	op1	street	a	s3	
+(s3 / street
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (l / light
+                :ARG1-of (o / on-01)
+                :mod (s4 / street))
+            :op2 (s / signal-07
+                :ARG1 (s2 / stop-01)
+                :location (a / across
+                    :op1 s3))))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (d2 / dusk)))

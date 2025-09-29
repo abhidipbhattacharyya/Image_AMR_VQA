@@ -1,0 +1,28 @@
+# ::tok Large sink next to sunken tub displayed in tiled bathroom .
+# ::node	l	large	0-1
+# ::node	s	sink	1-2
+# ::node	n	next-to	2-3
+# ::node	s2	sink-01	4-5
+# ::node	t2	tub	5-6
+# ::node	d	display-01	6-7
+# ::node	t	tile-01	8-9
+# ::node	b	bathroom	9-10
+# ::node	e	event	10-11
+# ::root	e	event
+# ::edge	sink	mod	large	s	l	
+# ::edge	sink	location	next-to	s	n	
+# ::edge	tub	ARG1-of	sink-01	t2	s2	
+# ::edge	next-to	op1	tub	n	t2	
+# ::edge	sink	ARG1-of	display-01	s	d	
+# ::edge	bathroom	ARG1-of	tile-01	b	t	
+# ::edge	display-01	ARG2	bathroom	d	b	
+# ::edge	event	mod	sink	e	s	
+(e / event
+    :mod (s / sink
+        :ARG1-of (d / display-01
+            :ARG2 (b / bathroom
+                :ARG1-of (t / tile-01)))
+        :location (n / next-to
+            :op1 (t2 / tub
+                :ARG1-of (s2 / sink-01)))
+        :mod (l / large)))

@@ -1,0 +1,25 @@
+# ::tok Sign indicating river near bridge and traffic in background .
+# ::node	s	sign-01	0-1
+# ::node	i	indicate-01	1-2
+# ::node	r	river	2-3
+# ::node	n	near-02	3-4
+# ::node	b2	bridge	4-5
+# ::node	a	and	5-6
+# ::node	t	traffic	6-7
+# ::node	b	background	8-9
+# ::root	s	sign-01
+# ::edge	sign-01	ARG0-of	indicate-01	s	i	
+# ::edge	near-02	ARG1	river	n	r	
+# ::edge	near-02	ARG2	bridge	n	b2	
+# ::edge	and	op1	near-02	a	n	
+# ::edge	indicate-01	ARG1	and	i	a	
+# ::edge	and	op2	traffic	a	t	
+# ::edge	traffic	location	background	t	b	
+(s / sign-01
+    :ARG0-of (i / indicate-01
+        :ARG1 (a / and
+            :op1 (n / near-02
+                :ARG1 (r / river)
+                :ARG2 (b2 / bridge))
+            :op2 (t / traffic
+                :location (b / background)))))

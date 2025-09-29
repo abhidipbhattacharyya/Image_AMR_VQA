@@ -1,0 +1,42 @@
+# ::tok many large balloons in the shape of different animals , flowers and shapes floating in the air and being filled to fly in the air
+# ::node	m	many	0-1
+# ::node	l	large	1-2
+# ::node	i	inflate-01	2-3
+# ::node	s	shape-01	5-6
+# ::node	d	differ-02	7-8
+# ::node	a3	animal	8-9
+# ::node	a2	and	9-10
+# ::node	f3	flower	10-11
+# ::node	s2	shape-01	12-13
+# ::node	f2	float-01	13-14
+# ::node	a	air	16-17
+# ::node	f	fill-01	19-20
+# ::node	f4	fly-01	21-22
+# ::root	i	inflate-01
+# ::edge	inflate-01	mod	large	i	l	
+# ::edge	inflate-01	quant	many	i	m	
+# ::edge	inflate-01	ARG1-of	shape-01	i	s	
+# ::edge	and	op1	animal	a2	a3	
+# ::edge	and	ARG1-of	differ-02	a2	d	
+# ::edge	shape-01	ARG2	and	s	a2	
+# ::edge	and	op2	flower	a2	f3	
+# ::edge	and	op3	shape-01	a2	s2	
+# ::edge	and	ARG1-of	float-01	a2	f2	
+# ::edge	float-01	ARG2	air	f2	a	
+# ::edge	and	ARG1-of	fill-01	a2	f	
+# ::edge	fill-01	purpose	fly-01	f	f4	
+# ::edge	fly-01	ARG2	air	f4	a	
+(i / inflate-01
+    :quant (m / many)
+    :ARG1-of (s / shape-01
+        :ARG2 (a2 / and
+            :ARG1-of (d / differ-02)
+            :ARG1-of (f2 / float-01
+                :ARG2 (a / air))
+            :ARG1-of (f / fill-01
+                :purpose (f4 / fly-01
+                    :ARG2 a))
+            :op1 (a3 / animal)
+            :op2 (f3 / flower)
+            :op3 (s2 / shape-01)))
+    :mod (l / large))

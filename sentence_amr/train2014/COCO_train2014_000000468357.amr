@@ -1,0 +1,34 @@
+# ::tok This is a serious workstation with laptop and cell phone now charging during work break .
+# ::node	t	this	0-1
+# ::node	s	serious-02	3-4
+# ::node	w2	workstation	4-5
+# ::node	l	laptop	6-7
+# ::node	a	and	7-8
+# ::node	c	cell	8-9
+# ::node	p	phone	9-10
+# ::node	n	now	10-11
+# ::node	c2	charge-03	11-12
+# ::node	w	work-01	13-14
+# ::node	b	break	14-15
+# ::root	w2	workstation
+# ::edge	workstation	ARG1-of	serious-02	w2	s	
+# ::edge	workstation	domain	this	w2	t	
+# ::edge	and	op1	laptop	a	l	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	and	op2	phone	a	p	
+# ::edge	charge-03	time	now	c2	n	
+# ::edge	charge-03	ARG1	and	c2	a	
+# ::edge	workstation	location-of	charge-03	w2	c2	
+# ::edge	break	mod	work-01	b	w	
+# ::edge	charge-03	time	break	c2	b	
+(w2 / workstation
+    :ARG1-of (s / serious-02)
+    :domain (t / this)
+    :location-of (c2 / charge-03
+        :ARG1 (a / and
+            :op1 (l / laptop)
+            :op2 (p / phone
+                :mod (c / cell)))
+        :time (n / now)
+        :time (b / break
+            :mod (w / work-01))))

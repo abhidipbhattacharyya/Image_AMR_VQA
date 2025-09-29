@@ -1,0 +1,45 @@
+# ::tok A large , commercial , stain - less steel refrigerator has a large orange sign on it saying " Meatloaf " .
+# ::node	l	large	1-2
+# ::node	c	commerce	3-4
+# ::node	s3	stain-01	5-6
+# ::node	l3	less	7-8
+# ::node	s4	steel	8-9
+# ::node	r	refrigerator	9-10
+# ::node	h	have-03	10-11
+# ::node	l2	large	12-13
+# ::node	o	orange	13-14
+# ::node	s2	sign	14-15
+# ::node	s	say-01	17-18
+# ::node	p	product	19-20
+# ::node	n	name	19-20
+# ::node	0	Meatloaf	19-20
+# ::root	h	have-03
+# ::edge	stain-01	mod	less	s3	l3	
+# ::edge	steel	consist-of	stain-01	s4	s3	
+# ::edge	refrigerator	mod	steel	r	s4	
+# ::edge	refrigerator	mod	commerce	r	c	
+# ::edge	refrigerator	mod	large	r	l	
+# ::edge	have-03	ARG0	refrigerator	h	r	
+# ::edge	sign	mod	orange	s2	o	
+# ::edge	sign	mod	large	s2	l2	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	refrigerator	s2	r	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	product	s	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Meatloaf	n	0	
+(h / have-03
+    :ARG0 (r / refrigerator
+        :mod (s4 / steel
+            :consist-of (s3 / stain-01
+                :mod (l3 / less)))
+        :mod (c / commerce)
+        :mod (l / large))
+    :ARG1 (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (p / product
+                :name (n / name
+                    :op1 "Meatloaf")))
+        :location r
+        :mod (o / orange)
+        :mod (l2 / large)))

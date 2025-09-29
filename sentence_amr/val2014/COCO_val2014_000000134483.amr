@@ -1,0 +1,48 @@
+# ::tok VERY SMALL BATHROOM WITH ONLY A TOILET AND LARGE BUNDLE OF TOILET PAPER
+# ::node	l	large	0-1
+# ::node	s2	small	1-2
+# ::node	r	room	2-3
+# ::node	f	fire	2-3
+# ::node	h	have-03	3-4
+# ::node	o	only	4-5
+# ::node	s	shoe	6-7
+# ::node	c	company	6-7
+# ::node	n	name	6-7
+# ::node	t	together	6-7
+# ::node	n2	newspaper	6-7
+# ::node	a	and	7-8
+# ::node	a2	and	7-8
+# ::node	l2	large	8-9
+# ::node	b	bin	9-10
+# ::root	a	and
+# ::edge	room	mod	small	r	s2	
+# ::edge	room	mod	large	r	l	
+# ::edge	have-03	ARG1	fire	h	f	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	shoe	mod	only	s	o	
+# ::edge	shoe	poss	company	s	c	
+# ::edge	company	name	name	c	n	
+# ::edge	shoe	mod	together	s	t	
+# ::edge	and	op1	shoe	a	s	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	newspaper	a2	n2	
+# ::edge	bin	mod	large	b	l2	
+# ::edge	and	op2	bin	a2	b	
+# ::edge	bin	unit	newspaper	b	n2	
+# ::edge	and	rel	room	a	r	
+(a / and
+    :op1 (s / shoe
+        :mod (o / only)
+        :mod (t / together)
+        :poss (c / company
+            :name (n / name)))
+    :op2 (a2 / and
+        :op1 (n2 / newspaper)
+        :op2 (b / bin
+            :mod (l2 / large)
+            :unit n2))
+    :rel (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (f / fire))
+        :mod (s2 / small)
+        :mod (l / large)))

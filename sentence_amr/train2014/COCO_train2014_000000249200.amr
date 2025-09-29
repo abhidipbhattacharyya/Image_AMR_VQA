@@ -1,0 +1,25 @@
+# ::tok Many sailboats are docked near the waters with much sea vegetation .
+# ::node	m	many	0-1
+# ::node	s	sail-01	1-2
+# ::node	d	dock-01	3-4
+# ::node	n	near-02	4-5
+# ::node	w	water	6-7
+# ::node	m2	much	8-9
+# ::node	s2	sea	9-10
+# ::node	v	vegetation	10-11
+# ::root	d	dock-01
+# ::edge	sail-01	quant	many	s	m	
+# ::edge	dock-01	ARG1	sail-01	d	s	
+# ::edge	dock-01	ARG1-of	near-02	d	n	
+# ::edge	near-02	ARG2	water	n	w	
+# ::edge	vegetation	mod	sea	v	s2	
+# ::edge	vegetation	quant	much	v	m2	
+# ::edge	water	prep-with	vegetation	w	v	
+(d / dock-01
+    :ARG1 (s / sail-01
+        :quant (m / many))
+    :ARG1-of (n / near-02
+        :ARG2 (w / water
+            :prep-with (v / vegetation
+                :quant (m2 / much)
+                :mod (s2 / sea)))))

@@ -1,0 +1,37 @@
+# ::tok some dirty dishes and used wine glasses rest on a table after a party has left .
+# ::node	s	some	0-1
+# ::node	d	dirty-02	1-2
+# ::node	d2	dish	2-3
+# ::node	a2	and	3-4
+# ::node	u	use-01	4-5
+# ::node	w	wine	5-6
+# ::node	g	glass	6-7
+# ::node	r	rest-01	7-8
+# ::node	t	table	10-11
+# ::node	a	after	11-12
+# ::node	p	party	13-14
+# ::node	l	leave-11	15-16
+# ::root	r	rest-01
+# ::edge	dish	ARG1-of	dirty-02	d2	d	
+# ::edge	dish	quant	some	d2	s	
+# ::edge	and	op1	dish	a2	d2	
+# ::edge	glass	mod	wine	g	w	
+# ::edge	glass	ARG1-of	use-01	g	u	
+# ::edge	and	op2	glass	a2	g	
+# ::edge	rest-01	ARG1	and	r	a2	
+# ::edge	rest-01	ARG2	table	r	t	
+# ::edge	rest-01	time	after	r	a	
+# ::edge	leave-11	ARG0	party	l	p	
+# ::edge	after	op1	leave-11	a	l	
+(r / rest-01
+    :ARG1 (a2 / and
+        :op1 (d2 / dish
+            :quant (s / some)
+            :ARG1-of (d / dirty-02))
+        :op2 (g / glass
+            :ARG1-of (u / use-01)
+            :mod (w / wine)))
+    :ARG2 (t / table)
+    :time (a / after
+        :op1 (l / leave-11
+            :ARG0 (p / party))))

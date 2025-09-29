@@ -1,0 +1,45 @@
+# ::tok A city street and sidewall that is wet with people standing under umbrellas and some people without umbrellas .
+# ::node	c	city	1-2
+# ::node	s4	street	2-3
+# ::node	a	and	3-4
+# ::node	s	sidewall	4-5
+# ::node	w	wet-01	7-8
+# ::node	p	person	9-10
+# ::node	s3	stand-01	10-11
+# ::node	u2	under	11-12
+# ::node	u	umbrella	12-13
+# ::node	a2	and	13-14
+# ::node	s2	some	14-15
+# ::node	p2	person	15-16
+# ::node	h	have-03	16-17
+# ::node	0	-	16-17
+# ::root	a	and
+# ::edge	street	mod	city	s4	c	
+# ::edge	and	op1	street	a	s4	
+# ::edge	and	op2	sidewall	a	s	
+# ::edge	and	ARG1-of	wet-01	a	w	
+# ::edge	stand-01	ARG1	person	s3	p	
+# ::edge	stand-01	ARG2	under	s3	u2	
+# ::edge	under	op1	umbrella	u2	u	
+# ::edge	and	op1	stand-01	a2	s3	
+# ::edge	wet-01	location-of	and	w	a2	
+# ::edge	person	quant	some	p2	s2	
+# ::edge	have-03	ARG0	person	h	p2	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG1	umbrella	h	u	
+# ::edge	have-03	polarity	-	h	0	
+(a / and
+    :ARG1-of (w / wet-01
+        :location-of (a2 / and
+            :op1 (s3 / stand-01
+                :ARG1 (p / person)
+                :ARG2 (u2 / under
+                    :op1 (u / umbrella)))
+            :op2 (h / have-03
+                :ARG0 (p2 / person
+                    :quant (s2 / some))
+                :ARG1 u
+                :polarity -)))
+    :op1 (s4 / street
+        :mod (c / city))
+    :op2 (s / sidewall))

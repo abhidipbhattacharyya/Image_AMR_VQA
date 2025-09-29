@@ -1,0 +1,31 @@
+# ::tok Cars , motorcycle , and pedestrians stopped at intersection in front of decorative building .
+# ::node	c	car	0-1
+# ::node	m	motorcycle	2-3
+# ::node	a	and	4-5
+# ::node	p	person	5-6
+# ::node	w	walk-01	5-6
+# ::node	s	stop-01	6-7
+# ::node	i2	intersect-01	8-9
+# ::node	i	in-front-of	10-11
+# ::node	d	decorative	12-13
+# ::node	b	building	13-14
+# ::root	s	stop-01
+# ::edge	and	op2	motorcycle	a	m	
+# ::edge	and	op1	car	a	c	
+# ::edge	and	op3	person	a	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	stop-01	ARG0	and	s	a	
+# ::edge	stop-01	location	intersect-01	s	i2	
+# ::edge	intersect-01	location	in-front-of	i2	i	
+# ::edge	building	mod	decorative	b	d	
+# ::edge	in-front-of	op1	building	i	b	
+(s / stop-01
+    :ARG0 (a / and
+        :op1 (c / car)
+        :op2 (m / motorcycle)
+        :op3 (p / person
+            :ARG0-of (w / walk-01)))
+    :location (i2 / intersect-01
+        :location (i / in-front-of
+            :op1 (b / building
+                :mod (d / decorative)))))

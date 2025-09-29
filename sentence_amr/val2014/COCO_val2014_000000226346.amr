@@ -1,0 +1,35 @@
+# ::tok Several people are standing or walking near a street market in front of a building .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	s2	stand-01	3-4
+# ::node	o	or	4-5
+# ::node	w	walk-01	5-6
+# ::node	n	near-02	6-7
+# ::node	s3	street	8-9
+# ::node	m	market	9-10
+# ::node	i	in-front-of	11-12
+# ::node	b	building	14-15
+# ::root	o	or
+# ::edge	person	quant	several	p	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	or	op1	stand-01	o	s2	
+# ::edge	or	op2	walk-01	o	w	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	or	ARG1-of	near-02	o	n	
+# ::edge	stand-01	ARG2	near-02	s2	n	
+# ::edge	market	location	street	m	s3	
+# ::edge	near-02	ARG2	market	n	m	
+# ::edge	market	location	in-front-of	m	i	
+# ::edge	in-front-of	op1	building	i	b	
+(o / or
+    :ARG1-of (n / near-02
+        :ARG2 (m / market
+            :location (s3 / street)
+            :location (i / in-front-of
+                :op1 (b / building))))
+    :op1 (s2 / stand-01
+        :ARG1 (p / person
+            :quant (s / several))
+        :ARG2 n)
+    :op2 (w / walk-01
+        :ARG0 p))

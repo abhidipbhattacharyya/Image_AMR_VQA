@@ -1,0 +1,42 @@
+# ::tok The office with wall to wall windows is empty , but staged with several desktops and comfortable chairs .
+# ::node	o	office	1-2
+# ::node	w	wall-to-wall	5-6
+# ::node	w2	window	6-7
+# ::node	0	-	7-8
+# ::node	e	empty-02	8-9
+# ::node	c4	contrast-01	10-11
+# ::node	s2	stage-01	11-12
+# ::node	s	several	13-14
+# ::node	c3	computer	14-15
+# ::node	c5	counter-01	14-15
+# ::node	a	and	15-16
+# ::node	c2	comfortable-02	16-17
+# ::node	c	chair	17-18
+# ::root	c4	contrast-01
+# ::edge	window	extent	wall-to-wall	w2	w	
+# ::edge	office	location	window	o	w2	
+# ::edge	empty-02	polarity	-	e	0	
+# ::edge	empty-02	ARG1	office	e	o	
+# ::edge	contrast-01	ARG1	empty-02	c4	e	
+# ::edge	contrast-01	ARG2	stage-01	c4	s2	
+# ::edge	stage-01	ARG1	office	s2	o	
+# ::edge	computer	quant	several	c3	s	
+# ::edge	computer	ARG0-of	counter-01	c3	c5	
+# ::edge	and	op1	computer	a	c3	
+# ::edge	stage-01	ARG2	and	s2	a	
+# ::edge	chair	ARG0-of	comfortable-02	c	c2	
+# ::edge	and	op2	chair	a	c	
+(c4 / contrast-01
+    :ARG1 (e / empty-02
+        :ARG1 (o / office
+            :location (w2 / window
+                :extent (w / wall-to-wall)))
+        :polarity -)
+    :ARG2 (s2 / stage-01
+        :ARG1 o
+        :ARG2 (a / and
+            :op1 (c3 / computer
+                :quant (s / several)
+                :ARG0-of (c5 / counter-01))
+            :op2 (c / chair
+                :ARG0-of (c2 / comfortable-02)))))

@@ -1,0 +1,25 @@
+# ::tok a plane sits on the tarmac while up above the storm clouds are gathering
+# ::node	p	plane	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	tarmac	5-6
+# ::node	u	up-03	7-8
+# ::node	a	above	8-9
+# ::node	s2	storm-01	10-11
+# ::node	c	cloud	11-12
+# ::node	g	gather-01	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	plane	s	p	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	up-03	ARG2	above	u	a	
+# ::edge	cloud	mod	storm-01	c	s2	
+# ::edge	above	op1	cloud	a	c	
+# ::edge	gather-01	ARG1	up-03	g	u	
+# ::edge	sit-01	time	gather-01	s	g	
+(s / sit-01
+    :ARG1 (p / plane)
+    :ARG2 (t / tarmac)
+    :time (g / gather-01
+        :ARG1 (u / up-03
+            :ARG2 (a / above
+                :op1 (c / cloud
+                    :mod (s2 / storm-01))))))

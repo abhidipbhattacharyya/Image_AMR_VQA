@@ -1,0 +1,35 @@
+# ::tok A multicolored cat that is sitting next to a plate that has a sandwich on it and a person on the other side of the plate .
+# ::node	m	multiple	1-2
+# ::node	c	cat	2-3
+# ::node	s3	sit-01	5-6
+# ::node	n	next-to	6-7
+# ::node	p2	plate	9-10
+# ::node	h	have-03	11-12
+# ::node	s	sandwich	13-14
+# ::node	p	person	18-19
+# ::node	o	other	21-22
+# ::node	s2	side	22-23
+# ::root	s3	sit-01
+# ::edge	cat	quant	multiple	c	m	
+# ::edge	sit-01	ARG1	cat	s3	c	
+# ::edge	sit-01	ARG2	next-to	s3	n	
+# ::edge	next-to	op1	plate	n	p2	
+# ::edge	plate	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	sandwich	h	s	
+# ::edge	sandwich	location	plate	s	p2	
+# ::edge	next-to	op2	person	n	p	
+# ::edge	side	mod	other	s2	o	
+# ::edge	person	location	side	p	s2	
+# ::edge	plate	part	side	p2	s2	
+(s3 / sit-01
+    :ARG1 (c / cat
+        :quant (m / multiple))
+    :ARG2 (n / next-to
+        :op1 (p2 / plate
+            :ARG0-of (h / have-03
+                :ARG1 (s / sandwich
+                    :location p2))
+            :part (s2 / side
+                :mod (o / other)))
+        :op2 (p / person
+            :location s2)))

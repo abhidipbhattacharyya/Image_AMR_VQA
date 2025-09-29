@@ -1,0 +1,55 @@
+# ::tok A dog on one side of a fence with herd of cows on the other side with a cow leaning over the fence trying to reach the dog .
+# ::node	d	dog	1-2
+# ::node	o	one	3-4
+# ::node	s	side	4-5
+# ::node	f	fence	7-8
+# ::node	h3	herd	9-10
+# ::node	c	cow	11-12
+# ::node	o2	other	14-15
+# ::node	s2	side	15-16
+# ::node	h	have-03	16-17
+# ::node	c2	cow	18-19
+# ::node	l	lean-01	19-20
+# ::node	h2	have-03	19-20
+# ::node	o3	over	20-21
+# ::node	t	try-01	23-24
+# ::node	r	reach-01	25-26
+# ::node	a	and	28-29
+# ::root	a	and
+# ::edge	side	mod	one	s	o	
+# ::edge	dog	location	side	d	s	
+# ::edge	side	part-of	fence	s	f	
+# ::edge	herd	consist-of	cow	h3	c	
+# ::edge	side	mod	other	s2	o2	
+# ::edge	herd	location	side	h3	s2	
+# ::edge	have-03	ARG1	herd	h	h3	
+# ::edge	dog	ARG0-of	have-03	d	h	
+# ::edge	lean-01	ARG1	cow	l	c2	
+# ::edge	cow	ARG0-of	have-03	c2	h2	
+# ::edge	lean-01	ARG2	over	l	o3	
+# ::edge	over	op1	fence	o3	f	
+# ::edge	cow	ARG0-of	try-01	c2	t	
+# ::edge	try-01	ARG1	reach-01	t	r	
+# ::edge	reach-01	ARG0	cow	r	c2	
+# ::edge	reach-01	ARG1	dog	r	d	
+# ::edge	and	op2	lean-01	a	l	
+# ::edge	and	op1	dog	a	d	
+(a / and
+    :op1 (d / dog
+        :ARG0-of (h / have-03
+            :ARG1 (h3 / herd
+                :consist-of (c / cow)
+                :location (s2 / side
+                    :mod (o2 / other))))
+        :location (s / side
+            :mod (o / one)
+            :part-of (f / fence)))
+    :op2 (l / lean-01
+        :ARG1 (c2 / cow
+            :ARG0-of (h2 / have-03)
+            :ARG0-of (t / try-01
+                :ARG1 (r / reach-01
+                    :ARG0 c2
+                    :ARG1 d)))
+        :ARG2 (o3 / over
+            :op1 f)))

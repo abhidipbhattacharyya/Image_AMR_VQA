@@ -1,0 +1,30 @@
+# ::tok A street with a man on the corner in front of the crosswalk and various buildings behind him .
+# ::node	s	street	1-2
+# ::node	m	man	4-5
+# ::node	c	corner	7-8
+# ::node	i	in-front-of	9-10
+# ::node	c2	crosswalk	12-13
+# ::node	a	and	13-14
+# ::node	v	various	14-15
+# ::node	b2	building	15-16
+# ::node	b	behind	16-17
+# ::root	s	street
+# ::edge	man	location	corner	m	c	
+# ::edge	man	location	in-front-of	m	i	
+# ::edge	in-front-of	op1	crosswalk	i	c2	
+# ::edge	and	op1	man	a	m	
+# ::edge	street	location-of	and	s	a	
+# ::edge	building	mod	various	b2	v	
+# ::edge	and	op2	building	a	b2	
+# ::edge	building	location	behind	b2	b	
+# ::edge	behind	op1	man	b	m	
+(s / street
+    :location-of (a / and
+        :op1 (m / man
+            :location (c / corner)
+            :location (i / in-front-of
+                :op1 (c2 / crosswalk)))
+        :op2 (b2 / building
+            :location (b / behind
+                :op1 m)
+            :mod (v / various))))

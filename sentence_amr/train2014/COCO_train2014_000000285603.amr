@@ -1,0 +1,25 @@
+# ::tok A highway filled with lots of traffic with a train traveling over a bridge .
+# ::node	h	highway	1-2
+# ::node	f	fill-01	2-3
+# ::node	l	lot	4-5
+# ::node	t	traffic	6-7
+# ::node	t2	train	9-10
+# ::node	t3	travel-01	10-11
+# ::node	o	over	11-12
+# ::node	b	bridge	13-14
+# ::root	f	fill-01
+# ::edge	fill-01	ARG1	highway	f	h	
+# ::edge	traffic	quant	lot	t	l	
+# ::edge	fill-01	ARG2	traffic	f	t	
+# ::edge	traffic	prep-with	train	t	t2	
+# ::edge	train	ARG0-of	travel-01	t2	t3	
+# ::edge	travel-01	path	over	t3	o	
+# ::edge	over	op1	bridge	o	b	
+(f / fill-01
+    :ARG1 (h / highway)
+    :ARG2 (t / traffic
+        :quant (l / lot)
+        :prep-with (t2 / train
+            :ARG0-of (t3 / travel-01
+                :path (o / over
+                    :op1 (b / bridge))))))

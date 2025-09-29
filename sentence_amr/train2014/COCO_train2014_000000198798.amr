@@ -1,0 +1,48 @@
+# ::tok A red brick wall with a garage door that has a barn mural painted on it and a cow and chickens along with other birds .
+# ::node	r	red-02	1-2
+# ::node	b3	brick	2-3
+# ::node	w	wall	3-4
+# ::node	g	garage	6-7
+# ::node	d	door	7-8
+# ::node	h	have-03	9-10
+# ::node	b	barn	11-12
+# ::node	m	mural	12-13
+# ::node	p	paint-01	13-14
+# ::node	a	and	16-17
+# ::node	c2	cow	18-19
+# ::node	a2	and	19-20
+# ::node	c	chicken	20-21
+# ::node	o	other	23-24
+# ::node	b2	bird	24-25
+# ::root	h	have-03
+# ::edge	brick	ARG1-of	red-02	b3	r	
+# ::edge	wall	consist-of	brick	w	b3	
+# ::edge	door	part-of	garage	d	g	
+# ::edge	wall	part	door	w	d	
+# ::edge	have-03	ARG0	wall	h	w	
+# ::edge	mural	mod	barn	m	b	
+# ::edge	mural	ARG2-of	paint-01	m	p	
+# ::edge	paint-01	location	wall	p	w	
+# ::edge	and	op1	mural	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	cow	a2	c2	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op2	chicken	a2	c	
+# ::edge	bird	mod	other	b2	o	
+# ::edge	and	op3	bird	a2	b2	
+(h / have-03
+    :ARG0 (w / wall
+        :consist-of (b3 / brick
+            :ARG1-of (r / red-02))
+        :part (d / door
+            :part-of (g / garage)))
+    :ARG1 (a / and
+        :op1 (m / mural
+            :ARG2-of (p / paint-01
+                :location w)
+            :mod (b / barn))
+        :op2 (a2 / and
+            :op1 (c2 / cow)
+            :op2 (c / chicken)
+            :op3 (b2 / bird
+                :mod (o / other)))))

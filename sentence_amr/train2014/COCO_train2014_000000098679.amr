@@ -1,0 +1,43 @@
+# ::tok A lamppost with street signs indicating it is on the corner of S. Henry and Duke of Gloucester streets .
+# ::node	l	lamppost	1-2
+# ::node	s2	street	3-4
+# ::node	s	sign	4-5
+# ::node	i	indicate-01	5-6
+# ::node	c	corner	10-11
+# ::node	n	name	12-13
+# ::node	3	S.	12-13
+# ::node	2	Henry	13-14
+# ::node	n2	name	15-16
+# ::node	0	Duke	15-16
+# ::node	4	of	16-17
+# ::node	1	Gloucester	17-18
+# ::node	r	road	18-19
+# ::node	s3	street	18-19
+# ::root	l	lamppost
+# ::edge	sign	mod	street	s	s2	
+# ::edge	lamppost	location-of	sign	l	s	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	indicate-01	location	corner	i	c	
+# ::edge	name	op1	S.	n	3	
+# ::edge	name	op2	Henry	n	2	
+# ::edge	name	op1	Duke	n2	0	
+# ::edge	name	op2	of	n2	4	
+# ::edge	name	op3	Gloucester	n2	1	
+# ::edge	road	name	name	r	n	
+# ::edge	corner	op1	road	c	r	
+# ::edge	street	name	name	s3	n2	
+# ::edge	corner	op2	street	c	s3	
+(l / lamppost
+    :location-of (s / sign
+        :ARG0-of (i / indicate-01
+            :location (c / corner
+                :op1 (r / road
+                    :name (n / name
+                        :op1 "S."
+                        :op2 "Henry"))
+                :op2 (s3 / street
+                    :name (n2 / name
+                        :op1 "Duke"
+                        :op2 "of"
+                        :op3 "Gloucester"))))
+        :mod (s2 / street)))

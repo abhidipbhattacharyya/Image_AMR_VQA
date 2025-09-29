@@ -1,0 +1,33 @@
+# ::tok A man in a living room is bent down and another man is coming up behind him .
+# ::node	m	man	1-2
+# ::node	l	living	4-5
+# ::node	r	room	5-6
+# ::node	b2	bend-01	7-8
+# ::node	d	down	8-9
+# ::node	a	and	9-10
+# ::node	a2	another	10-11
+# ::node	m2	man	11-12
+# ::node	c	come-01	13-14
+# ::node	b	behind	15-16
+# ::root	a	and
+# ::edge	room	mod	living	r	l	
+# ::edge	man	location	room	m	r	
+# ::edge	bend-01	ARG0	man	b2	m	
+# ::edge	bend-01	direction	down	b2	d	
+# ::edge	and	op1	bend-01	a	b2	
+# ::edge	man	mod	another	m2	a2	
+# ::edge	come-01	ARG1	man	c	m2	
+# ::edge	and	op2	come-01	a	c	
+# ::edge	come-01	ARG4	behind	c	b	
+# ::edge	behind	op1	man	b	m	
+(a / and
+    :op1 (b2 / bend-01
+        :ARG0 (m / man
+            :location (r / room
+                :mod (l / living)))
+        :direction (d / down))
+    :op2 (c / come-01
+        :ARG1 (m2 / man
+            :mod (a2 / another))
+        :ARG4 (b / behind
+            :op1 m)))

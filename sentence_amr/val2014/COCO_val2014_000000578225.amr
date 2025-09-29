@@ -1,0 +1,27 @@
+# ::tok Cleaning and repair items laid out on the living room floor
+# ::node	c	clean-01	0-1
+# ::node	a	and	1-2
+# ::node	r	repair-01	2-3
+# ::node	i	item	3-4
+# ::node	l	lay-01	4-5
+# ::node	l2	living	8-9
+# ::node	r2	room	9-10
+# ::node	f	floor	10-11
+# ::root	a	and
+# ::edge	and	op1	clean-01	a	c	
+# ::edge	and	op2	repair-01	a	r	
+# ::edge	repair-01	ARG1	item	r	i	
+# ::edge	clean-01	ARG1	item	c	i	
+# ::edge	item	ARG1-of	lay-01	i	l	
+# ::edge	room	mod	living	r2	l2	
+# ::edge	floor	part-of	room	f	r2	
+# ::edge	lay-01	ARG2	floor	l	f	
+(a / and
+    :op1 (c / clean-01
+        :ARG1 (i / item
+            :ARG1-of (l / lay-01
+                :ARG2 (f / floor
+                    :part-of (r2 / room
+                        :mod (l2 / living))))))
+    :op2 (r / repair-01
+        :ARG1 i))

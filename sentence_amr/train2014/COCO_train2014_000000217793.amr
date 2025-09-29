@@ -1,0 +1,38 @@
+# ::tok Two sets of blue / white chairs with blue / white umbrellas facing the ocean .
+# ::node	0	2	0-1
+# ::node	s	set	1-2
+# ::node	b	blue	3-4
+# ::node	s2	slash	4-5
+# ::node	w	white-03	5-6
+# ::node	c	chair	6-7
+# ::node	h	have-03	7-8
+# ::node	s3	slash	9-10
+# ::node	u	umbrella	11-12
+# ::node	f	face-01	12-13
+# ::node	o	ocean	14-15
+# ::root	h	have-03
+# ::edge	set	quant	2	s	0	
+# ::edge	slash	op1	blue	s2	b	
+# ::edge	chair	mod	slash	c	s2	
+# ::edge	set	consist-of	chair	s	c	
+# ::edge	have-03	ARG0	slash	h	s2	
+# ::edge	slash	op1	have-03	s3	h	
+# ::edge	umbrella	mod	slash	u	s3	
+# ::edge	have-03	ARG1	umbrella	h	u	
+# ::edge	slash	ARG0-of	face-01	s3	f	
+# ::edge	face-01	ARG1	ocean	f	o	
+# ::edge	have-03	rel	set	h	s	
+# ::edge	have-03	rel	white-03	h	w	
+(h / have-03
+    :ARG0 (s2 / slash
+        :op1 (b / blue))
+    :ARG1 (u / umbrella
+        :mod (s3 / slash
+            :ARG0-of (f / face-01
+                :ARG1 (o / ocean))
+            :op1 h))
+    :rel (s / set
+        :quant 2
+        :consist-of (c / chair
+            :mod s2))
+    :rel (w / white-03))

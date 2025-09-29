@@ -1,0 +1,33 @@
+# ::tok A red brick building sits on a corner and has a tower and a clock .
+# ::node	r	red-02	1-2
+# ::node	b	brick	2-3
+# ::node	b2	building	3-4
+# ::node	s	sit-01	4-5
+# ::node	c2	corner	7-8
+# ::node	a	and	8-9
+# ::node	h	have-03	9-10
+# ::node	t	tower	11-12
+# ::node	a2	and	12-13
+# ::node	c	clock	14-15
+# ::root	a	and
+# ::edge	brick	ARG1-of	red-02	b	r	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	sit-01	ARG1	building	s	b2	
+# ::edge	sit-01	ARG2	corner	s	c2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	building	h	b2	
+# ::edge	and	op1	tower	a2	t	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	clock	a2	c	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (b2 / building
+            :consist-of (b / brick
+                :ARG1-of (r / red-02)))
+        :ARG2 (c2 / corner))
+    :op2 (h / have-03
+        :ARG0 b2
+        :ARG1 (a2 / and
+            :op1 (t / tower)
+            :op2 (c / clock))))

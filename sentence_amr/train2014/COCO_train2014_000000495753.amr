@@ -1,0 +1,51 @@
+# ::tok A captive elephant eats grass as children sit atop it , waiting for a ride ; the elephant is guided by a person on the ground .
+# ::node	c	captive	1-2
+# ::node	e2	elephant	2-3
+# ::node	e	eat-01	3-4
+# ::node	g	grass	4-5
+# ::node	c2	child	6-7
+# ::node	s	sit-01	7-8
+# ::node	a3	atop	8-9
+# ::node	a	and	10-11
+# ::node	w	wait-01	11-12
+# ::node	r	ride-01	14-15
+# ::node	a2	and	15-16
+# ::node	g3	guide-01	19-20
+# ::node	p	person	22-23
+# ::node	g2	ground	25-26
+# ::root	a2	and
+# ::edge	elephant	mod	captive	e2	c	
+# ::edge	eat-01	ARG0	elephant	e	e2	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	sit-01	ARG1	child	s	c2	
+# ::edge	sit-01	ARG2	atop	s	a3	
+# ::edge	atop	op1	elephant	a3	e2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	eat-01	time	and	e	a	
+# ::edge	and	op2	wait-01	a	w	
+# ::edge	wait-01	ARG1	elephant	w	e2	
+# ::edge	wait-01	ARG2	ride-01	w	r	
+# ::edge	ride-01	ARG1	elephant	r	e2	
+# ::edge	and	op1	eat-01	a2	e	
+# ::edge	and	op2	guide-01	a2	g3	
+# ::edge	guide-01	ARG1	elephant	g3	e2	
+# ::edge	guide-01	ARG0	person	g3	p	
+# ::edge	guide-01	location	ground	g3	g2	
+(a2 / and
+    :op1 (e / eat-01
+        :ARG0 (e2 / elephant
+            :mod (c / captive))
+        :ARG1 (g / grass)
+        :time (a / and
+            :op1 (s / sit-01
+                :ARG1 (c2 / child)
+                :ARG2 (a3 / atop
+                    :op1 e2))
+            :op2 (w / wait-01
+                :ARG1 e2
+                :ARG2 (r / ride-01
+                    :ARG1 e2))))
+    :op2 (g3 / guide-01
+        :ARG0 (p / person)
+        :ARG1 e2
+        :location (g2 / ground)))

@@ -1,0 +1,36 @@
+# ::tok A train traveling along a train track bordering a city scape below multiple power lines .
+# ::node	t2	train	1-2
+# ::node	t3	travel-01	2-3
+# ::node	a	along	3-4
+# ::node	t	track	6-7
+# ::node	b2	border-01	7-8
+# ::node	c	city	9-10
+# ::node	s	scape	10-11
+# ::node	b	below	11-12
+# ::node	m	multiple	12-13
+# ::node	p	power-01	13-14
+# ::node	l	line	14-15
+# ::root	t3	travel-01
+# ::edge	travel-01	ARG0	train	t3	t2	
+# ::edge	travel-01	ARG1	along	t3	a	
+# ::edge	along	op1	track	a	t	
+# ::edge	track	mod	train	t	t2	
+# ::edge	track	ARG1-of	border-01	t	b2	
+# ::edge	scape	mod	city	s	c	
+# ::edge	border-01	ARG2	scape	b2	s	
+# ::edge	scape	location	below	s	b	
+# ::edge	line	mod	power-01	l	p	
+# ::edge	line	quant	multiple	l	m	
+# ::edge	below	op1	line	b	l	
+(t3 / travel-01
+    :ARG0 (t2 / train)
+    :ARG1 (a / along
+        :op1 (t / track
+            :ARG1-of (b2 / border-01
+                :ARG2 (s / scape
+                    :location (b / below
+                        :op1 (l / line
+                            :quant (m / multiple)
+                            :mod (p / power-01)))
+                    :mod (c / city)))
+            :mod t2)))

@@ -1,0 +1,32 @@
+# ::tok A dog sleeping with its head on a pillow and body on a comforter on the floor .
+# ::node	d	dog	1-2
+# ::node	s	sleep-01	2-3
+# ::node	h	head	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	p	pillow	8-9
+# ::node	a	and	9-10
+# ::node	b2	body	10-11
+# ::node	c	comforter	13-14
+# ::node	f	floor	16-17
+# ::root	s	sleep-01
+# ::edge	sleep-01	ARG0	dog	s	d	
+# ::edge	dog	part	head	d	h	
+# ::edge	be-located-at-91	ARG1	head	b	h	
+# ::edge	be-located-at-91	ARG2	pillow	b	p	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	sleep-01	manner	and	s	a	
+# ::edge	and	op2	body	a	b2	
+# ::edge	dog	part	body	d	b2	
+# ::edge	body	location	comforter	b2	c	
+# ::edge	comforter	location	floor	c	f	
+(s / sleep-01
+    :ARG0 (d / dog
+        :part (h / head)
+        :part (b2 / body
+            :location (c / comforter
+                :location (f / floor))))
+    :manner (a / and
+        :op1 (b / be-located-at-91
+            :ARG1 h
+            :ARG2 (p / pillow))
+        :op2 b2))

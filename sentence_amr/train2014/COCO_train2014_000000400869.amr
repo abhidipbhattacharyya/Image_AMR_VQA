@@ -1,0 +1,30 @@
+# ::tok A cheeseburger with a donut for a bun sits in a paper basket in front of a paper cup .
+# ::node	c	cheeseburger	1-2
+# ::node	d	donut	4-5
+# ::node	e	exchange-01	5-6
+# ::node	b2	bun	7-8
+# ::node	s	sit-01	8-9
+# ::node	p	paper	11-12
+# ::node	b	basket	12-13
+# ::node	i	in-front-of	14-15
+# ::node	c2	cup	18-19
+# ::root	s	sit-01
+# ::edge	exchange-01	ARG1	donut	e	d	
+# ::edge	cheeseburger	mod	exchange-01	c	e	
+# ::edge	exchange-01	ARG2	bun	e	b2	
+# ::edge	sit-01	ARG1	cheeseburger	s	c	
+# ::edge	basket	consist-of	paper	b	p	
+# ::edge	sit-01	ARG2	basket	s	b	
+# ::edge	basket	location	in-front-of	b	i	
+# ::edge	in-front-of	op1	cup	i	c2	
+# ::edge	cup	consist-of	paper	c2	p	
+(s / sit-01
+    :ARG1 (c / cheeseburger
+        :mod (e / exchange-01
+            :ARG1 (d / donut)
+            :ARG2 (b2 / bun)))
+    :ARG2 (b / basket
+        :consist-of (p / paper)
+        :location (i / in-front-of
+            :op1 (c2 / cup
+                :consist-of p))))

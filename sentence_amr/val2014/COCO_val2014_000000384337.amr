@@ -1,0 +1,38 @@
+# ::tok A twin bed with restraints and a blood pressure machine next to it .
+# ::node	t	twin	1-2
+# ::node	b2	bed	2-3
+# ::node	h	have-03	3-4
+# ::node	r	restrain-01	4-5
+# ::node	a	and	5-6
+# ::node	b3	blood	7-8
+# ::node	p	pressure	8-9
+# ::node	m	machine	9-10
+# ::node	n	next-to	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	c	cause-01	13-14
+# ::root	c	cause-01
+# ::edge	bed	mod	twin	b2	t	
+# ::edge	bed	ARG0-of	have-03	b2	h	
+# ::edge	and	op1	restrain-01	a	r	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	pressure	mod	blood	p	b3	
+# ::edge	machine	purpose	pressure	m	p	
+# ::edge	and	op2	machine	a	m	
+# ::edge	next-to	op1	bed	n	b2	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	be-located-at-91	ARG1	bed	b	b2	
+# ::edge	cause-01	ARG1	next-to	c	n	
+# ::edge	cause-01	rel	be-located-at-91	c	b	
+(c / cause-01
+    :ARG1 (n / next-to
+        :op1 (b2 / bed
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (r / restrain-01)
+                    :op2 (m / machine
+                        :purpose (p / pressure
+                            :mod (b3 / blood)))))
+            :mod (t / twin)))
+    :rel (b / be-located-at-91
+        :ARG1 b2
+        :ARG2 n))

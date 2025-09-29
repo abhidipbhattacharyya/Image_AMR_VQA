@@ -1,0 +1,34 @@
+# ::tok A bike is parked against a brick wall just around the corner from a white toilet .
+# ::node	b	bike	1-2
+# ::node	p	park-01	3-4
+# ::node	a	against	4-5
+# ::node	b2	brick	6-7
+# ::node	w	wall	7-8
+# ::node	j	just	8-9
+# ::node	a2	around	9-10
+# ::node	c	corner	11-12
+# ::node	r	relative-position	12-13
+# ::node	w2	white-03	14-15
+# ::node	t	toilet	15-16
+# ::root	p	park-01
+# ::edge	park-01	ARG1	bike	p	b	
+# ::edge	park-01	ARG2	against	p	a	
+# ::edge	wall	consist-of	brick	w	b2	
+# ::edge	against	op1	wall	a	w	
+# ::edge	around	mod	just	a2	j	
+# ::edge	around	op1	corner	a2	c	
+# ::edge	relative-position	direction	around	r	a2	
+# ::edge	park-01	location	relative-position	p	r	
+# ::edge	toilet	ARG1-of	white-03	t	w2	
+# ::edge	relative-position	op1	toilet	r	t	
+(p / park-01
+    :ARG1 (b / bike)
+    :ARG2 (a / against
+        :op1 (w / wall
+            :consist-of (b2 / brick)))
+    :location (r / relative-position
+        :direction (a2 / around
+            :mod (j / just)
+            :op1 (c / corner))
+        :op1 (t / toilet
+            :ARG1-of (w2 / white-03))))

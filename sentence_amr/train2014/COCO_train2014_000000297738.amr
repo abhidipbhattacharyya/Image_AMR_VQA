@@ -1,0 +1,27 @@
+# ::tok The train is traveling form the city , and has arrived at the junction of several tracks .
+# ::node	t2	train	1-2
+# ::node	t3	travel-01	3-4
+# ::node	c	city	6-7
+# ::node	a	and	8-9
+# ::node	a2	arrive-01	10-11
+# ::node	i	intersect-01	13-14
+# ::node	s	several	15-16
+# ::node	t	track	16-17
+# ::root	a	and
+# ::edge	travel-01	ARG0	train	t3	t2	
+# ::edge	travel-01	ARG1	city	t3	c	
+# ::edge	and	op1	travel-01	a	t3	
+# ::edge	and	op2	arrive-01	a	a2	
+# ::edge	arrive-01	ARG1	train	a2	t2	
+# ::edge	arrive-01	ARG4	intersect-01	a2	i	
+# ::edge	track	quant	several	t	s	
+# ::edge	intersect-01	ARG1	track	i	t	
+(a / and
+    :op1 (t3 / travel-01
+        :ARG0 (t2 / train)
+        :ARG1 (c / city))
+    :op2 (a2 / arrive-01
+        :ARG1 t2
+        :ARG4 (i / intersect-01
+            :ARG1 (t / track
+                :quant (s / several)))))

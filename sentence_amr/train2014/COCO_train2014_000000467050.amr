@@ -1,0 +1,24 @@
+# ::tok Street sign shows the name of the building it 's hanging on
+# ::node	s3	street	0-1
+# ::node	s2	sign	1-2
+# ::node	s	show-01	2-3
+# ::node	t	thing	4-5
+# ::node	n	name-01	4-5
+# ::node	b	building	7-8
+# ::node	h	hang-01	10-11
+# ::root	s	show-01
+# ::edge	sign	location	street	s2	s3	
+# ::edge	show-01	ARG0	sign	s	s2	
+# ::edge	show-01	ARG1	thing	s	t	
+# ::edge	thing	ARG2-of	name-01	t	n	
+# ::edge	name-01	ARG1	building	n	b	
+# ::edge	building	ARG2-of	hang-01	b	h	
+# ::edge	hang-01	ARG1	sign	h	s2	
+(s / show-01
+    :ARG0 (s2 / sign
+        :location (s3 / street))
+    :ARG1 (t / thing
+        :ARG2-of (n / name-01
+            :ARG1 (b / building
+                :ARG2-of (h / hang-01
+                    :ARG1 s2)))))

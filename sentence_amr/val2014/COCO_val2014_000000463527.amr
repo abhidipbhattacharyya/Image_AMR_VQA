@@ -1,0 +1,39 @@
+# ::tok A blue and black ray holding sandwich , coffee and liquor bottles .
+# ::node	b2	blue	1-2
+# ::node	a	and	2-3
+# ::node	b	black-04	3-4
+# ::node	r	ray	4-5
+# ::node	r2	ray	4-5
+# ::node	h	hold-01	5-6
+# ::node	s	sandwich	6-7
+# ::node	a2	and	7-8
+# ::node	c	coffee	8-9
+# ::node	l	liquor	10-11
+# ::node	c2	contain-01	11-12
+# ::node	b3	bottle	11-12
+# ::root	a	and
+# ::edge	and	op1	ray	a	r	
+# ::edge	ray	mod	blue	r	b2	
+# ::edge	ray	ARG1-of	black-04	r2	b	
+# ::edge	and	op2	ray	a	r2	
+# ::edge	and	ARG0-of	hold-01	a	h	
+# ::edge	and	op1	sandwich	a2	s	
+# ::edge	hold-01	ARG1	and	h	a2	
+# ::edge	contain-01	ARG1	and	c2	a2	
+# ::edge	and	ARG0-of	contain-01	a2	c2	
+# ::edge	bottle	mod	liquor	b3	l	
+# ::edge	and	op2	bottle	a2	b3	
+# ::edge	and	rel	coffee	a	c	
+(a / and
+    :ARG0-of (h / hold-01
+        :ARG1 (a2 / and
+            :ARG0-of (c2 / contain-01
+                :ARG1 a2)
+            :op1 (s / sandwich)
+            :op2 (b3 / bottle
+                :mod (l / liquor))))
+    :op1 (r / ray
+        :mod (b2 / blue))
+    :op2 (r2 / ray
+        :ARG1-of (b / black-04))
+    :rel (c / coffee))

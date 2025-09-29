@@ -1,0 +1,32 @@
+# ::tok A stop sign that is displaying a different meaning than the original one .
+# ::node	s2	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	d2	display-01	5-6
+# ::node	d	differ-02	7-8
+# ::node	m	mean-01	8-9
+# ::node	t	thing	8-9
+# ::node	m2	mean-01	8-9
+# ::node	o2	original	11-12
+# ::node	o	one	12-13
+# ::root	d2	display-01
+# ::edge	sign	purpose	stop-01	s	s2	
+# ::edge	display-01	ARG0	sign	d2	s	
+# ::edge	differ-02	ARG1	sign	d	s	
+# ::edge	mean-01	ARG2	differ-02	m	d	
+# ::edge	display-01	ARG1	mean-01	d2	m	
+# ::edge	mean-01	ARG1	sign	m	s	
+# ::edge	differ-02	ARG2	thing	d	t	
+# ::edge	thing	ARG2-of	mean-01	t	m2	
+# ::edge	one	mod	original	o	o2	
+# ::edge	mean-01	ARG1	one	m2	o	
+(d2 / display-01
+    :ARG0 (s / sign
+        :purpose (s2 / stop-01))
+    :ARG1 (m / mean-01
+        :ARG1 s
+        :ARG2 (d / differ-02
+            :ARG1 s
+            :ARG2 (t / thing
+                :ARG2-of (m2 / mean-01
+                    :ARG1 (o / one
+                        :mod (o2 / original)))))))

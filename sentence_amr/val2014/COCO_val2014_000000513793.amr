@@ -1,0 +1,22 @@
+# ::tok A closeup of a parking meter that reads " time expired . "
+# ::node	c	close-10	1-2
+# ::node	p	park-01	4-5
+# ::node	m	meter	5-6
+# ::node	r	read-01	7-8
+# ::node	t	time	9-10
+# ::node	e	expire-01	10-11
+# ::node	s	show-01	11-12
+# ::root	s	show-01
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	close-10	ARG1	meter	c	m	
+# ::edge	meter	ARG0-of	read-01	m	r	
+# ::edge	expire-01	ARG1	time	e	t	
+# ::edge	read-01	ARG3	expire-01	r	e	
+# ::edge	show-01	ARG1	close-10	s	c	
+(s / show-01
+    :ARG1 (c / close-10
+        :ARG1 (m / meter
+            :purpose (p / park-01)
+            :ARG0-of (r / read-01
+                :ARG3 (e / expire-01
+                    :ARG1 (t / time))))))

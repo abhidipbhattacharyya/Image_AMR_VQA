@@ -1,0 +1,44 @@
+# ::tok A little girl sits at the table preparing to eat some pizza and some juice in a wine glass .
+# ::node	l	little	1-2
+# ::node	g	girl	2-3
+# ::node	s	sit-01	3-4
+# ::node	t	table	6-7
+# ::node	p2	prepare-02	7-8
+# ::node	e	eat-01	9-10
+# ::node	s2	some	10-11
+# ::node	p	pizza	11-12
+# ::node	a	and	12-13
+# ::node	s3	some	13-14
+# ::node	j	juice	14-15
+# ::node	w	wine	17-18
+# ::node	g2	glass	18-19
+# ::root	s	sit-01
+# ::edge	girl	mod	little	g	l	
+# ::edge	sit-01	ARG1	girl	s	g	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	sit-01	purpose	prepare-02	s	p2	
+# ::edge	prepare-02	ARG0	girl	p2	g	
+# ::edge	prepare-02	ARG2	eat-01	p2	e	
+# ::edge	eat-01	ARG0	girl	e	g	
+# ::edge	pizza	mod	some	p	s2	
+# ::edge	and	op1	pizza	a	p	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	juice	mod	some	j	s3	
+# ::edge	and	op2	juice	a	j	
+# ::edge	glass	mod	wine	g2	w	
+# ::edge	eat-01	location	glass	e	g2	
+(s / sit-01
+    :purpose (p2 / prepare-02
+        :ARG0 (g / girl
+            :mod (l / little))
+        :ARG2 (e / eat-01
+            :ARG0 g
+            :ARG1 (a / and
+                :op1 (p / pizza
+                    :mod (s2 / some))
+                :op2 (j / juice
+                    :mod (s3 / some)))
+            :location (g2 / glass
+                :mod (w / wine))))
+    :ARG1 g
+    :ARG2 (t / table))

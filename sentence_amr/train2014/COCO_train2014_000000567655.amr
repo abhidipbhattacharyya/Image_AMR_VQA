@@ -1,0 +1,31 @@
+# ::tok Only the blurred legs of a baseball player and a bat can be seen .
+# ::node	o	only	0-1
+# ::node	b3	blur-01	2-3
+# ::node	l	leg	3-4
+# ::node	b	baseball	6-7
+# ::node	p	person	7-8
+# ::node	p2	play-01	7-8
+# ::node	a	and	8-9
+# ::node	b2	bat	10-11
+# ::node	p3	possible-01	11-12
+# ::node	s	see-01	13-14
+# ::root	p3	possible-01
+# ::edge	leg	ARG1-of	blur-01	l	b3	
+# ::edge	leg	part-of	person	l	p	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	and	op1	leg	a	l	
+# ::edge	and	mod	only	a	o	
+# ::edge	and	op2	bat	a	b2	
+# ::edge	possible-01	ARG1	see-01	p3	s	
+# ::edge	see-01	ARG1	and	s	a	
+(p3 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (a / and
+            :mod (o / only)
+            :op1 (l / leg
+                :ARG1-of (b3 / blur-01)
+                :part-of (p / person
+                    :ARG0-of (p2 / play-01
+                        :ARG1 (b / baseball))))
+            :op2 (b2 / bat))))

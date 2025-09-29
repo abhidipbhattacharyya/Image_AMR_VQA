@@ -1,0 +1,41 @@
+# ::tok A passenger bus is at a traffic circle with buildings behind it and a traffic light in front .
+# ::node	p	passenger	1-2
+# ::node	b4	bus	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	t	traffic	6-7
+# ::node	c	circle	7-8
+# ::node	h	have-03	8-9
+# ::node	b3	building	9-10
+# ::node	b2	behind	10-11
+# ::node	a	and	12-13
+# ::node	t2	traffic	14-15
+# ::node	l	light	15-16
+# ::node	i	in-front-of	17-18
+# ::root	b	be-located-at-91
+# ::edge	bus	mod	passenger	b4	p	
+# ::edge	be-located-at-91	ARG1	bus	b	b4	
+# ::edge	circle	mod	traffic	c	t	
+# ::edge	be-located-at-91	ARG2	circle	b	c	
+# ::edge	circle	ARG0-of	have-03	c	h	
+# ::edge	building	location	behind	b3	b2	
+# ::edge	behind	op1	bus	b2	b4	
+# ::edge	and	op1	building	a	b3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	location	in-front-of	l	i	
+# ::edge	in-front-of	op1	circle	i	c	
+(b / be-located-at-91
+    :ARG1 (b4 / bus
+        :mod (p / passenger))
+    :ARG2 (c / circle
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b3 / building
+                    :location (b2 / behind
+                        :op1 b4))
+                :op2 (l / light
+                    :location (i / in-front-of
+                        :op1 c)
+                    :mod (t2 / traffic))))
+        :mod (t / traffic)))

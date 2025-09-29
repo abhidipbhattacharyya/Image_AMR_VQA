@@ -1,0 +1,25 @@
+# ::tok Cityscape on a rainy street in Europe showing a bus
+# ::node	c	city	0-1
+# ::node	r	rain-01	3-4
+# ::node	s2	street	4-5
+# ::node	c2	continent	6-7
+# ::node	n	name	6-7
+# ::node	0	Europe	6-7
+# ::node	s	show-01	7-8
+# ::node	b	bus	9-10
+# ::root	s	show-01
+# ::edge	street	mod	rain-01	s2	r	
+# ::edge	city	location	street	c	s2	
+# ::edge	street	location	continent	s2	c2	
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	show-01	ARG0	city	s	c	
+# ::edge	show-01	ARG1	bus	s	b	
+(s / show-01
+    :ARG0 (c / city
+        :location (s2 / street
+            :location (c2 / continent
+                :name (n / name
+                    :op1 "Europe"))
+            :mod (r / rain-01)))
+    :ARG1 (b / bus))

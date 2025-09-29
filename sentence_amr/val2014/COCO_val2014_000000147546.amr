@@ -1,0 +1,40 @@
+# ::tok An outdoor produce market with a long line of bananas hanging over the fruit and vegetables displayed .
+# ::node	o	outdoor	1-2
+# ::node	p	produce	2-3
+# ::node	m	market	3-4
+# ::node	h2	have-03	4-5
+# ::node	l2	long-03	6-7
+# ::node	l	line	7-8
+# ::node	b	banana	9-10
+# ::node	h	hang-01	10-11
+# ::node	o2	over	11-12
+# ::node	f	fruit	13-14
+# ::node	a	and	14-15
+# ::node	v	vegetable	15-16
+# ::node	d	display-01	16-17
+# ::root	m	market
+# ::edge	market	mod	produce	m	p	
+# ::edge	market	location	outdoor	m	o	
+# ::edge	market	ARG0-of	have-03	m	h2	
+# ::edge	line	ARG1-of	long-03	l	l2	
+# ::edge	have-03	ARG1	line	h2	l	
+# ::edge	line	consist-of	banana	l	b	
+# ::edge	line	ARG1-of	hang-01	l	h	
+# ::edge	hang-01	ARG2	over	h	o2	
+# ::edge	and	op1	fruit	a	f	
+# ::edge	over	op1	and	o2	a	
+# ::edge	and	op2	vegetable	a	v	
+# ::edge	and	ARG1-of	display-01	a	d	
+(m / market
+    :ARG0-of (h2 / have-03
+        :ARG1 (l / line
+            :ARG1-of (l2 / long-03)
+            :ARG1-of (h / hang-01
+                :ARG2 (o2 / over
+                    :op1 (a / and
+                        :ARG1-of (d / display-01)
+                        :op1 (f / fruit)
+                        :op2 (v / vegetable))))
+            :consist-of (b / banana)))
+    :location (o / outdoor)
+    :mod (p / produce))

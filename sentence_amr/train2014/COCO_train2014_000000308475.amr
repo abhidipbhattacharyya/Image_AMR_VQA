@@ -1,0 +1,22 @@
+# ::tok An old air plane stopped at a tarmac for passengers to enter .
+# ::node	o	old	1-2
+# ::node	a	air	2-3
+# ::node	p2	plane	3-4
+# ::node	s	stop-01	4-5
+# ::node	t	tarmac	7-8
+# ::node	p	passenger	9-10
+# ::node	e	enter-01	11-12
+# ::root	s	stop-01
+# ::edge	plane	mod	air	p2	a	
+# ::edge	plane	mod	old	p2	o	
+# ::edge	stop-01	ARG1	plane	s	p2	
+# ::edge	stop-01	location	tarmac	s	t	
+# ::edge	enter-01	ARG0	passenger	e	p	
+# ::edge	stop-01	purpose	enter-01	s	e	
+(s / stop-01
+    :purpose (e / enter-01
+        :ARG0 (p / passenger))
+    :ARG1 (p2 / plane
+        :mod (a / air)
+        :mod (o / old))
+    :location (t / tarmac))

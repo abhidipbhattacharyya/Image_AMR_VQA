@@ -1,0 +1,25 @@
+# ::tok A crowd is surrounding a large clock tower lit up at night .
+# ::node	c2	crowd	1-2
+# ::node	s	surround-01	3-4
+# ::node	l	large	5-6
+# ::node	c	clock	6-7
+# ::node	t	tower	7-8
+# ::node	l2	light-04	8-9
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	s	surround-01
+# ::edge	surround-01	ARG1	crowd	s	c2	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	mod	large	t	l	
+# ::edge	surround-01	ARG2	tower	s	t	
+# ::edge	tower	ARG1-of	light-04	t	l2	
+# ::edge	light-04	time	date-entity	l2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(s / surround-01
+    :ARG1 (c2 / crowd)
+    :ARG2 (t / tower
+        :ARG1-of (l2 / light-04
+            :time (d / date-entity
+                :dayperiod (n / night)))
+        :mod (c / clock)
+        :mod (l / large)))

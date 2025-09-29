@@ -1,0 +1,26 @@
+# ::tok a group of zebras standing around a food trough to eat
+# ::node	g2	group	1-2
+# ::node	g	giraffe	3-4
+# ::node	s	stand-01	4-5
+# ::node	a	around	5-6
+# ::node	f	food	7-8
+# ::node	t	trough	8-9
+# ::node	e	eat-01	10-11
+# ::root	s	stand-01
+# ::edge	group	consist-of	giraffe	g2	g	
+# ::edge	stand-01	ARG1	group	s	g2	
+# ::edge	stand-01	ARG2	around	s	a	
+# ::edge	trough	mod	food	t	f	
+# ::edge	around	op1	trough	a	t	
+# ::edge	eat-01	ARG1	food	e	f	
+# ::edge	stand-01	purpose	eat-01	s	e	
+# ::edge	eat-01	ARG0	group	e	g2	
+(s / stand-01
+    :purpose (e / eat-01
+        :ARG0 (g2 / group
+            :consist-of (g / giraffe))
+        :ARG1 (f / food))
+    :ARG1 g2
+    :ARG2 (a / around
+        :op1 (t / trough
+            :mod f)))

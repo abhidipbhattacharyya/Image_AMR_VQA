@@ -1,0 +1,42 @@
+# ::tok Two cats in the restroom , one on top of the toilet lid , the other in the sink .
+# ::node	1	2	0-1
+# ::node	c	cat	1-2
+# ::node	c2	cat	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	r	restroom	4-5
+# ::node	a	and	5-6
+# ::node	i	include-91	6-7
+# ::node	0	1	6-7
+# ::node	t2	top	8-9
+# ::node	t	toilet	11-12
+# ::node	l	lid	12-13
+# ::node	o	other	15-16
+# ::node	s	sink	18-19
+# ::root	a	and
+# ::edge	cat	quant	2	c	1	
+# ::edge	be-located-at-91	ARG1	cat	b	c	
+# ::edge	be-located-at-91	ARG2	restroom	b	r	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	cat	ARG1-of	include-91	c	i	
+# ::edge	include-91	ARG2	cat	i	c	
+# ::edge	cat	quant	1	c2	0	
+# ::edge	cat	location	top	c2	t2	
+# ::edge	lid	part-of	toilet	l	t	
+# ::edge	top	op1	lid	t2	l	
+# ::edge	and	op2	other	a	o	
+# ::edge	other	location	sink	o	s	
+# ::edge	and	rel	cat	a	c2	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (c / cat
+            :quant 2
+            :ARG1-of (i / include-91
+                :ARG2 c))
+        :ARG2 (r / restroom))
+    :op2 (o / other
+        :location (s / sink))
+    :rel (c2 / cat
+        :quant 1
+        :location (t2 / top
+            :op1 (l / lid
+                :part-of (t / toilet)))))

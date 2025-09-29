@@ -1,0 +1,34 @@
+# ::tok Several middle eastern looking stickers decorate a black briefcase .
+# ::node	s	several	0-1
+# ::node	w	world-region	1-2
+# ::node	n	name	1-2
+# ::node	1	Middle	1-2
+# ::node	0	East	2-3
+# ::node	l	look-02	3-4
+# ::node	t	thing	4-5
+# ::node	s2	stick-01	4-5
+# ::node	d	decorate-01	5-6
+# ::node	b	black-04	7-8
+# ::node	b2	briefcase	8-9
+# ::root	d	decorate-01
+# ::edge	world-region	name	name	w	n	
+# ::edge	name	op1	Middle	n	1	
+# ::edge	name	op2	East	n	0	
+# ::edge	look-02	ARG1	world-region	l	w	
+# ::edge	thing	ARG0-of	look-02	t	l	
+# ::edge	thing	quant	several	t	s	
+# ::edge	thing	ARG1-of	stick-01	t	s2	
+# ::edge	decorate-01	ARG2	thing	d	t	
+# ::edge	briefcase	ARG1-of	black-04	b2	b	
+# ::edge	decorate-01	ARG1	briefcase	d	b2	
+(d / decorate-01
+    :ARG1 (b2 / briefcase
+        :ARG1-of (b / black-04))
+    :ARG2 (t / thing
+        :quant (s / several)
+        :ARG0-of (l / look-02
+            :ARG1 (w / world-region
+                :name (n / name
+                    :op1 "Middle"
+                    :op2 "East")))
+        :ARG1-of (s2 / stick-01)))

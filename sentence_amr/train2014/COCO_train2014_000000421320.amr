@@ -1,0 +1,33 @@
+# ::tok A boy sitting at a table with a mostly eaten slice of pizza on a bowl in front of him .
+# ::node	b2	boy	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	h	have-03	6-7
+# ::node	m	most	8-9
+# ::node	e	eat-01	9-10
+# ::node	s2	slice	10-11
+# ::node	p	pizza	12-13
+# ::node	b	bowl	15-16
+# ::node	i	in-front-of	17-18
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	boy	s	b2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	boy	ARG0-of	have-03	b2	h	
+# ::edge	eat-01	mod	most	e	m	
+# ::edge	slice	ARG1-of	eat-01	s2	e	
+# ::edge	have-03	ARG1	slice	h	s2	
+# ::edge	slice	part-of	pizza	s2	p	
+# ::edge	in-front-of	location	bowl	i	b	
+# ::edge	boy	location	in-front-of	b2	i	
+# ::edge	in-front-of	op1	boy	i	b2	
+(s / sit-01
+    :ARG1 (b2 / boy
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / slice
+                :ARG1-of (e / eat-01
+                    :mod (m / most))
+                :part-of (p / pizza)))
+        :location (i / in-front-of
+            :location (b / bowl)
+            :op1 b2))
+    :ARG2 (t / table))

@@ -1,0 +1,30 @@
+# ::tok A zebra walks on a dirt path with green grass on either side .
+# ::node	z	zebra	1-2
+# ::node	w	walk-01	2-3
+# ::node	d	dirt	5-6
+# ::node	p	path	6-7
+# ::node	h	have-03	7-8
+# ::node	g2	green-02	8-9
+# ::node	g	grass	9-10
+# ::node	e	either	11-12
+# ::node	s	side	12-13
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	zebra	w	z	
+# ::edge	path	mod	dirt	p	d	
+# ::edge	walk-01	ARG2	path	w	p	
+# ::edge	path	ARG0-of	have-03	p	h	
+# ::edge	grass	ARG1-of	green-02	g	g2	
+# ::edge	have-03	ARG1	grass	h	g	
+# ::edge	side	mod	either	s	e	
+# ::edge	grass	location	side	g	s	
+# ::edge	path	part	side	p	s	
+(w / walk-01
+    :ARG0 (z / zebra)
+    :ARG2 (p / path
+        :ARG0-of (h / have-03
+            :ARG1 (g / grass
+                :ARG1-of (g2 / green-02)
+                :location (s / side
+                    :mod (e / either))))
+        :mod (d / dirt)
+        :part s))

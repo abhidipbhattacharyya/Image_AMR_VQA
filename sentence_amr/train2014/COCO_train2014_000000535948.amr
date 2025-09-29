@@ -1,0 +1,43 @@
+# ::tok Man playing with video game controller in brightly lit room with second man in chair looking on .
+# ::node	m	man	0-1
+# ::node	p2	play-01	1-2
+# ::node	v	video	3-4
+# ::node	g	game	4-5
+# ::node	p	person	5-6
+# ::node	c2	control-01	5-6
+# ::node	b	bright-02	7-8
+# ::node	l	light-04	8-9
+# ::node	r	room	9-10
+# ::node	o	ordinal-entity	11-12
+# ::node	0	2	11-12
+# ::node	m2	man	12-13
+# ::node	c	chair	14-15
+# ::node	l2	look-01	15-16
+# ::root	p2	play-01
+# ::edge	play-01	ARG0	man	p2	m	
+# ::edge	game	mod	video	g	v	
+# ::edge	play-01	ARG2	person	p2	p	
+# ::edge	person	ARG0-of	control-01	p	c2	
+# ::edge	control-01	ARG1	game	c2	g	
+# ::edge	light-04	ARG1-of	bright-02	l	b	
+# ::edge	room	ARG1-of	light-04	r	l	
+# ::edge	play-01	location	room	p2	r	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	man	ord	ordinal-entity	m2	o	
+# ::edge	man	location	chair	m2	c	
+# ::edge	look-01	ARG0	man	l2	m2	
+# ::edge	play-01	ARG1-of	look-01	p2	l2	
+(p2 / play-01
+    :ARG0 (m / man)
+    :ARG1-of (l2 / look-01
+        :ARG0 (m2 / man
+            :location (c / chair)
+            :ord (o / ordinal-entity
+                :value 2)))
+    :ARG2 (p / person
+        :ARG0-of (c2 / control-01
+            :ARG1 (g / game
+                :mod (v / video))))
+    :location (r / room
+        :ARG1-of (l / light-04
+            :ARG1-of (b / bright-02))))

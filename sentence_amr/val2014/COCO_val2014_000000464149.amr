@@ -1,0 +1,30 @@
+# ::tok A person walks a cobbled city street that has a potted plant in the middle .
+# ::node	p	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	c2	cobble-01	4-5
+# ::node	c	city	5-6
+# ::node	s	street	6-7
+# ::node	h	have-03	8-9
+# ::node	g	grow-03	10-11
+# ::node	p2	plant	11-12
+# ::node	m	middle	14-15
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG1-of	cobble-01	s	c2	
+# ::edge	walk-01	ARG1	street	w	s	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	plant	ARG1-of	grow-03	p2	g	
+# ::edge	have-03	ARG1	plant	h	p2	
+# ::edge	plant	location	middle	p2	m	
+# ::edge	middle	op1	street	m	s	
+(w / walk-01
+    :ARG0 (p / person)
+    :ARG1 (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (p2 / plant
+                :ARG1-of (g / grow-03)
+                :location (m / middle
+                    :op1 s)))
+        :ARG1-of (c2 / cobble-01)
+        :mod (c / city)))

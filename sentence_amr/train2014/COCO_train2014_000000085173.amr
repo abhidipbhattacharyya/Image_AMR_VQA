@@ -1,0 +1,38 @@
+# ::tok The plane is flying low over head and it looks like it can touch that tree .
+# ::node	p	plane	1-2
+# ::node	f	fly-01	3-4
+# ::node	l2	low-04	4-5
+# ::node	o	over	5-6
+# ::node	h	head	6-7
+# ::node	a	and	7-8
+# ::node	l	look-02	9-10
+# ::node	p2	possible-01	12-13
+# ::node	t2	touch-01	13-14
+# ::node	t	that	14-15
+# ::node	t3	tree	15-16
+# ::root	a	and
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	fly-01	manner	low-04	f	l2	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	over	op1	head	o	h	
+# ::edge	and	op1	fly-01	a	f	
+# ::edge	and	op2	look-02	a	l	
+# ::edge	look-02	ARG0	plane	l	p	
+# ::edge	look-02	ARG1	possible-01	l	p2	
+# ::edge	possible-01	ARG1	touch-01	p2	t2	
+# ::edge	touch-01	ARG0	plane	t2	p	
+# ::edge	tree	mod	that	t3	t	
+# ::edge	touch-01	ARG1	tree	t2	t3	
+(a / and
+    :op1 (f / fly-01
+        :ARG2 (p / plane)
+        :manner (l2 / low-04)
+        :path (o / over
+            :op1 (h / head)))
+    :op2 (l / look-02
+        :ARG0 p
+        :ARG1 (p2 / possible-01
+            :ARG1 (t2 / touch-01
+                :ARG0 p
+                :ARG1 (t3 / tree
+                    :mod (t / that))))))

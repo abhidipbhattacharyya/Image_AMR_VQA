@@ -1,0 +1,31 @@
+# ::tok A yellow train is going past a station and several other train tracks .
+# ::node	y	yellow-02	1-2
+# ::node	t2	train	2-3
+# ::node	g	go-01	4-5
+# ::node	p	past	5-6
+# ::node	s2	station	7-8
+# ::node	a	and	8-9
+# ::node	s	several	9-10
+# ::node	o	other	10-11
+# ::node	t3	train	11-12
+# ::node	t	track	12-13
+# ::root	g	go-01
+# ::edge	train	ARG1-of	yellow-02	t2	y	
+# ::edge	go-01	ARG1	train	g	t2	
+# ::edge	go-01	path	past	g	p	
+# ::edge	and	op1	station	a	s2	
+# ::edge	past	op1	and	p	a	
+# ::edge	track	purpose	train	t	t3	
+# ::edge	track	mod	other	t	o	
+# ::edge	track	quant	several	t	s	
+# ::edge	and	op2	track	a	t	
+(g / go-01
+    :ARG1 (t2 / train
+        :ARG1-of (y / yellow-02))
+    :path (p / past
+        :op1 (a / and
+            :op1 (s2 / station)
+            :op2 (t / track
+                :purpose (t3 / train)
+                :quant (s / several)
+                :mod (o / other)))))

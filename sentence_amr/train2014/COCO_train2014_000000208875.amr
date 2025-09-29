@@ -1,0 +1,27 @@
+# ::tok Accent lighting casts a shadow on the wall while illuminating decorative pieces .
+# ::node	a	accurate	0-1
+# ::node	l	light-04	1-2
+# ::node	c	cast-01	2-3
+# ::node	s	shadow	4-5
+# ::node	w	wall	7-8
+# ::node	i	illuminate-01	9-10
+# ::node	d	decorative	10-11
+# ::node	p	piece	11-12
+# ::root	c	cast-01
+# ::edge	light-04	mod	accurate	l	a	
+# ::edge	cast-01	ARG0	light-04	c	l	
+# ::edge	cast-01	ARG1	shadow	c	s	
+# ::edge	cast-01	ARG2	wall	c	w	
+# ::edge	cast-01	time	illuminate-01	c	i	
+# ::edge	illuminate-01	ARG0	light-04	i	l	
+# ::edge	piece	mod	decorative	p	d	
+# ::edge	illuminate-01	ARG1	piece	i	p	
+(c / cast-01
+    :ARG0 (l / light-04
+        :mod (a / accurate))
+    :ARG1 (s / shadow)
+    :ARG2 (w / wall)
+    :time (i / illuminate-01
+        :ARG0 l
+        :ARG1 (p / piece
+            :mod (d / decorative))))

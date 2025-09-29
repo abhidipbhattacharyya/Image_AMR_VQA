@@ -1,0 +1,32 @@
+# ::tok A person walking in a flooded area while holding a yellow umbrella over their head .
+# ::node	p	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	f	flood-01	5-6
+# ::node	a	area	6-7
+# ::node	h2	hold-01	8-9
+# ::node	y	yellow-02	10-11
+# ::node	u	umbrella	11-12
+# ::node	o	over	12-13
+# ::node	h	head	14-15
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	area	ARG1-of	flood-01	a	f	
+# ::edge	walk-01	location	area	w	a	
+# ::edge	walk-01	time	hold-01	w	h2	
+# ::edge	hold-01	ARG0	person	h2	p	
+# ::edge	umbrella	ARG1-of	yellow-02	u	y	
+# ::edge	hold-01	ARG1	umbrella	h2	u	
+# ::edge	hold-01	location	over	h2	o	
+# ::edge	over	op1	head	o	h	
+# ::edge	person	part	head	p	h	
+(w / walk-01
+    :ARG0 (p / person
+        :part (h / head))
+    :location (a / area
+        :ARG1-of (f / flood-01))
+    :time (h2 / hold-01
+        :ARG0 p
+        :ARG1 (u / umbrella
+            :ARG1-of (y / yellow-02))
+        :location (o / over
+            :op1 h)))

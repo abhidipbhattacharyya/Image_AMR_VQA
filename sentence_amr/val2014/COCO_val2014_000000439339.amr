@@ -1,0 +1,43 @@
+# ::tok Two cups of ice cream sitting on a table in front of a woman with whipped cream and a cherry on top .
+# ::node	0	2	0-1
+# ::node	v	volume-quantity	1-2
+# ::node	c4	cup	1-2
+# ::node	c2	cream	4-5
+# ::node	s	sit-01	5-6
+# ::node	t	table	8-9
+# ::node	i	in-front-of	10-11
+# ::node	w2	woman	13-14
+# ::node	h	have-03	14-15
+# ::node	w	whip-01	15-16
+# ::node	c3	cream	16-17
+# ::node	a	and	17-18
+# ::node	c	cherry	19-20
+# ::node	t2	top	21-22
+# ::root	s	sit-01
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	cream	quant	volume-quantity	c2	v	
+# ::edge	sit-01	ARG1	cream	s	c2	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	location	in-front-of	t	i	
+# ::edge	in-front-of	op1	woman	i	w2	
+# ::edge	woman	ARG0-of	have-03	w2	h	
+# ::edge	cream	ARG1-of	whip-01	c3	w	
+# ::edge	and	op1	cream	a	c3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	cherry	a	c	
+# ::edge	cherry	location	top	c	t2	
+(s / sit-01
+    :ARG1 (c2 / cream
+        :quant (v / volume-quantity
+            :quant 2
+            :unit (c4 / cup)))
+    :ARG2 (t / table
+        :location (i / in-front-of
+            :op1 (w2 / woman
+                :ARG0-of (h / have-03
+                    :ARG1 (a / and
+                        :op1 (c3 / cream
+                            :ARG1-of (w / whip-01))
+                        :op2 (c / cherry
+                            :location (t2 / top))))))))

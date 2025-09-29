@@ -1,0 +1,43 @@
+# ::tok A sandwich is on a white plate near two forks and a glass of milk .
+# ::node	s	sandwich	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	w	white-03	5-6
+# ::node	p	plate	6-7
+# ::node	n2	near-02	7-8
+# ::node	1	2	8-9
+# ::node	c	continent	9-10
+# ::node	n	name	9-10
+# ::node	2	Democrat	9-10
+# ::node	a	and	10-11
+# ::node	v	volume-quantity	11-12
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	m	milk	14-15
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	sandwich	b	s	
+# ::edge	plate	ARG1-of	white-03	p	w	
+# ::edge	be-located-at-91	ARG2	plate	b	p	
+# ::edge	plate	ARG1-of	near-02	p	n2	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op1	Democrat	n	2	
+# ::edge	and	op1	continent	a	c	
+# ::edge	near-02	ARG2	and	n2	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	milk	quant	volume-quantity	m	v	
+# ::edge	and	op2	milk	a	m	
+# ::edge	be-located-at-91	rel	2	b	1	
+(b / be-located-at-91
+    :ARG1 (s / sandwich)
+    :ARG2 (p / plate
+        :ARG1-of (w / white-03)
+        :ARG1-of (n2 / near-02
+            :ARG2 (a / and
+                :op1 (c / continent
+                    :name (n / name
+                        :op1 "Democrat"))
+                :op2 (m / milk
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (g / glass))))))
+    :rel 2)

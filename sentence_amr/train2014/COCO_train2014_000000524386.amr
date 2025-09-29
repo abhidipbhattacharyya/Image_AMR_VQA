@@ -1,0 +1,52 @@
+# ::tok A television set is on in a living room area that features a gray couch , an area rug , a futon and a small table with a lamp .
+# ::node	t2	television	1-2
+# ::node	s	set	2-3
+# ::node	o	on-01	4-5
+# ::node	l2	living	7-8
+# ::node	r	room	8-9
+# ::node	a2	area	9-10
+# ::node	f	feature-01	11-12
+# ::node	g	gray-02	13-14
+# ::node	c	couch	14-15
+# ::node	a3	area	17-18
+# ::node	r2	rug	18-19
+# ::node	f2	futon	21-22
+# ::node	a	and	22-23
+# ::node	s2	small	24-25
+# ::node	t	table	25-26
+# ::node	h	have-03	26-27
+# ::node	l	lamp	28-29
+# ::root	o	on-01
+# ::edge	set	mod	television	s	t2	
+# ::edge	on-01	ARG1	set	o	s	
+# ::edge	room	mod	living	r	l2	
+# ::edge	area	mod	room	a2	r	
+# ::edge	on-01	location	area	o	a2	
+# ::edge	area	ARG0-of	feature-01	a2	f	
+# ::edge	couch	ARG1-of	gray-02	c	g	
+# ::edge	rug	mod	area	r2	a3	
+# ::edge	and	op3	futon	a	f2	
+# ::edge	and	op2	rug	a	r2	
+# ::edge	and	op1	couch	a	c	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	table	mod	small	t	s2	
+# ::edge	and	op4	table	a	t	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	lamp	h	l	
+(o / on-01
+    :ARG1 (s / set
+        :mod (t2 / television))
+    :location (a2 / area
+        :ARG0-of (f / feature-01
+            :ARG1 (a / and
+                :op1 (c / couch
+                    :ARG1-of (g / gray-02))
+                :op2 (r2 / rug
+                    :mod (a3 / area))
+                :op3 (f2 / futon)
+                :op4 (t / table
+                    :ARG0-of (h / have-03
+                        :ARG1 (l / lamp))
+                    :mod (s2 / small))))
+        :mod (r / room
+            :mod (l2 / living))))

@@ -1,0 +1,35 @@
+# ::tok Large public transportation bus stopping to let passengers on and off .
+# ::node	l	large	0-1
+# ::node	p2	public-02	1-2
+# ::node	t	transport-01	2-3
+# ::node	b	bus	3-4
+# ::node	s	stop-01	4-5
+# ::node	l2	let-01	6-7
+# ::node	p	passenger	7-8
+# ::node	i	inside	8-9
+# ::node	a	and	9-10
+# ::node	o	off	10-11
+# ::root	s	stop-01
+# ::edge	bus	ARG0-of	transport-01	b	t	
+# ::edge	bus	ARG1-of	public-02	b	p2	
+# ::edge	bus	mod	large	b	l	
+# ::edge	stop-01	ARG1	bus	s	b	
+# ::edge	stop-01	purpose	let-01	s	l2	
+# ::edge	let-01	ARG0	bus	l2	b	
+# ::edge	let-01	ARG1	passenger	l2	p	
+# ::edge	passenger	destination	bus	p	b	
+# ::edge	and	op1	inside	a	i	
+# ::edge	let-01	path	and	l2	a	
+# ::edge	and	op2	off	a	o	
+(s / stop-01
+    :purpose (l2 / let-01
+        :ARG0 (b / bus
+            :ARG0-of (t / transport-01)
+            :ARG1-of (p2 / public-02)
+            :mod (l / large))
+        :ARG1 (p / passenger
+            :destination b)
+        :path (a / and
+            :op1 (i / inside)
+            :op2 (o / off)))
+    :ARG1 b)

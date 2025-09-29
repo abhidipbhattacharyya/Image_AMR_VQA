@@ -1,0 +1,27 @@
+# ::tok Several runners in single file with a kite behind them
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	r	run-02	1-2
+# ::node	s2	single-02	3-4
+# ::node	f	file	4-5
+# ::node	h	have-03	5-6
+# ::node	k	kite	7-8
+# ::node	b	behind	8-9
+# ::root	p	person
+# ::edge	person	quant	several	p	s	
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	file	ARG1-of	single-02	f	s2	
+# ::edge	person	manner	file	p	f	
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	kite	h	k	
+# ::edge	kite	location	behind	k	b	
+# ::edge	behind	op1	person	b	p	
+(p / person
+    :quant (s / several)
+    :ARG0-of (r / run-02)
+    :ARG0-of (h / have-03
+        :ARG1 (k / kite
+            :location (b / behind
+                :op1 p)))
+    :manner (f / file
+        :ARG1-of (s2 / single-02)))

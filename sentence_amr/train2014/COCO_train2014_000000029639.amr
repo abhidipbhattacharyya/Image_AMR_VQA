@@ -1,0 +1,30 @@
+# ::tok A man stands near a poster containing negative political information .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	t	thing	5-6
+# ::node	p2	post-01	5-6
+# ::node	c	contain-01	6-7
+# ::node	n2	negative-02	7-8
+# ::node	p	politics	8-9
+# ::node	i	information	9-10
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	near-02	ARG2	thing	n	t	
+# ::edge	thing	ARG0-of	post-01	t	p2	
+# ::edge	thing	ARG0-of	contain-01	t	c	
+# ::edge	information	topic	politics	i	p	
+# ::edge	information	ARG0-of	negative-02	i	n2	
+# ::edge	contain-01	ARG1	information	c	i	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (n / near-02
+        :ARG1 m
+        :ARG2 (t / thing
+            :ARG0-of (p2 / post-01)
+            :ARG0-of (c / contain-01
+                :ARG1 (i / information
+                    :ARG0-of (n2 / negative-02)
+                    :topic (p / politics))))))

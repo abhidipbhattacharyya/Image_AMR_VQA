@@ -1,0 +1,35 @@
+# ::tok A man is jumping and guarding in mid air while another guy is throwing the frisbee .
+# ::node	m	man	1-2
+# ::node	j	jump-03	3-4
+# ::node	a2	and	4-5
+# ::node	g	guard-01	5-6
+# ::node	m2	middle	7-8
+# ::node	a	air	8-9
+# ::node	a3	another	10-11
+# ::node	g2	guy	11-12
+# ::node	t	throw-01	13-14
+# ::node	f	frisbee	15-16
+# ::root	a2	and
+# ::edge	jump-03	ARG0	man	j	m	
+# ::edge	and	op1	jump-03	a2	j	
+# ::edge	and	op2	guard-01	a2	g	
+# ::edge	guard-01	ARG0	man	g	m	
+# ::edge	air	mod	middle	a	m2	
+# ::edge	guard-01	location	air	g	a	
+# ::edge	jump-03	location	air	j	a	
+# ::edge	guy	mod	another	g2	a3	
+# ::edge	throw-01	ARG0	guy	t	g2	
+# ::edge	and	time	throw-01	a2	t	
+# ::edge	throw-01	ARG1	frisbee	t	f	
+(a2 / and
+    :op1 (j / jump-03
+        :ARG0 (m / man)
+        :location (a / air
+            :mod (m2 / middle)))
+    :op2 (g / guard-01
+        :ARG0 m
+        :location a)
+    :time (t / throw-01
+        :ARG0 (g2 / guy
+            :mod (a3 / another))
+        :ARG1 (f / frisbee)))

@@ -1,0 +1,45 @@
+# ::tok A Hello Kitty microwave oven on the shelf of a store , with a temporary price cut sign under it .
+# ::node	0	Hello	1-2
+# ::node	1	Kitty	2-3
+# ::node	m	microwave	3-4
+# ::node	o	oven	4-5
+# ::node	n	name	4-5
+# ::node	s	shelf	7-8
+# ::node	s3	store	10-11
+# ::node	h	have-03	12-13
+# ::node	t	temporary	14-15
+# ::node	t2	thing	15-16
+# ::node	p	price-01	15-16
+# ::node	c	cut-02	16-17
+# ::node	s2	sign	17-18
+# ::node	u	under	18-19
+# ::root	h	have-03
+# ::edge	oven	mod	microwave	o	m	
+# ::edge	oven	name	name	o	n	
+# ::edge	name	op2	Kitty	n	1	
+# ::edge	name	op1	Hello	n	0	
+# ::edge	shelf	part-of	store	s	s3	
+# ::edge	have-03	location	shelf	h	s	
+# ::edge	have-03	ARG0	oven	h	o	
+# ::edge	thing	ARG2-of	price-01	t2	p	
+# ::edge	cut-02	ARG1	thing	c	t2	
+# ::edge	sign	mod	cut-02	s2	c	
+# ::edge	sign	mod	temporary	s2	t	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	under	s2	u	
+# ::edge	under	op1	oven	u	o	
+(h / have-03
+    :ARG0 (o / oven
+        :name (n / name
+            :op1 "Hello"
+            :op2 "Kitty")
+        :mod (m / microwave))
+    :ARG1 (s2 / sign
+        :location (u / under
+            :op1 o)
+        :mod (c / cut-02
+            :ARG1 (t2 / thing
+                :ARG2-of (p / price-01)))
+        :mod (t / temporary))
+    :location (s / shelf
+        :part-of (s3 / store)))

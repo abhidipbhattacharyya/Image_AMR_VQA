@@ -1,0 +1,37 @@
+# ::tok A commercial granite vanity with multiple sinks , soap dispensers and lighted mirrors .
+# ::node	c2	commerce	1-2
+# ::node	g	granite	2-3
+# ::node	v	vanity	3-4
+# ::node	h	have-03	4-5
+# ::node	m2	multiple	5-6
+# ::node	s	sink-01	6-7
+# ::node	s2	soap	8-9
+# ::node	c	cabinet	9-10
+# ::node	o	oppose-01	9-10
+# ::node	a	and	10-11
+# ::node	l	light-04	11-12
+# ::node	m	mirror	12-13
+# ::root	v	vanity
+# ::edge	vanity	consist-of	granite	v	g	
+# ::edge	vanity	mod	commerce	v	c2	
+# ::edge	vanity	ARG0-of	have-03	v	h	
+# ::edge	sink-01	quant	multiple	s	m2	
+# ::edge	cabinet	ARG0-of	oppose-01	c	o	
+# ::edge	oppose-01	ARG1	soap	o	s2	
+# ::edge	and	op2	cabinet	a	c	
+# ::edge	and	op1	sink-01	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	mirror	ARG1-of	light-04	m	l	
+# ::edge	and	op3	mirror	a	m	
+(v / vanity
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sink-01
+                :quant (m2 / multiple))
+            :op2 (c / cabinet
+                :ARG0-of (o / oppose-01
+                    :ARG1 (s2 / soap)))
+            :op3 (m / mirror
+                :ARG1-of (l / light-04))))
+    :consist-of (g / granite)
+    :mod (c2 / commerce))

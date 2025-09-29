@@ -1,0 +1,49 @@
+# ::tok Times square street sign on the corner of Broadway in front of a MT Dew advertisement .
+# ::node	n4	newspaper	0-1
+# ::node	n	name	0-1
+# ::node	3	Times	0-1
+# ::node	4	square	1-2
+# ::node	s2	street	2-3
+# ::node	s	sign	3-4
+# ::node	c2	corner	6-7
+# ::node	r	road	8-9
+# ::node	n2	name	8-9
+# ::node	0	Broadway	8-9
+# ::node	i	in-front-of	10-11
+# ::node	n3	name	13-14
+# ::node	2	MT	13-14
+# ::node	c	company	14-15
+# ::node	1	Dew	14-15
+# ::node	a	advertise-01	15-16
+# ::root	s	sign
+# ::edge	newspaper	name	name	n4	n	
+# ::edge	name	op1	Times	n	3	
+# ::edge	name	op2	square	n	4	
+# ::edge	sign	mod	street	s	s2	
+# ::edge	sign	mod	newspaper	s	n4	
+# ::edge	sign	location	corner	s	c2	
+# ::edge	corner	part-of	road	c2	r	
+# ::edge	road	name	name	r	n2	
+# ::edge	name	op1	Broadway	n2	0	
+# ::edge	sign	location	in-front-of	s	i	
+# ::edge	name	op1	MT	n3	2	
+# ::edge	company	name	name	c	n3	
+# ::edge	name	op2	Dew	n3	1	
+# ::edge	advertise-01	ARG0	company	a	c	
+# ::edge	in-front-of	op1	advertise-01	i	a	
+(s / sign
+    :location (c2 / corner
+        :part-of (r / road
+            :name (n2 / name
+                :op1 "Broadway")))
+    :location (i / in-front-of
+        :op1 (a / advertise-01
+            :ARG0 (c / company
+                :name (n3 / name
+                    :op1 "MT"
+                    :op2 "Dew"))))
+    :mod (s2 / street)
+    :mod (n4 / newspaper
+        :name (n / name
+            :op1 "Times"
+            :op2 "square")))

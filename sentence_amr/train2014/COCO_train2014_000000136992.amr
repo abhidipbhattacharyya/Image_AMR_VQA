@@ -1,0 +1,31 @@
+# ::tok A crowd watches over the field as a football player is about to kick the ball .
+# ::node	c	crowd	1-2
+# ::node	w	watch-01	2-3
+# ::node	o	over	3-4
+# ::node	f	field	5-6
+# ::node	f2	football	8-9
+# ::node	p	person	9-10
+# ::node	p2	play-01	9-10
+# ::node	a	about-to	11-12
+# ::node	k	kick-01	13-14
+# ::node	b	ball	15-16
+# ::root	w	watch-01
+# ::edge	watch-01	ARG0	crowd	w	c	
+# ::edge	watch-01	location	over	w	o	
+# ::edge	over	op1	field	o	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	football	p2	f2	
+# ::edge	kick-01	time	about-to	k	a	
+# ::edge	kick-01	ARG0	person	k	p	
+# ::edge	watch-01	ARG1	kick-01	w	k	
+# ::edge	kick-01	ARG1	ball	k	b	
+(w / watch-01
+    :ARG0 (c / crowd)
+    :ARG1 (k / kick-01
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (f2 / football)))
+        :ARG1 (b / ball)
+        :time (a / about-to))
+    :location (o / over
+        :op1 (f / field)))

@@ -1,0 +1,52 @@
+# ::tok An African American fashion doll sitting on a restaurant table next to an iced coffee and two doughnuts .
+# ::node	c2	continent	1-2
+# ::node	n	name	1-2
+# ::node	1	Africa	1-2
+# ::node	c3	country	2-3
+# ::node	n2	name	2-3
+# ::node	2	America	2-3
+# ::node	f	fashion	3-4
+# ::node	d	doll	4-5
+# ::node	s	sit-01	5-6
+# ::node	r	restaurant	8-9
+# ::node	t	table	9-10
+# ::node	n3	next-to	10-11
+# ::node	i	ice-02	13-14
+# ::node	c	coffee	14-15
+# ::node	a	and	15-16
+# ::node	0	2	16-17
+# ::node	d2	donut	17-18
+# ::root	s	sit-01
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Africa	n	1	
+# ::edge	country	name	name	c3	n2	
+# ::edge	name	op1	America	n2	2	
+# ::edge	doll	mod	fashion	d	f	
+# ::edge	doll	mod	country	d	c3	
+# ::edge	doll	mod	continent	d	c2	
+# ::edge	sit-01	ARG1	doll	s	d	
+# ::edge	table	location	restaurant	t	r	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	sit-01	location	next-to	s	n3	
+# ::edge	coffee	ARG1-of	ice-02	c	i	
+# ::edge	and	op1	coffee	a	c	
+# ::edge	next-to	op1	and	n3	a	
+# ::edge	donut	quant	2	d2	0	
+# ::edge	and	op2	donut	a	d2	
+(s / sit-01
+    :ARG1 (d / doll
+        :mod (f / fashion)
+        :mod (c3 / country
+            :name (n2 / name
+                :op1 "America"))
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Africa")))
+    :ARG2 (t / table
+        :location (r / restaurant))
+    :location (n3 / next-to
+        :op1 (a / and
+            :op1 (c / coffee
+                :ARG1-of (i / ice-02))
+            :op2 (d2 / donut
+                :quant 2))))

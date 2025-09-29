@@ -1,0 +1,55 @@
+# ::tok A sandwich with meat , cheese and eggs is on a floral plate next to a cup of ice cream and banana slices .
+# ::node	s	sandwich	1-2
+# ::node	h	have-03	2-3
+# ::node	m	meat	3-4
+# ::node	a	and	4-5
+# ::node	c	cheese	5-6
+# ::node	e	egg	7-8
+# ::node	f	floral	11-12
+# ::node	p	plate	12-13
+# ::node	n	next-to	13-14
+# ::node	b2	be-located-at-91	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	0	1	15-16
+# ::node	c3	cup	16-17
+# ::node	i	ice	18-19
+# ::node	c2	cream	19-20
+# ::node	a2	and	20-21
+# ::node	b	banana	21-22
+# ::node	s2	slice	22-23
+# ::root	b2	be-located-at-91
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	and	op1	meat	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	cheese	a	c	
+# ::edge	and	op3	egg	a	e	
+# ::edge	plate	mod	floral	p	f	
+# ::edge	be-located-at-91	ARG2	next-to	b2	n	
+# ::edge	be-located-at-91	ARG1	sandwich	b2	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	cream	mod	ice	c2	i	
+# ::edge	cream	quant	volume-quantity	c2	v	
+# ::edge	and	op1	cream	a2	c2	
+# ::edge	next-to	op1	and	n	a2	
+# ::edge	slice	consist-of	banana	s2	b	
+# ::edge	and	op2	slice	a2	s2	
+# ::edge	be-located-at-91	rel	plate	b2	p	
+(b2 / be-located-at-91
+    :ARG1 (s / sandwich
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (m / meat)
+                :op2 (c / cheese)
+                :op3 (e / egg))))
+    :ARG2 (n / next-to
+        :op1 (a2 / and
+            :op1 (c2 / cream
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c3 / cup))
+                :mod (i / ice))
+            :op2 (s2 / slice
+                :consist-of (b / banana))))
+    :rel (p / plate
+        :mod (f / floral)))

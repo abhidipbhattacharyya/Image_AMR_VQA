@@ -1,0 +1,21 @@
+# ::tok A passenger train makes a stop to pick up travelers .
+# ::node	p	passenger	1-2
+# ::node	t	train	2-3
+# ::node	s	stop-01	5-6
+# ::node	p3	pick-up-04	7-8
+# ::node	p2	person	9-10
+# ::node	t2	travel-01	9-10
+# ::root	s	stop-01
+# ::edge	train	mod	passenger	t	p	
+# ::edge	stop-01	ARG0	train	s	t	
+# ::edge	stop-01	purpose	pick-up-04	s	p3	
+# ::edge	pick-up-04	ARG0	train	p3	t	
+# ::edge	pick-up-04	ARG1	person	p3	p2	
+# ::edge	person	ARG0-of	travel-01	p2	t2	
+(s / stop-01
+    :purpose (p3 / pick-up-04
+        :ARG0 (t / train
+            :mod (p / passenger))
+        :ARG1 (p2 / person
+            :ARG0-of (t2 / travel-01)))
+    :ARG0 t)

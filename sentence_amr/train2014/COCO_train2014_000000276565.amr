@@ -1,0 +1,25 @@
+# ::tok Roadway intersection with vehicle traffic and pedestrian in large city .
+# ::node	r	road	0-1
+# ::node	i	intersect-01	1-2
+# ::node	v	vehicle	3-4
+# ::node	t	traffic	4-5
+# ::node	a	and	5-6
+# ::node	p	pedestrian	6-7
+# ::node	l	large	8-9
+# ::node	c	city	9-10
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	traffic	mod	vehicle	t	v	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	intersect-01	ARG0	and	i	a	
+# ::edge	and	op2	pedestrian	a	p	
+# ::edge	city	mod	large	c	l	
+# ::edge	intersect-01	location	city	i	c	
+(i / intersect-01
+    :ARG0 (a / and
+        :op1 (t / traffic
+            :mod (v / vehicle))
+        :op2 (p / pedestrian))
+    :ARG1 (r / road)
+    :location (c / city
+        :mod (l / large)))

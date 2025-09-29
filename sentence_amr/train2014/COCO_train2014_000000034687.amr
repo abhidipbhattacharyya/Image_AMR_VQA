@@ -1,0 +1,25 @@
+# ::tok Birds can be seen perched on every electrical wire in the shot .
+# ::node	b	bird	0-1
+# ::node	p2	possible-01	1-2
+# ::node	s	see-01	3-4
+# ::node	p	perch-01	4-5
+# ::node	e2	every	6-7
+# ::node	e	electricity	7-8
+# ::node	w	wire	8-9
+# ::node	s2	shot	11-12
+# ::root	p2	possible-01
+# ::edge	possible-01	ARG1	see-01	p2	s	
+# ::edge	see-01	ARG1	bird	s	b	
+# ::edge	bird	ARG1-of	perch-01	b	p	
+# ::edge	wire	mod	electricity	w	e	
+# ::edge	wire	mod	every	w	e2	
+# ::edge	perch-01	ARG2	wire	p	w	
+# ::edge	see-01	location	shot	s	s2	
+(p2 / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (b / bird
+            :ARG1-of (p / perch-01
+                :ARG2 (w / wire
+                    :mod (e / electricity)
+                    :mod (e2 / every))))
+        :location (s2 / shot)))

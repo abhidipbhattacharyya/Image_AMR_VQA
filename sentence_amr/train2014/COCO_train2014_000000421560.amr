@@ -1,0 +1,34 @@
+# ::tok An L - shaped kitchen counter with cabinets and a stove / oven combo
+# ::node	s4	string-entity	1-2
+# ::node	0	L	1-2
+# ::node	s	shape-01	3-4
+# ::node	k	kitchen	4-5
+# ::node	c3	counter	5-6
+# ::node	c	cabinet	7-8
+# ::node	a	and	8-9
+# ::node	s3	stove	10-11
+# ::node	s2	slash	11-12
+# ::node	o	oven	12-13
+# ::node	c2	combine-01	13-14
+# ::root	c3	counter
+# ::edge	string-entity	value	L	s4	0	
+# ::edge	shape-01	ARG2	string-entity	s	s4	
+# ::edge	counter	mod	kitchen	c3	k	
+# ::edge	counter	ARG1-of	shape-01	c3	s	
+# ::edge	and	op2	cabinet	a	c	
+# ::edge	counter	location-of	and	c3	a	
+# ::edge	slash	op1	stove	s2	s3	
+# ::edge	slash	op2	oven	s2	o	
+# ::edge	combine-01	ARG2	slash	c2	s2	
+# ::edge	and	op3	combine-01	a	c2	
+(c3 / counter
+    :ARG1-of (s / shape-01
+        :ARG2 (s4 / string-entity
+            :value "L"))
+    :location-of (a / and
+        :op2 (c / cabinet)
+        :op3 (c2 / combine-01
+            :ARG2 (s2 / slash
+                :op1 (s3 / stove)
+                :op2 (o / oven))))
+    :mod (k / kitchen))

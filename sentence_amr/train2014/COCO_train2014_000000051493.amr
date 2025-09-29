@@ -1,0 +1,46 @@
+# ::tok Man in dark T - shirt dark sunglasses , holding hot dog , facing camera on Fifth Ave .
+# ::node	m	man	0-1
+# ::node	w	wear-01	1-2
+# ::node	d	dark-02	2-3
+# ::node	t	t-shirt	5-6
+# ::node	d2	dark-02	6-7
+# ::node	s	sunglasses	7-8
+# ::node	h	hold-01	9-10
+# ::node	e	eat-01	10-11
+# ::node	h2	hot-dog	11-12
+# ::node	f	face-01	13-14
+# ::node	c	camera	14-15
+# ::node	n	name	16-17
+# ::node	1	Fifth	16-17
+# ::node	r	road	17-18
+# ::node	0	Ave	17-18
+# ::root	m	man
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	t-shirt	ARG1-of	dark-02	t	d	
+# ::edge	sunglasses	ARG1-of	dark-02	s	d2	
+# ::edge	sunglasses	mod	t-shirt	s	t	
+# ::edge	wear-01	ARG1	sunglasses	w	s	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hot-dog	ARG1-of	eat-01	h2	e	
+# ::edge	hold-01	ARG1	hot-dog	h	h2	
+# ::edge	man	ARG0-of	face-01	m	f	
+# ::edge	face-01	ARG1	camera	f	c	
+# ::edge	name	op1	Fifth	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	face-01	location	road	f	r	
+# ::edge	name	op2	Ave	n	0	
+(m / man
+    :ARG0-of (w / wear-01
+        :ARG1 (s / sunglasses
+            :ARG1-of (d2 / dark-02)
+            :mod (t / t-shirt
+                :ARG1-of (d / dark-02))))
+    :ARG0-of (h / hold-01
+        :ARG1 (h2 / hot-dog
+            :ARG1-of (e / eat-01)))
+    :ARG0-of (f / face-01
+        :ARG1 (c / camera)
+        :location (r / road
+            :name (n / name
+                :op1 "Fifth"
+                :op2 "Ave"))))

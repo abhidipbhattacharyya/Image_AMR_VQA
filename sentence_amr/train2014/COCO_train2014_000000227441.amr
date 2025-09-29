@@ -1,0 +1,37 @@
+# ::tok A sign that reads " apple identification " .
+# ::node	s	sign	1-2
+# ::node	r	read-01	3-4
+# ::node	a	apple	5-6
+# ::node	i	identify-01	6-7
+# ::root	s	sign
+# ::edge	sign	ARG1-of	read-01	s	r	
+# ::edge	identify-01	ARG1	apple	i	a	
+# ::edge	read-01	ARG3	identify-01	r	i	
+(s / sign
+    :ARG1-of (r / read-01
+        :ARG3 (i / identify-01
+            :ARG1 (a / apple))))
+
+
+# ::tok In front of the sign is a bunch of cups with appples in them .
+# ::node	b	be-located-at-91	0-1
+# ::node	i	in-front-of	1-2
+# ::node	s	sign	4-5
+# ::node	b2	bunch	7-8
+# ::node	c	cup	9-10
+# ::node	h	have-03	10-11
+# ::node	a	apple	11-12
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	in-front-of	op1	sign	i	s	
+# ::edge	cup	quant	bunch	c	b2	
+# ::edge	be-located-at-91	ARG1	cup	b	c	
+# ::edge	cup	ARG0-of	have-03	c	h	
+# ::edge	have-03	ARG1	apple	h	a	
+(b / be-located-at-91
+    :ARG1 (c / cup
+        :quant (b2 / bunch)
+        :ARG0-of (h / have-03
+            :ARG1 (a / apple)))
+    :ARG2 (i / in-front-of
+        :op1 (s / sign)))

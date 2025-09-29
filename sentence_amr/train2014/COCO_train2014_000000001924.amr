@@ -1,0 +1,45 @@
+# ::tok an intersection at Old Town Street with one car driving by and an otherwise empty street
+# ::node	i	intersect-01	1-2
+# ::node	n	name	3-4
+# ::node	1	Old	3-4
+# ::node	3	Town	4-5
+# ::node	r	road	5-6
+# ::node	2	Street	5-6
+# ::node	0	1	7-8
+# ::node	c	car	8-9
+# ::node	d	drive-01	9-10
+# ::node	b	by	10-11
+# ::node	a	and	11-12
+# ::node	e2	except-01	13-14
+# ::node	e	empty-02	14-15
+# ::node	s	street	15-16
+# ::root	i	intersect-01
+# ::edge	name	op1	Old	n	1	
+# ::edge	name	op2	Town	n	3	
+# ::edge	road	name	name	r	n	
+# ::edge	intersect-01	location	road	i	r	
+# ::edge	name	op3	Street	n	2	
+# ::edge	car	quant	1	c	0	
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	drive-01	direction	by	d	b	
+# ::edge	and	op1	drive-01	a	d	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	except-01	ARG2	drive-01	e2	d	
+# ::edge	empty-02	ARG1-of	except-01	e	e2	
+# ::edge	street	ARG1-of	empty-02	s	e	
+# ::edge	and	op2	street	a	s	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (d / drive-01
+            :ARG0 (c / car
+                :quant 1)
+            :direction (b / by))
+        :op2 (s / street
+            :ARG1-of (e / empty-02
+                :ARG1-of (e2 / except-01
+                    :ARG2 d))))
+    :location (r / road
+        :name (n / name
+            :op1 "Old"
+            :op2 "Town"
+            :op3 "Street")))

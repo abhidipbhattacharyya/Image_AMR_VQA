@@ -1,0 +1,39 @@
+# ::tok A bunch of people gather with cameras an video recorders .
+# ::node	b	bunch	1-2
+# ::node	p	person	3-4
+# ::node	g	gather-03	4-5
+# ::node	c	camera	6-7
+# ::node	v	video	8-9
+# ::node	p2	person	9-10
+# ::node	r	record-01	9-10
+# ::node	a	and	10-11
+# ::root	g	gather-03
+# ::edge	person	quant	bunch	p	b	
+# ::edge	gather-03	ARG0	person	g	p	
+# ::edge	person	ARG0-of	record-01	p2	r	
+# ::edge	record-01	ARG1	video	r	v	
+# ::edge	and	op2	person	a	p2	
+# ::edge	and	op1	camera	a	c	
+# ::edge	gather-03	instrument	and	g	a	
+(g / gather-03
+    :ARG0 (p / person
+        :quant (b / bunch))
+    :instrument (a / and
+        :op1 (c / camera)
+        :op2 (p2 / person
+            :ARG0-of (r / record-01
+                :ARG1 (v / video)))))
+
+
+# ::tok The man is taking a picture with his phone .
+# ::node	m	man	1-2
+# ::node	p2	photograph-01	5-6
+# ::node	p	phone	8-9
+# ::root	p2	photograph-01
+# ::edge	photograph-01	ARG0	man	p2	m	
+# ::edge	photograph-01	instrument	phone	p2	p	
+# ::edge	phone	poss	man	p	m	
+(p2 / photograph-01
+    :ARG0 (m / man)
+    :instrument (p / phone
+        :poss m))

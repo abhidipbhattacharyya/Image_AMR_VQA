@@ -1,0 +1,24 @@
+# ::tok A large building with walls of glass that reflect it 's surroundings .
+# ::node	l	large	1-2
+# ::node	b	building	2-3
+# ::node	w	wall	4-5
+# ::node	g	glass	6-7
+# ::node	r	reflect-01	8-9
+# ::node	t	thing	11-12
+# ::node	s	surround-01	11-12
+# ::root	b	building
+# ::edge	building	mod	large	b	l	
+# ::edge	building	part	wall	b	w	
+# ::edge	wall	consist-of	glass	w	g	
+# ::edge	wall	ARG1-of	reflect-01	w	r	
+# ::edge	reflect-01	ARG2	thing	r	t	
+# ::edge	thing	ARG1-of	surround-01	t	s	
+# ::edge	surround-01	ARG2	building	s	b	
+(b / building
+    :mod (l / large)
+    :part (w / wall
+        :ARG1-of (r / reflect-01
+            :ARG2 (t / thing
+                :ARG1-of (s / surround-01
+                    :ARG2 b)))
+        :consist-of (g / glass)))

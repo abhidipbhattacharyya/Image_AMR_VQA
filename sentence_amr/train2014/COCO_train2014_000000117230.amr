@@ -1,0 +1,49 @@
+# ::tok A man in a green hat and a green and white shirt has a cell phone up to his ear .
+# ::node	m	man	1-2
+# ::node	g	green-02	4-5
+# ::node	h	hat	5-6
+# ::node	a	and	6-7
+# ::node	w	wear-01	6-7
+# ::node	a2	and	9-10
+# ::node	w2	white-03	10-11
+# ::node	s	shirt	11-12
+# ::node	s2	shirt	11-12
+# ::node	h2	have-03	12-13
+# ::node	c	cell	14-15
+# ::node	p	phone	15-16
+# ::node	u	up-to	16-17
+# ::node	e	ear	19-20
+# ::root	h2	have-03
+# ::edge	hat	ARG1-of	green-02	h	g	
+# ::edge	and	op1	hat	a	h	
+# ::edge	and	ARG0-of	wear-01	a	w	
+# ::edge	wear-01	ARG1	and	w	a2	
+# ::edge	and	op1	hat	a2	h	
+# ::edge	and	op1	shirt	a2	s	
+# ::edge	shirt	ARG1-of	green-02	s	g	
+# ::edge	shirt	ARG1-of	white-03	s2	w2	
+# ::edge	and	op2	shirt	a2	s2	
+# ::edge	have-03	ARG0	man	h2	m	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	have-03	ARG1	phone	h2	p	
+# ::edge	phone	direction	up-to	p	u	
+# ::edge	up-to	op1	ear	u	e	
+# ::edge	man	part	ear	m	e	
+# ::edge	have-03	rel	and	h2	a	
+(h2 / have-03
+    :ARG0 (m / man
+        :part (e / ear))
+    :ARG1 (p / phone
+        :direction (u / up-to
+            :op1 e)
+        :mod (c / cell))
+    :rel (a / and
+        :ARG0-of (w / wear-01
+            :ARG1 (a2 / and
+                :op1 (h / hat
+                    :ARG1-of (g / green-02))
+                :op1 (s / shirt
+                    :ARG1-of g)
+                :op2 (s2 / shirt
+                    :ARG1-of (w2 / white-03))))
+        :op1 h))

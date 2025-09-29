@@ -1,0 +1,42 @@
+# ::tok A skier with a helmet and goggles on , with skis and ski poles in a horizontal position in the air .
+# ::node	p	person	1-2
+# ::node	s	ski-01	1-2
+# ::node	h	helmet	4-5
+# ::node	a2	and	5-6
+# ::node	g	goggles	6-7
+# ::node	o	on	7-8
+# ::node	s2	ski-01	10-11
+# ::node	a3	and	11-12
+# ::node	p2	pole	13-14
+# ::node	b	be-located-at-91	14-15
+# ::node	h2	horizontal	16-17
+# ::node	p3	position	17-18
+# ::node	a	air	20-21
+# ::root	p	person
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	and	op1	helmet	a2	h	
+# ::edge	and	op2	goggles	a2	g	
+# ::edge	on	domain	and	o	a2	
+# ::edge	and	op1	on	a3	o	
+# ::edge	and	op2	pole	a3	p2	
+# ::edge	pole	mod	ski-01	p2	s2	
+# ::edge	be-located-at-91	ARG1	and	b	a3	
+# ::edge	be-located-at-91	ARG2	on	b	o	
+# ::edge	person	manner	be-located-at-91	p	b	
+# ::edge	position	mod	horizontal	p3	h2	
+# ::edge	and	location	position	a3	p3	
+# ::edge	position	location	air	p3	a	
+(p / person
+    :ARG0-of (s / ski-01)
+    :manner (b / be-located-at-91
+        :ARG1 (a3 / and
+            :location (p3 / position
+                :location (a / air)
+                :mod (h2 / horizontal))
+            :op1 (o / on
+                :domain (a2 / and
+                    :op1 (h / helmet)
+                    :op2 (g / goggles)))
+            :op2 (p2 / pole
+                :mod (s2 / ski-01)))
+        :ARG2 o))

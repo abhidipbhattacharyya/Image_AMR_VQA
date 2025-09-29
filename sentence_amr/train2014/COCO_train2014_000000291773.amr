@@ -1,0 +1,28 @@
+# ::tok A sign post with a stop sign and two street signs .
+# ::node	s	sign	1-2
+# ::node	p	post	2-3
+# ::node	h	have-03	3-4
+# ::node	s4	stop-01	5-6
+# ::node	s3	signal-07	6-7
+# ::node	a	and	7-8
+# ::node	0	2	8-9
+# ::node	s5	street	9-10
+# ::node	s2	sign	10-11
+# ::root	p	post
+# ::edge	post	mod	sign	p	s	
+# ::edge	post	ARG0-of	have-03	p	h	
+# ::edge	signal-07	ARG1	stop-01	s3	s4	
+# ::edge	and	op1	signal-07	a	s3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	sign	topic	street	s2	s5	
+# ::edge	sign	quant	2	s2	0	
+# ::edge	and	op2	sign	a	s2	
+(p / post
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s3 / signal-07
+                :ARG1 (s4 / stop-01))
+            :op2 (s2 / sign
+                :quant 2
+                :topic (s5 / street))))
+    :mod (s / sign))

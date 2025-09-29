@@ -1,0 +1,28 @@
+# ::tok A bathroom showing a shower stall tub combination with a white ceramic floor .
+# ::node	b	bathroom	1-2
+# ::node	s	show-01	2-3
+# ::node	s2	shower	4-5
+# ::node	s3	stall	5-6
+# ::node	t	tub	6-7
+# ::node	c2	combine-01	7-8
+# ::node	w	white-03	10-11
+# ::node	c	ceramic	11-12
+# ::node	f	floor	12-13
+# ::root	s	show-01
+# ::edge	show-01	ARG0	bathroom	s	b	
+# ::edge	stall	mod	shower	s3	s2	
+# ::edge	tub	mod	stall	t	s3	
+# ::edge	combine-01	ARG1	tub	c2	t	
+# ::edge	show-01	ARG1	combine-01	s	c2	
+# ::edge	floor	consist-of	ceramic	f	c	
+# ::edge	floor	ARG1-of	white-03	f	w	
+# ::edge	combine-01	ARG2	floor	c2	f	
+(s / show-01
+    :ARG0 (b / bathroom)
+    :ARG1 (c2 / combine-01
+        :ARG1 (t / tub
+            :mod (s3 / stall
+                :mod (s2 / shower)))
+        :ARG2 (f / floor
+            :ARG1-of (w / white-03)
+            :consist-of (c / ceramic))))

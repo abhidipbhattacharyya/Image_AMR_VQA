@@ -1,0 +1,25 @@
+# ::tok A double decker bus parked at a bus stop with a crowd of people .
+# ::node	d	double-decker	2-3
+# ::node	b	bus	3-4
+# ::node	p	park-01	4-5
+# ::node	f	facility	6-7
+# ::node	b2	bus	7-8
+# ::node	s	stop-01	8-9
+# ::node	c	crowd	11-12
+# ::node	p2	person	13-14
+# ::root	p	park-01
+# ::edge	bus	mod	double-decker	b	d	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	park-01	ARG2	facility	p	f	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	facility	location-of	stop-01	f	s	
+# ::edge	bus	prep-with	crowd	b	c	
+# ::edge	crowd	consist-of	person	c	p2	
+(p / park-01
+    :ARG1 (b / bus
+        :mod (d / double-decker)
+        :prep-with (c / crowd
+            :consist-of (p2 / person)))
+    :ARG2 (f / facility
+        :location-of (s / stop-01
+            :ARG1 (b2 / bus))))

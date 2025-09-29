@@ -1,0 +1,30 @@
+# ::tok A lot of fishing boats have a lot of men off loading their catch .
+# ::node	l	lot	1-2
+# ::node	f	fish-01	3-4
+# ::node	b	boat	4-5
+# ::node	h	have-03	5-6
+# ::node	l2	lot	7-8
+# ::node	m	man	9-10
+# ::node	o	offload-01	11-12
+# ::node	t	thing	13-14
+# ::node	c	catch-01	13-14
+# ::root	h	have-03
+# ::edge	boat	purpose	fish-01	b	f	
+# ::edge	boat	quant	lot	b	l	
+# ::edge	have-03	ARG0	boat	h	b	
+# ::edge	man	quant	lot	m	l2	
+# ::edge	offload-01	ARG0	man	o	m	
+# ::edge	have-03	ARG1	offload-01	h	o	
+# ::edge	offload-01	ARG2	thing	o	t	
+# ::edge	thing	ARG1-of	catch-01	t	c	
+# ::edge	catch-01	ARG0	man	c	m	
+(h / have-03
+    :ARG0 (b / boat
+        :purpose (f / fish-01)
+        :quant (l / lot))
+    :ARG1 (o / offload-01
+        :ARG0 (m / man
+            :quant (l2 / lot))
+        :ARG2 (t / thing
+            :ARG1-of (c / catch-01
+                :ARG0 m))))

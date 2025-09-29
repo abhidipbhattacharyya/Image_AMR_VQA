@@ -1,0 +1,27 @@
+# ::tok A cat sits in the middle console of a car while his owner drives
+# ::node	c2	cat	1-2
+# ::node	s	sit-01	2-3
+# ::node	m	middle	5-6
+# ::node	c3	console	6-7
+# ::node	c	car	9-10
+# ::node	p	person	12-13
+# ::node	o	own-01	12-13
+# ::node	d	drive-01	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	cat	s	c2	
+# ::edge	console	location	middle	c3	m	
+# ::edge	sit-01	ARG2	console	s	c3	
+# ::edge	console	part-of	car	c3	c	
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	cat	o	c2	
+# ::edge	drive-01	ARG0	person	d	p	
+# ::edge	sit-01	time	drive-01	s	d	
+(s / sit-01
+    :ARG1 (c2 / cat)
+    :ARG2 (c3 / console
+        :location (m / middle)
+        :part-of (c / car))
+    :time (d / drive-01
+        :ARG0 (p / person
+            :ARG0-of (o / own-01
+                :ARG1 c2))))

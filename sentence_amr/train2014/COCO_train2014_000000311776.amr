@@ -1,0 +1,31 @@
+# ::tok A FedEx jet plane on the tarmac with people seated and walking nearby .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	FedEx	1-2
+# ::node	j	jet	2-3
+# ::node	p2	plane	3-4
+# ::node	t	tarmac	6-7
+# ::node	p	person	8-9
+# ::node	s	seat-01	9-10
+# ::node	w	walk-01	11-12
+# ::node	n2	nearby	12-13
+# ::root	p2	plane
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	FedEx	n	0	
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	plane	mod	company	p2	c	
+# ::edge	plane	location	tarmac	p2	t	
+# ::edge	seat-01	ARG2	person	s	p	
+# ::edge	plane	ARG1-of	seat-01	p2	s	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	location	nearby	w	n2	
+(p2 / plane
+    :ARG1-of (s / seat-01
+        :ARG2 (p / person
+            :ARG0-of (w / walk-01
+                :location (n2 / nearby))))
+    :location (t / tarmac)
+    :mod (j / jet)
+    :mod (c / company
+        :name (n / name
+            :op1 "FedEx")))

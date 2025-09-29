@@ -1,0 +1,34 @@
+# ::tok A burger on a plate next to a cup of hot chocolate or coffee
+# ::node	b2	burger	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	p	plate	4-5
+# ::node	n	next-to	5-6
+# ::node	v	volume-quantity	7-8
+# ::node	0	1	7-8
+# ::node	c3	cup	8-9
+# ::node	h	hot-05	10-11
+# ::node	c	chocolate	11-12
+# ::node	o	or	12-13
+# ::node	c2	coffee	13-14
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	burger	b	b2	
+# ::edge	be-located-at-91	ARG2	plate	b	p	
+# ::edge	be-located-at-91	location	next-to	b	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	chocolate	ARG1-of	hot-05	c	h	
+# ::edge	or	op1	chocolate	o	c	
+# ::edge	or	quant	volume-quantity	o	v	
+# ::edge	next-to	op1	or	n	o	
+# ::edge	or	op2	coffee	o	c2	
+(b / be-located-at-91
+    :ARG1 (b2 / burger)
+    :ARG2 (p / plate)
+    :location (n / next-to
+        :op1 (o / or
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c3 / cup))
+            :op1 (c / chocolate
+                :ARG1-of (h / hot-05))
+            :op2 (c2 / coffee))))

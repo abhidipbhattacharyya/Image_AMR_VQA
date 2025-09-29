@@ -1,0 +1,25 @@
+# ::tok An intersection with a stop sign , traffic lights , and a gas station .
+# ::node	i	intersect-01	1-2
+# ::node	s3	stop-01	4-5
+# ::node	s	signal-07	5-6
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	a	and	10-11
+# ::node	g	gas	12-13
+# ::node	s2	station	13-14
+# ::root	i	intersect-01
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op2	light	a	l	
+# ::edge	and	op1	signal-07	a	s	
+# ::edge	intersect-01	ARG1	and	i	a	
+# ::edge	station	mod	gas	s2	g	
+# ::edge	and	op3	station	a	s2	
+(i / intersect-01
+    :ARG1 (a / and
+        :op1 (s / signal-07
+            :ARG1 (s3 / stop-01))
+        :op2 (l / light
+            :mod (t / traffic))
+        :op3 (s2 / station
+            :mod (g / gas))))

@@ -1,0 +1,49 @@
+# ::tok Vehicles making a left hand turn from opposite side of traffic signal , view from a red stop light with a yellow caution arrow turning to the left .
+# ::node	v	vehicle	0-1
+# ::node	t2	turn-01	5-6
+# ::node	o	opposite-01	7-8
+# ::node	s	side	8-9
+# ::node	t	traffic	10-11
+# ::node	s2	signal-07	11-12
+# ::node	v2	view-01	13-14
+# ::node	r	red-02	16-17
+# ::node	s3	stop-01	17-18
+# ::node	l2	light	18-19
+# ::node	h	have-03	19-20
+# ::node	y	yellow-02	21-22
+# ::node	c	caution-01	22-23
+# ::node	a	arrow	23-24
+# ::node	t3	turn-01	24-25
+# ::node	l	left-20	27-28
+# ::root	t2	turn-01
+# ::edge	turn-01	ARG0	vehicle	t2	v	
+# ::edge	side	ARG1-of	opposite-01	s	o	
+# ::edge	turn-01	source	side	t2	s	
+# ::edge	signal-07	ARG1	traffic	s2	t	
+# ::edge	side	mod	signal-07	s	s2	
+# ::edge	vehicle	ARG1-of	view-01	v	v2	
+# ::edge	light	mod	stop-01	l2	s3	
+# ::edge	light	ARG1-of	red-02	l2	r	
+# ::edge	view-01	source	light	v2	l2	
+# ::edge	light	ARG0-of	have-03	l2	h	
+# ::edge	arrow	ARG0-of	caution-01	a	c	
+# ::edge	arrow	ARG1-of	yellow-02	a	y	
+# ::edge	have-03	ARG1	arrow	h	a	
+# ::edge	vehicle	ARG1-of	turn-01	v	t3	
+# ::edge	turn-01	direction	left-20	t3	l	
+(t2 / turn-01
+    :ARG0 (v / vehicle
+        :ARG1-of (v2 / view-01
+            :source (l2 / light
+                :ARG0-of (h / have-03
+                    :ARG1 (a / arrow
+                        :ARG0-of (c / caution-01)
+                        :ARG1-of (y / yellow-02)))
+                :ARG1-of (r / red-02)
+                :mod (s3 / stop-01)))
+        :ARG1-of (t3 / turn-01
+            :direction (l / left-20)))
+    :source (s / side
+        :ARG1-of (o / opposite-01)
+        :mod (s2 / signal-07
+            :ARG1 (t / traffic))))

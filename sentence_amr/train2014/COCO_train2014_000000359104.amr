@@ -1,0 +1,34 @@
+# ::tok A paper no parking sign is taped to a road sign outside a high rise building .
+# ::node	p	paper	1-2
+# ::node	0	-	2-3
+# ::node	p2	park-01	3-4
+# ::node	s	sign	4-5
+# ::node	t	tape-02	6-7
+# ::node	r2	road	9-10
+# ::node	s2	sign	10-11
+# ::node	o	outside	11-12
+# ::node	h	high	13-14
+# ::node	r	rise-01	14-15
+# ::node	b	building	15-16
+# ::root	t	tape-02
+# ::edge	sign	topic	park-01	s	p2	
+# ::edge	sign	polarity	-	s	0	
+# ::edge	tape-02	ARG1	sign	t	s	
+# ::edge	tape-02	medium	paper	t	p	
+# ::edge	sign	mod	road	s2	r2	
+# ::edge	tape-02	ARG2	sign	t	s2	
+# ::edge	sign	location	outside	s2	o	
+# ::edge	rise-01	ARG2	high	r	h	
+# ::edge	building	ARG1-of	rise-01	b	r	
+# ::edge	outside	op1	building	o	b	
+(t / tape-02
+    :ARG1 (s / sign
+        :polarity -
+        :topic (p2 / park-01))
+    :ARG2 (s2 / sign
+        :location (o / outside
+            :op1 (b / building
+                :ARG1-of (r / rise-01
+                    :ARG2 (h / high))))
+        :mod (r2 / road))
+    :medium (p / paper))

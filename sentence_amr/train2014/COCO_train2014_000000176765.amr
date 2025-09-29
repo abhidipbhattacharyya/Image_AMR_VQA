@@ -1,0 +1,27 @@
+# ::tok Two buses connected together while a man on a bike is riding next to it .
+# ::node	0	2	0-1
+# ::node	b2	bus	1-2
+# ::node	c	connect-01	2-3
+# ::node	t	together	3-4
+# ::node	m	man	6-7
+# ::node	b	bike	9-10
+# ::node	r	ride-01	11-12
+# ::node	n	next-to	12-13
+# ::root	c	connect-01
+# ::edge	bus	quant	2	b2	0	
+# ::edge	connect-01	ARG1	bus	c	b2	
+# ::edge	connect-01	mod	together	c	t	
+# ::edge	man	mod	bike	m	b	
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	connect-01	time	ride-01	c	r	
+# ::edge	ride-01	location	next-to	r	n	
+# ::edge	next-to	op1	bus	n	b2	
+(c / connect-01
+    :ARG1 (b2 / bus
+        :quant 2)
+    :mod (t / together)
+    :time (r / ride-01
+        :ARG0 (m / man
+            :mod (b / bike))
+        :location (n / next-to
+            :op1 b2)))

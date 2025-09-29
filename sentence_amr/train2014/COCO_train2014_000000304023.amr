@@ -1,0 +1,32 @@
+# ::tok A man is performing a skateboard trick too close to an overhead door .
+# ::node	m	man	1-2
+# ::node	p	perform-01	3-4
+# ::node	s	skate-01	5-6
+# ::node	t2	trick-01	6-7
+# ::node	h	have-degree-91	7-8
+# ::node	t	too	7-8
+# ::node	c	close-06	8-9
+# ::node	o	overhead	11-12
+# ::node	d	door	12-13
+# ::root	p	perform-01
+# ::edge	perform-01	ARG0	man	p	m	
+# ::edge	skate-01	ARG0	man	s	m	
+# ::edge	trick-01	mod	skate-01	t2	s	
+# ::edge	perform-01	ARG1	trick-01	p	t2	
+# ::edge	have-degree-91	ARG1	trick-01	h	t2	
+# ::edge	have-degree-91	ARG3	too	h	t	
+# ::edge	close-06	ARG2-of	have-degree-91	c	h	
+# ::edge	perform-01	ARG1-of	close-06	p	c	
+# ::edge	door	location	overhead	d	o	
+# ::edge	close-06	ARG2	door	c	d	
+(p / perform-01
+    :ARG0 (m / man)
+    :ARG1 (t2 / trick-01
+        :mod (s / skate-01
+            :ARG0 m))
+    :ARG1-of (c / close-06
+        :ARG2 (d / door
+            :location (o / overhead))
+        :ARG2-of (h / have-degree-91
+            :ARG1 t2
+            :ARG3 (t / too))))

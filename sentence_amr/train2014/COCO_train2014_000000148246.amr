@@ -1,0 +1,49 @@
+# ::tok A wall with two doors and various wall hanging on it , including a clock a mirror and numbered coat hangers .
+# ::node	w	wall	1-2
+# ::node	h2	have-03	2-3
+# ::node	0	2	3-4
+# ::node	d	door	4-5
+# ::node	a	and	5-6
+# ::node	v	various	6-7
+# ::node	w2	wall	7-8
+# ::node	h	hang-01	8-9
+# ::node	i	include-91	12-13
+# ::node	c	clock	14-15
+# ::node	m	mirror	16-17
+# ::node	a2	and	17-18
+# ::node	n	number-01	18-19
+# ::node	c2	coat	19-20
+# ::node	t	thing	20-21
+# ::node	h3	hold-01	20-21
+# ::root	w	wall
+# ::edge	wall	ARG0-of	have-03	w	h2	
+# ::edge	door	quant	2	d	0	
+# ::edge	and	op1	door	a	d	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	hang-01	ARG1	wall	h	w2	
+# ::edge	hang-01	mod	various	h	v	
+# ::edge	and	op2	hang-01	a	h	
+# ::edge	and	ARG2-of	include-91	a	i	
+# ::edge	and	op2	mirror	a2	m	
+# ::edge	and	op1	clock	a2	c	
+# ::edge	include-91	ARG1	and	i	a2	
+# ::edge	thing	ARG1-of	number-01	t	n	
+# ::edge	and	op3	thing	a2	t	
+# ::edge	thing	ARG0-of	hold-01	t	h3	
+# ::edge	hold-01	ARG1	coat	h3	c2	
+(w / wall
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :ARG2-of (i / include-91
+                :ARG1 (a2 / and
+                    :op1 (c / clock)
+                    :op2 (m / mirror)
+                    :op3 (t / thing
+                        :ARG0-of (h3 / hold-01
+                            :ARG1 (c2 / coat))
+                        :ARG1-of (n / number-01))))
+            :op1 (d / door
+                :quant 2)
+            :op2 (h / hang-01
+                :ARG1 (w2 / wall)
+                :mod (v / various)))))

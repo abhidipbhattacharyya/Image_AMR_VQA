@@ -1,0 +1,41 @@
+# ::tok An airport apron area with two parked airplanes and various ground vehicles around the airplanes and parked .
+# ::node	a2	airport	1-2
+# ::node	a4	apron	2-3
+# ::node	a5	area	3-4
+# ::node	0	2	5-6
+# ::node	p	park-01	6-7
+# ::node	a	airplane	7-8
+# ::node	a3	and	8-9
+# ::node	v	various	9-10
+# ::node	g	ground	10-11
+# ::node	v2	vehicle	11-12
+# ::node	a6	around	12-13
+# ::node	p2	park-01	16-17
+# ::root	a5	area
+# ::edge	apron	mod	airport	a4	a2	
+# ::edge	area	location-of	apron	a5	a4	
+# ::edge	airplane	ARG1-of	park-01	a	p	
+# ::edge	airplane	quant	2	a	0	
+# ::edge	and	op1	airplane	a3	a	
+# ::edge	area	location-of	and	a5	a3	
+# ::edge	vehicle	mod	ground	v2	g	
+# ::edge	vehicle	mod	various	v2	v	
+# ::edge	and	op2	vehicle	a3	v2	
+# ::edge	and	location	around	a3	a6	
+# ::edge	around	op1	airplane	a6	a	
+# ::edge	and	ARG2-of	park-01	a3	p2	
+# ::edge	park-01	ARG1	airplane	p2	a	
+(a5 / area
+    :location-of (a4 / apron
+        :mod (a2 / airport))
+    :location-of (a3 / and
+        :ARG2-of (p2 / park-01
+            :ARG1 (a / airplane
+                :quant 2
+                :ARG1-of (p / park-01)))
+        :location (a6 / around
+            :op1 a)
+        :op1 a
+        :op2 (v2 / vehicle
+            :mod (g / ground)
+            :mod (v / various))))

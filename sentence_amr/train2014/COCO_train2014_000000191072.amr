@@ -1,0 +1,58 @@
+# ::tok A Highway 17 Express bus , which travels on Highway 17 between Santa Cruz and San Jose , California .
+# ::node	r	road	1-2
+# ::node	4	Highway	1-2
+# ::node	0	17	2-3
+# ::node	3	Express	3-4
+# ::node	b2	bus	4-5
+# ::node	t	travel-01	7-8
+# ::node	n	name	9-10
+# ::node	b	between	11-12
+# ::node	n2	name	12-13
+# ::node	7	Santa	12-13
+# ::node	2	Cruz	13-14
+# ::node	c	city	15-16
+# ::node	c2	city	15-16
+# ::node	n3	name	15-16
+# ::node	6	San	15-16
+# ::node	5	Jose	16-17
+# ::node	s	state	18-19
+# ::node	n4	name	18-19
+# ::node	1	California	18-19
+# ::root	b2	bus
+# ::edge	bus	mod	road	b2	r	
+# ::edge	bus	ARG0-of	travel-01	b2	t	
+# ::edge	name	op3	Express	n	3	
+# ::edge	name	op2	17	n	0	
+# ::edge	name	op1	Highway	n	4	
+# ::edge	road	name	name	r	n	
+# ::edge	travel-01	location	between	t	b	
+# ::edge	name	op1	Santa	n2	7	
+# ::edge	name	op2	Cruz	n2	2	
+# ::edge	city	name	name	c	n2	
+# ::edge	between	op1	city	b	c	
+# ::edge	between	op2	city	b	c2	
+# ::edge	city	name	name	c2	n3	
+# ::edge	name	op1	San	n3	6	
+# ::edge	name	op2	Jose	n3	5	
+# ::edge	city	location	state	c2	s	
+# ::edge	state	name	name	s	n4	
+# ::edge	name	op1	California	n4	1	
+(b2 / bus
+    :ARG0-of (t / travel-01
+        :location (b / between
+            :op1 (c / city
+                :name (n2 / name
+                    :op1 "Santa"
+                    :op2 "Cruz"))
+            :op2 (c2 / city
+                :name (n3 / name
+                    :op1 "San"
+                    :op2 "Jose")
+                :location (s / state
+                    :name (n4 / name
+                        :op1 "California")))))
+    :mod (r / road
+        :name (n / name
+            :op1 "Highway"
+            :op2 17
+            :op3 "Express")))

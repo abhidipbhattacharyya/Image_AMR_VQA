@@ -1,0 +1,34 @@
+# ::tok A baseball player for the San Francisco Giants stands at home plate .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	2	San	5-6
+# ::node	0	Francisco	6-7
+# ::node	t	team	7-8
+# ::node	n	name	7-8
+# ::node	1	Giants	7-8
+# ::node	s	stand-01	8-9
+# ::node	h	home	10-11
+# ::node	p2	plate	11-12
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b	
+# ::edge	play-01	ARG2	team	p3	t	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op2	Francisco	n	0	
+# ::edge	name	op1	San	n	2	
+# ::edge	name	op3	Giants	n	1	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	plate	mod	home	p2	h	
+# ::edge	stand-01	ARG2	plate	s	p2	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b / baseball)
+            :ARG2 (t / team
+                :name (n / name
+                    :op1 "San"
+                    :op2 "Francisco"
+                    :op3 "Giants"))))
+    :ARG2 (p2 / plate
+        :mod (h / home)))

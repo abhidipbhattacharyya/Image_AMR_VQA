@@ -1,0 +1,37 @@
+# ::tok The Big Bananas Nightshop sells produce , including apples and bananas .
+# ::node	n	name	0-1
+# ::node	3	The	0-1
+# ::node	1	Big	1-2
+# ::node	0	Bananas	2-3
+# ::node	s2	store	3-4
+# ::node	2	Nightshop	3-4
+# ::node	s	sell-01	4-5
+# ::node	p	produce	5-6
+# ::node	i	include-01	7-8
+# ::node	a2	apple	8-9
+# ::node	a	and	9-10
+# ::node	b	banana	10-11
+# ::root	s	sell-01
+# ::edge	name	op1	The	n	3	
+# ::edge	name	op2	Big	n	1	
+# ::edge	name	op3	Bananas	n	0	
+# ::edge	store	name	name	s2	n	
+# ::edge	name	op4	Nightshop	n	2	
+# ::edge	sell-01	ARG0	store	s	s2	
+# ::edge	sell-01	ARG1	produce	s	p	
+# ::edge	produce	ARG2-of	include-01	p	i	
+# ::edge	and	op1	apple	a	a2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	banana	a	b	
+(s / sell-01
+    :ARG0 (s2 / store
+        :name (n / name
+            :op1 "The"
+            :op2 "Big"
+            :op3 "Bananas"
+            :op4 "Nightshop"))
+    :ARG1 (p / produce
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (a2 / apple)
+                :op2 (b / banana)))))

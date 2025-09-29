@@ -1,0 +1,30 @@
+# ::tok two rolls of unused toilet paper standby , ready to see action
+# ::node	0	2	0-1
+# ::node	r2	roll	1-2
+# ::node	u	use-01	3-4
+# ::node	t	toilet	4-5
+# ::node	p	paper	5-6
+# ::node	s2	stand-by-05	6-7
+# ::node	r	ready-02	8-9
+# ::node	s	see-01	10-11
+# ::node	a	act-02	11-12
+# ::root	s2	stand-by-05
+# ::edge	roll	quant	2	r2	0	
+# ::edge	paper	mod	toilet	p	t	
+# ::edge	paper	ARG1-of	use-01	p	u	
+# ::edge	roll	consist-of	paper	r2	p	
+# ::edge	stand-by-05	ARG1	roll	s2	r2	
+# ::edge	roll	ARG1-of	ready-02	r2	r	
+# ::edge	ready-02	ARG2	see-01	r	s	
+# ::edge	see-01	ARG0	roll	s	r2	
+# ::edge	see-01	ARG1	act-02	s	a	
+(s2 / stand-by-05
+    :ARG1 (r2 / roll
+        :quant 2
+        :ARG1-of (r / ready-02
+            :ARG2 (s / see-01
+                :ARG0 r2
+                :ARG1 (a / act-02)))
+        :consist-of (p / paper
+            :ARG1-of (u / use-01)
+            :mod (t / toilet))))

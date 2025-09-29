@@ -1,0 +1,28 @@
+# ::tok A truck with ten large wheels is riding past a small yellow vehicle .
+# ::node	t	truck	1-2
+# ::node	0	10	3-4
+# ::node	l	large	4-5
+# ::node	w	wheel	5-6
+# ::node	r	ride-01	7-8
+# ::node	p	past	8-9
+# ::node	s	small	10-11
+# ::node	y	yellow-02	11-12
+# ::node	v	vehicle	12-13
+# ::root	r	ride-01
+# ::edge	wheel	mod	large	w	l	
+# ::edge	wheel	quant	10	w	0	
+# ::edge	truck	part	wheel	t	w	
+# ::edge	ride-01	ARG0	truck	r	t	
+# ::edge	ride-01	path	past	r	p	
+# ::edge	vehicle	ARG1-of	yellow-02	v	y	
+# ::edge	vehicle	mod	small	v	s	
+# ::edge	past	op1	vehicle	p	v	
+(r / ride-01
+    :ARG0 (t / truck
+        :part (w / wheel
+            :quant 10
+            :mod (l / large)))
+    :path (p / past
+        :op1 (v / vehicle
+            :ARG1-of (y / yellow-02)
+            :mod (s / small))))

@@ -1,0 +1,27 @@
+# ::tok A tennis player waiting for his opponent to hit the ball .
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p3	play-01	2-3
+# ::node	w	wait-01	3-4
+# ::node	p2	person	6-7
+# ::node	o	oppose-01	6-7
+# ::node	h	hit-01	8-9
+# ::node	b	ball	10-11
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	person	ARG0-of	oppose-01	p2	o	
+# ::edge	oppose-01	ARG1	person	o	p	
+# ::edge	hit-01	ARG0	person	h	p2	
+# ::edge	wait-01	ARG2	hit-01	w	h	
+# ::edge	hit-01	ARG1	ball	h	b	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (t / tennis)))
+    :ARG2 (h / hit-01
+        :ARG0 (p2 / person
+            :ARG0-of (o / oppose-01
+                :ARG1 p))
+        :ARG1 (b / ball)))

@@ -1,0 +1,40 @@
+# ::tok A vintage airplane museum , with people walking underneath displays of WWII - era planes in a hangar .
+# ::node	v	vintage	1-2
+# ::node	a	airplane	2-3
+# ::node	m	museum	3-4
+# ::node	p	person	6-7
+# ::node	w	walk-01	7-8
+# ::node	u	underneath	8-9
+# ::node	d	display-01	9-10
+# ::node	w2	war	11-12
+# ::node	n	name	11-12
+# ::node	0	WWII	11-12
+# ::node	e	era	13-14
+# ::node	p2	plane	14-15
+# ::node	h	hangar	17-18
+# ::root	m	museum
+# ::edge	museum	topic	airplane	m	a	
+# ::edge	museum	mod	vintage	m	v	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	walk-01	ARG2	underneath	w	u	
+# ::edge	underneath	op1	display-01	u	d	
+# ::edge	war	name	name	w2	n	
+# ::edge	name	op1	WWII	n	0	
+# ::edge	era	mod	war	e	w2	
+# ::edge	plane	time	era	p2	e	
+# ::edge	display-01	ARG1	plane	d	p2	
+# ::edge	display-01	location	hangar	d	h	
+# ::edge	museum	rel	person	m	p	
+(m / museum
+    :mod (v / vintage)
+    :rel (p / person
+        :ARG0-of (w / walk-01
+            :ARG2 (u / underneath
+                :op1 (d / display-01
+                    :ARG1 (p2 / plane
+                        :time (e / era
+                            :mod (w2 / war
+                                :name (n / name
+                                    :op1 "WWII"))))
+                    :location (h / hangar)))))
+    :topic (a / airplane))

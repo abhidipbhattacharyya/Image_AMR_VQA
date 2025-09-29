@@ -1,0 +1,54 @@
+# ::tok A street sign telling people that street lights are off or reduced from March to October due to nesting turtles .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	t	tell-01	3-4
+# ::node	p	person	4-5
+# ::node	s3	street	6-7
+# ::node	l	light	7-8
+# ::node	c2	come-off-33	9-10
+# ::node	o	or	10-11
+# ::node	r	reduce-01	11-12
+# ::node	d3	date-interval	12-13
+# ::node	d	date-entity	13-14
+# ::node	1	3	13-14
+# ::node	d2	date-entity	15-16
+# ::node	0	10	15-16
+# ::node	c	cause-01	16-17
+# ::node	n	nest-01	18-19
+# ::node	t2	turtle	19-20
+# ::root	s	sign
+# ::edge	sign	location	street	s	s2	
+# ::edge	sign	ARG0-of	tell-01	s	t	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	light	mod	street	l	s3	
+# ::edge	come-off-33	ARG1	light	c2	l	
+# ::edge	or	op1	come-off-33	o	c2	
+# ::edge	tell-01	ARG1	or	t	o	
+# ::edge	or	op2	reduce-01	o	r	
+# ::edge	reduce-01	ARG1	light	r	l	
+# ::edge	or	time	date-interval	o	d3	
+# ::edge	date-interval	op1	date-entity	d3	d	
+# ::edge	date-entity	month	3	d	1	
+# ::edge	date-interval	op2	date-entity	d3	d2	
+# ::edge	date-entity	month	10	d2	0	
+# ::edge	or	ARG1-of	cause-01	o	c	
+# ::edge	turtle	ARG0-of	nest-01	t2	n	
+# ::edge	cause-01	ARG0	turtle	c	t2	
+(s / sign
+    :ARG0-of (t / tell-01
+        :ARG1 (o / or
+            :ARG1-of (c / cause-01
+                :ARG0 (t2 / turtle
+                    :ARG0-of (n / nest-01)))
+            :op1 (c2 / come-off-33
+                :ARG1 (l / light
+                    :mod (s3 / street)))
+            :op2 (r / reduce-01
+                :ARG1 l)
+            :time (d3 / date-interval
+                :op1 (d / date-entity
+                    :month 3)
+                :op2 (d2 / date-entity
+                    :month 10)))
+        :ARG2 (p / person))
+    :location (s2 / street))

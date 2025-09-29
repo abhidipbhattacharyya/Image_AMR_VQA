@@ -1,0 +1,39 @@
+# ::tok A group of surfers watching one of their friends riding a wave .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	s	surf-01	3-4
+# ::node	w	watch-01	4-5
+# ::node	0	1	5-6
+# ::node	i	include-91	6-7
+# ::node	p2	person	8-9
+# ::node	p3	person	8-9
+# ::node	h	have-rel-role-91	8-9
+# ::node	f	friend	8-9
+# ::node	r	ride-01	9-10
+# ::node	w2	wave	11-12
+# ::root	w	watch-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	watch-01	ARG0	group	w	g	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	person	quant	1	p2	0	
+# ::edge	include-91	ARG2	person	i	p3	
+# ::edge	person	ARG0-of	have-rel-role-91	p3	h	
+# ::edge	have-rel-role-91	ARG1	group	h	g	
+# ::edge	have-rel-role-91	ARG2	friend	h	f	
+# ::edge	ride-01	ARG0	person	r	p2	
+# ::edge	watch-01	ARG1	ride-01	w	r	
+# ::edge	ride-01	ARG1	wave	r	w2	
+(w / watch-01
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (s / surf-01)))
+    :ARG1 (r / ride-01
+        :ARG0 (p2 / person
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (p3 / person
+                    :ARG0-of (h / have-rel-role-91
+                        :ARG1 g
+                        :ARG2 (f / friend)))))
+        :ARG1 (w2 / wave)))

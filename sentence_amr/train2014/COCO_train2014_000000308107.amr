@@ -1,0 +1,35 @@
+# ::tok Single skiier trying to get up after falling in fresh snow .
+# ::node	s	single-02	0-1
+# ::node	p	person	1-2
+# ::node	s2	ski-01	1-2
+# ::node	t	try-01	2-3
+# ::node	g	get-05	4-5
+# ::node	u	up	5-6
+# ::node	a	after	6-7
+# ::node	f	fall-01	7-8
+# ::node	f2	fresh-04	9-10
+# ::node	s3	snow	10-11
+# ::root	t	try-01
+# ::edge	person	ARG1-of	single-02	p	s	
+# ::edge	person	ARG0-of	ski-01	p	s2	
+# ::edge	try-01	ARG0	person	t	p	
+# ::edge	try-01	ARG1	get-05	t	g	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	ARG2	up	g	u	
+# ::edge	try-01	time	after	t	a	
+# ::edge	after	op1	fall-01	a	f	
+# ::edge	fall-01	ARG1	person	f	p	
+# ::edge	snow	ARG1-of	fresh-04	s3	f2	
+# ::edge	fall-01	ARG2	snow	f	s3	
+(t / try-01
+    :ARG0 (p / person
+        :ARG0-of (s2 / ski-01)
+        :ARG1-of (s / single-02))
+    :ARG1 (g / get-05
+        :ARG1 p
+        :ARG2 (u / up))
+    :time (a / after
+        :op1 (f / fall-01
+            :ARG1 p
+            :ARG2 (s3 / snow
+                :ARG1-of (f2 / fresh-04)))))

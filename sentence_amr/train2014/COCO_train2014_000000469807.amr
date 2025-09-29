@@ -1,0 +1,27 @@
+# ::tok A tractor trailer is parked in a grassy field while people lean against it .
+# ::node	t	tractor	1-2
+# ::node	t2	trailer	2-3
+# ::node	p	park-01	4-5
+# ::node	g	grass	7-8
+# ::node	f	field	8-9
+# ::node	p2	person	10-11
+# ::node	l	lean-01	11-12
+# ::node	a	against	12-13
+# ::root	p	park-01
+# ::edge	trailer	mod	tractor	t2	t	
+# ::edge	park-01	ARG1	trailer	p	t2	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	park-01	ARG2	field	p	f	
+# ::edge	lean-01	ARG0	person	l	p2	
+# ::edge	park-01	time-of	lean-01	p	l	
+# ::edge	lean-01	ARG2	against	l	a	
+# ::edge	against	op1	trailer	a	t2	
+(p / park-01
+    :ARG1 (t2 / trailer
+        :mod (t / tractor))
+    :ARG2 (f / field
+        :consist-of (g / grass))
+    :time-of (l / lean-01
+        :ARG0 (p2 / person)
+        :ARG2 (a / against
+            :op1 t2)))

@@ -1,0 +1,39 @@
+# ::tok A man at a short wall with the beach and ocean behind it watching people fly a large kite .
+# ::node	m	man	1-2
+# ::node	s	short-07	4-5
+# ::node	w	wall	5-6
+# ::node	b	beach	8-9
+# ::node	a	and	9-10
+# ::node	o	ocean	10-11
+# ::node	b2	behind	11-12
+# ::node	w2	watch-01	13-14
+# ::node	p	person	14-15
+# ::node	f	fly-01	15-16
+# ::node	l	large	17-18
+# ::node	k	kite	18-19
+# ::root	m	man
+# ::edge	wall	ARG1-of	short-07	w	s	
+# ::edge	man	location	wall	m	w	
+# ::edge	and	op1	beach	a	b	
+# ::edge	wall	location-of	and	w	a	
+# ::edge	and	op2	ocean	a	o	
+# ::edge	and	location	behind	a	b2	
+# ::edge	behind	op1	wall	b2	w	
+# ::edge	man	ARG0-of	watch-01	m	w2	
+# ::edge	fly-01	ARG0	person	f	p	
+# ::edge	watch-01	ARG1	fly-01	w2	f	
+# ::edge	kite	mod	large	k	l	
+# ::edge	fly-01	ARG1	kite	f	k	
+(m / man
+    :ARG0-of (w2 / watch-01
+        :ARG1 (f / fly-01
+            :ARG0 (p / person)
+            :ARG1 (k / kite
+                :mod (l / large))))
+    :location (w / wall
+        :ARG1-of (s / short-07)
+        :location-of (a / and
+            :location (b2 / behind
+                :op1 w)
+            :op1 (b / beach)
+            :op2 (o / ocean))))

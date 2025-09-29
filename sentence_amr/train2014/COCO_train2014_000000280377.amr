@@ -1,0 +1,34 @@
+# ::tok Several children wearing scout uniforms stand at a table making crafts .
+# ::node	s	several	0-1
+# ::node	c	child	1-2
+# ::node	w	wear-01	2-3
+# ::node	o	organization	3-4
+# ::node	n	name	3-4
+# ::node	0	troop	3-4
+# ::node	u	uniform	4-5
+# ::node	s2	stand-01	5-6
+# ::node	t	table	8-9
+# ::node	m	make-01	9-10
+# ::node	c2	craft	10-11
+# ::root	s2	stand-01
+# ::edge	child	quant	several	c	s	
+# ::edge	child	ARG0-of	wear-01	c	w	
+# ::edge	organization	name	name	o	n	
+# ::edge	name	op1	troop	n	0	
+# ::edge	uniform	mod	organization	u	o	
+# ::edge	wear-01	ARG1	uniform	w	u	
+# ::edge	stand-01	ARG1	child	s2	c	
+# ::edge	stand-01	ARG2	table	s2	t	
+# ::edge	child	ARG0-of	make-01	c	m	
+# ::edge	make-01	ARG1	craft	m	c2	
+(s2 / stand-01
+    :ARG1 (c / child
+        :quant (s / several)
+        :ARG0-of (w / wear-01
+            :ARG1 (u / uniform
+                :mod (o / organization
+                    :name (n / name
+                        :op1 "troop"))))
+        :ARG0-of (m / make-01
+            :ARG1 (c2 / craft)))
+    :ARG2 (t / table))

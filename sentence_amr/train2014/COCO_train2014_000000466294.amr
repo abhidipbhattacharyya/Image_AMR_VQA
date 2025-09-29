@@ -1,0 +1,27 @@
+# ::tok The sky is dim as the sun changes positions behind a building .
+# ::node	s	sky	1-2
+# ::node	d	dim-01	3-4
+# ::node	c	cause-01	4-5
+# ::node	s2	sun	6-7
+# ::node	c2	change-01	7-8
+# ::node	p	position-01	8-9
+# ::node	b	behind	9-10
+# ::node	b2	building	11-12
+# ::root	d	dim-01
+# ::edge	dim-01	ARG1	sky	d	s	
+# ::edge	dim-01	ARG1-of	cause-01	d	c	
+# ::edge	change-01	ARG0	sun	c2	s2	
+# ::edge	cause-01	ARG0	change-01	c	c2	
+# ::edge	change-01	ARG1	position-01	c2	p	
+# ::edge	position-01	ARG1	sun	p	s2	
+# ::edge	position-01	ARG2	behind	p	b	
+# ::edge	behind	op1	building	b	b2	
+(d / dim-01
+    :ARG1 (s / sky)
+    :ARG1-of (c / cause-01
+        :ARG0 (c2 / change-01
+            :ARG0 (s2 / sun)
+            :ARG1 (p / position-01
+                :ARG1 s2
+                :ARG2 (b / behind
+                    :op1 (b2 / building))))))

@@ -1,0 +1,36 @@
+# ::tok three soccer players surround a goal post , one preventing a goal
+# ::node	1	3	0-1
+# ::node	s	soccer	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	s2	surround-01	3-4
+# ::node	g	goal	5-6
+# ::node	p3	post	6-7
+# ::node	p4	post	6-7
+# ::node	m	mean-01	7-8
+# ::node	0	1	8-9
+# ::node	p5	prevent-01	9-10
+# ::root	s2	surround-01
+# ::edge	person	quant	3	p	1	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	soccer	p2	s	
+# ::edge	surround-01	ARG1	person	s2	p	
+# ::edge	post	mod	goal	p3	g	
+# ::edge	surround-01	ARG2	post	s2	p3	
+# ::edge	mean-01	ARG2	post	m	p4	
+# ::edge	post	ARG1-of	mean-01	p3	m	
+# ::edge	post	quant	1	p4	0	
+# ::edge	post	ARG0-of	prevent-01	p4	p5	
+# ::edge	prevent-01	ARG1	goal	p5	g	
+(s2 / surround-01
+    :ARG1 (p / person
+        :quant 3
+        :ARG0-of (p2 / play-01
+            :ARG1 (s / soccer)))
+    :ARG2 (p3 / post
+        :ARG1-of (m / mean-01
+            :ARG2 (p4 / post
+                :quant 1
+                :ARG0-of (p5 / prevent-01
+                    :ARG1 (g / goal))))
+        :mod g))

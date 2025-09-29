@@ -1,0 +1,34 @@
+# ::tok Person skiing down a slope on a snow board while two others watch from above .
+# ::node	p	person	0-1
+# ::node	s	ski-01	1-2
+# ::node	d	down	2-3
+# ::node	s2	slope	4-5
+# ::node	s3	snow	7-8
+# ::node	b	board	8-9
+# ::node	0	2	10-11
+# ::node	p2	person	11-12
+# ::node	o	other	11-12
+# ::node	w	watch-01	12-13
+# ::node	a	above	14-15
+# ::root	s	ski-01
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	ski-01	direction	down	s	d	
+# ::edge	ski-01	path	slope	s	s2	
+# ::edge	board	purpose	snow	b	s3	
+# ::edge	ski-01	instrument	board	s	b	
+# ::edge	person	quant	2	p2	0	
+# ::edge	person	mod	other	p2	o	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	ski-01	ARG1-of	watch-01	s	w	
+# ::edge	watch-01	location	above	w	a	
+(s / ski-01
+    :ARG0 (p / person)
+    :ARG1-of (w / watch-01
+        :ARG0 (p2 / person
+            :quant 2
+            :mod (o / other))
+        :location (a / above))
+    :direction (d / down)
+    :instrument (b / board
+        :purpose (s3 / snow))
+    :path (s2 / slope))

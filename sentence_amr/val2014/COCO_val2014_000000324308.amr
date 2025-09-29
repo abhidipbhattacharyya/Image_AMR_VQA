@@ -1,0 +1,37 @@
+# ::tok some bananas that are growing but still too ripe to harvest
+# ::node	s	some	0-1
+# ::node	b	banana	1-2
+# ::node	g	grow-03	4-5
+# ::node	s2	still	6-7
+# ::node	h2	have-degree-91	7-8
+# ::node	t	too	7-8
+# ::node	0	-	7-8
+# ::node	r	ripe-02	8-9
+# ::node	p	possible-01	9-10
+# ::node	h	harvest-01	10-11
+# ::root	b	banana
+# ::edge	banana	quant	some	b	s	
+# ::edge	banana	ARG1-of	grow-03	b	g	
+# ::edge	have-degree-91	ARG1	banana	h2	b	
+# ::edge	have-degree-91	ARG3	too	h2	t	
+# ::edge	ripe-02	ARG2-of	have-degree-91	r	h2	
+# ::edge	ripe-02	mod	still	r	s2	
+# ::edge	banana	concession-of	ripe-02	b	r	
+# ::edge	ripe-02	ARG1	banana	r	b	
+# ::edge	possible-01	polarity	-	p	0	
+# ::edge	have-degree-91	ARG6	possible-01	h2	p	
+# ::edge	possible-01	ARG1	harvest-01	p	h	
+# ::edge	harvest-01	ARG1	banana	h	b	
+(b / banana
+    :quant (s / some)
+    :ARG1-of (g / grow-03)
+    :concession-of (r / ripe-02
+        :ARG1 b
+        :ARG2-of (h2 / have-degree-91
+            :ARG1 b
+            :ARG3 (t / too)
+            :ARG6 (p / possible-01
+                :ARG1 (h / harvest-01
+                    :ARG1 b)
+                :polarity -))
+        :mod (s2 / still)))

@@ -1,0 +1,33 @@
+# ::tok People outside a fence are watching a dog within the fence catch a Frisbee .
+# ::node	p	person	0-1
+# ::node	o	outside	1-2
+# ::node	f	fence	3-4
+# ::node	w	watch-01	5-6
+# ::node	d	dog	7-8
+# ::node	w2	within	8-9
+# ::node	c	catch-01	11-12
+# ::node	d2	dog	13-14
+# ::node	n	name	13-14
+# ::node	0	Frisbee	13-14
+# ::root	w	watch-01
+# ::edge	person	location	outside	p	o	
+# ::edge	outside	op1	fence	o	f	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	dog	location	within	d	w2	
+# ::edge	within	op1	fence	w2	f	
+# ::edge	catch-01	ARG0	dog	c	d	
+# ::edge	watch-01	ARG1	catch-01	w	c	
+# ::edge	catch-01	ARG1	dog	c	d2	
+# ::edge	dog	name	name	d2	n	
+# ::edge	name	op1	Frisbee	n	0	
+(w / watch-01
+    :ARG0 (p / person
+        :location (o / outside
+            :op1 (f / fence)))
+    :ARG1 (c / catch-01
+        :ARG0 (d / dog
+            :location (w2 / within
+                :op1 f))
+        :ARG1 (d2 / dog
+            :name (n / name
+                :op1 "Frisbee"))))

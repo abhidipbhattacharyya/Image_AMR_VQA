@@ -1,0 +1,37 @@
+# ::tok A female tennis player holding a racquet in one hand and throwing a ball with the other
+# ::node	f	female	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	h3	hold-01	4-5
+# ::node	r	racquet	6-7
+# ::node	0	1	8-9
+# ::node	h	hand	9-10
+# ::node	h2	hand	9-10
+# ::node	t2	throw-01	11-12
+# ::node	b	ball	13-14
+# ::node	o	other	16-17
+# ::root	p	person
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	person	ARG0-of	hold-01	p	h3	
+# ::edge	hold-01	ARG1	racquet	h3	r	
+# ::edge	hand	quant	1	h	0	
+# ::edge	hold-01	manner	hand	h3	h	
+# ::edge	throw-01	ARG2	hand	t2	h2	
+# ::edge	person	ARG0-of	throw-01	p	t2	
+# ::edge	throw-01	ARG1	ball	t2	b	
+# ::edge	hand	mod	other	h2	o	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (h3 / hold-01
+        :ARG1 (r / racquet)
+        :manner (h / hand
+            :quant 1))
+    :ARG0-of (t2 / throw-01
+        :ARG1 (b / ball)
+        :ARG2 (h2 / hand
+            :mod (o / other)))
+    :mod (f / female))

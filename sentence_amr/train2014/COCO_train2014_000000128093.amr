@@ -1,0 +1,51 @@
+# ::tok A child sits at an iron outdoor patio table decked out in Boston Red Sox gear and holds a hot dog .
+# ::node	c	child	1-2
+# ::node	s	sit-01	2-3
+# ::node	i	iron	5-6
+# ::node	o	outdoor	6-7
+# ::node	p	patio	7-8
+# ::node	t	table	8-9
+# ::node	p2	pull-out-02	9-10
+# ::node	n	name	12-13
+# ::node	0	Boston	12-13
+# ::node	1	Red	13-14
+# ::node	t2	team	14-15
+# ::node	2	Sox	14-15
+# ::node	g	gear	15-16
+# ::node	a	and	16-17
+# ::node	h	hold-01	17-18
+# ::node	h2	hot-dog	20-21
+# ::root	a	and
+# ::edge	sit-01	ARG1	child	s	c	
+# ::edge	table	location	patio	t	p	
+# ::edge	table	location	outdoor	t	o	
+# ::edge	table	consist-of	iron	t	i	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	ARG1-of	pull-out-02	t	p2	
+# ::edge	name	op1	Boston	n	0	
+# ::edge	name	op2	Red	n	1	
+# ::edge	team	name	name	t2	n	
+# ::edge	name	op3	Sox	n	2	
+# ::edge	gear	mod	team	g	t2	
+# ::edge	pull-out-02	ARG2	gear	p2	g	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	child	h	c	
+# ::edge	hold-01	ARG1	hot-dog	h	h2	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (c / child)
+        :ARG2 (t / table
+            :ARG1-of (p2 / pull-out-02
+                :ARG2 (g / gear
+                    :mod (t2 / team
+                        :name (n / name
+                            :op1 "Boston"
+                            :op2 "Red"
+                            :op3 "Sox"))))
+            :consist-of (i / iron)
+            :location (p / patio)
+            :location (o / outdoor)))
+    :op2 (h / hold-01
+        :ARG0 c
+        :ARG1 (h2 / hot-dog)))

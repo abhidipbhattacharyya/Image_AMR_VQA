@@ -1,0 +1,26 @@
+# ::tok Several horses standing or laying on a grassy slope .
+# ::node	s	several	0-1
+# ::node	h	horse	1-2
+# ::node	s3	stand-01	2-3
+# ::node	o	or	3-4
+# ::node	l	lay-01	4-5
+# ::node	g	grass	7-8
+# ::node	s2	slope	8-9
+# ::root	o	or
+# ::edge	horse	quant	several	h	s	
+# ::edge	stand-01	ARG1	horse	s3	h	
+# ::edge	or	op1	stand-01	o	s3	
+# ::edge	or	op2	lay-01	o	l	
+# ::edge	lay-01	ARG1	horse	l	h	
+# ::edge	slope	consist-of	grass	s2	g	
+# ::edge	lay-01	ARG2	slope	l	s2	
+# ::edge	stand-01	ARG2	slope	s3	s2	
+(o / or
+    :op1 (s3 / stand-01
+        :ARG1 (h / horse
+            :quant (s / several))
+        :ARG2 (s2 / slope
+            :consist-of (g / grass)))
+    :op2 (l / lay-01
+        :ARG1 h
+        :ARG2 s2))

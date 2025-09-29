@@ -1,0 +1,40 @@
+# ::tok A crowded street scene with cars , a Brinks truck , buses and people standing on sidewalk .
+# ::node	c3	crowd-01	1-2
+# ::node	s4	street	2-3
+# ::node	s	scene	3-4
+# ::node	c	car	5-6
+# ::node	c2	company	8-9
+# ::node	n	name	8-9
+# ::node	0	Brinks	8-9
+# ::node	t	truck	9-10
+# ::node	b	bus	11-12
+# ::node	a	and	12-13
+# ::node	p	person	13-14
+# ::node	s3	stand-01	14-15
+# ::node	s2	sidewalk	16-17
+# ::root	s	scene
+# ::edge	scene	location	street	s	s4	
+# ::edge	scene	ARG1-of	crowd-01	s	c3	
+# ::edge	company	name	name	c2	n	
+# ::edge	name	op1	Brinks	n	0	
+# ::edge	truck	mod	company	t	c2	
+# ::edge	and	op3	bus	a	b	
+# ::edge	and	op2	truck	a	t	
+# ::edge	and	op1	car	a	c	
+# ::edge	scene	location-of	and	s	a	
+# ::edge	and	op4	person	a	p	
+# ::edge	person	ARG0-of	stand-01	p	s3	
+# ::edge	stand-01	ARG2	sidewalk	s3	s2	
+(s / scene
+    :ARG1-of (c3 / crowd-01)
+    :location (s4 / street)
+    :location-of (a / and
+        :op1 (c / car)
+        :op2 (t / truck
+            :mod (c2 / company
+                :name (n / name
+                    :op1 "Brinks")))
+        :op3 (b / bus)
+        :op4 (p / person
+            :ARG0-of (s3 / stand-01
+                :ARG2 (s2 / sidewalk)))))

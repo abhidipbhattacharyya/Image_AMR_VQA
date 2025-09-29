@@ -1,0 +1,46 @@
+# ::tok Closeup on table top with a cookie , two stones , open scissors , paper towel roll , and a basket .
+# ::node	c	close-10	0-1
+# ::node	t	table	2-3
+# ::node	t2	top	3-4
+# ::node	h	have-03	4-5
+# ::node	c2	cookie	6-7
+# ::node	0	2	8-9
+# ::node	s2	stone	9-10
+# ::node	o	open-01	11-12
+# ::node	s	shoe	12-13
+# ::node	c3	cut-01	12-13
+# ::node	p	paper	14-15
+# ::node	t3	towel	15-16
+# ::node	r	roll	16-17
+# ::node	a	and	18-19
+# ::node	b	basket	20-21
+# ::root	h	have-03
+# ::edge	top	mod	table	t2	t	
+# ::edge	close-10	location	top	c	t2	
+# ::edge	have-03	ARG1-of	close-10	h	c	
+# ::edge	stone	quant	2	s2	0	
+# ::edge	shoe	ARG1-of	open-01	s	o	
+# ::edge	shoe	ARG1-of	cut-01	s	c3	
+# ::edge	towel	consist-of	paper	t3	p	
+# ::edge	roll	consist-of	towel	r	t3	
+# ::edge	and	op4	roll	a	r	
+# ::edge	and	op3	shoe	a	s	
+# ::edge	and	op2	stone	a	s2	
+# ::edge	and	op1	cookie	a	c2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op5	basket	a	b	
+(h / have-03
+    :ARG1 (a / and
+        :op1 (c2 / cookie)
+        :op2 (s2 / stone
+            :quant 2)
+        :op3 (s / shoe
+            :ARG1-of (o / open-01)
+            :ARG1-of (c3 / cut-01))
+        :op4 (r / roll
+            :consist-of (t3 / towel
+                :consist-of (p / paper)))
+        :op5 (b / basket))
+    :ARG1-of (c / close-10
+        :location (t2 / top
+            :mod (t / table))))

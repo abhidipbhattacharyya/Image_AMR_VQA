@@ -1,0 +1,43 @@
+# ::tok A man is laying on a bed as a furry critter moves bedside him and almost drops a filter pitcher .
+# ::node	m	man	1-2
+# ::node	l	lay-01	3-4
+# ::node	b	bed	6-7
+# ::node	f2	furry	9-10
+# ::node	c	critter	10-11
+# ::node	m2	move-01	11-12
+# ::node	b2	bedside	12-13
+# ::node	a2	and	14-15
+# ::node	a	almost	15-16
+# ::node	d	drop-01	16-17
+# ::node	f	filter-02	18-19
+# ::node	p	pitcher	19-20
+# ::root	l	lay-01
+# ::edge	lay-01	ARG1	man	l	m	
+# ::edge	lay-01	ARG2	bed	l	b	
+# ::edge	critter	mod	furry	c	f2	
+# ::edge	move-01	ARG0	critter	m2	c	
+# ::edge	move-01	ARG1	man	m2	m	
+# ::edge	move-01	location	bedside	m2	b2	
+# ::edge	man	part	bedside	m	b2	
+# ::edge	and	op1	move-01	a2	m2	
+# ::edge	lay-01	time	and	l	a2	
+# ::edge	drop-01	mod	almost	d	a	
+# ::edge	and	op2	drop-01	a2	d	
+# ::edge	drop-01	ARG0	critter	d	c	
+# ::edge	pitcher	ARG0-of	filter-02	p	f	
+# ::edge	drop-01	ARG1	pitcher	d	p	
+(l / lay-01
+    :ARG1 (m / man
+        :part (b2 / bedside))
+    :ARG2 (b / bed)
+    :time (a2 / and
+        :op1 (m2 / move-01
+            :ARG0 (c / critter
+                :mod (f2 / furry))
+            :ARG1 m
+            :location b2)
+        :op2 (d / drop-01
+            :ARG0 c
+            :ARG1 (p / pitcher
+                :ARG0-of (f / filter-02))
+            :mod (a / almost))))

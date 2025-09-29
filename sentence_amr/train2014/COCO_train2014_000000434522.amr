@@ -1,0 +1,39 @@
+# ::tok A man holding a surfboard under one of his arms and walking on a wet sand area .
+# ::node	m	man	1-2
+# ::node	h	hold-01	2-3
+# ::node	s2	surfboard	4-5
+# ::node	u	under	5-6
+# ::node	0	1	6-7
+# ::node	i	include-91	7-8
+# ::node	a2	arm	9-10
+# ::node	a3	arm	9-10
+# ::node	w	walk-01	11-12
+# ::node	w2	wet-01	14-15
+# ::node	s	sand	15-16
+# ::node	a	area	16-17
+# ::root	m	man
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	ARG1	surfboard	h	s2	
+# ::edge	hold-01	ARG2	under	h	u	
+# ::edge	arm	ARG1-of	include-91	a2	i	
+# ::edge	arm	quant	1	a2	0	
+# ::edge	under	op1	arm	u	a2	
+# ::edge	include-91	ARG2	arm	i	a3	
+# ::edge	man	part	arm	m	a3	
+# ::edge	man	ARG0-of	walk-01	m	w	
+# ::edge	sand	ARG1-of	wet-01	s	w2	
+# ::edge	area	consist-of	sand	a	s	
+# ::edge	walk-01	ARG2	area	w	a	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (s2 / surfboard)
+        :ARG2 (u / under
+            :op1 (a2 / arm
+                :quant 1
+                :ARG1-of (i / include-91
+                    :ARG2 (a3 / arm)))))
+    :ARG0-of (w / walk-01
+        :ARG2 (a / area
+            :consist-of (s / sand
+                :ARG1-of (w2 / wet-01))))
+    :part a3)

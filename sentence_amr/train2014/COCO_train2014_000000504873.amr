@@ -1,0 +1,30 @@
+# ::tok A train with smoke billowing out of its stacks chugs down a track through the woods .
+# ::node	t2	train	1-2
+# ::node	h	have-03	2-3
+# ::node	s	smoke	3-4
+# ::node	b	billow-01	4-5
+# ::node	s2	stack-01	8-9
+# ::node	c	chomp-01	9-10
+# ::node	d	down	10-11
+# ::node	t	track	12-13
+# ::node	w	woods	15-16
+# ::root	c	chomp-01
+# ::edge	train	ARG0-of	have-03	t2	h	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	billow-01	s	b	
+# ::edge	billow-01	source	stack-01	b	s2	
+# ::edge	stack-01	ARG0	train	s2	t2	
+# ::edge	chomp-01	ARG0	train	c	t2	
+# ::edge	chomp-01	direction	down	c	d	
+# ::edge	chomp-01	path	track	c	t	
+# ::edge	track	path	woods	t	w	
+(c / chomp-01
+    :ARG0 (t2 / train
+        :ARG0-of (h / have-03
+            :ARG1 (s / smoke
+                :ARG1-of (b / billow-01
+                    :source (s2 / stack-01
+                        :ARG0 t2)))))
+    :direction (d / down)
+    :path (t / track
+        :path (w / woods)))

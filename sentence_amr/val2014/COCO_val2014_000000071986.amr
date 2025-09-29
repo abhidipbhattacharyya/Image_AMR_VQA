@@ -1,0 +1,23 @@
+# ::tok Skiers waiting for their turn to make a run on a slope .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	w	wait-01	1-2
+# ::node	t	turn	4-5
+# ::node	r	run-02	8-9
+# ::node	s2	slope	11-12
+# ::root	w	wait-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	turn	w	t	
+# ::edge	turn	poss	person	t	p	
+# ::edge	turn	purpose	run-02	t	r	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	run-02	ARG1	slope	r	s2	
+(w / wait-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01))
+    :ARG2 (t / turn
+        :purpose (r / run-02
+            :ARG0 p
+            :ARG1 (s2 / slope))
+        :poss p))

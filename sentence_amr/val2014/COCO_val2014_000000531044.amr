@@ -1,0 +1,41 @@
+# ::tok A giraffe standing near trees most with green leaves and one dead .
+# ::node	g	giraffe	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	t	tree	4-5
+# ::node	t2	tree	4-5
+# ::node	i	include-91	5-6
+# ::node	m	most	5-6
+# ::node	h	have-03	6-7
+# ::node	g2	green-02	7-8
+# ::node	l	leaf	8-9
+# ::node	0	1	10-11
+# ::node	d	die-01	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	giraffe	s	g	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	giraffe	n	g	
+# ::edge	near-02	ARG2	tree	n	t	
+# ::edge	include-91	ARG1	tree	i	t	
+# ::edge	tree	ARG2-of	include-91	t	i	
+# ::edge	include-91	mod	most	i	m	
+# ::edge	tree	ARG0-of	have-03	t	h	
+# ::edge	leaf	ARG1-of	green-02	l	g2	
+# ::edge	have-03	ARG1	leaf	h	l	
+# ::edge	tree	quant	1	t2	0	
+# ::edge	tree	ARG1-of	die-01	t2	d	
+# ::edge	stand-01	rel	tree	s	t2	
+(s / stand-01
+    :ARG1 (g / giraffe)
+    :ARG2 (n / near-02
+        :ARG1 g
+        :ARG2 (t / tree
+            :ARG0-of (h / have-03
+                :ARG1 (l / leaf
+                    :ARG1-of (g2 / green-02)))
+            :ARG2-of (i / include-91
+                :ARG1 t
+                :mod (m / most))))
+    :rel (t2 / tree
+        :quant 1
+        :ARG1-of (d / die-01)))

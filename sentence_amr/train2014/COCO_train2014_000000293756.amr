@@ -1,0 +1,22 @@
+# ::tok Cars are driving through the busy traffic near a traffic signal .
+# ::node	c	car	0-1
+# ::node	d	drive-01	2-3
+# ::node	b	busy-01	5-6
+# ::node	t	traffic	6-7
+# ::node	n	near-02	7-8
+# ::node	t2	traffic	9-10
+# ::node	s	signal	10-11
+# ::root	d	drive-01
+# ::edge	drive-01	ARG0	car	d	c	
+# ::edge	traffic	ARG1-of	busy-01	t	b	
+# ::edge	drive-01	ARG1	traffic	d	t	
+# ::edge	traffic	ARG1-of	near-02	t	n	
+# ::edge	signal	mod	traffic	s	t2	
+# ::edge	near-02	ARG2	signal	n	s	
+(d / drive-01
+    :ARG0 (c / car)
+    :ARG1 (t / traffic
+        :ARG1-of (b / busy-01)
+        :ARG1-of (n / near-02
+            :ARG2 (s / signal
+                :mod (t2 / traffic)))))

@@ -1,0 +1,30 @@
+# ::tok Several children on a set of train tracks looking up at a train passing them .
+# ::node	s2	several	0-1
+# ::node	c	child	1-2
+# ::node	s	set	4-5
+# ::node	t2	train	6-7
+# ::node	t	track	7-8
+# ::node	l	look-01	8-9
+# ::node	u	up	9-10
+# ::node	t3	train	12-13
+# ::node	p	pass-03	13-14
+# ::root	l	look-01
+# ::edge	child	quant	several	c	s2	
+# ::edge	track	mod	train	t	t2	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	look-01	location	set	l	s	
+# ::edge	look-01	ARG0	child	l	c	
+# ::edge	look-01	direction	up	l	u	
+# ::edge	look-01	ARG1	train	l	t3	
+# ::edge	train	ARG1-of	pass-03	t3	p	
+# ::edge	pass-03	ARG2	child	p	c	
+(l / look-01
+    :ARG0 (c / child
+        :quant (s2 / several))
+    :ARG1 (t3 / train
+        :ARG1-of (p / pass-03
+            :ARG2 c))
+    :direction (u / up)
+    :location (s / set
+        :consist-of (t / track
+            :mod (t2 / train))))

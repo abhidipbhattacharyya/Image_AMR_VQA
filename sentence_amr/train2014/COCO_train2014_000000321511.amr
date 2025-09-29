@@ -1,0 +1,48 @@
+# ::tok A bird is eating pizza in an open takeout container that is sitting on a newspaper box in front of a fence with a flowering tree behind it
+# ::node	b2	bird	1-2
+# ::node	e	eat-01	3-4
+# ::node	p	pizza	4-5
+# ::node	o	open-01	7-8
+# ::node	t	take-out-11	8-9
+# ::node	c	container	9-10
+# ::node	s	sit-01	12-13
+# ::node	n	newspaper	15-16
+# ::node	b3	box	16-17
+# ::node	i	in-front-of	18-19
+# ::node	f	fence	21-22
+# ::node	h	have-03	22-23
+# ::node	f2	flower-01	24-25
+# ::node	t2	tree	25-26
+# ::node	b	behind	26-27
+# ::root	e	eat-01
+# ::edge	eat-01	ARG0	bird	e	b2	
+# ::edge	eat-01	ARG1	pizza	e	p	
+# ::edge	container	ARG1-of	take-out-11	c	t	
+# ::edge	container	ARG1-of	open-01	c	o	
+# ::edge	eat-01	location	container	e	c	
+# ::edge	container	ARG1-of	sit-01	c	s	
+# ::edge	box	mod	newspaper	b3	n	
+# ::edge	sit-01	ARG2	box	s	b3	
+# ::edge	box	location	in-front-of	b3	i	
+# ::edge	in-front-of	op1	fence	i	f	
+# ::edge	box	ARG0-of	have-03	b3	h	
+# ::edge	tree	ARG1-of	flower-01	t2	f2	
+# ::edge	have-03	ARG1	tree	h	t2	
+# ::edge	tree	location	behind	t2	b	
+# ::edge	behind	op1	box	b	b3	
+(e / eat-01
+    :ARG0 (b2 / bird)
+    :ARG1 (p / pizza)
+    :location (c / container
+        :ARG1-of (t / take-out-11)
+        :ARG1-of (o / open-01)
+        :ARG1-of (s / sit-01
+            :ARG2 (b3 / box
+                :ARG0-of (h / have-03
+                    :ARG1 (t2 / tree
+                        :ARG1-of (f2 / flower-01)
+                        :location (b / behind
+                            :op1 b3)))
+                :location (i / in-front-of
+                    :op1 (f / fence))
+                :mod (n / newspaper)))))

@@ -1,0 +1,64 @@
+# ::tok There appears to be only a small portion of food , or perhaps most of the meal has been eaten from a plate that still holds what appears to be a cooked potato and a mixture of creamed meat and vegetables .
+# ::node	a2	appear-02	1-2
+# ::node	o	only	4-5
+# ::node	s	small	6-7
+# ::node	p2	portion	7-8
+# ::node	f	food	9-10
+# ::node	o2	or	11-12
+# ::node	p3	possible-01	12-13
+# ::node	m4	most	13-14
+# ::node	m	meal	16-17
+# ::node	e	eat-01	19-20
+# ::node	p	plate	22-23
+# ::node	s2	still	24-25
+# ::node	h	hold-01	25-26
+# ::node	a3	appear-02	27-28
+# ::node	c	cook-01	31-32
+# ::node	p4	potato	32-33
+# ::node	a	and	33-34
+# ::node	m3	mix-01	35-36
+# ::node	c2	cream-02	37-38
+# ::node	m2	meat	38-39
+# ::node	v	vegetable	40-41
+# ::root	o2	or
+# ::edge	small	mod	only	s	o	
+# ::edge	portion	mod	small	p2	s	
+# ::edge	appear-02	ARG1	portion	a2	p2	
+# ::edge	portion	part-of	food	p2	f	
+# ::edge	or	op1	appear-02	o2	a2	
+# ::edge	or	op2	possible-01	o2	p3	
+# ::edge	meal	mod	most	m	m4	
+# ::edge	eat-01	ARG1	meal	e	m	
+# ::edge	possible-01	ARG1	eat-01	p3	e	
+# ::edge	eat-01	source	plate	e	p	
+# ::edge	hold-01	mod	still	h	s2	
+# ::edge	plate	ARG0-of	hold-01	p	h	
+# ::edge	potato	ARG1-of	cook-01	p4	c	
+# ::edge	and	op1	potato	a	p4	
+# ::edge	and	ARG1-of	appear-02	a	a3	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	and	op2	mix-01	a	m3	
+# ::edge	meat	ARG1-of	cream-02	m2	c2	
+# ::edge	mix-01	ARG1	meat	m3	m2	
+# ::edge	mix-01	ARG2	vegetable	m3	v	
+(o2 / or
+    :op1 (a2 / appear-02
+        :ARG1 (p2 / portion
+            :mod (s / small
+                :mod (o / only))
+            :part-of (f / food)))
+    :op2 (p3 / possible-01
+        :ARG1 (e / eat-01
+            :ARG1 (m / meal
+                :mod (m4 / most))
+            :source (p / plate
+                :ARG0-of (h / hold-01
+                    :ARG1 (a / and
+                        :ARG1-of (a3 / appear-02)
+                        :op1 (p4 / potato
+                            :ARG1-of (c / cook-01))
+                        :op2 (m3 / mix-01
+                            :ARG1 (m2 / meat
+                                :ARG1-of (c2 / cream-02))
+                            :ARG2 (v / vegetable)))
+                    :mod (s2 / still))))))

@@ -1,0 +1,43 @@
+# ::tok A hot dog on a bun with pickles and tomatoes , alongside crinkle - cut French fries on a paper wrapper .
+# ::node	h	hot-dog	1-2
+# ::node	b	bun	5-6
+# ::node	p3	pickle	7-8
+# ::node	a2	and	8-9
+# ::node	t	tomato	9-10
+# ::node	a	alongside	11-12
+# ::node	c2	crumple-01	12-13
+# ::node	c3	cut-01	14-15
+# ::node	c	country	15-16
+# ::node	n	name	15-16
+# ::node	0	France	15-16
+# ::node	f	fry-01	16-17
+# ::node	p2	paper	19-20
+# ::node	p	package-01	20-21
+# ::root	h	hot-dog
+# ::edge	hot-dog	location	bun	h	b	
+# ::edge	and	op1	pickle	a2	p3	
+# ::edge	hot-dog	accompanier	and	h	a2	
+# ::edge	and	op2	tomato	a2	t	
+# ::edge	hot-dog	location	alongside	h	a	
+# ::edge	cut-01	ARG1-of	crumple-01	c3	c2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	fry-01	ARG1-of	cut-01	f	c3	
+# ::edge	alongside	op1	fry-01	a	f	
+# ::edge	package-01	ARG3	paper	p	p2	
+# ::edge	fry-01	ARG1-of	package-01	f	p	
+(h / hot-dog
+    :accompanier (a2 / and
+        :op1 (p3 / pickle)
+        :op2 (t / tomato))
+    :location (b / bun)
+    :location (a / alongside
+        :op1 (f / fry-01
+            :ARG1-of (c3 / cut-01
+                :ARG1-of (c2 / crumple-01))
+            :ARG1-of (p / package-01
+                :ARG3 (p2 / paper))
+            :mod (c / country
+                :name (n / name
+                    :op1 "France")))))

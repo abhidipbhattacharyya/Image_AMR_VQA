@@ -1,0 +1,27 @@
+# ::tok A cat is curled up and sleeping on some clothes next to a backpack .
+# ::node	c	cat	1-2
+# ::node	c3	curl-up-02	3-4
+# ::node	a	and	5-6
+# ::node	s	sleep-01	6-7
+# ::node	s2	some	8-9
+# ::node	c2	clothes	9-10
+# ::node	n	next-to	10-11
+# ::node	b	backpack	13-14
+# ::root	a	and
+# ::edge	curl-up-02	ARG1	cat	c3	c	
+# ::edge	and	op1	curl-up-02	a	c3	
+# ::edge	and	op2	sleep-01	a	s	
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	clothes	mod	some	c2	s2	
+# ::edge	sleep-01	location	clothes	s	c2	
+# ::edge	sleep-01	location	next-to	s	n	
+# ::edge	next-to	op1	backpack	n	b	
+(a / and
+    :op1 (c3 / curl-up-02
+        :ARG1 (c / cat))
+    :op2 (s / sleep-01
+        :ARG0 c
+        :location (c2 / clothes
+            :mod (s2 / some))
+        :location (n / next-to
+            :op1 (b / backpack))))

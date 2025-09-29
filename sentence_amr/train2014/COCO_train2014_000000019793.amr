@@ -1,0 +1,48 @@
+# ::tok A bicycle wheel with tire and spokes lying in road at curb , directly in front of a parking meter on sidewalk in front of building .
+# ::node	b	bicycle	1-2
+# ::node	w	wheel	2-3
+# ::node	t	tire	4-5
+# ::node	a	and	5-6
+# ::node	w2	wheel	6-7
+# ::node	l	lay-01	7-8
+# ::node	r	road	9-10
+# ::node	c	curb	11-12
+# ::node	d	direct-02	13-14
+# ::node	i	in-front-of	15-16
+# ::node	p	park-01	18-19
+# ::node	m	meter	19-20
+# ::node	s	sidewalk	21-22
+# ::node	i2	in-front-of	23-24
+# ::node	b2	building	25-26
+# ::root	l	lay-01
+# ::edge	wheel	part-of	bicycle	w	b	
+# ::edge	and	op1	tire	a	t	
+# ::edge	wheel	part	and	w	a	
+# ::edge	and	op2	wheel	a	w2	
+# ::edge	bicycle	part	wheel	b	w2	
+# ::edge	lay-01	ARG1	wheel	l	w	
+# ::edge	lay-01	ARG2	road	l	r	
+# ::edge	road	location	curb	r	c	
+# ::edge	in-front-of	ARG1-of	direct-02	i	d	
+# ::edge	lay-01	location	in-front-of	l	i	
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	in-front-of	op1	meter	i	m	
+# ::edge	meter	location	sidewalk	m	s	
+# ::edge	sidewalk	location	in-front-of	s	i2	
+# ::edge	in-front-of	op1	building	i2	b2	
+(l / lay-01
+    :ARG1 (w / wheel
+        :part (a / and
+            :op1 (t / tire)
+            :op2 (w2 / wheel))
+        :part-of (b / bicycle
+            :part w2))
+    :ARG2 (r / road
+        :location (c / curb))
+    :location (i / in-front-of
+        :ARG1-of (d / direct-02)
+        :op1 (m / meter
+            :purpose (p / park-01)
+            :location (s / sidewalk
+                :location (i2 / in-front-of
+                    :op1 (b2 / building))))))

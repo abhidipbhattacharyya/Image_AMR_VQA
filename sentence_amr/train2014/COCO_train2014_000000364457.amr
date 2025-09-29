@@ -1,0 +1,47 @@
+# ::tok A glass container with red rubber lid is open to display green bean casserole and sits in front of a microwave .
+# ::node	g	glass	1-2
+# ::node	c2	container	2-3
+# ::node	r	red-02	4-5
+# ::node	r2	rubber	5-6
+# ::node	l	lid	6-7
+# ::node	o	open-01	8-9
+# ::node	d	display-01	10-11
+# ::node	g2	green-02	11-12
+# ::node	b	bean	12-13
+# ::node	c	casserole	13-14
+# ::node	a	and	14-15
+# ::node	s	sit-01	15-16
+# ::node	i	in-front-of	17-18
+# ::node	m	microwave	20-21
+# ::root	a	and
+# ::edge	container	consist-of	glass	c2	g	
+# ::edge	lid	consist-of	rubber	l	r2	
+# ::edge	lid	ARG1-of	red-02	l	r	
+# ::edge	container	part	lid	c2	l	
+# ::edge	open-01	ARG1	container	o	c2	
+# ::edge	open-01	purpose	display-01	o	d	
+# ::edge	display-01	ARG0	container	d	c2	
+# ::edge	bean	ARG1-of	green-02	b	g2	
+# ::edge	casserole	mod	bean	c	b	
+# ::edge	display-01	ARG1	casserole	d	c	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG1	container	s	c2	
+# ::edge	sit-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	microwave	i	m	
+(a / and
+    :op1 (o / open-01
+        :purpose (d / display-01
+            :ARG0 (c2 / container
+                :consist-of (g / glass)
+                :part (l / lid
+                    :ARG1-of (r / red-02)
+                    :consist-of (r2 / rubber)))
+            :ARG1 (c / casserole
+                :mod (b / bean
+                    :ARG1-of (g2 / green-02))))
+        :ARG1 c2)
+    :op2 (s / sit-01
+        :ARG1 c2
+        :ARG2 (i / in-front-of
+            :op1 (m / microwave))))

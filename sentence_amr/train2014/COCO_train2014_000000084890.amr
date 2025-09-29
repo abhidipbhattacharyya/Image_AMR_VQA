@@ -1,0 +1,33 @@
+# ::tok A street sign hanging from a traffic signal with birds perched on top .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	h	hang-01	3-4
+# ::node	t2	traffic	6-7
+# ::node	s2	signal	7-8
+# ::node	h2	have-03	8-9
+# ::node	b	bird	9-10
+# ::node	p	perch-01	10-11
+# ::node	t	top	12-13
+# ::node	e	event	13-14
+# ::root	e	event
+# ::edge	sign	mod	street	s	s3	
+# ::edge	sign	ARG1-of	hang-01	s	h	
+# ::edge	signal	mod	traffic	s2	t2	
+# ::edge	hang-01	ARG2	signal	h	s2	
+# ::edge	sign	ARG0-of	have-03	s	h2	
+# ::edge	have-03	ARG1	bird	h2	b	
+# ::edge	bird	ARG1-of	perch-01	b	p	
+# ::edge	perch-01	ARG2	top	p	t	
+# ::edge	sign	part	top	s	t	
+# ::edge	event	mod	sign	e	s	
+(e / event
+    :mod (s / sign
+        :ARG0-of (h2 / have-03
+            :ARG1 (b / bird
+                :ARG1-of (p / perch-01
+                    :ARG2 (t / top))))
+        :ARG1-of (h / hang-01
+            :ARG2 (s2 / signal
+                :mod (t2 / traffic)))
+        :mod (s3 / street)
+        :part t))

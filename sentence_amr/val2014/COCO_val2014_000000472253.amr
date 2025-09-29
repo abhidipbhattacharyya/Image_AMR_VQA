@@ -1,0 +1,25 @@
+# ::tok People sitting at tables in a hotel conference room watching television
+# ::node	p	person	0-1
+# ::node	s	sit-01	1-2
+# ::node	t	table	3-4
+# ::node	h	hotel	6-7
+# ::node	c	conference	7-8
+# ::node	r	room	8-9
+# ::node	w	watch-01	9-10
+# ::node	t2	television	10-11
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	room	mod	conference	r	c	
+# ::edge	room	location	hotel	r	h	
+# ::edge	table	location	room	t	r	
+# ::edge	person	ARG0-of	watch-01	p	w	
+# ::edge	watch-01	ARG1	television	w	t2	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (w / watch-01
+            :ARG1 (t2 / television)))
+    :ARG2 (t / table
+        :location (r / room
+            :location (h / hotel)
+            :mod (c / conference))))

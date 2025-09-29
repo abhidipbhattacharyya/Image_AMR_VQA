@@ -1,0 +1,34 @@
+# ::tok The three birds on the rocks are centuries looking out over the ocean .
+# ::node	1	3	1-2
+# ::node	b	bird	2-3
+# ::node	r	rock	5-6
+# ::node	l	last-01	7-8
+# ::node	m	multiple	7-8
+# ::node	t	temporal-quantity	7-8
+# ::node	c	century	7-8
+# ::node	0	1	7-8
+# ::node	l2	look-01	8-9
+# ::node	o2	over	10-11
+# ::node	o	ocean	12-13
+# ::root	l	last-01
+# ::edge	bird	quant	3	b	1	
+# ::edge	bird	location	rock	b	r	
+# ::edge	last-01	ARG1	bird	l	b	
+# ::edge	last-01	ARG2	multiple	l	m	
+# ::edge	multiple	op1	temporal-quantity	m	t	
+# ::edge	temporal-quantity	unit	century	t	c	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	bird	ARG0-of	look-01	b	l2	
+# ::edge	look-01	ARG1	over	l2	o2	
+# ::edge	over	op1	ocean	o2	o	
+(l / last-01
+    :ARG1 (b / bird
+        :quant 3
+        :ARG0-of (l2 / look-01
+            :ARG1 (o2 / over
+                :op1 (o / ocean)))
+        :location (r / rock))
+    :ARG2 (m / multiple
+        :op1 (t / temporal-quantity
+            :quant 1
+            :unit (c / century))))

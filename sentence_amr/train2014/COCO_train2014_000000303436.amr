@@ -1,0 +1,25 @@
+# ::tok A yellow and blue double - decker bus driving in traffic .
+# ::node	y	yellow-02	1-2
+# ::node	a	and	2-3
+# ::node	b	blue	3-4
+# ::node	d	double-decker	6-7
+# ::node	b2	bus	7-8
+# ::node	b3	bus	7-8
+# ::node	d2	drive-01	8-9
+# ::node	t	traffic	10-11
+# ::root	a	and
+# ::edge	double-decker	op1	bus	d	b2	
+# ::edge	bus	ARG1-of	yellow-02	b2	y	
+# ::edge	bus	mod	double-decker	b3	d	
+# ::edge	bus	mod	blue	b3	b	
+# ::edge	and	op2	bus	a	b3	
+# ::edge	and	ARG0-of	drive-01	a	d2	
+# ::edge	drive-01	ARG1	traffic	d2	t	
+(a / and
+    :ARG0-of (d2 / drive-01
+        :ARG1 (t / traffic))
+    :op2 (b3 / bus
+        :mod (d / double-decker
+            :op1 (b2 / bus
+                :ARG1-of (y / yellow-02)))
+        :mod (b / blue)))

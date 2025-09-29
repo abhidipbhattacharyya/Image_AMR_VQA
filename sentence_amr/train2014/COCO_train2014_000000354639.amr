@@ -1,0 +1,24 @@
+# ::tok A train station with a train sitting there waiting to be loaded .
+# ::node	t2	train	1-2
+# ::node	s2	station	2-3
+# ::node	t3	train	5-6
+# ::node	s	sit-01	6-7
+# ::node	t	there	7-8
+# ::node	w	wait-01	8-9
+# ::node	l	load-01	11-12
+# ::root	s2	station
+# ::edge	station	mod	train	s2	t2	
+# ::edge	sit-01	ARG1	train	s	t3	
+# ::edge	station	location-of	sit-01	s2	s	
+# ::edge	sit-01	location	there	s	t	
+# ::edge	train	ARG1-of	wait-01	t3	w	
+# ::edge	wait-01	ARG2	load-01	w	l	
+# ::edge	load-01	ARG1	train	l	t3	
+(s2 / station
+    :location-of (s / sit-01
+        :ARG1 (t3 / train
+            :ARG1-of (w / wait-01
+                :ARG2 (l / load-01
+                    :ARG1 t3)))
+        :location (t / there))
+    :mod (t2 / train))

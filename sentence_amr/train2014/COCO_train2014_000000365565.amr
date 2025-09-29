@@ -1,0 +1,23 @@
+# ::tok Dirt bike racing demands regular maintenance prior to a race .
+# ::node	r	race	0-1
+# ::node	r2	race-02	2-3
+# ::node	d	demand-01	3-4
+# ::node	r3	regular-02	4-5
+# ::node	m	maintain-01	5-6
+# ::node	p	prior	6-7
+# ::root	d	demand-01
+# ::edge	race-02	ARG3	race	r2	r	
+# ::edge	demand-01	ARG0	race-02	d	r2	
+# ::edge	maintain-01	ARG1-of	regular-02	m	r3	
+# ::edge	demand-01	ARG1	maintain-01	d	m	
+# ::edge	maintain-01	ARG1	race-02	m	r2	
+# ::edge	maintain-01	time	prior	m	p	
+# ::edge	prior	op1	race-02	p	r2	
+(d / demand-01
+    :ARG0 (r2 / race-02
+        :ARG3 (r / race))
+    :ARG1 (m / maintain-01
+        :ARG1 r2
+        :ARG1-of (r3 / regular-02)
+        :time (p / prior
+            :op1 r2)))

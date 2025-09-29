@@ -1,0 +1,25 @@
+# ::tok Street signs indicate an interstate ramp in front of a gash station .
+# ::node	s3	street	0-1
+# ::node	s	sign	1-2
+# ::node	i2	indicate-01	2-3
+# ::node	i3	interstate	4-5
+# ::node	r	ramp	5-6
+# ::node	i	in-front-of	7-8
+# ::node	g	gash	10-11
+# ::node	s2	station	11-12
+# ::root	i2	indicate-01
+# ::edge	sign	mod	street	s	s3	
+# ::edge	indicate-01	ARG0	sign	i2	s	
+# ::edge	ramp	mod	interstate	r	i3	
+# ::edge	indicate-01	ARG1	ramp	i2	r	
+# ::edge	ramp	location	in-front-of	r	i	
+# ::edge	station	mod	gash	s2	g	
+# ::edge	in-front-of	op1	station	i	s2	
+(i2 / indicate-01
+    :ARG0 (s / sign
+        :mod (s3 / street))
+    :ARG1 (r / ramp
+        :location (i / in-front-of
+            :op1 (s2 / station
+                :mod (g / gash)))
+        :mod (i3 / interstate)))

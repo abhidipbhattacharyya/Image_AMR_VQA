@@ -1,0 +1,50 @@
+# ::tok Two beds with decorative wooden headboard and foot board , one is a double and one is a single
+# ::node	1	2	0-1
+# ::node	b	bed	1-2
+# ::node	h	have-03	2-3
+# ::node	d	decorative	3-4
+# ::node	w	wood	4-5
+# ::node	h2	headboard	5-6
+# ::node	a	and	6-7
+# ::node	f	foot	7-8
+# ::node	b2	board	8-9
+# ::node	i	include-91	10-11
+# ::node	i2	include-91	10-11
+# ::node	0	1	10-11
+# ::node	d2	double	13-14
+# ::node	a2	and	14-15
+# ::node	s	single	18-19
+# ::root	a2	and
+# ::edge	bed	quant	2	b	1	
+# ::edge	bed	ARG0-of	have-03	b	h	
+# ::edge	headboard	mod	wood	h2	w	
+# ::edge	headboard	mod	decorative	h2	d	
+# ::edge	and	op1	headboard	a	h2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	board	mod	foot	b2	f	
+# ::edge	and	op2	board	a	b2	
+# ::edge	bed	ARG2-of	include-91	b	i	
+# ::edge	bed	ARG2-of	include-91	b	i2	
+# ::edge	include-91	ARG1	1	i	0	
+# ::edge	include-91	ARG2	double	i	d2	
+# ::edge	and	op1	include-91	a2	i	
+# ::edge	and	op2	single	a2	s	
+# ::edge	include-91	ARG1	single	i2	s	
+# ::edge	and	rel	bed	a2	b	
+(a2 / and
+    :op1 (i / include-91
+        :ARG1 1
+        :ARG2 (d2 / double))
+    :op2 (s / single)
+    :rel (b / bed
+        :quant 2
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (h2 / headboard
+                    :mod (w / wood)
+                    :mod (d / decorative))
+                :op2 (b2 / board
+                    :mod (f / foot))))
+        :ARG2-of i
+        :ARG2-of (i2 / include-91
+            :ARG1 s)))

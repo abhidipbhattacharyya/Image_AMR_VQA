@@ -1,0 +1,25 @@
+# ::tok A cooked pizza with generous amounts of cheese sitting on a paper plate .
+# ::node	c2	cook-01	1-2
+# ::node	p2	pizza	2-3
+# ::node	g	generous-01	4-5
+# ::node	a	amount	5-6
+# ::node	c	cheese	7-8
+# ::node	s	sit-01	8-9
+# ::node	p	paper	11-12
+# ::node	p3	plate	12-13
+# ::root	p2	pizza
+# ::edge	pizza	ARG1-of	cook-01	p2	c2	
+# ::edge	amount	ARG2-of	generous-01	a	g	
+# ::edge	cheese	quant	amount	c	a	
+# ::edge	pizza	accompanier	cheese	p2	c	
+# ::edge	pizza	ARG1-of	sit-01	p2	s	
+# ::edge	plate	consist-of	paper	p3	p	
+# ::edge	sit-01	ARG2	plate	s	p3	
+(p2 / pizza
+    :ARG1-of (c2 / cook-01)
+    :ARG1-of (s / sit-01
+        :ARG2 (p3 / plate
+            :consist-of (p / paper)))
+    :accompanier (c / cheese
+        :quant (a / amount
+            :ARG2-of (g / generous-01))))

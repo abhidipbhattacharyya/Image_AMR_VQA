@@ -1,0 +1,34 @@
+# ::tok A silver car sitting next to a parking meter showing 23 minutes left .
+# ::node	s2	silver	1-2
+# ::node	c	car	2-3
+# ::node	s3	sit-01	3-4
+# ::node	n	next-to	4-5
+# ::node	p	park-01	7-8
+# ::node	m	meter	8-9
+# ::node	s	show-01	9-10
+# ::node	0	23	10-11
+# ::node	t	temporal-quantity	11-12
+# ::node	m2	minute	11-12
+# ::node	l	leave-17	12-13
+# ::root	s3	sit-01
+# ::edge	car	mod	silver	c	s2	
+# ::edge	sit-01	ARG1	car	s3	c	
+# ::edge	sit-01	ARG2	next-to	s3	n	
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	next-to	op1	meter	n	m	
+# ::edge	meter	ARG0-of	show-01	m	s	
+# ::edge	temporal-quantity	quant	23	t	0	
+# ::edge	temporal-quantity	unit	minute	t	m2	
+# ::edge	leave-17	ARG1	temporal-quantity	l	t	
+# ::edge	show-01	ARG1	leave-17	s	l	
+(s3 / sit-01
+    :ARG1 (c / car
+        :mod (s2 / silver))
+    :ARG2 (n / next-to
+        :op1 (m / meter
+            :purpose (p / park-01)
+            :ARG0-of (s / show-01
+                :ARG1 (l / leave-17
+                    :ARG1 (t / temporal-quantity
+                        :quant 23
+                        :unit (m2 / minute)))))))

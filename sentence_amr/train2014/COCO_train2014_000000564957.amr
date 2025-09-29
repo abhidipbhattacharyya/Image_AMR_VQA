@@ -1,0 +1,25 @@
+# ::tok A transit bus heading to Salida on a brick road .
+# ::node	t	transit-01	1-2
+# ::node	b2	bus	2-3
+# ::node	h	head-02	3-4
+# ::node	c	city	5-6
+# ::node	n	name	5-6
+# ::node	0	Salida	5-6
+# ::node	b	brick	8-9
+# ::node	r	road	9-10
+# ::root	b2	bus
+# ::edge	bus	ARG2-of	transit-01	b2	t	
+# ::edge	bus	ARG0-of	head-02	b2	h	
+# ::edge	head-02	ARG4	city	h	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Salida	n	0	
+# ::edge	road	consist-of	brick	r	b	
+# ::edge	head-02	path	road	h	r	
+(b2 / bus
+    :ARG0-of (h / head-02
+        :ARG4 (c / city
+            :name (n / name
+                :op1 "Salida"))
+        :path (r / road
+            :consist-of (b / brick)))
+    :ARG2-of (t / transit-01))

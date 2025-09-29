@@ -1,0 +1,24 @@
+# ::tok A child walking next to a bed while another child sleeps on it .
+# ::node	c	child	1-2
+# ::node	w	walk-01	2-3
+# ::node	n	next-to	3-4
+# ::node	b	bed	6-7
+# ::node	a	another	8-9
+# ::node	c2	child	9-10
+# ::node	s	sleep-01	10-11
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	child	w	c	
+# ::edge	walk-01	ARG2	next-to	w	n	
+# ::edge	next-to	op1	bed	n	b	
+# ::edge	child	mod	another	c2	a	
+# ::edge	sleep-01	ARG0	child	s	c2	
+# ::edge	sleep-01	location	bed	s	b	
+# ::edge	walk-01	time	sleep-01	w	s	
+(w / walk-01
+    :ARG0 (c / child)
+    :ARG2 (n / next-to
+        :op1 (b / bed))
+    :time (s / sleep-01
+        :ARG0 (c2 / child
+            :mod (a / another))
+        :location b))

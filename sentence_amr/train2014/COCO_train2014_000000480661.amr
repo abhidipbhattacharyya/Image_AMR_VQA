@@ -1,0 +1,51 @@
+# ::tok Three traffic lights on the same pole one is lit red while the other two are green .
+# ::node	2	3	0-1
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	l2	light	2-3
+# ::node	l3	light	2-3
+# ::node	s	same-01	5-6
+# ::node	p	pole	6-7
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	l4	light-04	9-10
+# ::node	l5	light-04	9-10
+# ::node	r	red-02	10-11
+# ::node	a	and	11-12
+# ::node	o	other	13-14
+# ::node	1	2	14-15
+# ::node	g	green-02	16-17
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	quant	3	l	2	
+# ::edge	pole	ARG1-of	same-01	p	s	
+# ::edge	light	location	pole	l	p	
+# ::edge	light	ARG2-of	include-91	l	i	
+# ::edge	include-91	ARG1	light	i	l	
+# ::edge	light	quant	1	l	0	
+# ::edge	light-04	ARG1	light	l4	l	
+# ::edge	light-04	ARG1	light	l5	l3	
+# ::edge	light-04	manner	red-02	l4	r	
+# ::edge	and	op2	light-04	a	l5	
+# ::edge	and	op1	light-04	a	l4	
+# ::edge	light	mod	other	l3	o	
+# ::edge	light	quant	2	l3	1	
+# ::edge	light	ARG1-of	green-02	l3	g	
+# ::edge	and	rel	light	a	l2	
+(a / and
+    :op1 (l4 / light-04
+        :ARG1 (l / light
+            :quant 3
+            :quant 1
+            :ARG2-of (i / include-91
+                :ARG1 l)
+            :location (p / pole
+                :ARG1-of (s / same-01))
+            :mod (t / traffic))
+        :manner (r / red-02))
+    :op2 (l5 / light-04
+        :ARG1 (l3 / light
+            :quant 2
+            :ARG1-of (g / green-02)
+            :mod (o / other)))
+    :rel (l2 / light))

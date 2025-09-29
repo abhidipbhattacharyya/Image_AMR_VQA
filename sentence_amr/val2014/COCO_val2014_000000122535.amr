@@ -1,0 +1,24 @@
+# ::tok Train moving through a rail yard as it passes by with many cars
+# ::node	t	train	0-1
+# ::node	m2	move-01	1-2
+# ::node	r	rail	4-5
+# ::node	y	yard	5-6
+# ::node	p	pass-by-17	8-9
+# ::node	m	many	11-12
+# ::node	c	car	12-13
+# ::root	m2	move-01
+# ::edge	move-01	ARG1	train	m2	t	
+# ::edge	yard	mod	rail	y	r	
+# ::edge	move-01	path	yard	m2	y	
+# ::edge	move-01	time	pass-by-17	m2	p	
+# ::edge	pass-by-17	ARG0	train	p	t	
+# ::edge	car	quant	many	c	m	
+# ::edge	pass-by-17	accompanier	car	p	c	
+(m2 / move-01
+    :ARG1 (t / train)
+    :path (y / yard
+        :mod (r / rail))
+    :time (p / pass-by-17
+        :ARG0 t
+        :accompanier (c / car
+            :quant (m / many))))

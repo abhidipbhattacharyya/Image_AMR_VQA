@@ -1,0 +1,31 @@
+# ::tok A boy is in a yard sitting on a tee bat rather than batting with it .
+# ::node	b4	boy	1-2
+# ::node	b3	be-located-at-91	3-4
+# ::node	y	yard	5-6
+# ::node	s	sit-01	6-7
+# ::node	t	tee	9-10
+# ::node	b	bat	10-11
+# ::node	i	instead-of-91	11-12
+# ::node	b2	bat-01	13-14
+# ::root	b3	be-located-at-91
+# ::edge	be-located-at-91	ARG1	boy	b3	b4	
+# ::edge	be-located-at-91	ARG2	yard	b3	y	
+# ::edge	boy	manner	sit-01	b4	s	
+# ::edge	sit-01	ARG1	boy	s	b4	
+# ::edge	bat	mod	tee	b	t	
+# ::edge	sit-01	ARG2	bat	s	b	
+# ::edge	bat	ARG1-of	instead-of-91	b	i	
+# ::edge	instead-of-91	ARG2	bat-01	i	b2	
+# ::edge	bat-01	instrument	bat	b2	b	
+# ::edge	bat-01	ARG0	boy	b2	b4	
+(b3 / be-located-at-91
+    :ARG1 (b4 / boy
+        :manner (s / sit-01
+            :ARG1 b4
+            :ARG2 (b / bat
+                :ARG1-of (i / instead-of-91
+                    :ARG2 (b2 / bat-01
+                        :ARG0 b4
+                        :instrument b))
+                :mod (t / tee))))
+    :ARG2 (y / yard))

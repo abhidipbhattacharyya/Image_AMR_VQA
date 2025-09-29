@@ -1,0 +1,32 @@
+# ::tok A group of people playing with a Wii using the remote to control it .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	p2	play-01	4-5
+# ::node	p3	product	7-8
+# ::node	n	name	7-8
+# ::node	0	Wii	7-8
+# ::node	u	use-01	8-9
+# ::node	r	remote	10-11
+# ::node	c	control-01	12-13
+# ::root	p2	play-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	play-01	ARG0	group	p2	g	
+# ::edge	play-01	instrument	product	p2	p3	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	person	ARG0-of	use-01	p	u	
+# ::edge	use-01	ARG1	remote	u	r	
+# ::edge	use-01	ARG2	control-01	u	c	
+# ::edge	control-01	ARG1	product	c	p3	
+# ::edge	control-01	ARG0	person	c	p	
+(p2 / play-01
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (u / use-01
+                :ARG1 (r / remote)
+                :ARG2 (c / control-01
+                    :ARG0 p
+                    :ARG1 (p3 / product
+                        :name (n / name
+                            :op1 "Wii"))))))
+    :instrument p3)

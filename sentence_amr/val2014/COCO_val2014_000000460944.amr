@@ -1,0 +1,27 @@
+# ::tok A toilet and toilet paper roll sit in a partially constructed bathroom .
+# ::node	t	toilet	1-2
+# ::node	a	and	2-3
+# ::node	p	paper	4-5
+# ::node	r	roll	5-6
+# ::node	s	sit-01	6-7
+# ::node	p2	part	9-10
+# ::node	c	construct-01	10-11
+# ::node	b	bathroom	11-12
+# ::root	s	sit-01
+# ::edge	and	op1	toilet	a	t	
+# ::edge	roll	consist-of	paper	r	p	
+# ::edge	and	op2	roll	a	r	
+# ::edge	roll	mod	toilet	r	t	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	construct-01	degree	part	c	p2	
+# ::edge	bathroom	ARG1-of	construct-01	b	c	
+# ::edge	sit-01	ARG2	bathroom	s	b	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (t / toilet)
+        :op2 (r / roll
+            :consist-of (p / paper)
+            :mod t))
+    :ARG2 (b / bathroom
+        :ARG1-of (c / construct-01
+            :degree (p2 / part))))

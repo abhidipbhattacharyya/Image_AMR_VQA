@@ -1,0 +1,25 @@
+# ::tok Multiple baskets filled with fruit including oranges and pears .
+# ::node	m	multiple	0-1
+# ::node	b	basket	1-2
+# ::node	f	fill-01	2-3
+# ::node	f2	fruit	4-5
+# ::node	i	include-01	5-6
+# ::node	o	orange	6-7
+# ::node	a	and	7-8
+# ::node	o2	orange	8-9
+# ::root	f	fill-01
+# ::edge	basket	quant	multiple	b	m	
+# ::edge	fill-01	ARG1	basket	f	b	
+# ::edge	fill-01	ARG2	fruit	f	f2	
+# ::edge	fruit	ARG2-of	include-01	f2	i	
+# ::edge	and	op1	orange	a	o	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	orange	a	o2	
+(f / fill-01
+    :ARG1 (b / basket
+        :quant (m / multiple))
+    :ARG2 (f2 / fruit
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (o / orange)
+                :op2 (o2 / orange)))))

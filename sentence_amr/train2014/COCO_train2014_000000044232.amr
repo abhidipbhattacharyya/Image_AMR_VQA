@@ -1,0 +1,24 @@
+# ::tok The train has stopped at the station so the people can board
+# ::node	t	train	1-2
+# ::node	s2	stop-01	3-4
+# ::node	s	station	6-7
+# ::node	c	cause-01	7-8
+# ::node	p	person	9-10
+# ::node	p2	possible-01	10-11
+# ::node	b	board-01	11-12
+# ::root	s2	stop-01
+# ::edge	stop-01	ARG1	train	s2	t	
+# ::edge	stop-01	location	station	s2	s	
+# ::edge	stop-01	ARG0-of	cause-01	s2	c	
+# ::edge	cause-01	ARG1	possible-01	c	p2	
+# ::edge	possible-01	ARG1	board-01	p2	b	
+# ::edge	board-01	ARG0	person	b	p	
+# ::edge	board-01	ARG1	train	b	t	
+(s2 / stop-01
+    :ARG0-of (c / cause-01
+        :ARG1 (p2 / possible-01
+            :ARG1 (b / board-01
+                :ARG0 (p / person)
+                :ARG1 (t / train))))
+    :ARG1 t
+    :location (s / station))

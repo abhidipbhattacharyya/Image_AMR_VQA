@@ -1,0 +1,35 @@
+# ::tok Several glasses of wine are sitting corked and are used for the wine tasting .
+# ::node	s	several	0-1
+# ::node	0	1	0-1
+# ::node	v	volume-quantity	1-2
+# ::node	g	glasses	1-2
+# ::node	w	wine	3-4
+# ::node	s2	sit-01	5-6
+# ::node	e	Jew	6-7
+# ::node	a	and	7-8
+# ::node	u	use-01	9-10
+# ::node	t	taste-01	13-14
+# ::root	a	and
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	several	op1	volume-quantity	s	v	
+# ::edge	volume-quantity	unit	glasses	v	g	
+# ::edge	wine	quant	several	w	s	
+# ::edge	sit-01	ARG1	wine	s2	w	
+# ::edge	sit-01	ARG2	Jew	s2	e	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	and	op2	use-01	a	u	
+# ::edge	use-01	ARG1	wine	u	w	
+# ::edge	use-01	ARG2	taste-01	u	t	
+# ::edge	taste-01	ARG1	wine	t	w	
+(a / and
+    :op1 (s2 / sit-01
+        :ARG1 (w / wine
+            :quant (s / several
+                :op1 (v / volume-quantity
+                    :quant 1
+                    :unit (g / glasses))))
+        :ARG2 (e / Jew))
+    :op2 (u / use-01
+        :ARG1 w
+        :ARG2 (t / taste-01
+            :ARG1 w)))

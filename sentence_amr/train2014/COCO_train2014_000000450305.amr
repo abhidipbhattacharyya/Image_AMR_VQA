@@ -1,0 +1,40 @@
+# ::tok Fruit vendor stand , showing lemons , oranges red apples and possibly green limes .
+# ::node	f	fruit	0-1
+# ::node	p	person	1-2
+# ::node	v	vend-01	1-2
+# ::node	s2	stand	2-3
+# ::node	s	show-01	4-5
+# ::node	l	lemon	5-6
+# ::node	a	and	6-7
+# ::node	o	orange	7-8
+# ::node	r	red-02	8-9
+# ::node	a2	apple	9-10
+# ::node	p2	possible-01	11-12
+# ::node	g	green-02	12-13
+# ::node	l2	lemon	13-14
+# ::root	s2	stand
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	vend-01	ARG1	fruit	v	f	
+# ::edge	stand	mod	person	s2	p	
+# ::edge	stand	ARG0-of	show-01	s2	s	
+# ::edge	and	op1	lemon	a	l	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	apple	ARG1-of	red-02	a2	r	
+# ::edge	apple	mod	orange	a2	o	
+# ::edge	and	op2	apple	a	a2	
+# ::edge	lemon	ARG1-of	green-02	l2	g	
+# ::edge	lemon	ARG1-of	possible-01	l2	p2	
+# ::edge	and	op3	lemon	a	l2	
+(s2 / stand
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (l / lemon)
+            :op2 (a2 / apple
+                :ARG1-of (r / red-02)
+                :mod (o / orange))
+            :op3 (l2 / lemon
+                :ARG1-of (g / green-02)
+                :ARG1-of (p2 / possible-01))))
+    :mod (p / person
+        :ARG0-of (v / vend-01
+            :ARG1 (f / fruit))))

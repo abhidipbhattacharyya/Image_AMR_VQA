@@ -1,0 +1,40 @@
+# ::tok Two teams of girls play soccer while wearing two different soccer uniforms as they run toward a soccer ball .
+# ::node	0	2	0-1
+# ::node	t	team	1-2
+# ::node	g	girl	3-4
+# ::node	p	play-01	4-5
+# ::node	s	soccer	5-6
+# ::node	w	wear-01	7-8
+# ::node	1	2	8-9
+# ::node	d	differ-02	9-10
+# ::node	u	uniform	11-12
+# ::node	r	run-02	14-15
+# ::node	b	ball	18-19
+# ::root	p	play-01
+# ::edge	team	quant	2	t	0	
+# ::edge	team	consist-of	girl	t	g	
+# ::edge	play-01	ARG0	team	p	t	
+# ::edge	play-01	ARG1	soccer	p	s	
+# ::edge	team	ARG0-of	wear-01	t	w	
+# ::edge	uniform	ARG1-of	differ-02	u	d	
+# ::edge	uniform	quant	2	u	1	
+# ::edge	wear-01	ARG1	uniform	w	u	
+# ::edge	uniform	mod	soccer	u	s	
+# ::edge	play-01	time	run-02	p	r	
+# ::edge	run-02	ARG0	team	r	t	
+# ::edge	run-02	direction	ball	r	b	
+# ::edge	ball	mod	soccer	b	s	
+(p / play-01
+    :ARG0 (t / team
+        :quant 2
+        :ARG0-of (w / wear-01
+            :ARG1 (u / uniform
+                :quant 2
+                :ARG1-of (d / differ-02)
+                :mod (s / soccer)))
+        :consist-of (g / girl))
+    :ARG1 s
+    :time (r / run-02
+        :ARG0 t
+        :direction (b / ball
+            :mod s)))

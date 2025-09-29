@@ -1,0 +1,27 @@
+# ::tok A transit bus sitting at one of its stops on the side of a street .
+# ::node	t	transit-01	1-2
+# ::node	b	bus	2-3
+# ::node	s2	sit-01	3-4
+# ::node	i	include-91	6-7
+# ::node	s3	stop-01	8-9
+# ::node	s4	stop-01	8-9
+# ::node	s	side	11-12
+# ::node	s5	street	14-15
+# ::root	s2	sit-01
+# ::edge	bus	ARG0-of	transit-01	b	t	
+# ::edge	sit-01	ARG1	bus	s2	b	
+# ::edge	stop-01	ARG1-of	include-91	s3	i	
+# ::edge	sit-01	ARG2	stop-01	s2	s3	
+# ::edge	include-91	ARG2	stop-01	i	s4	
+# ::edge	stop-01	ARG0	bus	s4	b	
+# ::edge	stop-01	location	side	s4	s	
+# ::edge	side	part-of	street	s	s5	
+(s2 / sit-01
+    :ARG1 (b / bus
+        :ARG0-of (t / transit-01))
+    :ARG2 (s3 / stop-01
+        :ARG1-of (i / include-91
+            :ARG2 (s4 / stop-01
+                :ARG0 b
+                :location (s / side
+                    :part-of (s5 / street))))))

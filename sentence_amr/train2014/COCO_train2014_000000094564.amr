@@ -1,0 +1,36 @@
+# ::tok Bunches of carrots for sale with chalkboard sign displaying price .
+# ::node	m2	multiple	0-1
+# ::node	m	monetary-quantity	0-1
+# ::node	b	barrel	0-1
+# ::node	0	1	0-1
+# ::node	c	carrot	2-3
+# ::node	s	sell-01	4-5
+# ::node	c2	chalkboard	6-7
+# ::node	s2	sign	7-8
+# ::node	d	display-01	8-9
+# ::node	t	thing	9-10
+# ::node	p	price-01	9-10
+# ::root	s	sell-01
+# ::edge	multiple	op1	monetary-quantity	m2	m	
+# ::edge	monetary-quantity	unit	barrel	m	b	
+# ::edge	monetary-quantity	quant	1	m	0	
+# ::edge	carrot	quant	multiple	c	m2	
+# ::edge	sell-01	ARG1	carrot	s	c	
+# ::edge	sign	consist-of	chalkboard	s2	c2	
+# ::edge	sell-01	manner	sign	s	s2	
+# ::edge	sign	ARG0-of	display-01	s2	d	
+# ::edge	display-01	ARG1	thing	d	t	
+# ::edge	thing	ARG2-of	price-01	t	p	
+# ::edge	price-01	ARG1	carrot	p	c	
+(s / sell-01
+    :ARG1 (c / carrot
+        :quant (m2 / multiple
+            :op1 (m / monetary-quantity
+                :quant 1
+                :unit (b / barrel))))
+    :manner (s2 / sign
+        :ARG0-of (d / display-01
+            :ARG1 (t / thing
+                :ARG2-of (p / price-01
+                    :ARG1 c)))
+        :consist-of (c2 / chalkboard)))

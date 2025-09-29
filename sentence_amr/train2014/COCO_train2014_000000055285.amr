@@ -1,0 +1,36 @@
+# ::tok A glass top table with several glasses of white wine and a wine bottle .
+# ::node	g	glass	1-2
+# ::node	t2	top	2-3
+# ::node	t	table	3-4
+# ::node	s	several	5-6
+# ::node	v	volume-quantity	6-7
+# ::node	g2	glasses	6-7
+# ::node	0	1	6-7
+# ::node	w	white-03	8-9
+# ::node	w2	wine	9-10
+# ::node	a	and	10-11
+# ::node	b	bottle	13-14
+# ::root	t	table
+# ::edge	table	location	top	t	t2	
+# ::edge	table	consist-of	glass	t	g	
+# ::edge	several	op1	volume-quantity	s	v	
+# ::edge	volume-quantity	unit	glasses	v	g2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	wine	ARG1-of	white-03	w2	w	
+# ::edge	wine	quant	several	w2	s	
+# ::edge	and	op1	wine	a	w2	
+# ::edge	table	part	and	t	a	
+# ::edge	and	op2	bottle	a	b	
+# ::edge	bottle	mod	wine	b	w2	
+(t / table
+    :consist-of (g / glass)
+    :location (t2 / top)
+    :part (a / and
+        :op1 (w2 / wine
+            :quant (s / several
+                :op1 (v / volume-quantity
+                    :quant 1
+                    :unit (g2 / glasses)))
+            :ARG1-of (w / white-03))
+        :op2 (b / bottle
+            :mod w2)))

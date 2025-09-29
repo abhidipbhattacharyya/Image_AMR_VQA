@@ -1,0 +1,36 @@
+# ::tok a bathroom with tiled walls and tiled floors , a double sink and a double window .
+# ::node	b	bathroom	1-2
+# ::node	t	tile-01	3-4
+# ::node	w	wall	4-5
+# ::node	a	and	5-6
+# ::node	f	floor	7-8
+# ::node	h	have-03	10-11
+# ::node	d	double	10-11
+# ::node	s	sink	11-12
+# ::node	h2	have-03	14-15
+# ::node	d2	double	14-15
+# ::node	w2	window	15-16
+# ::root	b	bathroom
+# ::edge	wall	ARG1-of	tile-01	w	t	
+# ::edge	and	op1	wall	a	w	
+# ::edge	bathroom	part	and	b	a	
+# ::edge	and	op2	floor	a	f	
+# ::edge	tile-01	ARG1	floor	t	f	
+# ::edge	floor	ARG0-of	have-03	f	h	
+# ::edge	sink	mod	double	s	d	
+# ::edge	and	op3	sink	a	s	
+# ::edge	bathroom	ARG0-of	have-03	b	h2	
+# ::edge	window	mod	double	w2	d2	
+# ::edge	have-03	ARG1	window	h2	w2	
+(b / bathroom
+    :ARG0-of (h2 / have-03
+        :ARG1 (w2 / window
+            :mod (d2 / double)))
+    :part (a / and
+        :op1 (w / wall
+            :ARG1-of (t / tile-01
+                :ARG1 (f / floor
+                    :ARG0-of (h / have-03))))
+        :op2 f
+        :op3 (s / sink
+            :mod (d / double))))

@@ -1,0 +1,28 @@
+# ::tok Somewhat confusing traffic turn lights in an oriental city
+# ::node	s	something	0-1
+# ::node	c2	confuse-01	1-2
+# ::node	t	traffic	2-3
+# ::node	t2	turn-01	3-4
+# ::node	l	light	4-5
+# ::node	e	ethnic-group	7-8
+# ::node	n	name	7-8
+# ::node	0	Orient	7-8
+# ::node	c	city	8-9
+# ::root	c2	confuse-01
+# ::edge	confuse-01	degree	something	c2	s	
+# ::edge	turn-01	ARG1	traffic	t2	t	
+# ::edge	light	mod	turn-01	l	t2	
+# ::edge	confuse-01	ARG2	light	c2	l	
+# ::edge	ethnic-group	name	name	e	n	
+# ::edge	name	op1	Orient	n	0	
+# ::edge	city	mod	ethnic-group	c	e	
+# ::edge	light	location	city	l	c	
+(c2 / confuse-01
+    :ARG2 (l / light
+        :location (c / city
+            :mod (e / ethnic-group
+                :name (n / name
+                    :op1 "Orient")))
+        :mod (t2 / turn-01
+            :ARG1 (t / traffic)))
+    :degree (s / something))

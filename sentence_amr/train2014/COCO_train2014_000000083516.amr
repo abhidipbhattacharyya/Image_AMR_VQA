@@ -1,0 +1,31 @@
+# ::tok Baseball player in a white uniform in the motion of swinging his bat .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	w	white-03	4-5
+# ::node	u	uniform	5-6
+# ::node	m	move-01	8-9
+# ::node	s	swing-02	10-11
+# ::node	b2	bat	12-13
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	uniform	ARG1-of	white-03	u	w	
+# ::edge	person	ARG1-of	move-01	p	m	
+# ::edge	move-01	ARG0	swing-02	m	s	
+# ::edge	swing-02	ARG0	person	s	p	
+# ::edge	swing-02	ARG1	bat	s	b2	
+# ::edge	bat	poss	person	b2	p	
+# ::edge	person	rel	uniform	p	u	
+# ::edge	person	rel	move-01	p	m	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b / baseball))
+    :ARG1-of (m / move-01
+        :ARG0 (s / swing-02
+            :ARG0 p
+            :ARG1 (b2 / bat
+                :poss p)))
+    :rel (u / uniform
+        :ARG1-of (w / white-03))
+    :rel m)

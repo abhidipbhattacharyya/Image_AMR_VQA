@@ -1,0 +1,30 @@
+# ::tok It 's now mandatory that the batter wear a helmet to protect against head injury .
+# ::node	n	now	2-3
+# ::node	m	mandatory	3-4
+# ::node	b	batter-01	6-7
+# ::node	w	wear-01	7-8
+# ::node	h2	helmet	9-10
+# ::node	p2	protect-01	11-12
+# ::node	h	head	13-14
+# ::node	i	injure-01	14-15
+# ::node	p	person	15-16
+# ::root	m	mandatory
+# ::edge	mandatory	time	now	m	n	
+# ::edge	mandatory	domain	wear-01	m	w	
+# ::edge	wear-01	ARG1	helmet	w	h2	
+# ::edge	wear-01	purpose	protect-01	w	p2	
+# ::edge	injure-01	ARG1	head	i	h	
+# ::edge	protect-01	ARG2	injure-01	p2	i	
+# ::edge	protect-01	ARG0	person	p2	p	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	person	ARG0-of	batter-01	p	b	
+(m / mandatory
+    :domain (w / wear-01
+        :purpose (p2 / protect-01
+            :ARG0 (p / person
+                :ARG0-of (b / batter-01))
+            :ARG2 (i / injure-01
+                :ARG1 (h / head)))
+        :ARG0 p
+        :ARG1 (h2 / helmet))
+    :time (n / now))

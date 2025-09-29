@@ -1,0 +1,54 @@
+# ::tok Three pieces of pizza sit on a table , two of them are on plates and one is in a cardboard holder .
+# ::node	2	3	0-1
+# ::node	p	piece	1-2
+# ::node	p2	piece	1-2
+# ::node	p3	piece	1-2
+# ::node	p4	pizza	3-4
+# ::node	p5	pizza	3-4
+# ::node	s	sit-01	4-5
+# ::node	t	table	7-8
+# ::node	a	and	8-9
+# ::node	1	2	9-10
+# ::node	i	include-91	10-11
+# ::node	p6	plate	14-15
+# ::node	a2	and	15-16
+# ::node	0	1	16-17
+# ::node	c	cardboard	20-21
+# ::node	t2	thing	21-22
+# ::node	h	hold-01	21-22
+# ::root	a	and
+# ::edge	piece	quant	3	p	2	
+# ::edge	piece	mod	pizza	p	p4	
+# ::edge	piece	domain	pizza	p2	p5	
+# ::edge	sit-01	ARG1	piece	s	p	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	piece	quant	2	p2	1	
+# ::edge	piece	ARG1-of	include-91	p2	i	
+# ::edge	include-91	ARG2	piece	i	p	
+# ::edge	piece	location	plate	p2	p6	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op2	piece	a2	p3	
+# ::edge	and	op1	piece	a2	p2	
+# ::edge	piece	quant	1	p3	0	
+# ::edge	piece	op3	thing	p3	t2	
+# ::edge	thing	ARG0-of	hold-01	t2	h	
+# ::edge	hold-01	ARG1	cardboard	h	c	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p / piece
+            :quant 3
+            :mod (p4 / pizza))
+        :ARG2 (t / table))
+    :op2 (a2 / and
+        :op1 (p2 / piece
+            :quant 2
+            :ARG1-of (i / include-91
+                :ARG2 p)
+            :domain (p5 / pizza)
+            :location (p6 / plate))
+        :op2 (p3 / piece
+            :quant 1
+            :op3 (t2 / thing
+                :ARG0-of (h / hold-01
+                    :ARG1 (c / cardboard))))))

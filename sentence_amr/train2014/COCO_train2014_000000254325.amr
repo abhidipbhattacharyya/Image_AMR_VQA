@@ -1,0 +1,40 @@
+# ::tok There are two king size beds , a desk and chair , and a flat screen TV in this room .
+# ::node	0	2	2-3
+# ::node	k	king	3-4
+# ::node	s2	size	4-5
+# ::node	b	bed	5-6
+# ::node	d	desk	8-9
+# ::node	a	and	9-10
+# ::node	c	chair	10-11
+# ::node	a2	and	12-13
+# ::node	f	flat-06	14-15
+# ::node	s	screen	15-16
+# ::node	t	television	16-17
+# ::node	t2	this	18-19
+# ::node	r	room	19-20
+# ::root	a2	and
+# ::edge	size	mod	king	s2	k	
+# ::edge	bed	mod	size	b	s2	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op1	desk	a	d	
+# ::edge	and	op2	chair	a	c	
+# ::edge	and	op2	and	a2	a	
+# ::edge	and	op1	bed	a2	b	
+# ::edge	screen	ARG1-of	flat-06	s	f	
+# ::edge	television	mod	screen	t	s	
+# ::edge	and	op3	television	a2	t	
+# ::edge	room	mod	this	r	t2	
+# ::edge	and	location	room	a2	r	
+(a2 / and
+    :location (r / room
+        :mod (t2 / this))
+    :op1 (b / bed
+        :quant 2
+        :mod (s2 / size
+            :mod (k / king)))
+    :op2 (a / and
+        :op1 (d / desk)
+        :op2 (c / chair))
+    :op3 (t / television
+        :mod (s / screen
+            :ARG1-of (f / flat-06))))

@@ -1,0 +1,28 @@
+# ::tok A man is sitting on a three wheeler that is hauling a motorbike in a parking lot .
+# ::node	m	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	0	3	6-7
+# ::node	v	vehicle	7-8
+# ::node	w	wheel	7-8
+# ::node	h	haul-01	10-11
+# ::node	m2	motorcycle	12-13
+# ::node	p	park-01	15-16
+# ::node	l	lot	16-17
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	vehicle	s	v	
+# ::edge	vehicle	part	wheel	v	w	
+# ::edge	wheel	quant	3	w	0	
+# ::edge	vehicle	ARG0-of	haul-01	v	h	
+# ::edge	haul-01	ARG1	motorcycle	h	m2	
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	haul-01	location	lot	h	l	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (v / vehicle
+        :ARG0-of (h / haul-01
+            :ARG1 (m2 / motorcycle)
+            :location (l / lot
+                :purpose (p / park-01)))
+        :part (w / wheel
+            :quant 3)))

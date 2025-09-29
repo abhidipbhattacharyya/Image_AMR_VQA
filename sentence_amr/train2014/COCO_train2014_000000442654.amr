@@ -1,0 +1,32 @@
+# ::tok The stop sign has two other signs on the pole above and below it .
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	o	other	5-6
+# ::node	s2	sign	6-7
+# ::node	p	pole	9-10
+# ::node	a	above	10-11
+# ::node	b	below	12-13
+# ::root	h	have-03
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	have-03	ARG0	sign	h	s	
+# ::edge	sign	mod	other	s2	o	
+# ::edge	sign	quant	2	s2	0	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	pole	s2	p	
+# ::edge	pole	location	above	p	a	
+# ::edge	above	op1	sign	a	s	
+# ::edge	pole	location	below	p	b	
+# ::edge	below	op1	sign	b	s	
+(h / have-03
+    :ARG0 (s / sign
+        :purpose (s3 / stop-01))
+    :ARG1 (s2 / sign
+        :quant 2
+        :location (p / pole
+            :location (a / above
+                :op1 s)
+            :location (b / below
+                :op1 s))
+        :mod (o / other)))

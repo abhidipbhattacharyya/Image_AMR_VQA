@@ -1,0 +1,36 @@
+# ::tok A rice krispy treat sitting near some wrapping paper and cookie cakes .
+# ::node	r	rice	1-2
+# ::node	k	krispy	2-3
+# ::node	t	treat	3-4
+# ::node	s	sit-01	4-5
+# ::node	n	near-02	5-6
+# ::node	s2	some	6-7
+# ::node	w	wrap-01	7-8
+# ::node	p	paper	8-9
+# ::node	a	and	9-10
+# ::node	c2	cookie	10-11
+# ::node	c	cake	11-12
+# ::root	s	sit-01
+# ::edge	krispy	mod	rice	k	r	
+# ::edge	treat	mod	krispy	t	k	
+# ::edge	sit-01	ARG1	treat	s	t	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	treat	n	t	
+# ::edge	paper	ARG3-of	wrap-01	p	w	
+# ::edge	and	op1	paper	a	p	
+# ::edge	and	quant	some	a	s2	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	cake	mod	cookie	c	c2	
+# ::edge	and	op2	cake	a	c	
+(s / sit-01
+    :ARG1 (t / treat
+        :mod (k / krispy
+            :mod (r / rice)))
+    :ARG2 (n / near-02
+        :ARG1 t
+        :ARG2 (a / and
+            :quant (s2 / some)
+            :op1 (p / paper
+                :ARG3-of (w / wrap-01))
+            :op2 (c / cake
+                :mod (c2 / cookie)))))

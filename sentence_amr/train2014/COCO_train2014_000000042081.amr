@@ -1,0 +1,40 @@
+# ::tok one whole donut with sprinkles sitting next to a half eaten donut on a brown paper bag .
+# ::node	0	1	0-1
+# ::node	w	whole	1-2
+# ::node	d	donut	2-3
+# ::node	h2	have-03	3-4
+# ::node	s2	sprinkle-01	4-5
+# ::node	s	sit-01	5-6
+# ::node	n	next-to	6-7
+# ::node	h	half	9-10
+# ::node	e	eat-01	10-11
+# ::node	d2	donut	11-12
+# ::node	b2	brown-01	14-15
+# ::node	p	paper	15-16
+# ::node	b	bag	16-17
+# ::root	s	sit-01
+# ::edge	donut	mod	whole	d	w	
+# ::edge	donut	quant	1	d	0	
+# ::edge	donut	ARG0-of	have-03	d	h2	
+# ::edge	have-03	ARG1	sprinkle-01	h2	s2	
+# ::edge	sit-01	ARG1	donut	s	d	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	donut	ARG1-of	eat-01	d2	e	
+# ::edge	next-to	op1	donut	n	d2	
+# ::edge	bag	consist-of	paper	b	p	
+# ::edge	bag	ARG1-of	brown-01	b	b2	
+# ::edge	donut	location	bag	d2	b	
+(s / sit-01
+    :ARG1 (d / donut
+        :quant 1
+        :ARG0-of (h2 / have-03
+            :ARG1 (s2 / sprinkle-01))
+        :mod (w / whole))
+    :ARG2 (n / next-to
+        :op1 (d2 / donut
+            :ARG1-of (e / eat-01
+                :degree (h / half))
+            :location (b / bag
+                :ARG1-of (b2 / brown-01)
+                :consist-of (p / paper)))))

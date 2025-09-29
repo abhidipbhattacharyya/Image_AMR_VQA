@@ -1,0 +1,33 @@
+# ::tok gray horse - like animals camouflaging with the trees behind them in a winter scene
+# ::node	g	gray-02	0-1
+# ::node	h	horse	1-2
+# ::node	r	resemble-01	3-4
+# ::node	a	animal	4-5
+# ::node	c	camouflage-01	5-6
+# ::node	t	tree	8-9
+# ::node	b	behind	9-10
+# ::node	d	date-entity	13-14
+# ::node	w	winter	13-14
+# ::node	s	scene	14-15
+# ::root	c	camouflage-01
+# ::edge	resemble-01	ARG2	horse	r	h	
+# ::edge	animal	ARG1-of	resemble-01	a	r	
+# ::edge	animal	ARG1-of	gray-02	a	g	
+# ::edge	camouflage-01	ARG1	animal	c	a	
+# ::edge	camouflage-01	ARG2	tree	c	t	
+# ::edge	tree	location	behind	t	b	
+# ::edge	behind	op1	animal	b	a	
+# ::edge	date-entity	season	winter	d	w	
+# ::edge	scene	mod	date-entity	s	d	
+# ::edge	camouflage-01	subevent-of	scene	c	s	
+(c / camouflage-01
+    :ARG1 (a / animal
+        :ARG1-of (r / resemble-01
+            :ARG2 (h / horse))
+        :ARG1-of (g / gray-02))
+    :ARG2 (t / tree
+        :location (b / behind
+            :op1 a))
+    :subevent-of (s / scene
+        :mod (d / date-entity
+            :season (w / winter))))

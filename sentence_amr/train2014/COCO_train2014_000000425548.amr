@@ -1,0 +1,27 @@
+# ::tok Army planes are arranged on the ground for people to observe .
+# ::node	m	military	0-1
+# ::node	n	name	0-1
+# ::node	0	Army	0-1
+# ::node	p2	plane	1-2
+# ::node	a	arrange-01	3-4
+# ::node	g	ground	6-7
+# ::node	p	person	8-9
+# ::node	o	observe-01	10-11
+# ::root	a	arrange-01
+# ::edge	military	name	name	m	n	
+# ::edge	name	op1	Army	n	0	
+# ::edge	plane	mod	military	p2	m	
+# ::edge	arrange-01	ARG1	plane	a	p2	
+# ::edge	arrange-01	location	ground	a	g	
+# ::edge	observe-01	ARG0	person	o	p	
+# ::edge	arrange-01	purpose	observe-01	a	o	
+# ::edge	observe-01	ARG1	plane	o	p2	
+(a / arrange-01
+    :purpose (o / observe-01
+        :ARG0 (p / person)
+        :ARG1 (p2 / plane
+            :mod (m / military
+                :name (n / name
+                    :op1 "Army"))))
+    :ARG1 p2
+    :location (g / ground))

@@ -1,0 +1,36 @@
+# ::tok A grey laptop has a corded mouse connected through its usb port .
+# ::node	g	gray-02	1-2
+# ::node	l	laptop	2-3
+# ::node	h	have-03	3-4
+# ::node	c2	cord	5-6
+# ::node	m	mouse	6-7
+# ::node	c	connect-01	7-8
+# ::node	p	personal-02	10-11
+# ::node	t	temporal-quantity	10-11
+# ::node	w	week	10-11
+# ::node	0	1	10-11
+# ::node	p2	port	11-12
+# ::root	h	have-03
+# ::edge	laptop	ARG1-of	gray-02	l	g	
+# ::edge	have-03	ARG0	laptop	h	l	
+# ::edge	mouse	mod	cord	m	c2	
+# ::edge	have-03	ARG1	mouse	h	m	
+# ::edge	mouse	ARG1-of	connect-01	m	c	
+# ::edge	personal-02	ARG2	temporal-quantity	p	t	
+# ::edge	temporal-quantity	unit	week	t	w	
+# ::edge	temporal-quantity	quant	1	t	0	
+# ::edge	port	ARG1-of	personal-02	p2	p	
+# ::edge	connect-01	path	port	c	p2	
+# ::edge	laptop	part	port	l	p2	
+(h / have-03
+    :ARG0 (l / laptop
+        :ARG1-of (g / gray-02)
+        :part (p2 / port
+            :ARG1-of (p / personal-02
+                :ARG2 (t / temporal-quantity
+                    :quant 1
+                    :unit (w / week)))))
+    :ARG1 (m / mouse
+        :ARG1-of (c / connect-01
+            :path p2)
+        :mod (c2 / cord)))

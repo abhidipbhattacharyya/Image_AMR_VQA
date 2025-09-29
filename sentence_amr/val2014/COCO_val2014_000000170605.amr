@@ -1,0 +1,48 @@
+# ::tok A sun spot is the only mark in a clear sky with a plane traveling over a snowy expanse with a bunch of detritus on it .
+# ::node	s4	sun	1-2
+# ::node	s3	spot	2-3
+# ::node	t	thing	4-5
+# ::node	o	only	5-6
+# ::node	m	mark-01	6-7
+# ::node	c	clear-08	9-10
+# ::node	s	sky	10-11
+# ::node	p	plane	13-14
+# ::node	t2	travel-01	14-15
+# ::node	o2	over	15-16
+# ::node	s2	snowy-02	17-18
+# ::node	e	expanse	18-19
+# ::node	h	have-03	19-20
+# ::node	b	bunch	21-22
+# ::node	d	detritus	23-24
+# ::root	t	thing
+# ::edge	spot	mod	sun	s3	s4	
+# ::edge	thing	domain	spot	t	s3	
+# ::edge	thing	mod	only	t	o	
+# ::edge	thing	ARG0-of	mark-01	t	m	
+# ::edge	sky	ARG1-of	clear-08	s	c	
+# ::edge	mark-01	location	sky	m	s	
+# ::edge	plane	ARG0-of	travel-01	p	t2	
+# ::edge	travel-01	ARG1	over	t2	o2	
+# ::edge	expanse	ARG2-of	snowy-02	e	s2	
+# ::edge	over	op1	expanse	o2	e	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	detritus	quant	bunch	d	b	
+# ::edge	have-03	ARG1	detritus	h	d	
+# ::edge	detritus	location	plane	d	p	
+# ::edge	thing	rel	have-03	t	h	
+(t / thing
+    :ARG0-of (m / mark-01
+        :location (s / sky
+            :ARG1-of (c / clear-08)))
+    :domain (s3 / spot
+        :mod (s4 / sun))
+    :mod (o / only)
+    :rel (h / have-03
+        :ARG1 (d / detritus
+            :quant (b / bunch)
+            :location (p / plane
+                :ARG0-of (t2 / travel-01
+                    :ARG1 (o2 / over
+                        :op1 (e / expanse
+                            :ARG2-of (s2 / snowy-02))))
+                :ARG0-of h))))

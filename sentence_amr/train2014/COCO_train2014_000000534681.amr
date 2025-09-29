@@ -1,0 +1,36 @@
+# ::tok A male tennis player is up in the air after hitting an overhead return .
+# ::node	m	male	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	b	be-located-at-91	5-6
+# ::node	u	up	5-6
+# ::node	a2	air	8-9
+# ::node	a	after	9-10
+# ::node	h	hit-01	10-11
+# ::node	o	overhead	12-13
+# ::node	r	return-02	13-14
+# ::root	b	be-located-at-91
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	up	b	u	
+# ::edge	up	op1	air	u	a2	
+# ::edge	be-located-at-91	time	after	b	a	
+# ::edge	after	op1	hit-01	a	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	return-02	direction	overhead	r	o	
+# ::edge	hit-01	ARG1	return-02	h	r	
+(b / be-located-at-91
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (t / tennis))
+        :mod (m / male))
+    :ARG2 (u / up
+        :op1 (a2 / air))
+    :time (a / after
+        :op1 (h / hit-01
+            :ARG0 p
+            :ARG1 (r / return-02
+                :direction (o / overhead)))))

@@ -1,0 +1,24 @@
+# ::tok a pan of pizza elevated on a table with people sitting around it
+# ::node	p	pan	1-2
+# ::node	p3	pizza	3-4
+# ::node	e	elevate-01	4-5
+# ::node	t	table	7-8
+# ::node	p2	person	9-10
+# ::node	s	sit-01	10-11
+# ::node	a	around	11-12
+# ::root	e	elevate-01
+# ::edge	pan	consist-of	pizza	p	p3	
+# ::edge	elevate-01	ARG1	pan	e	p	
+# ::edge	elevate-01	ARG2	table	e	t	
+# ::edge	sit-01	ARG1	person	s	p2	
+# ::edge	table	ARG2-of	sit-01	t	s	
+# ::edge	sit-01	location	around	s	a	
+# ::edge	around	op1	table	a	t	
+(e / elevate-01
+    :ARG1 (p / pan
+        :consist-of (p3 / pizza))
+    :ARG2 (t / table
+        :ARG2-of (s / sit-01
+            :ARG1 (p2 / person)
+            :location (a / around
+                :op1 t))))

@@ -1,0 +1,52 @@
+# ::tok A room showing two white beds and an open window .
+# ::node	r	room	1-2
+# ::node	s	show-01	2-3
+# ::node	0	2	3-4
+# ::node	w	white-03	4-5
+# ::node	b	bed	5-6
+# ::node	a	and	6-7
+# ::node	o	open-09	8-9
+# ::node	w2	window	9-10
+# ::root	r	room
+# ::edge	room	ARG0-of	show-01	r	s	
+# ::edge	bed	ARG1-of	white-03	b	w	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op1	bed	a	b	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	window	ARG1-of	open-09	w2	o	
+# ::edge	and	op2	window	a	w2	
+(r / room
+    :ARG0-of (s / show-01
+        :ARG1 (a / and
+            :op1 (b / bed
+                :quant 2
+                :ARG1-of (w / white-03))
+            :op2 (w2 / window
+                :ARG1-of (o / open-09)))))
+
+
+# ::tok There is an object on the bed furtherest from the window .
+# ::node	o	object	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	b2	bed	6-7
+# ::node	h	have-degree-91	7-8
+# ::node	f	far	7-8
+# ::node	m	most	7-8
+# ::node	r	relative-position	8-9
+# ::node	w	window	10-11
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	object	b	o	
+# ::edge	be-located-at-91	ARG2	bed	b	b2	
+# ::edge	bed	ARG1-of	have-degree-91	b2	h	
+# ::edge	have-degree-91	ARG2	far	h	f	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	have-degree-91	ARG5	relative-position	h	r	
+# ::edge	relative-position	op1	window	r	w	
+(b / be-located-at-91
+    :ARG1 (o / object)
+    :ARG2 (b2 / bed
+        :ARG1-of (h / have-degree-91
+            :ARG2 (f / far)
+            :ARG3 (m / most)
+            :ARG5 (r / relative-position
+                :op1 (w / window)))))

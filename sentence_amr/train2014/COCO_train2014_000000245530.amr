@@ -1,0 +1,27 @@
+# ::tok A man behind a table poring wine into glasses for a wine tasting tour
+# ::node	m	man	1-2
+# ::node	b	behind	2-3
+# ::node	t	table	4-5
+# ::node	p	pour-01	5-6
+# ::node	w	wine	6-7
+# ::node	g	glass	8-9
+# ::node	t2	taste-01	12-13
+# ::node	t3	tour-01	13-14
+# ::root	p	pour-01
+# ::edge	man	location	behind	m	b	
+# ::edge	behind	op1	table	b	t	
+# ::edge	pour-01	ARG0	man	p	m	
+# ::edge	pour-01	ARG1	wine	p	w	
+# ::edge	pour-01	ARG3	glass	p	g	
+# ::edge	taste-01	ARG1	wine	t2	w	
+# ::edge	tour-01	mod	taste-01	t3	t2	
+# ::edge	pour-01	purpose	tour-01	p	t3	
+(p / pour-01
+    :purpose (t3 / tour-01
+        :mod (t2 / taste-01
+            :ARG1 (w / wine)))
+    :ARG0 (m / man
+        :location (b / behind
+            :op1 (t / table)))
+    :ARG1 w
+    :ARG3 (g / glass))

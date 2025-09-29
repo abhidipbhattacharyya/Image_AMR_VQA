@@ -1,0 +1,40 @@
+# ::tok A refrigerator with an ice machine and two vertical doors stands on a tile floor next to a door .
+# ::node	r	refrigerator	1-2
+# ::node	h	have-03	2-3
+# ::node	i	ice	4-5
+# ::node	m	machine	5-6
+# ::node	a	and	6-7
+# ::node	0	2	7-8
+# ::node	v	vertical	8-9
+# ::node	d	door	9-10
+# ::node	s	stand-01	10-11
+# ::node	t	tile	13-14
+# ::node	f	floor	14-15
+# ::node	n	next-to	15-16
+# ::node	d2	door	18-19
+# ::root	s	stand-01
+# ::edge	refrigerator	ARG0-of	have-03	r	h	
+# ::edge	machine	mod	ice	m	i	
+# ::edge	and	op1	machine	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	door	mod	vertical	d	v	
+# ::edge	door	quant	2	d	0	
+# ::edge	and	op2	door	a	d	
+# ::edge	stand-01	ARG1	refrigerator	s	r	
+# ::edge	floor	consist-of	tile	f	t	
+# ::edge	stand-01	ARG2	floor	s	f	
+# ::edge	floor	location-of	next-to	f	n	
+# ::edge	next-to	op1	door	n	d2	
+(s / stand-01
+    :ARG1 (r / refrigerator
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (m / machine
+                    :mod (i / ice))
+                :op2 (d / door
+                    :quant 2
+                    :mod (v / vertical)))))
+    :ARG2 (f / floor
+        :consist-of (t / tile)
+        :location-of (n / next-to
+            :op1 (d2 / door))))

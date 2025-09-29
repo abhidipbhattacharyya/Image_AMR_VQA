@@ -1,0 +1,24 @@
+# ::tok Donuts being made in factor and dropping into holding area .
+# ::node	d	donut	0-1
+# ::node	m	make-01	2-3
+# ::node	f	factor	4-5
+# ::node	a	and	5-6
+# ::node	d2	drop-01	6-7
+# ::node	h	hold-01	8-9
+# ::node	a2	area	9-10
+# ::root	a	and
+# ::edge	make-01	ARG1	donut	m	d	
+# ::edge	make-01	prep-in	factor	m	f	
+# ::edge	and	op1	make-01	a	m	
+# ::edge	and	op2	drop-01	a	d2	
+# ::edge	drop-01	ARG1	donut	d2	d	
+# ::edge	area	location-of	hold-01	a2	h	
+# ::edge	drop-01	ARG4	area	d2	a2	
+(a / and
+    :op1 (m / make-01
+        :ARG1 (d / donut)
+        :prep-in (f / factor))
+    :op2 (d2 / drop-01
+        :ARG1 d
+        :ARG4 (a2 / area
+            :location-of (h / hold-01))))

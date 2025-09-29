@@ -1,0 +1,28 @@
+# ::tok Many people are walking on the frozen water near brown buildings .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	w	walk-01	3-4
+# ::node	f	freeze-01	6-7
+# ::node	w2	water	7-8
+# ::node	n	near-02	8-9
+# ::node	p2	person	9-10
+# ::node	b	brown	9-10
+# ::node	b2	building	10-11
+# ::root	w	walk-01
+# ::edge	person	quant	many	p	m	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	water	ARG1-of	freeze-01	w2	f	
+# ::edge	walk-01	ARG2	water	w	w2	
+# ::edge	water	ARG1-of	near-02	w2	n	
+# ::edge	person	mod	brown	p2	b	
+# ::edge	building	mod	person	b2	p2	
+# ::edge	near-02	ARG2	building	n	b2	
+(w / walk-01
+    :ARG0 (p / person
+        :quant (m / many))
+    :ARG2 (w2 / water
+        :ARG1-of (f / freeze-01)
+        :ARG1-of (n / near-02
+            :ARG2 (b2 / building
+                :mod (p2 / person
+                    :mod (b / brown))))))

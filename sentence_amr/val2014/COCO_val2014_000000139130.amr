@@ -1,0 +1,34 @@
+# ::tok zebras graze in a field with sparse grass , in front of trees .
+# ::node	s2	species	0-1
+# ::node	n	name	0-1
+# ::node	m	magazine	0-1
+# ::node	0	Australia	0-1
+# ::node	g2	graze-01	1-2
+# ::node	f	field	4-5
+# ::node	h	have-03	5-6
+# ::node	s	sparse	6-7
+# ::node	g	grass	7-8
+# ::node	i	in-front-of	10-11
+# ::node	t	tree	12-13
+# ::root	g2	graze-01
+# ::edge	species	name	name	s2	n	
+# ::edge	name	op1	Australia	n	0	
+# ::edge	graze-01	ARG0	magazine	g2	m	
+# ::edge	graze-01	location	field	g2	f	
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	grass	mod	sparse	g	s	
+# ::edge	have-03	ARG1	grass	h	g	
+# ::edge	field	location	in-front-of	f	i	
+# ::edge	in-front-of	op1	tree	i	t	
+# ::edge	graze-01	rel	species	g2	s2	
+(g2 / graze-01
+    :ARG0 (m / magazine)
+    :location (f / field
+        :ARG0-of (h / have-03
+            :ARG1 (g / grass
+                :mod (s / sparse)))
+        :location (i / in-front-of
+            :op1 (t / tree)))
+    :rel (s2 / species
+        :name (n / name
+            :op1 "Australia")))

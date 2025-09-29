@@ -1,0 +1,25 @@
+# ::tok A bus on the street at night with lights shining every where
+# ::node	b2	bus	1-2
+# ::node	s2	street	4-5
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::node	l	light	8-9
+# ::node	s	shine-01	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	e	every	10-11
+# ::root	b2	bus
+# ::edge	bus	location	street	b2	s2	
+# ::edge	bus	time	date-entity	b2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	shine-01	ARG1	light	s	l	
+# ::edge	bus	ARG0-of	shine-01	b2	s	
+# ::edge	light	ARG1-of	be-located-at-91	l	b	
+# ::edge	be-located-at-91	location	every	b	e	
+(b2 / bus
+    :ARG0-of (s / shine-01
+        :ARG1 (l / light
+            :ARG1-of (b / be-located-at-91
+                :location (e / every))))
+    :location (s2 / street)
+    :time (d / date-entity
+        :dayperiod (n / night)))

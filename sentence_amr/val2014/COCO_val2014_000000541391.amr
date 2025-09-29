@@ -1,0 +1,54 @@
+# ::tok A baseball player batting while a catcher and umpire wait behind him and people watch from the stands and dugout .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p5	play-01	2-3
+# ::node	b2	bat-01	3-4
+# ::node	p2	person	6-7
+# ::node	c	catch-01	6-7
+# ::node	a	and	7-8
+# ::node	p3	person	8-9
+# ::node	u	umpire-01	8-9
+# ::node	w	wait-01	9-10
+# ::node	b3	behind	10-11
+# ::node	a2	and	12-13
+# ::node	p4	person	13-14
+# ::node	w2	watch-01	14-15
+# ::node	s	stand	17-18
+# ::node	a3	and	18-19
+# ::node	d	dugout	19-20
+# ::root	a2	and
+# ::edge	person	ARG0-of	play-01	p	p5	
+# ::edge	play-01	ARG1	baseball	p5	b	
+# ::edge	bat-01	ARG0	person	b2	p	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	and	op1	person	a	p2	
+# ::edge	and	op2	person	a	p3	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+# ::edge	wait-01	ARG1	and	w	a	
+# ::edge	wait-01	ARG2	behind	w	b3	
+# ::edge	behind	op1	person	b3	p	
+# ::edge	and	op2	wait-01	a2	w	
+# ::edge	and	op1	bat-01	a2	b2	
+# ::edge	watch-01	ARG0	person	w2	p4	
+# ::edge	and	op3	watch-01	a2	w2	
+# ::edge	and	op1	stand	a3	s	
+# ::edge	watch-01	source	and	w2	a3	
+# ::edge	and	op2	dugout	a3	d	
+(a2 / and
+    :op1 (b2 / bat-01
+        :ARG0 (p / person
+            :ARG0-of (p5 / play-01
+                :ARG1 (b / baseball))))
+    :op2 (w / wait-01
+        :ARG1 (a / and
+            :op1 (p2 / person
+                :ARG0-of (c / catch-01))
+            :op2 (p3 / person
+                :ARG0-of (u / umpire-01)))
+        :ARG2 (b3 / behind
+            :op1 p))
+    :op3 (w2 / watch-01
+        :ARG0 (p4 / person)
+        :source (a3 / and
+            :op1 (s / stand)
+            :op2 (d / dugout))))

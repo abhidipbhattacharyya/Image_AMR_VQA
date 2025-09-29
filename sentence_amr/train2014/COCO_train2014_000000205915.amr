@@ -1,0 +1,44 @@
+# ::tok Lights on train tracks at a train station , with city lights and buildings in the background and cloudy sky at night .
+# ::node	l	light	0-1
+# ::node	t2	train	2-3
+# ::node	t	track	3-4
+# ::node	s2	station	7-8
+# ::node	c	city	10-11
+# ::node	l2	light	11-12
+# ::node	a	and	12-13
+# ::node	b2	building	13-14
+# ::node	b	background	16-17
+# ::node	c2	cloudy-02	18-19
+# ::node	s	sky	19-20
+# ::node	d	date-entity	21-22
+# ::node	n	night	21-22
+# ::root	l	light
+# ::edge	track	mod	train	t	t2	
+# ::edge	light	location	track	l	t	
+# ::edge	station	mod	train	s2	t2	
+# ::edge	light	location	station	l	s2	
+# ::edge	light	mod	city	l2	c	
+# ::edge	and	op1	light	a	l	
+# ::edge	light	accompanier	and	l	a	
+# ::edge	and	op2	building	a	b2	
+# ::edge	and	location	background	a	b	
+# ::edge	sky	ARG1-of	cloudy-02	s	c2	
+# ::edge	and	op3	sky	a	s	
+# ::edge	sky	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	light	rel	light	l	l2	
+(l / light
+    :accompanier (a / and
+        :location (b / background)
+        :op1 l
+        :op2 (b2 / building)
+        :op3 (s / sky
+            :ARG1-of (c2 / cloudy-02)
+            :time (d / date-entity
+                :dayperiod (n / night))))
+    :location (t / track
+        :mod (t2 / train))
+    :location (s2 / station
+        :mod t2)
+    :rel (l2 / light
+        :mod (c / city)))

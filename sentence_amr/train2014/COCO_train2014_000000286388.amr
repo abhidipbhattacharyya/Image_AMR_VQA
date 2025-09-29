@@ -1,0 +1,22 @@
+# ::tok A sign notifying drivers that there is a hump in the road ahead .
+# ::node	s	signal-07	1-2
+# ::node	n	notify-01	2-3
+# ::node	p	person	3-4
+# ::node	d	drive-01	3-4
+# ::node	h	hump	8-9
+# ::node	r	road	11-12
+# ::node	a	ahead	12-13
+# ::root	n	notify-01
+# ::edge	notify-01	ARG0	signal-07	n	s	
+# ::edge	notify-01	ARG1	person	n	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	notify-01	ARG2	hump	n	h	
+# ::edge	hump	location	road	h	r	
+# ::edge	road	location	ahead	r	a	
+(n / notify-01
+    :ARG0 (s / signal-07)
+    :ARG1 (p / person
+        :ARG0-of (d / drive-01))
+    :ARG2 (h / hump
+        :location (r / road
+            :location (a / ahead))))

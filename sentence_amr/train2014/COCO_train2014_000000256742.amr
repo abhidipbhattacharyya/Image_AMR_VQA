@@ -1,0 +1,36 @@
+# ::tok A non passenger train rolls by a couple train traffic lights as it comes down the tracks
+# ::node	0	-	1-2
+# ::node	p	passenger	2-3
+# ::node	t3	train	3-4
+# ::node	r	roll-01	4-5
+# ::node	c2	couple	7-8
+# ::node	t4	train	8-9
+# ::node	t2	traffic	9-10
+# ::node	l	light	10-11
+# ::node	c	come-01	13-14
+# ::node	d	down	14-15
+# ::node	t	track	16-17
+# ::root	r	roll-01
+# ::edge	passenger	polarity	-	p	0	
+# ::edge	train	mod	passenger	t3	p	
+# ::edge	roll-01	ARG1	train	r	t3	
+# ::edge	light	mod	traffic	l	t2	
+# ::edge	light	mod	train	l	t4	
+# ::edge	light	quant	couple	l	c2	
+# ::edge	roll-01	path	light	r	l	
+# ::edge	roll-01	time	come-01	r	c	
+# ::edge	come-01	ARG1	train	c	t3	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	come-01	path	track	c	t	
+(r / roll-01
+    :ARG1 (t3 / train
+        :mod (p / passenger
+            :polarity -))
+    :path (l / light
+        :quant (c2 / couple)
+        :mod (t2 / traffic)
+        :mod (t4 / train))
+    :time (c / come-01
+        :ARG1 t3
+        :direction (d / down)
+        :path (t / track)))

@@ -1,0 +1,28 @@
+# ::tok A black car parked near an intersection with a no turn sign
+# ::node	b	black-05	1-2
+# ::node	c	car	2-3
+# ::node	p	park-01	3-4
+# ::node	n	near-02	4-5
+# ::node	i	intersect-01	6-7
+# ::node	h	have-03	7-8
+# ::node	0	-	9-10
+# ::node	t	turn-01	10-11
+# ::node	s	signal-07	11-12
+# ::root	c	car
+# ::edge	car	ARG1-of	black-05	c	b	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	near-02	ARG2	intersect-01	n	i	
+# ::edge	car	ARG0-of	have-03	c	h	
+# ::edge	turn-01	polarity	-	t	0	
+# ::edge	signal-07	ARG1	turn-01	s	t	
+# ::edge	have-03	ARG1	signal-07	h	s	
+(c / car
+    :ARG0-of (h / have-03
+        :ARG1 (s / signal-07
+            :ARG1 (t / turn-01
+                :polarity -)))
+    :ARG1-of (b / black-05)
+    :ARG1-of (p / park-01
+        :ARG1-of (n / near-02
+            :ARG2 (i / intersect-01))))

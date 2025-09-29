@@ -1,0 +1,35 @@
+# ::tok The street light is red on one side and green on the other .
+# ::node	s3	street	1-2
+# ::node	l	light	2-3
+# ::node	l2	light	2-3
+# ::node	r	red-02	4-5
+# ::node	o	one	6-7
+# ::node	s	side	7-8
+# ::node	s2	side	7-8
+# ::node	a	and	8-9
+# ::node	g	green-02	9-10
+# ::node	o2	other	12-13
+# ::root	a	and
+# ::edge	light	mod	street	l	s3	
+# ::edge	light	mod	street	l2	s3	
+# ::edge	red-02	ARG1	light	r	l	
+# ::edge	side	mod	one	s	o	
+# ::edge	red-02	location	side	r	s	
+# ::edge	light	location	side	l2	s2	
+# ::edge	and	op1	red-02	a	r	
+# ::edge	and	op2	green-02	a	g	
+# ::edge	green-02	location	light	g	l2	
+# ::edge	green-02	ARG1	light	g	l2	
+# ::edge	side	mod	other	s2	o2	
+(a / and
+    :op1 (r / red-02
+        :ARG1 (l / light
+            :mod (s3 / street))
+        :location (s / side
+            :mod (o / one)))
+    :op2 (g / green-02
+        :ARG1 (l2 / light
+            :location (s2 / side
+                :mod (o2 / other))
+            :mod s3)
+        :location l2))

@@ -1,0 +1,38 @@
+# ::tok Two laptops are sitting next to each other on a table next to a bunch of wires with a person sitting beside them
+# ::node	0	2	0-1
+# ::node	l	laptop	1-2
+# ::node	s	sit-01	3-4
+# ::node	n	next-to	4-5
+# ::node	t	table	10-11
+# ::node	n2	next-to	11-12
+# ::node	b2	bunch	14-15
+# ::node	w	wire	16-17
+# ::node	p	person	19-20
+# ::node	s2	sit-01	20-21
+# ::node	b	beside	21-22
+# ::root	s	sit-01
+# ::edge	laptop	quant	2	l	0	
+# ::edge	sit-01	ARG1	laptop	s	l	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	laptop	n	l	
+# ::edge	sit-01	location	table	s	t	
+# ::edge	table	location	next-to	t	n2	
+# ::edge	wire	quant	bunch	w	b2	
+# ::edge	next-to	op1	wire	n2	w	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	table	ARG2-of	sit-01	t	s2	
+# ::edge	sit-01	ARG2	beside	s2	b	
+# ::edge	beside	op1	laptop	b	l	
+(s / sit-01
+    :ARG1 (l / laptop
+        :quant 2)
+    :ARG2 (n / next-to
+        :op1 l)
+    :location (t / table
+        :ARG2-of (s2 / sit-01
+            :ARG1 (p / person)
+            :ARG2 (b / beside
+                :op1 l))
+        :location (n2 / next-to
+            :op1 (w / wire
+                :quant (b2 / bunch)))))

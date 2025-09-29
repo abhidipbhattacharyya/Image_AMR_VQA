@@ -1,0 +1,31 @@
+# ::tok Several small sheep and one really large sheep eating grass .
+# ::node	s	several	0-1
+# ::node	s4	small	1-2
+# ::node	s2	sheep	2-3
+# ::node	a	and	3-4
+# ::node	0	1	4-5
+# ::node	r	real-04	5-6
+# ::node	l	large	6-7
+# ::node	s3	sheep	7-8
+# ::node	e	eat-01	8-9
+# ::node	g	grass	9-10
+# ::root	e	eat-01
+# ::edge	sheep	mod	small	s2	s4	
+# ::edge	sheep	quant	several	s2	s	
+# ::edge	and	op1	sheep	a	s2	
+# ::edge	large	ARG1-of	real-04	l	r	
+# ::edge	sheep	mod	large	s3	l	
+# ::edge	sheep	quant	1	s3	0	
+# ::edge	and	op2	sheep	a	s3	
+# ::edge	eat-01	ARG0	and	e	a	
+# ::edge	eat-01	ARG1	grass	e	g	
+(e / eat-01
+    :ARG0 (a / and
+        :op1 (s2 / sheep
+            :quant (s / several)
+            :mod (s4 / small))
+        :op2 (s3 / sheep
+            :quant 1
+            :mod (l / large
+                :ARG1-of (r / real-04))))
+    :ARG1 (g / grass))

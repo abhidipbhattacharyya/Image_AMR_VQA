@@ -1,0 +1,40 @@
+# ::tok An Asian noodle soup with vegetables has a dollop of bright red chili paste on the side .
+# ::node	c2	continent	1-2
+# ::node	n	name	1-2
+# ::node	0	Asia	1-2
+# ::node	n2	noodle	2-3
+# ::node	s2	soup	3-4
+# ::node	v	vegetable	5-6
+# ::node	h	have-03	6-7
+# ::node	d	dollop	8-9
+# ::node	b	bright-02	10-11
+# ::node	r	red-02	11-12
+# ::node	c	chili	12-13
+# ::node	p	paste	13-14
+# ::node	s	side	16-17
+# ::root	h	have-03
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Asia	n	0	
+# ::edge	soup	mod	noodle	s2	n2	
+# ::edge	soup	mod	continent	s2	c2	
+# ::edge	soup	accompanier	vegetable	s2	v	
+# ::edge	have-03	ARG0	soup	h	s2	
+# ::edge	have-03	ARG1	dollop	h	d	
+# ::edge	red-02	ARG1-of	bright-02	r	b	
+# ::edge	paste	consist-of	chili	p	c	
+# ::edge	paste	ARG1-of	red-02	p	r	
+# ::edge	dollop	consist-of	paste	d	p	
+# ::edge	have-03	location	side	h	s	
+(h / have-03
+    :ARG0 (s2 / soup
+        :accompanier (v / vegetable)
+        :mod (n2 / noodle)
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Asia")))
+    :ARG1 (d / dollop
+        :consist-of (p / paste
+            :ARG1-of (r / red-02
+                :ARG1-of (b / bright-02))
+            :consist-of (c / chili)))
+    :location (s / side))

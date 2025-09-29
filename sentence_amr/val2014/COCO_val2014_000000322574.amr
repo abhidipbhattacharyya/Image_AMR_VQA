@@ -1,0 +1,39 @@
+# ::tok Bread in a paper bag on top of french fries in paper container with a drink on the side .
+# ::node	r	Bread	0-1
+# ::node	p	paper	3-4
+# ::node	b	bag	4-5
+# ::node	t	top	6-7
+# ::node	c2	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	c	container	12-13
+# ::node	a	accompany-01	13-14
+# ::node	d	drink	15-16
+# ::node	s	side	18-19
+# ::root	a	accompany-01
+# ::edge	bag	consist-of	paper	b	p	
+# ::edge	Bread	location	bag	r	b	
+# ::edge	bag	location	top	b	t	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c2	
+# ::edge	top	op1	fry-01	t	f	
+# ::edge	container	consist-of	paper	c	p	
+# ::edge	Bread	location	container	r	c	
+# ::edge	accompany-01	ARG1	Bread	a	r	
+# ::edge	accompany-01	ARG0	drink	a	d	
+# ::edge	drink	location	side	d	s	
+(a / accompany-01
+    :ARG0 (d / drink
+        :location (s / side))
+    :ARG1 (r / Bread
+        :location (b / bag
+            :consist-of (p / paper)
+            :location (t / top
+                :op1 (f / fry-01
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "France")))))
+        :location (c / container
+            :consist-of p)))

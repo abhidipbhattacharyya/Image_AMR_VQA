@@ -1,0 +1,40 @@
+# ::tok A plate with rice and some sort of meat smothered in gravy , surrounded bowls of other meals
+# ::node	p	plate	1-2
+# ::node	r	rice	3-4
+# ::node	a	and	4-5
+# ::node	s2	some	5-6
+# ::node	s3	sort	6-7
+# ::node	m2	meat	8-9
+# ::node	s	smear-02	9-10
+# ::node	g	gravy	11-12
+# ::node	s4	surround-01	13-14
+# ::node	d	dish	14-15
+# ::node	d2	dish	14-15
+# ::node	o	other	16-17
+# ::node	m	meal	17-18
+# ::root	s4	surround-01
+# ::edge	and	op1	rice	a	r	
+# ::edge	plate	consist-of	and	p	a	
+# ::edge	sort	mod	some	s3	s2	
+# ::edge	meat	mod	sort	m2	s3	
+# ::edge	and	op2	meat	a	m2	
+# ::edge	meat	ARG1-of	smear-02	m2	s	
+# ::edge	smear-02	ARG2	gravy	s	g	
+# ::edge	surround-01	ARG2	plate	s4	p	
+# ::edge	surround-01	ARG1	dish	s4	d	
+# ::edge	dish	consist-of	dish	d	d2	
+# ::edge	meal	mod	other	m	o	
+# ::edge	dish	mod	meal	d2	m	
+(s4 / surround-01
+    :ARG1 (d / dish
+        :consist-of (d2 / dish
+            :mod (m / meal
+                :mod (o / other))))
+    :ARG2 (p / plate
+        :consist-of (a / and
+            :op1 (r / rice)
+            :op2 (m2 / meat
+                :ARG1-of (s / smear-02
+                    :ARG2 (g / gravy))
+                :mod (s3 / sort
+                    :mod (s2 / some))))))

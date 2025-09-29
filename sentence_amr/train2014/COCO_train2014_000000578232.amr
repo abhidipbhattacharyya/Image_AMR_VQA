@@ -1,0 +1,31 @@
+# ::tok A FedEx jet air transport in the air with landing gear down .
+# ::node	c	company	1-2
+# ::node	n	name	1-2
+# ::node	0	FedEx	1-2
+# ::node	j	jet	2-3
+# ::node	a	air	3-4
+# ::node	t	transport-01	4-5
+# ::node	a2	air	7-8
+# ::node	l	land-01	9-10
+# ::node	g	gear	10-11
+# ::node	d	down-03	11-12
+# ::root	t	transport-01
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	FedEx	n	0	
+# ::edge	jet	mod	company	j	c	
+# ::edge	transport-01	mod	air	t	a	
+# ::edge	transport-01	ARG0	jet	t	j	
+# ::edge	transport-01	location	air	t	a2	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	transport-01	prep-with	gear	t	g	
+# ::edge	gear	ARG1-of	down-03	g	d	
+(t / transport-01
+    :ARG0 (j / jet
+        :mod (c / company
+            :name (n / name
+                :op1 "FedEx")))
+    :location (a2 / air)
+    :mod (a / air)
+    :prep-with (g / gear
+        :ARG1-of (l / land-01)
+        :ARG1-of (d / down-03)))

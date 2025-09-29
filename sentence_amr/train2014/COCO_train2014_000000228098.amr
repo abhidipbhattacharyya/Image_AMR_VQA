@@ -1,0 +1,27 @@
+# ::tok A man holding a remote controller and remote controlled airplane .
+# ::node	m	man	1-2
+# ::node	h	hold-01	2-3
+# ::node	r	remote	4-5
+# ::node	t	thing	5-6
+# ::node	c	control-01	5-6
+# ::node	a2	and	6-7
+# ::node	c2	control-01	8-9
+# ::node	a	airplane	9-10
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	man	h	m	
+# ::edge	thing	mod	remote	t	r	
+# ::edge	thing	ARG0-of	control-01	t	c	
+# ::edge	and	op1	thing	a2	t	
+# ::edge	hold-01	ARG1	and	h	a2	
+# ::edge	control-01	mod	remote	c2	r	
+# ::edge	airplane	ARG1-of	control-01	a	c2	
+# ::edge	and	op2	airplane	a2	a	
+(h / hold-01
+    :ARG0 (m / man)
+    :ARG1 (a2 / and
+        :op1 (t / thing
+            :ARG0-of (c / control-01)
+            :mod (r / remote))
+        :op2 (a / airplane
+            :ARG1-of (c2 / control-01
+                :mod r))))

@@ -1,0 +1,31 @@
+# ::tok Street signs are advising people to proceed while being aware of their surroundings .
+# ::node	s2	street	0-1
+# ::node	s	sign	1-2
+# ::node	a	advise-01	3-4
+# ::node	p	person	4-5
+# ::node	p2	proceed-01	6-7
+# ::node	r	realize-01	9-10
+# ::node	t	thing	12-13
+# ::node	s3	surround-01	12-13
+# ::root	a	advise-01
+# ::edge	sign	location	street	s	s2	
+# ::edge	advise-01	ARG0	sign	a	s	
+# ::edge	advise-01	ARG1	person	a	p	
+# ::edge	proceed-01	ARG0	person	p2	p	
+# ::edge	advise-01	ARG2	proceed-01	a	p2	
+# ::edge	proceed-01	time	realize-01	p2	r	
+# ::edge	realize-01	ARG0	person	r	p	
+# ::edge	realize-01	ARG1	thing	r	t	
+# ::edge	thing	ARG1-of	surround-01	t	s3	
+# ::edge	surround-01	ARG2	person	s3	p	
+(a / advise-01
+    :ARG0 (s / sign
+        :location (s2 / street))
+    :ARG1 (p / person)
+    :ARG2 (p2 / proceed-01
+        :ARG0 p
+        :time (r / realize-01
+            :ARG0 p
+            :ARG1 (t / thing
+                :ARG1-of (s3 / surround-01
+                    :ARG2 p)))))

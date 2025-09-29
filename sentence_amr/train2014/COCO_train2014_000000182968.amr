@@ -1,0 +1,83 @@
+# ::tok An institutional looking , white tile wall holds two side by side blackened ovens , one with food inside and the door open , while the other is closed and filled with what looks like foaming water .
+# ::node	i2	institution	1-2
+# ::node	l	look-02	2-3
+# ::node	w3	white-03	4-5
+# ::node	t2	tile	5-6
+# ::node	w	wall	6-7
+# ::node	h2	hold-01	7-8
+# ::node	s	side-by-side	11-12
+# ::node	b	black-04	12-13
+# ::node	o4	oven	13-14
+# ::node	o5	oven	13-14
+# ::node	o	one	15-16
+# ::node	h	have-03	16-17
+# ::node	f3	food	17-18
+# ::node	i	inside	18-19
+# ::node	d	door	21-22
+# ::node	o2	open-09	22-23
+# ::node	c2	contrast-01	24-25
+# ::node	o3	other	26-27
+# ::node	c	close-01	28-29
+# ::node	a	and	29-30
+# ::node	a2	and	29-30
+# ::node	f	fill-01	30-31
+# ::node	t	thing	32-33
+# ::node	l2	look-02	33-34
+# ::node	f2	foam-01	35-36
+# ::node	w2	water	36-37
+# ::root	h2	hold-01
+# ::edge	look-02	ARG1	institution	l	i2	
+# ::edge	tile	ARG1-of	white-03	t2	w3	
+# ::edge	wall	consist-of	tile	w	t2	
+# ::edge	wall	ARG0-of	look-02	w	l	
+# ::edge	hold-01	ARG0	wall	h2	w	
+# ::edge	oven	ARG1-of	black-04	o4	b	
+# ::edge	oven	mod	side-by-side	o4	s	
+# ::edge	hold-01	ARG1	oven	h2	o4	
+# ::edge	oven	part	one	o5	o	
+# ::edge	one	ARG0-of	have-03	o	h	
+# ::edge	have-03	ARG1	food	h	f3	
+# ::edge	food	location	inside	f3	i	
+# ::edge	open-09	ARG1	door	o2	d	
+# ::edge	oven	ARG0-of	open-09	o5	o2	
+# ::edge	oven	ARG1-of	contrast-01	o5	c2	
+# ::edge	close-01	ARG1	other	c	o3	
+# ::edge	and	op1	close-01	a	c	
+# ::edge	contrast-01	ARG2	and	c2	a	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	close-01	a2	c	
+# ::edge	and	op2	fill-01	a2	f	
+# ::edge	fill-01	ARG1	other	f	o3	
+# ::edge	fill-01	ARG2	thing	f	t	
+# ::edge	thing	ARG0-of	look-02	t	l2	
+# ::edge	water	ARG1-of	foam-01	w2	f2	
+# ::edge	look-02	ARG1	water	l2	w2	
+# ::edge	hold-01	rel	oven	h2	o5	
+(h2 / hold-01
+    :ARG0 (w / wall
+        :ARG0-of (l / look-02
+            :ARG1 (i2 / institution))
+        :consist-of (t2 / tile
+            :ARG1-of (w3 / white-03)))
+    :ARG1 (o4 / oven
+        :ARG1-of (b / black-04)
+        :mod (s / side-by-side))
+    :rel (o5 / oven
+        :ARG0-of (o2 / open-09
+            :ARG1 (d / door))
+        :ARG1-of (c2 / contrast-01
+            :ARG2 (a / and
+                :op1 (c / close-01
+                    :ARG1 (o3 / other))
+                :op2 (a2 / and
+                    :op1 c
+                    :op2 (f / fill-01
+                        :ARG1 o3
+                        :ARG2 (t / thing
+                            :ARG0-of (l2 / look-02
+                                :ARG1 (w2 / water
+                                    :ARG1-of (f2 / foam-01))))))))
+        :part (o / one
+            :ARG0-of (h / have-03
+                :ARG1 (f3 / food
+                    :location (i / inside))))))

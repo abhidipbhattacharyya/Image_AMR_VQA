@@ -1,0 +1,26 @@
+# ::tok A man sitting at a table about to take a bite of his donut .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	a	about-to	6-7
+# ::node	b	bite-01	10-11
+# ::node	d	donut	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	man	ARG1-of	sit-01	m	s	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	bite-01	time	about-to	b	a	
+# ::edge	man	ARG0-of	bite-01	m	b	
+# ::edge	bite-01	ARG1	donut	b	d	
+# ::edge	donut	poss	man	d	m	
+# ::edge	event	mod	about-to	e	a	
+# ::edge	event	rel	bite-01	e	b	
+(e / event
+    :mod (a / about-to)
+    :rel (b / bite-01
+        :ARG1 (d / donut
+            :poss (m / man
+                :ARG0-of b
+                :ARG1-of (s / sit-01
+                    :ARG2 (t / table))))
+        :time a))

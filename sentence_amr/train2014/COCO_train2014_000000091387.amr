@@ -1,0 +1,57 @@
+# ::tok The batter on the Ray 's baseball team is celebrating a run , giving the incoming runner his outstretched palm .
+# ::node	p2	person	1-2
+# ::node	b2	batter-01	1-2
+# ::node	t	team	4-5
+# ::node	n	name	4-5
+# ::node	0	Ray	4-5
+# ::node	b	baseball	6-7
+# ::node	t2	team	7-8
+# ::node	c	celebrate-01	9-10
+# ::node	r	run-02	11-12
+# ::node	a	and	12-13
+# ::node	g	give-01	13-14
+# ::node	i	incoming	15-16
+# ::node	p3	person	16-17
+# ::node	r2	run-02	16-17
+# ::node	o	out-01	18-19
+# ::node	p	palm	19-20
+# ::root	a	and
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Ray	n	0	
+# ::edge	team	mod	baseball	t2	b	
+# ::edge	team	part-of	team	t2	t	
+# ::edge	person	part-of	team	p2	t2	
+# ::edge	celebrate-01	ARG0	person	c	p2	
+# ::edge	celebrate-01	ARG1	run-02	c	r	
+# ::edge	run-02	ARG0	person	r	p2	
+# ::edge	and	op1	celebrate-01	a	c	
+# ::edge	and	op2	give-01	a	g	
+# ::edge	give-01	ARG0	person	g	p2	
+# ::edge	person	mod	give-01	p3	g	
+# ::edge	give-01	ARG2	person	g	p3	
+# ::edge	person	ARG0-of	run-02	p3	r2	
+# ::edge	palm	ARG1-of	out-01	p	o	
+# ::edge	person	part	palm	p3	p	
+# ::edge	give-01	ARG1	palm	g	p	
+# ::edge	and	rel	incoming	a	i	
+(a / and
+    :op1 (c / celebrate-01
+        :ARG0 (p2 / person
+            :ARG0-of (b2 / batter-01)
+            :part-of (t2 / team
+                :mod (b / baseball)
+                :part-of (t / team
+                    :name (n / name
+                        :op1 "Ray"))))
+        :ARG1 (r / run-02
+            :ARG0 p2))
+    :op2 (g / give-01
+        :ARG0 p2
+        :ARG1 (p / palm
+            :ARG1-of (o / out-01))
+        :ARG2 (p3 / person
+            :ARG0-of (r2 / run-02)
+            :mod g
+            :part p))
+    :rel (i / incoming))

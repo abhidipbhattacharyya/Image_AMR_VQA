@@ -1,0 +1,33 @@
+# ::tok A white bed with five pillows and a picture frame hanging above it .
+# ::node	w	white-03	1-2
+# ::node	b	bed	2-3
+# ::node	h2	have-03	3-4
+# ::node	0	5	4-5
+# ::node	p2	pill	5-6
+# ::node	a2	and	6-7
+# ::node	p	picture	8-9
+# ::node	f	frame	9-10
+# ::node	h	hang-01	10-11
+# ::node	a	above	11-12
+# ::root	h	hang-01
+# ::edge	bed	ARG1-of	white-03	b	w	
+# ::edge	bed	ARG0-of	have-03	b	h2	
+# ::edge	pill	quant	5	p2	0	
+# ::edge	and	op1	pill	a2	p2	
+# ::edge	have-03	ARG1	and	h2	a2	
+# ::edge	frame	mod	picture	f	p	
+# ::edge	and	op2	frame	a2	f	
+# ::edge	hang-01	ARG1	bed	h	b	
+# ::edge	hang-01	ARG2	above	h	a	
+# ::edge	above	op1	bed	a	b	
+(h / hang-01
+    :ARG1 (b / bed
+        :ARG0-of (h2 / have-03
+            :ARG1 (a2 / and
+                :op1 (p2 / pill
+                    :quant 5)
+                :op2 (f / frame
+                    :mod (p / picture))))
+        :ARG1-of (w / white-03))
+    :ARG2 (a / above
+        :op1 b))

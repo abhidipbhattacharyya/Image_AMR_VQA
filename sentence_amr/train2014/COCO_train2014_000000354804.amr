@@ -1,0 +1,32 @@
+# ::tok Many appliances and price tags indicating their price .
+# ::node	m	many	0-1
+# ::node	a2	appliance	1-2
+# ::node	a	and	2-3
+# ::node	t2	thing	3-4
+# ::node	p	price-01	3-4
+# ::node	t	tag-01	4-5
+# ::node	i	indicate-01	5-6
+# ::node	m2	monetary-quantity	7-8
+# ::node	p2	price-01	7-8
+# ::root	a	and
+# ::edge	appliance	quant	many	a2	m	
+# ::edge	and	op1	appliance	a	a2	
+# ::edge	and	op2	thing	a	t2	
+# ::edge	thing	ARG2-of	price-01	t2	p	
+# ::edge	thing	ARG2-of	tag-01	t2	t	
+# ::edge	tag-01	ARG1	appliance	t	a2	
+# ::edge	and	ARG0-of	indicate-01	a	i	
+# ::edge	indicate-01	ARG1	monetary-quantity	i	m2	
+# ::edge	monetary-quantity	ARG2-of	price-01	m2	p2	
+# ::edge	price-01	ARG1	appliance	p2	a2	
+(a / and
+    :ARG0-of (i / indicate-01
+        :ARG1 (m2 / monetary-quantity
+            :ARG2-of (p2 / price-01
+                :ARG1 (a2 / appliance
+                    :quant (m / many)))))
+    :op1 a2
+    :op2 (t2 / thing
+        :ARG2-of (p / price-01)
+        :ARG2-of (t / tag-01
+            :ARG1 a2)))

@@ -1,0 +1,40 @@
+# ::tok A plate of fried fish over a bed of french fries with some sauce in a can .
+# ::node	p	plate	1-2
+# ::node	f2	fry-01	3-4
+# ::node	f	fish	4-5
+# ::node	o	over	5-6
+# ::node	b	bed	7-8
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	France	9-10
+# ::node	f3	fry-01	10-11
+# ::node	s2	serve-02	11-12
+# ::node	s3	some	12-13
+# ::node	s	sauce	13-14
+# ::node	c	can	16-17
+# ::root	s2	serve-02
+# ::edge	fish	ARG1-of	fry-01	f	f2	
+# ::edge	plate	consist-of	fish	p	f	
+# ::edge	plate	location	over	p	o	
+# ::edge	over	op1	bed	o	b	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f3	c2	
+# ::edge	bed	consist-of	fry-01	b	f3	
+# ::edge	serve-02	ARG1	plate	s2	p	
+# ::edge	sauce	mod	some	s	s3	
+# ::edge	serve-02	ARG2	sauce	s2	s	
+# ::edge	sauce	location	can	s	c	
+(s2 / serve-02
+    :ARG1 (p / plate
+        :consist-of (f / fish
+            :ARG1-of (f2 / fry-01))
+        :location (o / over
+            :op1 (b / bed
+                :consist-of (f3 / fry-01
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "France"))))))
+    :ARG2 (s / sauce
+        :location (c / can)
+        :mod (s3 / some)))

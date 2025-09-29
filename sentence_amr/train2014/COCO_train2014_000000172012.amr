@@ -1,0 +1,36 @@
+# ::tok a sandwich on a plate with a can of soda and a glass of soda with someones hands
+# ::node	s	sandwich	1-2
+# ::node	p	plate	4-5
+# ::node	c	can	7-8
+# ::node	s2	soda	9-10
+# ::node	a	and	10-11
+# ::node	0	1	11-12
+# ::node	g	glass	12-13
+# ::node	v	volume-quantity	13-14
+# ::node	s3	soda	14-15
+# ::node	s4	someone	16-17
+# ::node	h	hand	17-18
+# ::root	a	and
+# ::edge	sandwich	location	plate	s	p	
+# ::edge	soda	quant	can	s2	c	
+# ::edge	and	op1	soda	a	s2	
+# ::edge	sandwich	accompanier	and	s	a	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	soda	quant	volume-quantity	s3	v	
+# ::edge	and	op2	soda	a	s3	
+# ::edge	hand	part-of	someone	h	s4	
+# ::edge	and	instrument	hand	a	h	
+# ::edge	and	rel	sandwich	a	s	
+(a / and
+    :instrument (h / hand
+        :part-of (s4 / someone))
+    :op1 (s2 / soda
+        :quant (c / can))
+    :op2 (s3 / soda
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass)))
+    :rel (s / sandwich
+        :accompanier a
+        :location (p / plate)))

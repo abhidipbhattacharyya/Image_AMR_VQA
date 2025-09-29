@@ -1,0 +1,35 @@
+# ::tok Three onions are ready to be peel while a pie crust awaits its contents
+# ::node	0	3	0-1
+# ::node	p3	potato	1-2
+# ::node	r	ready-02	3-4
+# ::node	p	peel-off-02	6-7
+# ::node	c2	contrast-01	7-8
+# ::node	p2	pie	9-10
+# ::node	c3	crust	10-11
+# ::node	a	await-01	11-12
+# ::node	t	thing	13-14
+# ::node	c	contain-01	13-14
+# ::root	c2	contrast-01
+# ::edge	potato	quant	3	p3	0	
+# ::edge	ready-02	ARG1	potato	r	p3	
+# ::edge	ready-02	ARG2	peel-off-02	r	p	
+# ::edge	peel-off-02	ARG1	potato	p	p3	
+# ::edge	contrast-01	ARG1	ready-02	c2	r	
+# ::edge	crust	consist-of	pie	c3	p2	
+# ::edge	await-01	ARG1	crust	a	c3	
+# ::edge	contrast-01	ARG2	await-01	c2	a	
+# ::edge	await-01	ARG2	thing	a	t	
+# ::edge	thing	ARG0-of	contain-01	t	c	
+# ::edge	contain-01	ARG1	crust	c	c3	
+(c2 / contrast-01
+    :ARG1 (r / ready-02
+        :ARG1 (p3 / potato
+            :quant 3)
+        :ARG2 (p / peel-off-02
+            :ARG1 p3))
+    :ARG2 (a / await-01
+        :ARG1 (c3 / crust
+            :consist-of (p2 / pie))
+        :ARG2 (t / thing
+            :ARG0-of (c / contain-01
+                :ARG1 c3))))

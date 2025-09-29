@@ -1,0 +1,34 @@
+# ::tok Ingredients for a smoothie , including strawberries in a blender and Neapolitan ice cream .
+# ::node	t	thing	0-1
+# ::node	i2	ingredient	0-1
+# ::node	s	smoothie	3-4
+# ::node	i	include-01	5-6
+# ::node	t2	tomato	6-7
+# ::node	b	blender	9-10
+# ::node	a	and	10-11
+# ::node	l	local-region	11-12
+# ::node	n	name	11-12
+# ::node	0	Italy	11-12
+# ::node	c	cream	13-14
+# ::root	t	thing
+# ::edge	thing	part-of	ingredient	t	i2	
+# ::edge	ingredient	purpose	smoothie	i2	s	
+# ::edge	thing	ARG2-of	include-01	t	i	
+# ::edge	tomato	location	blender	t2	b	
+# ::edge	and	op1	tomato	a	t2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	local-region	name	name	l	n	
+# ::edge	name	op1	Italy	n	0	
+# ::edge	cream	mod	local-region	c	l	
+# ::edge	and	op2	cream	a	c	
+(t / thing
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (t2 / tomato
+                :location (b / blender))
+            :op2 (c / cream
+                :mod (l / local-region
+                    :name (n / name
+                        :op1 "Italy")))))
+    :part-of (i2 / ingredient
+        :purpose (s / smoothie)))

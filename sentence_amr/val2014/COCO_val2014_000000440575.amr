@@ -1,0 +1,27 @@
+# ::tok a passenger jet plane beginning its ascent over a city in the mountains
+# ::node	p	passenger	1-2
+# ::node	j	jet	2-3
+# ::node	p2	plane	3-4
+# ::node	b	begin-01	4-5
+# ::node	c2	climb-01	6-7
+# ::node	o	over	7-8
+# ::node	c	city	9-10
+# ::node	m	mountain	12-13
+# ::root	b	begin-01
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	plane	mod	jet	p2	j	
+# ::edge	begin-01	ARG0	plane	b	p2	
+# ::edge	begin-01	ARG1	climb-01	b	c2	
+# ::edge	climb-01	ARG1	plane	c2	p2	
+# ::edge	climb-01	path	over	c2	o	
+# ::edge	over	op1	city	o	c	
+# ::edge	city	location	mountain	c	m	
+(b / begin-01
+    :ARG0 (p2 / plane
+        :mod (j / jet
+            :mod (p / passenger)))
+    :ARG1 (c2 / climb-01
+        :ARG1 p2
+        :path (o / over
+            :op1 (c / city
+                :location (m / mountain)))))

@@ -1,0 +1,28 @@
+# ::tok Man standing next to a two horse drawn carriage in the winter time .
+# ::node	m	man	0-1
+# ::node	s	stand-01	1-2
+# ::node	n	next-to	2-3
+# ::node	0	2	5-6
+# ::node	h	horse	6-7
+# ::node	d2	draw-02	7-8
+# ::node	c	carriage	8-9
+# ::node	d	date-entity	11-12
+# ::node	w	winter	11-12
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	draw-02	ARG0	horse	d2	h	
+# ::edge	carriage	ARG1-of	draw-02	c	d2	
+# ::edge	carriage	quant	2	c	0	
+# ::edge	next-to	op1	carriage	n	c	
+# ::edge	stand-01	time	date-entity	s	d	
+# ::edge	date-entity	season	winter	d	w	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (n / next-to
+        :op1 (c / carriage
+            :quant 2
+            :ARG1-of (d2 / draw-02
+                :ARG0 (h / horse))))
+    :time (d / date-entity
+        :season (w / winter)))

@@ -1,0 +1,29 @@
+# ::tok A person walking with a stick on their shoulder with tangerines hanging from it .
+# ::node	p	person	1-2
+# ::node	w	walk-01	2-3
+# ::node	s2	stick	5-6
+# ::node	s	shoulder	8-9
+# ::node	h2	have-03	9-10
+# ::node	b	bear	10-11
+# ::node	c	cluster	10-11
+# ::node	h	hang-01	11-12
+# ::root	p	person
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	stick	location	shoulder	s2	s	
+# ::edge	person	part	shoulder	p	s	
+# ::edge	have-03	ARG1	stick	h2	s2	
+# ::edge	person	ARG0-of	have-03	p	h2	
+# ::edge	stick	mod	bear	s2	b	
+# ::edge	bear	mod	cluster	b	c	
+# ::edge	cluster	ARG1-of	hang-01	c	h	
+# ::edge	hang-01	ARG2	stick	h	s2	
+(p / person
+    :ARG0-of (w / walk-01)
+    :ARG0-of (h2 / have-03
+        :ARG1 (s2 / stick
+            :location (s / shoulder)
+            :mod (b / bear
+                :mod (c / cluster
+                    :ARG1-of (h / hang-01
+                        :ARG2 s2)))))
+    :part s)

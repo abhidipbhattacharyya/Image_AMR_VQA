@@ -1,0 +1,33 @@
+# ::tok A fire truck is parked while a fireman stands near a hose connected to a hydrant .
+# ::node	f	fire	1-2
+# ::node	t	truck	2-3
+# ::node	p	park-01	4-5
+# ::node	f2	fireman	7-8
+# ::node	s	stand-01	8-9
+# ::node	n	near-02	9-10
+# ::node	h	hose	11-12
+# ::node	c	connect-01	12-13
+# ::node	h2	hydrant	15-16
+# ::node	a	and	16-17
+# ::root	a	and
+# ::edge	truck	mod	fire	t	f	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	stand-01	ARG1	fireman	s	f2	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	fireman	n	f2	
+# ::edge	near-02	ARG2	hose	n	h	
+# ::edge	hose	ARG1-of	connect-01	h	c	
+# ::edge	connect-01	ARG2	hydrant	c	h2	
+# ::edge	and	op2	stand-01	a	s	
+# ::edge	and	op1	park-01	a	p	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (t / truck
+            :mod (f / fire)))
+    :op2 (s / stand-01
+        :ARG1 (f2 / fireman)
+        :ARG2 (n / near-02
+            :ARG1 f2
+            :ARG2 (h / hose
+                :ARG1-of (c / connect-01
+                    :ARG2 (h2 / hydrant))))))

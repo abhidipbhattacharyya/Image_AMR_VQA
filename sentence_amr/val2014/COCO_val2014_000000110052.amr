@@ -1,0 +1,34 @@
+# ::tok Skier wearing red coat standing on snow covered slope in alpine area .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	w	wear-01	1-2
+# ::node	r	red-02	2-3
+# ::node	c	coat	3-4
+# ::node	s4	stand-01	4-5
+# ::node	s3	snow	6-7
+# ::node	c2	cover-02	7-8
+# ::node	s2	slope	8-9
+# ::node	a	alpine	10-11
+# ::node	a2	area	11-12
+# ::root	s4	stand-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	coat	ARG1-of	red-02	c	r	
+# ::edge	wear-01	ARG1	coat	w	c	
+# ::edge	stand-01	ARG1	person	s4	p	
+# ::edge	cover-02	ARG2	snow	c2	s3	
+# ::edge	slope	ARG1-of	cover-02	s2	c2	
+# ::edge	stand-01	ARG2	slope	s4	s2	
+# ::edge	area	mod	alpine	a2	a	
+# ::edge	slope	location	area	s2	a2	
+(s4 / stand-01
+    :ARG1 (p / person
+        :ARG0-of (s / ski-01)
+        :ARG0-of (w / wear-01
+            :ARG1 (c / coat
+                :ARG1-of (r / red-02))))
+    :ARG2 (s2 / slope
+        :ARG1-of (c2 / cover-02
+            :ARG2 (s3 / snow))
+        :location (a2 / area
+            :mod (a / alpine))))

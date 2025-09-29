@@ -1,0 +1,34 @@
+# ::tok A small open air passenger train with people aboard is giving off a cloud of steam or smoke .
+# ::node	s	small	1-2
+# ::node	o	open-06	2-3
+# ::node	a	air	3-4
+# ::node	p	passenger	4-5
+# ::node	t	train	5-6
+# ::node	p2	person	7-8
+# ::node	g	give-off-04	10-11
+# ::node	c	cloud	13-14
+# ::node	s3	steam	15-16
+# ::node	o2	or	16-17
+# ::node	s2	smoke	17-18
+# ::root	g	give-off-04
+# ::edge	air	ARG1-of	open-06	a	o	
+# ::edge	train	mod	passenger	t	p	
+# ::edge	train	mod	air	t	a	
+# ::edge	train	mod	small	t	s	
+# ::edge	train	location-of	person	t	p2	
+# ::edge	give-off-04	ARG0	train	g	t	
+# ::edge	give-off-04	ARG1	cloud	g	c	
+# ::edge	or	op1	steam	o2	s3	
+# ::edge	cloud	consist-of	or	c	o2	
+# ::edge	or	op2	smoke	o2	s2	
+(g / give-off-04
+    :ARG0 (t / train
+        :location-of (p2 / person)
+        :mod (p / passenger)
+        :mod (a / air
+            :ARG1-of (o / open-06))
+        :mod (s / small))
+    :ARG1 (c / cloud
+        :consist-of (o2 / or
+            :op1 (s3 / steam)
+            :op2 (s2 / smoke))))

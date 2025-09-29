@@ -1,0 +1,45 @@
+# ::tok The lonely man on the bench stares despondently at the water , contemplating suicide or worse .
+# ::node	l	lonely	1-2
+# ::node	m	man	2-3
+# ::node	b2	bench	5-6
+# ::node	s	stare-01	6-7
+# ::node	d	depress-01	7-8
+# ::node	w	water	10-11
+# ::node	c	contemplate-01	12-13
+# ::node	s2	suicide	13-14
+# ::node	o	or	14-15
+# ::node	h	have-degree-91	15-16
+# ::node	b	bad-07	15-16
+# ::node	m2	more	15-16
+# ::root	s	stare-01
+# ::edge	man	mod	lonely	m	l	
+# ::edge	man	location	bench	m	b2	
+# ::edge	stare-01	ARG0	man	s	m	
+# ::edge	stare-01	manner	depress-01	s	d	
+# ::edge	depress-01	ARG1	man	d	m	
+# ::edge	stare-01	ARG1	water	s	w	
+# ::edge	man	ARG0-of	contemplate-01	m	c	
+# ::edge	suicide	poss	man	s2	m	
+# ::edge	or	op1	suicide	o	s2	
+# ::edge	contemplate-01	ARG1	or	c	o	
+# ::edge	or	op2	have-degree-91	o	h	
+# ::edge	have-degree-91	ARG1	suicide	h	s2	
+# ::edge	have-degree-91	ARG2	bad-07	h	b	
+# ::edge	bad-07	ARG1	suicide	b	s2	
+# ::edge	have-degree-91	ARG3	more	h	m2	
+(s / stare-01
+    :ARG0 (m / man
+        :ARG0-of (c / contemplate-01
+            :ARG1 (o / or
+                :op1 (s2 / suicide
+                    :poss m)
+                :op2 (h / have-degree-91
+                    :ARG1 s2
+                    :ARG2 (b / bad-07
+                        :ARG1 s2)
+                    :ARG3 (m2 / more))))
+        :location (b2 / bench)
+        :mod (l / lonely))
+    :ARG1 (w / water)
+    :manner (d / depress-01
+        :ARG1 m))

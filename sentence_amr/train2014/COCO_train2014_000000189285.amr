@@ -1,0 +1,33 @@
+# ::tok A British Airways plane in the sky with it 's landing gear fully extended .
+# ::node	n	name	1-2
+# ::node	1	British	1-2
+# ::node	c	company	2-3
+# ::node	0	Airways	2-3
+# ::node	p	plane	3-4
+# ::node	s	sky	6-7
+# ::node	l	land-01	10-11
+# ::node	g	gear	11-12
+# ::node	f	full	12-13
+# ::node	e	extend-01	13-14
+# ::root	p	plane
+# ::edge	name	op1	British	n	1	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op2	Airways	n	0	
+# ::edge	plane	mod	company	p	c	
+# ::edge	plane	location	sky	p	s	
+# ::edge	gear	part-of	land-01	g	l	
+# ::edge	plane	part	gear	p	g	
+# ::edge	extend-01	degree	full	e	f	
+# ::edge	extend-01	ARG1	gear	e	g	
+# ::edge	plane	manner	extend-01	p	e	
+(p / plane
+    :location (s / sky)
+    :manner (e / extend-01
+        :ARG1 (g / gear
+            :part-of (l / land-01))
+        :degree (f / full))
+    :mod (c / company
+        :name (n / name
+            :op1 "British"
+            :op2 "Airways"))
+    :part g)

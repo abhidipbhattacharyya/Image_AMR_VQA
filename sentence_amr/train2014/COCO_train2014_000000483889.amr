@@ -1,0 +1,42 @@
+# ::tok A living room area with two couches and a storage bin in the middle of the room with a dinosaur figure on the storage box .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	a2	area	3-4
+# ::node	h	have-03	4-5
+# ::node	0	2	5-6
+# ::node	c	couch	6-7
+# ::node	a	and	7-8
+# ::node	s	store-01	9-10
+# ::node	b	bin	10-11
+# ::node	m	middle	13-14
+# ::node	h2	have-03	17-18
+# ::node	d	dinosaur	19-20
+# ::node	f	figure	20-21
+# ::root	a2	area
+# ::edge	room	mod	living	r	l	
+# ::edge	area	part-of	room	a2	r	
+# ::edge	area	ARG0-of	have-03	a2	h	
+# ::edge	couch	quant	2	c	0	
+# ::edge	and	op1	couch	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	bin	ARG2-of	store-01	b	s	
+# ::edge	and	op2	bin	a	b	
+# ::edge	bin	location	middle	b	m	
+# ::edge	room	part	middle	r	m	
+# ::edge	bin	ARG0-of	have-03	b	h2	
+# ::edge	figure	mod	dinosaur	f	d	
+# ::edge	have-03	ARG1	figure	h2	f	
+(a2 / area
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / couch
+                :quant 2)
+            :op2 (b / bin
+                :ARG0-of (h2 / have-03
+                    :ARG1 (f / figure
+                        :mod (d / dinosaur)))
+                :ARG2-of (s / store-01)
+                :location (m / middle))))
+    :part-of (r / room
+        :mod (l / living)
+        :part m))

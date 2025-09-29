@@ -1,0 +1,34 @@
+# ::tok Four way stop sign at street intersection and two street signs above
+# ::node	1	4	0-1
+# ::node	w	way	1-2
+# ::node	s3	stop-01	2-3
+# ::node	s	signal-07	3-4
+# ::node	s4	street	5-6
+# ::node	i	intersect-01	6-7
+# ::node	a2	and	7-8
+# ::node	0	2	8-9
+# ::node	s5	street	9-10
+# ::node	s2	signal-07	10-11
+# ::node	a	above	11-12
+# ::root	a2	and
+# ::edge	way	quant	4	w	1	
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	signal-07	mod	way	s	w	
+# ::edge	intersect-01	ARG1	street	i	s4	
+# ::edge	signal-07	location	intersect-01	s	i	
+# ::edge	and	op1	signal-07	a2	s	
+# ::edge	signal-07	ARG1	street	s2	s5	
+# ::edge	signal-07	quant	2	s2	0	
+# ::edge	and	op2	signal-07	a2	s2	
+# ::edge	signal-07	location	above	s2	a	
+(a2 / and
+    :op1 (s / signal-07
+        :ARG1 (s3 / stop-01)
+        :location (i / intersect-01
+            :ARG1 (s4 / street))
+        :mod (w / way
+            :quant 4))
+    :op2 (s2 / signal-07
+        :quant 2
+        :ARG1 (s5 / street)
+        :location (a / above)))

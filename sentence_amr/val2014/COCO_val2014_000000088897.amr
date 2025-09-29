@@ -1,0 +1,52 @@
+# ::tok Various signs written in either Chinese or Japanese and also a sign of a man walking across a street .
+# ::node	v	various	0-1
+# ::node	s	sign	1-2
+# ::node	w2	write-01	2-3
+# ::node	l	language	5-6
+# ::node	n	name	5-6
+# ::node	0	Chinese	5-6
+# ::node	o	or	6-7
+# ::node	c	country	7-8
+# ::node	n2	name	7-8
+# ::node	1	Japanese	7-8
+# ::node	a3	and	8-9
+# ::node	a2	also	9-10
+# ::node	s2	signal-07	11-12
+# ::node	m	man	14-15
+# ::node	w	walk-01	15-16
+# ::node	a	across	16-17
+# ::node	s3	street	18-19
+# ::root	a3	and
+# ::edge	sign	mod	various	s	v	
+# ::edge	sign	ARG1-of	write-01	s	w2	
+# ::edge	language	name	name	l	n	
+# ::edge	name	op1	Chinese	n	0	
+# ::edge	or	op1	language	o	l	
+# ::edge	write-01	medium	or	w2	o	
+# ::edge	or	op2	country	o	c	
+# ::edge	country	name	name	c	n2	
+# ::edge	name	op1	Japanese	n2	1	
+# ::edge	and	op1	sign	a3	s	
+# ::edge	signal-07	mod	also	s2	a2	
+# ::edge	and	op2	signal-07	a3	s2	
+# ::edge	signal-07	ARG1	man	s2	m	
+# ::edge	man	ARG0-of	walk-01	m	w	
+# ::edge	walk-01	ARG2	across	w	a	
+# ::edge	across	op1	street	a	s3	
+(a3 / and
+    :op1 (s / sign
+        :ARG1-of (w2 / write-01
+            :medium (o / or
+                :op1 (l / language
+                    :name (n / name
+                        :op1 "Chinese"))
+                :op2 (c / country
+                    :name (n2 / name
+                        :op1 "Japanese"))))
+        :mod (v / various))
+    :op2 (s2 / signal-07
+        :ARG1 (m / man
+            :ARG0-of (w / walk-01
+                :ARG2 (a / across
+                    :op1 (s3 / street))))
+        :mod (a2 / also)))

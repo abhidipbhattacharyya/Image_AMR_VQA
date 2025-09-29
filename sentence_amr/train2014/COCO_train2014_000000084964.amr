@@ -1,0 +1,34 @@
+# ::tok A room that contains disco balls and lighting as well as record disk player .
+# ::node	r2	room	1-2
+# ::node	c	contain-01	3-4
+# ::node	d	disco	4-5
+# ::node	b	ball	5-6
+# ::node	a	and	6-7
+# ::node	t	thing	7-8
+# ::node	l	light-04	7-8
+# ::node	r	record	11-12
+# ::node	d2	disk	12-13
+# ::node	t2	thing	13-14
+# ::node	p	play-11	13-14
+# ::root	r2	room
+# ::edge	room	ARG0-of	contain-01	r2	c	
+# ::edge	ball	mod	disco	b	d	
+# ::edge	and	op1	ball	a	b	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG0-of	light-04	t	l	
+# ::edge	disk	mod	record	d2	r	
+# ::edge	and	op3	thing	a	t2	
+# ::edge	thing	ARG2-of	play-11	t2	p	
+# ::edge	play-11	ARG3	disk	p	d2	
+(r2 / room
+    :ARG0-of (c / contain-01
+        :ARG1 (a / and
+            :op1 (b / ball
+                :mod (d / disco))
+            :op2 (t / thing
+                :ARG0-of (l / light-04))
+            :op3 (t2 / thing
+                :ARG2-of (p / play-11
+                    :ARG3 (d2 / disk
+                        :mod (r / record)))))))

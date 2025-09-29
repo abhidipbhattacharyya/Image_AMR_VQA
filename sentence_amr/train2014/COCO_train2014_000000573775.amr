@@ -1,0 +1,25 @@
+# ::tok a busy row of parking spots on a street between two buildings
+# ::node	b3	busy-02	1-2
+# ::node	r	row	2-3
+# ::node	p	park-01	4-5
+# ::node	s	spot	5-6
+# ::node	s2	street	8-9
+# ::node	b	between	9-10
+# ::node	0	2	10-11
+# ::node	b2	building	11-12
+# ::root	r	row
+# ::edge	row	ARG1-of	busy-02	r	b3	
+# ::edge	spot	ARG2-of	park-01	s	p	
+# ::edge	row	consist-of	spot	r	s	
+# ::edge	row	location	street	r	s2	
+# ::edge	street	location	between	s2	b	
+# ::edge	building	quant	2	b2	0	
+# ::edge	between	op1	building	b	b2	
+(r / row
+    :ARG1-of (b3 / busy-02)
+    :consist-of (s / spot
+        :ARG2-of (p / park-01))
+    :location (s2 / street
+        :location (b / between
+            :op1 (b2 / building
+                :quant 2))))

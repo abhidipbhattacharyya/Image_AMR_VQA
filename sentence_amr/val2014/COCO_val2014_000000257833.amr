@@ -1,0 +1,25 @@
+# ::tok A jumbo jet plane flying through the air in a cloud filled sky .
+# ::node	j2	jumbo	1-2
+# ::node	j	jet	2-3
+# ::node	p	plane	3-4
+# ::node	f2	fly-01	4-5
+# ::node	a	air	7-8
+# ::node	c	cloud	10-11
+# ::node	f	fill-01	11-12
+# ::node	s	sky	12-13
+# ::root	f2	fly-01
+# ::edge	plane	mod	jet	p	j	
+# ::edge	plane	mod	jumbo	p	j2	
+# ::edge	fly-01	ARG2	plane	f2	p	
+# ::edge	fly-01	path	air	f2	a	
+# ::edge	fill-01	ARG2	cloud	f	c	
+# ::edge	sky	ARG1-of	fill-01	s	f	
+# ::edge	fly-01	location	sky	f2	s	
+(f2 / fly-01
+    :ARG2 (p / plane
+        :mod (j / jet)
+        :mod (j2 / jumbo))
+    :location (s / sky
+        :ARG1-of (f / fill-01
+            :ARG2 (c / cloud)))
+    :path (a / air))

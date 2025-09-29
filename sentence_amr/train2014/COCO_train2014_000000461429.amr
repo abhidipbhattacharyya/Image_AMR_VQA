@@ -1,0 +1,43 @@
+# ::tok A small group of kids wear black pants and tennis shoes they stand on or hold their skateboards .
+# ::node	s3	small	1-2
+# ::node	g	group	2-3
+# ::node	k	kid	4-5
+# ::node	w	wear-01	5-6
+# ::node	b	black-04	6-7
+# ::node	p	pants	7-8
+# ::node	a	and	8-9
+# ::node	t	tennis	9-10
+# ::node	s	shoe	10-11
+# ::node	s4	stand-01	12-13
+# ::node	h	hold-01	15-16
+# ::node	s2	skate-01	17-18
+# ::root	w	wear-01
+# ::edge	group	mod	small	g	s3	
+# ::edge	group	consist-of	kid	g	k	
+# ::edge	wear-01	ARG0	group	w	g	
+# ::edge	pants	ARG1-of	black-04	p	b	
+# ::edge	and	op1	pants	a	p	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	shoe	mod	tennis	s	t	
+# ::edge	and	op2	shoe	a	s	
+# ::edge	and	ARG2-of	stand-01	a	s4	
+# ::edge	stand-01	ARG1	group	s4	g	
+# ::edge	and	ARG2-of	hold-01	a	h	
+# ::edge	hold-01	ARG0	group	h	g	
+# ::edge	hold-01	ARG1	skate-01	h	s2	
+# ::edge	skate-01	ARG0	kid	s2	k	
+(w / wear-01
+    :ARG0 (g / group
+        :consist-of (k / kid)
+        :mod (s3 / small))
+    :ARG1 (a / and
+        :ARG2-of (s4 / stand-01
+            :ARG1 g)
+        :ARG2-of (h / hold-01
+            :ARG0 g
+            :ARG1 (s2 / skate-01
+                :ARG0 k))
+        :op1 (p / pants
+            :ARG1-of (b / black-04))
+        :op2 (s / shoe
+            :mod (t / tennis))))

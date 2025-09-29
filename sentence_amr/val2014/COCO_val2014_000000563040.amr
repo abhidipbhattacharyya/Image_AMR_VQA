@@ -1,0 +1,43 @@
+# ::tok A street with parked cars along curb of one side , one of which is a police car near a fire hydrant .
+# ::node	s2	street	1-2
+# ::node	h	have-03	2-3
+# ::node	p	park-01	3-4
+# ::node	c	car	4-5
+# ::node	a	along	5-6
+# ::node	c3	curb	6-7
+# ::node	0	1	8-9
+# ::node	s	side	9-10
+# ::node	i	include-91	11-12
+# ::node	p2	police	16-17
+# ::node	c2	car	17-18
+# ::node	n	near-02	18-19
+# ::node	f	fire	20-21
+# ::node	h2	hydrant	21-22
+# ::root	s2	street
+# ::edge	street	ARG0-of	have-03	s2	h	
+# ::edge	car	ARG1-of	park-01	c	p	
+# ::edge	have-03	ARG1	car	h	c	
+# ::edge	car	location	along	c	a	
+# ::edge	along	op1	curb	a	c3	
+# ::edge	side	quant	1	s	0	
+# ::edge	curb	part-of	side	c3	s	
+# ::edge	car	ARG2-of	include-91	c	i	
+# ::edge	car	mod	police	c2	p2	
+# ::edge	include-91	ARG1	car	i	c2	
+# ::edge	car	ARG1-of	near-02	c2	n	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	near-02	ARG2	hydrant	n	h2	
+(s2 / street
+    :ARG0-of (h / have-03
+        :ARG1 (c / car
+            :ARG1-of (p / park-01)
+            :ARG2-of (i / include-91
+                :ARG1 (c2 / car
+                    :ARG1-of (n / near-02
+                        :ARG2 (h2 / hydrant
+                            :mod (f / fire)))
+                    :mod (p2 / police)))
+            :location (a / along
+                :op1 (c3 / curb
+                    :part-of (s / side
+                        :quant 1))))))

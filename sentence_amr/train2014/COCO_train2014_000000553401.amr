@@ -1,0 +1,33 @@
+# ::tok Someone cuts a pizza or similar food item with a knife and fork .
+# ::node	s	someone	0-1
+# ::node	c	cut-01	1-2
+# ::node	p	pizza	3-4
+# ::node	o	or	4-5
+# ::node	r	resemble-01	5-6
+# ::node	f	food	6-7
+# ::node	i	item	7-8
+# ::node	k	knife	10-11
+# ::node	a	and	11-12
+# ::node	f2	fork	12-13
+# ::root	c	cut-01
+# ::edge	cut-01	ARG0	someone	c	s	
+# ::edge	or	op1	pizza	o	p	
+# ::edge	cut-01	ARG1	or	c	o	
+# ::edge	resemble-01	ARG2	pizza	r	p	
+# ::edge	item	mod	food	i	f	
+# ::edge	item	ARG1-of	resemble-01	i	r	
+# ::edge	or	op2	item	o	i	
+# ::edge	and	op1	knife	a	k	
+# ::edge	cut-01	instrument	and	c	a	
+# ::edge	and	op2	fork	a	f2	
+(c / cut-01
+    :ARG0 (s / someone)
+    :ARG1 (o / or
+        :op1 (p / pizza)
+        :op2 (i / item
+            :ARG1-of (r / resemble-01
+                :ARG2 p)
+            :mod (f / food)))
+    :instrument (a / and
+        :op1 (k / knife)
+        :op2 (f2 / fork)))

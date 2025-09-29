@@ -1,0 +1,28 @@
+# ::tok A stove with the clock set at 11:59 .
+# ::node	s2	stove	1-2
+# ::node	c	clock	4-5
+# ::node	s	set-02	5-6
+# ::node	d	date-entity	7-8
+# ::node	0	11:59	7-8
+# ::root	s2	stove
+# ::edge	set-02	ARG1	clock	s	c	
+# ::edge	stove	condition	set-02	s2	s	
+# ::edge	set-02	ARG2	date-entity	s	d	
+# ::edge	date-entity	time	11:59	d	0	
+(s2 / stove
+    :condition (s / set-02
+        :ARG1 (c / clock)
+        :ARG2 (d / date-entity
+            :time "11:59")))
+
+
+# ::tok There is a spice rack on the stove .
+# ::node	s	spice	3-4
+# ::node	r	rack	4-5
+# ::node	s2	stove	7-8
+# ::root	r	rack
+# ::edge	rack	mod	spice	r	s	
+# ::edge	rack	location	stove	r	s2	
+(r / rack
+    :location (s2 / stove)
+    :mod (s / spice))

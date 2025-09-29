@@ -1,0 +1,37 @@
+# ::tok Two giraffes one bending down , , the other neck up , in a dirt area .
+# ::node	1	2	0-1
+# ::node	g	giraffe	1-2
+# ::node	g2	giraffe	1-2
+# ::node	0	1	2-3
+# ::node	b	bend-01	3-4
+# ::node	b2	bend-01	3-4
+# ::node	d2	down	4-5
+# ::node	c	contrast-01	6-7
+# ::node	n	neck	9-10
+# ::node	u	up	10-11
+# ::node	d	dirt	14-15
+# ::node	a	area	15-16
+# ::root	c	contrast-01
+# ::edge	giraffe	quant	2	g	1	
+# ::edge	giraffe	quant	1	g	0	
+# ::edge	bend-01	ARG0	giraffe	b	g	
+# ::edge	bend-01	ARG0	giraffe	b2	g2	
+# ::edge	bend-01	direction	down	b	d2	
+# ::edge	contrast-01	ARG2	bend-01	c	b2	
+# ::edge	contrast-01	ARG1	bend-01	c	b	
+# ::edge	giraffe	part	neck	g2	n	
+# ::edge	neck	direction	up	n	u	
+# ::edge	area	consist-of	dirt	a	d	
+# ::edge	contrast-01	location	area	c	a	
+(c / contrast-01
+    :ARG1 (b / bend-01
+        :ARG0 (g / giraffe
+            :quant 2
+            :quant 1)
+        :direction (d2 / down))
+    :ARG2 (b2 / bend-01
+        :ARG0 (g2 / giraffe
+            :part (n / neck
+                :direction (u / up))))
+    :location (a / area
+        :consist-of (d / dirt)))

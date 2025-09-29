@@ -1,0 +1,22 @@
+# ::tok Players that are walking on a baseball field between innings .
+# ::node	p	person	0-1
+# ::node	p2	play-01	0-1
+# ::node	w	walk-01	3-4
+# ::node	b	baseball	6-7
+# ::node	f	field	7-8
+# ::node	b2	between	8-9
+# ::node	e	entire	9-10
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	field	mod	baseball	f	b	
+# ::edge	walk-01	ARG2	field	w	f	
+# ::edge	walk-01	time	between	w	b2	
+# ::edge	between	op1	entire	b2	e	
+(p / person
+    :ARG0-of (p2 / play-01)
+    :ARG0-of (w / walk-01
+        :ARG2 (f / field
+            :mod (b / baseball))
+        :time (b2 / between
+            :op1 (e / entire))))

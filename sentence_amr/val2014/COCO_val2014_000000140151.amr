@@ -1,0 +1,26 @@
+# ::tok Bunches of bananas hang on a wall and arranged for sale .
+# ::node	l	load	0-1
+# ::node	b	banana	2-3
+# ::node	h	hang-01	3-4
+# ::node	w	wall	6-7
+# ::node	a	and	7-8
+# ::node	a2	arrange-01	8-9
+# ::node	s	sell-01	10-11
+# ::root	a	and
+# ::edge	load	consist-of	banana	l	b	
+# ::edge	hang-01	ARG1	load	h	l	
+# ::edge	hang-01	ARG2	wall	h	w	
+# ::edge	and	op1	hang-01	a	h	
+# ::edge	and	op2	arrange-01	a	a2	
+# ::edge	arrange-01	ARG1	load	a2	l	
+# ::edge	arrange-01	purpose	sell-01	a2	s	
+# ::edge	sell-01	ARG1	banana	s	b	
+(a / and
+    :op1 (h / hang-01
+        :ARG1 (l / load
+            :consist-of (b / banana))
+        :ARG2 (w / wall))
+    :op2 (a2 / arrange-01
+        :purpose (s / sell-01
+            :ARG1 b)
+        :ARG1 l))

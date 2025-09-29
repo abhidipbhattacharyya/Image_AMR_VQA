@@ -1,0 +1,45 @@
+# ::tok A little boy walking with two luggage bags , one red and one black .
+# ::node	l	little	1-2
+# ::node	b5	boy	2-3
+# ::node	w	walk-01	3-4
+# ::node	l2	luggage	6-7
+# ::node	b	bag	7-8
+# ::node	b2	bag	7-8
+# ::node	b3	bag	7-8
+# ::node	i	include-91	9-10
+# ::node	i2	include-91	9-10
+# ::node	r	red-02	10-11
+# ::node	a	and	11-12
+# ::node	0	1	12-13
+# ::node	1	1	12-13
+# ::node	b4	black-04	13-14
+# ::root	w	walk-01
+# ::edge	boy	mod	little	b5	l	
+# ::edge	walk-01	ARG0	boy	w	b5	
+# ::edge	bag	mod	luggage	b	l2	
+# ::edge	walk-01	accompanier	bag	w	b	
+# ::edge	bag	ARG2-of	include-91	b	i	
+# ::edge	include-91	ARG1	bag	i2	b3	
+# ::edge	bag	ARG2-of	include-91	b	i2	
+# ::edge	bag	ARG1-of	red-02	b2	r	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op2	bag	a	b3	
+# ::edge	and	op1	bag	a	b2	
+# ::edge	bag	quant	1	b2	0	
+# ::edge	bag	quant	1	b3	1	
+# ::edge	bag	ARG1-of	black-04	b3	b4	
+(w / walk-01
+    :ARG0 (b5 / boy
+        :mod (l / little))
+    :accompanier (b / bag
+        :ARG2-of (i / include-91
+            :ARG1 (a / and
+                :op1 (b2 / bag
+                    :quant 1
+                    :ARG1-of (r / red-02))
+                :op2 (b3 / bag
+                    :quant 1
+                    :ARG1-of (b4 / black-04))))
+        :ARG2-of (i2 / include-91
+            :ARG1 b3)
+        :mod (l2 / luggage)))

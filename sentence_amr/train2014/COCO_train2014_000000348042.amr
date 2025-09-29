@@ -1,0 +1,29 @@
+# ::tok A man on a bench bends down to feed a flock of pigeons from his hand .
+# ::node	m	man	1-2
+# ::node	b	bench	4-5
+# ::node	b2	bend-01	5-6
+# ::node	d	down	6-7
+# ::node	f	feed-01	8-9
+# ::node	f2	flock	10-11
+# ::node	b3	bird	12-13
+# ::node	h	hand	15-16
+# ::root	b2	bend-01
+# ::edge	man	location	bench	m	b	
+# ::edge	bend-01	ARG1	man	b2	m	
+# ::edge	bend-01	direction	down	b2	d	
+# ::edge	bend-01	purpose	feed-01	b2	f	
+# ::edge	feed-01	ARG0	man	f	m	
+# ::edge	feed-01	ARG2	flock	f	f2	
+# ::edge	flock	consist-of	bird	f2	b3	
+# ::edge	feed-01	source	hand	f	h	
+# ::edge	man	part	hand	m	h	
+(b2 / bend-01
+    :purpose (f / feed-01
+        :ARG0 (m / man
+            :location (b / bench)
+            :part (h / hand))
+        :ARG2 (f2 / flock
+            :consist-of (b3 / bird))
+        :source h)
+    :ARG1 m
+    :direction (d / down))

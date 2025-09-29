@@ -1,0 +1,33 @@
+# ::tok The giraffe bends down to grab the succulent leaves off a bush as elephants lounge about in the background .
+# ::node	g	giraffe	1-2
+# ::node	b2	bend-01	2-3
+# ::node	d	down	3-4
+# ::node	g2	grab-01	5-6
+# ::node	s	succulent	7-8
+# ::node	l	leaf	8-9
+# ::node	b3	bush	11-12
+# ::node	e	elephant	13-14
+# ::node	c	concern-02	14-15
+# ::node	b	background	18-19
+# ::root	b2	bend-01
+# ::edge	bend-01	ARG1	giraffe	b2	g	
+# ::edge	bend-01	direction	down	b2	d	
+# ::edge	bend-01	purpose	grab-01	b2	g2	
+# ::edge	grab-01	ARG0	giraffe	g2	g	
+# ::edge	leaf	mod	succulent	l	s	
+# ::edge	grab-01	ARG1	leaf	g2	l	
+# ::edge	leaf	source	bush	l	b3	
+# ::edge	concern-02	ARG0	elephant	c	e	
+# ::edge	bend-01	time	concern-02	b2	c	
+# ::edge	concern-02	location	background	c	b	
+(b2 / bend-01
+    :purpose (g2 / grab-01
+        :ARG0 (g / giraffe)
+        :ARG1 (l / leaf
+            :mod (s / succulent)
+            :source (b3 / bush)))
+    :ARG1 g
+    :direction (d / down)
+    :time (c / concern-02
+        :ARG0 (e / elephant)
+        :location (b / background)))

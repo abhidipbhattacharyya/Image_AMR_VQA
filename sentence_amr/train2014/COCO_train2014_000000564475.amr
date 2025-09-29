@@ -1,0 +1,43 @@
+# ::tok Several homes with two sets of stairs next to each other and a church with a clock on a building on the same street .
+# ::node	s3	several	0-1
+# ::node	h3	home	1-2
+# ::node	0	2	3-4
+# ::node	s2	set	4-5
+# ::node	s4	stair	6-7
+# ::node	n	next-to	7-8
+# ::node	h	have-03	7-8
+# ::node	a	and	11-12
+# ::node	c	church	13-14
+# ::node	h2	have-03	14-15
+# ::node	c2	clock	16-17
+# ::node	b	building	19-20
+# ::node	s	same-01	22-23
+# ::node	s5	street	23-24
+# ::root	a	and
+# ::edge	home	quant	several	h3	s3	
+# ::edge	set	quant	2	s2	0	
+# ::edge	stair	mod	set	s4	s2	
+# ::edge	next-to	op1	stair	n	s4	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	and	op1	home	a	h3	
+# ::edge	have-03	ARG0	church	h	c	
+# ::edge	church	ARG0-of	have-03	c	h2	
+# ::edge	have-03	ARG1	clock	h2	c2	
+# ::edge	church	location	building	c	b	
+# ::edge	street	ARG1-of	same-01	s5	s	
+# ::edge	building	location	street	b	s5	
+# ::edge	and	rel	next-to	a	n	
+(a / and
+    :op1 (h3 / home
+        :quant (s3 / several))
+    :op2 (h / have-03
+        :ARG0 (c / church
+            :ARG0-of (h2 / have-03
+                :ARG1 (c2 / clock))
+            :location (b / building
+                :location (s5 / street
+                    :ARG1-of (s / same-01)))))
+    :rel (n / next-to
+        :op1 (s4 / stair
+            :mod (s2 / set
+                :quant 2))))

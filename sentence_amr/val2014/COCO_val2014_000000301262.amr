@@ -1,0 +1,28 @@
+# ::tok A stop sign and a bus stop sign are attached on the same pole .
+# ::node	s4	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	a	and	3-4
+# ::node	b	bus	5-6
+# ::node	s5	stop-01	6-7
+# ::node	s3	signal-07	7-8
+# ::node	a2	attach-01	9-10
+# ::node	s	same-01	12-13
+# ::node	p	pole	13-14
+# ::root	a2	attach-01
+# ::edge	signal-07	ARG1	stop-01	s2	s4	
+# ::edge	and	op1	signal-07	a	s2	
+# ::edge	stop-01	ARG1	bus	s5	b	
+# ::edge	signal-07	ARG1	stop-01	s3	s5	
+# ::edge	and	op2	signal-07	a	s3	
+# ::edge	attach-01	ARG1	and	a2	a	
+# ::edge	pole	ARG1-of	same-01	p	s	
+# ::edge	attach-01	ARG2	pole	a2	p	
+(a2 / attach-01
+    :ARG1 (a / and
+        :op1 (s2 / signal-07
+            :ARG1 (s4 / stop-01))
+        :op2 (s3 / signal-07
+            :ARG1 (s5 / stop-01
+                :ARG1 (b / bus))))
+    :ARG2 (p / pole
+        :ARG1-of (s / same-01)))

@@ -1,0 +1,28 @@
+# ::tok A vase holding lavender flowers is made from a Mason jar .
+# ::node	v	vase	1-2
+# ::node	h	hold-01	2-3
+# ::node	l	lavender	3-4
+# ::node	f	flower	4-5
+# ::node	m	make-01	6-7
+# ::node	c	company	9-10
+# ::node	n	name	9-10
+# ::node	0	Mason	9-10
+# ::node	j	jar	10-11
+# ::root	m	make-01
+# ::edge	vase	ARG0-of	hold-01	v	h	
+# ::edge	flower	mod	lavender	f	l	
+# ::edge	hold-01	ARG1	flower	h	f	
+# ::edge	make-01	ARG1	vase	m	v	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	Mason	n	0	
+# ::edge	jar	mod	company	j	c	
+# ::edge	make-01	ARG2	jar	m	j	
+(m / make-01
+    :ARG1 (v / vase
+        :ARG0-of (h / hold-01
+            :ARG1 (f / flower
+                :mod (l / lavender))))
+    :ARG2 (j / jar
+        :mod (c / company
+            :name (n / name
+                :op1 "Mason"))))

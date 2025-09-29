@@ -1,0 +1,29 @@
+# ::tok Yankees batter standing in the batter 's box waiting for a pitch .
+# ::node	t	team	0-1
+# ::node	n	name	0-1
+# ::node	0	Yankees	0-1
+# ::node	b	batter	1-2
+# ::node	s	stand-01	2-3
+# ::node	b2	box	7-8
+# ::node	w	wait-01	8-9
+# ::node	p	pitch	11-12
+# ::root	s	stand-01
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Yankees	n	0	
+# ::edge	batter	mod	team	b	t	
+# ::edge	stand-01	ARG1	batter	s	b	
+# ::edge	stand-01	ARG2	box	s	b2	
+# ::edge	box	poss	batter	b2	b	
+# ::edge	stand-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG1	batter	w	b	
+# ::edge	wait-01	ARG2	pitch	w	p	
+(s / stand-01
+    :ARG1 (b / batter
+        :mod (t / team
+            :name (n / name
+                :op1 "Yankees")))
+    :ARG2 (b2 / box
+        :poss b)
+    :time (w / wait-01
+        :ARG1 b
+        :ARG2 (p / pitch)))

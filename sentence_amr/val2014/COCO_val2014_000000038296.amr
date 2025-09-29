@@ -1,0 +1,37 @@
+# ::tok A male is leaning to the side holding a Wii remote with the " Nunchuk " accessory attached .
+# ::node	m	male	1-2
+# ::node	l	lean-01	3-4
+# ::node	s	side	6-7
+# ::node	h	hold-01	7-8
+# ::node	p	product	9-10
+# ::node	n	name	9-10
+# ::node	1	Wii	9-10
+# ::node	r	remote	10-11
+# ::node	n2	name	14-15
+# ::node	0	Nunchuk	14-15
+# ::node	a	accessory	16-17
+# ::node	a2	attach-01	17-18
+# ::root	l	lean-01
+# ::edge	lean-01	ARG1	male	l	m	
+# ::edge	lean-01	ARG2	side	l	s	
+# ::edge	male	ARG0-of	hold-01	m	h	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	1	
+# ::edge	remote	mod	product	r	p	
+# ::edge	hold-01	ARG1	remote	h	r	
+# ::edge	name	op1	Nunchuk	n2	0	
+# ::edge	accessory	name	name	a	n2	
+# ::edge	attach-01	ARG1	accessory	a2	a	
+# ::edge	remote	ARG2-of	attach-01	r	a2	
+(l / lean-01
+    :ARG1 (m / male
+        :ARG0-of (h / hold-01
+            :ARG1 (r / remote
+                :ARG2-of (a2 / attach-01
+                    :ARG1 (a / accessory
+                        :name (n2 / name
+                            :op1 "Nunchuk")))
+                :mod (p / product
+                    :name (n / name
+                        :op1 "Wii")))))
+    :ARG2 (s / side))

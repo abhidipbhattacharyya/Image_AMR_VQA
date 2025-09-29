@@ -1,0 +1,50 @@
+# ::tok A man is caught holding a dirty magazine while on a toilet near a sink in a restroom , with a second magazine lies on the floor beside him .
+# ::node	m3	man	1-2
+# ::node	c	catch-02	3-4
+# ::node	h	hold-01	4-5
+# ::node	d	dirty-02	6-7
+# ::node	m	magazine	7-8
+# ::node	t	toilet	11-12
+# ::node	n	near-02	12-13
+# ::node	s	sink	14-15
+# ::node	r	restroom	17-18
+# ::node	o	ordinal-entity	21-22
+# ::node	0	2	21-22
+# ::node	m2	magazine	22-23
+# ::node	l	lay-01	23-24
+# ::node	f	floor	26-27
+# ::node	b	beside	27-28
+# ::root	c	catch-02
+# ::edge	catch-02	ARG1	man	c	m3	
+# ::edge	catch-02	ARG2	hold-01	c	h	
+# ::edge	hold-01	ARG0	man	h	m3	
+# ::edge	magazine	ARG1-of	dirty-02	m	d	
+# ::edge	hold-01	ARG1	magazine	h	m	
+# ::edge	hold-01	location	toilet	h	t	
+# ::edge	toilet	ARG1-of	near-02	t	n	
+# ::edge	near-02	ARG2	sink	n	s	
+# ::edge	sink	location	restroom	s	r	
+# ::edge	ordinal-entity	value	2	o	0	
+# ::edge	magazine	ord	ordinal-entity	m2	o	
+# ::edge	lay-01	ARG1	magazine	l	m2	
+# ::edge	hold-01	accompanier	lay-01	h	l	
+# ::edge	lay-01	ARG2	floor	l	f	
+# ::edge	floor	location	beside	f	b	
+# ::edge	beside	op1	man	b	m3	
+(c / catch-02
+    :ARG1 (m3 / man)
+    :ARG2 (h / hold-01
+        :ARG0 m3
+        :ARG1 (m / magazine
+            :ARG1-of (d / dirty-02))
+        :accompanier (l / lay-01
+            :ARG1 (m2 / magazine
+                :ord (o / ordinal-entity
+                    :value 2))
+            :ARG2 (f / floor
+                :location (b / beside
+                    :op1 m3)))
+        :location (t / toilet
+            :ARG1-of (n / near-02
+                :ARG2 (s / sink
+                    :location (r / restroom))))))

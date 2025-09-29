@@ -1,0 +1,28 @@
+# ::tok A night scene of a secluded street with nearby parking garage
+# ::node	d	date-entity	1-2
+# ::node	n2	night	1-2
+# ::node	s	scene	2-3
+# ::node	s2	seclude-01	5-6
+# ::node	s3	street	6-7
+# ::node	h	have-03	7-8
+# ::node	n	nearby	8-9
+# ::node	p	park-01	9-10
+# ::node	g	garage	10-11
+# ::root	s	scene
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	scene	time	date-entity	s	d	
+# ::edge	street	ARG1-of	seclude-01	s3	s2	
+# ::edge	scene	mod	street	s	s3	
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	garage	ARG2-of	park-01	g	p	
+# ::edge	garage	location	nearby	g	n	
+# ::edge	have-03	ARG1	garage	h	g	
+(s / scene
+    :mod (s3 / street
+        :ARG0-of (h / have-03
+            :ARG1 (g / garage
+                :ARG2-of (p / park-01)
+                :location (n / nearby)))
+        :ARG1-of (s2 / seclude-01))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

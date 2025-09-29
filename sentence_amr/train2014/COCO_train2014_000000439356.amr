@@ -1,0 +1,27 @@
+# ::tok A street sign warning cars to yield to crossing pedestrians .
+# ::node	s2	street	1-2
+# ::node	s	sign	2-3
+# ::node	w2	warn-01	3-4
+# ::node	c	car	4-5
+# ::node	y	yield-02	6-7
+# ::node	c2	cross-02	8-9
+# ::node	p	person	9-10
+# ::node	w	walk-01	9-10
+# ::root	s	sign
+# ::edge	sign	location	street	s	s2	
+# ::edge	sign	ARG0-of	warn-01	s	w2	
+# ::edge	warn-01	ARG2	car	w2	c	
+# ::edge	yield-02	ARG0	car	y	c	
+# ::edge	warn-01	ARG1	yield-02	w2	y	
+# ::edge	person	ARG0-of	cross-02	p	c2	
+# ::edge	yield-02	ARG2	person	y	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+(s / sign
+    :ARG0-of (w2 / warn-01
+        :ARG1 (y / yield-02
+            :ARG0 (c / car)
+            :ARG2 (p / person
+                :ARG0-of (c2 / cross-02)
+                :ARG0-of (w / walk-01)))
+        :ARG2 c)
+    :location (s2 / street))

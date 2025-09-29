@@ -1,0 +1,38 @@
+# ::tok A group of elephants with one elephant raising it 's trunk and dust and dirt coming up behind it .
+# ::node	g	group-01	1-2
+# ::node	e	elephant	3-4
+# ::node	0	1	5-6
+# ::node	e2	elephant	6-7
+# ::node	r	raise-01	7-8
+# ::node	t	trunk	10-11
+# ::node	d2	dust	12-13
+# ::node	a	and	13-14
+# ::node	d	dirt	14-15
+# ::node	c	come-up-13	15-16
+# ::node	b	behind	17-18
+# ::root	a	and
+# ::edge	group-01	ARG1	elephant	g	e	
+# ::edge	elephant	quant	1	e2	0	
+# ::edge	elephant	consist-of	elephant	e	e2	
+# ::edge	elephant	ARG0-of	raise-01	e2	r	
+# ::edge	raise-01	ARG1	trunk	r	t	
+# ::edge	elephant	part	trunk	e2	t	
+# ::edge	and	op1	group-01	a	g	
+# ::edge	and	op2	dirt	a	d	
+# ::edge	dirt	ARG1-of	come-up-13	d	c	
+# ::edge	come-up-13	ARG2	behind	c	b	
+# ::edge	behind	op1	elephant	b	e2	
+# ::edge	and	rel	dust	a	d2	
+(a / and
+    :op1 (g / group-01
+        :ARG1 (e / elephant
+            :consist-of (e2 / elephant
+                :quant 1
+                :ARG0-of (r / raise-01
+                    :ARG1 (t / trunk))
+                :part t)))
+    :op2 (d / dirt
+        :ARG1-of (c / come-up-13
+            :ARG2 (b / behind
+                :op1 e2)))
+    :rel (d2 / dust))

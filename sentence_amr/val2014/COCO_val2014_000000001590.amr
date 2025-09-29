@@ -1,0 +1,28 @@
+# ::tok A load of trash or work supplies in a dumpster outside .
+# ::node	l	load	1-2
+# ::node	t2	trash	3-4
+# ::node	o	or	4-5
+# ::node	w	work-01	5-6
+# ::node	t	thing	6-7
+# ::node	s	supply-01	6-7
+# ::node	b	be-located-at-91	7-8
+# ::node	d	dumpster	9-10
+# ::node	o2	outside	10-11
+# ::root	b	be-located-at-91
+# ::edge	or	op1	trash	o	t2	
+# ::edge	load	quant-of	or	l	o	
+# ::edge	or	op2	thing	o	t	
+# ::edge	thing	ARG1-of	supply-01	t	s	
+# ::edge	supply-01	ARG2	work-01	s	w	
+# ::edge	be-located-at-91	ARG1	load	b	l	
+# ::edge	be-located-at-91	ARG2	dumpster	b	d	
+# ::edge	dumpster	location	outside	d	o2	
+(b / be-located-at-91
+    :ARG1 (l / load
+        :quant-of (o / or
+            :op1 (t2 / trash)
+            :op2 (t / thing
+                :ARG1-of (s / supply-01
+                    :ARG2 (w / work-01)))))
+    :ARG2 (d / dumpster
+        :location (o2 / outside)))

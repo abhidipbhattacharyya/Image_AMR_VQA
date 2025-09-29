@@ -1,0 +1,31 @@
+# ::tok a tray filled with assorted plates and bowls , most with veggies in it
+# ::node	t	tray	1-2
+# ::node	f	fill-01	2-3
+# ::node	a2	assorted	4-5
+# ::node	p	plate	5-6
+# ::node	a	and	6-7
+# ::node	d	dish	7-8
+# ::node	d2	dish	7-8
+# ::node	i	include-91	9-10
+# ::node	m	most	9-10
+# ::node	v	vegetable	11-12
+# ::root	t	tray
+# ::edge	tray	ARG1-of	fill-01	t	f	
+# ::edge	and	op1	plate	a	p	
+# ::edge	and	mod	assorted	a	a2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	and	op2	dish	a	d	
+# ::edge	include-91	ARG1	dish	i	d2	
+# ::edge	dish	ARG2-of	include-91	d	i	
+# ::edge	dish	mod	most	d2	m	
+# ::edge	dish	part	vegetable	d2	v	
+(t / tray
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :mod (a2 / assorted)
+            :op1 (p / plate)
+            :op2 (d / dish
+                :ARG2-of (i / include-91
+                    :ARG1 (d2 / dish
+                        :mod (m / most)
+                        :part (v / vegetable)))))))

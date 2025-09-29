@@ -1,0 +1,28 @@
+# ::tok A street at night with a restaurant that has neon lighted signs for hot dogs .
+# ::node	s2	street	1-2
+# ::node	d	date-entity	3-4
+# ::node	n2	night	3-4
+# ::node	r	restaurant	6-7
+# ::node	h	have-03	8-9
+# ::node	n	neon	9-10
+# ::node	l	light-04	10-11
+# ::node	s	sign	11-12
+# ::node	h2	hot-dog	13-14
+# ::root	s2	street
+# ::edge	street	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	street	location-of	restaurant	s2	r	
+# ::edge	restaurant	ARG0-of	have-03	r	h	
+# ::edge	light-04	ARG0	neon	l	n	
+# ::edge	sign	ARG1-of	light-04	s	l	
+# ::edge	have-03	ARG1	sign	h	s	
+# ::edge	sign	purpose	hot-dog	s	h2	
+(s2 / street
+    :location-of (r / restaurant
+        :ARG0-of (h / have-03
+            :ARG1 (s / sign
+                :purpose (h2 / hot-dog)
+                :ARG1-of (l / light-04
+                    :ARG0 (n / neon)))))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

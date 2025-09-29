@@ -1,0 +1,40 @@
+# ::tok The young woman is sitting next to the table holding a piece of cake and a cup of coffee .
+# ::node	y	young	1-2
+# ::node	w	woman	2-3
+# ::node	s	sit-01	4-5
+# ::node	n	next-to	5-6
+# ::node	t	table	8-9
+# ::node	h	hold-01	9-10
+# ::node	p	piece	11-12
+# ::node	c	cake	13-14
+# ::node	a	and	14-15
+# ::node	v	volume-quantity	15-16
+# ::node	0	1	15-16
+# ::node	c3	cup	16-17
+# ::node	c2	coffee	18-19
+# ::root	s	sit-01
+# ::edge	woman	mod	young	w	y	
+# ::edge	sit-01	ARG1	woman	s	w	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	table	n	t	
+# ::edge	woman	ARG0-of	hold-01	w	h	
+# ::edge	piece	consist-of	cake	p	c	
+# ::edge	and	op1	piece	a	p	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c3	
+# ::edge	coffee	quant	volume-quantity	c2	v	
+# ::edge	and	op2	coffee	a	c2	
+(s / sit-01
+    :ARG1 (w / woman
+        :ARG0-of (h / hold-01
+            :ARG1 (a / and
+                :op1 (p / piece
+                    :consist-of (c / cake))
+                :op2 (c2 / coffee
+                    :quant (v / volume-quantity
+                        :quant 1
+                        :unit (c3 / cup)))))
+        :mod (y / young))
+    :ARG2 (n / next-to
+        :op1 (t / table)))

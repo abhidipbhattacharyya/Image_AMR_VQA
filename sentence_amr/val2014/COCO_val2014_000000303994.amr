@@ -1,0 +1,45 @@
+# ::tok A red vase holding two red flowers , and a vintage - style alarm clock , all arranged in the corner of a windowsill .
+# ::node	v	vase	2-3
+# ::node	h	hold-01	3-4
+# ::node	0	2	4-5
+# ::node	r	red-02	5-6
+# ::node	f	flower	6-7
+# ::node	a3	and	8-9
+# ::node	v2	vintage	10-11
+# ::node	s	style	12-13
+# ::node	a	alarm-01	13-14
+# ::node	c	clock	14-15
+# ::node	a2	all	16-17
+# ::node	a4	arrange-01	17-18
+# ::node	c2	corner	20-21
+# ::node	w	windowsill	23-24
+# ::root	a4	arrange-01
+# ::edge	vase	ARG0-of	hold-01	v	h	
+# ::edge	vase	ARG1-of	red-02	v	r	
+# ::edge	flower	ARG1-of	red-02	f	r	
+# ::edge	flower	quant	2	f	0	
+# ::edge	hold-01	ARG1	flower	h	f	
+# ::edge	and	op1	vase	a3	v	
+# ::edge	style	mod	vintage	s	v2	
+# ::edge	clock	purpose	alarm-01	c	a	
+# ::edge	clock	mod	style	c	s	
+# ::edge	and	op2	clock	a3	c	
+# ::edge	arrange-01	mod	all	a4	a2	
+# ::edge	arrange-01	ARG1	and	a4	a3	
+# ::edge	arrange-01	location	corner	a4	c2	
+# ::edge	corner	part-of	windowsill	c2	w	
+(a4 / arrange-01
+    :ARG1 (a3 / and
+        :op1 (v / vase
+            :ARG0-of (h / hold-01
+                :ARG1 (f / flower
+                    :quant 2
+                    :ARG1-of (r / red-02)))
+            :ARG1-of r)
+        :op2 (c / clock
+            :purpose (a / alarm-01)
+            :mod (s / style
+                :mod (v2 / vintage))))
+    :location (c2 / corner
+        :part-of (w / windowsill))
+    :mod (a2 / all))

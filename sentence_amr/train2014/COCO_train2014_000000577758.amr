@@ -1,0 +1,29 @@
+# ::tok A bus pulled to the curb to let off and let on passengers .
+# ::node	b	bus	1-2
+# ::node	p2	pull-01	2-3
+# ::node	c	curb	5-6
+# ::node	l	let-01	7-8
+# ::node	o	off	8-9
+# ::node	a	and	9-10
+# ::node	l2	let-01	10-11
+# ::node	p	passenger	12-13
+# ::root	p2	pull-01
+# ::edge	pull-01	ARG1	bus	p2	b	
+# ::edge	pull-01	ARG2	curb	p2	c	
+# ::edge	let-01	ARG0	bus	l	b	
+# ::edge	let-01	ARG1	off	l	o	
+# ::edge	and	op1	let-01	a	l	
+# ::edge	pull-01	purpose	and	p2	a	
+# ::edge	and	op2	let-01	a	l2	
+# ::edge	let-01	ARG0	bus	l2	b	
+# ::edge	let-01	ARG1	passenger	l2	p	
+(p2 / pull-01
+    :purpose (a / and
+        :op1 (l / let-01
+            :ARG0 (b / bus)
+            :ARG1 (o / off))
+        :op2 (l2 / let-01
+            :ARG0 b
+            :ARG1 (p / passenger)))
+    :ARG1 b
+    :ARG2 (c / curb))

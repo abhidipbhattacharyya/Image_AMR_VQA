@@ -1,0 +1,45 @@
+# ::tok This is a traffic light and it have a card board said No parking , All vehycles will be towed
+# ::node	t	this	0-1
+# ::node	t3	traffic	3-4
+# ::node	l	light	4-5
+# ::node	a2	and	5-6
+# ::node	h	have-03	7-8
+# ::node	c	card	9-10
+# ::node	b	board	10-11
+# ::node	s	say-01	11-12
+# ::node	c2	cause-01	12-13
+# ::node	0	-	12-13
+# ::node	p	park-01	13-14
+# ::node	a	all	15-16
+# ::node	v	vehicle	16-17
+# ::node	t2	tow-01	19-20
+# ::root	a2	and
+# ::edge	light	mod	traffic	l	t3	
+# ::edge	light	domain	this	l	t	
+# ::edge	and	op1	light	a2	l	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG0	this	h	t	
+# ::edge	board	mod	card	b	c	
+# ::edge	have-03	ARG1	board	h	b	
+# ::edge	board	ARG0-of	say-01	b	s	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	park-01	ARG0-of	cause-01	p	c2	
+# ::edge	say-01	ARG1	park-01	s	p	
+# ::edge	vehicle	mod	all	v	a	
+# ::edge	tow-01	ARG1	vehicle	t2	v	
+# ::edge	cause-01	ARG0	tow-01	c2	t2	
+(a2 / and
+    :op1 (l / light
+        :domain (t / this)
+        :mod (t3 / traffic))
+    :op2 (h / have-03
+        :ARG0 t
+        :ARG1 (b / board
+            :ARG0-of (s / say-01
+                :ARG1 (p / park-01
+                    :ARG0-of (c2 / cause-01
+                        :ARG0 (t2 / tow-01
+                            :ARG1 (v / vehicle
+                                :mod (a / all))))
+                    :polarity -))
+            :mod (c / card))))

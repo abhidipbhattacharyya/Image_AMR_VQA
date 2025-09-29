@@ -1,0 +1,30 @@
+# ::tok Snowboarder riding quickly down trail following landing from jump .
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	r	ride-01	1-2
+# ::node	q	quick-02	2-3
+# ::node	d	down	3-4
+# ::node	t	trail	4-5
+# ::node	f	follow-01	5-6
+# ::node	l	land-01	6-7
+# ::node	j	jump-03	8-9
+# ::root	r	ride-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1-of	quick-02	r	q	
+# ::edge	ride-01	direction	down	r	d	
+# ::edge	ride-01	ARG1	trail	r	t	
+# ::edge	ride-01	ARG1-of	follow-01	r	f	
+# ::edge	follow-01	ARG2	land-01	f	l	
+# ::edge	land-01	ARG1	person	l	p	
+# ::edge	land-01	source	jump-03	l	j	
+(r / ride-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01))
+    :ARG1 (t / trail)
+    :ARG1-of (q / quick-02)
+    :ARG1-of (f / follow-01
+        :ARG2 (l / land-01
+            :ARG1 p
+            :source (j / jump-03)))
+    :direction (d / down))

@@ -1,0 +1,36 @@
+# ::tok A room with a chair , a fireplace , a mantle with a lot of pictures and a huge vase .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	c	chair	4-5
+# ::node	f	fireplace	7-8
+# ::node	m	mantle	10-11
+# ::node	h2	have-03	11-12
+# ::node	l	lot	13-14
+# ::node	p	picture	15-16
+# ::node	a	and	16-17
+# ::node	h3	huge	18-19
+# ::node	v	vase	19-20
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	fireplace	ARG0-of	have-03	f	h2	
+# ::edge	picture	quant	lot	p	l	
+# ::edge	have-03	ARG1	picture	h2	p	
+# ::edge	and	op4	mantle	a	m	
+# ::edge	and	op3	fireplace	a	f	
+# ::edge	and	op2	fireplace	a	f	
+# ::edge	and	op1	chair	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	vase	mod	huge	v	h3	
+# ::edge	and	op5	vase	a	v	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / chair)
+            :op2 (f / fireplace
+                :ARG0-of (h2 / have-03
+                    :ARG1 (p / picture
+                        :quant (l / lot))))
+            :op3 f
+            :op4 (m / mantle)
+            :op5 (v / vase
+                :mod (h3 / huge)))))

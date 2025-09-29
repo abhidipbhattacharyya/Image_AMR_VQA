@@ -1,0 +1,23 @@
+# ::tok several benches for people to sit while waiting for transportation
+# ::node	s	several	0-1
+# ::node	b	bench	1-2
+# ::node	p	person	3-4
+# ::node	s2	sit-01	5-6
+# ::node	w	wait-01	7-8
+# ::node	t	transport-01	9-10
+# ::root	b	bench
+# ::edge	bench	quant	several	b	s	
+# ::edge	sit-01	ARG1	person	s2	p	
+# ::edge	bench	ARG2-of	sit-01	b	s2	
+# ::edge	sit-01	time	wait-01	s2	w	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	transport-01	w	t	
+# ::edge	transport-01	ARG1	person	t	p	
+(b / bench
+    :quant (s / several)
+    :ARG2-of (s2 / sit-01
+        :ARG1 (p / person)
+        :time (w / wait-01
+            :ARG1 p
+            :ARG2 (t / transport-01
+                :ARG1 p))))

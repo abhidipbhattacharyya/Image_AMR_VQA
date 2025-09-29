@@ -1,0 +1,41 @@
+# ::tok A group of papers and strips of colored paper laid out on the floor with a scissors getting ready to be assembled
+# ::node	g	group	1-2
+# ::node	p	paper	3-4
+# ::node	a	and	4-5
+# ::node	s2	strip	5-6
+# ::node	c	color-01	7-8
+# ::node	p2	paper	8-9
+# ::node	l	lay-01	9-10
+# ::node	o	out	10-11
+# ::node	f	floor	13-14
+# ::node	s	scissors	16-17
+# ::node	r	ready-01	18-19
+# ::node	a2	assemble-01	21-22
+# ::root	l	lay-01
+# ::edge	group	consist-of	paper	g	p	
+# ::edge	and	op1	group	a	g	
+# ::edge	and	op2	strip	a	s2	
+# ::edge	paper	ARG1-of	color-01	p2	c	
+# ::edge	strip	consist-of	paper	s2	p2	
+# ::edge	lay-01	ARG1	and	l	a	
+# ::edge	lay-01	ARG2	out	l	o	
+# ::edge	lay-01	ARG2	floor	l	f	
+# ::edge	lay-01	instrument	scissors	l	s	
+# ::edge	and	purpose	ready-01	a	r	
+# ::edge	ready-01	ARG1	and	r	a	
+# ::edge	ready-01	ARG2	assemble-01	r	a2	
+# ::edge	assemble-01	ARG1	and	a2	a	
+(l / lay-01
+    :ARG1 (a / and
+        :purpose (r / ready-01
+            :ARG1 a
+            :ARG2 (a2 / assemble-01
+                :ARG1 a))
+        :op1 (g / group
+            :consist-of (p / paper))
+        :op2 (s2 / strip
+            :consist-of (p2 / paper
+                :ARG1-of (c / color-01))))
+    :ARG2 (o / out)
+    :ARG2 (f / floor)
+    :instrument (s / scissors))

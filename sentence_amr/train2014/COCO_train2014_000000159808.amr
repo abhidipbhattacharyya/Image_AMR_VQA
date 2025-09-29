@@ -1,0 +1,39 @@
+# ::tok A young person stretching using a Wii controller looking at the TV in a living room .
+# ::node	y	young	1-2
+# ::node	p	person	2-3
+# ::node	s	stretch-01	3-4
+# ::node	u	use-01	4-5
+# ::node	p2	product	6-7
+# ::node	n	name	6-7
+# ::node	0	Wii	6-7
+# ::node	c	controller	7-8
+# ::node	l2	look-01	8-9
+# ::node	t	television	11-12
+# ::node	l	living	14-15
+# ::node	r	room	15-16
+# ::root	s	stretch-01
+# ::edge	person	mod	young	p	y	
+# ::edge	stretch-01	ARG0	person	s	p	
+# ::edge	stretch-01	manner	use-01	s	u	
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	controller	mod	product	c	p2	
+# ::edge	use-01	ARG1	controller	u	c	
+# ::edge	person	ARG0-of	look-01	p	l2	
+# ::edge	look-01	ARG1	television	l2	t	
+# ::edge	room	mod	living	r	l	
+# ::edge	television	location	room	t	r	
+(s / stretch-01
+    :ARG0 (p / person
+        :ARG0-of (l2 / look-01
+            :ARG1 (t / television
+                :location (r / room
+                    :mod (l / living))))
+        :mod (y / young))
+    :manner (u / use-01
+        :ARG0 p
+        :ARG1 (c / controller
+            :mod (p2 / product
+                :name (n / name
+                    :op1 "Wii")))))

@@ -1,0 +1,40 @@
+# ::tok A museum showing old things used several hundred years ago that is roped off .
+# ::node	m	museum	1-2
+# ::node	s2	show-01	2-3
+# ::node	o2	old	3-4
+# ::node	t2	thing	4-5
+# ::node	u	use-01	5-6
+# ::node	s	several	6-7
+# ::node	0	100	7-8
+# ::node	t	temporal-quantity	8-9
+# ::node	y	year	8-9
+# ::node	b	before	9-10
+# ::node	n	now	9-10
+# ::node	c	cordon-01	12-13
+# ::node	o	off	13-14
+# ::root	c	cordon-01
+# ::edge	museum	ARG0-of	show-01	m	s2	
+# ::edge	thing	mod	old	t2	o2	
+# ::edge	show-01	ARG1	thing	s2	t2	
+# ::edge	thing	ARG1-of	use-01	t2	u	
+# ::edge	temporal-quantity	quant	100	t	0	
+# ::edge	several	op1	temporal-quantity	s	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	before	quant	several	b	s	
+# ::edge	use-01	time	before	u	b	
+# ::edge	before	op1	now	b	n	
+# ::edge	cordon-01	ARG1	museum	c	m	
+# ::edge	cordon-01	ARG2	off	c	o	
+(c / cordon-01
+    :ARG1 (m / museum
+        :ARG0-of (s2 / show-01
+            :ARG1 (t2 / thing
+                :ARG1-of (u / use-01
+                    :time (b / before
+                        :quant (s / several
+                            :op1 (t / temporal-quantity
+                                :quant 100
+                                :unit (y / year)))
+                        :op1 (n / now)))
+                :mod (o2 / old))))
+    :ARG2 (o / off))

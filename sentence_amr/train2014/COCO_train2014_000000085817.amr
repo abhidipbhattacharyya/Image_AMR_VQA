@@ -1,0 +1,28 @@
+# ::tok A traffic " stop " sign with a building in the background , illuminated by headlights .
+# ::node	t	traffic	1-2
+# ::node	s2	stop-01	3-4
+# ::node	s	sign	5-6
+# ::node	h	have-03	6-7
+# ::node	b2	building	8-9
+# ::node	b	background	11-12
+# ::node	i	illuminate-01	13-14
+# ::node	b3	bulb	15-16
+# ::node	l	light-04	15-16
+# ::root	s	sign
+# ::edge	stop-01	mod	traffic	s2	t	
+# ::edge	sign	topic	stop-01	s	s2	
+# ::edge	sign	ARG0-of	have-03	s	h	
+# ::edge	have-03	ARG1	building	h	b2	
+# ::edge	building	location	background	b2	b	
+# ::edge	building	ARG1-of	illuminate-01	b2	i	
+# ::edge	illuminate-01	ARG0	bulb	i	b3	
+# ::edge	bulb	ARG0-of	light-04	b3	l	
+(s / sign
+    :ARG0-of (h / have-03
+        :ARG1 (b2 / building
+            :ARG1-of (i / illuminate-01
+                :ARG0 (b3 / bulb
+                    :ARG0-of (l / light-04)))
+            :location (b / background)))
+    :topic (s2 / stop-01
+        :mod (t / traffic)))

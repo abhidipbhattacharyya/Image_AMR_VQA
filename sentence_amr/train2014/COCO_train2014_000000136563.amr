@@ -1,0 +1,37 @@
+# ::tok Three yellow two tier metro buses parked at a bus stop loading passengers .
+# ::node	1	3	0-1
+# ::node	y	yellow-02	1-2
+# ::node	0	2	2-3
+# ::node	t	tier	3-4
+# ::node	m	metro	4-5
+# ::node	b	bus	5-6
+# ::node	p	park-01	6-7
+# ::node	l2	location	8-9
+# ::node	b2	bus	9-10
+# ::node	s	stop-01	10-11
+# ::node	l	load-01	11-12
+# ::node	p2	passenger	12-13
+# ::root	p	park-01
+# ::edge	tier	quant	2	t	0	
+# ::edge	bus	mod	metro	b	m	
+# ::edge	bus	mod	tier	b	t	
+# ::edge	bus	ARG1-of	yellow-02	b	y	
+# ::edge	bus	quant	3	b	1	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	park-01	ARG2	location	p	l2	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	location	location-of	stop-01	l2	s	
+# ::edge	bus	ARG2-of	load-01	b	l	
+# ::edge	load-01	ARG1	passenger	l	p2	
+(p / park-01
+    :ARG1 (b / bus
+        :quant 3
+        :ARG1-of (y / yellow-02)
+        :ARG2-of (l / load-01
+            :ARG1 (p2 / passenger))
+        :mod (m / metro)
+        :mod (t / tier
+            :quant 2))
+    :ARG2 (l2 / location
+        :location-of (s / stop-01
+            :ARG1 (b2 / bus))))

@@ -1,0 +1,37 @@
+# ::tok A room during construction or remodeling , with exposed insulation , 2x4 's , and a worker 's toolbox .
+# ::node	r2	room	1-2
+# ::node	c2	construct-01	3-4
+# ::node	o	or	4-5
+# ::node	r	remodel-01	5-6
+# ::node	e	expose-01	8-9
+# ::node	i	insulation	9-10
+# ::node	c	car	11-12
+# ::node	w	wheel	11-12
+# ::node	0	4	11-12
+# ::node	p	person	16-17
+# ::node	w2	work-01	16-17
+# ::node	t	toolbox	18-19
+# ::root	r2	room
+# ::edge	or	op1	construct-01	o	c2	
+# ::edge	room	time	or	r2	o	
+# ::edge	or	op2	remodel-01	o	r	
+# ::edge	insulation	ARG1-of	expose-01	i	e	
+# ::edge	room	part	insulation	r2	i	
+# ::edge	remodel-01	part	car	r	c	
+# ::edge	car	part	wheel	c	w	
+# ::edge	wheel	quant	4	w	0	
+# ::edge	person	ARG0-of	work-01	p	w2	
+# ::edge	toolbox	poss	person	t	p	
+# ::edge	room	part	toolbox	r2	t	
+(r2 / room
+    :part (i / insulation
+        :ARG1-of (e / expose-01))
+    :part (t / toolbox
+        :poss (p / person
+            :ARG0-of (w2 / work-01)))
+    :time (o / or
+        :op1 (c2 / construct-01)
+        :op2 (r / remodel-01
+            :part (c / car
+                :part (w / wheel
+                    :quant 4)))))

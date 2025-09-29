@@ -1,0 +1,39 @@
+# ::tok Two books are shown , " Knitty Knits " and " Teach yourself sock knitting " .
+# ::node	0	2	0-1
+# ::node	b	book	1-2
+# ::node	b2	book	1-2
+# ::node	n	name	1-2
+# ::node	s	show-01	3-4
+# ::node	2	Knitty	6-7
+# ::node	1	Knits	7-8
+# ::node	a	and	9-10
+# ::node	t	teach-01	11-12
+# ::node	y	you	11-12
+# ::node	s2	sock	13-14
+# ::node	p	pattern-01	14-15
+# ::root	s	show-01
+# ::edge	book	quant	2	b	0	
+# ::edge	book	name	name	b2	n	
+# ::edge	show-01	ARG1	book	s	b	
+# ::edge	name	op1	Knitty	n	2	
+# ::edge	name	op2	Knits	n	1	
+# ::edge	and	op1	book	a	b2	
+# ::edge	book	domain	and	b	a	
+# ::edge	and	op2	teach-01	a	t	
+# ::edge	teach-01	ARG2	you	t	y	
+# ::edge	teach-01	ARG0	you	t	y	
+# ::edge	pattern-01	ARG1	sock	p	s2	
+# ::edge	teach-01	ARG1	pattern-01	t	p	
+(s / show-01
+    :ARG1 (b / book
+        :quant 2
+        :domain (a / and
+            :op1 (b2 / book
+                :name (n / name
+                    :op1 "Knitty"
+                    :op2 "Knits"))
+            :op2 (t / teach-01
+                :ARG0 (y / you)
+                :ARG1 (p / pattern-01
+                    :ARG1 (s2 / sock))
+                :ARG2 y))))

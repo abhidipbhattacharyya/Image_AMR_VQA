@@ -1,0 +1,39 @@
+# ::tok A dinner plate with a meat patty with gravy , steamed vegetables , baked potato and cranberry sauce .
+# ::node	d	dinner	1-2
+# ::node	p2	plate	2-3
+# ::node	m	meat	5-6
+# ::node	p	patty	6-7
+# ::node	g	gravy	8-9
+# ::node	s2	steam-02	10-11
+# ::node	v	vegetable	11-12
+# ::node	b	bake-01	13-14
+# ::node	p3	potato	14-15
+# ::node	a	and	15-16
+# ::node	c	cranberry	16-17
+# ::node	s	sauce	17-18
+# ::root	p2	plate
+# ::edge	plate	mod	dinner	p2	d	
+# ::edge	patty	consist-of	meat	p	m	
+# ::edge	patty	accompanier	gravy	p	g	
+# ::edge	vegetable	ARG1-of	steam-02	v	s2	
+# ::edge	potato	ARG1-of	bake-01	p3	b	
+# ::edge	and	op4	potato	a	p3	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	and	op2	vegetable	a	v	
+# ::edge	and	op1	patty	a	p	
+# ::edge	plate	accompanier	and	p2	a	
+# ::edge	sauce	mod	cranberry	s	c	
+# ::edge	and	op5	sauce	a	s	
+(p2 / plate
+    :accompanier (a / and
+        :op1 (p / patty
+            :accompanier (g / gravy)
+            :consist-of (m / meat))
+        :op2 (v / vegetable
+            :ARG1-of (s2 / steam-02))
+        :op3 v
+        :op4 (p3 / potato
+            :ARG1-of (b / bake-01))
+        :op5 (s / sauce
+            :mod (c / cranberry)))
+    :mod (d / dinner))

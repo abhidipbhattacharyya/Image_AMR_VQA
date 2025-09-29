@@ -1,0 +1,33 @@
+# ::tok A road that has fallen leaves covering it and a road barrier with a stop sign on it blocking the road .
+# ::node	r	road	1-2
+# ::node	f	fall-01	4-5
+# ::node	l	leaf	5-6
+# ::node	c	cover-02	6-7
+# ::node	a	and	8-9
+# ::node	r2	road	10-11
+# ::node	b	barrier	11-12
+# ::node	s2	stop-01	14-15
+# ::node	s	sign	15-16
+# ::node	b2	block-01	18-19
+# ::root	a	and
+# ::edge	leaf	ARG1-of	fall-01	l	f	
+# ::edge	cover-02	ARG2	leaf	c	l	
+# ::edge	road	ARG1-of	cover-02	r	c	
+# ::edge	and	op1	road	a	r	
+# ::edge	barrier	mod	road	b	r2	
+# ::edge	and	op2	barrier	a	b	
+# ::edge	sign	topic	stop-01	s	s2	
+# ::edge	barrier	location-of	sign	b	s	
+# ::edge	barrier	ARG0-of	block-01	b	b2	
+# ::edge	block-01	ARG1	road	b2	r	
+(a / and
+    :op1 (r / road
+        :ARG1-of (c / cover-02
+            :ARG2 (l / leaf
+                :ARG1-of (f / fall-01))))
+    :op2 (b / barrier
+        :ARG0-of (b2 / block-01
+            :ARG1 r)
+        :location-of (s / sign
+            :topic (s2 / stop-01))
+        :mod (r2 / road)))

@@ -1,0 +1,31 @@
+# ::tok a cargo hauling truck sits next to another truck in front of some people
+# ::node	c	cargo	1-2
+# ::node	h	haul-01	2-3
+# ::node	t	truck	3-4
+# ::node	s	sit-01	4-5
+# ::node	n	next-to	5-6
+# ::node	a	another	7-8
+# ::node	t2	truck	8-9
+# ::node	i	in-front-of	10-11
+# ::node	s2	some	12-13
+# ::node	p	person	13-14
+# ::root	s	sit-01
+# ::edge	haul-01	ARG1	cargo	h	c	
+# ::edge	truck	ARG0-of	haul-01	t	h	
+# ::edge	sit-01	ARG1	truck	s	t	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	truck	mod	another	t2	a	
+# ::edge	next-to	op1	truck	n	t2	
+# ::edge	truck	location	in-front-of	t2	i	
+# ::edge	person	quant	some	p	s2	
+# ::edge	in-front-of	op1	person	i	p	
+(s / sit-01
+    :ARG1 (t / truck
+        :ARG0-of (h / haul-01
+            :ARG1 (c / cargo)))
+    :ARG2 (n / next-to
+        :op1 (t2 / truck
+            :location (i / in-front-of
+                :op1 (p / person
+                    :quant (s2 / some)))
+            :mod (a / another))))

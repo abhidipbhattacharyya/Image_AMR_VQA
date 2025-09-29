@@ -1,0 +1,36 @@
+# ::tok Large clock tower lit up at night with an American flag at the top .
+# ::node	l	large	0-1
+# ::node	c	clock	1-2
+# ::node	t2	tower	2-3
+# ::node	l2	light-04	3-4
+# ::node	d	date-entity	6-7
+# ::node	n2	night	6-7
+# ::node	c2	country	9-10
+# ::node	n	name	9-10
+# ::node	0	America	9-10
+# ::node	f	flag	10-11
+# ::node	t	top	13-14
+# ::root	l2	light-04
+# ::edge	tower	mod	clock	t2	c	
+# ::edge	tower	mod	large	t2	l	
+# ::edge	light-04	ARG1	tower	l2	t2	
+# ::edge	light-04	time	date-entity	l2	d	
+# ::edge	date-entity	dayperiod	night	d	n2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	America	n	0	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	light-04	prep-with	flag	l2	f	
+# ::edge	flag	location	top	f	t	
+# ::edge	tower	part	top	t2	t	
+(l2 / light-04
+    :ARG1 (t2 / tower
+        :mod (c / clock)
+        :mod (l / large)
+        :part (t / top))
+    :prep-with (f / flag
+        :location t
+        :mod (c2 / country
+            :name (n / name
+                :op1 "America")))
+    :time (d / date-entity
+        :dayperiod (n2 / night)))

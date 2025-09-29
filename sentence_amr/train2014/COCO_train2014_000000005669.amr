@@ -1,0 +1,21 @@
+# ::tok a stop sign in the snow , with snow covered mountains in background .
+# ::node	s3	stop-01	1-2
+# ::node	s	signal-07	2-3
+# ::node	s2	snow	5-6
+# ::node	c	cover-02	9-10
+# ::node	m	mountain	10-11
+# ::node	b	background	12-13
+# ::root	s	signal-07
+# ::edge	signal-07	ARG1	stop-01	s	s3	
+# ::edge	signal-07	location	snow	s	s2	
+# ::edge	cover-02	ARG2	snow	c	s2	
+# ::edge	mountain	ARG1-of	cover-02	m	c	
+# ::edge	background	location-of	mountain	b	m	
+# ::edge	signal-07	location	background	s	b	
+(s / signal-07
+    :ARG1 (s3 / stop-01)
+    :location (s2 / snow)
+    :location (b / background
+        :location-of (m / mountain
+            :ARG1-of (c / cover-02
+                :ARG2 s2))))

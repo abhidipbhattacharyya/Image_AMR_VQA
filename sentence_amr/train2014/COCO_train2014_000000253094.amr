@@ -1,0 +1,37 @@
+# ::tok This is a car with luggage on top and with an attached car with more luggage behind .
+# ::node	t	this	0-1
+# ::node	c	car	3-4
+# ::node	l	luggage	5-6
+# ::node	b	be-located-at-91	6-7
+# ::node	t2	top	7-8
+# ::node	a	and	8-9
+# ::node	a2	attach-01	11-12
+# ::node	c2	car	12-13
+# ::node	h	have-quant-91	14-15
+# ::node	m	more	14-15
+# ::node	l2	luggage	15-16
+# ::node	b2	behind	16-17
+# ::root	c	car
+# ::edge	car	domain	this	c	t	
+# ::edge	be-located-at-91	ARG1	luggage	b	l	
+# ::edge	be-located-at-91	ARG2	top	b	t2	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	car	location-of	and	c	a	
+# ::edge	car	ARG1-of	attach-01	c2	a2	
+# ::edge	and	op2	car	a	c2	
+# ::edge	have-quant-91	ARG3	more	h	m	
+# ::edge	luggage	ARG1-of	have-quant-91	l2	h	
+# ::edge	car	prep-with	luggage	c2	l2	
+# ::edge	luggage	location	behind	l2	b2	
+(c / car
+    :domain (t / this)
+    :location-of (a / and
+        :op1 (b / be-located-at-91
+            :ARG1 (l / luggage)
+            :ARG2 (t2 / top))
+        :op2 (c2 / car
+            :ARG1-of (a2 / attach-01)
+            :prep-with (l2 / luggage
+                :ARG1-of (h / have-quant-91
+                    :ARG3 (m / more))
+                :location (b2 / behind)))))

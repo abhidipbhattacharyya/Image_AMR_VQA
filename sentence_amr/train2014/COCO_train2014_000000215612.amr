@@ -1,0 +1,41 @@
+# ::tok Baseball player delivering punt as player on other team run to retrieve ball .
+# ::node	b2	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p3	play-01	1-2
+# ::node	d	deliver-01	2-3
+# ::node	p5	punt-03	3-4
+# ::node	p2	person	5-6
+# ::node	p4	play-01	5-6
+# ::node	o	other	7-8
+# ::node	t	team	8-9
+# ::node	r2	run-02	9-10
+# ::node	r	retrieve-01	11-12
+# ::node	b	ball	12-13
+# ::root	d	deliver-01
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	baseball	p3	b2	
+# ::edge	deliver-01	ARG0	person	d	p	
+# ::edge	deliver-01	ARG1	punt-03	d	p5	
+# ::edge	punt-03	ARG0	person	p5	p	
+# ::edge	deliver-01	ARG2	person	d	p2	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	team	mod	other	t	o	
+# ::edge	play-01	ARG1	team	p4	t	
+# ::edge	person	ARG0-of	run-02	p2	r2	
+# ::edge	run-02	purpose	retrieve-01	r2	r	
+# ::edge	retrieve-01	ARG0	person	r	p2	
+# ::edge	retrieve-01	ARG1	ball	r	b	
+(d / deliver-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (b2 / baseball)))
+    :ARG1 (p5 / punt-03
+        :ARG0 p)
+    :ARG2 (p2 / person
+        :ARG0-of (p4 / play-01
+            :ARG1 (t / team
+                :mod (o / other)))
+        :ARG0-of (r2 / run-02
+            :purpose (r / retrieve-01
+                :ARG0 p2
+                :ARG1 (b / ball)))))

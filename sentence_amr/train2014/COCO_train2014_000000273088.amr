@@ -1,0 +1,41 @@
+# ::tok Men on the sidewalk outside a green city store and near a green black board sign .
+# ::node	m	man	0-1
+# ::node	b	be-located-at-91	1-2
+# ::node	s	sidewalk	3-4
+# ::node	o	outside	4-5
+# ::node	g	green-02	6-7
+# ::node	c	city	7-8
+# ::node	s3	store	8-9
+# ::node	a	and	9-10
+# ::node	n	near-02	10-11
+# ::node	b2	black-04	13-14
+# ::node	b3	board	14-15
+# ::node	s2	sign	15-16
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	man	b	m	
+# ::edge	sidewalk	location	outside	s	o	
+# ::edge	store	mod	city	s3	c	
+# ::edge	store	ARG1-of	green-02	s3	g	
+# ::edge	outside	op1	store	o	s3	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	near-02	a	n	
+# ::edge	near-02	ARG1	man	n	m	
+# ::edge	board	ARG1-of	black-04	b3	b2	
+# ::edge	sign	mod	board	s2	b3	
+# ::edge	near-02	ARG2	sign	n	s2	
+# ::edge	green-02	ARG1	sign	g	s2	
+# ::edge	and	rel	sidewalk	a	s	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (m / man))
+    :op2 (n / near-02
+        :ARG1 m
+        :ARG2 (s2 / sign
+            :mod (b3 / board
+                :ARG1-of (b2 / black-04))))
+    :rel (s / sidewalk
+        :location (o / outside
+            :op1 (s3 / store
+                :ARG1-of (g / green-02
+                    :ARG1 s2)
+                :mod (c / city)))))

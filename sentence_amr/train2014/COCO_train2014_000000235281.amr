@@ -1,0 +1,29 @@
+# ::tok The man presses the button on the traffic light as he waits to cross the street .
+# ::node	m	man	1-2
+# ::node	p	press-01	2-3
+# ::node	b	button	4-5
+# ::node	t	traffic	7-8
+# ::node	l	light	8-9
+# ::node	w	wait-01	11-12
+# ::node	c	cross-02	13-14
+# ::node	s	street	15-16
+# ::root	p	press-01
+# ::edge	press-01	ARG0	man	p	m	
+# ::edge	press-01	ARG1	button	p	b	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	button	location	light	b	l	
+# ::edge	press-01	time	wait-01	p	w	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	wait-01	ARG2	cross-02	w	c	
+# ::edge	cross-02	ARG0	man	c	m	
+# ::edge	cross-02	ARG1	street	c	s	
+(p / press-01
+    :ARG0 (m / man)
+    :ARG1 (b / button
+        :location (l / light
+            :mod (t / traffic)))
+    :time (w / wait-01
+        :ARG1 m
+        :ARG2 (c / cross-02
+            :ARG0 m
+            :ARG1 (s / street))))

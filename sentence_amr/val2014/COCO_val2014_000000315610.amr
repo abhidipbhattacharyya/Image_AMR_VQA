@@ -1,0 +1,31 @@
+# ::tok Commercial jetliners fly over an amusement park with a Ferris wheel .
+# ::node	c	commerce	0-1
+# ::node	a	airliner	1-2
+# ::node	f	fly-01	2-3
+# ::node	o	over	3-4
+# ::node	a2	amuse-01	5-6
+# ::node	p	park	6-7
+# ::node	h	have-03	7-8
+# ::node	n	name	9-10
+# ::node	0	Ferris	9-10
+# ::node	w	wheel	10-11
+# ::root	f	fly-01
+# ::edge	airliner	mod	commerce	a	c	
+# ::edge	fly-01	ARG1	airliner	f	a	
+# ::edge	fly-01	path	over	f	o	
+# ::edge	park	ARG0-of	amuse-01	p	a2	
+# ::edge	over	op1	park	o	p	
+# ::edge	park	ARG0-of	have-03	p	h	
+# ::edge	name	op1	Ferris	n	0	
+# ::edge	wheel	name	name	w	n	
+# ::edge	have-03	ARG1	wheel	h	w	
+(f / fly-01
+    :ARG1 (a / airliner
+        :mod (c / commerce))
+    :path (o / over
+        :op1 (p / park
+            :ARG0-of (a2 / amuse-01)
+            :ARG0-of (h / have-03
+                :ARG1 (w / wheel
+                    :name (n / name
+                        :op1 "Ferris"))))))

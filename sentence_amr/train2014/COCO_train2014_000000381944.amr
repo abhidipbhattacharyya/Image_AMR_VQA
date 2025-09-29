@@ -1,0 +1,36 @@
+# ::tok The kitten is trying to inspect the diaper caddy , packed with a milk bottle and baby paraphernalia .
+# ::node	k	kitten	1-2
+# ::node	t	try-01	3-4
+# ::node	i	inspect-01	5-6
+# ::node	d	diaper	7-8
+# ::node	c	caddy	8-9
+# ::node	p	pack-01	10-11
+# ::node	m	milk	13-14
+# ::node	b2	bottle	14-15
+# ::node	a	and	15-16
+# ::node	b	baby	16-17
+# ::node	p2	paraphernalia	17-18
+# ::root	t	try-01
+# ::edge	try-01	ARG0	kitten	t	k	
+# ::edge	try-01	ARG1	inspect-01	t	i	
+# ::edge	inspect-01	ARG0	kitten	i	k	
+# ::edge	caddy	purpose	diaper	c	d	
+# ::edge	inspect-01	ARG1	caddy	i	c	
+# ::edge	caddy	ARG1-of	pack-01	c	p	
+# ::edge	bottle	mod	milk	b2	m	
+# ::edge	and	op1	bottle	a	b2	
+# ::edge	pack-01	ARG2	and	p	a	
+# ::edge	paraphernalia	mod	baby	p2	b	
+# ::edge	and	op2	paraphernalia	a	p2	
+(t / try-01
+    :ARG0 (k / kitten)
+    :ARG1 (i / inspect-01
+        :ARG0 k
+        :ARG1 (c / caddy
+            :purpose (d / diaper)
+            :ARG1-of (p / pack-01
+                :ARG2 (a / and
+                    :op1 (b2 / bottle
+                        :mod (m / milk))
+                    :op2 (p2 / paraphernalia
+                        :mod (b / baby)))))))

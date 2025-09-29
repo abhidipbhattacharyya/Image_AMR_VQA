@@ -1,0 +1,34 @@
+# ::tok Old rusty rail cars on tracks near a brick building with a lot of windows .
+# ::node	o	old	0-1
+# ::node	r2	rust-01	1-2
+# ::node	r	rail	2-3
+# ::node	c	car	3-4
+# ::node	t	track	5-6
+# ::node	n	near-02	6-7
+# ::node	b	brick	8-9
+# ::node	b2	building	9-10
+# ::node	h	have-03	10-11
+# ::node	l	lot	12-13
+# ::node	w	window	14-15
+# ::root	c	car
+# ::edge	car	mod	rail	c	r	
+# ::edge	car	ARG1-of	rust-01	c	r2	
+# ::edge	car	mod	old	c	o	
+# ::edge	car	location	track	c	t	
+# ::edge	car	ARG1-of	near-02	c	n	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	near-02	ARG2	building	n	b2	
+# ::edge	building	ARG0-of	have-03	b2	h	
+# ::edge	window	quant	lot	w	l	
+# ::edge	have-03	ARG1	window	h	w	
+(c / car
+    :ARG1-of (r2 / rust-01)
+    :ARG1-of (n / near-02
+        :ARG2 (b2 / building
+            :ARG0-of (h / have-03
+                :ARG1 (w / window
+                    :quant (l / lot)))
+            :consist-of (b / brick)))
+    :location (t / track)
+    :mod (r / rail)
+    :mod (o / old))

@@ -1,0 +1,55 @@
+# ::tok A kid is flying a kite in a grass park with other people around with a bus , a van , and what appears to be the Lincoln Monument in the background
+# ::node	k	kid	1-2
+# ::node	f	fly-01	3-4
+# ::node	k2	kite	5-6
+# ::node	g	grass	8-9
+# ::node	p	park	9-10
+# ::node	o	other	11-12
+# ::node	p2	person	12-13
+# ::node	a3	around	13-14
+# ::node	b3	bus	16-17
+# ::node	v	van	19-20
+# ::node	a	and	21-22
+# ::node	t	thing	22-23
+# ::node	a2	appear-02	23-24
+# ::node	0	Lincoln	27-28
+# ::node	b2	building	28-29
+# ::node	n	name	28-29
+# ::node	1	Monument	28-29
+# ::node	b	background	31-32
+# ::root	f	fly-01
+# ::edge	fly-01	ARG0	kid	f	k	
+# ::edge	fly-01	ARG1	kite	f	k2	
+# ::edge	park	mod	grass	p	g	
+# ::edge	fly-01	location	park	f	p	
+# ::edge	person	mod	other	p2	o	
+# ::edge	fly-01	accompanier	person	f	p2	
+# ::edge	person	mod	around	p2	a3	
+# ::edge	and	op2	van	a	v	
+# ::edge	and	op1	bus	a	b3	
+# ::edge	fly-01	accompanier	and	f	a	
+# ::edge	and	op3	thing	a	t	
+# ::edge	thing	ARG1-of	appear-02	t	a2	
+# ::edge	thing	domain	building	t	b2	
+# ::edge	building	name	name	b2	n	
+# ::edge	name	op1	Lincoln	n	0	
+# ::edge	name	op2	Monument	n	1	
+# ::edge	thing	location	background	t	b	
+(f / fly-01
+    :ARG0 (k / kid)
+    :ARG1 (k2 / kite)
+    :accompanier (p2 / person
+        :mod (o / other)
+        :mod (a3 / around))
+    :accompanier (a / and
+        :op1 (b3 / bus)
+        :op2 (v / van)
+        :op3 (t / thing
+            :ARG1-of (a2 / appear-02)
+            :domain (b2 / building
+                :name (n / name
+                    :op1 "Lincoln"
+                    :op2 "Monument"))
+            :location (b / background)))
+    :location (p / park
+        :mod (g / grass)))

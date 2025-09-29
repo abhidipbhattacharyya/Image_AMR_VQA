@@ -1,0 +1,37 @@
+# ::tok An eightteen wheeler rolls down the evergreen tree lined highway toward a snow capped mountain .
+# ::node	0	16	1-2
+# ::node	v	vehicle	2-3
+# ::node	w	wheel	2-3
+# ::node	r	roll-01	3-4
+# ::node	d	down	4-5
+# ::node	e	evergreen	6-7
+# ::node	t	tree	7-8
+# ::node	l	line-01	8-9
+# ::node	h	highway	9-10
+# ::node	s	snow	12-13
+# ::node	c	cap-01	13-14
+# ::node	m	mountain	14-15
+# ::root	r	roll-01
+# ::edge	vehicle	quant	16	v	0	
+# ::edge	vehicle	part	wheel	v	w	
+# ::edge	roll-01	ARG1	vehicle	r	v	
+# ::edge	roll-01	direction	down	r	d	
+# ::edge	line-01	ARG2	tree	l	t	
+# ::edge	line-01	mod	evergreen	l	e	
+# ::edge	highway	ARG1-of	line-01	h	l	
+# ::edge	roll-01	path	highway	r	h	
+# ::edge	cap-01	ARG2	snow	c	s	
+# ::edge	mountain	ARG1-of	cap-01	m	c	
+# ::edge	roll-01	direction	mountain	r	m	
+(r / roll-01
+    :ARG1 (v / vehicle
+        :quant 16
+        :part (w / wheel))
+    :direction (d / down)
+    :direction (m / mountain
+        :ARG1-of (c / cap-01
+            :ARG2 (s / snow)))
+    :path (h / highway
+        :ARG1-of (l / line-01
+            :ARG2 (t / tree)
+            :mod (e / evergreen))))

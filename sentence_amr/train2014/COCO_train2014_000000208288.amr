@@ -1,0 +1,40 @@
+# ::tok Traffic on a busy city road with street lights and Christmas decorations .
+# ::node	t2	traffic	0-1
+# ::node	b	busy-02	3-4
+# ::node	c2	city	4-5
+# ::node	r	road	5-6
+# ::node	s	street	7-8
+# ::node	l	light	8-9
+# ::node	c	cause-01	9-10
+# ::node	a	and	9-10
+# ::node	f	festival	10-11
+# ::node	n	name	10-11
+# ::node	0	Christmas	10-11
+# ::node	t	thing	11-12
+# ::node	d	decorate-01	11-12
+# ::root	t2	traffic
+# ::edge	road	mod	city	r	c2	
+# ::edge	road	ARG1-of	busy-02	r	b	
+# ::edge	traffic	location	road	t2	r	
+# ::edge	light	mod	street	l	s	
+# ::edge	road	ARG1-of	cause-01	r	c	
+# ::edge	cause-01	ARG0	and	c	a	
+# ::edge	and	op1	light	a	l	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	0	
+# ::edge	thing	mod	festival	t	f	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG1-of	decorate-01	t	d	
+(t2 / traffic
+    :location (r / road
+        :ARG1-of (b / busy-02)
+        :ARG1-of (c / cause-01
+            :ARG0 (a / and
+                :op1 (l / light
+                    :mod (s / street))
+                :op2 (t / thing
+                    :ARG1-of (d / decorate-01)
+                    :mod (f / festival
+                        :name (n / name
+                            :op1 "Christmas")))))
+        :mod (c2 / city)))

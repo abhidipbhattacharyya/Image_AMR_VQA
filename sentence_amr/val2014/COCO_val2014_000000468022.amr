@@ -1,0 +1,27 @@
+# ::tok The cake must be delicious because half of it is gone already .
+# ::node	c	cake	1-2
+# ::node	i2	infer-01	2-3
+# ::node	d	delicious	4-5
+# ::node	c2	cause-01	5-6
+# ::node	h	half	6-7
+# ::node	i	include-91	7-8
+# ::node	g	go-02	10-11
+# ::node	a	already	11-12
+# ::root	c2	cause-01
+# ::edge	infer-01	ARG1	delicious	i2	d	
+# ::edge	delicious	domain	cake	d	c	
+# ::edge	cause-01	ARG1	infer-01	c2	i2	
+# ::edge	half	ARG3-of	include-91	h	i	
+# ::edge	include-91	ARG2	cake	i	c	
+# ::edge	go-02	ARG0	half	g	h	
+# ::edge	cause-01	ARG0	go-02	c2	g	
+# ::edge	go-02	time	already	g	a	
+(c2 / cause-01
+    :ARG0 (g / go-02
+        :ARG0 (h / half
+            :ARG3-of (i / include-91
+                :ARG2 (c / cake)))
+        :time (a / already))
+    :ARG1 (i2 / infer-01
+        :ARG1 (d / delicious
+            :domain c)))

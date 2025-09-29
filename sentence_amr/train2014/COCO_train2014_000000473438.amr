@@ -1,0 +1,31 @@
+# ::tok A produce stall at a farmers ' market displaying baskets of carrots and cauliflower .
+# ::node	p2	produce	1-2
+# ::node	s	stall	2-3
+# ::node	p	person	5-6
+# ::node	f	farm-01	5-6
+# ::node	m	market	7-8
+# ::node	d	display-01	8-9
+# ::node	b	basket	9-10
+# ::node	c	carrot	11-12
+# ::node	a	and	12-13
+# ::node	c2	cauliflower	13-14
+# ::root	s	stall
+# ::edge	stall	mod	produce	s	p2	
+# ::edge	person	ARG0-of	farm-01	p	f	
+# ::edge	market	mod	person	m	p	
+# ::edge	stall	location	market	s	m	
+# ::edge	stall	ARG0-of	display-01	s	d	
+# ::edge	display-01	ARG1	basket	d	b	
+# ::edge	and	op1	carrot	a	c	
+# ::edge	basket	consist-of	and	b	a	
+# ::edge	and	op2	cauliflower	a	c2	
+(s / stall
+    :ARG0-of (d / display-01
+        :ARG1 (b / basket
+            :consist-of (a / and
+                :op1 (c / carrot)
+                :op2 (c2 / cauliflower))))
+    :location (m / market
+        :mod (p / person
+            :ARG0-of (f / farm-01)))
+    :mod (p2 / produce))

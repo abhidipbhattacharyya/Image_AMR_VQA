@@ -1,0 +1,25 @@
+# ::tok Men rounding up a herd of horses while some men are standing nearby .
+# ::node	m	man	0-1
+# ::node	r	round-up-02	1-2
+# ::node	h	herd	4-5
+# ::node	h2	horse	6-7
+# ::node	s	some	8-9
+# ::node	m2	man	9-10
+# ::node	s2	stand-01	11-12
+# ::node	n	nearby	12-13
+# ::root	r	round-up-02
+# ::edge	round-up-02	ARG0	man	r	m	
+# ::edge	round-up-02	ARG1	herd	r	h	
+# ::edge	herd	consist-of	horse	h	h2	
+# ::edge	man	quant	some	m2	s	
+# ::edge	stand-01	ARG1	man	s2	m2	
+# ::edge	round-up-02	time	stand-01	r	s2	
+# ::edge	stand-01	ARG2	nearby	s2	n	
+(r / round-up-02
+    :ARG0 (m / man)
+    :ARG1 (h / herd
+        :consist-of (h2 / horse))
+    :time (s2 / stand-01
+        :ARG1 (m2 / man
+            :quant (s / some))
+        :ARG2 (n / nearby)))

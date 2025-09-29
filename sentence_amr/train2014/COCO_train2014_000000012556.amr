@@ -1,0 +1,31 @@
+# ::tok An electronic parking meter stands next to a street with parked cars on a wet day .
+# ::node	e	electronic	1-2
+# ::node	p	park-01	2-3
+# ::node	m	meter	3-4
+# ::node	s	stand-01	4-5
+# ::node	n	next-to	5-6
+# ::node	s2	street	8-9
+# ::node	p2	park-01	10-11
+# ::node	c	car	11-12
+# ::node	w	wet-01	14-15
+# ::node	d	day	15-16
+# ::root	s	stand-01
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	meter	mod	electronic	m	e	
+# ::edge	stand-01	ARG1	meter	s	m	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	street	n	s2	
+# ::edge	car	ARG1-of	park-01	c	p2	
+# ::edge	street	location-of	car	s2	c	
+# ::edge	day	ARG1-of	wet-01	d	w	
+# ::edge	stand-01	time	day	s	d	
+(s / stand-01
+    :ARG1 (m / meter
+        :purpose (p / park-01)
+        :mod (e / electronic))
+    :ARG2 (n / next-to
+        :op1 (s2 / street
+            :location-of (c / car
+                :ARG1-of (p2 / park-01))))
+    :time (d / day
+        :ARG1-of (w / wet-01)))

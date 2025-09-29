@@ -1,0 +1,22 @@
+# ::tok A blurry blurred image shows something being cooked in a microwave .
+# ::node	b	blur-01	1-2
+# ::node	b2	blur-01	2-3
+# ::node	i	image	3-4
+# ::node	s	show-01	4-5
+# ::node	s2	something	5-6
+# ::node	c	cook-01	7-8
+# ::node	m	microwave	10-11
+# ::root	s	show-01
+# ::edge	image	ARG1-of	blur-01	i	b2	
+# ::edge	image	ARG1-of	blur-01	i	b	
+# ::edge	show-01	ARG0	image	s	i	
+# ::edge	cook-01	ARG1	something	c	s2	
+# ::edge	show-01	ARG1	cook-01	s	c	
+# ::edge	cook-01	location	microwave	c	m	
+(s / show-01
+    :ARG0 (i / image
+        :ARG1-of (b2 / blur-01)
+        :ARG1-of (b / blur-01))
+    :ARG1 (c / cook-01
+        :ARG1 (s2 / something)
+        :location (m / microwave)))

@@ -1,0 +1,37 @@
+# ::tok Three vendors at a cart preparing " trdelnik , " a Hungarian sweet pastry
+# ::node	0	3	0-1
+# ::node	p2	person	1-2
+# ::node	v	vend-01	1-2
+# ::node	b	be-located-at-91	2-3
+# ::node	c	cart	4-5
+# ::node	p3	prepare-01	5-6
+# ::node	t	trdelnik	7-8
+# ::node	c2	country	11-12
+# ::node	n	name	11-12
+# ::node	1	Ukraine	11-12
+# ::node	s	sweet-05	12-13
+# ::node	p	pastry	13-14
+# ::root	b	be-located-at-91
+# ::edge	person	quant	3	p2	0	
+# ::edge	person	ARG0-of	vend-01	p2	v	
+# ::edge	be-located-at-91	ARG1	person	b	p2	
+# ::edge	be-located-at-91	ARG2	cart	b	c	
+# ::edge	person	ARG0-of	prepare-01	p2	p3	
+# ::edge	prepare-01	ARG1	trdelnik	p3	t	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	Ukraine	n	1	
+# ::edge	pastry	ARG1-of	sweet-05	p	s	
+# ::edge	pastry	mod	country	p	c2	
+# ::edge	trdelnik	mod	pastry	t	p	
+(b / be-located-at-91
+    :ARG1 (p2 / person
+        :quant 3
+        :ARG0-of (v / vend-01)
+        :ARG0-of (p3 / prepare-01
+            :ARG1 (t / trdelnik
+                :mod (p / pastry
+                    :ARG1-of (s / sweet-05)
+                    :mod (c2 / country
+                        :name (n / name
+                            :op1 "Ukraine"))))))
+    :ARG2 (c / cart))

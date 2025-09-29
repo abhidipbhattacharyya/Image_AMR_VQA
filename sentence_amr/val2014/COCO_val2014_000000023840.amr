@@ -1,0 +1,33 @@
+# ::tok A food processor with a blade inside of it , next to a plate with pieces of banana on it .
+# ::node	f	food	1-2
+# ::node	p3	process-01	2-3
+# ::node	b3	blade	5-6
+# ::node	i	inside	6-7
+# ::node	n	next-to	10-11
+# ::node	b2	be-located-at-91	11-12
+# ::node	p2	plate	13-14
+# ::node	h	have-03	14-15
+# ::node	p	piece	15-16
+# ::node	b	banana	17-18
+# ::root	b2	be-located-at-91
+# ::edge	process-01	ARG1	food	p3	f	
+# ::edge	process-01	part	blade	p3	b3	
+# ::edge	blade	location	inside	b3	i	
+# ::edge	inside	op1	process-01	i	p3	
+# ::edge	be-located-at-91	ARG2	next-to	b2	n	
+# ::edge	be-located-at-91	ARG1	process-01	b2	p3	
+# ::edge	next-to	op1	plate	n	p2	
+# ::edge	plate	ARG0-of	have-03	p2	h	
+# ::edge	have-03	ARG1	piece	h	p	
+# ::edge	piece	consist-of	banana	p	b	
+(b2 / be-located-at-91
+    :ARG1 (p3 / process-01
+        :ARG1 (f / food)
+        :part (b3 / blade
+            :location (i / inside
+                :op1 p3)))
+    :ARG2 (n / next-to
+        :op1 (p2 / plate
+            :ARG0-of (h / have-03
+                :ARG1 (p / piece
+                    :consist-of (b / banana))))))

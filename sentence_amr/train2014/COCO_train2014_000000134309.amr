@@ -1,0 +1,37 @@
+# ::tok German street signs sit atop a stop light on a tree lined street .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	Germany	0-1
+# ::node	s4	street	1-2
+# ::node	s	sign	2-3
+# ::node	s2	sit-01	3-4
+# ::node	a	atop	4-5
+# ::node	s3	stop-01	6-7
+# ::node	l	light	7-8
+# ::node	t	tree	10-11
+# ::node	l2	line-01	11-12
+# ::node	s5	street	12-13
+# ::root	s2	sit-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Germany	n	0	
+# ::edge	sign	mod	street	s	s4	
+# ::edge	sign	mod	country	s	c	
+# ::edge	sit-01	ARG1	sign	s2	s	
+# ::edge	sit-01	ARG2	atop	s2	a	
+# ::edge	light	mod	stop-01	l	s3	
+# ::edge	atop	op1	light	a	l	
+# ::edge	line-01	ARG2	tree	l2	t	
+# ::edge	street	ARG1-of	line-01	s5	l2	
+# ::edge	light	location	street	l	s5	
+(s2 / sit-01
+    :ARG1 (s / sign
+        :mod (s4 / street)
+        :mod (c / country
+            :name (n / name
+                :op1 "Germany")))
+    :ARG2 (a / atop
+        :op1 (l / light
+            :location (s5 / street
+                :ARG1-of (l2 / line-01
+                    :ARG2 (t / tree)))
+            :mod (s3 / stop-01))))

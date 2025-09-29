@@ -1,0 +1,27 @@
+# ::tok A commercial gas stove in a kitchen with people in a dining room beyond .
+# ::node	c	commerce	1-2
+# ::node	g	gas	2-3
+# ::node	s	stove	3-4
+# ::node	k	kitchen	6-7
+# ::node	p	person	8-9
+# ::node	d	dine-01	11-12
+# ::node	r	room	12-13
+# ::node	b	beyond	13-14
+# ::root	s	stove
+# ::edge	stove	mod	gas	s	g	
+# ::edge	stove	mod	commerce	s	c	
+# ::edge	stove	location	kitchen	s	k	
+# ::edge	stove	location-of	person	s	p	
+# ::edge	room	mod	dine-01	r	d	
+# ::edge	person	location	room	p	r	
+# ::edge	room	location	beyond	r	b	
+# ::edge	beyond	op1	kitchen	b	k	
+(s / stove
+    :location (k / kitchen)
+    :location-of (p / person
+        :location (r / room
+            :location (b / beyond
+                :op1 k)
+            :mod (d / dine-01)))
+    :mod (g / gas)
+    :mod (c / commerce))

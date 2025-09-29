@@ -1,0 +1,37 @@
+# ::tok A woman pours a man in a suit a glass of wine from behind a temporary bar .
+# ::node	w3	woman	1-2
+# ::node	p	pour-01	2-3
+# ::node	m	man	4-5
+# ::node	w	wear-01	5-6
+# ::node	s	suit	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	g	glass	9-10
+# ::node	0	1	9-10
+# ::node	w2	wine	11-12
+# ::node	b2	behind	13-14
+# ::node	t	temporary	15-16
+# ::node	b	bar	16-17
+# ::root	p	pour-01
+# ::edge	pour-01	ARG0	woman	p	w3	
+# ::edge	pour-01	ARG2	man	p	m	
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	wear-01	ARG1	suit	w	s	
+# ::edge	pour-01	ARG1	volume-quantity	p	v	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	quant-of	wine	v	w2	
+# ::edge	pour-01	source	behind	p	b2	
+# ::edge	bar	mod	temporary	b	t	
+# ::edge	behind	op1	bar	b2	b	
+(p / pour-01
+    :ARG0 (w3 / woman)
+    :ARG1 (v / volume-quantity
+        :quant 1
+        :quant-of (w2 / wine)
+        :unit (g / glass))
+    :ARG2 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (s / suit)))
+    :source (b2 / behind
+        :op1 (b / bar
+            :mod (t / temporary))))

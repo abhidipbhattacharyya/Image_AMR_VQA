@@ -1,0 +1,37 @@
+# ::tok FEMALE TENNIS PLAYER HOLDING RACKET READY TO RETURN BALL
+# ::node	f	female	0-1
+# ::node	s	state	1-2
+# ::node	n	name	1-2
+# ::node	0	Tennessee	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	h	hold-01	3-4
+# ::node	u	Rush	4-5
+# ::node	r	ready-02	5-6
+# ::node	r2	return-01	7-8
+# ::node	b	ball	8-9
+# ::node	1	imperative	8-9
+# ::root	p	person
+# ::edge	state	name	name	s	n	
+# ::edge	name	op1	Tennessee	n	0	
+# ::edge	person	location	state	p	s	
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	person	ARG0-of	ready-02	p	r	
+# ::edge	ready-02	ARG2	return-01	r	r2	
+# ::edge	return-01	ARG1	ball	r2	b	
+# ::edge	return-01	mode	imperative	r2	1	
+# ::edge	person	rel	Rush	p	u	
+(p / person
+    :ARG0-of (p2 / play-01)
+    :ARG0-of (h / hold-01)
+    :ARG0-of (r / ready-02
+        :ARG2 (r2 / return-01
+            :ARG1 (b / ball)
+            :mode imperative))
+    :location (s / state
+        :name (n / name
+            :op1 "Tennessee"))
+    :mod (f / female)
+    :rel (u / Rush))

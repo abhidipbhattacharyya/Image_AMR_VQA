@@ -1,0 +1,30 @@
+# ::tok Fire hydrant is shooting out water while adults and kids play around it
+# ::node	f	fire	0-1
+# ::node	h	hydrant	1-2
+# ::node	s	shoot-off-04	3-4
+# ::node	w	water	5-6
+# ::node	a	adult	7-8
+# ::node	a2	and	8-9
+# ::node	k	kid	9-10
+# ::node	p	play-01	10-11
+# ::node	a3	around	11-12
+# ::root	s	shoot-off-04
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	shoot-off-04	ARG0	hydrant	s	h	
+# ::edge	shoot-off-04	ARG1	water	s	w	
+# ::edge	and	op1	adult	a2	a	
+# ::edge	and	op2	kid	a2	k	
+# ::edge	play-01	ARG0	and	p	a2	
+# ::edge	shoot-off-04	time	play-01	s	p	
+# ::edge	play-01	location	around	p	a3	
+# ::edge	around	op1	hydrant	a3	h	
+(s / shoot-off-04
+    :ARG0 (h / hydrant
+        :mod (f / fire))
+    :ARG1 (w / water)
+    :time (p / play-01
+        :ARG0 (a2 / and
+            :op1 (a / adult)
+            :op2 (k / kid))
+        :location (a3 / around
+            :op1 h)))

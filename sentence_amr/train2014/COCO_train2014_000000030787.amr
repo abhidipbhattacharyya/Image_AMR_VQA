@@ -1,0 +1,33 @@
+# ::tok A bus broke down on the side of the highway and all the passengers had to file out onto the side of the road .
+# ::node	b2	bus	1-2
+# ::node	b	break-down-12	2-3
+# ::node	s	side	6-7
+# ::node	h	highway	9-10
+# ::node	a2	and	10-11
+# ::node	a	all	11-12
+# ::node	p	passenger	13-14
+# ::node	o	obligate-01	14-15
+# ::node	f	file-01	16-17
+# ::node	o2	out	17-18
+# ::root	a2	and
+# ::edge	break-down-12	ARG1	bus	b	b2	
+# ::edge	break-down-12	location	side	b	s	
+# ::edge	side	part-of	highway	s	h	
+# ::edge	and	op1	break-down-12	a2	b	
+# ::edge	passenger	mod	all	p	a	
+# ::edge	and	op2	obligate-01	a2	o	
+# ::edge	obligate-01	ARG2	file-01	o	f	
+# ::edge	file-01	ARG1	passenger	f	p	
+# ::edge	file-01	location	side	f	s	
+# ::edge	file-01	direction	out	f	o2	
+(a2 / and
+    :op1 (b / break-down-12
+        :ARG1 (b2 / bus)
+        :location (s / side
+            :part-of (h / highway)))
+    :op2 (o / obligate-01
+        :ARG2 (f / file-01
+            :ARG1 (p / passenger
+                :mod (a / all))
+            :direction (o2 / out)
+            :location s)))

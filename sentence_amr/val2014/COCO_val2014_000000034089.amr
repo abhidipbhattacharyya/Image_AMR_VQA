@@ -1,0 +1,25 @@
+# ::tok A tree in front of a brick building with a no parking sign attached to the tree .
+# ::node	t	tree	1-2
+# ::node	i	in-front-of	3-4
+# ::node	b	brick	6-7
+# ::node	b2	building	7-8
+# ::node	0	-	10-11
+# ::node	p	park-01	11-12
+# ::node	s	sign	12-13
+# ::node	a	attach-01	13-14
+# ::root	t	tree
+# ::edge	tree	location	in-front-of	t	i	
+# ::edge	building	consist-of	brick	b2	b	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	park-01	polarity	-	p	0	
+# ::edge	sign	topic	park-01	s	p	
+# ::edge	attach-01	ARG1	sign	a	s	
+# ::edge	tree	ARG2-of	attach-01	t	a	
+(t / tree
+    :ARG2-of (a / attach-01
+        :ARG1 (s / sign
+            :topic (p / park-01
+                :polarity -)))
+    :location (i / in-front-of
+        :op1 (b2 / building
+            :consist-of (b / brick))))

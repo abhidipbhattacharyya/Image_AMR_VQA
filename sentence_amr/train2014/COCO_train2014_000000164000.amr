@@ -1,0 +1,33 @@
+# ::tok A group of small seaworthy vessels with red and orange flags flying .
+# ::node	g	group	1-2
+# ::node	s2	small	3-4
+# ::node	s	seaworthy	4-5
+# ::node	v	vessel	5-6
+# ::node	r	red-02	7-8
+# ::node	a	and	8-9
+# ::node	o	orange	9-10
+# ::node	f	flag	10-11
+# ::node	f2	flag	10-11
+# ::node	f3	fly-01	11-12
+# ::root	g	group
+# ::edge	vessel	mod	seaworthy	v	s	
+# ::edge	vessel	mod	small	v	s2	
+# ::edge	group	consist-of	vessel	g	v	
+# ::edge	and	op1	vessel	a	v	
+# ::edge	and	op1	flag	a	f	
+# ::edge	flag	ARG1-of	red-02	f	r	
+# ::edge	flag	mod	orange	f2	o	
+# ::edge	and	op2	flag	a	f2	
+# ::edge	fly-01	ARG1	and	f3	a	
+# ::edge	group	location-of	fly-01	g	f3	
+(g / group
+    :consist-of (v / vessel
+        :mod (s / seaworthy)
+        :mod (s2 / small))
+    :location-of (f3 / fly-01
+        :ARG1 (a / and
+            :op1 v
+            :op1 (f / flag
+                :ARG1-of (r / red-02))
+            :op2 (f2 / flag
+                :mod (o / orange)))))

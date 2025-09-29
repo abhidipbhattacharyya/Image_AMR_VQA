@@ -1,0 +1,27 @@
+# ::tok Small office workspace with multiple computer monitors and office equipment .
+# ::node	s	small	0-1
+# ::node	o	office	1-2
+# ::node	w	workspace	2-3
+# ::node	m2	multiple	4-5
+# ::node	c	computer	5-6
+# ::node	m	monitor	6-7
+# ::node	a	and	7-8
+# ::node	e	equipment	9-10
+# ::root	w	workspace
+# ::edge	workspace	mod	office	w	o	
+# ::edge	workspace	mod	small	w	s	
+# ::edge	monitor	mod	computer	m	c	
+# ::edge	monitor	quant	multiple	m	m2	
+# ::edge	and	op1	monitor	a	m	
+# ::edge	workspace	prep-with	and	w	a	
+# ::edge	and	op2	equipment	a	e	
+# ::edge	equipment	mod	office	e	o	
+(w / workspace
+    :mod (o / office)
+    :mod (s / small)
+    :prep-with (a / and
+        :op1 (m / monitor
+            :quant (m2 / multiple)
+            :mod (c / computer))
+        :op2 (e / equipment
+            :mod o)))

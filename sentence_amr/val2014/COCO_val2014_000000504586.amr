@@ -1,0 +1,29 @@
+# ::tok The bedroom in the hotel room is clean and ready for guest to use .
+# ::node	b	bedroom	1-2
+# ::node	h	hotel	4-5
+# ::node	r2	room	5-6
+# ::node	c	clean-01	7-8
+# ::node	a	and	8-9
+# ::node	r	ready-02	9-10
+# ::node	g	guest	11-12
+# ::node	u	use-01	13-14
+# ::root	a	and
+# ::edge	room	part-of	hotel	r2	h	
+# ::edge	bedroom	location	room	b	r2	
+# ::edge	clean-01	ARG1	bedroom	c	b	
+# ::edge	and	op1	clean-01	a	c	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	bedroom	r	b	
+# ::edge	use-01	ARG0	guest	u	g	
+# ::edge	ready-02	ARG2	use-01	r	u	
+# ::edge	use-01	ARG1	bedroom	u	b	
+(a / and
+    :op1 (c / clean-01
+        :ARG1 (b / bedroom
+            :location (r2 / room
+                :part-of (h / hotel))))
+    :op2 (r / ready-02
+        :ARG1 b
+        :ARG2 (u / use-01
+            :ARG0 (g / guest)
+            :ARG1 b)))

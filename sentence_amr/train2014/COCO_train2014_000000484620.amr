@@ -1,0 +1,27 @@
+# ::tok Three commuter buses are on a street with a car driving toward them
+# ::node	0	3	0-1
+# ::node	c2	commute-01	1-2
+# ::node	b2	bus	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	s	street	6-7
+# ::node	c	car	9-10
+# ::node	d	drive-01	10-11
+# ::node	t	toward	11-12
+# ::root	b	be-located-at-91
+# ::edge	bus	ARG0-of	commute-01	b2	c2	
+# ::edge	bus	quant	3	b2	0	
+# ::edge	be-located-at-91	ARG1	bus	b	b2	
+# ::edge	be-located-at-91	ARG2	street	b	s	
+# ::edge	drive-01	ARG1	car	d	c	
+# ::edge	street	location-of	drive-01	s	d	
+# ::edge	drive-01	direction	toward	d	t	
+# ::edge	toward	op1	bus	t	b2	
+(b / be-located-at-91
+    :ARG1 (b2 / bus
+        :quant 3
+        :ARG0-of (c2 / commute-01))
+    :ARG2 (s / street
+        :location-of (d / drive-01
+            :ARG1 (c / car)
+            :direction (t / toward
+                :op1 b2))))

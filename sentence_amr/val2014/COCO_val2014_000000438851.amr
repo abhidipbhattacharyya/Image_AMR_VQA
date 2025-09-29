@@ -1,0 +1,42 @@
+# ::tok A bag on the floor with keys , cell phone , umbrella , pens and other items laid out in front of it .
+# ::node	b	bag	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	f	floor	4-5
+# ::node	k	key	6-7
+# ::node	c	cell	8-9
+# ::node	p	phone	9-10
+# ::node	u	umbrella	11-12
+# ::node	p2	pin	13-14
+# ::node	a	and	14-15
+# ::node	o	other	15-16
+# ::node	i2	item	16-17
+# ::node	l	lay-01	17-18
+# ::node	i	in-front-of	20-21
+# ::root	b2	be-located-at-91
+# ::edge	be-located-at-91	ARG1	bag	b2	b	
+# ::edge	be-located-at-91	ARG2	floor	b2	f	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	and	op4	pin	a	p2	
+# ::edge	and	op3	umbrella	a	u	
+# ::edge	and	op2	phone	a	p	
+# ::edge	and	op1	key	a	k	
+# ::edge	bag	consist-of	and	b	a	
+# ::edge	item	mod	other	i2	o	
+# ::edge	and	op5	item	a	i2	
+# ::edge	bag	ARG1-of	lay-01	b	l	
+# ::edge	lay-01	ARG2	in-front-of	l	i	
+# ::edge	in-front-of	op1	bag	i	b	
+(b2 / be-located-at-91
+    :ARG1 (b / bag
+        :ARG1-of (l / lay-01
+            :ARG2 (i / in-front-of
+                :op1 b))
+        :consist-of (a / and
+            :op1 (k / key)
+            :op2 (p / phone
+                :mod (c / cell))
+            :op3 (u / umbrella)
+            :op4 (p2 / pin)
+            :op5 (i2 / item
+                :mod (o / other))))
+    :ARG2 (f / floor))

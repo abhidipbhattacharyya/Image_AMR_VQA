@@ -1,0 +1,34 @@
+# ::tok A bedroom features a bed with white bedding and a French patio doors .
+# ::node	b3	bedroom	1-2
+# ::node	f	feature-01	2-3
+# ::node	b	bed	4-5
+# ::node	w	white-03	6-7
+# ::node	b2	bedding	7-8
+# ::node	a	and	8-9
+# ::node	c	country	10-11
+# ::node	n	name	10-11
+# ::node	0	France	10-11
+# ::node	p	patio	11-12
+# ::node	d	door	12-13
+# ::root	f	feature-01
+# ::edge	feature-01	ARG2	bedroom	f	b3	
+# ::edge	feature-01	ARG1	bed	f	b	
+# ::edge	bedding	ARG1-of	white-03	b2	w	
+# ::edge	and	op1	bedding	a	b2	
+# ::edge	bed	consist-of	and	b	a	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	door	mod	patio	d	p	
+# ::edge	door	mod	country	d	c	
+# ::edge	and	op2	door	a	d	
+(f / feature-01
+    :ARG1 (b / bed
+        :consist-of (a / and
+            :op1 (b2 / bedding
+                :ARG1-of (w / white-03))
+            :op2 (d / door
+                :mod (p / patio)
+                :mod (c / country
+                    :name (n / name
+                        :op1 "France")))))
+    :ARG2 (b3 / bedroom))

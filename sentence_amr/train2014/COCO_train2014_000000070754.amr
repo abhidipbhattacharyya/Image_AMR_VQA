@@ -1,0 +1,25 @@
+# ::tok An image shows a cat pushing a cart filled with caged puppies .
+# ::node	i	image	1-2
+# ::node	s	show-01	2-3
+# ::node	c2	cat	4-5
+# ::node	p2	push-01	5-6
+# ::node	c	cart	7-8
+# ::node	f	fill-01	8-9
+# ::node	c3	chain-01	10-11
+# ::node	p	puppy	11-12
+# ::root	s	show-01
+# ::edge	show-01	ARG0	image	s	i	
+# ::edge	push-01	ARG0	cat	p2	c2	
+# ::edge	show-01	ARG1	push-01	s	p2	
+# ::edge	push-01	ARG1	cart	p2	c	
+# ::edge	cart	ARG1-of	fill-01	c	f	
+# ::edge	puppy	ARG1-of	chain-01	p	c3	
+# ::edge	fill-01	ARG2	puppy	f	p	
+(s / show-01
+    :ARG0 (i / image)
+    :ARG1 (p2 / push-01
+        :ARG0 (c2 / cat)
+        :ARG1 (c / cart
+            :ARG1-of (f / fill-01
+                :ARG2 (p / puppy
+                    :ARG1-of (c3 / chain-01))))))

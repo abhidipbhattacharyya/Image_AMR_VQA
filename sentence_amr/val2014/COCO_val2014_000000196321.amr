@@ -1,0 +1,28 @@
+# ::tok Several coolers behind a bar filled with bottles of beer
+# ::node	s	several	0-1
+# ::node	c	cooler	1-2
+# ::node	b3	behind	2-3
+# ::node	b	bar	4-5
+# ::node	f	fill-01	5-6
+# ::node	v	volume-quantity	7-8
+# ::node	b4	bottle	7-8
+# ::node	0	1	7-8
+# ::node	b2	beer	9-10
+# ::root	c	cooler
+# ::edge	cooler	quant	several	c	s	
+# ::edge	cooler	location	behind	c	b3	
+# ::edge	behind	op1	bar	b3	b	
+# ::edge	cooler	ARG1-of	fill-01	c	f	
+# ::edge	volume-quantity	unit	bottle	v	b4	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	beer	quant	volume-quantity	b2	v	
+# ::edge	fill-01	ARG2	beer	f	b2	
+(c / cooler
+    :quant (s / several)
+    :ARG1-of (f / fill-01
+        :ARG2 (b2 / beer
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (b4 / bottle))))
+    :location (b3 / behind
+        :op1 (b / bar)))

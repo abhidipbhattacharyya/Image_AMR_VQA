@@ -1,0 +1,33 @@
+# ::tok A man is sitting on a bench next a statue of man with dog licking his face .
+# ::node	m	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	b	bench	6-7
+# ::node	n	next-to	7-8
+# ::node	s2	statue	9-10
+# ::node	m2	man	11-12
+# ::node	h	have-03	12-13
+# ::node	d	dog	13-14
+# ::node	l	lick-01	14-15
+# ::node	f	face	16-17
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	bench	location-of	next-to	b	n	
+# ::edge	next-to	op1	statue	n	s2	
+# ::edge	statue	topic	man	s2	m2	
+# ::edge	man	ARG0-of	have-03	m2	h	
+# ::edge	have-03	ARG1	dog	h	d	
+# ::edge	dog	ARG0-of	lick-01	d	l	
+# ::edge	lick-01	ARG1	face	l	f	
+# ::edge	man	part	face	m	f	
+(s / sit-01
+    :ARG1 (m / man
+        :part (f / face))
+    :ARG2 (b / bench
+        :location-of (n / next-to
+            :op1 (s2 / statue
+                :topic (m2 / man
+                    :ARG0-of (h / have-03
+                        :ARG1 (d / dog
+                            :ARG0-of (l / lick-01
+                                :ARG1 f))))))))

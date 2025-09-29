@@ -1,0 +1,27 @@
+# ::tok the man is looking across the street , while the yellow pipes run bellow him .
+# ::node	m	man	1-2
+# ::node	l	look-01	3-4
+# ::node	a	across	4-5
+# ::node	s	street	6-7
+# ::node	y	yellow-02	10-11
+# ::node	p	pipe	11-12
+# ::node	r	run-01	12-13
+# ::node	b	boom-01	13-14
+# ::root	l	look-01
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	look-01	ARG1	across	l	a	
+# ::edge	across	op1	street	a	s	
+# ::edge	pipe	ARG1-of	yellow-02	p	y	
+# ::edge	pipe	ARG1-of	run-01	p	r	
+# ::edge	boom-01	ARG0	pipe	b	p	
+# ::edge	look-01	time	boom-01	l	b	
+# ::edge	boom-01	ARG1	man	b	m	
+(l / look-01
+    :ARG0 (m / man)
+    :ARG1 (a / across
+        :op1 (s / street))
+    :time (b / boom-01
+        :ARG0 (p / pipe
+            :ARG1-of (y / yellow-02)
+            :ARG1-of (r / run-01))
+        :ARG1 m))

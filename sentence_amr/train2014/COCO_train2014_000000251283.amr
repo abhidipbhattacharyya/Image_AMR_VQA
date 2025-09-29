@@ -1,0 +1,37 @@
+# ::tok Two aeroplanes are seen , one of which is on the ground other has just taken off .
+# ::node	2	2	0-1
+# ::node	a	airplane	1-2
+# ::node	a2	airplane	1-2
+# ::node	a3	airplane	1-2
+# ::node	s	see-01	3-4
+# ::node	i	include-91	5-6
+# ::node	i2	include-91	5-6
+# ::node	0	1	5-6
+# ::node	1	1	5-6
+# ::node	g	ground	11-12
+# ::node	j	just	14-15
+# ::node	t	take-off-19	15-16
+# ::root	s	see-01
+# ::edge	airplane	quant	2	a	2	
+# ::edge	see-01	ARG1	airplane	s	a	
+# ::edge	include-91	ARG1	airplane	i	a2	
+# ::edge	airplane	ARG2-of	include-91	a	i	
+# ::edge	include-91	ARG1	airplane	i2	a3	
+# ::edge	airplane	ARG2-of	include-91	a	i2	
+# ::edge	airplane	quant	1	a2	0	
+# ::edge	airplane	quant	1	a3	1	
+# ::edge	airplane	location	ground	a2	g	
+# ::edge	take-off-19	mod	just	t	j	
+# ::edge	airplane	ARG1-of	take-off-19	a3	t	
+(s / see-01
+    :ARG1 (a / airplane
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (a2 / airplane
+                :quant 1
+                :location (g / ground)))
+        :ARG2-of (i2 / include-91
+            :ARG1 (a3 / airplane
+                :quant 1
+                :ARG1-of (t / take-off-19
+                    :mod (j / just))))))

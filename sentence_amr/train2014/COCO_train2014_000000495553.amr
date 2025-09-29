@@ -1,0 +1,37 @@
+# ::tok A sandwich with meat , lettuce and cheese next to a glass of wine .
+# ::node	s	sandwich	1-2
+# ::node	h	have-03	2-3
+# ::node	m	meat	3-4
+# ::node	a	and	4-5
+# ::node	l	lettuce	5-6
+# ::node	c	cheese	7-8
+# ::node	n	next-to	8-9
+# ::node	v	volume-quantity	10-11
+# ::node	0	1	10-11
+# ::node	g	glass	11-12
+# ::node	w	wine	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	sandwich	ARG0-of	have-03	s	h	
+# ::edge	and	op1	meat	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	lettuce	a	l	
+# ::edge	and	op3	cheese	a	c	
+# ::edge	sandwich	location	next-to	s	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	next-to	op1	wine	n	w	
+# ::edge	event	mod	sandwich	e	s	
+(e / event
+    :mod (s / sandwich
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (m / meat)
+                :op2 (l / lettuce)
+                :op3 (c / cheese)))
+        :location (n / next-to
+            :op1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass))))))

@@ -1,0 +1,36 @@
+# ::tok A Boston terrier is dressed like a biker as it sits atop a small motorbike .
+# ::node	c	city	1-2
+# ::node	n	name	1-2
+# ::node	0	Boston	1-2
+# ::node	t	terrier	2-3
+# ::node	d	dress-01	4-5
+# ::node	p	person	7-8
+# ::node	b	bike-01	7-8
+# ::node	s	sit-01	10-11
+# ::node	a	atop	11-12
+# ::node	s2	small	13-14
+# ::node	m	motorbike	14-15
+# ::root	d	dress-01
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Boston	n	0	
+# ::edge	terrier	mod	city	t	c	
+# ::edge	dress-01	ARG1	terrier	d	t	
+# ::edge	dress-01	ARG2	person	d	p	
+# ::edge	person	ARG0-of	bike-01	p	b	
+# ::edge	dress-01	time	sit-01	d	s	
+# ::edge	sit-01	ARG1	terrier	s	t	
+# ::edge	sit-01	ARG2	atop	s	a	
+# ::edge	motorbike	mod	small	m	s2	
+# ::edge	atop	op1	motorbike	a	m	
+(d / dress-01
+    :ARG1 (t / terrier
+        :mod (c / city
+            :name (n / name
+                :op1 "Boston")))
+    :ARG2 (p / person
+        :ARG0-of (b / bike-01))
+    :time (s / sit-01
+        :ARG1 t
+        :ARG2 (a / atop
+            :op1 (m / motorbike
+                :mod (s2 / small)))))

@@ -1,0 +1,34 @@
+# ::tok Some oranges have been squeezed with a hand juicer and there are a few whole oranges left .
+# ::node	s	some	0-1
+# ::node	o	orange	1-2
+# ::node	s2	squeeze-01	4-5
+# ::node	h	hand	7-8
+# ::node	t	thing	8-9
+# ::node	j	juice	8-9
+# ::node	a	and	9-10
+# ::node	f	few	13-14
+# ::node	w	whole	14-15
+# ::node	o2	orange	15-16
+# ::node	l	leave-17	16-17
+# ::root	a	and
+# ::edge	orange	quant	some	o	s	
+# ::edge	squeeze-01	ARG1	orange	s2	o	
+# ::edge	thing	instrument	hand	t	h	
+# ::edge	squeeze-01	instrument	thing	s2	t	
+# ::edge	thing	instrument-of	juice	t	j	
+# ::edge	and	op1	squeeze-01	a	s2	
+# ::edge	orange	mod	whole	o2	w	
+# ::edge	orange	quant	few	o2	f	
+# ::edge	leave-17	ARG1	orange	l	o2	
+# ::edge	and	op2	leave-17	a	l	
+(a / and
+    :op1 (s2 / squeeze-01
+        :ARG1 (o / orange
+            :quant (s / some))
+        :instrument (t / thing
+            :instrument (h / hand)
+            :instrument-of (j / juice)))
+    :op2 (l / leave-17
+        :ARG1 (o2 / orange
+            :quant (f / few)
+            :mod (w / whole))))

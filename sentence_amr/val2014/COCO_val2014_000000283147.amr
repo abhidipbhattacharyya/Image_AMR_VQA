@@ -1,0 +1,31 @@
+# ::tok A one - way sign on Broadway street in an older part of the city .
+# ::node	o2	one-way	3-4
+# ::node	s	sign	4-5
+# ::node	n	name	6-7
+# ::node	0	Broadway	6-7
+# ::node	s2	street	7-8
+# ::node	h	have-degree-91	10-11
+# ::node	o	old	10-11
+# ::node	m	more	10-11
+# ::node	p	part	11-12
+# ::node	c	city	14-15
+# ::root	s	sign
+# ::edge	sign	mod	one-way	s	o2	
+# ::edge	name	op1	Broadway	n	0	
+# ::edge	street	name	name	s2	n	
+# ::edge	sign	location	street	s	s2	
+# ::edge	have-degree-91	ARG2	old	h	o	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	part	ARG1-of	have-degree-91	p	h	
+# ::edge	street	location	part	s2	p	
+# ::edge	part	part-of	city	p	c	
+(s / sign
+    :location (s2 / street
+        :name (n / name
+            :op1 "Broadway")
+        :location (p / part
+            :ARG1-of (h / have-degree-91
+                :ARG2 (o / old)
+                :ARG3 (m / more))
+            :part-of (c / city)))
+    :mod (o2 / one-way))

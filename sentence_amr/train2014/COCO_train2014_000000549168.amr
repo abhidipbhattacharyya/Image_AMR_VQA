@@ -1,0 +1,28 @@
+# ::tok A chopped meat sandwich topped with a slice of cheese is served with a side of fries .
+# ::node	c2	chill-01	1-2
+# ::node	m	meat	2-3
+# ::node	s	sandwich	3-4
+# ::node	t	top-01	4-5
+# ::node	s4	slice	7-8
+# ::node	c	cheese	9-10
+# ::node	s2	serve-02	11-12
+# ::node	s3	side	14-15
+# ::node	f	fry-01	16-17
+# ::root	s2	serve-02
+# ::edge	sandwich	consist-of	meat	s	m	
+# ::edge	sandwich	ARG1-of	chill-01	s	c2	
+# ::edge	sandwich	ARG1-of	top-01	s	t	
+# ::edge	top-01	ARG2	slice	t	s4	
+# ::edge	slice	consist-of	cheese	s4	c	
+# ::edge	serve-02	ARG1	sandwich	s2	s	
+# ::edge	serve-02	accompanier	side	s2	s3	
+# ::edge	side	consist-of	fry-01	s3	f	
+(s2 / serve-02
+    :ARG1 (s / sandwich
+        :ARG1-of (c2 / chill-01)
+        :ARG1-of (t / top-01
+            :ARG2 (s4 / slice
+                :consist-of (c / cheese)))
+        :consist-of (m / meat))
+    :accompanier (s3 / side
+        :consist-of (f / fry-01)))

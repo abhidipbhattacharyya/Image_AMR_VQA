@@ -1,0 +1,35 @@
+# ::tok A clock tower has two clocks on both sides of it and a porch on the side .
+# ::node	c	clock	1-2
+# ::node	t	tower	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	w	watch	5-6
+# ::node	b	both	7-8
+# ::node	s	side	8-9
+# ::node	a	and	11-12
+# ::node	p	porch	13-14
+# ::node	s2	side	16-17
+# ::root	h	have-03
+# ::edge	tower	mod	clock	t	c	
+# ::edge	have-03	ARG0	tower	h	t	
+# ::edge	watch	quant	2	w	0	
+# ::edge	side	mod	both	s	b	
+# ::edge	watch	location	side	w	s	
+# ::edge	tower	part	side	t	s	
+# ::edge	and	op1	watch	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	porch	a	p	
+# ::edge	porch	location	side	p	s2	
+# ::edge	tower	part	side	t	s2	
+(h / have-03
+    :ARG0 (t / tower
+        :mod (c / clock)
+        :part (s / side
+            :mod (b / both))
+        :part (s2 / side))
+    :ARG1 (a / and
+        :op1 (w / watch
+            :quant 2
+            :location s)
+        :op2 (p / porch
+            :location s2)))

@@ -1,0 +1,33 @@
+# ::tok Some men are sitting at a restaurant table and one is smiling .
+# ::node	s3	some	0-1
+# ::node	m	man	1-2
+# ::node	m2	man	1-2
+# ::node	s	sit-01	3-4
+# ::node	r	restaurant	6-7
+# ::node	t	table	7-8
+# ::node	a	and	8-9
+# ::node	i	include-91	9-10
+# ::node	0	1	9-10
+# ::node	s2	smile-01	11-12
+# ::root	a	and
+# ::edge	man	quant	some	m	s3	
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	table	location	restaurant	t	r	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	man	ARG1-of	include-91	m2	i	
+# ::edge	include-91	ARG2	man	i	m	
+# ::edge	man	quant	1	m2	0	
+# ::edge	and	op2	smile-01	a	s2	
+# ::edge	smile-01	ARG0	man	s2	m2	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man
+            :quant (s3 / some))
+        :ARG2 (t / table
+            :location (r / restaurant)))
+    :op2 (s2 / smile-01
+        :ARG0 (m2 / man
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 m))))

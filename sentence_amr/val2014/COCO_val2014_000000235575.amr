@@ -1,0 +1,31 @@
+# ::tok A plate of food including broccoli sitting next to a glass of ice .
+# ::node	p	plate	1-2
+# ::node	f	food	3-4
+# ::node	i2	include-01	4-5
+# ::node	b	broccoli	5-6
+# ::node	s	sit-01	6-7
+# ::node	n	next-to	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	g	glass	10-11
+# ::node	i	ice	12-13
+# ::root	s	sit-01
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	food	ARG2-of	include-01	f	i2	
+# ::edge	include-01	ARG1	broccoli	i2	b	
+# ::edge	sit-01	ARG1	plate	s	p	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	ice	quant	volume-quantity	i	v	
+# ::edge	next-to	op1	ice	n	i	
+(s / sit-01
+    :ARG1 (p / plate
+        :consist-of (f / food
+            :ARG2-of (i2 / include-01
+                :ARG1 (b / broccoli))))
+    :ARG2 (n / next-to
+        :op1 (i / ice
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (g / glass)))))

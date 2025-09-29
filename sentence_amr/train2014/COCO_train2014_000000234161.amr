@@ -1,0 +1,40 @@
+# ::tok A bathroom has a single mirror beneath two pairs of lights and over a pair of sinks .
+# ::node	b	bathroom	1-2
+# ::node	h	have-03	2-3
+# ::node	s	single-02	4-5
+# ::node	m	mirror	5-6
+# ::node	b2	beneath	6-7
+# ::node	1	2	7-8
+# ::node	p2	pair-01	8-9
+# ::node	l	light	10-11
+# ::node	a	and	11-12
+# ::node	o	over	12-13
+# ::node	0	1	13-14
+# ::node	p	pair	14-15
+# ::node	s2	sink-01	16-17
+# ::root	h	have-03
+# ::edge	have-03	ARG0	bathroom	h	b	
+# ::edge	mirror	ARG1-of	single-02	m	s	
+# ::edge	have-03	ARG1	mirror	h	m	
+# ::edge	pair-01	quant	2	p2	1	
+# ::edge	light	ARG1-of	pair-01	l	p2	
+# ::edge	beneath	op1	light	b2	l	
+# ::edge	and	op1	beneath	a	b2	
+# ::edge	mirror	location	and	m	a	
+# ::edge	and	op2	over	a	o	
+# ::edge	pair	quant	1	p	0	
+# ::edge	sink-01	quant	pair	s2	p	
+# ::edge	over	op1	sink-01	o	s2	
+(h / have-03
+    :ARG0 (b / bathroom)
+    :ARG1 (m / mirror
+        :ARG1-of (s / single-02)
+        :location (a / and
+            :op1 (b2 / beneath
+                :op1 (l / light
+                    :ARG1-of (p2 / pair-01
+                        :quant 2)))
+            :op2 (o / over
+                :op1 (s2 / sink-01
+                    :quant (p / pair
+                        :quant 1))))))

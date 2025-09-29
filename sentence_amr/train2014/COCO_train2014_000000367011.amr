@@ -1,0 +1,39 @@
+# ::tok A set of train tracks with a red train on it that is pulling several train cars , and proceeding under an overpass .
+# ::node	s	set	1-2
+# ::node	t	track	4-5
+# ::node	h	have-03	5-6
+# ::node	r	red-02	7-8
+# ::node	t2	train	8-9
+# ::node	p2	pull-01	13-14
+# ::node	s2	several	14-15
+# ::node	t3	train	15-16
+# ::node	c	car	16-17
+# ::node	p	proceed-01	19-20
+# ::node	u	under	20-21
+# ::node	o	overpass	22-23
+# ::root	s	set
+# ::edge	set	consist-of	track	s	t	
+# ::edge	set	ARG0-of	have-03	s	h	
+# ::edge	train	ARG1-of	red-02	t2	r	
+# ::edge	have-03	ARG1	train	h	t2	
+# ::edge	train	ARG0-of	pull-01	t2	p2	
+# ::edge	track	mod	train	t	t3	
+# ::edge	car	mod	train	c	t3	
+# ::edge	car	quant	several	c	s2	
+# ::edge	pull-01	ARG1	car	p2	c	
+# ::edge	train	ARG0-of	proceed-01	t2	p	
+# ::edge	proceed-01	path	under	p	u	
+# ::edge	under	op1	overpass	u	o	
+(s / set
+    :ARG0-of (h / have-03
+        :ARG1 (t2 / train
+            :ARG0-of (p2 / pull-01
+                :ARG1 (c / car
+                    :quant (s2 / several)
+                    :mod (t3 / train)))
+            :ARG0-of (p / proceed-01
+                :path (u / under
+                    :op1 (o / overpass)))
+            :ARG1-of (r / red-02)))
+    :consist-of (t / track
+        :mod t3))

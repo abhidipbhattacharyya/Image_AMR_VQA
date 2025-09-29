@@ -1,0 +1,46 @@
+# ::tok A cat figurine , a coffee mug on a plate , a bowl with an orange in it and a dog figurine , all sitting on a tile floor .
+# ::node	c	cat	1-2
+# ::node	f	figurine	2-3
+# ::node	c2	coffee	5-6
+# ::node	m	mug	6-7
+# ::node	p	plate	9-10
+# ::node	b	bowl	12-13
+# ::node	h	have-03	13-14
+# ::node	o	orange	15-16
+# ::node	a2	and	18-19
+# ::node	d	dog	20-21
+# ::node	f2	figurine	21-22
+# ::node	a	all	23-24
+# ::node	s	sit-01	24-25
+# ::node	t	tile	27-28
+# ::node	f3	floor	28-29
+# ::root	s	sit-01
+# ::edge	figurine	mod	cat	f	c	
+# ::edge	mug	mod	coffee	m	c2	
+# ::edge	mug	location	plate	m	p	
+# ::edge	bowl	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	orange	h	o	
+# ::edge	and	op3	bowl	a2	b	
+# ::edge	and	op2	mug	a2	m	
+# ::edge	and	op1	figurine	a2	f	
+# ::edge	figurine	mod	dog	f2	d	
+# ::edge	and	op4	figurine	a2	f2	
+# ::edge	and	mod	all	a2	a	
+# ::edge	sit-01	ARG1	and	s	a2	
+# ::edge	floor	consist-of	tile	f3	t	
+# ::edge	sit-01	ARG2	floor	s	f3	
+(s / sit-01
+    :ARG1 (a2 / and
+        :mod (a / all)
+        :op1 (f / figurine
+            :mod (c / cat))
+        :op2 (m / mug
+            :location (p / plate)
+            :mod (c2 / coffee))
+        :op3 (b / bowl
+            :ARG0-of (h / have-03
+                :ARG1 (o / orange)))
+        :op4 (f2 / figurine
+            :mod (d / dog)))
+    :ARG2 (f3 / floor
+        :consist-of (t / tile)))

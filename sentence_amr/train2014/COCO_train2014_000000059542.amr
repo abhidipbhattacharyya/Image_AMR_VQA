@@ -1,0 +1,31 @@
+# ::tok Each of the players on the field are wearing different colored jerseys .
+# ::node	e2	each	0-1
+# ::node	i	include-91	1-2
+# ::node	p	person	3-4
+# ::node	p2	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	f	field	6-7
+# ::node	w	wear-01	8-9
+# ::node	d	differ-02	9-10
+# ::node	c	color-01	10-11
+# ::node	e	Jersey	11-12
+# ::root	w	wear-01
+# ::edge	person	ARG1-of	include-91	p	i	
+# ::edge	person	mod	each	p	e2	
+# ::edge	include-91	ARG2	person	i	p2	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	person	location	field	p2	f	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	Jersey	ARG1-of	color-01	e	c	
+# ::edge	Jersey	ARG1-of	differ-02	e	d	
+# ::edge	wear-01	ARG1	Jersey	w	e	
+(w / wear-01
+    :ARG0 (p / person
+        :ARG1-of (i / include-91
+            :ARG2 (p2 / person
+                :ARG0-of (p3 / play-01)
+                :location (f / field)))
+        :mod (e2 / each))
+    :ARG1 (e / Jersey
+        :ARG1-of (c / color-01)
+        :ARG1-of (d / differ-02)))

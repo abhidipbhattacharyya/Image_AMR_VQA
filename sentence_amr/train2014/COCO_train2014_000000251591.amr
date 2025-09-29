@@ -1,0 +1,34 @@
+# ::tok A fire hydrant next to a rolled up fire hose sealed in glass fronted holder .
+# ::node	f	fire	1-2
+# ::node	h3	hydrant	2-3
+# ::node	n	next-to	3-4
+# ::node	r	roll-01	6-7
+# ::node	f2	fire	8-9
+# ::node	h2	hose	9-10
+# ::node	s	seal-01	10-11
+# ::node	g	glass	12-13
+# ::node	i	in-front-of	13-14
+# ::node	h	holder	14-15
+# ::node	e	event	15-16
+# ::root	e	event
+# ::edge	hydrant	mod	fire	h3	f	
+# ::edge	hydrant	location	next-to	h3	n	
+# ::edge	hose	purpose	fire	h2	f2	
+# ::edge	hose	ARG1-of	roll-01	h2	r	
+# ::edge	next-to	op1	hose	n	h2	
+# ::edge	hose	ARG1-of	seal-01	h2	s	
+# ::edge	in-front-of	part	glass	i	g	
+# ::edge	holder	location	in-front-of	h	i	
+# ::edge	seal-01	location	holder	s	h	
+# ::edge	event	mod	hydrant	e	h3	
+(e / event
+    :mod (h3 / hydrant
+        :location (n / next-to
+            :op1 (h2 / hose
+                :purpose (f2 / fire)
+                :ARG1-of (r / roll-01)
+                :ARG1-of (s / seal-01
+                    :location (h / holder
+                        :location (i / in-front-of
+                            :part (g / glass))))))
+        :mod (f / fire)))

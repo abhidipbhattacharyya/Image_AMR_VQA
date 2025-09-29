@@ -1,0 +1,28 @@
+# ::tok A quiet intersection devoid of pedestrian or motor traffic .
+# ::node	q	quiet-04	1-2
+# ::node	i	intersect-01	2-3
+# ::node	l	lack-01	3-4
+# ::node	p	person	5-6
+# ::node	w	walk-01	5-6
+# ::node	o	or	6-7
+# ::node	m	motor	7-8
+# ::node	t	traffic	8-9
+# ::node	t2	traffic	8-9
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1-of	quiet-04	i	q	
+# ::edge	intersect-01	ARG1-of	lack-01	i	l	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	lack-01	ARG0	or	l	o	
+# ::edge	or	op1	traffic	o	t	
+# ::edge	traffic	mod	person	t	p	
+# ::edge	traffic	mod	motor	t2	m	
+# ::edge	or	op2	traffic	o	t2	
+(i / intersect-01
+    :ARG1-of (q / quiet-04)
+    :ARG1-of (l / lack-01
+        :ARG0 (o / or
+            :op1 (t / traffic
+                :mod (p / person
+                    :ARG0-of (w / walk-01)))
+            :op2 (t2 / traffic
+                :mod (m / motor)))))

@@ -1,0 +1,37 @@
+# ::tok A yellow and blue Alaska train is sitting on a railroad beside a fence .
+# ::node	y	yellow-02	1-2
+# ::node	a	and	2-3
+# ::node	b2	blue	3-4
+# ::node	s2	state	4-5
+# ::node	n	name	4-5
+# ::node	0	Alaska	4-5
+# ::node	t	train	5-6
+# ::node	t2	train	5-6
+# ::node	s	sit-01	7-8
+# ::node	r	railroad	10-11
+# ::node	b	beside	11-12
+# ::node	f	fence	13-14
+# ::root	s	sit-01
+# ::edge	state	name	name	s2	n	
+# ::edge	name	op1	Alaska	n	0	
+# ::edge	state	op1	train	s2	t	
+# ::edge	train	ARG1-of	yellow-02	t	y	
+# ::edge	train	mod	state	t2	s2	
+# ::edge	train	mod	blue	t2	b2	
+# ::edge	and	op2	train	a	t2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	railroad	s	r	
+# ::edge	railroad	location	beside	r	b	
+# ::edge	beside	op1	fence	b	f	
+(s / sit-01
+    :ARG1 (a / and
+        :op2 (t2 / train
+            :mod (s2 / state
+                :name (n / name
+                    :op1 "Alaska")
+                :op1 (t / train
+                    :ARG1-of (y / yellow-02)))
+            :mod (b2 / blue)))
+    :ARG2 (r / railroad
+        :location (b / beside
+            :op1 (f / fence))))

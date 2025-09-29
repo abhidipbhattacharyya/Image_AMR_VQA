@@ -1,0 +1,34 @@
+# ::tok Riders rest on a travel box beside a motorcycle that appears to be packed for a long trip .
+# ::node	p2	person	0-1
+# ::node	r2	ride-01	0-1
+# ::node	r	rest-01	1-2
+# ::node	t	travel-01	4-5
+# ::node	b2	box	5-6
+# ::node	b	beside	6-7
+# ::node	m	motorcycle	8-9
+# ::node	a	appear-02	10-11
+# ::node	p	pack-01	13-14
+# ::node	l	long-03	16-17
+# ::node	t2	trip-03	17-18
+# ::root	r	rest-01
+# ::edge	person	ARG0-of	ride-01	p2	r2	
+# ::edge	rest-01	ARG1	person	r	p2	
+# ::edge	box	mod	travel-01	b2	t	
+# ::edge	rest-01	ARG2	box	r	b2	
+# ::edge	box	location	beside	b2	b	
+# ::edge	beside	op1	motorcycle	b	m	
+# ::edge	motorcycle	ARG1-of	appear-02	m	a	
+# ::edge	motorcycle	ARG1-of	pack-01	m	p	
+# ::edge	trip-03	ARG1-of	long-03	t2	l	
+# ::edge	pack-01	purpose	trip-03	p	t2	
+(r / rest-01
+    :ARG1 (p2 / person
+        :ARG0-of (r2 / ride-01))
+    :ARG2 (b2 / box
+        :location (b / beside
+            :op1 (m / motorcycle
+                :ARG1-of (a / appear-02)
+                :ARG1-of (p / pack-01
+                    :purpose (t2 / trip-03
+                        :ARG1-of (l / long-03)))))
+        :mod (t / travel-01)))

@@ -1,0 +1,58 @@
+# ::tok Cows dot a fenced in area of dry , yellow grass bracketed by more dried up vegetation in the foreground and naked trees in the distance .
+# ::node	c	cow	0-1
+# ::node	d2	dot-01	1-2
+# ::node	m	market	3-4
+# ::node	n2	name	3-4
+# ::node	0	BF	3-4
+# ::node	a2	area	5-6
+# ::node	d4	dry-08	7-8
+# ::node	y	yellow-02	9-10
+# ::node	g	grass	10-11
+# ::node	l	line-01	11-12
+# ::node	h	have-quant-91	13-14
+# ::node	m2	more	13-14
+# ::node	d3	dry-02	14-15
+# ::node	v	vegetation	16-17
+# ::node	f	foreground	19-20
+# ::node	a	and	20-21
+# ::node	n	naked	21-22
+# ::node	t	tree	22-23
+# ::node	d	distance	25-26
+# ::root	d2	dot-01
+# ::edge	dot-01	ARG0	cow	d2	c	
+# ::edge	market	name	name	m	n2	
+# ::edge	name	op1	BF	n2	0	
+# ::edge	area	location	market	a2	m	
+# ::edge	dot-01	ARG1	area	d2	a2	
+# ::edge	grass	ARG1-of	yellow-02	g	y	
+# ::edge	grass	ARG1-of	dry-08	g	d4	
+# ::edge	area	consist-of	grass	a2	g	
+# ::edge	area	ARG1-of	line-01	a2	l	
+# ::edge	have-quant-91	ARG3	more	h	m2	
+# ::edge	vegetation	ARG1-of	dry-02	v	d3	
+# ::edge	vegetation	ARG1-of	have-quant-91	v	h	
+# ::edge	vegetation	location	foreground	v	f	
+# ::edge	and	op1	vegetation	a	v	
+# ::edge	line-01	ARG2	and	l	a	
+# ::edge	tree	mod	naked	t	n	
+# ::edge	and	op2	tree	a	t	
+# ::edge	tree	location	distance	t	d	
+(d2 / dot-01
+    :ARG0 (c / cow)
+    :ARG1 (a2 / area
+        :ARG1-of (l / line-01
+            :ARG2 (a / and
+                :op1 (v / vegetation
+                    :ARG1-of (d3 / dry-02)
+                    :ARG1-of (h / have-quant-91
+                        :ARG3 (m2 / more))
+                    :location (f / foreground))
+                :op2 (t / tree
+                    :location (d / distance)
+                    :mod (n / naked))))
+        :consist-of (g / grass
+            :ARG1-of (y / yellow-02)
+            :ARG1-of (d4 / dry-08))
+        :location (m / market
+            :name (n2 / name
+                :op1 "BF"))))

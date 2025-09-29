@@ -1,0 +1,28 @@
+# ::tok A blackbird on one of two chairs on a dock surrounded by water .
+# ::node	b	blackbird	1-2
+# ::node	0	1	3-4
+# ::node	i	include-91	4-5
+# ::node	1	2	5-6
+# ::node	c	chair	6-7
+# ::node	c2	chair	6-7
+# ::node	d	dock	9-10
+# ::node	s	surround-01	10-11
+# ::node	w	water	12-13
+# ::root	s	surround-01
+# ::edge	chair	ARG1-of	include-91	c	i	
+# ::edge	chair	quant	1	c	0	
+# ::edge	blackbird	location	chair	b	c	
+# ::edge	chair	quant	2	c2	1	
+# ::edge	include-91	ARG2	chair	i	c2	
+# ::edge	chair	location	dock	c2	d	
+# ::edge	surround-01	ARG2	blackbird	s	b	
+# ::edge	surround-01	ARG1	water	s	w	
+(s / surround-01
+    :ARG1 (w / water)
+    :ARG2 (b / blackbird
+        :location (c / chair
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 (c2 / chair
+                    :quant 2
+                    :location (d / dock))))))

@@ -1,0 +1,31 @@
+# ::tok A row of wall mounted urinals with a painting of Jesus above them .
+# ::node	r	row	1-2
+# ::node	w	wall	3-4
+# ::node	m	mount-03	4-5
+# ::node	u	urinal	5-6
+# ::node	p	paint-02	8-9
+# ::node	p2	person	10-11
+# ::node	n	name	10-11
+# ::node	0	Jesus	10-11
+# ::node	a	above	11-12
+# ::node	t	thing	13-14
+# ::root	t	thing
+# ::edge	mount-03	location	wall	m	w	
+# ::edge	urinal	ARG1-of	mount-03	u	m	
+# ::edge	urinal	quant	row	u	r	
+# ::edge	paint-02	ARG1	person	p	p2	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Jesus	n	0	
+# ::edge	above	op1	urinal	a	u	
+# ::edge	thing	location	above	t	a	
+# ::edge	thing	ARG2-of	paint-02	t	p	
+(t / thing
+    :ARG2-of (p / paint-02
+        :ARG1 (p2 / person
+            :name (n / name
+                :op1 "Jesus")))
+    :location (a / above
+        :op1 (u / urinal
+            :quant (r / row)
+            :ARG1-of (m / mount-03
+                :location (w / wall)))))

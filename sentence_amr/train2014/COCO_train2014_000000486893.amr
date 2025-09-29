@@ -1,0 +1,25 @@
+# ::tok Multiple train tracks outside a station with wires overhead .
+# ::node	m	multiple	0-1
+# ::node	t2	train	1-2
+# ::node	t	track	2-3
+# ::node	o	outside	3-4
+# ::node	s	station	5-6
+# ::node	h	have-03	6-7
+# ::node	w	wire	7-8
+# ::node	o2	overhead	8-9
+# ::root	t	track
+# ::edge	track	purpose	train	t	t2	
+# ::edge	track	quant	multiple	t	m	
+# ::edge	track	location	outside	t	o	
+# ::edge	outside	op1	station	o	s	
+# ::edge	track	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	wire	h	w	
+# ::edge	wire	location	overhead	w	o2	
+(t / track
+    :purpose (t2 / train)
+    :quant (m / multiple)
+    :ARG0-of (h / have-03
+        :ARG1 (w / wire
+            :location (o2 / overhead)))
+    :location (o / outside
+        :op1 (s / station)))

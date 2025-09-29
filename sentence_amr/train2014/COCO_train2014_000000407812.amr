@@ -1,0 +1,32 @@
+# ::tok A bus sitting in the middle of a road , with a red bus behind it .
+# ::node	b2	bus	1-2
+# ::node	s	sit-01	2-3
+# ::node	m	middle	5-6
+# ::node	r2	road	8-9
+# ::node	a	and	9-10
+# ::node	h	have-03	10-11
+# ::node	r	red-02	12-13
+# ::node	b3	bus	13-14
+# ::node	b	behind	14-15
+# ::root	a	and
+# ::edge	sit-01	ARG1	bus	s	b2	
+# ::edge	sit-01	ARG2	middle	s	m	
+# ::edge	middle	part-of	road	m	r2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG0	bus	h	b2	
+# ::edge	bus	ARG1-of	red-02	b3	r	
+# ::edge	have-03	ARG1	bus	h	b3	
+# ::edge	bus	location	behind	b3	b	
+# ::edge	behind	op1	bus	b	b2	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (b2 / bus)
+        :ARG2 (m / middle
+            :part-of (r2 / road)))
+    :op2 (h / have-03
+        :ARG0 b2
+        :ARG1 (b3 / bus
+            :ARG1-of (r / red-02)
+            :location (b / behind
+                :op1 b2))))

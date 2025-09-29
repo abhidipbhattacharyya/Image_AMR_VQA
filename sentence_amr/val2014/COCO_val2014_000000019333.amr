@@ -1,0 +1,62 @@
+# ::tok Items from a green tote sit on the floor and include a cell phone , an Ipod , a green folder , keys , pens and a few other items .
+# ::node	i2	item	0-1
+# ::node	g	green-02	3-4
+# ::node	t	tote	4-5
+# ::node	s	sit-01	5-6
+# ::node	f2	floor	8-9
+# ::node	a	and	9-10
+# ::node	i	include-01	10-11
+# ::node	c	cell	12-13
+# ::node	p	phone	13-14
+# ::node	a2	and	14-15
+# ::node	p3	product	16-17
+# ::node	n	name	16-17
+# ::node	0	Ipod	16-17
+# ::node	f3	folder	20-21
+# ::node	k	key	22-23
+# ::node	p2	pin	24-25
+# ::node	f	few	27-28
+# ::node	o	other	28-29
+# ::node	i3	item	29-30
+# ::root	a	and
+# ::edge	tote	ARG1-of	green-02	t	g	
+# ::edge	item	source	tote	i2	t	
+# ::edge	sit-01	ARG1	item	s	i2	
+# ::edge	sit-01	ARG2	floor	s	f2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	include-01	a	i	
+# ::edge	include-01	ARG2	item	i	i2	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	and	op1	phone	a2	p	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op2	product	a2	p3	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Ipod	n	0	
+# ::edge	and	op3	folder	a2	f3	
+# ::edge	green-02	ARG1	folder	g	f3	
+# ::edge	and	op4	key	a2	k	
+# ::edge	and	op5	pin	a2	p2	
+# ::edge	item	mod	other	i3	o	
+# ::edge	item	quant	few	i3	f	
+# ::edge	and	op6	item	a2	i3	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (i2 / item
+            :source (t / tote
+                :ARG1-of (g / green-02
+                    :ARG1 (f3 / folder))))
+        :ARG2 (f2 / floor))
+    :op2 (i / include-01
+        :ARG1 (a2 / and
+            :op1 (p / phone
+                :mod (c / cell))
+            :op2 (p3 / product
+                :name (n / name
+                    :op1 "Ipod"))
+            :op3 f3
+            :op4 (k / key)
+            :op5 (p2 / pin)
+            :op6 (i3 / item
+                :quant (f / few)
+                :mod (o / other)))
+        :ARG2 i2))

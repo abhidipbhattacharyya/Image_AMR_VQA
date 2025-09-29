@@ -1,0 +1,28 @@
+# ::tok A train station where a train is passing through and there is only one person walking .
+# ::node	t	train	1-2
+# ::node	s	station	2-3
+# ::node	t2	train	5-6
+# ::node	p	pass-03	7-8
+# ::node	a	and	9-10
+# ::node	o	only	12-13
+# ::node	0	1	13-14
+# ::node	p2	person	14-15
+# ::node	w	walk-01	15-16
+# ::root	s	station
+# ::edge	station	mod	train	s	t	
+# ::edge	pass-03	ARG1	train	p	t2	
+# ::edge	and	op1	pass-03	a	p	
+# ::edge	station	location-of	and	s	a	
+# ::edge	person	quant	1	p2	0	
+# ::edge	person	mod	only	p2	o	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	and	op2	walk-01	a	w	
+(s / station
+    :location-of (a / and
+        :op1 (p / pass-03
+            :ARG1 (t2 / train))
+        :op2 (w / walk-01
+            :ARG0 (p2 / person
+                :quant 1
+                :mod (o / only))))
+    :mod (t / train))

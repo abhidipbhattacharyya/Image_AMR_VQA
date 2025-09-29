@@ -1,0 +1,25 @@
+# ::tok Directional signs displayed outside of city building on cloudy day .
+# ::node	d2	direct-01	0-1
+# ::node	s	sign	1-2
+# ::node	d3	display-01	2-3
+# ::node	o	outside	3-4
+# ::node	c	city	5-6
+# ::node	b	building	6-7
+# ::node	c2	cloudy-02	8-9
+# ::node	d	day	9-10
+# ::root	d3	display-01
+# ::edge	sign	ARG0-of	direct-01	s	d2	
+# ::edge	display-01	ARG1	sign	d3	s	
+# ::edge	display-01	ARG2	outside	d3	o	
+# ::edge	building	mod	city	b	c	
+# ::edge	outside	op1	building	o	b	
+# ::edge	day	ARG1-of	cloudy-02	d	c2	
+# ::edge	display-01	time	day	d3	d	
+(d3 / display-01
+    :ARG1 (s / sign
+        :ARG0-of (d2 / direct-01))
+    :ARG2 (o / outside
+        :op1 (b / building
+            :mod (c / city)))
+    :time (d / day
+        :ARG1-of (c2 / cloudy-02)))

@@ -1,0 +1,36 @@
+# ::tok One man drives a machine over water while another hangs on the back .
+# ::node	o	one	0-1
+# ::node	m2	man	1-2
+# ::node	m3	man	1-2
+# ::node	d	drive-01	2-3
+# ::node	m	machine	4-5
+# ::node	o2	over	5-6
+# ::node	w	water	6-7
+# ::node	c	contrast-01	7-8
+# ::node	a	another	8-9
+# ::node	h	hang-01	9-10
+# ::node	b	back	12-13
+# ::root	c	contrast-01
+# ::edge	man	mod	one	m2	o	
+# ::edge	drive-01	ARG0	man	d	m2	
+# ::edge	drive-01	ARG1	machine	d	m	
+# ::edge	drive-01	path	over	d	o2	
+# ::edge	over	op1	water	o2	w	
+# ::edge	contrast-01	ARG1	drive-01	c	d	
+# ::edge	man	mod	another	m3	a	
+# ::edge	contrast-01	ARG2	hang-01	c	h	
+# ::edge	hang-01	ARG1	man	h	m3	
+# ::edge	hang-01	ARG2	back	h	b	
+# ::edge	machine	part	back	m	b	
+(c / contrast-01
+    :ARG1 (d / drive-01
+        :ARG0 (m2 / man
+            :mod (o / one))
+        :ARG1 (m / machine
+            :part (b / back))
+        :path (o2 / over
+            :op1 (w / water)))
+    :ARG2 (h / hang-01
+        :ARG1 (m3 / man
+            :mod (a / another))
+        :ARG2 b))

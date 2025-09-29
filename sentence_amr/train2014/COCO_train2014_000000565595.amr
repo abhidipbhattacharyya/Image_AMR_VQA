@@ -1,0 +1,39 @@
+# ::tok A man sits in a chair and watches another person play with a Nintendo Wii .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	c	chair	5-6
+# ::node	a	and	6-7
+# ::node	w	watch-01	7-8
+# ::node	a2	another	8-9
+# ::node	p	person	9-10
+# ::node	p2	play-01	10-11
+# ::node	0	Nintendo	13-14
+# ::node	p3	product	14-15
+# ::node	n	name	14-15
+# ::node	1	Wii	14-15
+# ::root	a	and
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	watch-01	a	w	
+# ::edge	watch-01	ARG0	man	w	m	
+# ::edge	person	mod	another	p	a2	
+# ::edge	play-01	ARG0	person	p2	p	
+# ::edge	watch-01	ARG1	play-01	w	p2	
+# ::edge	play-01	ARG2	product	p2	p3	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Nintendo	n	0	
+# ::edge	name	op2	Wii	n	1	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (m / man)
+        :ARG2 (c / chair))
+    :op2 (w / watch-01
+        :ARG0 m
+        :ARG1 (p2 / play-01
+            :ARG0 (p / person
+                :mod (a2 / another))
+            :ARG2 (p3 / product
+                :name (n / name
+                    :op1 "Nintendo"
+                    :op2 "Wii")))))

@@ -1,0 +1,25 @@
+# ::tok A number of vehicles in a busy road with traffic lights in a city
+# ::node	n	number	1-2
+# ::node	v	vehicle	3-4
+# ::node	b	busy-02	6-7
+# ::node	r	road	7-8
+# ::node	h	have-03	8-9
+# ::node	t	traffic	9-10
+# ::node	l	light	10-11
+# ::node	c	city	13-14
+# ::root	v	vehicle
+# ::edge	vehicle	quant	number	v	n	
+# ::edge	road	ARG1-of	busy-02	r	b	
+# ::edge	vehicle	location	road	v	r	
+# ::edge	road	ARG0-of	have-03	r	h	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	have-03	ARG1	light	h	l	
+# ::edge	vehicle	location	city	v	c	
+(v / vehicle
+    :quant (n / number)
+    :location (r / road
+        :ARG0-of (h / have-03
+            :ARG1 (l / light
+                :mod (t / traffic)))
+        :ARG1-of (b / busy-02))
+    :location (c / city))

@@ -1,0 +1,40 @@
+# ::tok Big Ben in London is seen at twilight next to a traffic light .
+# ::node	1	Big	0-1
+# ::node	b	building	1-2
+# ::node	n	name	1-2
+# ::node	0	Ben	1-2
+# ::node	c	city	3-4
+# ::node	n2	name	3-4
+# ::node	2	London	3-4
+# ::node	s	see-01	5-6
+# ::node	d	date-entity	7-8
+# ::node	t2	twilight	7-8
+# ::node	n3	next-to	8-9
+# ::node	t	traffic	11-12
+# ::node	l	light	12-13
+# ::root	s	see-01
+# ::edge	building	name	name	b	n	
+# ::edge	name	op1	Big	n	1	
+# ::edge	name	op2	Ben	n	0	
+# ::edge	building	location	city	b	c	
+# ::edge	city	name	name	c	n2	
+# ::edge	name	op1	London	n2	2	
+# ::edge	see-01	ARG1	building	s	b	
+# ::edge	see-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	twilight	d	t2	
+# ::edge	see-01	location	next-to	s	n3	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	next-to	op1	light	n3	l	
+(s / see-01
+    :ARG1 (b / building
+        :name (n / name
+            :op1 "Big"
+            :op2 "Ben")
+        :location (c / city
+            :name (n2 / name
+                :op1 "London")))
+    :location (n3 / next-to
+        :op1 (l / light
+            :mod (t / traffic)))
+    :time (d / date-entity
+        :dayperiod (t2 / twilight)))

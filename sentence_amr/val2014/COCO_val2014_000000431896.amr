@@ -1,0 +1,29 @@
+# ::tok The train has it 's headlights on and is ready to leave the station .
+# ::node	t	train	1-2
+# ::node	l2	light	5-6
+# ::node	f	face	5-6
+# ::node	o	on-01	6-7
+# ::node	a	and	7-8
+# ::node	r	ready-02	9-10
+# ::node	l	leave-11	11-12
+# ::node	s	station	13-14
+# ::root	a	and
+# ::edge	train	part	light	t	l2	
+# ::edge	light	part	face	l2	f	
+# ::edge	on-01	ARG1	light	o	l2	
+# ::edge	and	op1	on-01	a	o	
+# ::edge	and	op2	ready-02	a	r	
+# ::edge	ready-02	ARG1	train	r	t	
+# ::edge	ready-02	ARG2	leave-11	r	l	
+# ::edge	leave-11	ARG0	train	l	t	
+# ::edge	leave-11	ARG1	station	l	s	
+(a / and
+    :op1 (o / on-01
+        :ARG1 (l2 / light
+            :part (f / face)))
+    :op2 (r / ready-02
+        :ARG1 (t / train
+            :part l2)
+        :ARG2 (l / leave-11
+            :ARG0 t
+            :ARG1 (s / station))))

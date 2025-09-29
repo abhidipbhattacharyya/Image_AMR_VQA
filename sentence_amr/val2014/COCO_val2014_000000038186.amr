@@ -1,0 +1,49 @@
+# ::tok a city street with parking meters and one old pickup truck parked in the background a building with a gold dome
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	h	have-03	3-4
+# ::node	p	park-01	4-5
+# ::node	m	meter	5-6
+# ::node	a	and	6-7
+# ::node	0	1	7-8
+# ::node	o	old	8-9
+# ::node	p3	pickup	9-10
+# ::node	t	truck	10-11
+# ::node	p2	park-01	11-12
+# ::node	b	background	14-15
+# ::node	b2	building	16-17
+# ::node	h2	have-03	17-18
+# ::node	g	gold	19-20
+# ::node	d	dome	20-21
+# ::root	a	and
+# ::edge	street	mod	city	s	c	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	meter	purpose	park-01	m	p	
+# ::edge	have-03	ARG1	meter	h	m	
+# ::edge	and	op1	street	a	s	
+# ::edge	truck	mod	pickup	t	p3	
+# ::edge	truck	mod	old	t	o	
+# ::edge	truck	quant	1	t	0	
+# ::edge	and	op2	truck	a	t	
+# ::edge	truck	ARG1-of	park-01	t	p2	
+# ::edge	park-01	location	background	p2	b	
+# ::edge	and	op3	building	a	b2	
+# ::edge	building	ARG0-of	have-03	b2	h2	
+# ::edge	dome	consist-of	gold	d	g	
+# ::edge	have-03	ARG1	dome	h2	d	
+(a / and
+    :op1 (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (m / meter
+                :purpose (p / park-01)))
+        :mod (c / city))
+    :op2 (t / truck
+        :quant 1
+        :ARG1-of (p2 / park-01
+            :location (b / background))
+        :mod (p3 / pickup)
+        :mod (o / old))
+    :op3 (b2 / building
+        :ARG0-of (h2 / have-03
+            :ARG1 (d / dome
+                :consist-of (g / gold)))))

@@ -1,0 +1,31 @@
+# ::tok A brown cow in a field of grass near two red barns .
+# ::node	b	brown-01	1-2
+# ::node	c	cow	2-3
+# ::node	f	field	5-6
+# ::node	g	grass	7-8
+# ::node	n2	near-02	8-9
+# ::node	0	2	9-10
+# ::node	r	red-02	10-11
+# ::node	b2	building	11-12
+# ::node	n	name	11-12
+# ::node	1	Barnes	11-12
+# ::root	c	cow
+# ::edge	cow	ARG1-of	brown-01	c	b	
+# ::edge	cow	location	field	c	f	
+# ::edge	field	consist-of	grass	f	g	
+# ::edge	field	ARG1-of	near-02	f	n2	
+# ::edge	building	ARG1-of	red-02	b2	r	
+# ::edge	building	quant	2	b2	0	
+# ::edge	near-02	ARG2	building	n2	b2	
+# ::edge	building	name	name	b2	n	
+# ::edge	name	op1	Barnes	n	1	
+(c / cow
+    :ARG1-of (b / brown-01)
+    :location (f / field
+        :ARG1-of (n2 / near-02
+            :ARG2 (b2 / building
+                :name (n / name
+                    :op1 "Barnes")
+                :quant 2
+                :ARG1-of (r / red-02)))
+        :consist-of (g / grass)))

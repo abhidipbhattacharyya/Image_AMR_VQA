@@ -1,0 +1,37 @@
+# ::tok You will not get anywhere if you open these doors and try to pass through .
+# ::node	y	you	0-1
+# ::node	0	-	2-3
+# ::node	g	get-05	3-4
+# ::node	a2	anywhere	4-5
+# ::node	o	open-01	7-8
+# ::node	t	this	8-9
+# ::node	d	door	9-10
+# ::node	a	and	10-11
+# ::node	t2	try-01	11-12
+# ::node	p	pass-03	13-14
+# ::root	g	get-05
+# ::edge	get-05	polarity	-	g	0	
+# ::edge	get-05	ARG1	you	g	y	
+# ::edge	get-05	ARG2	anywhere	g	a2	
+# ::edge	open-01	ARG0	you	o	y	
+# ::edge	door	mod	this	d	t	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	and	op1	open-01	a	o	
+# ::edge	get-05	condition	and	g	a	
+# ::edge	and	op2	try-01	a	t2	
+# ::edge	try-01	ARG0	you	t2	y	
+# ::edge	try-01	ARG1	pass-03	t2	p	
+# ::edge	pass-03	ARG1	door	p	d	
+(g / get-05
+    :ARG1 (y / you)
+    :ARG2 (a2 / anywhere)
+    :condition (a / and
+        :op1 (o / open-01
+            :ARG0 y
+            :ARG1 (d / door
+                :mod (t / this)))
+        :op2 (t2 / try-01
+            :ARG0 y
+            :ARG1 (p / pass-03
+                :ARG1 d)))
+    :polarity -)

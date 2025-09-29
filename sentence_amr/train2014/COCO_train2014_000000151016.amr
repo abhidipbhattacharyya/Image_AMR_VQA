@@ -1,0 +1,24 @@
+# ::tok Someone starting to cut slices of several cakes on a table .
+# ::node	s3	someone	0-1
+# ::node	s4	start-01	1-2
+# ::node	c2	cut-01	3-4
+# ::node	s2	slice	4-5
+# ::node	s	several	6-7
+# ::node	c	cake	7-8
+# ::node	t	table	10-11
+# ::root	s4	start-01
+# ::edge	start-01	ARG0	someone	s4	s3	
+# ::edge	start-01	ARG1	cut-01	s4	c2	
+# ::edge	cut-01	ARG0	someone	c2	s3	
+# ::edge	cut-01	ARG1	slice	c2	s2	
+# ::edge	cake	quant	several	c	s	
+# ::edge	slice	part-of	cake	s2	c	
+# ::edge	cut-01	location	table	c2	t	
+(s4 / start-01
+    :ARG0 (s3 / someone)
+    :ARG1 (c2 / cut-01
+        :ARG0 s3
+        :ARG1 (s2 / slice
+            :part-of (c / cake
+                :quant (s / several)))
+        :location (t / table)))

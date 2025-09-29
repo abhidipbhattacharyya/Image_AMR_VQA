@@ -1,0 +1,37 @@
+# ::tok PASSENGER TRAIN IN THE NIGHT HOURS WITH NO SMOKING SIGN , AND TWO WOMEN
+# ::node	p2	person	0-1
+# ::node	p	pass-by-17	0-1
+# ::node	t	train-01	1-2
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	h	hour	5-6
+# ::node	0	-	7-8
+# ::node	s2	smoke-02	8-9
+# ::node	s	signal-07	9-10
+# ::node	a	and	11-12
+# ::node	1	2	12-13
+# ::node	w	woman	13-14
+# ::root	a	and
+# ::edge	person	ARG0-of	pass-by-17	p2	p	
+# ::edge	train-01	ARG0	person	t	p2	
+# ::edge	train-01	time	date-entity	t	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	date-entity	unit	hour	d	h	
+# ::edge	smoke-02	polarity	-	s2	0	
+# ::edge	signal-07	ARG1	smoke-02	s	s2	
+# ::edge	and	op2	signal-07	a	s	
+# ::edge	and	op1	train-01	a	t	
+# ::edge	woman	quant	2	w	1	
+# ::edge	and	op3	woman	a	w	
+(a / and
+    :op1 (t / train-01
+        :ARG0 (p2 / person
+            :ARG0-of (p / pass-by-17))
+        :time (d / date-entity
+            :dayperiod (n / night)
+            :unit (h / hour)))
+    :op2 (s / signal-07
+        :ARG1 (s2 / smoke-02
+            :polarity -))
+    :op3 (w / woman
+        :quant 2))

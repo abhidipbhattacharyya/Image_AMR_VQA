@@ -1,0 +1,35 @@
+# ::tok A man on a bicycle waiting for a shepherd to move her herd of cows out of the road
+# ::node	m	man	1-2
+# ::node	b	bicycle	4-5
+# ::node	w	wait-01	5-6
+# ::node	p	person	8-9
+# ::node	s	shepherd-01	8-9
+# ::node	m2	move-01	10-11
+# ::node	h	herd	12-13
+# ::node	c	cow	14-15
+# ::node	o	out-06	15-16
+# ::node	r	road	18-19
+# ::root	w	wait-01
+# ::edge	man	mod	bicycle	m	b	
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	person	ARG0-of	shepherd-01	p	s	
+# ::edge	move-01	ARG0	person	m2	p	
+# ::edge	wait-01	ARG2	move-01	w	m2	
+# ::edge	move-01	ARG1	herd	m2	h	
+# ::edge	herd	poss	person	h	p	
+# ::edge	herd	consist-of	cow	h	c	
+# ::edge	out-06	ARG1	herd	o	h	
+# ::edge	move-01	ARG2	out-06	m2	o	
+# ::edge	out-06	ARG2	road	o	r	
+(w / wait-01
+    :ARG1 (m / man
+        :mod (b / bicycle))
+    :ARG2 (m2 / move-01
+        :ARG0 (p / person
+            :ARG0-of (s / shepherd-01))
+        :ARG1 (h / herd
+            :consist-of (c / cow)
+            :poss p)
+        :ARG2 (o / out-06
+            :ARG1 h
+            :ARG2 (r / road))))

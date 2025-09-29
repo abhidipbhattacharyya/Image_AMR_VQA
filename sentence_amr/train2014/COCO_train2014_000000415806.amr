@@ -1,0 +1,28 @@
+# ::tok Some white rice and two brocolli florets rest on a spoon .
+# ::node	s	some	0-1
+# ::node	w	white-03	1-2
+# ::node	r2	rice	2-3
+# ::node	a	and	3-4
+# ::node	0	2	4-5
+# ::node	b	brocolli	5-6
+# ::node	p	pattern	6-7
+# ::node	r	rest-01	7-8
+# ::node	s2	spoon	10-11
+# ::root	r	rest-01
+# ::edge	rice	ARG1-of	white-03	r2	w	
+# ::edge	rice	quant	some	r2	s	
+# ::edge	and	op1	rice	a	r2	
+# ::edge	pattern	mod	brocolli	p	b	
+# ::edge	pattern	quant	2	p	0	
+# ::edge	and	op2	pattern	a	p	
+# ::edge	rest-01	ARG1	and	r	a	
+# ::edge	rest-01	ARG2	spoon	r	s2	
+(r / rest-01
+    :ARG1 (a / and
+        :op1 (r2 / rice
+            :quant (s / some)
+            :ARG1-of (w / white-03))
+        :op2 (p / pattern
+            :quant 2
+            :mod (b / brocolli)))
+    :ARG2 (s2 / spoon))

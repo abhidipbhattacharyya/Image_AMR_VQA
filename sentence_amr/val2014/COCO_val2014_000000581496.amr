@@ -1,0 +1,40 @@
+# ::tok A man holding the unpeeled end of a partially peeled banana to his lips as though playing a horn
+# ::node	m	man	1-2
+# ::node	h	hold-01	2-3
+# ::node	a	average-01	4-5
+# ::node	e3	end	5-6
+# ::node	p	part	8-9
+# ::node	e	eat-01	9-10
+# ::node	e2	eat-01	9-10
+# ::node	b	banana	10-11
+# ::node	l	lip	13-14
+# ::node	p2	play-11	16-17
+# ::node	h2	horn	18-19
+# ::root	m	man
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	end	ARG1-of	average-01	e3	a	
+# ::edge	hold-01	ARG1	end	h	e3	
+# ::edge	end	ARG1-of	eat-01	e3	e	
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	eat-01	degree	part	e2	p	
+# ::edge	banana	ARG1-of	eat-01	b	e2	
+# ::edge	end	part-of	banana	e3	b	
+# ::edge	hold-01	ARG4	lip	h	l	
+# ::edge	man	part	lip	m	l	
+# ::edge	average-01	ARG2	play-11	a	p2	
+# ::edge	play-11	ARG0	man	p2	m	
+# ::edge	play-11	ARG1	horn	p2	h2	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (e3 / end
+            :ARG1-of (a / average-01
+                :ARG2 (p2 / play-11
+                    :ARG0 m
+                    :ARG1 (h2 / horn)))
+            :ARG1-of (e / eat-01
+                :ARG0 m)
+            :part-of (b / banana
+                :ARG1-of (e2 / eat-01
+                    :degree (p / part))))
+        :ARG4 (l / lip))
+    :part l)

@@ -1,0 +1,29 @@
+# ::tok A girl is using a toy sink next to a toy stove and refrigerator .
+# ::node	g	girl	1-2
+# ::node	u	use-01	3-4
+# ::node	t	toy	5-6
+# ::node	s	sink	6-7
+# ::node	n	next-to	7-8
+# ::node	s2	stove	11-12
+# ::node	a	and	12-13
+# ::node	r	refrigerator	13-14
+# ::root	u	use-01
+# ::edge	use-01	ARG0	girl	u	g	
+# ::edge	sink	mod	toy	s	t	
+# ::edge	use-01	ARG1	sink	u	s	
+# ::edge	sink	location	next-to	s	n	
+# ::edge	stove	mod	toy	s2	t	
+# ::edge	and	op1	stove	a	s2	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	and	op2	refrigerator	a	r	
+# ::edge	refrigerator	mod	toy	r	t	
+(u / use-01
+    :ARG0 (g / girl)
+    :ARG1 (s / sink
+        :location (n / next-to
+            :op1 (a / and
+                :op1 (s2 / stove
+                    :mod (t / toy))
+                :op2 (r / refrigerator
+                    :mod t)))
+        :mod t))

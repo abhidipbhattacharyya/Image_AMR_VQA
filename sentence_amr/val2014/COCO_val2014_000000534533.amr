@@ -1,0 +1,28 @@
+# ::tok A Wii remote and nunchuk that someone 's hand is holding on to .
+# ::node	p	product	1-2
+# ::node	n	name	1-2
+# ::node	0	Wii	1-2
+# ::node	r	remote	2-3
+# ::node	a	and	3-4
+# ::node	n2	nunchuk	4-5
+# ::node	s	someone	6-7
+# ::node	h	hand	8-9
+# ::node	h2	hold-01	10-11
+# ::root	a	and
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	remote	mod	product	r	p	
+# ::edge	and	op1	remote	a	r	
+# ::edge	and	op2	nunchuk	a	n2	
+# ::edge	hand	part-of	someone	h	s	
+# ::edge	hold-01	ARG0	hand	h2	h	
+# ::edge	and	ARG1-of	hold-01	a	h2	
+(a / and
+    :ARG1-of (h2 / hold-01
+        :ARG0 (h / hand
+            :part-of (s / someone)))
+    :op1 (r / remote
+        :mod (p / product
+            :name (n / name
+                :op1 "Wii")))
+    :op2 (n2 / nunchuk))

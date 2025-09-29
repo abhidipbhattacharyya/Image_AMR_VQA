@@ -1,0 +1,39 @@
+# ::tok a brown and white dog is sitting in some grass and a red and white fire hydrant
+# ::node	w	white-03	1-2
+# ::node	w2	white-03	3-4
+# ::node	d	dog	4-5
+# ::node	d2	dog	4-5
+# ::node	s	sit-01	6-7
+# ::node	s2	some	8-9
+# ::node	g	grass	9-10
+# ::node	a	and	10-11
+# ::node	r	red-02	12-13
+# ::node	a2	and	13-14
+# ::node	f	fire	15-16
+# ::node	h	hydrant	16-17
+# ::root	s	sit-01
+# ::edge	dog	ARG1-of	white-03	d	w2	
+# ::edge	dog	ARG1-of	white-03	d	w	
+# ::edge	sit-01	ARG1	dog	s	d	
+# ::edge	grass	mod	some	g	s2	
+# ::edge	and	op1	grass	a	g	
+# ::edge	sit-01	ARG2	and	s	a	
+# ::edge	dog	ARG1-of	red-02	d2	r	
+# ::edge	and	op2	dog	a2	d2	
+# ::edge	and	op1	dog	a2	d	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	hydrant	mod	and	h	a2	
+# ::edge	and	op2	hydrant	a	h	
+(s / sit-01
+    :ARG1 (d / dog
+        :ARG1-of (w2 / white-03)
+        :ARG1-of (w / white-03))
+    :ARG2 (a / and
+        :op1 (g / grass
+            :mod (s2 / some))
+        :op2 (h / hydrant
+            :mod (f / fire)
+            :mod (a2 / and
+                :op1 d
+                :op2 (d2 / dog
+                    :ARG1-of (r / red-02))))))

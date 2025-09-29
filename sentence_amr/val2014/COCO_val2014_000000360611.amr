@@ -1,0 +1,24 @@
+# ::tok A truck is parked near an airplane with people walking around it .
+# ::node	t	truck	1-2
+# ::node	p	park-01	3-4
+# ::node	n	near-02	4-5
+# ::node	a	airplane	6-7
+# ::node	p2	person	8-9
+# ::node	w	walk-01	9-10
+# ::node	a2	around	10-11
+# ::root	p	park-01
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	near-02	ARG2	airplane	n	a	
+# ::edge	walk-01	ARG0	person	w	p2	
+# ::edge	truck	location-of	walk-01	t	w	
+# ::edge	walk-01	ARG2	around	w	a2	
+# ::edge	around	op1	truck	a2	t	
+(p / park-01
+    :ARG1 (t / truck
+        :location-of (w / walk-01
+            :ARG0 (p2 / person)
+            :ARG2 (a2 / around
+                :op1 t)))
+    :ARG1-of (n / near-02
+        :ARG2 (a / airplane)))

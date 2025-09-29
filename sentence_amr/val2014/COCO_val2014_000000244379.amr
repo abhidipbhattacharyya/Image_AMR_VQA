@@ -1,0 +1,27 @@
+# ::tok An intersection with a stoplight on a roadway that has no vehicles traveling on it .
+# ::node	i	intersect-01	1-2
+# ::node	f	facility	3-4
+# ::node	s	stop-01	4-5
+# ::node	r	roadway	7-8
+# ::node	h	have-03	9-10
+# ::node	0	-	10-11
+# ::node	v	vehicle	11-12
+# ::node	t	travel-01	12-13
+# ::root	i	intersect-01
+# ::edge	intersect-01	ARG1	facility	i	f	
+# ::edge	facility	ARG0-of	stop-01	f	s	
+# ::edge	intersect-01	location	roadway	i	r	
+# ::edge	roadway	ARG0-of	have-03	r	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	vehicle	h	v	
+# ::edge	vehicle	ARG0-of	travel-01	v	t	
+# ::edge	travel-01	ARG1	roadway	t	r	
+(i / intersect-01
+    :ARG1 (f / facility
+        :ARG0-of (s / stop-01))
+    :location (r / roadway
+        :ARG0-of (h / have-03
+            :ARG1 (v / vehicle
+                :ARG0-of (t / travel-01
+                    :ARG1 r))
+            :polarity -)))

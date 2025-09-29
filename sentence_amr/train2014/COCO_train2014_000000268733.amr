@@ -1,0 +1,37 @@
+# ::tok A pair of scissors that are set on a table next to a credit card that has been cut into several pieces like a puzzle .
+# ::node	p	pair	1-2
+# ::node	s	scissors	3-4
+# ::node	s2	set-01	6-7
+# ::node	t	table	9-10
+# ::node	n	next-to	10-11
+# ::node	c2	credit-01	13-14
+# ::node	c	card	14-15
+# ::node	c3	cut-01	18-19
+# ::node	s3	several	20-21
+# ::node	p2	piece	21-22
+# ::node	r	resemble-01	22-23
+# ::node	p3	puzzle	24-25
+# ::root	s	scissors
+# ::edge	scissors	quant	pair	s	p	
+# ::edge	scissors	ARG1-of	set-01	s	s2	
+# ::edge	set-01	ARG2	table	s2	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	card	mod	credit-01	c	c2	
+# ::edge	next-to	op1	card	n	c	
+# ::edge	card	ARG1-of	cut-01	c	c3	
+# ::edge	piece	quant	several	p2	s3	
+# ::edge	cut-01	ARG2	piece	c3	p2	
+# ::edge	piece	ARG1-of	resemble-01	p2	r	
+# ::edge	resemble-01	ARG2	puzzle	r	p3	
+(s / scissors
+    :quant (p / pair)
+    :ARG1-of (s2 / set-01
+        :ARG2 (t / table
+            :location-of (n / next-to
+                :op1 (c / card
+                    :ARG1-of (c3 / cut-01
+                        :ARG2 (p2 / piece
+                            :quant (s3 / several)
+                            :ARG1-of (r / resemble-01
+                                :ARG2 (p3 / puzzle))))
+                    :mod (c2 / credit-01))))))

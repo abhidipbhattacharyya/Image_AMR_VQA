@@ -1,0 +1,33 @@
+# ::tok a male frisbee player is standing next to a frisbee net / goal with his cellphone
+# ::node	m	male	1-2
+# ::node	f	frisbee	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	s2	stand-01	5-6
+# ::node	n2	next-to	6-7
+# ::node	n	net	10-11
+# ::node	s	slash	11-12
+# ::node	g	goal	12-13
+# ::node	c	cellphone	15-16
+# ::root	s2	stand-01
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	frisbee	p2	f	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	next-to	s2	n2	
+# ::edge	slash	op1	net	s	n	
+# ::edge	next-to	op1	slash	n2	s	
+# ::edge	slash	op2	goal	s	g	
+# ::edge	stand-01	instrument	cellphone	s2	c	
+# ::edge	cellphone	poss	person	c	p	
+(s2 / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (f / frisbee))
+        :mod (m / male))
+    :ARG2 (n2 / next-to
+        :op1 (s / slash
+            :op1 (n / net)
+            :op2 (g / goal)))
+    :instrument (c / cellphone
+        :poss p))

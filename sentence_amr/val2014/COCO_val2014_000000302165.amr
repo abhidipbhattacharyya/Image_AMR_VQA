@@ -1,0 +1,30 @@
+# ::tok An indoor farm area with cows in individual stations sitting and standing on hay .
+# ::node	i2	indoor	1-2
+# ::node	f	farm-01	2-3
+# ::node	a	area	3-4
+# ::node	c	cow	5-6
+# ::node	i	individual	7-8
+# ::node	s3	station	8-9
+# ::node	s	sit-01	9-10
+# ::node	s2	stand-01	11-12
+# ::node	h	hay	13-14
+# ::root	a	area
+# ::edge	area	location-of	farm-01	a	f	
+# ::edge	area	location	indoor	a	i2	
+# ::edge	station	mod	individual	s3	i	
+# ::edge	cow	location	station	c	s3	
+# ::edge	cow	ARG1-of	sit-01	c	s	
+# ::edge	cow	ARG1-of	stand-01	c	s2	
+# ::edge	stand-01	ARG2	hay	s2	h	
+# ::edge	sit-01	ARG2	hay	s	h	
+# ::edge	area	rel	cow	a	c	
+(a / area
+    :location (i2 / indoor)
+    :location-of (f / farm-01)
+    :rel (c / cow
+        :ARG1-of (s / sit-01
+            :ARG2 (h / hay))
+        :ARG1-of (s2 / stand-01
+            :ARG2 h)
+        :location (s3 / station
+            :mod (i / individual))))

@@ -1,0 +1,41 @@
+# ::tok A living room area features a blue couch with matching pillows and a matching ottoman and two blue chairs .
+# ::node	l	living	1-2
+# ::node	r	room	2-3
+# ::node	a2	area	3-4
+# ::node	f	feature-01	4-5
+# ::node	b	blue	6-7
+# ::node	c2	couch	7-8
+# ::node	m	match-01	9-10
+# ::node	p	pill	10-11
+# ::node	o	ottoman	14-15
+# ::node	a	and	15-16
+# ::node	0	2	16-17
+# ::node	c	chair	18-19
+# ::root	f	feature-01
+# ::edge	room	mod	living	r	l	
+# ::edge	area	mod	room	a2	r	
+# ::edge	feature-01	ARG2	area	f	a2	
+# ::edge	couch	mod	blue	c2	b	
+# ::edge	pill	ARG1-of	match-01	p	m	
+# ::edge	match-01	ARG1	ottoman	m	o	
+# ::edge	and	op2	ottoman	a	o	
+# ::edge	and	op1	couch	a	c2	
+# ::edge	feature-01	ARG1	and	f	a	
+# ::edge	chair	quant	2	c	0	
+# ::edge	and	op3	chair	a	c	
+# ::edge	chair	mod	blue	c	b	
+# ::edge	feature-01	rel	pill	f	p	
+(f / feature-01
+    :ARG1 (a / and
+        :op1 (c2 / couch
+            :mod (b / blue))
+        :op2 (o / ottoman)
+        :op3 (c / chair
+            :quant 2
+            :mod b))
+    :ARG2 (a2 / area
+        :mod (r / room
+            :mod (l / living)))
+    :rel (p / pill
+        :ARG1-of (m / match-01
+            :ARG1 o)))

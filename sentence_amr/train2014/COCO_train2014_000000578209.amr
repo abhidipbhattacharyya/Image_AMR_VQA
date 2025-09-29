@@ -1,0 +1,39 @@
+# ::tok A phone battery lies on a table next to a cell phone , which is open to reveal a second battery .
+# ::node	p	phone	1-2
+# ::node	b	battery	2-3
+# ::node	l	lie-07	3-4
+# ::node	t	table	6-7
+# ::node	n	next-to	7-8
+# ::node	c	cell	10-11
+# ::node	p2	phone	11-12
+# ::node	o	open-01	15-16
+# ::node	r	reveal-01	17-18
+# ::node	o2	ordinal-entity	19-20
+# ::node	0	2	19-20
+# ::node	b2	battery	20-21
+# ::root	l	lie-07
+# ::edge	battery	mod	phone	b	p	
+# ::edge	lie-07	ARG1	battery	l	b	
+# ::edge	next-to	location	table	n	t	
+# ::edge	lie-07	ARG2	next-to	l	n	
+# ::edge	phone	mod	cell	p2	c	
+# ::edge	next-to	op1	phone	n	p2	
+# ::edge	phone	ARG1-of	open-01	p2	o	
+# ::edge	open-01	purpose	reveal-01	o	r	
+# ::edge	reveal-01	ARG0	phone	r	p2	
+# ::edge	ordinal-entity	value	2	o2	0	
+# ::edge	battery	ord	ordinal-entity	b2	o2	
+# ::edge	reveal-01	ARG1	battery	r	b2	
+(l / lie-07
+    :ARG1 (b / battery
+        :mod (p / phone))
+    :ARG2 (n / next-to
+        :location (t / table)
+        :op1 (p2 / phone
+            :ARG1-of (o / open-01
+                :purpose (r / reveal-01
+                    :ARG0 p2
+                    :ARG1 (b2 / battery
+                        :ord (o2 / ordinal-entity
+                            :value 2))))
+            :mod (c / cell))))

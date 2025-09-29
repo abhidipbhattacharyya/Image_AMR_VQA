@@ -1,0 +1,31 @@
+# ::tok Small toy sized dog carrying a Frisbee down the street .
+# ::node	s2	small	0-1
+# ::node	t	toy	1-2
+# ::node	s	size-01	2-3
+# ::node	d	dog	3-4
+# ::node	c	carry-01	4-5
+# ::node	p	product	6-7
+# ::node	n	name	6-7
+# ::node	0	Frisbee	6-7
+# ::node	d2	down	7-8
+# ::node	s3	street	9-10
+# ::root	d	dog
+# ::edge	size-01	ARG2	toy	s	t	
+# ::edge	size-01	mod	small	s	s2	
+# ::edge	dog	ARG1-of	size-01	d	s	
+# ::edge	dog	ARG0-of	carry-01	d	c	
+# ::edge	carry-01	ARG1	product	c	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	carry-01	direction	down	c	d2	
+# ::edge	down	op1	street	d2	s3	
+(d / dog
+    :ARG0-of (c / carry-01
+        :ARG1 (p / product
+            :name (n / name
+                :op1 "Frisbee"))
+        :direction (d2 / down
+            :op1 (s3 / street)))
+    :ARG1-of (s / size-01
+        :ARG2 (t / toy)
+        :mod (s2 / small)))

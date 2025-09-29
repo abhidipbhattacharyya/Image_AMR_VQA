@@ -1,0 +1,40 @@
+# ::tok A china plate holds an egg salad sandwich and French fries .
+# ::node	c	country	1-2
+# ::node	n	name	1-2
+# ::node	0	China	1-2
+# ::node	p	plate	2-3
+# ::node	h	hold-01	3-4
+# ::node	e	egg	5-6
+# ::node	s	salad	6-7
+# ::node	s2	sandwich	7-8
+# ::node	a	and	8-9
+# ::node	c2	country	9-10
+# ::node	n2	name	9-10
+# ::node	1	France	9-10
+# ::node	f	fry-01	10-11
+# ::root	h	hold-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	plate	mod	country	p	c	
+# ::edge	hold-01	ARG0	plate	h	p	
+# ::edge	salad	consist-of	egg	s	e	
+# ::edge	sandwich	mod	salad	s2	s	
+# ::edge	and	op1	sandwich	a	s2	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	country	name	name	c2	n2	
+# ::edge	name	op1	France	n2	1	
+# ::edge	fry-01	ARG0	country	f	c2	
+# ::edge	and	op2	fry-01	a	f	
+(h / hold-01
+    :ARG0 (p / plate
+        :mod (c / country
+            :name (n / name
+                :op1 "China")))
+    :ARG1 (a / and
+        :op1 (s2 / sandwich
+            :mod (s / salad
+                :consist-of (e / egg)))
+        :op2 (f / fry-01
+            :ARG0 (c2 / country
+                :name (n2 / name
+                    :op1 "France")))))

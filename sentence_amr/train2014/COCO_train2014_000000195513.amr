@@ -1,0 +1,45 @@
+# ::tok An old fashioned room with twin beds , couch , tv , lamps and other older looking furniture .
+# ::node	o	old	1-2
+# ::node	f	fashion	2-3
+# ::node	r	room	3-4
+# ::node	h	have-03	4-5
+# ::node	t2	twin	5-6
+# ::node	b	bed	6-7
+# ::node	a	and	7-8
+# ::node	c	couch	8-9
+# ::node	t	television	10-11
+# ::node	b2	bulb	12-13
+# ::node	o2	other	14-15
+# ::node	h2	have-degree-91	15-16
+# ::node	l	look-02	16-17
+# ::node	f2	furniture	17-18
+# ::root	r	room
+# ::edge	fashion	mod	old	f	o	
+# ::edge	room	mod	fashion	r	f	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	bed	mod	twin	b	t2	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	couch	a	c	
+# ::edge	and	op3	television	a	t	
+# ::edge	and	op4	bulb	a	b2	
+# ::edge	have-degree-91	ARG4	fashion	h2	f	
+# ::edge	look-02	ARG1	have-degree-91	l	h2	
+# ::edge	furniture	ARG0-of	look-02	f2	l	
+# ::edge	furniture	mod	other	f2	o2	
+# ::edge	and	op5	furniture	a	f2	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / bed
+                :mod (t2 / twin))
+            :op2 (c / couch)
+            :op3 (t / television)
+            :op4 (b2 / bulb)
+            :op5 (f2 / furniture
+                :ARG0-of (l / look-02
+                    :ARG1 (h2 / have-degree-91
+                        :ARG4 (f / fashion
+                            :mod (o / old))))
+                :mod (o2 / other))))
+    :mod f)

@@ -1,0 +1,37 @@
+# ::tok Red Wine , Coffee and pastries are served .
+# ::node	r	red-02	0-1
+# ::node	w	wine	1-2
+# ::node	c	caffeine	3-4
+# ::node	a	and	4-5
+# ::node	c2	cookie	5-6
+# ::node	s	serve-02	7-8
+# ::root	s	serve-02
+# ::edge	wine	ARG1-of	red-02	w	r	
+# ::edge	and	op2	caffeine	a	c	
+# ::edge	and	op1	wine	a	w	
+# ::edge	and	op3	cookie	a	c2	
+# ::edge	serve-02	ARG1	and	s	a	
+(s / serve-02
+    :ARG1 (a / and
+        :op1 (w / wine
+            :ARG1-of (r / red-02))
+        :op2 (c / caffeine)
+        :op3 (c2 / cookie)))
+
+
+# ::tok There is a statue of a frog riding a snail on the table .
+# ::node	s2	statue	3-4
+# ::node	f	frog	6-7
+# ::node	r	ride-01	7-8
+# ::node	s	snail	9-10
+# ::node	t	table	12-13
+# ::root	s2	statue
+# ::edge	statue	topic	frog	s2	f	
+# ::edge	frog	ARG0-of	ride-01	f	r	
+# ::edge	ride-01	ARG1	snail	r	s	
+# ::edge	statue	location	table	s2	t	
+(s2 / statue
+    :location (t / table)
+    :topic (f / frog
+        :ARG0-of (r / ride-01
+            :ARG1 (s / snail))))

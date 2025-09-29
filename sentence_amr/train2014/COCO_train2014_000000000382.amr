@@ -1,0 +1,55 @@
+# ::tok A distance shot shows rolling snowy hills , partially shadowed , with ski prints reaching off into the distance , and to the foreground , a single skier .
+# ::node	d	distance	1-2
+# ::node	s2	shoot-03	2-3
+# ::node	s3	show-01	3-4
+# ::node	r2	roll-01	4-5
+# ::node	s7	snowy-02	5-6
+# ::node	h2	hill	6-7
+# ::node	p	part	8-9
+# ::node	s	shadow	9-10
+# ::node	h	have-03	11-12
+# ::node	s5	ski-01	12-13
+# ::node	p3	print	13-14
+# ::node	r	reach-03	14-15
+# ::node	o	off	15-16
+# ::node	d2	distance	18-19
+# ::node	f	foreground	23-24
+# ::node	s4	single-02	26-27
+# ::node	p2	person	27-28
+# ::node	s6	ski-01	27-28
+# ::root	s3	show-01
+# ::edge	shoot-03	direction	distance	s2	d	
+# ::edge	show-01	ARG0	shoot-03	s3	s2	
+# ::edge	hill	ARG1-of	snowy-02	h2	s7	
+# ::edge	hill	ARG1-of	roll-01	h2	r2	
+# ::edge	shadow	degree	part	s	p	
+# ::edge	hill	mod	shadow	h2	s	
+# ::edge	hill	ARG0-of	have-03	h2	h	
+# ::edge	print	mod	ski-01	p3	s5	
+# ::edge	have-03	ARG1	print	h	p3	
+# ::edge	print	ARG0-of	reach-03	p3	r	
+# ::edge	reach-03	mod	off	r	o	
+# ::edge	reach-03	ARG2	distance	r	d2	
+# ::edge	person	ARG1-of	single-02	p2	s4	
+# ::edge	person	location	foreground	p2	f	
+# ::edge	have-03	op2	person	h	p2	
+# ::edge	person	ARG0-of	ski-01	p2	s6	
+# ::edge	show-01	rel	hill	s3	h2	
+(s3 / show-01
+    :ARG0 (s2 / shoot-03
+        :direction (d / distance))
+    :rel (h2 / hill
+        :ARG0-of (h / have-03
+            :ARG1 (p3 / print
+                :ARG0-of (r / reach-03
+                    :ARG2 (d2 / distance)
+                    :mod (o / off))
+                :mod (s5 / ski-01))
+            :op2 (p2 / person
+                :ARG0-of (s6 / ski-01)
+                :ARG1-of (s4 / single-02)
+                :location (f / foreground)))
+        :ARG1-of (s7 / snowy-02)
+        :ARG1-of (r2 / roll-01)
+        :mod (s / shadow
+            :degree (p / part))))

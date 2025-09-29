@@ -1,0 +1,22 @@
+# ::tok Electronic lights show caution as a train travels forward .
+# ::node	e	electronic	0-1
+# ::node	l	light	1-2
+# ::node	s	show-01	2-3
+# ::node	c	caution-01	3-4
+# ::node	t	train	6-7
+# ::node	t2	travel-01	7-8
+# ::node	f	forward	8-9
+# ::root	s	show-01
+# ::edge	light	mod	electronic	l	e	
+# ::edge	show-01	ARG0	light	s	l	
+# ::edge	show-01	ARG1	caution-01	s	c	
+# ::edge	travel-01	ARG0	train	t2	t	
+# ::edge	show-01	time	travel-01	s	t2	
+# ::edge	travel-01	ARG1	forward	t2	f	
+(s / show-01
+    :ARG0 (l / light
+        :mod (e / electronic))
+    :ARG1 (c / caution-01)
+    :time (t2 / travel-01
+        :ARG0 (t / train)
+        :ARG1 (f / forward)))

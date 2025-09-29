@@ -1,0 +1,31 @@
+# ::tok A restaurant table that has a glass of wine and an iced tea on it .
+# ::node	r	restaurant	1-2
+# ::node	t	table	2-3
+# ::node	h	have-03	4-5
+# ::node	v	volume-quantity	5-6
+# ::node	0	1	5-6
+# ::node	g	glass	6-7
+# ::node	w	wine	8-9
+# ::node	a	and	9-10
+# ::node	i	ice-02	11-12
+# ::node	t2	tea	12-13
+# ::root	t	table
+# ::edge	table	mod	restaurant	t	r	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op1	wine	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	tea	ARG1-of	ice-02	t2	i	
+# ::edge	and	op2	tea	a	t2	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (g / glass)))
+            :op2 (t2 / tea
+                :ARG1-of (i / ice-02))))
+    :mod (r / restaurant))

@@ -1,0 +1,31 @@
+# ::tok Plane in airport preparing to take off or to approach gate for boarding .
+# ::node	p	plane	0-1
+# ::node	a	airport	2-3
+# ::node	p2	prepare-02	3-4
+# ::node	t	take-off-19	5-6
+# ::node	o	or	7-8
+# ::node	a2	approach-01	9-10
+# ::node	g	gate	10-11
+# ::node	b	board-01	12-13
+# ::root	p2	prepare-02
+# ::edge	plane	location	airport	p	a	
+# ::edge	prepare-02	ARG1	plane	p2	p	
+# ::edge	take-off-19	ARG1	plane	t	p	
+# ::edge	or	op1	take-off-19	o	t	
+# ::edge	prepare-02	ARG2	or	p2	o	
+# ::edge	or	op2	approach-01	o	a2	
+# ::edge	approach-01	ARG1	plane	a2	p	
+# ::edge	approach-01	ARG2	gate	a2	g	
+# ::edge	gate	purpose	board-01	g	b	
+# ::edge	board-01	ARG1	plane	b	p	
+(p2 / prepare-02
+    :ARG1 (p / plane
+        :location (a / airport))
+    :ARG2 (o / or
+        :op1 (t / take-off-19
+            :ARG1 p)
+        :op2 (a2 / approach-01
+            :ARG1 p
+            :ARG2 (g / gate
+                :purpose (b / board-01
+                    :ARG1 p)))))

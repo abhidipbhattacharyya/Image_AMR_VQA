@@ -1,0 +1,21 @@
+# ::tok The engine of a jet is checked by mechanics on a landing strip .
+# ::node	e	engine	1-2
+# ::node	j	jet	4-5
+# ::node	c	check-01	6-7
+# ::node	m	mechanic	8-9
+# ::node	l	land-01	11-12
+# ::node	s	strip	12-13
+# ::root	c	check-01
+# ::edge	engine	part-of	jet	e	j	
+# ::edge	check-01	ARG1	engine	c	e	
+# ::edge	check-01	ARG0	mechanic	c	m	
+# ::edge	land-01	ARG1	jet	l	j	
+# ::edge	strip	purpose	land-01	s	l	
+# ::edge	check-01	location	strip	c	s	
+(c / check-01
+    :ARG0 (m / mechanic)
+    :ARG1 (e / engine
+        :part-of (j / jet))
+    :location (s / strip
+        :purpose (l / land-01
+            :ARG1 j)))

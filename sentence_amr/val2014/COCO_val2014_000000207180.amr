@@ -1,0 +1,39 @@
+# ::tok A large long hallway with many doors to the sides and a large window at the end with a clock .
+# ::node	l	large	1-2
+# ::node	l3	long-03	2-3
+# ::node	h	hallway	3-4
+# ::node	h2	have-03	4-5
+# ::node	m	many	5-6
+# ::node	d	door	6-7
+# ::node	s	side	9-10
+# ::node	a	and	10-11
+# ::node	l2	large	12-13
+# ::node	w	window	13-14
+# ::node	e	end	16-17
+# ::node	c	clock	19-20
+# ::root	h	hallway
+# ::edge	hallway	ARG1-of	long-03	h	l3	
+# ::edge	hallway	mod	large	h	l	
+# ::edge	hallway	ARG0-of	have-03	h	h2	
+# ::edge	door	quant	many	d	m	
+# ::edge	door	location	side	d	s	
+# ::edge	and	op1	door	a	d	
+# ::edge	have-03	ARG1	and	h2	a	
+# ::edge	window	mod	large	w	l2	
+# ::edge	and	op2	window	a	w	
+# ::edge	window	location	end	w	e	
+# ::edge	hallway	part	end	h	e	
+# ::edge	window	instrument	clock	w	c	
+(h / hallway
+    :ARG0-of (h2 / have-03
+        :ARG1 (a / and
+            :op1 (d / door
+                :quant (m / many)
+                :location (s / side))
+            :op2 (w / window
+                :instrument (c / clock)
+                :location (e / end)
+                :mod (l2 / large))))
+    :ARG1-of (l3 / long-03)
+    :mod (l / large)
+    :part e)

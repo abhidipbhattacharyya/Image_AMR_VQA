@@ -1,0 +1,27 @@
+# ::tok The people in the airport are standing near the baggage claim conveyor belt .
+# ::node	p	person	1-2
+# ::node	a	airport	4-5
+# ::node	s	stand-01	6-7
+# ::node	n	near-02	7-8
+# ::node	b	baggage	9-10
+# ::node	c	claim-02	10-11
+# ::node	c2	conveyor	11-12
+# ::node	b2	belt	12-13
+# ::root	s	stand-01
+# ::edge	person	location	airport	p	a	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	claim-02	ARG1	baggage	c	b	
+# ::edge	belt	mod	conveyor	b2	c2	
+# ::edge	belt	instrument-of	claim-02	b2	c	
+# ::edge	near-02	ARG2	belt	n	b2	
+(s / stand-01
+    :ARG1 (p / person
+        :location (a / airport))
+    :ARG2 (n / near-02
+        :ARG1 p
+        :ARG2 (b2 / belt
+            :instrument-of (c / claim-02
+                :ARG1 (b / baggage))
+            :mod (c2 / conveyor))))

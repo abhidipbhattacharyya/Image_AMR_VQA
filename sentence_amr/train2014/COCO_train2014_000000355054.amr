@@ -1,0 +1,26 @@
+# ::tok A subway train opens its doors to accept more passengers .
+# ::node	s	subway	1-2
+# ::node	t	train	2-3
+# ::node	o	open-01	3-4
+# ::node	d	door	5-6
+# ::node	a	accept-01	7-8
+# ::node	m	more	8-9
+# ::node	p	passenger	9-10
+# ::root	o	open-01
+# ::edge	train	mod	subway	t	s	
+# ::edge	open-01	ARG0	train	o	t	
+# ::edge	open-01	ARG1	door	o	d	
+# ::edge	train	part	door	t	d	
+# ::edge	open-01	purpose	accept-01	o	a	
+# ::edge	accept-01	ARG0	train	a	t	
+# ::edge	passenger	quant	more	p	m	
+# ::edge	accept-01	ARG1	passenger	a	p	
+(o / open-01
+    :purpose (a / accept-01
+        :ARG0 (t / train
+            :mod (s / subway)
+            :part (d / door))
+        :ARG1 (p / passenger
+            :quant (m / more)))
+    :ARG0 t
+    :ARG1 d)

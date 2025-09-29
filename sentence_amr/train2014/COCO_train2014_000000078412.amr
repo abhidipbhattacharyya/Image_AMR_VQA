@@ -1,0 +1,25 @@
+# ::tok A passenger loading area for buses , with people standing on the sidewalk with baggage .
+# ::node	p	passenger	1-2
+# ::node	l	load-01	2-3
+# ::node	a	area	3-4
+# ::node	b2	bus	5-6
+# ::node	p2	person	8-9
+# ::node	s2	stand-01	9-10
+# ::node	s	sidewalk	12-13
+# ::node	b	baggage	14-15
+# ::root	a	area
+# ::edge	load-01	ARG1	passenger	l	p	
+# ::edge	area	location-of	load-01	a	l	
+# ::edge	load-01	purpose	bus	l	b2	
+# ::edge	stand-01	ARG1	person	s2	p2	
+# ::edge	area	location-of	stand-01	a	s2	
+# ::edge	stand-01	ARG2	sidewalk	s2	s	
+# ::edge	person	accompanier	baggage	p2	b	
+(a / area
+    :location-of (l / load-01
+        :purpose (b2 / bus)
+        :ARG1 (p / passenger))
+    :location-of (s2 / stand-01
+        :ARG1 (p2 / person
+            :accompanier (b / baggage))
+        :ARG2 (s / sidewalk)))

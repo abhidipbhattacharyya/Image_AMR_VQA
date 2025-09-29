@@ -1,0 +1,28 @@
+# ::tok A ferris wheel model with blue chairs and plastic instruments attached .
+# ::node	f	ferris	1-2
+# ::node	w	wheel	2-3
+# ::node	m	model	3-4
+# ::node	b	blue	5-6
+# ::node	c	chair	6-7
+# ::node	a	and	7-8
+# ::node	p	plastic	8-9
+# ::node	i	instrument	9-10
+# ::node	a2	attach-01	10-11
+# ::root	m	model
+# ::edge	wheel	mod	ferris	w	f	
+# ::edge	model	mod	wheel	m	w	
+# ::edge	chair	mod	blue	c	b	
+# ::edge	and	op1	chair	a	c	
+# ::edge	instrument	consist-of	plastic	i	p	
+# ::edge	and	op2	instrument	a	i	
+# ::edge	attach-01	ARG1	and	a2	a	
+# ::edge	model	ARG2-of	attach-01	m	a2	
+(m / model
+    :ARG2-of (a2 / attach-01
+        :ARG1 (a / and
+            :op1 (c / chair
+                :mod (b / blue))
+            :op2 (i / instrument
+                :consist-of (p / plastic))))
+    :mod (w / wheel
+        :mod (f / ferris)))

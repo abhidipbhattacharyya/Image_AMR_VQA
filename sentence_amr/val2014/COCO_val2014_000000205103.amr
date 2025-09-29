@@ -1,0 +1,35 @@
+# ::tok a small kitten on the floor looking up while standing near some stuff
+# ::node	s	small	1-2
+# ::node	k	kitten	2-3
+# ::node	b	be-located-at-91	3-4
+# ::node	f	floor	5-6
+# ::node	l	look-01	6-7
+# ::node	u	up	7-8
+# ::node	s3	stand-01	9-10
+# ::node	n	near-02	10-11
+# ::node	s2	some	11-12
+# ::node	s4	stuff	12-13
+# ::root	b	be-located-at-91
+# ::edge	kitten	mod	small	k	s	
+# ::edge	be-located-at-91	ARG1	kitten	b	k	
+# ::edge	be-located-at-91	ARG2	floor	b	f	
+# ::edge	kitten	ARG0-of	look-01	k	l	
+# ::edge	look-01	ARG1	up	l	u	
+# ::edge	look-01	time	stand-01	l	s3	
+# ::edge	stand-01	ARG1	kitten	s3	k	
+# ::edge	stand-01	ARG2	near-02	s3	n	
+# ::edge	near-02	ARG1	kitten	n	k	
+# ::edge	stuff	mod	some	s4	s2	
+# ::edge	near-02	ARG2	stuff	n	s4	
+(b / be-located-at-91
+    :ARG1 (k / kitten
+        :ARG0-of (l / look-01
+            :ARG1 (u / up)
+            :time (s3 / stand-01
+                :ARG1 k
+                :ARG2 (n / near-02
+                    :ARG1 k
+                    :ARG2 (s4 / stuff
+                        :mod (s2 / some)))))
+        :mod (s / small))
+    :ARG2 (f / floor))

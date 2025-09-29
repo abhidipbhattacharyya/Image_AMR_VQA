@@ -1,0 +1,36 @@
+# ::tok A meal of french toast with fruit inside and a serving of syrup .
+# ::node	m	meal	1-2
+# ::node	c	country	3-4
+# ::node	n	name	3-4
+# ::node	0	France	3-4
+# ::node	t	toast	4-5
+# ::node	h	have-03	5-6
+# ::node	f	fruit	6-7
+# ::node	i	inside	7-8
+# ::node	a	and	8-9
+# ::node	s	serve-02	10-11
+# ::node	s2	syrup	12-13
+# ::root	m	meal
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	toast	mod	country	t	c	
+# ::edge	have-03	ARG1	toast	h	t	
+# ::edge	meal	ARG0-of	have-03	m	h	
+# ::edge	fruit	location	inside	f	i	
+# ::edge	inside	op1	toast	i	t	
+# ::edge	and	op1	fruit	a	f	
+# ::edge	meal	consist-of	and	m	a	
+# ::edge	and	op2	serve-02	a	s	
+# ::edge	serve-02	ARG1	syrup	s	s2	
+(m / meal
+    :ARG0-of (h / have-03
+        :ARG1 (t / toast
+            :mod (c / country
+                :name (n / name
+                    :op1 "France"))))
+    :consist-of (a / and
+        :op1 (f / fruit
+            :location (i / inside
+                :op1 t))
+        :op2 (s / serve-02
+            :ARG1 (s2 / syrup))))

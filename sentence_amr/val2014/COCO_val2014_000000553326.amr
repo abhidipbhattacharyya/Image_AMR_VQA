@@ -1,0 +1,28 @@
+# ::tok Two ovens next to a plastic bucket and trash container .
+# ::node	0	2	0-1
+# ::node	o	oven	1-2
+# ::node	n	next-to	2-3
+# ::node	p	plastic	5-6
+# ::node	b	bucket	6-7
+# ::node	a	and	7-8
+# ::node	t	trash	8-9
+# ::node	c	container	9-10
+# ::node	e	event	10-11
+# ::root	e	event
+# ::edge	oven	quant	2	o	0	
+# ::edge	oven	location	next-to	o	n	
+# ::edge	bucket	consist-of	plastic	b	p	
+# ::edge	and	op1	bucket	a	b	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	container	purpose	trash	c	t	
+# ::edge	and	op2	container	a	c	
+# ::edge	event	mod	oven	e	o	
+(e / event
+    :mod (o / oven
+        :quant 2
+        :location (n / next-to
+            :op1 (a / and
+                :op1 (b / bucket
+                    :consist-of (p / plastic))
+                :op2 (c / container
+                    :purpose (t / trash))))))

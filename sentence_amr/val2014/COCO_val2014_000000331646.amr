@@ -1,0 +1,34 @@
+# ::tok On this table there is three colored lights , an electronic switchboard and a remote control .
+# ::node	t2	this	1-2
+# ::node	t	table	2-3
+# ::node	b	be-located-at-91	4-5
+# ::node	0	3	5-6
+# ::node	c	color-01	6-7
+# ::node	l	light	7-8
+# ::node	e	electronic	10-11
+# ::node	s	switchboard	11-12
+# ::node	a	and	12-13
+# ::node	r	remote	14-15
+# ::node	c2	control	15-16
+# ::root	b	be-located-at-91
+# ::edge	table	mod	this	t	t2	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+# ::edge	light	ARG1-of	color-01	l	c	
+# ::edge	light	quant	3	l	0	
+# ::edge	switchboard	mod	electronic	s	e	
+# ::edge	and	op2	switchboard	a	s	
+# ::edge	and	op1	light	a	l	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	control	mod	remote	c2	r	
+# ::edge	and	op3	control	a	c2	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (l / light
+            :quant 3
+            :ARG1-of (c / color-01))
+        :op2 (s / switchboard
+            :mod (e / electronic))
+        :op3 (c2 / control
+            :mod (r / remote)))
+    :ARG2 (t / table
+        :mod (t2 / this)))

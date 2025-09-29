@@ -1,0 +1,50 @@
+# ::tok A man with gray pants and a pink striped shirt holds a red bat as a ball hovers near his head .
+# ::node	m	man	1-2
+# ::node	w	wear-01	2-3
+# ::node	g	gray-02	3-4
+# ::node	p	pants	4-5
+# ::node	a	and	5-6
+# ::node	p2	pink-04	7-8
+# ::node	s2	stripe	8-9
+# ::node	s	shirt	9-10
+# ::node	h2	hold-01	10-11
+# ::node	r	red-02	12-13
+# ::node	b2	bat	13-14
+# ::node	b	ball	16-17
+# ::node	h3	hover-01	17-18
+# ::node	n	near-02	18-19
+# ::node	h	head	20-21
+# ::root	h2	hold-01
+# ::edge	man	ARG0-of	wear-01	m	w	
+# ::edge	pants	ARG1-of	gray-02	p	g	
+# ::edge	and	op1	pants	a	p	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	stripe	ARG1-of	pink-04	s2	p2	
+# ::edge	shirt	mod	stripe	s	s2	
+# ::edge	and	op2	shirt	a	s	
+# ::edge	hold-01	ARG0	man	h2	m	
+# ::edge	bat	ARG1-of	red-02	b2	r	
+# ::edge	hold-01	ARG1	bat	h2	b2	
+# ::edge	hover-01	ARG1	ball	h3	b	
+# ::edge	hold-01	time	hover-01	h2	h3	
+# ::edge	hover-01	ARG2	near-02	h3	n	
+# ::edge	near-02	ARG1	ball	n	b	
+# ::edge	near-02	ARG2	head	n	h	
+# ::edge	man	part	head	m	h	
+(h2 / hold-01
+    :ARG0 (m / man
+        :ARG0-of (w / wear-01
+            :ARG1 (a / and
+                :op1 (p / pants
+                    :ARG1-of (g / gray-02))
+                :op2 (s / shirt
+                    :mod (s2 / stripe
+                        :ARG1-of (p2 / pink-04)))))
+        :part (h / head))
+    :ARG1 (b2 / bat
+        :ARG1-of (r / red-02))
+    :time (h3 / hover-01
+        :ARG1 (b / ball)
+        :ARG2 (n / near-02
+            :ARG1 b
+            :ARG2 h)))

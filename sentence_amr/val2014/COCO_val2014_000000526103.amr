@@ -1,0 +1,52 @@
+# ::tok An elephant looks very much like the elephant in the sign outside his enclosure , that is also directly in front of him , that tells visitors about him .
+# ::node	e	elephant	1-2
+# ::node	l	look-02	2-3
+# ::node	v	very	3-4
+# ::node	m	much	4-5
+# ::node	e2	elephant	7-8
+# ::node	s	sign	10-11
+# ::node	o	outside	11-12
+# ::node	e3	enclosure	13-14
+# ::node	a	also	17-18
+# ::node	d	direct-02	18-19
+# ::node	b	be-located-at-91	19-20
+# ::node	i	in-front-of	20-21
+# ::node	t	tell-01	25-26
+# ::node	p	person	26-27
+# ::node	v2	visit-01	26-27
+# ::root	l	look-02
+# ::edge	look-02	ARG0	elephant	l	e	
+# ::edge	much	degree	very	m	v	
+# ::edge	look-02	mod	much	l	m	
+# ::edge	look-02	ARG1	elephant	l	e2	
+# ::edge	elephant	location	sign	e2	s	
+# ::edge	sign	location	outside	s	o	
+# ::edge	outside	op1	enclosure	o	e3	
+# ::edge	enclosure	poss	elephant	e3	e	
+# ::edge	also	ARG1-of	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG2	in-front-of	b	i	
+# ::edge	in-front-of	ARG1-of	direct-02	i	d	
+# ::edge	in-front-of	mod	also	i	a	
+# ::edge	in-front-of	op1	elephant	i	e2	
+# ::edge	sign	ARG0-of	tell-01	s	t	
+# ::edge	tell-01	ARG2	person	t	p	
+# ::edge	person	ARG0-of	visit-01	p	v2	
+# ::edge	look-02	rel	be-located-at-91	l	b	
+(l / look-02
+    :ARG0 (e / elephant)
+    :ARG1 (e2 / elephant
+        :location (s / sign
+            :ARG0-of (t / tell-01
+                :ARG2 (p / person
+                    :ARG0-of (v2 / visit-01)))
+            :location (o / outside
+                :op1 (e3 / enclosure
+                    :poss e))))
+    :mod (m / much
+        :degree (v / very))
+    :rel (b / be-located-at-91
+        :ARG2 (i / in-front-of
+            :ARG1-of (d / direct-02)
+            :mod (a / also
+                :ARG1-of b)
+            :op1 e2)))

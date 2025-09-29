@@ -1,0 +1,38 @@
+# ::tok A bathroom with two toilets in it , one smaller than the other .
+# ::node	b	bathroom	1-2
+# ::node	2	2	3-4
+# ::node	t	toilet	4-5
+# ::node	t2	toilet	4-5
+# ::node	i	include-91	8-9
+# ::node	i2	include-91	8-9
+# ::node	0	1	8-9
+# ::node	1	1	8-9
+# ::node	h	have-degree-91	9-10
+# ::node	s	small	9-10
+# ::node	m	more	9-10
+# ::root	b	bathroom
+# ::edge	toilet	quant	2	t	2	
+# ::edge	bathroom	location-of	toilet	b	t	
+# ::edge	include-91	ARG1	toilet	i	t2	
+# ::edge	toilet	ARG2-of	include-91	t	i	
+# ::edge	include-91	ARG2	toilet	i2	t2	
+# ::edge	toilet	quant	1	t2	0	
+# ::edge	have-degree-91	ARG4	toilet	h	t2	
+# ::edge	toilet	ARG1-of	have-degree-91	t2	h	
+# ::edge	have-degree-91	ARG2	small	h	s	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	bathroom	rel	include-91	b	i2	
+# ::edge	bathroom	rel	1	b	1	
+(b / bathroom
+    :location-of (t / toilet
+        :quant 2
+        :ARG2-of (i / include-91
+            :ARG1 (t2 / toilet
+                :quant 1
+                :ARG1-of (h / have-degree-91
+                    :ARG2 (s / small)
+                    :ARG3 (m / more)
+                    :ARG4 t2))))
+    :rel (i2 / include-91
+        :ARG2 t2)
+    :rel 1)

@@ -1,0 +1,25 @@
+# ::tok Two one way signs on a utility pole point in opposite directions .
+# ::node	0	2	0-1
+# ::node	o	one-way	2-3
+# ::node	s	sign	3-4
+# ::node	u	utility	6-7
+# ::node	p2	pole	7-8
+# ::node	p	point-01	8-9
+# ::node	o2	opposite-01	10-11
+# ::node	d	direction	11-12
+# ::root	p	point-01
+# ::edge	sign	mod	one-way	s	o	
+# ::edge	sign	quant	2	s	0	
+# ::edge	pole	mod	utility	p2	u	
+# ::edge	sign	location	pole	s	p2	
+# ::edge	point-01	ARG0	sign	p	s	
+# ::edge	direction	ARG1-of	opposite-01	d	o2	
+# ::edge	point-01	ARG2	direction	p	d	
+(p / point-01
+    :ARG0 (s / sign
+        :quant 2
+        :location (p2 / pole
+            :mod (u / utility))
+        :mod (o / one-way))
+    :ARG2 (d / direction
+        :ARG1-of (o2 / opposite-01)))

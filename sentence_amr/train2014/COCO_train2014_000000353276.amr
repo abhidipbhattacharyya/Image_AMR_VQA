@@ -1,0 +1,36 @@
+# ::tok A seagull is standing on a ledge and one is flying across a river that is flowing .
+# ::node	s	seagull	1-2
+# ::node	s2	seagull	1-2
+# ::node	s3	stand-01	3-4
+# ::node	l	ledge	6-7
+# ::node	a2	and	7-8
+# ::node	i	include-91	8-9
+# ::node	0	1	8-9
+# ::node	f2	fly-01	10-11
+# ::node	a	across	11-12
+# ::node	r	river	13-14
+# ::node	f	flow-01	16-17
+# ::root	a2	and
+# ::edge	stand-01	ARG0	seagull	s3	s	
+# ::edge	stand-01	ARG2	ledge	s3	l	
+# ::edge	and	op1	stand-01	a2	s3	
+# ::edge	seagull	ARG1-of	include-91	s2	i	
+# ::edge	include-91	ARG2	seagull	i	s	
+# ::edge	seagull	quant	1	s2	0	
+# ::edge	and	op2	fly-01	a2	f2	
+# ::edge	fly-01	ARG1	seagull	f2	s2	
+# ::edge	fly-01	path	across	f2	a	
+# ::edge	across	op1	river	a	r	
+# ::edge	river	ARG1-of	flow-01	r	f	
+(a2 / and
+    :op1 (s3 / stand-01
+        :ARG0 (s / seagull)
+        :ARG2 (l / ledge))
+    :op2 (f2 / fly-01
+        :ARG1 (s2 / seagull
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 s))
+        :path (a / across
+            :op1 (r / river
+                :ARG1-of (f / flow-01)))))

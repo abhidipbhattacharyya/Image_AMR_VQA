@@ -1,0 +1,28 @@
+# ::tok Many luggage bags are on the conveyor belt at the airport luggage claim .
+# ::node	m	many	0-1
+# ::node	l	luggage	1-2
+# ::node	b	bag	2-3
+# ::node	b2	be-located-at-91	4-5
+# ::node	c2	conveyor	6-7
+# ::node	b3	belt	7-8
+# ::node	a	airport	10-11
+# ::node	l2	luggage	11-12
+# ::node	c	claim-02	12-13
+# ::root	b2	be-located-at-91
+# ::edge	bag	mod	luggage	b	l	
+# ::edge	bag	quant	many	b	m	
+# ::edge	be-located-at-91	ARG1	bag	b2	b	
+# ::edge	belt	mod	conveyor	b3	c2	
+# ::edge	be-located-at-91	ARG2	belt	b2	b3	
+# ::edge	claim-02	ARG1	luggage	c	l2	
+# ::edge	claim-02	location	airport	c	a	
+# ::edge	be-located-at-91	location	claim-02	b2	c	
+(b2 / be-located-at-91
+    :ARG1 (b / bag
+        :quant (m / many)
+        :mod (l / luggage))
+    :ARG2 (b3 / belt
+        :mod (c2 / conveyor))
+    :location (c / claim-02
+        :ARG1 (l2 / luggage)
+        :location (a / airport)))

@@ -1,0 +1,42 @@
+# ::tok On a clay tennis court a player in an orange tennis dress hits a tennis ball while the lines people watch .
+# ::node	c	clay	2-3
+# ::node	t	tennis	3-4
+# ::node	c2	court	4-5
+# ::node	p	person	6-7
+# ::node	p3	play-01	6-7
+# ::node	o	orange	9-10
+# ::node	d	dress	11-12
+# ::node	w2	wear-01	11-12
+# ::node	h	hit-01	12-13
+# ::node	b	ball	15-16
+# ::node	l	line	18-19
+# ::node	p2	person	19-20
+# ::node	w	watch-01	20-21
+# ::root	h	hit-01
+# ::edge	court	mod	tennis	c2	t	
+# ::edge	court	mod	clay	c2	c	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	dress	mod	orange	d	o	
+# ::edge	dress	ARG1-of	wear-01	d	w2	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	location	court	h	c2	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	person	mod	line	p2	l	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	hit-01	ARG1-of	watch-01	h	w	
+# ::edge	hit-01	rel	dress	h	d	
+(h / hit-01
+    :ARG0 (p / person
+        :ARG0-of (p3 / play-01))
+    :ARG1 (b / ball
+        :mod (t / tennis))
+    :ARG1-of (w / watch-01
+        :ARG0 (p2 / person
+            :mod (l / line)))
+    :location (c2 / court
+        :mod t
+        :mod (c / clay))
+    :rel (d / dress
+        :ARG1-of (w2 / wear-01)
+        :mod (o / orange)))

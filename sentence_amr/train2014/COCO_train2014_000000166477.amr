@@ -1,0 +1,26 @@
+# ::tok Several men are skateboarding or sitting around a skateboard park .
+# ::node	s	several	0-1
+# ::node	m	man	1-2
+# ::node	s3	skate-01	3-4
+# ::node	o	or	4-5
+# ::node	s2	sit-01	5-6
+# ::node	a	around	6-7
+# ::node	p	park	9-10
+# ::root	o	or
+# ::edge	man	quant	several	m	s	
+# ::edge	skate-01	ARG0	man	s3	m	
+# ::edge	or	op1	skate-01	o	s3	
+# ::edge	or	op2	sit-01	o	s2	
+# ::edge	sit-01	ARG1	man	s2	m	
+# ::edge	sit-01	ARG2	around	s2	a	
+# ::edge	around	op1	park	a	p	
+# ::edge	park	mod	skate-01	p	s3	
+(o / or
+    :op1 (s3 / skate-01
+        :ARG0 (m / man
+            :quant (s / several)))
+    :op2 (s2 / sit-01
+        :ARG1 m
+        :ARG2 (a / around
+            :op1 (p / park
+                :mod s3))))

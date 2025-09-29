@@ -1,0 +1,56 @@
+# ::tok A man standing , holding a rainbow colored , open umbrella , and looking at big rocks in grass field that has a circle of big rocks , on a foggy day .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	h2	hold-01	4-5
+# ::node	r	rainbow	6-7
+# ::node	c2	color-01	7-8
+# ::node	o	open-01	9-10
+# ::node	u	umbrella	10-11
+# ::node	a	and	12-13
+# ::node	l	look-01	13-14
+# ::node	b	big	15-16
+# ::node	r2	rock	16-17
+# ::node	g	grass	18-19
+# ::node	f	field	19-20
+# ::node	h	have-03	21-22
+# ::node	c	circle	23-24
+# ::node	f2	foggy	30-31
+# ::node	d	day	31-32
+# ::root	a	and
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	color-01	ARG2	rainbow	c2	r	
+# ::edge	umbrella	ARG1-of	open-01	u	o	
+# ::edge	umbrella	ARG1-of	color-01	u	c2	
+# ::edge	hold-01	ARG1	umbrella	h2	u	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	man	l	m	
+# ::edge	rock	mod	big	r2	b	
+# ::edge	look-01	ARG1	rock	l	r2	
+# ::edge	field	mod	grass	f	g	
+# ::edge	rock	location	field	r2	f	
+# ::edge	field	ARG0-of	have-03	f	h	
+# ::edge	have-03	ARG1	circle	h	c	
+# ::edge	rock	consist	circle	r2	c	
+# ::edge	day	mod	foggy	d	f2	
+# ::edge	and	time	day	a	d	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (m / man
+            :ARG0-of (h2 / hold-01
+                :ARG1 (u / umbrella
+                    :ARG1-of (o / open-01)
+                    :ARG1-of (c2 / color-01
+                        :ARG2 (r / rainbow))))))
+    :op2 (l / look-01
+        :ARG0 m
+        :ARG1 (r2 / rock
+            :consist (c / circle)
+            :location (f / field
+                :ARG0-of (h / have-03
+                    :ARG1 c)
+                :mod (g / grass))
+            :mod (b / big)))
+    :time (d / day
+        :mod (f2 / foggy)))

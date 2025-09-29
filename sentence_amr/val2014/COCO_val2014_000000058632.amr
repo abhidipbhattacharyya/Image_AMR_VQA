@@ -1,0 +1,33 @@
+# ::tok two black and white clocks on a black clock tower and clouds
+# ::node	0	2	0-1
+# ::node	b2	black-04	1-2
+# ::node	w	white-03	3-4
+# ::node	h	hour	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	c	clock	8-9
+# ::node	t	tower	9-10
+# ::node	a	and	10-11
+# ::node	a2	and	10-11
+# ::node	c2	cloud	11-12
+# ::root	a	and
+# ::edge	hour	ARG1-of	white-03	h	w	
+# ::edge	hour	ARG1-of	black-04	h	b2	
+# ::edge	hour	quant	2	h	0	
+# ::edge	be-located-at-91	ARG1	hour	b	h	
+# ::edge	black-04	ARG1	clock	b2	c	
+# ::edge	tower	mod	clock	t	c	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	tower	a2	t	
+# ::edge	and	op2	cloud	a2	c2	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (h / hour
+            :quant 2
+            :ARG1-of (w / white-03)
+            :ARG1-of (b2 / black-04
+                :ARG1 (c / clock))))
+    :op2 (a2 / and
+        :op1 (t / tower
+            :mod c)
+        :op2 (c2 / cloud)))

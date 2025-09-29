@@ -1,0 +1,27 @@
+# ::tok Handlers stand inside an enclosure with elephants standing near .
+# ::node	p	person	0-1
+# ::node	h	handle-01	0-1
+# ::node	s	stand-01	1-2
+# ::node	i	inside	2-3
+# ::node	e2	enclosure	4-5
+# ::node	e	elephant	6-7
+# ::node	s2	stand-01	7-8
+# ::node	n	near-02	8-9
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	handle-01	p	h	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	inside	s	i	
+# ::edge	inside	op1	enclosure	i	e2	
+# ::edge	stand-01	ARG1	elephant	s2	e	
+# ::edge	inside	location-of	stand-01	i	s2	
+# ::edge	stand-01	ARG1-of	near-02	s2	n	
+# ::edge	near-02	ARG2	enclosure	n	e2	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (h / handle-01))
+    :ARG2 (i / inside
+        :location-of (s2 / stand-01
+            :ARG1 (e / elephant)
+            :ARG1-of (n / near-02
+                :ARG2 (e2 / enclosure)))
+        :op1 e2))

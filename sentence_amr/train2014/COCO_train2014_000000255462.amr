@@ -1,0 +1,25 @@
+# ::tok Group of boats out in the water with a large amount range behind them .
+# ::node	g	group	0-1
+# ::node	b2	boat	2-3
+# ::node	o	out-06	3-4
+# ::node	w	water	6-7
+# ::node	l	large	9-10
+# ::node	a	amount	10-11
+# ::node	r	range-01	11-12
+# ::node	b	behind	12-13
+# ::root	r	range-01
+# ::edge	group	consist-of	boat	g	b2	
+# ::edge	group	ARG1-of	out-06	g	o	
+# ::edge	out-06	ARG2	water	o	w	
+# ::edge	amount	mod	large	a	l	
+# ::edge	range-01	ARG1	amount	r	a	
+# ::edge	range-01	ARG4	behind	r	b	
+# ::edge	behind	op1	group	b	g	
+(r / range-01
+    :ARG1 (a / amount
+        :mod (l / large))
+    :ARG4 (b / behind
+        :op1 (g / group
+            :ARG1-of (o / out-06
+                :ARG2 (w / water))
+            :consist-of (b2 / boat))))

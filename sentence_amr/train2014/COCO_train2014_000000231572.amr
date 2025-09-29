@@ -1,0 +1,33 @@
+# ::tok Crewmen working on airliner while sitting at airport during snowy weather conditions
+# ::node	p	person	0-1
+# ::node	h	have-org-role-91	0-1
+# ::node	c2	crewman	0-1
+# ::node	w2	work-01	1-2
+# ::node	a	airliner	3-4
+# ::node	s	sit-01	5-6
+# ::node	a2	airport	7-8
+# ::node	s2	snowy-02	9-10
+# ::node	w	weather	10-11
+# ::node	c	condition	11-12
+# ::root	w2	work-01
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG2	crewman	h	c2	
+# ::edge	work-01	ARG0	person	w2	p	
+# ::edge	work-01	ARG1	airliner	w2	a	
+# ::edge	work-01	time	sit-01	w2	s	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	airport	s	a2	
+# ::edge	weather	mod	snowy-02	w	s2	
+# ::edge	condition	mod	weather	c	w	
+# ::edge	work-01	time	condition	w2	c	
+(w2 / work-01
+    :ARG0 (p / person
+        :ARG0-of (h / have-org-role-91
+            :ARG2 (c2 / crewman)))
+    :ARG1 (a / airliner)
+    :time (s / sit-01
+        :ARG1 p
+        :ARG2 (a2 / airport))
+    :time (c / condition
+        :mod (w / weather
+            :mod (s2 / snowy-02))))

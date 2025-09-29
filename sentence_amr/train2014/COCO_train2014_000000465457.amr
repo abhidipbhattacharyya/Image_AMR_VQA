@@ -1,0 +1,43 @@
+# ::tok A bowl of ingredients , including diced bananas and a measuring bowl of milk beside it .
+# ::node	b4	bowl	1-2
+# ::node	i2	ingredient	3-4
+# ::node	i	include-01	5-6
+# ::node	v	variable	6-7
+# ::node	n	name	6-7
+# ::node	v2	variable	6-7
+# ::node	b	banana	7-8
+# ::node	a	and	8-9
+# ::node	m	measure-01	10-11
+# ::node	b5	bowl	11-12
+# ::node	m2	milk	13-14
+# ::node	b2	be-located-at-91	14-15
+# ::node	b3	beside	14-15
+# ::node	i3	it	15-16
+# ::root	b2	be-located-at-91
+# ::edge	bowl	consist-of	ingredient	b4	i2	
+# ::edge	ingredient	ARG2-of	include-01	i2	i	
+# ::edge	variable	name	name	v	n	
+# ::edge	banana	mod	variable	b	v	
+# ::edge	and	op1	banana	a	b	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	bowl	ARG2-of	measure-01	b5	m	
+# ::edge	and	op2	bowl	a	b5	
+# ::edge	bowl	consist-of	milk	b5	m2	
+# ::edge	milk	mod	variable	m2	v2	
+# ::edge	be-located-at-91	ARG1	bowl	b2	b4	
+# ::edge	be-located-at-91	ARG2	beside	b2	b3	
+# ::edge	beside	op1	it	b3	i3	
+(b2 / be-located-at-91
+    :ARG1 (b4 / bowl
+        :consist-of (i2 / ingredient
+            :ARG2-of (i / include-01
+                :ARG1 (a / and
+                    :op1 (b / banana
+                        :mod (v / variable
+                            :name (n / name)))
+                    :op2 (b5 / bowl
+                        :ARG2-of (m / measure-01)
+                        :consist-of (m2 / milk
+                            :mod (v2 / variable)))))))
+    :ARG2 (b3 / beside
+        :op1 (i3 / it)))

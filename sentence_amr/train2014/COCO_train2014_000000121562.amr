@@ -1,0 +1,25 @@
+# ::tok A person is sitting at a bus stop as a city bus approaches .
+# ::node	p	person	1-2
+# ::node	s	sit-01	3-4
+# ::node	f	facility	5-6
+# ::node	b	bus	6-7
+# ::node	s2	stop-01	7-8
+# ::node	c	city	10-11
+# ::node	b2	bus	11-12
+# ::node	a	approach-01	12-13
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	facility	s	f	
+# ::edge	stop-01	ARG1	bus	s2	b	
+# ::edge	facility	location-of	stop-01	f	s2	
+# ::edge	bus	mod	city	b2	c	
+# ::edge	approach-01	ARG1	bus	a	b2	
+# ::edge	sit-01	time	approach-01	s	a	
+(s / sit-01
+    :ARG1 (p / person)
+    :ARG2 (f / facility
+        :location-of (s2 / stop-01
+            :ARG1 (b / bus)))
+    :time (a / approach-01
+        :ARG1 (b2 / bus
+            :mod (c / city))))

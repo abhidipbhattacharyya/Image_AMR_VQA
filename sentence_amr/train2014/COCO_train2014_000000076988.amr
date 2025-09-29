@@ -1,0 +1,31 @@
+# ::tok different sizes of scissors in a box and others on a table
+# ::node	d	differ-02	0-1
+# ::node	s3	size	1-2
+# ::node	s	scissors	3-4
+# ::node	s2	scissors	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	b3	box	6-7
+# ::node	a	and	7-8
+# ::node	o	other	8-9
+# ::node	b2	be-located-at-91	9-10
+# ::node	t	table	11-12
+# ::root	a	and
+# ::edge	size	ARG1-of	differ-02	s3	d	
+# ::edge	scissors	mod	size	s	s3	
+# ::edge	be-located-at-91	ARG1	scissors	b	s	
+# ::edge	be-located-at-91	ARG2	box	b	b3	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	scissors	mod	other	s2	o	
+# ::edge	and	op2	be-located-at-91	a	b2	
+# ::edge	be-located-at-91	ARG1	scissors	b2	s2	
+# ::edge	be-located-at-91	ARG2	table	b2	t	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (s / scissors
+            :mod (s3 / size
+                :ARG1-of (d / differ-02)))
+        :ARG2 (b3 / box))
+    :op2 (b2 / be-located-at-91
+        :ARG1 (s2 / scissors
+            :mod (o / other))
+        :ARG2 (t / table)))

@@ -1,0 +1,27 @@
+# ::tok The metro just pulled up and its doors are open awaiting passengers .
+# ::node	m	metro	1-2
+# ::node	j	just	2-3
+# ::node	p2	pull-01	3-4
+# ::node	a	and	5-6
+# ::node	d	door	7-8
+# ::node	o	open-09	9-10
+# ::node	a2	await-01	10-11
+# ::node	p	passenger	11-12
+# ::root	a	and
+# ::edge	pull-01	mod	just	p2	j	
+# ::edge	pull-01	ARG0	metro	p2	m	
+# ::edge	and	op1	pull-01	a	p2	
+# ::edge	metro	part	door	m	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	and	op2	open-09	a	o	
+# ::edge	metro	ARG1-of	await-01	m	a2	
+# ::edge	await-01	ARG2	passenger	a2	p	
+(a / and
+    :op1 (p2 / pull-01
+        :ARG0 (m / metro
+            :ARG1-of (a2 / await-01
+                :ARG2 (p / passenger))
+            :part (d / door))
+        :mod (j / just))
+    :op2 (o / open-09
+        :ARG1 d))

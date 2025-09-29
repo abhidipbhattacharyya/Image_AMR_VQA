@@ -1,0 +1,28 @@
+# ::tok A traffic sign reads " Spauliding Ave " in a black and white photo .
+# ::node	t	traffic	1-2
+# ::node	s	sign	2-3
+# ::node	r	read-01	3-4
+# ::node	n	name	5-6
+# ::node	1	Spauliding	5-6
+# ::node	r2	road	6-7
+# ::node	0	Ave	6-7
+# ::node	b	black-and-white	10-11
+# ::node	p	photo	13-14
+# ::root	r	read-01
+# ::edge	sign	mod	traffic	s	t	
+# ::edge	read-01	ARG1	sign	r	s	
+# ::edge	name	op1	Spauliding	n	1	
+# ::edge	road	name	name	r2	n	
+# ::edge	read-01	ARG3	road	r	r2	
+# ::edge	name	op2	Ave	n	0	
+# ::edge	photo	mod	black-and-white	p	b	
+# ::edge	read-01	medium	photo	r	p	
+(r / read-01
+    :ARG1 (s / sign
+        :mod (t / traffic))
+    :ARG3 (r2 / road
+        :name (n / name
+            :op1 "Spauliding"
+            :op2 "Ave"))
+    :medium (p / photo
+        :mod (b / black-and-white)))

@@ -1,0 +1,33 @@
+# ::tok A room is covered in tools and pieces of wood and has many windows .
+# ::node	r	room	1-2
+# ::node	c	cover-02	3-4
+# ::node	t	tool	5-6
+# ::node	a	and	6-7
+# ::node	p	piece	7-8
+# ::node	w2	wood	9-10
+# ::node	a2	and	10-11
+# ::node	h	have-03	11-12
+# ::node	m	many	12-13
+# ::node	w	window	13-14
+# ::root	a2	and
+# ::edge	cover-02	ARG1	room	c	r	
+# ::edge	and	op1	tool	a	t	
+# ::edge	cover-02	ARG2	and	c	a	
+# ::edge	and	op2	piece	a	p	
+# ::edge	piece	mod	wood	p	w2	
+# ::edge	and	op1	cover-02	a2	c	
+# ::edge	and	op2	have-03	a2	h	
+# ::edge	have-03	ARG0	room	h	r	
+# ::edge	window	quant	many	w	m	
+# ::edge	have-03	ARG1	window	h	w	
+(a2 / and
+    :op1 (c / cover-02
+        :ARG1 (r / room)
+        :ARG2 (a / and
+            :op1 (t / tool)
+            :op2 (p / piece
+                :mod (w2 / wood))))
+    :op2 (h / have-03
+        :ARG0 r
+        :ARG1 (w / window
+            :quant (m / many))))

@@ -1,0 +1,34 @@
+# ::tok A person holding a bowl of oats , next to bowls of other condiments .
+# ::node	p	person	1-2
+# ::node	h	hold-01	2-3
+# ::node	b	bowl	4-5
+# ::node	b2	bowl	4-5
+# ::node	o	oat	6-7
+# ::node	n2	next-to	8-9
+# ::node	o2	other	12-13
+# ::node	r	religion	13-14
+# ::node	n	name	13-14
+# ::node	m	member	13-14
+# ::node	0	journal	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	bowl	h	b	
+# ::edge	bowl	consist-of	oat	b	o	
+# ::edge	next-to	op1	bowl	n2	b2	
+# ::edge	hold-01	location	next-to	h	n2	
+# ::edge	bowl	mod	religion	b2	r	
+# ::edge	religion	name	name	r	n	
+# ::edge	hold-01	ARG2	member	h	m	
+# ::edge	name	op1	journal	n	0	
+# ::edge	person	rel	other	p	o2	
+(p / person
+    :ARG0-of (h / hold-01
+        :ARG1 (b / bowl
+            :consist-of (o / oat))
+        :ARG2 (m / member)
+        :location (n2 / next-to
+            :op1 (b2 / bowl
+                :mod (r / religion
+                    :name (n / name
+                        :op1 "journal")))))
+    :rel (o2 / other))

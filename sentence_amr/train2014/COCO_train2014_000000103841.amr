@@ -1,0 +1,25 @@
+# ::tok A zebra standing next to a rock cave next to a pile of rocks .
+# ::node	z	zebra	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	r	rock	6-7
+# ::node	c	cave	7-8
+# ::node	n2	next-to	8-9
+# ::node	p	pile-01	11-12
+# ::node	r2	rock	13-14
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	zebra	s	z	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	cave	mod	rock	c	r	
+# ::edge	next-to	op1	cave	n	c	
+# ::edge	cave	location	next-to	c	n2	
+# ::edge	next-to	op1	pile-01	n2	p	
+# ::edge	pile-01	ARG1	rock	p	r2	
+(s / stand-01
+    :ARG1 (z / zebra)
+    :ARG2 (n / next-to
+        :op1 (c / cave
+            :location (n2 / next-to
+                :op1 (p / pile-01
+                    :ARG1 (r2 / rock)))
+            :mod (r / rock))))

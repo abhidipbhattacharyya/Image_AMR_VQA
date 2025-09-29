@@ -1,0 +1,30 @@
+# ::tok Several people eat a variety of pizzas and drink a variety of beers .
+# ::node	s	several	0-1
+# ::node	p	person	1-2
+# ::node	e	eat-01	2-3
+# ::node	v	variety	4-5
+# ::node	p2	pizzeria	6-7
+# ::node	a	and	7-8
+# ::node	d	drink-01	8-9
+# ::node	v2	variety	10-11
+# ::node	b	beer	12-13
+# ::root	a	and
+# ::edge	person	quant	several	p	s	
+# ::edge	eat-01	ARG0	person	e	p	
+# ::edge	pizzeria	mod	variety	p2	v	
+# ::edge	eat-01	ARG1	pizzeria	e	p2	
+# ::edge	and	op1	eat-01	a	e	
+# ::edge	and	op2	drink-01	a	d	
+# ::edge	drink-01	ARG0	person	d	p	
+# ::edge	beer	mod	variety	b	v2	
+# ::edge	drink-01	ARG1	beer	d	b	
+(a / and
+    :op1 (e / eat-01
+        :ARG0 (p / person
+            :quant (s / several))
+        :ARG1 (p2 / pizzeria
+            :mod (v / variety)))
+    :op2 (d / drink-01
+        :ARG0 p
+        :ARG1 (b / beer
+            :mod (v2 / variety))))

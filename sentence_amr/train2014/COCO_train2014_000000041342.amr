@@ -1,0 +1,27 @@
+# ::tok There is a large passenger bus and the sky is reflected in its front window .
+# ::node	l	large	3-4
+# ::node	p	passenger	4-5
+# ::node	b	bus	5-6
+# ::node	a	and	6-7
+# ::node	s	sky	8-9
+# ::node	r	reflect-01	10-11
+# ::node	f	front	13-14
+# ::node	w	window	14-15
+# ::root	a	and
+# ::edge	bus	mod	passenger	b	p	
+# ::edge	bus	mod	large	b	l	
+# ::edge	and	op1	bus	a	b	
+# ::edge	reflect-01	ARG2	sky	r	s	
+# ::edge	and	op2	reflect-01	a	r	
+# ::edge	window	mod	front	w	f	
+# ::edge	reflect-01	ARG1	window	r	w	
+# ::edge	bus	part	window	b	w	
+(a / and
+    :op1 (b / bus
+        :mod (p / passenger)
+        :mod (l / large)
+        :part (w / window
+            :mod (f / front)))
+    :op2 (r / reflect-01
+        :ARG1 w
+        :ARG2 (s / sky)))

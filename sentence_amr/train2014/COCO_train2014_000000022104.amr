@@ -1,0 +1,33 @@
+# ::tok Several pieces of barbecued chicken and carrots on a white plate .
+# ::node	s	several	0-1
+# ::node	p	piece	1-2
+# ::node	c3	cook-01	3-4
+# ::node	b	before	3-4
+# ::node	c2	chicken	4-5
+# ::node	a	and	5-6
+# ::node	c	carrot	6-7
+# ::node	w	white-03	9-10
+# ::node	p2	plate	10-11
+# ::node	h	have-mod-91	11-12
+# ::root	h	have-mod-91
+# ::edge	piece	quant	several	p	s	
+# ::edge	cook-01	time	before	c3	b	
+# ::edge	chicken	ARG1-of	cook-01	c2	c3	
+# ::edge	and	op1	chicken	a	c2	
+# ::edge	and	quant	piece	a	p	
+# ::edge	and	op2	carrot	a	c	
+# ::edge	plate	ARG1-of	white-03	p2	w	
+# ::edge	plate	location-of	and	p2	a	
+# ::edge	have-mod-91	ARG2	plate	h	p2	
+# ::edge	have-mod-91	ARG1	piece	h	p	
+(h / have-mod-91
+    :ARG1 (p / piece
+        :quant (s / several))
+    :ARG2 (p2 / plate
+        :ARG1-of (w / white-03)
+        :location-of (a / and
+            :quant p
+            :op1 (c2 / chicken
+                :ARG1-of (c3 / cook-01
+                    :time (b / before)))
+            :op2 (c / carrot))))

@@ -1,0 +1,44 @@
+# ::tok An art sculpture with three street clocks combined together under and arch and held together in the air .
+# ::node	a5	art	1-2
+# ::node	s	sculpture	2-3
+# ::node	0	3	4-5
+# ::node	s2	street	5-6
+# ::node	h2	hour	6-7
+# ::node	c	combine-01	7-8
+# ::node	t	together	8-9
+# ::node	u	under	9-10
+# ::node	a2	and	10-11
+# ::node	a4	arch	11-12
+# ::node	a3	and	12-13
+# ::node	h	hold-01	13-14
+# ::node	a	air	17-18
+# ::root	s	sculpture
+# ::edge	sculpture	mod	art	s	a5	
+# ::edge	hour	mod	street	h2	s2	
+# ::edge	hour	quant	3	h2	0	
+# ::edge	combine-01	ARG1	hour	c	h2	
+# ::edge	combine-01	ARG3	together	c	t	
+# ::edge	and	op1	under	a2	u	
+# ::edge	combine-01	ARG2	and	c	a2	
+# ::edge	and	op2	arch	a2	a4	
+# ::edge	and	op1	combine-01	a3	c	
+# ::edge	sculpture	consist-of	and	s	a3	
+# ::edge	and	op2	hold-01	a3	h	
+# ::edge	hold-01	ARG3	together	h	t	
+# ::edge	hold-01	ARG1	hour	h	h2	
+# ::edge	hold-01	location	air	h	a	
+(s / sculpture
+    :consist-of (a3 / and
+        :op1 (c / combine-01
+            :ARG1 (h2 / hour
+                :quant 3
+                :mod (s2 / street))
+            :ARG2 (a2 / and
+                :op1 (u / under)
+                :op2 (a4 / arch))
+            :ARG3 (t / together))
+        :op2 (h / hold-01
+            :ARG1 h2
+            :ARG3 t
+            :location (a / air)))
+    :mod (a5 / art))

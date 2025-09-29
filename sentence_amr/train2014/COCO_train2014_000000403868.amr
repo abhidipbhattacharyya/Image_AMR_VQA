@@ -1,0 +1,31 @@
+# ::tok A plate holds a fork a meal containing broccoli , other vegetables and meats .
+# ::node	p	plate	1-2
+# ::node	h	hold-01	2-3
+# ::node	f	fork	4-5
+# ::node	m	meal	6-7
+# ::node	c	contain-01	7-8
+# ::node	b	broccoli	8-9
+# ::node	a	and	9-10
+# ::node	o	other	10-11
+# ::node	v	vegetable	11-12
+# ::node	m2	meat	13-14
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	plate	h	p	
+# ::edge	hold-01	instrument	fork	h	f	
+# ::edge	hold-01	ARG1	meal	h	m	
+# ::edge	meal	ARG0-of	contain-01	m	c	
+# ::edge	and	op1	broccoli	a	b	
+# ::edge	contain-01	ARG1	and	c	a	
+# ::edge	vegetable	mod	other	v	o	
+# ::edge	and	op2	vegetable	a	v	
+# ::edge	and	op3	meat	a	m2	
+(h / hold-01
+    :ARG0 (p / plate)
+    :ARG1 (m / meal
+        :ARG0-of (c / contain-01
+            :ARG1 (a / and
+                :op1 (b / broccoli)
+                :op2 (v / vegetable
+                    :mod (o / other))
+                :op3 (m2 / meat))))
+    :instrument (f / fork))

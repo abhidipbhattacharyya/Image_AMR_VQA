@@ -1,0 +1,45 @@
+# ::tok One red stunt plane and one blue stunt plane going straight up with contrails behind them .
+# ::node	0	1	0-1
+# ::node	r	red-02	1-2
+# ::node	s2	stunt	2-3
+# ::node	p	plane	3-4
+# ::node	a	and	4-5
+# ::node	1	1	5-6
+# ::node	b2	blue	6-7
+# ::node	s3	stunt	7-8
+# ::node	p2	plane	8-9
+# ::node	g	go-01	9-10
+# ::node	s	straight-04	10-11
+# ::node	u	up-03	11-12
+# ::node	o	Contra	13-14
+# ::node	b	behind	14-15
+# ::root	g	go-01
+# ::edge	plane	mod	stunt	p	s2	
+# ::edge	plane	ARG1-of	red-02	p	r	
+# ::edge	plane	quant	1	p	0	
+# ::edge	and	op1	plane	a	p	
+# ::edge	plane	mod	stunt	p2	s3	
+# ::edge	plane	mod	blue	p2	b2	
+# ::edge	plane	quant	1	p2	1	
+# ::edge	and	op2	plane	a	p2	
+# ::edge	go-01	ARG1	and	g	a	
+# ::edge	go-01	ARG1-of	straight-04	g	s	
+# ::edge	go-01	direction	up-03	g	u	
+# ::edge	go-01	accompanier	Contra	g	o	
+# ::edge	Contra	location	behind	o	b	
+# ::edge	behind	op1	and	b	a	
+(g / go-01
+    :ARG1 (a / and
+        :op1 (p / plane
+            :quant 1
+            :ARG1-of (r / red-02)
+            :mod (s2 / stunt))
+        :op2 (p2 / plane
+            :quant 1
+            :mod (s3 / stunt)
+            :mod (b2 / blue)))
+    :ARG1-of (s / straight-04)
+    :accompanier (o / Contra
+        :location (b / behind
+            :op1 a))
+    :direction (u / up-03))

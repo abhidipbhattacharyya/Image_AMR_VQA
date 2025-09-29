@@ -1,0 +1,39 @@
+# ::tok Planes flying in formation releasing red , white , and blue smoke behind them .
+# ::node	p	plane	0-1
+# ::node	f	fly-01	1-2
+# ::node	f2	formation	3-4
+# ::node	r2	release-01	4-5
+# ::node	r	red-02	5-6
+# ::node	w	white-03	7-8
+# ::node	a	and	9-10
+# ::node	b2	blue	10-11
+# ::node	s	smoke	11-12
+# ::node	s2	smoke	11-12
+# ::node	s3	smoke	11-12
+# ::node	b	behind	12-13
+# ::root	r2	release-01
+# ::edge	plane	ARG2-of	fly-01	p	f	
+# ::edge	fly-01	manner	formation	f	f2	
+# ::edge	release-01	ARG0	plane	r2	p	
+# ::edge	release-01	ARG1	and	r2	a	
+# ::edge	and	op1	smoke	a	s	
+# ::edge	smoke	ARG1-of	red-02	s	r	
+# ::edge	and	op2	smoke	a	s2	
+# ::edge	smoke	ARG1-of	white-03	s2	w	
+# ::edge	smoke	mod	blue	s3	b2	
+# ::edge	and	op3	smoke	a	s3	
+# ::edge	release-01	location	behind	r2	b	
+# ::edge	behind	op1	plane	b	p	
+(r2 / release-01
+    :ARG0 (p / plane
+        :ARG2-of (f / fly-01
+            :manner (f2 / formation)))
+    :ARG1 (a / and
+        :op1 (s / smoke
+            :ARG1-of (r / red-02))
+        :op2 (s2 / smoke
+            :ARG1-of (w / white-03))
+        :op3 (s3 / smoke
+            :mod (b2 / blue)))
+    :location (b / behind
+        :op1 p))

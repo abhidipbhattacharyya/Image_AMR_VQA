@@ -1,0 +1,30 @@
+# ::tok A tractor trailer leaves a small trail of smoke as it leaves a parking lot .
+# ::node	t	tractor	1-2
+# ::node	t3	trailer	2-3
+# ::node	l2	leave-13	3-4
+# ::node	s	small	5-6
+# ::node	t2	trail	6-7
+# ::node	s2	smoke	8-9
+# ::node	l	leave-11	11-12
+# ::node	p	park-01	13-14
+# ::node	l3	lot	14-15
+# ::root	l2	leave-13
+# ::edge	trailer	mod	tractor	t3	t	
+# ::edge	leave-13	ARG0	trailer	l2	t3	
+# ::edge	trail	mod	small	t2	s	
+# ::edge	leave-13	ARG1	trail	l2	t2	
+# ::edge	trail	consist-of	smoke	t2	s2	
+# ::edge	leave-13	time	leave-11	l2	l	
+# ::edge	leave-11	ARG0	trailer	l	t3	
+# ::edge	lot	ARG2-of	park-01	l3	p	
+# ::edge	leave-11	ARG1	lot	l	l3	
+(l2 / leave-13
+    :ARG0 (t3 / trailer
+        :mod (t / tractor))
+    :ARG1 (t2 / trail
+        :consist-of (s2 / smoke)
+        :mod (s / small))
+    :time (l / leave-11
+        :ARG0 t3
+        :ARG1 (l3 / lot
+            :ARG2-of (p / park-01))))

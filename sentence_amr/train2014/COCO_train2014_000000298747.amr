@@ -1,0 +1,28 @@
+# ::tok Algerian the steamboat is blowing smoke from both smoke stacks
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	Algeria	0-1
+# ::node	s4	steamboat	2-3
+# ::node	b	blow-01	4-5
+# ::node	s	smoke	5-6
+# ::node	b2	both	7-8
+# ::node	s2	smoke	8-9
+# ::node	s3	stack-01	9-10
+# ::root	b	blow-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Algeria	n	0	
+# ::edge	steamboat	mod	country	s4	c	
+# ::edge	blow-01	ARG0	steamboat	b	s4	
+# ::edge	blow-01	ARG1	smoke	b	s	
+# ::edge	stack-01	ARG1	smoke	s3	s2	
+# ::edge	stack-01	mod	both	s3	b2	
+# ::edge	blow-01	source	stack-01	b	s3	
+(b / blow-01
+    :ARG0 (s4 / steamboat
+        :mod (c / country
+            :name (n / name
+                :op1 "Algeria")))
+    :ARG1 (s / smoke)
+    :source (s3 / stack-01
+        :ARG1 (s2 / smoke)
+        :mod (b2 / both)))

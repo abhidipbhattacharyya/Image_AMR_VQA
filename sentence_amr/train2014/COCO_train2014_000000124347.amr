@@ -1,0 +1,72 @@
+# ::tok A food counter area , with a man and a woman behind the counter preparing food and a man on other side resting head on bent arm waiting with two plates and order slips on counter .
+# ::node	f	food	1-2
+# ::node	c	counter	2-3
+# ::node	a3	area	3-4
+# ::node	m	man	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	w2	woman	10-11
+# ::node	b	behind	11-12
+# ::node	c2	counter	13-14
+# ::node	p2	prepare-01	14-15
+# ::node	f2	food	15-16
+# ::node	m2	man	18-19
+# ::node	o2	other	20-21
+# ::node	s	side	21-22
+# ::node	r	rest-01	22-23
+# ::node	h	head	23-24
+# ::node	b2	bend-01	25-26
+# ::node	a4	arm	26-27
+# ::node	w	wait-01	27-28
+# ::node	0	2	29-30
+# ::node	p	plate	30-31
+# ::node	o	order-02	32-33
+# ::node	s2	slip-01	33-34
+# ::root	a3	area
+# ::edge	counter	mod	food	c	f	
+# ::edge	area	location-of	counter	a3	c	
+# ::edge	area	location-of	and	a3	a	
+# ::edge	and	op1	man	a2	m	
+# ::edge	and	op2	woman	a2	w2	
+# ::edge	and	location	behind	a2	b	
+# ::edge	behind	op1	counter	b	c2	
+# ::edge	prepare-01	ARG0	and	p2	a2	
+# ::edge	and	op1	prepare-01	a	p2	
+# ::edge	prepare-01	ARG1	food	p2	f2	
+# ::edge	and	op2	man	a	m2	
+# ::edge	side	mod	other	s	o2	
+# ::edge	man	location	side	m2	s	
+# ::edge	man	ARG0-of	rest-01	m2	r	
+# ::edge	rest-01	ARG1	head	r	h	
+# ::edge	arm	ARG1-of	bend-01	a4	b2	
+# ::edge	head	location	arm	h	a4	
+# ::edge	man	ARG1-of	wait-01	m2	w	
+# ::edge	plate	quant	2	p	0	
+# ::edge	man	accompanier	plate	m2	p	
+# ::edge	slip-01	ARG1	order-02	s2	o	
+# ::edge	and	op3	slip-01	a	s2	
+# ::edge	slip-01	ARG2	counter	s2	c	
+(a3 / area
+    :location-of (c / counter
+        :mod (f / food))
+    :location-of (a / and
+        :op1 (p2 / prepare-01
+            :ARG0 (a2 / and
+                :location (b / behind
+                    :op1 (c2 / counter))
+                :op1 (m / man)
+                :op2 (w2 / woman))
+            :ARG1 (f2 / food))
+        :op2 (m2 / man
+            :ARG0-of (r / rest-01
+                :ARG1 (h / head
+                    :location (a4 / arm
+                        :ARG1-of (b2 / bend-01))))
+            :ARG1-of (w / wait-01)
+            :accompanier (p / plate
+                :quant 2)
+            :location (s / side
+                :mod (o2 / other)))
+        :op3 (s2 / slip-01
+            :ARG1 (o / order-02)
+            :ARG2 c)))

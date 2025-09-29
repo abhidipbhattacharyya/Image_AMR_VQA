@@ -1,0 +1,39 @@
+# ::tok a bus with a view of a lot of traffic and the back of another bus with a billboard on the back end
+# ::node	b4	bus	1-2
+# ::node	v	view-01	4-5
+# ::node	l	lot	7-8
+# ::node	t	traffic	9-10
+# ::node	a	and	10-11
+# ::node	b	back	12-13
+# ::node	a2	another	14-15
+# ::node	b5	bus	15-16
+# ::node	h	have-03	16-17
+# ::node	b3	billboard	18-19
+# ::node	b2	back	21-22
+# ::node	e	end	22-23
+# ::root	v	view-01
+# ::edge	view-01	ARG0	bus	v	b4	
+# ::edge	traffic	quant	lot	t	l	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	view-01	ARG1	and	v	a	
+# ::edge	and	op2	back	a	b	
+# ::edge	bus	mod	another	b5	a2	
+# ::edge	back	part-of	bus	b	b5	
+# ::edge	bus	ARG0-of	have-03	b5	h	
+# ::edge	have-03	ARG1	billboard	h	b3	
+# ::edge	end	mod	back	e	b2	
+# ::edge	billboard	location	end	b3	e	
+# ::edge	bus	part	end	b4	e	
+(v / view-01
+    :ARG0 (b4 / bus
+        :part (e / end
+            :mod (b2 / back)))
+    :ARG1 (a / and
+        :op1 (t / traffic
+            :quant (l / lot))
+        :op2 (b / back
+            :part-of (b5 / bus
+                :ARG0-of (h / have-03
+                    :ARG1 (b3 / billboard
+                        :location e))
+                :mod (a2 / another)))))

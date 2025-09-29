@@ -1,0 +1,27 @@
+# ::tok An ambulance parked next to a fire hydrant with the driver relaxing .
+# ::node	a	ambulance	1-2
+# ::node	p	park-01	2-3
+# ::node	n	next-to	3-4
+# ::node	f	fire	6-7
+# ::node	h	hydrant	7-8
+# ::node	p2	person	10-11
+# ::node	d	drive-01	10-11
+# ::node	r	relax-01	11-12
+# ::root	p	park-01
+# ::edge	park-01	ARG1	ambulance	p	a	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	next-to	op1	hydrant	n	h	
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	drive-01	ARG1	ambulance	d	a	
+# ::edge	relax-01	ARG0	person	r	p2	
+# ::edge	ambulance	ARG1-of	relax-01	a	r	
+(p / park-01
+    :ARG1 (a / ambulance
+        :ARG1-of (r / relax-01
+            :ARG0 (p2 / person
+                :ARG0-of (d / drive-01
+                    :ARG1 a))))
+    :ARG2 (n / next-to
+        :op1 (h / hydrant
+            :mod (f / fire))))

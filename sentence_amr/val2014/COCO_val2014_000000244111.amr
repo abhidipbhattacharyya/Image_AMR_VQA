@@ -1,0 +1,52 @@
+# ::tok Three clocks mounted on a wall display the time in New York , Paris and London .
+# ::node	0	3	0-1
+# ::node	w2	watch	1-2
+# ::node	m	mount-03	2-3
+# ::node	w	wall	5-6
+# ::node	d	display-01	6-7
+# ::node	t	time	8-9
+# ::node	n	name	10-11
+# ::node	2	New	10-11
+# ::node	c	city	11-12
+# ::node	4	York	11-12
+# ::node	c2	city	13-14
+# ::node	n2	name	13-14
+# ::node	3	Paris	13-14
+# ::node	a	and	14-15
+# ::node	c3	city	15-16
+# ::node	n3	name	15-16
+# ::node	1	London	15-16
+# ::root	d	display-01
+# ::edge	watch	quant	3	w2	0	
+# ::edge	watch	ARG1-of	mount-03	w2	m	
+# ::edge	mount-03	ARG2	wall	m	w	
+# ::edge	display-01	ARG0	watch	d	w2	
+# ::edge	display-01	ARG1	time	d	t	
+# ::edge	name	op1	New	n	2	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op2	York	n	4	
+# ::edge	city	name	name	c2	n2	
+# ::edge	name	op1	Paris	n2	3	
+# ::edge	and	op2	city	a	c2	
+# ::edge	and	op1	city	a	c	
+# ::edge	display-01	location	and	d	a	
+# ::edge	and	op3	city	a	c3	
+# ::edge	city	name	name	c3	n3	
+# ::edge	name	op1	London	n3	1	
+(d / display-01
+    :ARG0 (w2 / watch
+        :quant 3
+        :ARG1-of (m / mount-03
+            :ARG2 (w / wall)))
+    :ARG1 (t / time)
+    :location (a / and
+        :op1 (c / city
+            :name (n / name
+                :op1 "New"
+                :op2 "York"))
+        :op2 (c2 / city
+            :name (n2 / name
+                :op1 "Paris"))
+        :op3 (c3 / city
+            :name (n3 / name
+                :op1 "London"))))

@@ -1,0 +1,46 @@
+# ::tok A television is on the radiator and clothes and small items are scattered around in the living room without furniture .
+# ::node	t	television	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	r	radiator	5-6
+# ::node	c	clothe-01	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	s2	small	9-10
+# ::node	i	item	10-11
+# ::node	s	scatter-01	12-13
+# ::node	a3	around	13-14
+# ::node	l	living	16-17
+# ::node	r2	room	17-18
+# ::node	h	have-03	18-19
+# ::node	0	-	18-19
+# ::node	f	furniture	19-20
+# ::root	a	and
+# ::edge	be-located-at-91	ARG1	television	b	t	
+# ::edge	be-located-at-91	ARG2	radiator	b	r	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op1	clothe-01	a2	c	
+# ::edge	item	mod	small	i	s2	
+# ::edge	and	op2	item	a2	i	
+# ::edge	scatter-01	ARG1	and	s	a2	
+# ::edge	and	op2	scatter-01	a	s	
+# ::edge	scatter-01	mod	around	s	a3	
+# ::edge	room	mod	living	r2	l	
+# ::edge	scatter-01	location	room	s	r2	
+# ::edge	room	ARG0-of	have-03	r2	h	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	have-03	ARG1	furniture	h	f	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (t / television)
+        :ARG2 (r / radiator))
+    :op2 (s / scatter-01
+        :ARG1 (a2 / and
+            :op1 (c / clothe-01)
+            :op2 (i / item
+                :mod (s2 / small)))
+        :location (r2 / room
+            :ARG0-of (h / have-03
+                :ARG1 (f / furniture)
+                :polarity -)
+            :mod (l / living))
+        :mod (a3 / around)))

@@ -1,0 +1,30 @@
+# ::tok A train pollutes the air with black , choking smoke as it comes rumbling down the bend .
+# ::node	t	train	1-2
+# ::node	p	pollute-01	2-3
+# ::node	a	air	4-5
+# ::node	b2	black-04	6-7
+# ::node	c	choke-01	8-9
+# ::node	s	smoke	9-10
+# ::node	r	rumble-01	13-14
+# ::node	d	down	14-15
+# ::node	b	bend	16-17
+# ::root	p	pollute-01
+# ::edge	pollute-01	ARG0	train	p	t	
+# ::edge	pollute-01	ARG1	air	p	a	
+# ::edge	smoke	ARG0-of	choke-01	s	c	
+# ::edge	smoke	ARG1-of	black-04	s	b2	
+# ::edge	pollute-01	ARG2	smoke	p	s	
+# ::edge	pollute-01	time	rumble-01	p	r	
+# ::edge	rumble-01	ARG0	train	r	t	
+# ::edge	rumble-01	direction	down	r	d	
+# ::edge	down	op1	bend	d	b	
+(p / pollute-01
+    :ARG0 (t / train)
+    :ARG1 (a / air)
+    :ARG2 (s / smoke
+        :ARG0-of (c / choke-01)
+        :ARG1-of (b2 / black-04))
+    :time (r / rumble-01
+        :ARG0 t
+        :direction (d / down
+            :op1 (b / bend))))

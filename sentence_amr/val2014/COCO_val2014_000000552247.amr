@@ -1,0 +1,36 @@
+# ::tok Girls in a gym with tennis racquets are talking to a man on the other side of a net .
+# ::node	g	girl	0-1
+# ::node	g2	gym	3-4
+# ::node	0	tennis	5-6
+# ::node	s2	state	6-7
+# ::node	n	name	6-7
+# ::node	b	boat	6-7
+# ::node	t	talk-01	8-9
+# ::node	m	man	11-12
+# ::node	o	other	14-15
+# ::node	s	side	15-16
+# ::node	n2	net	18-19
+# ::root	t	talk-01
+# ::edge	girl	location	gym	g	g2	
+# ::edge	girl	accompanier	state	g	s2	
+# ::edge	state	name	name	s2	n	
+# ::edge	name	op1	tennis	n	0	
+# ::edge	state	accompanier	boat	s2	b	
+# ::edge	boat	mod	tennis	b	0	
+# ::edge	talk-01	ARG0	girl	t	g	
+# ::edge	talk-01	ARG2	man	t	m	
+# ::edge	side	mod	other	s	o	
+# ::edge	man	location	side	m	s	
+# ::edge	side	mod	net	s	n2	
+(t / talk-01
+    :ARG0 (g / girl
+        :accompanier (s2 / state
+            :name (n / name
+                :op1 "tennis")
+            :accompanier (b / boat
+                :mod "tennis"))
+        :location (g2 / gym))
+    :ARG2 (m / man
+        :location (s / side
+            :mod (o / other)
+            :mod (n2 / net))))

@@ -1,0 +1,40 @@
+# ::tok A street with a green and white city bus traveling on it and other vehicles behind it .
+# ::node	s	street	1-2
+# ::node	g	green-02	4-5
+# ::node	a	and	5-6
+# ::node	w	white-03	6-7
+# ::node	c	city	7-8
+# ::node	b2	bus	8-9
+# ::node	b3	bus	8-9
+# ::node	t	travel-01	9-10
+# ::node	o	other	13-14
+# ::node	v	vehicle	14-15
+# ::node	b	behind	15-16
+# ::root	s	street
+# ::edge	street	location-of	and	s	a	
+# ::edge	bus	mod	city	b2	c	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	bus	ARG1-of	green-02	b2	g	
+# ::edge	bus	mod	city	b3	c	
+# ::edge	bus	ARG1-of	white-03	b3	w	
+# ::edge	and	op2	bus	a	b3	
+# ::edge	bus	ARG0-of	travel-01	b2	t	
+# ::edge	travel-01	ARG4	street	t	s	
+# ::edge	vehicle	mod	other	v	o	
+# ::edge	and	op3	vehicle	a	v	
+# ::edge	vehicle	location	behind	v	b	
+# ::edge	behind	op1	bus	b	b2	
+(s / street
+    :location-of (a / and
+        :op1 (b2 / bus
+            :ARG0-of (t / travel-01
+                :ARG4 s)
+            :ARG1-of (g / green-02)
+            :mod (c / city))
+        :op2 (b3 / bus
+            :ARG1-of (w / white-03)
+            :mod c)
+        :op3 (v / vehicle
+            :location (b / behind
+                :op1 b2)
+            :mod (o / other))))

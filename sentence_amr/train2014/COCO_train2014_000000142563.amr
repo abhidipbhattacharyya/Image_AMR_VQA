@@ -1,0 +1,34 @@
+# ::tok A rodeo rider almost loses his hat as his horse bucks .
+# ::node	r	ride-01	1-2
+# ::node	p	person	2-3
+# ::node	r2	ride-01	2-3
+# ::node	a	almost	3-4
+# ::node	l	lose-02	4-5
+# ::node	h	hat	6-7
+# ::node	c	cause-01	7-8
+# ::node	h2	horse	9-10
+# ::node	d	dollar	10-11
+# ::root	l	lose-02
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	person	ARG0-of	ride-01	p	r2	
+# ::edge	ride-01	ARG1	ride-01	r2	r	
+# ::edge	lose-02	mod	almost	l	a	
+# ::edge	lose-02	ARG0	person	l	p	
+# ::edge	lose-02	ARG1	hat	l	h	
+# ::edge	hat	poss	person	h	p	
+# ::edge	lose-02	ARG1-of	cause-01	l	c	
+# ::edge	horse	poss	person	h2	p	
+# ::edge	dollar	source	horse	d	h2	
+# ::edge	cause-01	ARG0	dollar	c	d	
+(l / lose-02
+    :ARG0 (p / person
+        :ARG0-of (r2 / ride-01
+            :ARG1 (r / ride-01
+                :ARG0 p)))
+    :ARG1 (h / hat
+        :poss p)
+    :ARG1-of (c / cause-01
+        :ARG0 (d / dollar
+            :source (h2 / horse
+                :poss p)))
+    :mod (a / almost))

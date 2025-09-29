@@ -1,0 +1,33 @@
+# ::tok Neatly groomed hedges stand near a large sign and a flag .
+# ::node	y	you	0-1
+# ::node	n2	nice-01	0-1
+# ::node	g	groom-02	1-2
+# ::node	f	fence	2-3
+# ::node	s2	stand-01	3-4
+# ::node	n	near-02	4-5
+# ::node	l	large	6-7
+# ::node	s	sign	7-8
+# ::node	a	and	8-9
+# ::node	f2	flag	10-11
+# ::root	s2	stand-01
+# ::edge	groom-02	ARG1-of	nice-01	g	n2	
+# ::edge	fence	ARG1-of	groom-02	f	g	
+# ::edge	stand-01	ARG1	fence	s2	f	
+# ::edge	stand-01	ARG2	near-02	s2	n	
+# ::edge	near-02	ARG1	fence	n	f	
+# ::edge	sign	mod	large	s	l	
+# ::edge	and	op1	sign	a	s	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	and	op2	flag	a	f2	
+# ::edge	stand-01	rel	you	s2	y	
+(s2 / stand-01
+    :ARG1 (f / fence
+        :ARG1-of (g / groom-02
+            :ARG1-of (n2 / nice-01)))
+    :ARG2 (n / near-02
+        :ARG1 f
+        :ARG2 (a / and
+            :op1 (s / sign
+                :mod (l / large))
+            :op2 (f2 / flag)))
+    :rel (y / you))

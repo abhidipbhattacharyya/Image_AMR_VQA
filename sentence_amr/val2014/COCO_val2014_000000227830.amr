@@ -1,0 +1,28 @@
+# ::tok A large Miller Lite delivery truck refueling at a gas station
+# ::node	l	large	1-2
+# ::node	n	name	2-3
+# ::node	1	Miller	2-3
+# ::node	0	Lite	3-4
+# ::node	d	deliver-01	4-5
+# ::node	t	truck	5-6
+# ::node	r	refuel-01	6-7
+# ::node	g	gas	9-10
+# ::node	s	station	10-11
+# ::root	r	refuel-01
+# ::edge	name	op1	Miller	n	1	
+# ::edge	name	op2	Lite	n	0	
+# ::edge	truck	ARG0-of	deliver-01	t	d	
+# ::edge	truck	name	name	t	n	
+# ::edge	truck	mod	large	t	l	
+# ::edge	refuel-01	ARG1	truck	r	t	
+# ::edge	station	mod	gas	s	g	
+# ::edge	refuel-01	location	station	r	s	
+(r / refuel-01
+    :ARG1 (t / truck
+        :name (n / name
+            :op1 "Miller"
+            :op2 "Lite")
+        :ARG0-of (d / deliver-01)
+        :mod (l / large))
+    :location (s / station
+        :mod (g / gas)))

@@ -1,0 +1,43 @@
+# ::tok On top of a table and on a tray are three donuts that are yellow , green glazed and plain glazed
+# ::node	t2	top	1-2
+# ::node	t	table	4-5
+# ::node	a	and	5-6
+# ::node	t3	tray	8-9
+# ::node	0	3	10-11
+# ::node	d	donut	11-12
+# ::node	y	yellow-02	14-15
+# ::node	a2	and	15-16
+# ::node	g3	green-02	16-17
+# ::node	g	glaze-01	17-18
+# ::node	p	plain	19-20
+# ::node	g2	glaze-01	20-21
+# ::root	a2	and
+# ::edge	top	part-of	table	t2	t	
+# ::edge	and	op1	top	a	t2	
+# ::edge	and	op2	tray	a	t3	
+# ::edge	donut	quant	3	d	0	
+# ::edge	donut	location	and	d	a	
+# ::edge	and	op1	donut	a2	d	
+# ::edge	and	domain	donut	a2	d	
+# ::edge	glaze-01	ARG1-of	green-02	g	g3	
+# ::edge	and	op2	glaze-01	a2	g	
+# ::edge	glaze-01	ARG1	donut	g	d	
+# ::edge	glaze-01	mod	plain	g2	p	
+# ::edge	and	op3	glaze-01	a2	g2	
+# ::edge	glaze-01	ARG1	donut	g2	d	
+# ::edge	and	rel	yellow-02	a2	y	
+(a2 / and
+    :domain (d / donut
+        :quant 3
+        :location (a / and
+            :op1 (t2 / top
+                :part-of (t / table))
+            :op2 (t3 / tray)))
+    :op1 d
+    :op2 (g / glaze-01
+        :ARG1 d
+        :ARG1-of (g3 / green-02))
+    :op3 (g2 / glaze-01
+        :ARG1 d
+        :mod (p / plain))
+    :rel (y / yellow-02))

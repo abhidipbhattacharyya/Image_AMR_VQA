@@ -1,0 +1,29 @@
+# ::tok A large herd of sheep are grazing and resting on a waterfront pasture .
+# ::node	l	large	1-2
+# ::node	h	herd	2-3
+# ::node	s	sheep	4-5
+# ::node	g	graze-01	6-7
+# ::node	a	and	7-8
+# ::node	r	rest-01	8-9
+# ::node	w	waterfront	11-12
+# ::node	p	pasture	12-13
+# ::root	a	and
+# ::edge	herd	mod	large	h	l	
+# ::edge	herd	consist-of	sheep	h	s	
+# ::edge	graze-01	ARG0	herd	g	h	
+# ::edge	and	op1	graze-01	a	g	
+# ::edge	and	op2	rest-01	a	r	
+# ::edge	rest-01	ARG1	herd	r	h	
+# ::edge	pasture	mod	waterfront	p	w	
+# ::edge	rest-01	ARG2	pasture	r	p	
+# ::edge	graze-01	ARG1	pasture	g	p	
+(a / and
+    :op1 (g / graze-01
+        :ARG0 (h / herd
+            :consist-of (s / sheep)
+            :mod (l / large))
+        :ARG1 (p / pasture
+            :mod (w / waterfront)))
+    :op2 (r / rest-01
+        :ARG1 h
+        :ARG2 p))

@@ -1,0 +1,30 @@
+# ::tok A bird stands next to a yellow and blue fire hydrant .
+# ::node	b	bird	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	next-to	3-4
+# ::node	y	yellow-02	6-7
+# ::node	a	and	7-8
+# ::node	b2	blue	8-9
+# ::node	f	fire	9-10
+# ::node	h	hydrant	10-11
+# ::node	h2	hydrant	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	bird	s	b	
+# ::edge	stand-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	and	n	a	
+# ::edge	hydrant	mod	fire	h	f	
+# ::edge	and	op1	hydrant	a	h	
+# ::edge	hydrant	ARG1-of	yellow-02	h	y	
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	mod	blue	h2	b2	
+# ::edge	and	op2	hydrant	a	h2	
+(s / stand-01
+    :ARG1 (b / bird)
+    :ARG2 (n / next-to
+        :op1 (a / and
+            :op1 (h / hydrant
+                :ARG1-of (y / yellow-02)
+                :mod (f / fire))
+            :op2 (h2 / hydrant
+                :mod f
+                :mod (b2 / blue)))))

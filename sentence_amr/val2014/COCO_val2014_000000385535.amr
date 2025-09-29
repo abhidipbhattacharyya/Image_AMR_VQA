@@ -1,0 +1,24 @@
+# ::tok The sign is giving the directions while the traffic light is about to turn red
+# ::node	s	sign	1-2
+# ::node	d	direct-01	5-6
+# ::node	t	traffic	8-9
+# ::node	l	light	9-10
+# ::node	a	about-to	11-12
+# ::node	t2	turn-01	13-14
+# ::node	r	red-02	14-15
+# ::root	d	direct-01
+# ::edge	direct-01	ARG0	sign	d	s	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	turn-01	time	about-to	t2	a	
+# ::edge	turn-01	ARG1	light	t2	l	
+# ::edge	direct-01	time	turn-01	d	t2	
+# ::edge	turn-01	ARG2	red-02	t2	r	
+# ::edge	red-02	ARG1	light	r	l	
+(d / direct-01
+    :ARG0 (s / sign)
+    :time (t2 / turn-01
+        :ARG1 (l / light
+            :mod (t / traffic))
+        :ARG2 (r / red-02
+            :ARG1 l)
+        :time (a / about-to)))

@@ -1,0 +1,45 @@
+# ::tok A group of people sit around a table eating pizzas with sodas in glasses and cans next to the pizza on the table .
+# ::node	g2	group	1-2
+# ::node	p	person	3-4
+# ::node	s	sit-01	4-5
+# ::node	a2	around	5-6
+# ::node	t	table	7-8
+# ::node	e	eat-01	8-9
+# ::node	p3	pizzeria	9-10
+# ::node	b2	beverage	11-12
+# ::node	g	glasses	13-14
+# ::node	a	and	14-15
+# ::node	c	can	15-16
+# ::node	n	next-to	16-17
+# ::node	p2	pizza	19-20
+# ::node	b	be-located-at-91	20-21
+# ::root	s	sit-01
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	sit-01	ARG1	group	s	g2	
+# ::edge	sit-01	ARG2	around	s	a2	
+# ::edge	around	op1	table	a2	t	
+# ::edge	group	ARG0-of	eat-01	g2	e	
+# ::edge	eat-01	ARG1	pizzeria	e	p3	
+# ::edge	beverage	location	glasses	b2	g	
+# ::edge	and	op1	beverage	a	b2	
+# ::edge	pizzeria	accompanier	and	p3	a	
+# ::edge	and	op2	can	a	c	
+# ::edge	can	location	next-to	c	n	
+# ::edge	next-to	op1	pizza	n	p2	
+# ::edge	pizza	ARG1-of	be-located-at-91	p2	b	
+# ::edge	be-located-at-91	ARG2	table	b	t	
+(s / sit-01
+    :ARG1 (g2 / group
+        :ARG0-of (e / eat-01
+            :ARG1 (p3 / pizzeria
+                :accompanier (a / and
+                    :op1 (b2 / beverage
+                        :location (g / glasses))
+                    :op2 (c / can
+                        :location (n / next-to
+                            :op1 (p2 / pizza
+                                :ARG1-of (b / be-located-at-91
+                                    :ARG2 (t / table))))))))
+        :consist-of (p / person))
+    :ARG2 (a2 / around
+        :op1 t))

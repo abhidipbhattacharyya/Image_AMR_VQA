@@ -1,0 +1,63 @@
+# ::tok A baseball player on a baseball field is holding a bat next to a catcher on his knees with an umpire behind them holding up a hand gesture while people look on .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p5	play-01	2-3
+# ::node	f	field	6-7
+# ::node	h2	hold-01	8-9
+# ::node	b2	bat	10-11
+# ::node	n	next-to	11-12
+# ::node	p2	person	14-15
+# ::node	c	catch-01	14-15
+# ::node	k	knee	17-18
+# ::node	p3	person	20-21
+# ::node	u	umpire-01	20-21
+# ::node	b3	behind	21-22
+# ::node	h3	hold-up-10	23-24
+# ::node	h	hand	26-27
+# ::node	g	gesture-01	27-28
+# ::node	p4	person	29-30
+# ::node	l	look-01	30-31
+# ::root	h2	hold-01
+# ::edge	person	ARG0-of	play-01	p	p5	
+# ::edge	play-01	ARG1	baseball	p5	b	
+# ::edge	person	location	field	p	f	
+# ::edge	field	mod	baseball	f	b	
+# ::edge	hold-01	ARG0	person	h2	p	
+# ::edge	hold-01	ARG1	bat	h2	b2	
+# ::edge	hold-01	location	next-to	h2	n	
+# ::edge	next-to	op1	person	n	p2	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	person	part	knee	p2	k	
+# ::edge	person	manner	knee	p2	k	
+# ::edge	hold-01	op2	person	h2	p3	
+# ::edge	person	ARG0-of	umpire-01	p3	u	
+# ::edge	person	location	behind	p3	b3	
+# ::edge	behind	op1	person	b3	p	
+# ::edge	person	ARG0-of	hold-up-10	p3	h3	
+# ::edge	gesture-01	ARG1	hand	g	h	
+# ::edge	hold-up-10	ARG1	gesture-01	h3	g	
+# ::edge	gesture-01	ARG0	person	g	p3	
+# ::edge	look-01	ARG0	person	l	p4	
+# ::edge	hold-01	ARG1-of	look-01	h2	l	
+(h2 / hold-01
+    :ARG0 (p / person
+        :ARG0-of (p5 / play-01
+            :ARG1 (b / baseball))
+        :location (f / field
+            :mod b))
+    :ARG1 (b2 / bat)
+    :ARG1-of (l / look-01
+        :ARG0 (p4 / person))
+    :location (n / next-to
+        :op1 (p2 / person
+            :ARG0-of (c / catch-01)
+            :manner (k / knee)
+            :part k))
+    :op2 (p3 / person
+        :ARG0-of (u / umpire-01)
+        :ARG0-of (h3 / hold-up-10
+            :ARG1 (g / gesture-01
+                :ARG0 p3
+                :ARG1 (h / hand)))
+        :location (b3 / behind
+            :op1 p)))

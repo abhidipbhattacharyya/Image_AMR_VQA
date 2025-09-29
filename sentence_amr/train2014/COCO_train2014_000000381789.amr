@@ -1,0 +1,31 @@
+# ::tok A boy getting ready to throw a frisbee into the water with a dog ready to retrieve it
+# ::node	b	boy	1-2
+# ::node	r	ready-01	3-4
+# ::node	t	throw-01	5-6
+# ::node	f	frisbee	7-8
+# ::node	w	water	10-11
+# ::node	d	dog	13-14
+# ::node	r2	ready-02	14-15
+# ::node	r3	retrieve-01	16-17
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	boy	r	b	
+# ::edge	ready-01	ARG2	throw-01	r	t	
+# ::edge	throw-01	ARG0	boy	t	b	
+# ::edge	throw-01	ARG1	frisbee	t	f	
+# ::edge	throw-01	ARG2	water	t	w	
+# ::edge	throw-01	accompanier	dog	t	d	
+# ::edge	dog	ARG1-of	ready-02	d	r2	
+# ::edge	ready-02	ARG2	retrieve-01	r2	r3	
+# ::edge	retrieve-01	ARG0	dog	r3	d	
+# ::edge	retrieve-01	ARG1	frisbee	r3	f	
+(r / ready-01
+    :ARG1 (b / boy)
+    :ARG2 (t / throw-01
+        :ARG0 b
+        :ARG1 (f / frisbee)
+        :ARG2 (w / water)
+        :accompanier (d / dog
+            :ARG1-of (r2 / ready-02
+                :ARG2 (r3 / retrieve-01
+                    :ARG0 d
+                    :ARG1 f)))))

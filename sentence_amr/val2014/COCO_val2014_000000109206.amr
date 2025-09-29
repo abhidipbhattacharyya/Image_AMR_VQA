@@ -1,0 +1,30 @@
+# ::tok A passenger airplane with it 's landing gear extended and that is descending towards a landing strip .
+# ::node	p	passenger	1-2
+# ::node	a	airplane	2-3
+# ::node	l	land-01	6-7
+# ::node	g	gear	7-8
+# ::node	e	extend-01	8-9
+# ::node	a2	and	9-10
+# ::node	d	descend-01	12-13
+# ::node	l2	land-01	15-16
+# ::node	s	strip	16-17
+# ::root	a2	and
+# ::edge	airplane	mod	passenger	a	p	
+# ::edge	gear	ARG1-of	land-01	g	l	
+# ::edge	airplane	part	gear	a	g	
+# ::edge	extend-01	ARG1	gear	e	g	
+# ::edge	and	op1	extend-01	a2	e	
+# ::edge	and	op2	descend-01	a2	d	
+# ::edge	descend-01	ARG0	airplane	d	a	
+# ::edge	strip	location-of	land-01	s	l2	
+# ::edge	descend-01	direction	strip	d	s	
+(a2 / and
+    :op1 (e / extend-01
+        :ARG1 (g / gear
+            :ARG1-of (l / land-01)))
+    :op2 (d / descend-01
+        :ARG0 (a / airplane
+            :mod (p / passenger)
+            :part g)
+        :direction (s / strip
+            :location-of (l2 / land-01))))

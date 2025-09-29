@@ -1,0 +1,31 @@
+# ::tok An old train going under an underpass near Newark International
+# ::node	o	old	1-2
+# ::node	t	train	2-3
+# ::node	g	go-01	3-4
+# ::node	u	under	4-5
+# ::node	u2	underpass	6-7
+# ::node	n2	near-02	7-8
+# ::node	c	city	8-9
+# ::node	n	name	8-9
+# ::node	1	Newark	8-9
+# ::node	0	International	9-10
+# ::root	g	go-01
+# ::edge	train	mod	old	t	o	
+# ::edge	go-01	ARG1	train	g	t	
+# ::edge	go-01	path	under	g	u	
+# ::edge	under	op1	underpass	u	u2	
+# ::edge	underpass	ARG1-of	near-02	u2	n2	
+# ::edge	near-02	ARG2	city	n2	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Newark	n	1	
+# ::edge	name	op2	International	n	0	
+(g / go-01
+    :ARG1 (t / train
+        :mod (o / old))
+    :path (u / under
+        :op1 (u2 / underpass
+            :ARG1-of (n2 / near-02
+                :ARG2 (c / city
+                    :name (n / name
+                        :op1 "Newark"
+                        :op2 "International"))))))

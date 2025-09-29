@@ -1,0 +1,41 @@
+# ::tok A toilet with an open lid has a push button equipped arm for use by patrons .
+# ::node	t	toilet	1-2
+# ::node	o	open-01	4-5
+# ::node	l	lid	5-6
+# ::node	h	have-03	6-7
+# ::node	p2	push-01	8-9
+# ::node	b	button	9-10
+# ::node	e	equip-01	10-11
+# ::node	a	arm	11-12
+# ::node	u	use-01	13-14
+# ::node	p	person	15-16
+# ::node	h2	have-rel-role-91	15-16
+# ::node	c	customer	15-16
+# ::root	h	have-03
+# ::edge	lid	ARG1-of	open-01	l	o	
+# ::edge	toilet	part	lid	t	l	
+# ::edge	have-03	ARG0	toilet	h	t	
+# ::edge	button	ARG0-of	push-01	b	p2	
+# ::edge	equip-01	ARG2	button	e	b	
+# ::edge	arm	ARG1-of	equip-01	a	e	
+# ::edge	have-03	ARG1	arm	h	a	
+# ::edge	have-03	purpose	use-01	h	u	
+# ::edge	use-01	ARG1	toilet	u	t	
+# ::edge	use-01	ARG0	person	u	p	
+# ::edge	person	ARG0-of	have-rel-role-91	p	h2	
+# ::edge	have-rel-role-91	ARG1	toilet	h2	t	
+# ::edge	have-rel-role-91	ARG2	customer	h2	c	
+(h / have-03
+    :purpose (u / use-01
+        :ARG0 (p / person
+            :ARG0-of (h2 / have-rel-role-91
+                :ARG1 (t / toilet
+                    :part (l / lid
+                        :ARG1-of (o / open-01)))
+                :ARG2 (c / customer)))
+        :ARG1 t)
+    :ARG0 t
+    :ARG1 (a / arm
+        :ARG1-of (e / equip-01
+            :ARG2 (b / button
+                :ARG0-of (p2 / push-01)))))

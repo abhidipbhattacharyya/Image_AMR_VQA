@@ -1,0 +1,75 @@
+# ::tok Dinner meal in darken environment , appears to be grilled fish , sunny side egg on toast , martini , French fried potatoes and other side dishes , excellent evening presentation .
+# ::node	d2	date-entity	0-1
+# ::node	e	Democratic	0-1
+# ::node	m2	meal	1-2
+# ::node	d	darken-01	3-4
+# ::node	e3	environment	4-5
+# ::node	a2	appear-02	6-7
+# ::node	r	roast-01	9-10
+# ::node	f	fish	10-11
+# ::node	a	and	11-12
+# ::node	s2	sunny	12-13
+# ::node	e2	egg	14-15
+# ::node	t	toast	16-17
+# ::node	m	martini	18-19
+# ::node	c	country	20-21
+# ::node	n	name	20-21
+# ::node	0	France	20-21
+# ::node	f2	fry-01	21-22
+# ::node	p	potato	22-23
+# ::node	o	other	24-25
+# ::node	s	side	25-26
+# ::node	d3	dish	26-27
+# ::node	e5	excellent-02	28-29
+# ::node	e4	evening	29-30
+# ::node	p2	present-01	30-31
+# ::root	a2	appear-02
+# ::edge	meal	mod	date-entity	m2	d2	
+# ::edge	environment	ARG1-of	darken-01	e3	d	
+# ::edge	meal	location	environment	m2	e3	
+# ::edge	appear-02	ARG1	meal	a2	m2	
+# ::edge	fish	ARG1-of	roast-01	f	r	
+# ::edge	and	op1	fish	a	f	
+# ::edge	meal	domain	and	m2	a	
+# ::edge	egg	mod	sunny	e2	s2	
+# ::edge	and	op2	egg	a	e2	
+# ::edge	egg	prep-on	toast	e2	t	
+# ::edge	and	op3	martini	a	m	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	location	country	f2	c	
+# ::edge	potato	ARG1-of	fry-01	p	f2	
+# ::edge	and	op4	potato	a	p	
+# ::edge	egg	mod	side	e2	s	
+# ::edge	dish	mod	side	d3	s	
+# ::edge	dish	mod	other	d3	o	
+# ::edge	and	op5	dish	a	d3	
+# ::edge	date-entity	dayperiod	evening	d2	e4	
+# ::edge	present-01	ARG1-of	excellent-02	p2	e5	
+# ::edge	and	ARG1-of	present-01	a	p2	
+# ::edge	appear-02	rel	Democratic	a2	e	
+(a2 / appear-02
+    :ARG1 (m2 / meal
+        :domain (a / and
+            :ARG1-of (p2 / present-01
+                :ARG1-of (e5 / excellent-02))
+            :op1 (f / fish
+                :ARG1-of (r / roast-01))
+            :op2 (e2 / egg
+                :mod (s2 / sunny)
+                :mod (s / side)
+                :prep-on (t / toast))
+            :op3 (m / martini)
+            :op4 (p / potato
+                :ARG1-of (f2 / fry-01
+                    :location (c / country
+                        :name (n / name
+                            :op1 "France"))))
+            :op5 (d3 / dish
+                :mod s
+                :mod (o / other)))
+        :location (e3 / environment
+            :ARG1-of (d / darken-01))
+        :mod (d2 / date-entity
+            :dayperiod (e4 / evening)))
+    :rel (e / Democratic))

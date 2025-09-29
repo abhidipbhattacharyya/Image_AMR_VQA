@@ -1,0 +1,57 @@
+# ::tok A man with a beard and purple seven dwarfs hooded sweatshirt , holding a hotdog and bottle of ketchup .
+# ::node	m	man	1-2
+# ::node	b	beard	4-5
+# ::node	p2	purple-02	6-7
+# ::node	p	person	7-8
+# ::node	n	name	7-8
+# ::node	w	Two	7-8
+# ::node	0	7	7-8
+# ::node	b2	book	8-9
+# ::node	n2	name	8-9
+# ::node	1	Forces	8-9
+# ::node	h2	hood	9-10
+# ::node	s	sweatshirt	10-11
+# ::node	h	hold-01	12-13
+# ::node	h3	hotdog	14-15
+# ::node	a	and	15-16
+# ::node	b3	bottle	16-17
+# ::node	c	contain-01	16-17
+# ::node	k	ketchup	18-19
+# ::root	m	man
+# ::edge	person	name	name	p	n	
+# ::edge	person	op1	Two	p	w	
+# ::edge	name	op3	7	n	0	
+# ::edge	book	mod	person	b2	p	
+# ::edge	book	ARG1-of	purple-02	b2	p2	
+# ::edge	man	mod	book	m	b2	
+# ::edge	book	name	name	b2	n2	
+# ::edge	name	op1	Forces	n2	1	
+# ::edge	sweatshirt	part	hood	s	h2	
+# ::edge	sweatshirt	mod	person	s	p	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	and	op1	hotdog	a	h3	
+# ::edge	hold-01	ARG1	and	h	a	
+# ::edge	and	op2	bottle	a	b3	
+# ::edge	bottle	ARG0-of	contain-01	b3	c	
+# ::edge	contain-01	ARG1	ketchup	c	k	
+# ::edge	man	rel	sweatshirt	m	s	
+# ::edge	man	rel	beard	m	b	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (a / and
+            :op1 (h3 / hotdog)
+            :op2 (b3 / bottle
+                :ARG0-of (c / contain-01
+                    :ARG1 (k / ketchup)))))
+    :mod (b2 / book
+        :name (n2 / name
+            :op1 "Forces")
+        :ARG1-of (p2 / purple-02)
+        :mod (p / person
+            :name (n / name
+                :op3 7)
+            :op1 (w / Two)))
+    :rel (s / sweatshirt
+        :mod p
+        :part (h2 / hood))
+    :rel (b / beard))

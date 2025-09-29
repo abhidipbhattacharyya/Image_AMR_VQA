@@ -1,0 +1,28 @@
+# ::tok a city street with cars and street lights at dusk
+# ::node	c2	city	1-2
+# ::node	s	street	2-3
+# ::node	h	have-03	3-4
+# ::node	c	car	4-5
+# ::node	a	and	5-6
+# ::node	s2	street	6-7
+# ::node	l	light	7-8
+# ::node	d	date-entity	9-10
+# ::node	d2	dusk	9-10
+# ::root	s	street
+# ::edge	street	mod	city	s	c2	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	and	op1	car	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	light	mod	street	l	s2	
+# ::edge	and	op2	light	a	l	
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	dusk	d	d2	
+(s / street
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / car)
+            :op2 (l / light
+                :mod (s2 / street))))
+    :mod (c2 / city)
+    :time (d / date-entity
+        :dayperiod (d2 / dusk)))

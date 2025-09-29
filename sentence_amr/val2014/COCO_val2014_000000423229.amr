@@ -1,0 +1,37 @@
+# ::tok A train engine that is letting out smoke travelling down a railroad track with multiple passenger cars attached .
+# ::node	t2	train	1-2
+# ::node	e	engine	2-3
+# ::node	l	let-01	5-6
+# ::node	s	smoke	7-8
+# ::node	t3	travel-01	8-9
+# ::node	d	down	9-10
+# ::node	r	railroad	11-12
+# ::node	t	track	12-13
+# ::node	m	multiple	14-15
+# ::node	p	passenger	15-16
+# ::node	c	car	16-17
+# ::node	a	attach-01	17-18
+# ::root	l	let-01
+# ::edge	engine	part-of	train	e	t2	
+# ::edge	let-01	ARG0	engine	l	e	
+# ::edge	let-01	ARG1	smoke	l	s	
+# ::edge	engine	ARG0-of	travel-01	e	t3	
+# ::edge	travel-01	direction	down	t3	d	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	travel-01	path	track	t3	t	
+# ::edge	car	mod	passenger	c	p	
+# ::edge	car	quant	multiple	c	m	
+# ::edge	attach-01	ARG1	car	a	c	
+# ::edge	engine	ARG2-of	attach-01	e	a	
+(l / let-01
+    :ARG0 (e / engine
+        :ARG0-of (t3 / travel-01
+            :direction (d / down)
+            :path (t / track
+                :mod (r / railroad)))
+        :ARG2-of (a / attach-01
+            :ARG1 (c / car
+                :quant (m / multiple)
+                :mod (p / passenger)))
+        :part-of (t2 / train))
+    :ARG1 (s / smoke))

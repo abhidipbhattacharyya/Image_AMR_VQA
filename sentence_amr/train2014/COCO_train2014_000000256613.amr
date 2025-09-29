@@ -1,0 +1,42 @@
+# ::tok The inside of a room with green painted walls and a window that has a clock and a photo of a man above it .
+# ::node	i	inside	1-2
+# ::node	r	room	4-5
+# ::node	g	green-02	6-7
+# ::node	p	paint-01	7-8
+# ::node	w	wall	8-9
+# ::node	w2	window	11-12
+# ::node	h	have-03	13-14
+# ::node	c	clock	15-16
+# ::node	a2	and	16-17
+# ::node	a3	and	16-17
+# ::node	p2	photo	18-19
+# ::node	m	man	21-22
+# ::node	a	above	22-23
+# ::root	i	inside
+# ::edge	inside	part-of	room	i	r	
+# ::edge	paint-01	ARG2	green-02	p	g	
+# ::edge	wall	ARG1-of	paint-01	w	p	
+# ::edge	window	ARG0-of	have-03	w2	h	
+# ::edge	and	op2	window	a2	w2	
+# ::edge	and	op1	wall	a2	w	
+# ::edge	room	part	and	r	a2	
+# ::edge	and	op1	clock	a3	c	
+# ::edge	have-03	ARG1	and	h	a3	
+# ::edge	and	op2	photo	a3	p2	
+# ::edge	photo	topic	man	p2	m	
+# ::edge	photo	location	above	p2	a	
+# ::edge	above	op1	and	a	a3	
+(i / inside
+    :part-of (r / room
+        :part (a2 / and
+            :op1 (w / wall
+                :ARG1-of (p / paint-01
+                    :ARG2 (g / green-02)))
+            :op2 (w2 / window
+                :ARG0-of (h / have-03
+                    :ARG1 (a3 / and
+                        :op1 (c / clock)
+                        :op2 (p2 / photo
+                            :location (a / above
+                                :op1 a3)
+                            :topic (m / man))))))))

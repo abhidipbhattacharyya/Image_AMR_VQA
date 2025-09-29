@@ -1,0 +1,29 @@
+# ::tok The pedestrian crosswalk sign says is telling pedestrians they can cross the street .
+# ::node	p	pedestrian	1-2
+# ::node	w	walk-01	2-3
+# ::node	s2	sign	3-4
+# ::node	s	say-01	4-5
+# ::node	t	tell-01	6-7
+# ::node	p2	possible-01	9-10
+# ::node	c	cross-02	10-11
+# ::node	s3	street	12-13
+# ::root	s	say-01
+# ::edge	walk-01	ARG0	pedestrian	w	p	
+# ::edge	sign	purpose	walk-01	s2	w	
+# ::edge	say-01	ARG0	sign	s	s2	
+# ::edge	say-01	ARG1	tell-01	s	t	
+# ::edge	tell-01	ARG0	sign	t	s2	
+# ::edge	tell-01	ARG1	possible-01	t	p2	
+# ::edge	possible-01	ARG1	cross-02	p2	c	
+# ::edge	cross-02	ARG0	pedestrian	c	p	
+# ::edge	cross-02	ARG1	street	c	s3	
+(s / say-01
+    :ARG0 (s2 / sign
+        :purpose (w / walk-01
+            :ARG0 (p / pedestrian)))
+    :ARG1 (t / tell-01
+        :ARG0 s2
+        :ARG1 (p2 / possible-01
+            :ARG1 (c / cross-02
+                :ARG0 p
+                :ARG1 (s3 / street)))))

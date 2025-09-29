@@ -1,0 +1,30 @@
+# ::tok A Kitchen Aid blender is unplugged and sitting on a sheet .
+# ::node	n	name	1-2
+# ::node	1	Kitchen	1-2
+# ::node	a	aid-01	2-3
+# ::node	b	blender	3-4
+# ::node	p	plug-in-03	5-6
+# ::node	0	-	5-6
+# ::node	a2	and	6-7
+# ::node	s2	sit-01	7-8
+# ::node	s	sheet	10-11
+# ::root	a2	and
+# ::edge	name	op1	Kitchen	n	1	
+# ::edge	blender	ARG0-of	aid-01	b	a	
+# ::edge	blender	name	name	b	n	
+# ::edge	plug-in-03	ARG1	blender	p	b	
+# ::edge	plug-in-03	polarity	-	p	0	
+# ::edge	and	op1	plug-in-03	a2	p	
+# ::edge	and	op2	sit-01	a2	s2	
+# ::edge	sit-01	ARG1	blender	s2	b	
+# ::edge	sit-01	ARG2	sheet	s2	s	
+(a2 / and
+    :op1 (p / plug-in-03
+        :ARG1 (b / blender
+            :name (n / name
+                :op1 "Kitchen")
+            :ARG0-of (a / aid-01))
+        :polarity -)
+    :op2 (s2 / sit-01
+        :ARG1 b
+        :ARG2 (s / sheet)))

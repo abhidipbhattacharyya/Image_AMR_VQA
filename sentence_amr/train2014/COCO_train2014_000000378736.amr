@@ -1,0 +1,31 @@
+# ::tok Someone is holding a hot dog with pickles and other condiments .
+# ::node	s2	someone	0-1
+# ::node	h	hold-01	2-3
+# ::node	e	eat-01	4-5
+# ::node	h2	hot-dog	5-6
+# ::node	p	pickle	7-8
+# ::node	a	and	8-9
+# ::node	o	other	9-10
+# ::node	r	religion	10-11
+# ::node	n	name	10-11
+# ::node	s	service	10-11
+# ::root	h	hold-01
+# ::edge	hold-01	ARG0	someone	h	s2	
+# ::edge	hot-dog	ARG1-of	eat-01	h2	e	
+# ::edge	hold-01	ARG1	hot-dog	h	h2	
+# ::edge	and	op1	pickle	a	p	
+# ::edge	eat-01	accompanier	and	e	a	
+# ::edge	eat-01	mod	religion	e	r	
+# ::edge	religion	name	name	r	n	
+# ::edge	service	mod	other	s	o	
+# ::edge	and	op2	service	a	s	
+(h / hold-01
+    :ARG0 (s2 / someone)
+    :ARG1 (h2 / hot-dog
+        :ARG1-of (e / eat-01
+            :accompanier (a / and
+                :op1 (p / pickle)
+                :op2 (s / service
+                    :mod (o / other)))
+            :mod (r / religion
+                :name (n / name)))))

@@ -1,0 +1,35 @@
+# ::tok A man is holding a piece of cake on a plate and he has some on his face .
+# ::node	m	man	1-2
+# ::node	h2	hold-01	3-4
+# ::node	p	piece	5-6
+# ::node	c	cake	7-8
+# ::node	c2	cake	7-8
+# ::node	p2	plate	10-11
+# ::node	a	and	11-12
+# ::node	h	have-03	13-14
+# ::node	s	some	14-15
+# ::node	f	face	17-18
+# ::root	a	and
+# ::edge	hold-01	ARG0	man	h2	m	
+# ::edge	hold-01	ARG1	piece	h2	p	
+# ::edge	piece	mod	cake	p	c	
+# ::edge	piece	location	plate	p	p2	
+# ::edge	and	op1	hold-01	a	h2	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	have-03	ARG1	cake	h	c2	
+# ::edge	have-03	ARG0	man	h	m	
+# ::edge	cake	quant	some	c2	s	
+# ::edge	cake	location	face	c2	f	
+# ::edge	man	part	face	m	f	
+(a / and
+    :op1 (h2 / hold-01
+        :ARG0 (m / man
+            :part (f / face))
+        :ARG1 (p / piece
+            :location (p2 / plate)
+            :mod (c / cake)))
+    :op2 (h / have-03
+        :ARG0 m
+        :ARG1 (c2 / cake
+            :quant (s / some)
+            :location f)))

@@ -1,0 +1,33 @@
+# ::tok A man standing in front of a group of men getting ready to throw a bass to another man .
+# ::node	m	man	1-2
+# ::node	s	stand-01	2-3
+# ::node	i	in-front-of	4-5
+# ::node	g	group	7-8
+# ::node	m2	man	9-10
+# ::node	r	ready-01	11-12
+# ::node	t	throw-01	13-14
+# ::node	b	bass	15-16
+# ::node	a	another	17-18
+# ::node	m3	man	18-19
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	man	s	m	
+# ::edge	stand-01	ARG2	in-front-of	s	i	
+# ::edge	in-front-of	op1	group	i	g	
+# ::edge	group	consist-of	man	g	m2	
+# ::edge	group	ARG0-of	ready-01	g	r	
+# ::edge	ready-01	ARG1	throw-01	r	t	
+# ::edge	throw-01	ARG0	man	t	m	
+# ::edge	throw-01	ARG1	bass	t	b	
+# ::edge	man	mod	another	m3	a	
+# ::edge	throw-01	ARG2	man	t	m3	
+(s / stand-01
+    :ARG1 (m / man)
+    :ARG2 (i / in-front-of
+        :op1 (g / group
+            :ARG0-of (r / ready-01
+                :ARG1 (t / throw-01
+                    :ARG0 m
+                    :ARG1 (b / bass)
+                    :ARG2 (m3 / man
+                        :mod (a / another))))
+            :consist-of (m2 / man))))

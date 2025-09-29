@@ -1,0 +1,36 @@
+# ::tok a wine rack full of wine bottles and some soda sitting next to a mini frig
+# ::node	w	wine	1-2
+# ::node	r	rack	2-3
+# ::node	f	fill-01	3-4
+# ::node	b	bottle	6-7
+# ::node	a	and	7-8
+# ::node	s3	some	8-9
+# ::node	s2	soda	9-10
+# ::node	s	sit-01	10-11
+# ::node	n	next-to	11-12
+# ::node	m	mini	14-15
+# ::node	f2	frig	15-16
+# ::root	s	sit-01
+# ::edge	rack	mod	wine	r	w	
+# ::edge	rack	ARG1-of	fill-01	r	f	
+# ::edge	bottle	mod	wine	b	w	
+# ::edge	and	op1	bottle	a	b	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	soda	quant	some	s2	s3	
+# ::edge	and	op2	soda	a	s2	
+# ::edge	sit-01	ARG1	rack	s	r	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	frig	mod	mini	f2	m	
+# ::edge	next-to	op1	frig	n	f2	
+(s / sit-01
+    :ARG1 (r / rack
+        :ARG1-of (f / fill-01
+            :ARG2 (a / and
+                :op1 (b / bottle
+                    :mod (w / wine))
+                :op2 (s2 / soda
+                    :quant (s3 / some))))
+        :mod w)
+    :ARG2 (n / next-to
+        :op1 (f2 / frig
+            :mod (m / mini))))

@@ -1,0 +1,24 @@
+# ::tok A train with a yellow front in station getting ready to depart .
+# ::node	t	train	1-2
+# ::node	h	have-03	2-3
+# ::node	y	yellow-02	4-5
+# ::node	f	front	5-6
+# ::node	s	station	7-8
+# ::node	r	ready-01	9-10
+# ::node	d	depart-01	11-12
+# ::root	t	train
+# ::edge	train	ARG0-of	have-03	t	h	
+# ::edge	front	ARG1-of	yellow-02	f	y	
+# ::edge	have-03	ARG1	front	h	f	
+# ::edge	train	location	station	t	s	
+# ::edge	train	ARG0-of	ready-01	t	r	
+# ::edge	ready-01	ARG1	depart-01	r	d	
+# ::edge	depart-01	ARG0	train	d	t	
+(t / train
+    :ARG0-of (h / have-03
+        :ARG1 (f / front
+            :ARG1-of (y / yellow-02)))
+    :ARG0-of (r / ready-01
+        :ARG1 (d / depart-01
+            :ARG0 t))
+    :location (s / station))

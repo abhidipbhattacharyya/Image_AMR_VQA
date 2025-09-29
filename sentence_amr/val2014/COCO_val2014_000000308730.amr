@@ -1,0 +1,51 @@
+# ::tok A large kitchen with two trashcans , a large gas stove , and many dishes organized and put up .
+# ::node	l	large	1-2
+# ::node	k	kitchen	2-3
+# ::node	h	have-03	3-4
+# ::node	0	2	4-5
+# ::node	o	organization	5-6
+# ::node	t	trash-01	5-6
+# ::node	i	Bin	5-6
+# ::node	l2	large	8-9
+# ::node	g	gas	9-10
+# ::node	s	stove	10-11
+# ::node	a	and	12-13
+# ::node	m	many	13-14
+# ::node	d	dish	14-15
+# ::node	o2	organize-01	15-16
+# ::node	a2	and	16-17
+# ::node	p	put-up-13	17-18
+# ::root	a2	and
+# ::edge	kitchen	mod	large	k	l	
+# ::edge	kitchen	ARG0-of	have-03	k	h	
+# ::edge	organization	quant	2	o	0	
+# ::edge	organization	ARG0-of	trash-01	o	t	
+# ::edge	trash-01	ARG1	Bin	t	i	
+# ::edge	stove	mod	gas	s	g	
+# ::edge	stove	mod	large	s	l2	
+# ::edge	and	op2	stove	a	s	
+# ::edge	and	op1	organization	a	o	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	dish	quant	many	d	m	
+# ::edge	and	op3	dish	a	d	
+# ::edge	organize-01	ARG1	kitchen	o2	k	
+# ::edge	and	op1	organize-01	a2	o2	
+# ::edge	and	op2	put-up-13	a2	p	
+# ::edge	put-up-13	ARG1	kitchen	p	k	
+(a2 / and
+    :op1 (o2 / organize-01
+        :ARG1 (k / kitchen
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (o / organization
+                        :quant 2
+                        :ARG0-of (t / trash-01
+                            :ARG1 (i / Bin)))
+                    :op2 (s / stove
+                        :mod (g / gas)
+                        :mod (l2 / large))
+                    :op3 (d / dish
+                        :quant (m / many))))
+            :mod (l / large)))
+    :op2 (p / put-up-13
+        :ARG1 k))

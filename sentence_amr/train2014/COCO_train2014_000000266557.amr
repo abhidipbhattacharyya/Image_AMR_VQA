@@ -1,0 +1,27 @@
+# ::tok A subway train sitting while another one speeds by next to it .
+# ::node	s3	subway	1-2
+# ::node	t	train	2-3
+# ::node	t2	train	2-3
+# ::node	s	sit-01	3-4
+# ::node	a	another	5-6
+# ::node	s2	speed-01	7-8
+# ::node	b	by	8-9
+# ::node	n	next-to	9-10
+# ::root	s	sit-01
+# ::edge	train	mod	subway	t	s3	
+# ::edge	sit-01	ARG1	train	s	t	
+# ::edge	train	mod	another	t2	a	
+# ::edge	speed-01	ARG1	train	s2	t2	
+# ::edge	sit-01	time	speed-01	s	s2	
+# ::edge	speed-01	direction	by	s2	b	
+# ::edge	speed-01	location	next-to	s2	n	
+# ::edge	next-to	op1	train	n	t	
+(s / sit-01
+    :ARG1 (t / train
+        :mod (s3 / subway))
+    :time (s2 / speed-01
+        :ARG1 (t2 / train
+            :mod (a / another))
+        :direction (b / by)
+        :location (n / next-to
+            :op1 t)))

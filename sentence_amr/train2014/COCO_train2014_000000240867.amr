@@ -1,0 +1,43 @@
+# ::tok A christmas tree with lights in a living room with cream colored walls and an area rug .
+# ::node	f	festival	1-2
+# ::node	n	name	1-2
+# ::node	0	Christmas	1-2
+# ::node	t	tree	2-3
+# ::node	l	light	4-5
+# ::node	l2	living	7-8
+# ::node	r	room	8-9
+# ::node	h	have-03	9-10
+# ::node	c2	cream	10-11
+# ::node	c	color-01	11-12
+# ::node	w	wall	12-13
+# ::node	a	and	13-14
+# ::node	a2	area	15-16
+# ::node	r2	rug	16-17
+# ::root	t	tree
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	0	
+# ::edge	tree	mod	festival	t	f	
+# ::edge	tree	part	light	t	l	
+# ::edge	room	mod	living	r	l2	
+# ::edge	tree	location	room	t	r	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	color-01	ARG2	cream	c	c2	
+# ::edge	wall	ARG1-of	color-01	w	c	
+# ::edge	and	op1	wall	a	w	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	rug	mod	area	r2	a2	
+# ::edge	and	op2	rug	a	r2	
+(t / tree
+    :location (r / room
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (w / wall
+                    :ARG1-of (c / color-01
+                        :ARG2 (c2 / cream)))
+                :op2 (r2 / rug
+                    :mod (a2 / area))))
+        :mod (l2 / living))
+    :mod (f / festival
+        :name (n / name
+            :op1 "Christmas"))
+    :part (l / light))

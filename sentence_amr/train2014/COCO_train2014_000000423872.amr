@@ -1,0 +1,28 @@
+# ::tok Kitchen food workers preparing items at large metal table .
+# ::node	h	hunger-01	0-1
+# ::node	f	food	1-2
+# ::node	p	person	2-3
+# ::node	w	work-01	2-3
+# ::node	p2	prepare-01	3-4
+# ::node	i	item	4-5
+# ::node	l	large	6-7
+# ::node	m	metal	7-8
+# ::node	t	table	8-9
+# ::root	p2	prepare-01
+# ::edge	food	ARG1-of	hunger-01	f	h	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	food	w	f	
+# ::edge	prepare-01	ARG0	person	p2	p	
+# ::edge	prepare-01	ARG1	item	p2	i	
+# ::edge	table	consist-of	metal	t	m	
+# ::edge	table	mod	large	t	l	
+# ::edge	prepare-01	location	table	p2	t	
+(p2 / prepare-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01
+            :ARG1 (f / food
+                :ARG1-of (h / hunger-01))))
+    :ARG1 (i / item)
+    :location (t / table
+        :consist-of (m / metal)
+        :mod (l / large)))

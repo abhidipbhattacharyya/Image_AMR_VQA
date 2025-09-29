@@ -1,0 +1,25 @@
+# ::tok A street sign warns drivers on a snowy residential road .
+# ::node	s3	street	1-2
+# ::node	s	sign	2-3
+# ::node	w	warn-01	3-4
+# ::node	p	person	4-5
+# ::node	d	drive-01	4-5
+# ::node	s2	snowy-02	7-8
+# ::node	r	residential	8-9
+# ::node	r2	road	9-10
+# ::root	w	warn-01
+# ::edge	sign	mod	street	s	s3	
+# ::edge	warn-01	ARG0	sign	w	s	
+# ::edge	warn-01	ARG2	person	w	p	
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	road	mod	residential	r2	r	
+# ::edge	road	ARG1-of	snowy-02	r2	s2	
+# ::edge	warn-01	location	road	w	r2	
+(w / warn-01
+    :ARG0 (s / sign
+        :mod (s3 / street))
+    :ARG2 (p / person
+        :ARG0-of (d / drive-01))
+    :location (r2 / road
+        :ARG1-of (s2 / snowy-02)
+        :mod (r / residential)))

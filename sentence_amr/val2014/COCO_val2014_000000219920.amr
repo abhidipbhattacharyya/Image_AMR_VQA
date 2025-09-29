@@ -1,0 +1,61 @@
+# ::tok A clock showing 12:12 with two British flags and a queen , on side of brick building against blue sky with clouds .
+# ::node	c	clock	1-2
+# ::node	s	show-01	2-3
+# ::node	d	date-entity	3-4
+# ::node	0	12:12	3-4
+# ::node	h	have-03	4-5
+# ::node	1	2	5-6
+# ::node	c3	country	6-7
+# ::node	n	name	6-7
+# ::node	2	Britain	6-7
+# ::node	f	flag	7-8
+# ::node	a2	and	8-9
+# ::node	q	queen	10-11
+# ::node	s2	side	13-14
+# ::node	b2	brick	15-16
+# ::node	b3	building	16-17
+# ::node	a	against	17-18
+# ::node	b	blue	18-19
+# ::node	s3	sky	19-20
+# ::node	h2	have-03	20-21
+# ::node	c2	cloud	21-22
+# ::root	c	clock
+# ::edge	clock	ARG0-of	show-01	c	s	
+# ::edge	show-01	time	date-entity	s	d	
+# ::edge	date-entity	time	12:12	d	0	
+# ::edge	clock	ARG0-of	have-03	c	h	
+# ::edge	country	name	name	c3	n	
+# ::edge	name	op1	Britain	n	2	
+# ::edge	flag	mod	country	f	c3	
+# ::edge	flag	quant	2	f	1	
+# ::edge	and	op1	flag	a2	f	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	queen	a2	q	
+# ::edge	clock	location	side	c	s2	
+# ::edge	building	consist-of	brick	b3	b2	
+# ::edge	side	part-of	building	s2	b3	
+# ::edge	side	location	against	s2	a	
+# ::edge	sky	mod	blue	s3	b	
+# ::edge	against	op1	sky	a	s3	
+# ::edge	sky	ARG0-of	have-03	s3	h2	
+# ::edge	have-03	ARG1	cloud	h2	c2	
+(c / clock
+    :ARG0-of (s / show-01
+        :time (d / date-entity
+            :time "12:12"))
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (f / flag
+                :quant 2
+                :mod (c3 / country
+                    :name (n / name
+                        :op1 "Britain")))
+            :op2 (q / queen)))
+    :location (s2 / side
+        :location (a / against
+            :op1 (s3 / sky
+                :ARG0-of (h2 / have-03
+                    :ARG1 (c2 / cloud))
+                :mod (b / blue)))
+        :part-of (b3 / building
+            :consist-of (b2 / brick))))

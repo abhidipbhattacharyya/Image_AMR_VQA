@@ -1,0 +1,31 @@
+# ::tok A cow looks at the camera as other cows graze in the green fields on a foggy day .
+# ::node	c2	cow	1-2
+# ::node	l	look-01	2-3
+# ::node	c	camera	5-6
+# ::node	o	other	7-8
+# ::node	c3	cow	8-9
+# ::node	g	graze-01	9-10
+# ::node	g2	green-02	12-13
+# ::node	f	field	13-14
+# ::node	f2	foggy-03	16-17
+# ::node	d	day	17-18
+# ::root	l	look-01
+# ::edge	look-01	ARG0	cow	l	c2	
+# ::edge	look-01	ARG1	camera	l	c	
+# ::edge	cow	mod	other	c3	o	
+# ::edge	graze-01	ARG0	cow	g	c3	
+# ::edge	look-01	time	graze-01	l	g	
+# ::edge	field	ARG1-of	green-02	f	g2	
+# ::edge	graze-01	ARG1	field	g	f	
+# ::edge	graze-01	time	foggy-03	g	f2	
+# ::edge	foggy-03	ARG1	day	f2	d	
+(l / look-01
+    :ARG0 (c2 / cow)
+    :ARG1 (c / camera)
+    :time (g / graze-01
+        :ARG0 (c3 / cow
+            :mod (o / other))
+        :ARG1 (f / field
+            :ARG1-of (g2 / green-02))
+        :time (f2 / foggy-03
+            :ARG1 (d / day))))

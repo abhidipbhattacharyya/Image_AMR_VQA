@@ -1,0 +1,33 @@
+# ::tok A group of ten people in business attire at the end of a conference table standing up for a group photo .
+# ::node	g	group	1-2
+# ::node	0	10	3-4
+# ::node	p	person	4-5
+# ::node	b	business	6-7
+# ::node	a	attire-01	7-8
+# ::node	e	end	10-11
+# ::node	c	conference	13-14
+# ::node	t	table	14-15
+# ::node	s	stand-up-07	15-16
+# ::node	p2	photograph-01	20-21
+# ::root	s	stand-up-07
+# ::edge	person	quant	10	p	0	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	attire-01	ARG2	business	a	b	
+# ::edge	person	ARG1-of	attire-01	p	a	
+# ::edge	table	mod	conference	t	c	
+# ::edge	end	part-of	table	e	t	
+# ::edge	stand-up-07	ARG1	group	s	g	
+# ::edge	stand-up-07	purpose	photograph-01	s	p2	
+# ::edge	photograph-01	ARG1	group	p2	g	
+# ::edge	stand-up-07	rel	end	s	e	
+(s / stand-up-07
+    :purpose (p2 / photograph-01
+        :ARG1 (g / group
+            :consist-of (p / person
+                :quant 10
+                :ARG1-of (a / attire-01
+                    :ARG2 (b / business)))))
+    :ARG1 g
+    :rel (e / end
+        :part-of (t / table
+            :mod (c / conference))))

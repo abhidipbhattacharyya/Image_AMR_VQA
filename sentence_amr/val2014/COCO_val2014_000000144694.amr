@@ -1,0 +1,33 @@
+# ::tok A female soccer player sprints through the air for the ball while the opposing team follows .
+# ::node	f	female	1-2
+# ::node	s	soccer	2-3
+# ::node	p	person	3-4
+# ::node	p2	play-01	3-4
+# ::node	r	run-02	4-5
+# ::node	a	air	7-8
+# ::node	b	ball	10-11
+# ::node	o	oppose-01	13-14
+# ::node	t	team	14-15
+# ::node	f2	follow-01	15-16
+# ::root	r	run-02
+# ::edge	person	mod	female	p	f	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	soccer	p2	s	
+# ::edge	run-02	ARG0	person	r	p	
+# ::edge	run-02	path	air	r	a	
+# ::edge	run-02	purpose	ball	r	b	
+# ::edge	team	ARG0-of	oppose-01	t	o	
+# ::edge	follow-01	ARG1	team	f2	t	
+# ::edge	run-02	time	follow-01	r	f2	
+# ::edge	follow-01	ARG2	person	f2	p	
+(r / run-02
+    :purpose (b / ball)
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (s / soccer))
+        :mod (f / female))
+    :path (a / air)
+    :time (f2 / follow-01
+        :ARG1 (t / team
+            :ARG0-of (o / oppose-01))
+        :ARG2 p))

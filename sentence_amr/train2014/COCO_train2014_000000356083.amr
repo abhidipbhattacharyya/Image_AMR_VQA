@@ -1,0 +1,31 @@
+# ::tok A pack of elephants standing around .
+# ::node	p	pack	1-2
+# ::node	e	elephant	3-4
+# ::node	s	stand-01	4-5
+# ::node	a	around	5-6
+# ::root	s	stand-01
+# ::edge	pack	consist-of	elephant	p	e	
+# ::edge	stand-01	ARG1	pack	s	p	
+# ::edge	stand-01	ARG2	around	s	a	
+(s / stand-01
+    :ARG1 (p / pack
+        :consist-of (e / elephant))
+    :ARG2 (a / around))
+
+
+# ::tok It is dusk or close to night time .
+# ::node	d2	dusk	2-3
+# ::node	o	or	3-4
+# ::node	c	close-10	4-5
+# ::node	d	date-entity	6-7
+# ::node	n	night	6-7
+# ::root	o	or
+# ::edge	or	op1	dusk	o	d2	
+# ::edge	or	op2	close-10	o	c	
+# ::edge	close-10	ARG2	date-entity	c	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(o / or
+    :op1 (d2 / dusk)
+    :op2 (c / close-10
+        :ARG2 (d / date-entity
+            :dayperiod (n / night))))

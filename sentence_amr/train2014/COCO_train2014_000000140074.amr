@@ -1,0 +1,26 @@
+# ::tok A man bends down as he prepares to play with a flying disk .
+# ::node	m	man	1-2
+# ::node	b	bend-01	2-3
+# ::node	d2	down	3-4
+# ::node	p2	prepare-02	6-7
+# ::node	p	play-01	8-9
+# ::node	f	fly-01	11-12
+# ::node	d	disk	12-13
+# ::root	b	bend-01
+# ::edge	bend-01	ARG0	man	b	m	
+# ::edge	bend-01	direction	down	b	d2	
+# ::edge	bend-01	time	prepare-02	b	p2	
+# ::edge	prepare-02	ARG0	man	p2	m	
+# ::edge	prepare-02	ARG1	play-01	p2	p	
+# ::edge	play-01	ARG0	man	p	m	
+# ::edge	disk	ARG1-of	fly-01	d	f	
+# ::edge	play-01	ARG2	disk	p	d	
+(b / bend-01
+    :ARG0 (m / man)
+    :direction (d2 / down)
+    :time (p2 / prepare-02
+        :ARG0 m
+        :ARG1 (p / play-01
+            :ARG0 m
+            :ARG2 (d / disk
+                :ARG1-of (f / fly-01)))))

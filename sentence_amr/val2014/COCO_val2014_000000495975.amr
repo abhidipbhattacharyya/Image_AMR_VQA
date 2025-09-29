@@ -1,0 +1,34 @@
+# ::tok Bunches of bananas mostly yellow with green near the stems .
+# ::node	m3	multiple	0-1
+# ::node	m	mass-quantity	0-1
+# ::node	t	ton	0-1
+# ::node	0	1	0-1
+# ::node	b	banana	2-3
+# ::node	m2	most	3-4
+# ::node	y	yellow-02	4-5
+# ::node	g	green-02	6-7
+# ::node	n	near-02	7-8
+# ::node	s	stem	9-10
+# ::node	a	and	10-11
+# ::root	a	and
+# ::edge	multiple	op1	mass-quantity	m3	m	
+# ::edge	mass-quantity	unit	ton	m	t	
+# ::edge	mass-quantity	quant	1	m	0	
+# ::edge	banana	quant	multiple	b	m3	
+# ::edge	yellow-02	mod	most	y	m2	
+# ::edge	yellow-02	ARG1	banana	y	b	
+# ::edge	near-02	ARG2	stem	n	s	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	and	op2	green-02	a	g	
+# ::edge	and	op1	yellow-02	a	y	
+(a / and
+    :ARG1-of (n / near-02
+        :ARG2 (s / stem))
+    :op1 (y / yellow-02
+        :ARG1 (b / banana
+            :quant (m3 / multiple
+                :op1 (m / mass-quantity
+                    :quant 1
+                    :unit (t / ton))))
+        :mod (m2 / most))
+    :op2 (g / green-02))

@@ -1,0 +1,43 @@
+# ::tok Two of the pedestrians walking in the square are holding British flag umbrellas .
+# ::node	0	2	0-1
+# ::node	i	include-91	1-2
+# ::node	w	walk-01	3-4
+# ::node	p	person	4-5
+# ::node	p2	person	4-5
+# ::node	w2	walk-01	4-5
+# ::node	s	square	7-8
+# ::node	h	hold-01	9-10
+# ::node	c	country	10-11
+# ::node	n	name	10-11
+# ::node	2	Great	10-11
+# ::node	1	Britain	10-11
+# ::node	f	flag	11-12
+# ::node	u	umbrella	12-13
+# ::root	h	hold-01
+# ::edge	person	ARG1-of	include-91	p	i	
+# ::edge	person	quant	2	p	0	
+# ::edge	person	ARG0-of	walk-01	p2	w	
+# ::edge	include-91	ARG2	person	i	p2	
+# ::edge	person	ARG0-of	walk-01	p2	w2	
+# ::edge	walk-01	location	square	w2	s	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	Great	n	2	
+# ::edge	name	op2	Britain	n	1	
+# ::edge	flag	mod	country	f	c	
+# ::edge	umbrella	mod	flag	u	f	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+(h / hold-01
+    :ARG0 (p / person
+        :quant 2
+        :ARG1-of (i / include-91
+            :ARG2 (p2 / person
+                :ARG0-of (w / walk-01)
+                :ARG0-of (w2 / walk-01
+                    :location (s / square)))))
+    :ARG1 (u / umbrella
+        :mod (f / flag
+            :mod (c / country
+                :name (n / name
+                    :op1 "Great"
+                    :op2 "Britain")))))

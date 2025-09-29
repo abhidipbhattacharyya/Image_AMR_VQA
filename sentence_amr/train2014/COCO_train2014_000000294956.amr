@@ -1,0 +1,27 @@
+# ::tok Competitors in a cross country ski race follow each other along the snow
+# ::node	p	person	0-1
+# ::node	c	compete-01	0-1
+# ::node	c2	country	4-5
+# ::node	s	ski-01	5-6
+# ::node	r	race-02	6-7
+# ::node	f	follow-01	7-8
+# ::node	a	along	10-11
+# ::node	s2	snow	12-13
+# ::root	f	follow-01
+# ::edge	person	ARG0-of	compete-01	p	c	
+# ::edge	ski-01	mod	country	s	c2	
+# ::edge	race-02	ARG3	ski-01	r	s	
+# ::edge	compete-01	ARG3	race-02	c	r	
+# ::edge	race-02	ARG0	person	r	p	
+# ::edge	follow-01	ARG1	person	f	p	
+# ::edge	follow-01	path	along	f	a	
+# ::edge	along	op1	snow	a	s2	
+(f / follow-01
+    :ARG1 (p / person
+        :ARG0-of (c / compete-01
+            :ARG3 (r / race-02
+                :ARG0 p
+                :ARG3 (s / ski-01
+                    :mod (c2 / country)))))
+    :path (a / along
+        :op1 (s2 / snow)))

@@ -1,0 +1,35 @@
+# ::tok A person is waiting on a subway platform and looking at their phone , while a train goes by .
+# ::node	p	person	1-2
+# ::node	w	wait-01	3-4
+# ::node	s	subway	6-7
+# ::node	p3	platform	7-8
+# ::node	a	and	8-9
+# ::node	l	look-01	9-10
+# ::node	p2	phone	12-13
+# ::node	t	train	16-17
+# ::node	g	go-01	17-18
+# ::node	b	by	18-19
+# ::root	a	and
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	platform	mod	subway	p3	s	
+# ::edge	wait-01	ARG2	platform	w	p3	
+# ::edge	and	op1	wait-01	a	w	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	look-01	ARG1	phone	l	p2	
+# ::edge	phone	poss	person	p2	p	
+# ::edge	go-01	ARG1	train	g	t	
+# ::edge	and	time	go-01	a	g	
+# ::edge	go-01	ARG4	by	g	b	
+(a / and
+    :op1 (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 (p3 / platform
+            :mod (s / subway)))
+    :op2 (l / look-01
+        :ARG0 p
+        :ARG1 (p2 / phone
+            :poss p))
+    :time (g / go-01
+        :ARG1 (t / train)
+        :ARG4 (b / by)))

@@ -1,0 +1,48 @@
+# ::tok a living quarters that contain a dinging room table and chairs , sofa and a flat screen tv near a large window .
+# ::node	l2	live-01	1-2
+# ::node	q	quarter	2-3
+# ::node	c2	contain-01	4-5
+# ::node	d	ding-01	6-7
+# ::node	r	room	7-8
+# ::node	t	table	8-9
+# ::node	a	and	9-10
+# ::node	c	chair	10-11
+# ::node	s2	sofa	12-13
+# ::node	f	flat-06	15-16
+# ::node	s	screen	16-17
+# ::node	t2	television	17-18
+# ::node	n	near-02	18-19
+# ::node	l	large	20-21
+# ::node	w	window	21-22
+# ::root	q	quarter
+# ::edge	quarter	mod	live-01	q	l2	
+# ::edge	quarter	ARG0-of	contain-01	q	c2	
+# ::edge	table	location	room	t	r	
+# ::edge	table	ARG1-of	ding-01	t	d	
+# ::edge	and	op1	table	a	t	
+# ::edge	contain-01	ARG1	and	c2	a	
+# ::edge	and	op2	chair	a	c	
+# ::edge	chair	mod	room	c	r	
+# ::edge	and	op3	sofa	a	s2	
+# ::edge	screen	ARG1-of	flat-06	s	f	
+# ::edge	television	mod	screen	t2	s	
+# ::edge	and	op4	television	a	t2	
+# ::edge	and	ARG1-of	near-02	a	n	
+# ::edge	window	mod	large	w	l	
+# ::edge	near-02	ARG2	window	n	w	
+(q / quarter
+    :ARG0-of (c2 / contain-01
+        :ARG1 (a / and
+            :ARG1-of (n / near-02
+                :ARG2 (w / window
+                    :mod (l / large)))
+            :op1 (t / table
+                :ARG1-of (d / ding-01)
+                :location (r / room))
+            :op2 (c / chair
+                :mod r)
+            :op3 (s2 / sofa)
+            :op4 (t2 / television
+                :mod (s / screen
+                    :ARG1-of (f / flat-06)))))
+    :mod (l2 / live-01))

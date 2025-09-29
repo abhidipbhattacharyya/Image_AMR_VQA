@@ -1,0 +1,37 @@
+# ::tok People in a restaurant eating large sandwiches and french fries , and drinking soda .
+# ::node	p	person	0-1
+# ::node	r	restaurant	3-4
+# ::node	e	eat-01	4-5
+# ::node	l	large	5-6
+# ::node	s	sandwich	6-7
+# ::node	a	and	7-8
+# ::node	c	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	f	fry-01	9-10
+# ::node	d	drink-01	12-13
+# ::node	s2	soda	13-14
+# ::root	p	person
+# ::edge	person	location	restaurant	p	r	
+# ::edge	person	ARG0-of	eat-01	p	e	
+# ::edge	sandwich	mod	large	s	l	
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	eat-01	ARG1	and	e	a	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	and	op2	fry-01	a	f	
+# ::edge	person	ARG0-of	drink-01	p	d	
+# ::edge	drink-01	ARG1	soda	d	s2	
+(p / person
+    :ARG0-of (e / eat-01
+        :ARG1 (a / and
+            :op1 (s / sandwich
+                :mod (l / large))
+            :op2 (f / fry-01
+                :mod (c / country
+                    :name (n / name
+                        :op1 "France")))))
+    :ARG0-of (d / drink-01
+        :ARG1 (s2 / soda))
+    :location (r / restaurant))

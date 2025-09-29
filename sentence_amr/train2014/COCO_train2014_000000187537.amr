@@ -1,0 +1,40 @@
+# ::tok A sandwich of rye bread pickles and hotdogs is next to some french fries .
+# ::node	s	sandwich	1-2
+# ::node	r	rye	3-4
+# ::node	b2	bread	4-5
+# ::node	p	pickle	5-6
+# ::node	a	and	6-7
+# ::node	h	hot-dog	7-8
+# ::node	b	be-located-at-91	9-10
+# ::node	n2	next-to	9-10
+# ::node	s2	some	11-12
+# ::node	c	country	12-13
+# ::node	n	name	12-13
+# ::node	0	France	12-13
+# ::node	f	fry-01	13-14
+# ::root	b	be-located-at-91
+# ::edge	bread	mod	rye	b2	r	
+# ::edge	pickle	consist-of	bread	p	b2	
+# ::edge	and	op1	pickle	a	p	
+# ::edge	sandwich	consist-of	and	s	a	
+# ::edge	and	op2	hot-dog	a	h	
+# ::edge	be-located-at-91	ARG1	sandwich	b	s	
+# ::edge	be-located-at-91	ARG2	next-to	b	n2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	fry-01	quant	some	f	s2	
+# ::edge	next-to	op1	fry-01	n2	f	
+(b / be-located-at-91
+    :ARG1 (s / sandwich
+        :consist-of (a / and
+            :op1 (p / pickle
+                :consist-of (b2 / bread
+                    :mod (r / rye)))
+            :op2 (h / hot-dog)))
+    :ARG2 (n2 / next-to
+        :op1 (f / fry-01
+            :quant (s2 / some)
+            :mod (c / country
+                :name (n / name
+                    :op1 "France")))))

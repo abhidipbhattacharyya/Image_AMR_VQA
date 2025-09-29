@@ -1,0 +1,24 @@
+# ::tok A hotel bed is left frumpled with only a laptop remaining .
+# ::node	h	hotel	1-2
+# ::node	b	bed	2-3
+# ::node	l2	leave-12	4-5
+# ::node	c	crumple-01	5-6
+# ::node	o	only	7-8
+# ::node	l	laptop	9-10
+# ::node	r	remain-01	10-11
+# ::root	l2	leave-12
+# ::edge	bed	mod	hotel	b	h	
+# ::edge	leave-12	ARG1	bed	l2	b	
+# ::edge	leave-12	ARG2	crumple-01	l2	c	
+# ::edge	crumple-01	ARG1	bed	c	b	
+# ::edge	laptop	mod	only	l	o	
+# ::edge	remain-01	ARG1	laptop	r	l	
+# ::edge	leave-12	ARG3	remain-01	l2	r	
+(l2 / leave-12
+    :ARG1 (b / bed
+        :mod (h / hotel))
+    :ARG2 (c / crumple-01
+        :ARG1 b)
+    :ARG3 (r / remain-01
+        :ARG1 (l / laptop
+            :mod (o / only))))

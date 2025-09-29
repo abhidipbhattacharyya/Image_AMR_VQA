@@ -1,0 +1,33 @@
+# ::tok A blue bathroom stall with the door open so you can see the toilet .
+# ::node	b2	blue	1-2
+# ::node	b	bathroom	2-3
+# ::node	s2	stall	3-4
+# ::node	d	door	6-7
+# ::node	o	open-09	7-8
+# ::node	c	cause-01	8-9
+# ::node	y	you	9-10
+# ::node	p	possible-01	10-11
+# ::node	s	see-01	11-12
+# ::node	t	toilet	13-14
+# ::root	s2	stall
+# ::edge	stall	location	bathroom	s2	b	
+# ::edge	stall	mod	blue	s2	b2	
+# ::edge	stall	part	door	s2	d	
+# ::edge	open-09	ARG1	door	o	d	
+# ::edge	stall	ARG0-of	open-09	s2	o	
+# ::edge	stall	ARG0-of	cause-01	s2	c	
+# ::edge	cause-01	ARG1	possible-01	c	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	see-01	ARG1	toilet	s	t	
+(s2 / stall
+    :ARG0-of (o / open-09
+        :ARG1 (d / door))
+    :ARG0-of (c / cause-01
+        :ARG1 (p / possible-01
+            :ARG1 (s / see-01
+                :ARG0 (y / you)
+                :ARG1 (t / toilet))))
+    :location (b / bathroom)
+    :mod (b2 / blue)
+    :part d)

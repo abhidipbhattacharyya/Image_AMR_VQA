@@ -1,0 +1,49 @@
+# ::tok A room holds orange lockers , a white table with gray and yellow chairs and wood cabinets and a sink .
+# ::node	r	room	1-2
+# ::node	h2	hold-01	2-3
+# ::node	o	orange	3-4
+# ::node	l	lock-01	4-5
+# ::node	w	white-03	7-8
+# ::node	t	table	8-9
+# ::node	h	have-03	9-10
+# ::node	g	gray-02	10-11
+# ::node	a	and	11-12
+# ::node	y	yellow-02	12-13
+# ::node	c2	chair	13-14
+# ::node	c3	chair	13-14
+# ::node	a2	and	14-15
+# ::node	w2	wood	15-16
+# ::node	c	cabinet	16-17
+# ::node	s	sink	19-20
+# ::root	h2	hold-01
+# ::edge	hold-01	ARG0	room	h2	r	
+# ::edge	lock-01	mod	orange	l	o	
+# ::edge	table	ARG1-of	white-03	t	w	
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op1	chair	a	c2	
+# ::edge	chair	ARG1-of	gray-02	c2	g	
+# ::edge	chair	ARG1-of	yellow-02	c3	y	
+# ::edge	and	op2	chair	a	c3	
+# ::edge	and	op2	table	a2	t	
+# ::edge	and	op1	lock-01	a2	l	
+# ::edge	hold-01	ARG1	and	h2	a2	
+# ::edge	cabinet	mod	wood	c	w2	
+# ::edge	and	op3	cabinet	a2	c	
+# ::edge	and	op4	sink	a2	s	
+(h2 / hold-01
+    :ARG0 (r / room)
+    :ARG1 (a2 / and
+        :op1 (l / lock-01
+            :mod (o / orange))
+        :op2 (t / table
+            :ARG0-of (h / have-03
+                :ARG1 (a / and
+                    :op1 (c2 / chair
+                        :ARG1-of (g / gray-02))
+                    :op2 (c3 / chair
+                        :ARG1-of (y / yellow-02))))
+            :ARG1-of (w / white-03))
+        :op3 (c / cabinet
+            :mod (w2 / wood))
+        :op4 (s / sink)))

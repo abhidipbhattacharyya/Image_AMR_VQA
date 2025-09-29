@@ -1,0 +1,28 @@
+# ::tok A double deck bus is parked near a curb near a row of buildings .
+# ::node	d2	double	1-2
+# ::node	d	deck	2-3
+# ::node	b2	bus	3-4
+# ::node	p	park-01	5-6
+# ::node	n	near-02	6-7
+# ::node	c	curb	8-9
+# ::node	n2	near-02	9-10
+# ::node	r	row	11-12
+# ::node	b	building	13-14
+# ::root	p	park-01
+# ::edge	deck	mod	double	d	d2	
+# ::edge	bus	mod	deck	b2	d	
+# ::edge	park-01	ARG1	bus	p	b2	
+# ::edge	park-01	ARG1-of	near-02	p	n	
+# ::edge	near-02	ARG2	curb	n	c	
+# ::edge	curb	ARG1-of	near-02	c	n2	
+# ::edge	near-02	ARG2	row	n2	r	
+# ::edge	row	consist-of	building	r	b	
+(p / park-01
+    :ARG1 (b2 / bus
+        :mod (d / deck
+            :mod (d2 / double)))
+    :ARG1-of (n / near-02
+        :ARG2 (c / curb
+            :ARG1-of (n2 / near-02
+                :ARG2 (r / row
+                    :consist-of (b / building))))))

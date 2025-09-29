@@ -1,0 +1,31 @@
+# ::tok The old - fashioned truck can be seen through the front window of the nearby vehicle .
+# ::node	o	old	1-2
+# ::node	f	fashion	3-4
+# ::node	t2	truck	4-5
+# ::node	p	possible-01	5-6
+# ::node	s	see-01	7-8
+# ::node	t	through	8-9
+# ::node	f2	front	10-11
+# ::node	w	window	11-12
+# ::node	n	nearby	14-15
+# ::node	v	vehicle	15-16
+# ::root	p	possible-01
+# ::edge	fashion	mod	old	f	o	
+# ::edge	truck	mod	fashion	t2	f	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	truck	s	t2	
+# ::edge	see-01	path	through	s	t	
+# ::edge	window	mod	front	w	f2	
+# ::edge	through	op1	window	t	w	
+# ::edge	vehicle	location	nearby	v	n	
+# ::edge	window	part-of	vehicle	w	v	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (t2 / truck
+            :mod (f / fashion
+                :mod (o / old)))
+        :path (t / through
+            :op1 (w / window
+                :mod (f2 / front)
+                :part-of (v / vehicle
+                    :location (n / nearby))))))

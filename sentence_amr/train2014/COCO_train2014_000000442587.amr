@@ -1,0 +1,25 @@
+# ::tok A cell phone is displayed in the foreground while a toilet is visible in the background .
+# ::node	c	cell	1-2
+# ::node	p	phone	2-3
+# ::node	d	display-01	4-5
+# ::node	f	foreground	7-8
+# ::node	c2	contrast-01	8-9
+# ::node	t	toilet	10-11
+# ::node	s	see-01	12-13
+# ::node	b	background	15-16
+# ::root	c2	contrast-01
+# ::edge	phone	mod	cell	p	c	
+# ::edge	display-01	ARG1	phone	d	p	
+# ::edge	display-01	location	foreground	d	f	
+# ::edge	contrast-01	ARG1	display-01	c2	d	
+# ::edge	see-01	ARG1	toilet	s	t	
+# ::edge	contrast-01	ARG2	see-01	c2	s	
+# ::edge	see-01	location	background	s	b	
+(c2 / contrast-01
+    :ARG1 (d / display-01
+        :ARG1 (p / phone
+            :mod (c / cell))
+        :location (f / foreground))
+    :ARG2 (s / see-01
+        :ARG1 (t / toilet)
+        :location (b / background)))

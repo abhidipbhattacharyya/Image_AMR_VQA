@@ -1,0 +1,44 @@
+# ::tok A grey - and - yellow train waits idle on its tracks with empty platforms on either side .
+# ::node	g	gray-02	1-2
+# ::node	a	and	3-4
+# ::node	y	yellow-02	5-6
+# ::node	t2	train	6-7
+# ::node	t3	train	6-7
+# ::node	w	wait-01	7-8
+# ::node	i	idle-01	8-9
+# ::node	t	track	11-12
+# ::node	h	have-03	12-13
+# ::node	e2	empty-02	13-14
+# ::node	p	platform	14-15
+# ::node	e	either	16-17
+# ::node	s	side	17-18
+# ::root	w	wait-01
+# ::edge	and	op1	train	a	t2	
+# ::edge	train	ARG1-of	gray-02	t2	g	
+# ::edge	train	ARG1-of	yellow-02	t3	y	
+# ::edge	and	op2	train	a	t3	
+# ::edge	wait-01	ARG1	and	w	a	
+# ::edge	wait-01	manner	idle-01	w	i	
+# ::edge	wait-01	location	track	w	t	
+# ::edge	track	poss	and	t	a	
+# ::edge	track	ARG0-of	have-03	t	h	
+# ::edge	platform	ARG1-of	empty-02	p	e2	
+# ::edge	have-03	ARG1	platform	h	p	
+# ::edge	side	mod	either	s	e	
+# ::edge	platform	location	side	p	s	
+# ::edge	track	part	side	t	s	
+(w / wait-01
+    :ARG1 (a / and
+        :op1 (t2 / train
+            :ARG1-of (g / gray-02))
+        :op2 (t3 / train
+            :ARG1-of (y / yellow-02)))
+    :location (t / track
+        :ARG0-of (h / have-03
+            :ARG1 (p / platform
+                :ARG1-of (e2 / empty-02)
+                :location (s / side
+                    :mod (e / either))))
+        :part s
+        :poss a)
+    :manner (i / idle-01))

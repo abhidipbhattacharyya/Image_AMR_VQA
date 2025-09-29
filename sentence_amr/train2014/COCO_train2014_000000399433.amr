@@ -1,0 +1,34 @@
+# ::tok cows standing in their stalls in a bar feed on dried grass left for them to eat
+# ::node	c	cow	0-1
+# ::node	s	stand-01	1-2
+# ::node	m	market	4-5
+# ::node	b	bar	7-8
+# ::node	f	feed-01	8-9
+# ::node	d	dry-02	10-11
+# ::node	g	grass	11-12
+# ::node	l	leave-14	12-13
+# ::node	e	eat-01	16-17
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	cow	s	c	
+# ::edge	stand-01	location	market	s	m	
+# ::edge	market	poss	cow	m	c	
+# ::edge	stand-01	location	bar	s	b	
+# ::edge	cow	ARG2-of	feed-01	c	f	
+# ::edge	grass	ARG1-of	dry-02	g	d	
+# ::edge	feed-01	ARG1	grass	f	g	
+# ::edge	grass	ARG1-of	leave-14	g	l	
+# ::edge	leave-14	purpose	eat-01	l	e	
+# ::edge	eat-01	ARG1	grass	e	g	
+# ::edge	eat-01	ARG0	cow	e	c	
+(s / stand-01
+    :ARG1 (c / cow
+        :ARG2-of (f / feed-01
+            :ARG1 (g / grass
+                :ARG1-of (d / dry-02)
+                :ARG1-of (l / leave-14
+                    :purpose (e / eat-01
+                        :ARG0 c
+                        :ARG1 g)))))
+    :location (m / market
+        :poss c)
+    :location (b / bar))

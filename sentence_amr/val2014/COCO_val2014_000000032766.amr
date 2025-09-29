@@ -1,0 +1,38 @@
+# ::tok The view from an airplane , with the airplane wing extending out and white snow capped mountains below .
+# ::node	v	view-01	1-2
+# ::node	a	airplane	4-5
+# ::node	w2	wing	9-10
+# ::node	e	extend-01	10-11
+# ::node	o	out	11-12
+# ::node	a2	and	12-13
+# ::node	w	white-03	13-14
+# ::node	s	snow	14-15
+# ::node	c	cover-02	15-16
+# ::node	m	mountain	16-17
+# ::node	b	below	17-18
+# ::root	v	view-01
+# ::edge	view-01	source	airplane	v	a	
+# ::edge	airplane	part	wing	a	w2	
+# ::edge	extend-01	ARG1	wing	e	w2	
+# ::edge	extend-01	ARG2	out	e	o	
+# ::edge	and	op1	extend-01	a2	e	
+# ::edge	view-01	ARG1	and	v	a2	
+# ::edge	snow	ARG1-of	white-03	s	w	
+# ::edge	cover-02	ARG2	snow	c	s	
+# ::edge	mountain	ARG1-of	cover-02	m	c	
+# ::edge	and	op2	mountain	a2	m	
+# ::edge	mountain	location	below	m	b	
+# ::edge	below	op1	airplane	b	a	
+(v / view-01
+    :ARG1 (a2 / and
+        :op1 (e / extend-01
+            :ARG1 (w2 / wing)
+            :ARG2 (o / out))
+        :op2 (m / mountain
+            :ARG1-of (c / cover-02
+                :ARG2 (s / snow
+                    :ARG1-of (w / white-03)))
+            :location (b / below
+                :op1 (a / airplane
+                    :part w2))))
+    :source a)

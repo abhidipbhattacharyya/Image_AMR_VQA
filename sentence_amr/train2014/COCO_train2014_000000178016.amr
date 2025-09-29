@@ -1,0 +1,36 @@
+# ::tok One surfer wiped out in surf and one kneeling on board in background .
+# ::node	0	1	0-1
+# ::node	p	person	1-2
+# ::node	s	surf-01	1-2
+# ::node	p2	person	1-2
+# ::node	w	wipe-out-02	2-3
+# ::node	s2	surf-01	5-6
+# ::node	a	and	6-7
+# ::node	1	1	7-8
+# ::node	k	kneel-01	8-9
+# ::node	b2	board	10-11
+# ::node	b	background	12-13
+# ::root	a	and
+# ::edge	person	quant	1	p	0	
+# ::edge	person	ARG0-of	surf-01	p	s	
+# ::edge	surf-01	ARG0	person	s	p2	
+# ::edge	wipe-out-02	ARG1	person	w	p	
+# ::edge	wipe-out-02	ARG2	surf-01	w	s2	
+# ::edge	and	op1	wipe-out-02	a	w	
+# ::edge	person	quant	1	p2	1	
+# ::edge	and	op2	kneel-01	a	k	
+# ::edge	kneel-01	ARG0	person	k	p2	
+# ::edge	kneel-01	location	board	k	b2	
+# ::edge	kneel-01	location	background	k	b	
+(a / and
+    :op1 (w / wipe-out-02
+        :ARG1 (p / person
+            :quant 1
+            :ARG0-of (s / surf-01
+                :ARG0 (p2 / person
+                    :quant 1)))
+        :ARG2 (s2 / surf-01))
+    :op2 (k / kneel-01
+        :ARG0 p2
+        :location (b2 / board)
+        :location (b / background)))

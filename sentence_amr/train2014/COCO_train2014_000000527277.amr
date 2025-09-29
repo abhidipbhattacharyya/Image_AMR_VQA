@@ -1,0 +1,30 @@
+# ::tok A baseball batter prepares to hit the ball while the catcher squats .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	b3	batter-01	2-3
+# ::node	p3	prepare-02	3-4
+# ::node	h	hit-01	5-6
+# ::node	b	ball	7-8
+# ::node	p2	person	10-11
+# ::node	c	catch-01	10-11
+# ::node	s	squat-01	11-12
+# ::root	p3	prepare-02
+# ::edge	person	ARG0-of	batter-01	p	b3	
+# ::edge	batter-01	mod	baseball	b3	b2	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG1	hit-01	p3	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	ball	h	b	
+# ::edge	person	ARG0-of	catch-01	p2	c	
+# ::edge	squat-01	ARG0	person	s	p2	
+# ::edge	prepare-02	time	squat-01	p3	s	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (b3 / batter-01
+            :mod (b2 / baseball)))
+    :ARG1 (h / hit-01
+        :ARG0 p
+        :ARG1 (b / ball))
+    :time (s / squat-01
+        :ARG0 (p2 / person
+            :ARG0-of (c / catch-01))))

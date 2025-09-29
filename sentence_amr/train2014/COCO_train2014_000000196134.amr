@@ -1,0 +1,42 @@
+# ::tok Confusing traffic lights and signs , at an intersection where it is forbidden to turn left , turn right , or make a U - turn .
+# ::node	c	confuse-01	0-1
+# ::node	t	traffic	1-2
+# ::node	l2	light	2-3
+# ::node	a	and	3-4
+# ::node	s	sign	4-5
+# ::node	i	intersect-01	8-9
+# ::node	f	forbid-01	12-13
+# ::node	t2	turn-01	14-15
+# ::node	l	left	15-16
+# ::node	t3	turn-01	17-18
+# ::node	r	right	18-19
+# ::node	o	or	20-21
+# ::node	u	u-turn-00	25-26
+# ::root	c	confuse-01
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	and	op1	light	a	l2	
+# ::edge	confuse-01	ARG1	and	c	a	
+# ::edge	and	op2	sign	a	s	
+# ::edge	sign	mod	traffic	s	t	
+# ::edge	confuse-01	location	intersect-01	c	i	
+# ::edge	intersect-01	location-of	forbid-01	i	f	
+# ::edge	turn-01	direction	left	t2	l	
+# ::edge	turn-01	direction	right	t3	r	
+# ::edge	or	op2	turn-01	o	t3	
+# ::edge	or	op1	turn-01	o	t2	
+# ::edge	forbid-01	ARG1	or	f	o	
+# ::edge	or	op3	u-turn-00	o	u	
+(c / confuse-01
+    :ARG1 (a / and
+        :op1 (l2 / light
+            :mod (t / traffic))
+        :op2 (s / sign
+            :mod t))
+    :location (i / intersect-01
+        :location-of (f / forbid-01
+            :ARG1 (o / or
+                :op1 (t2 / turn-01
+                    :direction (l / left))
+                :op2 (t3 / turn-01
+                    :direction (r / right))
+                :op3 (u / u-turn-00)))))

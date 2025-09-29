@@ -1,0 +1,36 @@
+# ::tok The reflection of a bus in a bus 's side mirror with another bus and a gas price sign in the background .
+# ::node	r	reflect-01	1-2
+# ::node	b2	bus	4-5
+# ::node	s	side	9-10
+# ::node	m	mirror	10-11
+# ::node	a2	another	12-13
+# ::node	b3	bus	13-14
+# ::node	a	and	14-15
+# ::node	g	gas	16-17
+# ::node	p	price-01	17-18
+# ::node	s2	sign	18-19
+# ::node	b	background	21-22
+# ::root	r	reflect-01
+# ::edge	reflect-01	ARG1	bus	r	b2	
+# ::edge	bus	part	side	b2	s	
+# ::edge	mirror	location	side	m	s	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	bus	mod	another	b3	a2	
+# ::edge	and	op1	bus	a	b3	
+# ::edge	reflect-01	ARG1	and	r	a	
+# ::edge	price-01	ARG1	gas	p	g	
+# ::edge	sign	topic	price-01	s2	p	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	location	background	a	b	
+(r / reflect-01
+    :ARG1 (b2 / bus
+        :part (s / side))
+    :ARG1 (a / and
+        :location (b / background)
+        :op1 (b3 / bus
+            :mod (a2 / another))
+        :op2 (s2 / sign
+            :topic (p / price-01
+                :ARG1 (g / gas))))
+    :ARG2 (m / mirror
+        :location s))

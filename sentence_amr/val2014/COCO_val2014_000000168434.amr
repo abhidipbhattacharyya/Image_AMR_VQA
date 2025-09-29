@@ -1,0 +1,30 @@
+# ::tok These two trains are workhorses necessary to care for other trains .
+# ::node	t	this	0-1
+# ::node	0	2	1-2
+# ::node	t2	train	2-3
+# ::node	w	work-01	4-5
+# ::node	h	horse	4-5
+# ::node	n	need-01	5-6
+# ::node	c	care-03	7-8
+# ::node	o	other	9-10
+# ::node	t3	train	10-11
+# ::root	w	work-01
+# ::edge	train	quant	2	t2	0	
+# ::edge	train	mod	this	t2	t	
+# ::edge	work-01	ARG0	train	w	t2	
+# ::edge	work-01	ARG1	horse	w	h	
+# ::edge	work-01	ARG1-of	need-01	w	n	
+# ::edge	need-01	purpose	care-03	n	c	
+# ::edge	care-03	ARG0	horse	c	h	
+# ::edge	train	mod	other	t3	o	
+# ::edge	care-03	ARG1	train	c	t3	
+(w / work-01
+    :ARG0 (t2 / train
+        :quant 2
+        :mod (t / this))
+    :ARG1 (h / horse)
+    :ARG1-of (n / need-01
+        :purpose (c / care-03
+            :ARG0 h
+            :ARG1 (t3 / train
+                :mod (o / other)))))

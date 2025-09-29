@@ -1,0 +1,30 @@
+# ::tok An old briefcase that has torn and faded material on it , placed on an upper ledge area .
+# ::node	o	old	1-2
+# ::node	b	briefcase	2-3
+# ::node	t	tear-01	5-6
+# ::node	f	fade-01	7-8
+# ::node	m	material	8-9
+# ::node	p	place-01	12-13
+# ::node	u	upper	15-16
+# ::node	l	ledge	16-17
+# ::node	a	area	17-18
+# ::root	b	briefcase
+# ::edge	briefcase	mod	old	b	o	
+# ::edge	briefcase	ARG0-of	tear-01	b	t	
+# ::edge	material	ARG1-of	fade-01	m	f	
+# ::edge	tear-01	ARG1	material	t	m	
+# ::edge	material	location	briefcase	m	b	
+# ::edge	briefcase	ARG1-of	place-01	b	p	
+# ::edge	ledge	mod	upper	l	u	
+# ::edge	area	mod	ledge	a	l	
+# ::edge	place-01	ARG2	area	p	a	
+(b / briefcase
+    :ARG0-of (t / tear-01
+        :ARG1 (m / material
+            :ARG1-of (f / fade-01)
+            :location b))
+    :ARG1-of (p / place-01
+        :ARG2 (a / area
+            :mod (l / ledge
+                :mod (u / upper))))
+    :mod (o / old))

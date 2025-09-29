@@ -1,0 +1,27 @@
+# ::tok A mass transit bus that has been turned into a home with a car in front of it .
+# ::node	m	mass	1-2
+# ::node	t	transit-01	2-3
+# ::node	b	bus	3-4
+# ::node	t2	turn-02	7-8
+# ::node	h2	home	10-11
+# ::node	h	have-03	11-12
+# ::node	c	car	13-14
+# ::node	i	in-front-of	15-16
+# ::root	b	bus
+# ::edge	transit-01	mod	mass	t	m	
+# ::edge	bus	ARG2-of	transit-01	b	t	
+# ::edge	bus	ARG1-of	turn-02	b	t2	
+# ::edge	turn-02	ARG2	home	t2	h2	
+# ::edge	home	ARG0-of	have-03	h2	h	
+# ::edge	have-03	ARG1	car	h	c	
+# ::edge	car	location	in-front-of	c	i	
+# ::edge	in-front-of	op1	bus	i	b	
+(b / bus
+    :ARG1-of (t2 / turn-02
+        :ARG2 (h2 / home
+            :ARG0-of (h / have-03
+                :ARG1 (c / car
+                    :location (i / in-front-of
+                        :op1 b)))))
+    :ARG2-of (t / transit-01
+        :mod (m / mass)))

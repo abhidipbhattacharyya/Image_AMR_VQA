@@ -1,0 +1,36 @@
+# ::tok Two motorcycles parked next to the grass and a bag is attached to one of them .
+# ::node	1	2	0-1
+# ::node	m	motorcycle	1-2
+# ::node	m2	motorcycle	1-2
+# ::node	p	park-01	2-3
+# ::node	n	next-to	3-4
+# ::node	g	grass	6-7
+# ::node	a	and	7-8
+# ::node	b	bag	9-10
+# ::node	a2	attach-01	11-12
+# ::node	0	1	13-14
+# ::node	i	include-91	14-15
+# ::root	a	and
+# ::edge	motorcycle	quant	2	m	1	
+# ::edge	park-01	ARG1	motorcycle	p	m	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	next-to	op1	grass	n	g	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	attach-01	ARG1	bag	a2	b	
+# ::edge	and	op2	attach-01	a	a2	
+# ::edge	attach-01	ARG2	motorcycle	a2	m2	
+# ::edge	motorcycle	quant	1	m2	0	
+# ::edge	motorcycle	ARG1-of	include-91	m2	i	
+# ::edge	include-91	ARG2	motorcycle	i	m	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (m / motorcycle
+            :quant 2)
+        :ARG2 (n / next-to
+            :op1 (g / grass)))
+    :op2 (a2 / attach-01
+        :ARG1 (b / bag)
+        :ARG2 (m2 / motorcycle
+            :quant 1
+            :ARG1-of (i / include-91
+                :ARG2 m))))

@@ -1,0 +1,25 @@
+# ::tok Airport workers loading luggage onto into an airplane 's cargo hold .
+# ::node	a2	airport	0-1
+# ::node	p	person	1-2
+# ::node	w	work-01	1-2
+# ::node	l	load-01	2-3
+# ::node	l2	luggage	3-4
+# ::node	a	airplane	7-8
+# ::node	c	cargo	9-10
+# ::node	h	hold	10-11
+# ::root	l	load-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG1	airport	w	a2	
+# ::edge	load-01	ARG0	person	l	p	
+# ::edge	load-01	ARG1	luggage	l	l2	
+# ::edge	hold	mod	cargo	h	c	
+# ::edge	hold	part-of	airplane	h	a	
+# ::edge	load-01	location	hold	l	h	
+(l / load-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01
+            :ARG1 (a2 / airport)))
+    :ARG1 (l2 / luggage)
+    :location (h / hold
+        :mod (c / cargo)
+        :part-of (a / airplane)))

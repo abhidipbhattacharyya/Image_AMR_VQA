@@ -1,0 +1,43 @@
+# ::tok Cabbage , tomatoes , cucumbers , parsley and other vegetables sits on a white surface .
+# ::node	c	crop	0-1
+# ::node	t	tomato	2-3
+# ::node	v	vegetable	4-5
+# ::node	n	name	4-5
+# ::node	v2	vegetable	4-5
+# ::node	n2	name	4-5
+# ::node	0	poppy	4-5
+# ::node	p	parsley	6-7
+# ::node	a	and	7-8
+# ::node	o	other	8-9
+# ::node	v3	vegetable	9-10
+# ::node	s	sit-01	10-11
+# ::node	w	white-03	13-14
+# ::node	s2	surface	14-15
+# ::root	s	sit-01
+# ::edge	vegetable	name	name	v	n	
+# ::edge	vegetable	name	name	v2	n2	
+# ::edge	name	op1	poppy	n	0	
+# ::edge	and	op4	parsley	a	p	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	and	op2	tomato	a	t	
+# ::edge	and	op1	crop	a	c	
+# ::edge	vegetable	mod	other	v3	o	
+# ::edge	and	op5	vegetable	a	v3	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	surface	ARG1-of	white-03	s2	w	
+# ::edge	sit-01	ARG2	surface	s	s2	
+# ::edge	sit-01	rel	vegetable	s	v2	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (c / crop)
+        :op2 (t / tomato)
+        :op3 (v / vegetable
+            :name (n / name
+                :op1 "poppy"))
+        :op4 (p / parsley)
+        :op5 (v3 / vegetable
+            :mod (o / other)))
+    :ARG2 (s2 / surface
+        :ARG1-of (w / white-03))
+    :rel (v2 / vegetable
+        :name (n2 / name)))

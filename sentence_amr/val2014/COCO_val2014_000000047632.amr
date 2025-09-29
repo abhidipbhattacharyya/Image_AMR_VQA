@@ -1,0 +1,39 @@
+# ::tok White porcelain sink with one faucet and white porcelain toilet in abandoned or demolished building .
+# ::node	w	white-02	0-1
+# ::node	p	porcelain	1-2
+# ::node	s	sink	2-3
+# ::node	0	1	4-5
+# ::node	f	faucet	5-6
+# ::node	a2	and	6-7
+# ::node	t	toilet	9-10
+# ::node	a	abandon-01	11-12
+# ::node	o	or	12-13
+# ::node	d	demolish-01	13-14
+# ::node	b	building	14-15
+# ::node	b2	building	14-15
+# ::root	a2	and
+# ::edge	porcelain	ARG1-of	white-02	p	w	
+# ::edge	sink	mod	porcelain	s	p	
+# ::edge	faucet	quant	1	f	0	
+# ::edge	and	op2	faucet	a2	f	
+# ::edge	and	op1	sink	a2	s	
+# ::edge	and	op3	toilet	a2	t	
+# ::edge	toilet	mod	porcelain	t	p	
+# ::edge	and	location	or	a2	o	
+# ::edge	or	op1	building	o	b	
+# ::edge	building	ARG1-of	abandon-01	b	a	
+# ::edge	building	ARG1-of	demolish-01	b2	d	
+# ::edge	or	op2	building	o	b2	
+(a2 / and
+    :location (o / or
+        :op1 (b / building
+            :ARG1-of (a / abandon-01))
+        :op2 (b2 / building
+            :ARG1-of (d / demolish-01)))
+    :op1 (s / sink
+        :mod (p / porcelain
+            :ARG1-of (w / white-02)))
+    :op2 (f / faucet
+        :quant 1)
+    :op3 (t / toilet
+        :mod p))

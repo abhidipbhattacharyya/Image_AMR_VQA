@@ -1,0 +1,31 @@
+# ::tok A propeller Airplane taxiing at an airport whiel a crew member stands nearby
+# ::node	p2	propeller	1-2
+# ::node	a	airplane	2-3
+# ::node	t	tax-01	3-4
+# ::node	a2	airport	6-7
+# ::node	c	crew	9-10
+# ::node	p	person	10-11
+# ::node	h	have-org-role-91	10-11
+# ::node	m	member	10-11
+# ::node	s	stand-01	11-12
+# ::node	n	nearby	12-13
+# ::root	t	tax-01
+# ::edge	airplane	part	propeller	a	p2	
+# ::edge	tax-01	ARG1	airplane	t	a	
+# ::edge	tax-01	location	airport	t	a2	
+# ::edge	person	ARG0-of	have-org-role-91	p	h	
+# ::edge	have-org-role-91	ARG2	member	h	m	
+# ::edge	member	mod	crew	m	c	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	airplane	location-of	stand-01	a	s	
+# ::edge	stand-01	ARG2	nearby	s	n	
+(t / tax-01
+    :ARG1 (a / airplane
+        :location-of (s / stand-01
+            :ARG1 (p / person
+                :ARG0-of (h / have-org-role-91
+                    :ARG2 (m / member
+                        :mod (c / crew))))
+            :ARG2 (n / nearby))
+        :part (p2 / propeller))
+    :location (a2 / airport))

@@ -1,0 +1,37 @@
+# ::tok A classroom setting with people seated at long tables and a person in the front of the room presenting on a screen .
+# ::node	c	classroom	1-2
+# ::node	s3	set-01	2-3
+# ::node	p	person	4-5
+# ::node	s2	seat-01	5-6
+# ::node	l	long-03	7-8
+# ::node	t	table	8-9
+# ::node	a	and	9-10
+# ::node	p2	person	11-12
+# ::node	f	front	14-15
+# ::node	r	room	17-18
+# ::node	p3	present-01	18-19
+# ::node	s	screen	21-22
+# ::root	s3	set-01
+# ::edge	set-01	ARG2	classroom	s3	c	
+# ::edge	person	ARG1-of	seat-01	p	s2	
+# ::edge	table	ARG1-of	long-03	t	l	
+# ::edge	seat-01	ARG2	table	s2	t	
+# ::edge	and	op1	person	a	p	
+# ::edge	set-01	ARG1	and	s3	a	
+# ::edge	person	location	front	p2	f	
+# ::edge	front	part-of	room	f	r	
+# ::edge	present-01	ARG0	person	p3	p2	
+# ::edge	and	op2	present-01	a	p3	
+# ::edge	present-01	medium	screen	p3	s	
+(s3 / set-01
+    :ARG1 (a / and
+        :op1 (p / person
+            :ARG1-of (s2 / seat-01
+                :ARG2 (t / table
+                    :ARG1-of (l / long-03))))
+        :op2 (p3 / present-01
+            :ARG0 (p2 / person
+                :location (f / front
+                    :part-of (r / room)))
+            :medium (s / screen)))
+    :ARG2 (c / classroom))

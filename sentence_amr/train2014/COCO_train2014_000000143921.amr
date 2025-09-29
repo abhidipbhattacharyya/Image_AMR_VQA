@@ -1,0 +1,28 @@
+# ::tok Bus route 52 takes passengers through the street to Willesden .
+# ::node	b	bus	0-1
+# ::node	r	route	1-2
+# ::node	0	52	2-3
+# ::node	t	take-01	3-4
+# ::node	p	passenger	4-5
+# ::node	s	street	7-8
+# ::node	c	city	9-10
+# ::node	n	name	9-10
+# ::node	1	Willesden	9-10
+# ::root	t	take-01
+# ::edge	route	mod	bus	r	b	
+# ::edge	route	mod	52	r	0	
+# ::edge	take-01	ARG0	route	t	r	
+# ::edge	take-01	ARG1	passenger	t	p	
+# ::edge	take-01	path	street	t	s	
+# ::edge	take-01	ARG4	city	t	c	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Willesden	n	1	
+(t / take-01
+    :ARG0 (r / route
+        :mod (b / bus)
+        :mod 52)
+    :ARG1 (p / passenger)
+    :ARG4 (c / city
+        :name (n / name
+            :op1 "Willesden"))
+    :path (s / street))

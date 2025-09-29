@@ -1,0 +1,29 @@
+# ::tok The freight train is has its wipers and lights on at this stop .
+# ::node	f	freight	1-2
+# ::node	t2	train	2-3
+# ::node	w	wipe-01	6-7
+# ::node	a	and	7-8
+# ::node	l	light	8-9
+# ::node	o	on-01	9-10
+# ::node	t	this	11-12
+# ::node	s	stop-01	12-13
+# ::root	o	on-01
+# ::edge	train	mod	freight	t2	f	
+# ::edge	wipe-01	ARG1	train	w	t2	
+# ::edge	and	op1	wipe-01	a	w	
+# ::edge	and	op2	light	a	l	
+# ::edge	light	poss	train	l	t2	
+# ::edge	on-01	ARG1	and	o	a	
+# ::edge	on-01	ARG0	train	o	t2	
+# ::edge	stop-01	mod	this	s	t	
+# ::edge	on-01	location	stop-01	o	s	
+(o / on-01
+    :ARG0 (t2 / train
+        :mod (f / freight))
+    :ARG1 (a / and
+        :op1 (w / wipe-01
+            :ARG1 t2)
+        :op2 (l / light
+            :poss t2))
+    :location (s / stop-01
+        :mod (t / this)))

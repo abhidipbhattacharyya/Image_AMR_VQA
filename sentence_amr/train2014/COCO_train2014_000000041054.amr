@@ -1,0 +1,32 @@
+# ::tok A TRUCK USED TO HAUL FAIR EQUIPMENT PARKED UNTIL THE FAIR IS OVER
+# ::node	t2	truck	1-2
+# ::node	u2	use-01	2-3
+# ::node	h	haul-01	4-5
+# ::node	f	fair-01	5-6
+# ::node	t	thing	6-7
+# ::node	e	equal-01	6-7
+# ::node	p	park-01	7-8
+# ::node	u	until	8-9
+# ::node	o	over-01	12-13
+# ::root	u2	use-01
+# ::edge	use-01	ARG1	truck	u2	t2	
+# ::edge	use-01	ARG2	haul-01	u2	h	
+# ::edge	haul-01	ARG0	truck	h	t2	
+# ::edge	thing	ARG1-of	fair-01	t	f	
+# ::edge	haul-01	ARG1	thing	h	t	
+# ::edge	thing	ARG1-of	equal-01	t	e	
+# ::edge	thing	ARG1-of	park-01	t	p	
+# ::edge	park-01	time	until	p	u	
+# ::edge	until	op1	over-01	u	o	
+# ::edge	over-01	ARG1	fair-01	o	f	
+(u2 / use-01
+    :ARG1 (t2 / truck)
+    :ARG2 (h / haul-01
+        :ARG0 t2
+        :ARG1 (t / thing
+            :ARG1-of (f / fair-01)
+            :ARG1-of (e / equal-01)
+            :ARG1-of (p / park-01
+                :time (u / until
+                    :op1 (o / over-01
+                        :ARG1 f))))))

@@ -1,0 +1,56 @@
+# ::tok A bench in front of a store window that says , " Artist sign in " with beautiful red flowers along the window and flower bushes beside the bench .
+# ::node	b2	bench	1-2
+# ::node	i	in-front-of	3-4
+# ::node	s3	store	6-7
+# ::node	w	window	7-8
+# ::node	s	say-01	9-10
+# ::node	p	person	12-13
+# ::node	a3	artist	12-13
+# ::node	s2	sign-01	13-14
+# ::node	h	have-03	16-17
+# ::node	b	beautiful-02	17-18
+# ::node	r	red-02	18-19
+# ::node	f	flower	19-20
+# ::node	a	along	20-21
+# ::node	a2	and	23-24
+# ::node	f2	flower	24-25
+# ::node	b4	bush	25-26
+# ::node	b3	beside	26-27
+# ::root	b2	bench
+# ::edge	bench	location	in-front-of	b2	i	
+# ::edge	window	part-of	store	w	s3	
+# ::edge	in-front-of	op1	window	i	w	
+# ::edge	bench	ARG0-of	say-01	b2	s	
+# ::edge	person	mod	artist	p	a3	
+# ::edge	sign-01	ARG0	person	s2	p	
+# ::edge	say-01	ARG1	sign-01	s	s2	
+# ::edge	bench	ARG0-of	have-03	b2	h	
+# ::edge	flower	ARG1-of	red-02	f	r	
+# ::edge	flower	ARG1-of	beautiful-02	f	b	
+# ::edge	flower	location	along	f	a	
+# ::edge	along	op1	window	a	w	
+# ::edge	and	op1	flower	a2	f	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	bush	mod	flower	b4	f2	
+# ::edge	and	op2	bush	a2	b4	
+# ::edge	bush	location	beside	b4	b3	
+# ::edge	beside	op1	bench	b3	b2	
+(b2 / bench
+    :ARG0-of (s / say-01
+        :ARG1 (s2 / sign-01
+            :ARG0 (p / person
+                :mod (a3 / artist))))
+    :ARG0-of (h / have-03
+        :ARG1 (a2 / and
+            :op1 (f / flower
+                :ARG1-of (r / red-02)
+                :ARG1-of (b / beautiful-02)
+                :location (a / along
+                    :op1 (w / window
+                        :part-of (s3 / store))))
+            :op2 (b4 / bush
+                :location (b3 / beside
+                    :op1 b2)
+                :mod (f2 / flower))))
+    :location (i / in-front-of
+        :op1 w))

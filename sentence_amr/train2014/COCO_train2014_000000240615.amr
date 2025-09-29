@@ -1,0 +1,33 @@
+# ::tok Fire fighters attaching a hose to a hydrant and putting out a car fire
+# ::node	f2	fire-03	0-1
+# ::node	p	person	1-2
+# ::node	f	fight-01	1-2
+# ::node	a2	attach-01	2-3
+# ::node	h	hose	4-5
+# ::node	h2	hydrant	7-8
+# ::node	a	and	8-9
+# ::node	p2	put-out-09	9-10
+# ::node	c	car	12-13
+# ::node	f3	fire-03	13-14
+# ::root	a	and
+# ::edge	person	ARG0-of	fight-01	p	f	
+# ::edge	fight-01	ARG1	fire-03	f	f2	
+# ::edge	attach-01	ARG0	person	a2	p	
+# ::edge	attach-01	ARG1	hose	a2	h	
+# ::edge	attach-01	ARG2	hydrant	a2	h2	
+# ::edge	and	op1	attach-01	a	a2	
+# ::edge	and	op2	put-out-09	a	p2	
+# ::edge	put-out-09	ARG0	person	p2	p	
+# ::edge	fire-03	ARG1	car	f3	c	
+# ::edge	put-out-09	ARG1	fire-03	p2	f3	
+(a / and
+    :op1 (a2 / attach-01
+        :ARG0 (p / person
+            :ARG0-of (f / fight-01
+                :ARG1 (f2 / fire-03)))
+        :ARG1 (h / hose)
+        :ARG2 (h2 / hydrant))
+    :op2 (p2 / put-out-09
+        :ARG0 p
+        :ARG1 (f3 / fire-03
+            :ARG1 (c / car))))

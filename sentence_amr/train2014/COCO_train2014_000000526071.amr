@@ -1,0 +1,25 @@
+# ::tok Red traffic light at intersection on paved four lane road .
+# ::node	r	red-02	0-1
+# ::node	t	traffic	1-2
+# ::node	l2	light	2-3
+# ::node	i	intersect-01	4-5
+# ::node	p	pave-01	6-7
+# ::node	0	4	7-8
+# ::node	l	lane	8-9
+# ::node	r2	road	9-10
+# ::root	l2	light
+# ::edge	light	mod	traffic	l2	t	
+# ::edge	light	ARG1-of	red-02	l2	r	
+# ::edge	light	location	intersect-01	l2	i	
+# ::edge	lane	quant	4	l	0	
+# ::edge	road	part	lane	r2	l	
+# ::edge	road	ARG1-of	pave-01	r2	p	
+# ::edge	intersect-01	location	road	i	r2	
+(l2 / light
+    :ARG1-of (r / red-02)
+    :location (i / intersect-01
+        :location (r2 / road
+            :ARG1-of (p / pave-01)
+            :part (l / lane
+                :quant 4)))
+    :mod (t / traffic))

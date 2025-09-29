@@ -1,0 +1,36 @@
+# ::tok There is a sign that says " Guard Dogs Roaming Free Beware ! "
+# ::node	s2	sign	3-4
+# ::node	s	say-01	5-6
+# ::node	g	guard-01	7-8
+# ::node	d	dog	8-9
+# ::node	r	roam-01	9-10
+# ::node	f	free-04	10-11
+# ::node	b	beware-01	11-12
+# ::root	s2	sign
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	dog	ARG0-of	guard-01	d	g	
+# ::edge	roam-01	ARG0	dog	r	d	
+# ::edge	say-01	ARG1	roam-01	s	r	
+# ::edge	beware-01	ARG1-of	free-04	b	f	
+# ::edge	roam-01	ARG1	beware-01	r	b	
+# ::edge	beware-01	ARG0	dog	b	d	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (r / roam-01
+            :ARG0 (d / dog
+                :ARG0-of (g / guard-01))
+            :ARG1 (b / beware-01
+                :ARG0 d
+                :ARG1-of (f / free-04)))))
+
+
+# ::tok leaning against a fence .
+# ::node	l	lean-01	0-1
+# ::node	a	against	1-2
+# ::node	f	fence	3-4
+# ::root	l	lean-01
+# ::edge	lean-01	ARG2	against	l	a	
+# ::edge	against	op1	fence	a	f	
+(l / lean-01
+    :ARG2 (a / against
+        :op1 (f / fence)))

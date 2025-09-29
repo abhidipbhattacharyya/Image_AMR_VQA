@@ -1,0 +1,34 @@
+# ::tok A street with a group of bicycle riders behind one rider in the front of the pack .
+# ::node	s	street	1-2
+# ::node	g	group	4-5
+# ::node	b2	bicycle	6-7
+# ::node	p2	person	7-8
+# ::node	r	ride-01	7-8
+# ::node	b	behind	8-9
+# ::node	0	1	9-10
+# ::node	p3	person	10-11
+# ::node	r2	ride-01	10-11
+# ::node	f	front	13-14
+# ::node	p	pack	16-17
+# ::root	s	street
+# ::edge	group	consist-of	person	g	p2	
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	ride-01	ARG1	bicycle	r	b2	
+# ::edge	person	location	behind	p2	b	
+# ::edge	person	quant	1	p3	0	
+# ::edge	behind	op1	person	b	p3	
+# ::edge	person	ARG0-of	ride-01	p3	r2	
+# ::edge	person	location	front	p3	f	
+# ::edge	front	part-of	pack	f	p	
+# ::edge	street	rel	group	s	g	
+(s / street
+    :rel (g / group
+        :consist-of (p2 / person
+            :ARG0-of (r / ride-01
+                :ARG1 (b2 / bicycle))
+            :location (b / behind
+                :op1 (p3 / person
+                    :quant 1
+                    :ARG0-of (r2 / ride-01)
+                    :location (f / front
+                        :part-of (p / pack)))))))

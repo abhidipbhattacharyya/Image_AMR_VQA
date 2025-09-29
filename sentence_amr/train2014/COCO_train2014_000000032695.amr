@@ -1,0 +1,30 @@
+# ::tok A fire hydrant beginning to get covered with trailing leaves from nearby trees .
+# ::node	f	fire	1-2
+# ::node	h	hydrant	2-3
+# ::node	b	begin-01	3-4
+# ::node	g	get-03	5-6
+# ::node	c	coverage-06	6-7
+# ::node	f2	follow-01	8-9
+# ::node	l	leaf	9-10
+# ::node	n	nearby	11-12
+# ::node	t	tree	12-13
+# ::root	b	begin-01
+# ::edge	hydrant	purpose	fire	h	f	
+# ::edge	begin-01	ARG1	get-03	b	g	
+# ::edge	get-03	ARG1	hydrant	g	h	
+# ::edge	get-03	ARG2	coverage-06	g	c	
+# ::edge	coverage-06	ARG1	hydrant	c	h	
+# ::edge	leaf	ARG1-of	follow-01	l	f2	
+# ::edge	coverage-06	ARG2	leaf	c	l	
+# ::edge	tree	location	nearby	t	n	
+# ::edge	leaf	source	tree	l	t	
+(b / begin-01
+    :ARG1 (g / get-03
+        :ARG1 (h / hydrant
+            :purpose (f / fire))
+        :ARG2 (c / coverage-06
+            :ARG1 h
+            :ARG2 (l / leaf
+                :ARG1-of (f2 / follow-01)
+                :source (t / tree
+                    :location (n / nearby))))))

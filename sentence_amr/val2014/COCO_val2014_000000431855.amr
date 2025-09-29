@@ -1,0 +1,33 @@
+# ::tok A horse standing in an enclosed area with another directly behind it .
+# ::node	h	horse	1-2
+# ::node	h2	horse	1-2
+# ::node	s	stand-01	2-3
+# ::node	c	confine-01	5-6
+# ::node	a3	area	6-7
+# ::node	a	and	7-8
+# ::node	a2	another	8-9
+# ::node	d	direct-02	9-10
+# ::node	b	be-located-at-91	10-11
+# ::node	b2	behind	10-11
+# ::root	a	and
+# ::edge	stand-01	ARG1	horse	s	h	
+# ::edge	area	ARG1-of	confine-01	a3	c	
+# ::edge	stand-01	ARG2	area	s	a3	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	horse	mod	another	h2	a2	
+# ::edge	and	op2	be-located-at-91	a	b	
+# ::edge	be-located-at-91	ARG1	horse	b	h2	
+# ::edge	be-located-at-91	ARG2	behind	b	b2	
+# ::edge	behind	ARG1-of	direct-02	b2	d	
+# ::edge	behind	op1	horse	b2	h2	
+(a / and
+    :op1 (s / stand-01
+        :ARG1 (h / horse)
+        :ARG2 (a3 / area
+            :ARG1-of (c / confine-01)))
+    :op2 (b / be-located-at-91
+        :ARG1 (h2 / horse
+            :mod (a2 / another))
+        :ARG2 (b2 / behind
+            :ARG1-of (d / direct-02)
+            :op1 h2)))

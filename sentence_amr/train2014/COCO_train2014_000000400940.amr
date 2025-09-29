@@ -1,0 +1,52 @@
+# ::tok The New York City street which intersects Park Avenue is crowded with pedestrian and vehicular traffic .
+# ::node	n	name	1-2
+# ::node	2	New	1-2
+# ::node	4	York	2-3
+# ::node	c	city	3-4
+# ::node	1	City	3-4
+# ::node	s	street	4-5
+# ::node	i	intersect-01	6-7
+# ::node	n2	name	7-8
+# ::node	3	Park	7-8
+# ::node	r	road	8-9
+# ::node	0	Avenue	8-9
+# ::node	c2	crowd-01	10-11
+# ::node	p	pedestrian	12-13
+# ::node	a	and	13-14
+# ::node	v	vehicle	14-15
+# ::node	t	traffic	15-16
+# ::node	t2	traffic	15-16
+# ::root	c2	crowd-01
+# ::edge	name	op1	New	n	2	
+# ::edge	name	op2	York	n	4	
+# ::edge	city	name	name	c	n	
+# ::edge	name	op3	City	n	1	
+# ::edge	street	location	city	s	c	
+# ::edge	street	ARG0-of	intersect-01	s	i	
+# ::edge	name	op1	Park	n2	3	
+# ::edge	road	name	name	r	n2	
+# ::edge	intersect-01	ARG1	road	i	r	
+# ::edge	name	op2	Avenue	n2	0	
+# ::edge	crowd-01	ARG1	street	c2	s	
+# ::edge	crowd-01	ARG2	and	c2	a	
+# ::edge	and	op1	traffic	a	t	
+# ::edge	traffic	mod	pedestrian	t	p	
+# ::edge	traffic	mod	vehicle	t2	v	
+# ::edge	and	op2	traffic	a	t2	
+(c2 / crowd-01
+    :ARG1 (s / street
+        :ARG0-of (i / intersect-01
+            :ARG1 (r / road
+                :name (n2 / name
+                    :op1 "Park"
+                    :op2 "Avenue")))
+        :location (c / city
+            :name (n / name
+                :op1 "New"
+                :op2 "York"
+                :op3 "City")))
+    :ARG2 (a / and
+        :op1 (t / traffic
+            :mod (p / pedestrian))
+        :op2 (t2 / traffic
+            :mod (v / vehicle))))

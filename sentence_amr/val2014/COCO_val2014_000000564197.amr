@@ -1,0 +1,37 @@
+# ::tok A plate with three foil wrapped packets next to a bowl of refried beans and rice
+# ::node	p2	plate	1-2
+# ::node	h	have-03	2-3
+# ::node	0	3	3-4
+# ::node	f	foil	4-5
+# ::node	w	wrap-01	5-6
+# ::node	p	packet	6-7
+# ::node	n	next-to	7-8
+# ::node	b2	bowl	10-11
+# ::node	f2	fry-01	12-13
+# ::node	b	bean	13-14
+# ::node	a	and	14-15
+# ::node	r	rice	15-16
+# ::root	n	next-to
+# ::edge	plate	ARG0-of	have-03	p2	h	
+# ::edge	wrap-01	ARG2	foil	w	f	
+# ::edge	packet	ARG1-of	wrap-01	p	w	
+# ::edge	packet	quant	3	p	0	
+# ::edge	have-03	ARG1	packet	h	p	
+# ::edge	next-to	op1	plate	n	p2	
+# ::edge	next-to	op1	bowl	n	b2	
+# ::edge	bean	ARG1-of	fry-01	b	f2	
+# ::edge	and	op1	bean	a	b	
+# ::edge	bowl	consist-of	and	b2	a	
+# ::edge	and	op2	rice	a	r	
+(n / next-to
+    :op1 (p2 / plate
+        :ARG0-of (h / have-03
+            :ARG1 (p / packet
+                :quant 3
+                :ARG1-of (w / wrap-01
+                    :ARG2 (f / foil)))))
+    :op1 (b2 / bowl
+        :consist-of (a / and
+            :op1 (b / bean
+                :ARG1-of (f2 / fry-01))
+            :op2 (r / rice))))

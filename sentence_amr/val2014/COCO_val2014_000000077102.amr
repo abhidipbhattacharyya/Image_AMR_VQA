@@ -1,0 +1,30 @@
+# ::tok Several types of houseplants sitting on a window ledge to receive light from the sun .
+# ::node	s	several	0-1
+# ::node	t	type	1-2
+# ::node	p	plant	3-4
+# ::node	s2	sit-01	4-5
+# ::node	w	window	7-8
+# ::node	l	ledge	8-9
+# ::node	r	receive-01	10-11
+# ::node	l2	light	11-12
+# ::node	s3	sun	14-15
+# ::root	s2	sit-01
+# ::edge	type	quant	several	t	s	
+# ::edge	plant	mod	type	p	t	
+# ::edge	sit-01	ARG1	plant	s2	p	
+# ::edge	ledge	mod	window	l	w	
+# ::edge	sit-01	ARG2	ledge	s2	l	
+# ::edge	sit-01	purpose	receive-01	s2	r	
+# ::edge	receive-01	ARG0	plant	r	p	
+# ::edge	receive-01	ARG1	light	r	l2	
+# ::edge	receive-01	ARG2	sun	r	s3	
+(s2 / sit-01
+    :purpose (r / receive-01
+        :ARG0 (p / plant
+            :mod (t / type
+                :quant (s / several)))
+        :ARG1 (l2 / light)
+        :ARG2 (s3 / sun))
+    :ARG1 p
+    :ARG2 (l / ledge
+        :mod (w / window)))

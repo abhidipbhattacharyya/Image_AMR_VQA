@@ -1,0 +1,37 @@
+# ::tok Desert that has bananas and crumple with whipped cream and ice cream on top
+# ::node	s	state	0-1
+# ::node	n	name	0-1
+# ::node	0	Desert	0-1
+# ::node	h	have-03	2-3
+# ::node	b	banana	3-4
+# ::node	a	and	4-5
+# ::node	c3	crumble-01	5-6
+# ::node	w	whip-01	7-8
+# ::node	c	cream	8-9
+# ::node	a2	and	9-10
+# ::node	c2	cream	11-12
+# ::node	t	top	13-14
+# ::root	s	state
+# ::edge	state	name	name	s	n	
+# ::edge	name	op1	Desert	n	0	
+# ::edge	state	ARG0-of	have-03	s	h	
+# ::edge	and	op1	banana	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	state	ARG1-of	crumble-01	s	c3	
+# ::edge	cream	mod	whip-01	c	w	
+# ::edge	and	op1	cream	a2	c	
+# ::edge	crumble-01	ARG0	and	c3	a2	
+# ::edge	and	op2	cream	a2	c2	
+# ::edge	and	location	top	a2	t	
+(s / state
+    :name (n / name
+        :op1 "Desert")
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (b / banana)))
+    :ARG1-of (c3 / crumble-01
+        :ARG0 (a2 / and
+            :location (t / top)
+            :op1 (c / cream
+                :mod (w / whip-01))
+            :op2 (c2 / cream))))

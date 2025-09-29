@@ -1,0 +1,30 @@
+# ::tok Vendors and customers interacting at a produce market .
+# ::node	p	person	0-1
+# ::node	v	vend-01	0-1
+# ::node	a	and	1-2
+# ::node	p2	person	2-3
+# ::node	h	have-rel-role-91	2-3
+# ::node	c	customer	2-3
+# ::node	i	interact-01	3-4
+# ::node	p3	produce	6-7
+# ::node	m	market	7-8
+# ::root	i	interact-01
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	and	op1	person	a	p	
+# ::edge	and	op2	person	a	p2	
+# ::edge	person	ARG0-of	have-rel-role-91	p2	h	
+# ::edge	have-rel-role-91	ARG1	and	h	a	
+# ::edge	have-rel-role-91	ARG2	customer	h	c	
+# ::edge	interact-01	ARG0	and	i	a	
+# ::edge	market	mod	produce	m	p3	
+# ::edge	interact-01	location	market	i	m	
+(i / interact-01
+    :ARG0 (a / and
+        :op1 (p / person
+            :ARG0-of (v / vend-01))
+        :op2 (p2 / person
+            :ARG0-of (h / have-rel-role-91
+                :ARG1 a
+                :ARG2 (c / customer))))
+    :location (m / market
+        :mod (p3 / produce)))

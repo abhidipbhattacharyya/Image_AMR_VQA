@@ -1,0 +1,45 @@
+# ::tok A bus driver standing outside of a bus with a group of older women who are all wearing red hats .
+# ::node	b	bus	1-2
+# ::node	p	person	2-3
+# ::node	d	drive-01	2-3
+# ::node	s	stand-01	3-4
+# ::node	o2	outside	4-5
+# ::node	g	group	10-11
+# ::node	h2	have-degree-91	12-13
+# ::node	o	old	12-13
+# ::node	m	more	12-13
+# ::node	w2	woman	13-14
+# ::node	a	all	16-17
+# ::node	w	wear-01	17-18
+# ::node	r	red-02	18-19
+# ::node	h	hat	19-20
+# ::root	s	stand-01
+# ::edge	person	ARG0-of	drive-01	p	d	
+# ::edge	drive-01	ARG1	bus	d	b	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	outside	s	o2	
+# ::edge	outside	op1	bus	o2	b	
+# ::edge	stand-01	accompanier	group	s	g	
+# ::edge	have-degree-91	ARG2	old	h2	o	
+# ::edge	have-degree-91	ARG3	more	h2	m	
+# ::edge	woman	ARG1-of	have-degree-91	w2	h2	
+# ::edge	group	consist-of	woman	g	w2	
+# ::edge	woman	mod	all	w2	a	
+# ::edge	group	ARG0-of	wear-01	g	w	
+# ::edge	hat	ARG1-of	red-02	h	r	
+# ::edge	wear-01	ARG1	hat	w	h	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (d / drive-01
+            :ARG1 (b / bus)))
+    :ARG2 (o2 / outside
+        :op1 b)
+    :accompanier (g / group
+        :ARG0-of (w / wear-01
+            :ARG1 (h / hat
+                :ARG1-of (r / red-02)))
+        :consist-of (w2 / woman
+            :ARG1-of (h2 / have-degree-91
+                :ARG2 (o / old)
+                :ARG3 (m / more))
+            :mod (a / all))))

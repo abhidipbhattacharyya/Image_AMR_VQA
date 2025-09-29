@@ -1,0 +1,25 @@
+# ::tok Several sheep that are grazing , some have a red mark on them .
+# ::node	s	several	0-1
+# ::node	s2	sheep	1-2
+# ::node	s3	sheep	1-2
+# ::node	g	graze-01	4-5
+# ::node	i	include-91	6-7
+# ::node	s4	some	6-7
+# ::node	r	red-02	9-10
+# ::node	m	mark-02	10-11
+# ::root	m	mark-02
+# ::edge	sheep	quant	several	s2	s	
+# ::edge	sheep	ARG1-of	graze-01	s2	g	
+# ::edge	include-91	ARG1	sheep	i	s3	
+# ::edge	sheep	ARG2-of	include-91	s2	i	
+# ::edge	sheep	quant	some	s3	s4	
+# ::edge	mark-02	ARG1-of	red-02	m	r	
+# ::edge	mark-02	ARG1	sheep	m	s2	
+(m / mark-02
+    :ARG1 (s2 / sheep
+        :quant (s / several)
+        :ARG1-of (g / graze-01)
+        :ARG2-of (i / include-91
+            :ARG1 (s3 / sheep
+                :quant (s4 / some))))
+    :ARG1-of (r / red-02))

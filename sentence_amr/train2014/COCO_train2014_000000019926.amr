@@ -1,0 +1,42 @@
+# ::tok Three people are sitting on a couch and one of them is holding a Wii controller .
+# ::node	1	3	0-1
+# ::node	p	person	1-2
+# ::node	s	sit-01	3-4
+# ::node	c2	couch	6-7
+# ::node	a	and	7-8
+# ::node	0	1	8-9
+# ::node	i	include-91	9-10
+# ::node	h	hold-01	12-13
+# ::node	p2	person	12-13
+# ::node	p3	product	14-15
+# ::node	n	name	14-15
+# ::node	2	Wii	14-15
+# ::node	c	controller	15-16
+# ::root	a	and
+# ::edge	person	quant	3	p	1	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	couch	s	c2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	include-91	ARG3	1	i	0	
+# ::edge	include-91	ARG2	person	i	p	
+# ::edge	and	op2	hold-01	a	h	
+# ::edge	hold-01	ARG0	person	h	p2	
+# ::edge	person	ARG1-of	include-91	p2	i	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Wii	n	2	
+# ::edge	controller	mod	product	c	p3	
+# ::edge	hold-01	ARG1	controller	h	c	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (p / person
+            :quant 3)
+        :ARG2 (c2 / couch))
+    :op2 (h / hold-01
+        :ARG0 (p2 / person
+            :ARG1-of (i / include-91
+                :ARG2 p
+                :ARG3 1))
+        :ARG1 (c / controller
+            :mod (p3 / product
+                :name (n / name
+                    :op1 "Wii")))))

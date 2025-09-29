@@ -1,0 +1,22 @@
+# ::tok Snowboarder catapulting over a jump during a night competition
+# ::node	p	person	0-1
+# ::node	s	ski-01	0-1
+# ::node	l	launch-01	1-2
+# ::node	j	jump-03	4-5
+# ::node	d	date-entity	7-8
+# ::node	n	night	7-8
+# ::node	c	compete-01	8-9
+# ::root	l	launch-01
+# ::edge	person	ARG0-of	ski-01	p	s	
+# ::edge	launch-01	ARG0	person	l	p	
+# ::edge	launch-01	path	jump-03	l	j	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	compete-01	time	date-entity	c	d	
+# ::edge	launch-01	time	compete-01	l	c	
+(l / launch-01
+    :ARG0 (p / person
+        :ARG0-of (s / ski-01))
+    :path (j / jump-03)
+    :time (c / compete-01
+        :time (d / date-entity
+            :dayperiod (n / night))))

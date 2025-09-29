@@ -1,0 +1,43 @@
+# ::tok Two men and a woman get ready to eat a pizza smothered with mozzarella cheese and drink glasses of beer .
+# ::node	m	man	1-2
+# ::node	a	and	2-3
+# ::node	w	woman	4-5
+# ::node	r	ready-01	6-7
+# ::node	e	eat-01	8-9
+# ::node	p	pizza	10-11
+# ::node	s	smear-02	11-12
+# ::node	m2	mozzarella	13-14
+# ::node	c	cheese	14-15
+# ::node	d	drink-01	16-17
+# ::node	g	gallon	17-18
+# ::node	b	beer	19-20
+# ::root	r	ready-01
+# ::edge	and	op1	man	a	m	
+# ::edge	and	op2	woman	a	w	
+# ::edge	ready-01	ARG1	and	r	a	
+# ::edge	ready-01	ARG0	and	r	a	
+# ::edge	ready-01	ARG2	eat-01	r	e	
+# ::edge	eat-01	ARG0	and	e	a	
+# ::edge	eat-01	ARG1	pizza	e	p	
+# ::edge	pizza	ARG1-of	smear-02	p	s	
+# ::edge	cheese	mod	mozzarella	c	m2	
+# ::edge	smear-02	ARG2	cheese	s	c	
+# ::edge	and	op3	drink-01	a	d	
+# ::edge	drink-01	ARG0	and	d	a	
+# ::edge	beer	quant	gallon	b	g	
+# ::edge	drink-01	ARG1	beer	d	b	
+(r / ready-01
+    :ARG0 (a / and
+        :op1 (m / man)
+        :op2 (w / woman)
+        :op3 (d / drink-01
+            :ARG0 a
+            :ARG1 (b / beer
+                :quant (g / gallon))))
+    :ARG1 a
+    :ARG2 (e / eat-01
+        :ARG0 a
+        :ARG1 (p / pizza
+            :ARG1-of (s / smear-02
+                :ARG2 (c / cheese
+                    :mod (m2 / mozzarella))))))

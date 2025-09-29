@@ -1,0 +1,25 @@
+# ::tok lots of traffic going down both sides of a busy road
+# ::node	l	lot	0-1
+# ::node	t	traffic	2-3
+# ::node	g	go-01	3-4
+# ::node	d	down	4-5
+# ::node	b	both	5-6
+# ::node	s	side	6-7
+# ::node	b2	busy-02	9-10
+# ::node	r	road	10-11
+# ::root	t	traffic
+# ::edge	traffic	quant	lot	t	l	
+# ::edge	traffic	ARG1-of	go-01	t	g	
+# ::edge	go-01	direction	down	g	d	
+# ::edge	side	mod	both	s	b	
+# ::edge	go-01	path	side	g	s	
+# ::edge	road	ARG1-of	busy-02	r	b2	
+# ::edge	side	part-of	road	s	r	
+(t / traffic
+    :quant (l / lot)
+    :ARG1-of (g / go-01
+        :direction (d / down)
+        :path (s / side
+            :mod (b / both)
+            :part-of (r / road
+                :ARG1-of (b2 / busy-02)))))

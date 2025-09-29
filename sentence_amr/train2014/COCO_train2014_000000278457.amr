@@ -1,0 +1,34 @@
+# ::tok A plate filled with bananas foster and three scoops of ice cream .
+# ::node	p	plate	1-2
+# ::node	f	fill-01	2-3
+# ::node	b	banana	4-5
+# ::node	f2	foster	5-6
+# ::node	a	and	6-7
+# ::node	0	3	7-8
+# ::node	v	volume-quantity	8-9
+# ::node	c	continent	8-9
+# ::node	n	name	8-9
+# ::node	1	3	8-9
+# ::node	c2	cream	11-12
+# ::root	p	plate
+# ::edge	plate	ARG1-of	fill-01	p	f	
+# ::edge	foster	mod	banana	f2	b	
+# ::edge	and	op1	foster	a	f2	
+# ::edge	fill-01	ARG2	and	f	a	
+# ::edge	volume-quantity	quant	3	v	0	
+# ::edge	volume-quantity	mod	continent	v	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	volume-quantity	quant	3	v	1	
+# ::edge	cream	quant	volume-quantity	c2	v	
+# ::edge	and	op2	cream	a	c2	
+(p / plate
+    :ARG1-of (f / fill-01
+        :ARG2 (a / and
+            :op1 (f2 / foster
+                :mod (b / banana))
+            :op2 (c2 / cream
+                :quant (v / volume-quantity
+                    :quant 3
+                    :quant 3
+                    :mod (c / continent
+                        :name (n / name)))))))

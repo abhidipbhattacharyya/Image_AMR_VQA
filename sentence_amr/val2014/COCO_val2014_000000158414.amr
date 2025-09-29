@@ -1,0 +1,24 @@
+# ::tok A bus is displaying rider information pamphlets at the front of the bus .
+# ::node	b	bus	1-2
+# ::node	d	display-01	3-4
+# ::node	p2	person	4-5
+# ::node	r	ride-01	4-5
+# ::node	i	information	5-6
+# ::node	p	pamphlet	6-7
+# ::node	f	front	9-10
+# ::root	d	display-01
+# ::edge	display-01	ARG0	bus	d	b	
+# ::edge	person	ARG0-of	ride-01	p2	r	
+# ::edge	information	topic	person	i	p2	
+# ::edge	pamphlet	topic	information	p	i	
+# ::edge	display-01	ARG1	pamphlet	d	p	
+# ::edge	display-01	ARG2	front	d	f	
+# ::edge	bus	part	front	b	f	
+(d / display-01
+    :ARG0 (b / bus
+        :part (f / front))
+    :ARG1 (p / pamphlet
+        :topic (i / information
+            :topic (p2 / person
+                :ARG0-of (r / ride-01))))
+    :ARG2 f)

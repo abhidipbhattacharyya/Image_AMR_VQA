@@ -1,0 +1,33 @@
+# ::tok several clear Champaign glasses filled on a table next to Champaign bottles
+# ::node	s	several	0-1
+# ::node	c	clear-01	1-2
+# ::node	p	product	2-3
+# ::node	n	name	2-3
+# ::node	0	Champaign	2-3
+# ::node	g	glass	3-4
+# ::node	f	fill-01	4-5
+# ::node	t	table	7-8
+# ::node	n2	next-to	8-9
+# ::node	b	bottle	11-12
+# ::root	g	glass
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Champaign	n	0	
+# ::edge	glass	mod	product	g	p	
+# ::edge	glass	ARG1-of	clear-01	g	c	
+# ::edge	glass	quant	several	g	s	
+# ::edge	glass	ARG1-of	fill-01	g	f	
+# ::edge	fill-01	location	table	f	t	
+# ::edge	table	location-of	next-to	t	n2	
+# ::edge	next-to	op1	bottle	n2	b	
+# ::edge	bottle	mod	product	b	p	
+(g / glass
+    :quant (s / several)
+    :ARG1-of (c / clear-01)
+    :ARG1-of (f / fill-01
+        :location (t / table
+            :location-of (n2 / next-to
+                :op1 (b / bottle
+                    :mod (p / product
+                        :name (n / name
+                            :op1 "Champaign"))))))
+    :mod p)

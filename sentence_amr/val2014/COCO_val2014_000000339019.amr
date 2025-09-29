@@ -1,0 +1,27 @@
+# ::tok A beach scene with hundreds of people and many beach umbrellas .
+# ::node	b	beach	1-2
+# ::node	s	scene	2-3
+# ::node	m2	multiple	4-5
+# ::node	0	100	4-5
+# ::node	p	person	6-7
+# ::node	a	and	7-8
+# ::node	m	many	8-9
+# ::node	u	umbrella	10-11
+# ::root	s	scene
+# ::edge	scene	mod	beach	s	b	
+# ::edge	multiple	op1	100	m2	0	
+# ::edge	person	quant	multiple	p	m2	
+# ::edge	and	op1	person	a	p	
+# ::edge	scene	location-of	and	s	a	
+# ::edge	umbrella	quant	many	u	m	
+# ::edge	and	op2	umbrella	a	u	
+# ::edge	umbrella	mod	beach	u	b	
+(s / scene
+    :location-of (a / and
+        :op1 (p / person
+            :quant (m2 / multiple
+                :op1 100))
+        :op2 (u / umbrella
+            :quant (m / many)
+            :mod (b / beach)))
+    :mod b)

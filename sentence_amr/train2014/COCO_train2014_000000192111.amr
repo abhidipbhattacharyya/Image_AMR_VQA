@@ -1,0 +1,25 @@
+# ::tok A stop sign is barley visible through a haze of green
+# ::node	s3	stop-01	1-2
+# ::node	s2	signal-07	2-3
+# ::node	b	bare-02	4-5
+# ::node	p	possible-01	5-6
+# ::node	s	see-01	5-6
+# ::node	t	through	6-7
+# ::node	h	haze	8-9
+# ::node	g	green-02	10-11
+# ::root	p	possible-01
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1-of	bare-02	s	b	
+# ::edge	see-01	ARG1	signal-07	s	s2	
+# ::edge	see-01	time	through	s	t	
+# ::edge	through	op1	haze	t	h	
+# ::edge	haze	consist-of	green-02	h	g	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (s2 / signal-07
+            :ARG1 (s3 / stop-01))
+        :ARG1-of (b / bare-02)
+        :time (t / through
+            :op1 (h / haze
+                :consist-of (g / green-02)))))

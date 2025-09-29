@@ -1,0 +1,31 @@
+# ::tok Buildings , one a skyscraper , set behind a bridge with a line of red buses .
+# ::node	b3	building	0-1
+# ::node	0	1	2-3
+# ::node	s2	skyscraper	4-5
+# ::node	s	set-01	6-7
+# ::node	b	behind	7-8
+# ::node	b2	bridge	9-10
+# ::node	h	have-03	10-11
+# ::node	l	line	12-13
+# ::node	r	red-02	14-15
+# ::node	b4	bus	15-16
+# ::root	s	set-01
+# ::edge	skyscraper	quant	1	s2	0	
+# ::edge	building	mod	skyscraper	b3	s2	
+# ::edge	set-01	ARG1	building	s	b3	
+# ::edge	set-01	ARG2	behind	s	b	
+# ::edge	behind	op1	bridge	b	b2	
+# ::edge	bridge	ARG0-of	have-03	b2	h	
+# ::edge	have-03	ARG1	line	h	l	
+# ::edge	bus	ARG1-of	red-02	b4	r	
+# ::edge	line	consist-of	bus	l	b4	
+(s / set-01
+    :ARG1 (b3 / building
+        :mod (s2 / skyscraper
+            :quant 1))
+    :ARG2 (b / behind
+        :op1 (b2 / bridge
+            :ARG0-of (h / have-03
+                :ARG1 (l / line
+                    :consist-of (b4 / bus
+                        :ARG1-of (r / red-02)))))))

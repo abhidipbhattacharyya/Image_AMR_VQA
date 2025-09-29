@@ -1,0 +1,33 @@
+# ::tok a toy insect in a toy bed with the bed sheets wrapped around it and a book in its arms
+# ::node	t	toy	1-2
+# ::node	i	insect	2-3
+# ::node	b2	bed	6-7
+# ::node	s	sheet	10-11
+# ::node	w	wrap-01	11-12
+# ::node	b3	book	16-17
+# ::node	b	be-located-at-91	17-18
+# ::node	a	arm	19-20
+# ::root	i	insect
+# ::edge	insect	mod	toy	i	t	
+# ::edge	insect	location	bed	i	b2	
+# ::edge	bed	mod	toy	b2	t	
+# ::edge	sheet	mod	bed	s	b2	
+# ::edge	wrap-01	ARG2	sheet	w	s	
+# ::edge	insect	ARG1-of	wrap-01	i	w	
+# ::edge	be-located-at-91	ARG1	sheet	b	s	
+# ::edge	insect	ARG2-of	be-located-at-91	i	b	
+# ::edge	be-located-at-91	location	arm	b	a	
+# ::edge	insect	part	arm	i	a	
+# ::edge	insect	rel	book	i	b3	
+(i / insect
+    :ARG1-of (w / wrap-01
+        :ARG2 (s / sheet
+            :mod (b2 / bed
+                :mod (t / toy))))
+    :ARG2-of (b / be-located-at-91
+        :ARG1 s
+        :location (a / arm))
+    :location b2
+    :mod t
+    :part a
+    :rel (b3 / book))

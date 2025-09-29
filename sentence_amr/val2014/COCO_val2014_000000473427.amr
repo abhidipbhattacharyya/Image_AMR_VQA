@@ -1,0 +1,27 @@
+# ::tok Bunches of bananas are ripe or green on a blue tablecloth at a market
+# ::node	l	load	0-1
+# ::node	b	banana	2-3
+# ::node	r	ripe-02	4-5
+# ::node	o	or	5-6
+# ::node	g	green-02	6-7
+# ::node	b2	blue	9-10
+# ::node	t	tablecloth	10-11
+# ::node	m	market	13-14
+# ::root	o	or
+# ::edge	load	consist-of	banana	l	b	
+# ::edge	load	ARG1-of	ripe-02	l	r	
+# ::edge	or	op1	load	o	l	
+# ::edge	or	op2	green-02	o	g	
+# ::edge	green-02	ARG1	banana	g	b	
+# ::edge	tablecloth	mod	blue	t	b2	
+# ::edge	or	location	tablecloth	o	t	
+# ::edge	or	location	market	o	m	
+(o / or
+    :location (t / tablecloth
+        :mod (b2 / blue))
+    :location (m / market)
+    :op1 (l / load
+        :ARG1-of (r / ripe-02)
+        :consist-of (b / banana))
+    :op2 (g / green-02
+        :ARG1 b))

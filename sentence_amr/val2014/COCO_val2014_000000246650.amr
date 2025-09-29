@@ -1,0 +1,25 @@
+# ::tok Intersection with cars pulled up to red light with trees lining road .
+# ::node	i	intersect-01	0-1
+# ::node	c	car	2-3
+# ::node	p	pull-01	3-4
+# ::node	r	red-02	6-7
+# ::node	l	light	7-8
+# ::node	t	tree	9-10
+# ::node	l2	line-01	10-11
+# ::node	r2	road	11-12
+# ::root	i	intersect-01
+# ::edge	pull-01	ARG1	car	p	c	
+# ::edge	intersect-01	ARG1	pull-01	i	p	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	pull-01	ARG2	light	p	l	
+# ::edge	line-01	ARG2	tree	l2	t	
+# ::edge	intersect-01	location-of	line-01	i	l2	
+# ::edge	line-01	ARG1	road	l2	r2	
+(i / intersect-01
+    :ARG1 (p / pull-01
+        :ARG1 (c / car)
+        :ARG2 (l / light
+            :ARG1-of (r / red-02)))
+    :location-of (l2 / line-01
+        :ARG1 (r2 / road)
+        :ARG2 (t / tree)))

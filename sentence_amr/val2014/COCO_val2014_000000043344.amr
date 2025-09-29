@@ -1,0 +1,30 @@
+# ::tok A coach talking to a tennis player sitting on a bench during a tennis event .
+# ::node	p	person	1-2
+# ::node	c	coach-01	1-2
+# ::node	t	talk-01	2-3
+# ::node	t2	tennis	5-6
+# ::node	p2	person	6-7
+# ::node	p3	play-01	6-7
+# ::node	s	sit-01	7-8
+# ::node	b	bench	10-11
+# ::node	e	event	14-15
+# ::root	t	talk-01
+# ::edge	person	ARG0-of	coach-01	p	c	
+# ::edge	talk-01	ARG0	person	t	p	
+# ::edge	talk-01	ARG2	person	t	p2	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	play-01	ARG1	tennis	p3	t2	
+# ::edge	person	ARG1-of	sit-01	p2	s	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	event	mod	tennis	e	t2	
+# ::edge	talk-01	time	event	t	e	
+(t / talk-01
+    :ARG0 (p / person
+        :ARG0-of (c / coach-01))
+    :ARG2 (p2 / person
+        :ARG0-of (p3 / play-01
+            :ARG1 (t2 / tennis))
+        :ARG1-of (s / sit-01
+            :ARG2 (b / bench)))
+    :time (e / event
+        :mod t2))

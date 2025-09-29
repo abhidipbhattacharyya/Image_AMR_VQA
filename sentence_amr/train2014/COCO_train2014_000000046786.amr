@@ -1,0 +1,30 @@
+# ::tok A stop sign with a right turn sign below it at night time .
+# ::node	s3	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	h	have-03	3-4
+# ::node	r	right-04	5-6
+# ::node	t	turn-01	6-7
+# ::node	s2	sign	7-8
+# ::node	b	below	8-9
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	h	have-03
+# ::edge	sign	purpose	stop-01	s	s3	
+# ::edge	have-03	ARG0	sign	h	s	
+# ::edge	turn-01	ARG1-of	right-04	t	r	
+# ::edge	sign	mod	turn-01	s2	t	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	location	below	s2	b	
+# ::edge	below	op1	sign	b	s	
+# ::edge	have-03	time	date-entity	h	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(h / have-03
+    :ARG0 (s / sign
+        :purpose (s3 / stop-01))
+    :ARG1 (s2 / sign
+        :location (b / below
+            :op1 s)
+        :mod (t / turn-01
+            :ARG1-of (r / right-04)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

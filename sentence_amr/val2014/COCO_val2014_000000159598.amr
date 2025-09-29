@@ -1,0 +1,40 @@
+# ::tok I vending machine containing precooked corn dogs for $2 each .
+# ::node	i	i	0-1
+# ::node	v	vend-01	1-2
+# ::node	m	machine	2-3
+# ::node	c	contain-01	3-4
+# ::node	c2	cook-01	4-5
+# ::node	b	before	4-5
+# ::node	c3	corn	5-6
+# ::node	d	dog	6-7
+# ::node	c4	cost-01	8-9
+# ::node	m2	monetary-quantity	8-9
+# ::node	d2	dollar	8-9
+# ::node	0	2	8-9
+# ::node	e	each	9-10
+# ::root	m	machine
+# ::edge	machine	instrument-of	vend-01	m	v	
+# ::edge	machine	poss	i	m	i	
+# ::edge	machine	ARG0-of	contain-01	m	c	
+# ::edge	cook-01	time	before	c2	b	
+# ::edge	dog	mod	corn	d	c3	
+# ::edge	dog	ARG1-of	cook-01	d	c2	
+# ::edge	contain-01	ARG1	dog	c	d	
+# ::edge	dog	ARG1-of	cost-01	d	c4	
+# ::edge	cost-01	ARG2	monetary-quantity	c4	m2	
+# ::edge	monetary-quantity	unit	dollar	m2	d2	
+# ::edge	monetary-quantity	quant	2	m2	0	
+# ::edge	cost-01	mod	each	c4	e	
+(m / machine
+    :ARG0-of (c / contain-01
+        :ARG1 (d / dog
+            :ARG1-of (c2 / cook-01
+                :time (b / before))
+            :ARG1-of (c4 / cost-01
+                :ARG2 (m2 / monetary-quantity
+                    :quant 2
+                    :unit (d2 / dollar))
+                :mod (e / each))
+            :mod (c3 / corn)))
+    :instrument-of (v / vend-01)
+    :poss (i / i))

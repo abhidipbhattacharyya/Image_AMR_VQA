@@ -1,0 +1,43 @@
+# ::tok A newly built kitchen that has yet to be used ; outside the window you can see snow on the ground .
+# ::node	n	new-01	1-2
+# ::node	b	build-01	2-3
+# ::node	k	kitchen	3-4
+# ::node	y	yet	6-7
+# ::node	0	-	6-7
+# ::node	u	use-01	9-10
+# ::node	m	multi-sentence	10-11
+# ::node	o	outside	11-12
+# ::node	w	window	13-14
+# ::node	y2	you	14-15
+# ::node	p	possible-01	15-16
+# ::node	s	see-01	16-17
+# ::node	s2	snow-01	17-18
+# ::node	g	ground	20-21
+# ::root	m	multi-sentence
+# ::edge	build-01	ARG1-of	new-01	b	n	
+# ::edge	kitchen	ARG1-of	build-01	k	b	
+# ::edge	use-01	polarity	-	u	0	
+# ::edge	use-01	time	yet	u	y	
+# ::edge	kitchen	ARG1-of	use-01	k	u	
+# ::edge	multi-sentence	snt1	kitchen	m	k	
+# ::edge	outside	op1	window	o	w	
+# ::edge	multi-sentence	snt2	possible-01	m	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y2	
+# ::edge	see-01	location	outside	s	o	
+# ::edge	see-01	ARG1	snow-01	s	s2	
+# ::edge	snow-01	location	ground	s2	g	
+(m / multi-sentence
+    :snt1 (k / kitchen
+        :ARG1-of (b / build-01
+            :ARG1-of (n / new-01))
+        :ARG1-of (u / use-01
+            :polarity -
+            :time (y / yet)))
+    :snt2 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG0 (y2 / you)
+            :ARG1 (s2 / snow-01
+                :location (g / ground))
+            :location (o / outside
+                :op1 (w / window)))))

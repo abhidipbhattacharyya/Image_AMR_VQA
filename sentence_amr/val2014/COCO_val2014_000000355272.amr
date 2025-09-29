@@ -1,0 +1,78 @@
+# ::tok A toddler boy sitting and looking into the camera , holding a remote control in both hands up to cheek , on a woven wool oval rug on a wood floor with toys and furniture around .
+# ::node	t	toddler	1-2
+# ::node	b2	boy	2-3
+# ::node	s	sit-01	3-4
+# ::node	a	and	4-5
+# ::node	l	look-01	5-6
+# ::node	c	camera	8-9
+# ::node	h2	hold-01	10-11
+# ::node	r	remote	12-13
+# ::node	c3	control	13-14
+# ::node	b	both	15-16
+# ::node	h	hand	16-17
+# ::node	u	up-to	17-18
+# ::node	c2	cheek	19-20
+# ::node	w	weave-01	23-24
+# ::node	w3	wool	24-25
+# ::node	o	oval	25-26
+# ::node	r2	rug	26-27
+# ::node	w2	wood	29-30
+# ::node	f	floor	30-31
+# ::node	t2	toy	32-33
+# ::node	a2	and	33-34
+# ::node	f2	furniture	34-35
+# ::node	a3	around	35-36
+# ::root	a	and
+# ::edge	boy	mod	toddler	b2	t	
+# ::edge	sit-01	ARG1	boy	s	b2	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	and	op2	look-01	a	l	
+# ::edge	look-01	ARG0	boy	l	b2	
+# ::edge	look-01	ARG1	camera	l	c	
+# ::edge	and	op3	hold-01	a	h2	
+# ::edge	hold-01	ARG0	boy	h2	b2	
+# ::edge	control	mod	remote	c3	r	
+# ::edge	hold-01	ARG1	control	h2	c3	
+# ::edge	hand	mod	both	h	b	
+# ::edge	hold-01	manner	hand	h2	h	
+# ::edge	boy	part	hand	b2	h	
+# ::edge	hold-01	direction	up-to	h2	u	
+# ::edge	up-to	op1	cheek	u	c2	
+# ::edge	rug	mod	oval	r2	o	
+# ::edge	rug	consist-of	wool	r2	w3	
+# ::edge	rug	ARG1-of	weave-01	r2	w	
+# ::edge	and	ARG2	rug	a	r2	
+# ::edge	sit-01	ARG2	rug	s	r2	
+# ::edge	floor	consist-of	wood	f	w2	
+# ::edge	rug	location	floor	r2	f	
+# ::edge	and	op1	toy	a2	t2	
+# ::edge	rug	location-of	and	r2	a2	
+# ::edge	and	op2	furniture	a2	f2	
+# ::edge	and	location	around	a2	a3	
+(a / and
+    :ARG2 (r2 / rug
+        :ARG1-of (w / weave-01)
+        :consist-of (w3 / wool)
+        :location (f / floor
+            :consist-of (w2 / wood))
+        :location-of (a2 / and
+            :location (a3 / around)
+            :op1 (t2 / toy)
+            :op2 (f2 / furniture))
+        :mod (o / oval))
+    :op1 (s / sit-01
+        :ARG1 (b2 / boy
+            :mod (t / toddler)
+            :part (h / hand
+                :mod (b / both)))
+        :ARG2 r2)
+    :op2 (l / look-01
+        :ARG0 b2
+        :ARG1 (c / camera))
+    :op3 (h2 / hold-01
+        :ARG0 b2
+        :ARG1 (c3 / control
+            :mod (r / remote))
+        :direction (u / up-to
+            :op1 (c2 / cheek))
+        :manner h))

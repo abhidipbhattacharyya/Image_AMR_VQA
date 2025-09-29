@@ -1,0 +1,45 @@
+# ::tok A plate with carrots , mushrooms and celery on a table next to three bowls with food .
+# ::node	p	plate	1-2
+# ::node	h	have-03	2-3
+# ::node	c	carrot	3-4
+# ::node	a2	and	4-5
+# ::node	m	mushroom	5-6
+# ::node	c2	celery	7-8
+# ::node	t	table	10-11
+# ::node	n	next-to	11-12
+# ::node	a	3	13-14
+# ::node	p2	pound	14-15
+# ::node	v	volume-quantity	14-15
+# ::node	h2	have-03	15-16
+# ::node	f	food	16-17
+# ::node	e	event	17-18
+# ::root	e	event
+# ::edge	plate	ARG0-of	have-03	p	h	
+# ::edge	and	op1	carrot	a2	c	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	mushroom	a2	m	
+# ::edge	and	op3	celery	a2	c2	
+# ::edge	next-to	location	table	n	t	
+# ::edge	plate	location	next-to	p	n	
+# ::edge	3	unit	pound	a	p2	
+# ::edge	volume-quantity	unit	pound	v	p2	
+# ::edge	volume-quantity	quant	3	v	a	
+# ::edge	have-03	ARG2	volume-quantity	h2	v	
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	have-03	ARG1	food	h2	f	
+# ::edge	event	mod	plate	e	p	
+(e / event
+    :mod (p / plate
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 (c / carrot)
+                :op2 (m / mushroom)
+                :op3 (c2 / celery)))
+        :location (n / next-to
+            :location (t / table
+                :ARG0-of (h2 / have-03
+                    :ARG1 (f / food)
+                    :ARG2 (v / volume-quantity
+                        :quant (a / 3
+                            :unit (p2 / pound))
+                        :unit p2))))))

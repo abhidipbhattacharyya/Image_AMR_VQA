@@ -1,0 +1,29 @@
+# ::tok some people getting off a train while others wait to get on them
+# ::node	s	some	0-1
+# ::node	p	person	1-2
+# ::node	g	get-05	2-3
+# ::node	o	off	3-4
+# ::node	t	train	5-6
+# ::node	o2	other	7-8
+# ::node	w	wait-01	8-9
+# ::node	g2	get-05	10-11
+# ::root	g	get-05
+# ::edge	person	quant	some	p	s	
+# ::edge	get-05	ARG1	person	g	p	
+# ::edge	get-05	source	off	g	o	
+# ::edge	off	op1	train	o	t	
+# ::edge	wait-01	ARG1	other	w	o2	
+# ::edge	get-05	time	wait-01	g	w	
+# ::edge	wait-01	ARG2	get-05	w	g2	
+# ::edge	get-05	ARG1	other	g2	o2	
+# ::edge	get-05	ARG2	train	g2	t	
+(g / get-05
+    :ARG1 (p / person
+        :quant (s / some))
+    :source (o / off
+        :op1 (t / train))
+    :time (w / wait-01
+        :ARG1 (o2 / other)
+        :ARG2 (g2 / get-05
+            :ARG1 o2
+            :ARG2 t)))

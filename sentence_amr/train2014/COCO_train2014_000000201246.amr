@@ -1,0 +1,27 @@
+# ::tok A group of planes are flying through the air with smoke coming from their tails .
+# ::node	g	group	1-2
+# ::node	p	plane	3-4
+# ::node	f	fly-01	5-6
+# ::node	a	air	8-9
+# ::node	h	have-03	9-10
+# ::node	s	smoke	10-11
+# ::node	c	come-01	11-12
+# ::node	b	butt	14-15
+# ::root	f	fly-01
+# ::edge	plane	quant	group	p	g	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	fly-01	path	air	f	a	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	come-01	s	c	
+# ::edge	come-01	ARG3	butt	c	b	
+# ::edge	plane	part	butt	p	b	
+(f / fly-01
+    :ARG2 (p / plane
+        :quant (g / group)
+        :ARG0-of (h / have-03
+            :ARG1 (s / smoke
+                :ARG1-of (c / come-01
+                    :ARG3 (b / butt))))
+        :part b)
+    :path (a / air))

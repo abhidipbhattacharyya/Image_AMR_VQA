@@ -1,0 +1,41 @@
+# ::tok A table that has a Wii style video game system on it along with other electronics and equipment .
+# ::node	t	table	1-2
+# ::node	h	have-03	3-4
+# ::node	n	name	5-6
+# ::node	0	Wii	5-6
+# ::node	s	style	6-7
+# ::node	v	video	7-8
+# ::node	g	game	8-9
+# ::node	s2	system	9-10
+# ::node	o	other	14-15
+# ::node	e	electronic	15-16
+# ::node	a	and	16-17
+# ::node	e2	equipment	17-18
+# ::root	t	table
+# ::edge	table	ARG0-of	have-03	t	h	
+# ::edge	name	op1	Wii	n	0	
+# ::edge	style	name	name	s	n	
+# ::edge	game	mod	video	g	v	
+# ::edge	system	mod	game	s2	g	
+# ::edge	system	mod	style	s2	s	
+# ::edge	have-03	ARG1	system	h	s2	
+# ::edge	electronic	mod	other	e	o	
+# ::edge	and	op2	electronic	a	e	
+# ::edge	system	accompanier	and	s2	a	
+# ::edge	and	op1	table	a	t	
+# ::edge	and	op3	equipment	a	e2	
+# ::edge	equipment	mod	other	e2	o	
+(t / table
+    :ARG0-of (h / have-03
+        :ARG1 (s2 / system
+            :accompanier (a / and
+                :op1 t
+                :op2 (e / electronic
+                    :mod (o / other))
+                :op3 (e2 / equipment
+                    :mod o))
+            :mod (g / game
+                :mod (v / video))
+            :mod (s / style
+                :name (n / name
+                    :op1 "Wii")))))

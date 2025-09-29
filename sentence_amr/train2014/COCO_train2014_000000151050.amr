@@ -1,0 +1,32 @@
+# ::tok We are looking at a stop sign asking us to not say certain words .
+# ::node	w	we	0-1
+# ::node	l	look-01	2-3
+# ::node	s3	stop-01	5-6
+# ::node	s2	signal-07	6-7
+# ::node	a	ask-02	7-8
+# ::node	0	-	10-11
+# ::node	s	say-01	11-12
+# ::node	c	certain	12-13
+# ::node	w2	word	13-14
+# ::root	l	look-01
+# ::edge	look-01	ARG0	we	l	w	
+# ::edge	signal-07	ARG1	stop-01	s2	s3	
+# ::edge	look-01	ARG1	signal-07	l	s2	
+# ::edge	signal-07	ARG0-of	ask-02	s2	a	
+# ::edge	ask-02	ARG2	we	a	w	
+# ::edge	say-01	polarity	-	s	0	
+# ::edge	ask-02	ARG1	say-01	a	s	
+# ::edge	say-01	ARG0	we	s	w	
+# ::edge	word	mod	certain	w2	c	
+# ::edge	say-01	ARG1	word	s	w2	
+(l / look-01
+    :ARG0 (w / we)
+    :ARG1 (s2 / signal-07
+        :ARG0-of (a / ask-02
+            :ARG1 (s / say-01
+                :ARG0 w
+                :ARG1 (w2 / word
+                    :mod (c / certain))
+                :polarity -)
+            :ARG2 w)
+        :ARG1 (s3 / stop-01)))

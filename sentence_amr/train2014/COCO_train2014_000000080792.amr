@@ -1,0 +1,34 @@
+# ::tok A car in a parking lot decorated with many squirrels and autumn items .
+# ::node	c	car	1-2
+# ::node	p	park-01	4-5
+# ::node	l	lot	5-6
+# ::node	d2	decorate-01	6-7
+# ::node	m	many	8-9
+# ::node	m2	many	8-9
+# ::node	s	squirrel	9-10
+# ::node	a	and	10-11
+# ::node	d	date-entity	11-12
+# ::node	a2	autumn	11-12
+# ::node	i	item	12-13
+# ::root	c	car
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	car	location	lot	c	l	
+# ::edge	car	ARG1-of	decorate-01	c	d2	
+# ::edge	squirrel	quant	many	s	m	
+# ::edge	and	op1	squirrel	a	s	
+# ::edge	decorate-01	ARG2	and	d2	a	
+# ::edge	date-entity	season	autumn	d	a2	
+# ::edge	item	time	date-entity	i	d	
+# ::edge	and	op2	item	a	i	
+# ::edge	item	quant	many	i	m2	
+(c / car
+    :ARG1-of (d2 / decorate-01
+        :ARG2 (a / and
+            :op1 (s / squirrel
+                :quant (m / many))
+            :op2 (i / item
+                :quant (m2 / many)
+                :time (d / date-entity
+                    :season (a2 / autumn)))))
+    :location (l / lot
+        :ARG2-of (p / park-01)))

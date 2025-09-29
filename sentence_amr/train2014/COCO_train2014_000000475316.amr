@@ -1,0 +1,45 @@
+# ::tok A kitchen and dining area with wood floors and wood cabinets , with no seperating wall for the two areas .
+# ::node	k	kitchen	1-2
+# ::node	a	and	2-3
+# ::node	d	dine-01	3-4
+# ::node	a3	area	4-5
+# ::node	a4	area	4-5
+# ::node	w2	wood	6-7
+# ::node	f	floor	7-8
+# ::node	a2	and	8-9
+# ::node	c	cabinet	10-11
+# ::node	0	-	13-14
+# ::node	s	separate-01	14-15
+# ::node	w	wall	15-16
+# ::node	1	2	18-19
+# ::node	a5	area	19-20
+# ::root	a	and
+# ::edge	and	op1	area	a	a3	
+# ::edge	area	mod	kitchen	a3	k	
+# ::edge	area	purpose	dine-01	a4	d	
+# ::edge	and	op2	area	a	a4	
+# ::edge	floor	mod	wood	f	w2	
+# ::edge	and	op1	floor	a2	f	
+# ::edge	area	part	and	a3	a2	
+# ::edge	and	op2	cabinet	a2	c	
+# ::edge	cabinet	mod	wood	c	w2	
+# ::edge	wall	ARG1-of	separate-01	w	s	
+# ::edge	wall	polarity	-	w	0	
+# ::edge	and	op3	wall	a	w	
+# ::edge	area	quant	2	a5	1	
+# ::edge	and	beneficiary	area	a	a5	
+(a / and
+    :beneficiary (a5 / area
+        :quant 2)
+    :op1 (a3 / area
+        :mod (k / kitchen)
+        :part (a2 / and
+            :op1 (f / floor
+                :mod (w2 / wood))
+            :op2 (c / cabinet
+                :mod w2)))
+    :op2 (a4 / area
+        :purpose (d / dine-01))
+    :op3 (w / wall
+        :ARG1-of (s / separate-01)
+        :polarity -))

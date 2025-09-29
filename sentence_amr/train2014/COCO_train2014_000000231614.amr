@@ -1,0 +1,29 @@
+# ::tok A car is sitting at a street corner in a town while people wait to cross the street .
+# ::node	c	car	1-2
+# ::node	s	sit-01	3-4
+# ::node	s2	street	6-7
+# ::node	c2	corner	7-8
+# ::node	t	town	10-11
+# ::node	p	person	12-13
+# ::node	w	wait-01	13-14
+# ::node	c3	cross-02	15-16
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	car	s	c	
+# ::edge	corner	op1	street	c2	s2	
+# ::edge	sit-01	ARG2	corner	s	c2	
+# ::edge	corner	location	town	c2	t	
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	sit-01	time	wait-01	s	w	
+# ::edge	wait-01	ARG2	cross-02	w	c3	
+# ::edge	cross-02	ARG0	person	c3	p	
+# ::edge	cross-02	ARG1	street	c3	s2	
+(s / sit-01
+    :ARG1 (c / car)
+    :ARG2 (c2 / corner
+        :location (t / town)
+        :op1 (s2 / street))
+    :time (w / wait-01
+        :ARG1 (p / person)
+        :ARG2 (c3 / cross-02
+            :ARG0 p
+            :ARG1 s2)))

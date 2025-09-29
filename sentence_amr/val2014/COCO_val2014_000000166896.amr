@@ -1,0 +1,25 @@
+# ::tok A small replica train on small tracks with an adult man operating it .
+# ::node	s	small	1-2
+# ::node	r	replica	2-3
+# ::node	t2	train	3-4
+# ::node	s2	small	5-6
+# ::node	t	track	6-7
+# ::node	a	adult	9-10
+# ::node	m	man	10-11
+# ::node	o	operate-01	11-12
+# ::root	t2	train
+# ::edge	train	mod	replica	t2	r	
+# ::edge	train	mod	small	t2	s	
+# ::edge	track	mod	small	t	s2	
+# ::edge	train	location	track	t2	t	
+# ::edge	man	mod	adult	m	a	
+# ::edge	operate-01	ARG0	man	o	m	
+# ::edge	train	ARG1-of	operate-01	t2	o	
+(t2 / train
+    :ARG1-of (o / operate-01
+        :ARG0 (m / man
+            :mod (a / adult)))
+    :location (t / track
+        :mod (s2 / small))
+    :mod (r / replica)
+    :mod (s / small))

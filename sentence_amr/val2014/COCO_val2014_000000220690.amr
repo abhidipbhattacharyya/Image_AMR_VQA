@@ -1,0 +1,81 @@
+# ::tok A mostly grey , European cityscape with buildings and lots of traffic , vehicular and otherwise , picks up bits of bright red from buses , stop signs , sidewalk signs and pedestrian clothing items .
+# ::node	m	most	1-2
+# ::node	g	gray-02	2-3
+# ::node	c3	continent	4-5
+# ::node	n	name	4-5
+# ::node	0	Europe	4-5
+# ::node	c	cityscape	5-6
+# ::node	h	have-03	6-7
+# ::node	b3	building	7-8
+# ::node	a	and	8-9
+# ::node	l	lot	9-10
+# ::node	t	traffic	11-12
+# ::node	v	vehicle	13-14
+# ::node	e	except-01	15-16
+# ::node	p2	pick-up-04	17-18
+# ::node	b	bit	19-20
+# ::node	b2	bright-02	21-22
+# ::node	r	red-02	22-23
+# ::node	b4	bus	24-25
+# ::node	s4	stop-01	26-27
+# ::node	s2	sign	27-28
+# ::node	s	sidewalk	29-30
+# ::node	s3	sign	30-31
+# ::node	a2	and	31-32
+# ::node	p	pedestrian	32-33
+# ::node	c2	clothe-01	33-34
+# ::node	i	item	34-35
+# ::root	p2	pick-up-04
+# ::edge	gray-02	mod	most	g	m	
+# ::edge	continent	name	name	c3	n	
+# ::edge	name	op1	Europe	n	0	
+# ::edge	cityscape	mod	continent	c	c3	
+# ::edge	cityscape	ARG1-of	gray-02	c	g	
+# ::edge	cityscape	ARG0-of	have-03	c	h	
+# ::edge	and	op1	building	a	b3	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	traffic	quant	lot	t	l	
+# ::edge	and	op2	traffic	a	t	
+# ::edge	and	mod	vehicle	a	v	
+# ::edge	except-01	ARG2	vehicle	e	v	
+# ::edge	traffic	ARG1-of	except-01	t	e	
+# ::edge	pick-up-04	ARG0	cityscape	p2	c	
+# ::edge	pick-up-04	ARG1	bit	p2	b	
+# ::edge	red-02	ARG1-of	bright-02	r	b2	
+# ::edge	bit	ARG1-of	red-02	b	r	
+# ::edge	sign	purpose	stop-01	s2	s4	
+# ::edge	sign	mod	sidewalk	s3	s	
+# ::edge	and	op3	sign	a2	s3	
+# ::edge	and	op2	sign	a2	s2	
+# ::edge	and	op1	bus	a2	b4	
+# ::edge	red-02	source	and	r	a2	
+# ::edge	clothe-01	ARG1	pedestrian	c2	p	
+# ::edge	item	ARG2-of	clothe-01	i	c2	
+# ::edge	and	op4	item	a2	i	
+(p2 / pick-up-04
+    :ARG0 (c / cityscape
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :mod (v / vehicle)
+                :op1 (b3 / building)
+                :op2 (t / traffic
+                    :quant (l / lot)
+                    :ARG1-of (e / except-01
+                        :ARG2 v))))
+        :ARG1-of (g / gray-02
+            :mod (m / most))
+        :mod (c3 / continent
+            :name (n / name
+                :op1 "Europe")))
+    :ARG1 (b / bit
+        :ARG1-of (r / red-02
+            :ARG1-of (b2 / bright-02)
+            :source (a2 / and
+                :op1 (b4 / bus)
+                :op2 (s2 / sign
+                    :purpose (s4 / stop-01))
+                :op3 (s3 / sign
+                    :mod (s / sidewalk))
+                :op4 (i / item
+                    :ARG2-of (c2 / clothe-01
+                        :ARG1 (p / pedestrian)))))))

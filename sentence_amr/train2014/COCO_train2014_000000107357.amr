@@ -1,0 +1,26 @@
+# ::tok Buses line up at a stop to discharge and take on passengers .
+# ::node	b	bus	0-1
+# ::node	l	line-up-02	1-2
+# ::node	s	stop-01	5-6
+# ::node	d	discharge-01	7-8
+# ::node	a	and	8-9
+# ::node	t	take-on-09	9-10
+# ::node	p	passenger	11-12
+# ::root	l	line-up-02
+# ::edge	line-up-02	ARG1	bus	l	b	
+# ::edge	line-up-02	location	stop-01	l	s	
+# ::edge	discharge-01	ARG1	bus	d	b	
+# ::edge	and	op1	discharge-01	a	d	
+# ::edge	line-up-02	purpose	and	l	a	
+# ::edge	and	op2	take-on-09	a	t	
+# ::edge	take-on-09	ARG0	bus	t	b	
+# ::edge	take-on-09	ARG1	passenger	t	p	
+(l / line-up-02
+    :purpose (a / and
+        :op1 (d / discharge-01
+            :ARG1 (b / bus))
+        :op2 (t / take-on-09
+            :ARG0 b
+            :ARG1 (p / passenger)))
+    :ARG1 b
+    :location (s / stop-01))

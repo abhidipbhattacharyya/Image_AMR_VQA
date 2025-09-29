@@ -1,0 +1,31 @@
+# ::tok Some chili cheese fries next to a hotdog with slaw and ketchup .
+# ::node	s2	some	0-1
+# ::node	c2	chili	1-2
+# ::node	c	cheese	2-3
+# ::node	f	fry-01	3-4
+# ::node	n	next-to	4-5
+# ::node	b	be-located-at-91	5-6
+# ::node	h	hotdog	7-8
+# ::node	s	slaw	9-10
+# ::node	a	and	10-11
+# ::node	k	ketchup	11-12
+# ::root	b	be-located-at-91
+# ::edge	cheese	mod	chili	c	c2	
+# ::edge	fry-01	mod	cheese	f	c	
+# ::edge	fry-01	quant	some	f	s2	
+# ::edge	be-located-at-91	ARG2	next-to	b	n	
+# ::edge	be-located-at-91	ARG1	fry-01	b	f	
+# ::edge	next-to	op1	hotdog	n	h	
+# ::edge	and	op1	slaw	a	s	
+# ::edge	hotdog	accompanier	and	h	a	
+# ::edge	and	op2	ketchup	a	k	
+(b / be-located-at-91
+    :ARG1 (f / fry-01
+        :quant (s2 / some)
+        :mod (c / cheese
+            :mod (c2 / chili)))
+    :ARG2 (n / next-to
+        :op1 (h / hotdog
+            :accompanier (a / and
+                :op1 (s / slaw)
+                :op2 (k / ketchup)))))

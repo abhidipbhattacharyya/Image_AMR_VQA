@@ -1,0 +1,57 @@
+# ::tok A bear with black - brown fur , from front , facing and looking into camera with green grass in mouth , standing in grass , rocks , and bushes outside .
+# ::node	b	bear	1-2
+# ::node	b2	black-04	3-4
+# ::node	r	Brown	5-6
+# ::node	f3	fur	6-7
+# ::node	f2	front	9-10
+# ::node	f	face-01	11-12
+# ::node	l	look-01	13-14
+# ::node	c	camera	15-16
+# ::node	h	have-03	16-17
+# ::node	g3	green-02	17-18
+# ::node	g	grass	18-19
+# ::node	m	mouth	20-21
+# ::node	s	stand-01	22-23
+# ::node	g2	grass	24-25
+# ::node	r2	rock	26-27
+# ::node	a	and	28-29
+# ::node	b3	bush	29-30
+# ::node	o	outside	30-31
+# ::root	b	bear
+# ::edge	Brown	ARG1-of	black-04	r	b2	
+# ::edge	fur	mod	Brown	f3	r	
+# ::edge	bear	part	fur	b	f3	
+# ::edge	bear	source	front	b	f2	
+# ::edge	bear	ARG0-of	face-01	b	f	
+# ::edge	bear	ARG0-of	look-01	b	l	
+# ::edge	look-01	ARG1	camera	l	c	
+# ::edge	face-01	ARG1	camera	f	c	
+# ::edge	camera	ARG0-of	have-03	c	h	
+# ::edge	grass	ARG1-of	green-02	g	g3	
+# ::edge	have-03	ARG1	grass	h	g	
+# ::edge	grass	location	mouth	g	m	
+# ::edge	bear	ARG1-of	stand-01	b	s	
+# ::edge	and	op2	rock	a	r2	
+# ::edge	and	op1	grass	a	g2	
+# ::edge	stand-01	ARG2	and	s	a	
+# ::edge	and	op3	bush	a	b3	
+# ::edge	and	location	outside	a	o	
+(b / bear
+    :ARG0-of (f / face-01
+        :ARG1 (c / camera
+            :ARG0-of (h / have-03
+                :ARG1 (g / grass
+                    :ARG1-of (g3 / green-02)
+                    :location (m / mouth)))))
+    :ARG0-of (l / look-01
+        :ARG1 c)
+    :ARG1-of (s / stand-01
+        :ARG2 (a / and
+            :location (o / outside)
+            :op1 (g2 / grass)
+            :op2 (r2 / rock)
+            :op3 (b3 / bush)))
+    :part (f3 / fur
+        :mod (r / Brown
+            :ARG1-of (b2 / black-04)))
+    :source (f2 / front))

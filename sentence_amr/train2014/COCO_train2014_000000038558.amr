@@ -1,0 +1,45 @@
+# ::tok View down street in traffic , with buses and cars , and an oncoming motorcycle with rider , with trees and buildings .
+# ::node	v	view-01	0-1
+# ::node	d	down	1-2
+# ::node	s	street	2-3
+# ::node	t	traffic	4-5
+# ::node	b2	bus	7-8
+# ::node	a	and	8-9
+# ::node	a2	and	8-9
+# ::node	c	car	9-10
+# ::node	c2	come-01	13-14
+# ::node	m	motorcycle	14-15
+# ::node	p	person	16-17
+# ::node	r	ride-01	16-17
+# ::node	t2	tree	19-20
+# ::node	b	building	21-22
+# ::root	v	view-01
+# ::edge	street	direction	down	s	d	
+# ::edge	view-01	ARG1	street	v	s	
+# ::edge	and	op1	bus	a	b2	
+# ::edge	view-01	location	and	v	a	
+# ::edge	and	op2	and	a	a2	
+# ::edge	and	op1	bus	a2	b2	
+# ::edge	and	op2	car	a2	c	
+# ::edge	motorcycle	ARG1-of	come-01	m	c2	
+# ::edge	and	op3	motorcycle	a	m	
+# ::edge	motorcycle	accompanier	person	m	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	and	op4	tree	a	t2	
+# ::edge	and	op5	building	a	b	
+# ::edge	view-01	rel	traffic	v	t	
+(v / view-01
+    :ARG1 (s / street
+        :direction (d / down))
+    :location (a / and
+        :op1 (b2 / bus)
+        :op2 (a2 / and
+            :op1 b2
+            :op2 (c / car))
+        :op3 (m / motorcycle
+            :ARG1-of (c2 / come-01)
+            :accompanier (p / person
+                :ARG0-of (r / ride-01)))
+        :op4 (t2 / tree)
+        :op5 (b / building))
+    :rel (t / traffic))

@@ -1,0 +1,42 @@
+# ::tok a bunch of people are laughing in a living room while two people hold Wii controllers in their hands
+# ::node	b	bunch	1-2
+# ::node	p	person	3-4
+# ::node	l	laugh-01	5-6
+# ::node	l2	living	8-9
+# ::node	r	room	9-10
+# ::node	0	2	11-12
+# ::node	p2	person	12-13
+# ::node	h2	hold-01	13-14
+# ::node	p3	product	14-15
+# ::node	n	name	14-15
+# ::node	1	Wii	14-15
+# ::node	c	control-01	15-16
+# ::node	h	hand	18-19
+# ::root	l	laugh-01
+# ::edge	person	quant	bunch	p	b	
+# ::edge	laugh-01	ARG0	person	l	p	
+# ::edge	room	mod	living	r	l2	
+# ::edge	laugh-01	location	room	l	r	
+# ::edge	person	quant	2	p2	0	
+# ::edge	hold-01	ARG0	person	h2	p2	
+# ::edge	laugh-01	time	hold-01	l	h2	
+# ::edge	product	name	name	p3	n	
+# ::edge	name	op1	Wii	n	1	
+# ::edge	control-01	ARG1	product	c	p3	
+# ::edge	hold-01	ARG1	control-01	h2	c	
+# ::edge	hold-01	manner	hand	h2	h	
+# ::edge	person	part	hand	p2	h	
+(l / laugh-01
+    :ARG0 (p / person
+        :quant (b / bunch))
+    :location (r / room
+        :mod (l2 / living))
+    :time (h2 / hold-01
+        :ARG0 (p2 / person
+            :quant 2
+            :part (h / hand))
+        :ARG1 (c / control-01
+            :ARG1 (p3 / product
+                :name (n / name
+                    :op1 "Wii")))
+        :manner h))

@@ -1,0 +1,24 @@
+# ::tok Airplanes flying in formation with smoke coming from their tails .
+# ::node	a	airplane	0-1
+# ::node	f	fly-01	1-2
+# ::node	f2	formation	3-4
+# ::node	h	have-03	4-5
+# ::node	s	smoke	5-6
+# ::node	c	come-01	6-7
+# ::node	b	butt	9-10
+# ::root	a	airplane
+# ::edge	airplane	ARG2-of	fly-01	a	f	
+# ::edge	fly-01	manner	formation	f	f2	
+# ::edge	airplane	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	come-01	s	c	
+# ::edge	come-01	ARG3	butt	c	b	
+# ::edge	airplane	part	butt	a	b	
+(a / airplane
+    :ARG0-of (h / have-03
+        :ARG1 (s / smoke
+            :ARG1-of (c / come-01
+                :ARG3 (b / butt))))
+    :ARG2-of (f / fly-01
+        :manner (f2 / formation))
+    :part b)

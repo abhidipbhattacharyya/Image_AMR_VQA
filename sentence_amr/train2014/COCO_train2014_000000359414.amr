@@ -1,0 +1,52 @@
+# ::tok A boys soccer game with one player from a team going after the ball as another player from a different team also pursues the ball .
+# ::node	b3	boy	1-2
+# ::node	s	soccer	2-3
+# ::node	g	game	3-4
+# ::node	0	1	5-6
+# ::node	p	person	6-7
+# ::node	p3	play-01	6-7
+# ::node	t	team	9-10
+# ::node	g2	go-03	10-11
+# ::node	b	ball	13-14
+# ::node	a2	another	15-16
+# ::node	p2	person	16-17
+# ::node	p4	play-01	16-17
+# ::node	d	differ-02	19-20
+# ::node	t2	team	20-21
+# ::node	a	also	21-22
+# ::node	p5	pursue-01	22-23
+# ::node	b2	ball	24-25
+# ::root	g	game
+# ::edge	game	mod	soccer	g	s	
+# ::edge	game	mod	boy	g	b3	
+# ::edge	person	quant	1	p	0	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	person	source	team	p	t	
+# ::edge	go-03	ARG0	person	g2	p	
+# ::edge	game	consist-of	go-03	g	g2	
+# ::edge	go-03	ARG1	ball	g2	b	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	person	ARG0-of	play-01	p2	p4	
+# ::edge	team	ARG1-of	differ-02	t2	d	
+# ::edge	person	source	team	p2	t2	
+# ::edge	pursue-01	mod	also	p5	a	
+# ::edge	pursue-01	ARG0	person	p5	p2	
+# ::edge	go-03	time	pursue-01	g2	p5	
+# ::edge	pursue-01	ARG1	ball	p5	b2	
+(g / game
+    :consist-of (g2 / go-03
+        :ARG0 (p / person
+            :quant 1
+            :ARG0-of (p3 / play-01)
+            :source (t / team))
+        :ARG1 (b / ball)
+        :time (p5 / pursue-01
+            :ARG0 (p2 / person
+                :ARG0-of (p4 / play-01)
+                :mod (a2 / another)
+                :source (t2 / team
+                    :ARG1-of (d / differ-02)))
+            :ARG1 (b2 / ball)
+            :mod (a / also)))
+    :mod (s / soccer)
+    :mod (b3 / boy))

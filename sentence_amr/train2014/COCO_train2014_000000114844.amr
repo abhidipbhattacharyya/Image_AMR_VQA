@@ -1,0 +1,33 @@
+# ::tok a double stacked tour bus sitting parked on the sea wall next to the ocean
+# ::node	d	double	1-2
+# ::node	s3	stack-01	2-3
+# ::node	t	tour-01	3-4
+# ::node	b	bus	4-5
+# ::node	s2	sit-01	5-6
+# ::node	p	park-01	6-7
+# ::node	s	sea	9-10
+# ::node	w	wall	10-11
+# ::node	n	next-to	11-12
+# ::node	o	ocean	14-15
+# ::root	s2	sit-01
+# ::edge	stack-01	quant	double	s3	d	
+# ::edge	bus	ARG0-of	tour-01	b	t	
+# ::edge	bus	ARG1-of	stack-01	b	s3	
+# ::edge	sit-01	ARG1	bus	s2	b	
+# ::edge	sit-01	ARG2	park-01	s2	p	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	wall	mod	sea	w	s	
+# ::edge	park-01	ARG2	wall	p	w	
+# ::edge	wall	location	next-to	w	n	
+# ::edge	next-to	op1	ocean	n	o	
+(s2 / sit-01
+    :ARG1 (b / bus
+        :ARG0-of (t / tour-01)
+        :ARG1-of (s3 / stack-01
+            :quant (d / double)))
+    :ARG2 (p / park-01
+        :ARG1 b
+        :ARG2 (w / wall
+            :location (n / next-to
+                :op1 (o / ocean))
+            :mod (s / sea))))

@@ -1,0 +1,46 @@
+# ::tok Many people congregate in a public place , some holding a large sign that says TAKEOVR ,
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	c	congregate-01	2-3
+# ::node	p3	public-02	5-6
+# ::node	p2	place	6-7
+# ::node	i	include-91	8-9
+# ::node	s3	some	8-9
+# ::node	h2	hold-01	9-10
+# ::node	l	large	11-12
+# ::node	s2	sign	12-13
+# ::node	s	say-01	14-15
+# ::node	s4	string-entity	15-16
+# ::node	h	have-degree-91	15-16
+# ::node	g	good-02	15-16
+# ::node	m2	more	15-16
+# ::root	c	congregate-01
+# ::edge	person	quant	many	p	m	
+# ::edge	congregate-01	ARG0	person	c	p	
+# ::edge	place	ARG1-of	public-02	p2	p3	
+# ::edge	congregate-01	location	place	c	p2	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	hold-01	ARG0	some	h2	s3	
+# ::edge	include-91	ARG1	hold-01	i	h2	
+# ::edge	sign	mod	large	s2	l	
+# ::edge	hold-01	ARG1	sign	h2	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	string-entity	s	s4	
+# ::edge	string-entity	ARG2-of	have-degree-91	s4	h	
+# ::edge	have-degree-91	ARG2	good-02	h	g	
+# ::edge	have-degree-91	ARG3	more	h	m2	
+(c / congregate-01
+    :ARG0 (p / person
+        :quant (m / many)
+        :ARG2-of (i / include-91
+            :ARG1 (h2 / hold-01
+                :ARG0 (s3 / some)
+                :ARG1 (s2 / sign
+                    :ARG0-of (s / say-01
+                        :ARG1 (s4 / string-entity
+                            :ARG2-of (h / have-degree-91
+                                :ARG2 (g / good-02)
+                                :ARG3 (m2 / more))))
+                    :mod (l / large)))))
+    :location (p2 / place
+        :ARG1-of (p3 / public-02)))

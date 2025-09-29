@@ -1,0 +1,31 @@
+# ::tok A boy is holding open the fridge and examining the contents .
+# ::node	b	boy	1-2
+# ::node	h	hold-01	3-4
+# ::node	o	open-01	4-5
+# ::node	f	fridge	6-7
+# ::node	a	and	7-8
+# ::node	e	examine-01	8-9
+# ::node	t	thing	10-11
+# ::node	c	contain-01	10-11
+# ::root	a	and
+# ::edge	hold-01	ARG0	boy	h	b	
+# ::edge	hold-01	ARG1	open-01	h	o	
+# ::edge	open-01	ARG1	fridge	o	f	
+# ::edge	hold-01	ARG1	fridge	h	f	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	and	op2	examine-01	a	e	
+# ::edge	examine-01	ARG0	boy	e	b	
+# ::edge	examine-01	ARG1	thing	e	t	
+# ::edge	thing	ARG1-of	contain-01	t	c	
+# ::edge	contain-01	ARG0	fridge	c	f	
+(a / and
+    :op1 (h / hold-01
+        :ARG0 (b / boy)
+        :ARG1 (o / open-01
+            :ARG1 (f / fridge))
+        :ARG1 f)
+    :op2 (e / examine-01
+        :ARG0 b
+        :ARG1 (t / thing
+            :ARG1-of (c / contain-01
+                :ARG0 f))))

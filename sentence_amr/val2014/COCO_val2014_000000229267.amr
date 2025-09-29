@@ -1,0 +1,42 @@
+# ::tok Rows of outdoor dining tables sit empty in front of a mixed use building .
+# ::node	m2	multiple	0-1
+# ::node	d2	distance-quantity	0-1
+# ::node	r	row	0-1
+# ::node	0	1	0-1
+# ::node	o	outdoor	2-3
+# ::node	d	dine-01	3-4
+# ::node	t	table	4-5
+# ::node	s	sit-01	5-6
+# ::node	e	empty-02	6-7
+# ::node	i	in-front-of	8-9
+# ::node	m	mix-01	11-12
+# ::node	u	use-01	12-13
+# ::node	b	building	13-14
+# ::root	s	sit-01
+# ::edge	multiple	op1	distance-quantity	m2	d2	
+# ::edge	distance-quantity	unit	row	d2	r	
+# ::edge	distance-quantity	quant	1	d2	0	
+# ::edge	table	mod	dine-01	t	d	
+# ::edge	table	location	outdoor	t	o	
+# ::edge	table	quant	multiple	t	m2	
+# ::edge	sit-01	ARG1	table	s	t	
+# ::edge	sit-01	ARG2	empty-02	s	e	
+# ::edge	empty-02	ARG1	table	e	t	
+# ::edge	sit-01	location	in-front-of	s	i	
+# ::edge	use-01	ARG1-of	mix-01	u	m	
+# ::edge	building	ARG2-of	use-01	b	u	
+# ::edge	in-front-of	op1	building	i	b	
+(s / sit-01
+    :ARG1 (t / table
+        :quant (m2 / multiple
+            :op1 (d2 / distance-quantity
+                :quant 1
+                :unit (r / row)))
+        :location (o / outdoor)
+        :mod (d / dine-01))
+    :ARG2 (e / empty-02
+        :ARG1 t)
+    :location (i / in-front-of
+        :op1 (b / building
+            :ARG2-of (u / use-01
+                :ARG1-of (m / mix-01)))))

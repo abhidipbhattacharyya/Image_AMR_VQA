@@ -1,0 +1,32 @@
+# ::tok A train engine sits inside a train station , a person stands beside it .
+# ::node	t	train	1-2
+# ::node	e	engine	2-3
+# ::node	s	sit-01	3-4
+# ::node	i	inside	4-5
+# ::node	s3	station	7-8
+# ::node	a	and	8-9
+# ::node	p	person	10-11
+# ::node	s2	stand-01	11-12
+# ::node	b	beside	12-13
+# ::root	a	and
+# ::edge	engine	mod	train	e	t	
+# ::edge	sit-01	ARG1	engine	s	e	
+# ::edge	sit-01	ARG2	inside	s	i	
+# ::edge	inside	op1	station	i	s3	
+# ::edge	station	mod	train	s3	t	
+# ::edge	and	op1	sit-01	a	s	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	and	op2	stand-01	a	s2	
+# ::edge	stand-01	ARG2	beside	s2	b	
+# ::edge	beside	op1	engine	b	e	
+(a / and
+    :op1 (s / sit-01
+        :ARG1 (e / engine
+            :mod (t / train))
+        :ARG2 (i / inside
+            :op1 (s3 / station
+                :mod t)))
+    :op2 (s2 / stand-01
+        :ARG1 (p / person)
+        :ARG2 (b / beside
+            :op1 e)))

@@ -1,0 +1,38 @@
+# ::tok Bears can be quite unpredictable , so it 's best to avoid them .
+# ::node	b	bear	0-1
+# ::node	p	possible-01	1-2
+# ::node	0	-	2-3
+# ::node	q	quite	3-4
+# ::node	p2	possible-01	4-5
+# ::node	p3	predict-01	4-5
+# ::node	c	cause-01	6-7
+# ::node	g	good-02	9-10
+# ::node	h	have-degree-91	9-10
+# ::node	m	most	9-10
+# ::node	a	avoid-01	11-12
+# ::root	p	possible-01
+# ::edge	possible-01	degree	quite	p2	q	
+# ::edge	possible-01	polarity	-	p2	0	
+# ::edge	possible-01	ARG1	possible-01	p	p2	
+# ::edge	possible-01	ARG1	predict-01	p2	p3	
+# ::edge	predict-01	ARG1	bear	p3	b	
+# ::edge	possible-01	ARG0-of	cause-01	p	c	
+# ::edge	cause-01	ARG1	good-02	c	g	
+# ::edge	good-02	ARG2-of	have-degree-91	g	h	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	have-degree-91	ARG1	avoid-01	h	a	
+# ::edge	good-02	ARG1	avoid-01	g	a	
+# ::edge	avoid-01	ARG1	bear	a	b	
+(p / possible-01
+    :ARG0-of (c / cause-01
+        :ARG1 (g / good-02
+            :ARG1 (a / avoid-01
+                :ARG1 (b / bear))
+            :ARG2-of (h / have-degree-91
+                :ARG1 a
+                :ARG3 (m / most))))
+    :ARG1 (p2 / possible-01
+        :ARG1 (p3 / predict-01
+            :ARG1 b)
+        :degree (q / quite)
+        :polarity -))

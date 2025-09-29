@@ -1,0 +1,45 @@
+# ::tok A sandwich and chips are on a plate with a cup of coffee , cell phone , and a newspaper nearby .
+# ::node	s	sandwich	1-2
+# ::node	a	and	2-3
+# ::node	c2	chip	3-4
+# ::node	b	be-located-at-91	5-6
+# ::node	p2	plate	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c4	cup	10-11
+# ::node	c3	coffee	12-13
+# ::node	a2	and	13-14
+# ::node	c	cell	14-15
+# ::node	p	phone	15-16
+# ::node	n2	newspaper	19-20
+# ::node	n	nearby	20-21
+# ::root	b	be-located-at-91
+# ::edge	and	op1	sandwich	a	s	
+# ::edge	and	op2	chip	a	c2	
+# ::edge	be-located-at-91	ARG1	and	b	a	
+# ::edge	be-located-at-91	ARG2	plate	b	p2	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c4	
+# ::edge	coffee	quant	volume-quantity	c3	v	
+# ::edge	and	op2	coffee	a2	c3	
+# ::edge	be-located-at-91	accompanier	and	b	a2	
+# ::edge	and	op1	sandwich	a2	s	
+# ::edge	phone	mod	cell	p	c	
+# ::edge	and	op3	phone	a2	p	
+# ::edge	and	op4	newspaper	a2	n2	
+# ::edge	newspaper	location	nearby	n2	n	
+(b / be-located-at-91
+    :ARG1 (a / and
+        :op1 (s / sandwich)
+        :op2 (c2 / chip))
+    :ARG2 (p2 / plate)
+    :accompanier (a2 / and
+        :op1 s
+        :op2 (c3 / coffee
+            :quant (v / volume-quantity
+                :quant 1
+                :unit (c4 / cup)))
+        :op3 (p / phone
+            :mod (c / cell))
+        :op4 (n2 / newspaper
+            :location (n / nearby))))

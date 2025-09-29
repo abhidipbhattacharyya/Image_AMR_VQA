@@ -1,0 +1,30 @@
+# ::tok The city bus pulling into the street has another city bus behind it .
+# ::node	c	city	1-2
+# ::node	b2	bus	2-3
+# ::node	p	pull-01	3-4
+# ::node	s	street	6-7
+# ::node	h	have-03	7-8
+# ::node	a	another	8-9
+# ::node	c2	city	9-10
+# ::node	b3	bus	10-11
+# ::node	b	behind	11-12
+# ::root	h	have-03
+# ::edge	bus	mod	city	b2	c	
+# ::edge	bus	ARG1-of	pull-01	b2	p	
+# ::edge	pull-01	ARG2	street	p	s	
+# ::edge	have-03	ARG0	bus	h	b2	
+# ::edge	bus	mod	city	b3	c2	
+# ::edge	bus	mod	another	b3	a	
+# ::edge	have-03	ARG1	bus	h	b3	
+# ::edge	bus	location	behind	b3	b	
+# ::edge	behind	op1	bus	b	b2	
+(h / have-03
+    :ARG0 (b2 / bus
+        :ARG1-of (p / pull-01
+            :ARG2 (s / street))
+        :mod (c / city))
+    :ARG1 (b3 / bus
+        :location (b / behind
+            :op1 b2)
+        :mod (c2 / city)
+        :mod (a / another)))

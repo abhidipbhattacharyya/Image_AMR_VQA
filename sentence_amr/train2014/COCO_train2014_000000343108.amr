@@ -1,0 +1,25 @@
+# ::tok Military jet parked on tarmac at airfield with pedestrian traffic nearby .
+# ::node	m	military	0-1
+# ::node	j	jet	1-2
+# ::node	p	park-01	2-3
+# ::node	t	tarmac	4-5
+# ::node	a	airfield	6-7
+# ::node	p2	pedestrian	8-9
+# ::node	t2	traffic	9-10
+# ::node	n	nearby	10-11
+# ::root	p	park-01
+# ::edge	jet	mod	military	j	m	
+# ::edge	park-01	ARG1	jet	p	j	
+# ::edge	park-01	ARG2	tarmac	p	t	
+# ::edge	tarmac	location	airfield	t	a	
+# ::edge	traffic	mod	pedestrian	t2	p2	
+# ::edge	jet	prep-with	traffic	j	t2	
+# ::edge	traffic	location	nearby	t2	n	
+(p / park-01
+    :ARG1 (j / jet
+        :mod (m / military)
+        :prep-with (t2 / traffic
+            :location (n / nearby)
+            :mod (p2 / pedestrian)))
+    :ARG2 (t / tarmac
+        :location (a / airfield)))

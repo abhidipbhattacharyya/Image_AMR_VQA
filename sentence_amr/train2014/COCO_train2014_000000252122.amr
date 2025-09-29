@@ -1,0 +1,28 @@
+# ::tok Multiple signs attached to a building referencing Mill Road
+# ::node	m	multiple	0-1
+# ::node	s	sign	1-2
+# ::node	a	attach-01	2-3
+# ::node	b	building	5-6
+# ::node	r	reference-04	6-7
+# ::node	n	name	7-8
+# ::node	0	Mill	7-8
+# ::node	r2	road	8-9
+# ::node	1	Road	8-9
+# ::root	s	sign
+# ::edge	sign	quant	multiple	s	m	
+# ::edge	sign	ARG1-of	attach-01	s	a	
+# ::edge	attach-01	ARG2	building	a	b	
+# ::edge	sign	ARG0-of	reference-04	s	r	
+# ::edge	name	op1	Mill	n	0	
+# ::edge	road	name	name	r2	n	
+# ::edge	reference-04	ARG1	road	r	r2	
+# ::edge	name	op2	Road	n	1	
+(s / sign
+    :quant (m / multiple)
+    :ARG0-of (r / reference-04
+        :ARG1 (r2 / road
+            :name (n / name
+                :op1 "Mill"
+                :op2 "Road")))
+    :ARG1-of (a / attach-01
+        :ARG2 (b / building)))

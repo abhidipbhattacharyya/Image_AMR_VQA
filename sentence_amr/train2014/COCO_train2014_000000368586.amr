@@ -1,0 +1,41 @@
+# ::tok Fire fighter standing near an open window on a later holding a suit case .
+# ::node	f2	fire-03	0-1
+# ::node	p	person	1-2
+# ::node	f	fight-01	1-2
+# ::node	s	stand-01	2-3
+# ::node	n	near-02	3-4
+# ::node	o	open-09	5-6
+# ::node	w	window	6-7
+# ::node	a	after	9-10
+# ::node	h	hold-01	10-11
+# ::node	s2	suit	12-13
+# ::node	c	case	13-14
+# ::node	a2	and	14-15
+# ::root	a2	and
+# ::edge	person	ARG0-of	fight-01	p	f	
+# ::edge	fight-01	ARG1	fire-03	f	f2	
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	window	ARG1-of	open-09	w	o	
+# ::edge	near-02	ARG2	window	n	w	
+# ::edge	after	op1	stand-01	a	s	
+# ::edge	hold-01	time	after	h	a	
+# ::edge	case	mod	suit	c	s2	
+# ::edge	hold-01	ARG1	case	h	c	
+# ::edge	and	op2	hold-01	a2	h	
+# ::edge	and	op1	stand-01	a2	s	
+(a2 / and
+    :op1 (s / stand-01
+        :ARG1 (p / person
+            :ARG0-of (f / fight-01
+                :ARG1 (f2 / fire-03)))
+        :ARG2 (n / near-02
+            :ARG1 p
+            :ARG2 (w / window
+                :ARG1-of (o / open-09))))
+    :op2 (h / hold-01
+        :ARG1 (c / case
+            :mod (s2 / suit))
+        :time (a / after
+            :op1 s)))

@@ -1,0 +1,33 @@
+# ::tok A group of people wearing skis or carrying snowboards are gathered in a mountainous area .
+# ::node	g2	group	1-2
+# ::node	p	person	3-4
+# ::node	w	wear-01	4-5
+# ::node	s	ski-01	5-6
+# ::node	o2	or	6-7
+# ::node	c	carry-01	7-8
+# ::node	o	Board	8-9
+# ::node	g	gather-03	10-11
+# ::node	m	mountain	13-14
+# ::node	a	area	14-15
+# ::root	g	gather-03
+# ::edge	group	consist-of	person	g2	p	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	or	op1	ski-01	o2	s	
+# ::edge	wear-01	ARG1	or	w	o2	
+# ::edge	or	op2	carry-01	o2	c	
+# ::edge	carry-01	ARG0	person	c	p	
+# ::edge	carry-01	ARG1	Board	c	o	
+# ::edge	gather-03	ARG0	group	g	g2	
+# ::edge	area	mod	mountain	a	m	
+# ::edge	gather-03	location	area	g	a	
+(g / gather-03
+    :ARG0 (g2 / group
+        :consist-of (p / person
+            :ARG0-of (w / wear-01
+                :ARG1 (o2 / or
+                    :op1 (s / ski-01)
+                    :op2 (c / carry-01
+                        :ARG0 p
+                        :ARG1 (o / Board))))))
+    :location (a / area
+        :mod (m / mountain)))

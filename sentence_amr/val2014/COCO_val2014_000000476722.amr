@@ -1,0 +1,34 @@
+# ::tok a time lapse image of a snowboarder jumping off a ramp onto a snowy mountain
+# ::node	t	time	1-2
+# ::node	l	lapse	2-3
+# ::node	i	image	3-4
+# ::node	p	person	6-7
+# ::node	b	board-05	6-7
+# ::node	s	snow	6-7
+# ::node	j	jump-03	7-8
+# ::node	o	off	8-9
+# ::node	r	ramp	10-11
+# ::node	s2	snowy-02	13-14
+# ::node	m	mountain	14-15
+# ::root	i	image
+# ::edge	lapse	mod	time	l	t	
+# ::edge	image	mod	lapse	i	l	
+# ::edge	person	ARG0-of	board-05	p	b	
+# ::edge	board-05	ARG1	snow	b	s	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	image	mod	jump-03	i	j	
+# ::edge	jump-03	direction	off	j	o	
+# ::edge	jump-03	source	ramp	j	r	
+# ::edge	mountain	ARG2-of	snowy-02	m	s2	
+# ::edge	jump-03	destination	mountain	j	m	
+(i / image
+    :mod (l / lapse
+        :mod (t / time))
+    :mod (j / jump-03
+        :ARG0 (p / person
+            :ARG0-of (b / board-05
+                :ARG1 (s / snow)))
+        :destination (m / mountain
+            :ARG2-of (s2 / snowy-02))
+        :direction (o / off)
+        :source (r / ramp)))

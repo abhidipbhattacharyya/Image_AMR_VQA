@@ -1,0 +1,28 @@
+# ::tok A double decker bus with the upper deck open moving down the street .
+# ::node	0	2	1-2
+# ::node	d	deck	2-3
+# ::node	b	bus	3-4
+# ::node	u	upper	6-7
+# ::node	d2	deck	7-8
+# ::node	o	open-09	8-9
+# ::node	m	move-01	9-10
+# ::node	d3	down	10-11
+# ::node	s	street	12-13
+# ::root	m	move-01
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	deck	mod	upper	d2	u	
+# ::edge	bus	part	deck	b	d2	
+# ::edge	deck	ARG1-of	open-09	d2	o	
+# ::edge	move-01	ARG1	bus	m	b	
+# ::edge	move-01	direction	down	m	d3	
+# ::edge	move-01	ARG2	street	m	s	
+(m / move-01
+    :ARG1 (b / bus
+        :mod (d / deck
+            :quant 2)
+        :part (d2 / deck
+            :ARG1-of (o / open-09)
+            :mod (u / upper)))
+    :ARG2 (s / street)
+    :direction (d3 / down))

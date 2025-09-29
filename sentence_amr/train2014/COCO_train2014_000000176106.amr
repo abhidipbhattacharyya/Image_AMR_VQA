@@ -1,0 +1,42 @@
+# ::tok A plate of food beside a two bowls of food , utensils and a glass of wine .
+# ::node	p	plate	1-2
+# ::node	f	food	3-4
+# ::node	b	be-located-at-91	4-5
+# ::node	b2	beside	4-5
+# ::node	0	2	6-7
+# ::node	p2	pound	7-8
+# ::node	f2	food	9-10
+# ::node	a	and	10-11
+# ::node	e	enzyme	11-12
+# ::node	c	clean-01	11-12
+# ::node	v	volume-quantity	13-14
+# ::node	g	glass	14-15
+# ::node	w	wine	16-17
+# ::root	b	be-located-at-91
+# ::edge	plate	consist-of	food	p	f	
+# ::edge	be-located-at-91	ARG1	plate	b	p	
+# ::edge	be-located-at-91	ARG2	beside	b	b2	
+# ::edge	and	op1	food	a	f2	
+# ::edge	and	quant	pound	a	p2	
+# ::edge	beside	op1	and	b2	a	
+# ::edge	and	op2	enzyme	a	e	
+# ::edge	enzyme	ARG1-of	clean-01	e	c	
+# ::edge	volume-quantity	unit	pound	v	p2	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	and	op3	wine	a	w	
+(b / be-located-at-91
+    :ARG1 (p / plate
+        :consist-of (f / food))
+    :ARG2 (b2 / beside
+        :op1 (a / and
+            :quant (p2 / pound)
+            :op1 (f2 / food)
+            :op2 (e / enzyme
+                :ARG1-of (c / clean-01))
+            :op3 (w / wine
+                :quant (v / volume-quantity
+                    :quant 2
+                    :unit p2
+                    :unit (g / glass))))))

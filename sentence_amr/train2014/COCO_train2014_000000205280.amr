@@ -1,0 +1,27 @@
+# ::tok Two planes flying in opposite directions with smoke coming from them .
+# ::node	0	2	0-1
+# ::node	p	plane	1-2
+# ::node	f	fly-01	2-3
+# ::node	o	opposite-01	4-5
+# ::node	d	direction	5-6
+# ::node	h	have-03	6-7
+# ::node	s	smoke	7-8
+# ::node	c	come-01	8-9
+# ::root	f	fly-01
+# ::edge	plane	quant	2	p	0	
+# ::edge	fly-01	ARG2	plane	f	p	
+# ::edge	direction	ARG1-of	opposite-01	d	o	
+# ::edge	fly-01	direction	direction	f	d	
+# ::edge	plane	ARG0-of	have-03	p	h	
+# ::edge	have-03	ARG1	smoke	h	s	
+# ::edge	smoke	ARG1-of	come-01	s	c	
+# ::edge	come-01	ARG3	plane	c	p	
+(f / fly-01
+    :ARG2 (p / plane
+        :quant 2
+        :ARG0-of (h / have-03
+            :ARG1 (s / smoke
+                :ARG1-of (c / come-01
+                    :ARG3 p))))
+    :direction (d / direction
+        :ARG1-of (o / opposite-01)))

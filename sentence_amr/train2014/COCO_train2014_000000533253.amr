@@ -1,0 +1,31 @@
+# ::tok A mostly empty luggage claim in an airport with a pallet stacked to the ceiling with luggage .
+# ::node	m	most	1-2
+# ::node	e	empty-02	2-3
+# ::node	l	luggage	3-4
+# ::node	c2	claim-02	4-5
+# ::node	a	airport	7-8
+# ::node	h	have-03	8-9
+# ::node	p	pallet	10-11
+# ::node	s	stack-01	11-12
+# ::node	c	ceiling	14-15
+# ::node	l2	luggage	16-17
+# ::root	c2	claim-02
+# ::edge	empty-02	mod	most	e	m	
+# ::edge	claim-02	ARG1	luggage	c2	l	
+# ::edge	claim-02	ARG1-of	empty-02	c2	e	
+# ::edge	claim-02	location	airport	c2	a	
+# ::edge	airport	ARG0-of	have-03	a	h	
+# ::edge	have-03	ARG1	pallet	h	p	
+# ::edge	pallet	ARG1-of	stack-01	p	s	
+# ::edge	stack-01	ARG3	ceiling	s	c	
+# ::edge	stack-01	ARG2	luggage	s	l2	
+(c2 / claim-02
+    :ARG1 (l / luggage)
+    :ARG1-of (e / empty-02
+        :mod (m / most))
+    :location (a / airport
+        :ARG0-of (h / have-03
+            :ARG1 (p / pallet
+                :ARG1-of (s / stack-01
+                    :ARG2 (l2 / luggage)
+                    :ARG3 (c / ceiling))))))

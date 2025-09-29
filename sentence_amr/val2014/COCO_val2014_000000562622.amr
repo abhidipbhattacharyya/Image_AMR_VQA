@@ -1,0 +1,46 @@
+# ::tok Baseball player gets ready to receive his first pitch at the texas rangers stadium .
+# ::node	b	baseball	0-1
+# ::node	p	person	1-2
+# ::node	p2	play-01	1-2
+# ::node	r	ready-01	3-4
+# ::node	r2	receive-01	5-6
+# ::node	o	ordinal-entity	7-8
+# ::node	0	1	7-8
+# ::node	t2	throw-01	8-9
+# ::node	n	name	11-12
+# ::node	2	Texas	11-12
+# ::node	t	team	12-13
+# ::node	1	Russia	12-13
+# ::node	s	stadium	13-14
+# ::root	r	ready-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	receive-01	r	r2	
+# ::edge	receive-01	ARG0	person	r2	p	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	throw-01	ord	ordinal-entity	t2	o	
+# ::edge	receive-01	ARG1	throw-01	r2	t2	
+# ::edge	throw-01	ARG0	person	t2	p	
+# ::edge	name	op1	Texas	n	2	
+# ::edge	team	name	name	t	n	
+# ::edge	name	op2	Russia	n	1	
+# ::edge	stadium	poss	team	s	t	
+# ::edge	throw-01	location	stadium	t2	s	
+(r / ready-01
+    :ARG0 (p / person
+        :ARG0-of (p2 / play-01
+            :ARG1 (b / baseball)))
+    :ARG1 p
+    :ARG2 (r2 / receive-01
+        :ARG0 p
+        :ARG1 (t2 / throw-01
+            :ARG0 p
+            :location (s / stadium
+                :poss (t / team
+                    :name (n / name
+                        :op1 "Texas"
+                        :op2 "Russia")))
+            :ord (o / ordinal-entity
+                :value 1))))

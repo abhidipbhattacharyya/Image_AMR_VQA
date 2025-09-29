@@ -1,0 +1,30 @@
+# ::tok A man is waiting to cross the busy street , outside of a Kmart .
+# ::node	m	man	1-2
+# ::node	w	wait-01	3-4
+# ::node	c	cross-02	5-6
+# ::node	b	busy-01	7-8
+# ::node	s2	street	8-9
+# ::node	o	outside	10-11
+# ::node	s	store	13-14
+# ::node	n	name	13-14
+# ::node	0	Kmart	13-14
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	man	w	m	
+# ::edge	wait-01	ARG2	cross-02	w	c	
+# ::edge	cross-02	ARG0	man	c	m	
+# ::edge	street	ARG1-of	busy-01	s2	b	
+# ::edge	cross-02	ARG1	street	c	s2	
+# ::edge	street	location	outside	s2	o	
+# ::edge	outside	op1	store	o	s	
+# ::edge	store	name	name	s	n	
+# ::edge	name	op1	Kmart	n	0	
+(w / wait-01
+    :ARG1 (m / man)
+    :ARG2 (c / cross-02
+        :ARG0 m
+        :ARG1 (s2 / street
+            :ARG1-of (b / busy-01)
+            :location (o / outside
+                :op1 (s / store
+                    :name (n / name
+                        :op1 "Kmart"))))))

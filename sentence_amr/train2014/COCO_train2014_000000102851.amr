@@ -1,0 +1,35 @@
+# ::tok A large yellow truck is backed into a parking space with a man inside .
+# ::node	l	large	1-2
+# ::node	y	yellow-02	2-3
+# ::node	t	truck	3-4
+# ::node	b	back-02	5-6
+# ::node	p	park-01	8-9
+# ::node	s	space	9-10
+# ::node	h	have-03	10-11
+# ::node	m	man	12-13
+# ::node	i	inside	13-14
+# ::node	a	and	14-15
+# ::root	a	and
+# ::edge	truck	ARG1-of	yellow-02	t	y	
+# ::edge	truck	mod	large	t	l	
+# ::edge	back-02	ARG1	truck	b	t	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	space	purpose	park-01	s	p	
+# ::edge	back-02	destination	space	b	s	
+# ::edge	have-03	ARG1	man	h	m	
+# ::edge	man	location	inside	m	i	
+# ::edge	inside	op1	park-01	i	p	
+# ::edge	and	op2	have-03	a	h	
+# ::edge	and	op1	back-02	a	b	
+(a / and
+    :op1 (b / back-02
+        :ARG1 (t / truck
+            :ARG1-of (y / yellow-02)
+            :mod (l / large))
+        :destination (s / space
+            :purpose (p / park-01
+                :ARG1 t)))
+    :op2 (h / have-03
+        :ARG1 (m / man
+            :location (i / inside
+                :op1 p))))

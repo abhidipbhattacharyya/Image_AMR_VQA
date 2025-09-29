@@ -1,0 +1,49 @@
+# ::tok A still has his leg up from throwing the ball that floats between him and the batter during a game .
+# ::node	p	person	0-1
+# ::node	n	name	0-1
+# ::node	0	A	0-1
+# ::node	s	still	1-2
+# ::node	h	have-06	2-3
+# ::node	l	leg	4-5
+# ::node	u	up-03	5-6
+# ::node	t	throw-01	7-8
+# ::node	b	ball	9-10
+# ::node	f	float-01	11-12
+# ::node	b2	between	12-13
+# ::node	p2	person	16-17
+# ::node	s2	strike-01	16-17
+# ::node	g	game	19-20
+# ::root	h	have-06
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	A	n	0	
+# ::edge	have-06	mod	still	h	s	
+# ::edge	have-06	ARG0	person	h	p	
+# ::edge	person	part	leg	p	l	
+# ::edge	up-03	ARG1	leg	u	l	
+# ::edge	have-06	ARG1	up-03	h	u	
+# ::edge	up-03	source	throw-01	u	t	
+# ::edge	throw-01	ARG0	person	t	p	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	ball	ARG1-of	float-01	b	f	
+# ::edge	float-01	ARG2	between	f	b2	
+# ::edge	between	op1	person	b2	p	
+# ::edge	between	op2	person	b2	p2	
+# ::edge	person	ARG0-of	strike-01	p2	s2	
+# ::edge	throw-01	time	game	t	g	
+(h / have-06
+    :ARG0 (p / person
+        :name (n / name
+            :op1 "A")
+        :part (l / leg))
+    :ARG1 (u / up-03
+        :ARG1 l
+        :source (t / throw-01
+            :ARG0 p
+            :ARG1 (b / ball
+                :ARG1-of (f / float-01
+                    :ARG2 (b2 / between
+                        :op1 p
+                        :op2 (p2 / person
+                            :ARG0-of (s2 / strike-01)))))
+            :time (g / game)))
+    :mod (s / still))

@@ -1,0 +1,43 @@
+# ::tok A person with a skate board glasses backpack and a can drink sits near an ocean .
+# ::node	p	person	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	skate-01	4-5
+# ::node	b2	board	5-6
+# ::node	g	glasses	6-7
+# ::node	b	backpack	7-8
+# ::node	a	and	8-9
+# ::node	c	can	10-11
+# ::node	d	drink-01	11-12
+# ::node	s	sit-01	12-13
+# ::node	n	near-02	13-14
+# ::node	o	ocean	15-16
+# ::root	s	sit-01
+# ::edge	person	ARG0-of	have-03	p	h	
+# ::edge	board	mod	skate-01	b2	s2	
+# ::edge	glasses	mod	board	g	b2	
+# ::edge	backpack	mod	glasses	b	g	
+# ::edge	and	op2	backpack	a	b	
+# ::edge	and	op1	board	a	b2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	drink-01	ARG1	can	d	c	
+# ::edge	and	op3	drink-01	a	d	
+# ::edge	drink-01	ARG0	person	d	p	
+# ::edge	sit-01	ARG1	person	s	p	
+# ::edge	sit-01	ARG2	near-02	s	n	
+# ::edge	near-02	ARG1	person	n	p	
+# ::edge	near-02	ARG2	ocean	n	o	
+(s / sit-01
+    :ARG1 (p / person
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b2 / board
+                    :mod (s2 / skate-01))
+                :op2 (b / backpack
+                    :mod (g / glasses
+                        :mod b2))
+                :op3 (d / drink-01
+                    :ARG0 p
+                    :ARG1 (c / can)))))
+    :ARG2 (n / near-02
+        :ARG1 p
+        :ARG2 (o / ocean)))

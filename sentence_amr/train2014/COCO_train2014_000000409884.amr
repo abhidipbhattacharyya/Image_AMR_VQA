@@ -1,0 +1,35 @@
+# ::tok Several types of freshly gathered vegetables about to be washed , sliced and served .
+# ::node	s2	several	0-1
+# ::node	t	type	1-2
+# ::node	f	fresh-04	3-4
+# ::node	g	gather-01	4-5
+# ::node	v	vegetable	5-6
+# ::node	a	about-to	6-7
+# ::node	w	wash-01	9-10
+# ::node	s3	slice-01	11-12
+# ::node	a2	and	12-13
+# ::node	s	serve-02	13-14
+# ::root	a2	and
+# ::edge	type	quant	several	t	s2	
+# ::edge	gather-01	manner	fresh-04	g	f	
+# ::edge	vegetable	ARG1-of	gather-01	v	g	
+# ::edge	vegetable	mod	type	v	t	
+# ::edge	wash-01	ARG1	type	w	t	
+# ::edge	slice-01	ARG1	vegetable	s3	v	
+# ::edge	and	op2	slice-01	a2	s3	
+# ::edge	and	op1	wash-01	a2	w	
+# ::edge	and	time	about-to	a2	a	
+# ::edge	and	op3	serve-02	a2	s	
+# ::edge	serve-02	ARG1	vegetable	s	v	
+(a2 / and
+    :op1 (w / wash-01
+        :ARG1 (t / type
+            :quant (s2 / several)))
+    :op2 (s3 / slice-01
+        :ARG1 (v / vegetable
+            :ARG1-of (g / gather-01
+                :manner (f / fresh-04))
+            :mod t))
+    :op3 (s / serve-02
+        :ARG1 v)
+    :time (a / about-to))

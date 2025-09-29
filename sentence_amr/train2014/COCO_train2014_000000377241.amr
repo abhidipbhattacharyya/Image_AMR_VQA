@@ -1,0 +1,29 @@
+# ::tok Crowd of people at airport near the luggage belt to collect their things
+# ::node	c2	crowd	0-1
+# ::node	p	person	2-3
+# ::node	a	airport	4-5
+# ::node	n	near-02	5-6
+# ::node	l	luggage	7-8
+# ::node	b	belt	8-9
+# ::node	c	collect-01	10-11
+# ::node	t	thing	12-13
+# ::root	c2	crowd
+# ::edge	crowd	consist-of	person	c2	p	
+# ::edge	crowd	location	airport	c2	a	
+# ::edge	airport	ARG1-of	near-02	a	n	
+# ::edge	belt	mod	luggage	b	l	
+# ::edge	near-02	ARG2	belt	n	b	
+# ::edge	crowd	purpose	collect-01	c2	c	
+# ::edge	collect-01	ARG0	crowd	c	c2	
+# ::edge	collect-01	ARG1	thing	c	t	
+# ::edge	thing	poss	crowd	t	c2	
+(c2 / crowd
+    :purpose (c / collect-01
+        :ARG0 c2
+        :ARG1 (t / thing
+            :poss c2))
+    :consist-of (p / person)
+    :location (a / airport
+        :ARG1-of (n / near-02
+            :ARG2 (b / belt
+                :mod (l / luggage)))))

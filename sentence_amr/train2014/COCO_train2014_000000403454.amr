@@ -1,0 +1,26 @@
+# ::tok the batter get ready to run after he has hit the baseball
+# ::node	p	person	1-2
+# ::node	b2	batter-01	1-2
+# ::node	r	ready-01	3-4
+# ::node	r2	run-02	5-6
+# ::node	a	after	6-7
+# ::node	h	hit-01	9-10
+# ::node	b	baseball	11-12
+# ::root	r	ready-01
+# ::edge	person	ARG0-of	batter-01	p	b2	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG2	run-02	r	r2	
+# ::edge	run-02	ARG0	person	r2	p	
+# ::edge	run-02	time	after	r2	a	
+# ::edge	after	op1	hit-01	a	h	
+# ::edge	hit-01	ARG0	person	h	p	
+# ::edge	hit-01	ARG1	baseball	h	b	
+(r / ready-01
+    :ARG1 (p / person
+        :ARG0-of (b2 / batter-01))
+    :ARG2 (r2 / run-02
+        :ARG0 p
+        :time (a / after
+            :op1 (h / hit-01
+                :ARG0 p
+                :ARG1 (b / baseball)))))

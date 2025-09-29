@@ -1,0 +1,39 @@
+# ::tok A fireplace mantle has an ornate clock sitting on it in front of a large mirror near a teddy bear .
+# ::node	f	fireplace	1-2
+# ::node	m	mantle	2-3
+# ::node	h	have-03	3-4
+# ::node	o	ornate	5-6
+# ::node	c	clock	6-7
+# ::node	s	sit-01	7-8
+# ::node	i	in-front-of	11-12
+# ::node	l	large	14-15
+# ::node	m2	mirror	15-16
+# ::node	n	near-02	16-17
+# ::node	t	teddy	18-19
+# ::node	b	bear	19-20
+# ::root	h	have-03
+# ::edge	mantle	mod	fireplace	m	f	
+# ::edge	have-03	ARG0	mantle	h	m	
+# ::edge	clock	mod	ornate	c	o	
+# ::edge	sit-01	ARG1	clock	s	c	
+# ::edge	have-03	ARG1	sit-01	h	s	
+# ::edge	sit-01	location	mantle	s	m	
+# ::edge	sit-01	location	in-front-of	s	i	
+# ::edge	mirror	mod	large	m2	l	
+# ::edge	in-front-of	op1	mirror	i	m2	
+# ::edge	mirror	ARG1-of	near-02	m2	n	
+# ::edge	bear	mod	teddy	b	t	
+# ::edge	near-02	ARG2	bear	n	b	
+(h / have-03
+    :ARG0 (m / mantle
+        :mod (f / fireplace))
+    :ARG1 (s / sit-01
+        :ARG1 (c / clock
+            :mod (o / ornate))
+        :location m
+        :location (i / in-front-of
+            :op1 (m2 / mirror
+                :ARG1-of (n / near-02
+                    :ARG2 (b / bear
+                        :mod (t / teddy)))
+                :mod (l / large)))))

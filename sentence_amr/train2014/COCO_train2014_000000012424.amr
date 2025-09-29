@@ -1,0 +1,36 @@
+# ::tok A baseball player running toward first base with the bat still in his hand .
+# ::node	b2	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	r	run-02	3-4
+# ::node	o	ordinal-entity	5-6
+# ::node	0	1	5-6
+# ::node	b	base	6-7
+# ::node	b3	bat	9-10
+# ::node	s	still	10-11
+# ::node	b4	be-located-at-91	11-12
+# ::node	h	hand	13-14
+# ::root	p	person
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b2	
+# ::edge	person	ARG0-of	run-02	p	r	
+# ::edge	ordinal-entity	value	1	o	0	
+# ::edge	base	ord	ordinal-entity	b	o	
+# ::edge	run-02	direction	base	r	b	
+# ::edge	be-located-at-91	mod	still	b4	s	
+# ::edge	be-located-at-91	ARG1	bat	b4	b3	
+# ::edge	run-02	manner	be-located-at-91	r	b4	
+# ::edge	be-located-at-91	ARG2	hand	b4	h	
+# ::edge	person	part	hand	p	h	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (b2 / baseball))
+    :ARG0-of (r / run-02
+        :direction (b / base
+            :ord (o / ordinal-entity
+                :value 1))
+        :manner (b4 / be-located-at-91
+            :ARG1 (b3 / bat)
+            :ARG2 (h / hand)
+            :mod (s / still)))
+    :part h)

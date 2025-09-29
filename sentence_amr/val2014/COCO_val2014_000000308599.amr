@@ -1,0 +1,57 @@
+# ::tok A red door has a sign that says stop you must be over 18 to enter .
+# ::node	r	red-02	1-2
+# ::node	d	door	2-3
+# ::node	h	have-03	3-4
+# ::node	s2	sign	5-6
+# ::node	s	say-01	7-8
+# ::node	s3	stop-01	8-9
+# ::node	1	imperative	8-9
+# ::node	y2	you	9-10
+# ::node	o	obligate-01	10-11
+# ::node	a	age-01	12-13
+# ::node	o2	over	12-13
+# ::node	t	temporal-quantity	13-14
+# ::node	y	year	13-14
+# ::node	0	18	13-14
+# ::node	c	cause-01	14-15
+# ::node	e	enter-01	15-16
+# ::root	h	have-03
+# ::edge	door	ARG1-of	red-02	d	r	
+# ::edge	have-03	ARG0	door	h	d	
+# ::edge	have-03	ARG1	sign	h	s2	
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	stop-01	s	s3	
+# ::edge	stop-01	mode	imperative	s3	1	
+# ::edge	stop-01	ARG0	you	s3	y2	
+# ::edge	obligate-01	ARG1	you	o	y2	
+# ::edge	obligate-01	ARG2	age-01	o	a	
+# ::edge	age-01	ARG1	you	a	y2	
+# ::edge	age-01	ARG2	over	a	o2	
+# ::edge	over	op1	temporal-quantity	o2	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	temporal-quantity	quant	18	t	0	
+# ::edge	cause-01	ARG1	obligate-01	c	o	
+# ::edge	stop-01	ARG0-of	cause-01	s3	c	
+# ::edge	obligate-01	condition-of	enter-01	o	e	
+# ::edge	enter-01	ARG0	you	e	y2	
+# ::edge	enter-01	ARG1	door	e	d	
+(h / have-03
+    :ARG0 (d / door
+        :ARG1-of (r / red-02))
+    :ARG1 (s2 / sign
+        :ARG0-of (s / say-01
+            :ARG1 (s3 / stop-01
+                :ARG0 (y2 / you)
+                :ARG0-of (c / cause-01
+                    :ARG1 (o / obligate-01
+                        :ARG1 y2
+                        :ARG2 (a / age-01
+                            :ARG1 y2
+                            :ARG2 (o2 / over
+                                :op1 (t / temporal-quantity
+                                    :quant 18
+                                    :unit (y / year))))
+                        :condition-of (e / enter-01
+                            :ARG0 y2
+                            :ARG1 d)))
+                :mode imperative))))

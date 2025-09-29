@@ -1,0 +1,34 @@
+# ::tok A cop arresting someone with using handcuffs and pressing their head down .
+# ::node	c	cop	1-2
+# ::node	a2	arrest-01	2-3
+# ::node	s	someone	3-4
+# ::node	u	use-01	5-6
+# ::node	h	handcuff-01	6-7
+# ::node	a	and	7-8
+# ::node	p	press-01	8-9
+# ::node	h2	head	10-11
+# ::node	d	down	11-12
+# ::root	a2	arrest-01
+# ::edge	arrest-01	ARG0	cop	a2	c	
+# ::edge	arrest-01	ARG1	someone	a2	s	
+# ::edge	use-01	ARG0	cop	u	c	
+# ::edge	use-01	ARG1	handcuff-01	u	h	
+# ::edge	and	op1	use-01	a	u	
+# ::edge	arrest-01	ARG2	and	a2	a	
+# ::edge	and	op2	press-01	a	p	
+# ::edge	press-01	ARG0	cop	p	c	
+# ::edge	press-01	ARG1	head	p	h2	
+# ::edge	someone	part	head	s	h2	
+# ::edge	press-01	ARG2	down	p	d	
+(a2 / arrest-01
+    :ARG0 (c / cop)
+    :ARG1 (s / someone
+        :part (h2 / head))
+    :ARG2 (a / and
+        :op1 (u / use-01
+            :ARG0 c
+            :ARG1 (h / handcuff-01))
+        :op2 (p / press-01
+            :ARG0 c
+            :ARG1 h2
+            :ARG2 (d / down))))

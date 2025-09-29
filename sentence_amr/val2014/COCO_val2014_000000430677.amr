@@ -1,0 +1,31 @@
+# ::tok Open refrigerator and freezer containing only two bottles of wine .
+# ::node	o2	open-01	0-1
+# ::node	r	refrigerator	1-2
+# ::node	a	and	2-3
+# ::node	f	freezer	3-4
+# ::node	c	contain-01	4-5
+# ::node	o	only	5-6
+# ::node	0	2	6-7
+# ::node	v	volume-quantity	7-8
+# ::node	b	bottle	7-8
+# ::node	w	wine	9-10
+# ::root	o2	open-01
+# ::edge	and	op1	refrigerator	a	r	
+# ::edge	open-01	ARG1	and	o2	a	
+# ::edge	and	op2	freezer	a	f	
+# ::edge	and	ARG0-of	contain-01	a	c	
+# ::edge	volume-quantity	quant	2	v	0	
+# ::edge	volume-quantity	mod	only	v	o	
+# ::edge	volume-quantity	unit	bottle	v	b	
+# ::edge	wine	quant	volume-quantity	w	v	
+# ::edge	contain-01	ARG1	wine	c	w	
+(o2 / open-01
+    :ARG1 (a / and
+        :ARG0-of (c / contain-01
+            :ARG1 (w / wine
+                :quant (v / volume-quantity
+                    :quant 2
+                    :mod (o / only)
+                    :unit (b / bottle))))
+        :op1 (r / refrigerator)
+        :op2 (f / freezer)))

@@ -1,0 +1,37 @@
+# ::tok Railroad track warning signs stands near a stop sign and a large , white truck .
+# ::node	r	railway	0-1
+# ::node	t	track	1-2
+# ::node	w	warn-01	2-3
+# ::node	s	sign	3-4
+# ::node	s3	stand-01	4-5
+# ::node	n	near-02	5-6
+# ::node	s4	stop-01	7-8
+# ::node	s2	sign	8-9
+# ::node	a	and	9-10
+# ::node	l	large	11-12
+# ::node	w2	white-03	13-14
+# ::node	t2	truck	14-15
+# ::root	s3	stand-01
+# ::edge	track	mod	railway	t	r	
+# ::edge	warn-01	ARG1	track	w	t	
+# ::edge	sign	ARG0-of	warn-01	s	w	
+# ::edge	stand-01	ARG1	sign	s3	s	
+# ::edge	stand-01	ARG1-of	near-02	s3	n	
+# ::edge	sign	purpose	stop-01	s2	s4	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	truck	ARG1-of	white-03	t2	w2	
+# ::edge	truck	mod	large	t2	l	
+# ::edge	and	op2	truck	a	t2	
+(s3 / stand-01
+    :ARG1 (s / sign
+        :ARG0-of (w / warn-01
+            :ARG1 (t / track
+                :mod (r / railway))))
+    :ARG1-of (n / near-02
+        :ARG2 (a / and
+            :op1 (s2 / sign
+                :purpose (s4 / stop-01))
+            :op2 (t2 / truck
+                :ARG1-of (w2 / white-03)
+                :mod (l / large)))))

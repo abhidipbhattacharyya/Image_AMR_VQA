@@ -1,0 +1,28 @@
+# ::tok A duck swims to a bright red man - made object floating in the water .
+# ::node	d	duck	1-2
+# ::node	s	swim-01	2-3
+# ::node	b	bright-02	5-6
+# ::node	r	red-02	6-7
+# ::node	m2	man	7-8
+# ::node	m	make-01	9-10
+# ::node	o	object	10-11
+# ::node	f	float-01	11-12
+# ::node	w	water	14-15
+# ::root	s	swim-01
+# ::edge	swim-01	ARG0	duck	s	d	
+# ::edge	red-02	ARG1-of	bright-02	r	b	
+# ::edge	make-01	ARG0	man	m	m2	
+# ::edge	object	ARG1-of	make-01	o	m	
+# ::edge	object	ARG1-of	red-02	o	r	
+# ::edge	swim-01	destination	object	s	o	
+# ::edge	object	ARG1-of	float-01	o	f	
+# ::edge	float-01	ARG2	water	f	w	
+(s / swim-01
+    :ARG0 (d / duck)
+    :destination (o / object
+        :ARG1-of (m / make-01
+            :ARG0 (m2 / man))
+        :ARG1-of (r / red-02
+            :ARG1-of (b / bright-02))
+        :ARG1-of (f / float-01
+            :ARG2 (w / water))))

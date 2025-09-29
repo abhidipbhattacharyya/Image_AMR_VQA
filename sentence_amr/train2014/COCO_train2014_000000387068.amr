@@ -1,0 +1,37 @@
+# ::tok Sink with soap pump , toothbrush holder , empty toilet paper roll , soap
+# ::node	s	sink-01	0-1
+# ::node	y	you	0-1
+# ::node	0	imperative	0-1
+# ::node	s2	soap	2-3
+# ::node	p2	pump	3-4
+# ::node	a	and	4-5
+# ::node	t2	toothbrush	5-6
+# ::node	h	holder	6-7
+# ::node	e	empty-02	8-9
+# ::node	t	toilet	9-10
+# ::node	p	paper	10-11
+# ::node	r	roll	11-12
+# ::root	s	sink-01
+# ::edge	sink-01	ARG0	you	s	y	
+# ::edge	sink-01	mode	imperative	s	0	
+# ::edge	pump	mod	soap	p2	s2	
+# ::edge	and	op1	pump	a	p2	
+# ::edge	sink-01	instrument	and	s	a	
+# ::edge	holder	part-of	toothbrush	h	t2	
+# ::edge	and	op2	holder	a	h	
+# ::edge	paper	mod	toilet	p	t	
+# ::edge	roll	mod	paper	r	p	
+# ::edge	roll	ARG1-of	empty-02	r	e	
+# ::edge	and	op3	roll	a	r	
+(s / sink-01
+    :ARG0 (y / you)
+    :instrument (a / and
+        :op1 (p2 / pump
+            :mod (s2 / soap))
+        :op2 (h / holder
+            :part-of (t2 / toothbrush))
+        :op3 (r / roll
+            :ARG1-of (e / empty-02)
+            :mod (p / paper
+                :mod (t / toilet))))
+    :mode imperative)

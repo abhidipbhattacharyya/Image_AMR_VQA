@@ -1,0 +1,28 @@
+# ::tok The clock tower says 's it 's 11:30 on this dreary winter day
+# ::node	c	clock	1-2
+# ::node	t2	tower	2-3
+# ::node	s	say-01	3-4
+# ::node	d	date-entity	7-8
+# ::node	0	11:30	7-8
+# ::node	t	this	9-10
+# ::node	d3	dreary	10-11
+# ::node	w	winter	11-12
+# ::node	d2	day	12-13
+# ::root	s	say-01
+# ::edge	tower	mod	clock	t2	c	
+# ::edge	say-01	ARG0	tower	s	t2	
+# ::edge	say-01	ARG1	date-entity	s	d	
+# ::edge	date-entity	time	11:30	d	0	
+# ::edge	day	mod	winter	d2	w	
+# ::edge	day	mod	dreary	d2	d3	
+# ::edge	day	mod	this	d2	t	
+# ::edge	date-entity	time	day	d	d2	
+(s / say-01
+    :ARG0 (t2 / tower
+        :mod (c / clock))
+    :ARG1 (d / date-entity
+        :time "11:30"
+        :time (d2 / day
+            :mod (w / winter)
+            :mod (d3 / dreary)
+            :mod (t / this))))

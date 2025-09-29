@@ -1,0 +1,28 @@
+# ::tok Fast moving commuter train moving through city with apartment buildings in background .
+# ::node	f	fast-02	0-1
+# ::node	m	move-01	1-2
+# ::node	c2	commute-01	2-3
+# ::node	t	train	3-4
+# ::node	m2	move-01	4-5
+# ::node	c	city	6-7
+# ::node	a	apartment	8-9
+# ::node	b2	building	9-10
+# ::node	b	background	11-12
+# ::root	m2	move-01
+# ::edge	move-01	ARG1-of	fast-02	m	f	
+# ::edge	train	ARG0-of	commute-01	t	c2	
+# ::edge	train	ARG0-of	move-01	t	m	
+# ::edge	move-01	ARG1	train	m2	t	
+# ::edge	move-01	path	city	m2	c	
+# ::edge	building	mod	apartment	b2	a	
+# ::edge	move-01	prep-with	building	m2	b2	
+# ::edge	building	location	background	b2	b	
+(m2 / move-01
+    :ARG1 (t / train
+        :ARG0-of (c2 / commute-01)
+        :ARG0-of (m / move-01
+            :ARG1-of (f / fast-02)))
+    :path (c / city)
+    :prep-with (b2 / building
+        :location (b / background)
+        :mod (a / apartment)))

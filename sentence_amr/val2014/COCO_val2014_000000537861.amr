@@ -1,0 +1,24 @@
+# ::tok Two trains are on the tracks awaiting passengers for their next trip .
+# ::node	0	2	0-1
+# ::node	t2	train	1-2
+# ::node	t	track	5-6
+# ::node	a	await-01	6-7
+# ::node	p	passenger	7-8
+# ::node	n	next	10-11
+# ::node	t3	trip-03	11-12
+# ::root	a	await-01
+# ::edge	train	quant	2	t2	0	
+# ::edge	await-01	location	track	a	t	
+# ::edge	await-01	ARG1	train	a	t2	
+# ::edge	await-01	ARG2	passenger	a	p	
+# ::edge	trip-03	mod	next	t3	n	
+# ::edge	trip-03	ARG0	passenger	t3	p	
+# ::edge	await-01	ARG2	trip-03	a	t3	
+(a / await-01
+    :ARG1 (t2 / train
+        :quant 2)
+    :ARG2 (p / passenger)
+    :ARG2 (t3 / trip-03
+        :ARG0 p
+        :mod (n / next))
+    :location (t / track))

@@ -1,0 +1,31 @@
+# ::tok A grocery buggy is parked next to a parking meter with some trash on the ground .
+# ::node	g	grocery	1-2
+# ::node	b	buggy	2-3
+# ::node	p	park-01	4-5
+# ::node	n	next-to	5-6
+# ::node	p2	park-01	8-9
+# ::node	m	meter	9-10
+# ::node	h	have-03	10-11
+# ::node	s	some	11-12
+# ::node	t	trash	12-13
+# ::node	g2	ground	15-16
+# ::root	p	park-01
+# ::edge	buggy	mod	grocery	b	g	
+# ::edge	park-01	ARG1	buggy	p	b	
+# ::edge	park-01	ARG2	next-to	p	n	
+# ::edge	meter	purpose	park-01	m	p2	
+# ::edge	next-to	op1	meter	n	m	
+# ::edge	buggy	ARG0-of	have-03	b	h	
+# ::edge	trash	quant	some	t	s	
+# ::edge	have-03	ARG1	trash	h	t	
+# ::edge	trash	location	ground	t	g2	
+(p / park-01
+    :ARG1 (b / buggy
+        :ARG0-of (h / have-03
+            :ARG1 (t / trash
+                :quant (s / some)
+                :location (g2 / ground)))
+        :mod (g / grocery))
+    :ARG2 (n / next-to
+        :op1 (m / meter
+            :purpose (p2 / park-01))))

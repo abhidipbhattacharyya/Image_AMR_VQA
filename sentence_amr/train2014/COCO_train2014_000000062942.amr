@@ -1,0 +1,34 @@
+# ::tok A small blue truck parked in a parking space in front of home depot .
+# ::node	s	small	1-2
+# ::node	b	blue	2-3
+# ::node	t	truck	3-4
+# ::node	p	park-01	4-5
+# ::node	p2	park-01	7-8
+# ::node	s2	space	8-9
+# ::node	i	in-front-of	10-11
+# ::node	1	Home	12-13
+# ::node	f	facility	13-14
+# ::node	n	name	13-14
+# ::node	0	Depot	13-14
+# ::root	p	park-01
+# ::edge	truck	mod	blue	t	b	
+# ::edge	truck	mod	small	t	s	
+# ::edge	park-01	ARG1	truck	p	t	
+# ::edge	space	ARG2-of	park-01	s2	p2	
+# ::edge	park-01	ARG2	space	p	s2	
+# ::edge	space	location	in-front-of	s2	i	
+# ::edge	in-front-of	op1	facility	i	f	
+# ::edge	facility	name	name	f	n	
+# ::edge	name	op1	Home	n	1	
+# ::edge	name	op2	Depot	n	0	
+(p / park-01
+    :ARG1 (t / truck
+        :mod (b / blue)
+        :mod (s / small))
+    :ARG2 (s2 / space
+        :ARG2-of (p2 / park-01)
+        :location (i / in-front-of
+            :op1 (f / facility
+                :name (n / name
+                    :op1 "Home"
+                    :op2 "Depot")))))

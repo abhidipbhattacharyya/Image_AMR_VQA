@@ -1,0 +1,41 @@
+# ::tok A train yard with multiple sets of tracks and various train engines and cars on the different tracks .
+# ::node	t3	train	1-2
+# ::node	y	yard	2-3
+# ::node	h	have-03	3-4
+# ::node	m	multiple	4-5
+# ::node	s	set	5-6
+# ::node	t	track	7-8
+# ::node	a	and	8-9
+# ::node	v	various	9-10
+# ::node	e	engine	11-12
+# ::node	c	car	13-14
+# ::node	d	differ-02	16-17
+# ::node	t2	track	17-18
+# ::root	y	yard
+# ::edge	yard	mod	train	y	t3	
+# ::edge	yard	ARG0-of	have-03	y	h	
+# ::edge	set	quant	multiple	s	m	
+# ::edge	set	consist-of	track	s	t	
+# ::edge	and	op1	set	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	engine	mod	various	e	v	
+# ::edge	and	op2	engine	a	e	
+# ::edge	engine	mod	train	e	t3	
+# ::edge	and	op3	car	a	c	
+# ::edge	car	mod	various	c	v	
+# ::edge	track	ARG1-of	differ-02	t2	d	
+# ::edge	and	location	track	a	t2	
+(y / yard
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :location (t2 / track
+                :ARG1-of (d / differ-02))
+            :op1 (s / set
+                :quant (m / multiple)
+                :consist-of (t / track))
+            :op2 (e / engine
+                :mod (v / various)
+                :mod (t3 / train))
+            :op3 (c / car
+                :mod v)))
+    :mod t3)

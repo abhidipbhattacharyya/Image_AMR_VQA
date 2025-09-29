@@ -1,0 +1,45 @@
+# ::tok Two dogs , one sitting and one lying down , next to a bus .
+# ::node	2	2	0-1
+# ::node	d	dog	1-2
+# ::node	d2	dog	1-2
+# ::node	d3	dog	1-2
+# ::node	i	include-91	3-4
+# ::node	i2	include-91	3-4
+# ::node	0	1	3-4
+# ::node	1	1	3-4
+# ::node	s	sit-01	4-5
+# ::node	a	and	5-6
+# ::node	l	lie-down-09	7-8
+# ::node	n	next-to	10-11
+# ::node	b	bus	13-14
+# ::node	e	event	14-15
+# ::root	e	event
+# ::edge	dog	quant	2	d	2	
+# ::edge	dog	ARG1-of	include-91	d	i	
+# ::edge	include-91	ARG2	dog	i	d	
+# ::edge	dog	ARG1-of	include-91	d3	i2	
+# ::edge	include-91	ARG2	dog	i2	d	
+# ::edge	dog	quant	1	d2	0	
+# ::edge	dog	quant	1	d3	1	
+# ::edge	dog	ARG1-of	sit-01	d2	s	
+# ::edge	and	op2	dog	a	d3	
+# ::edge	and	op1	dog	a	d2	
+# ::edge	dog	ARG1-of	lie-down-09	d3	l	
+# ::edge	dog	location	next-to	d	n	
+# ::edge	next-to	op1	bus	n	b	
+# ::edge	event	mod	and	e	a	
+(e / event
+    :mod (a / and
+        :op1 (d2 / dog
+            :quant 1
+            :ARG1-of (s / sit-01))
+        :op2 (d3 / dog
+            :quant 1
+            :ARG1-of (i2 / include-91
+                :ARG2 (d / dog
+                    :quant 2
+                    :ARG1-of (i / include-91
+                        :ARG2 d)
+                    :location (n / next-to
+                        :op1 (b / bus))))
+            :ARG1-of (l / lie-down-09))))

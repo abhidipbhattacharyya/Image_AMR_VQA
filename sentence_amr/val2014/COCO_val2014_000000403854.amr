@@ -1,0 +1,31 @@
+# ::tok People standing on a crowded sidewalk in the evening , many holding umbrellas .
+# ::node	p	person	0-1
+# ::node	s2	stand-01	1-2
+# ::node	c	crowd-01	4-5
+# ::node	s	sidewalk	5-6
+# ::node	d	date-entity	8-9
+# ::node	e	evening	8-9
+# ::node	i	include-91	10-11
+# ::node	m	many	10-11
+# ::node	h	hold-01	11-12
+# ::node	u	umbrella	12-13
+# ::root	s2	stand-01
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	sidewalk	ARG1-of	crowd-01	s	c	
+# ::edge	stand-01	ARG2	sidewalk	s2	s	
+# ::edge	stand-01	time	date-entity	s2	d	
+# ::edge	date-entity	dayperiod	evening	d	e	
+# ::edge	person	ARG2-of	include-91	p	i	
+# ::edge	include-91	ARG1	many	i	m	
+# ::edge	many	ARG0-of	hold-01	m	h	
+# ::edge	hold-01	ARG1	umbrella	h	u	
+(s2 / stand-01
+    :ARG1 (p / person
+        :ARG2-of (i / include-91
+            :ARG1 (m / many
+                :ARG0-of (h / hold-01
+                    :ARG1 (u / umbrella)))))
+    :ARG2 (s / sidewalk
+        :ARG1-of (c / crowd-01))
+    :time (d / date-entity
+        :dayperiod (e / evening)))

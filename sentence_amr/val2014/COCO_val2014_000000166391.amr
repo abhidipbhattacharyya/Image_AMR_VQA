@@ -1,0 +1,28 @@
+# ::tok A traffic light and intersection with cars traveling in both directions on the street .
+# ::node	t	traffic	1-2
+# ::node	l	light	2-3
+# ::node	a	and	3-4
+# ::node	i	intersect-01	4-5
+# ::node	c	car	6-7
+# ::node	t2	travel-01	7-8
+# ::node	b	both	9-10
+# ::node	d	direction	10-11
+# ::node	s	street	13-14
+# ::root	a	and
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op1	light	a	l	
+# ::edge	and	op2	intersect-01	a	i	
+# ::edge	intersect-01	ARG0	car	i	c	
+# ::edge	car	ARG0-of	travel-01	c	t2	
+# ::edge	direction	mod	both	d	b	
+# ::edge	travel-01	ARG1	direction	t2	d	
+# ::edge	travel-01	path	street	t2	s	
+(a / and
+    :op1 (l / light
+        :mod (t / traffic))
+    :op2 (i / intersect-01
+        :ARG0 (c / car
+            :ARG0-of (t2 / travel-01
+                :ARG1 (d / direction
+                    :mod (b / both))
+                :path (s / street)))))

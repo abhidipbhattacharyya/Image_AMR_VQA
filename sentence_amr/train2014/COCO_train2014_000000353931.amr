@@ -1,0 +1,33 @@
+# ::tok A street at night with cars going down it and lamp posts beside it .
+# ::node	s	street	1-2
+# ::node	d	date-entity	3-4
+# ::node	n	night	3-4
+# ::node	c	car	5-6
+# ::node	g	go-01	6-7
+# ::node	d2	down	7-8
+# ::node	a	and	9-10
+# ::node	l	lamp	10-11
+# ::node	p	post-01	11-12
+# ::node	b	beside	12-13
+# ::root	s	street
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	car	ARG1-of	go-01	c	g	
+# ::edge	go-01	direction	down	g	d2	
+# ::edge	and	op1	car	a	c	
+# ::edge	street	location-of	and	s	a	
+# ::edge	post-01	ARG1	lamp	p	l	
+# ::edge	and	op2	post-01	a	p	
+# ::edge	post-01	location	beside	p	b	
+# ::edge	beside	op1	street	b	s	
+(s / street
+    :location-of (a / and
+        :op1 (c / car
+            :ARG1-of (g / go-01
+                :direction (d2 / down)))
+        :op2 (p / post-01
+            :ARG1 (l / lamp)
+            :location (b / beside
+                :op1 s)))
+    :time (d / date-entity
+        :dayperiod (n / night)))

@@ -1,0 +1,48 @@
+# ::tok A man in a red baseball hat and mitt is throwing a ball while a man behind him is covering him in case he misses the ball .
+# ::node	m	man	1-2
+# ::node	r	red-02	4-5
+# ::node	b2	baseball	5-6
+# ::node	h	hat	6-7
+# ::node	a	and	7-8
+# ::node	m4	mitt	8-9
+# ::node	t	throw-01	10-11
+# ::node	b	ball	12-13
+# ::node	c	contrast-01	13-14
+# ::node	m2	man	15-16
+# ::node	b3	behind	16-17
+# ::node	c2	cover-01	19-20
+# ::node	m3	miss-02	24-25
+# ::root	c	contrast-01
+# ::edge	hat	mod	baseball	h	b2	
+# ::edge	hat	ARG1-of	red-02	h	r	
+# ::edge	and	op1	hat	a	h	
+# ::edge	man	domain	and	m	a	
+# ::edge	and	op2	mitt	a	m4	
+# ::edge	throw-01	ARG0	man	t	m	
+# ::edge	throw-01	ARG1	ball	t	b	
+# ::edge	contrast-01	ARG1	throw-01	c	t	
+# ::edge	man	mod	behind	m2	b3	
+# ::edge	behind	op1	man	b3	m	
+# ::edge	cover-01	ARG0	man	c2	m2	
+# ::edge	contrast-01	ARG2	cover-01	c	c2	
+# ::edge	cover-01	ARG1	man	c2	m	
+# ::edge	cover-01	condition	miss-02	c2	m3	
+# ::edge	miss-02	ARG1	ball	m3	b	
+# ::edge	miss-02	ARG0	man	m3	m	
+(c / contrast-01
+    :ARG1 (t / throw-01
+        :ARG0 (m / man
+            :domain (a / and
+                :op1 (h / hat
+                    :ARG1-of (r / red-02)
+                    :mod (b2 / baseball))
+                :op2 (m4 / mitt)))
+        :ARG1 (b / ball))
+    :ARG2 (c2 / cover-01
+        :ARG0 (m2 / man
+            :mod (b3 / behind
+                :op1 m))
+        :ARG1 m
+        :condition (m3 / miss-02
+            :ARG0 m
+            :ARG1 b)))

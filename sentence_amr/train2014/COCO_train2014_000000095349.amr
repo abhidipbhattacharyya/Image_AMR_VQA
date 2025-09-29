@@ -1,0 +1,33 @@
+# ::tok Preparing a pizza topped with grated cheese , tomato sauce and vegetables for baking .
+# ::node	p2	prepare-01	0-1
+# ::node	p	pizza	2-3
+# ::node	t2	top-01	3-4
+# ::node	g	grind-01	5-6
+# ::node	c	cheese	6-7
+# ::node	t	tomato	8-9
+# ::node	s	sauce	9-10
+# ::node	a	and	10-11
+# ::node	v	vegetable	11-12
+# ::node	b	bake-01	13-14
+# ::root	p2	prepare-01
+# ::edge	prepare-01	ARG1	pizza	p2	p	
+# ::edge	pizza	ARG1-of	top-01	p	t2	
+# ::edge	cheese	ARG1-of	grind-01	c	g	
+# ::edge	sauce	mod	tomato	s	t	
+# ::edge	and	op2	sauce	a	s	
+# ::edge	and	op1	cheese	a	c	
+# ::edge	top-01	ARG2	and	t2	a	
+# ::edge	and	op3	vegetable	a	v	
+# ::edge	bake-01	ARG1	pizza	b	p	
+# ::edge	prepare-01	purpose	bake-01	p2	b	
+(p2 / prepare-01
+    :purpose (b / bake-01
+        :ARG1 (p / pizza
+            :ARG1-of (t2 / top-01
+                :ARG2 (a / and
+                    :op1 (c / cheese
+                        :ARG1-of (g / grind-01))
+                    :op2 (s / sauce
+                        :mod (t / tomato))
+                    :op3 (v / vegetable)))))
+    :ARG1 p)

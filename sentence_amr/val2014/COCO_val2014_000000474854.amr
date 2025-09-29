@@ -1,0 +1,27 @@
+# ::tok A man sitting down with his mouth full holding a partially eaten banana .
+# ::node	m	man	1-2
+# ::node	s	sit-down-02	2-3
+# ::node	m2	mouth	6-7
+# ::node	f	full-09	7-8
+# ::node	h	hold-01	8-9
+# ::node	p	part	10-11
+# ::node	e	eat-01	11-12
+# ::node	b	banana	12-13
+# ::root	m	man
+# ::edge	man	ARG1-of	sit-down-02	m	s	
+# ::edge	man	part	mouth	m	m2	
+# ::edge	mouth	ARG1-of	full-09	m2	f	
+# ::edge	man	ARG0-of	hold-01	m	h	
+# ::edge	eat-01	degree	part	e	p	
+# ::edge	eat-01	ARG0	man	e	m	
+# ::edge	banana	ARG1-of	eat-01	b	e	
+# ::edge	hold-01	ARG1	banana	h	b	
+(m / man
+    :ARG0-of (h / hold-01
+        :ARG1 (b / banana
+            :ARG1-of (e / eat-01
+                :ARG0 m
+                :degree (p / part))))
+    :ARG1-of (s / sit-down-02)
+    :part (m2 / mouth
+        :ARG1-of (f / full-09)))

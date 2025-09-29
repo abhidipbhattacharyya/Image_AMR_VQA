@@ -1,0 +1,52 @@
+# ::tok A black and white photo of a NYPD police car traveling down Broadway in New York City .
+# ::node	b	black-and-white	1-2
+# ::node	p	photograph-01	4-5
+# ::node	g	government-organization	7-8
+# ::node	n	name	7-8
+# ::node	2	NYPD	7-8
+# ::node	p2	police	8-9
+# ::node	c	car	9-10
+# ::node	t	travel-01	10-11
+# ::node	d	down	11-12
+# ::node	r	road	12-13
+# ::node	n2	name	12-13
+# ::node	0	Broadway	12-13
+# ::node	n3	name	14-15
+# ::node	3	New	14-15
+# ::node	4	York	15-16
+# ::node	c2	city	16-17
+# ::node	1	City	16-17
+# ::root	p	photograph-01
+# ::edge	photograph-01	mod	black-and-white	p	b	
+# ::edge	government-organization	name	name	g	n	
+# ::edge	name	op1	NYPD	n	2	
+# ::edge	police	mod	government-organization	p2	g	
+# ::edge	car	poss	police	c	p2	
+# ::edge	photograph-01	ARG1	car	p	c	
+# ::edge	car	ARG0-of	travel-01	c	t	
+# ::edge	travel-01	direction	down	t	d	
+# ::edge	travel-01	path	road	t	r	
+# ::edge	road	name	name	r	n2	
+# ::edge	name	op1	Broadway	n2	0	
+# ::edge	name	op1	New	n3	3	
+# ::edge	name	op2	York	n3	4	
+# ::edge	city	name	name	c2	n3	
+# ::edge	travel-01	location	city	t	c2	
+# ::edge	name	op3	City	n3	1	
+(p / photograph-01
+    :ARG1 (c / car
+        :ARG0-of (t / travel-01
+            :direction (d / down)
+            :location (c2 / city
+                :name (n3 / name
+                    :op1 "New"
+                    :op2 "York"
+                    :op3 "City"))
+            :path (r / road
+                :name (n2 / name
+                    :op1 "Broadway")))
+        :poss (p2 / police
+            :mod (g / government-organization
+                :name (n / name
+                    :op1 "NYPD"))))
+    :mod (b / black-and-white))

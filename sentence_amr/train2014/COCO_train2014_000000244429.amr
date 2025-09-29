@@ -1,0 +1,30 @@
+# ::tok Workers are sorting donuts as they come down a conveyer belt in a factory .
+# ::node	p	person	0-1
+# ::node	w	work-01	0-1
+# ::node	s	sort-01	2-3
+# ::node	d	donut	3-4
+# ::node	c	come-01	6-7
+# ::node	d2	down	7-8
+# ::node	c2	conveyer	9-10
+# ::node	b	belt	10-11
+# ::node	f	factory	13-14
+# ::root	s	sort-01
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	sort-01	ARG0	person	s	p	
+# ::edge	sort-01	ARG1	donut	s	d	
+# ::edge	come-01	ARG1	donut	c	d	
+# ::edge	sort-01	time	come-01	s	c	
+# ::edge	come-01	direction	down	c	d2	
+# ::edge	belt	mod	conveyer	b	c2	
+# ::edge	come-01	path	belt	c	b	
+# ::edge	come-01	location	factory	c	f	
+(s / sort-01
+    :ARG0 (p / person
+        :ARG0-of (w / work-01))
+    :ARG1 (d / donut)
+    :time (c / come-01
+        :ARG1 d
+        :direction (d2 / down)
+        :location (f / factory)
+        :path (b / belt
+            :mod (c2 / conveyer))))

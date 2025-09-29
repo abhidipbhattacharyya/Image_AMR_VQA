@@ -1,0 +1,28 @@
+# ::tok Several street signs including traffic signs and parking directions .
+# ::node	s	several	0-1
+# ::node	s4	street	1-2
+# ::node	s2	sign	2-3
+# ::node	i	include-01	3-4
+# ::node	t	traffic	4-5
+# ::node	s3	sign	5-6
+# ::node	a	and	6-7
+# ::node	p	park-01	7-8
+# ::node	d	direct-01	8-9
+# ::root	s2	sign
+# ::edge	sign	topic	street	s2	s4	
+# ::edge	sign	quant	several	s2	s	
+# ::edge	sign	ARG2-of	include-01	s2	i	
+# ::edge	sign	topic	traffic	s3	t	
+# ::edge	and	op1	sign	a	s3	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	direct-01	ARG2	park-01	d	p	
+# ::edge	and	op2	direct-01	a	d	
+(s2 / sign
+    :quant (s / several)
+    :ARG2-of (i / include-01
+        :ARG1 (a / and
+            :op1 (s3 / sign
+                :topic (t / traffic))
+            :op2 (d / direct-01
+                :ARG2 (p / park-01))))
+    :topic (s4 / street))

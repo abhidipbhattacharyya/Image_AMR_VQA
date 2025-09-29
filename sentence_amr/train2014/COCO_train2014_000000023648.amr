@@ -1,0 +1,37 @@
+# ::tok The damaged facade of an elderly building is marked by a number of pipes , a sign and an ornamental iron grate .
+# ::node	d	damage-01	1-2
+# ::node	f	facade	2-3
+# ::node	e	elderly	5-6
+# ::node	b	building	6-7
+# ::node	m	mark-02	8-9
+# ::node	n	number	11-12
+# ::node	p	pipe	13-14
+# ::node	s	sign	16-17
+# ::node	a	and	17-18
+# ::node	o	ornamental	19-20
+# ::node	i	iron	20-21
+# ::node	g	grate	21-22
+# ::root	m	mark-02
+# ::edge	facade	ARG1-of	damage-01	f	d	
+# ::edge	building	mod	elderly	b	e	
+# ::edge	facade	part-of	building	f	b	
+# ::edge	mark-02	ARG1	facade	m	f	
+# ::edge	pipe	quant	number	p	n	
+# ::edge	and	op2	sign	a	s	
+# ::edge	and	op1	pipe	a	p	
+# ::edge	mark-02	ARG0	and	m	a	
+# ::edge	grate	consist-of	iron	g	i	
+# ::edge	grate	mod	ornamental	g	o	
+# ::edge	and	op3	grate	a	g	
+(m / mark-02
+    :ARG0 (a / and
+        :op1 (p / pipe
+            :quant (n / number))
+        :op2 (s / sign)
+        :op3 (g / grate
+            :consist-of (i / iron)
+            :mod (o / ornamental)))
+    :ARG1 (f / facade
+        :ARG1-of (d / damage-01)
+        :part-of (b / building
+            :mod (e / elderly))))

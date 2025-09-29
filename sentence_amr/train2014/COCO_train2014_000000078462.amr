@@ -1,0 +1,42 @@
+# ::tok A wooden table topped with a vase next to a glass of water and a coffee cup .
+# ::node	w2	wood	1-2
+# ::node	t	table	2-3
+# ::node	t2	top-01	3-4
+# ::node	v	vase	6-7
+# ::node	n	next-to	7-8
+# ::node	v2	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	g	glass	10-11
+# ::node	w	water	12-13
+# ::node	a	and	13-14
+# ::node	a2	and	13-14
+# ::node	c	coffee	15-16
+# ::node	c2	cup	16-17
+# ::root	a	and
+# ::edge	table	consist-of	wood	t	w2	
+# ::edge	table	ARG1-of	top-01	t	t2	
+# ::edge	top-01	ARG2	vase	t2	v	
+# ::edge	table	location	next-to	t	n	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	volume-quantity	unit	glass	v2	g	
+# ::edge	water	quant	volume-quantity	w	v2	
+# ::edge	and	op1	water	a	w	
+# ::edge	and	op2	water	a2	w	
+# ::edge	next-to	op1	and	n	a2	
+# ::edge	cup	mod	coffee	c2	c	
+# ::edge	and	op1	cup	a2	c2	
+# ::edge	and	rel	table	a	t	
+(a / and
+    :op1 (w / water
+        :quant (v2 / volume-quantity
+            :quant 1
+            :unit (g / glass)))
+    :rel (t / table
+        :ARG1-of (t2 / top-01
+            :ARG2 (v / vase))
+        :consist-of (w2 / wood)
+        :location (n / next-to
+            :op1 (a2 / and
+                :op1 (c2 / cup
+                    :mod (c / coffee))
+                :op2 w))))

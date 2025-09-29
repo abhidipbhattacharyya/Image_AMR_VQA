@@ -1,0 +1,73 @@
+# ::tok Three way traffic signal , one way on W 13 St also adjoining Malcolm X Blvd and Lenox Av .
+# ::node	2	3	0-1
+# ::node	w	way	1-2
+# ::node	t	traffic	2-3
+# ::node	s	signal	3-4
+# ::node	a3	and	4-5
+# ::node	0	1	5-6
+# ::node	w2	way	6-7
+# ::node	n	name	8-9
+# ::node	8	W	8-9
+# ::node	1	13	9-10
+# ::node	r	road	10-11
+# ::node	7	St	10-11
+# ::node	a2	also	11-12
+# ::node	a	adjoin-01	12-13
+# ::node	n2	name	13-14
+# ::node	5	Malcolm	13-14
+# ::node	9	X	14-15
+# ::node	r2	road	15-16
+# ::node	3	Boulevard	15-16
+# ::node	a4	and	16-17
+# ::node	n3	name	17-18
+# ::node	4	Lenox	17-18
+# ::node	r3	road	18-19
+# ::node	6	Rd.	18-19
+# ::root	a3	and
+# ::edge	way	quant	3	w	2	
+# ::edge	signal	mod	traffic	s	t	
+# ::edge	signal	mod	way	s	w	
+# ::edge	and	op1	signal	a3	s	
+# ::edge	way	quant	1	w2	0	
+# ::edge	name	op1	W	n	8	
+# ::edge	name	op2	13	n	1	
+# ::edge	road	name	name	r	n	
+# ::edge	name	op3	St	n	7	
+# ::edge	adjoin-01	mod	also	a	a2	
+# ::edge	name	op1	Malcolm	n2	5	
+# ::edge	name	op2	X	n2	9	
+# ::edge	road	name	name	r2	n2	
+# ::edge	name	op3	Boulevard	n2	3	
+# ::edge	and	op1	road	a4	r2	
+# ::edge	adjoin-01	ARG2	and	a	a4	
+# ::edge	name	op1	Lenox	n3	4	
+# ::edge	road	name	name	r3	n3	
+# ::edge	and	op2	road	a4	r3	
+# ::edge	name	op2	Rd.	n3	6	
+# ::edge	and	rel	way	a3	w2	
+# ::edge	and	rel	road	a3	r	
+# ::edge	and	rel	adjoin-01	a3	a	
+(a3 / and
+    :op1 (s / signal
+        :mod (t / traffic)
+        :mod (w / way
+            :quant 3))
+    :rel (w2 / way
+        :quant 1)
+    :rel (r / road
+        :name (n / name
+            :op1 "W"
+            :op2 13
+            :op3 "St"))
+    :rel (a / adjoin-01
+        :ARG2 (a4 / and
+            :op1 (r2 / road
+                :name (n2 / name
+                    :op1 "Malcolm"
+                    :op2 "X"
+                    :op3 "Boulevard"))
+            :op2 (r3 / road
+                :name (n3 / name
+                    :op1 "Lenox"
+                    :op2 "Rd.")))
+        :mod (a2 / also)))

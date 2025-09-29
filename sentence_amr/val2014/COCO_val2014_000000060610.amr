@@ -1,0 +1,28 @@
+# ::tok A large bus carrying several passengers drives through a busy part of town
+# ::node	l	large	1-2
+# ::node	b	bus	2-3
+# ::node	c	carry-01	3-4
+# ::node	s	several	4-5
+# ::node	p2	passenger	5-6
+# ::node	d	drive-01	6-7
+# ::node	b2	busy-02	9-10
+# ::node	p	part	10-11
+# ::node	t	town	12-13
+# ::root	d	drive-01
+# ::edge	bus	mod	large	b	l	
+# ::edge	bus	ARG0-of	carry-01	b	c	
+# ::edge	passenger	quant	several	p2	s	
+# ::edge	carry-01	ARG1	passenger	c	p2	
+# ::edge	drive-01	ARG0	bus	d	b	
+# ::edge	part	ARG1-of	busy-02	p	b2	
+# ::edge	drive-01	path	part	d	p	
+# ::edge	part	part-of	town	p	t	
+(d / drive-01
+    :ARG0 (b / bus
+        :ARG0-of (c / carry-01
+            :ARG1 (p2 / passenger
+                :quant (s / several)))
+        :mod (l / large))
+    :path (p / part
+        :ARG1-of (b2 / busy-02)
+        :part-of (t / town)))

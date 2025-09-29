@@ -1,0 +1,38 @@
+# ::tok Purple and gold Metro train arriving or departing from station .
+# ::node	p	purple-02	0-1
+# ::node	a	and	1-2
+# ::node	g	gold	2-3
+# ::node	c	city	3-4
+# ::node	n	name	3-4
+# ::node	0	Metro	3-4
+# ::node	t	train	4-5
+# ::node	t2	train	4-5
+# ::node	a2	arrive-01	5-6
+# ::node	d	depart-01	7-8
+# ::node	s	station	9-10
+# ::root	a	and
+# ::edge	city	name	name	c	n	
+# ::edge	name	op1	Metro	n	0	
+# ::edge	train	mod	city	t	c	
+# ::edge	and	op1	train	a	t	
+# ::edge	train	ARG1-of	purple-02	t	p	
+# ::edge	train	mod	city	t2	c	
+# ::edge	train	mod	gold	t2	g	
+# ::edge	and	op2	train	a	t2	
+# ::edge	and	ARG1-of	arrive-01	a	a2	
+# ::edge	and	ARG0-of	depart-01	a	d	
+# ::edge	depart-01	ARG1	station	d	s	
+# ::edge	arrive-01	ARG4	station	a2	s	
+(a / and
+    :ARG0-of (d / depart-01
+        :ARG1 (s / station))
+    :ARG1-of (a2 / arrive-01
+        :ARG4 s)
+    :op1 (t / train
+        :ARG1-of (p / purple-02)
+        :mod (c / city
+            :name (n / name
+                :op1 "Metro")))
+    :op2 (t2 / train
+        :mod c
+        :mod (g / gold)))

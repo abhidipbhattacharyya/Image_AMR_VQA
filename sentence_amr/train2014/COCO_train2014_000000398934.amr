@@ -1,0 +1,48 @@
+# ::tok A man sitting at a table alone ; and a man and woman sitting on a bench not too far away
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	t	table	5-6
+# ::node	a	alone	6-7
+# ::node	a2	and	8-9
+# ::node	m2	man	10-11
+# ::node	a3	and	11-12
+# ::node	w	woman	12-13
+# ::node	s2	sit-01	13-14
+# ::node	b	bench	16-17
+# ::node	0	-	17-18
+# ::node	h	have-degree-91	18-19
+# ::node	t2	too	18-19
+# ::node	f	far	19-20
+# ::node	a4	away	20-21
+# ::root	a2	and
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	sit-01	mod	alone	s	a	
+# ::edge	and	op1	sit-01	a2	s	
+# ::edge	and	op1	man	a3	m2	
+# ::edge	and	op2	woman	a3	w	
+# ::edge	sit-01	ARG1	and	s2	a3	
+# ::edge	and	op2	sit-01	a2	s2	
+# ::edge	sit-01	ARG2	bench	s2	b	
+# ::edge	have-degree-91	polarity	-	h	0	
+# ::edge	have-degree-91	ARG1	bench	h	b	
+# ::edge	have-degree-91	ARG3	too	h	t2	
+# ::edge	far	ARG2-of	have-degree-91	f	h	
+# ::edge	away	op1	far	a4	f	
+# ::edge	bench	location	away	b	a4	
+(a2 / and
+    :op1 (s / sit-01
+        :ARG1 (m / man)
+        :ARG2 (t / table)
+        :mod (a / alone))
+    :op2 (s2 / sit-01
+        :ARG1 (a3 / and
+            :op1 (m2 / man)
+            :op2 (w / woman))
+        :ARG2 (b / bench
+            :location (a4 / away
+                :op1 (f / far
+                    :ARG2-of (h / have-degree-91
+                        :ARG1 b
+                        :ARG3 (t2 / too)
+                        :polarity -))))))

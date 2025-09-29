@@ -1,0 +1,30 @@
+# ::tok Two teams playing a soccer match with one attempting a goal .
+# ::node	1	2	0-1
+# ::node	t	team	1-2
+# ::node	t2	team	1-2
+# ::node	p	play-01	2-3
+# ::node	s	soccer	4-5
+# ::node	m	match-03	5-6
+# ::node	0	1	7-8
+# ::node	a	attempt-01	8-9
+# ::node	g	goal	10-11
+# ::root	p	play-01
+# ::edge	team	quant	2	t	1	
+# ::edge	play-01	ARG0	team	p	t	
+# ::edge	match-03	ARG3	soccer	m	s	
+# ::edge	play-01	ARG1	match-03	p	m	
+# ::edge	match-03	ARG2	team	m	t2	
+# ::edge	match-03	ARG0	team	m	t	
+# ::edge	team	quant	1	t2	0	
+# ::edge	team	ARG0-of	attempt-01	t2	a	
+# ::edge	attempt-01	ARG1	goal	a	g	
+(p / play-01
+    :ARG0 (t / team
+        :quant 2)
+    :ARG1 (m / match-03
+        :ARG0 t
+        :ARG2 (t2 / team
+            :quant 1
+            :ARG0-of (a / attempt-01
+                :ARG1 (g / goal)))
+        :ARG3 (s / soccer)))

@@ -1,0 +1,29 @@
+# ::tok Multiple stop signs standing and leaning on a construction site .
+# ::node	m	multiple	0-1
+# ::node	s4	stop-01	1-2
+# ::node	s	sign	2-3
+# ::node	s3	stand-01	3-4
+# ::node	a	and	4-5
+# ::node	l	lean-01	5-6
+# ::node	c	construct-01	8-9
+# ::node	s2	site	9-10
+# ::root	a	and
+# ::edge	sign	purpose	stop-01	s	s4	
+# ::edge	sign	quant	multiple	s	m	
+# ::edge	stand-01	ARG1	sign	s3	s	
+# ::edge	and	op1	stand-01	a	s3	
+# ::edge	and	op2	lean-01	a	l	
+# ::edge	lean-01	ARG1	sign	l	s	
+# ::edge	site	mod	construct-01	s2	c	
+# ::edge	lean-01	ARG2	site	l	s2	
+# ::edge	stand-01	ARG2	site	s3	s2	
+(a / and
+    :op1 (s3 / stand-01
+        :ARG1 (s / sign
+            :purpose (s4 / stop-01)
+            :quant (m / multiple))
+        :ARG2 (s2 / site
+            :mod (c / construct-01)))
+    :op2 (l / lean-01
+        :ARG1 s
+        :ARG2 s2))

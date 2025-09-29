@@ -1,0 +1,27 @@
+# ::tok an image of a traffic controller directing traffic in the middle of a busy intersection
+# ::node	i	image	1-2
+# ::node	t	traffic	4-5
+# ::node	p	person	5-6
+# ::node	c	control-01	5-6
+# ::node	d	direct-01	6-7
+# ::node	m	middle	10-11
+# ::node	b	busy-02	13-14
+# ::node	i2	intersect-01	14-15
+# ::root	i	image
+# ::edge	image	mod	person	i	p	
+# ::edge	person	ARG0-of	control-01	p	c	
+# ::edge	control-01	ARG1	traffic	c	t	
+# ::edge	person	ARG0-of	direct-01	p	d	
+# ::edge	direct-01	ARG1	traffic	d	t	
+# ::edge	direct-01	location	middle	d	m	
+# ::edge	intersect-01	ARG1-of	busy-02	i2	b	
+# ::edge	middle	part-of	intersect-01	m	i2	
+(i / image
+    :mod (p / person
+        :ARG0-of (c / control-01
+            :ARG1 (t / traffic))
+        :ARG0-of (d / direct-01
+            :ARG1 t
+            :location (m / middle
+                :part-of (i2 / intersect-01
+                    :ARG1-of (b / busy-02))))))

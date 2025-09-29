@@ -1,0 +1,21 @@
+# ::tok People standing on a platform awaiting public transportation .
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	p2	platform	4-5
+# ::node	a	await-01	5-6
+# ::node	p3	public-02	6-7
+# ::node	t	transport-01	7-8
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	stand-01	ARG2	platform	s	p2	
+# ::edge	person	ARG1-of	await-01	p	a	
+# ::edge	transport-01	ARG1-of	public-02	t	p3	
+# ::edge	await-01	ARG2	transport-01	a	t	
+# ::edge	transport-01	ARG1	person	t	p	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG1-of (a / await-01
+            :ARG2 (t / transport-01
+                :ARG1 p
+                :ARG1-of (p3 / public-02))))
+    :ARG2 (p2 / platform))

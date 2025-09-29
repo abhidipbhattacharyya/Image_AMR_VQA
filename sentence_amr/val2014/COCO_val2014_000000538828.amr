@@ -1,0 +1,54 @@
+# ::tok Two different images .
+# ::node	0	2	0-1
+# ::node	d	differ-02	1-2
+# ::node	i	image	2-3
+# ::root	i	image
+# ::edge	image	ARG1-of	differ-02	i	d	
+# ::edge	image	quant	2	i	0	
+(i / image
+    :quant 2
+    :ARG1-of (d / differ-02))
+
+
+# ::tok One with a street light and street sign and the other with a few different street signs .
+# ::node	o	one	0-1
+# ::node	h	have-03	1-2
+# ::node	s3	street	3-4
+# ::node	l	light	4-5
+# ::node	a	and	5-6
+# ::node	s	sign	7-8
+# ::node	a2	and	8-9
+# ::node	o2	other	10-11
+# ::node	h2	have-03	11-12
+# ::node	f	few	13-14
+# ::node	d	differ-02	14-15
+# ::node	s4	street	15-16
+# ::node	s2	sign	16-17
+# ::root	a2	and
+# ::edge	one	ARG0-of	have-03	o	h	
+# ::edge	light	mod	street	l	s3	
+# ::edge	and	op1	light	a	l	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	sign	a	s	
+# ::edge	sign	mod	street	s	s3	
+# ::edge	and	op1	one	a2	o	
+# ::edge	and	op2	other	a2	o2	
+# ::edge	other	ARG0-of	have-03	o2	h2	
+# ::edge	sign	mod	street	s2	s4	
+# ::edge	sign	ARG1-of	differ-02	s2	d	
+# ::edge	sign	quant	few	s2	f	
+# ::edge	have-03	ARG1	sign	h2	s2	
+(a2 / and
+    :op1 (o / one
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (l / light
+                    :mod (s3 / street))
+                :op2 (s / sign
+                    :mod s3))))
+    :op2 (o2 / other
+        :ARG0-of (h2 / have-03
+            :ARG1 (s2 / sign
+                :quant (f / few)
+                :ARG1-of (d / differ-02)
+                :mod (s4 / street)))))

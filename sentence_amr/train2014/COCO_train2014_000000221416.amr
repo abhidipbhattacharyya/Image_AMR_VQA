@@ -1,0 +1,39 @@
+# ::tok Little dog lays on the ground as owner and other dog stands near garden
+# ::node	l2	little	0-1
+# ::node	d	dog	1-2
+# ::node	l	lay-01	2-3
+# ::node	g2	ground	5-6
+# ::node	p	person	7-8
+# ::node	o2	own-01	7-8
+# ::node	a	and	8-9
+# ::node	o	other	9-10
+# ::node	d2	dog	10-11
+# ::node	s	stand-01	11-12
+# ::node	n	near-02	12-13
+# ::node	g	garden	13-14
+# ::root	l	lay-01
+# ::edge	dog	mod	little	d	l2	
+# ::edge	lay-01	ARG1	dog	l	d	
+# ::edge	lay-01	ARG2	ground	l	g2	
+# ::edge	person	ARG0-of	own-01	p	o2	
+# ::edge	own-01	ARG1	dog	o2	d	
+# ::edge	and	op1	person	a	p	
+# ::edge	dog	mod	other	d2	o	
+# ::edge	and	op2	dog	a	d2	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	lay-01	time	stand-01	l	s	
+# ::edge	stand-01	ARG1-of	near-02	s	n	
+# ::edge	near-02	ARG2	garden	n	g	
+(l / lay-01
+    :ARG1 (d / dog
+        :mod (l2 / little))
+    :ARG2 (g2 / ground)
+    :time (s / stand-01
+        :ARG1 (a / and
+            :op1 (p / person
+                :ARG0-of (o2 / own-01
+                    :ARG1 d))
+            :op2 (d2 / dog
+                :mod (o / other)))
+        :ARG1-of (n / near-02
+            :ARG2 (g / garden))))

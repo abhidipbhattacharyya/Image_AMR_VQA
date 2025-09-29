@@ -1,0 +1,51 @@
+# ::tok A man dressed in a tie and black overcoat , standing in an alley way and holding an umbrella behind his head , with no rain falling .
+# ::node	m	man	1-2
+# ::node	d	dress-01	2-3
+# ::node	t	tie	5-6
+# ::node	a2	and	6-7
+# ::node	b2	black-04	7-8
+# ::node	o	overcoat	8-9
+# ::node	s	stand-01	10-11
+# ::node	a	alley	13-14
+# ::node	w	way	14-15
+# ::node	h2	hold-01	16-17
+# ::node	u	umbrella	18-19
+# ::node	b	behind	19-20
+# ::node	h	head	21-22
+# ::node	0	-	24-25
+# ::node	r	rain-01	25-26
+# ::node	f	fall-01	26-27
+# ::root	m	man
+# ::edge	man	ARG1-of	dress-01	m	d	
+# ::edge	and	op1	tie	a2	t	
+# ::edge	dress-01	ARG2	and	d	a2	
+# ::edge	overcoat	ARG1-of	black-04	o	b2	
+# ::edge	and	op2	overcoat	a2	o	
+# ::edge	man	ARG0-of	stand-01	m	s	
+# ::edge	stand-01	ARG2	alley	s	a	
+# ::edge	alley	mod	way	a	w	
+# ::edge	man	ARG0-of	hold-01	m	h2	
+# ::edge	hold-01	ARG1	umbrella	h2	u	
+# ::edge	hold-01	location	behind	h2	b	
+# ::edge	behind	op1	head	b	h	
+# ::edge	man	part	head	m	h	
+# ::edge	fall-01	ARG1	rain-01	f	r	
+# ::edge	fall-01	polarity	-	f	0	
+# ::edge	man	time-of	fall-01	m	f	
+(m / man
+    :ARG0-of (s / stand-01
+        :ARG2 (a / alley
+            :mod (w / way)))
+    :ARG0-of (h2 / hold-01
+        :ARG1 (u / umbrella)
+        :location (b / behind
+            :op1 (h / head)))
+    :ARG1-of (d / dress-01
+        :ARG2 (a2 / and
+            :op1 (t / tie)
+            :op2 (o / overcoat
+                :ARG1-of (b2 / black-04))))
+    :part h
+    :time-of (f / fall-01
+        :ARG1 (r / rain-01)
+        :polarity -))

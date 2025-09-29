@@ -1,0 +1,37 @@
+# ::tok A small infant sitting on a bathroom counter while someone holds the infant an brushes their teeth .
+# ::node	s2	small	1-2
+# ::node	i	infant	2-3
+# ::node	s	sit-01	3-4
+# ::node	b	bathroom	6-7
+# ::node	c	counter	7-8
+# ::node	s3	someone	9-10
+# ::node	h	hold-01	10-11
+# ::node	a	and	13-14
+# ::node	b2	brush-01	14-15
+# ::node	t	tooth	16-17
+# ::root	s	sit-01
+# ::edge	infant	mod	small	i	s2	
+# ::edge	sit-01	ARG1	infant	s	i	
+# ::edge	counter	location	bathroom	c	b	
+# ::edge	sit-01	ARG2	counter	s	c	
+# ::edge	hold-01	ARG0	someone	h	s3	
+# ::edge	hold-01	ARG1	infant	h	i	
+# ::edge	and	op1	hold-01	a	h	
+# ::edge	sit-01	time	and	s	a	
+# ::edge	and	op2	brush-01	a	b2	
+# ::edge	brush-01	ARG0	someone	b2	s3	
+# ::edge	brush-01	ARG1	tooth	b2	t	
+# ::edge	someone	part	tooth	s3	t	
+(s / sit-01
+    :ARG1 (i / infant
+        :mod (s2 / small))
+    :ARG2 (c / counter
+        :location (b / bathroom))
+    :time (a / and
+        :op1 (h / hold-01
+            :ARG0 (s3 / someone
+                :part (t / tooth))
+            :ARG1 i)
+        :op2 (b2 / brush-01
+            :ARG0 s3
+            :ARG1 t)))

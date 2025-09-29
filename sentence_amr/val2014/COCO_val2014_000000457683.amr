@@ -1,0 +1,32 @@
+# ::tok The motorcycle has a compartment attached on the back to hold items for the rider .
+# ::node	m	motorcycle	1-2
+# ::node	h	have-03	2-3
+# ::node	c	compartment	4-5
+# ::node	a	attach-01	5-6
+# ::node	b	back	8-9
+# ::node	h2	hold-01	10-11
+# ::node	i	item	11-12
+# ::node	p	person	14-15
+# ::node	r	ride-01	14-15
+# ::root	h	have-03
+# ::edge	have-03	ARG0	motorcycle	h	m	
+# ::edge	have-03	ARG1	compartment	h	c	
+# ::edge	compartment	ARG1-of	attach-01	c	a	
+# ::edge	attach-01	ARG2	back	a	b	
+# ::edge	motorcycle	part	back	m	b	
+# ::edge	hold-01	ARG0	compartment	h2	c	
+# ::edge	attach-01	purpose	hold-01	a	h2	
+# ::edge	hold-01	ARG1	item	h2	i	
+# ::edge	hold-01	beneficiary	person	h2	p	
+# ::edge	person	ARG0-of	ride-01	p	r	
+(h / have-03
+    :ARG0 (m / motorcycle
+        :part (b / back))
+    :ARG1 (c / compartment
+        :ARG1-of (a / attach-01
+            :purpose (h2 / hold-01
+                :ARG0 c
+                :ARG1 (i / item)
+                :beneficiary (p / person
+                    :ARG0-of (r / ride-01)))
+            :ARG2 b)))

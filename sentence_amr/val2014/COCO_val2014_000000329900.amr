@@ -1,0 +1,22 @@
+# ::tok A double level bus on a street driving through a construction area .
+# ::node	d	double	1-2
+# ::node	l	level	2-3
+# ::node	b	bus	3-4
+# ::node	s	street	6-7
+# ::node	d2	drive-01	7-8
+# ::node	c	construct-01	10-11
+# ::node	a	area	11-12
+# ::root	b	bus
+# ::edge	level	mod	double	l	d	
+# ::edge	bus	mod	level	b	l	
+# ::edge	drive-01	location	street	d2	s	
+# ::edge	bus	ARG0-of	drive-01	b	d2	
+# ::edge	area	location-of	construct-01	a	c	
+# ::edge	drive-01	path	area	d2	a	
+(b / bus
+    :ARG0-of (d2 / drive-01
+        :location (s / street)
+        :path (a / area
+            :location-of (c / construct-01)))
+    :mod (l / level
+        :mod (d / double)))

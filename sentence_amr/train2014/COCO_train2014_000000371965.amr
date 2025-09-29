@@ -1,0 +1,28 @@
+# ::tok People standing with devices in their hands posing or in motion .
+# ::node	p	person	0-1
+# ::node	s	stand-01	1-2
+# ::node	d	device	3-4
+# ::node	h	hand	6-7
+# ::node	p2	pose-01	7-8
+# ::node	o	or	8-9
+# ::node	m	move-01	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	person	s	p	
+# ::edge	person	instrument	device	p	d	
+# ::edge	device	manner	hand	d	h	
+# ::edge	person	part	hand	p	h	
+# ::edge	person	ARG0-of	pose-01	p	p2	
+# ::edge	pose-01	mod	or	p2	o	
+# ::edge	or	op1	pose-01	o	p2	
+# ::edge	or	op2	move-01	o	m	
+# ::edge	move-01	ARG1	person	m	p	
+(s / stand-01
+    :ARG1 (p / person
+        :ARG0-of (p2 / pose-01
+            :mod (o / or
+                :op1 p2
+                :op2 (m / move-01
+                    :ARG1 p)))
+        :instrument (d / device
+            :manner (h / hand))
+        :part h))

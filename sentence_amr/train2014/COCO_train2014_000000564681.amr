@@ -1,0 +1,28 @@
+# ::tok A group of people in chef 's hats cutting vegetables on a wooden table .
+# ::node	g	group	1-2
+# ::node	p	person	3-4
+# ::node	w	wear-01	4-5
+# ::node	c	chef	5-6
+# ::node	h	hat	7-8
+# ::node	c2	cut-01	8-9
+# ::node	v	vegetable	9-10
+# ::node	w2	wood	12-13
+# ::node	t	table	13-14
+# ::root	c2	cut-01
+# ::edge	group	consist-of	person	g	p	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	hat	mod	chef	h	c	
+# ::edge	wear-01	ARG1	hat	w	h	
+# ::edge	cut-01	ARG0	group	c2	g	
+# ::edge	cut-01	ARG1	vegetable	c2	v	
+# ::edge	table	consist-of	wood	t	w2	
+# ::edge	cut-01	location	table	c2	t	
+(c2 / cut-01
+    :ARG0 (g / group
+        :consist-of (p / person
+            :ARG0-of (w / wear-01
+                :ARG1 (h / hat
+                    :mod (c / chef)))))
+    :ARG1 (v / vegetable)
+    :location (t / table
+        :consist-of (w2 / wood)))

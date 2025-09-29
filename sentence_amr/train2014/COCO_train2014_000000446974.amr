@@ -1,0 +1,22 @@
+# ::tok Picture taken while stopped at a red light on a rainy night .
+# ::node	p	picture-01	0-1
+# ::node	s	stop-01	3-4
+# ::node	r2	red-02	6-7
+# ::node	l	light	7-8
+# ::node	r	rain-01	10-11
+# ::node	d	date-entity	11-12
+# ::node	n	night	11-12
+# ::root	p	picture-01
+# ::edge	picture-01	time	stop-01	p	s	
+# ::edge	light	ARG1-of	red-02	l	r2	
+# ::edge	stop-01	ARG2	light	s	l	
+# ::edge	date-entity	time-of	rain-01	d	r	
+# ::edge	stop-01	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(p / picture-01
+    :time (s / stop-01
+        :ARG2 (l / light
+            :ARG1-of (r2 / red-02))
+        :time (d / date-entity
+            :dayperiod (n / night)
+            :time-of (r / rain-01))))

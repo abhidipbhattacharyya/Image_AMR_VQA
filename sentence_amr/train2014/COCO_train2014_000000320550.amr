@@ -1,0 +1,29 @@
+# ::tok A man is testing out how it feels to ride a Harley motorcycle .
+# ::node	m	man	1-2
+# ::node	t	test-01	3-4
+# ::node	t2	thing	5-6
+# ::node	f	feel-05	7-8
+# ::node	r	ride-01	9-10
+# ::node	n	name	11-12
+# ::node	0	Harley	11-12
+# ::node	m2	motorcycle	12-13
+# ::root	t	test-01
+# ::edge	test-01	ARG0	man	t	m	
+# ::edge	test-01	ARG1	thing	t	t2	
+# ::edge	thing	ARG2-of	feel-05	t2	f	
+# ::edge	feel-05	ARG1	ride-01	f	r	
+# ::edge	test-01	ARG1	ride-01	t	r	
+# ::edge	ride-01	ARG0	man	r	m	
+# ::edge	name	op1	Harley	n	0	
+# ::edge	motorcycle	name	name	m2	n	
+# ::edge	ride-01	ARG1	motorcycle	r	m2	
+(t / test-01
+    :ARG0 (m / man)
+    :ARG1 (t2 / thing
+        :ARG2-of (f / feel-05
+            :ARG1 (r / ride-01
+                :ARG0 m
+                :ARG1 (m2 / motorcycle
+                    :name (n / name
+                        :op1 "Harley")))))
+    :ARG1 r)

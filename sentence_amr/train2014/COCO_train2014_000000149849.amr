@@ -1,0 +1,27 @@
+# ::tok a street with some kind of small trailers to carry stuff on it
+# ::node	s3	street	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	some	3-4
+# ::node	k	kind	4-5
+# ::node	s	small	6-7
+# ::node	t	trailer	7-8
+# ::node	c	carry-01	9-10
+# ::node	s4	stuff	10-11
+# ::root	s3	street
+# ::edge	street	ARG0-of	have-03	s3	h	
+# ::edge	kind	mod	some	k	s2	
+# ::edge	trailer	mod	small	t	s	
+# ::edge	trailer	mod	kind	t	k	
+# ::edge	have-03	ARG1	trailer	h	t	
+# ::edge	carry-01	ARG0	trailer	c	t	
+# ::edge	street	purpose	carry-01	s3	c	
+# ::edge	carry-01	ARG1	stuff	c	s4	
+(s3 / street
+    :purpose (c / carry-01
+        :ARG0 (t / trailer
+            :mod (s / small)
+            :mod (k / kind
+                :mod (s2 / some)))
+        :ARG1 (s4 / stuff))
+    :ARG0-of (h / have-03
+        :ARG1 t))

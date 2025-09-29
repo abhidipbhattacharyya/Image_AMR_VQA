@@ -1,0 +1,31 @@
+# ::tok A hotel room with gray curtains and two beds with white sheets .
+# ::node	h2	hotel	1-2
+# ::node	r	room	2-3
+# ::node	h	have-03	3-4
+# ::node	g	gray-02	4-5
+# ::node	c	curtain	5-6
+# ::node	a	and	6-7
+# ::node	0	2	7-8
+# ::node	b	bed	8-9
+# ::node	w	white-03	10-11
+# ::node	s	sheet	11-12
+# ::root	r	room
+# ::edge	room	location	hotel	r	h2	
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	curtain	ARG1-of	gray-02	c	g	
+# ::edge	and	op1	curtain	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op2	bed	a	b	
+# ::edge	sheet	ARG1-of	white-03	s	w	
+# ::edge	bed	consist-of	sheet	b	s	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / curtain
+                :ARG1-of (g / gray-02))
+            :op2 (b / bed
+                :quant 2
+                :consist-of (s / sheet
+                    :ARG1-of (w / white-03)))))
+    :location (h2 / hotel))

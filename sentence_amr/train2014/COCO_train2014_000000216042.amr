@@ -1,0 +1,37 @@
+# ::tok You can still get tacos and burritos late at night from this truck .
+# ::node	y	you	0-1
+# ::node	p	possible-01	1-2
+# ::node	s	still	2-3
+# ::node	g	get-01	3-4
+# ::node	b	burger	4-5
+# ::node	a	and	5-6
+# ::node	e	enchilada	6-7
+# ::node	l	late	7-8
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::node	t	this	11-12
+# ::node	t2	truck	12-13
+# ::root	p	possible-01
+# ::edge	get-01	mod	still	g	s	
+# ::edge	possible-01	ARG1	get-01	p	g	
+# ::edge	get-01	ARG0	you	g	y	
+# ::edge	and	op1	burger	a	b	
+# ::edge	get-01	ARG1	and	g	a	
+# ::edge	and	op2	enchilada	a	e	
+# ::edge	get-01	time	late	g	l	
+# ::edge	late	op1	date-entity	l	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	truck	mod	this	t2	t	
+# ::edge	get-01	ARG2	truck	g	t2	
+(p / possible-01
+    :ARG1 (g / get-01
+        :ARG0 (y / you)
+        :ARG1 (a / and
+            :op1 (b / burger)
+            :op2 (e / enchilada))
+        :ARG2 (t2 / truck
+            :mod (t / this))
+        :mod (s / still)
+        :time (l / late
+            :op1 (d / date-entity
+                :dayperiod (n / night)))))

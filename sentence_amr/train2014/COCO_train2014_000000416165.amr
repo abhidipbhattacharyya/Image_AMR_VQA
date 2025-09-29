@@ -1,0 +1,40 @@
+# ::tok People walking on the street in front of a Christmas tree and decorations on the clock tower
+# ::node	p	person	0-1
+# ::node	w	walk-01	1-2
+# ::node	s	street	4-5
+# ::node	i	in-front-of	6-7
+# ::node	f	festival	9-10
+# ::node	n	name	9-10
+# ::node	0	Christmas	9-10
+# ::node	t3	tree	10-11
+# ::node	a	and	11-12
+# ::node	t	thing	12-13
+# ::node	d	decorate-01	12-13
+# ::node	c	clock	15-16
+# ::node	t2	tower	16-17
+# ::root	w	walk-01
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	walk-01	ARG2	street	w	s	
+# ::edge	street	location	in-front-of	s	i	
+# ::edge	festival	name	name	f	n	
+# ::edge	name	op1	Christmas	n	0	
+# ::edge	tree	mod	festival	t3	f	
+# ::edge	and	op1	tree	a	t3	
+# ::edge	in-front-of	op1	and	i	a	
+# ::edge	and	op2	thing	a	t	
+# ::edge	thing	ARG1-of	decorate-01	t	d	
+# ::edge	tower	mod	clock	t2	c	
+# ::edge	thing	location	tower	t	t2	
+(w / walk-01
+    :ARG0 (p / person)
+    :ARG2 (s / street
+        :location (i / in-front-of
+            :op1 (a / and
+                :op1 (t3 / tree
+                    :mod (f / festival
+                        :name (n / name
+                            :op1 "Christmas")))
+                :op2 (t / thing
+                    :ARG1-of (d / decorate-01)
+                    :location (t2 / tower
+                        :mod (c / clock)))))))

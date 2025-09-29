@@ -1,0 +1,52 @@
+# ::tok A male tennis player holding a tennis racket serving the yellow tennis ball from the perspective of standing behind a chain link fence .
+# ::node	m	male	1-2
+# ::node	t	tennis	2-3
+# ::node	p	person	3-4
+# ::node	p3	play-01	3-4
+# ::node	h	hold-01	4-5
+# ::node	r	racket	7-8
+# ::node	s	serve-02	8-9
+# ::node	y	yellow-02	10-11
+# ::node	b	ball	12-13
+# ::node	p2	perspective	15-16
+# ::node	s2	stand-01	17-18
+# ::node	b2	behind	18-19
+# ::node	c	chain	20-21
+# ::node	l	link-01	21-22
+# ::node	f	fence	22-23
+# ::root	p	person
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p3	
+# ::edge	play-01	ARG1	tennis	p3	t	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	racket	h	r	
+# ::edge	racket	mod	tennis	r	t	
+# ::edge	person	ARG0-of	serve-02	p	s	
+# ::edge	ball	ARG1-of	yellow-02	b	y	
+# ::edge	serve-02	ARG1	ball	s	b	
+# ::edge	ball	mod	tennis	b	t	
+# ::edge	serve-02	manner	perspective	s	p2	
+# ::edge	perspective	mod	stand-01	p2	s2	
+# ::edge	stand-01	ARG1	person	s2	p	
+# ::edge	stand-01	ARG2	behind	s2	b2	
+# ::edge	link-01	ARG2	chain	l	c	
+# ::edge	fence	ARG1-of	link-01	f	l	
+# ::edge	behind	op1	fence	b2	f	
+(p / person
+    :ARG0-of (p3 / play-01
+        :ARG1 (t / tennis))
+    :ARG0-of (h / hold-01
+        :ARG1 (r / racket
+            :mod t))
+    :ARG0-of (s / serve-02
+        :ARG1 (b / ball
+            :ARG1-of (y / yellow-02)
+            :mod t)
+        :manner (p2 / perspective
+            :mod (s2 / stand-01
+                :ARG1 p
+                :ARG2 (b2 / behind
+                    :op1 (f / fence
+                        :ARG1-of (l / link-01
+                            :ARG2 (c / chain)))))))
+    :mod (m / male))

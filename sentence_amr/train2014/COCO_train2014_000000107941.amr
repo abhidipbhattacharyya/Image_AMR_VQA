@@ -1,0 +1,37 @@
+# ::tok A very old looking , metal , sign indicating miles to other towns .
+# ::node	v	very	1-2
+# ::node	o	old	2-3
+# ::node	l	look-02	3-4
+# ::node	m	metal	5-6
+# ::node	s	sign	7-8
+# ::node	i	indicate-01	8-9
+# ::node	m3	multiple	9-10
+# ::node	d	distance-quantity	9-10
+# ::node	m2	mile	9-10
+# ::node	0	1	9-10
+# ::node	o2	other	11-12
+# ::node	t	town	12-13
+# ::root	s	sign
+# ::edge	old	degree	very	o	v	
+# ::edge	look-02	ARG1	old	l	o	
+# ::edge	sign	mod	metal	s	m	
+# ::edge	sign	ARG0-of	look-02	s	l	
+# ::edge	sign	ARG0-of	indicate-01	s	i	
+# ::edge	indicate-01	ARG1	multiple	i	m3	
+# ::edge	multiple	op1	distance-quantity	m3	d	
+# ::edge	distance-quantity	unit	mile	d	m2	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	town	mod	other	t	o2	
+# ::edge	multiple	direction	town	m3	t	
+(s / sign
+    :ARG0-of (l / look-02
+        :ARG1 (o / old
+            :degree (v / very)))
+    :ARG0-of (i / indicate-01
+        :ARG1 (m3 / multiple
+            :direction (t / town
+                :mod (o2 / other))
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (m2 / mile))))
+    :mod (m / metal))

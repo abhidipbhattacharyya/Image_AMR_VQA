@@ -1,0 +1,41 @@
+# ::tok Two hotdogs topped with mustard , one with relish and one with pickles .
+# ::node	2	2	0-1
+# ::node	h	hot-dog	1-2
+# ::node	h2	hot-dog	1-2
+# ::node	h3	hot-dog	1-2
+# ::node	t2	top-02	2-3
+# ::node	t	top-01	2-3
+# ::node	m	mustard	4-5
+# ::node	0	1	6-7
+# ::node	1	1	6-7
+# ::node	r	relish	8-9
+# ::node	a	and	9-10
+# ::node	p	pickle	12-13
+# ::root	a	and
+# ::edge	hot-dog	quant	2	h	2	
+# ::edge	top-02	ARG1	hot-dog	t2	h	
+# ::edge	hot-dog	ARG0-of	top-02	h	t2	
+# ::edge	top-01	ARG1	hot-dog	t	h3	
+# ::edge	hot-dog	ARG2-of	top-01	h	t	
+# ::edge	top-02	ARG2	mustard	t2	m	
+# ::edge	hot-dog	quant	1	h2	0	
+# ::edge	hot-dog	quant	1	h3	1	
+# ::edge	hot-dog	ARG2	relish	h2	r	
+# ::edge	and	op2	hot-dog	a	h3	
+# ::edge	and	op1	hot-dog	a	h	
+# ::edge	hot-dog	accompanier	pickle	h3	p	
+# ::edge	and	rel	hot-dog	a	h2	
+(a / and
+    :op1 (h / hot-dog
+        :quant 2
+        :ARG0-of (t2 / top-02
+            :ARG1 h
+            :ARG2 (m / mustard))
+        :ARG2-of (t / top-01
+            :ARG1 (h3 / hot-dog
+                :quant 1
+                :accompanier (p / pickle))))
+    :op2 h3
+    :rel (h2 / hot-dog
+        :quant 1
+        :ARG2 (r / relish)))

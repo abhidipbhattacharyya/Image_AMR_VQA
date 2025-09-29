@@ -1,0 +1,27 @@
+# ::tok a bike sitting next to a window with some pastries sitting behind it
+# ::node	b2	bike	1-2
+# ::node	s	sit-01	2-3
+# ::node	n	next-to	3-4
+# ::node	w	window	6-7
+# ::node	s3	some	8-9
+# ::node	p	pastries	9-10
+# ::node	s2	sit-01	10-11
+# ::node	b	behind	11-12
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	bike	s	b2	
+# ::edge	sit-01	ARG2	next-to	s	n	
+# ::edge	next-to	op1	window	n	w	
+# ::edge	pastries	quant	some	p	s3	
+# ::edge	sit-01	ARG1	pastries	s2	p	
+# ::edge	bike	location-of	sit-01	b2	s2	
+# ::edge	sit-01	ARG2	behind	s2	b	
+# ::edge	behind	op1	bike	b	b2	
+(s / sit-01
+    :ARG1 (b2 / bike
+        :location-of (s2 / sit-01
+            :ARG1 (p / pastries
+                :quant (s3 / some))
+            :ARG2 (b / behind
+                :op1 b2)))
+    :ARG2 (n / next-to
+        :op1 (w / window)))

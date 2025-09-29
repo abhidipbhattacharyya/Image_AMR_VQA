@@ -1,0 +1,27 @@
+# ::tok A train travels on an overpass making buildings below seem inferior .
+# ::node	t	train	1-2
+# ::node	t2	travel-01	2-3
+# ::node	o	overpass	5-6
+# ::node	m	make-02	6-7
+# ::node	b2	building	7-8
+# ::node	b	below	8-9
+# ::node	s	seem-01	9-10
+# ::node	i	inferior-01	10-11
+# ::root	t2	travel-01
+# ::edge	travel-01	ARG0	train	t2	t	
+# ::edge	travel-01	ARG1	overpass	t2	o	
+# ::edge	travel-01	ARG0-of	make-02	t2	m	
+# ::edge	building	location	below	b2	b	
+# ::edge	below	op1	overpass	b	o	
+# ::edge	make-02	ARG1	seem-01	m	s	
+# ::edge	seem-01	ARG1	inferior-01	s	i	
+# ::edge	inferior-01	ARG1	building	i	b2	
+(t2 / travel-01
+    :ARG0 (t / train)
+    :ARG0-of (m / make-02
+        :ARG1 (s / seem-01
+            :ARG1 (i / inferior-01
+                :ARG1 (b2 / building
+                    :location (b / below
+                        :op1 (o / overpass))))))
+    :ARG1 o)

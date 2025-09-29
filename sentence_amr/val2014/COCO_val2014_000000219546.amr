@@ -1,0 +1,48 @@
+# ::tok A feast of ham , vegetables , fruit and other dishes sit on a dining room table with a holiday table cloth on it .
+# ::node	f	feast	1-2
+# ::node	h	ham	3-4
+# ::node	a	and	4-5
+# ::node	v	vegetable	5-6
+# ::node	f2	fruit	7-8
+# ::node	o	other	9-10
+# ::node	d2	dish	10-11
+# ::node	s	sit-01	11-12
+# ::node	d	dine-01	14-15
+# ::node	r	room	15-16
+# ::node	t	table	16-17
+# ::node	h2	have-03	17-18
+# ::node	h3	holiday	19-20
+# ::node	t2	table	20-21
+# ::node	c	cloth	21-22
+# ::root	s	sit-01
+# ::edge	and	op1	ham	a	h	
+# ::edge	feast	consist-of	and	f	a	
+# ::edge	and	op2	vegetable	a	v	
+# ::edge	and	op3	fruit	a	f2	
+# ::edge	dish	mod	other	d2	o	
+# ::edge	and	op4	dish	a	d2	
+# ::edge	sit-01	ARG1	feast	s	f	
+# ::edge	room	mod	dine-01	r	d	
+# ::edge	table	location	room	t	r	
+# ::edge	sit-01	ARG2	table	s	t	
+# ::edge	table	ARG0-of	have-03	t	h2	
+# ::edge	cloth	mod	table	c	t2	
+# ::edge	cloth	mod	holiday	c	h3	
+# ::edge	have-03	ARG1	cloth	h2	c	
+# ::edge	cloth	location	table	c	t	
+(s / sit-01
+    :ARG1 (f / feast
+        :consist-of (a / and
+            :op1 (h / ham)
+            :op2 (v / vegetable)
+            :op3 (f2 / fruit)
+            :op4 (d2 / dish
+                :mod (o / other))))
+    :ARG2 (t / table
+        :ARG0-of (h2 / have-03
+            :ARG1 (c / cloth
+                :location t
+                :mod (t2 / table)
+                :mod (h3 / holiday)))
+        :location (r / room
+            :mod (d / dine-01))))

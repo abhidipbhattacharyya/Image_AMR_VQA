@@ -1,0 +1,33 @@
+# ::tok A sign that says Market Street on it with DY8 engraved on the bottom .
+# ::node	s2	sign	1-2
+# ::node	s	say-01	3-4
+# ::node	1	Market	4-5
+# ::node	m	market-sector	5-6
+# ::node	2	Street	5-6
+# ::node	n	name	9-10
+# ::node	s3	string-entity	9-10
+# ::node	0	DY8	9-10
+# ::node	e	engrave-01	10-11
+# ::node	b	bottom	13-14
+# ::root	s2	sign
+# ::edge	sign	ARG0-of	say-01	s2	s	
+# ::edge	say-01	ARG1	market-sector	s	m	
+# ::edge	name	op2	Street	n	2	
+# ::edge	market-sector	name	name	m	n	
+# ::edge	name	op1	Market	n	1	
+# ::edge	string-entity	value	DY8	s3	0	
+# ::edge	engrave-01	ARG2	string-entity	e	s3	
+# ::edge	sign	ARG1-of	engrave-01	s2	e	
+# ::edge	engrave-01	location	bottom	e	b	
+# ::edge	sign	part	bottom	s2	b	
+(s2 / sign
+    :ARG0-of (s / say-01
+        :ARG1 (m / market-sector
+            :name (n / name
+                :op1 "Market"
+                :op2 "Street")))
+    :ARG1-of (e / engrave-01
+        :ARG2 (s3 / string-entity
+            :value "DY8")
+        :location (b / bottom))
+    :part b)

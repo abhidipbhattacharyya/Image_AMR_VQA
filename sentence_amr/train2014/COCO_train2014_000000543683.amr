@@ -1,0 +1,48 @@
+# ::tok An Air Canada Airbus with the Canadian Red Leaf Symbol on its tail .
+# ::node	c	company	1-2
+# ::node	0	Air	1-2
+# ::node	2	Canada	2-3
+# ::node	a	aircraft-type	3-4
+# ::node	n	name	3-4
+# ::node	n2	name	3-4
+# ::node	1	Airbus	3-4
+# ::node	c2	country	6-7
+# ::node	n3	name	6-7
+# ::node	3	Canada	6-7
+# ::node	e2	Red	7-8
+# ::node	f	flag	8-9
+# ::node	e	Leaf	8-9
+# ::node	s	symbolize-01	9-10
+# ::node	t	tail	12-13
+# ::root	a	aircraft-type
+# ::edge	aircraft-type	mod	company	a	c	
+# ::edge	aircraft-type	name	name	a	n	
+# ::edge	name	op2	Canada	n2	2	
+# ::edge	name	op1	Air	n2	0	
+# ::edge	company	name	name	c	n2	
+# ::edge	name	op1	Airbus	n	1	
+# ::edge	country	name	name	c2	n3	
+# ::edge	name	op1	Canada	n3	3	
+# ::edge	flag	mod	country	f	c2	
+# ::edge	symbolize-01	ARG1	flag	s	f	
+# ::edge	aircraft-type	ARG2-of	symbolize-01	a	s	
+# ::edge	aircraft-type	location	tail	a	t	
+# ::edge	aircraft-type	part	tail	a	t	
+# ::edge	aircraft-type	rel	Red	a	e2	
+# ::edge	aircraft-type	rel	Leaf	a	e	
+(a / aircraft-type
+    :name (n / name
+        :op1 "Airbus")
+    :ARG2-of (s / symbolize-01
+        :ARG1 (f / flag
+            :mod (c2 / country
+                :name (n3 / name
+                    :op1 "Canada"))))
+    :location (t / tail)
+    :mod (c / company
+        :name (n2 / name
+            :op1 "Air"
+            :op2 "Canada"))
+    :part t
+    :rel (e2 / Red)
+    :rel (e / Leaf))

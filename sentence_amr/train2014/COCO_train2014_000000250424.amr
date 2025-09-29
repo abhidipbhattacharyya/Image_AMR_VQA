@@ -1,0 +1,32 @@
+# ::tok The dogs owner holds his pup so that a picture could be taken with his cake .
+# ::node	d	dog	1-2
+# ::node	p	person	2-3
+# ::node	o	own-01	2-3
+# ::node	h	hold-01	3-4
+# ::node	p4	pup	5-6
+# ::node	p2	picture	9-10
+# ::node	p3	possible-01	10-11
+# ::node	t	take-01	12-13
+# ::node	c	cake	15-16
+# ::root	h	hold-01
+# ::edge	person	ARG0-of	own-01	p	o	
+# ::edge	own-01	ARG1	dog	o	d	
+# ::edge	hold-01	ARG0	person	h	p	
+# ::edge	hold-01	ARG1	pup	h	p4	
+# ::edge	pup	poss	person	p4	p	
+# ::edge	hold-01	purpose	possible-01	h	p3	
+# ::edge	possible-01	ARG1	take-01	p3	t	
+# ::edge	take-01	ARG1	picture	t	p2	
+# ::edge	take-01	accompanier	cake	t	c	
+# ::edge	cake	poss	person	c	p	
+(h / hold-01
+    :purpose (p3 / possible-01
+        :ARG1 (t / take-01
+            :ARG1 (p2 / picture)
+            :accompanier (c / cake
+                :poss (p / person
+                    :ARG0-of (o / own-01
+                        :ARG1 (d / dog))))))
+    :ARG0 p
+    :ARG1 (p4 / pup
+        :poss p))

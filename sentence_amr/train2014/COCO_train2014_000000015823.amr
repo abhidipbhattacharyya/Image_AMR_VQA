@@ -1,0 +1,35 @@
+# ::tok A cow in a pasture where the grass looks greener on the other side of the fence
+# ::node	c	cow	1-2
+# ::node	p	pasture	4-5
+# ::node	g	grass	7-8
+# ::node	l	look-02	8-9
+# ::node	h	have-degree-91	9-10
+# ::node	g2	green-02	9-10
+# ::node	m	more	9-10
+# ::node	o	other	12-13
+# ::node	s	side	13-14
+# ::node	f	fence	16-17
+# ::root	c	cow
+# ::edge	cow	location	pasture	c	p	
+# ::edge	look-02	ARG0	grass	l	g	
+# ::edge	pasture	location-of	look-02	p	l	
+# ::edge	look-02	ARG1	have-degree-91	l	h	
+# ::edge	have-degree-91	ARG1	grass	h	g	
+# ::edge	have-degree-91	ARG2	green-02	h	g2	
+# ::edge	green-02	ARG1	grass	g2	g	
+# ::edge	have-degree-91	ARG3	more	h	m	
+# ::edge	side	mod	other	s	o	
+# ::edge	look-02	location	side	l	s	
+# ::edge	side	mod	fence	s	f	
+(c / cow
+    :location (p / pasture
+        :location-of (l / look-02
+            :ARG0 (g / grass)
+            :ARG1 (h / have-degree-91
+                :ARG1 g
+                :ARG2 (g2 / green-02
+                    :ARG1 g)
+                :ARG3 (m / more))
+            :location (s / side
+                :mod (o / other)
+                :mod (f / fence)))))

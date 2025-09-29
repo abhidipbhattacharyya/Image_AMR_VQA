@@ -1,0 +1,31 @@
+# ::tok Pepperoni pizza is sitting on a white plate near a cup of coffee .
+# ::node	p	peep	0-1
+# ::node	p2	pizza	1-2
+# ::node	s	sit-01	3-4
+# ::node	w	white-03	6-7
+# ::node	p3	plate	7-8
+# ::node	n	near-02	8-9
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c2	cup	10-11
+# ::node	c	coffee	12-13
+# ::root	s	sit-01
+# ::edge	pizza	mod	peep	p2	p	
+# ::edge	sit-01	ARG1	pizza	s	p2	
+# ::edge	plate	ARG1-of	white-03	p3	w	
+# ::edge	sit-01	ARG2	plate	s	p3	
+# ::edge	plate	ARG1-of	near-02	p3	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	near-02	ARG2	coffee	n	c	
+(s / sit-01
+    :ARG1 (p2 / pizza
+        :mod (p / peep))
+    :ARG2 (p3 / plate
+        :ARG1-of (w / white-03)
+        :ARG1-of (n / near-02
+            :ARG2 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup))))))

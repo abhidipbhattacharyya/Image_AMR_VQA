@@ -1,0 +1,39 @@
+# ::tok A beach with waves coming in , and two people in wet suits and carrying surfboards , from the back , walking to the water .
+# ::node	b2	beach	1-2
+# ::node	w3	wave	3-4
+# ::node	c2	come-01	4-5
+# ::node	0	2	8-9
+# ::node	p	person	9-10
+# ::node	w4	wet-01	11-12
+# ::node	s	suit	12-13
+# ::node	c	carry-01	14-15
+# ::node	s2	surf-01	15-16
+# ::node	b	back	19-20
+# ::node	w	walk-01	21-22
+# ::node	w2	water	24-25
+# ::root	b2	beach
+# ::edge	come-01	ARG1	wave	c2	w3	
+# ::edge	beach	location-of	come-01	b2	c2	
+# ::edge	person	quant	2	p	0	
+# ::edge	suit	ARG1-of	wet-01	s	w4	
+# ::edge	person	mod	suit	p	s	
+# ::edge	person	ARG0-of	carry-01	p	c	
+# ::edge	carry-01	ARG1	surf-01	c	s2	
+# ::edge	surf-01	ARG0	person	s2	p	
+# ::edge	person	source	back	p	b	
+# ::edge	walk-01	ARG0	person	w	p	
+# ::edge	beach	location-of	walk-01	b2	w	
+# ::edge	walk-01	ARG2	water	w	w2	
+(b2 / beach
+    :location-of (c2 / come-01
+        :ARG1 (w3 / wave))
+    :location-of (w / walk-01
+        :ARG0 (p / person
+            :quant 2
+            :ARG0-of (c / carry-01
+                :ARG1 (s2 / surf-01
+                    :ARG0 p))
+            :mod (s / suit
+                :ARG1-of (w4 / wet-01))
+            :source (b / back))
+        :ARG2 (w2 / water)))

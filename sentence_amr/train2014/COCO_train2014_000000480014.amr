@@ -1,0 +1,28 @@
+# ::tok A city street at night , with parked motorcycles and a sunset in the distance .
+# ::node	c	city	1-2
+# ::node	s	street	2-3
+# ::node	d	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	p	park-01	7-8
+# ::node	m	motorcycle	8-9
+# ::node	a	and	9-10
+# ::node	s2	sunset	11-12
+# ::node	d2	distance	14-15
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	street	time	date-entity	s	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+# ::edge	motorcycle	ARG1-of	park-01	m	p	
+# ::edge	and	op1	motorcycle	a	m	
+# ::edge	street	location-of	and	s	a	
+# ::edge	and	op2	sunset	a	s2	
+# ::edge	sunset	location	distance	s2	d2	
+(s / street
+    :location-of (a / and
+        :op1 (m / motorcycle
+            :ARG1-of (p / park-01))
+        :op2 (s2 / sunset
+            :location (d2 / distance)))
+    :mod (c / city)
+    :time (d / date-entity
+        :dayperiod (n / night)))

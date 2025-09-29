@@ -1,0 +1,48 @@
+# ::tok A blue and red plane sits on the tarmac surrounded by luggage carts as a white and blue plane sits in the background .
+# ::node	b2	blue	1-2
+# ::node	a	and	2-3
+# ::node	r	red-02	3-4
+# ::node	p	plane	4-5
+# ::node	p2	plane	4-5
+# ::node	s	sit-01	5-6
+# ::node	t	tarmac	8-9
+# ::node	s3	surround-01	9-10
+# ::node	l	luggage	11-12
+# ::node	c	cart	12-13
+# ::node	w	white-03	15-16
+# ::node	a2	and	16-17
+# ::node	p3	plane	18-19
+# ::node	s2	sit-01	19-20
+# ::node	b	background	22-23
+# ::root	s	sit-01
+# ::edge	and	op1	plane	a	p	
+# ::edge	plane	mod	blue	p	b2	
+# ::edge	plane	ARG1-of	red-02	p2	r	
+# ::edge	and	op2	plane	a	p2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	sit-01	ARG2	tarmac	s	t	
+# ::edge	and	ARG2-of	surround-01	a	s3	
+# ::edge	cart	purpose	luggage	c	l	
+# ::edge	surround-01	ARG1	cart	s3	c	
+# ::edge	and	op1	surround-01	a2	s3	
+# ::edge	and	op2	plane	a2	p3	
+# ::edge	plane	ARG1-of	white-03	p3	w	
+# ::edge	sit-01	ARG1	and	s2	a2	
+# ::edge	sit-01	time	sit-01	s	s2	
+# ::edge	sit-01	ARG2	background	s2	b	
+(s / sit-01
+    :ARG1 (a / and
+        :ARG2-of (s3 / surround-01
+            :ARG1 (c / cart
+                :purpose (l / luggage)))
+        :op1 (p / plane
+            :mod (b2 / blue))
+        :op2 (p2 / plane
+            :ARG1-of (r / red-02)))
+    :ARG2 (t / tarmac)
+    :time (s2 / sit-01
+        :ARG1 (a2 / and
+            :op1 s3
+            :op2 (p3 / plane
+                :ARG1-of (w / white-03)))
+        :ARG2 (b / background)))

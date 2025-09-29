@@ -1,0 +1,24 @@
+# ::tok A horse is standing on a grassy ledge with mountains behind it .
+# ::node	h2	horse	1-2
+# ::node	s	stand-01	3-4
+# ::node	g	grass	6-7
+# ::node	l	ledge	7-8
+# ::node	h	have-03	8-9
+# ::node	m	mountain	9-10
+# ::node	b	behind	10-11
+# ::root	s	stand-01
+# ::edge	stand-01	ARG1	horse	s	h2	
+# ::edge	ledge	consist-of	grass	l	g	
+# ::edge	stand-01	ARG2	ledge	s	l	
+# ::edge	ledge	ARG0-of	have-03	l	h	
+# ::edge	have-03	ARG1	mountain	h	m	
+# ::edge	mountain	location	behind	m	b	
+# ::edge	behind	op1	horse	b	h2	
+(s / stand-01
+    :ARG1 (h2 / horse)
+    :ARG2 (l / ledge
+        :ARG0-of (h / have-03
+            :ARG1 (m / mountain
+                :location (b / behind
+                    :op1 h2)))
+        :consist-of (g / grass)))

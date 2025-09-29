@@ -1,0 +1,24 @@
+# ::tok A passenger bus stuck in deep snow with snow on the roof .
+# ::node	p	passenger	1-2
+# ::node	b	bus	2-3
+# ::node	s3	stick-01	3-4
+# ::node	d	deep-02	5-6
+# ::node	s	snow	6-7
+# ::node	s2	snow	8-9
+# ::node	r	roof	11-12
+# ::root	s3	stick-01
+# ::edge	bus	mod	passenger	b	p	
+# ::edge	stick-01	ARG1	bus	s3	b	
+# ::edge	snow	ARG1-of	deep-02	s	d	
+# ::edge	stick-01	ARG2	snow	s3	s	
+# ::edge	snow	prep-with	snow	s	s2	
+# ::edge	snow	location	roof	s2	r	
+# ::edge	bus	part	roof	b	r	
+(s3 / stick-01
+    :ARG1 (b / bus
+        :mod (p / passenger)
+        :part (r / roof))
+    :ARG2 (s / snow
+        :ARG1-of (d / deep-02)
+        :prep-with (s2 / snow
+            :location r)))

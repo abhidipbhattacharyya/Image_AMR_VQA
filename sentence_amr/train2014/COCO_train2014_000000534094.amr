@@ -1,0 +1,28 @@
+# ::tok a gas station gas pump with stickers and information written on it
+# ::node	g	gas	1-2
+# ::node	s	station	2-3
+# ::node	g2	gas	3-4
+# ::node	p	pump	4-5
+# ::node	t	thing	6-7
+# ::node	s2	stick-01	6-7
+# ::node	a	and	7-8
+# ::node	i	information	8-9
+# ::node	w	write-01	9-10
+# ::root	p	pump
+# ::edge	station	mod	gas	s	g	
+# ::edge	pump	mod	gas	p	g2	
+# ::edge	pump	mod	station	p	s	
+# ::edge	thing	ARG1-of	stick-01	t	s2	
+# ::edge	and	op1	thing	a	t	
+# ::edge	pump	part	and	p	a	
+# ::edge	and	op2	information	a	i	
+# ::edge	information	ARG1-of	write-01	i	w	
+(p / pump
+    :mod (g2 / gas)
+    :mod (s / station
+        :mod (g / gas))
+    :part (a / and
+        :op1 (t / thing
+            :ARG1-of (s2 / stick-01))
+        :op2 (i / information
+            :ARG1-of (w / write-01))))

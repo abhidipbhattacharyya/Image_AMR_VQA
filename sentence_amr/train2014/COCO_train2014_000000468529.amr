@@ -1,0 +1,28 @@
+# ::tok Assortment of glass items on shelves and hanging from ceiling displayed in shop .
+# ::node	d	department	0-1
+# ::node	g	glass	2-3
+# ::node	i	item	3-4
+# ::node	s	shelf	5-6
+# ::node	a	and	6-7
+# ::node	h	hang-01	7-8
+# ::node	c	ceiling	9-10
+# ::node	d2	display-01	10-11
+# ::node	s2	shop	12-13
+# ::root	d	department
+# ::edge	item	consist-of	glass	i	g	
+# ::edge	department	consist-of	item	d	i	
+# ::edge	and	op1	shelf	a	s	
+# ::edge	item	location	and	i	a	
+# ::edge	and	op2	hang-01	a	h	
+# ::edge	hang-01	ARG2	ceiling	h	c	
+# ::edge	ceiling	ARG1-of	display-01	c	d2	
+# ::edge	display-01	location	shop	d2	s2	
+(d / department
+    :consist-of (i / item
+        :consist-of (g / glass)
+        :location (a / and
+            :op1 (s / shelf)
+            :op2 (h / hang-01
+                :ARG2 (c / ceiling
+                    :ARG1-of (d2 / display-01
+                        :location (s2 / shop)))))))

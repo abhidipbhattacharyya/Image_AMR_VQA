@@ -1,0 +1,50 @@
+# ::tok A man relaxes in his beach chair , beneath his umbrella , on the sandy beach , watching people swim as a white boat passes by on a sunny day .
+# ::node	m	man	1-2
+# ::node	r	relax-01	2-3
+# ::node	b	beach	5-6
+# ::node	c	chair	6-7
+# ::node	b2	beneath	8-9
+# ::node	u	umbrella	10-11
+# ::node	s	sandy	14-15
+# ::node	w	watch-01	17-18
+# ::node	p2	person	18-19
+# ::node	s3	swim-01	19-20
+# ::node	w2	white-03	22-23
+# ::node	b3	boat	23-24
+# ::node	p	pass-03	24-25
+# ::node	s2	sunny	28-29
+# ::node	d	day	29-30
+# ::root	r	relax-01
+# ::edge	relax-01	ARG1	man	r	m	
+# ::edge	chair	mod	beach	c	b	
+# ::edge	relax-01	location	chair	r	c	
+# ::edge	chair	poss	man	c	m	
+# ::edge	chair	location	beneath	c	b2	
+# ::edge	beneath	op1	umbrella	b2	u	
+# ::edge	umbrella	poss	man	u	m	
+# ::edge	beach	mod	sandy	b	s	
+# ::edge	man	ARG0-of	watch-01	m	w	
+# ::edge	swim-01	ARG0	person	s3	p2	
+# ::edge	watch-01	ARG1	swim-01	w	s3	
+# ::edge	boat	ARG1-of	white-03	b3	w2	
+# ::edge	pass-03	ARG1	boat	p	b3	
+# ::edge	watch-01	time	pass-03	w	p	
+# ::edge	day	mod	sunny	d	s2	
+# ::edge	pass-03	time	day	p	d	
+(r / relax-01
+    :ARG1 (m / man
+        :ARG0-of (w / watch-01
+            :ARG1 (s3 / swim-01
+                :ARG0 (p2 / person))
+            :time (p / pass-03
+                :ARG1 (b3 / boat
+                    :ARG1-of (w2 / white-03))
+                :time (d / day
+                    :mod (s2 / sunny)))))
+    :location (c / chair
+        :location (b2 / beneath
+            :op1 (u / umbrella
+                :poss m))
+        :mod (b / beach
+            :mod (s / sandy))
+        :poss m))

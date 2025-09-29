@@ -1,0 +1,33 @@
+# ::tok A small electronic device sitting on a white counter with wires hanging out of it .
+# ::node	s2	small	1-2
+# ::node	e	electronic	2-3
+# ::node	d	device	3-4
+# ::node	s	sit-01	4-5
+# ::node	w	white-03	7-8
+# ::node	c	counter	8-9
+# ::node	h2	have-03	9-10
+# ::node	w2	wire	10-11
+# ::node	h	hang-01	11-12
+# ::node	o	out-06	12-13
+# ::root	s	sit-01
+# ::edge	device	mod	electronic	d	e	
+# ::edge	device	mod	small	d	s2	
+# ::edge	sit-01	ARG1	device	s	d	
+# ::edge	counter	ARG1-of	white-03	c	w	
+# ::edge	sit-01	ARG2	counter	s	c	
+# ::edge	device	ARG0-of	have-03	d	h2	
+# ::edge	have-03	ARG1	wire	h2	w2	
+# ::edge	wire	ARG1-of	hang-01	w2	h	
+# ::edge	wire	ARG1-of	out-06	w2	o	
+# ::edge	out-06	ARG2	device	o	d	
+(s / sit-01
+    :ARG1 (d / device
+        :ARG0-of (h2 / have-03
+            :ARG1 (w2 / wire
+                :ARG1-of (h / hang-01)
+                :ARG1-of (o / out-06
+                    :ARG2 d)))
+        :mod (e / electronic)
+        :mod (s2 / small))
+    :ARG2 (c / counter
+        :ARG1-of (w / white-03)))

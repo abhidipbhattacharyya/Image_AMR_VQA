@@ -1,0 +1,27 @@
+# ::tok An empty bus marked " out of service " parked in a downtown area .
+# ::node	e	empty-02	1-2
+# ::node	b	bus	2-3
+# ::node	m	mark-02	3-4
+# ::node	o	out-06	5-6
+# ::node	s	serve-01	7-8
+# ::node	p	park-01	9-10
+# ::node	d	downtown	12-13
+# ::node	a	area	13-14
+# ::root	p	park-01
+# ::edge	bus	ARG1-of	empty-02	b	e	
+# ::edge	bus	ARG2-of	mark-02	b	m	
+# ::edge	mark-02	ARG1	out-06	m	o	
+# ::edge	out-06	ARG1	bus	o	b	
+# ::edge	out-06	ARG2	serve-01	o	s	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	area	mod	downtown	a	d	
+# ::edge	park-01	location	area	p	a	
+(p / park-01
+    :ARG1 (b / bus
+        :ARG1-of (e / empty-02)
+        :ARG2-of (m / mark-02
+            :ARG1 (o / out-06
+                :ARG1 b
+                :ARG2 (s / serve-01))))
+    :location (a / area
+        :mod (d / downtown)))

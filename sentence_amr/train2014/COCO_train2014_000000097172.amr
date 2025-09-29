@@ -1,0 +1,19 @@
+# ::tok Microwaves outside with smoke coming out of them at night .
+# ::node	m	microwave	0-1
+# ::node	o	outside	1-2
+# ::node	s	smoke	3-4
+# ::node	c	come-out-09	4-5
+# ::node	d	date-entity	9-10
+# ::node	n	night	9-10
+# ::root	m	microwave
+# ::edge	microwave	location	outside	m	o	
+# ::edge	come-out-09	ARG1	smoke	c	s	
+# ::edge	microwave	location-of	come-out-09	m	c	
+# ::edge	microwave	time	date-entity	m	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(m / microwave
+    :location (o / outside)
+    :location-of (c / come-out-09
+        :ARG1 (s / smoke))
+    :time (d / date-entity
+        :dayperiod (n / night)))

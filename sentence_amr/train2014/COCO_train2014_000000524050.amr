@@ -1,0 +1,31 @@
+# ::tok Rear view mirror on car or bike showing street signs and building .
+# ::node	v	view-01	1-2
+# ::node	m	mirror	2-3
+# ::node	c	car	4-5
+# ::node	o	or	5-6
+# ::node	b	bike	6-7
+# ::node	s	show-01	7-8
+# ::node	s3	street	8-9
+# ::node	s2	sign	9-10
+# ::node	a	and	10-11
+# ::node	b2	building	11-12
+# ::root	s	show-01
+# ::edge	mirror	ARG1-of	view-01	m	v	
+# ::edge	or	op1	car	o	c	
+# ::edge	mirror	location	or	m	o	
+# ::edge	or	op2	bike	o	b	
+# ::edge	show-01	ARG0	mirror	s	m	
+# ::edge	sign	mod	street	s2	s3	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	show-01	ARG1	and	s	a	
+# ::edge	and	op2	building	a	b2	
+(s / show-01
+    :ARG0 (m / mirror
+        :ARG1-of (v / view-01)
+        :location (o / or
+            :op1 (c / car)
+            :op2 (b / bike)))
+    :ARG1 (a / and
+        :op1 (s2 / sign
+            :mod (s3 / street))
+        :op2 (b2 / building)))

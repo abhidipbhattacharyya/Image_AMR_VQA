@@ -1,0 +1,35 @@
+# ::tok Dodger 's pitcher on the pitching mound getting ready to release the ball .
+# ::node	t	team	0-1
+# ::node	n	name	0-1
+# ::node	0	Dodger	0-1
+# ::node	p	person	2-3
+# ::node	t2	throw-01	2-3
+# ::node	p2	pitch-04	5-6
+# ::node	m	mound	6-7
+# ::node	r	ready-01	8-9
+# ::node	r2	release-01	10-11
+# ::node	b	ball	12-13
+# ::root	r	ready-01
+# ::edge	team	name	name	t	n	
+# ::edge	name	op1	Dodger	n	0	
+# ::edge	person	poss	team	p	t	
+# ::edge	person	ARG0-of	throw-01	p	t2	
+# ::edge	mound	mod	pitch-04	m	p2	
+# ::edge	person	location	mound	p	m	
+# ::edge	ready-01	ARG1	person	r	p	
+# ::edge	ready-01	ARG0	person	r	p	
+# ::edge	ready-01	ARG2	release-01	r	r2	
+# ::edge	release-01	ARG0	person	r2	p	
+# ::edge	release-01	ARG1	ball	r2	b	
+(r / ready-01
+    :ARG0 (p / person
+        :ARG0-of (t2 / throw-01)
+        :location (m / mound
+            :mod (p2 / pitch-04))
+        :poss (t / team
+            :name (n / name
+                :op1 "Dodger")))
+    :ARG1 p
+    :ARG2 (r2 / release-01
+        :ARG0 p
+        :ARG1 (b / ball)))

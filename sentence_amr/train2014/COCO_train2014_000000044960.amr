@@ -1,0 +1,25 @@
+# ::tok City street with double decker red buses moving at a rapid pace .
+# ::node	c	city	0-1
+# ::node	s	street	1-2
+# ::node	d	deck	4-5
+# ::node	r2	red-02	5-6
+# ::node	b	bus	6-7
+# ::node	m	move-01	7-8
+# ::node	r	rapid	10-11
+# ::node	p	pace-01	11-12
+# ::root	s	street
+# ::edge	street	mod	city	s	c	
+# ::edge	bus	ARG1-of	red-02	b	r2	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	move-01	ARG1	bus	m	b	
+# ::edge	street	location-of	move-01	s	m	
+# ::edge	pace-01	ARG2	rapid	p	r	
+# ::edge	move-01	ARG1-of	pace-01	m	p	
+(s / street
+    :location-of (m / move-01
+        :ARG1 (b / bus
+            :ARG1-of (r2 / red-02)
+            :mod (d / deck))
+        :ARG1-of (p / pace-01
+            :ARG2 (r / rapid)))
+    :mod (c / city))

@@ -1,0 +1,28 @@
+# ::tok A tall building with four double decker buses driving along a parking lot .
+# ::node	t	tall	1-2
+# ::node	b	building	2-3
+# ::node	0	4	4-5
+# ::node	d	deck	6-7
+# ::node	b2	bus	7-8
+# ::node	d2	drive-01	8-9
+# ::node	a	along	9-10
+# ::node	p	park-01	11-12
+# ::node	l	lot	12-13
+# ::root	b	building
+# ::edge	building	mod	tall	b	t	
+# ::edge	bus	mod	deck	b2	d	
+# ::edge	bus	quant	4	b2	0	
+# ::edge	drive-01	ARG0	bus	d2	b2	
+# ::edge	building	location-of	drive-01	b	d2	
+# ::edge	drive-01	path	along	d2	a	
+# ::edge	lot	purpose	park-01	l	p	
+# ::edge	along	op1	lot	a	l	
+(b / building
+    :location-of (d2 / drive-01
+        :ARG0 (b2 / bus
+            :quant 4
+            :mod (d / deck))
+        :path (a / along
+            :op1 (l / lot
+                :purpose (p / park-01))))
+    :mod (t / tall))

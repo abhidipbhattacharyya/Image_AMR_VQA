@@ -1,0 +1,43 @@
+# ::tok Male tennis player with tennis racquet in forehand position and tennis ball inches away
+# ::node	m	male	0-1
+# ::node	t	tennis	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	r	racquet	5-6
+# ::node	f	forehand	7-8
+# ::node	p3	position	8-9
+# ::node	t2	tennis	10-11
+# ::node	b	ball	11-12
+# ::node	m2	multiple	12-13
+# ::node	d	distance-quantity	12-13
+# ::node	i	inch	12-13
+# ::node	0	1	12-13
+# ::node	a	away	13-14
+# ::root	p	person
+# ::edge	person	mod	male	p	m	
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	tennis	p2	t	
+# ::edge	tennis	instrument	racquet	t	r	
+# ::edge	position	mod	forehand	p3	f	
+# ::edge	racquet	location	position	r	p3	
+# ::edge	ball	mod	tennis	b	t2	
+# ::edge	person	poss	ball	p	b	
+# ::edge	multiple	op1	distance-quantity	m2	d	
+# ::edge	distance-quantity	unit	inch	d	i	
+# ::edge	distance-quantity	quant	1	d	0	
+# ::edge	away	op1	multiple	a	m2	
+# ::edge	person	location	away	p	a	
+(p / person
+    :ARG0-of (p2 / play-01
+        :ARG1 (t / tennis
+            :instrument (r / racquet
+                :location (p3 / position
+                    :mod (f / forehand)))))
+    :location (a / away
+        :op1 (m2 / multiple
+            :op1 (d / distance-quantity
+                :quant 1
+                :unit (i / inch))))
+    :mod (m / male)
+    :poss (b / ball
+        :mod (t2 / tennis)))

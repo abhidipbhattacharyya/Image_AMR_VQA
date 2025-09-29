@@ -1,0 +1,28 @@
+# ::tok In the dark of night , the STOP sign is suspended on the post upside down .
+# ::node	d	dark-02	2-3
+# ::node	d2	date-entity	4-5
+# ::node	n	night	4-5
+# ::node	s2	stop-01	7-8
+# ::node	s	sign	8-9
+# ::node	s3	suspend-01	10-11
+# ::node	p	post	13-14
+# ::node	u	upside	14-15
+# ::node	d3	down-03	15-16
+# ::root	s3	suspend-01
+# ::edge	dark-02	ARG1	date-entity	d	d2	
+# ::edge	date-entity	dayperiod	night	d2	n	
+# ::edge	sign	purpose	stop-01	s	s2	
+# ::edge	suspend-01	ARG1	sign	s3	s	
+# ::edge	suspend-01	time	dark-02	s3	d	
+# ::edge	suspend-01	location	post	s3	p	
+# ::edge	suspend-01	direction	upside	s3	u	
+# ::edge	upside	op1	down-03	u	d3	
+(s3 / suspend-01
+    :ARG1 (s / sign
+        :purpose (s2 / stop-01))
+    :direction (u / upside
+        :op1 (d3 / down-03))
+    :location (p / post)
+    :time (d / dark-02
+        :ARG1 (d2 / date-entity
+            :dayperiod (n / night))))

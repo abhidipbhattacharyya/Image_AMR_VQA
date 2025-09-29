@@ -1,0 +1,36 @@
+# ::tok Young woman on electric display device or mirror , brushing teeth with electric toothbrush .
+# ::node	y	young	0-1
+# ::node	w	woman	1-2
+# ::node	e	electric	3-4
+# ::node	d2	display-01	4-5
+# ::node	d	device	5-6
+# ::node	o	or	6-7
+# ::node	m	mirror	7-8
+# ::node	b	brush-01	9-10
+# ::node	t	tooth	10-11
+# ::node	e2	electric	12-13
+# ::node	t2	toothbrush	13-14
+# ::root	b	brush-01
+# ::edge	woman	mod	young	w	y	
+# ::edge	device	ARG1-of	display-01	d	d2	
+# ::edge	device	mod	electric	d	e	
+# ::edge	or	op1	device	o	d	
+# ::edge	woman	location	or	w	o	
+# ::edge	or	op2	mirror	o	m	
+# ::edge	display-01	ARG1	mirror	d2	m	
+# ::edge	brush-01	ARG0	woman	b	w	
+# ::edge	brush-01	ARG1	tooth	b	t	
+# ::edge	toothbrush	mod	electric	t2	e2	
+# ::edge	brush-01	instrument	toothbrush	b	t2	
+(b / brush-01
+    :ARG0 (w / woman
+        :location (o / or
+            :op1 (d / device
+                :ARG1-of (d2 / display-01
+                    :ARG1 (m / mirror))
+                :mod (e / electric))
+            :op2 m)
+        :mod (y / young))
+    :ARG1 (t / tooth)
+    :instrument (t2 / toothbrush
+        :mod (e2 / electric)))

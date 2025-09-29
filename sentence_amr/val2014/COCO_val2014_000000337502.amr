@@ -1,0 +1,33 @@
+# ::tok A small pizza with quite a few toppings waits to be baked
+# ::node	s	small	1-2
+# ::node	p	pizza	2-3
+# ::node	h	have-03	3-4
+# ::node	q	quite	4-5
+# ::node	m	many	6-7
+# ::node	c	continent	7-8
+# ::node	n	name	7-8
+# ::node	h2	health	7-8
+# ::node	w	wait-01	8-9
+# ::node	b	bake-01	11-12
+# ::root	w	wait-01
+# ::edge	pizza	mod	small	p	s	
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	many	degree	quite	m	q	
+# ::edge	continent	quant	many	c	m	
+# ::edge	have-03	ARG1	continent	h	c	
+# ::edge	continent	name	name	c	n	
+# ::edge	have-03	ARG1	health	h	h2	
+# ::edge	wait-01	ARG1	pizza	w	p	
+# ::edge	wait-01	ARG2	bake-01	w	b	
+# ::edge	bake-01	ARG1	pizza	b	p	
+(w / wait-01
+    :ARG1 (p / pizza
+        :ARG0-of (h / have-03
+            :ARG1 (c / continent
+                :name (n / name)
+                :quant (m / many
+                    :degree (q / quite)))
+            :ARG1 (h2 / health))
+        :mod (s / small))
+    :ARG2 (b / bake-01
+        :ARG1 p))

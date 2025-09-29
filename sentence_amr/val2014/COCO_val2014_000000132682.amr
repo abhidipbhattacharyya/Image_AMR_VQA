@@ -1,0 +1,40 @@
+# ::tok There are two toilette paper rolls on the wall in the bathroom , next to a commode with the lid open and seat down .
+# ::node	0	2	2-3
+# ::node	t	toilette	3-4
+# ::node	p	paper	4-5
+# ::node	r	roll	5-6
+# ::node	b2	be-located-at-91	6-7
+# ::node	w	wall	8-9
+# ::node	b	bathroom	11-12
+# ::node	n	next-to	13-14
+# ::node	c	commode	16-17
+# ::node	l	lid	19-20
+# ::node	o	open-01	20-21
+# ::node	s	seat	22-23
+# ::node	d	down-01	23-24
+# ::root	b2	be-located-at-91
+# ::edge	paper	mod	toilette	p	t	
+# ::edge	roll	consist-of	paper	r	p	
+# ::edge	roll	quant	2	r	0	
+# ::edge	be-located-at-91	ARG1	roll	b2	r	
+# ::edge	be-located-at-91	ARG2	wall	b2	w	
+# ::edge	wall	location	bathroom	w	b	
+# ::edge	roll	location	next-to	r	n	
+# ::edge	next-to	op1	commode	n	c	
+# ::edge	commode	part	lid	c	l	
+# ::edge	lid	ARG1-of	open-01	l	o	
+# ::edge	commode	part	seat	c	s	
+# ::edge	seat	ARG1-of	down-01	s	d	
+(b2 / be-located-at-91
+    :ARG1 (r / roll
+        :quant 2
+        :consist-of (p / paper
+            :mod (t / toilette))
+        :location (n / next-to
+            :op1 (c / commode
+                :part (l / lid
+                    :ARG1-of (o / open-01))
+                :part (s / seat
+                    :ARG1-of (d / down-01)))))
+    :ARG2 (w / wall
+        :location (b / bathroom)))

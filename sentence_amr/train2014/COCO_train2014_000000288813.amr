@@ -1,0 +1,37 @@
+# ::tok A large group of individuals , some sitting on rocks , and others standing can be seen .
+# ::node	l	large	1-2
+# ::node	g	group	2-3
+# ::node	i2	individual	4-5
+# ::node	i	include-91	6-7
+# ::node	s3	some	6-7
+# ::node	s2	sit-01	7-8
+# ::node	r	rock	9-10
+# ::node	a	and	11-12
+# ::node	o	other	12-13
+# ::node	s4	stand-01	13-14
+# ::node	p	possible-01	14-15
+# ::node	s	see-01	16-17
+# ::root	p	possible-01
+# ::edge	group	mod	large	g	l	
+# ::edge	group	consist-of	individual	g	i2	
+# ::edge	individual	ARG2-of	include-91	i2	i	
+# ::edge	sit-01	ARG1	some	s2	s3	
+# ::edge	sit-01	ARG2	rock	s2	r	
+# ::edge	and	op1	sit-01	a	s2	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	stand-01	ARG1	other	s4	o	
+# ::edge	and	op2	stand-01	a	s4	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG1	group	s	g	
+(p / possible-01
+    :ARG1 (s / see-01
+        :ARG1 (g / group
+            :consist-of (i2 / individual
+                :ARG2-of (i / include-91
+                    :ARG1 (a / and
+                        :op1 (s2 / sit-01
+                            :ARG1 (s3 / some)
+                            :ARG2 (r / rock))
+                        :op2 (s4 / stand-01
+                            :ARG1 (o / other)))))
+            :mod (l / large))))

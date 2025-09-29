@@ -1,0 +1,24 @@
+# ::tok An airplane is on the tarmac , with a boarding staircase pushed against it .
+# ::node	a2	airplane	1-2
+# ::node	b	be-located-at-91	3-4
+# ::node	t	tarmac	5-6
+# ::node	b2	board-01	9-10
+# ::node	s	staircase	10-11
+# ::node	p	push-01	11-12
+# ::node	a	against	12-13
+# ::root	b	be-located-at-91
+# ::edge	be-located-at-91	ARG1	airplane	b	a2	
+# ::edge	be-located-at-91	ARG2	tarmac	b	t	
+# ::edge	staircase	purpose	board-01	s	b2	
+# ::edge	push-01	ARG1	staircase	p	s	
+# ::edge	be-located-at-91	location-of	push-01	b	p	
+# ::edge	push-01	ARG2	against	p	a	
+# ::edge	against	op1	airplane	a	a2	
+(b / be-located-at-91
+    :ARG1 (a2 / airplane)
+    :ARG2 (t / tarmac)
+    :location-of (p / push-01
+        :ARG1 (s / staircase
+            :purpose (b2 / board-01))
+        :ARG2 (a / against
+            :op1 a2)))

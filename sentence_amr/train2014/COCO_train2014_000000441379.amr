@@ -1,0 +1,29 @@
+# ::tok Goats in colored uniforms racing and hurdling around a goat track .
+# ::node	g	goat	0-1
+# ::node	c	color-01	2-3
+# ::node	u	uniform-01	3-4
+# ::node	r	race-02	4-5
+# ::node	a	and	5-6
+# ::node	j	jump-03	6-7
+# ::node	a2	around	7-8
+# ::node	t	track	10-11
+# ::root	a	and
+# ::edge	uniform-01	ARG1-of	color-01	u	c	
+# ::edge	goat	ARG1-of	uniform-01	g	u	
+# ::edge	race-02	ARG0	goat	r	g	
+# ::edge	and	op1	race-02	a	r	
+# ::edge	and	op2	jump-03	a	j	
+# ::edge	jump-03	ARG0	goat	j	g	
+# ::edge	jump-03	path	around	j	a2	
+# ::edge	around	op1	track	a2	t	
+# ::edge	track	mod	goat	t	g	
+(a / and
+    :op1 (r / race-02
+        :ARG0 (g / goat
+            :ARG1-of (u / uniform-01
+                :ARG1-of (c / color-01))))
+    :op2 (j / jump-03
+        :ARG0 g
+        :path (a2 / around
+            :op1 (t / track
+                :mod g))))

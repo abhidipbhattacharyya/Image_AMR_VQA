@@ -1,0 +1,51 @@
+# ::tok An old woman and a middle aged woman sitting on a boat , The middle aged woman is holding a stuffed panda bear .
+# ::node	o	old	1-2
+# ::node	w	woman	2-3
+# ::node	a	and	3-4
+# ::node	m	middle	5-6
+# ::node	w2	woman	7-8
+# ::node	s	sit-01	8-9
+# ::node	b2	boat	11-12
+# ::node	m3	multi-sentence	12-13
+# ::node	m2	middle	14-15
+# ::node	t	temporal-quantity	15-16
+# ::node	y	year	15-16
+# ::node	w3	woman	16-17
+# ::node	h	hold-01	18-19
+# ::node	s2	stuff-01	20-21
+# ::node	p	panda	21-22
+# ::node	b	bear	22-23
+# ::root	m3	multi-sentence
+# ::edge	woman	mod	old	w	o	
+# ::edge	and	op1	woman	a	w	
+# ::edge	and	op2	woman	a	w2	
+# ::edge	woman	age	middle	w2	m	
+# ::edge	and	ARG1-of	sit-01	a	s	
+# ::edge	sit-01	ARG2	boat	s	b2	
+# ::edge	multi-sentence	snt1	and	m3	a	
+# ::edge	temporal-quantity	mod	middle	t	m2	
+# ::edge	woman	age	temporal-quantity	w2	t	
+# ::edge	temporal-quantity	unit	year	t	y	
+# ::edge	woman	age	temporal-quantity	w3	t	
+# ::edge	hold-01	ARG0	woman	h	w3	
+# ::edge	multi-sentence	snt2	hold-01	m3	h	
+# ::edge	bear	mod	panda	b	p	
+# ::edge	bear	ARG1-of	stuff-01	b	s2	
+# ::edge	hold-01	ARG1	bear	h	b	
+(m3 / multi-sentence
+    :snt1 (a / and
+        :ARG1-of (s / sit-01
+            :ARG2 (b2 / boat))
+        :op1 (w / woman
+            :mod (o / old))
+        :op2 (w2 / woman
+            :age (m / middle)
+            :age (t / temporal-quantity
+                :mod (m2 / middle)
+                :unit (y / year))))
+    :snt2 (h / hold-01
+        :ARG0 (w3 / woman
+            :age t)
+        :ARG1 (b / bear
+            :ARG1-of (s2 / stuff-01)
+            :mod (p / panda))))

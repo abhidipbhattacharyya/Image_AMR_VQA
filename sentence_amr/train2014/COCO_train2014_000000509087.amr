@@ -1,0 +1,30 @@
+# ::tok Dirt bike rider taking a curve high and to the outside .
+# ::node	a	air	0-1
+# ::node	b	bike	1-2
+# ::node	p	person	2-3
+# ::node	r	ride-01	2-3
+# ::node	t	take-01	3-4
+# ::node	c	curve-01	5-6
+# ::node	h	high-02	6-7
+# ::node	a2	and	7-8
+# ::node	o	outside	10-11
+# ::root	t	take-01
+# ::edge	bike	mod	air	b	a	
+# ::edge	person	ARG0-of	ride-01	p	r	
+# ::edge	ride-01	ARG1	bike	r	b	
+# ::edge	take-01	ARG0	person	t	p	
+# ::edge	take-01	ARG1	curve-01	t	c	
+# ::edge	high-02	ARG1	curve-01	h	c	
+# ::edge	and	op1	high-02	a2	h	
+# ::edge	curve-01	direction	and	c	a2	
+# ::edge	and	op2	outside	a2	o	
+(t / take-01
+    :ARG0 (p / person
+        :ARG0-of (r / ride-01
+            :ARG1 (b / bike
+                :mod (a / air))))
+    :ARG1 (c / curve-01
+        :direction (a2 / and
+            :op1 (h / high-02
+                :ARG1 c)
+            :op2 (o / outside))))

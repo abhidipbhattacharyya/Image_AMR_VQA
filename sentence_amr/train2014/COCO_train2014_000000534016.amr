@@ -1,0 +1,34 @@
+# ::tok The scale is sitting there so you can put the money in it to park there car .
+# ::node	s	scale	1-2
+# ::node	s2	sit-01	3-4
+# ::node	t	there	4-5
+# ::node	y	you	6-7
+# ::node	p2	possible-01	7-8
+# ::node	p3	put-01	8-9
+# ::node	m	money	10-11
+# ::node	p	park-01	14-15
+# ::node	c	car	16-17
+# ::root	s2	sit-01
+# ::edge	sit-01	ARG1	scale	s2	s	
+# ::edge	sit-01	ARG2	there	s2	t	
+# ::edge	sit-01	purpose	possible-01	s2	p2	
+# ::edge	possible-01	ARG1	put-01	p2	p3	
+# ::edge	put-01	ARG0	you	p3	y	
+# ::edge	put-01	ARG2	scale	p3	s	
+# ::edge	put-01	ARG1	money	p3	m	
+# ::edge	put-01	purpose	park-01	p3	p	
+# ::edge	park-01	ARG0	you	p	y	
+# ::edge	park-01	ARG1	car	p	c	
+# ::edge	car	poss	you	c	y	
+(s2 / sit-01
+    :purpose (p2 / possible-01
+        :ARG1 (p3 / put-01
+            :purpose (p / park-01
+                :ARG0 (y / you)
+                :ARG1 (c / car
+                    :poss y))
+            :ARG0 y
+            :ARG1 (m / money)
+            :ARG2 (s / scale)))
+    :ARG1 s
+    :ARG2 (t / there))

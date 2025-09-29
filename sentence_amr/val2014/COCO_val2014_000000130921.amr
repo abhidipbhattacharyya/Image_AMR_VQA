@@ -1,0 +1,29 @@
+# ::tok A cat staring at it 's mirrored reflection in a mirror on top of a sink in a bathroom .
+# ::node	c	cat	1-2
+# ::node	s2	stare-01	2-3
+# ::node	r	reflect-01	6-7
+# ::node	r2	reflect-01	7-8
+# ::node	m	mirror	10-11
+# ::node	t	top	12-13
+# ::node	s	sink	15-16
+# ::node	b	bathroom	18-19
+# ::root	s2	stare-01
+# ::edge	stare-01	ARG0	cat	s2	c	
+# ::edge	reflect-01	ARG1-of	reflect-01	r2	r	
+# ::edge	stare-01	ARG1	reflect-01	s2	r2	
+# ::edge	reflect-01	ARG1	cat	r2	c	
+# ::edge	reflect-01	ARG2	mirror	r2	m	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	mirror	location	top	m	t	
+# ::edge	top	part-of	sink	t	s	
+# ::edge	sink	location	bathroom	s	b	
+(s2 / stare-01
+    :ARG0 (c / cat)
+    :ARG1 (r2 / reflect-01
+        :ARG1 c
+        :ARG1-of (r / reflect-01
+            :ARG2 (m / mirror
+                :location (t / top
+                    :part-of (s / sink
+                        :location (b / bathroom)))))
+        :ARG2 m))

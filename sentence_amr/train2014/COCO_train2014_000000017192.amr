@@ -1,0 +1,39 @@
+# ::tok Outside sign for King 's Cross Station with double decker bus parked next to it
+# ::node	o	outside	0-1
+# ::node	s	sign	1-2
+# ::node	c	company	3-4
+# ::node	n	name	3-4
+# ::node	2	King	3-4
+# ::node	1	Cross	5-6
+# ::node	s2	station	6-7
+# ::node	0	2	8-9
+# ::node	d	deck	9-10
+# ::node	b	bus	10-11
+# ::node	p	park-01	11-12
+# ::node	n2	next-to	12-13
+# ::root	s	sign
+# ::edge	sign	location	outside	s	o	
+# ::edge	company	name	name	c	n	
+# ::edge	name	op1	King	n	2	
+# ::edge	name	op2	Cross	n	1	
+# ::edge	station	mod	company	s2	c	
+# ::edge	sign	topic	station	s	s2	
+# ::edge	deck	quant	2	d	0	
+# ::edge	bus	mod	deck	b	d	
+# ::edge	park-01	ARG1	bus	p	b	
+# ::edge	sign	location-of	park-01	s	p	
+# ::edge	park-01	ARG2	next-to	p	n2	
+# ::edge	next-to	op1	station	n2	s2	
+(s / sign
+    :location (o / outside)
+    :location-of (p / park-01
+        :ARG1 (b / bus
+            :mod (d / deck
+                :quant 2))
+        :ARG2 (n2 / next-to
+            :op1 (s2 / station
+                :mod (c / company
+                    :name (n / name
+                        :op1 "King"
+                        :op2 "Cross")))))
+    :topic s2)

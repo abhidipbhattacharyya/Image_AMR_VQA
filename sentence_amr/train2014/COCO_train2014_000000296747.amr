@@ -1,0 +1,31 @@
+# ::tok A woman reaching out to pet an elephant on the forehead while its trainer watches .
+# ::node	w2	woman	1-2
+# ::node	r	reach-03	2-3
+# ::node	p2	pet	5-6
+# ::node	e	elephant	7-8
+# ::node	f	forehead	10-11
+# ::node	p	person	13-14
+# ::node	t	train-01	13-14
+# ::node	w	watch-01	14-15
+# ::root	r	reach-03
+# ::edge	reach-03	ARG0	woman	r	w2	
+# ::edge	reach-03	ARG2	pet	r	p2	
+# ::edge	pet	ARG0	woman	p2	w2	
+# ::edge	pet	ARG1	elephant	p2	e	
+# ::edge	elephant	part	forehead	e	f	
+# ::edge	pet	location	forehead	p2	f	
+# ::edge	person	ARG0-of	train-01	p	t	
+# ::edge	train-01	ARG1	elephant	t	e	
+# ::edge	watch-01	ARG0	person	w	p	
+# ::edge	reach-03	time	watch-01	r	w	
+(r / reach-03
+    :ARG0 (w2 / woman)
+    :ARG2 (p2 / pet
+        :ARG0 w2
+        :ARG1 (e / elephant
+            :part (f / forehead))
+        :location f)
+    :time (w / watch-01
+        :ARG0 (p / person
+            :ARG0-of (t / train-01
+                :ARG1 e))))

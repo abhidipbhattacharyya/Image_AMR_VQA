@@ -1,0 +1,39 @@
+# ::tok A bag 's contents are laid out and include toiletries , electronics , and reading material .
+# ::node	b	bag	1-2
+# ::node	t	thing	3-4
+# ::node	c	contain-01	3-4
+# ::node	l	lay-01	5-6
+# ::node	o	out	6-7
+# ::node	a	and	7-8
+# ::node	i	include-01	8-9
+# ::node	t2	tooth	9-10
+# ::node	a2	and	10-11
+# ::node	e	electronic	11-12
+# ::node	r	read-01	14-15
+# ::node	m	material	15-16
+# ::root	a	and
+# ::edge	thing	ARG0-of	contain-01	t	c	
+# ::edge	contain-01	ARG1	bag	c	b	
+# ::edge	lay-01	ARG1	thing	l	t	
+# ::edge	lay-01	ARG2	out	l	o	
+# ::edge	and	op1	lay-01	a	l	
+# ::edge	and	op2	include-01	a	i	
+# ::edge	include-01	ARG2	thing	i	t	
+# ::edge	and	op1	tooth	a2	t2	
+# ::edge	include-01	ARG1	and	i	a2	
+# ::edge	and	op2	electronic	a2	e	
+# ::edge	material	purpose	read-01	m	r	
+# ::edge	and	op3	material	a2	m	
+(a / and
+    :op1 (l / lay-01
+        :ARG1 (t / thing
+            :ARG0-of (c / contain-01
+                :ARG1 (b / bag)))
+        :ARG2 (o / out))
+    :op2 (i / include-01
+        :ARG1 (a2 / and
+            :op1 (t2 / tooth)
+            :op2 (e / electronic)
+            :op3 (m / material
+                :purpose (r / read-01)))
+        :ARG2 t))

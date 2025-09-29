@@ -1,0 +1,31 @@
+# ::tok A room with many things taped to the wall and a twin bed in the corner .
+# ::node	r	room	1-2
+# ::node	h	have-03	2-3
+# ::node	m	many	3-4
+# ::node	t2	thing	4-5
+# ::node	t	tape-01	5-6
+# ::node	w	wall	8-9
+# ::node	a	and	9-10
+# ::node	t3	twin	11-12
+# ::node	b	bed	12-13
+# ::node	c	corner	15-16
+# ::root	r	room
+# ::edge	room	ARG0-of	have-03	r	h	
+# ::edge	thing	quant	many	t2	m	
+# ::edge	thing	ARG1-of	tape-01	t2	t	
+# ::edge	tape-01	ARG2	wall	t	w	
+# ::edge	and	op1	thing	a	t2	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	bed	mod	twin	b	t3	
+# ::edge	and	op2	bed	a	b	
+# ::edge	bed	location	corner	b	c	
+(r / room
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (t2 / thing
+                :quant (m / many)
+                :ARG1-of (t / tape-01
+                    :ARG2 (w / wall)))
+            :op2 (b / bed
+                :location (c / corner)
+                :mod (t3 / twin)))))

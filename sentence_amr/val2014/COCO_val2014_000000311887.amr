@@ -1,0 +1,56 @@
+# ::tok This is a white bathroom that has a clear glass shower door , a toilet , toilet paper , and a white towel slung over the tub wall .
+# ::node	t	this	0-1
+# ::node	w2	white-03	3-4
+# ::node	b	bathroom	4-5
+# ::node	h	have-03	6-7
+# ::node	c	clear-08	8-9
+# ::node	g	glass	9-10
+# ::node	s	shower	10-11
+# ::node	d	door	11-12
+# ::node	t2	toilet	16-17
+# ::node	p	paper	17-18
+# ::node	a	and	19-20
+# ::node	w3	white-03	21-22
+# ::node	t3	towel	22-23
+# ::node	s2	sling-01	23-24
+# ::node	o	over	24-25
+# ::node	t4	tub	26-27
+# ::node	w	wall	27-28
+# ::root	b	bathroom
+# ::edge	bathroom	ARG1-of	white-03	b	w2	
+# ::edge	bathroom	domain	this	b	t	
+# ::edge	bathroom	ARG0-of	have-03	b	h	
+# ::edge	glass	ARG1-of	clear-08	g	c	
+# ::edge	door	part-of	shower	d	s	
+# ::edge	door	consist-of	glass	d	g	
+# ::edge	toilet	part	door	t2	d	
+# ::edge	paper	mod	toilet	p	t2	
+# ::edge	and	op3	paper	a	p	
+# ::edge	and	op2	paper	a	p	
+# ::edge	and	op1	door	a	d	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	towel	ARG1-of	white-03	t3	w3	
+# ::edge	and	op4	towel	a	t3	
+# ::edge	towel	ARG1-of	sling-01	t3	s2	
+# ::edge	sling-01	ARG4	over	s2	o	
+# ::edge	wall	mod	tub	w	t4	
+# ::edge	over	op1	wall	o	w	
+(b / bathroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (d / door
+                :consist-of (g / glass
+                    :ARG1-of (c / clear-08))
+                :part-of (s / shower))
+            :op2 (p / paper
+                :mod (t2 / toilet
+                    :part d))
+            :op3 p
+            :op4 (t3 / towel
+                :ARG1-of (w3 / white-03)
+                :ARG1-of (s2 / sling-01
+                    :ARG4 (o / over
+                        :op1 (w / wall
+                            :mod (t4 / tub)))))))
+    :ARG1-of (w2 / white-03)
+    :domain (t / this))

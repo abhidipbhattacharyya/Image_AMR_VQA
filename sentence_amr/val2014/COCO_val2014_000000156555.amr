@@ -1,0 +1,35 @@
+# ::tok A pizza box is opened to show a pizza with pepperoni , peppers , and mushrooms .
+# ::node	p3	pizza	1-2
+# ::node	p4	pizza	1-2
+# ::node	b	box	2-3
+# ::node	o	open-01	4-5
+# ::node	s	show-01	6-7
+# ::node	i	include-01	9-10
+# ::node	p2	pepperoni	10-11
+# ::node	a	and	11-12
+# ::node	p	pepper-spray	12-13
+# ::node	m	mushroom	15-16
+# ::root	o	open-01
+# ::edge	box	mod	pizza	b	p4	
+# ::edge	open-01	ARG1	box	o	b	
+# ::edge	open-01	purpose	show-01	o	s	
+# ::edge	show-01	ARG0	pizza	s	p4	
+# ::edge	show-01	ARG1	pizza	s	p4	
+# ::edge	pizza	ARG2-of	include-01	p3	i	
+# ::edge	and	op1	pepperoni	a	p2	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	pepper-spray	a	p	
+# ::edge	and	op3	mushroom	a	m	
+# ::edge	open-01	rel	pizza	o	p3	
+(o / open-01
+    :purpose (s / show-01
+        :ARG0 (p4 / pizza)
+        :ARG1 p4)
+    :ARG1 (b / box
+        :mod p4)
+    :rel (p3 / pizza
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (p2 / pepperoni)
+                :op2 (p / pepper-spray)
+                :op3 (m / mushroom)))))

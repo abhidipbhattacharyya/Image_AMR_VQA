@@ -1,0 +1,33 @@
+# ::tok A crowd of young people sanding on a snow covered ski slope while holding ski equipment .
+# ::node	c2	crowd	1-2
+# ::node	y	young	3-4
+# ::node	p	person	4-5
+# ::node	s	sand	5-6
+# ::node	s4	snow	8-9
+# ::node	c	cover-02	9-10
+# ::node	s2	ski-01	10-11
+# ::node	s3	slope	11-12
+# ::node	h	hold-01	13-14
+# ::node	e	equipment	15-16
+# ::root	s	sand
+# ::edge	person	mod	young	p	y	
+# ::edge	crowd	consist-of	person	c2	p	
+# ::edge	sand	ARG0	crowd	s	c2	
+# ::edge	cover-02	ARG2	snow	c	s4	
+# ::edge	slope	mod	ski-01	s3	s2	
+# ::edge	slope	ARG1-of	cover-02	s3	c	
+# ::edge	sand	location	slope	s	s3	
+# ::edge	person	ARG0-of	hold-01	p	h	
+# ::edge	hold-01	ARG1	equipment	h	e	
+# ::edge	equipment	mod	ski-01	e	s2	
+(s / sand
+    :ARG0 (c2 / crowd
+        :consist-of (p / person
+            :ARG0-of (h / hold-01
+                :ARG1 (e / equipment
+                    :mod (s2 / ski-01)))
+            :mod (y / young)))
+    :location (s3 / slope
+        :ARG1-of (c / cover-02
+            :ARG2 (s4 / snow))
+        :mod s2))

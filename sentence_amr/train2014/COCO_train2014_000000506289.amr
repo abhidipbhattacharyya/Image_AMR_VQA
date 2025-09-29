@@ -1,0 +1,37 @@
+# ::tok A half eaten unwrapped sandwich alongside with a cup of coffee on a table .
+# ::node	h	half	1-2
+# ::node	e	eat-01	2-3
+# ::node	w	wrap-01	3-4
+# ::node	0	-	3-4
+# ::node	s	sandwich	4-5
+# ::node	a	alongside	5-6
+# ::node	v	volume-quantity	7-8
+# ::node	1	1	7-8
+# ::node	c2	cup	8-9
+# ::node	c	coffee	10-11
+# ::node	a2	and	11-12
+# ::node	t	table	13-14
+# ::root	a2	and
+# ::edge	eat-01	degree	half	e	h	
+# ::edge	wrap-01	polarity	-	w	0	
+# ::edge	sandwich	ARG1-of	wrap-01	s	w	
+# ::edge	sandwich	ARG1-of	eat-01	s	e	
+# ::edge	volume-quantity	quant	1	v	1	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	and	op2	coffee	a2	c	
+# ::edge	and	op1	sandwich	a2	s	
+# ::edge	and	location	table	a2	t	
+# ::edge	and	rel	alongside	a2	a	
+(a2 / and
+    :location (t / table)
+    :op1 (s / sandwich
+        :ARG1-of (w / wrap-01
+            :polarity -)
+        :ARG1-of (e / eat-01
+            :degree (h / half)))
+    :op2 (c / coffee
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (c2 / cup)))
+    :rel (a / alongside))

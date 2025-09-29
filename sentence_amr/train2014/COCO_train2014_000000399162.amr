@@ -1,0 +1,27 @@
+# ::tok Chinese vases can be quite valuable if they are old .
+# ::node	c	country	0-1
+# ::node	n	name	0-1
+# ::node	0	China	0-1
+# ::node	f	flower	1-2
+# ::node	p	possible-01	2-3
+# ::node	q	quite	4-5
+# ::node	v	value-01	5-6
+# ::node	o	old	9-10
+# ::root	p	possible-01
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	China	n	0	
+# ::edge	flower	mod	country	f	c	
+# ::edge	value-01	degree	quite	v	q	
+# ::edge	possible-01	ARG1	value-01	p	v	
+# ::edge	value-01	ARG1	flower	v	f	
+# ::edge	value-01	condition	old	v	o	
+# ::edge	old	domain	flower	o	f	
+(p / possible-01
+    :ARG1 (v / value-01
+        :ARG1 (f / flower
+            :mod (c / country
+                :name (n / name
+                    :op1 "China")))
+        :condition (o / old
+            :domain f)
+        :degree (q / quite)))

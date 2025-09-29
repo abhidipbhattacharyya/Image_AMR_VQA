@@ -1,0 +1,33 @@
+# ::tok A street with two white trucks , one with supplies in the back .
+# ::node	s	street	1-2
+# ::node	1	2	3-4
+# ::node	w	white-03	4-5
+# ::node	t2	truck	5-6
+# ::node	t3	truck	5-6
+# ::node	i	include-91	7-8
+# ::node	0	1	7-8
+# ::node	t	thing	9-10
+# ::node	s2	supply-01	9-10
+# ::node	b	back	12-13
+# ::root	s	street
+# ::edge	truck	ARG1-of	white-03	t2	w	
+# ::edge	truck	quant	2	t2	1	
+# ::edge	include-91	ARG1	truck	i	t3	
+# ::edge	truck	ARG2-of	include-91	t2	i	
+# ::edge	truck	quant	1	t3	0	
+# ::edge	truck	location-of	thing	t3	t	
+# ::edge	thing	ARG1-of	supply-01	t	s2	
+# ::edge	truck	location	back	t3	b	
+# ::edge	truck	part	back	t2	b	
+# ::edge	street	rel	truck	s	t2	
+(s / street
+    :rel (t2 / truck
+        :quant 2
+        :ARG1-of (w / white-03)
+        :ARG2-of (i / include-91
+            :ARG1 (t3 / truck
+                :quant 1
+                :location (b / back)
+                :location-of (t / thing
+                    :ARG1-of (s2 / supply-01))))
+        :part b))

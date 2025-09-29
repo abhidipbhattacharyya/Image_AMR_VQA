@@ -1,0 +1,30 @@
+# ::tok A train coming down railroad tracks with people standing over it on a bridge .
+# ::node	t2	train	1-2
+# ::node	c	come-01	2-3
+# ::node	d	down	3-4
+# ::node	r	railroad	4-5
+# ::node	t	track	5-6
+# ::node	p	person	7-8
+# ::node	s	stand-01	8-9
+# ::node	o	over	9-10
+# ::node	b	bridge	13-14
+# ::root	c	come-01
+# ::edge	come-01	ARG1	train	c	t2	
+# ::edge	come-01	direction	down	c	d	
+# ::edge	track	mod	railroad	t	r	
+# ::edge	come-01	path	track	c	t	
+# ::edge	stand-01	ARG0	person	s	p	
+# ::edge	train	ARG1-of	stand-01	t2	s	
+# ::edge	stand-01	ARG2	over	s	o	
+# ::edge	over	op1	train	o	t2	
+# ::edge	over	location	bridge	o	b	
+(c / come-01
+    :ARG1 (t2 / train
+        :ARG1-of (s / stand-01
+            :ARG0 (p / person)
+            :ARG2 (o / over
+                :location (b / bridge)
+                :op1 t2)))
+    :direction (d / down)
+    :path (t / track
+        :mod (r / railroad)))

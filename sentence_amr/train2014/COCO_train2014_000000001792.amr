@@ -1,0 +1,33 @@
+# ::tok A bench sits in a wide open area of snow with foot prints across it .
+# ::node	b	bench	1-2
+# ::node	s	sit-01	2-3
+# ::node	w	wide-02	5-6
+# ::node	o	open-06	6-7
+# ::node	a2	area	7-8
+# ::node	s2	snow	9-10
+# ::node	h	have-03	10-11
+# ::node	f	foot	11-12
+# ::node	f2	footprint	12-13
+# ::node	a	across	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	bench	s	b	
+# ::edge	area	ARG1-of	open-06	a2	o	
+# ::edge	area	ARG1-of	wide-02	a2	w	
+# ::edge	sit-01	ARG2	area	s	a2	
+# ::edge	area	location-of	snow	a2	s2	
+# ::edge	bench	ARG0-of	have-03	b	h	
+# ::edge	footprint	mod	foot	f2	f	
+# ::edge	have-03	ARG1	footprint	h	f2	
+# ::edge	footprint	location	across	f2	a	
+# ::edge	across	op1	bench	a	b	
+(s / sit-01
+    :ARG1 (b / bench
+        :ARG0-of (h / have-03
+            :ARG1 (f2 / footprint
+                :location (a / across
+                    :op1 b)
+                :mod (f / foot))))
+    :ARG2 (a2 / area
+        :ARG1-of (o / open-06)
+        :ARG1-of (w / wide-02)
+        :location-of (s2 / snow)))

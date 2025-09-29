@@ -1,0 +1,27 @@
+# ::tok A guy falling down on a rail with another guy sliding behind him .
+# ::node	g	guy	1-2
+# ::node	f	fall-01	2-3
+# ::node	d	down	3-4
+# ::node	r	rail	6-7
+# ::node	a	another	8-9
+# ::node	g2	guy	9-10
+# ::node	s	slide-01	10-11
+# ::node	b	behind	11-12
+# ::root	f	fall-01
+# ::edge	fall-01	ARG1	guy	f	g	
+# ::edge	fall-01	direction	down	f	d	
+# ::edge	fall-01	location	rail	f	r	
+# ::edge	guy	mod	another	g2	a	
+# ::edge	slide-01	ARG1	guy	s	g2	
+# ::edge	fall-01	accompanier	slide-01	f	s	
+# ::edge	slide-01	location	behind	s	b	
+# ::edge	behind	op1	guy	b	g	
+(f / fall-01
+    :ARG1 (g / guy)
+    :accompanier (s / slide-01
+        :ARG1 (g2 / guy
+            :mod (a / another))
+        :location (b / behind
+            :op1 g))
+    :direction (d / down)
+    :location (r / rail))

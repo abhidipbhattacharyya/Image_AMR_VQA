@@ -1,0 +1,36 @@
+# ::tok A cat with a pink fedora draped over it and another cat stand on a desk .
+# ::node	c	cat	1-2
+# ::node	h	have-03	2-3
+# ::node	p	pink-04	4-5
+# ::node	f	fedora	5-6
+# ::node	d2	drape-01	6-7
+# ::node	o	over	7-8
+# ::node	a	and	9-10
+# ::node	a2	another	10-11
+# ::node	c2	cat	11-12
+# ::node	s	stand-01	12-13
+# ::node	d	desk	15-16
+# ::root	s	stand-01
+# ::edge	cat	ARG0-of	have-03	c	h	
+# ::edge	fedora	ARG1-of	pink-04	f	p	
+# ::edge	have-03	ARG1	fedora	h	f	
+# ::edge	fedora	ARG1-of	drape-01	f	d2	
+# ::edge	drape-01	ARG2	over	d2	o	
+# ::edge	over	op1	cat	o	c	
+# ::edge	and	op1	cat	a	c	
+# ::edge	cat	mod	another	c2	a2	
+# ::edge	and	op2	cat	a	c2	
+# ::edge	stand-01	ARG1	and	s	a	
+# ::edge	stand-01	ARG2	desk	s	d	
+(s / stand-01
+    :ARG1 (a / and
+        :op1 (c / cat
+            :ARG0-of (h / have-03
+                :ARG1 (f / fedora
+                    :ARG1-of (p / pink-04)
+                    :ARG1-of (d2 / drape-01
+                        :ARG2 (o / over
+                            :op1 c)))))
+        :op2 (c2 / cat
+            :mod (a2 / another)))
+    :ARG2 (d / desk))

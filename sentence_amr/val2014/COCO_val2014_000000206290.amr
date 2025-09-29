@@ -1,0 +1,42 @@
+# ::tok A sign post with a wrong way sign , a cross walk sign and a traffic light mounted to it .
+# ::node	s3	signal-07	1-2
+# ::node	p	post	2-3
+# ::node	h	have-03	3-4
+# ::node	w3	wrong-02	5-6
+# ::node	w2	way	6-7
+# ::node	s	sign	7-8
+# ::node	c	cross-02	10-11
+# ::node	w	walk-01	11-12
+# ::node	s2	sign	12-13
+# ::node	a	and	13-14
+# ::node	t	traffic	15-16
+# ::node	l	light	16-17
+# ::node	m	mount-03	17-18
+# ::root	p	post
+# ::edge	post	mod	signal-07	p	s3	
+# ::edge	post	ARG0-of	have-03	p	h	
+# ::edge	way	ARG1-of	wrong-02	w2	w3	
+# ::edge	sign	mod	way	s	w2	
+# ::edge	cross-02	ARG1	walk-01	c	w	
+# ::edge	sign	purpose	cross-02	s2	c	
+# ::edge	and	op2	sign	a	s2	
+# ::edge	and	op1	sign	a	s	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	and	op3	light	a	l	
+# ::edge	light	ARG1-of	mount-03	l	m	
+# ::edge	mount-03	location	post	m	p	
+(p / post
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (s / sign
+                :mod (w2 / way
+                    :ARG1-of (w3 / wrong-02)))
+            :op2 (s2 / sign
+                :purpose (c / cross-02
+                    :ARG1 (w / walk-01)))
+            :op3 (l / light
+                :ARG1-of (m / mount-03
+                    :location p)
+                :mod (t / traffic))))
+    :mod (s3 / signal-07))

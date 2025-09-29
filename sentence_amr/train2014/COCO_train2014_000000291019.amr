@@ -1,0 +1,28 @@
+# ::tok Sandwich split in half on a table next to a cup of coffee .
+# ::node	s	sandwich	0-1
+# ::node	s2	split-01	1-2
+# ::node	h	half	3-4
+# ::node	t	table	6-7
+# ::node	n	next-to	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	c2	cup	10-11
+# ::node	c	coffee	12-13
+# ::root	s2	split-01
+# ::edge	split-01	ARG1	sandwich	s2	s	
+# ::edge	split-01	mod	half	s2	h	
+# ::edge	split-01	location	table	s2	t	
+# ::edge	table	location-of	next-to	t	n	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	cup	v	c2	
+# ::edge	coffee	quant	volume-quantity	c	v	
+# ::edge	next-to	op1	coffee	n	c	
+(s2 / split-01
+    :ARG1 (s / sandwich)
+    :location (t / table
+        :location-of (n / next-to
+            :op1 (c / coffee
+                :quant (v / volume-quantity
+                    :quant 1
+                    :unit (c2 / cup)))))
+    :mod (h / half))

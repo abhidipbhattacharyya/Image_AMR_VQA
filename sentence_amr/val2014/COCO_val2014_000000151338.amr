@@ -1,0 +1,29 @@
+# ::tok Boy performing skateboarding jump in parking lot at night
+# ::node	b	boy	0-1
+# ::node	p2	perform-01	1-2
+# ::node	s	skate-01	2-3
+# ::node	j	jump-03	3-4
+# ::node	p	park-01	5-6
+# ::node	l	lot	6-7
+# ::node	d	date-entity	8-9
+# ::node	n	night	8-9
+# ::root	p2	perform-01
+# ::edge	perform-01	ARG0	boy	p2	b	
+# ::edge	skate-01	ARG0	boy	s	b	
+# ::edge	jump-03	manner	skate-01	j	s	
+# ::edge	perform-01	ARG1	jump-03	p2	j	
+# ::edge	jump-03	ARG0	boy	j	b	
+# ::edge	lot	ARG2-of	park-01	l	p	
+# ::edge	jump-03	location	lot	j	l	
+# ::edge	perform-01	time	date-entity	p2	d	
+# ::edge	date-entity	dayperiod	night	d	n	
+(p2 / perform-01
+    :ARG0 (b / boy)
+    :ARG1 (j / jump-03
+        :ARG0 b
+        :location (l / lot
+            :ARG2-of (p / park-01))
+        :manner (s / skate-01
+            :ARG0 b))
+    :time (d / date-entity
+        :dayperiod (n / night)))

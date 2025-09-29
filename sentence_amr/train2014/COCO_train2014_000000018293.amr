@@ -1,0 +1,43 @@
+# ::tok A yellow purse with miscellaneous items including a wallet , Gameboy , car keys , mirror and sunglasses .
+# ::node	y	yellow-02	1-2
+# ::node	p2	purse	2-3
+# ::node	m2	miscellaneous	4-5
+# ::node	i2	item	5-6
+# ::node	i	include-01	6-7
+# ::node	w	wallet	8-9
+# ::node	a	and	9-10
+# ::node	p	product	10-11
+# ::node	n	name	10-11
+# ::node	0	Gameboy	10-11
+# ::node	c	car	12-13
+# ::node	k	key	13-14
+# ::node	m	mirror	15-16
+# ::node	s	sunglasses	17-18
+# ::root	p2	purse
+# ::edge	purse	ARG1-of	yellow-02	p2	y	
+# ::edge	item	mod	miscellaneous	i2	m2	
+# ::edge	purse	consist-of	item	p2	i2	
+# ::edge	item	ARG2-of	include-01	i2	i	
+# ::edge	and	op1	wallet	a	w	
+# ::edge	include-01	ARG1	and	i	a	
+# ::edge	and	op2	product	a	p	
+# ::edge	product	name	name	p	n	
+# ::edge	name	op1	Gameboy	n	0	
+# ::edge	key	mod	car	k	c	
+# ::edge	and	op3	key	a	k	
+# ::edge	and	op4	mirror	a	m	
+# ::edge	and	op5	sunglasses	a	s	
+(p2 / purse
+    :ARG1-of (y / yellow-02)
+    :consist-of (i2 / item
+        :ARG2-of (i / include-01
+            :ARG1 (a / and
+                :op1 (w / wallet)
+                :op2 (p / product
+                    :name (n / name
+                        :op1 "Gameboy"))
+                :op3 (k / key
+                    :mod (c / car))
+                :op4 (m / mirror)
+                :op5 (s / sunglasses)))
+        :mod (m2 / miscellaneous)))

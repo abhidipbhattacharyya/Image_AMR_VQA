@@ -1,0 +1,43 @@
+# ::tok The stainless steel refrigerator has a built - in ice maker and water dispenser .
+# ::node	s	stainless	1-2
+# ::node	s2	steel	2-3
+# ::node	r	refrigerator	3-4
+# ::node	h	have-03	4-5
+# ::node	b	build-03	6-7
+# ::node	i	ice	9-10
+# ::node	t	thing	10-11
+# ::node	m	make-01	10-11
+# ::node	a	and	11-12
+# ::node	w	water	12-13
+# ::node	t2	thing	13-14
+# ::node	v	variable	13-14
+# ::node	n	name	13-14
+# ::node	0	Democrat	13-14
+# ::root	h	have-03
+# ::edge	steel	mod	stainless	s2	s	
+# ::edge	refrigerator	part	steel	r	s2	
+# ::edge	have-03	ARG0	refrigerator	h	r	
+# ::edge	thing	ARG1-of	build-03	t	b	
+# ::edge	thing	ARG0-of	make-01	t	m	
+# ::edge	make-01	ARG1	ice	m	i	
+# ::edge	and	op1	thing	a	t	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	thing	a	t2	
+# ::edge	thing	mod	variable	t2	v	
+# ::edge	variable	name	name	v	n	
+# ::edge	name	op1	Democrat	n	0	
+# ::edge	have-03	rel	water	h	w	
+(h / have-03
+    :ARG0 (r / refrigerator
+        :part (s2 / steel
+            :mod (s / stainless)))
+    :ARG1 (a / and
+        :op1 (t / thing
+            :ARG0-of (m / make-01
+                :ARG1 (i / ice))
+            :ARG1-of (b / build-03))
+        :op2 (t2 / thing
+            :mod (v / variable
+                :name (n / name
+                    :op1 "Democrat"))))
+    :rel (w / water))

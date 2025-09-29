@@ -1,0 +1,37 @@
+# ::tok a tray with a slice of peperoni pizza sitting next to a Stephen king book
+# ::node	t	tray	1-2
+# ::node	h	have-03	2-3
+# ::node	s2	slice	4-5
+# ::node	p	peperoni	6-7
+# ::node	p3	pizza	7-8
+# ::node	s	sit-01	8-9
+# ::node	n2	next-to	9-10
+# ::node	p2	person	12-13
+# ::node	n	name	12-13
+# ::node	0	Stephen	12-13
+# ::node	1	king	13-14
+# ::node	b	book	14-15
+# ::root	s	sit-01
+# ::edge	tray	ARG0-of	have-03	t	h	
+# ::edge	have-03	ARG1	slice	h	s2	
+# ::edge	pizza	mod	peperoni	p3	p	
+# ::edge	slice	consist-of	pizza	s2	p3	
+# ::edge	sit-01	ARG1	tray	s	t	
+# ::edge	sit-01	ARG2	next-to	s	n2	
+# ::edge	person	name	name	p2	n	
+# ::edge	name	op1	Stephen	n	0	
+# ::edge	name	op2	king	n	1	
+# ::edge	book	source	person	b	p2	
+# ::edge	next-to	op1	book	n2	b	
+(s / sit-01
+    :ARG1 (t / tray
+        :ARG0-of (h / have-03
+            :ARG1 (s2 / slice
+                :consist-of (p3 / pizza
+                    :mod (p / peperoni)))))
+    :ARG2 (n2 / next-to
+        :op1 (b / book
+            :source (p2 / person
+                :name (n / name
+                    :op1 "Stephen"
+                    :op2 "king")))))

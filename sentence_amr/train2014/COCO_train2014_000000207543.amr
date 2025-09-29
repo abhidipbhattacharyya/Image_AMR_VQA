@@ -1,0 +1,47 @@
+# ::tok A pizza on a silver pizza plate with various toppings and multiple slices missing from it .
+# ::node	p	pizza	1-2
+# ::node	s	silver	4-5
+# ::node	p2	pizza	5-6
+# ::node	p3	plate	6-7
+# ::node	h	have-03	7-8
+# ::node	v	various	8-9
+# ::node	c	continent	9-10
+# ::node	n	name	9-10
+# ::node	0	Health	9-10
+# ::node	1	Organization	9-10
+# ::node	a	and	10-11
+# ::node	m2	multiple	11-12
+# ::node	s2	slice	12-13
+# ::node	m	miss-01	13-14
+# ::root	p	pizza
+# ::edge	pizza	mod	pizza	p	p2	
+# ::edge	plate	mod	pizza	p3	p2	
+# ::edge	plate	consist-of	silver	p3	s	
+# ::edge	pizza	location	plate	p	p3	
+# ::edge	pizza	ARG0-of	have-03	p	h	
+# ::edge	continent	mod	various	c	v	
+# ::edge	continent	name	name	c	n	
+# ::edge	name	op2	Health	n	0	
+# ::edge	name	op3	Organization	n	1	
+# ::edge	and	op1	continent	a	c	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	slice	quant	multiple	s2	m2	
+# ::edge	miss-01	ARG1	slice	m	s2	
+# ::edge	and	op2	miss-01	a	m	
+# ::edge	miss-01	ARG0	plate	m	p3	
+(p / pizza
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (c / continent
+                :name (n / name
+                    :op2 "Health"
+                    :op3 "Organization")
+                :mod (v / various))
+            :op2 (m / miss-01
+                :ARG0 (p3 / plate
+                    :consist-of (s / silver)
+                    :mod (p2 / pizza))
+                :ARG1 (s2 / slice
+                    :quant (m2 / multiple)))))
+    :location p3
+    :mod p2)

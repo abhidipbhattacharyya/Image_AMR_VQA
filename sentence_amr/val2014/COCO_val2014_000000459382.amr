@@ -1,0 +1,31 @@
+# ::tok A piece of chocolate cake and fruit served with a glass of milk
+# ::node	p	piece	1-2
+# ::node	c2	chocolate	3-4
+# ::node	c	cake	4-5
+# ::node	a	and	5-6
+# ::node	f	fruit	6-7
+# ::node	s	serve-02	7-8
+# ::node	v	volume-quantity	9-10
+# ::node	0	1	9-10
+# ::node	g	glass	10-11
+# ::node	m	milk	12-13
+# ::root	s	serve-02
+# ::edge	cake	mod	chocolate	c	c2	
+# ::edge	and	op1	cake	a	c	
+# ::edge	piece	consist-of	and	p	a	
+# ::edge	and	op2	fruit	a	f	
+# ::edge	serve-02	ARG1	piece	s	p	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	milk	quant	volume-quantity	m	v	
+# ::edge	serve-02	accompanier	milk	s	m	
+(s / serve-02
+    :ARG1 (p / piece
+        :consist-of (a / and
+            :op1 (c / cake
+                :mod (c2 / chocolate))
+            :op2 (f / fruit)))
+    :accompanier (m / milk
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass))))

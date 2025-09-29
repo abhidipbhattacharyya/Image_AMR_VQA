@@ -1,0 +1,34 @@
+# ::tok A mack truck is pulled up to a station area where an employee opens the door .
+# ::node	0	monday	1-2
+# ::node	c	car-make	2-3
+# ::node	n	name	2-3
+# ::node	1	truck	2-3
+# ::node	p2	pull-01	4-5
+# ::node	s	station	8-9
+# ::node	a	area	9-10
+# ::node	p	person	12-13
+# ::node	e	employ-01	12-13
+# ::node	o	open-01	13-14
+# ::node	d	door	15-16
+# ::root	p2	pull-01
+# ::edge	car-make	name	name	c	n	
+# ::edge	name	op1	monday	n	0	
+# ::edge	name	op2	truck	n	1	
+# ::edge	pull-01	ARG1	car-make	p2	c	
+# ::edge	area	location-of	station	a	s	
+# ::edge	pull-01	ARG2	area	p2	a	
+# ::edge	person	ARG1-of	employ-01	p	e	
+# ::edge	open-01	ARG0	person	o	p	
+# ::edge	area	location-of	open-01	a	o	
+# ::edge	open-01	ARG1	door	o	d	
+(p2 / pull-01
+    :ARG1 (c / car-make
+        :name (n / name
+            :op1 "monday"
+            :op2 "truck"))
+    :ARG2 (a / area
+        :location-of (s / station)
+        :location-of (o / open-01
+            :ARG0 (p / person
+                :ARG1-of (e / employ-01))
+            :ARG1 (d / door))))

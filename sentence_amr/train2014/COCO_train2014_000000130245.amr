@@ -1,0 +1,70 @@
+# ::tok Several people are standing , or sitting , in the vicinity of a scoreboard , to the front of which lies a tennis court , featuring a player with his knees bent , who is also grasping a racquet with both hands ,
+# ::node	s2	several	0-1
+# ::node	p	person	1-2
+# ::node	s4	stand-01	3-4
+# ::node	o	or	5-6
+# ::node	s3	sit-01	6-7
+# ::node	v	vicinity	10-11
+# ::node	s	scoreboard	13-14
+# ::node	f2	front	17-18
+# ::node	l	lie-07	20-21
+# ::node	t	tennis	22-23
+# ::node	c	court	23-24
+# ::node	f	feature-01	25-26
+# ::node	p2	person	27-28
+# ::node	p3	play-01	27-28
+# ::node	k	knee	30-31
+# ::node	b	bend-01	31-32
+# ::node	a	also	35-36
+# ::node	g	grasp-01	36-37
+# ::node	r	racquet	38-39
+# ::node	b2	both	40-41
+# ::node	h	hand	41-42
+# ::root	o	or
+# ::edge	person	quant	several	p	s2	
+# ::edge	stand-01	ARG1	person	s4	p	
+# ::edge	or	op1	stand-01	o	s4	
+# ::edge	or	op2	sit-01	o	s3	
+# ::edge	sit-01	ARG1	person	s3	p	
+# ::edge	sit-01	ARG2	vicinity	s3	v	
+# ::edge	stand-01	ARG2	vicinity	s4	v	
+# ::edge	vicinity	mod	scoreboard	v	s	
+# ::edge	or	destination	front	o	f2	
+# ::edge	front	ARG2-of	lie-07	f2	l	
+# ::edge	court	mod	tennis	c	t	
+# ::edge	lie-07	ARG1	court	l	c	
+# ::edge	court	ARG2-of	feature-01	c	f	
+# ::edge	feature-01	ARG1	person	f	p2	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	person	part	knee	p2	k	
+# ::edge	bend-01	ARG1	knee	b	k	
+# ::edge	person	manner	bend-01	p2	b	
+# ::edge	grasp-01	mod	also	g	a	
+# ::edge	person	ARG0-of	grasp-01	p2	g	
+# ::edge	grasp-01	ARG1	racquet	g	r	
+# ::edge	hand	mod	both	h	b2	
+# ::edge	grasp-01	instrument	hand	g	h	
+(o / or
+    :destination (f2 / front
+        :ARG2-of (l / lie-07
+            :ARG1 (c / court
+                :ARG2-of (f / feature-01
+                    :ARG1 (p2 / person
+                        :ARG0-of (p3 / play-01)
+                        :ARG0-of (g / grasp-01
+                            :ARG1 (r / racquet)
+                            :instrument (h / hand
+                                :mod (b2 / both))
+                            :mod (a / also))
+                        :manner (b / bend-01
+                            :ARG1 (k / knee))
+                        :part k))
+                :mod (t / tennis))))
+    :op1 (s4 / stand-01
+        :ARG1 (p / person
+            :quant (s2 / several))
+        :ARG2 (v / vicinity
+            :mod (s / scoreboard)))
+    :op2 (s3 / sit-01
+        :ARG1 p
+        :ARG2 v))

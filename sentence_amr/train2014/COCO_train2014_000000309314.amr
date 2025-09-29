@@ -1,0 +1,36 @@
+# ::tok A man with a tool in his hand tending to the hoof or a ram that is on the grass , with other rams behind him .
+# ::node	m	man	1-2
+# ::node	t2	tool	4-5
+# ::node	h	hand	7-8
+# ::node	t	tend-01	8-9
+# ::node	h2	hoof	11-12
+# ::node	o	or	12-13
+# ::node	r	ram	14-15
+# ::node	r2	ram	14-15
+# ::node	g	grass	19-20
+# ::node	o2	other	22-23
+# ::node	b	behind	24-25
+# ::root	t	tend-01
+# ::edge	tool	location	hand	t2	h	
+# ::edge	man	part	hand	m	h	
+# ::edge	tend-01	instrument	tool	t	t2	
+# ::edge	tend-01	ARG0	man	t	m	
+# ::edge	or	op1	hoof	o	h2	
+# ::edge	tend-01	ARG1	or	t	o	
+# ::edge	or	op2	ram	o	r	
+# ::edge	ram	location	grass	r	g	
+# ::edge	ram	mod	other	r2	o2	
+# ::edge	behind	op1	ram	b	r2	
+# ::edge	ram	location	behind	r	b	
+(t / tend-01
+    :ARG0 (m / man
+        :part (h / hand))
+    :ARG1 (o / or
+        :op1 (h2 / hoof)
+        :op2 (r / ram
+            :location (g / grass)
+            :location (b / behind
+                :op1 (r2 / ram
+                    :mod (o2 / other)))))
+    :instrument (t2 / tool
+        :location h))

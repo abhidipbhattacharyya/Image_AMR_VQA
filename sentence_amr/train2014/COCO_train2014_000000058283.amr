@@ -1,0 +1,58 @@
+# ::tok A curved road in front of building where tracks are for electric train .
+# ::node	b	bend-01	1-2
+# ::node	r	road	2-3
+# ::node	i	in-front-of	4-5
+# ::node	b2	building	6-7
+# ::node	t	track	8-9
+# ::node	e	electric	11-12
+# ::node	t2	train	12-13
+# ::root	r	road
+# ::edge	road	ARG1-of	bend-01	r	b	
+# ::edge	road	location	in-front-of	r	i	
+# ::edge	in-front-of	op1	building	i	b2	
+# ::edge	building	location-of	track	b2	t	
+# ::edge	train	mod	electric	t2	e	
+# ::edge	track	purpose	train	t	t2	
+(r / road
+    :ARG1-of (b / bend-01)
+    :location (i / in-front-of
+        :op1 (b2 / building
+            :location-of (t / track
+                :purpose (t2 / train
+                    :mod (e / electric))))))
+
+
+# ::tok Electric train is going on the track . cars and pedestrians also going .
+# ::node	e	electric	0-1
+# ::node	t2	train	1-2
+# ::node	g	go-01	3-4
+# ::node	t	track	6-7
+# ::node	c	car	8-9
+# ::node	a2	and	9-10
+# ::node	a3	and	9-10
+# ::node	p	person	10-11
+# ::node	w	walk-01	10-11
+# ::node	a	also	11-12
+# ::node	g2	go-02	12-13
+# ::root	a2	and
+# ::edge	train	mod	electric	t2	e	
+# ::edge	go-01	ARG1	train	g	t2	
+# ::edge	go-01	ARG4	track	g	t	
+# ::edge	and	op1	go-01	a2	g	
+# ::edge	and	op1	car	a3	c	
+# ::edge	and	op2	person	a3	p	
+# ::edge	person	ARG0-of	walk-01	p	w	
+# ::edge	go-02	mod	also	g2	a	
+# ::edge	go-02	ARG0	and	g2	a3	
+# ::edge	and	op2	go-02	a2	g2	
+(a2 / and
+    :op1 (g / go-01
+        :ARG1 (t2 / train
+            :mod (e / electric))
+        :ARG4 (t / track))
+    :op2 (g2 / go-02
+        :ARG0 (a3 / and
+            :op1 (c / car)
+            :op2 (p / person
+                :ARG0-of (w / walk-01)))
+        :mod (a / also)))

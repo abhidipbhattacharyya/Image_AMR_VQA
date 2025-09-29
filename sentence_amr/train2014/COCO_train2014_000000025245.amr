@@ -1,0 +1,24 @@
+# ::tok People waiting to cross the trolley tracks of a city street .
+# ::node	p	person	0-1
+# ::node	w	wait-01	1-2
+# ::node	c2	cross-02	3-4
+# ::node	t2	trolley	5-6
+# ::node	t	track	6-7
+# ::node	c	city	9-10
+# ::node	s	street	10-11
+# ::root	w	wait-01
+# ::edge	wait-01	ARG1	person	w	p	
+# ::edge	wait-01	ARG2	cross-02	w	c2	
+# ::edge	cross-02	ARG0	person	c2	p	
+# ::edge	track	mod	trolley	t	t2	
+# ::edge	cross-02	ARG1	track	c2	t	
+# ::edge	street	mod	city	s	c	
+# ::edge	track	location	street	t	s	
+(w / wait-01
+    :ARG1 (p / person)
+    :ARG2 (c2 / cross-02
+        :ARG0 p
+        :ARG1 (t / track
+            :location (s / street
+                :mod (c / city))
+            :mod (t2 / trolley))))

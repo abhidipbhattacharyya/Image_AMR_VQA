@@ -1,0 +1,30 @@
+# ::tok A table full of prepared pizzas waiting to go into an outdoor stone oven .
+# ::node	t	table	1-2
+# ::node	f	fill-01	2-3
+# ::node	p2	prepare-01	4-5
+# ::node	p	pizzeria	5-6
+# ::node	w	wait-01	6-7
+# ::node	g	go-01	8-9
+# ::node	o	outdoor	11-12
+# ::node	s	stone	12-13
+# ::node	o2	oven	13-14
+# ::root	w	wait-01
+# ::edge	table	ARG1-of	fill-01	t	f	
+# ::edge	pizzeria	ARG1-of	prepare-01	p	p2	
+# ::edge	fill-01	ARG2	pizzeria	f	p	
+# ::edge	wait-01	ARG1	table	w	t	
+# ::edge	wait-01	ARG2	go-01	w	g	
+# ::edge	go-01	ARG1	pizzeria	g	p	
+# ::edge	oven	consist-of	stone	o2	s	
+# ::edge	oven	location	outdoor	o2	o	
+# ::edge	go-01	ARG4	oven	g	o2	
+(w / wait-01
+    :ARG1 (t / table
+        :ARG1-of (f / fill-01
+            :ARG2 (p / pizzeria
+                :ARG1-of (p2 / prepare-01))))
+    :ARG2 (g / go-01
+        :ARG1 p
+        :ARG4 (o2 / oven
+            :consist-of (s / stone)
+            :location (o / outdoor))))

@@ -1,0 +1,25 @@
+# ::tok This wall oven has just cooked a homemade pizza .
+# ::node	t	this	0-1
+# ::node	w	wall	1-2
+# ::node	o	oven	2-3
+# ::node	j	just	4-5
+# ::node	c	cook-01	5-6
+# ::node	m	make-01	7-8
+# ::node	h	home	7-8
+# ::node	p	pizza	8-9
+# ::root	c	cook-01
+# ::edge	oven	mod	wall	o	w	
+# ::edge	oven	mod	this	o	t	
+# ::edge	cook-01	mod	just	c	j	
+# ::edge	cook-01	ARG0	oven	c	o	
+# ::edge	make-01	ARG1	home	m	h	
+# ::edge	pizza	ARG1-of	make-01	p	m	
+# ::edge	cook-01	ARG1	pizza	c	p	
+(c / cook-01
+    :ARG0 (o / oven
+        :mod (w / wall)
+        :mod (t / this))
+    :ARG1 (p / pizza
+        :ARG1-of (m / make-01
+            :ARG1 (h / home)))
+    :mod (j / just))

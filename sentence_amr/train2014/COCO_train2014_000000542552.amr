@@ -1,0 +1,36 @@
+# ::tok A sequential photo of a person doing a jump and tricks off a snow covered ski ramp .
+# ::node	s	sequential	1-2
+# ::node	p2	photo	2-3
+# ::node	p	person	5-6
+# ::node	j	jump-03	8-9
+# ::node	a	and	9-10
+# ::node	t	trick-01	10-11
+# ::node	o	off	11-12
+# ::node	s3	snow	13-14
+# ::node	c	cover-02	14-15
+# ::node	s2	ski-01	15-16
+# ::node	r	ramp	16-17
+# ::root	p2	photo
+# ::edge	photo	mod	sequential	p2	s	
+# ::edge	jump-03	ARG0	person	j	p	
+# ::edge	and	op1	jump-03	a	j	
+# ::edge	photo	topic	and	p2	a	
+# ::edge	and	op2	trick-01	a	t	
+# ::edge	trick-01	ARG0	person	t	p	
+# ::edge	trick-01	direction	off	t	o	
+# ::edge	cover-02	ARG2	snow	c	s3	
+# ::edge	ramp	mod	ski-01	r	s2	
+# ::edge	ramp	ARG1-of	cover-02	r	c	
+# ::edge	off	op1	ramp	o	r	
+(p2 / photo
+    :mod (s / sequential)
+    :topic (a / and
+        :op1 (j / jump-03
+            :ARG0 (p / person))
+        :op2 (t / trick-01
+            :ARG0 p
+            :direction (o / off
+                :op1 (r / ramp
+                    :ARG1-of (c / cover-02
+                        :ARG2 (s3 / snow))
+                    :mod (s2 / ski-01))))))

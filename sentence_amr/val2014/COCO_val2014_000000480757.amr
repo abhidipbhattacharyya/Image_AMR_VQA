@@ -1,0 +1,31 @@
+# ::tok A toilet stall with a red checked piece of cloth hanging over the partition
+# ::node	t	toilet	1-2
+# ::node	s	stall	2-3
+# ::node	h2	have-03	3-4
+# ::node	r	red-02	5-6
+# ::node	c	check-01	6-7
+# ::node	p2	piece	7-8
+# ::node	c2	cloth	9-10
+# ::node	h	hang-01	10-11
+# ::node	o	over	11-12
+# ::node	p	partition	13-14
+# ::root	s	stall
+# ::edge	stall	mod	toilet	s	t	
+# ::edge	stall	ARG0-of	have-03	s	h2	
+# ::edge	piece	ARG1-of	check-01	p2	c	
+# ::edge	piece	ARG1-of	red-02	p2	r	
+# ::edge	have-03	ARG1	piece	h2	p2	
+# ::edge	piece	consist-of	cloth	p2	c2	
+# ::edge	piece	ARG1-of	hang-01	p2	h	
+# ::edge	hang-01	ARG2	over	h	o	
+# ::edge	over	op1	partition	o	p	
+(s / stall
+    :ARG0-of (h2 / have-03
+        :ARG1 (p2 / piece
+            :ARG1-of (c / check-01)
+            :ARG1-of (r / red-02)
+            :ARG1-of (h / hang-01
+                :ARG2 (o / over
+                    :op1 (p / partition)))
+            :consist-of (c2 / cloth)))
+    :mod (t / toilet))

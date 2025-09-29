@@ -1,0 +1,39 @@
+# ::tok Breakfast sandwiches are best served with a fresh glass of orange juice .
+# ::node	b	breakfast-01	0-1
+# ::node	s	sandwich	1-2
+# ::node	h	have-degree-91	3-4
+# ::node	g2	good-02	3-4
+# ::node	m	most	3-4
+# ::node	s2	serve-02	4-5
+# ::node	v	volume-quantity	6-7
+# ::node	0	1	6-7
+# ::node	f	fresh-04	7-8
+# ::node	g	glass	8-9
+# ::node	o	orange	10-11
+# ::node	j	juice	11-12
+# ::root	s2	serve-02
+# ::edge	sandwich	ARG1-of	breakfast-01	s	b	
+# ::edge	have-degree-91	ARG2	good-02	h	g2	
+# ::edge	have-degree-91	ARG3	most	h	m	
+# ::edge	good-02	ARG1	serve-02	g2	s2	
+# ::edge	serve-02	ARG1-of	have-degree-91	s2	h	
+# ::edge	serve-02	ARG1	sandwich	s2	s	
+# ::edge	volume-quantity	quant	1	v	0	
+# ::edge	volume-quantity	unit	glass	v	g	
+# ::edge	juice	mod	orange	j	o	
+# ::edge	juice	ARG1-of	fresh-04	j	f	
+# ::edge	juice	quant	volume-quantity	j	v	
+# ::edge	serve-02	accompanier	juice	s2	j	
+(s2 / serve-02
+    :ARG1 (s / sandwich
+        :ARG1-of (b / breakfast-01))
+    :ARG1-of (h / have-degree-91
+        :ARG2 (g2 / good-02
+            :ARG1 s2)
+        :ARG3 (m / most))
+    :accompanier (j / juice
+        :quant (v / volume-quantity
+            :quant 1
+            :unit (g / glass))
+        :ARG1-of (f / fresh-04)
+        :mod (o / orange)))

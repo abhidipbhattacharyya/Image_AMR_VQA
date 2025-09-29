@@ -1,0 +1,28 @@
+# ::tok A clock is made from different colored bags stacked on top of each other .
+# ::node	c	clock	1-2
+# ::node	m	make-01	3-4
+# ::node	d	differ-02	5-6
+# ::node	c2	color-01	6-7
+# ::node	b	bag	7-8
+# ::node	s	stack-01	8-9
+# ::node	t	top	10-11
+# ::node	e	each	12-13
+# ::node	o	other	13-14
+# ::root	m	make-01
+# ::edge	make-01	ARG1	clock	m	c	
+# ::edge	color-01	ARG1-of	differ-02	c2	d	
+# ::edge	bag	ARG1-of	color-01	b	c2	
+# ::edge	make-01	ARG2	bag	m	b	
+# ::edge	bag	ARG1-of	stack-01	b	s	
+# ::edge	stack-01	ARG2	top	s	t	
+# ::edge	other	mod	each	o	e	
+# ::edge	top	poss	other	t	o	
+(m / make-01
+    :ARG1 (c / clock)
+    :ARG2 (b / bag
+        :ARG1-of (c2 / color-01
+            :ARG1-of (d / differ-02))
+        :ARG1-of (s / stack-01
+            :ARG2 (t / top
+                :poss (o / other
+                    :mod (e / each))))))

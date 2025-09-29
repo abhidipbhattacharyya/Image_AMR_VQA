@@ -1,0 +1,39 @@
+# ::tok A small plan is parked half on a cement area and half in a field while the ground is wet .
+# ::node	s	small	1-2
+# ::node	p3	plan	2-3
+# ::node	p	park-01	4-5
+# ::node	p2	park-01	4-5
+# ::node	h	half	5-6
+# ::node	c	cement	8-9
+# ::node	a2	area	9-10
+# ::node	a	and	10-11
+# ::node	h2	half	11-12
+# ::node	f	field	14-15
+# ::node	g	ground	17-18
+# ::node	w	wet-01	19-20
+# ::root	a	and
+# ::edge	plan	mod	small	p3	s	
+# ::edge	park-01	ARG1	plan	p	p3	
+# ::edge	park-01	ARG1	plan	p2	p3	
+# ::edge	area	consist-of	cement	a2	c	
+# ::edge	area	mod	half	a2	h	
+# ::edge	park-01	ARG2	area	p	a2	
+# ::edge	and	op2	park-01	a	p2	
+# ::edge	and	op1	park-01	a	p	
+# ::edge	field	mod	half	f	h2	
+# ::edge	park-01	ARG2	field	p2	f	
+# ::edge	wet-01	ARG1	ground	w	g	
+# ::edge	and	time	wet-01	a	w	
+(a / and
+    :op1 (p / park-01
+        :ARG1 (p3 / plan
+            :mod (s / small))
+        :ARG2 (a2 / area
+            :consist-of (c / cement)
+            :mod (h / half)))
+    :op2 (p2 / park-01
+        :ARG1 p3
+        :ARG2 (f / field
+            :mod (h2 / half)))
+    :time (w / wet-01
+        :ARG1 (g / ground)))

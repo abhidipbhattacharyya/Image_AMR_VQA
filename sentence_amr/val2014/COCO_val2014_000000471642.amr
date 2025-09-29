@@ -1,0 +1,26 @@
+# ::tok Passengers getting on and off of a tram at the station .
+# ::node	p2	person	0-1
+# ::node	p	pass-by-17	0-1
+# ::node	g	get-05	1-2
+# ::node	g2	get-05	1-2
+# ::node	a	and	3-4
+# ::node	t	tram	7-8
+# ::node	s	station	10-11
+# ::root	a	and
+# ::edge	person	ARG0-of	pass-by-17	p2	p	
+# ::edge	get-05	ARG1	person	g	p2	
+# ::edge	get-05	ARG1	person	g2	p2	
+# ::edge	and	op2	get-05	a	g2	
+# ::edge	and	op1	get-05	a	g	
+# ::edge	get-05	ARG2	tram	g2	t	
+# ::edge	get-05	ARG2	tram	g	t	
+# ::edge	and	location	station	a	s	
+(a / and
+    :location (s / station)
+    :op1 (g / get-05
+        :ARG1 (p2 / person
+            :ARG0-of (p / pass-by-17))
+        :ARG2 (t / tram))
+    :op2 (g2 / get-05
+        :ARG1 p2
+        :ARG2 t))

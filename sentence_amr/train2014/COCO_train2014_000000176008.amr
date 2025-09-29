@@ -1,0 +1,40 @@
+# ::tok The inside sleeping area of a vehicle with two bunk style beds and a ladder near a window .
+# ::node	i	inside	1-2
+# ::node	s	sleep-01	2-3
+# ::node	a2	area	3-4
+# ::node	v	vehicle	6-7
+# ::node	h	have-03	7-8
+# ::node	0	2	8-9
+# ::node	b2	bunk	9-10
+# ::node	s2	style	10-11
+# ::node	b	bed	11-12
+# ::node	a	and	12-13
+# ::node	l	ladder	14-15
+# ::node	n	near-02	15-16
+# ::node	w	window	17-18
+# ::root	a2	area
+# ::edge	area	location-of	sleep-01	a2	s	
+# ::edge	area	location	inside	a2	i	
+# ::edge	area	part-of	vehicle	a2	v	
+# ::edge	vehicle	ARG0-of	have-03	v	h	
+# ::edge	style	mod	bunk	s2	b2	
+# ::edge	bed	mod	style	b	s2	
+# ::edge	bed	quant	2	b	0	
+# ::edge	and	op1	bed	a	b	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	ladder	a	l	
+# ::edge	ladder	ARG1-of	near-02	l	n	
+# ::edge	near-02	ARG2	window	n	w	
+(a2 / area
+    :location (i / inside)
+    :location-of (s / sleep-01)
+    :part-of (v / vehicle
+        :ARG0-of (h / have-03
+            :ARG1 (a / and
+                :op1 (b / bed
+                    :quant 2
+                    :mod (s2 / style
+                        :mod (b2 / bunk)))
+                :op2 (l / ladder
+                    :ARG1-of (n / near-02
+                        :ARG2 (w / window)))))))

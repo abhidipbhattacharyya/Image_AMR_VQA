@@ -1,0 +1,28 @@
+# ::tok A series of vendors sell fresh - made pastries on a busy road .
+# ::node	s2	series	1-2
+# ::node	p	person	3-4
+# ::node	v	vend-01	3-4
+# ::node	s	sell-01	4-5
+# ::node	f	fresh-04	5-6
+# ::node	m	make-01	7-8
+# ::node	c	cake	8-9
+# ::node	b	busy-02	11-12
+# ::node	r	road	12-13
+# ::root	s	sell-01
+# ::edge	person	quant	series	p	s2	
+# ::edge	person	ARG0-of	vend-01	p	v	
+# ::edge	sell-01	ARG0	person	s	p	
+# ::edge	make-01	ARG1-of	fresh-04	m	f	
+# ::edge	cake	ARG1-of	make-01	c	m	
+# ::edge	sell-01	ARG1	cake	s	c	
+# ::edge	road	ARG1-of	busy-02	r	b	
+# ::edge	sell-01	location	road	s	r	
+(s / sell-01
+    :ARG0 (p / person
+        :quant (s2 / series)
+        :ARG0-of (v / vend-01))
+    :ARG1 (c / cake
+        :ARG1-of (m / make-01
+            :ARG1-of (f / fresh-04)))
+    :location (r / road
+        :ARG1-of (b / busy-02)))

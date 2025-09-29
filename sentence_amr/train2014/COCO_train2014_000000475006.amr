@@ -1,0 +1,35 @@
+# ::tok A toaster oven filled with mini pizzas as a person takes them out while wearing white gloves ..
+# ::node	t2	toaster	1-2
+# ::node	o	oven	2-3
+# ::node	f	fill-01	3-4
+# ::node	m	mini	5-6
+# ::node	p2	pizzeria	6-7
+# ::node	p	person	9-10
+# ::node	t	take-out-11	10-11
+# ::node	w	wear-01	14-15
+# ::node	w2	white-03	15-16
+# ::node	g	glove	16-17
+# ::root	o	oven
+# ::edge	oven	mod	toaster	o	t2	
+# ::edge	oven	ARG1-of	fill-01	o	f	
+# ::edge	pizzeria	mod	mini	p2	m	
+# ::edge	fill-01	ARG2	pizzeria	f	p2	
+# ::edge	take-out-11	ARG0	person	t	p	
+# ::edge	take-out-11	ARG1	pizzeria	t	p2	
+# ::edge	oven	time	take-out-11	o	t	
+# ::edge	take-out-11	time	wear-01	t	w	
+# ::edge	wear-01	ARG0	person	w	p	
+# ::edge	glove	ARG1-of	white-03	g	w2	
+# ::edge	wear-01	ARG1	glove	w	g	
+(o / oven
+    :ARG1-of (f / fill-01
+        :ARG2 (p2 / pizzeria
+            :mod (m / mini)))
+    :mod (t2 / toaster)
+    :time (t / take-out-11
+        :ARG0 (p / person)
+        :ARG1 p2
+        :time (w / wear-01
+            :ARG0 p
+            :ARG1 (g / glove
+                :ARG1-of (w2 / white-03)))))

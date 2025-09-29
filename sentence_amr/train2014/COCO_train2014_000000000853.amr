@@ -1,0 +1,47 @@
+# ::tok A bowl full of tuna salad next to two slices of bread topped with the salad and one with ketchup on it .
+# ::node	b	bowl	1-2
+# ::node	f	full-09	2-3
+# ::node	t3	tuna	4-5
+# ::node	s	salad	5-6
+# ::node	n	next-to	6-7
+# ::node	1	2	8-9
+# ::node	s2	slice	9-10
+# ::node	s3	slice	9-10
+# ::node	b2	bread	11-12
+# ::node	t	top-01	12-13
+# ::node	t2	top-01	12-13
+# ::node	a	and	16-17
+# ::node	0	1	17-18
+# ::node	k	ketchup	19-20
+# ::root	a	and
+# ::edge	bowl	ARG1-of	full-09	b	f	
+# ::edge	salad	mod	tuna	s	t3	
+# ::edge	full-09	ARG2	salad	f	s	
+# ::edge	bowl	location	next-to	b	n	
+# ::edge	slice	quant	2	s2	1	
+# ::edge	slice	consist-of	bread	s2	b2	
+# ::edge	slice	ARG2-of	top-01	s2	t	
+# ::edge	top-01	ARG1	salad	t	s	
+# ::edge	slice	ARG2-of	top-01	s3	t2	
+# ::edge	top-01	ARG1	salad	t2	s	
+# ::edge	and	op2	slice	a	s3	
+# ::edge	and	op1	bowl	a	b	
+# ::edge	slice	quant	1	s3	0	
+# ::edge	top-01	ARG0	ketchup	t2	k	
+# ::edge	and	rel	slice	a	s2	
+(a / and
+    :op1 (b / bowl
+        :ARG1-of (f / full-09
+            :ARG2 (s / salad
+                :mod (t3 / tuna)))
+        :location (n / next-to))
+    :op2 (s3 / slice
+        :quant 1
+        :ARG2-of (t2 / top-01
+            :ARG0 (k / ketchup)
+            :ARG1 s))
+    :rel (s2 / slice
+        :quant 2
+        :ARG2-of (t / top-01
+            :ARG1 s)
+        :consist-of (b2 / bread)))

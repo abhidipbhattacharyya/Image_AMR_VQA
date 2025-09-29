@@ -1,0 +1,45 @@
+# ::tok one person on a cellular phone looking at a monitor screen next to a person holding a game controller in front of the same monitor
+# ::node	o	one	0-1
+# ::node	p	person	1-2
+# ::node	c	cellular	4-5
+# ::node	p3	phone	5-6
+# ::node	l	look-01	6-7
+# ::node	m	monitor	9-10
+# ::node	s	screen	10-11
+# ::node	n	next-to	11-12
+# ::node	p2	person	14-15
+# ::node	h	hold-01	15-16
+# ::node	g	game	17-18
+# ::node	t	thing	18-19
+# ::node	c2	control-01	18-19
+# ::node	i	in-front-of	20-21
+# ::root	l	look-01
+# ::edge	person	quant	one	p	o	
+# ::edge	phone	mod	cellular	p3	c	
+# ::edge	person	medium	phone	p	p3	
+# ::edge	look-01	ARG0	person	l	p	
+# ::edge	screen	part-of	monitor	s	m	
+# ::edge	look-01	ARG1	screen	l	s	
+# ::edge	person	location	next-to	p	n	
+# ::edge	next-to	op1	person	n	p2	
+# ::edge	person	ARG0-of	hold-01	p2	h	
+# ::edge	hold-01	ARG1	thing	h	t	
+# ::edge	thing	ARG0-of	control-01	t	c2	
+# ::edge	control-01	ARG1	game	c2	g	
+# ::edge	person	location	in-front-of	p2	i	
+# ::edge	in-front-of	op1	monitor	i	m	
+(l / look-01
+    :ARG0 (p / person
+        :quant (o / one)
+        :location (n / next-to
+            :op1 (p2 / person
+                :ARG0-of (h / hold-01
+                    :ARG1 (t / thing
+                        :ARG0-of (c2 / control-01
+                            :ARG1 (g / game))))
+                :location (i / in-front-of
+                    :op1 (m / monitor))))
+        :medium (p3 / phone
+            :mod (c / cellular)))
+    :ARG1 (s / screen
+        :part-of m))

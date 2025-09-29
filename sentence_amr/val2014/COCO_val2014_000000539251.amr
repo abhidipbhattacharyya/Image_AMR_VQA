@@ -1,0 +1,39 @@
+# ::tok A batroom with mirrors and sinks with a reflection of two people in a mirror while one takes a picture .
+# ::node	b	batroom	1-2
+# ::node	h	have-03	2-3
+# ::node	m	mirror	3-4
+# ::node	a	and	4-5
+# ::node	s	sink-01	5-6
+# ::node	t2	thing	7-8
+# ::node	r	reflect-01	8-9
+# ::node	0	2	10-11
+# ::node	p	person	11-12
+# ::node	o	one	16-17
+# ::node	t	take-01	17-18
+# ::node	p2	picture	19-20
+# ::root	b	batroom
+# ::edge	batroom	ARG0-of	have-03	b	h	
+# ::edge	and	op1	mirror	a	m	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	and	op2	sink-01	a	s	
+# ::edge	sink-01	location	thing	s	t2	
+# ::edge	thing	ARG1-of	reflect-01	t2	r	
+# ::edge	reflect-01	ARG2	mirror	r	m	
+# ::edge	person	quant	2	p	0	
+# ::edge	reflect-01	ARG1	person	r	p	
+# ::edge	take-01	ARG0	one	t	o	
+# ::edge	batroom	time	take-01	b	t	
+# ::edge	take-01	ARG1	picture	t	p2	
+(b / batroom
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (m / mirror)
+            :op2 (s / sink-01
+                :location (t2 / thing
+                    :ARG1-of (r / reflect-01
+                        :ARG1 (p / person
+                            :quant 2)
+                        :ARG2 m)))))
+    :time (t / take-01
+        :ARG0 (o / one)
+        :ARG1 (p2 / picture)))

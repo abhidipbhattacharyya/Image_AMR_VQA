@@ -1,0 +1,48 @@
+# ::tok A clock tower with an Asian influenced architectural design and two clock faces showing on each side of the tower .
+# ::node	c	clock	1-2
+# ::node	t	tower	2-3
+# ::node	c3	continent	5-6
+# ::node	n	name	5-6
+# ::node	1	Asia	5-6
+# ::node	i	influence-01	6-7
+# ::node	i2	infrastructure	7-8
+# ::node	d	design-01	8-9
+# ::node	a	and	9-10
+# ::node	0	2	10-11
+# ::node	c2	clock	11-12
+# ::node	f	face	12-13
+# ::node	s	show-01	13-14
+# ::node	e	each	15-16
+# ::node	s2	side	16-17
+# ::root	t	tower
+# ::edge	tower	mod	clock	t	c	
+# ::edge	continent	name	name	c3	n	
+# ::edge	name	op1	Asia	n	1	
+# ::edge	influence-01	ARG0	continent	i	c3	
+# ::edge	design-01	ARG1	infrastructure	d	i2	
+# ::edge	design-01	ARG1-of	influence-01	d	i	
+# ::edge	and	op1	design-01	a	d	
+# ::edge	tower	part	and	t	a	
+# ::edge	face	mod	clock	f	c2	
+# ::edge	face	quant	2	f	0	
+# ::edge	and	op2	face	a	f	
+# ::edge	and	ARG1-of	show-01	a	s	
+# ::edge	side	mod	each	s2	e	
+# ::edge	show-01	location	side	s	s2	
+# ::edge	tower	part	side	t	s2	
+(t / tower
+    :mod (c / clock)
+    :part (a / and
+        :ARG1-of (s / show-01
+            :location (s2 / side
+                :mod (e / each)))
+        :op1 (d / design-01
+            :ARG1 (i2 / infrastructure)
+            :ARG1-of (i / influence-01
+                :ARG0 (c3 / continent
+                    :name (n / name
+                        :op1 "Asia"))))
+        :op2 (f / face
+            :quant 2
+            :mod (c2 / clock)))
+    :part s2)

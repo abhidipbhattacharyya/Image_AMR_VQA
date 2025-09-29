@@ -1,0 +1,63 @@
+# ::tok A women is standing at a intersection while a man is walking toward the intersection and car is turning right into the intersection while there is a pole at the corner of the intersection and a fire hydrant not to far from the pole .
+# ::node	w2	woman	1-2
+# ::node	s	stand-01	3-4
+# ::node	i	intersect-01	6-7
+# ::node	m	man	9-10
+# ::node	w	walk-01	11-12
+# ::node	c	car	16-17
+# ::node	t	turn-01	18-19
+# ::node	r2	right	19-20
+# ::node	p	pole	27-28
+# ::node	c2	corner	30-31
+# ::node	a	and	34-35
+# ::node	a2	and	34-35
+# ::node	f2	fire	36-37
+# ::node	h2	hydrant	37-38
+# ::node	0	-	38-39
+# ::node	h	have-degree-91	39-40
+# ::node	f	far	40-41
+# ::node	r	relative-position	41-42
+# ::root	s	stand-01
+# ::edge	stand-01	ARG0	woman	s	w2	
+# ::edge	stand-01	location	intersect-01	s	i	
+# ::edge	walk-01	ARG0	man	w	m	
+# ::edge	walk-01	direction	intersect-01	w	i	
+# ::edge	turn-01	ARG1	car	t	c	
+# ::edge	turn-01	direction	intersect-01	t	i	
+# ::edge	turn-01	manner	right	t	r2	
+# ::edge	pole	location	corner	p	c2	
+# ::edge	intersect-01	part	corner	i	c2	
+# ::edge	and	op2	turn-01	a	t	
+# ::edge	and	op1	walk-01	a	w	
+# ::edge	stand-01	time	and	s	a	
+# ::edge	and	op1	pole	a2	p	
+# ::edge	and	time	and	a	a2	
+# ::edge	hydrant	mod	fire	h2	f2	
+# ::edge	and	op2	hydrant	a2	h2	
+# ::edge	have-degree-91	polarity	-	h	0	
+# ::edge	far	ARG2-of	have-degree-91	f	h	
+# ::edge	relative-position	quant	far	r	f	
+# ::edge	hydrant	location	relative-position	h2	r	
+# ::edge	relative-position	op1	pole	r	p	
+(s / stand-01
+    :ARG0 (w2 / woman)
+    :location (i / intersect-01
+        :part (c2 / corner))
+    :time (a / and
+        :op1 (w / walk-01
+            :ARG0 (m / man)
+            :direction i)
+        :op2 (t / turn-01
+            :ARG1 (c / car)
+            :direction i
+            :manner (r2 / right))
+        :time (a2 / and
+            :op1 (p / pole
+                :location c2)
+            :op2 (h2 / hydrant
+                :location (r / relative-position
+                    :quant (f / far
+                        :ARG2-of (h / have-degree-91
+                            :polarity -))
+                    :op1 p)
+                :mod (f2 / fire)))))

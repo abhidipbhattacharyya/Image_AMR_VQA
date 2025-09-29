@@ -1,0 +1,41 @@
+# ::tok The man is facing the rear , riding in the back of a vehicle along with the luggage and other household goods .
+# ::node	m	man	1-2
+# ::node	f	face-01	3-4
+# ::node	r	rear	5-6
+# ::node	a	and	6-7
+# ::node	r2	ride-01	7-8
+# ::node	b	back	10-11
+# ::node	v	vehicle	13-14
+# ::node	l	luggage	17-18
+# ::node	a2	and	18-19
+# ::node	o	other	19-20
+# ::node	h	household	20-21
+# ::node	g	good	21-22
+# ::root	a	and
+# ::edge	face-01	ARG0	man	f	m	
+# ::edge	face-01	ARG1	rear	f	r	
+# ::edge	and	op1	face-01	a	f	
+# ::edge	and	op2	ride-01	a	r2	
+# ::edge	ride-01	ARG0	man	r2	m	
+# ::edge	ride-01	ARG1	back	r2	b	
+# ::edge	back	part-of	vehicle	b	v	
+# ::edge	and	op2	luggage	a2	l	
+# ::edge	and	accompanier	and	a	a2	
+# ::edge	and	op1	man	a2	m	
+# ::edge	good	mod	household	g	h	
+# ::edge	good	mod	other	g	o	
+# ::edge	and	op3	good	a2	g	
+(a / and
+    :accompanier (a2 / and
+        :op1 (m / man)
+        :op2 (l / luggage)
+        :op3 (g / good
+            :mod (h / household)
+            :mod (o / other)))
+    :op1 (f / face-01
+        :ARG0 m
+        :ARG1 (r / rear))
+    :op2 (r2 / ride-01
+        :ARG0 m
+        :ARG1 (b / back
+            :part-of (v / vehicle))))

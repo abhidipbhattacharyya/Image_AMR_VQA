@@ -1,0 +1,37 @@
+# ::tok A cruise ship is sailing close to the shore as two adults and a child walk through the sand .
+# ::node	c3	cruise-01	1-2
+# ::node	s3	ship	2-3
+# ::node	s	sail-01	4-5
+# ::node	c2	close-10	5-6
+# ::node	s4	shore	8-9
+# ::node	0	2	10-11
+# ::node	a	adult	11-12
+# ::node	a2	and	12-13
+# ::node	c	child	14-15
+# ::node	w	walk-01	15-16
+# ::node	t	through	16-17
+# ::node	s2	sand	18-19
+# ::root	s	sail-01
+# ::edge	ship	mod	cruise-01	s3	c3	
+# ::edge	sail-01	ARG0	ship	s	s3	
+# ::edge	sail-01	ARG1-of	close-10	s	c2	
+# ::edge	close-10	ARG2	shore	c2	s4	
+# ::edge	adult	quant	2	a	0	
+# ::edge	and	op1	adult	a2	a	
+# ::edge	and	op2	child	a2	c	
+# ::edge	walk-01	ARG0	and	w	a2	
+# ::edge	sail-01	time	walk-01	s	w	
+# ::edge	walk-01	ARG2	through	w	t	
+# ::edge	through	op1	sand	t	s2	
+(s / sail-01
+    :ARG0 (s3 / ship
+        :mod (c3 / cruise-01))
+    :ARG1-of (c2 / close-10
+        :ARG2 (s4 / shore))
+    :time (w / walk-01
+        :ARG0 (a2 / and
+            :op1 (a / adult
+                :quant 2)
+            :op2 (c / child))
+        :ARG2 (t / through
+            :op1 (s2 / sand))))

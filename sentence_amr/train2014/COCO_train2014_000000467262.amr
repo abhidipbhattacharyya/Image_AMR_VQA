@@ -1,0 +1,34 @@
+# ::tok A glowing bright green ATM machine placed next to soft drink container .
+# ::node	g	glow-01	1-2
+# ::node	b2	bright-02	2-3
+# ::node	g2	green-02	3-4
+# ::node	a	automate-01	4-5
+# ::node	b	bank-teller	4-5
+# ::node	m	machine	5-6
+# ::node	p	place-01	6-7
+# ::node	n	next-to	7-8
+# ::node	s	soft	9-10
+# ::node	d	drink	10-11
+# ::node	c	container	11-12
+# ::root	p	place-01
+# ::edge	automate-01	ARG1	bank-teller	a	b	
+# ::edge	machine	ARG0-of	automate-01	m	a	
+# ::edge	machine	ARG1-of	green-02	m	g2	
+# ::edge	machine	ARG1-of	glow-01	m	g	
+# ::edge	place-01	ARG1	machine	p	m	
+# ::edge	place-01	ARG2	next-to	p	n	
+# ::edge	drink	mod	soft	d	s	
+# ::edge	container	consist-of	drink	c	d	
+# ::edge	next-to	op1	container	n	c	
+# ::edge	place-01	rel	bright-02	p	b2	
+(p / place-01
+    :ARG1 (m / machine
+        :ARG0-of (a / automate-01
+            :ARG1 (b / bank-teller))
+        :ARG1-of (g2 / green-02)
+        :ARG1-of (g / glow-01))
+    :ARG2 (n / next-to
+        :op1 (c / container
+            :consist-of (d / drink
+                :mod (s / soft))))
+    :rel (b2 / bright-02))

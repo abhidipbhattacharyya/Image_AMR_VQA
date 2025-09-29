@@ -1,0 +1,29 @@
+# ::tok The baseball player adjusts his stance to prepare for the rest of the inning .
+# ::node	b	baseball	1-2
+# ::node	p	person	2-3
+# ::node	p2	play-01	2-3
+# ::node	a	adjust-01	3-4
+# ::node	s	stand-11	5-6
+# ::node	p3	prepare-02	7-8
+# ::node	r	rest	10-11
+# ::node	i	inning	13-14
+# ::root	a	adjust-01
+# ::edge	person	ARG0-of	play-01	p	p2	
+# ::edge	play-01	ARG1	baseball	p2	b	
+# ::edge	adjust-01	ARG0	person	a	p	
+# ::edge	adjust-01	ARG1	stand-11	a	s	
+# ::edge	stand-11	ARG0	person	s	p	
+# ::edge	adjust-01	purpose	prepare-02	a	p3	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG2	rest	p3	r	
+# ::edge	rest	part-of	inning	r	i	
+(a / adjust-01
+    :purpose (p3 / prepare-02
+        :ARG0 (p / person
+            :ARG0-of (p2 / play-01
+                :ARG1 (b / baseball)))
+        :ARG2 (r / rest
+            :part-of (i / inning)))
+    :ARG0 p
+    :ARG1 (s / stand-11
+        :ARG0 p))

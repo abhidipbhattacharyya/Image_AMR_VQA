@@ -1,0 +1,40 @@
+# ::tok A heffer cow looks at oncoming people and decides whether or not to graze
+# ::node	h	heffer	1-2
+# ::node	c2	cow	2-3
+# ::node	l	look-01	3-4
+# ::node	c	come-on-25	5-6
+# ::node	p	person	6-7
+# ::node	a	and	7-8
+# ::node	d	decide-01	8-9
+# ::node	o	or	10-11
+# ::node	0	-	11-12
+# ::node	g	graze-01	13-14
+# ::node	g2	graze-01	13-14
+# ::root	a	and
+# ::edge	cow	mod	heffer	c2	h	
+# ::edge	look-01	ARG0	cow	l	c2	
+# ::edge	person	ARG1-of	come-on-25	p	c	
+# ::edge	look-01	ARG1	person	l	p	
+# ::edge	and	op1	look-01	a	l	
+# ::edge	and	op2	decide-01	a	d	
+# ::edge	decide-01	ARG0	cow	d	c2	
+# ::edge	decide-01	ARG1	or	d	o	
+# ::edge	or	op1	graze-01	o	g	
+# ::edge	graze-01	ARG0	cow	g	c2	
+# ::edge	graze-01	polarity	-	g2	0	
+# ::edge	or	op2	graze-01	o	g2	
+# ::edge	graze-01	ARG0	cow	g2	c2	
+(a / and
+    :op1 (l / look-01
+        :ARG0 (c2 / cow
+            :mod (h / heffer))
+        :ARG1 (p / person
+            :ARG1-of (c / come-on-25)))
+    :op2 (d / decide-01
+        :ARG0 c2
+        :ARG1 (o / or
+            :op1 (g / graze-01
+                :ARG0 c2)
+            :op2 (g2 / graze-01
+                :ARG0 c2
+                :polarity -))))

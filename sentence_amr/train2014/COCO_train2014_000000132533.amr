@@ -1,0 +1,25 @@
+# ::tok Multiple factory workers processing bunches of green bananas .
+# ::node	m	multiple	0-1
+# ::node	f	factory	1-2
+# ::node	p	person	2-3
+# ::node	w	work-01	2-3
+# ::node	p2	process-01	3-4
+# ::node	m2	multiple	4-5
+# ::node	g	green-02	6-7
+# ::node	b	banana	7-8
+# ::root	p2	process-01
+# ::edge	person	quant	multiple	p	m	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	work-01	ARG2	factory	w	f	
+# ::edge	process-01	ARG0	person	p2	p	
+# ::edge	banana	ARG1-of	green-02	b	g	
+# ::edge	banana	quant	multiple	b	m2	
+# ::edge	process-01	ARG1	banana	p2	b	
+(p2 / process-01
+    :ARG0 (p / person
+        :quant (m / multiple)
+        :ARG0-of (w / work-01
+            :ARG2 (f / factory)))
+    :ARG1 (b / banana
+        :quant (m2 / multiple)
+        :ARG1-of (g / green-02)))

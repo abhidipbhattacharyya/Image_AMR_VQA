@@ -1,0 +1,41 @@
+# ::tok A bed with a row of red and blue stripped pillows with a lamp on a table next to it .
+# ::node	b	bed	1-2
+# ::node	h	have-03	2-3
+# ::node	r2	row	4-5
+# ::node	r	red-02	6-7
+# ::node	a	and	7-8
+# ::node	b2	blue	8-9
+# ::node	s	strip-01	9-10
+# ::node	p	pill	10-11
+# ::node	p2	pill	10-11
+# ::node	l	lamp	13-14
+# ::node	t	table	16-17
+# ::node	n	next-to	17-18
+# ::root	b	bed
+# ::edge	bed	ARG0-of	have-03	b	h	
+# ::edge	have-03	ARG1	row	h	r2	
+# ::edge	row	consist-of	and	r2	a	
+# ::edge	pill	ARG1-of	strip-01	p	s	
+# ::edge	and	op1	pill	a	p	
+# ::edge	pill	ARG1-of	red-02	p	r	
+# ::edge	pill	mod	blue	p2	b2	
+# ::edge	blue	op2	pill	b2	p2	
+# ::edge	bed	prep-with	lamp	b	l	
+# ::edge	lamp	location	table	l	t	
+# ::edge	table	location	next-to	t	n	
+# ::edge	next-to	op1	bed	n	b	
+# ::edge	bed	rel	blue	b	b2	
+(b / bed
+    :ARG0-of (h / have-03
+        :ARG1 (r2 / row
+            :consist-of (a / and
+                :op1 (p / pill
+                    :ARG1-of (s / strip-01)
+                    :ARG1-of (r / red-02)))))
+    :prep-with (l / lamp
+        :location (t / table
+            :location (n / next-to
+                :op1 b)))
+    :rel (b2 / blue
+        :op2 (p2 / pill
+            :mod b2)))

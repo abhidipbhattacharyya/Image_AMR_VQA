@@ -1,0 +1,44 @@
+# ::tok A baby wears blue pants and sits at a high chair holding something and his face is smeared with goo .
+# ::node	b	baby	1-2
+# ::node	w	wear-01	2-3
+# ::node	b2	blue	3-4
+# ::node	p	pants	4-5
+# ::node	a	and	5-6
+# ::node	s	sit-01	6-7
+# ::node	h	high-02	9-10
+# ::node	c	chair	10-11
+# ::node	h2	hold-01	11-12
+# ::node	s3	something	12-13
+# ::node	f	face	15-16
+# ::node	s2	smear-02	17-18
+# ::node	g	goo	19-20
+# ::root	a	and
+# ::edge	wear-01	ARG0	baby	w	b	
+# ::edge	pants	mod	blue	p	b2	
+# ::edge	wear-01	ARG1	pants	w	p	
+# ::edge	and	op1	wear-01	a	w	
+# ::edge	and	op2	sit-01	a	s	
+# ::edge	sit-01	ARG1	baby	s	b	
+# ::edge	chair	ARG1-of	high-02	c	h	
+# ::edge	sit-01	ARG2	chair	s	c	
+# ::edge	sit-01	ARG0-of	hold-01	s	h2	
+# ::edge	hold-01	ARG1	something	h2	s3	
+# ::edge	baby	part	face	b	f	
+# ::edge	smear-02	ARG1	face	s2	f	
+# ::edge	and	op3	smear-02	a	s2	
+# ::edge	smear-02	ARG2	goo	s2	g	
+(a / and
+    :op1 (w / wear-01
+        :ARG0 (b / baby
+            :part (f / face))
+        :ARG1 (p / pants
+            :mod (b2 / blue)))
+    :op2 (s / sit-01
+        :ARG0-of (h2 / hold-01
+            :ARG1 (s3 / something))
+        :ARG1 b
+        :ARG2 (c / chair
+            :ARG1-of (h / high-02)))
+    :op3 (s2 / smear-02
+        :ARG1 f
+        :ARG2 (g / goo)))

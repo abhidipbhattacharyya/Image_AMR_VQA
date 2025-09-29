@@ -1,0 +1,40 @@
+# ::tok An unusual clock tower ; in the background , lightening shoots towards Earth behind a building .
+# ::node	u	usual	1-2
+# ::node	c	clock	2-3
+# ::node	t	tower	3-4
+# ::node	m	multi-sentence	4-5
+# ::node	b	background	7-8
+# ::node	l	lightning-01	9-10
+# ::node	s	shoot-02	10-11
+# ::node	p	planet	12-13
+# ::node	n	name	12-13
+# ::node	1	Earth	12-13
+# ::node	b2	behind	13-14
+# ::node	b3	building	15-16
+# ::node	0	-	16-17
+# ::root	m	multi-sentence
+# ::edge	tower	mod	clock	t	c	
+# ::edge	tower	mod	usual	t	u	
+# ::edge	multi-sentence	snt1	tower	m	t	
+# ::edge	shoot-02	ARG1	lightning-01	s	l	
+# ::edge	shoot-02	location	background	s	b	
+# ::edge	multi-sentence	snt2	shoot-02	m	s	
+# ::edge	shoot-02	direction	planet	s	p	
+# ::edge	planet	name	name	p	n	
+# ::edge	name	op1	Earth	n	1	
+# ::edge	shoot-02	location	behind	s	b2	
+# ::edge	behind	op1	building	b2	b3	
+# ::edge	usual	polarity	-	u	0	
+(m / multi-sentence
+    :snt1 (t / tower
+        :mod (c / clock)
+        :mod (u / usual
+            :polarity -))
+    :snt2 (s / shoot-02
+        :ARG1 (l / lightning-01)
+        :direction (p / planet
+            :name (n / name
+                :op1 "Earth"))
+        :location (b / background)
+        :location (b2 / behind
+            :op1 (b3 / building))))

@@ -1,0 +1,31 @@
+# ::tok Cell phone held up to strange contraption which reads Linda .
+# ::node	c	cell	0-1
+# ::node	p2	phone	1-2
+# ::node	h	hold-01	2-3
+# ::node	u	up-to	3-4
+# ::node	s	strange	5-6
+# ::node	c2	contraption	6-7
+# ::node	r	read-01	8-9
+# ::node	p	person	9-10
+# ::node	n	name	9-10
+# ::node	0	Linda	9-10
+# ::root	h	hold-01
+# ::edge	phone	mod	cell	p2	c	
+# ::edge	hold-01	ARG1	phone	h	p2	
+# ::edge	hold-01	ARG3	up-to	h	u	
+# ::edge	contraption	mod	strange	c2	s	
+# ::edge	up-to	op1	contraption	u	c2	
+# ::edge	contraption	ARG0-of	read-01	c2	r	
+# ::edge	read-01	ARG3	person	r	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Linda	n	0	
+(h / hold-01
+    :ARG1 (p2 / phone
+        :mod (c / cell))
+    :ARG3 (u / up-to
+        :op1 (c2 / contraption
+            :ARG0-of (r / read-01
+                :ARG3 (p / person
+                    :name (n / name
+                        :op1 "Linda")))
+            :mod (s / strange))))

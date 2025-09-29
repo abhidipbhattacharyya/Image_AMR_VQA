@@ -1,0 +1,27 @@
+# ::tok This toilet was covered in mud when the river reached flood stage .
+# ::node	t	this	0-1
+# ::node	t2	toilet	1-2
+# ::node	c	cover-01	3-4
+# ::node	m	mud	5-6
+# ::node	r2	river	8-9
+# ::node	r	reach-01	9-10
+# ::node	f	flood-01	10-11
+# ::node	s	stage	11-12
+# ::root	c	cover-01
+# ::edge	toilet	mod	this	t2	t	
+# ::edge	cover-01	ARG1	toilet	c	t2	
+# ::edge	cover-01	ARG2	mud	c	m	
+# ::edge	reach-01	ARG0	river	r	r2	
+# ::edge	cover-01	time	reach-01	c	r	
+# ::edge	flood-01	ARG1	river	f	r2	
+# ::edge	stage	mod	flood-01	s	f	
+# ::edge	reach-01	ARG1	stage	r	s	
+(c / cover-01
+    :ARG1 (t2 / toilet
+        :mod (t / this))
+    :ARG2 (m / mud)
+    :time (r / reach-01
+        :ARG0 (r2 / river)
+        :ARG1 (s / stage
+            :mod (f / flood-01
+                :ARG1 r2))))

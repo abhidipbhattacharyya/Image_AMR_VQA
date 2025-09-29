@@ -1,0 +1,27 @@
+# ::tok A transit bus traveling down a street with vehicles following behind it .
+# ::node	t	transit-01	1-2
+# ::node	b2	bus	2-3
+# ::node	t2	travel-01	3-4
+# ::node	d	down	4-5
+# ::node	s	street	6-7
+# ::node	v	vehicle	8-9
+# ::node	f	follow-01	9-10
+# ::node	b	behind	10-11
+# ::root	t2	travel-01
+# ::edge	bus	ARG0-of	transit-01	b2	t	
+# ::edge	travel-01	ARG0	bus	t2	b2	
+# ::edge	travel-01	direction	down	t2	d	
+# ::edge	travel-01	ARG1	street	t2	s	
+# ::edge	follow-01	ARG1	vehicle	f	v	
+# ::edge	bus	ARG2-of	follow-01	b2	f	
+# ::edge	follow-01	location	behind	f	b	
+# ::edge	behind	op1	bus	b	b2	
+(t2 / travel-01
+    :ARG0 (b2 / bus
+        :ARG0-of (t / transit-01)
+        :ARG2-of (f / follow-01
+            :ARG1 (v / vehicle)
+            :location (b / behind
+                :op1 b2)))
+    :ARG1 (s / street)
+    :direction (d / down))

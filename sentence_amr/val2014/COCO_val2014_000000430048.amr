@@ -1,0 +1,40 @@
+# ::tok The reflection of a clock and traffic is seen through a window with an " ATM INSIDE " sticker .
+# ::node	r	reflect-01	1-2
+# ::node	c	clock	4-5
+# ::node	a	and	5-6
+# ::node	t2	traffic	6-7
+# ::node	s2	see-01	8-9
+# ::node	t	through	9-10
+# ::node	w	window	11-12
+# ::node	s	say-01	14-15
+# ::node	m	machine	15-16
+# ::node	a2	automate-01	15-16
+# ::node	b	bank-teller	15-16
+# ::node	i	inside	16-17
+# ::node	s3	sticker	18-19
+# ::root	s2	see-01
+# ::edge	and	op1	clock	a	c	
+# ::edge	reflect-01	ARG2	and	r	a	
+# ::edge	and	op2	traffic	a	t2	
+# ::edge	see-01	ARG1	reflect-01	s2	r	
+# ::edge	see-01	location	through	s2	t	
+# ::edge	through	op1	window	t	w	
+# ::edge	say-01	ARG1	machine	s	m	
+# ::edge	machine	ARG1-of	automate-01	m	a2	
+# ::edge	automate-01	mod	bank-teller	a2	b	
+# ::edge	machine	location	inside	m	i	
+# ::edge	sticker	ARG0-of	say-01	s3	s	
+# ::edge	window	prep-with	sticker	w	s3	
+(s2 / see-01
+    :ARG1 (r / reflect-01
+        :ARG2 (a / and
+            :op1 (c / clock)
+            :op2 (t2 / traffic)))
+    :location (t / through
+        :op1 (w / window
+            :prep-with (s3 / sticker
+                :ARG0-of (s / say-01
+                    :ARG1 (m / machine
+                        :ARG1-of (a2 / automate-01
+                            :mod (b / bank-teller))
+                        :location (i / inside)))))))

@@ -1,0 +1,28 @@
+# ::tok A bus is traveling down a city street that does not have much traffic .
+# ::node	b	bus	1-2
+# ::node	t2	travel-01	3-4
+# ::node	d	down	4-5
+# ::node	c	city	6-7
+# ::node	s	street	7-8
+# ::node	0	-	10-11
+# ::node	h	have-03	11-12
+# ::node	m	much	12-13
+# ::node	t	traffic	13-14
+# ::root	t2	travel-01
+# ::edge	travel-01	ARG0	bus	t2	b	
+# ::edge	travel-01	direction	down	t2	d	
+# ::edge	street	mod	city	s	c	
+# ::edge	travel-01	ARG1	street	t2	s	
+# ::edge	have-03	polarity	-	h	0	
+# ::edge	street	ARG0-of	have-03	s	h	
+# ::edge	traffic	quant	much	t	m	
+# ::edge	have-03	ARG1	traffic	h	t	
+(t2 / travel-01
+    :ARG0 (b / bus)
+    :ARG1 (s / street
+        :ARG0-of (h / have-03
+            :ARG1 (t / traffic
+                :quant (m / much))
+            :polarity -)
+        :mod (c / city))
+    :direction (d / down))

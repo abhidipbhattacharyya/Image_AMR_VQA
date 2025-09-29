@@ -1,0 +1,28 @@
+# ::tok A man sits on a blue - painted wrought iron bench with wood slats .
+# ::node	m	man	1-2
+# ::node	s	sit-01	2-3
+# ::node	b2	blue	5-6
+# ::node	p	paint-01	7-8
+# ::node	w2	work-08	8-9
+# ::node	i	iron	9-10
+# ::node	b	bench	10-11
+# ::node	w	wood	12-13
+# ::node	s2	slab	13-14
+# ::root	s	sit-01
+# ::edge	sit-01	ARG1	man	s	m	
+# ::edge	paint-01	ARG2	blue	p	b2	
+# ::edge	bench	consist-of	iron	b	i	
+# ::edge	bench	ARG1-of	work-08	b	w2	
+# ::edge	bench	ARG1-of	paint-01	b	p	
+# ::edge	sit-01	ARG2	bench	s	b	
+# ::edge	slab	consist-of	wood	s2	w	
+# ::edge	bench	part	slab	b	s2	
+(s / sit-01
+    :ARG1 (m / man)
+    :ARG2 (b / bench
+        :ARG1-of (w2 / work-08)
+        :ARG1-of (p / paint-01
+            :ARG2 (b2 / blue))
+        :consist-of (i / iron)
+        :part (s2 / slab
+            :consist-of (w / wood))))

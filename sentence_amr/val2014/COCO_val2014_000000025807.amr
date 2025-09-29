@@ -1,0 +1,78 @@
+# ::tok A blurry foreground suggests a counter top with food - bearing items , while the majority of the shot shows a rippling expanse of water and a person standing on a surfboard and using a long oar to move away from shore .
+# ::node	b3	blur-01	1-2
+# ::node	f2	foreground	2-3
+# ::node	s5	suggest-01	3-4
+# ::node	c2	counter	5-6
+# ::node	t	top	6-7
+# ::node	f	food	8-9
+# ::node	b	bear-01	10-11
+# ::node	i	item	11-12
+# ::node	c	contrast-01	13-14
+# ::node	m	majority	15-16
+# ::node	s2	shot	18-19
+# ::node	s3	show-01	19-20
+# ::node	b2	bill	21-22
+# ::node	e	expanse	22-23
+# ::node	w	water	24-25
+# ::node	a	and	25-26
+# ::node	p	person	27-28
+# ::node	s4	stand-01	28-29
+# ::node	s6	surfboard	31-32
+# ::node	u	use-01	33-34
+# ::node	l	long-03	35-36
+# ::node	o	oar	36-37
+# ::node	m2	move-01	38-39
+# ::node	a2	away	39-40
+# ::node	s	shore	41-42
+# ::root	c	contrast-01
+# ::edge	foreground	ARG1-of	blur-01	f2	b3	
+# ::edge	suggest-01	ARG0	foreground	s5	f2	
+# ::edge	top	mod	counter	t	c2	
+# ::edge	suggest-01	ARG1	top	s5	t	
+# ::edge	bear-01	ARG1	food	b	f	
+# ::edge	item	ARG0-of	bear-01	i	b	
+# ::edge	top	location-of	item	t	i	
+# ::edge	contrast-01	ARG1	suggest-01	c	s5	
+# ::edge	shot	quant	majority	s2	m	
+# ::edge	show-01	ARG0	shot	s3	s2	
+# ::edge	contrast-01	ARG2	show-01	c	s3	
+# ::edge	expanse	mod	bill	e	b2	
+# ::edge	expanse	consist-of	water	e	w	
+# ::edge	and	op1	expanse	a	e	
+# ::edge	show-01	ARG1	and	s3	a	
+# ::edge	and	op2	person	a	p	
+# ::edge	person	ARG0-of	stand-01	p	s4	
+# ::edge	stand-01	ARG2	surfboard	s4	s6	
+# ::edge	person	ARG0-of	use-01	p	u	
+# ::edge	oar	ARG1-of	long-03	o	l	
+# ::edge	use-01	ARG1	oar	u	o	
+# ::edge	use-01	ARG2	move-01	u	m2	
+# ::edge	move-01	ARG0	person	m2	p	
+# ::edge	move-01	ARG2	away	m2	a2	
+# ::edge	away	op1	shore	a2	s	
+(c / contrast-01
+    :ARG1 (s5 / suggest-01
+        :ARG0 (f2 / foreground
+            :ARG1-of (b3 / blur-01))
+        :ARG1 (t / top
+            :location-of (i / item
+                :ARG0-of (b / bear-01
+                    :ARG1 (f / food)))
+            :mod (c2 / counter)))
+    :ARG2 (s3 / show-01
+        :ARG0 (s2 / shot
+            :quant (m / majority))
+        :ARG1 (a / and
+            :op1 (e / expanse
+                :consist-of (w / water)
+                :mod (b2 / bill))
+            :op2 (p / person
+                :ARG0-of (s4 / stand-01
+                    :ARG2 (s6 / surfboard))
+                :ARG0-of (u / use-01
+                    :ARG1 (o / oar
+                        :ARG1-of (l / long-03))
+                    :ARG2 (m2 / move-01
+                        :ARG0 p
+                        :ARG2 (a2 / away
+                            :op1 (s / shore))))))))

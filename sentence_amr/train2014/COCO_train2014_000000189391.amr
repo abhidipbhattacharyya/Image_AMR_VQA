@@ -1,0 +1,33 @@
+# ::tok The fire hydrant next to the street light has a plant growing at its base .
+# ::node	f	fire	1-2
+# ::node	h2	hydrant	2-3
+# ::node	n	next-to	3-4
+# ::node	t	thing	5-6
+# ::node	s	street	6-7
+# ::node	l	light-04	7-8
+# ::node	h	have-03	8-9
+# ::node	p	plant	10-11
+# ::node	g	grow-03	11-12
+# ::node	b	base	14-15
+# ::root	h	have-03
+# ::edge	hydrant	mod	fire	h2	f	
+# ::edge	hydrant	location	next-to	h2	n	
+# ::edge	next-to	op1	thing	n	t	
+# ::edge	light-04	ARG1	street	l	s	
+# ::edge	thing	ARG0-of	light-04	t	l	
+# ::edge	have-03	ARG0	hydrant	h	h2	
+# ::edge	have-03	ARG1	plant	h	p	
+# ::edge	plant	ARG1-of	grow-03	p	g	
+# ::edge	grow-03	location	base	g	b	
+# ::edge	hydrant	part	base	h2	b	
+(h / have-03
+    :ARG0 (h2 / hydrant
+        :location (n / next-to
+            :op1 (t / thing
+                :ARG0-of (l / light-04
+                    :ARG1 (s / street))))
+        :mod (f / fire)
+        :part (b / base))
+    :ARG1 (p / plant
+        :ARG1-of (g / grow-03
+            :location b)))

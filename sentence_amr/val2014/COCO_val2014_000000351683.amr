@@ -1,0 +1,27 @@
+# ::tok A catcher prepares to catch the ball if the batter misses .
+# ::node	p	person	1-2
+# ::node	c	catch-01	1-2
+# ::node	p3	prepare-02	2-3
+# ::node	c2	catch-01	4-5
+# ::node	b	ball	6-7
+# ::node	p2	person	9-10
+# ::node	b2	batter-01	9-10
+# ::node	m	miss-02	10-11
+# ::root	p3	prepare-02
+# ::edge	person	ARG0-of	catch-01	p	c	
+# ::edge	prepare-02	ARG0	person	p3	p	
+# ::edge	prepare-02	ARG1	catch-01	p3	c2	
+# ::edge	catch-01	ARG0	person	c2	p	
+# ::edge	catch-01	ARG1	ball	c2	b	
+# ::edge	person	ARG0-of	batter-01	p2	b2	
+# ::edge	miss-02	ARG0	person	m	p2	
+# ::edge	prepare-02	condition	miss-02	p3	m	
+(p3 / prepare-02
+    :ARG0 (p / person
+        :ARG0-of (c / catch-01))
+    :ARG1 (c2 / catch-01
+        :ARG0 p
+        :ARG1 (b / ball))
+    :condition (m / miss-02
+        :ARG0 (p2 / person
+            :ARG0-of (b2 / batter-01))))

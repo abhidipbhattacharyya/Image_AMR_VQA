@@ -1,0 +1,72 @@
+# ::tok Room with two twin beds made up same way against wall with bedside table to right of each , a table lamp , and a sliding glass door with curtains to one side .
+# ::node	r3	room	0-1
+# ::node	0	2	2-3
+# ::node	t3	twin	3-4
+# ::node	b	bed	4-5
+# ::node	m	make-up-07	5-6
+# ::node	s	same-01	7-8
+# ::node	w2	way	8-9
+# ::node	a	against	9-10
+# ::node	w	wall	10-11
+# ::node	b2	bedside	12-13
+# ::node	t	table	13-14
+# ::node	r2	right-04	15-16
+# ::node	r	relative-position	16-17
+# ::node	t2	table	20-21
+# ::node	l	lamp	21-22
+# ::node	a2	and	23-24
+# ::node	s3	slide-01	25-26
+# ::node	g	glass	26-27
+# ::node	d	door	27-28
+# ::node	h	have-03	28-29
+# ::node	c	curtain	29-30
+# ::node	o	one	31-32
+# ::node	s2	side	32-33
+# ::root	r3	room
+# ::edge	bed	mod	twin	b	t3	
+# ::edge	bed	quant	2	b	0	
+# ::edge	bed	ARG1-of	make-up-07	b	m	
+# ::edge	way	ARG1-of	same-01	w2	s	
+# ::edge	make-up-07	manner	way	m	w2	
+# ::edge	make-up-07	location	against	m	a	
+# ::edge	against	op1	wall	a	w	
+# ::edge	table	mod	bedside	t	b2	
+# ::edge	relative-position	ARG1-of	right-04	r	r2	
+# ::edge	table	location	relative-position	t	r	
+# ::edge	relative-position	op1	bed	r	b	
+# ::edge	lamp	mod	table	l	t2	
+# ::edge	and	op2	lamp	a2	l	
+# ::edge	and	op1	bed	a2	b	
+# ::edge	room	location-of	and	r3	a2	
+# ::edge	glass	ARG1-of	slide-01	g	s3	
+# ::edge	door	consist-of	glass	d	g	
+# ::edge	and	op3	door	a2	d	
+# ::edge	door	ARG0-of	have-03	d	h	
+# ::edge	have-03	ARG1	curtain	h	c	
+# ::edge	side	mod	one	s2	o	
+# ::edge	curtain	location	side	c	s2	
+# ::edge	room	rel	table	r3	t	
+(r3 / room
+    :location-of (a2 / and
+        :op1 (b / bed
+            :quant 2
+            :ARG1-of (m / make-up-07
+                :location (a / against
+                    :op1 (w / wall))
+                :manner (w2 / way
+                    :ARG1-of (s / same-01)))
+            :mod (t3 / twin))
+        :op2 (l / lamp
+            :mod (t2 / table))
+        :op3 (d / door
+            :ARG0-of (h / have-03
+                :ARG1 (c / curtain
+                    :location (s2 / side
+                        :mod (o / one))))
+            :consist-of (g / glass
+                :ARG1-of (s3 / slide-01))))
+    :rel (t / table
+        :location (r / relative-position
+            :ARG1-of (r2 / right-04)
+            :op1 b)
+        :mod (b2 / bedside)))

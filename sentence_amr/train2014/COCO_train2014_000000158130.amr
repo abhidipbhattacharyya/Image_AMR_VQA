@@ -1,0 +1,54 @@
+# ::tok A classic fire truck with Fleur de Lis on the hood and people in chairs to the side .
+# ::node	c2	classic	1-2
+# ::node	f	fire	2-3
+# ::node	t	truck	3-4
+# ::node	h	have-03	4-5
+# ::node	n	name	5-6
+# ::node	0	Fleur	5-6
+# ::node	2	de	6-7
+# ::node	p	person	7-8
+# ::node	1	Lis	7-8
+# ::node	b	be-located-at-91	8-9
+# ::node	h2	hood	10-11
+# ::node	a	and	11-12
+# ::node	a2	and	11-12
+# ::node	p2	person	12-13
+# ::node	b2	be-located-at-91	13-14
+# ::node	c	chair	14-15
+# ::node	s	side	17-18
+# ::root	a	and
+# ::edge	truck	purpose	fire	t	f	
+# ::edge	truck	mod	classic	t	c2	
+# ::edge	truck	ARG0-of	have-03	t	h	
+# ::edge	name	op1	Fleur	n	0	
+# ::edge	name	op2	de	n	2	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op3	Lis	n	1	
+# ::edge	be-located-at-91	ARG1	person	b	p	
+# ::edge	be-located-at-91	ARG2	hood	b	h2	
+# ::edge	and	op1	be-located-at-91	a	b	
+# ::edge	and	op1	be-located-at-91	a2	b	
+# ::edge	have-03	ARG1	and	h	a2	
+# ::edge	and	op2	person	a2	p2	
+# ::edge	person	ARG1-of	be-located-at-91	p2	b2	
+# ::edge	be-located-at-91	ARG2	chair	b2	c	
+# ::edge	be-located-at-91	location	side	b2	s	
+# ::edge	and	rel	truck	a	t	
+(a / and
+    :op1 (b / be-located-at-91
+        :ARG1 (p / person
+            :name (n / name
+                :op1 "Fleur"
+                :op2 "de"
+                :op3 "Lis"))
+        :ARG2 (h2 / hood))
+    :rel (t / truck
+        :purpose (f / fire)
+        :ARG0-of (h / have-03
+            :ARG1 (a2 / and
+                :op1 b
+                :op2 (p2 / person
+                    :ARG1-of (b2 / be-located-at-91
+                        :ARG2 (c / chair)
+                        :location (s / side)))))
+        :mod (c2 / classic)))

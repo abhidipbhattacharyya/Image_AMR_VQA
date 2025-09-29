@@ -1,0 +1,31 @@
+# ::tok Stop sign on two yellow bars placed under a check in area .
+# ::node	s2	stop-01	0-1
+# ::node	s	signal-07	1-2
+# ::node	b2	be-located-at-91	2-3
+# ::node	0	2	3-4
+# ::node	y	yellow-02	4-5
+# ::node	b	bar	5-6
+# ::node	p	place-01	6-7
+# ::node	u	under	7-8
+# ::node	c	check-01	9-10
+# ::node	a	area	11-12
+# ::root	b2	be-located-at-91
+# ::edge	signal-07	ARG1	stop-01	s	s2	
+# ::edge	be-located-at-91	ARG1	signal-07	b2	s	
+# ::edge	bar	ARG1-of	yellow-02	b	y	
+# ::edge	bar	quant	2	b	0	
+# ::edge	signal-07	location	bar	s	b	
+# ::edge	bar	ARG1-of	place-01	b	p	
+# ::edge	place-01	ARG2	under	p	u	
+# ::edge	area	location-of	check-01	a	c	
+# ::edge	under	op1	area	u	a	
+(b2 / be-located-at-91
+    :ARG1 (s / signal-07
+        :ARG1 (s2 / stop-01)
+        :location (b / bar
+            :quant 2
+            :ARG1-of (y / yellow-02)
+            :ARG1-of (p / place-01
+                :ARG2 (u / under
+                    :op1 (a / area
+                        :location-of (c / check-01)))))))

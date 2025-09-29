@@ -1,0 +1,51 @@
+# ::tok A young African American male wears a colored hat and shades while making a cool face .
+# ::node	y	young	1-2
+# ::node	c2	continent	2-3
+# ::node	n	name	2-3
+# ::node	0	Africa	2-3
+# ::node	c4	country	3-4
+# ::node	n2	name	3-4
+# ::node	1	America	3-4
+# ::node	m2	male	4-5
+# ::node	w	wear-01	5-6
+# ::node	c	color-01	7-8
+# ::node	h	hat	8-9
+# ::node	a	and	9-10
+# ::node	s	shade	10-11
+# ::node	m	make-01	12-13
+# ::node	c3	cool-04	14-15
+# ::node	f	face	15-16
+# ::root	w	wear-01
+# ::edge	continent	name	name	c2	n	
+# ::edge	name	op1	Africa	n	0	
+# ::edge	country	name	name	c4	n2	
+# ::edge	name	op1	America	n2	1	
+# ::edge	male	mod	country	m2	c4	
+# ::edge	male	mod	continent	m2	c2	
+# ::edge	male	mod	young	m2	y	
+# ::edge	wear-01	ARG0	male	w	m2	
+# ::edge	hat	ARG1-of	color-01	h	c	
+# ::edge	and	op1	hat	a	h	
+# ::edge	wear-01	ARG1	and	w	a	
+# ::edge	and	op2	shade	a	s	
+# ::edge	wear-01	time	make-01	w	m	
+# ::edge	make-01	ARG0	male	m	m2	
+# ::edge	face	ARG1-of	cool-04	f	c3	
+# ::edge	make-01	ARG1	face	m	f	
+(w / wear-01
+    :ARG0 (m2 / male
+        :mod (c4 / country
+            :name (n2 / name
+                :op1 "America"))
+        :mod (c2 / continent
+            :name (n / name
+                :op1 "Africa"))
+        :mod (y / young))
+    :ARG1 (a / and
+        :op1 (h / hat
+            :ARG1-of (c / color-01))
+        :op2 (s / shade))
+    :time (m / make-01
+        :ARG0 m2
+        :ARG1 (f / face
+            :ARG1-of (c3 / cool-04))))

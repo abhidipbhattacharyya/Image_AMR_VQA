@@ -1,0 +1,64 @@
+# ::tok The exterior of some buildings , a roadway , and a crosswalk , are all visible from inside a large driver 's window that rests next to a control panel , inside of a large vehicle .
+# ::node	e	exterior	1-2
+# ::node	s2	some	3-4
+# ::node	b	building	4-5
+# ::node	r2	roadway	7-8
+# ::node	a2	and	9-10
+# ::node	w	walk-01	11-12
+# ::node	a	all	14-15
+# ::node	p3	possible-01	15-16
+# ::node	s	see-01	15-16
+# ::node	i	inside	17-18
+# ::node	i2	inside	17-18
+# ::node	l	large	19-20
+# ::node	p2	person	20-21
+# ::node	d	drive-01	20-21
+# ::node	w2	window	22-23
+# ::node	r	rest-01	24-25
+# ::node	n	next-to	25-26
+# ::node	c	control-01	28-29
+# ::node	p	panel	29-30
+# ::node	l2	large	34-35
+# ::node	v	vehicle	35-36
+# ::root	p3	possible-01
+# ::edge	building	quant	some	b	s2	
+# ::edge	exterior	part-of	building	e	b	
+# ::edge	and	op2	roadway	a2	r2	
+# ::edge	and	op1	exterior	a2	e	
+# ::edge	and	op3	walk-01	a2	w	
+# ::edge	and	mod	all	a2	a	
+# ::edge	possible-01	ARG1	and	p3	a2	
+# ::edge	possible-01	ARG1-of	see-01	p3	s	
+# ::edge	see-01	location	inside	s	i	
+# ::edge	person	ARG0-of	drive-01	p2	d	
+# ::edge	window	part-of	person	w2	p2	
+# ::edge	window	mod	large	w2	l	
+# ::edge	inside	op1	window	i	w2	
+# ::edge	window	ARG1-of	rest-01	w2	r	
+# ::edge	rest-01	ARG2	next-to	r	n	
+# ::edge	panel	purpose	control-01	p	c	
+# ::edge	next-to	op1	panel	n	p	
+# ::edge	vehicle	mod	large	v	l2	
+# ::edge	inside	part-of	vehicle	i2	v	
+# ::edge	possible-01	rel	inside	p3	i2	
+(p3 / possible-01
+    :ARG1 (a2 / and
+        :mod (a / all)
+        :op1 (e / exterior
+            :part-of (b / building
+                :quant (s2 / some)))
+        :op2 (r2 / roadway)
+        :op3 (w / walk-01))
+    :ARG1-of (s / see-01
+        :location (i / inside
+            :op1 (w2 / window
+                :ARG1-of (r / rest-01
+                    :ARG2 (n / next-to
+                        :op1 (p / panel
+                            :purpose (c / control-01))))
+                :mod (l / large)
+                :part-of (p2 / person
+                    :ARG0-of (d / drive-01)))))
+    :rel (i2 / inside
+        :part-of (v / vehicle
+            :mod (l2 / large))))

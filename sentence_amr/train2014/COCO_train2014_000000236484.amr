@@ -1,0 +1,31 @@
+# ::tok Several boxes of fruit at a fruit stand are : bananas ; pineapple ; and cantaloupe
+# ::node	s	several	0-1
+# ::node	b2	box	1-2
+# ::node	f	fruit	3-4
+# ::node	f2	fruit	6-7
+# ::node	s2	stand	7-8
+# ::node	i	include-91	9-10
+# ::node	b	banana	10-11
+# ::node	a	and	11-12
+# ::node	p	pineapple	12-13
+# ::node	c	cantaloupe	15-16
+# ::root	i	include-91
+# ::edge	box	quant	several	b2	s	
+# ::edge	box	consist-of	fruit	b2	f	
+# ::edge	stand	mod	fruit	s2	f2	
+# ::edge	box	location	stand	b2	s2	
+# ::edge	include-91	ARG2	box	i	b2	
+# ::edge	and	op1	banana	a	b	
+# ::edge	include-91	ARG1	and	i	a	
+# ::edge	and	op2	pineapple	a	p	
+# ::edge	and	op3	cantaloupe	a	c	
+(i / include-91
+    :ARG1 (a / and
+        :op1 (b / banana)
+        :op2 (p / pineapple)
+        :op3 (c / cantaloupe))
+    :ARG2 (b2 / box
+        :quant (s / several)
+        :consist-of (f / fruit)
+        :location (s2 / stand
+            :mod (f2 / fruit))))

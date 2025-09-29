@@ -1,0 +1,43 @@
+# ::tok The sky is full of wispy clouds and you can see four red traffic lights .
+# ::node	s2	sky	1-2
+# ::node	f	fill-01	3-4
+# ::node	c2	conference	5-6
+# ::node	n	name	5-6
+# ::node	w	wispy	5-6
+# ::node	c	cloud	6-7
+# ::node	a	and	7-8
+# ::node	y	you	8-9
+# ::node	p	possible-01	9-10
+# ::node	s	see-01	10-11
+# ::node	0	4	11-12
+# ::node	r	red-02	12-13
+# ::node	t	traffic	13-14
+# ::node	l	light	14-15
+# ::root	a	and
+# ::edge	fill-01	ARG1	sky	f	s2	
+# ::edge	conference	name	name	c2	n	
+# ::edge	cloud	mod	wispy	c	w	
+# ::edge	cloud	mod	conference	c	c2	
+# ::edge	fill-01	ARG2	cloud	f	c	
+# ::edge	and	op1	fill-01	a	f	
+# ::edge	and	op2	possible-01	a	p	
+# ::edge	possible-01	ARG1	see-01	p	s	
+# ::edge	see-01	ARG0	you	s	y	
+# ::edge	light	mod	traffic	l	t	
+# ::edge	light	ARG1-of	red-02	l	r	
+# ::edge	light	quant	4	l	0	
+# ::edge	see-01	ARG1	light	s	l	
+(a / and
+    :op1 (f / fill-01
+        :ARG1 (s2 / sky)
+        :ARG2 (c / cloud
+            :mod (w / wispy)
+            :mod (c2 / conference
+                :name (n / name))))
+    :op2 (p / possible-01
+        :ARG1 (s / see-01
+            :ARG0 (y / you)
+            :ARG1 (l / light
+                :quant 4
+                :ARG1-of (r / red-02)
+                :mod (t / traffic)))))

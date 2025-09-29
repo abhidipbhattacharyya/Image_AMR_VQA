@@ -1,0 +1,39 @@
+# ::tok A blue bowl with a yellow colored food is garnished with green herb , with a spoon beside it .
+# ::node	b3	blue	1-2
+# ::node	b4	bowl	2-3
+# ::node	y	yellow-02	5-6
+# ::node	c	color-01	6-7
+# ::node	f	food	7-8
+# ::node	i	island	9-10
+# ::node	s	serve-02	9-10
+# ::node	g	green-02	11-12
+# ::node	h	herb	12-13
+# ::node	s2	spoon	16-17
+# ::node	b	be-located-at-91	17-18
+# ::node	b2	beside	17-18
+# ::root	i	island
+# ::edge	bowl	mod	blue	b4	b3	
+# ::edge	color-01	ARG2	yellow-02	c	y	
+# ::edge	food	ARG1-of	color-01	f	c	
+# ::edge	bowl	consist-of	food	b4	f	
+# ::edge	island	consist-of	bowl	i	b4	
+# ::edge	island	ARG2-of	serve-02	i	s	
+# ::edge	herb	ARG1-of	green-02	h	g	
+# ::edge	serve-02	ARG1	herb	s	h	
+# ::edge	be-located-at-91	ARG1	spoon	b	s2	
+# ::edge	island	ARG2-of	be-located-at-91	i	b	
+# ::edge	be-located-at-91	ARG2	beside	b	b2	
+# ::edge	beside	op1	bowl	b2	b4	
+(i / island
+    :ARG2-of (s / serve-02
+        :ARG1 (h / herb
+            :ARG1-of (g / green-02)))
+    :ARG2-of (b / be-located-at-91
+        :ARG1 (s2 / spoon)
+        :ARG2 (b2 / beside
+            :op1 (b4 / bowl
+                :consist-of (f / food
+                    :ARG1-of (c / color-01
+                        :ARG2 (y / yellow-02)))
+                :mod (b3 / blue))))
+    :consist-of b4)

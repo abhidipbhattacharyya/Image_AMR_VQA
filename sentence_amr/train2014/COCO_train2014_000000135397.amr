@@ -1,0 +1,66 @@
+# ::tok Various people parts , including two arms that are reaching in to serve themselves , surround a table full of pies , many of them sampled , or partially gone .
+# ::node	v	various	0-1
+# ::node	p3	person	1-2
+# ::node	p	part	2-3
+# ::node	i	include-91	4-5
+# ::node	0	2	5-6
+# ::node	a2	arm	6-7
+# ::node	r	reach-03	9-10
+# ::node	s2	serve-02	12-13
+# ::node	s4	surround-01	15-16
+# ::node	t	table	17-18
+# ::node	f	full-09	18-19
+# ::node	a	apple	20-21
+# ::node	s3	slice	20-21
+# ::node	m	many	22-23
+# ::node	i2	include-91	23-24
+# ::node	s	sample-01	25-26
+# ::node	o	or	27-28
+# ::node	p2	part	28-29
+# ::node	g	go-02	29-30
+# ::root	s4	surround-01
+# ::edge	person	mod	various	p3	v	
+# ::edge	part	part-of	person	p	p3	
+# ::edge	part	ARG2-of	include-91	p	i	
+# ::edge	arm	quant	2	a2	0	
+# ::edge	include-91	ARG1	arm	i	a2	
+# ::edge	arm	ARG0-of	reach-03	a2	r	
+# ::edge	reach-03	purpose	serve-02	r	s2	
+# ::edge	serve-02	ARG2	arm	s2	a2	
+# ::edge	serve-02	ARG0	arm	s2	a2	
+# ::edge	surround-01	ARG2	part	s4	p	
+# ::edge	surround-01	ARG1	table	s4	t	
+# ::edge	table	ARG1-of	full-09	t	f	
+# ::edge	full-09	ARG2	apple	f	a	
+# ::edge	slice	quant	many	s3	m	
+# ::edge	slice	ARG1-of	include-91	s3	i2	
+# ::edge	include-91	ARG2	apple	i2	a	
+# ::edge	slice	ARG1-of	sample-01	s3	s	
+# ::edge	sample-01	op1-of	or	s	o	
+# ::edge	go-02	degree	part	g	p2	
+# ::edge	or	op2	go-02	o	g	
+# ::edge	go-02	ARG0	slice	g	s3	
+# ::edge	surround-01	rel	sample-01	s4	s	
+(s4 / surround-01
+    :ARG1 (t / table
+        :ARG1-of (f / full-09
+            :ARG2 (a / apple)))
+    :ARG2 (p / part
+        :ARG2-of (i / include-91
+            :ARG1 (a2 / arm
+                :quant 2
+                :ARG0-of (r / reach-03
+                    :purpose (s2 / serve-02
+                        :ARG0 a2
+                        :ARG2 a2))))
+        :part-of (p3 / person
+            :mod (v / various)))
+    :rel (s / sample-01
+        :op1-of (o / or
+            :op2 (g / go-02
+                :ARG0 (s3 / slice
+                    :quant (m / many)
+                    :ARG1-of (i2 / include-91
+                        :ARG2 a)
+                    :ARG1-of s)
+                :degree (p2 / part)))))

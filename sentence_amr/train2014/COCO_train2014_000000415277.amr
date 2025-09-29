@@ -1,0 +1,42 @@
+# ::tok A ski slope that has people at the top and one skier doing a jump trick in the middle of the slopes .
+# ::node	s	ski-01	1-2
+# ::node	s3	slope	2-3
+# ::node	h	have-03	4-5
+# ::node	p	person	5-6
+# ::node	t	top	8-9
+# ::node	a	and	9-10
+# ::node	0	1	10-11
+# ::node	p2	person	11-12
+# ::node	s2	ski-01	11-12
+# ::node	d	do-02	12-13
+# ::node	j	jump-03	14-15
+# ::node	t2	trick-01	15-16
+# ::node	m	middle	18-19
+# ::root	s3	slope
+# ::edge	slope	ARG1-of	ski-01	s3	s	
+# ::edge	slope	ARG0-of	have-03	s3	h	
+# ::edge	person	location	top	p	t	
+# ::edge	and	op1	person	a	p	
+# ::edge	have-03	ARG1	and	h	a	
+# ::edge	person	quant	1	p2	0	
+# ::edge	person	ARG0-of	ski-01	p2	s2	
+# ::edge	do-02	ARG0	person	d	p2	
+# ::edge	and	op2	do-02	a	d	
+# ::edge	trick-01	mod	jump-03	t2	j	
+# ::edge	do-02	ARG1	trick-01	d	t2	
+# ::edge	do-02	location	middle	d	m	
+# ::edge	middle	op1	slope	m	s3	
+(s3 / slope
+    :ARG0-of (h / have-03
+        :ARG1 (a / and
+            :op1 (p / person
+                :location (t / top))
+            :op2 (d / do-02
+                :ARG0 (p2 / person
+                    :quant 1
+                    :ARG0-of (s2 / ski-01))
+                :ARG1 (t2 / trick-01
+                    :mod (j / jump-03))
+                :location (m / middle
+                    :op1 s3))))
+    :ARG1-of (s / ski-01))

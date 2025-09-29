@@ -1,0 +1,25 @@
+# ::tok long double - bus driving into an intersection behind trolley tracks
+# ::node	l	long-03	0-1
+# ::node	0	2	1-2
+# ::node	b2	bus	3-4
+# ::node	d	drive-01	4-5
+# ::node	i	intersect-01	7-8
+# ::node	b	behind	8-9
+# ::node	t2	trolley	9-10
+# ::node	t	track	10-11
+# ::root	d	drive-01
+# ::edge	bus	quant	2	b2	0	
+# ::edge	bus	ARG1-of	long-03	b2	l	
+# ::edge	drive-01	ARG1	bus	d	b2	
+# ::edge	drive-01	location	intersect-01	d	i	
+# ::edge	intersect-01	location	behind	i	b	
+# ::edge	track	mod	trolley	t	t2	
+# ::edge	behind	op1	track	b	t	
+(d / drive-01
+    :ARG1 (b2 / bus
+        :quant 2
+        :ARG1-of (l / long-03))
+    :location (i / intersect-01
+        :location (b / behind
+            :op1 (t / track
+                :mod (t2 / trolley)))))

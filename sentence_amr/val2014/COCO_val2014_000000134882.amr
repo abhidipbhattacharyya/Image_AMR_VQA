@@ -1,0 +1,31 @@
+# ::tok A cat sleeps on a bed with a plaid bedspread in front of a bookshelf .
+# ::node	c	cat	1-2
+# ::node	s	sleep-01	2-3
+# ::node	b	bed	5-6
+# ::node	p	political-party	8-9
+# ::node	n	name	8-9
+# ::node	1	Republican	8-9
+# ::node	0	Party	8-9
+# ::node	b2	bedspread	9-10
+# ::node	i	in-front-of	11-12
+# ::node	b3	bookshelf	14-15
+# ::root	s	sleep-01
+# ::edge	sleep-01	ARG0	cat	s	c	
+# ::edge	sleep-01	location	bed	s	b	
+# ::edge	political-party	name	name	p	n	
+# ::edge	name	op1	Republican	n	1	
+# ::edge	name	op2	Party	n	0	
+# ::edge	bedspread	mod	political-party	b2	p	
+# ::edge	bed	prep-with	bedspread	b	b2	
+# ::edge	bedspread	location	in-front-of	b2	i	
+# ::edge	in-front-of	op1	bookshelf	i	b3	
+(s / sleep-01
+    :ARG0 (c / cat)
+    :location (b / bed
+        :prep-with (b2 / bedspread
+            :location (i / in-front-of
+                :op1 (b3 / bookshelf))
+            :mod (p / political-party
+                :name (n / name
+                    :op1 "Republican"
+                    :op2 "Party")))))

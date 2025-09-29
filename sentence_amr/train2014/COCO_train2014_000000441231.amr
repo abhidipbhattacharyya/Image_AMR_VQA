@@ -1,0 +1,28 @@
+# ::tok Traffic light saying to go as workers in the back build the overpass
+# ::node	t	traffic	0-1
+# ::node	l	light	1-2
+# ::node	s	say-01	2-3
+# ::node	g	go-01	4-5
+# ::node	p	person	6-7
+# ::node	w	work-01	6-7
+# ::node	b	back	9-10
+# ::node	b2	build-01	10-11
+# ::node	o	overpass	12-13
+# ::root	s	say-01
+# ::edge	light	mod	traffic	l	t	
+# ::edge	say-01	ARG0	light	s	l	
+# ::edge	say-01	ARG1	go-01	s	g	
+# ::edge	person	ARG0-of	work-01	p	w	
+# ::edge	person	location	back	p	b	
+# ::edge	build-01	ARG0	person	b2	p	
+# ::edge	go-01	time	build-01	g	b2	
+# ::edge	build-01	ARG1	overpass	b2	o	
+(s / say-01
+    :ARG0 (l / light
+        :mod (t / traffic))
+    :ARG1 (g / go-01
+        :time (b2 / build-01
+            :ARG0 (p / person
+                :ARG0-of (w / work-01)
+                :location (b / back))
+            :ARG1 (o / overpass))))

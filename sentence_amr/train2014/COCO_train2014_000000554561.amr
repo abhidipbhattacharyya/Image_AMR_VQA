@@ -1,0 +1,42 @@
+# ::tok A man getting ready to throw a Frisbee while another man tries to take it away frist .
+# ::node	m	man	1-2
+# ::node	r	ready-01	3-4
+# ::node	t2	throw-01	5-6
+# ::node	l	league	7-8
+# ::node	n	name	7-8
+# ::node	0	Frisbee	7-8
+# ::node	a	another	9-10
+# ::node	m2	man	10-11
+# ::node	t3	try-01	11-12
+# ::node	t	take-away-05	13-14
+# ::node	f	frist	16-17
+# ::root	r	ready-01
+# ::edge	ready-01	ARG1	man	r	m	
+# ::edge	ready-01	ARG0	man	r	m	
+# ::edge	ready-01	ARG2	throw-01	r	t2	
+# ::edge	throw-01	ARG0	man	t2	m	
+# ::edge	throw-01	ARG1	league	t2	l	
+# ::edge	league	name	name	l	n	
+# ::edge	name	op1	Frisbee	n	0	
+# ::edge	man	mod	another	m2	a	
+# ::edge	try-01	ARG0	man	t3	m2	
+# ::edge	ready-01	time	try-01	r	t3	
+# ::edge	try-01	ARG1	take-away-05	t3	t	
+# ::edge	take-away-05	ARG0	man	t	m2	
+# ::edge	take-away-05	ARG1	league	t	l	
+# ::edge	try-01	mod	frist	t3	f	
+(r / ready-01
+    :ARG0 (m / man)
+    :ARG1 m
+    :ARG2 (t2 / throw-01
+        :ARG0 m
+        :ARG1 (l / league
+            :name (n / name
+                :op1 "Frisbee")))
+    :time (t3 / try-01
+        :ARG0 (m2 / man
+            :mod (a / another))
+        :ARG1 (t / take-away-05
+            :ARG0 m2
+            :ARG1 l)
+        :mod (f / frist)))

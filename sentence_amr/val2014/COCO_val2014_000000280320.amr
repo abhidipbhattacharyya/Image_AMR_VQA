@@ -1,0 +1,39 @@
+# ::tok Urinals lined up along one wall with a handicap accessible one at the end .
+# ::node	u	urinal	0-1
+# ::node	o2	ordinal-entity	0-1
+# ::node	l	line-up-02	1-2
+# ::node	a2	along	3-4
+# ::node	0	1	4-5
+# ::node	w	wall	5-6
+# ::node	d	disability	8-9
+# ::node	a	access-01	9-10
+# ::node	o	one	10-11
+# ::node	b	be-located-at-91	11-12
+# ::node	e	end	13-14
+# ::node	a3	and	14-15
+# ::root	a3	and
+# ::edge	urinal	ord	ordinal-entity	u	o2	
+# ::edge	line-up-02	ARG1	urinal	l	u	
+# ::edge	line-up-02	location	along	l	a2	
+# ::edge	wall	quant	1	w	0	
+# ::edge	along	op1	wall	a2	w	
+# ::edge	access-01	ARG1	disability	a	d	
+# ::edge	one	ARG0-of	access-01	o	a	
+# ::edge	one	ord	ordinal-entity	o	o2	
+# ::edge	be-located-at-91	ARG1	one	b	o	
+# ::edge	be-located-at-91	ARG2	end	b	e	
+# ::edge	and	op2	be-located-at-91	a3	b	
+# ::edge	and	op1	line-up-02	a3	l	
+(a3 / and
+    :op1 (l / line-up-02
+        :ARG1 (u / urinal
+            :ord (o2 / ordinal-entity))
+        :location (a2 / along
+            :op1 (w / wall
+                :quant 1)))
+    :op2 (b / be-located-at-91
+        :ARG1 (o / one
+            :ARG0-of (a / access-01
+                :ARG1 (d / disability))
+            :ord o2)
+        :ARG2 (e / end)))

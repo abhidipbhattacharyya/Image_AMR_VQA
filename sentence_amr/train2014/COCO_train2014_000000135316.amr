@@ -1,0 +1,37 @@
+# ::tok A passenger jet airliner with the word " AIRFRANCE " is in the air in front of a cloudy sky .
+# ::node	p	passenger	1-2
+# ::node	j	jet	2-3
+# ::node	a2	airliner	3-4
+# ::node	w	word	6-7
+# ::node	c2	country	8-9
+# ::node	n	name	8-9
+# ::node	0	France	8-9
+# ::node	b	be-located-at-91	11-12
+# ::node	a	air	13-14
+# ::node	i	in-front-of	15-16
+# ::node	c	cloudy-02	18-19
+# ::node	s	sky	19-20
+# ::root	b	be-located-at-91
+# ::edge	jet	mod	passenger	j	p	
+# ::edge	airliner	mod	jet	a2	j	
+# ::edge	airliner	mod	word	a2	w	
+# ::edge	word	mod	country	w	c2	
+# ::edge	country	name	name	c2	n	
+# ::edge	name	op1	France	n	0	
+# ::edge	be-located-at-91	ARG1	airliner	b	a2	
+# ::edge	be-located-at-91	ARG2	air	b	a	
+# ::edge	air	location	in-front-of	a	i	
+# ::edge	sky	ARG1-of	cloudy-02	s	c	
+# ::edge	in-front-of	op1	sky	i	s	
+(b / be-located-at-91
+    :ARG1 (a2 / airliner
+        :mod (j / jet
+            :mod (p / passenger))
+        :mod (w / word
+            :mod (c2 / country
+                :name (n / name
+                    :op1 "France"))))
+    :ARG2 (a / air
+        :location (i / in-front-of
+            :op1 (s / sky
+                :ARG1-of (c / cloudy-02)))))

@@ -1,0 +1,35 @@
+# ::tok A person with half his wet suit off , carrying a surfboard out of the water .
+# ::node	p	person	1-2
+# ::node	h	half	3-4
+# ::node	w2	wet-01	5-6
+# ::node	s	suit	6-7
+# ::node	o	off	7-8
+# ::node	c	carry-01	9-10
+# ::node	s2	surfboard	11-12
+# ::node	o2	out-06	12-13
+# ::node	c2	cause-01	13-14
+# ::node	w	water	15-16
+# ::root	p	person
+# ::edge	suit	ARG1-of	wet-01	s	w2	
+# ::edge	suit	degree	half	s	h	
+# ::edge	suit	poss	person	s	p	
+# ::edge	off	domain	suit	o	s	
+# ::edge	carry-01	ARG1	surfboard	c	s2	
+# ::edge	surfboard	ARG1-of	out-06	s2	o2	
+# ::edge	cause-01	ARG1	off	c2	o	
+# ::edge	cause-01	ARG0	off	c2	o	
+# ::edge	person	ARG0-of	cause-01	p	c2	
+# ::edge	out-06	ARG2	water	o2	w	
+# ::edge	person	rel	carry-01	p	c	
+(p / person
+    :ARG0-of (c2 / cause-01
+        :ARG0 (o / off
+            :domain (s / suit
+                :ARG1-of (w2 / wet-01)
+                :degree (h / half)
+                :poss p))
+        :ARG1 o)
+    :rel (c / carry-01
+        :ARG1 (s2 / surfboard
+            :ARG1-of (o2 / out-06
+                :ARG2 (w / water)))))

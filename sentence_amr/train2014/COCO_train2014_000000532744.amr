@@ -1,0 +1,31 @@
+# ::tok Several cars on a busy street near a street sign and traffic signal .
+# ::node	s	several	0-1
+# ::node	c	car	1-2
+# ::node	b	busy-02	4-5
+# ::node	s4	street	5-6
+# ::node	n	near-02	6-7
+# ::node	s5	street	8-9
+# ::node	s2	sign	9-10
+# ::node	a	and	10-11
+# ::node	t	traffic	11-12
+# ::node	s3	signal	12-13
+# ::root	c	car
+# ::edge	car	quant	several	c	s	
+# ::edge	street	ARG1-of	busy-02	s4	b	
+# ::edge	car	location	street	c	s4	
+# ::edge	street	ARG1-of	near-02	s4	n	
+# ::edge	sign	mod	street	s2	s5	
+# ::edge	and	op1	sign	a	s2	
+# ::edge	near-02	ARG2	and	n	a	
+# ::edge	signal	mod	traffic	s3	t	
+# ::edge	and	op2	signal	a	s3	
+(c / car
+    :quant (s / several)
+    :location (s4 / street
+        :ARG1-of (b / busy-02)
+        :ARG1-of (n / near-02
+            :ARG2 (a / and
+                :op1 (s2 / sign
+                    :mod (s5 / street))
+                :op2 (s3 / signal
+                    :mod (t / traffic))))))

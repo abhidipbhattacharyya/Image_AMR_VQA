@@ -1,0 +1,31 @@
+# ::tok A baseball stadium with a group of people watching the batting practice with players on the field .
+# ::node	b	baseball	1-2
+# ::node	s	stadium	2-3
+# ::node	g	group	5-6
+# ::node	p	person	7-8
+# ::node	w	watch-01	8-9
+# ::node	b2	bat	10-11
+# ::node	p4	practice-01	11-12
+# ::node	p2	person	13-14
+# ::node	p3	play-01	13-14
+# ::node	f	field	16-17
+# ::root	s	stadium
+# ::edge	stadium	mod	baseball	s	b	
+# ::edge	group	consist-of	person	g	p	
+# ::edge	group	ARG0-of	watch-01	g	w	
+# ::edge	practice-01	ARG1	bat	p4	b2	
+# ::edge	watch-01	ARG1	practice-01	w	p4	
+# ::edge	practice-01	accompanier	person	p4	p2	
+# ::edge	person	ARG0-of	play-01	p2	p3	
+# ::edge	person	location	field	p2	f	
+# ::edge	stadium	rel	group	s	g	
+(s / stadium
+    :mod (b / baseball)
+    :rel (g / group
+        :ARG0-of (w / watch-01
+            :ARG1 (p4 / practice-01
+                :ARG1 (b2 / bat)
+                :accompanier (p2 / person
+                    :ARG0-of (p3 / play-01)
+                    :location (f / field))))
+        :consist-of (p / person)))

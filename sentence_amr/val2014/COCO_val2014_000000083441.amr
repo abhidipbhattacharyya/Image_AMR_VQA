@@ -1,0 +1,37 @@
+# ::tok A black leather sofa in a living room with a batman poster hanging in the wall .
+# ::node	b	black-04	1-2
+# ::node	l	leather	2-3
+# ::node	s	sofa	3-4
+# ::node	l2	living	6-7
+# ::node	r	room	7-8
+# ::node	h2	have-03	8-9
+# ::node	p2	product	10-11
+# ::node	n	name	10-11
+# ::node	0	Batman	10-11
+# ::node	p	poster	11-12
+# ::node	h	hang-01	12-13
+# ::node	w	wall	15-16
+# ::root	s	sofa
+# ::edge	leather	ARG1-of	black-04	l	b	
+# ::edge	sofa	mod	leather	s	l	
+# ::edge	room	mod	living	r	l2	
+# ::edge	sofa	location	room	s	r	
+# ::edge	sofa	ARG0-of	have-03	s	h2	
+# ::edge	product	name	name	p2	n	
+# ::edge	name	op1	Batman	n	0	
+# ::edge	poster	mod	product	p	p2	
+# ::edge	have-03	ARG1	poster	h2	p	
+# ::edge	poster	ARG1-of	hang-01	p	h	
+# ::edge	hang-01	ARG2	wall	h	w	
+(s / sofa
+    :ARG0-of (h2 / have-03
+        :ARG1 (p / poster
+            :ARG1-of (h / hang-01
+                :ARG2 (w / wall))
+            :mod (p2 / product
+                :name (n / name
+                    :op1 "Batman"))))
+    :location (r / room
+        :mod (l2 / living))
+    :mod (l / leather
+        :ARG1-of (b / black-04)))

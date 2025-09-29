@@ -1,0 +1,41 @@
+# ::tok A couple is standing on the street corner of Obama and nothing , leaving the couple looking confused
+# ::node	c3	couple	1-2
+# ::node	s	stand-01	3-4
+# ::node	s2	street	6-7
+# ::node	c2	corner	7-8
+# ::node	p	person	9-10
+# ::node	n	name	9-10
+# ::node	0	Obama	9-10
+# ::node	n2	nothing	11-12
+# ::node	a	and	12-13
+# ::node	l	leave-13	13-14
+# ::node	l2	look-02	16-17
+# ::node	c	confuse-01	17-18
+# ::root	a	and
+# ::edge	stand-01	ARG0	couple	s	c3	
+# ::edge	corner	mod	street	c2	s2	
+# ::edge	stand-01	ARG2	corner	s	c2	
+# ::edge	corner	poss	person	c2	p	
+# ::edge	person	name	name	p	n	
+# ::edge	name	op1	Obama	n	0	
+# ::edge	and	op2	nothing	a	n2	
+# ::edge	and	op1	stand-01	a	s	
+# ::edge	and	ARG0-of	leave-13	a	l	
+# ::edge	leave-13	ARG1	look-02	l	l2	
+# ::edge	look-02	ARG0	couple	l2	c3	
+# ::edge	look-02	ARG1	confuse-01	l2	c	
+# ::edge	confuse-01	ARG1	couple	c	c3	
+(a / and
+    :ARG0-of (l / leave-13
+        :ARG1 (l2 / look-02
+            :ARG0 (c3 / couple)
+            :ARG1 (c / confuse-01
+                :ARG1 c3)))
+    :op1 (s / stand-01
+        :ARG0 c3
+        :ARG2 (c2 / corner
+            :mod (s2 / street)
+            :poss (p / person
+                :name (n / name
+                    :op1 "Obama"))))
+    :op2 (n2 / nothing))

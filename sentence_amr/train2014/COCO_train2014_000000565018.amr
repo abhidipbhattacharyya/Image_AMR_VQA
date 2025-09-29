@@ -1,0 +1,32 @@
+# ::tok A guy reaches up to catch a frisbee while another does the same .
+# ::node	g	guy	1-2
+# ::node	g2	guy	1-2
+# ::node	r	reach-03	2-3
+# ::node	u	up	3-4
+# ::node	c	catch-01	5-6
+# ::node	f	frisbee	7-8
+# ::node	a	another	9-10
+# ::node	d	do-02	10-11
+# ::node	s	same-01	12-13
+# ::root	r	reach-03
+# ::edge	reach-03	ARG0	guy	r	g	
+# ::edge	reach-03	direction	up	r	u	
+# ::edge	reach-03	purpose	catch-01	r	c	
+# ::edge	catch-01	ARG0	guy	c	g	
+# ::edge	catch-01	ARG1	frisbee	c	f	
+# ::edge	guy	mod	another	g2	a	
+# ::edge	reach-03	time	do-02	r	d	
+# ::edge	do-02	ARG0	guy	d	g2	
+# ::edge	do-02	ARG1	same-01	d	s	
+# ::edge	same-01	ARG1	reach-03	s	r	
+(r / reach-03
+    :purpose (c / catch-01
+        :ARG0 (g / guy)
+        :ARG1 (f / frisbee))
+    :ARG0 g
+    :direction (u / up)
+    :time (d / do-02
+        :ARG0 (g2 / guy
+            :mod (a / another))
+        :ARG1 (s / same-01
+            :ARG1 r)))

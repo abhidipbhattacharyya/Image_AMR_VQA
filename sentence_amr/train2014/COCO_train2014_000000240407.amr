@@ -1,0 +1,22 @@
+# ::tok A train is slowly arriving the station , possibly waiting for passengers .
+# ::node	t	train	1-2
+# ::node	s	slow-05	3-4
+# ::node	a	arrive-01	4-5
+# ::node	s2	station	6-7
+# ::node	p2	possible-01	8-9
+# ::node	w	wait-01	9-10
+# ::node	p	passenger	11-12
+# ::root	a	arrive-01
+# ::edge	arrive-01	ARG1-of	slow-05	a	s	
+# ::edge	arrive-01	ARG1	train	a	t	
+# ::edge	arrive-01	ARG4	station	a	s2	
+# ::edge	wait-01	ARG1-of	possible-01	w	p2	
+# ::edge	train	ARG1-of	wait-01	t	w	
+# ::edge	wait-01	ARG2	passenger	w	p	
+(a / arrive-01
+    :ARG1 (t / train
+        :ARG1-of (w / wait-01
+            :ARG1-of (p2 / possible-01)
+            :ARG2 (p / passenger)))
+    :ARG1-of (s / slow-05)
+    :ARG4 (s2 / station))

@@ -1,0 +1,42 @@
+# ::tok Train with lights on , multiple track area , near over / under pass .
+# ::node	t2	train	0-1
+# ::node	l	light	2-3
+# ::node	o	on-01	3-4
+# ::node	m	multiple	5-6
+# ::node	t	track	6-7
+# ::node	a2	area	7-8
+# ::node	a	and	8-9
+# ::node	n	near-02	9-10
+# ::node	o2	over	10-11
+# ::node	s	slash	11-12
+# ::node	u	under	12-13
+# ::node	p	pass	13-14
+# ::node	p2	pass	13-14
+# ::root	a	and
+# ::edge	on-01	ARG1	light	o	l	
+# ::edge	train	ARG0-of	on-01	t2	o	
+# ::edge	track	quant	multiple	t	m	
+# ::edge	area	location-of	track	a2	t	
+# ::edge	and	op2	area	a	a2	
+# ::edge	and	op1	train	a	t2	
+# ::edge	and	op3	near-02	a	n	
+# ::edge	near-02	ARG1	train	n	t2	
+# ::edge	near-02	ARG2	slash	n	s	
+# ::edge	slash	op1	pass	s	p	
+# ::edge	pass	mod	over	p	o2	
+# ::edge	pass	mod	under	p2	u	
+# ::edge	slash	op2	pass	s	p2	
+(a / and
+    :op1 (t2 / train
+        :ARG0-of (o / on-01
+            :ARG1 (l / light)))
+    :op2 (a2 / area
+        :location-of (t / track
+            :quant (m / multiple)))
+    :op3 (n / near-02
+        :ARG1 t2
+        :ARG2 (s / slash
+            :op1 (p / pass
+                :mod (o2 / over))
+            :op2 (p2 / pass
+                :mod (u / under)))))

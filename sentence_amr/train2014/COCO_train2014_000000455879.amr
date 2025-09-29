@@ -1,0 +1,42 @@
+# ::tok Three helmets and three baseball bats sitting on a large white block with blood dripping down it .
+# ::node	0	3	0-1
+# ::node	g	glove	1-2
+# ::node	a	and	2-3
+# ::node	1	3	3-4
+# ::node	b	baseball	4-5
+# ::node	b2	bat-02	5-6
+# ::node	s	sit-01	6-7
+# ::node	l	large	9-10
+# ::node	w	white-03	10-11
+# ::node	b3	block	11-12
+# ::node	b4	blood	13-14
+# ::node	d2	drip-01	14-15
+# ::node	d	down	15-16
+# ::root	s	sit-01
+# ::edge	glove	quant	3	g	0	
+# ::edge	and	op1	glove	a	g	
+# ::edge	bat-02	mod	baseball	b2	b	
+# ::edge	bat-02	quant	3	b2	1	
+# ::edge	and	op2	bat-02	a	b2	
+# ::edge	sit-01	ARG1	and	s	a	
+# ::edge	block	ARG1-of	white-03	b3	w	
+# ::edge	block	mod	large	b3	l	
+# ::edge	sit-01	ARG2	block	s	b3	
+# ::edge	drip-01	ARG1	blood	d2	b4	
+# ::edge	block	ARG2-of	drip-01	b3	d2	
+# ::edge	drip-01	direction	down	d2	d	
+# ::edge	down	op1	block	d	b3	
+(s / sit-01
+    :ARG1 (a / and
+        :op1 (g / glove
+            :quant 3)
+        :op2 (b2 / bat-02
+            :quant 3
+            :mod (b / baseball)))
+    :ARG2 (b3 / block
+        :ARG1-of (w / white-03)
+        :ARG2-of (d2 / drip-01
+            :ARG1 (b4 / blood)
+            :direction (d / down
+                :op1 b3))
+        :mod (l / large)))

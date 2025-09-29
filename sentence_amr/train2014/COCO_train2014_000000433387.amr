@@ -1,0 +1,49 @@
+# ::tok A person in the background rides a snowboard over a jump and a car while another person in the foreground wearing goggles and a hat watches .
+# ::node	p	person	1-2
+# ::node	b	background	4-5
+# ::node	r	ride-01	5-6
+# ::node	s	snowboard	7-8
+# ::node	o	over	8-9
+# ::node	j	jump-03	10-11
+# ::node	c	car	13-14
+# ::node	c2	contrast-01	14-15
+# ::node	a2	another	15-16
+# ::node	p2	person	16-17
+# ::node	f	foreground	19-20
+# ::node	w2	wear-01	20-21
+# ::node	g	goggles	21-22
+# ::node	a	and	22-23
+# ::node	h	hat	24-25
+# ::node	w	watch-01	25-26
+# ::root	c2	contrast-01
+# ::edge	person	location	background	p	b	
+# ::edge	ride-01	ARG0	person	r	p	
+# ::edge	ride-01	ARG1	snowboard	r	s	
+# ::edge	ride-01	path	over	r	o	
+# ::edge	over	op1	jump-03	o	j	
+# ::edge	over	op2	car	o	c	
+# ::edge	contrast-01	ARG1	ride-01	c2	r	
+# ::edge	person	mod	another	p2	a2	
+# ::edge	person	location	foreground	p2	f	
+# ::edge	person	ARG0-of	wear-01	p2	w2	
+# ::edge	and	op1	goggles	a	g	
+# ::edge	wear-01	ARG1	and	w2	a	
+# ::edge	and	op2	hat	a	h	
+# ::edge	watch-01	ARG0	person	w	p2	
+# ::edge	contrast-01	ARG2	watch-01	c2	w	
+(c2 / contrast-01
+    :ARG1 (r / ride-01
+        :ARG0 (p / person
+            :location (b / background))
+        :ARG1 (s / snowboard)
+        :path (o / over
+            :op1 (j / jump-03)
+            :op2 (c / car)))
+    :ARG2 (w / watch-01
+        :ARG0 (p2 / person
+            :ARG0-of (w2 / wear-01
+                :ARG1 (a / and
+                    :op1 (g / goggles)
+                    :op2 (h / hat)))
+            :location (f / foreground)
+            :mod (a2 / another))))

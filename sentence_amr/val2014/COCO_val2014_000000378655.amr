@@ -1,0 +1,40 @@
+# ::tok Various small burgers with a hot dog and a cup of french fries with dip .
+# ::node	v	various	0-1
+# ::node	s	small	1-2
+# ::node	b	burger	2-3
+# ::node	h	hot-dog	5-6
+# ::node	a	and	7-8
+# ::node	v2	volume-quantity	8-9
+# ::node	0	1	8-9
+# ::node	c2	cup	9-10
+# ::node	c	country	11-12
+# ::node	n	name	11-12
+# ::node	1	France	11-12
+# ::node	f	fry-01	12-13
+# ::node	d	dip	14-15
+# ::root	a	and
+# ::edge	burger	mod	small	b	s	
+# ::edge	burger	mod	various	b	v	
+# ::edge	and	op2	hot-dog	a	h	
+# ::edge	and	op1	burger	a	b	
+# ::edge	volume-quantity	quant	1	v2	0	
+# ::edge	volume-quantity	unit	cup	v2	c2	
+# ::edge	country	name	name	c	n	
+# ::edge	name	op1	France	n	1	
+# ::edge	fry-01	mod	country	f	c	
+# ::edge	fry-01	quant	volume-quantity	f	v2	
+# ::edge	and	op3	fry-01	a	f	
+# ::edge	fry-01	ARG1	dip	f	d	
+(a / and
+    :op1 (b / burger
+        :mod (s / small)
+        :mod (v / various))
+    :op2 (h / hot-dog)
+    :op3 (f / fry-01
+        :quant (v2 / volume-quantity
+            :quant 1
+            :unit (c2 / cup))
+        :ARG1 (d / dip)
+        :mod (c / country
+            :name (n / name
+                :op1 "France"))))

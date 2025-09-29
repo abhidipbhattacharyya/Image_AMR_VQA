@@ -1,0 +1,57 @@
+# ::tok A person horizontal with bent legs , wearing skis , in the air with only sky and bits of snow around him , and one small could in background .
+# ::node	p	person	1-2
+# ::node	h	horizontal	2-3
+# ::node	b2	bend-01	4-5
+# ::node	l	leg	5-6
+# ::node	w	wear-01	7-8
+# ::node	s	ski-01	8-9
+# ::node	a	air	12-13
+# ::node	o	only	14-15
+# ::node	s2	sky	15-16
+# ::node	a2	and	16-17
+# ::node	b3	bit	17-18
+# ::node	s4	snow	19-20
+# ::node	a4	around	20-21
+# ::node	a3	and	23-24
+# ::node	0	1	24-25
+# ::node	s3	small	25-26
+# ::node	p2	possible-01	26-27
+# ::node	b	background	28-29
+# ::root	a3	and
+# ::edge	person	mod	horizontal	p	h	
+# ::edge	leg	ARG1-of	bend-01	l	b2	
+# ::edge	person	part	leg	p	l	
+# ::edge	person	ARG0-of	wear-01	p	w	
+# ::edge	wear-01	ARG1	ski-01	w	s	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	person	location	air	p	a	
+# ::edge	and	op1	sky	a2	s2	
+# ::edge	and	mod	only	a2	o	
+# ::edge	snow	quant	bit	s4	b3	
+# ::edge	and	op2	snow	a2	s4	
+# ::edge	and	location	around	a2	a4	
+# ::edge	around	op1	person	a4	p	
+# ::edge	and	op1	and	a3	a2	
+# ::edge	possible-01	mod	small	p2	s3	
+# ::edge	possible-01	quant	1	p2	0	
+# ::edge	and	op2	possible-01	a3	p2	
+# ::edge	possible-01	location	background	p2	b	
+(a3 / and
+    :op1 (a2 / and
+        :location (a4 / around
+            :op1 (p / person
+                :ARG0-of (w / wear-01
+                    :ARG1 (s / ski-01
+                        :ARG0 p))
+                :location (a / air)
+                :mod (h / horizontal)
+                :part (l / leg
+                    :ARG1-of (b2 / bend-01))))
+        :mod (o / only)
+        :op1 (s2 / sky)
+        :op2 (s4 / snow
+            :quant (b3 / bit)))
+    :op2 (p2 / possible-01
+        :quant 1
+        :location (b / background)
+        :mod (s3 / small)))

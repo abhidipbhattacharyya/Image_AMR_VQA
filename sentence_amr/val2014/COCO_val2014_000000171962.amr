@@ -1,0 +1,30 @@
+# ::tok A bus with two bicycles mounted on a holder on the front stopped at a bus stop .
+# ::node	b2	bus	1-2
+# ::node	0	2	3-4
+# ::node	b	bicycle	4-5
+# ::node	m	mount-03	5-6
+# ::node	h	holder	8-9
+# ::node	f	front	11-12
+# ::node	s	stop-01	12-13
+# ::node	b3	bus	15-16
+# ::node	s2	stop-01	16-17
+# ::root	s	stop-01
+# ::edge	bicycle	quant	2	b	0	
+# ::edge	mount-03	ARG1	bicycle	m	b	
+# ::edge	bus	op1-of	mount-03	b2	m	
+# ::edge	mount-03	location	holder	m	h	
+# ::edge	holder	location	front	h	f	
+# ::edge	bus	part	front	b2	f	
+# ::edge	stop-01	ARG1	bus	s	b2	
+# ::edge	stop-01	ARG1	bus	s2	b3	
+# ::edge	stop-01	location	stop-01	s	s2	
+(s / stop-01
+    :ARG1 (b2 / bus
+        :op1-of (m / mount-03
+            :ARG1 (b / bicycle
+                :quant 2)
+            :location (h / holder
+                :location (f / front)))
+        :part f)
+    :location (s2 / stop-01
+        :ARG1 (b3 / bus)))

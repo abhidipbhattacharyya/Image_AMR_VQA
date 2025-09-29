@@ -1,0 +1,41 @@
+# ::tok Light green tanker or cargo ship near shore with tug boat on side , near shore .
+# ::node	l	light-06	0-1
+# ::node	g	green-02	1-2
+# ::node	t	tanker	2-3
+# ::node	o	or	3-4
+# ::node	c	cargo	4-5
+# ::node	s	ship	5-6
+# ::node	n	near-02	6-7
+# ::node	s2	shore	7-8
+# ::node	t2	tug-01	9-10
+# ::node	b	boat	10-11
+# ::node	s3	side	12-13
+# ::node	n2	near-02	14-15
+# ::root	o	or
+# ::edge	or	op1	tanker	o	t	
+# ::edge	or	ARG1-of	green-02	o	g	
+# ::edge	or	ARG1-of	light-06	o	l	
+# ::edge	ship	mod	cargo	s	c	
+# ::edge	or	op2	ship	o	s	
+# ::edge	or	ARG1-of	near-02	o	n	
+# ::edge	near-02	ARG2	shore	n	s2	
+# ::edge	boat	ARG0-of	tug-01	b	t2	
+# ::edge	or	op3	boat	o	b	
+# ::edge	boat	location	side	b	s3	
+# ::edge	shore	part	side	s2	s3	
+# ::edge	shore	ARG1-of	near-02	s2	n2	
+# ::edge	near-02	ARG2	shore	n2	s2	
+(o / or
+    :ARG1-of (g / green-02)
+    :ARG1-of (l / light-06)
+    :ARG1-of (n / near-02
+        :ARG2 (s2 / shore
+            :ARG1-of (n2 / near-02
+                :ARG2 s2)
+            :part (s3 / side)))
+    :op1 (t / tanker)
+    :op2 (s / ship
+        :mod (c / cargo))
+    :op3 (b / boat
+        :ARG0-of (t2 / tug-01)
+        :location s3))

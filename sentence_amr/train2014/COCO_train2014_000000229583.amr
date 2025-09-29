@@ -1,0 +1,34 @@
+# ::tok Many people in the snow watching and waiting with snowboarding and skiing equipment .
+# ::node	m	many	0-1
+# ::node	p	person	1-2
+# ::node	s3	snow	4-5
+# ::node	w2	watch-01	5-6
+# ::node	w	wait-01	7-8
+# ::node	s	ski-01	9-10
+# ::node	a	and	10-11
+# ::node	s2	ski-01	11-12
+# ::node	e	equipment	12-13
+# ::root	p	person
+# ::edge	person	quant	many	p	m	
+# ::edge	person	location	snow	p	s3	
+# ::edge	person	ARG0-of	watch-01	p	w2	
+# ::edge	person	ARG1-of	wait-01	p	w	
+# ::edge	ski-01	ARG0	person	s	p	
+# ::edge	and	op1	ski-01	a	s	
+# ::edge	and	op2	ski-01	a	s2	
+# ::edge	ski-01	ARG0	person	s2	p	
+# ::edge	equipment	purpose	and	e	a	
+# ::edge	person	accompanier	equipment	p	e	
+# ::edge	watch-01	ARG1	equipment	w2	e	
+(p / person
+    :quant (m / many)
+    :ARG0-of (w2 / watch-01
+        :ARG1 (e / equipment
+            :purpose (a / and
+                :op1 (s / ski-01
+                    :ARG0 p)
+                :op2 (s2 / ski-01
+                    :ARG0 p))))
+    :ARG1-of (w / wait-01)
+    :accompanier e
+    :location (s3 / snow))
